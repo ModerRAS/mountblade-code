@@ -469,7 +469,7 @@ uint32_t SendNetworkPacket(int64_t SocketDescriptor, NetworkHandle ConnectionHan
  * @param ConnectionContext 连接上下文
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidateNetworkPacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
+uint32_t ValidatePacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
 
 /**
  * @brief 处理网络连接请求
@@ -480,7 +480,7 @@ uint32_t ValidateNetworkPacketIntegrity(int64_t PacketData, int64_t ConnectionCo
  * @param RequestData 请求数据指针
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
+uint32_t ProcessConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
 
 /**
  * @brief 执行网络数据传输
@@ -493,7 +493,7 @@ uint32_t ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *Re
  * @param TransferFlags 传输标志
  * @return uint32_t 传输结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t PerformSecureNetworkDataTransfer(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
+uint32_t TransferSecureData(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
 
 /**
  * @brief 处理网络数据包
@@ -504,17 +504,36 @@ uint32_t PerformSecureNetworkDataTransfer(int64_t SourceBuffer, uint32_t Transfe
  * @param HasPriorityFlag 是否具有优先级标志
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessPriorityNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
+uint32_t ProcessPriorityPacket(int64_t PacketBuffer, bool HasPriorityFlag);
 
 /**
  * @brief 创建网络迭代上下文
  * 
- * 创建用于网络连接处理的迭代上下文
+ * 创建用于网络连接处理的迭代上下文，支持批量处理和状态管理。
+ * 此函数为网络连接处理提供迭代器功能，允许系统逐步处理大量连接数据。
  * 
- * @param ConnectionContext 连接上下文
- * @param ValidationResult 验证结果
- * @param IterationFlag 迭代标志
- * @return uint32_t 创建结果句柄，0表示成功，其他值表示错误码
+ * @details 该函数执行以下关键操作：
+ * - 验证连接上下文的有效性
+ * - 初始化迭代状态和计数器
+ * - 设置迭代标志和参数
+ * - 分配迭代所需的内存资源
+ * - 建立连接与验证结果的关联
+ * 
+ * @param ConnectionContext 连接上下文句柄，包含连接的所有状态信息和配置参数
+ * @param ValidationResult 验证结果数据，包含连接验证的状态和错误信息
+ * @param IterationFlag 迭代控制标志，用于控制迭代行为（如：正向迭代、反向迭代、跳跃迭代等）
+ * 
+ * @return uint32_t 创建结果句柄，0表示成功，非0值表示错误码
+ * 
+ * @retval 0 创建成功
+ * @retval 0x1 连接上下文无效
+ * @retval 0x2 验证结果数据无效
+ * @retval 0x3 迭代标志参数无效
+ * @retval 0x4 内存分配失败
+ * 
+ * @note 此函数会创建新的迭代上下文，调用者需要在适当的时候释放相关资源
+ * @warning 如果连接上下文已存在迭代器，创建新的迭代器可能会影响现有操作
+ * @see ProcessNetworkConnectionData, CleanupNetworkConnectionContext
  */
 uint32_t CreateNetworkConnectionIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
 
