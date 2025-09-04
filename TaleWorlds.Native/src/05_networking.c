@@ -708,15 +708,15 @@ uint32_t NetworkCompressionLevel;                         // 网络压缩级别�
 
 // 网络连接配置数据指针
 void *NetworkConnectionInitializationConfig;    // 网络连接初始化配置数据，连接初始化时使用的配置信息
-void *NetworkConnectionAlternateConfig;         // 网络连接备用配置数据，备用配置方案的数据指针
-void *NetworkConnectionHeaderConfig;            // 网络连接头部配置数据，数据包头部处理的配置信息
-void *NetworkConnectionDataConfig;              // 网络连接数据配置数据，数据处理相关的配置信息
-void *NetworkConnectionRequestConfig;           // 网络连接请求配置数据，连接请求处理的配置信息
+void *NetworkConnectionBackupConfig;              // 网络连接备用配置数据，备用配置方案的数据指针
+void *NetworkConnectionHeaderConfig;              // 网络连接头部配置数据，数据包头部处理的配置信息
+void *NetworkConnectionDataConfig;                // 网络连接数据配置数据，数据处理相关的配置信息
+void *NetworkConnectionRequestConfig;             // 网络连接请求配置数据，连接请求处理的配置信息
 void *NetworkConnectionPrimaryProcessingConfig;   // 网络连接主要处理配置数据，主要处理流程的配置信息
-void *NetworkConnectionSecondaryProcessingConfig;// 网络连接次要处理配置数据，次要处理流程的配置信息
-void *NetworkConnectionTertiaryProcessingConfig;// 网络连接第三处理配置数据，第三级处理流程的配置信息
+void *NetworkConnectionSecondaryProcessingConfig; // 网络连接次要处理配置数据，次要处理流程的配置信息
+void *NetworkConnectionTertiaryProcessingConfig; // 网络连接第三处理配置数据，第三级处理流程的配置信息
 void *NetworkConnectionQuaternaryProcessingConfig;// 网络连接第四处理配置数据，第四级处理流程的配置信息
-void *NetworkConnectionQuinaryProcessingConfig;  // 网络连接第五处理配置数据，第五级处理流程的配置信息
+void *NetworkConnectionQuinaryProcessingConfig;   // 网络连接第五处理配置数据，第五级处理流程的配置信息
 
 // 网络连接上下文和数据变量
 uint32_t NetworkConnectionActiveContext;                          // 网络连接活动上下文，存储连接的运行时上下文信息
@@ -1741,14 +1741,14 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
 {
   // 数据包处理变量
   NetworkConnectionStatus *NetworkConnectionContextArray;  // 网络连接上下文数据数组
-  int32_t ActiveConnectionCount;                    // 活跃连接数量
+  int32_t TotalActiveConnections;                    // 活跃连接数量
   int64_t ConnectionBaseAddress;                     // 连接基地址
   NetworkConnectionStatus PacketProcessingResult;              // 数据包处理结果
   NetworkConnectionStatus DataProcessingStatus;                // 数据处理状态
   NetworkConnectionStatus ConnectionValidationResult;          // 连接验证结果
-  NetworkConnectionStatus *StatusBuffer;          // 网络状态缓冲区指针
-  int64_t ProcessingIterationCount;               // 处理迭代计数器
-  NetworkConnectionStatus *PacketBuffer;         // 网络数据包缓冲区指针
+  NetworkConnectionStatus *NetworkStatusBuffer;          // 网络状态缓冲区指针
+  int64_t ConnectionProcessingIterator;               // 处理迭代计数器
+  NetworkConnectionStatus *NetworkPacketBuffer;         // 网络数据包缓冲区指针
   
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[1]) {
