@@ -6126,6 +6126,14 @@ void TerminateSystem(void) {
  * 
  * @return 无返回值
  */
+/**
+ * @brief 执行无操作
+ * 
+ * 该函数用于执行空操作，主要用于系统流程中的占位操作。
+ * 在某些需要函数指针但不能执行实际操作的场景中使用。
+ * 
+ * @return void 无返回值
+ */
 void PerformNoOperation(void) {
   return;
 }
@@ -35668,7 +35676,7 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
-void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessSystemDataStructureException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t SystemResourcePointer = *(int64_t *)(SystemContext + SystemContextResourceOffset);
   int64_t DataStructurePointer = SystemResourcePointer + SystemDataStructureOffset;
   
