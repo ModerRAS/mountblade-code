@@ -11047,7 +11047,7 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
   int DataContentParsingResult = ParseDataContent(TotalProcessedBytes + ValidationContext,DataLength - TotalProcessedBytes,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
   TotalProcessedBytes = TotalProcessedBytes + DataContentParsingResult;
   int StringValidationResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,DataLength - TotalProcessedBytes,&StringProcessingTemplate);
-  ProcessedByteCount = ProcessedByteCount + StringValidationStatus;
+  TotalProcessedBytes = TotalProcessedBytes + StringValidationResult;
   int StringExtendedValidationStatus = ProcessStringValidation(ProcessedByteCount + ValidationContext,DataLength - ProcessedByteCount,ObjectContext + ObjectContextProcessingDataOffset,
                         *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
   ProcessedByteCount = ProcessedByteCount + StringExtendedValidationStatus;
