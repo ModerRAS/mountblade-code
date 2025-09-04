@@ -23423,7 +23423,7 @@ void StartAndManageSystemThread(long long SystemResourceManager,long long Config
 
 
 void* *
-InitializeDataBufferTemplates(void* *DataBufferReference,ulong long InitializationFlags,void* ReservedParam3,void* ReservedParam4)
+SetupDataBufferTemplates(void* *DataBufferReference, unsigned long long InitializationFlags, void* ReservedParam3, void* ReservedParam4)
 
 {
   *DataBufferReference = &SystemDataBufferInputTemplateE;
@@ -23741,7 +23741,7 @@ void ExecuteSystemFinalCleanup(void)
 
 
 void* *
-InitializeSystemPathBuffers(void* *pathBufferRef,void* reservedParam2,void* reservedParam3,void* reservedParam4)
+CreateSystemPathBuffers(void* *PathBufferReference, void* ReservedParam2, void* ReservedParam3, void* ReservedParam4)
 
 {
   uint32_t *SystemDataPointer;
@@ -24038,7 +24038,7 @@ void SetSystemThreadId(uint32_t *threadIdPointer)
  * @return 返回初始化后的系统资源指针
  */
 void* *
-InitializeSystemResourceWithTemplate(void* *systemResourcePointer, long long templateParameter, void* reservedParam3, void* reservedParam4)
+CreateSystemResourceFromTemplate(void* *SystemResourcePointer, long long TemplateParameter, void* ReservedParam3, void* ReservedParam4)
 
 {
   void* *resultPointer;
