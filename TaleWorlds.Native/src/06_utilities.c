@@ -5091,7 +5091,7 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ObjectMemoryAddress;
-  uint8_t ObjectValidationResult;
+  uint8_t ValidationStatus;
   int64_t ObjectValidationWorkspace [4];
   int64_t *ValidatedObjectContextPointer;
   
