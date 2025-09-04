@@ -51853,7 +51853,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
   int systemOffset;
   int SystemCode;
   uint32_t ThreadContextIndicator;
-  ulong long in_RAX;
+  ulong long SystemOperationResult;
   long long SystemAllocationFlags;
   void* *ThreadLocalStorage;
   ulong long SystemProcessingResult;
