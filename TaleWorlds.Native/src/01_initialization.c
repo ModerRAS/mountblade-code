@@ -27599,7 +27599,6 @@ void SystemDataProcessor(long long SystemResourceManager)
 
 
 
-// 函数: void SystemMemoryAllocator(long long SystemResourceManager,long long parameter2,void* parameter3,void* parameter4)
 /**
  * @brief 系统内存分配器
  * 
@@ -27611,24 +27610,24 @@ void SystemDataProcessor(long long SystemResourceManager)
  * @param memoryPool 内存池
  * @param SystemAllocationFlags 分配标志
  */
-void SystemMemoryAllocator(long long resourceManagerPointer,long long allocationSize,void* memoryPool,void* SystemAllocationFlags)
+void SystemMemoryAllocator(long long resourceManagerPointer, long long allocationSize, void* memoryPool, void* SystemAllocationFlags)
 
 {
-  long long *PrimaryResourcePointer;
+  long long* PrimaryResourcePointer;
   uint32_t resourceCreationFlags;
   int NodeIdentifierCompareResult;
-  void* *ResourceAddressPointer;
-  ulong long CurrentThreadId;
+  void** ResourceAddressPointer;
+  unsigned long long CurrentThreadId;
   long long SystemThreadFlags;
   void* ThreadContextFlag;
-  void* *pStackParameterC;
-  void* *pointerToUnsignedStackFlag88;
+  void** StackParameterC;
+  void** UnsignedStackFlag88;
   uint32_t SystemFlagTertiary;
   void* SystemUnsignedFlagSecondary;
-  void* *SystemProcessFlagsPointer;
-  void* *pencryptionValue68;
+  void** SystemProcessFlagsPointer;
+  void** EncryptionValue68;
   uint32_t SystemThreadContext;
-  void* systemProcessFlags58;
+  void* SystemProcessFlags58;
   
   ThreadContextFlag = 0xfffffffffffffffe;
   PrimaryResourcePointer = (long long *)(SystemResourceManager + 0xd8);
