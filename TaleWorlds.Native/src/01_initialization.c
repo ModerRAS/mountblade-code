@@ -350,10 +350,10 @@ char VerifySystemMemoryAllocation(void* MemoryContext);
  * 用于系统内存管理的前期准备工作。
  * 
  * @param MemoryContext 内存上下文指针
- * @param allocationBuffer 分配缓冲区指针
+ * @param AllocationBuffer 分配缓冲区指针
  * @return 无返回值
  */
-void AllocateSystemMemoryResources(void* MemoryContext, void* allocationBuffer);
+void AllocateSystemMemoryResources(void* MemoryContext, void* AllocationBuffer);
 
 /**
  * @brief 配置系统数据缓冲区
