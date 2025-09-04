@@ -272,7 +272,6 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
 #define NetworkConnectionValidationOffsetThird 0x78          // 第三级连接验证偏移量
 #define NetworkConnectionValidationOffsetFourth 0x58         // 第四级连接验证偏移量
-// 注意：这个常量已被 NetworkConnectionDataPrimaryOffset 替代，保持兼容性
 #define NetworkConnectionIntegrityOffsetFirst 0x70           // 第一级连接完整性偏移量
 #define NetworkConnectionIntegrityOffsetSecond 0x74          // 第二级连接完整性偏移量
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
@@ -1616,7 +1615,6 @@ uint32_t NetworkConnectionReliability;              // 网络连接可靠性
 uint32_t NetworkConnectionPerformance;              // 网络连接性能
 uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
 uint32_t NetworkConnectionTableSize;                 // 网络连接表大小
-// 重复定义已删除，这些变量在前面已定义
 uint32_t NetworkPacketQueue;                        // 网络数据包队列
 uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大小
 uint32_t NetworkEncryptionContext;                   // 网络加密上下文
@@ -1932,24 +1930,24 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ConnectionContextBasePointer - (long long)ConnectionStatusBufferPointer) + (long long)ConnectionStatusPointer);
+            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ContextBasePointer - (long long)StatusBufferPtr) + (long long)StatusPtr);
             
             // 提取连接状态信息
-            NetworkConnectionStatus CurrentPacketStatus = ContextDataArray[ConnectionContextPacketStatusIndex];
-            NetworkConnectionStatus CurrentDataStatus = ContextDataArray[ConnectionContextDataStatusIndex];
-            NetworkConnectionStatus CurrentValidationStatus = ContextDataArray[ConnectionContextValidationStatusIndex];
+            NetworkConnectionStatus PacketStatus = ContextDataArray[ConnectionContextPacketStatusIndex];
+            NetworkConnectionStatus DataStatus = ContextDataArray[ConnectionContextDataStatusIndex];
+            NetworkConnectionStatus ValidationStatus = ContextDataArray[ConnectionContextValidationStatusIndex];
             
             // 更新数据包缓冲区状态
-            *ConnectionStatusPointer = *ContextDataArray;
-            ConnectionStatusPointer[ConnectionContextPacketStatusIndex] = CurrentPacketStatus;
-            ConnectionStatusPointer[ConnectionContextDataStatusIndex] = CurrentDataStatus;
-            ConnectionStatusPointer[ConnectionContextValidationStatusIndex] = CurrentValidationStatus;
-            ConnectionStatusPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBasePointer - (long long)ConnectionStatusBufferPointer) + -4 + (long long)(ConnectionStatusPointer + ConnectionContextStatusEntrySize));
+            *StatusPtr = *ContextDataArray;
+            StatusPtr[ConnectionContextPacketStatusIndex] = PacketStatus;
+            StatusPtr[ConnectionContextDataStatusIndex] = DataStatus;
+            StatusPtr[ConnectionContextValidationStatusIndex] = ValidationStatus;
+            StatusPtr[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ContextBasePointer - (long long)StatusBufferPtr) + -4 + (long long)(StatusPtr + ConnectionContextStatusEntrySize));
             
             // 更新计数器
-            ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
-            ConnectionStatusPointer = ConnectionStatusPointer + ConnectionContextStatusEntrySize;
-          } while (ConnectionProcessingCounter != 0);
+            ProcessingCounter = ProcessingCounter - 1;
+            StatusPtr = StatusPtr + ConnectionContextStatusEntrySize;
+          } while (ProcessingCounter != 0);
         }
         return NetworkOperationSuccessCode;
       }
