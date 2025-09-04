@@ -591,6 +591,28 @@ void InitializeSystemConfiguration(void* ConfigurationContext, int Configuration
 void SetupSystemDataField(void* DataFieldContext, uint FieldValue, uint AdditionalParameter);
 
 /**
+ * @brief 抛出系统错误
+ * 
+ * 该函数负责抛出系统错误，处理系统级别的错误情况
+ * 用于系统错误处理和异常管理
+ * 
+ * @param errorCode 错误代码，指定错误的类型和原因
+ * @return 无返回值
+ */
+void ThrowSystemError(int errorCode);
+
+/**
+ * @brief 抛出C++系统错误
+ * 
+ * 该函数负责抛出C++系统错误，处理C++级别的错误情况
+ * 用于C++系统错误处理和异常管理
+ * 
+ * @param errorCode 错误代码，指定错误的类型和原因
+ * @return 无返回值
+ */
+void ThrowCppSystemError(int errorCode);
+
+/**
  * @brief 系统初始化完成函数
  * 
  * 该函数负责完成系统初始化，执行最后的初始化操作
