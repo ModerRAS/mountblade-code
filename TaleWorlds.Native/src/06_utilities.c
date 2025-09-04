@@ -81668,7 +81668,16 @@ void SetSystemDataStructure0x430(uint8_t ObjectContext, int64_t ValidationContex
 
 
 
-void Unwind_18090c7b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构（偏移量0x570）
+ * 
+ * 该函数负责设置系统数据结构，将系统数据结构指针设置到验证上下文的指定位置
+ * 使用0x570偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void SetSystemDataStructure0x570(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x570) = &SystemDataStructure;
@@ -81677,7 +81686,16 @@ void Unwind_18090c7b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c7c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构（偏移量0x610）
+ * 
+ * 该函数负责设置系统数据结构，将系统数据结构指针设置到验证上下文的指定位置
+ * 使用0x610偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void SetSystemDataStructure0x610(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x610) = &SystemDataStructure;
@@ -81686,7 +81704,16 @@ void Unwind_18090c7c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c7d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构（偏移量0x6b0）
+ * 
+ * 该函数负责设置系统数据结构，将系统数据结构指针设置到验证上下文的指定位置
+ * 使用0x6b0偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void SetSystemDataStructure0x6b0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x6b0) = &SystemDataStructure;
@@ -81695,7 +81722,16 @@ void Unwind_18090c7d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c7e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构（偏移量0x750）
+ * 
+ * 该函数负责设置系统数据结构，将系统数据结构指针设置到验证上下文的指定位置
+ * 使用0x750偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void SetSystemDataStructure0x750(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x750) = &SystemDataStructure;
@@ -81749,7 +81785,16 @@ void InitializeSystemDataStructure(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_18090c810(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统回调函数（偏移量0x1c8）
+ * 
+ * 该函数负责执行系统回调函数，用于处理系统资源管理中的回调操作
+ * 检查验证上下文中偏移量0x1c8位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void ExecuteSystemCallback0x1c8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x1c8) != (int64_t *)0x0) {
@@ -81760,7 +81805,16 @@ void Unwind_18090c810(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c820(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构（偏移量0x2a8）
+ * 
+ * 该函数负责设置系统数据结构，将系统数据结构指针设置到验证上下文的指定位置
+ * 使用0x2a8偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void SetSystemDataStructure0x2a8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2a8) = &SystemDataStructure;
@@ -81769,7 +81823,16 @@ void Unwind_18090c820(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c830(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构（偏移量0x890）
+ * 
+ * 该函数负责设置系统数据结构，将系统数据结构指针设置到验证上下文的指定位置
+ * 使用0x890偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void SetSystemDataStructure0x890(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x890) = &SystemDataStructure;
