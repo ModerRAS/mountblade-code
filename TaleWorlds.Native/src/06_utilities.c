@@ -5076,20 +5076,11 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
 /**
  * @brief 初始化对象句柄
  * 
- * 该函数用于初始化系统对象句柄，包含对象验证和句柄初始化操作。
- * 主要用于对象管理系统的基础功能实现。
- * 
- * @param ObjectContext 对象上下文，包含要初始化句柄的对象信息
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- */
-/**
- * @brief 初始化对象句柄
- * 
  * 该函数用于初始化系统对象的句柄，设置对象的基本属性和状态
  * 包含对象上下文验证和内存地址调整操作
  * 
- * @param ObjectContext 对象上下文指针
- * @return 初始化结果状态码
+ * @param ObjectContext 对象上下文指针，包含要初始化句柄的对象信息
+ * @return uint8_t 初始化结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
   uint8_t ValidationResult;
@@ -5120,19 +5111,11 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
 /**
  * @brief 释放对象句柄
  * 
- * 该函数用于释放系统对象的句柄，清理相关资源。
- * 主要用于对象生命周期的最后阶段，确保资源被正确释放。
- * 
- * @return uint8_t 操作状态码，0表示成功，非0表示失败
- * @note 此函数从全局状态获取当前对象句柄进行释放操作
- */
-/**
- * @brief 释放对象句柄
- * 
  * 该函数用于释放系统对象的句柄，清理相关资源并回收内存
  * 执行对象句柄的释放操作和系统状态更新
  * 
- * @return 释放操作结果状态码
+ * @return uint8_t 释放操作结果状态码，0表示成功，非0表示失败
+ * @note 此函数从全局状态获取当前对象句柄进行释放操作
  */
 uint8_t ReleaseObjectHandle(void) {
   int64_t CurrentActiveObjectHandle = 0;
@@ -5156,18 +5139,14 @@ uint8_t ReleaseObjectHandle(void) {
 }
 
 /**
- * @brief 验证字符安全性
+ * @brief 验证字符输入
  * 
- * 该函数验证输入字符的安全性，如果字符不为空字符则执行系统退出操作。
- * 主要用于系统安全检查，防止无效字符输入。
+ * 该函数用于验证输入字符的有效性，如果字符不为空则触发系统退出
+ * 主要用于系统安全检查，防止无效字符输入
  * 
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-/**
- * @brief 验证字符输入
- * 
- * 该函数用于验证输入字符的有效性，如果字符不为空则触发系统退出
  * 这是一个简单的字符验证函数，用于输入安全检查
  * 
  * @param CharacterToValidate 要验证的字符
