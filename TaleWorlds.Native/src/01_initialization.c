@@ -40033,10 +40033,10 @@ void* ExpandSystemResourceAllocatorB(void)
       memoryBlockAddress = memoryBlockAddress + -1;
     } while (memoryBlockAddress != 0);
   }
-  in_R9[4] = systemDataIndexPtr;
-  in_R9[2] = resourceEntryPointer;
-  in_R9[3] = SystemThreadContext;
-  *in_R9 = *(void* *)(StringIteratorPointer + 0x58);
+  ResourceRegister9[4] = systemDataIndexPtr;
+  ResourceRegister9[2] = resourceEntryPointer;
+  ResourceRegister9[3] = SystemThreadContext;
+  *ResourceRegister9 = *(void* *)(StringIteratorPointer + 0x58);
   in_R9[1] = *(long long *)(StringIteratorPointer + 0x58) - 1U & SystemStackFrameOffset - 1U;
   *(void* **)(StringIteratorPointer + 0x60) = in_R9;
   *(long long *)(StringIteratorPointer + 0x58) = *(long long *)(StringIteratorPointer + 0x58) << 1;

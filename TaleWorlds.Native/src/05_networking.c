@@ -770,29 +770,29 @@ uint32_t NetworkPacketCacheBuffer;                         // 网络数据包缓
 uint32_t NetworkPacketFilterBuffer;                        // 网络数据包过滤缓冲区，用于数据包过滤处理的缓冲区
 
 // 网络安全相关变量
-uint32_t NetworkSecurityContextDataPrimary;                // 网络安全上下文主要数据，存储主要的安全上下文信息
-uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据，用于安全验证的相关数据
-uint32_t NetworkSecurityEncryptionData;                    // 网络安全加密数据，用于安全加密的相关数据
-uint32_t NetworkSecurityAuthenticationData;                 // 网络安全认证数据，用于身份认证的相关数据
-uint32_t NetworkSecurityAuthorizationData;                  // 网络安全授权数据，用于权限授权的相关数据
-uint32_t NetworkSecurityAuditData;                         // 网络安全审计数据，用于安全审计的相关数据
-uint32_t NetworkSecurityPolicyData;                        // 网络安全策略数据，用于安全策略配置的相关数据
-uint32_t NetworkSecurityCertificateData;                   // 网络安全证书数据，用于证书管理的相关数据
+uint32_t NetworkSecurityContextPrimary;                // 网络安全上下文主要数据，存储主要的安全上下文信息
+uint32_t NetworkSecurityValidationInfo;                    // 网络安全验证信息，用于安全验证的相关数据
+uint32_t NetworkSecurityEncryptionInfo;                    // 网络安全加密信息，用于安全加密的相关数据
+uint32_t NetworkSecurityAuthenticationInfo;                 // 网络安全认证信息，用于身份认证的相关数据
+uint32_t NetworkSecurityAuthorizationInfo;                  // 网络安全授权信息，用于权限授权的相关数据
+uint32_t NetworkSecurityAuditInfo;                         // 网络安全审计信息，用于安全审计的相关数据
+uint32_t NetworkSecurityPolicyInfo;                        // 网络安全策略信息，用于安全策略配置的相关数据
+uint32_t NetworkSecurityCertificateInfo;                   // 网络安全证书信息，用于证书管理的相关数据
 
 // 网络连接池管理变量
-uint32_t NetworkConnectionPoolData;                    // 网络连接池数据指针，指向连接池的数据存储区域
+uint32_t NetworkConnectionPoolInfo;                    // 网络连接池信息，指向连接池的数据存储区域
 uint32_t NetworkConnectionPoolMetadata;                // 网络连接池元数据，连接池的元数据信息
-uint32_t NetworkConnectionPoolStatistics;              // 网络连接池统计信息，连接池的统计和计数信息
-uint32_t NetworkConnectionPoolConfiguration;            // 网络连接池配置，连接池的配置参数设置
+uint32_t NetworkConnectionPoolStats;              // 网络连接池统计信息，连接池的统计和计数信息
+uint32_t NetworkConnectionPoolConfig;            // 网络连接池配置，连接池的配置参数设置
 uint32_t NetworkConnectionPoolHealthStatus;             // 网络连接池健康状态，连接池的健康状态指示
-uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能指标，连接池的性能测量数据
+uint32_t NetworkConnectionPoolMetrics;      // 网络连接池性能指标，连接池的性能测量数据
 uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配计数，连接池分配操作的计数
 uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数，连接池释放操作的计数
 uint32_t NetworkConnectionPoolCapacity;                 // 网络连接池容量，连接池的最大容量
 uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引，连接池的索引位置
 uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理器，连接池的管理器句柄
 uint32_t NetworkConnectionPoolCurrentIndex;              // 网络连接池当前索引，连接池当前使用的索引位置
-uint32_t NetworkConnectionPoolUsageStatistics;           // 网络连接池使用统计，连接池的使用统计信息
+uint32_t NetworkConnectionPoolUsageStats;           // 网络连接池使用统计，连接池的使用统计信息
 
 uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
 uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑定状态，表示套接字是否已绑定到地址
@@ -842,16 +842,16 @@ void InitializeNetworkConnectionPool(void)
 
 // 网络连接配置数据结构指针
 void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
-void *NetworkConnectionPrimaryConfiguration = &NetworkConnectionPrimaryConfigData;
-void *NetworkConnectionSecondaryConfiguration = &NetworkConnectionSecondaryConfigData;
-void *NetworkConnectionProcessingConfiguration = &NetworkConnectionProcessingConfigData;
-void *NetworkConnectionTransportConfiguration = &NetworkConnectionTransportConfigData;
-void *NetworkConnectionProtocolConfiguration = &NetworkConnectionProtocolConfigData;
-void *NetworkConnectionValidationConfiguration = &NetworkConnectionValidationConfigData;
-void *NetworkConnectionRoutingConfigurationPrimary = &NetworkConnectionRoutingConfigPrimaryData;
-void *NetworkConnectionRoutingConfigurationSecondary = &NetworkConnectionRoutingConfigSecondaryData;
-void *NetworkConnectionRoutingConfigurationTertiary = &NetworkConnectionRoutingConfigTertiaryData;
-void *NetworkConnectionRoutingConfigurationQuaternary = &NetworkConnectionRoutingConfigQuaternaryData;
+void *NetworkConnectionPrimaryConfiguration = &NetworkConnectionPrimaryConfig;
+void *NetworkConnectionSecondaryConfiguration = &NetworkConnectionSecondaryConfig;
+void *NetworkConnectionProcessingConfiguration = &NetworkConnectionProcessingConfig;
+void *NetworkConnectionTransportConfiguration = &NetworkConnectionTransportConfig;
+void *NetworkConnectionProtocolConfiguration = &NetworkConnectionProtocolConfig;
+void *NetworkConnectionValidationConfiguration = &NetworkConnectionValidationConfig;
+void *NetworkConnectionRoutingConfigurationPrimary = &NetworkConnectionRoutingPrimaryConfig;
+void *NetworkConnectionRoutingConfigurationSecondary = &NetworkConnectionRoutingSecondaryConfig;
+void *NetworkConnectionRoutingConfigurationTertiary = &NetworkConnectionRoutingTertiaryConfig;
+void *NetworkConnectionRoutingConfigurationQuaternary = &NetworkConnectionRoutingQuaternaryConfig;
 
 // 网络连接配置数据定义
 
@@ -1545,16 +1545,16 @@ uint32_t NetworkPacketSignatureMethod;                         // 数据包签�
 uint32_t PacketEncryptionKeyLength;                     // 数据包加密密钥长度
 uint32_t PacketValidationBufferPool;                     // 数据包验证缓冲池
 uint32_t PacketValidationBufferSize;                     // 数据包验证缓冲区大小
-uint32_t PacketSecurityValidationData;                   // 数据包安全验证数据
-uint32_t PacketSecurityEncryptionData;                   // 数据包安全加密数据
-uint32_t PacketSecurityAuthenticationData;              // 数据包安全认证数据
-uint32_t PacketSecurityAuthorizationData;               // 数据包安全授权数据
-uint32_t PacketSecurityAuditData;                        // 数据包安全审计数据
-uint32_t PacketSecurityPolicyData;                       // 数据包安全策略数据
-uint32_t PacketSecurityCertificateData;                  // 数据包安全证书数据
+uint32_t PacketSecurityValidationInfo;                   // 数据包安全验证信息
+uint32_t PacketSecurityEncryptionInfo;                   // 数据包安全加密信息
+uint32_t PacketSecurityAuthenticationInfo;              // 数据包安全认证信息
+uint32_t PacketSecurityAuthorizationInfo;               // 数据包安全授权信息
+uint32_t PacketSecurityAuditInfo;                        // 数据包安全审计信息
+uint32_t PacketSecurityPolicyInfo;                       // 数据包安全策略信息
+uint32_t PacketSecurityCertificateInfo;                  // 数据包安全证书信息
 uint32_t PacketEncryptionBuffer;                         // 数据包加密缓冲区
 uint32_t PacketCompressionBuffer;                        // 数据包压缩缓冲区
-uint32_t PacketDataCompressionLevel;                    // 数据包数据压缩级别
+uint32_t PacketCompressionDataLevel;                    // 数据包压缩数据级别
 uint32_t PacketCompressionLevel;                         // 数据包压缩级别
 uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算法类型
 
@@ -1592,10 +1592,7 @@ uint32_t NetworkConnectionReliability;              // 网络连接可靠性
 uint32_t NetworkConnectionPerformance;              // 网络连接性能
 uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
 uint32_t NetworkConnectionTableSize;                 // 网络连接表大小
-uint32_t NetworkPacketRoutingBuffer;                  // 网络数据包路由缓冲区
-uint32_t NetworkPacketQueueBuffer;                    // 网络数据包队列缓冲区
-uint32_t NetworkPacketCacheBuffer;                    // 网络数据包缓存缓冲区
-uint32_t NetworkPacketFilterBuffer;                   // 网络数据包过滤缓冲区
+// 重复定义已删除，这些变量在前面已定义
 uint32_t NetworkPacketQueue;                        // 网络数据包队列
 uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大小
 uint32_t NetworkEncryptionContext;                   // 网络加密上下文
@@ -1796,14 +1793,14 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
   ValidationStatusCode = 0;  // 初始化验证状态码
   if (ValidationStatusCode == 0) {
     if ((0 < *(int *)((long long)ValidationResultPointer + ConnectionParameterOffset)) && (*ValidationResultPointer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *ValidationResultPointer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *ValidationResultPointer, &NetworkSecurityValidationInfo, SecurityValidationBufferSize, 1);
     }
     *ValidationResultPointer = ConnectionContextHandle;
     *(int *)((long long)ValidationResultPointer + ConnectionParameterOffset) = ValidationStatusCode;
     return 0;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
-    ConnectionContextHandle = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationData, NetworkConnectionFinalizeValue, 0);
+    ConnectionContextHandle = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationInfo, NetworkConnectionFinalizeValue, 0);
     if (ConnectionContextHandle != 0) {
       if ((int)ValidationResultPointer[1] != 0) {
           memcpy(ConnectionContextHandle, *ValidationResultPointer, (long long)(int)ValidationResultPointer[1]);
@@ -1882,7 +1879,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
       ConnectionStatusBuffer = (NetworkConnectionStatus *)
-               ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
+               ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationInfo,
                              NetworkConnectionFinalizeValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
@@ -1924,7 +1921,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   // 验证连接安全性
   if ((0 < *(int *)((long long)ConnectionContext + ConnectionParameterOffset)) && (*ConnectionContext != 0)) {
-      ValidateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+      ValidateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationInfo, SecurityValidationBufferSize, 1);
   }
   
   // 更新连接上下文和参数
@@ -1966,7 +1963,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   if (ConnectionUpdateOperationCode == 0) {
 NetworkMainProcessingLoop:
     if ((0 < *(int *)((long long)NetworkOperationBuffer + ConnectionParameterOffset)) && (*NetworkOperationBuffer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *NetworkOperationBuffer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *NetworkOperationBuffer, &NetworkSecurityValidationInfo, SecurityValidationBufferSize, 1);
     }
     *NetworkOperationBuffer = (long long)ProcessedNetworkConnectionPacketHandle;
     *(int *)((long long)NetworkOperationBuffer + ConnectionParameterOffset) = ConnectionUpdateOperationCode;
@@ -1974,7 +1971,7 @@ NetworkMainProcessingLoop:
   }
   if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
     NetworkStatusBufferPointer = (NetworkStatus *)
-             ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
+             ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationInfo,
                            NetworkConnectionFinalizeValue, 0);
     if (NetworkStatusBufferPointer != (NetworkStatus *)0x0) {
       int32_t NetworkProcessingCode = (int)NetworkOperationBuffer[1];
