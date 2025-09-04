@@ -75899,7 +75899,17 @@ void ClearSecondaryResourceDataFlagsAndReleaseSystemResource(uint8_t ObjectConte
  * @param ObjectContext 对象上下文
  * @param ValidationContext 验证上下文
  */
-void Unwind_ProcessTertiaryResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 处理第三级资源清理
+ * 
+ * 在系统unwind过程中处理第三级资源清理，
+ * 设置系统数据结构指针到验证上下文。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_ProcessTertiaryResourceCleanup
+ */
+void ProcessTertiaryResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0xe0) = &SystemDataStructure;
