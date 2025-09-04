@@ -57659,9 +57659,9 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
   void* EncryptionOffsetSecondary;
   void* MemoryBufferPointer;
   uint8_t SystemResourceDataIndex;
-  void* StackPointerE8;
+  void* StackPointerExtendedE8;
   void* SystemMemoryAllocatorStatus;
-  void* StackPointerC8;
+  void* StackPointerExtendedC8;
   void* UnsignedStackFlagSenary;
   uint8_t systemDataBuffer;
   void* SystemFlagSecondary;
@@ -58945,7 +58945,7 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   void* EncryptionOffsetSecondary;
   void* MemoryBufferPointer;
   void* StackPointerF0;
-  void* StackPointerE8;
+  void* StackPointerExtendedE8;
   void* StackPointerE0;
   void* SystemMemoryAllocatorStatus;
   void* StackPointerD0;
@@ -63835,11 +63835,11 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   void* EncryptionOffsetSecondary;
   void* MemoryBufferPointer;
   void* StackPointerF0;
-  void* StackPointerE8;
+  void* StackPointerExtendedE8;
   void* StackPointerE0;
   void* SystemMemoryAllocatorStatus;
   void* StackPointerD0;
-  void* StackPointerC8;
+  void* StackPointerExtendedC8;
   void* UnsignedStackFlagSenary;
   void* systemDataBuffer;
   uint32_t SystemFlagSecondary;
