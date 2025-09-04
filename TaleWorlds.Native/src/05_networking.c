@@ -322,20 +322,20 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络数据传输常量
 #define NETWORK_SEQUENCE_INITIAL_VALUE 0x01                                  // 初始序列号
 #define NETWORK_ACK_INITIAL_VALUE 0x01                                       // 初始确认号
-#define BYTES_RESET 0x00                                      // 字节重置
-#define PACKETS_RESET 0x00                                    // 数据包重置
-#define RETRANSMIT_COUNT_RESET 0x00                          // 重传计数重置
-#define LOSS_RATE_RESET 0x00                                  // 丢包率重置
-#define MONITOR_ENABLED 0x01                                  // 监控器启用
-#define ROUND_TRIP_TIME_RESET 0x00                            // 往返时间重置
-#define QUEUE_ENABLED 0x01                                    // 队列启用
-#define BUFFER_ENABLED 0x01                                   // 缓冲区启用
-#define INDEX_RESET 0x00                                      // 索引重置
-#define PACKET_INDEX_RESET 0x00                               // 数据包索引重置
-#define ERROR_RATE_RESET 0x00                                 // 错误率重置
-#define HEALTH_GOOD 0x01                                       // 健康状态良好
-#define STABILITY_HIGH 0x01                                    // 稳定性高
-#define PERFORMANCE_GOOD 0x01                                  // 性能良好
+#define NETWORK_BYTES_RESET_VALUE 0x00                                      // 字节重置
+#define NETWORK_PACKETS_RESET_VALUE 0x00                                    // 数据包重置
+#define NETWORK_RETRANSMIT_COUNT_RESET_VALUE 0x00                          // 重传计数重置
+#define NETWORK_LOSS_RATE_RESET_VALUE 0x00                                  // 丢包率重置
+#define NETWORK_MONITOR_ENABLED_FLAG 0x01                                  // 监控器启用
+#define NETWORK_ROUND_TRIP_TIME_RESET_VALUE 0x00                            // 往返时间重置
+#define NETWORK_QUEUE_ENABLED_FLAG 0x01                                    // 队列启用
+#define NETWORK_BUFFER_ENABLED_FLAG 0x01                                   // 缓冲区启用
+#define NETWORK_INDEX_RESET_VALUE 0x00                                      // 索引重置
+#define NETWORK_PACKET_INDEX_RESET_VALUE 0x00                               // 数据包索引重置
+#define NETWORK_ERROR_RATE_RESET_VALUE 0x00                                 // 错误率重置
+#define NETWORK_HEALTH_GOOD_FLAG 0x01                                       // 健康状态良好
+#define NETWORK_STABILITY_HIGH_FLAG 0x01                                    // 稳定性高
+#define NETWORK_PERFORMANCE_GOOD_FLAG 0x01                                  // 性能良好
 
 // 网络数据包验证常量
 #define VALIDATION_POOL_ENABLED 0x01                // 验证池启用
