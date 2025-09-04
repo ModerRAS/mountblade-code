@@ -9280,17 +9280,17 @@ void InitializeSystemSearchManagerD(void)
   CurrentSystemNode = (void**)RootNodePointer[1];
   
   while (SystemNodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(currentSystemNode + 4, &SystemDataComparisonTemplateI, SystemIdentifierSize);
+    IdentifierCompareResult = memcmp(CurrentSystemNode + 4, &SystemDataComparisonTemplateI, SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
-      nextSystemNode = (void**)currentSystemNode[2];
-      currentSystemNode = previousSystemNode;
+      NextSystemNode = (void**)CurrentSystemNode[2];
+      CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      nextSystemNode = (void**)*currentSystemNode;
+      NextSystemNode = (void**)*CurrentSystemNode;
     }
-    previousSystemNode = currentSystemNode;
-    currentSystemNode = nextSystemNode;
-    SystemNodeActiveFlag = *(char*)((long long)nextSystemNode + SystemNodeActiveFlagOffset);
+    PreviousSystemNode = CurrentSystemNode;
+    CurrentSystemNode = NextSystemNode;
+    SystemNodeActiveFlag = *(char*)((long long)NextSystemNode + SystemNodeActiveFlagOffset);
   }
   
   if ((previousSystemNode == RootNodePointer) || 
