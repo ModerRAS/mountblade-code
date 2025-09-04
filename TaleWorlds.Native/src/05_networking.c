@@ -2151,36 +2151,39 @@ NetworkHandle ValidateNetworkConnectionPacket(int64_t ConnectionContext, Network
 NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   // 数据包处理变量
-  NetworkHandle PacketProcessingResult;                    // 数据包处理结果，存储处理流程的最终状态
-  NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区，用于存储解码后的数据流信息
+  NetworkHandle ProcessingResult;                    // 数据包处理结果，存储处理流程的最终状态
+  NetworkByte DecodedDataBuffer [32];             // 已解码数据流缓冲区，用于存储解码后的数据流信息
+  uint32_t TertiaryStatusValue;                   // 第三级状态值，用于确定处理策略
+  
+  // 获取第三级状态值
+  TertiaryStatusValue = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
   
   // 根据数据包状态选择不同的处理路径
-  // 检查第三级状态是否在限制范围内，以确定处理策略
-  if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {
+  if (TertiaryStatusValue < NetworkPacketStatusLimit) {
     // 处理状态限制内的数据包
-    PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicEventData);
-    if ((int)PacketProcessingResult == 0) {
-      PacketProcessingResult = 0;  // 验证成功
+    ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicEventData);
+    if ((int)ProcessingResult == 0) {
+      ProcessingResult = NetworkSuccessStatus;  // 验证成功
     }
   }
   else {
     // 处理状态限制外的数据包，需要解码处理
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicEventData);
-    if ((int)PacketProcessingResult == 0) {
+    ProcessingResult = DecodePacketDataStream(PacketData, DecodedDataBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicEventData);
+    if ((int)ProcessingResult == 0) {
       // 验证数据包头部
-      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
-      if ((int)PacketProcessingResult == 0) {
+      ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
+      if ((int)ProcessingResult == 0) {
         // 处理连接数据
         NetworkHandle DataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
         if ((int)DataProcessingResult == 0) {
             // 完成数据包处理
-            FinalizePacketProcessing(PacketData, DecodedDataStreamBuffer);
+            FinalizePacketProcessing(PacketData, DecodedDataBuffer);
         }
       }
     }
   }
   
-  return PacketProcessingResult;  // 返回处理结果
+  return ProcessingResult;  // 返回处理结果
 }
 
 // =============================================================================
