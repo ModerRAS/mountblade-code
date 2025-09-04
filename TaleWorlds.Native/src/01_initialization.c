@@ -57349,7 +57349,7 @@ long long CalculateSystemResourceManagerHandle(long long SystemResourceManager)
 float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
 
 {
-  float *primaryFloatPointer;
+  float *SystemPrimaryFloatPointer;
   byte isSystemActive;
   long long *SystemResourceOffsetPointer;
   float *secondaryFloatPointer;
@@ -57389,9 +57389,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
     systemFloatReference = (float *)GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x6c));
   }
   if ((*(long long *)(systemFloatReference + 0x84) != 0) && (((uint)SystemResourceManager[0x40] & 0x80) == 0)) {
-    primaryFloatPointer = SystemResourceManager + 0x9d;
-    primaryFloatPointer[0] = 1e+08;
-    primaryFloatPointer[1] = 1e+08;
+    SystemPrimaryFloatPointer = SystemResourceManager + 0x9d;
+    SystemPrimaryFloatPointer[0] = 1e+08;
+    SystemPrimaryFloatPointer[1] = 1e+08;
     SystemResourceManager[0x9f] = 1e+08;
     SystemResourceManager[0xa0] = 3.4028235e+38;
     SystemResourceManager[0xa1] = -1e+08;
@@ -57411,8 +57411,8 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       do {
         systemFloatReference = (float *)((long long)(int)threadContextFlag * 0x10 + *(long long *)(systemConfigurationData + 0x18));
         maximumFloatValueA8 = *systemFloatReference;
-        if (*primaryFloatPointer < maximumFloatValueA8) {
-          maximumFloatValueA8 = *primaryFloatPointer;
+        if (*SystemPrimaryFloatPointer < maximumFloatValueA8) {
+          maximumFloatValueA8 = *SystemPrimaryFloatPointer;
         }
         maximumFloatValueA4 = systemFloatReference[1];
         if (SystemResourceManager[0x9e] < maximumFloatValueA4) {
@@ -57422,7 +57422,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         if (SystemResourceManager[0x9f] < maximumFloatValueA0) {
           maximumFloatValueA0 = SystemResourceManager[0x9f];
         }
-        *(ulong long *)primaryFloatPointer = ConcatenatedSystemValue(maximumFloatValueA4,maximumFloatValueA8);
+        *(ulong long *)SystemPrimaryFloatPointer = ConcatenatedSystemValue(maximumFloatValueA4,maximumFloatValueA8);
         *(ulong long *)(SystemResourceManager + 0x9f) = ConcatenatedSystemValue(systemUnsignedValue9C,maximumFloatValueA0);
         minimumFloatValueB8 = *systemFloatReference;
         if (minimumFloatValueB8 < SystemResourceManager[0xa1]) {
@@ -57454,7 +57454,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       systemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
       systemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
       ProcessSystemUnsignedFlagInitialization(&systemUnsignedFlagSecondary);
-      ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&systemUnsignedFlagSecondary);
+      ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&systemUnsignedFlagSecondary);
       systemFloatReference = *(float **)(SystemResourceManager + 0x6e);
       if (((uint)systemFloatReference[0x4e] & 0x3000) == 0x2000) {
         systemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
@@ -57468,7 +57468,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         systemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
         systemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
         ProcessSystemUnsignedFlagWithFloatingValue(&systemUnsignedFlagSecondary,0x3fc90fdb);
-        ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&systemUnsignedFlagSecondary);
+        ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&systemUnsignedFlagSecondary);
         systemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
         systemProcessFlagsSecondary = *(void* *)(SystemResourceManager + 0x4a);
         SystemEncryptionStatus = *(void* *)(SystemResourceManager + 0x4c);
@@ -57480,14 +57480,14 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         systemEncryptionKey = *(void* *)(SystemResourceManager + 0x54);
         systemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
         ResetSystemUnsignedFlag(&systemUnsignedFlagSecondary);
-        systemFloatReference = (float *)ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&systemUnsignedFlagSecondary);
+        systemFloatReference = (float *)ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&systemUnsignedFlagSecondary);
       }
     }
     secondaryFloatPointer = systemFloatPointer;
-    if (SystemResourceManager[0xa1] < *primaryFloatPointer) {
+    if (SystemResourceManager[0xa1] < *SystemPrimaryFloatPointer) {
       SystemResourceManager[0xa9] = 0.0;
-      primaryFloatPointer[0] = 0.0;
-      primaryFloatPointer[1] = 0.0;
+      SystemPrimaryFloatPointer[0] = 0.0;
+      SystemPrimaryFloatPointer[1] = 0.0;
       SystemResourceManager[0x9f] = 0.0;
       SystemResourceManager[0xa0] = 0.0;
       SystemResourceManager[0xa1] = 0.0;
@@ -57500,7 +57500,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       SystemResourceManager[0xa8] = 0.0;
     }
     else {
-      SystemResourceManager[0xa5] = (SystemResourceManager[0xa1] + *primaryFloatPointer) * 0.5;
+      SystemResourceManager[0xa5] = (SystemResourceManager[0xa1] + *SystemPrimaryFloatPointer) * 0.5;
       SystemResourceManager[0xa6] = (SystemResourceManager[0xa2] + SystemResourceManager[0x9e]) * 0.5;
       SystemResourceManager[0xa7] = (SystemResourceManager[0xa3] + SystemResourceManager[0x9f]) * 0.5;
       SystemResourceManager[0xa8] = 3.4028235e+38;
@@ -57541,10 +57541,10 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       systemStatusFlag = '\0';
 FloatScalingValidation:
       LOCK();
-      primaryFloatPointer = secondaryFloatPointer + 0x3a;
-      scalingFactor = *primaryFloatPointer;
+      SystemPrimaryFloatPointer = secondaryFloatPointer + 0x3a;
+      scalingFactor = *SystemPrimaryFloatPointer;
       systemFloatReference = (float *)(ulong long)(uint)scalingFactor;
-      *primaryFloatPointer = (float)((int)*primaryFloatPointer + -1);
+      *SystemPrimaryFloatPointer = (float)((int)*SystemPrimaryFloatPointer + -1);
       UNLOCK();
       if (systemStatusFlag == '\0') {
         if ((((scalingFactor == 1.4013e-45) && (*(long long *)(systemFloatPointer + 0x84) != 0)) &&
@@ -61469,7 +61469,7 @@ void InitializeSystemResourceData(void* *SystemResourceManager,long long Configu
 void ProcessSystemFloatCalculations(long long SystemResourceManager)
 
 {
-  float *primaryFloatPointer;
+  float *SystemPrimaryFloatPointer;
   float secondaryFloatValue;
   float tertiaryFloatValue;
   float quaternaryFloatValue;
@@ -61490,8 +61490,8 @@ void ProcessSystemFloatCalculations(long long SystemResourceManager)
   float nineteenthFloatValue;
   float twentiethFloatValue;
   
-  primaryFloatPointer = (float *)(SystemResourceManager + 0x80);
-  *(void* *)primaryFloatPointer = *(void* *)(SystemResourceManager + 0x40);
+  SystemPrimaryFloatPointer = (float *)(SystemResourceManager + 0x80);
+  *(void* *)SystemPrimaryFloatPointer = *(void* *)(SystemResourceManager + 0x40);
   *(void* *)(SystemResourceManager + 0x88) = *(void* *)(SystemResourceManager + 0x48);
   *(void* *)(SystemResourceManager + 0x90) = *(void* *)(SystemResourceManager + 0x50);
   *(void* *)(SystemResourceManager + 0x98) = *(void* *)(SystemResourceManager + 0x58);
@@ -61508,14 +61508,14 @@ void ProcessSystemFloatCalculations(long long SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 0x8c) = 0;
   *(uint32_t *)(SystemResourceManager + 0x9c) = 0;
   *(uint32_t *)(SystemResourceManager + 0xac) = 0;
-  floatValue7 = primaryFloatPointer[6];
-  BaseValue = primaryFloatPointer[0xd];
-  floatValue2 = primaryFloatPointer[9];
-  floatValue6 = primaryFloatPointer[1];
-  floatValue4 = primaryFloatPointer[0xe];
-  RatioValue = primaryFloatPointer[2];
-  InterpolationFactorZ = primaryFloatPointer[10];
-  InterpolationFactorV = primaryFloatPointer[5];
+  floatValue7 = SystemPrimaryFloatPointer[6];
+  BaseValue = SystemPrimaryFloatPointer[0xd];
+  floatValue2 = SystemPrimaryFloatPointer[9];
+  floatValue6 = SystemPrimaryFloatPointer[1];
+  floatValue4 = SystemPrimaryFloatPointer[0xe];
+  RatioValue = SystemPrimaryFloatPointer[2];
+  InterpolationFactorZ = SystemPrimaryFloatPointer[10];
+  InterpolationFactorV = SystemPrimaryFloatPointer[5];
   InterpolationFactorY = floatValue4 * floatValue2 - BaseValue * InterpolationFactorZ;
   ScalingFactor = floatValue4 * InterpolationFactorV - BaseValue * floatValue7;
   OffsetValue = floatValue4 * floatValue6 - BaseValue * RatioValue;
@@ -61523,40 +61523,40 @@ void ProcessSystemFloatCalculations(long long SystemResourceManager)
   ScaleValue = floatValue6 * InterpolationFactorZ - floatValue2 * RatioValue;
   *(float *)(SystemResourceManager + 0xc0) = MagnitudeSquared;
   floatValue8 = floatValue6 * floatValue7 - InterpolationFactorV * RatioValue;
-  ResultValue1 = RatioValue * primaryFloatPointer[9] - InterpolationFactorZ * primaryFloatPointer[1];
+  ResultValue1 = RatioValue * SystemPrimaryFloatPointer[9] - InterpolationFactorZ * SystemPrimaryFloatPointer[1];
   *(float *)(SystemResourceManager + 0xc4) = ResultValue1;
-  BaseValue = primaryFloatPointer[5];
-  floatValue4 = primaryFloatPointer[1];
+  BaseValue = SystemPrimaryFloatPointer[5];
+  floatValue4 = SystemPrimaryFloatPointer[1];
   *(uint32_t *)(SystemResourceManager + 0xcc) = 0;
   ResultValue2 = floatValue7 * floatValue4 - RatioValue * BaseValue;
   *(float *)(SystemResourceManager + 200) = ResultValue2;
-  floatValue3 = floatValue7 * primaryFloatPointer[8] - InterpolationFactorZ * primaryFloatPointer[4];
+  floatValue3 = floatValue7 * SystemPrimaryFloatPointer[8] - InterpolationFactorZ * SystemPrimaryFloatPointer[4];
   *(float *)(SystemResourceManager + 0xd0) = floatValue3;
-  InterpolationFactorW = InterpolationFactorZ * *primaryFloatPointer - RatioValue * primaryFloatPointer[8];
+  InterpolationFactorW = InterpolationFactorZ * *SystemPrimaryFloatPointer - RatioValue * SystemPrimaryFloatPointer[8];
   *(float *)(SystemResourceManager + 0xd4) = InterpolationFactorW;
-  BaseValue = primaryFloatPointer[4];
-  floatValue4 = *primaryFloatPointer;
+  BaseValue = SystemPrimaryFloatPointer[4];
+  floatValue4 = *SystemPrimaryFloatPointer;
   *(uint32_t *)(SystemResourceManager + 0xdc) = 0;
   InterpolationFactorX = RatioValue * BaseValue - floatValue7 * floatValue4;
   *(float *)(SystemResourceManager + 0xd8) = InterpolationFactorA;
-  floatValue4 = floatValue2 * primaryFloatPointer[4] - InterpolationFactorV * primaryFloatPointer[8];
+  floatValue4 = floatValue2 * SystemPrimaryFloatPointer[4] - InterpolationFactorV * SystemPrimaryFloatPointer[8];
   *(float *)(SystemResourceManager + 0xe0) = floatValue4;
-  floatValue2 = floatValue6 * primaryFloatPointer[8] - floatValue2 * *primaryFloatPointer;
+  floatValue2 = floatValue6 * SystemPrimaryFloatPointer[8] - floatValue2 * *SystemPrimaryFloatPointer;
   *(float *)(SystemResourceManager + 0xe4) = floatValue2;
-  floatValue7 = primaryFloatPointer[4];
-  BaseValue = *primaryFloatPointer;
+  floatValue7 = SystemPrimaryFloatPointer[4];
+  BaseValue = *SystemPrimaryFloatPointer;
   *(uint32_t *)(SystemResourceManager + 0xec) = 0;
   InterpolationFactorV = InterpolationFactorV * BaseValue - floatValue6 * floatValue7;
   *(float *)(SystemResourceManager + 0xe8) = InterpolationFactorV;
-  BaseValue = (ScalingFactor * primaryFloatPointer[8] - InterpolationFactorY * primaryFloatPointer[4]) - MagnitudeSquared * primaryFloatPointer[0xc];
+  BaseValue = (ScalingFactor * SystemPrimaryFloatPointer[8] - InterpolationFactorY * SystemPrimaryFloatPointer[4]) - MagnitudeSquared * SystemPrimaryFloatPointer[0xc];
   *(float *)(SystemResourceManager + 0xf0) = BaseValue;
-  InterpolationFactorZ = (InterpolationFactorY * *primaryFloatPointer - OffsetValue * primaryFloatPointer[8]) + ScaleValue * primaryFloatPointer[0xc];
+  InterpolationFactorZ = (InterpolationFactorY * *SystemPrimaryFloatPointer - OffsetValue * SystemPrimaryFloatPointer[8]) + ScaleValue * SystemPrimaryFloatPointer[0xc];
   *(float *)(SystemResourceManager + 0xf4) = InterpolationFactorZ;
-  RatioValue = (OffsetValue * primaryFloatPointer[4] - ScalingFactor * *primaryFloatPointer) - floatValue8 * primaryFloatPointer[0xc];
+  RatioValue = (OffsetValue * SystemPrimaryFloatPointer[4] - ScalingFactor * *SystemPrimaryFloatPointer) - floatValue8 * SystemPrimaryFloatPointer[0xc];
   *(float *)(SystemResourceManager + 0xf8) = RatioValue;
-  floatValue6 = (MagnitudeSquared * *primaryFloatPointer - ScaleValue * primaryFloatPointer[4]) + floatValue8 * primaryFloatPointer[8];
+  floatValue6 = (MagnitudeSquared * *SystemPrimaryFloatPointer - ScaleValue * SystemPrimaryFloatPointer[4]) + floatValue8 * SystemPrimaryFloatPointer[8];
   *(float *)(SystemResourceManager + 0xfc) = floatValue6;
-  floatValue7 = ResultValue1 * primaryFloatPointer[4] + MagnitudeSquared * *primaryFloatPointer + ResultValue2 * primaryFloatPointer[8];
+  floatValue7 = ResultValue1 * SystemPrimaryFloatPointer[4] + MagnitudeSquared * *SystemPrimaryFloatPointer + ResultValue2 * SystemPrimaryFloatPointer[8];
   if (floatValue7 != 1.0) {
     floatValue7 = 1.0 / floatValue7;
     *(float *)(SystemResourceManager + 0xd0) = floatValue3 * floatValue7;
@@ -63421,7 +63421,7 @@ uint8_t GetSystemStatusFlag(void)
 float * ProcessSystemFloatData(float *SystemResourceManager)
 
 {
-  float *primaryFloatPointer;
+  float *SystemPrimaryFloatPointer;
   byte isSystemActive;
   long long *SystemResourceOffsetPointer;
   float *pfloatValue4;
@@ -63490,9 +63490,9 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     SystemFloatPointer7 = (float *)GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x6c));
   }
   if ((*(long long *)(SystemFloatPointer7 + 0x84) != 0) && (((uint)SystemResourceManager[0x40] & 0x80) == 0)) {
-    primaryFloatPointer = SystemResourceManager + 0x9d;
-    primaryFloatPointer[0] = 1e+08;
-    primaryFloatPointer[1] = 1e+08;
+    SystemPrimaryFloatPointer = SystemResourceManager + 0x9d;
+    SystemPrimaryFloatPointer[0] = 1e+08;
+    SystemPrimaryFloatPointer[1] = 1e+08;
     SystemResourceManager[0x9f] = 1e+08;
     SystemResourceManager[0xa0] = 3.4028235e+38;
     SystemResourceManager[0xa1] = -1e+08;
@@ -63512,8 +63512,8 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       do {
         pfloatValue7 = (float *)((long long)(int)OperationCode * 0x10 + *(long long *)(SystemConfigurationData + 0x18));
         fStack_a8 = *pfloatValue7;
-        if (*primaryFloatPointer < fStack_a8) {
-          fStack_a8 = *primaryFloatPointer;
+        if (*SystemPrimaryFloatPointer < fStack_a8) {
+          fStack_a8 = *SystemPrimaryFloatPointer;
         }
         fStack_a4 = pfloatValue7[1];
         if (SystemResourceManager[0x9e] < fStack_a4) {
@@ -63523,7 +63523,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         if (SystemResourceManager[0x9f] < fStack_a0) {
           fStack_a0 = SystemResourceManager[0x9f];
         }
-        *(ulong long *)primaryFloatPointer = ConcatenatedSystemValue(fStack_a4,fStack_a8);
+        *(ulong long *)SystemPrimaryFloatPointer = ConcatenatedSystemValue(fStack_a4,fStack_a8);
         *(ulong long *)(SystemResourceManager + 0x9f) = ConcatenatedSystemValue(uStack_9c,fStack_a0);
         fStack_b8 = *pfloatValue7;
         if (fStack_b8 < SystemResourceManager[0xa1]) {
@@ -63554,7 +63554,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
       SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
       ProcessSystemUnsignedFlagInitialization(&SystemUnsignedFlagSecondary);
-      ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlagSecondary);
+      ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&SystemUnsignedFlagSecondary);
       pfloatValue7 = *(float **)(SystemResourceManager + 0x6e);
       if (((uint)pfloatValue7[0x4e] & 0x3000) == 0x2000) {
         SystemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
@@ -63567,7 +63567,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
         ProcessSystemUnsignedFlagWithFloatingValue(&SystemUnsignedFlagSecondary,0x3fc90fdb);
-        ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlagSecondary);
+        ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&SystemUnsignedFlagSecondary);
         SystemUnsignedFlagSecondary = *(void* *)(SystemResourceManager + 0x48);
         SystemProcessFlagsSecondary = *(void* *)(SystemResourceManager + 0x4a);
         SystemEncryptionStatus = *(void* *)(SystemResourceManager + 0x4c);
@@ -63578,14 +63578,14 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         pSystemEncryptionKey = *(void* **)(SystemResourceManager + 0x54);
         SystemOperationCounter = *(void* *)(SystemResourceManager + 0x56);
         ResetSystemUnsignedFlag(&SystemUnsignedFlagSecondary);
-        pfloatValue7 = (float *)ProcessRenderObjectStateAllocation(primaryFloatPointer,primaryFloatPointer,&SystemUnsignedFlagSecondary);
+        pfloatValue7 = (float *)ProcessRenderObjectStateAllocation(SystemPrimaryFloatPointer,SystemPrimaryFloatPointer,&SystemUnsignedFlagSecondary);
       }
     }
     pfloatValue4 = SystemFloatPointer;
-    if (SystemResourceManager[0xa1] < *primaryFloatPointer) {
+    if (SystemResourceManager[0xa1] < *SystemPrimaryFloatPointer) {
       SystemResourceManager[0xa9] = 0.0;
-      primaryFloatPointer[0] = 0.0;
-      primaryFloatPointer[1] = 0.0;
+      SystemPrimaryFloatPointer[0] = 0.0;
+      SystemPrimaryFloatPointer[1] = 0.0;
       SystemResourceManager[0x9f] = 0.0;
       SystemResourceManager[0xa0] = 0.0;
       SystemResourceManager[0xa1] = 0.0;
@@ -63598,7 +63598,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       SystemResourceManager[0xa8] = 0.0;
     }
     else {
-      SystemResourceManager[0xa5] = (SystemResourceManager[0xa1] + *primaryFloatPointer) * 0.5;
+      SystemResourceManager[0xa5] = (SystemResourceManager[0xa1] + *SystemPrimaryFloatPointer) * 0.5;
       SystemResourceManager[0xa6] = (SystemResourceManager[0xa2] + SystemResourceManager[0x9e]) * 0.5;
       SystemResourceManager[0xa7] = (SystemResourceManager[0xa3] + SystemResourceManager[0x9f]) * 0.5;
       SystemResourceManager[0xa8] = 3.4028235e+38;
@@ -63639,10 +63639,10 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       systemStatusFlag = '\0';
 FloatScalingValidation:
       LOCK();
-      primaryFloatPointer = pfloatValue4 + 0x3a;
-      floatValue6 = *primaryFloatPointer;
+      SystemPrimaryFloatPointer = pfloatValue4 + 0x3a;
+      floatValue6 = *SystemPrimaryFloatPointer;
       pfloatValue7 = (float *)(ulong long)(uint)floatValue6;
-      *primaryFloatPointer = (float)((int)*primaryFloatPointer + -1);
+      *SystemPrimaryFloatPointer = (float)((int)*SystemPrimaryFloatPointer + -1);
       UNLOCK();
       if (systemStatusFlag == '\0') {
         if ((((floatValue6 == 1.4013e-45) && (*(long long *)(SystemFloatPointer + 0x84) != 0)) &&
