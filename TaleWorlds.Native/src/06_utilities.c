@@ -4546,30 +4546,30 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     MaximumLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
-    ValidationStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(HandleArray[0] + RegistrationHandleOffset),
-                          &ListBuffer);
-    if (ValidationStatus == 0) {
-      TotalCount = *(int *)(ListBuffer + ObjectDataArraySizeOffset);
-      if (0 < TotalCount) {
-        CollectionIterator = 0;
+    ValidationStatusCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset),
+                          &ObjectListBuffer);
+    if (ValidationStatusCode == 0) {
+      TotalItemCount = *(int *)(ObjectListBuffer + ObjectDataArraySizeOffset);
+      if (0 < TotalItemCount) {
+        CollectionItemIterator = 0;
         do {
-          uint8_t CurrentObjectState = *(uint8_t *)(ListBuffer + CollectionIterator);
-          ValidationStatus = ValidateObjectStatus(CurrentObjectState);
-          if (ValidationStatus != RegistrationStatusSuccess) {
+          uint8_t CurrentObjectState = *(uint8_t *)(ObjectListBuffer + CollectionItemIterator);
+          ValidationStatusCode = ValidateObjectStatus(CurrentObjectState);
+          if (ValidationStatusCode != RegistrationStatusSuccess) {
                   HandleInvalidObject(CurrentObjectState, 1);
           }
-          ProcessedCount++;
-          CollectionIterator += ResourceEntrySizeBytes;
-        } while (ProcessedCount < TotalCount);
+          ProcessedItemCount++;
+          CollectionItemIterator += ResourceEntrySizeBytes;
+        } while (ProcessedItemCount < TotalItemCount);
       }
-      FreeObjectListMemory(&ListBuffer);
+      FreeObjectListMemory(&ObjectListBuffer);
     }
     else {
-      FreeObjectListMemory(&ListBuffer);
+      FreeObjectListMemory(&ObjectListBuffer);
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityKey ^ (uint64_t)MetadataBuffer);
+  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)SecurityMetadataBuffer);
 }
 
 

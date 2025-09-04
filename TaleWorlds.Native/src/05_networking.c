@@ -1767,9 +1767,9 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             
             // 更新数据包缓冲区状态
             *ConnectionStatusPtr = *ContextArray;
-            ConnectionStatusPtr[1] = CurrentConnectionPacketStatus;
-            ConnectionStatusPtr[2] = CurrentConnectionDataStatus;
-            ConnectionStatusPtr[3] = CurrentConnectionValidationStatus;
+            ConnectionStatusPtr[1] = CurrentPacketStatus;
+            ConnectionStatusPtr[2] = CurrentDataStatus;
+            ConnectionStatusPtr[3] = CurrentValidationStatus;
             ConnectionStatusPtr[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + -4 + (long long)(ConnectionStatusPtr + 5));
             
             // 更新计数器
@@ -1838,8 +1838,8 @@ NetworkMainProcessingLoop:
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                            NetworkConnectionFinalizeValue, 0);
     if (ConnectionStatusBuffer != (NetworkStatus *)0x0) {
-      int32_t PacketProcessingStatus = (int)ConnectionOperationBuffer[1];
-      int64_t NetworkStatusIterator = (long long)PacketProcessingStatus;
+      int32_t ProcessingStatus = (int)ConnectionOperationBuffer[1];
+      int64_t NetworkStatusIterator = (long long)ProcessingStatus;
       if ((PacketProcessingStatus != 0) && (ConnectionContextHandle = *ConnectionOperationBuffer, 0 < PacketProcessingStatus)) {
         NetworkStatus *NetworkStatusBuffer = ConnectionStatusBuffer;
         do {
