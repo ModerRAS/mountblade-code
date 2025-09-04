@@ -91719,7 +91719,17 @@ void ExecuteResourceLoopProcessing(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_18090e7b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源循环处理操作（变体A）
+ * 
+ * 在系统unwind过程中执行资源循环处理操作的变体A，
+ * 使用不同的验证上下文偏移量。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e7b0
+ */
+void ExecuteResourceLoopProcessingVariantA(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -96919,7 +96929,20 @@ void ExecuteSystemResourceCleanupCallbackArray(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_180910090(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移0x88处
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的0x88偏移处。
+ * 这是一个双重指针设置操作，将系统数据结构的地址赋值给验证上下文中指定位置的指针。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数执行双重指针赋值操作
+ * @warning 调用前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_180910090
+ */
+void SetSystemDataStructurePointerToValidationContextOffset88(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x88) = &SystemDataStructure;
