@@ -8291,6 +8291,9 @@ void InitializeSystemEventProcessor(void)
   void** EventCurrentNode;
   void** EventNextNode;
   void** EventPreviousNode;
+  void** EventAllocatedNode;
+  long long EventMemoryAllocationSize;
+  void* EventSearchFunctionPointer;
   code* EventStackPointer;
   
   EventSystemDataTable = (long long*)GetSystemRootPointer();
@@ -8300,7 +8303,7 @@ void InitializeSystemEventProcessor(void)
   EventPreviousNode = EventRootNode;
   EventCurrentNode = (void**)EventRootNode[1];
   while (EventNodeFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateI,0x10);
+    IdentifierCompareResult = memcmp(EventCurrentNode + 4,&SystemDataComparisonTemplateI,0x10);
     if (IdentifierCompareResult < 0) {
       EventNextNode = (void**)EventCurrentNode[2];
       EventCurrentNode = EventPreviousNode;
@@ -8312,15 +8315,15 @@ void InitializeSystemEventProcessor(void)
     EventCurrentNode = EventNextNode;
     EventNodeFlag = *(char*)((long long)EventNextNode + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == RootNodePointer) || (IdentifierCompareResult = memcmp(&SystemDataComparisonTemplateI,HashTableNodePointer + 4,0x10), IdentifierCompareResult < 0)) {
-    MemoryAllocationSize = GetSystemMemorySize(EventSystemDataTable);
-    AllocateSystemMemory(EventSystemDataTable,&EventAllocatedNode,EventPreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+  if ((EventPreviousNode == EventRootNode) || (IdentifierCompareResult = memcmp(&SystemDataComparisonTemplateI,EventPreviousNode + 4,0x10), IdentifierCompareResult < 0)) {
+    EventMemoryAllocationSize = GetSystemMemorySize(EventSystemDataTable);
+    AllocateSystemMemory(EventSystemDataTable,&EventAllocatedNode,EventPreviousNode,EventMemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,EventMemoryAllocationSize);
     EventPreviousNode = EventAllocatedNode;
   }
-  HashTableNodePointer[NodeIdentifier1Index] = DataComparisonTemplateIId1;
-  HashTableNodePointer[NodeIdentifier2Index] = DataComparisonTemplateIId2;
-  HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeF;
-  HashTableNodePointer[NodeActiveFlagIndex] = 4;
+  EventPreviousNode[NodeIdentifier1Index] = DataComparisonTemplateIId1;
+  EventPreviousNode[NodeIdentifier2Index] = DataComparisonTemplateIId2;
+  EventPreviousNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  EventPreviousNode[NodeActiveFlagIndex] = 4;
   EventPreviousNode[10] = EventCallbackPointer;
   return;
 }
