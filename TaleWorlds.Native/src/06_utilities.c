@@ -97041,7 +97041,21 @@ void ExecutePrimaryResourceManagerCleanupCallback(uint8_t ObjectContext,int64_t 
 
 
 
-void Unwind_1809100d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表遍历清理和系统退出
+ * 
+ * 该函数负责遍历资源表中的所有资源条目，并执行每个资源的清理回调函数。
+ * 首先从验证上下文中获取资源表指针和循环计数器，然后遍历资源表中的每个条目，
+ * 对每个有效资源调用其清理回调函数。如果资源表指针为空，则执行系统紧急退出。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数会遍历整个资源表并执行清理操作
+ * @warning 如果资源表指针为空，将触发系统紧急退出
+ * @remark 原始函数名：Unwind_1809100d0
+ */
+void ExecuteResourceTableTraversalCleanupAndSystemExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
