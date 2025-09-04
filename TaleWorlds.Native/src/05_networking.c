@@ -795,12 +795,6 @@ uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理
 uint32_t NetworkConnectionPoolCurrentIndex;              // 网络连接池当前索引，连接池当前使用的索引位置
 uint32_t NetworkConnectionPoolUsageStatistics;           // 网络连接池使用统计，连接池的使用统计信息
 
-/**
- * @brief 网络连接表变量 - 管理网络连接的表结构和索引
- * 
- * 该变量维护所有活跃网络连接的表结构，包括连接索引、状态信息和资源引用。
- * 它是网络连接管理的核心数据结构，提供了高效的连接查找和管理功能。
- */
 uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
 uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑定状态，表示套接字是否已绑定到地址
 
