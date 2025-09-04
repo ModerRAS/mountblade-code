@@ -82000,7 +82000,13 @@ void ProcessSystemResourceHash(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c610(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源哈希状态并清理相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090c610
+ */
+void ReleaseResourceHashStatusAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -82036,7 +82042,13 @@ void Unwind_18090c610(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c620(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源哈希状态并清理相关资源（扩展版本）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090c620
+ */
+void ReleaseResourceHashStatusAndCleanupExtended(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
