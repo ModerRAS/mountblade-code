@@ -27807,18 +27807,18 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   uint renderStatusValue2;
   void* contextParameter;
   long long SystemAllocationFlags;
-  uint renderStatus3;
-  uint renderStatus4;
-  uint renderStatus5;
+  uint RenderStatusPrimary;
+  uint RenderStatusSecondary;
+  uint RenderStatusTertiary;
   bool IsSystemConfigured;
   float scaleFactorX;
   float scaleFactorY;
-  float InterpolationFactor1;
-  float InterpolationFactor2;
-  float InterpolationFactor3;
-  float InterpolationFactor4;
+  float InterpolationFactorAlpha;
+  float InterpolationFactorBeta;
+  float InterpolationFactorGamma;
+  float InterpolationFactorDelta;
   uint32_t ThreadCreationFlags;
-  float InterpolationFactor5;
+  float InterpolationFactorEpsilon;
   float InterpolationFactorX;
   float scaleResult2;
   float SystemDataValuePrimary;
@@ -27843,21 +27843,21 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
         InitializeSystemDataPointer(&SystemDataValuePrimary);
       }
       calculationResult1 = (float)exp2f();
-      InterpolationFactor1 = (float)exp2f();
-      InterpolationFactor2 = (float)exp2f();
-      InterpolationFactor3 = (float)exp2f();
-      InterpolationFactor4 = (float)exp2f();
+      InterpolationFactorAlpha = (float)exp2f();
+      InterpolationFactorBeta = (float)exp2f();
+      InterpolationFactorGamma = (float)exp2f();
+      InterpolationFactorDelta = (float)exp2f();
       SystemDataValueSecondary = (1.0 - calculationResult1) * SystemDataValueSecondary + calculationResult1 * ConfigurationDataPointer;
       calculationResult2 = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
       if (*(float *)(SystemGlobalStatusFlags + 0x1f8) <= (float)*(int *)(SystemNodeManagerPointer + 0x21b0)) {
         calculationResult2 = *(float *)(SystemGlobalStatusFlags + 0x1f8);
       }
-      InterpolationFactor5 = *(float *)(SystemNodeManagerPointer + 0x1e30);
+      InterpolationFactorEpsilon = *(float *)(SystemNodeManagerPointer + 0x1e30);
       if (0 < *(int *)(SystemNodeManagerPointer + 0x1f80)) {
-        InterpolationFactor5 = InterpolationFactor5 / (float)*(int *)(SystemNodeManagerPointer + 0x1f80);
+        InterpolationFactorEpsilon = InterpolationFactorEpsilon / (float)*(int *)(SystemNodeManagerPointer + 0x1f80);
       }
-      scaleFactorY = (float)((int)InterpolationFactor5 + -1);
-      if (calculationResult2 <= (float)((int)InterpolationFactor5 + -1)) {
+      scaleFactorY = (float)((int)InterpolationFactorEpsilon + -1);
+      if (calculationResult2 <= (float)((int)InterpolationFactorEpsilon + -1)) {
         scaleFactorY = calculationResult2;
       }
       if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValueTertiary) &&

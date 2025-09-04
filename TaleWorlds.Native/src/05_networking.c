@@ -213,43 +213,43 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkWindowScaleSixteen 0x10                                 // 窗口缩放16
 
 // 网络连接配置常量
-#define NETWORK_QUEUE_ENABLED 0x01                           // 网络队列启用标志
-#define CONNECTION_STATE_ENABLED 0x01                        // 连接状态启用标志
-#define EVENT_QUEUE_ENABLED 0x01                             // 事件队列启用标志
-#define INVALID_CALLBACK_HANDLER 0xFFFFFFFF                  // 无效回调处理器
-#define INVALID_TIMEOUT_PROCESSOR 0xFFFFFFFF                 // 无效超时处理器
-#define DEFAULT_MAX_CONNECTIONS 100                           // 默认最大连接数
-#define CONNECTION_CONTEXT_ENABLED 0x01                       // 连接上下文启用标志
+#define NetworkQueueEnabled 0x01                           // 网络队列启用标志
+#define NetworkConnectionStateEnabled 0x01                        // 连接状态启用标志
+#define NetworkEventQueueEnabled 0x01                             // 事件队列启用标志
+#define NetworkInvalidCallbackHandler 0xFFFFFFFF                  // 无效回调处理器
+#define NetworkInvalidTimeoutProcessor 0xFFFFFFFF                 // 无效超时处理器
+#define NetworkDefaultMaxConnections 100                           // 默认最大连接数
+#define NetworkConnectionContextEnabled 0x01                       // 连接上下文启用标志
 
 // 网络安全常量
-#define SECURITY_LEVEL_HIGH 0x03                           // 高安全级别
-#define AUTH_TYPE_PASSWORD 0x01                            // 密码认证类型
-#define ENCRYPTION_AES 0x01                               // AES加密算法
-#define COMPRESSION_ZLIB 0x01                             // ZLIB压缩方法
-#define HASH_ALGORITHM_SHA256 0x01                        // SHA-256哈希算法
-#define SIGNATURE_METHOD_RSA 0x01                         // RSA签名方法
-#define ENCRYPTION_KEY_LENGTH_256B 0x100                  // 256位加密密钥长度
-#define COMPRESSION_LEVEL_DEFAULT 0x06                    // 默认压缩级别
-#define DEFAULT_SESSION_ENCRYPTION_KEY 0x12345678          // 默认会话加密密钥
+#define NetworkSecurityLevelHigh 0x03                           // 高安全级别
+#define NetworkAuthenticationTypePassword 0x01                            // 密码认证类型
+#define NetworkEncryptionAlgorithmAES 0x01                               // AES加密算法
+#define NetworkCompressionMethodZLIB 0x01                             // ZLIB压缩方法
+#define NetworkHashAlgorithmSHA256 0x01                        // SHA-256哈希算法
+#define NetworkSignatureMethodRSA 0x01                         // RSA签名方法
+#define NetworkEncryptionKeyLength256Bits 0x100                  // 256位加密密钥长度
+#define NetworkCompressionLevelDefault 0x06                    // 默认压缩级别
+#define NetworkDefaultSessionEncryptionKey 0x12345678          // 默认会话加密密钥
 
 // 网络连接常量
-#define CONNECTION_MODE_CLIENT 0x01            // 客户端连接模式
-#define CONNECTION_PRIORITY_MEDIUM 0x05        // 中等连接优先级
-#define PROTOCOL_VERSION_1 0x01                // 协议版本1.0
-#define CONNECTION_POOL_SIZE 0x100             // 连接池大小256
-#define CONNECTION_SIZE_256B 0x100             // 连接大小256字节
-#define EVENT_SIZE_64B 0x40                    // 事件大小64字节
-#define CALLBACK_SIZE_64B 0x40                 // 回调大小64字节
-#define RETRY_COUNT_MAXIMUM 0x03               // 最大重试次数3次
-#define BACKOFF_TIME_2_SECONDS 0x07D0          // 退避时间2秒
+#define NetworkConnectionModeClient 0x01            // 客户端连接模式
+#define NetworkConnectionPriorityMedium 0x05        // 中等连接优先级
+#define NetworkProtocolVersionOne 0x01                // 协议版本1.0
+#define NetworkConnectionPoolSize 0x100             // 连接池大小256
+#define NetworkConnectionSize256Bytes 0x100             // 连接大小256字节
+#define NetworkEventSize64Bytes 0x40                    // 事件大小64字节
+#define NetworkCallbackSize64Bytes 0x40                 // 回调大小64字节
+#define NetworkRetryCountMaximum 0x03               // 最大重试次数3次
+#define NetworkBackoffTimeTwoSeconds 0x07D0          // 退避时间2秒
 
 // 网络数据包常量
-#define PACKET_HEADER_SIZE_32B 0x20                        // 数据包头大小32字节
-#define PACKET_TRAILER_SIZE_16B 0x10                       // 数据包尾大小16字节
-#define PACKET_PAYLOAD_SIZE_1KB 0x400                      // 数据包负载大小1KB
-#define MAXIMUM_PACKET_SIZE_2KB 0x800                     // 最大数据包大小2KB
-#define PACKET_PROCESSING_SIZE_256B 0x100                 // 数据包处理大小256字节
-#define VALIDATION_BUFFER_SIZE_39B 0x27                   // 验证缓冲区大小39字节
+#define NetworkPacketHeaderSize32Bytes 0x20                        // 数据包头大小32字节
+#define NetworkPacketTrailerSize16Bytes 0x10                       // 数据包尾大小16字节
+#define NetworkPacketPayloadSize1Kilobyte 0x400                      // 数据包负载大小1KB
+#define NetworkMaximumPacketSize2Kilobytes 0x800                     // 最大数据包大小2KB
+#define NetworkPacketProcessingSize256Bytes 0x100                 // 数据包处理大小256字节
+#define NetworkValidationBufferSize39Bytes 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
 #define NetworkConnectionCompletionHandle 0x7d                // 连接完成状态句柄 (125)
 #define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
@@ -1034,20 +1034,20 @@ void BindNetworkSocketToAddress(void)
 void StartListeningForNetworkConnections(void)
 {
   // 设置监听队列参数
-  NetworkConnectionRequestQueue = NETWORK_QUEUE_ENABLED;                // 初始化连接请求队列
+  NetworkConnectionRequestQueue = NetworkQueueEnabled;                // 初始化连接请求队列
   NetworkPendingRequestCount = 0;                     // 重置待处理请求数量
   
   // 设置连接限制参数
-  NetworkMaximumConnectionsLimit = DEFAULT_MAX_CONNECTIONS;                // 设置最大连接数为100
+  NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;                // 设置最大连接数为100
   NetworkActiveConnectionsCount = 0;                   // 重置活跃连接计数
   
   // 初始化连接状态管理器
-  NetworkConnectionStateManager = CONNECTION_STATE_ENABLED;               // 设置状态管理器为启用状态
+  NetworkConnectionStateManager = NetworkConnectionStateEnabled;               // 设置状态管理器为启用状态
   
   // 初始化事件处理系统
-  NetworkEventQueue = EVENT_QUEUE_ENABLED;                           // 初始化事件队列
-  NetworkCallbackHandler = INVALID_CALLBACK_HANDLER;                 // 初始化回调处理器
-  NetworkTimeoutProcessor = INVALID_TIMEOUT_PROCESSOR;                // 初始化超时处理器
+  NetworkEventQueue = NetworkEventQueueEnabled;                           // 初始化事件队列
+  NetworkCallbackHandler = NetworkInvalidCallbackHandler;                 // 初始化回调处理器
+  NetworkTimeoutProcessor = NetworkInvalidTimeoutProcessor;                // 初始化超时处理器
   
   // 初始化连接统计信息
   NetworkTotalConnectionAttempts = 0;                       // 重置连接尝试次数
