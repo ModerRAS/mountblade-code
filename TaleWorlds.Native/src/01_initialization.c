@@ -27104,15 +27104,15 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
   ulong long systemValueResource;
   
   stackOverflowProtectionValue = 0xfffffffffffffffe;
-  stackEncryptionValue = SystemEncryptionKeyTemplate ^ (ulong long)systemBuffer348;
+  stackEncryptionValue = SystemEncryptionKeyTemplate ^ (ulong long)systemBufferEncryption;
   floatValue = (float)dataSyncPointer;
-  SystemPerformanceAccumulator1 = (long long)(floatValue * 100000.0);
-  SystemPerformanceAccumulator2 = SystemPerformanceAccumulator2 + SystemPerformanceAccumulator1;
+  SystemPerformanceAccumulatorPrimary = (long long)(floatValue * 100000.0);
+  SystemPerformanceAccumulatorSecondary = SystemPerformanceAccumulatorSecondary + SystemPerformanceAccumulatorPrimary;
   SystemPerformanceValue = floatValue;
   systemStatusFlags = RetrieveSystemStatusFlags();
   systemStatusFlags = SynchronizeSystemData(systemStatusFlags,dataSyncPointer);
-  calculationFlag1 = CheckSystemFlag(systemStatusFlags,0x52);
-  calculationFlag2 = CheckSystemFlag(1,0x51);
+  calculationFlagPrimary = CheckSystemFlag(systemStatusFlags,0x52);
+  calculationFlagSecondary = CheckSystemFlag(1,0x51);
   resourceDataPosition = 0xe0;
   if (calculationFlag2 == '\0') {
     if (calculationFlag1 == '\0') goto SystemValidation;
