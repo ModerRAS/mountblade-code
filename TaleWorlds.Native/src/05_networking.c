@@ -1312,7 +1312,7 @@ void TransmitNetworkData(void)
   // 初始化数据包参数
   NetworkPacketSequence = SEQUENCE_INITIAL;                         // 初始化数据包序列号
   NetworkAcknowledgeNumber = ACK_INITIAL;                      // 初始化确认号
-  NetworkWindowScale = WINDOW_SCALE_16;                            // 设置窗口缩放为16
+  NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
   NetworkRetransmitTimer = TIMEOUT_5_SECONDS;                       // 设置重传计时器为5秒
   NetworkKeepAliveTime = HEARTBEAT_30_SECONDS;                          // 设置保持连接时间为30秒
   NetworkHeartbeatTimeout = HEARTBEAT_60_SECONDS;                      // 设置心跳超时时间为60秒
