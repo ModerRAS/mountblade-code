@@ -1010,7 +1010,7 @@ void InitializeNetworkSocketHandle(void)
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;                    // 设置协议版本为1.0
   NetworkConnectionMode = NetworkConnectionModeClient;                      // 设置连接模式为客户端模式
-  NetworkConnectionPriority = NetworkConnectionPriorityMedium;                 // 设置连接优先级为中等
+  NetworkConnectionPriorityLevel = NetworkConnectionPriorityMedium;                 // 设置连接优先级为中等
 }
 
 /**
