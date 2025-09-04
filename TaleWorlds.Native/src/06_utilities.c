@@ -15488,19 +15488,19 @@ void CalculateFloatValueAndValidateResources(void)
         ResourceSecurityHashValue = CalculateSecurityHash(ResourceRegisterPointer + 200);
         ResourceHashValidationTertiary = SecondaryFloatResult;
         if ((float)(ResourceSecurityHashValue / 0x30) != 0.0) {
-          resourceTemplatePointer = &SystemResourceTemplateJob;
-          contextBufferPointer = StackContextBuffer;
-          floatRegisterValue = FloatRegisterValue;
-          floatResourceValue = (float)(ResourceSecurityHashValue / 0x30);
-          ResourceIndexTertiary = GetAndValidateResourceData(secondaryFloatResult,&PrimaryObjectResourceBuffer);
-          ResourceHashValidationTertiary = resourceHashValidationValue;
+          ResourceTemplatePointer = &SystemResourceTemplateJob;
+          ContextBufferPointer = StackContextBuffer;
+          FloatRegisterValue = FloatRegisterValue;
+          FloatResourceValue = (float)(ResourceSecurityHashValue / 0x30);
+          ResourceIndexTertiary = GetAndValidateResourceData(SecondaryFloatResult,&PrimaryObjectResourceBuffer);
+          ResourceHashValidationTertiary = ResourceHashValidationValue;
           if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
         }
         if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
-          resourceTemplatePointer = &SystemResourceTemplateKernel;
-          contextBufferPointer = StackContextBuffer;
-          floatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
-          floatRegisterValue = FloatRegisterValue;
+          ResourceTemplatePointer = &SystemResourceTemplateKernel;
+          ContextBufferPointer = StackContextBuffer;
+          FloatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
+          FloatRegisterValue = FloatRegisterValue;
           ResourceIndexTertiary = GetAndValidateResourceData(ResourceHashValidationTertiary,&PrimaryObjectResourceBuffer);
           if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
         }
