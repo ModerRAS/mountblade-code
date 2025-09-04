@@ -241,6 +241,13 @@ typedef uint32_t NetworkResourceHandle;
 #define NetworkConnectionReportSize 0xf          // 网络连接报告大小（15字节）
 #define NetworkPacketReportSize 0xc               // 网络数据包报告大小（12字节）
 
+// 网络连接默认配置
+#define NetworkConnectionTimeoutDefault 30000     // 默认连接超时时间（30秒）
+#define NetworkDefaultMaxConnections 100          // 默认最大连接数
+#define NetworkSuccessStatus 0                    // 网络操作成功状态
+#define NetworkStandardBufferSize 32               // 标准缓冲区大小
+#define NetworkConnectionBufferSize 48             // 连接缓冲区大小
+
 // 网络连接配置常量
 #define CONNECTION_POOL_CAPACITY 1000              // 连接池容量
 #define HEALTH_STATUS_NORMAL 0x01                    // 正常健康状态
@@ -1776,12 +1783,11 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             ConnectionStatusPtr = ConnectionStatusPtr + 5;
           } while (ConnectionIterator != 0);
         }
-        goto NetworkProcessingComplete;
+        return NetworkSuccessStatus;
       }
     }
     return NetworkErrorConnectionFailed;
   }
-NetworkMainProcessing:
   // 验证连接安全性
   if ((0 < *(int *)((long long)ConnectionContext + ConnectionParameterOffset)) && (*ConnectionContext != 0)) {
       ValidateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
@@ -2375,7 +2381,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
   
   // 设置输出缓冲区
   if (OutputBuffer) {
-    memset(OutputBuffer, 0, 32);
+    memset(OutputBuffer, 0, NetworkStandardBufferSize);
     OutputBuffer[0] = (NetworkByte)DecodingStatusCode;
     OutputBuffer[1] = (NetworkByte)MagicNumberValidationResult;
     OutputBuffer[2] = (NetworkByte)PacketDataIntegrityCheck;
@@ -2456,7 +2462,7 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
   
   // 清理处理缓冲区
   if (ProcessingBuffer) {
-    memset(ProcessingBuffer, 0, 32);
+    memset(ProcessingBuffer, 0, NetworkStandardBufferSize);
     BufferCleanupResultCode = 0x01;  // 缓冲区清理成功
   }
   
@@ -2528,7 +2534,7 @@ NetworkHandle DecodePacketDataStream(int64_t PacketData, NetworkByte *OutputBuff
   // 8. 填充输出缓冲区
   
   if (OutputBuffer) {
-    memset(OutputBuffer, 0, 32);
+    memset(OutputBuffer, 0, NetworkStandardBufferSize);
     // 在实际实现中，这里应该填充解码后的数据
     // 包括：有效负载数据、元数据、状态信息等
   }
@@ -2802,7 +2808,7 @@ void NetworkCleanupConnectionStack(void* ConnectionBuffer)
   
   // 清理连接缓冲区
   if (ConnectionBuffer) {
-    memset(ConnectionBuffer, 0, 48);  // 清理48字节的连接缓冲区
+    memset(ConnectionBuffer, 0, NetworkConnectionBufferSize);  // 清理连接缓冲区
     MemoryReleaseResult = 0x01;  // 内存释放成功
   }
   
