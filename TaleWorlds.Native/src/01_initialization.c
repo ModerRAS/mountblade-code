@@ -84,14 +84,14 @@
 #define SystemEventSystemIdentifier2          0x8d98f4c06880eda4
 #define SystemResourceSystemIdentifier1       0x42d293584c8cf3e5
 #define SystemResourceSystemIdentifier2       0x355ffeb2d29e668a
-#define SystemDataComparisonTemplateAId1   0x421c3cedd07d816d
-#define SystemDataComparisonTemplateAId2   0xbec25de793b7afa6
-#define SystemDataComparisonTemplateBId1   0x4c22bb0c326587ce
-#define SystemDataComparisonTemplateBId2   0x5e3cf00ce2978287
-#define SystemDataComparisonTemplateJId1   0x4b2d79e470ee4e2c
-#define SystemDataComparisonTemplateJId2   0x9c552acd3ed5548d
-#define SystemDataComparisonTemplateKId1   0x49086ba08ab981a7
-#define SystemDataComparisonTemplateKId2   0xa9191d34ad910696
+#define SystemDataComparisonTemplateAlphaId1   0x421c3cedd07d816d
+#define SystemDataComparisonTemplateAlphaId2   0xbec25de793b7afa6
+#define SystemDataComparisonTemplateBetaId1   0x4c22bb0c326587ce
+#define SystemDataComparisonTemplateBetaId2   0x5e3cf00ce2978287
+#define SystemDataComparisonTemplateKappaId1   0x4b2d79e470ee4e2c
+#define SystemDataComparisonTemplateKappaId2   0x9c552acd3ed5548d
+#define SystemDataComparisonTemplateLambdaId1   0x49086ba08ab981a7
+#define SystemDataComparisonTemplateLambdaId2   0xa9191d34ad910696
 
 // 数据比较模板标识符
 #define SystemDataComparisonTemplateDId1   0x406be72011d07d37

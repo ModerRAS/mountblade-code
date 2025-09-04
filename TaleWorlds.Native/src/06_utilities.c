@@ -5282,24 +5282,24 @@ uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
  * @warning 验证失败时会触发系统退出操作
  */
 uint32_t ValidateObjectHandleFromRegister(void) {
-  int64_t ObjectPointerFromRegister = 0;
-  int64_t ValidatedMemoryAddress;
+  int64_t RegisterObjectPointer = 0;
+  int64_t AdjustedMemoryAddress;
   
   // 根据寄存器值计算验证后的内存位置
-  if (ObjectPointerFromRegister == 0) {
-    ValidatedMemoryAddress = 0;
+  if (RegisterObjectPointer == 0) {
+    AdjustedMemoryAddress = 0;
   }
   else {
-    ValidatedMemoryAddress = ObjectPointerFromRegister - 8;
+    AdjustedMemoryAddress = RegisterObjectPointer - 8;
   }
   
   // 检查对象上下文是否有效
-  if (*(int64_t *)(ValidatedMemoryAddress + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(AdjustedMemoryAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedMemoryAddress + ObjectContextOffset), 1);
   return OperationSuccessCode;
 }
 
@@ -5359,38 +5359,28 @@ void CleanupSystemResources(void)
  * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  */
-/**
- * @brief 验证并处理对象句柄
- * 
- * 该函数验证对象句柄的有效性，并在验证通过后执行相应的系统操作。
- * 主要用于对象操作前的安全检查，确保对象句柄指向有效的内存地址。
- * 
- * @param ObjectContext 对象上下文，包含要验证的对象信息
- * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
- * @note 此函数在对象操作前调用，确保对象句柄的有效性
- */
 uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
 {
   uint8_t ValidationStatusCode;
-  int64_t ContextMemoryAddress;
+  int64_t ValidatedContextAddress;
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ContextMemoryAddress);
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ValidatedContextAddress);
   if ((int)ValidationStatusCode != 0) {
     return ValidationStatusCode;
   }
   
-  if (ContextMemoryAddress == 0) {
-    ContextMemoryAddress = 0;
+  if (ValidatedContextAddress == 0) {
+    ValidatedContextAddress = 0;
   }
   else {
-    ContextMemoryAddress = ContextMemoryAddress - 8;
+    ValidatedContextAddress = ValidatedContextAddress - 8;
   }
   
-  if (*(int64_t *)(ContextMemoryAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(ContextMemoryAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
