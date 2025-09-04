@@ -81604,7 +81604,18 @@ void ExecuteSystemCallback0x158(uint8_t ObjectContext, int64_t ValidationContext
 
 
 
-void Unwind_18090c780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统清理回调函数（偏移量0x110）- 第二个版本
+ * 
+ * 该函数负责执行系统清理回调函数，用于处理系统资源管理中的清理操作
+ * 检查验证上下文中偏移量0x110位置的代码指针，如果存在则执行清理回调
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ */
+void ExecuteSystemCleanupCallback0x110V2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x110) != (code *)0x0) {
@@ -81615,7 +81626,16 @@ void Unwind_18090c780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c790(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源处理器
+ * 
+ * 该函数负责设置系统资源处理器，用于管理系统资源的处理和安全验证
+ * 首先设置系统资源处理器模板，然后进行安全检查，最后设置系统数据结构
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void SetSystemResourceHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x148) = &SystemResourceHandlerTemplate;
@@ -81630,7 +81650,16 @@ void Unwind_18090c790(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c7a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构（偏移量0x430）
+ * 
+ * 该函数负责设置系统数据结构，将系统数据结构指针设置到验证上下文的指定位置
+ * 使用0x430偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void SetSystemDataStructure0x430(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x430) = &SystemDataStructure;
