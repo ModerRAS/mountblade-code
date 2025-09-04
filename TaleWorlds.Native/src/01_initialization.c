@@ -9239,7 +9239,7 @@ void InitializeSystemConfigurationManager(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0xc;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemConfigurationTemplateB,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationPrimaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationPrimaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -9280,7 +9280,7 @@ void InitializeSystemExtensionManager(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x16;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantA,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationSecondaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationSecondaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -9304,7 +9304,7 @@ void InitializeSystemLibraryManager(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x16;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantB,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTertiaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTertiaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -9755,7 +9755,7 @@ void InitializeSystemPerformanceNode(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x1c;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemInitializationStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntryQuaternary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntryQuaternary = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -10435,7 +10435,7 @@ void InitializeSystemDebugInfoManager(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 9;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemConfigurationStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntryQuinary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntryQuinary = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -10466,7 +10466,7 @@ void InitializeSystemLogManager(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 8;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemResourceStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntrySenary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntrySenary = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -10582,7 +10582,7 @@ void InitializeSystemStringProcessorA(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x15;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemMemoryStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntrySeptenary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntrySeptenary = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -10605,7 +10605,7 @@ void InitializeSystemStringProcessorB(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0xe;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemThreadStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryAllocationTableEntryOctonary = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryAllocationTableEntryOctonary = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -10635,7 +10635,7 @@ void InitializeSystemStringProcessorC(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x1a;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemFileSystemStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemFileSystemMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemFileSystemMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -10665,7 +10665,7 @@ void InitializeSystemStringProcessorD(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x13;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemNetworkStringTemplate,SystemRegisterValue,InvalidHandleValue);
-  SystemNetworkMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemNetworkMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -13320,7 +13320,7 @@ void InitializeSystemMemoryNodeManager(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x12;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringTemplateA,SystemRegisterValue,InvalidHandleValue);
-  SystemDatabaseMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemDatabaseMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -13349,7 +13349,7 @@ void InitializeSystemDeviceNodeManager(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 8;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringTemplateB,SystemRegisterValue,InvalidHandleValue);
-  SystemRenderingMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemRenderingMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -14629,7 +14629,7 @@ void InitializeSystemEventManagerN(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x1b;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringTemplateC,SystemRegisterValue,InvalidHandleValue);
-  SystemAudioMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemAudioMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -15270,7 +15270,7 @@ void InitializeSystemResourceManagerK(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x10;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringTemplateD,SystemRegisterValue,InvalidHandleValue);
-  SystemInputMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemInputMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -15296,7 +15296,7 @@ void InitializeSystemResourceManagerL(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0xf;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantC,SystemRegisterValue,InvalidHandleValue);
-  SystemPhysicsMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemPhysicsMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -15322,7 +15322,7 @@ void InitializeSystemResourceManagerM(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x19;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantD,SystemRegisterValue,InvalidHandleValue);
-  SystemUIMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemUIMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -15348,7 +15348,7 @@ void InitializeSystemResourceManagerN(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x14;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantE,SystemRegisterValue,InvalidHandleValue);
-  SystemUtilitiesMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemUtilitiesMemoryAllocation = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -17112,7 +17112,7 @@ void InitializeSystemSubcomponentM(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0xd;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantErrorMessageA,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryRegionCacheB = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryRegionCacheB = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -18357,7 +18357,7 @@ void SystemPerformanceMonitorInitializer(void)
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0x1b;
   strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantErrorMessageB,SystemRegisterValue,InvalidHandleValue);
-  SystemMemoryRegionCacheA = SystemMemoryAllocationFunction(&SystemParameterPointerA);
+  SystemMemoryRegionCacheA = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
 
@@ -22944,10 +22944,10 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
   long long resourceDataIndex;
   long long SystemThreadHandle;
   long long ResourceMemoryOffset;
-  uint8_t SystemSecurityEncryptionBufferD8 [32];
+  uint8_t SystemSecurityEncryptionBuffer [32];
   void* systemDataBuffer;
   void* *SystemDataBufferPointer;
-  uint8_t *SystemParameterPointerA;
+  uint8_t *SystemParameterPointer;
   uint32_t secondarySystemDataBuffer;
   uint8_t SystemStackParamC [72];
   ulong long SystemEncryptionKey;
@@ -28658,7 +28658,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   uint8_t SystemSystemStackBuffer238 [32];
   uint32_t SystemInitializationStatus218;
   void* *systemMemoryPointer;
-  long long SystemMemoryAllocationOffset200;
+  long long SystemMemoryAllocationOffset;
   uint SystemResourceCountSecondary;
   void* SystemResourceHandleTertiary;
   uint32_t SystemConfigPrimaryValuee8;
@@ -28736,7 +28736,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   StackVariable148 = 0x3f800000;
   StackVariable144 = 0;
   StackVariable140 = 0;
-  StackVariable13c = 0;
+  StackVariableTemp = 0;
   StackVariable138 = 0;
   StackVariable134 = 0x3f800000;
   StackVariable130 = 0;
@@ -28765,8 +28765,8 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemResourceHandleE8 = &SystemMemoryAllocatorReference;
   pGlobalDataFlags2 = &SystemGlobalDataReference;
   SystemDataProcessingFlag = 0;
-  LongStackVariable1d8 = 0;
-  StackVariable1d0 = 0;
+  LongStackVariableSecondary = 0;
+  StackVariableMain = 0;
   SystemThreadFlags = *SystemResourceManager;
   SetupSystemMemory(&SystemResourceHandle,ConfigurationDataPointer);
   systemResult = VerifySystemConfiguration(SystemThreadFlags,&SystemResourceHandle);
@@ -28787,7 +28787,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   }
   SystemGlobalReference208 = &SystemGlobalDataReference;
   SystemResourceOffset1f0 = 0;
-  SystemMemoryAllocationOffset200 = 0;
+  SystemMemoryAllocationOffset = 0;
   SystemOperationOffset1f8 = 0;
   StackMemoryOffset = 1;
   SystemInitializationStatus = *(uint *)(SystemThreadFlags + 0x10);
@@ -28796,26 +28796,26 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
     ExecuteSystemCommand(&SystemGlobalReference208,ThreadContextIndicator);
   }
   if (SystemInitializationStatus != 0) {
-      memcpy(SystemMemoryAllocationOffset200,*(void* *)(SystemThreadFlags + 8),ThreadContextIndicator);
+      memcpy(SystemMemoryAllocationOffset,*(void* *)(SystemThreadFlags + 8),ThreadContextIndicator);
   }
-  if (SystemMemoryAllocationOffset200 != 0) {
-    *(uint8_t *)(ThreadContextIndicator + SystemMemoryAllocationOffset200) = 0;
+  if (SystemMemoryAllocationOffset != 0) {
+    *(uint8_t *)(ThreadContextIndicator + SystemMemoryAllocationOffset) = 0;
   }
   SystemResourceOffset1f0 = ConcatenatedSystemValue(*(uint *)(SystemThreadFlags + 0x1c),(uint32_t)SystemResourceOffset1f0);
   if (0 < SystemInteger180) {
     SystemOperationOffset1f8 = SystemInitializationStatus;
     ExecuteSystemCommand(&SystemGlobalReference208,SystemInteger180);
-      memcpy((ulong long)SystemOperationOffset1f8 + SystemMemoryAllocationOffset200,SystemVariable188,(long long)(SystemInteger180 + 1));
+      memcpy((ulong long)SystemOperationOffset1f8 + SystemMemoryAllocationOffset,SystemVariable188,(long long)(SystemInteger180 + 1));
   }
-  LongStackVariable1d8 = SystemMemoryAllocationOffset200;
+  LongStackVariableSecondary = SystemMemoryAllocationOffset;
   SystemThreadStackSize.PrimaryField = (uint32_t)SystemResourceOffset1f0;
   SystemOperationOffset1f8 = 0;
   SystemInitializationStatusFlag = 0;
-  SystemMemoryAllocationOffset200 = 0;
+  SystemMemoryAllocationOffset = 0;
   SystemResourceOffset1f0 = 0;
   SystemGlobalReference208 = &SystemMemoryAllocatorReference;
   StackVariable218 = 0xffffffff;
-  StackVariable1d0 = SystemInitializationStatus;
+  StackVariableMain = SystemInitializationStatus;
   SystemThreadStackSize.SecondaryField = *(uint *)(SystemThreadFlags + 0x1c);
   ConfigureSystemData(SystemCalculatedBufferPointer,SystemConfigurationData,&pGlobalDataFlags2,&StackVariable148);
   ReleaseSystemResources(SystemCalculatedBufferPointer);
@@ -28843,10 +28843,10 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   }
   StackDoublePointer170 = &pGlobalDataFlags;
   pGlobalDataFlags = &SystemGlobalDataReference;
-  if (SystemMemoryAllocationOffset200 != 0) {
+  if (SystemMemoryAllocationOffset != 0) {
       SystemCleanupFunction();
   }
-  SystemMemoryAllocationOffset200 = 0;
+  SystemMemoryAllocationOffset = 0;
   SystemResourceCountSecondary = SystemResourceCountSecondary & SystemMemoryAlignmentMask;
   pGlobalDataFlags = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemSystemStackBuffer238);
@@ -45030,7 +45030,7 @@ SystemCounterCheckPoint:
         SystemFlag88 = ConcatenatedSystemValue(SystemFlag88._4_4_, ResourceAddress);
         *SystemThreadContext = 0x73656873617263;
         SystemConfigValue = 7;
-        GetSystemCounter(SystemCounterBuffer80, &SystemParameterPointerA);
+        GetSystemCounter(SystemCounterBuffer80, &SystemParameterPointer);
         StackParameterA = &SystemGlobalDataReference;
         SystemCleanupFunction(SystemThreadContext);
       }
@@ -45091,7 +45091,7 @@ SystemCounterCheckPoint:
       memcpy(StackParameterB, &SystemStringBuffer, CalculationFlags);
     }
     SystemConfigValue = 0;
-    InitializeSystemResourceObject(&SystemParameterPointerA, SystemParameter);
+    InitializeSystemResourceObject(&SystemParameterPointer, SystemParameter);
     StackParameterA = &SystemGlobalDataReference;
     if (StackParameterB != (void**)0x0) {
         SystemCleanupFunction();
@@ -51966,7 +51966,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
     systemFlag88 = 0;
     stackParameterB = (void* *)0x0;
     SystemConfigValue = 0;
-    ConfigureSystemDataBuffer(&SystemParameterPointerA,&SystemDataTemplateC,ConfigurationDataPointer);
+    ConfigureSystemDataBuffer(&SystemParameterPointer,&SystemDataTemplateC,ConfigurationDataPointer);
     ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationTemplate);
     ThreadLocalStorage = &SystemStringTemplate;
     if (stackParameterB != (void* *)0x0) {
