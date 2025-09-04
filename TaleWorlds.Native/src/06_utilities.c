@@ -4588,16 +4588,16 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t CurrentObjectId;
-  int SystemObjectValidationResult;
-  int64_t SystemObjectContext;
-  int64_t SystemRuntimeData;
-  int64_t CollectionBufferIndex;
-  int ValidatedObjectTotal;
-  uint8_t *SystemObjectDataBuffer;
-  int RetrievedObjectCount;
-  uint32_t MaximumCollectionLimit;
-  uint64_t SecurityValidationKey;
+  uint8_t ObjectId;
+  int ValidationResult;
+  int64_t SystemContext;
+  int64_t RuntimeData;
+  int64_t BufferIndex;
+  int ValidatedCount;
+  uint8_t *DataBuffer;
+  int RetrievedCount;
+  uint32_t MaxLimit;
+  uint64_t SecurityKey;
   
   // 生成安全验证令牌
   SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspace;
@@ -105448,28 +105448,28 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SystemRegisterContextValidationOffset 0x1c
 
 // 系统资源验证失败错误码常量
-#define SystemResourceValidationErrorOffset0 0x38
-#define SystemResourceValidationErrorOffset8 0x40
-#define SystemResourceValidationErrorOffset18 0x48
-#define SystemResourceValidationErrorOffset20 0x50
-#define SystemResourceValidationErrorOffset30 0x58
-#define SystemResourceValidationErrorOffset38 0x60
-#define SystemResourceValidationErrorOffset50 0x68
-#define SystemResourceValidationErrorOffset60 0x70
-#define SystemResourceValidationErrorOffset70 0x78
-#define SystemResourceValidationErrorOffset88 0x88
-#define SystemResourceValidationErrorOffset90 0x90
-#define SystemResourceValidationErrorOffset00 0x98
+#define SystemResourceValidationErrorOffset0x38 0x38
+#define SystemResourceValidationErrorOffset0x40 0x40
+#define SystemResourceValidationErrorOffset0x48 0x48
+#define SystemResourceValidationErrorOffset0x50 0x50
+#define SystemResourceValidationErrorOffset0x58 0x58
+#define SystemResourceValidationErrorOffset0x60 0x60
+#define SystemResourceValidationErrorOffset0x68 0x68
+#define SystemResourceValidationErrorOffset0x70 0x70
+#define SystemResourceValidationErrorOffset0x78 0x78
+#define SystemResourceValidationErrorOffset0x88 0x88
+#define SystemResourceValidationErrorOffset0x90 0x90
+#define SystemResourceValidationErrorOffset0x98 0x98
 #define SystemResourceDataValidationErrorOffset 0xa0
-#define SystemResourceValidationErrorOffsetA0 0xa0
-#define SystemResourceValidationErrorOffsetA8 0xa8
-#define SystemResourceValidationErrorOffsetC0 0xc0
-#define SystemResourceValidationErrorOffsetD0 0xd0
-#define SystemResourceValidationErrorOffsetE0 0xe0
-#define SystemResourceValidationErrorOffsetB0 0xb0
-#define SystemResourceValidationErrorOffsetF8 0xf8
+#define SystemResourceValidationErrorOffset0xA0 0xa0
+#define SystemResourceValidationErrorOffset0xA8 0xa8
+#define SystemResourceValidationErrorOffset0xC0 0xc0
+#define SystemResourceValidationErrorOffset0xD0 0xd0
+#define SystemResourceValidationErrorOffset0xE0 0xe0
+#define SystemResourceValidationErrorOffset0xB0 0xb0
+#define SystemResourceValidationErrorOffset0xF8 0xf8
 #define SystemResourceExtendedValidationErrorCode 0x928c9d
-#define SystemRegisterContextValidationShift SystemResourceValidationErrorOffset
+#define SystemRegisterContextValidationShift SystemResourceValidationErrorOffset0x38
 
 // 对象虚拟方法表偏移量常量
 #define ObjectVirtualMethodTableOffset 0x2f0
