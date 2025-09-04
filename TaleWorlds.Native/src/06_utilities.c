@@ -74093,7 +74093,7 @@ void RegisterResourceHandlerAtOffsetC60(uint8_t ObjectContext,int64_t Validation
  * @note 此函数在异常处理时调用，确保资源正确注册和清理
  * @warning 如果资源表指针为空，会执行系统紧急退出
  */
-void Unwind_RegisterResourceHandlerAtC68(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterResourceHandlerAtOffsetC68(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
