@@ -35017,7 +35017,7 @@ void CleanMemorySegments(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
-  int64_t *ResourceTablePointerPointer;
+  int64_t *ResourceTablePointer;
   int64_t *ResourceIndexPointer;
   
   ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x20);
@@ -35035,7 +35035,7 @@ void CleanMemorySegments(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void SystemResourceReleaser(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   CleanupSystemMemoryHandle(*(int64_t *)(ValidationContext + 0x20) + 0x60);
@@ -35044,7 +35044,7 @@ void SystemResourceReleaser(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void ExceptionFrameHandler(uint8_t ObjectContext,int64_t ValidationContext)
+void HandleExceptionFrame(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   CleanupSystemMemoryHandle(*(int64_t *)(ValidationContext + 0x20) + 0x60);
@@ -35053,7 +35053,7 @@ void ExceptionFrameHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void MemoryContextReset(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetMemoryContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -35067,7 +35067,7 @@ void MemoryContextReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void ResourceReferenceCounter(uint8_t ObjectContext,int64_t ValidationContext)
+void CountResourceReferences(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -35081,7 +35081,7 @@ void ResourceReferenceCounter(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void SystemGarbageCollector(uint8_t ObjectContext,int64_t ValidationContext)
+void RunSystemGarbageCollection(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
