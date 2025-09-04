@@ -93248,7 +93248,18 @@ void ExecuteSystemResourceManagerInitialization(uint8_t ObjectContext, int64_t V
 
 
 
-void Unwind_18090ec10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文系统句柄清理回调
+ * 
+ * 该函数用于检查并执行验证上下文中系统句柄的清理回调函数
+ * 确保系统资源能够正确释放和清理
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和清理相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec10
+ */
+void ExecuteValidationContextSystemHandleCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x90) != (int64_t *)0x0) {
@@ -93259,7 +93270,21 @@ void Unwind_18090ec10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ec20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文系统数据结构指针
+ * 
+ * 该函数用于设置验证上下文的系统数据结构指针，包括：
+ * - 设置资源处理器模板
+ * - 验证系统状态
+ * - 重置系统标志和状态
+ * - 设置数据结构指针
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和配置相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec20
+ */
+void SetValidationContextSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset) = &SystemResourceHandlerTemplate;
@@ -93274,7 +93299,18 @@ void Unwind_18090ec20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ec30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文扩展清理回调
+ * 
+ * 该函数用于检查并执行验证上下文中扩展位置的清理回调函数
+ * 确保系统资源在特定偏移位置能够正确释放
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和清理相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec30
+ */
+void ExecuteValidationContextExtendedCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 200) != (int64_t *)0x0) {
