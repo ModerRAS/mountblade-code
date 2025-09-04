@@ -58705,10 +58705,10 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
   else if (*(char *)(*(long long *)(resourceDataIndex3 + 0x1e0) + resourceDataIndex2 + 0x15) != '\x04') {
     SystemUnsignedFlagSecondary = 0;
     SystemProcessFlagsSecondary = 0;
-    uStack_6c = 0xffffffff;
+    SystemUnsignedFlagPrimary = 0xffffffff;
     encryptionValue68 = 1;
     SystemByteFlag1 = 0;
-    uStack_64 = 0xffffffff;
+    SystemUnsignedFlagTertiary = 0xffffffff;
     SystemThreadContext = 1;
     systemProcessFlags58 = 0;
     LocalSystemValue1 = 0;
@@ -58914,7 +58914,7 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   void* StackPointerE0;
   void* SystemMemoryAllocatorStatus;
   void* StackPointerD0;
-  float fStack_c8;
+  float MatrixResult1;
   float fStack_c4;
   float fStack_c0;
   float fStack_bc;
