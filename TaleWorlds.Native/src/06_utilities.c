@@ -78610,7 +78610,17 @@ void ProcessSystemResourceCallOffset3A8(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void Unwind_18090bb50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源处理器0x3b0
+ * 
+ * 该函数负责清理位于偏移量0x3b0处的资源处理器
+ * 用于系统资源清理阶段的内存释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void CleanupResourceHandlerOffset3B0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
