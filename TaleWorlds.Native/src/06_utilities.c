@@ -78728,7 +78728,16 @@ void CleanupResourceHandlerOffset3D0(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090bbf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表指针清理操作
+ * 
+ * 该函数用于在系统异常处理时清理资源表指针，防止内存泄漏。
+ * 主要用于系统资源管理的清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证资源状态
+ */
+void ExecuteResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78742,7 +78751,16 @@ void Unwind_18090bbf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bc10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要资源表指针清理操作
+ * 
+ * 该函数用于在系统异常处理时清理次要资源表指针，防止内存泄漏。
+ * 主要用于系统资源管理的清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证资源状态
+ */
+void ExecuteSecondaryResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78756,7 +78774,16 @@ void Unwind_18090bc10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bc30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第三级资源表指针清理操作
+ * 
+ * 该函数用于在系统异常处理时清理第三级资源表指针，防止内存泄漏。
+ * 主要用于系统资源管理的清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证资源状态
+ */
+void ExecuteTertiaryResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78770,7 +78797,16 @@ void Unwind_18090bc30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bc50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第四级资源表指针清理操作
+ * 
+ * 该函数用于在系统异常处理时清理第四级资源表指针，防止内存泄漏。
+ * 主要用于系统资源管理的清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证资源状态
+ */
+void ExecuteQuaternaryResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
