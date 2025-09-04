@@ -7301,14 +7301,14 @@ ValidateNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequ
       }
       if ((pUnsignedValue == (uint *)MemoryDataPointer[1]) || (*(uint *)(LongIndex + LongLoop) < *pUnsignedValue)) {
         LongIndex = GetNetworkRequestConfiguration(SystemContextPointer,*(uint32_t *)(LongIndex + LongLoop),NetworkRequestFlags);
-        uVar6 = 1;
+        ConfigurationUpdateStatus = 1;
         *(uint *)(LongIndex + 8) = *(uint *)(LongIndex + 8) | ConfigurationOption;
       }
       LongLoop = LongLoop + 4;
       MemoryAddress = MemoryAddress - 1;
     } while (MemoryAddress != 0);
   }
-  return uVar6;
+  return ConfigurationUpdateStatus;
 }
 uint8_t SystemModuleInitializeFinal(void)
 {
@@ -10524,7 +10524,7 @@ char * SystemStringProcessData(uint32_t StringFormatId,uint64_t BufferSizeParame
   uint32_t StringProcessingResult;
   void *pNetworkRequestResult;
   int IntegerCounter;
-  uint32_t uVar6;
+  uint32_t MemoryValidationResult;
   uint UnsignedValue;
   longlong LongOffset;
   char *pcVar9;
