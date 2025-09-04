@@ -83930,7 +83930,18 @@ void ExecuteSystemResourceMemoryAllocationAndStateUpdate(uint8_t ObjectContext, 
 
 
 
-void Unwind_18090cb90(void)
+/**
+ * @brief 释放资源引用计数并执行清理操作
+ * 
+ * 该函数负责减少资源引用计数并执行相应的清理操作
+ * 调用资源管理器的清理函数来释放资源
+ * 
+ * @return 无返回值
+ * @note 此函数会减少资源引用计数并调用清理函数
+ * @warning 调用此函数会永久减少资源引用计数
+ * @remark 原始函数名：Unwind_18090cb90
+ */
+void ReleaseResourceReferenceAndExecuteCleanup(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
