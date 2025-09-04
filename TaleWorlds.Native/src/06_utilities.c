@@ -171,42 +171,42 @@
 #define SystemContextStatusFlag1Offset 0x180               // 系统上下文状态标志1偏移量
 #define SystemContextStatusFlag2Offset 0x184               // 系统上下文状态标志2偏移量
 #define SystemContextSecondaryDataProcessingOffset 0x18    // 系统上下文次级数据处理偏移量
-#define SystemContextPrimaryDataProcessingOffset 0x20
-#define SystemContextResourceManagerOffset 0x50
-#define SystemContextCallbackPointerOffset 0x58
-#define SystemContextMethodPointerOffset 0x10
-#define SystemContextValidationDataSizeOffset 0x104
-#define SystemContextValidationFloatDataProcessingOffset 0x84
-#define SystemContextResourceIndexOffset 0x18
+#define SystemContextPrimaryDataProcessingOffset 0x20     // 系统上下文主要数据处理偏移量
+#define SystemContextResourceManagerOffset 0x50            // 系统上下文资源管理器偏移量
+#define SystemContextCallbackPointerOffset 0x58           // 系统上下文回调指针偏移量
+#define SystemContextMethodPointerOffset 0x10             // 系统上下文方法指针偏移量
+#define SystemContextValidationDataSizeOffset 0x104      // 系统上下文验证数据大小偏移量
+#define SystemContextValidationFloatDataProcessingOffset 0x84 // 系统上下文验证浮点数据处理偏移量
+#define SystemContextResourceIndexOffset 0x18              // 系统上下文资源索引偏移量
 
 // 验证相关常量
-#define ValidationContextShift 3
-#define ValidationContextPropertyOffset1 0xc
-#define ValidationContextPropertyOffset2 0x14
-#define ValidationContextPropertyOffset3 0x18
-#define ValidationContextPropertyOffset4 0x1c
-#define ValidationContextPropertyOffset5 0xe
-#define ValidationContextPropertyOffset6 0xf
-#define ValidationContextSecondaryOffset 0x220
-#define PackageValidationStatusBit 1
-#define ValidationArraySizeMultiplier 3
-#define ValidationSizeLimit 0x3fffffff
-#define ValidationContextLoopCounterOffset 0x98
-#define ValidationContextMethodPointerOffset 0x10
-#define ValidationContextSecondaryResourceOffset 0x14
-#define ValidationContextValidationDataProcessingOffset 0x220
-#define ValidationContextEntrySize 0xc
-#define ValidationBitIndex 3
-#define ValidationBitMask (1 << ValidationBitIndex)
+#define ValidationContextShift 3                        // 验证上下文位移量
+#define ValidationContextPropertyOffset1 0xc            // 验证上下文属性1偏移量
+#define ValidationContextPropertyOffset2 0x14           // 验证上下文属性2偏移量
+#define ValidationContextPropertyOffset3 0x18           // 验证上下文属性3偏移量
+#define ValidationContextPropertyOffset4 0x1c           // 验证上下文属性4偏移量
+#define ValidationContextPropertyOffset5 0xe            // 验证上下文属性5偏移量
+#define ValidationContextPropertyOffset6 0xf            // 验证上下文属性6偏移量
+#define ValidationContextSecondaryOffset 0x220           // 验证上下文次级偏移量
+#define PackageValidationStatusBit 1                      // 包验证状态位
+#define ValidationArraySizeMultiplier 3                    // 验证数组大小乘数
+#define ValidationSizeLimit 0x3fffffff                    // 验证大小限制
+#define ValidationContextLoopCounterOffset 0x98           // 验证上下文循环计数器偏移量
+#define ValidationContextMethodPointerOffset 0x10         // 验证上下文方法指针偏移量
+#define ValidationContextSecondaryResourceOffset 0x14      // 验证上下文次级资源偏移量
+#define ValidationContextValidationDataProcessingOffset 0x220 // 验证上下文验证数据处理偏移量
+#define ValidationContextEntrySize 0xc                    // 验证上下文条目大小
+#define ValidationBitIndex 3                             // 验证位索引
+#define ValidationBitMask (1 << ValidationBitIndex)        // 验证位掩码
 
 // 系统状态常量
-#define SystemStatusFlagMask 0xf
-#define SystemStatusFlagMaskClear 0xfffffff0
-#define SystemStatusFlagActive '\x01'
-#define SystemStatusFlagInactive '\x02'
-#define SystemStatusFlagProcessing '\x06'
-#define SystemExecutionStatusOffset 0x98
-#define SystemStatusConstant 0x1c
+#define SystemStatusFlagMask 0xf                          // 系统状态标志掩码
+#define SystemStatusFlagMaskClear 0xfffffff0             // 系统状态标志清除掩码
+#define SystemStatusFlagActive '\x01'                     // 系统状态活动标志
+#define SystemStatusFlagInactive '\x02'                   // 系统状态非活动标志
+#define SystemStatusFlagProcessing '\x06'                 // 系统状态处理中标志
+#define SystemExecutionStatusOffset 0x98                   // 系统执行状态偏移量
+#define SystemStatusConstant 0x1c                         // 系统状态常量
 
 // 系统清理相关常量
 #define SystemCleanupHandlerOffset 0x8b0
