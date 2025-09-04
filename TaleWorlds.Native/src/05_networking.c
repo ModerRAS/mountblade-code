@@ -637,12 +637,12 @@ uint32_t CloseConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionF
 // =============================================================================
 
 // 网络连接基础配置变量
-uint32_t ConnectionTableHandle;                    // 网络连接表管理句柄
-uint32_t ConnectionStatusFlags;                    // 网络连接状态标志位
-uint32_t ConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
-uint32_t MaximumConnectionsLimit;                  // 网络最大连接数限制
-uint32_t ConnectionAttributeFlags;                // 网络连接属性标志位
-uint32_t ConnectionStateFlags;                     // 网络连接状态标志位
+uint32_t NetworkConnectionTableHandle;                    // 网络连接表管理句柄
+uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志位
+uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时时间（毫秒）
+uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制
+uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志位
+uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志位
 
 // 网络协议和地址配置
 uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
