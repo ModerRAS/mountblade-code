@@ -2032,8 +2032,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     }
     NetworkStatus SecondaryConnectionValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetSecond);
     ValidationStatusArray[0] = SecondaryConnectionValidationStatus;
-    ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
-                      (*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+    NetworkPacketProcessor ValidationProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
+    ProcessingResult = ValidationProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
     if ((int)ProcessingResult != 0) {
       return ProcessingResult;
     }
@@ -2044,8 +2044,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     }
     NetworkStatus TertiaryConnectionValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
     ValidationStatusArray[0] = TertiaryConnectionValidationStatus;
-    ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
-                      (*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+    NetworkPacketProcessor TertiaryValidationProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
+    ProcessingResult = TertiaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
     if ((int)ProcessingResult != 0) {
       return ProcessingResult;
     }
@@ -2055,7 +2055,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   }
   NetworkStatus QuaternaryConnectionValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
   ValidationStatusArray[0] = QuaternaryConnectionValidationStatus;
-  ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+  NetworkPacketProcessor QuaternaryValidationProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
+  ProcessingResult = QuaternaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
   if ((int)ProcessingResult != 0) {
     return ProcessingResult;
   }

@@ -35013,6 +35013,16 @@ void ResourcePoolManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 清理内存段
+ * 
+ * 该函数负责清理系统中的内存段，释放不再使用的资源
+ * 通过遍历资源表并调用相应的清理函数来实现内存管理
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return void 无返回值
+ */
 void CleanMemorySegments(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -35020,9 +35030,9 @@ void CleanMemorySegments(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t *ResourceTablePointer;
   int64_t *ResourceIndexPointer;
   
-  ResourceTablePointerPointer = *(int64_t **)(ValidationContext + 0x20);
-  ResourceContext = (int64_t *)ResourceTablePointerPointer[1];
-  for (ResourceIndexPointer = (int64_t *)*ResourceTablePointerPointer; ResourceIndexPointer != ResourceContext; ResourceIndexPointer = ResourceIndexPointer + 1) {
+  ResourceTablePointer = *(int64_t **)(ValidationContext + 0x20);
+  ResourceContext = (int64_t *)ResourceTablePointer[1];
+  for (ResourceIndexPointer = (int64_t *)*ResourceTablePointer; ResourceIndexPointer != ResourceContext; ResourceIndexPointer = ResourceIndexPointer + 1) {
     if ((int64_t *)*ResourceIndexPointer != (int64_t *)0x0) {
       (**(code **)(*(int64_t *)*ResourceIndexPointer + 0x38))();
     }
@@ -35035,6 +35045,16 @@ void CleanMemorySegments(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 释放系统资源
+ * 
+ * 该函数负责释放系统中的资源，清理内存句柄
+ * 主要用于系统资源管理和内存回收
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return void 无返回值
+ */
 void ReleaseSystemResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -35044,6 +35064,16 @@ void ReleaseSystemResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 处理异常帧
+ * 
+ * 该函数负责处理系统中的异常帧，清理异常发生时的资源
+ * 主要用于异常处理和资源回收
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return void 无返回值
+ */
 void HandleExceptionFrame(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -35053,6 +35083,16 @@ void HandleExceptionFrame(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 重置内存上下文
+ * 
+ * 该函数负责重置系统中的内存上下文，清理相关的资源
+ * 主要用于内存管理和资源回收
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return void 无返回值
+ */
 void ResetMemoryContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -35067,6 +35107,16 @@ void ResetMemoryContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 计算资源引用计数
+ * 
+ * 该函数负责计算系统中资源的引用计数，用于资源管理
+ * 主要用于资源引用跟踪和内存管理
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return void 无返回值
+ */
 void CountResourceReferences(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -35081,13 +35131,23 @@ void CountResourceReferences(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 运行系统垃圾回收
+ * 
+ * 该函数负责运行系统中的垃圾回收，清理不再使用的资源
+ * 主要用于内存管理和资源回收
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return void 无返回值
+ */
 void RunSystemGarbageCollection(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
+  int64_t CollectionIterator;
   uint8_t ResourceHashStatus;
   
-  LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  CollectionIterator = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   ValidationStatusCode = 0xfffffffffffffffe;
   MutexDestroyInPlace();
   RegisterResourceHandler(SystemContextPointer + 0x3e0,0x20,0x20,ReleaseSystemResource,ResourceHashStatus);
