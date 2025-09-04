@@ -27487,7 +27487,7 @@ bool SystemResourceValidator(long long SystemResourceManager)
   void* *SystemDataBufferPointer;
   void* *ThreadLocalStorage;
   void* *GlobalDataReferencePointer;
-  byte *SystemByteBuffer28;
+  byte *SystemStringBufferPrimary;
   int SystemOperationFlag;
   
   SystemDataPointer = (void* *)(SystemResourceManager + 0x2e0);
@@ -27505,9 +27505,9 @@ bool SystemResourceValidator(long long SystemResourceManager)
           isValidOperation = true;
         }
         else {
-          stringPointer = SystemByteBuffer28;
+          stringPointer = SystemStringBufferPrimary;
           do {
-            CurrentThreadIdentifier = (uint)stringPointer[SystemThreadStorage[5] - (long long)SystemByteBuffer28];
+            CurrentThreadIdentifier = (uint)stringPointer[SystemThreadStorage[5] - (long long)SystemStringBufferPrimary];
             CalculationFlags = *stringPointer - CurrentThreadIdentifier;
             if (*stringPointer != CurrentThreadIdentifier) break;
             stringPointer = stringPointer + 1;
