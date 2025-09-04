@@ -10429,9 +10429,9 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uin
 {
   float OriginalFloatValue;
   uint8_t ValidationResult = 0;
-  int64_t ResourceIndexPtr = 0;
-  int64_t ResourceDataPtr = 0;
-  int64_t SystemContextPtr = 0;
+  int64_t ResourceIndexPointer = 0;
+  int64_t ResourceDataPointer = 0;
+  int64_t SystemContextPointer = 0;
   float MinimumValidRange = 0.0f;
   float MaximumValidRange = 0.0f;
   float ClampedResult = 0.0f;
@@ -10439,15 +10439,15 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uin
   int ProcessingStatus = 0;
   
   ValidationationToken = 0;
-  ProcessingStatus = ProcessDataHashing(SystemContextPtr + ValidationContextHashOffset, ValidationContext, &ValidationationToken);
+  ProcessingStatus = ProcessDataHashing(SystemContextPointer + ValidationContextHashOffset, ValidationContext, &ValidationationToken);
   if ((int)ProcessingStatus == 0) {
-    ResourceIndexPtr = LookupResourceIndexPointer(SystemContextPtr + ValidationContextHashOffset, ValidationToken);
-    if ((*(uint *)(ResourceIndexPtr + 0x34) >> 4 & 1) != 0) {
+    ResourceIndexPointer = LookupResourceIndexPointer(SystemContextPointer + ValidationContextHashOffset, ValidationToken);
+    if ((*(uint *)(ResourceIndexPointer + 0x34) >> 4 & 1) != 0) {
       return ResourceValidationError;
     }
-    OriginalFloatValue = *(float *)(ResourceDataPtr + 0x18);
-    MinimumValidRange = *(float *)(ResourceIndexPtr + ValidationContextSecondaryCleanupOffset);
-    MaximumValidRange = *(float *)(ResourceIndexPtr + 0x3c);
+    OriginalFloatValue = *(float *)(ResourceDataPointer + 0x18);
+    MinimumValidRange = *(float *)(ResourceIndexPointer + ValidationContextSecondaryCleanupOffset);
+    MaximumValidRange = *(float *)(ResourceIndexPointer + 0x3c);
     if ((MinimumValidRange <= OriginalFloatValue) && (OriginalFloatValue <= MaximumValidRange)) {
       ClampedResult = OriginalFloatValue;
     }
@@ -10457,10 +10457,10 @@ uint8_t ProcessFloatDataValidationAndConversionNoParams(uint8_t DataContext, uin
     else {
       ClampedResult = MaximumValidRange;
     }
-    *(float *)(ResourceDataPtr + 0x18) = ClampedResult;
-    ProcessingStatus = ValidateResourceParameters(SystemContextPtr + ValidationContextHashOffset, ValidationToken, ClampedResult);
+    *(float *)(ResourceDataPointer + 0x18) = ClampedResult;
+    ProcessingStatus = ValidateResourceParameters(SystemContextPointer + ValidationContextHashOffset, ValidationToken, ClampedResult);
     if ((int)ProcessingStatus == 0) {
-      ReleaseSystemContextResources(*(uint8_t *)(SystemContextPtr + SystemResourceManagerOffset));
+      ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + SystemResourceManagerOffset));
     }
   }
   return ProcessingStatus;
@@ -35588,7 +35588,7 @@ void UnwindStackFrameProcessor(uint8_t ObjectContext,int64_t ValidationContext)
  */
 void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t SystemResourcePointer = *(int64_t *)(SystemContext + SystemContextResourceOffset);
-  int64_t DataStructurePointer = SystemResourcePointer + 0x438;
+  int64_t DataStructurePointer = SystemResourcePointer + SystemDataStructureOffset;
   
   // 设置系统数据结构指针
   *(uint8_t **)DataStructurePointer = &SystemDataStructure;
@@ -35612,8 +35612,8 @@ void HandleSystemDataStructureException(uint8_t ExceptionContext, int64_t System
  */
 void ReleaseFileSystemLock(uint8_t FileSystemContext, int64_t SystemContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
   int64_t SystemResourcePointer = *(int64_t *)(SystemContext + SystemContextResourceOffset);
-  int64_t FileResourceLockPointer = SystemResourcePointer + FileResourceLockOffset;
-  int64_t FileResourceStatusPointer = SystemResourcePointer + FileResourceStatusOffset;
+  int64_t FileResourceLockPointer = SystemResourcePointer + SystemFileResourceLockOffset;
+  int64_t FileResourceStatusPointer = SystemResourcePointer + SystemFileResourceStatusOffset;
   uint8_t FileResourceStatus = *(uint8_t *)FileResourceStatusPointer;
   
   // 处理资源请求，释放文件系统锁
