@@ -28341,12 +28341,12 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   void* DataBufferPrimary;
   void* DataBufferSecondary;
   void* *systemGlobalPointer;
-  void* dataBuffer3;
+  void* DataBufferTertiary;
   uint32_t dataFlags;
-  void* dataBuffer4;
+  void* DataBufferQuaternary;
   uint8_t SystemStackBuffer [32];
-  void* ThreadParameter1;
-  void* ThreadParameter2;
+  void* ThreadParameterPrimary;
+  void* ThreadParameterSecondary;
   char processNameBuffer [16];
   ulong long encryptionKey;
   
