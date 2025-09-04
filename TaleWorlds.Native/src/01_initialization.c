@@ -26821,7 +26821,7 @@ void InitializeSystemDataStructures(void)
   long long ***stackTriplePointer70;
   void* StackHandle;
   long long **stackDoublePointer60;
-  void* stackHandle58;
+  void* StackHandlePrimary;
   ulong long loopCounter;
   
   systemCounter = SystemRuntimeCounter;
