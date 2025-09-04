@@ -51881,9 +51881,9 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
   SystemProcessBufferPtr = SystemAllocationTemplate;
   SystemOperationCounter = 0xfffffffffffffffe;
   BooleanStatusFlag = 0;
-  if (((SystemInitializationFlag == '\0') || (in_RAX = GetConfigurationDataStatus(ConfigurationDataPointer), (char)in_RAX != '\0')) ||
-     (in_RAX = WaitForSingleObject(SystemSemaphoreHandle,0), (int)in_RAX != 0)) {
-    SystemProcessingResult = in_RAX & SystemMemoryStatusAlignmentMask;
+  if (((SystemInitializationFlag == '\0') || (SystemOperationResult = GetConfigurationDataStatus(ConfigurationDataPointer), (char)SystemOperationResult != '\0')) ||
+     (SystemOperationResult = WaitForSingleObject(SystemSemaphoreHandle,0), (int)SystemOperationResult != 0)) {
+    SystemProcessingResult = SystemOperationResult & SystemMemoryStatusAlignmentMask;
   }
   else {
     if (SystemProcessingBufferPointer != 0) {
