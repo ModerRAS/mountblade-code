@@ -21986,9 +21986,9 @@ void ProcessSystemDataTransfer(long long SystemResourceManager,void* Configurati
                   long long SystemDataStructurePointer)
 
 {
-  byte currentByte;
-  byte *stringPointer;
-  uint compareValue;
+  byte CurrentByte;
+  byte *StringPointer;
+  uint CompareValue;
   void* *ResourceAddressPointer;
   long long SystemTimeValue;
   void* ResourceHash;
@@ -21999,15 +21999,15 @@ void ProcessSystemDataTransfer(long long SystemResourceManager,void* Configurati
   if (((char)ConfigurationFlag != '\0') || (AdditionalParameter == SystemResourceManager)) goto SystemThreadInitialization;
   if (*(int *)(AdditionalParameter + 0x30) != 0) {
     if (*(int *)(SystemDataStructurePointer + 0x10) == 0) goto SystemThreadCreation;
-    stringPointer = *(byte **)(AdditionalParameter + 0x28);
-    LocalSystemOffset = *(long long *)(SystemDataStructurePointer + 8) - (long long)stringPointer;
+    StringPointer = *(byte **)(AdditionalParameter + 0x28);
+    LocalSystemOffset = *(long long *)(SystemDataStructurePointer + 8) - (long long)StringPointer;
     do {
-      currentByte = *stringPointer;
-      compareValue = (uint)stringPointer[LocalSystemOffset];
-      if (currentByte != compareValue) break;
-      stringPointer = stringPointer + 1;
-    } while (compareValue != 0);
-    if (0 < (int)(currentByte - compareValue)) goto SystemThreadCreation;
+      CurrentByte = *StringPointer;
+      CompareValue = (uint)StringPointer[LocalSystemOffset];
+      if (CurrentByte != CompareValue) break;
+      StringPointer = StringPointer + 1;
+    } while (CompareValue != 0);
+    if (0 < (int)(CurrentByte - CompareValue)) goto SystemThreadCreation;
   }
   ResourceHash = 1;
 SystemThreadCreation:
