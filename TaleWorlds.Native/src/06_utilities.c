@@ -5905,14 +5905,14 @@ void InitializeSystemPlaceholder(void)
 
 
 /**
- * @brief 获取系统常量值
+ * 获取系统常量值
  * 
- * 该函数返回一个系统常量值，用于系统初始化和配置
+ * 该函数返回系统定义的常量值，用于系统初始化和配置
+ * 这个常量在系统的各个组件中被广泛使用
  * 
- * @return 返回系统常量值 0x1c
+ * @return uint64_t 系统常量值
  */
 uint64_t GetSystemConstantValue(void)
-
 {
   return ErrorInvalidObjectHandle;
 }
@@ -30708,7 +30708,7 @@ void CleanupNestedResourceHashStatusResources(uint8_t ExceptionHandlerType, int6
  * @param exceptionCode 异常代码
  * @param ExceptionContext 异常上下文
  */
-void HandleExceptionResourceCleanup(uint8_t exceptionCode, int64_t ExceptionContext)
+void HandleExceptionResourceCleanup(uint8_t ExceptionCode, int64_t ExceptionContext)
 
 {
   int *resourceReferenceCount;
@@ -90098,7 +90098,19 @@ void ExecuteValidationContextCleanupCallback(uint8_t ObjectContext,int64_t Valid
 
 
 
-void Unwind_18090ee30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统对象资源模板
+ * 
+ * 该函数负责初始化系统对象的资源模板
+ * 从验证上下文中获取系统对象偏移量，并设置资源哈希模板、分配模板和缓存模板
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含系统对象偏移量信息
+ * @note 此函数在系统对象资源初始化时调用
+ * @warning 调用此函数会修改资源模板指针
+ * @remark 原始函数名：Unwind_18090ee30
+ */
+void InitializeSystemObjectResourceTemplates(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;

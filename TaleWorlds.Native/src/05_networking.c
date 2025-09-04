@@ -125,68 +125,68 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkPacketMagicLiveConnection 0x5453494c    // "LIVE" - 表示活跃连接魔数
 #define NetworkPacketMagicValidation 0x54495645          // "EVIT" - 表示数据包验证魔数
 #define NetworkPacketMagicBinaryData 0x42495645          // "EVIB" - 表示二进制数据魔数
-#define NetworkPacketMagicEventData 0x544e5645    // "EVNT" - 表示事件数据魔数
-#define NetworkPacketMagicBatchData 0x42545645    // "EVBT" - 表示批处理数据魔数
-#define NetworkPacketMagicInvalid 0x464f4f44   // "FOOD" - 表示无效数据包魔数
+#define NetworkPacketMagicEventData 0x544e5645          // "EVNT" - 表示事件数据魔数
+#define NetworkPacketMagicBatchData 0x42545645          // "EVBT" - 表示批处理数据魔数
+#define NetworkPacketMagicInvalid 0x464f4f44          // "FOOD" - 表示无效数据包魔数
 
 // 网络连接相关偏移量
-#define NetworkConnectionHeaderOffset 0x10
-#define NetworkConnectionValidationPrimaryOffset 0xd8
-#define NetworkConnectionValidationSecondaryOffset 0x54
-#define NetworkConnectionValidationTertiaryOffset 0x78
-#define NetworkConnectionValidationQuaternaryOffset 0x58
-#define NetworkConnectionDataPrimaryOffset 0x5c
-#define NetworkConnectionValidatorOffset 0x60
-#define NetworkConnectionIntegrityPrimaryOffset 0x70
-#define NetworkConnectionIntegritySecondaryOffset 0x74
-#define NetworkConnectionFinalizeOffset 0x7c
-#define NetworkConnectionSecurityContextOffset 0xf8
-#define NetworkConnectionHandleContextOffset 0xe8
-#define NetworkPacketDataSecondaryOffset 0x44
+#define NetworkConnectionHeaderOffset 0x10                    // 网络连接头部偏移量
+#define NetworkConnectionValidationPrimaryOffset 0xd8         // 网络连接主验证偏移量
+#define NetworkConnectionValidationSecondaryOffset 0x54      // 网络连接次验证偏移量
+#define NetworkConnectionValidationTertiaryOffset 0x78       // 网络连接第三验证偏移量
+#define NetworkConnectionValidationQuaternaryOffset 0x58     // 网络连接第四验证偏移量
+#define NetworkConnectionDataPrimaryOffset 0x5c             // 网络连接主数据偏移量
+#define NetworkConnectionValidatorOffset 0x60               // 网络连接验证器偏移量
+#define NetworkConnectionIntegrityPrimaryOffset 0x70         // 网络连接主完整性偏移量
+#define NetworkConnectionIntegritySecondaryOffset 0x74      // 网络连接次完整性偏移量
+#define NetworkConnectionFinalizeOffset 0x7c                 // 网络连接完成偏移量
+#define NetworkConnectionSecurityContextOffset 0xf8          // 网络连接安全上下文偏移量
+#define NetworkConnectionHandleContextOffset 0xe8           // 网络连接句柄上下文偏移量
+#define NetworkPacketDataSecondaryOffset 0x44               // 网络数据包次数据偏移量
 
 // 网络状态常量
-#define NetworkStatusActive 0x01
-#define NetworkMaximumSignedInt32Value 0x7fffffff   // 最大32位有符号整数值
-#define NetworkPacketAlternativeSizeLimit 0x53      // 替代数据包大小限制（83字节）
-#define NetworkPacketStatusSizeLimit 0x31           // 数据包状态限制（49字节）
-#define NetworkStatusInactive 0x00
-#define NetworkStatusReserved 0x02
-#define NetworkStatusSpecial 0x03
-#define NetworkStatusTerminator 0x06
+#define NetworkStatusActive 0x01                            // 网络状态：活跃
+#define NetworkMaximumSignedInt32Value 0x7fffffff          // 最大32位有符号整数值
+#define NetworkPacketAlternativeSizeLimit 0x53            // 替代数据包大小限制（83字节）
+#define NetworkPacketStatusSizeLimit 0x31                 // 数据包状态限制（49字节）
+#define NetworkStatusInactive 0x00                        // 网络状态：非活跃
+#define NetworkStatusReserved 0x02                        // 网络状态：保留
+#define NetworkStatusSpecial 0x03                         // 网络状态：特殊
+#define NetworkStatusTerminator 0x06                      // 网络状态：终止符
 
 // 网络系统常量
-#define NetworkMagicDebugMemoryCheck 0xdeadf00d       // 调试魔数，用于内存检查
-#define NetworkMaxIntValue NetworkMaximumSignedInt32Value  // 兼容性别名 - 最大32位有符号整数值
-#define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
-#define NetworkFloatNegativeOne 0xbf800000     // 浮点数-1.0的十六进制表示
-#define NetworkFloatMax 0x7f7fffff             // 最大浮点数值
+#define NetworkMagicDebugMemoryCheck 0xdeadf00d             // 调试魔数，用于内存检查
+#define NetworkMaxIntValue NetworkMaximumSignedInt32Value    // 兼容性别名 - 最大32位有符号整数值
+#define NetworkFloatOne 0x3f800000                           // 浮点数1.0的十六进制表示
+#define NetworkFloatNegativeOne 0xbf800000                   // 浮点数-1.0的十六进制表示
+#define NetworkFloatMax 0x7f7fffff                           // 最大浮点数值
 
 // 网络协议常量
-#define TCP_SOCKET_CATEGORY 0x01               // TCP套接字类别
-#define TCP_PROTOCOL 0x06                      // TCP协议类型
-#define IPV4_LOCALHOST 0x7F000001              // 本地回环地址127.0.0.1
-#define PORT_HTTP_ALT 0x1F90                   // 端口8080
-#define PORT_HTTPS_ALT 0x1FBB                  // 端口8091
-#define PORT_RANGE_END 0x270F                  // 端口9999
+#define TCP_SOCKET_CATEGORY 0x01                          // TCP套接字类别
+#define TCP_PROTOCOL 0x06                                 // TCP协议类型
+#define IPV4_LOCALHOST 0x7F000001                        // 本地回环地址127.0.0.1
+#define PORT_HTTP_ALT 0x1F90                             // 端口8080
+#define PORT_HTTPS_ALT 0x1FBB                            // 端口8091
+#define PORT_RANGE_END 0x270F                            // 端口9999
 
 // 网络缓冲区大小常量
-#define SOCKET_CONTEXT_SIZE 0x100              // 套接字上下文大小256字节
-#define SOCKET_SIZE 0x40                       // 套接字大小64字节
-#define SEND_BUFFER_SIZE 0x10000               // 发送缓冲区大小64KB
-#define RECEIVE_BUFFER_SIZE 0x10000            // 接收缓冲区大小64KB
-#define BUFFER_CAPACITY 0x20000                // 缓冲区容量128KB
-#define PACKET_QUEUE_SIZE 0x100                // 数据包队列大小256
-#define BUFFER_SIZE_4KB 0x1000                 // 4KB缓冲区大小
-#define CONTEXT_SIZE_256B 0x100                // 256字节上下文大小
-#define CONTEXT_SIZE_512B 0x200                // 512字节上下文大小
+#define SOCKET_CONTEXT_SIZE 0x100                          // 套接字上下文大小256字节
+#define SOCKET_SIZE 0x40                                   // 套接字大小64字节
+#define SEND_BUFFER_SIZE 0x10000                           // 发送缓冲区大小64KB
+#define RECEIVE_BUFFER_SIZE 0x10000                        // 接收缓冲区大小64KB
+#define BUFFER_CAPACITY 0x20000                           // 缓冲区容量128KB
+#define PACKET_QUEUE_SIZE 0x100                            // 数据包队列大小256
+#define BUFFER_SIZE_4KB 0x1000                            // 4KB缓冲区大小
+#define CONTEXT_SIZE_256B 0x100                           // 256字节上下文大小
+#define CONTEXT_SIZE_512B 0x200                           // 512字节上下文大小
 
 // 网络超时常量
-#define TIMEOUT_1_SECOND 0x3E8                 // 1秒超时
-#define TIMEOUT_5_SECONDS 0x1388               // 5秒超时
-#define TIMEOUT_30_SECONDS 0x7530              // 30秒超时
-#define TIMEOUT_5_MINUTES 0x493E0              // 5分钟超时
-#define HEARTBEAT_30_SECONDS 0x1E              // 30秒心跳
-#define HEARTBEAT_60_SECONDS 0x3C              // 60秒心跳
+#define TIMEOUT_1_SECOND 0x3E8                             // 1秒超时
+#define TIMEOUT_5_SECONDS 0x1388                           // 5秒超时
+#define TIMEOUT_30_SECONDS 0x7530                          // 30秒超时
+#define TIMEOUT_5_MINUTES 0x493E0                          // 5分钟超时
+#define HEARTBEAT_30_SECONDS 0x1E                          // 30秒心跳
+#define HEARTBEAT_60_SECONDS 0x3C                          // 60秒心跳
 
 // 网络质量常量
 #define CONNECTION_QUALITY_GOOD 0x05            // 良好连接质量
