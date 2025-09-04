@@ -60469,14 +60469,14 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   floatValue2 = *(float *)(memoryBlockAddress + 0x130);
   FloatTransform30 = floatValue1 * InputFloatValue3 + (float)SystemResourceManager * floatValue4 + (float)ConfigurationDataPointer * floatValue7;
   FloatStack34 =
-       floatValue1 * in_XMM4_Db + (float)((ulong long)SystemResourceManager >> 0x20) * BaseValue +
+       floatValue1 * InputFloatValue4 + (float)((ulong long)SystemResourceManager >> 0x20) * BaseValue +
        (float)((ulong long)ConfigurationDataPointer >> 0x20) * floatValue8;
-  FloatStack38 = floatValue1 * in_XMM4_Dc + in_XMM0_Dc * floatValue6 + in_XMM1_Dc * ScaleValue;
+  FloatStack38 = floatValue1 * InputFloatValue5 + InputFloatValue1 * floatValue6 + InputFloatValue2 * ScaleValue;
   floatValue1 = *(float *)(memoryBlockAddress + 0x138);
   floatValue3 = *(float *)(memoryBlockAddress + 0x140);
-  FloatStack40 = AudioInterpolationCoeff1 * in_XMM4_Da + floatValue2 * floatValue4 + floatValue1 * floatValue7;
-  FloatStack44 = AudioInterpolationCoeff1 * in_XMM4_Db + floatValue2 * BaseValue + floatValue1 * floatValue8;
-  FloatStack48 = AudioInterpolationCoeff1 * in_XMM4_Dc + floatValue2 * floatValue6 + floatValue1 * ScaleValue;
+  FloatStack40 = AudioInterpolationCoeff1 * InputFloatValue3 + floatValue2 * floatValue4 + floatValue1 * floatValue7;
+  FloatStack44 = AudioInterpolationCoeff1 * InputFloatValue4 + floatValue2 * BaseValue + floatValue1 * floatValue8;
+  FloatStack48 = AudioInterpolationCoeff1 * InputFloatValue5 + floatValue2 * floatValue6 + floatValue1 * ScaleValue;
   floatValue1 = *(float *)(memoryBlockAddress + 0x148);
   floatValue2 = *(float *)(memoryBlockAddress + 0x150);
   FloatStack50 = ConfigurationFlag * in_XMM4_Da + floatValue3 * floatValue4 + floatValue1 * floatValue7;
