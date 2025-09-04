@@ -5131,12 +5131,12 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
-  uint8_t ValidationResult;
+  uint8_t ValidationStatusCode;
   int64_t MemoryAddress;
   
   // 验证对象上下文并获取内存地址
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &MemoryAddress);
-  if ((int)ValidationResult == 0) {
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &MemoryAddress);
+  if ((int)ValidationStatusCode == 0) {
     // 调整验证后的内存地址
     if (MemoryAddress == 0) {
       MemoryAddress = 0;
@@ -5149,9 +5149,9 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
     if (*(int64_t *)(MemoryAddress + ObjectHandleOffset) != 0) {
       ExecuteSystemExitOperation(*(int64_t *)(MemoryAddress + ObjectHandleOffset), 1);
     }
-    ValidationResult = OperationSuccessCode;
+    ValidationStatusCode = OperationSuccessCode;
   }
-  return ValidationResult;
+  return ValidationStatusCode;
 }
 
 
