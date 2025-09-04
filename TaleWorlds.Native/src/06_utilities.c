@@ -89732,7 +89732,14 @@ void Unwind_18090dde0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090de10(void)
+/**
+ * 销毁互斥锁函数 - 版本1
+ * 
+ * 该函数负责销毁互斥锁，清理系统资源。
+ * 
+ * @remark 原始函数名：Unwind_18090de10
+ */
+void DestroyMutexFunctionv1(void)
 
 {
   MutexDestroyInPlace();
