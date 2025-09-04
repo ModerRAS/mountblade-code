@@ -2466,31 +2466,31 @@ NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContex
 void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *ProcessingBuffer)
 {
   // 数据包处理完成变量
-  uint32_t FinalizationStatus;                            // 完成状态
-  uint32_t BufferCleanupStatus;                           // 缓冲区清理状态
-  uint32_t DataValidationStatus;                          // 数据验证状态
+  uint32_t PacketFinalizationStatus;                      // 数据包完成状态
+  uint32_t PacketBufferCleanupStatus;                     // 数据包缓冲区清理状态
+  uint32_t PacketDataValidationStatus;                    // 数据包数据验证状态
   
   // 初始化完成状态
-  FinalizationStatus = NetworkValidationFailure;
-  BufferCleanupStatus = NetworkValidationFailure;
-  DataValidationStatus = NetworkValidationFailure;
+  PacketFinalizationStatus = NetworkValidationFailure;
+  PacketBufferCleanupStatus = NetworkValidationFailure;
+  PacketDataValidationStatus = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    DataValidationStatus = NetworkValidationSuccess;  // 数据验证通过
+    PacketDataValidationStatus = NetworkValidationSuccess;  // 数据验证通过
   }
   
   // 清理处理缓冲区
   if (ProcessingBuffer) {
     memset(ProcessingBuffer, 0, NetworkStandardBufferSize);
-    BufferCleanupStatus = NetworkValidationSuccess;  // 缓冲区清理成功
+    PacketBufferCleanupStatus = NetworkValidationSuccess;  // 缓冲区清理成功
   }
   
   // 综合完成状态
-  FinalizationStatus = DataValidationStatus & BufferCleanupStatus;
+  PacketFinalizationStatus = PacketDataValidationStatus & PacketBufferCleanupStatus;
   
   // 如果完成成功，更新处理状态
-  if (FinalizationStatus == NetworkValidationSuccess) {
+  if (PacketFinalizationStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的完成处理逻辑
     // 例如：更新统计信息、通知回调函数等
   }

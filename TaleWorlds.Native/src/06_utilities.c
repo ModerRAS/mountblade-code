@@ -61431,7 +61431,19 @@ void InitializeSystemResourceHandlerWithBasicExtension(uint8_t ObjectContext,int
  * @note 此函数会设置资源验证表和处理器模板
  * @warning 如果资源状态异常，会触发紧急退出
  */
-void InitializeSystemResourceHandlerExtendedVersion2(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器高级扩展
+ * 
+ * 该函数负责初始化系统资源处理器的高级扩展功能
+ * 设置资源验证结果码地址并进行资源哈希验证
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会设置资源验证表和资源哈希状态
+ * @warning 如果资源哈希状态异常，会触发紧急退出
+ */
+void InitializeSystemResourceHandlerWithAdvancedExtension(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
