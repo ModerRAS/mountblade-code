@@ -15180,8 +15180,8 @@ void SystemInitializerPrimary(void)
             if (StackFloatParameter != 1.0) {
               FloatResourceValue = StackFloatParameter;
               ResourceTemplatePointer = &SystemResourceTemplateGraphics;
-              contextBufferPointer = StackContextBuffer;
-              floatRegisterValue = FloatRegisterValue;
+              ContextBufferPointer = StackContextBuffer;
+              FloatRegisterValue = FloatRegisterValue;
               ResourceIndexTertiary = GetAndValidateResourceData(StackFloatParameter,&PrimaryObjectResourceBuffer);
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
             }
@@ -15190,10 +15190,10 @@ void SystemInitializerPrimary(void)
             do {
               CalculatedFloatValue = *FloatPointer;
               if (InputFloatValue != 0.0) {
-                contextBufferPointer = StackContextBuffer;
-                resourceTemplatePointer = &SystemResourceTemplateHardware;
-                floatRegisterValue = FloatRegisterValue;
-                floatResourceValue = LoopCounterValue;
+                ContextBufferPointer = StackContextBuffer;
+                ResourceTemplatePointer = &SystemResourceTemplateHardware;
+                FloatRegisterValue = FloatRegisterValue;
+                FloatResourceValue = LoopCounterValue;
                 StackFloatSecondaryValue = InputFloatValue;
                 ResourceIndexTertiary = GetAndValidateResourceData(InputFloatValue,&PrimaryObjectResourceBuffer);
                 if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
@@ -15206,10 +15206,10 @@ void SystemInitializerPrimary(void)
             do {
               CalculatedFloatValue = *(float *)(SystemContextRegister + -0x180985054 + (int64_t)FloatPointer);
               if (InputFloatValue != *FloatPointer) {
-                contextBufferPointer = StackContextBuffer;
-                resourceTemplatePointer = &SystemResourceTemplateInput;
-                floatRegisterValue = FloatRegisterValue;
-                floatResourceValue = LoopCounterValue;
+                ContextBufferPointer = StackContextBuffer;
+                ResourceTemplatePointer = &SystemResourceTemplateInput;
+                FloatRegisterValue = FloatRegisterValue;
+                FloatResourceValue = LoopCounterValue;
                 StackFloatSecondaryValue = InputFloatValue;
                 ResourceIndexTertiary = GetAndValidateResourceData(InputFloatValue,&PrimaryObjectResourceBuffer);
                 if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
