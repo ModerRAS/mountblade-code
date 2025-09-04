@@ -1958,12 +1958,12 @@ NetworkMainProcessingLoop:
         do {
           NetworkStatus *ConnectionContextDataPointer = (NetworkStatus *)((NetworkContextHandle - (long long)NetworkStatusBufferPointer) + (long long)NetworkStatusBuffer);
           NetworkStatus ValidationStatus = ConnectionContextDataPointer[1];
-          NetworkStatus CurrentTimeoutStatus = ConnectionContextDataPointer[2];
-          NetworkStatus CurrentSecondaryStatus = ConnectionContextDataPointer[3];
+          NetworkStatus TimeoutStatus = ConnectionContextDataPointer[2];
+          NetworkStatus SecondaryStatus = ConnectionContextDataPointer[3];
           *NetworkStatusBuffer = *ConnectionContextDataPointer;
           NetworkStatusBuffer[1] = ValidationStatus;
-          NetworkStatusBuffer[2] = CurrentTimeoutStatus;
-          NetworkStatusBuffer[3] = CurrentSecondaryStatus;
+          NetworkStatusBuffer[2] = TimeoutStatus;
+          NetworkStatusBuffer[3] = SecondaryStatus;
           NetworkStatusBuffer[4] = *(NetworkStatus *)((NetworkContextHandle - (long long)NetworkStatusBufferPointer) + -4 + (long long)(NetworkStatusBuffer + 5));
           NetworkStatusIterator = NetworkStatusIterator + -1;
           NetworkStatusBuffer = NetworkStatusBuffer + 5;
