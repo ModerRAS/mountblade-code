@@ -4610,7 +4610,7 @@ void ValidateSystemObjectCollection(void)
   uint64_t SecurityValidationToken;
   
   // 生成安全验证令牌
-  SecurityValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspace;
+  SecurityValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspaceBuffer;
   
   // 初始化系统上下文
   SystemContextHandle = GetSystemContextHandle();
@@ -4618,7 +4618,7 @@ void ValidateSystemObjectCollection(void)
   
   // 检查系统对象上下文是否有效
   if (*(int64_t *)(SystemContextHandle + ObjectHandleSecondaryOffset) != 0) {
-    ObjectDataBuffer = ProcessingWorkspace;
+    ObjectDataBuffer = ProcessingWorkspaceBuffer;
     ValidatedObjectCount = 0;
     RetrievedObjectCount = 0;
     MaximumCapacityLimit = MaximumCapacityLimit;
