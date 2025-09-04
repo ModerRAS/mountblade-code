@@ -5104,15 +5104,15 @@ uint8_t ReleaseObjectHandle(void) {
   CurrentActiveObjectHandle = GetCurrentObjectHandle();
   
   if (CurrentActiveObjectHandle == 0) {
-    ObjectMemoryLocation = 0;
+    ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryLocation = CurrentActiveObjectHandle - 8;
+    ObjectMemoryAddress = CurrentActiveObjectHandle - 8;
   }
   
   // 如果对象内存地址有效，执行释放操作
-  if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
+  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
   }
   return OperationSuccessCode;
 }
@@ -5187,19 +5187,19 @@ uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
  * @warning 验证失败时会触发系统退出操作
  */
 uint32_t ValidateObjectHandleFromRegister(void) {
-  int64_t RegisterObjectAddress = 0;
-  int64_t AdjustedMemoryAddress;
+  int64_t RegisterObjectPointer = 0;
+  int64_t ValidatedMemoryAddress;
   
   // 根据寄存器值计算验证后的内存位置
-  if (RegisterObjectAddress == 0) {
-    AdjustedMemoryAddress = 0;
+  if (RegisterObjectPointer == 0) {
+    ValidatedMemoryAddress = 0;
   }
   else {
-    AdjustedMemoryAddress = RegisterObjectAddress - 8;
+    ValidatedMemoryAddress = RegisterObjectPointer - 8;
   }
   
   // 检查对象上下文是否有效
-  if (*(int64_t *)(AdjustedMemoryAddress + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ValidatedMemoryAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
@@ -25113,7 +25113,7 @@ ValidationCheckpoint:
   if ((int)ResourceHashStatus != 0) {
     return ResourceHashStatus;
   }
-OPERATION_CHECKPOINT:
+OperationCheckpoint:
   OperationStatus = 0;
   if (0 < (int)ResourceValidationBuffer[0]) {
     do {
@@ -25197,7 +25197,7 @@ ValidationCheckpoint:
   if ((int)ResourceHashResult != 0) {
     return ResourceHashResult;
   }
-OPERATION_CHECKPOINT:
+OperationCheckpoint:
   ResourceOperationStatus = 0;
   if (0 < (int)ResourceCount) {
     do {
