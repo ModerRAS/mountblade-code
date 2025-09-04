@@ -28338,8 +28338,8 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   void* *configPointer;
   long long configValue;
   uint configFlags;
-  void* dataBuffer1;
-  void* dataBuffer2;
+  void* DataBufferPrimary;
+  void* DataBufferSecondary;
   void* *systemGlobalPointer;
   void* dataBuffer3;
   uint32_t dataFlags;
@@ -43503,7 +43503,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
   ulong long UnsignedStackFlagSecondary;
   void* *stackParameterB;
   void* *pStackParamC;
-  void* systemFlag88;
+  void* SystemConfigurationFlag;
   uint32_t SystemFlagTertiary;
   void* SystemUnsignedFlagSecondary;
   long long SystemMemoryAllocationOffset70;
@@ -44609,7 +44609,7 @@ void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* Configu
   long long SystemThreadHandle;
   void* *SystemHashNodeData;
   ulong long resourceAddress;
-  void* systemFlag88;
+  void* SystemConfigurationFlag;
   long long SystemResourceCleanupFlag;
   void* *SystemProcessFlagsPointer;
   long long SystemMemoryAllocationFlag;
@@ -59279,7 +59279,7 @@ void SystemNoOperationA(void)
   void* ConfigurationData;
   void* SecurityParameter;
   void* NetworkConnectionFlags;
-  void* resourceCreationFlags7;
+  void* ResourceCreationFlagsPrimary;
   void* resourceCreationFlags8;
   byte isSystemActive9;
   byte isOperationComplete0;
@@ -59592,7 +59592,7 @@ void CleanupGlobalSystemResources(void)
   void* ConfigurationData;
   void* SecurityParameter;
   void* NetworkConnectionFlags;
-  void* resourceCreationFlags7;
+  void* ResourceCreationFlagsPrimary;
   void* resourceCreationFlags8;
   long long SystemThreadHandle9;
   byte isOperationComplete0;
@@ -60301,7 +60301,7 @@ ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,v
   ulong long ThreadCreationFlags;
   long long SystemThreadHandle2;
   byte isSystemActive3;
-  void* systemFlag88;
+  void* SystemConfigurationFlag;
   ulong long SystemFlagTertiary;
   void* SystemUnsignedFlagSecondary;
   ulong long SystemProcessFlagsSecondary;
