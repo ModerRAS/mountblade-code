@@ -4625,9 +4625,9 @@ void ValidateSystemObjectCollection(void)
     
     // 获取系统对象集合
     ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemContextHandle + ObjectHandleSecondaryOffset),
-                          &ProcessingWorkspace);
+                          &ProcessingWorkspaceBuffer);
     if (ValidationStatusCode == 0) {
-      RetrievedObjectCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
+      RetrievedObjectCount = *(int *)(ProcessingWorkspaceBuffer + ObjectDataArraySizeOffset);
       if (0 < RetrievedObjectCount) {
         BufferPosition = PointerSizeBytes;
         do {
@@ -4640,14 +4640,14 @@ void ValidateSystemObjectCollection(void)
           BufferPosition += 8;
         } while (ValidatedObjectCount < RetrievedObjectCount);
       }
-      ReleaseSystemObjectCollection(&ProcessingWorkspace);
+      ReleaseSystemObjectCollection(&ProcessingWorkspaceBuffer);
     }
     else {
-      ReleaseSystemObjectCollection(&ProcessingWorkspace);
+      ReleaseSystemObjectCollection(&ProcessingWorkspaceBuffer);
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)ProcessingWorkspace);
+  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)ProcessingWorkspaceBuffer);
 }
 
 

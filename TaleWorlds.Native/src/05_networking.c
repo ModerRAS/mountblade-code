@@ -1720,15 +1720,15 @@ void NetworkResetConnectionPointer(void)
  * @note 此函数会在连接建立前调用，确保所有参数符合安全要求
  * @warning 如果参数验证失败，连接建立过程将被中止
  */
-uint32_t NetworkValidateConnectionParameters(int64_t *NetworkConnectionParameters)
+uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
 {
   // 检查参数指针是否有效
-  if (NetworkConnectionParameters == NULL) {
+  if (ConnectionParameters == NULL) {
     return NetworkErrorInvalidHandle;
   }
   
   // 检查连接参数的基本结构
-  if (*NetworkConnectionParameters == 0) {
+  if (*ConnectionParameters == 0) {
     return NetworkErrorConnectionFailed;
   }
   
