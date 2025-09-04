@@ -853,7 +853,7 @@ void InitializeNetworkSocketHandle(void)
 }
 
 /**
- * @brief 绑定网络套接字
+ * @brief 绑定网络套接字到地址
  * 
  * 绑定网络套接字到指定的地址和端口。此函数负责设置网络地址和端口配置，
  * 包括服务器和客户端的IP地址、端口号等。绑定后的套接字可以监听
@@ -890,7 +890,7 @@ void NetworkBindSocketToAddress(void)
 uint32_t NetworkSocketBindingStatus;
 
 /**
- * @brief 监听网络连接
+ * @brief 开始监听网络连接
  * 
  * 监听网络连接请求，等待客户端连接。此函数负责设置监听队列参数、
  * 连接限制参数、状态控制器等。监听模式下的套接字可以接受客户端的
