@@ -1964,9 +1964,9 @@ uint8_t SystemNetworkDataBufferQueue;
 uint8_t SystemGraphicsDataBufferQueue;
 uint8_t SystemAudioDataBufferQueue;
 uint8_t SystemInputDataBufferQueue;
-uint8_t PhysicsDataBufferQueue;
-uint8_t AnimationDataBufferQueue;
-uint8_t ScriptDataBufferQueue;
+uint8_t SystemPhysicsDataBufferQueue;
+uint8_t SystemAnimationDataBufferQueue;
+uint8_t SystemScriptDataBufferQueue;
 uint8_t MemoryDataBufferQueue;
 uint8_t ThreadDataBufferQueue;
 uint8_t ProcessEventDataBufferQueue;
@@ -4538,11 +4538,11 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataBuffer;
   
   // 获取上下文句柄
-  ObjectValidationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ObjectHandleArray);
-  if ((ObjectValidationStatus == 0) && (*(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset) != 0)) {
-    ObjectListBuffer = ObjectProcessingBuffer;
-    ProcessedObjectCount = 0;
-    TotalObjectsCount = 0;
+  ValidationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), HandleArray);
+  if ((ValidationStatus == 0) && (*(int64_t *)(HandleArray[0] + RegistrationHandleOffset) != 0)) {
+    ListBuffer = ProcessingBuffer;
+    ProcessedCount = 0;
+    TotalCount = 0;
     MaxProcessingLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
