@@ -90143,7 +90143,13 @@ void ExecuteSystemResourceCleanupCallback(uint8_t ObjectContext, int64_t Validat
 
 
 
-void Unwind_18090de30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理回调
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090de30
+ */
+void ExecuteResourceContextCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90157,7 +90163,13 @@ void Unwind_18090de30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090de40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态和内存地址验证
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090de40
+ */
+void ProcessResourceHashStatusAndMemoryValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -90193,7 +90205,13 @@ void Unwind_18090de40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090de50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表指针遍历和清理
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090de50
+ */
+void ProcessResourceTablePointerTraversal(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90215,8 +90233,13 @@ void Unwind_18090de50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090de60(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行系统资源清理回调（偏移量0x60）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090de60
+ */
+void ExecuteSystemResourceCleanupCallbackAtOffset60(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
@@ -90229,7 +90252,11 @@ void Unwind_18090de60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090de70(void)
+/**
+ * @brief 销毁互斥锁资源
+ * @remark 原始函数名：Unwind_18090de70
+ */
+void DestroyMutexResourceSimple(void)
 
 {
   MutexDestroyInPlace();
@@ -90238,8 +90265,13 @@ void Unwind_18090de70(void)
 
 
 
-void Unwind_18090de80(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行系统资源清理和注册操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090de80
+ */
+void ExecuteSystemResourceCleanupAndRegistration(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t LoopCounter;
   uint8_t ResourceHashStatus;
@@ -90267,7 +90299,13 @@ void Unwind_18090de80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090dea0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册系统资源处理器（偏移量0xee8）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dea0
+ */
+void RegisterSystemResourceHandlerAtOffsetEE8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0xee8,0x18,2,ResourceTypeHandler018,0xfffffffffffffffe);
@@ -90572,7 +90610,13 @@ void Unwind_18090e100(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e120(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册1558偏移处的资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e120
+ */
+void RegisterResourceHandlerAtOffset1558(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x1558,8,2,ProcessResourceOperation);
@@ -90581,7 +90625,13 @@ void Unwind_18090e120(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e160(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册1568偏移处的资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e160
+ */
+void RegisterResourceHandlerAtOffset1568(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x1568,8,2,ProcessResourceOperation);
@@ -90590,7 +90640,13 @@ void Unwind_18090e160(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e1a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册1578偏移处的资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e1a0
+ */
+void RegisterResourceHandlerAtOffset1578(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x1578,8,2,ProcessResourceOperation);
