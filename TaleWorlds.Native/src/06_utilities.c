@@ -12889,7 +12889,7 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *Resou
  * 该函数在资源池中查找指定的键值，如果找到则更新对应的值，
  * 如果未找到则在适当的位置插入新的键值对
  * 
- * @param resourcePool 资源池指针
+ * @param ResourcePool 资源池指针
  * @param SearchKey 要查找或插入的键值
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
@@ -12985,11 +12985,11 @@ uint64_t FindOrInsertInResourcePool(uint8_t ResourcePoolId, int SearchKey)
  * 该函数用于处理扩展资源池中的数据验证和相关操作
  * 提供了更复杂的资源管理功能，包括哈希验证和容量扩展
  * 
- * @param extendedResourcePoolId 扩展资源池标识符
- * @param operationFlags 操作标志，控制处理流程
+ * @param ExtendedResourcePoolId 扩展资源池标识符
+ * @param OperationFlags 操作标志，控制处理流程
  * @return uint64_t 处理结果状态码
  */
-uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolId, uint32_t operationFlags)
+uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t ExtendedResourcePoolId, uint32_t OperationFlags)
 {
   int ProcessingStatusCode;
   uint8_t ResourceHashStatus;
@@ -13226,11 +13226,11 @@ MemoryAllocationComplete:
  * 该函数用于清理资源池并释放相关内存
  * 主要用于资源池的销毁和内存回收
  * 
- * @param resourcePool 资源池句柄，指向要清理的资源池
- * @param cleanupFlags 清理标志，控制清理过程
+ * @param ResourcePool 资源池句柄，指向要清理的资源池
+ * @param CleanupFlags 清理标志，控制清理过程
  * @return uint64_t 清理结果状态码
  */
-uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t resourcePool, int cleanupFlags)
+uint64_t CleanupResourcePoolAndReleaseMemory(uint8_t ResourcePool, int CleanupFlags)
 
 {
   int ProcessingStatusCode;
@@ -55795,10 +55795,10 @@ void ExecuteResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationCont
 void ExecuteResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t resourceOperationAddress;
+  int64_t ResourceOperationAddress;
   
-  resourceOperationAddress = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + 0x2e0;
-  ExecuteResourceOperation(resourceOperationAddress);
+  ResourceOperationAddress = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + 0x2e0;
+  ExecuteResourceOperation(ResourceOperationAddress);
   return;
 }
 
@@ -55816,10 +55816,10 @@ void ExecuteResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationCo
 void FinalizeResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t resourceFinalizationAddress;
+  int64_t ResourceFinalizationAddress;
   
-  resourceFinalizationAddress = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + 0x2f0;
-  FinalizeResourceOperation(resourceFinalizationAddress);
+  ResourceFinalizationAddress = *(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + 0x2f0;
+  FinalizeResourceOperation(ResourceFinalizationAddress);
   return;
 }
 

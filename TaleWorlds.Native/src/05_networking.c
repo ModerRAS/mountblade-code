@@ -630,7 +630,7 @@ uint32_t ProcessNetworkValidationQueue(int64_t ValidationContext);
  * 
  * 清理网络连接的缓存数据，释放内存资源
  */
-void ClearConnectionCache(void);
+void ClearNetworkConnectionCache(void);
 
 /**
  * @brief 初始化网络缓冲区
@@ -640,7 +640,7 @@ void ClearConnectionCache(void);
  * @param BufferPointer 缓冲区指针
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t InitializeBuffer(int64_t BufferPointer);
+uint32_t SetupNetworkBuffer(int64_t BufferPointer);
 
 /**
  * @brief 处理网络数组数据
@@ -651,7 +651,7 @@ uint32_t InitializeBuffer(int64_t BufferPointer);
  * @param ArrayIndex 数组索引
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
+uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
 
 /**
  * @brief 关闭网络连接
@@ -662,7 +662,7 @@ uint32_t ProcessArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
  * @param ConnectionFlags 连接标志
  * @return uint32_t 关闭结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t CloseConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
+uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
 
 // 网络系统全局变量
 
