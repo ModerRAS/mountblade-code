@@ -5014,7 +5014,6 @@ void InitializeSystemDebugManager(void)
 
 
 
-// 函数: void InitializeSystemConfigurationManager(void)
 /**
  * @brief 初始化系统字符串处理器
  * 
@@ -5027,16 +5026,16 @@ void InitializeSystemStringProcessor(void)
 
 {
   long long StringParameter;
-  void* *CallbackPointer;
-  uint8_t *DataBufferPointer;
+  void** CallbackPointer;
+  uint8_t* DataBufferPointer;
   int BufferSize;
-  uint8_t DataBuffer [136];
+  uint8_t DataBuffer[136];
   
   CallbackPointer = &SystemStringProcessorNode;
   DataBufferPointer = DataBuffer;
   DataBuffer[0] = 0;
   BufferSize = SYSTEM_DATA_BUFFER_SIZE_DEFAULT;
-  strcpy_s(DataBuffer,StringBufferSize,&SystemStringProcessorTemplate,StringParameter,InvalidHandleValue);
+  strcpy_s(DataBuffer, StringBufferSize, &SystemStringProcessorTemplate, StringParameter, InvalidHandleValue);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&CallbackPointer);
   return;
 }
@@ -5075,40 +5074,40 @@ void InitializeSystemEventManager(void)
 
 {
   char SystemNodeFlag;
-  void* *DataTable;
+  void** DataTable;
   int NodeIdentifierCompareResult;
-  long long *MemoryPointer;
+  long long* MemoryPointer;
   long long TimeValue;
-  void* *RootNode;
+  void** RootNode;
   void** CurrentNode;
   void** NextNode;
   void** PreviousNode;
-  code *EventCallbackPointer;
+  code* EventCallbackPointer;
   
   DataTable = (long long*)GetSystemRootPointer();
-  RootNode = (void* *)*DataTable;
+  RootNode = (void**)*DataTable;
   SystemNodeFlag = *(char*)((long long)RootNode[1] + SystemNodeActiveFlagOffset);
   EventCallbackPointer = SystemEventCallback;
   PreviousNode = RootNode;
-  CurrentNode = (void* *)RootNode[1];
+  CurrentNode = (void**)RootNode[1];
   while (SystemNodeFlag == '\0') {
-    NodeIdentifierCompareResult = memcmp(CurrentNode + 4,&SystemDataComparisonTemplateD,0x10);
+    NodeIdentifierCompareResult = memcmp(CurrentNode + 4, &SystemDataComparisonTemplateD, 0x10);
     if (NodeIdentifierCompareResult < 0) {
-      NextNode = (void* *)CurrentNode[2];
+      NextNode = (void**)CurrentNode[2];
       CurrentNode = PreviousNode;
     }
     else {
-      NextNode = (void* *)*CurrentNode;
+      NextNode = (void**)*CurrentNode;
     }
     PreviousNode = CurrentNode;
     CurrentNode = NextNode;
     SystemNodeFlag = *(char*)((long long)NextNode + SystemNodeActiveFlagOffset);
   }
-  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateD,HashTableNode + 4,0x10), NodeIdentifierCompareResult < 0)) {
+  if ((HashTableNode == SystemRootNode) || (NodeIdentifierCompareResult = memcmp(&SystemDataComparisonTemplateD, HashTableNode + 4, 0x10), NodeIdentifierCompareResult < 0)) {
     long long MemoryAllocationSize;
     void** AllocatedMemoryNode;
     MemoryAllocationSize = GetSystemMemorySize(DataTable);
-    AllocateSystemMemory(DataTable,&AllocatedMemoryNode,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    AllocateSystemMemory(DataTable, &AllocatedMemoryNode, PreviousNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     PreviousNode = AllocatedMemoryNode;
   }
   PreviousNode[SystemNodeIdentifier1Index] = 0x406be72011d07d37;

@@ -5043,32 +5043,32 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedObjectMemoryAddress;
-  uint8_t ValidationStatus;
-  int64_t ObjectValidationBuffer[4];
+  int64_t ValidatedMemoryAddress;
+  uint8_t ValidationResult;
+  int64_t ObjectContextBuffer[4];
   int64_t *ValidatedObjectPointer;
   
   // 验证对象上下文的有效性
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationBuffer);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectContextBuffer);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
   
   // 调整对象验证缓冲区地址
-  ValidatedObjectPointer = (int64_t *)ObjectValidationBuffer[0];
+  ValidatedObjectPointer = (int64_t *)ObjectContextBuffer[0];
   if (ValidatedObjectPointer != 0) {
     ValidatedObjectPointer = (int64_t *)((int64_t)ValidatedObjectPointer - 8);
   }
   
   // 获取验证后的对象内存地址
-  ValidatedObjectMemoryAddress = *(int64_t *)(ValidatedObjectPointer + ObjectHandleOffset);
-  if (ValidatedObjectMemoryAddress != 0) {
+  ValidatedMemoryAddress = *(int64_t *)(ValidatedObjectPointer + ObjectHandleOffset);
+  if (ValidatedMemoryAddress != 0) {
     // 增加对象引用计数
-    *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
+    *(int *)(ValidatedMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedMemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
-      return ValidationStatus;
+    if ((*(char *)(ValidatedMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationResult = CheckSystemStatus(), (int)ValidationResult != 0)) {
+      return ValidationResult;
     }
     return OperationSuccessCode;
   }
