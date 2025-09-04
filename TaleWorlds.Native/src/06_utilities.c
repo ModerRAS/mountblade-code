@@ -4624,16 +4624,16 @@ void ValidateSystemObjectCollection(void)
     MaximumCapacityLimit = MaximumCapacityLimit;
     
     // 获取系统对象集合
-    ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(RuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemContext + ObjectHandleSecondaryOffset),
+    ValidationResultCode = FetchSystemObjectCollection(*(uint8_t *)(RuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (ValidationStatusCode == 0) {
+    if (ValidationResultCode == 0) {
       RetrievedItemCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
       if (0 < RetrievedItemCount) {
         BufferIndex = PointerSizeBytes;
         do {
           ObjectId = *(uint8_t *)(DataBuffer + BufferIndex);
-          ValidationStatusCode = ValidateSystemObject(ObjectId);
-          if (ValidationStatusCode != 2) {
+          ValidationResultCode = ValidateSystemObject(ObjectId);
+          if (ValidationResultCode != 2) {
                   HandleInvalidSystemObject(ObjectId, 1);
           }
           ValidatedItemCount++;
