@@ -79,6 +79,10 @@
 #define SystemDataBufferSizeDefault     0x8
 #define SystemMessageConfigBufferSize   0xa
 
+// 字符串缓冲区偏移量常量
+#define SystemStringLengthOffset        0x10
+#define SystemStringBufferOffset       8
+
 // 系统标识符常量
 #define SystemEventSystemIdentifier1          0x45b8d074df27d12f
 #define SystemEventSystemIdentifier2          0x8d98f4c06880eda4
@@ -22773,22 +22777,22 @@ void ProcessSystemStringCopySmall(long long targetBuffer, long long sourceString
   long long stringLength;
   
   if (sourceString == 0) {
-    *(uint32_t *)(targetBuffer + 0x10) = 0;
-    **(uint8_t **)(targetBuffer + 8) = 0;
+    *(uint32_t *)(targetBuffer + SystemStringLengthOffset) = 0;
+    **(uint8_t **)(targetBuffer + SystemStringBufferOffset) = 0;
     return;
   }
   stringLength = -1;
   do {
     stringLength = stringLength + 1;
   } while (*(char *)(ConfigurationDataPointer + stringLength) != '\0');
-  if ((int)stringLength < 0x40) {
-    *(int *)(targetBuffer + 0x10) = (int)stringLength;
-    strcpy_s(*(void* *)(targetBuffer + 8), 0x40);
+  if ((int)stringLength < StringBufferSize) {
+    *(int *)(targetBuffer + SystemStringLengthOffset) = (int)stringLength;
+    strcpy_s(*(void* *)(targetBuffer + SystemStringBufferOffset), StringBufferSize);
     return;
   }
-  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG, 0x40, ConfigurationDataPointer);
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
-  **(uint8_t **)(targetBuffer + 8) = 0;
+  InitializeSystemMemoryBuffer(&SystemMemoryTemplateG, StringBufferSize, ConfigurationDataPointer);
+  *(uint32_t *)(targetBuffer + SystemStringLengthOffset) = 0;
+  **(uint8_t **)(targetBuffer + SystemStringBufferOffset) = 0;
   return;
 }
 
