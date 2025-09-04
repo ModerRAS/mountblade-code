@@ -206,7 +206,9 @@ typedef uint32_t NetworkResourceHandle;
 #define PACKET_PROCESSING_SIZE_256B 0x100      // 数据包处理大小256字节
 #define VALIDATION_BUFFER_SIZE_39B 0x27       // 验证缓冲区大小39字节
 #define NetworkErrorInvalidPacket 0x1c         // 无效数据包错误码
-#define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值
+#define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值 (125)
+#define NetworkConnectionBasicValidationMode 0x01    // 基本验证模式
+#define NetworkConnectionStrictValidationMode 0x02    // 严格验证模式
 #define NetworkPacketSizeLimit 0x55            // 数据包大小限制（85字节）
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
@@ -2253,10 +2255,10 @@ void ValidateConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionDat
   }
   
   // 根据验证模式设置验证结果
-  if (ValidationMode == 0x01) {
+  if (ValidationMode == NetworkConnectionBasicValidationMode) {
     // 基本验证模式
     ValidationStatus = DataIntegrityCheck & SecurityComplianceCheck;
-  } else if (ValidationMode == 0x02) {
+  } else if (ValidationMode == NetworkConnectionStrictValidationMode) {
     // 严格验证模式
     ValidationStatus = DataIntegrityCheck & SecurityComplianceCheck & 0x01;
   } else {

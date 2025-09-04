@@ -18860,7 +18860,7 @@ void WotsMainSDLL(void* SystemParameter)
  * @note 函数会调用InitializeSystemMemoryPool和InitializeCoreEngine进行基础初始化
  * @note 函数会管理系统全局控制器的生命周期和状态切换
  */
-void InitializeMainSystemController(long long systemParameter)
+void InitializeMainSystemController(long long SystemParameter)
 {
   long long SystemObject;
   long long *ControllerPointer;
@@ -19556,11 +19556,11 @@ void WotsMain(void* SystemResourceManager)
  * @param callbackParameter 指向回调函数参数的指针
  * @note 这是系统回调机制的重要组成部分，确保回调函数的正确执行
  */
-void ExecuteSystemCallback(long long *callbackParameter)
+void ExecuteSystemCallback(long long *CallbackParameter)
 
 {
-  if ((long long *)*callbackParameter != (long long *)0x0) {
-    (**(code **)(*(long long *)*callbackParameter + 0x38))();
+  if ((long long *)*CallbackParameter != (long long *)0x0) {
+    (**(code **)(*(long long *)*CallbackParameter + 0x38))();
   }
   return;
 }
