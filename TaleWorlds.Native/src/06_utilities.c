@@ -9413,7 +9413,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
   uint64_t ValidationContext;
   float *FloatArrayStart;
   uint LoopCounter;
-  uint IterationIndex;
+  uint ArrayIterationIndex;
   int64_t SystemContext;
   float ClampedValue;
   
