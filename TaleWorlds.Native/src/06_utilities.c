@@ -6770,31 +6770,30 @@ uint64_t ProcessFloatParameterAndUpdateSystem(int64_t ParameterObject)
  * 该函数负责初始化系统管理器，设置管理器所需的数据结构
  * 和配置参数，确保管理器能够正常运行
  * 
- * @param managerHandle 管理器句柄，用于标识特定的系统管理器
+ * @param SystemManagerHandle 管理器句柄，用于标识特定的系统管理器
  * @return 初始化成功返回0，失败返回非零值
  */
 int InitializeSystemManager(int64_t SystemManagerHandle)
-
 {
-  int SystemInitializationResult;
-  int64_t SystemResourceTablePointerAddress;
+  int ManagerInitializationResult;
+  int64_t ResourceTablePointerAddress;
   uint8_t ResourceValidationBuffer[8];
-  uint8_t ObjectContextDataBuffer[72];
+  uint8_t ManagerContextBuffer[72];
   
-  SystemResourceTablePointerAddress = 0;
-  if (0 < *(int *)(ObjectContext + ObjectContextProcessingDataOffset)) {
-    SystemResourceTablePointer = *(int64_t *)(ObjectContext + ObjectContextValidationDataOffset);
+  ResourceTablePointerAddress = 0;
+  if (0 < *(int *)(SystemManagerHandle + ObjectContextProcessingDataOffset)) {
+    SystemResourceTablePointer = *(int64_t *)(SystemManagerHandle + ObjectContextValidationDataOffset);
   }
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + SystemManagerValidationOffset),ResourceValidationBuffer);
-  if (ValidationStatusCode == 0) {
-    ValidationStatusCode = *(int *)(ObjectContext + SystemManagerContextOffset);
-    if (SystemManagerMaxContextSize < *(int *)(ObjectContext + SystemManagerContextOffset)) {
-      ValidationStatusCode = SystemManagerMaxContextSize;
+  ManagerInitializationResult = ValidateObjectContext(*(uint32_t *)(SystemManagerHandle + SystemManagerValidationOffset), ResourceValidationBuffer);
+  if (ManagerInitializationResult == 0) {
+    ManagerInitializationResult = *(int *)(SystemManagerHandle + SystemManagerContextOffset);
+    if (SystemManagerMaxContextSize < *(int *)(SystemManagerHandle + SystemManagerContextOffset)) {
+      ManagerInitializationResult = SystemManagerMaxContextSize;
     }
-          memcpy(ObjectContextDataBuffer,ObjectContext + SystemManagerContextOffset,(int64_t)ValidationStatusCode);
+    memcpy(ManagerContextBuffer, SystemManagerHandle + SystemManagerContextOffset, (int64_t)ManagerInitializationResult);
   }
   if (SystemResourceTablePointer != 0) {
-          ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),SystemResourceTablePointer,&SystemResourceTablePointer,SystemManagerAllocationSize,1);
+    ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset), SystemResourceTablePointer, &SystemResourceTablePointer, SystemManagerAllocationSize, 1);
   }
   return SystemResourceIndex;
 }
