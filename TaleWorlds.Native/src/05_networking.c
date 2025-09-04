@@ -98,6 +98,14 @@ typedef uint32_t NetworkResourceHandle;
 #define NetworkPacketHeaderValidationOffset 0x18        // 网络数据包头验证偏移量
 
 // 网络数据包状态偏移量 - 各级状态信息
+#define NetworkPacketStatusSuccess 0x00                    // 数据包状态：成功
+#define NetworkPacketStatusFailure 0x01                    // 数据包状态：失败
+#define NetworkPacketStatusPending 0x02                    // 数据包状态：待处理
+#define NetworkPacketStatusTimeout 0x03                    // 数据包状态：超时
+
+// 网络验证结果常量
+#define NetworkValidationSuccess 0x00                       // 验证结果：成功
+#define NetworkValidationFailure 0x01                       // 验证结果：失败
 #define NetworkPacketStatusPrimaryOffset 0x38            // 网络数据包主状态偏移量
 #define NetworkPacketStatusSecondaryOffset 0x3c          // 网络数据包次级状态偏移量
 #define NetworkPacketStatusTertiaryOffset 0x40           // 网络数据包第三级状态偏移量
@@ -2880,14 +2888,14 @@ void NetworkCopyConnectionBuffer(void* SourceBuffer)
   uint32_t SecurityValidationResult;              // 安全验证结果
   
   // 初始化复制状态
-  BufferCopyResult = 0x00;
-  DataIntegrityCheck = 0x00;
-  SecurityValidationResult = 0x00;
+  BufferCopyResult = NetworkValidationFailure;
+  DataIntegrityCheck = NetworkValidationFailure;
+  SecurityValidationResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
   if (SourceBuffer) {
-    DataIntegrityCheck = 0x01;  // 数据完整性检查通过
-    SecurityValidationResult = 0x01;  // 安全验证通过
+    DataIntegrityCheck = NetworkValidationSuccess;  // 数据完整性检查通过
+    SecurityValidationResult = NetworkValidationSuccess;  // 安全验证通过
     
     // 在实际实现中，这里应该实现实际的缓冲区复制逻辑
     // 包括：数据验证、加密复制、完整性检查等
@@ -2896,7 +2904,7 @@ void NetworkCopyConnectionBuffer(void* SourceBuffer)
   }
   
   // 如果复制成功，更新系统状态
-  if (BufferCopyResult == 0x01) {
+  if (BufferCopyResult == NetworkValidationSuccess) {
     // 这里可以添加更多的复制后处理逻辑
     // 例如：更新备份状态、记录日志、触发回调等
   }
