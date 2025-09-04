@@ -35825,11 +35825,9 @@ void UnwindResourceCleanupHandler(uint8_t ResourceContext, int64_t ValidationCon
  * @return 无返回值
  * @note 此函数在流资源锁释放过程中被调用
  */
-void ReleaseStreamResourceLock(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
-{
+void ReleaseStreamResourceLock(uint8_t StreamContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + StreamResourceLockOffset,
-                *(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + StreamResourceStatusOffset),CleanupOption,CleanupFlag,
+                *(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + StreamResourceStatusOffset), CleanupOption, CleanupFlag,
                 MemoryCleanupTriggerValue);
   return;
 }
