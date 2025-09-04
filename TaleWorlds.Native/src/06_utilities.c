@@ -4799,54 +4799,54 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
  */
 uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t SystemContext)
 {
-  int64_t *ResourceTableBase;
+  int64_t *SystemResourceTable;
   int64_t *ResourceTableEntry;
-  int64_t *ResourceEntryIndex;
-  int ObjectValidationStatus;
-  uint SystemProcessingResult;
-  uint64_t OperationResult;
-  int64_t *ResourceDataPointer;
-  int64_t *ValidationContext;
+  int64_t *ResourceIndex;
+  int ObjectValidationCode;
+  uint ProcessingResult;
+  uint64_t Result;
+  int64_t *ResourceData;
+  int64_t *ValidationCtx;
   int64_t *CleanupHandler;
-  int64_t *NullPointer;
-  int64_t MemoryContext;
-  int64_t ValidationData;
-  int PackageValidationStatus;
-  int64_t *ResourceTableIterator;
-  int SystemStatus;
+  int64_t *NullPtr;
+  int64_t MemoryCtx;
+  int64_t ValidationInfo;
+  int PackageValidationCode;
+  int64_t *TableIterator;
+  int SystemStatusCode;
   
-  OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationData);
-  ObjectValidationStatus = (int)OperationResult;
-  if (ObjectValidationStatus == 0) {
-    NullPointer = (int64_t *)0x0;
-    CleanupHandler = NullPointer;
-    if (ValidationData != 0) {
-      CleanupHandler = (int64_t *)(ValidationData + ValidationContextCleanupOffset);
+  Result = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationInfo);
+  ObjectValidationCode = (int)Result;
+  if (ObjectValidationCode == 0) {
+    NullPtr = (int64_t *)0x0;
+    CleanupHandler = NullPtr;
+    if (ValidationInfo != 0) {
+      CleanupHandler = (int64_t *)(ValidationInfo + ValidationContextCleanupOffset);
     }
-    OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterPrimaryOffset),&ValidationData);
-    PackageValidationStatus = (int)OperationResult;
-    if (PackageValidationStatus == 0) {
-      MemoryContext = 0;
-      SystemProcessingResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset),*(int64_t *)(ValidationData + ValidationContextObjectDataOffset) + ValidationContextObjectDataOffset,
-                            &MemoryContext);
-      if (SystemProcessingResult != 0) {
+    Result = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterPrimaryOffset),&ValidationInfo);
+    PackageValidationCode = (int)Result;
+    if (PackageValidationCode == 0) {
+      MemoryCtx = 0;
+      ProcessingResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset),*(int64_t *)(ValidationInfo + ValidationContextObjectDataOffset) + ValidationContextObjectDataOffset,
+                            &MemoryCtx);
+      if (ProcessingResult != 0) {
         CleanupValidationData(CleanupHandler);
-        return (uint64_t)SystemProcessingResult;
+        return (uint64_t)ProcessingResult;
       }
-      if (((*(uint *)(*(int64_t *)(ValidationData + ValidationContextObjectDataOffset) + ValidationContextSecurityDataOffset) >> 2 & 1) == 0) &&
-         (OperationResult = InitializeMemoryContext(MemoryContext), (int)OperationResult != 0)) {
-        SystemStatus = (int)OperationResult;
-        return SystemStatus;
+      if (((*(uint *)(*(int64_t *)(ValidationInfo + ValidationContextObjectDataOffset) + ValidationContextSecurityDataOffset) >> 2 & 1) == 0) &&
+         (Result = InitializeMemoryContext(MemoryCtx), (int)Result != 0)) {
+        SystemStatusCode = (int)Result;
+        return SystemStatusCode;
       }
-      ResourceTableIterator = (int64_t *)(MemoryContext + MemoryContextResourceTablePointerOffset);
-      ResourceDataPointer = (int64_t *)(*ResourceTableIterator - ResourceTablePointerEntrySize);
-      if (*ResourceTableIterator == 0) {
-        ResourceDataPointer = NullPointer;
+      TableIterator = (int64_t *)(MemoryCtx + MemoryContextResourceTablePointerOffset);
+      ResourceData = (int64_t *)(*TableIterator - ResourceTablePointerEntrySize);
+      if (*TableIterator == 0) {
+        ResourceData = NullPtr;
       }
-      ValidationContext = NullPointer;
-      ResourceEntryIndex = NullPointer;
-      if (ResourceDataPointer != (int64_t *)0x0) {
-        ValidationContext = ResourceDataPointer + ResourcePointerOffset;
+      ValidationCtx = NullPtr;
+      ResourceIndex = NullPtr;
+      if (ResourceData != (int64_t *)0x0) {
+        ValidationCtx = ResourceData + ResourcePointerOffset;
       }
       while( true ) {
         if (ValidationContext == ResourceTableIterator) {
@@ -5033,16 +5033,25 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的元数据和控制信息
  * @return uint8_t 操作状态码，0表示成功，非0表示错误码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，确保对象在内存中的正确管理
+ * 包含对象上下文验证、内存地址调整和引用计数更新操作
+ * 
+ * @param ObjectContext 对象上下文指针，包含要增加引用计数的对象信息
+ * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
-  uint8_t ValidationResult;
+  uint8_t ValidationStatus;
   int64_t ObjectValidationBuffer[4];
   int64_t *ValidatedObjectPointer;
   
   // 验证对象上下文的有效性
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationBuffer);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationBuffer);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   
   // 调整对象验证缓冲区地址
@@ -5058,8 +5067,8 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
     *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationResult = CheckSystemStatus(), (int)ValidationResult != 0)) {
-      return ValidationResult;
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
+      return ValidationStatus;
     }
     return OperationSuccessCode;
   }
@@ -11036,7 +11045,7 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
   int StringProcessingResult = ProcessStringOperation(ValidationContext + DataFormatValidationResult,DataLength - DataFormatValidationResult,&StringProcessingTemplate);
   int TotalProcessedBytes = DataFormatValidationResult + StringProcessingResult;
   int DataContentParsingResult = ParseDataContent(TotalProcessedBytes + ValidationContext,DataLength - TotalProcessedBytes,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  ProcessedByteCount = ProcessedByteCount + DataContentStatus;
+  TotalProcessedBytes = TotalProcessedBytes + DataContentParsingResult;
   int StringValidationStatus = ProcessStringOperation(ProcessedByteCount + ValidationContext,DataLength - ProcessedByteCount,&StringProcessingTemplate);
   ProcessedByteCount = ProcessedByteCount + StringValidationStatus;
   int StringExtendedValidationStatus = ProcessStringValidation(ProcessedByteCount + ValidationContext,DataLength - ProcessedByteCount,ObjectContext + ObjectContextProcessingDataOffset,

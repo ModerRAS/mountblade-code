@@ -6093,7 +6093,7 @@ code_r0x0001802a1ade:
     ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&uStackX_18);
     fVar16 = 1.5259022e-05;
     *SystemSecondaryParameter = (float)(ushort)StackProcessingBuffer1 * 1.5259022e-05;
-    uVar6 = (uint)StackProcessingBuffer1._2_2_;
+    SecondaryParameterResult = (uint)StackProcessingBuffer1._2_2_;
     MemoryAllocationResult = StackProcessingBuffer1._4_2_;
     goto code_r0x0001802a16a1;
   case 0x28:
@@ -6101,7 +6101,7 @@ code_r0x0001802a1ade:
     InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&uStackX_18);
     fVar16 = 0.003921569;
     *SystemSecondaryParameter = (float)(byte)StackProcessingBuffer1 * 0.003921569;
-    uVar6 = (uint)StackProcessingBuffer1._1_1_;
+    SecondaryParameterResult = (uint)StackProcessingBuffer1._1_1_;
     MemoryAllocationResult = (ushort)StackProcessingBuffer1._2_1_;
     goto code_r0x0001802a16a1;
   case 0x29:
@@ -6110,12 +6110,12 @@ code_r0x0001802a1ade:
 code_r0x0001802a1677:
     fVar16 = 0.003921569;
     *SystemSecondaryParameter = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
-    uVar6 = (uint)((ulonglong)StackProcessingBuffer1 >> 8) & 0xff;
+    SecondaryParameterResult = (uint)((ulonglong)StackProcessingBuffer1 >> 8) & 0xff;
     MemoryAllocationResult = (ushort)(byte)StackProcessingBuffer1;
 code_r0x0001802a16a1:
     SystemSecondaryParameter[3] = 1.0;
     SystemSecondaryParameter[2] = (float)MemoryAllocationResult * fVar16;
-    SystemSecondaryParameter[1] = (float)uVar6 * fVar16;
+    SystemSecondaryParameter[1] = (float)SecondaryParameterResult * fVar16;
     break;
   case 0x2b:
     iStack_2c8 = SystemQuaternaryParameter;
