@@ -26057,7 +26057,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
       if ((SystemCharacterValue & 0xdf) == 0) {
         SystemThreadIndex = SystemThreadHandleSecondary + 0x2e0;
         resourceCounter = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x40,*(uint8_t *)(SystemThreadHandleSecondary + 0x308));
-        ProcessResourceHandleOperation(resourceCounter + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,&PointerUnsigned310);
+        ProcessResourceHandleOperation(resourceCounter + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,&ResourceDataPointer);
         SystemAllocationFlags = SystemResourceAllocator(SystemThreadIndex,&SystemStatusFlagSecondary,resourceCounter + 0x20);
         if (SystemStatusFlagSecondary != '\0') {
           if (SystemAllocationFlags == SystemThreadIndex) goto ResourceAllocationCheck;
@@ -27033,12 +27033,12 @@ void InitializeSystemResourceAllocator(long long systemResourceHandle)
     *memoryAllocationPointer = (long long *)&MemoryAllocationPool;
     *(uint32_t *)(memoryAllocationPointer + 5) = 4;
     memoryAllocationPointer[4] = primaryResourceHandle;
-    systemContextPointer70 = (long long ***)memoryAllocationPointer;
-    systemContextPointer60 = memoryAllocationPointer;
+    systemContextPointerTertiary = (long long ***)memoryAllocationPointer;
+    systemContextPointerSecondary = memoryAllocationPointer;
     (*(code *)(*memoryAllocationPointer)[5])(memoryAllocationPointer);
     ResourceHashEntryPointer = (void* *)primaryResourceHandle[0x28];
     programCounter = *(code **)*ResourceHashEntryPointer;
-    systemContextPointer70 = &systemContextPointer;
+    systemContextPointerTertiary = &systemContextPointer;
     systemContextPointer = memoryAllocationPointer;
     (*(code *)(*memoryAllocationPointer)[5])(memoryAllocationPointer);
     (*programCounter)(ResourceHashEntryPointer,&systemContextPointer);
@@ -27144,15 +27144,15 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
   ulong long stackValue68;
   ulong long systemValue11;
   
-  stackValue2b8 = 0xfffffffffffffffe;
-  stackValue68 = SystemEncryptionKeyTemplate ^ (ulong long)systemBuffer348;
+  stackOverflowProtectionValue = 0xfffffffffffffffe;
+  stackEncryptionValue = SystemEncryptionKeyTemplate ^ (ulong long)systemBuffer348;
   floatValue = (float)dataSyncPointer;
   SystemPerformanceAccumulator1 = (long long)(floatValue * 100000.0);
   SystemPerformanceAccumulator2 = SystemPerformanceAccumulator2 + SystemPerformanceAccumulator1;
   SystemPerformanceValue = floatValue;
-  systemValue16 = RetrieveSystemStatusFlags();
-  systemValue16 = SynchronizeSystemData(systemValue16,dataSyncPointer);
-  calculationFlag1 = CheckSystemFlag(systemValue16,0x52);
+  systemStatusFlags = RetrieveSystemStatusFlags();
+  systemStatusFlags = SynchronizeSystemData(systemStatusFlags,dataSyncPointer);
+  calculationFlag1 = CheckSystemFlag(systemStatusFlags,0x52);
   calculationFlag2 = CheckSystemFlag(1,0x51);
   resourceDataPosition = 0xe0;
   if (calculationFlag2 == '\0') {
