@@ -4621,6 +4621,17 @@ void ValidateSystemObjectCollection(void)
  * @note 此函数会立即终止系统进程，不会返回
  * @warning 调用此函数将导致系统关闭，应谨慎使用
  */
+/**
+ * @brief 终止系统进程
+ * 
+ * 该函数负责安全地终止系统进程。
+ * 生成系统关闭安全令牌并调用底层系统终止函数。
+ * 确保系统在关闭前完成必要的清理工作。
+ * 
+ * @return 无返回值
+ * @note 此函数会生成安全令牌以确保终止操作的合法性
+ * @warning 系统终止操作不可逆，请确保在合适的时机调用
+ */
 void TerminateSystemProcess(void)
 {
   uint64_t SystemShutdownSecurityToken;
