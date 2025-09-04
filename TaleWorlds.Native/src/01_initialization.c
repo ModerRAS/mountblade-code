@@ -63408,12 +63408,12 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   ulong long ThreadContextFlag;
   bool isByteValid0;
   float OffsetValue;
-  float fStack_b8;
-  float fStack_b4;
-  float fStack_b0;
+  float MatrixTransformZ;
+  float MatrixTransformY;
+  float MatrixTransformX;
   uint32_t StackUnsignedValueAC;
-  float fStack_a8;
-  float fStack_a4;
+  float ScaleZ;
+  float ScaleY;
   float fStack_a0;
   uint32_t StackUnsignedValue9C;
   float *SystemFloatPointer;
@@ -65029,7 +65029,7 @@ LAB_ThreadFlagsCheck2:
   }
   else {
     if (*(int *)(SystemThreadFlags + 0x60) == 0) goto ThreadFlagsLoop2;
-    if (SystemThreadFlags == 0) goto LAB_18007b44a;
+    if (SystemThreadFlags == 0) goto ThreadFlagsLoop1;
   }
   ThreadContextFlag = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xa0,8,0x20);
   PrimaryResourceHandle0 = (long long *)GetThreadContextPointer(ThreadContextFlag);
@@ -65137,7 +65137,7 @@ SystemResourceCleanupPoint:
         if (plStack_98 != (long long *)0x0) {
           SystemThreadFlags = *plStack_98;
           PrimaryResourceHandle2 = plStack_98;
-          goto LAB_18007b8dc;
+          goto SystemByteValidation;
         }
       }
     }
@@ -67349,10 +67349,10 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
   SystemResourceStatusFlag = 1;
   longValue38 = SystemResourceManager;
   InitializeSystemResourceEncryption(SystemStackBuffer40);
-  if (pLocalMemoryPointer == (long long *)0x0) goto LAB_18007eb55;
+  if (pLocalMemoryPointer == (long long *)0x0) goto MemoryPointerValidation;
   SystemResourceOffsetPointer = pLocalMemoryPointer;
   if (ConfigurationDataPointer != '\0') {
-    if ((ConfigurationDataPointer != '\x01') || ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0)) goto LAB_18007eb55;
+    if ((ConfigurationDataPointer != '\x01') || ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0)) goto MemoryPointerValidation;
     SystemThreadHandle = *(long long *)(SystemResourceManager + 0x1b8);
     isByteValid = *(byte *)(SystemThreadHandle + 0x38c);
     if (isByteValid == 9) {
@@ -67362,7 +67362,7 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
     SystemResourceOffsetPointer = pLocalMemoryPointer;
     if ((*(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)isByteValid * 0x18) != '\x03') &&
        (*(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)isByteValid * 0x18) != '\x02'))
-    goto LAB_18007eb55;
+    goto MemoryPointerValidation;
   }
   pLocalMemoryPointer = (long long *)0x0;
   if (SystemResourceOffsetPointer != (long long *)0x0) {
@@ -68241,7 +68241,7 @@ void InitializeSystemResourceEncryption(uint8_t *SystemResourceManager,void* Con
     UNLOCK();
     if (isSystemBusy) break;
     systemValue = _Thrd_id();
-    if (*(int *)(localDataIndex + 0xf0) == systemValue) goto LAB_18007f5cb;
+    if (*(int *)(localDataIndex + 0xf0) == systemValue) goto LocalDataValidation;
     Sleep();
   }
   SystemOperationStatusFlag = '\0';
@@ -68397,7 +68397,7 @@ void InitializeSystemThreadSynchronizer(long long* SystemResourceManager)
     }
     UNLOCK();
     if (isResourceAvailable) break;
-    if (*(int *)(resourceDataIndex + 0xf0) == systemCounter) goto LAB_18007f7cf;
+    if (*(int *)(resourceDataIndex + 0xf0) == systemCounter) goto ResourceDataValidationLoop;
     Sleep(0);
   }
   validationStatusFlag = '\0';
