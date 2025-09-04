@@ -5089,33 +5089,33 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的元数据和控制信息
  * @return uint8_t 操作状态码，0表示成功，非0表示错误码
  */
-uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ObjectMemoryAddress;
-  uint8_t ValidationStatus;
-  int64_t ObjectValidationBuffer [4];
-  int64_t *ValidatedObjectContext;
+uint8_t IncrementObjectReferenceCounter(int64_t ObjectContext) {
+  int64_t ObjectMemoryLocation;
+  uint8_t ObjectValidationResult;
+  int64_t ObjectValidationWorkspace [4];
+  int64_t *ValidatedObjectContextPointer;
   
   // 验证对象上下文的有效性
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationBuffer);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationWorkspace);
+  if ((int)ObjectValidationResult != 0) {
+    return ObjectValidationResult;
   }
   
   // 调整对象验证缓冲区地址
-  ValidatedObjectContext = (int64_t *)ObjectValidationBuffer[0];
-  if (ValidatedObjectContext != 0) {
-    ValidatedObjectContext = (int64_t *)((int64_t)ValidatedObjectContext - 8);
+  ValidatedObjectContextPointer = (int64_t *)ObjectValidationWorkspace[0];
+  if (ValidatedObjectContextPointer != 0) {
+    ValidatedObjectContextPointer = (int64_t *)((int64_t)ValidatedObjectContextPointer - 8);
   }
   
   // 获取验证后的对象内存地址
-  ObjectMemoryAddress = *(int64_t *)(ValidatedObjectContext + ObjectHandleOffset);
-  if (ObjectMemoryAddress != 0) {
+  ObjectMemoryLocation = *(int64_t *)(ValidatedObjectContextPointer + ObjectHandleOffset);
+  if (ObjectMemoryLocation != 0) {
     // 增加对象引用计数
-    *(int *)(ObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
+    *(int *)(ObjectMemoryLocation + ObjectReferenceCountOffset) = *(int *)(ObjectMemoryLocation + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
-      return ValidationStatus;
+    if ((*(char *)(ObjectMemoryLocation + ObjectSystemStatusOffset) != '\0') && (ObjectValidationResult = CheckSystemStatus(), (int)ObjectValidationResult != 0)) {
+      return ObjectValidationResult;
     }
     return OperationSuccessCode;
   }
