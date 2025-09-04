@@ -9265,10 +9265,10 @@ void InitializeSystemSearchManagerD(void)
   long long* MemorySystemPointer;
   long long SystemTimeValue;
   void** RootNodePointer;
-  void** currentSystemNode;
-  void** nextSystemNode;
-  void** previousSystemNode;
-  void** allocatedSystemNode;
+  void** CurrentSystemNode;
+  void** NextSystemNode;
+  void** PreviousSystemNode;
+  void** AllocatedSystemNode;
   void* SystemSearchFunctionPointer;
   long long MemoryAllocationSize;
   
@@ -9276,8 +9276,8 @@ void InitializeSystemSearchManagerD(void)
   RootNodePointer = (void**)*SystemDataTable;
   SystemNodeActiveFlag = *(char*)((long long)RootNodePointer[1] + SystemNodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
-  previousSystemNode = RootNodePointer;
-  currentSystemNode = (void**)RootNodePointer[1];
+  PreviousSystemNode = RootNodePointer;
+  CurrentSystemNode = (void**)RootNodePointer[1];
   
   while (SystemNodeActiveFlag == '\0') {
     IdentifierCompareResult = memcmp(currentSystemNode + 4, &SystemDataComparisonTemplateI, SystemIdentifierSize);
@@ -53243,7 +53243,7 @@ ThreadAllocationContext:
         threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
         systemOperationStatus1 = stackParameterOffset;
       }
-LABEL_SYSTEM_THREAD_VALIDATION:
+SystemThreadValidation:
       stackParameterOffset = systemOperationStatus1;
         memcpy(threadObjectPointer + stackParameterOffset,ConfigurationDataPointer,(long long)((int)memoryAllocationFlags + 2));
     }
