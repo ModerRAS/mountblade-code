@@ -15857,17 +15857,17 @@ void ProcessResourceDataValidationOperation(int64_t *ObjectContext,uint8_t Valid
 {
   uint8_t SecurityValidationData;
   uint8_t ValidationFlags;
-  uint8_t SecurityBuffer[32];
-  uint8_t DataBuffer[1024];
+  uint8_t SecurityEncryptionBuffer[32];
+  uint8_t ProcessingDataBuffer[1024];
   uint64_t OperationParameter;
   uint64_t SecurityOperationParameter;
   
-  SecurityOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityBuffer;
+  SecurityOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityEncryptionBuffer;
   SecurityValidationData = ResourceDataParam;
   ValidationFlags = validationFlagsParam;
-  ProcessDataBuffer(DataBuffer,0x400,ValidationContext,&SecurityValidationData);
-  (**(code **)(*ObjectContext + 8))(ObjectContext,DataBuffer);
-        FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)SecurityBuffer);
+  ProcessDataBuffer(ProcessingDataBuffer,0x400,ValidationContext,&SecurityValidationData);
+  (**(code **)(*ObjectContext + 8))(ObjectContext,ProcessingDataBuffer);
+        FinalizeSecurityOperation(SecurityOperationParameter ^ (uint64_t)SecurityEncryptionBuffer);
 }
 
 
@@ -15885,10 +15885,10 @@ void ProcessResourceDataValidationOperation(int64_t *ObjectContext,uint8_t Valid
 uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
 
 {
-  int64_t LoopCounter;
+  int64_t ConfigurationLoopCounter;
   uint8_t ResourceHashStatus;
   int64_t ResourceIndex;
-  uint32_t LoopIncrement;
+  uint32_t LoopStepIncrement;
   uint32_t ResourceContextOffset;
   uint32_t ContextResourceHashStatus;
   uint32_t SecurityHashValue;
@@ -15904,7 +15904,7 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
   SecondaryOperationParameter = 0x20214;
   ValidationStatusCode = GetAndValidateResourceData(ObjectContext,&NetworkRequestTemplatePointer);
   if ((int)ValidationStatusCode == 0) {
-    LoopCounter = *(int64_t *)(ObjectContext[1] + 0x78);
+    ConfigurationLoopCounter = *(int64_t *)(ObjectContext[1] + 0x78);
     ResourceIndex = GetThreadContext();
     if (ResourceIndex == 0) {
       ValidationStatusCode = ErrorInvalidObjectHandle;
@@ -15912,18 +15912,18 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
     else {
       ValidationStatusCode = (**(code **)(*ObjectContext + 8))(ObjectContext,&NetworkSecurityValidationTemplate);
       if ((int)ValidationStatusCode == 0) {
-        LoopIncrement = 0x14;
+        LoopStepIncrement = 0x14;
         ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&ResourceConfigTable,2,2,0x14);
         if (((((int)ValidationStatusCode == 0) &&
              (ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&ResourceMetadataTable,*(uint32_t *)(SystemContextPointer + 0x116bc)),
              (int)ValidationStatusCode == 0)) &&
             (ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&ResourceMetadataTable,(uint64_t)*(uint *)(SystemContextPointer + 0x6d8),
                                    (uint64_t)*(uint *)(SystemContextPointer + 0x6dc) /
-                                   (uint64_t)*(uint *)(SystemContextPointer + 0x6d8),LoopIncrement), (int)ValidationStatusCode == 0)) &&
+                                   (uint64_t)*(uint *)(SystemContextPointer + 0x6d8),LoopStepIncrement), (int)ValidationStatusCode == 0)) &&
            (ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkOperationTemplate,*(uint32_t *)(SystemContextPointer + 0x6d0),
                                   *(uint32_t *)(SystemContextPointer + 0x1193c),*(uint32_t *)(SystemContextPointer + 0x6d4)),
            (int)ValidationStatusCode == 0)) {
-          LoopIncrement = *(uint32_t *)(SystemContextPointer + 0x11668);
+          LoopStepIncrement = *(uint32_t *)(SystemContextPointer + 0x11668);
           ResourceCount = *(uint32_t *)(SystemContextPointer + 0x11624);
           SecurityHashValue = *(uint32_t *)(SystemContextPointer + 0x11620);
           ContextValidationStatusCode = *(uint32_t *)(SystemContextPointer + 0x1161c);
