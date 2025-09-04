@@ -88890,7 +88890,16 @@ void Unwind_18090e8f0(uint8_t ObjectContext,int64_t ValidationContext)
  * @note 此函数通常在异常处理过程中调用
  * @warning 此函数涉及内存指针操作，需要谨慎处理
  */
-void SetSystemDataStructureToContextOffset288(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构到上下文偏移288
+ * 
+ * 该函数用于将系统数据结构指针设置到验证上下文的指定偏移位置
+ * 使用0x288偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文，包含要设置的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ */
+void SetSystemDataStructureToContextOffset288(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x288) = &SystemDataStructure;

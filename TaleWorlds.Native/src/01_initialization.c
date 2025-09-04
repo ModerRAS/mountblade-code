@@ -19354,8 +19354,8 @@ uint32_t FinalSystemInitialization(void)
   int WaitOperationResult;
   long long**** SystemManagerInstance;
   void* MemoryAllocationFlags;
-  long long**** TemporaryManager8;
-  long long*** TemporaryManager9;
+  long long**** SystemPrimaryTemporaryManager;
+  long long*** SystemSecondaryTemporaryManager;
   long long SystemObjectHandle;
   char SystemActiveStatus;
   long long**** SystemStackManager;
