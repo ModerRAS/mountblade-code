@@ -19156,8 +19156,8 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
 
 {
   long long **symbolTablePointer;
-  int initializationResult;
-  uint symbolFlags;
+  int systemInitializationResult;
+  uint systemSymbolFlags;
   uint32_t SymbolOptions;
   void* systemHandle;
   long long *libraryHandle;
