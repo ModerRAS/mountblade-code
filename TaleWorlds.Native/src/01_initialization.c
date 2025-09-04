@@ -34,6 +34,7 @@
 #define SystemNodeNextPointerOffset       2
 #define SystemNodeHeadPointerOffset       0
 #define SystemNodeAllocationExtraSize     0x20
+#define SystemNodeInactiveFlag             0
 
 // 系统节点结构体字段索引
 #define SystemNodeIdentifier1Index         6
@@ -1516,7 +1517,7 @@ void InitializeGameCoreSystem(void)
   SystemPreviousNodePointer[SystemNodeIdentifier1Index] = GameCoreSystemIdentifier1;
   SystemPreviousNodePointer[SystemNodeIdentifier2Index] = GameCoreSystemIdentifier2;
   SystemPreviousNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
-  SystemPreviousNodePointer[NodeActiveFlagIndex] = 0;
+  SystemPreviousNodePointer[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
   SystemPreviousNodePointer[SystemNodeHandlerIndex] = GameCoreInitializationHandler;
   return;
 }
@@ -5931,7 +5932,7 @@ void InitializeSystemResourceNode(void)
   SystemPreviousNodePointer[SystemNodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
   SystemPreviousNodePointer[SystemNodeIdentifier2Index] = 0x9c552acd3ed5548d;
   SystemPreviousNodePointer[SystemNodeDataPointerIndex] = &SystemDataNodeG;
-  SystemPreviousNodePointer[NodeActiveFlagIndex] = 0;
+  SystemPreviousNodePointer[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
   SystemPreviousNodePointer[SystemNodeHandlerIndex] = ResourceInitializationCallback;
   return;
 }
@@ -5988,7 +5989,7 @@ void InitializeSystemEventNode(void)
   SystemPreviousNodePointer[SystemNodeIdentifier1Index] = 0x49086ba08ab981a7;
   SystemPreviousNodePointer[SystemNodeIdentifier2Index] = 0xa9191d34ad910696;
   SystemPreviousNodePointer[SystemNodeDataPointerIndex] = &SystemDataNodeH;
-  SystemPreviousNodePointer[NodeActiveFlagIndex] = 0;
+  SystemPreviousNodePointer[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
   SystemPreviousNodePointer[SystemNodeHandlerIndex] = EventInitializationHandler;
   return;
 }
@@ -6045,7 +6046,7 @@ void InitializeSystemMemoryNode(void)
   SystemPreviousNodePointer[SystemNodeIdentifier1Index] = 0x402feffe4481676e;
   SystemPreviousNodePointer[SystemNodeIdentifier2Index] = 0xd4c2151109de93a0;
   SystemPreviousNodePointer[SystemNodeDataPointerIndex] = &SystemDataNodeI;
-  SystemPreviousNodePointer[NodeActiveFlagIndex] = 0;
+  SystemPreviousNodePointer[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
   SystemPreviousNodePointer[SystemNodeHandlerIndex] = ResourceInitializationCallback;
   return;
 }
