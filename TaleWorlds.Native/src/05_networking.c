@@ -338,13 +338,13 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NETWORK_PERFORMANCE_GOOD_FLAG 0x01                                  // 性能良好
 
 // 网络数据包验证常量
-#define VALIDATION_POOL_ENABLED 0x01                // 验证池启用
-#define SECURITY_DATA_ENABLED 0x01                  // 安全数据启用
-#define ENCRYPTION_ENABLED 0x01                     // 加密启用
-#define COMPRESSION_ENABLED 0x01                    // 压缩启用
-#define AUDIT_ENABLED 0x01                          // 审计启用
-#define POLICY_ENABLED 0x01                         // 策略启用
-#define CERTIFICATE_ENABLED 0x01                    // 证书启用
+#define NETWORK_VALIDATION_POOL_ENABLED_FLAG 0x01                // 验证池启用
+#define NETWORK_SECURITY_DATA_ENABLED_FLAG 0x01                  // 安全数据启用
+#define NETWORK_ENCRYPTION_ENABLED_FLAG 0x01                     // 加密启用
+#define NETWORK_COMPRESSION_ENABLED_FLAG 0x01                    // 压缩启用
+#define NETWORK_AUDIT_ENABLED_FLAG 0x01                          // 审计启用
+#define NETWORK_POLICY_ENABLED_FLAG 0x01                         // 策略启用
+#define NETWORK_CERTIFICATE_ENABLED_FLAG 0x01                    // 证书启用
 
 // 网络连接管理常量
 #define TABLE_INDEX_RESET 0x00                      // 表索引重置
