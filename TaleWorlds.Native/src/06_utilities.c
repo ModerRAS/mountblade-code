@@ -79206,7 +79206,18 @@ void ExecuteResourceTransactionRollbackAndCleanup(uint8_t ObjectContext, int64_t
 
 
 
-void Unwind_18090bd90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源数据处理标志
+ * 
+ * 重置资源数据的处理标志位，并根据需要执行资源操作。
+ * 该函数主要用于资源状态的清理和重置操作。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return void 无返回值
+ * @remark 原始函数名：Unwind_18090bd90
+ */
+void ResetResourceDataProcessingFlag(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
