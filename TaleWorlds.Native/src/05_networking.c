@@ -751,14 +751,14 @@ uint32_t NetworkConnectionActiveContextData;                      // 网络连�
 uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文，安全相关的上下文信息
 uint32_t NetworkSecurityLevel;                             // 网络安全级别，系统的整体安全保护级别
 uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池，用于管理连接的缓冲区资源
-uint32_t NetworkConnectionRequestData;                     // 网络连接请求数据，存储连接请求的相关信息
-uint32_t NetworkConnectionResponseData;                    // 网络连接响应数据，存储连接响应的相关信息
-uint32_t NetworkConnectionErrorData;                       // 网络连接错误数据，存储连接错误的相关信息
-uint32_t NetworkConnectionStatusData;                      // 网络连接状态数据，存储连接状态的相关信息
-uint32_t NetworkConnectionTimeoutData;                     // 网络连接超时数据，存储连接超时的相关信息
-uint32_t NetworkConnectionValidationData;                   // 网络连接验证数据，存储连接验证的相关信息
-uint32_t NetworkConnectionEncryptionData;                   // 网络连接加密数据，存储连接加密的相关信息
-uint32_t NetworkConnectionCompressionData;                 // 网络连接压缩数据，存储连接压缩的相关信息
+uint32_t NetworkConnectionRequestInfo;                     // 网络连接请求信息，存储连接请求的相关信息
+uint32_t NetworkConnectionResponseInfo;                    // 网络连接响应信息，存储连接响应的相关信息
+uint32_t NetworkConnectionErrorInfo;                       // 网络连接错误信息，存储连接错误的相关信息
+uint32_t NetworkConnectionStatusInfo;                      // 网络连接状态信息，存储连接状态的相关信息
+uint32_t NetworkConnectionTimeoutInfo;                     // 网络连接超时信息，存储连接超时的相关信息
+uint32_t NetworkConnectionValidationInfo;                   // 网络连接验证信息，存储连接验证的相关信息
+uint32_t NetworkConnectionEncryptionInfo;                   // 网络连接加密信息，存储连接加密的相关信息
+uint32_t NetworkConnectionCompressionInfo;                 // 网络连接压缩信息，存储连接压缩的相关信息
 
 // 网络缓冲区管理变量
 uint32_t NetworkValidationBufferPool;                      // 网络验证缓冲池，用于验证操作的缓冲区资源池

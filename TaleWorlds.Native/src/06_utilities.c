@@ -82759,7 +82759,18 @@ void SetSystemDataStructurePointerToOffset318(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090c860(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行图形数据资源清理回调函数
+ * 
+ * 该函数负责执行图形数据资源的清理回调函数
+ * 检查验证上下文中图形数据偏移量位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c860
+ */
+void ExecuteGraphicsDataResourceCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextGraphicsDataOffset) != (int64_t *)0x0) {
@@ -82770,7 +82781,18 @@ void Unwind_18090c860(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c870(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文偏移量0x238处的资源清理回调函数
+ * 
+ * 该函数负责执行验证上下文中偏移量0x238位置的资源清理回调函数
+ * 检查验证上下文中偏移量0x238位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c870
+ */
+void ExecuteResourceCleanupCallbackAtOffset238(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x238) != (int64_t *)0x0) {

@@ -146,6 +146,8 @@
 #define DataComparisonTemplateOId2   0x81d539e33614429f
 #define MemoryComparisonTemplateId1   0x4e33c4803e67a08f
 #define MemoryComparisonTemplateId2   0x703a29a844ce399
+#define SystemSecondaryNodeId1        0x1aa83fc0020dc1b6
+#define SystemSecondaryNodeId2        0x1aa83fc0020dc1b6
 
 // 系统参数常量
 #define SystemMaxSemaphoreCount                    0x7fffffff
