@@ -1403,7 +1403,7 @@ void ValidateNetworkPacketSecurity(void)
   // 初始化验证参数
   NetworkPacketHashAlgorithm = HASH_ALGORITHM_SHA256;                         // 设置哈希算法为SHA-256
   NetworkPacketSignatureMethod = SIGNATURE_METHOD_RSA;                        // 设置签名方法为RSA
-  PacketEncryptionKeyLength = ENCRYPTION_KEY_LENGTH_256B;                   // 设置加密密钥长度为256位
+  PacketEncryptionKeyLength = NetworkEncryptionKeyLength256Bits;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
   PacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
@@ -1423,9 +1423,9 @@ void ValidateNetworkPacketSecurity(void)
   NetworkPacketCompressionBuffer = NetworkBufferInitialized;                // 初始化数据包压缩缓冲区
   
   // 初始化压缩参数
-  PacketDataCompressionLevel = COMPRESSION_LEVEL_DEFAULT;                  // 设置压缩级别为6（默认级别）
-  PacketCompressionLevel = COMPRESSION_LEVEL_DEFAULT;                       // 设置压缩级别为6
-  PacketCompressionAlgorithmType = COMPRESSION_ZLIB;               // 设置压缩算法类型为ZLIB
+  PacketDataCompressionLevel = NetworkCompressionLevelDefault;                  // 设置压缩级别为6（默认级别）
+  PacketCompressionLevel = NetworkCompressionLevelDefault;                       // 设置压缩级别为6
+  PacketCompressionAlgorithmType = NetworkCompressionMethodZLIB;               // 设置压缩算法类型为ZLIB
 }
 
 /**
@@ -1449,7 +1449,7 @@ void ProcessNetworkPackets(void)
   // 初始化连接管理
   NetworkConnectionManager = NetworkConnectionEstablished;             // 初始化连接管理器
   NetworkConnectionData = NetworkConnectionEstablished;                 // 初始化连接数据
-  NetworkConnectionSize = CONNECTION_SIZE_256B;                // 设置连接大小为256字节
+  NetworkConnectionSize = NetworkConnectionSize256Bytes;                // 设置连接大小为256字节
   NetworkConnectionIndex = 0x00;               // 重置连接索引
   
   // 初始化路由和过滤缓冲区
@@ -1470,9 +1470,9 @@ void ProcessNetworkPackets(void)
   NetworkConnectionBackoffTime = NetworkBackoffTimeTwoSeconds;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
-  NetworkEventSize = EVENT_SIZE_64B;                              // 设置事件大小为64字节
+  NetworkEventSize = NetworkEventSize64Bytes;                              // 设置事件大小为64字节
   NetworkEventIndex = 0x00;                            // 重置事件索引
-  NetworkCallbackSize = CALLBACK_SIZE_64B;                           // 设置回调大小为64字节
+  NetworkCallbackSize = NetworkCallbackSize64Bytes;                           // 设置回调大小为64字节
   NetworkCallbackIndex = 0x00;                          // 重置回调索引
 }
 
@@ -1506,14 +1506,14 @@ void HandleNetworkErrors(void)
   NetworkHandleStorageSize = 0x30;                      // 设置句柄存储大小为48字节
   
   // 初始化处理缓冲区
-  PacketProcessingSize = PACKET_PROCESSING_SIZE_256B;                  // 设置数据包处理大小为256字节
+  PacketProcessingSize = NetworkPacketProcessingSize256Bytes;                  // 设置数据包处理大小为256字节
   
   // 初始化端口范围
-  NetworkPortRangeStart = PORT_HTTP_ALT;                  // 设置端口范围起始值为8080
-  NetworkPortRangeEnd = PORT_RANGE_END;                    // 设置端口范围结束值为9999
+  NetworkPortRangeStart = NetworkPortHttpAlt;                  // 设置端口范围起始值为8080
+  NetworkPortRangeEnd = NetworkPortRangeEnd;                    // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
-  NetworkConnectionTimeout = TIMEOUT_30_SECONDS;                   // 设置连接超时时间为30秒
+  NetworkConnectionTimeout = NetworkTimeoutThirtySeconds;                   // 设置连接超时时间为30秒
   NetworkTimeoutValueOffset = 0x30;                     // 设置超时值偏移量
   NetworkRetryCountOffset = 0x34;                       // 设置重试计数偏移量
   
