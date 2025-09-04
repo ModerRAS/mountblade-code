@@ -23,7 +23,7 @@
 #define DataCheckAddress             0x180d49150
 
 // SystemResourceManager结构体字段偏移量
-#define SystemResourceDataPointerOffset    1
+#define ResourceDataPointerOffset    1
 #define SystemResourceHashTableOffset     2
 #define SystemResourceFlagsOffset          4
 #define SystemResourceMemoryPoolOffset     5
@@ -1060,12 +1060,12 @@ void* SystemStringTemplate;                       // 系统字符串模板
 void* SystemDataTemplate;                         // 系统数据模板
 void* SystemDataNodeLinkageCache;                 // 系统数据节点链接缓存
 void* SystemDataNodeLinkageBackup;                 // 系统数据节点链接备份
-void* SystemDataNodeLinkagePrimary;               // 系统数据节点链接主表
-void* SystemDataNodeLinkageSecondary;             // 系统数据节点链接次表
+void* SystemDataNodeLinkageFirst;               // 系统数据节点链接第一表
+void* SystemDataNodeLinkageSecond;             // 系统数据节点链接第二表
 // 系统数据比较模板变量已在上面声明
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
-void* SystemDataNodeLinkageQuaternary;            // 系统数据节点链接第四表
-void* SystemDataNodeLinkageQuinary;               // 系统数据节点链接第五表
+void* SystemDataNodeLinkageFourth;            // 系统数据节点链接第四表
+void* SystemDataNodeLinkageFifth;               // 系统数据节点链接第五表
 void* SystemConfigurationDataPointerTertiary;        // 系统配置数据指针第三
 void* SystemConfigurationDataPointerQuaternary;        // 系统配置数据指针第四
 void* SystemResourceTemplate;        // 系统资源模板
