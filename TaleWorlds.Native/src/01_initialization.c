@@ -534,8 +534,8 @@ void* GameSystemMainEntryPoint;
 void* SystemGlobalDataReference;              // 全局系统数据引用
 void* SystemPrimaryMemoryPool;                // 主系统内存池
 void* SystemPrimaryDataTable;                 // 系统数据表引用
-void* SystemBackupMemoryPool;                  // 备份系统内存池
-void* SystemBackupDataTable;                   // 备份系统数据表
+void* SystemSecondaryMemoryPool;                  // 次系统内存池
+void* SystemSecondaryDataTable;                   // 次系统数据表
 void* SystemCacheMemoryPool;                   // 缓存系统内存池
 void* SystemCacheDataTable;                    // 缓存系统数据表
 void* SystemTemporaryMemoryPool;              // 临时系统内存池
@@ -556,7 +556,7 @@ void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
 void* CoreSystemDataTable;                     // 核心系统数据表
 void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
 void* CoreSystemPrimaryConfiguration;           // 核心系统主配置
-void* CoreSystemBackupConfiguration;           // 核心系统备份配置
+void* CoreSystemSecondaryConfiguration;           // 核心系统次配置
 void* CoreSystemCacheConfiguration;            // 核心系统缓存配置
 void* CoreSystemEmergencyConfiguration;        // 核心系统紧急配置
 
@@ -878,7 +878,7 @@ void* SystemDataTableEntryEmergency;
 void* SystemMemoryBlockHybrid;
 void* SystemMemoryBlockFastStartup;
 unsigned long long SystemPrimaryMemorySize;
-unsigned long long SystemBackupMemorySize;
+unsigned long long SystemSecondaryMemorySize;
 unsigned long long SystemCacheMemorySize;
 uint8_t SystemPrimaryByteValue;
 uint8_t SystemBackupByteValue;
@@ -64632,7 +64632,7 @@ LAB_ExpandSystemThread:
                 else {
                   SystemThreadHandle1 = ((long long)SystemTimeFlag1d8 >> 2) * 2;
                   SystemIntegerPointer5 = SystemIntegerPointer6;
-                  if (SystemThreadHandle1 != 0) goto LAB_SystemThreadExpand;
+                  if (SystemThreadHandle1 != 0) goto LAB_ExpandSystemThread;
                 }
                 if (SystemIntegerPointer4 != pointerToInteger20) {
                     memmove(SystemIntegerPointer5,SystemIntegerPointer4,SystemTimeFlag1d8);
@@ -64804,11 +64804,11 @@ MemoryAllocationComplete:
   if (SystemIntegerPointer4 != (int *)0x0) {
       SystemCleanupFunction(SystemIntegerPointer4);
   }
-LAB_SystemContextUpdate:
+LAB_UpdateSystemContext:
   SystemContextPointer = SystemContextPointer + 1;
   SystemParameterPointer = (ulong long)SystemContextPointer;
   longValue1d0 = longValue1d0 + 1;
-  if (*SystemIntegerPointer <= (int)SystemContextPointer) goto LAB_SystemContextUpdate;
+  if (*SystemIntegerPointer <= (int)SystemContextPointer) goto LAB_UpdateSystemContext;
   goto LAB_SystemExit;
 }
 
