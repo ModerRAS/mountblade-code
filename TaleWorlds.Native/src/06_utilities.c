@@ -84197,7 +84197,16 @@ void SetSystemDataStructurePointerToValidationContextOffset540(uint8_t ObjectCon
 
 
 
-void Unwind_18090cc30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文数据结构指针
+ * 
+ * 在验证上下文的指定偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cc30
+ */
+void SetValidationContextDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x5a0) = &SystemDataStructure;
@@ -84206,7 +84215,16 @@ void Unwind_18090cc30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cc40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置主验证上下文数据结构指针
+ * 
+ * 在验证上下文的主数据偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cc40
+ */
+void SetPrimaryValidationContextDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ValidationContextDataOffset0) = &SystemDataStructure;
@@ -84215,7 +84233,13 @@ void Unwind_18090cc40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cc50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移0x660
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cc50
+ */
+void SetSystemDataStructurePointerToContextOffset660(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x660) = &SystemDataStructure;
@@ -84224,7 +84248,13 @@ void Unwind_18090cc50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cc60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移0x6c0
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cc60
+ */
+void SetSystemDataStructurePointerToContextOffset6C0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x6c0) = &SystemDataStructure;
