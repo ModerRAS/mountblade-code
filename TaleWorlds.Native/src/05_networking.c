@@ -115,7 +115,15 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 
 // 网络验证结果常量 - 验证处理状态定义
 #define NetworkValidationSuccess 0x00                          // 验证结果：成功
-#define NetworkValidationFailure 0x01                          // 验证结果：失败
+#define NetworkValidationFailure 0xFF                          // 验证结果：失败
+
+// 网络操作结果常量 - 操作状态定义
+#define NetworkOperationSuccess 0x01                           // 操作结果：成功
+#define NetworkSystemEnabled 0x01                              // 系统状态：已启用
+#define NetworkMonitorActive 0x01                              // 监控器状态：活跃
+#define NetworkSecurityEnabled 0x01                            // 安全功能：已启用
+#define NetworkBufferInitialized 0x01                          // 缓冲区状态：已初始化
+#define NetworkConnectionEstablished 0x01                      // 连接状态：已建立
 #define NetworkPacketStatusPrimaryOffset 0x38                  // 网络数据包主状态偏移量
 #define NetworkPacketStatusSecondaryOffset 0x3c                // 网络数据包次级状态偏移量
 #define NetworkPacketStatusTertiaryOffset 0x40                 // 网络数据包第三级状态偏移量
@@ -2819,12 +2827,12 @@ NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t Contex
   
   // 验证数据包数据有效性
   if (PacketData != 0) {
-    ContextIntegrityCheck = 0x01;  // 数据包完整性检查通过
+    ContextIntegrityCheck = NetworkOperationSuccess;  // 数据包完整性检查通过
   }
   
   // 验证上下文偏移量有效性
   if (ContextOffset >= 0) {
-    ContextSecurityCheck = 0x01;  // 上下文安全检查通过
+    ContextSecurityCheck = NetworkOperationSuccess;  // 上下文安全检查通过
   }
   
   // 综合验证结果
