@@ -1,9 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 系统核心地址常量定义
-#define SystemEventHandlerPrimaryAddress    0x180c91700
-#define SystemEventHandlerSecondaryAddress  0x180c91800
-#define SystemFloatTableStartAddress       0x180c8aa70
+#define EventHandlerPrimaryAddress       0x180c91700
+#define EventHandlerSecondaryAddress     0x180c91800
+#define FloatTableStartAddress           0x180c8aa70
 #define SystemFloatTableEndAddress         0x180c8ea71
 #define SystemFloatTableSecondStartAddress 0x180c8eb70
 #define SystemSecurityContextAddress        0x180d49d50
@@ -1031,19 +1031,19 @@ void* SystemMemoryAllocationTableEntrySexdenary;     // 系统内存分配表条
 void* SystemMemoryAllocationTableEntry17;           // 系统内存分配表条目第十七个
 void* SystemMemoryAllocationTableEntry18;           // 系统内存分配表条目第十八个
 
-void* SystemDataNodePrimaryRoot;       // 系统数据节点主根节点
-void* SystemDataNodeSecondaryRoot;     // 系统数据节点次根节点
-void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
-void* SystemDataNodeQuaternaryRoot;    // 系统数据节点第四根节点
-void* SystemDataNodeQuinaryRoot;       // 系统数据节点第五根节点
-void* SystemDataNodePrimary;           // 系统数据节点主节点
-void* SystemDataNodeSecondary;         // 系统数据节点次节点
-void* SystemDataNodeTertiary;          // 系统数据节点第三节点
-void* SystemDataNodeQuaternary;        // 系统数据节点第四节点
-void* SystemDataNodeQuinary;           // 系统数据节点第五节点
-void* SystemDataNodeSenary;            // 系统数据节点第六节点
-void* SystemDataNodeSeptenary;         // 系统数据节点第七节点
-void* SystemDataNodeOctonary;          // 系统数据节点第八节点
+void* SystemDataNodeFirstRoot;       // 系统数据节点第一根节点
+void* SystemDataNodeSecondRoot;     // 系统数据节点第二根节点
+void* SystemDataNodeThirdRoot;      // 系统数据节点第三根节点
+void* SystemDataNodeFourthRoot;    // 系统数据节点第四根节点
+void* SystemDataNodeFifthRoot;       // 系统数据节点第五根节点
+void* SystemDataNodeFirst;           // 系统数据节点第一节点
+void* SystemDataNodeSecond;         // 系统数据节点第二节点
+void* SystemDataNodeThird;          // 系统数据节点第三节点
+void* SystemDataNodeFourth;        // 系统数据节点第四节点
+void* SystemDataNodeFifth;           // 系统数据节点第五节点
+void* SystemDataNodeSixth;            // 系统数据节点第六节点
+void* SystemDataNodeSeventh;         // 系统数据节点第七节点
+void* SystemDataNodeEighth;          // 系统数据节点第八节点
 void* SystemDataNodeNonary;            // 系统数据节点第九节点
 void* SystemDataNodeDenary;            // 系统数据节点第十节点
 void* SystemDataNodeUndenary;          // 系统数据节点第十一节点
@@ -53662,7 +53662,7 @@ SystemResourceDataProcessing:
         pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
         SystemMemoryAllocationOffset = 0x14;
         ResourceBufferPointer130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointer130,0x16,0x10);
-        goto LAB_180072521;
+        goto ProcessSystemResourceData;
       }
       *(void*2 *)(ResourceBufferPointer130 + SystemMemoryAllocationOffset) = 10;
       SystemMemoryAllocationOffset = 0x15;
@@ -58670,7 +58670,7 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
       CleanupMemoryAllocator(&memoryAllocationBuffer);
     }
   }
-LAB_18007738d:
+SystemChecksumValidation:
     ValidateSystemChecksum(SystemMaxOperationCount ^ (ulong long)SystemStackBuffer);
 }
 
@@ -60366,10 +60366,10 @@ ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,v
       if (isSystemActive3 == 0) {
         SystemThreadIndex = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
       }
-      if (*(int *)(SystemThreadIndex + 0x1fc) * 3 != 0) goto LAB_180077fcf;
+      if (*(int *)(SystemThreadIndex + 0x1fc) * 3 != 0) goto ThreadStatusProcessing;
     }
     if ((*(byte *)(SystemResourceManager + 0x100) & 4) != 0) {
-LAB_180077fcf:
+ThreadStatusProcessing:
       SystemThreadHandle2 = *(long long *)(SystemResourceManager + 0x1b8);
       SystemThreadStatus = *(char *)(SystemThreadHandle2 + 0x38c);
       if (SystemThreadStatus == '\t') {
