@@ -86187,7 +86187,13 @@ void ExecuteResourceHashStatusValidationAndCleanupOffset288(uint8_t ObjectContex
 
 
 
-void Unwind_18090d190(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证和清理操作（偏移量0x290）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d190
+ */
+void ExecuteResourceHashStatusValidationAndCleanupOffset290(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x5d8) != (int64_t *)0x0) {
@@ -87098,7 +87104,15 @@ void Unwind_18090d310(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理操作（带清理选项和标志）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_18090d320
+ */
+void ExecuteResourceCleanupWithOptionsAndFlags(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -87112,7 +87126,15 @@ void Unwind_18090d320(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090d330(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理操作（带清理选项和标志，变体1）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_18090d330
+ */
+void ExecuteResourceCleanupWithOptionsAndFlagsVariant1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -87126,7 +87148,15 @@ void Unwind_18090d330(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090d340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理操作（带清理选项和标志，变体2）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_18090d340
+ */
+void ExecuteResourceCleanupWithOptionsAndFlagsVariant2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -87140,7 +87170,15 @@ void Unwind_18090d340(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090d350(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源清理操作（带清理选项和标志，变体3）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_18090d350
+ */
+void ExecuteResourceCleanupWithOptionsAndFlagsVariant3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -88102,7 +88140,15 @@ void Unwind_18090d4f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理循环操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_18090d500
+ */
+void ExecuteSystemResourceCleanupLoopOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -88130,7 +88176,15 @@ void Unwind_18090d500(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
  * @note 此函数会在异常处理过程中自动调用
  * @warning 调用此函数会执行特定的清理函数
  */
-void Unwind_18090d510(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证资源清理循环操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @remark 原始函数名：Unwind_18090d510
+ */
+void ExecuteValidationResourceCleanupLoopOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;

@@ -60554,7 +60554,7 @@ SystemStatusCheck:
     SystemConfigurationFlag = *(uint *)(*(long long *)(SystemMemoryPointer + 0x1b8) + 0x138);
     if ((SystemConfigurationFlag & 0x20) != 0) {
       SystemStatusFlag = '\0';
-      goto LAB_SystemStatusSet;
+      goto LAB_SetSystemStatus;
     }
     if ((SystemConfigurationFlag & 0x10) == 0) goto LAB_SystemStatusCheck;
     IsSystemByteValid = (*(byte *)(SystemResourceManager + 0xfd) & 2) == 0;
@@ -60664,13 +60664,13 @@ SystemStatusCheck:
     OperationCode = *(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x138);
     if ((OperationCode & 0x20) != 0) {
       systemStatusFlag = '\0';
-      goto LAB_SystemStatusSet;
+      goto LAB_SetSystemStatus;
     }
     if ((OperationCode & 0x10) == 0) goto LAB_SystemStatusCheck;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
-LAB_SystemStatusSet:
+LAB_SetSystemStatus:
   *(char *)(memoryBlockAddress + 0xff) = systemStatusFlag;
   resourceDataIndex = *(long long *)(memoryBlockAddress + 0x1b8);
   OperationCode = *(uint *)(resourceDataIndex + 0x138) & 0x3000;
@@ -60776,13 +60776,13 @@ SystemStatusCheck:
     OperationCode = *(uint *)(*(long long *)(in_RCX + 0x1b8) + 0x138);
     if ((OperationCode & 0x20) != 0) {
       systemStatusFlag = '\0';
-      goto LAB_SystemStatusSet;
+      goto LAB_SetSystemStatus;
     }
     if ((OperationCode & 0x10) == 0) goto LAB_SystemStatusCheck;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
-LAB_SystemStatusSet:
+LAB_SetSystemStatus:
   *(char *)(memoryBlockAddress + 0xff) = systemStatusFlag;
   resourceDataIndex = *(long long *)(memoryBlockAddress + 0x1b8);
   OperationCode = *(uint *)(resourceDataIndex + 0x138) & 0x3000;
@@ -60878,13 +60878,13 @@ SystemStatusCheck:
     OperationCode = *(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x138);
     if ((OperationCode & 0x20) != 0) {
       systemStatusFlag = '\0';
-      goto LAB_SystemStatusSet;
+      goto LAB_SetSystemStatus;
     }
     if ((OperationCode & 0x10) == 0) goto LAB_SystemStatusCheck;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
-LAB_SystemStatusSet:
+LAB_SetSystemStatus:
   *(char *)(memoryBlockAddress + 0xff) = systemStatusFlag;
   resourceDataIndex = *(long long *)(memoryBlockAddress + 0x1b8);
   OperationCode = *(uint *)(resourceDataIndex + 0x138) & 0x3000;
@@ -65017,9 +65017,9 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   InitializeSystemContext(&SystemConfigurationFlags);
   SystemThreadFlags = *(long long *)(SystemResourceManager + 0x210);
   if (SystemThreadFlags == 0) {
-LAB_ThreadFlagsCheck1:
+LAB_CheckThreadFlags1:
     if (*(long long *)(SystemResourceManager + 0xa8) == 0) {
-LAB_ThreadFlagsCheck2:
+LAB_CheckThreadFlags2:
       LOCK();
       *(uint8_t *)((long long)PrimaryResourceHandle4 + 0x15) = 4;
       UNLOCK();
