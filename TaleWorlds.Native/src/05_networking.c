@@ -655,9 +655,6 @@ uint32_t NetworkConnectionContextSize;                         // 网络连接�
 uint32_t NetworkConnectionQuality;                             // 网络连接质量
 uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽
 uint32_t NetworkConnectionLatency;                             // 网络连接延迟
-uint32_t NetworkConnectionQuality;                             // 网络连接质量
-uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽
-uint32_t NetworkConnectionLatency;                             // 网络连接延迟
 uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别
 uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型
 uint32_t NetworkConnectionEncryptionAlgorithm;                // 网络加密算法
@@ -1534,8 +1531,8 @@ void NetworkInitializeConnectionState(void)
 {
   // 连接状态初始化变量
   uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
-  int32_t NetworkInitializationResult;                      // 初始化结果状态
-  int64_t NetworkSystemContext;                     // 网络系统上下文数据
+  int32_t NetworkInitializationResult;               // 初始化结果状态
+  int64_t NetworkSystemContext;                      // 网络系统上下文数据
   int32_t ConnectionIdentifier;                     // 连接标识符
   uint32_t ConnectionStateFlags;                    // 连接状态标志位
   int32_t NetworkSessionIdentifier;                 // 网络会话ID
@@ -1713,7 +1710,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   // 数据包处理变量
   NetworkConnectionStatus *NetworkConnectionContextArray;  // 网络连接上下文数据数组
   int32_t ActiveConnectionCount;                    // 活跃连接数量
-  int64_t ConnectionBaseAddress;             // 连接基地址
+  int64_t ConnectionBaseAddress;                     // 连接基地址
   NetworkConnectionStatus PacketProcessingResult;              // 数据包处理结果
   NetworkConnectionStatus DataProcessingStatus;                // 数据处理状态
   NetworkConnectionStatus ConnectionValidationResult;          // 连接验证结果
