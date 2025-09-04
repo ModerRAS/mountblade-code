@@ -679,7 +679,7 @@ uint32_t NetworkSocketCategory;                           // 网络套接字类�
 uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
 uint32_t NetworkSocketIndex;                              // 网络套接字索引，套接字在表中的索引位置
 uint32_t NetworkSocketRuntimeData;                                // 网络套接字运行时数据，套接字相关的数据存储
-uint32_t NetworkSocketContext;                              // 网络套接字上下文，套接字的运行时上下文信息
+uint32_t NetworkSocketContextData;                              // 网络套接字上下文数据，套接字的运行时上下文数据
 uint32_t NetworkSocketSize;                                  // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
@@ -817,6 +817,87 @@ void *NetworkConnectionRoutingConfigPrimary = &NetworkConnectionRoutingConfigPri
 void *NetworkConnectionRoutingConfigSecondary = &NetworkConnectionRoutingConfigSecondaryData;
 void *NetworkConnectionRoutingConfigTertiary = &NetworkConnectionRoutingConfigTertiaryData;
 void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfigQuaternaryData;
+
+// =============================================================================
+// 网络连接配置数据定义
+// =============================================================================
+
+/**
+ * @brief 网络连接上下文模板数据
+ * 
+ * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
+ */
+uint32_t NetworkConnectionContextTemplateData = 0x00;
+
+/**
+ * @brief 网络连接主要配置数据
+ * 
+ * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
+ */
+uint32_t NetworkConnectionPrimaryConfigData = 0x00;
+
+/**
+ * @brief 网络连接次要配置数据
+ * 
+ * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
+ */
+uint32_t NetworkConnectionSecondaryConfigData = 0x00;
+
+/**
+ * @brief 网络连接处理配置数据
+ * 
+ * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
+ */
+uint32_t NetworkConnectionProcessingConfigData = 0x00;
+
+/**
+ * @brief 网络连接传输配置数据
+ * 
+ * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
+ */
+uint32_t NetworkConnectionTransportConfigData = 0x00;
+
+/**
+ * @brief 网络连接协议配置数据
+ * 
+ * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
+ */
+uint32_t NetworkConnectionProtocolConfigData = 0x00;
+
+/**
+ * @brief 网络连接验证配置数据
+ * 
+ * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
+ */
+uint32_t NetworkConnectionValidationConfigData = 0x00;
+
+/**
+ * @brief 网络连接路由主要配置数据
+ * 
+ * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
+ */
+uint32_t NetworkConnectionRoutingConfigPrimaryData = 0x00;
+
+/**
+ * @brief 网络连接路由次要配置数据
+ * 
+ * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
+ */
+uint32_t NetworkConnectionRoutingConfigSecondaryData = 0x00;
+
+/**
+ * @brief 网络连接路由第三配置数据
+ * 
+ * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
+ */
+uint32_t NetworkConnectionRoutingConfigTertiaryData = 0x00;
+
+/**
+ * @brief 网络连接路由第四配置数据
+ * 
+ * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
+ */
+uint32_t NetworkConnectionRoutingConfigQuaternaryData = 0x00;
 
 /**
  * @brief 初始化网络套接字句柄
@@ -1715,6 +1796,7 @@ NetworkHandle InitializeNetworkConnectionSystem(void)
   
   // 设置连接超时时间
   NetworkConnectionTimeoutDuration = NetworkConnectionTimeoutDefault;  // 30秒
+  NetworkConnectionTimeout = NetworkConnectionTimeoutDuration;        // 统一超时设置
   
   // 初始化最大连接数
   NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;
