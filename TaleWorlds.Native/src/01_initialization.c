@@ -1,67 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 系统核心地址常量定义
-#define EventHandlerPrimaryAddress       0x180c91700
-#define EventHandlerSecondaryAddress     0x180c91800
-#define FloatTableStartAddress           0x180c8aa70
-#define FloatTableEndAddress         0x180c8ea71
-#define FloatTableSecondStartAddress 0x180c8eb70
-#define SecurityContextAddress        0x180d49d50
-#define MutexPrimaryAddress           0x180c96690
-#define MutexSecondaryAddress         0x180c966f0
-#define MutexTertiaryAddress          0x180c96740
-#define MemoryManagerAddress          0x180c0c340
-#define VirtualTablePointerAddress          0x180c35590
-#define DatabaseAddress                0x180c4f510
-#define MutexQuaternaryAddress        0x180c82170
-#define ControllerAddress               0x180c91060
-#define MutexUnlockAddress            0x180c91970
-#define MutexLockAddress              0x180c91288
-#define ResourceStringAddress         0x180d48d24
-#define StringOffsetAddress           0x180c84871
-#define MutexSecurityAddress          0x180c91910
-#define DataValidationAddress        0x180d49150
 
-// SystemResourceManager结构体字段偏移量
-#define ResourceDataPointerOffset    1
-#define ResourceHashTableOffset     2
-#define ResourceFlagsOffset          4
-#define ResourceMemoryPoolOffset     5
-
-// 系统节点相关常量
-#define NodeActiveFlagOffset         0x19
-#define IdentifierSize                 0x10
-#define NodeNextPointerOffset       2
-#define NodeHeadPointerOffset       0
-#define NodeAllocationExtraSize     0x20
-#define NodeInactiveFlagValue        0
-
-// 系统节点结构体字段索引
-#define NodeIdentifier1Index         6
-#define NodeIdentifier2Index         7
-#define NodeDataPointerIndex        8
-#define NodeActiveFlagIndex           9
-#define NodeHandlerIndex            10
-#define GameCoreIdentifier1             0x4fc124d23d41985f
-#define GameCoreIdentifier2             0xe2f4a30d6e6ae482
-#define GameCoreId                    0x4fc124d23d41985f
-#define GameCoreNodeDataValue          0
-#define BaseAllocatorIdentifier1       0x4770584fbb1df897
-#define BaseAllocatorIdentifier2       0x47f249e43f66f2ab
-#define BaseAllocatorFlag              1
-#define BaseAllocatorNodeDataValue    0
-#define DataTableIdentifier1     0x544e41445441424c
-#define DataTableIdentifier2     0x4552455345525441
-#define DataTableFlag           2
-#define MemoryIdentifier1         0x46ecbd4daf41613e
-#define MemoryIdentifier2         0xdc42c056bbde8482
-#define MemoryFlagValue          0
-#define AllocatorIdentifier1      0x4c868a42644030f6
-#define AllocatorIdentifier2      0xc29193aa9d9b35b9
-#define AllocatorFlagValue        0
-#define ConfigurationIdentifier1  0x40ea3a798283cbbb
-#define ConfigurationIdentifier2  0x7f74eb2c5a7fadae
-#define ConfigurationFlagValue    3
 
 // 系统管理器表偏移量
 #define CompletionPortHandleOffset    0x42686
