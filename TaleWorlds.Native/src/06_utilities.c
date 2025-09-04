@@ -6016,8 +6016,7 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 
 
 
- uint32_t ProcessSystemResource(void)
-/**
+ /**
  * @brief 处理系统资源
  * 
  * 该函数负责处理系统资源，根据资源状态执行相应操作
@@ -6025,9 +6024,7 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
  * 
  * @return 处理结果，0表示成功，非0表示错误码
  */
-uint32_t ProcessSystemResource(void)
-
-{
+uint32_t ProcessSystemResource(void) {
   int64_t ValidatedSystemContext;
   int64_t ResourceProcessingCounter;
   int64_t AdjustedSystemContextPointer;
@@ -6042,7 +6039,7 @@ uint32_t ProcessSystemResource(void)
   if (*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset),1);
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset), 1);
 }
 
 
@@ -6058,16 +6055,10 @@ uint32_t ProcessSystemResource(void)
  * @note 此函数不会返回，会直接终止程序
  * @warning 调用此函数将立即终止系统运行
  */
-void TerminateSystem(void)
-
-{
-        ExecuteSystemExitOperation();
+void TerminateSystem(void) {
+  ExecuteSystemExitOperation();
 }
 
-
-
-
- void PerformNoOperation(void)
 /**
  * @brief 空操作函数
  * 
@@ -6076,9 +6067,7 @@ void TerminateSystem(void)
  * 
  * @return 无返回值
  */
-void ReturnNoOperationPrimary(void)
-
-{
+void ReturnNoOperationPrimary(void) {
   return;
 }
 
@@ -6090,12 +6079,10 @@ void ReturnNoOperationPrimary(void)
  * 该函数负责处理资源操作，根据资源状态执行相应操作
  * 如果资源无效则返回错误码，否则执行资源操作
  * 
- * @param resourceHandle 资源句柄，用于标识要处理的资源
+ * @param ResourceHandle 资源句柄，用于标识要处理的资源
  * @return 处理结果，0表示成功，非0表示错误码
  */
-uint64_t HandleResourceOperation(int64_t ResourceHandle)
-
-{
+uint64_t HandleResourceOperation(int64_t ResourceHandle) {
   uint8_t ValidationResult;
   int64_t ResourceMemoryPointer;
   int64_t ValidatedResourceMemoryAddress;
@@ -19611,22 +19598,22 @@ uint8_t CalculateResourceDataHash(int64_t ResourceContext, uint8_t *ResourceData
 {
   uint8_t ResourceHash;
   uint DataLength;
-  uint lengthBuffer [2];
+  uint LengthBuffer [2];
   
   DataLength = *(int *)(ResourceData + 1) - 1;
   if (*(int *)(ResourceData + 1) < 1) {
     DataLength = 0;
   }
   if (DataLength < 0x8000) {
-    lengthBuffer[0] = CONCAT22(lengthBuffer[0].ShortValue,(short)DataLength);
+    LengthBuffer[0] = CONCAT22(LengthBuffer[0].ShortValue,(short)DataLength);
     ResourceHash = 2;
   }
   else {
     ResourceHash = 4;
-    lengthBuffer[0] = (DataLength & 0xffffc000 | 0x4000) * 2 | DataLength & 0x7fff;
+    LengthBuffer[0] = (DataLength & 0xffffc000 | 0x4000) * 2 | DataLength & 0x7fff;
   }
   ResourceHash = (**(code **)**(uint8_t **)(ResourceContext + 8))
-                    (*(uint8_t **)(ResourceContext + 8),lengthBuffer,ResourceHash);
+                    (*(uint8_t **)(ResourceContext + 8),LengthBuffer,ResourceHash);
   if ((int)ResourceHash == 0) {
     if ((DataLength != 0) &&
        (ResourceHash = (**(code **)**(uint8_t **)(ResourceContext + 8))
