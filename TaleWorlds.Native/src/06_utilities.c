@@ -94212,7 +94212,7 @@ void UnwindSystemResourceValidation(uint8_t ObjectContext,int64_t ValidationCont
  * @note 此函数在异常处理的unwind过程中调用
  * @warning 调用此函数会释放系统资源
  */
-void UnwindResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ProcessPointer;
@@ -96116,7 +96116,18 @@ void ExecuteSystemResourceHandlerReset(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_18090f670(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行扩展系统资源处理器重置操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行扩展系统资源处理器的重置操作
+ * 重置扩展系统资源处理器的状态并确保系统的一致性
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f670
+ */
+void ExecuteExtendedSystemResourceHandlerReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -96134,7 +96145,18 @@ void Unwind_18090f670(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f690(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表遍历清理操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行资源表的遍历清理操作
+ * 遍历资源表中的所有资源并执行最终的清理操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f690
+ */
+void ExecuteResourceTableTraversalCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
