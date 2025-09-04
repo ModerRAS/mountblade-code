@@ -93754,7 +93754,18 @@ void Unwind_18090eda0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090edb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希处理模板
+ * 
+ * 该函数负责初始化资源哈希处理的模板。
+ * 设置资源分配模板和资源缓存模板到资源哈希指针。
+ * 
+ * @param ObjectContext 对象上下文，指定要操作的对象
+ * @param ValidationContext 验证上下文，包含资源哈希信息
+ * 
+ * @remark 原始函数名：Unwind_18090edb0
+ */
+void InitializeResourceHashProcessingTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
