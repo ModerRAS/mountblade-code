@@ -792,6 +792,7 @@ uint32_t NetworkConnectionPoolUsageStatistics;           // 网络连接池使�
  * 它是网络连接管理的核心数据结构，提供了高效的连接查找和管理功能。
  */
 uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
+uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑定状态，表示套接字是否已绑定到地址
 
 // 网络连接池和套接字管理函数
 
@@ -984,8 +985,6 @@ void BindNetworkSocketToAddress(void)
   NetworkReceiveBufferCapacity = BUFFER_CAPACITY;              // 设置接收缓冲区容量为128KB
 }
 
-// 网络套接字绑定状态标志
-uint32_t NetworkSocketBindingStatus;
 
 /**
  * @brief 开始监听网络连接
