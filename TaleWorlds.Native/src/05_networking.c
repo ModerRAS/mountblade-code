@@ -916,7 +916,7 @@ uint32_t NetworkConnectionRoutingPrimaryConfig = 0x00;    // 网络连接路由�
  * 
  * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
  */
-uint32_t NetworkConnectionRoutingConfigSecondaryData = 0x00;  // 网络连接路由次要配置数据
+uint32_t NetworkConnectionRoutingSecondaryConfig = 0x00;  // 网络连接路由次要配置数据
 
 /**
  * @brief 网络连接路由第三配置数据
