@@ -83581,10 +83581,16 @@ void SetSystemDataStructurePointerToValidationContext5A0(uint8_t ObjectContext, 
 
 
 /**
- * 释放资源引用计数器并调用资源管理器清理函数
- * 用于在异常处理过程中减少资源引用计数
+ * @brief 释放资源引用计数器并调用资源管理器清理函数
+ * 
+ * 在异常处理过程中减少资源引用计数，并调用资源管理器的清理函数。
+ * 该函数用于确保在异常情况下资源引用计数能够正确递减，
+ * 同时触发资源管理器的清理操作。
+ * 
+ * @note 原始函数名：Unwind_ReleaseResourceReferenceAndCleanup
+ * @warning 此函数在异常处理过程中被调用，确保资源引用计数的正确性
  */
-void Unwind_ReleaseResourceReferenceAndCleanup(void)
+void ReleaseResourceReferenceAndCleanup(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
@@ -92596,7 +92602,14 @@ void ExecuteResourceCleanupAtContextOffset28Plus58(uint8_t ObjectContext,int64_t
 
 
 
-void Unwind_18090e970(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理系统上下文索引为0xf0的资源清理回调
+ * 该函数检查并执行系统上下文中指定索引的资源清理回调
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e970
+ */
+void ProcessSystemContextAtIndexF0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xf0) != (int64_t *)0x0) {
@@ -92607,7 +92620,14 @@ void Unwind_18090e970(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e980(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理系统上下文索引为0x158的资源清理回调
+ * 该函数检查并执行系统上下文中指定索引的资源清理回调
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e980
+ */
+void ProcessSystemContextAtIndex158(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0xf8) = &SystemResourceHandlerTemplate;
@@ -95130,7 +95150,14 @@ void ProcessResourceCleanupAtOffset458(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_18090f550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x460的资源清理操作
+ * 该函数从验证上下文偏移0x460处获取资源上下文，并执行资源清理操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090f550
+ */
+void ProcessResourceCleanupAtOffset460(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
