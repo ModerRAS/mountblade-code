@@ -1094,6 +1094,27 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define SystemDataValidationPointerSecondary 0x002
 #define SystemDataValidationPointerTertiary 0x003
 
+// 上下文偏移量常量
+#define ContextProcessingDataOffset 0x200
+#define ContextValidationDataOffset 0x34
+#define ContextArrayDataOffset 0x18
+#define ContextElementDataOffset 0x20
+#define ContextSecondaryArrayOffset 0x90
+#define ContextResourceHashSystemContextOffset 0x98
+#define ContextResourceDataPointerOffset 0x20
+#define ContextResourceDataSizeOffset 0x18
+#define ContextFloatRangeMinOffset 0x38
+#define ContextFloatRangeMaxOffset 0x3c
+#define ContextValidationStatusCodeOffset 0x90
+#define ContextSystemContextPointerOffset 0x2e8
+#define ContextStackSecurityDataOffset 0xd0
+#define ContextSecurityValidationOffset 0x4c
+#define ContextStackParameterOffset 0x30
+#define ContextResourceValidationFlagsOffset 0x34
+#define ContextResourceRangeMinOffset 0x3c
+#define ContextResourceRangeMaxOffset 0x40
+#define ContextResourceSecondaryOffset 0xac
+
 /**
  * @brief 初始化模块依赖关系
  * 
@@ -8370,7 +8391,7 @@ uint8_t ValidateAndProcessComplexObjectContext(int64_t ObjectContext, int64_t Sy
     return ProcessingResult;
   }
   ContextPointer = *(int64_t *)(SystemContext + SystemResourceManagerOffset);
-  if (*(int *)(ContextPointer + 0x200) == 0) {
+  if (*(int *)(ContextPointer + ContextProcessingDataOffset) == 0) {
     return 0;
   }
   if ((*(int *)(ContextPointer + SystemContextStatusFlag1Offset) != 0) || (*(int *)(ContextPointer + SystemContextStatusFlag2Offset) != 0)) {
