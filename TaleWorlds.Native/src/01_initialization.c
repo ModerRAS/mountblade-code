@@ -52865,7 +52865,7 @@ LABEL_SYSTEM_MEMORY_INITIALIZATION_START:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
   }
-LABEL_SYSTEM_MEMORY_PROCESSING_CONTINUE:
+LABEL_MEMORY_PROCESSING_CONTINUE:
   *(void*2 *)(SystemMemoryContext + StackValue2) = 10;
   StackValue2 = systemIndex;
   if (resourceCounter != 0) {
@@ -53075,13 +53075,13 @@ LABEL_SYSTEM_MEMORY_PROCESSING_CONTINUE:
     if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
-LABEL_SYSTEM_CLEANUP_COMPLETE:
+LABEL_SYSTEM_RESOURCE_CLEANUP_COMPLETE:
     SystemThreadState = 0;
     SystemResourceHandleF0 = (void* *)0x0;
     pMemoryBufferPointer = &SystemMemoryAllocatorReference;
       ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemConcatenatedBuffer448);
   }
-LABEL_SYSTEM_DATA_BUFFER_SETUP:
+LABEL_SYSTEM_DATA_BUFFER_INITIALIZATION:
   SystemDataBufferPointer = &SystemStringTemplate;
   if (pSystemResourceDataIndex != (void* *)0x0) {
     SystemDataBufferPointer = pSystemResourceDataIndex;
@@ -53185,7 +53185,7 @@ void InitializeSystemResourceManager(void* SystemResourceManager,long long Confi
     stackParameterOffset = 0x11;
     threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x13,0x13);
     *threadObjectPointer = 0;
-LABEL_THREAD_OBJECT_INITIALIZATION:
+LABEL_SYSTEM_THREAD_INITIALIZATION:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
