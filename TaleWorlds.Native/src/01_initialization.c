@@ -20387,7 +20387,18 @@ void UnlockSystemMutex(void* *MutexHandle)
 
 
 
-// 函数: void LockSystemMutexAndBroadcast(long long SystemResourceManager)
+/**
+ * @brief 锁定系统互斥锁并广播条件变量
+ * 
+ * 该函数负责锁定系统互斥锁，设置广播标志，然后广播条件变量，
+ * 最后解锁互斥锁。这是一个完整的同步操作序列。
+ * 
+ * @param SystemContextPointer 系统上下文指针
+ * 
+ * @note 这是系统线程同步的重要组成部分，确保条件变量的正确广播
+ * @note 函数会处理锁定、广播和解锁的完整序列
+ * @note 任何步骤失败都会抛出C标准错误
+ */
 void LockSystemMutexAndBroadcast(long long SystemContextPointer)
 
 {
