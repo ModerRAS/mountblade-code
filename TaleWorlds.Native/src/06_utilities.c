@@ -5144,15 +5144,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于增加系统对象的引用计数，确保对象在使用过程中不会被意外释放
- * 包含对象上下文验证和系统状态检查
- * 
- * @param ObjectContext 对象上下文指针，包含对象的元数据和控制信息
- * @return uint8_t 操作状态码，0表示成功，非0表示错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数用于增加系统对象的引用计数，确保对象在内存中的正确管理
  * 包含对象上下文验证、内存地址调整和引用计数更新操作
  * 
@@ -18759,7 +18750,7 @@ uint8_t ResourceIntegrityValidator(int64_t ObjectContext, uint32_t *ValidationCo
        (((*(byte *)(ValidationContext + 1) & 0x20) == 0 ||
         (ResourceIndex = GetResourceStatus(ObjectContext,ValidationContext + 2), ResourceIndex == 0)))) &&
       (((ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + ValidationContextPropertyOffset5), ResourceIndex == 0 &&
-        (ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + 0xf), ResourceIndex == 0)) &&
+        (ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + ValidationContextPropertyOffset6), ResourceIndex == 0)) &&
        (ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + ValidationContextMethodPointerOffset), ResourceIndex == 0)))) &&
      (ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + 0x11), ResourceIndex == 0)) {
     if ((ValidationContext[1] & 0x100) != 0) {
