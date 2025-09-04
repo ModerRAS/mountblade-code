@@ -700,6 +700,7 @@ uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时�
 uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
 uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
 uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
+uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板，用于格式化错误报告数据
 
 // 网络协议和地址配置
 uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）

@@ -25135,14 +25135,14 @@ uint64_t ResourceDataVerifier(int64_t ObjectContext,int64_t *ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
-  uint ResourceHashStatus;
+  uint ResourceValidationCode;
   uint64_t ResourceHashStatus;
   int ResultRecordIndex;
   uint ResourceValidationBuffer [2];
   uint StackContextBuffer [2];
   uint8_t EncryptedDataBuffer [32];
   
-  ValidationStatusCode = ComputeDataChecksum(ValidationContext,EncryptedDataBuffer,0,0x46454d50);
+  ResourceHashStatus = ComputeDataChecksum(ValidationContext,EncryptedDataBuffer,0,0x46454d50);
   if ((int)ResourceHashStatus != 0) {
     return ResourceHashStatus;
   }
@@ -90424,7 +90424,17 @@ void ExecuteSystemResourceCallbackAtOffset1400(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090dfa0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调函数64
+ * 
+ * 该函数从指定的验证上下文中获取资源上下文，并执行资源处理回调函数
+ * 通过偏移量0x1418来定位资源上下文，并调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @note 原始函数名：Unwind_18090dfa0
+ */
+void ExecuteResourceProcessingCallback64(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90438,7 +90448,17 @@ void Unwind_18090dfa0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090dfc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调函数65
+ * 
+ * 该函数从指定的验证上下文中获取资源上下文，并执行资源处理回调函数
+ * 通过偏移量0x1430来定位资源上下文，并调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @note 原始函数名：Unwind_18090dfc0
+ */
+void ExecuteResourceProcessingCallback65(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90452,7 +90472,17 @@ void Unwind_18090dfc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090dfe0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调函数66
+ * 
+ * 该函数从指定的验证上下文中获取资源上下文，并执行资源处理回调函数
+ * 通过偏移量0x1448来定位资源上下文，并调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @note 原始函数名：Unwind_18090dfe0
+ */
+void ExecuteResourceProcessingCallback66(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
