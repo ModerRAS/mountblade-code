@@ -979,9 +979,9 @@ void InitializeNetworkSocketHandle(void)
   NetworkSocketContext = 0;                         // 重置套接字上下文
   
   // 初始化网络配置
-  NetworkProtocolVersion = PROTOCOL_VERSION_1;                    // 设置协议版本为1.0
-  NetworkConnectionMode = CONNECTION_MODE_CLIENT;                      // 设置连接模式为客户端模式
-  NetworkConnectionPriority = CONNECTION_PRIORITY_MEDIUM;                 // 设置连接优先级为中等
+  NetworkProtocolVersion = NetworkProtocolVersionOne;                    // 设置协议版本为1.0
+  NetworkConnectionMode = NetworkConnectionModeClient;                      // 设置连接模式为客户端模式
+  NetworkConnectionPriority = NetworkConnectionPriorityMedium;                 // 设置连接优先级为中等
 }
 
 /**
@@ -1071,27 +1071,27 @@ void StartListeningForNetworkConnections(void)
 void AcceptNetworkConnection(void)
 {
   // 分配新的连接资源
-  NetworkConnectionActiveContext = CONNECTION_CONTEXT_ENABLED;                      // 初始化连接上下文
+  NetworkConnectionActiveContext = NetworkConnectionContextEnabled;                      // 初始化连接上下文
   NetworkConnectionContextSize = CONTEXT_SIZE_512B;                // 设置连接上下文大小
   
   // 设置连接参数
-  NetworkConnectionQuality = CONNECTION_QUALITY_GOOD;                     // 设置连接质量为良好
-  NetworkConnectionBandwidth = BANDWIDTH_4KB;                 // 设置连接带宽为4KB
-  NetworkConnectionLatency = LATENCY_50MS;                     // 设置连接延迟为50ms
-  NetworkConnectionReliabilityLevel = HIGH_RELIABILITY_LEVEL;                 // 设置连接可靠性为高
+  NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
+  NetworkConnectionBandwidth = NetworkBandwidthFourKilobytes;                 // 设置连接带宽为4KB
+  NetworkConnectionLatency = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
+  NetworkConnectionReliabilityLevel = NetworkReliabilityLevelHigh;                 // 设置连接可靠性为高
   
   // 初始化安全参数
-  NetworkSecurityLevel = SECURITY_LEVEL_HIGH;                         // 设置安全级别为高
-  NetworkAuthenticationType = AUTH_TYPE_PASSWORD;                    // 设置认证类型为密码认证
-  NetworkEncryptionAlgorithm = ENCRYPTION_AES;                   // 设置加密算法为AES
-  NetworkCompressionMethod = COMPRESSION_ZLIB;                      // 设置压缩方法为ZLIB
+  NetworkSecurityLevel = NetworkSecurityLevelHigh;                         // 设置安全级别为高
+  NetworkAuthenticationType = NetworkAuthenticationTypePassword;                    // 设置认证类型为密码认证
+  NetworkEncryptionAlgorithm = NetworkEncryptionAlgorithmAES;                   // 设置加密算法为AES
+  NetworkCompressionMethod = NetworkCompressionMethodZLIB;                      // 设置压缩方法为ZLIB
   
   // 初始化会话参数
-  NetworkSessionEncryptionKey = DEFAULT_SESSION_ENCRYPTION_KEY;    // 设置会话加密密钥为默认值
-  NetworkSessionTimeoutDuration = TIMEOUT_5_MINUTES;              // 设置会话超时时间为300秒
-  NetworkHandshakeTimeout = TIMEOUT_5_SECONDS;                     // 设置握手超时时间为5秒
-  NetworkAuthenticationTimeout = TIMEOUT_5_SECONDS;               // 设置认证超时时间为5秒
-  NetworkEncryptionTimeout = TIMEOUT_5_SECONDS;                   // 设置加密超时时间为5秒
+  NetworkSessionEncryptionKey = NetworkDefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
+  NetworkSessionTimeoutDuration = NetworkTimeoutFiveMinutes;              // 设置会话超时时间为300秒
+  NetworkHandshakeTimeout = NetworkTimeoutFiveSeconds;                     // 设置握手超时时间为5秒
+  NetworkAuthenticationTimeout = NetworkTimeoutFiveSeconds;               // 设置认证超时时间为5秒
+  NetworkEncryptionTimeout = NetworkTimeoutFiveSeconds;                   // 设置加密超时时间为5秒
   
   // 更新连接统计
   NetworkActiveConnectionsCount++;                     // 增加活跃连接计数
