@@ -87,6 +87,8 @@
 // 字符串缓冲区偏移量常量
 #define SystemStringLengthOffset        0x10
 #define SystemStringBufferOffset       8
+#define STRING_LENGTH_OFFSET           SystemStringLengthOffset
+#define STRING_DATA_OFFSET             SystemStringBufferOffset
 
 // 系统标识符常量
 #define SystemEventSystemIdentifier1          0x45b8d074df27d12f
@@ -19356,13 +19358,13 @@ uint32_t FinalSystemInitialization(void)
   long long*** TemporaryManager9;
   long long SystemObjectHandle;
   char SystemActiveStatus;
-  long long**** StackManager8;
-  long long*** StackManager10;
-  long long** StackController18;
-  long long*** StackManager20;
+  long long**** SystemStackManager;
+  long long*** SystemCallbackManager;
+  long long** SystemStackController;
+  long long*** SystemSecondaryStackManager;
   void* CalculationFlags;
-  long long***** SystemSuperManager;
-  long long**** TemporaryManager14;
+  long long***** SystemGlobalManager;
+  long long**** SystemTemporaryManager;
   long long SystemValue;
   void* ResourceAddress;
   
@@ -19454,9 +19456,9 @@ uint32_t FinalSystemInitialization(void)
   if (SystemManagerPointerStorage != (long long ****)0x0) {
     SystemManagerPointer = __RTCastToVoid(SystemManagerPointerStorage);
     *SystemManagerTable = (long long ***)&SystemManagerCompletionTable;
-    PostQueuedCompletionStatus(SystemManagerTable[0x42686],0,0xffffffffffffffff);
-    CloseHandle(SystemManagerTable[0x42686]);
-    SystemResourceManager = (long long ***)(SystemManagerTable + 0x42687);
+    PostQueuedCompletionStatus(SystemManagerTable[SystemCompletionPortHandleOffset],0,0xffffffffffffffff);
+    CloseHandle(SystemManagerTable[SystemCompletionPortHandleOffset]);
+    SystemResourceManager = (long long ***)(SystemManagerTable + SystemResourceManagerOffset);
     if ((long long ***)*SystemCleanupFlagPointer != (long long ***)0x0) {
         SystemCleanupFunction();
     }
@@ -19699,16 +19701,16 @@ void* CleanupSystemCompletionPortResources(void* SystemResourceHandle, uint32_t 
 
 {
   *SystemResourceHandle = &SystemCompletionPortTemplate;
-  PostQueuedCompletionStatus(SystemResourceHandle[0x42686],0,0xffffffffffffffff,0,InvalidHandleValue);
-  CloseHandle(SystemResourceHandle[0x42686]);
-  if (SystemResourceHandle[0x42687] != 0) {
+  PostQueuedCompletionStatus(SystemResourceHandle[SystemCompletionPortHandleOffset],0,0xffffffffffffffff,0,InvalidHandleValue);
+  CloseHandle(SystemResourceHandle[SystemCompletionPortHandleOffset]);
+  if (SystemResourceHandle[SystemResourceManagerOffset] != 0) {
       TerminateSystemProcess();
   }
   _Mtx_destroy_in_situ();
   _Mtx_destroy_in_situ();
   CleanupSystemResourceData(SystemResourceHandle);
   if ((CleanupFlags & 1) != 0) {
-    free(SystemResourceHandle,0x213458);
+    free(SystemResourceHandle,SystemMemoryFreeSize);
   }
   return SystemResourceHandle;
 }

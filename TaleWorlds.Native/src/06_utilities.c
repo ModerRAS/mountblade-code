@@ -6073,21 +6073,21 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
  * @return 处理结果状态码，0表示成功，非0表示错误码
  */
 uint32_t ProcessSystemResource(void) {
-  int64_t SystemContextToValidate;
-  int64_t ResourceProcessingIterator;
-  int64_t AdjustedSystemContextPointer;
+  int64_t SystemContextToProcess;
+  int64_t ResourceProcessingIndex;
+  int64_t AdjustedSystemContextAddress;
   
-  SystemContextToValidate = SystemInputParameter;
-  if (SystemContextToValidate == 0) {
-    AdjustedSystemContextPointer = 0;
+  SystemContextToProcess = SystemInputParameter;
+  if (SystemContextToProcess == 0) {
+    AdjustedSystemContextAddress = 0;
   }
   else {
-    AdjustedSystemContextPointer = SystemContextToValidate - 8;
+    AdjustedSystemContextAddress = SystemContextToProcess - 8;
   }
-  if (*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(AdjustedSystemContextAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedSystemContextAddress + ObjectContextOffset), 1);
 }
 
 
@@ -6139,22 +6139,22 @@ void PerformNoOperation(void) {
  * @return 操作结果或资源数据，0表示成功，非0表示错误码
  */
 uint64_t HandleResourceOperation(int64_t ResourceHandle) {
-  uint8_t ValidationResult;
-  int64_t ResourceMemoryPointer;
+  uint8_t ResourceValidationStatus;
+  int64_t AdjustedResourceMemoryPointer;
   int64_t ValidatedResourceMemoryAddress;
   
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextOffset),&ValidatedResourceMemoryAddress);
-  if ((int)ValidationResult != 0) {
-    return ValidationResult;
+  ResourceValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextOffset),&ValidatedResourceMemoryAddress);
+  if ((int)ResourceValidationStatus != 0) {
+    return ResourceValidationStatus;
   }
-  ResourceMemoryPointer = ValidatedResourceMemoryAddress - 8;
+  AdjustedResourceMemoryPointer = ValidatedResourceMemoryAddress - 8;
   if (ValidatedResourceMemoryAddress == 0) {
-    ResourceMemoryPointer = 0;
+    AdjustedResourceMemoryPointer = 0;
   }
-  if (*(int64_t *)(ResourceMemoryPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(AdjustedResourceMemoryPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(ResourceMemoryPointer + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(AdjustedResourceMemoryPointer + ObjectContextOffset),1);
 }
 
 
@@ -66628,7 +66628,16 @@ void CleanupResourceTransactionHandler(uint8_t ObjectContext, int64_t Validation
 
 
 
-void UnwindSystemValidator180908990(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 清理系统验证器
+ * 
+ * 该函数用于清理系统验证相关的资源和上下文
+ * 主要处理次要资源上下文的清理工作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的系统信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ */
+void CleanupSystemValidator(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ResourceContextSecondaryOffset) != (int64_t *)0x0) {
@@ -76530,15 +76539,15 @@ void ValidateObjectContextSecurity(uint8_t ObjectContext, int64_t ValidationCont
 
 
 /**
- * @brief 处理资源上下文调用0x270
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
+ * @brief 执行资源上下文调用操作
  * 
- * 该函数从系统上下文中获取0x270偏移处的资源上下文，
- * 并执行相应的资源处理操作。
- * @remark 原始函数名：Unwind_18090aeb0
+ * 该函数用于执行资源上下文的调用操作，从系统上下文中获取指定偏移处的资源上下文
+ * 然后调用相应的资源处理函数
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
  */
-void ExecuteResourceContextCall270(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteResourceContextOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -76561,7 +76570,16 @@ void ExecuteResourceContextCall270(uint8_t ObjectContext, int64_t ValidationCont
  * 并执行相应的资源处理操作。
  * @remark 原始函数名：Unwind_18090aed0
  */
-void ExecuteResourceContextCall278(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文调用操作（278版本）
+ * 
+ * 该函数用于执行资源上下文的调用操作，处理278版本的操作
+ * 从系统上下文中获取资源上下文并执行相应的处理
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ */
+void ExecuteResourceContextOperation278(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -76584,7 +76602,16 @@ void ExecuteResourceContextCall278(uint8_t ObjectContext, int64_t ValidationCont
  * 并执行相应的资源处理操作。
  * @remark 原始函数名：Unwind_18090aef0
  */
-void ExecuteResourceContextCall280(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文调用操作（280版本）
+ * 
+ * 该函数用于执行资源上下文的调用操作，处理280版本的操作
+ * 从系统上下文中获取资源上下文并执行相应的处理
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ */
+void ExecuteResourceContextOperation280(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -77265,7 +77292,16 @@ void ExecuteResourceContextCallback4(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void ExecuteResourceCleanupOperation290(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理操作（290版本）
+ * 
+ * 该函数用于执行资源的清理操作，处理290版本的清理工作
+ * 从系统上下文中获取资源上下文并执行相应的清理处理
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ */
+void ExecuteResourceCleanupOperation290(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79390,7 +79426,18 @@ void Unwind_18090bfe0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c000(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源操作回滚
+ * 
+ * 该函数用于处理资源操作的回滚和清理工作
+ * 通过ProcessResourceOperation函数处理具体的资源操作
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为的标志位
+ */
+void ProcessResourceOperationRollback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + 0x20) + 0xa0,
@@ -79401,7 +79448,18 @@ void Unwind_18090c000(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源数据传输回滚
+ * 
+ * 该函数用于处理资源数据传输的回滚操作
+ * 通过HandleResourceDataTransfer函数处理具体的数据传输回滚
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为的标志位
+ */
+void HandleResourceDataTransferRollback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(ValidationContext + 0x28),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x10),
@@ -79411,7 +79469,18 @@ void Unwind_18090c020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c030(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源数据传输回滚（重复函数）
+ * 
+ * 该函数用于处理资源数据传输的回滚操作
+ * 与上一个函数功能相同，可能是不同的调用路径
+ * 
+ * @param ObjectContext 对象上下文，包含要处理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为的标志位
+ */
+void HandleResourceDataTransferRollbackAlt(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(ValidationContext + 0x28),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x10),
