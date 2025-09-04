@@ -94333,7 +94333,7 @@ void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_18090ef90(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterResourceHandlerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x30,0x30,0xe,ResourceTypeHandler030);
@@ -94342,7 +94342,7 @@ void Unwind_18090ef90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090efc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceProcessingHandler(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2d0,
@@ -94353,7 +94353,7 @@ void Unwind_18090efc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090efe0(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceTableEntries(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -94397,7 +94397,7 @@ void Unwind_18090efe0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f000(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceTableCallbacks(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94428,7 +94428,7 @@ void Unwind_18090f000(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessSecondaryResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceProcessingHandler(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10),
@@ -94438,7 +94438,7 @@ void Unwind_18090f020(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f030(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessSecondaryResourceCleanup2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ResourceProcessingHandler(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10),
