@@ -91608,12 +91608,22 @@ void ExecuteResourceLoopProcessing(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_18090e770(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源标志位1
+ * 
+ * 在系统unwind过程中清理资源数据的第1个标志位，
+ * 并释放相关的系统资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e770
+ */
+void CleanupResourceFlag1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  if ((*(uint *)(ResourceData + 0x34) & 1) != 0) {
-    *(uint *)(ResourceData + 0x34) = *(uint *)(ResourceData + 0x34) & 0xfffffffe;
-    ProcessResourceOperation(ValidationContext + 0x70);
+  if ((*(uint *)(ResourceData + ResourceDataStatusFlagsOffset) & ResourceFlag1Mask) != 0) {
+    *(uint *)(ResourceData + ResourceDataStatusFlagsOffset) = *(uint *)(ResourceData + ResourceDataStatusFlagsOffset) & ResourceFlag1ClearMask;
+    ProcessResourceOperation(ValidationContext + ResourceOperationPrimaryOffset);
   }
   return;
 }
