@@ -22553,8 +22553,7 @@ void DestroySystemMutexAndConditionVariable(void* conditionVariable)
  * @note 这是系统同步机制的重要组成部分，确保多线程环境下的正确同步
  */
 void* *
-InitializeSystemSyncObject(void* *SyncObject,void* SyncContextParameter,void* SyncConfigurationParameter,void* SyncSecurityParameter)
-
+InitializeSystemSyncObject(void* *SyncObject, void* SyncContextParameter, void* SyncConfigurationParameter, void* SyncSecurityParameter)
 {
   void* SystemErrorFlag;
   
@@ -22569,7 +22568,7 @@ InitializeSystemSyncObject(void* *SyncObject,void* SyncContextParameter,void* Sy
   SyncObject[3] = MAX_UINT64_VALUE;
   *SyncObject = &SystemMutexTemplate;
   _Cnd_init_in_situ(SyncObject + 4);
-  _Mtx_init_in_situ(SyncObject + 0xd,2,SyncConfigurationParameter,SyncSecurityParameter,SystemErrorFlag);
+  _Mtx_init_in_situ(SyncObject + 0xd, 2, SyncConfigurationParameter, SyncSecurityParameter, SystemErrorFlag);
   *(uint8_t *)(SyncObject + 0x17) = 0;
   return SyncObject;
 }
