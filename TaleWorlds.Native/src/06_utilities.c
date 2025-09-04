@@ -4877,14 +4877,14 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
         if (ValidationContext == ResourceTableIterator) break;
         ResourceDataPointer = (int64_t *)(*ValidationContext - ResourceTablePointerEntrySize);
         if (*ValidationContext == 0) {
-          ResourceData = NullPointer;
+          ResourceDataPointer = NullPointer;
         }
-        ContextData = NullPointer;
-        if (ResourceData != (int64_t *)0x0) {
-          ContextData = ResourceData + ResourcePointerOffset;
+        ValidationContext = NullPointer;
+        if (ResourceDataPointer != (int64_t *)0x0) {
+          ValidationContext = ResourceDataPointer + ResourcePointerOffset;
         }
-        ResourceTablePointer = ResourceTablePointer + ResourcePointerOffset;
-        ResourceIndexPointer++;
+        ResourceTableIterator = ResourceTableIterator + ResourcePointerOffset;
+        ResourceEntryIndex++;
       }
       return ErrorInvalidObjectHandle;
     }
@@ -14544,7 +14544,7 @@ void ProcessComplexResourceWithRegisters(void)
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = calculatedQuinaryResult;
+          FinalResultFloat = CalculatedQuinaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
