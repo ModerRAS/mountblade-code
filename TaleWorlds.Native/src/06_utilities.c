@@ -5291,24 +5291,24 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
  */
 uint32_t ValidateObjectHandleFromRegisterAlternate(void)
 {
-  int64_t RegisterObjectContext;
-  int64_t ValidatedMemoryAddress;
+  int64_t RegisterObjectPointer;
+  int64_t AdjustedMemoryAddress;
   
-  // 根据寄存器上下文计算验证后的内存地址
-  if (RegisterObjectContext == 0) {
-    ValidatedMemoryAddress = 0;
+  // 根据寄存器对象指针计算调整后的内存地址
+  if (RegisterObjectPointer == 0) {
+    AdjustedMemoryAddress = 0;
   }
   else {
-    ValidatedMemoryAddress = RegisterObjectContext - 8;
+    AdjustedMemoryAddress = RegisterObjectPointer - 8;
   }
   
   // 验证对象句柄是否有效
-  if (*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(AdjustedMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedMemoryAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
