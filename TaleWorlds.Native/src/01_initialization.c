@@ -25920,7 +25920,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   int SystemContextPointer;
   long long SystemThreadIndex;
   ulong long ThreadCreationFlags;
-  void* *ResourceHashEntryPointer2;
+  void* *SystemResourceHashTableSecondary;
   uint InitializationFlags;
   long long SystemThreadHandleSecondary;
   ulong long SecurityParameter;
