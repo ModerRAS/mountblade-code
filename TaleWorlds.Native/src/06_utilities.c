@@ -85113,7 +85113,22 @@ void ExecuteSystemResourceCallbackCleanupTertiary(uint8_t ObjectContext, int64_t
 
 
 
-void Unwind_18090cfd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源解锁和错误处理
+ * 
+ * 该函数负责执行系统资源解锁操作和错误处理，主要功能包括：
+ * - 设置全局展开上下文
+ * - 解锁系统互斥锁
+ * - 处理资源解锁过程中的错误
+ * - 抛出标准C错误（如果需要）
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的资源对象
+ * @param ValidationContext 验证上下文，包含验证数据和状态信息
+ * 
+ * @note 这是简化实现，仅执行基本的解锁和错误处理操作
+ * @warning 原始函数名：Unwind_18090cfd0
+ */
+void ExecuteSystemResourceUnlockAndErrorHandling(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
