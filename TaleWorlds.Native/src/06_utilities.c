@@ -90736,7 +90736,7 @@ void RegisterResourceHandlerAtOffset1578(uint8_t ObjectContext, int64_t Validati
 
 
 
-void Unwind_18090e1e0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceProcessingCallbackAtOffset1588(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90765,7 +90765,7 @@ void RegisterResourceTypeHandler238AtOffset1598(uint8_t ObjectContext, int64_t V
 
 
 
-void Unwind_18090e240(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterResourceHandler488AtOffset1A18(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x1a18,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
@@ -91589,7 +91589,15 @@ void Unwind_18090e800(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e810(void)
+/**
+ * @brief 释放资源引用计数并调用资源管理器
+ * 
+ * 在系统unwind过程中减少资源引用计数，
+ * 并调用资源管理器的处理函数。
+ * 
+ * @note 原始函数名：Unwind_18090e810
+ */
+void ReleaseResourceReferenceAndCallManager(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
