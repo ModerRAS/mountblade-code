@@ -4822,7 +4822,7 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
       }
       else {
         // 验证对象注册数据
-        uint8_t DataValidationResult = ValidateObjectRegistrationData(RegistrationData + RegistrationValidationDataOffset, RegistrationHandle);
+        uint8_t DataValidationResult = ValidateObjectRegistrationData(ObjectRegistrationData + RegistrationValidationDataOffset, RegistrationHandle);
         if ((int)DataValidationResult != 0) {
           return DataValidationResult;
         }
