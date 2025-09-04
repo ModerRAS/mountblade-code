@@ -4533,7 +4533,7 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int ValidationStatusCode;
+  int ValidationResultCode;
   int64_t CollectionItemIterator;
   int ProcessedItemCount;
   uint8_t SecurityMetadataBuffer[32];
@@ -4548,8 +4548,8 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)SecurityMetadataBuffer;
   
   // 获取上下文句柄
-  ValidationStatusCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ContextHandleArray);
-  if ((ValidationStatusCode == 0) && (*(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset) != 0)) {
+  ValidationResultCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ContextHandleArray);
+  if ((ValidationResultCode == 0) && (*(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset) != 0)) {
     ObjectListBuffer = DataProcessingBuffer;
     ProcessedItemCount = 0;
     TotalItemCount = 0;

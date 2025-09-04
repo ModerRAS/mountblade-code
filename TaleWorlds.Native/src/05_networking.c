@@ -1573,23 +1573,23 @@ void NetworkInitializeConnectionState(void)
   int64_t NetworkContextPointer;                    // 网络上下文指针
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
   if (*(int *)(*(int64_t *)(NetworkSystemContext + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkSessionIdentifier) {
-    *ConnectionStateBuffer = 0;  // 重置状态缓冲区
+    *NetworkConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + 8) = ((int)ConnectionStateBuffer - ConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + 8) = ((int)NetworkConnectionStateBuffer - ConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
     NetworkInitializationResult = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextPointer + NetworkContextSystemOffset));
     if (NetworkInitializationResult == 0) {
-      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateDataOffset);
+      *NetworkConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateDataOffset);
     }
     CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
-  CopyConnectionBuffer(ConnectionStateBuffer);
+  CopyConnectionBuffer(NetworkConnectionStateBuffer);
 }
 
 /**
