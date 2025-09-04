@@ -6059,7 +6059,7 @@ uint32_t ProcessSystemResource(void) {
   int64_t ResourceProcessingIterator;
   int64_t CalculatedSystemContextPointer;
   
-  SystemContextToValidate = InputParameter;
+  SystemContextToValidate = SystemInputParameter;
   if (SystemContextToValidate == 0) {
     CalculatedSystemContextPointer = 0;
   }
@@ -6155,7 +6155,7 @@ uint32_t ProcessResourceTask(void)
   int64_t ResourceTaskInputParameter;
   int64_t ResourceTaskContext;
   
-  ResourceTaskInputParameter = InputParameter;
+  ResourceTaskInputParameter = SystemInputParameter;
   ResourceTaskContext = ResourceTaskInputParameter - 8;
   if (ResourceTaskInputParameter == 0) {
     ResourceTaskContext = 0;
