@@ -1984,7 +1984,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   
   NetworkConnectionStatusBufferPointer = (NetworkStatus *)0x0;
   if (NetworkConnectionUpdateOperationCode == 0) {
-NetworkMainProcessingLoop:
+NetworkPrimaryProcessingLoop:
     if ((0 < *(int *)((long long)NetworkConnectionOperationBuffer + ConnectionParameterOffset)) && (*NetworkConnectionOperationBuffer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *NetworkConnectionOperationBuffer, &NetworkSecurityValidationInfo, SecurityValidationBufferSize, 1);
     }
@@ -2015,7 +2015,7 @@ NetworkMainProcessingLoop:
           NetworkStatusBuffer = NetworkStatusBuffer + ConnectionContextStatusEntrySize;
         } while (NetworkStatusProcessingIterator != 0);
       }
-NetworkProcessingLoop:
+NetworkSecondaryProcessingLoop:
       // 网络处理循环完成，继续后续处理
       return 0;
     }

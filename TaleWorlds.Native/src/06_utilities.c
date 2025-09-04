@@ -86228,7 +86228,13 @@ void ExecuteResourceHashStatusValidationAndCleanupOffset290(uint8_t ObjectContex
 
 
 
-void Unwind_18090d1a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态清理处理函数 - 偏移量0xb0
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d1a0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffsetb0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87354,7 +87360,13 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset3b0(uint8_t ObjectContext,
 
 
 
-void Unwind_18090d390(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x3d0）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d390
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset3d0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87390,7 +87402,13 @@ void Unwind_18090d390(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d3a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x490）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d3a0
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset490(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87426,7 +87444,13 @@ void Unwind_18090d3a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d3b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x490，变体）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d3b0
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset490Variant(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -88376,7 +88400,13 @@ void Unwind_18090d590(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d5a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 调用偏移0x80处的函数指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d5a0
+ */
+void CallFunctionPointerAtOffset80(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x80) != (int64_t *)0x0) {
@@ -88387,7 +88417,13 @@ void Unwind_18090d5a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d5b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源处理器模板并重置验证上下文
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d5b0
+ */
+void SetSystemResourceHandlerTemplateAndResetContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x88) = &SystemResourceHandlerTemplate;
@@ -88402,7 +88438,13 @@ void Unwind_18090d5b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d5c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 调用偏移0xb8处的函数指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d5c0
+ */
+void CallFunctionPointerAtOffsetb8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xb8) != (int64_t *)0x0) {
@@ -88413,7 +88455,13 @@ void Unwind_18090d5c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d5d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置偏移0x160处的系统数据结构指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d5d0
+ */
+void SetSystemDataStructurePointerAtOffset160(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x160) = &SystemDataStructure;
@@ -88422,7 +88470,13 @@ void Unwind_18090d5d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d5e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置偏移0xd8处的系统数据结构指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d5e0
+ */
+void SetSystemDataStructurePointerAtOffsetd8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0xd8) = &SystemDataStructure;
@@ -88431,7 +88485,13 @@ void Unwind_18090d5e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d5f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置偏移0x148处的系统数据结构指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d5f0
+ */
+void SetSystemDataStructurePointerAtOffset148(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x148) = &SystemDataStructure;
