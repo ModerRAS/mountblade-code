@@ -1863,15 +1863,15 @@ NetworkMainProcessingLoop:
       if ((ProcessingStatusCode != 0) && (NetworkContextHandle = *NetworkOperationBuffer, 0 < ProcessingStatusCode)) {
         NetworkStatus *NetworkStatusBuffer = NetworkStatusBufferPointer;
         do {
-          NetworkStatus *ConnectionContextData = (NetworkStatus *)((ContextHandle - (long long)StatusBuffer) + (long long)NetworkStatusBuffer);
-          NetworkStatus CurrentValidationStatus = ConnectionContextData[1];
-          NetworkStatus CurrentTimeoutStatus = ConnectionContextData[2];
-          NetworkStatus CurrentSecondaryStatus = ConnectionContextData[3];
-          *NetworkStatusBuffer = *ConnectionContextData;
+          NetworkStatus *ConnectionContextDataPointer = (NetworkStatus *)((NetworkContextHandle - (long long)NetworkStatusBufferPointer) + (long long)NetworkStatusBuffer);
+          NetworkStatus CurrentValidationStatus = ConnectionContextDataPointer[1];
+          NetworkStatus CurrentTimeoutStatus = ConnectionContextDataPointer[2];
+          NetworkStatus CurrentSecondaryStatus = ConnectionContextDataPointer[3];
+          *NetworkStatusBuffer = *ConnectionContextDataPointer;
           NetworkStatusBuffer[1] = CurrentValidationStatus;
           NetworkStatusBuffer[2] = CurrentTimeoutStatus;
           NetworkStatusBuffer[3] = CurrentSecondaryStatus;
-          NetworkStatusBuffer[4] = *(NetworkStatus *)((ContextHandle - (long long)StatusBuffer) + -4 + (long long)(NetworkStatusBuffer + 5));
+          NetworkStatusBuffer[4] = *(NetworkStatus *)((NetworkContextHandle - (long long)NetworkStatusBufferPointer) + -4 + (long long)(NetworkStatusBuffer + 5));
           NetworkStatusIterator = NetworkStatusIterator + -1;
           NetworkStatusBuffer = NetworkStatusBuffer + 5;
         } while (NetworkStatusIterator != 0);
