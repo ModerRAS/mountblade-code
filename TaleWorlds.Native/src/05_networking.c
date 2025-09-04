@@ -2607,7 +2607,7 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
  * @param HeaderContext 头部上下文
  * @return NetworkHandle 处理结果句柄
  */
-NetworkHandle HandlePacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
+NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 数据包头部处理变量
   uint32_t PacketHeaderStatus;                         // 头部处理状态
