@@ -5257,26 +5257,26 @@ void CleanupSystemResources(void)
  */
 uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
 {
-  uint8_t ValidationStatusCode;
-  int64_t ValidatedContextAddress;
+  uint8_t ValidationResult;
+  int64_t ValidatedMemoryAddress;
   
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ValidatedContextAddress);
-  if ((int)ValidationStatusCode != 0) {
-    return ValidationStatusCode;
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ValidatedMemoryAddress);
+  if ((int)ValidationResult != 0) {
+    return ValidationResult;
   }
   
-  if (ValidatedContextAddress == 0) {
-    ValidatedContextAddress = 0;
+  if (ValidatedMemoryAddress == 0) {
+    ValidatedMemoryAddress = 0;
   }
   else {
-    ValidatedContextAddress = ValidatedContextAddress - 8;
+    ValidatedMemoryAddress = ValidatedMemoryAddress - 8;
   }
   
-  if (*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
