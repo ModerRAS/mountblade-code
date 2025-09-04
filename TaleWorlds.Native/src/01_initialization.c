@@ -1504,7 +1504,7 @@ void InitializeGameCoreSystem(void)
  */
 void InitializeSystemDataTableBaseAllocator(void)
 {
-  bool IsNodeActive;
+  bool IsBaseAllocatorNodeActive;
   void** RootNodePointerPointer;
   int BaseAllocatorIdentifierComparisonResult;
   long long* SystemDataTablePointer;
@@ -1517,12 +1517,12 @@ void InitializeSystemDataTableBaseAllocator(void)
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   RootNodePointerPointer = (void**)*SystemDataTablePointer;
-  IsNodeActive = *(bool*)((long long)RootNodePointerPointer[1] + SystemNodeActiveFlagOffset);
+  IsBaseAllocatorNodeActive = *(bool*)((long long)RootNodePointerPointer[1] + SystemNodeActiveFlagOffset);
   BaseAllocatorInitializationHandler = GetBaseAllocatorSystemInitializationFunction;
   SystemPreviousNodePointer = RootNodePointerPointer;
   CurrentNodePointerPointer = (void**)RootNodePointerPointer[1];
   
-  while (!IsNodeActive) {
+  while (!IsBaseAllocatorNodeActive) {
     BaseAllocatorIdentifierComparisonResult = memcmp(CurrentNodePointerPointer + 4, &BaseAllocatorSystemIdentifier1, SystemIdentifierSize);
     if (BaseAllocatorIdentifierComparisonResult < 0) {
       NextNodePointerPointer = (void**)CurrentNodePointerPointer[SystemNodeNextPointerOffset];
@@ -1533,7 +1533,7 @@ void InitializeSystemDataTableBaseAllocator(void)
     }
     SystemPreviousNodePointer = CurrentNodePointerPointer;
     CurrentNodePointerPointer = NextNodePointerPointer;
-    IsNodeActive = *(bool*)((long long)NextNodePointerPointer + SystemNodeActiveFlagOffset);
+    IsBaseAllocatorNodeActive = *(bool*)((long long)NextNodePointerPointer + SystemNodeActiveFlagOffset);
   }
   
   if ((SystemPreviousNodePointer == RootNodePointerPointer) || 
@@ -2021,9 +2021,9 @@ void InitializeSystemCoreData(void)
  */
 void InitializeSystemDataTable(void)
 {
-  char IsNodeActive;
+  char IsDataTableNodeActive;
   void** SystemRootPointer;
-  int IdentifierComparisonResult;
+  int DataTableIdentifierComparisonResult;
   long long *SystemDataTablePointer;
   long long MemoryAllocationSize;
   void** CurrentSystemNode;
