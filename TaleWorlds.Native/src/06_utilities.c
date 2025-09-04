@@ -92897,8 +92897,15 @@ void ReleaseSystemResourceStatusFlag0x80(uint8_t ObjectContext, int64_t Validati
 
 
 
-void Unwind_18090eb00(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源表清理和系统数据结构设置
+ * 
+ * 该函数负责清理资源表并设置系统数据结构指针，确保系统资源管理的一致性
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void ExecuteResourceTableCleanupAndSystemSetup(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t LoopCounter;
   int ProcessingStatusCode;
@@ -92908,8 +92915,7 @@ void Unwind_18090eb00(uint8_t ObjectContext,int64_t ValidationContext)
   
   if (0 < *(int *)(ValidationContext + 0x140)) {
     ResourceTablePointerPointer = *(int64_t *)(GlobalDataBufferResourceTablePointer + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
-       ) {
+    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')) {
       LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
       SystemContextPointer = *LoopOffsetPointer;
       LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
@@ -92941,8 +92947,15 @@ void Unwind_18090eb00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eb10(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 设置系统数据结构双重指针
+ * 
+ * 该函数将系统数据结构的地址设置为验证上下文中的双重指针
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void SetSystemDataStructureDoublePointer(uint8_t ObjectContext, int64_t ValidationContext)
 {
   **(uint8_t **)(ValidationContext + 0x128) = &SystemDataStructure;
   return;
@@ -92950,8 +92963,15 @@ void Unwind_18090eb10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eb20(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行系统上下文清理和回调处理
+ * 
+ * 该函数清理系统上下文并执行必要的回调函数，确保系统资源的正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void ExecuteSystemContextCleanupAndCallbacks(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t LoopCounter;
   
@@ -92961,7 +92981,7 @@ void Unwind_18090eb20(uint8_t ObjectContext,int64_t ValidationContext)
   }
   *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = 0;
   *(uint32_t *)(SystemContextPointer + 0x40) = 0;
@@ -92974,8 +92994,15 @@ void Unwind_18090eb20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eb30(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 设置验证上下文方法指针系统数据结构
+ * 
+ * 该函数将系统数据结构的地址设置为验证上下文方法指针的双重指针
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void SetValidationContextMethodPointerSystemData(uint8_t ObjectContext, int64_t ValidationContext)
 {
   **(uint8_t **)(ValidationContext + ValidationContextMethodPointerOffset8) = &SystemDataStructure;
   return;
@@ -100349,7 +100376,20 @@ void Unwind_180910e20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180910e40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理处理函数10
+ * 
+ * 该函数负责处理系统资源的清理操作，包括重置状态、清理数据结构
+ * 和执行错误处理。使用偏移量0x20f0来定位回调函数。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180910e40
+ */
+void ExecuteSystemResourceCleanupHandler10(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
