@@ -800,6 +800,19 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define ResourceFlag1Mask 1
 #define ResourceFlag1ClearMask 0xfffffffe
 #define ResourceOperationPrimaryOffset 0x70
+#define SystemResourceTablePrimaryOffset 0x1cd8
+#define SystemFlagPrimaryOffset 0x12e3
+#define SystemFlagSecondaryOffset 0x12dd
+#define SystemLoopDataOffset 0x80d8
+#define SystemLoopCounterOffset 0x8088
+#define SystemLoopEntrySize 0x20
+#define SystemResourceContextFlagOffset 0x68
+#define SystemLoopResultOffset 0x80b0
+#define SystemLoopDataSize 200
+#define SystemLoopBaseOffset 0x7f20
+#define SystemLoopEndOffset 0xd0
+#define SystemResourceStatusOffset 0x60
+#define ValidationContextResultOffset 400
 #define SystemResourceManagerOffset 0x98
 #define ObjectArrayDataOffset 0x20
 #define ObjectArrayCapacityOffset 0x28
@@ -91635,7 +91648,17 @@ void CleanupResourceFlag1(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_18090e7a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源循环处理操作
+ * 
+ * 在系统unwind过程中执行资源循环处理操作，
+ * 通过循环计数器处理多个资源项。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e7a0
+ */
+void ExecuteResourceLoopProcessing(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -91645,23 +91668,23 @@ void Unwind_18090e7a0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t MemoryRegion;
   
   if (0 < *(int *)(ValidationContext + ValidationContextLoopDataOffset)) {
-    ResourceTablePointerPointer = *(int64_t *)(GlobalDataBufferResourceTablePointer + 0x1cd8);
-    if ((*(char *)(GlobalDataBufferSystemFlags + 0x12e3) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + 0x12dd) != '\0')
+    ResourceTablePointerPointer = *(int64_t *)(GlobalDataBufferResourceTablePointer + SystemResourceTablePrimaryOffset);
+    if ((*(char *)(GlobalDataBufferSystemFlags + SystemFlagPrimaryOffset) != '\0') || (*(char *)(GlobalDataBufferSystemFlags + SystemFlagSecondaryOffset) != '\0')
        ) {
-      LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + 0x80d8 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20);
+      LoopOffsetPointer = (int64_t *)(ResourceTablePointerPointer + SystemLoopDataOffset + (int64_t)*(int *)(ResourceTablePointerPointer + SystemLoopCounterOffset) * SystemLoopEntrySize);
       SystemContextPointer = *LoopOffsetPointer;
       LoopCounter = *(int64_t *)(SystemContextPointer + ((int64_t)(int)(LoopOffsetPointer[1] - SystemContextPointer >> 3) + -1) * 8);
       PerformMemoryOperation();
-      if (*(int64_t *)(SystemResourceContext + 0x68) == 0) {
-        *(int64_t *)(ResourceTablePointerPointer + 0x80b0 + (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 8) = SystemContextPointer;
+      if (*(int64_t *)(SystemResourceContext + SystemResourceContextFlagOffset) == 0) {
+        *(int64_t *)(ResourceTablePointerPointer + SystemLoopResultOffset + (int64_t)*(int *)(ResourceTablePointerPointer + SystemLoopCounterOffset) * 8) = SystemContextPointer;
       }
-      ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + 0x8088) * 0x20;
-      LoopCounter = *(int64_t *)(ResourceIndex + 200 + ResourceTablePointerPointer + 0x7f20);
-      OperationStatus = (int)(*(int64_t *)(ResourceIndex + 0xd0 + ResourceTablePointerPointer + 0x7f20) - SystemContextPointer >> 3) + -1;
+      ResourceIndex = (int64_t)*(int *)(ResourceTablePointerPointer + SystemLoopCounterOffset) * SystemLoopEntrySize;
+      LoopCounter = *(int64_t *)(ResourceIndex + SystemLoopDataSize + ResourceTablePointerPointer + SystemLoopBaseOffset);
+      OperationStatus = (int)(*(int64_t *)(ResourceIndex + SystemLoopEndOffset + ResourceTablePointerPointer + SystemLoopBaseOffset) - SystemContextPointer >> 3) + -1;
       if (-1 < OperationResult) {
         ResourceTablePointerPointer = (int64_t)OperationResult;
         do {
-          if (*(char *)(*(int64_t *)(SystemContextPointer + ResourceTablePointerPointer * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(int64_t *)(SystemContextPointer + ResourceTablePointerPointer * 8) + SystemResourceStatusOffset) == '\x01') {
             if (OperationResult != -1) {
               ProcessMemoryDataAccess(*(uint8_t *)(SystemContextPointer + (int64_t)OperationResult * 8));
             }
@@ -91673,7 +91696,7 @@ void Unwind_18090e7a0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
   }
-  *(uint8_t **)(ValidationContext + 400) = &SystemDataStructure;
+  *(uint8_t **)(ValidationContext + ValidationContextResultOffset) = &SystemDataStructure;
   return;
 }
 
@@ -92185,7 +92208,14 @@ void Unwind_18090e8a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e8b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置系统数据结构指针（偏移0x288）
+ * 在验证上下文偏移0x288处设置系统数据结构指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e8b0
+ */
+void SetSystemDataStructurePointerAtOffset288(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x288) = &SystemDataStructure;
@@ -92203,7 +92233,14 @@ void Unwind_18090e8c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e8d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行系统句柄清理回调
+ * 如果系统句柄存在，执行其清理回调函数，并重置相关状态
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e8d0
+ */
+void ExecuteSystemHandleCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextSystemHandleOffset) != (int64_t *)0x0) {
@@ -92248,7 +92285,14 @@ void Unwind_18090e8e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e8f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行系统句柄清理回调（偏移0x128）
+ * 如果偏移0x128处的系统句柄存在，执行其清理回调函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e8f0
+ */
+void ExecuteSystemHandleCleanupCallbackAtOffset128(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x128) != (int64_t *)0x0) {
