@@ -96915,13 +96915,13 @@ void Unwind_180910d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataStatusOffset) = 0;
   *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceDataValueOffset) = 0;
   *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataHandlerTemplateOffset) = &SystemDataStructure;
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceData40) != 0) {
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataStructureOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceDataSecondaryStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData40) = 0;
-  *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceData50) = 0;
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataSecondaryStatusOffset) = 0;
+  *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceDataSecondaryValueOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataStructureOffset) = &SystemDataStructure;
   return;
 }
 
@@ -98911,13 +98911,13 @@ void Unwind_1809115e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataStatusOffset) = 0;
   *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceDataValueOffset) = 0;
   *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataHandlerTemplateOffset) = &SystemDataStructure;
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData38) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceData40) != 0) {
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataStructureOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceDataSecondaryStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData40) = 0;
-  *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceData50) = 0;
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData38) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataSecondaryStatusOffset) = 0;
+  *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceDataSecondaryValueOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataStructureOffset) = &SystemDataStructure;
   return;
 }
 
@@ -100530,7 +100530,7 @@ void Unwind_180911dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 {
   int64_t LoopCounter;
   
-  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + ErrorInvalidResourceData50);
+  LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + ErrorInvalidResourceDataSecondaryValueOffset);
   if (LoopCounter != 0) {
     if (GlobalUnwindContext != 0) {
       *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
@@ -100560,7 +100560,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   SecurityHashValue = ResourceContextOffset;
   if (0 < *ResourceIndexPointer) {
     do {
-      OperationStatus = *(int *)(*(int64_t *)(LoopOffset + ErrorInvalidResourceData78) + ResourceCleanupOffset + ResourceContextOffset);
+      OperationStatus = *(int *)(*(int64_t *)(LoopOffset + ErrorInvalidResourceDataTablePointerOffset) + ResourceCleanupOffset + ResourceContextOffset);
       if ((OperationResult != -1) &&
          (ResourceIndex = *(int64_t *)((int64_t)OperationResult * 0x60 + *(int64_t *)(LoopOffset + ErrorInvalidResourceData68) + 8),
          ResourceIndex != 0)) {
@@ -100574,7 +100574,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
       SecurityHashValue = (uint64_t)ContextResourceHashStatus;
     } while ((int)ContextResourceHashStatus < *ResourceIndexPointer);
   }
-  ResourceIndex = *(int64_t *)(LoopOffset + ErrorInvalidResourceData78);
+  ResourceIndex = *(int64_t *)(LoopOffset + ErrorInvalidResourceDataTablePointerOffset);
   if (ResourceIndex != 0) {
     ResourceIndexPointer[0] = 0;
     ResourceIndexPointer[1] = 0;
@@ -100586,7 +100586,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   ResourceIndex = *(int64_t *)(LoopOffset + ErrorInvalidResourceData68);
   if (ResourceIndex == 0) {
     *(uint32_t *)(LoopOffset + SystemResourceCleanupContextOffset) = 0;
-    ResourceIndex = *(int64_t *)(LoopOffset + ErrorInvalidResourceData78);
+    ResourceIndex = *(int64_t *)(LoopOffset + ErrorInvalidResourceDataTablePointerOffset);
     if (ResourceIndex != 0) {
       if (GlobalUnwindContext != 0) {
         *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;

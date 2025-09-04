@@ -10807,8 +10807,8 @@ Label_18062e8bc:
           pMemoryAddress0 = (uint32_t *)MemoryAllocateEx(SystemMemoryAllocator,0x16,0x13);
           *(uint8_t *)pMemoryAddress0 = 0;
           UnsignedStackPointer = pMemoryAddress0;
-          uVar6 = MemoryValidateEx(pMemoryAddress0);
-          StackParameter3 = CONCAT44(StackParameter3._4_4_,uVar6);
+          memoryValidationResult = MemoryValidateEx(pMemoryAddress0);
+          StackParameter3 = CONCAT44(StackParameter3._4_4_,memoryValidationResult);
           *pMemoryAddress0 = 0x6f632022;
           pMemoryAddress0[1] = 0x20646c75;
           pMemoryAddress0[2] = 0x20746f6e;
@@ -10824,8 +10824,8 @@ Label_18062e8bc:
             pMemoryAddress2 = (uint8_t *)MemoryAllocateEx(SystemMemoryAllocator,0x15,0x13);
             *pMemoryAddress2 = 0;
             puStack_138 = pMemoryAddress2;
-            uVar6 = MemoryValidateEx(pMemoryAddress2);
-            uStack_128 = CONCAT44(uStack_128._4_4_,uVar6);
+            memoryValidationResult = MemoryValidateEx(pMemoryAddress2);
+            uStack_128 = CONCAT44(uStack_128._4_4_,memoryValidationResult);
           }
           memcpy(pMemoryAddress2,pMemoryAddress1,0x14);
         }
