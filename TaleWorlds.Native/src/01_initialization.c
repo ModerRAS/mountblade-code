@@ -60309,7 +60309,7 @@ ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,v
   float InterpolationFactorV;
   float MagnitudeSquared;
   char SystemInitializationFlag;
-  ulong long in_RAX;
+  ulong long ThreadInitializationResult;
   long long SystemThreadIndex;
   ulong long ThreadCreationFlags;
   long long SystemThreadHandle2;
