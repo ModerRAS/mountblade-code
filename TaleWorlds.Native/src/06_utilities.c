@@ -14557,8 +14557,8 @@ void ProcessComplexResourceWithRegisters(void)
           DataTypeTemplate = &SystemDataTypeTemplateActive;
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
-          ValidationErrorCode = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResultFinal;
+          ValidationErrorCode = GetAndValidateResourceData(ResourceFloatValue,&ObjectResourceBuffer);
+          FinalResultFloat = CalculatedFloatResultFinal;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
