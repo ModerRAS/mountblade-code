@@ -81752,7 +81752,19 @@ void ResetSystemResources(void)
 
 
 
-void Unwind_18090c5c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源初始化操作（带参数版本）
+ * 
+ * 该函数负责初始化系统资源和相关数据结构
+ * 设置资源的初始状态和配置参数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会初始化系统资源
+ * @remark 原始函数名：Unwind_18090c5c0
+ */
+void InitializeSystemResourcesWithParams(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -81797,7 +81809,19 @@ void Unwind_18090c5c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c5d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源释放操作
+ * 
+ * 该函数负责释放系统资源和相关内存
+ * 清理资源占用的内存和相关数据结构
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会释放系统资源
+ * @remark 原始函数名：Unwind_18090c5d0
+ */
+void ReleaseSystemResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -81842,7 +81866,17 @@ void Unwind_18090c5d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c5e0(void)
+/**
+ * @brief 执行系统资源清理操作
+ * 
+ * 该函数负责清理系统资源和相关数据
+ * 释放资源占用的内存和清理数据结构
+ * 
+ * @return 无返回值
+ * @note 此函数会清理系统资源
+ * @remark 原始函数名：Unwind_18090c5e0
+ */
+void CleanupSystemResources(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
@@ -81853,7 +81887,19 @@ void Unwind_18090c5e0(void)
 
 
 
-void Unwind_18090c5f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源验证操作
+ * 
+ * 该函数负责验证系统资源的完整性和有效性
+ * 确保资源数据的一致性和正确性
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会验证系统资源
+ * @remark 原始函数名：Unwind_18090c5f0
+ */
+void ValidateSystemResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -81898,7 +81944,19 @@ void Unwind_18090c5f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c600(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源哈希操作
+ * 
+ * 该函数负责处理系统资源的哈希计算和验证
+ * 确保资源数据的完整性和安全性
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会处理资源哈希操作
+ * @remark 原始函数名：Unwind_18090c600
+ */
+void ProcessSystemResourceHash(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
