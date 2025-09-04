@@ -84622,7 +84622,19 @@ void ExecuteValidationContextExtendedSecurityCleanup(uint8_t ObjectContext, int6
 
 
 
-void Unwind_18090ce20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理系统资源处理器模板并重置系统上下文
+ * 
+ * 该函数负责清理系统资源处理器模板，重置系统上下文中的各种指针和状态。
+ * 它会验证系统上下文的有效性，清理资源处理器模板，并确保系统处于安全状态。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统验证所需的数据和状态
+ * 
+ * @note 该函数在系统资源清理过程中被调用，确保系统资源被正确释放
+ * @warning 如果系统上下文指针无效，可能会导致系统不稳定
+ */
+void CleanupSystemResourceHandlerTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -85144,7 +85156,22 @@ void ExecuteSystemResourceUnlockAndErrorHandling(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_18090cfe0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源解锁和错误处理（次要版本）
+ * 
+ * 该函数负责执行系统资源解锁操作和错误处理，是上一个函数的变体，主要功能包括：
+ * - 设置全局展开上下文（使用不同的偏移量）
+ * - 解锁系统互斥锁
+ * - 处理资源解锁过程中的错误
+ * - 抛出标准C错误（如果需要）
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的资源对象
+ * @param ValidationContext 验证上下文，包含验证数据和状态信息
+ * 
+ * @note 这是简化实现，仅执行基本的解锁和错误处理操作
+ * @warning 原始函数名：Unwind_18090cfe0
+ */
+void ExecuteSystemResourceUnlockAndErrorHandlingSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -85159,7 +85186,21 @@ void Unwind_18090cfe0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cff0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调函数清理（第四版本）
+ * 
+ * 该函数负责清理系统资源回调函数，是前几个函数的变体，主要功能包括：
+ * - 验证资源回调函数指针的有效性
+ * - 执行资源回调函数的清理操作
+ * - 确保系统资源的正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要清理的资源对象
+ * @param ValidationContext 验证上下文，包含验证数据和状态信息
+ * 
+ * @note 这是简化实现，仅执行基本的回调函数清理
+ * @warning 原始函数名：Unwind_18090cff0
+ */
+void ExecuteSystemResourceCallbackCleanupQuaternary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x90) != (int64_t *)0x0) {
@@ -86526,7 +86567,13 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetf0v5(uint8_t ObjectContext,int
 
 
 
-void Unwind_18090d1f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态验证并设置状态码地址
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d1f0
+ */
+void ProcessResourceHashStatusAndSetStatusCodeAddress(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -86562,7 +86609,13 @@ void Unwind_18090d1f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d200(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态验证并设置备用状态码地址
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d200
+ */
+void ProcessResourceHashStatusAndSetAlternateStatusCodeAddress(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -86598,7 +86651,20 @@ void Unwind_18090d200(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d210(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态更新和验证
+ * 
+ * 该函数负责处理资源哈希状态的更新操作，包括内存地址验证、
+ * 资源索引计算和状态管理。当资源哈希状态地址有效时，
+ * 函数会执行相应的验证和更新操作。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的目标对象
+ * @param ValidationContext 验证上下文，包含验证所需的状态信息
+ * 
+ * @note 原始函数名：Unwind_18090d210
+ * @warning 该函数涉及底层内存操作，修改时需谨慎
+ */
+void ProcessResourceHashStatusUpdate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -86606,18 +86672,18 @@ void Unwind_18090d210(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x110);
+  ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + SystemValidationStatusOffset);
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
     return;
   }
-  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
+  MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & SystemMemoryAddressMask;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
-    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
+    ResourceIndex = MemoryAddressIncrement + SystemResourceTableOffset + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> SystemMemoryShiftBits) * SystemResourceTableEntrySize;
+    ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + SystemResourceTablePointerOffset);
+    if ((*(void ***)(MemoryAddressIncrement + SystemExceptionListOffset) == &ExceptionList) && (*(char *)(ResourceIndex + SystemResourceStatusOffset) == '\0')) {
+      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + SystemResourceDataOffset);
+      *(uint8_t **)(ResourceIndex + SystemResourceDataOffset) = ResourceHashStatusAddress;
+      ResourceIndexPointer = (int *)(ResourceIndex + SystemResourceReferenceCountOffset);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
       if (*ResourceIndexPointer == 0) {
         SystemCleanupHandler();
@@ -86625,8 +86691,8 @@ void Unwind_18090d210(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + SystemExceptionListOffset) == &ExceptionList),
+                          ResourceHashStatusAddress, MemoryAddressIncrement, SystemMemoryValidationMask);
     }
   }
   return;
