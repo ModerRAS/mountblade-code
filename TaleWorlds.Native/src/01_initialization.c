@@ -27781,7 +27781,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   uint32_t ThreadCreationFlags;
   float InterpolationFactorEpsilon;
   float InterpolationFactorX;
-  float scaleResult2;
+  float scaleFactorSecondary;
   float SystemDataValuePrimary;
   float SystemDataValueSecondary;
   float SystemDataValueTertiary;
@@ -27803,15 +27803,15 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
         SystemDataValueSecondary = ConfigurationDataPointer;
         InitializeSystemDataPointer(&SystemDataValuePrimary);
       }
-      calculationResult1 = (float)exp2f();
+      calculationResultPrimary = (float)exp2f();
       InterpolationFactorAlpha = (float)exp2f();
       InterpolationFactorBeta = (float)exp2f();
       InterpolationFactorGamma = (float)exp2f();
       InterpolationFactorDelta = (float)exp2f();
-      SystemDataValueSecondary = (1.0 - calculationResult1) * SystemDataValueSecondary + calculationResult1 * ConfigurationDataPointer;
-      calculationResult2 = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
+      SystemDataValueSecondary = (1.0 - calculationResultPrimary) * SystemDataValueSecondary + calculationResultPrimary * ConfigurationDataPointer;
+      calculationResultSecondary = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
       if (*(float *)(SystemGlobalStatusFlags + 0x1f8) <= (float)*(int *)(SystemNodeManagerPointer + 0x21b0)) {
-        calculationResult2 = *(float *)(SystemGlobalStatusFlags + 0x1f8);
+        calculationResultSecondary = *(float *)(SystemGlobalStatusFlags + 0x1f8);
       }
       InterpolationFactorEpsilon = *(float *)(SystemNodeManagerPointer + 0x1e30);
       if (0 < *(int *)(SystemNodeManagerPointer + 0x1f80)) {
