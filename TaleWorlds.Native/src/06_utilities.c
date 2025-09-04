@@ -4530,7 +4530,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   int64_t ContextHandleArray[2];
   uint8_t *ObjectListBuffer;
   int TotalItemCount;
-  uint32_t MaximumLimit;
+  uint32_t MaximumItemLimit;
   uint8_t DataProcessingBuffer[512];
   uint64_t SecurityValidationKey;
   
@@ -4543,7 +4543,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     ObjectListBuffer = DataProcessingBuffer;
     ProcessedItemCount = 0;
     TotalItemCount = 0;
-    MaximumLimit = MaximumProcessableItemsLimit;
+    MaximumItemLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
     ValidationStatusCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset),
@@ -4596,7 +4596,7 @@ void ValidateSystemObjectCollection(void)
   int ValidatedItemCount;
   uint8_t *DataBuffer;
   int RetrievedItemCount;
-  uint32_t MaximumLimit;
+  uint32_t MaximumCapacityLimit;
   uint64_t SecurityValidationKey;
   
   // 生成安全验证令牌
@@ -4611,7 +4611,7 @@ void ValidateSystemObjectCollection(void)
     DataBuffer = ProcessingWorkspace;
     ValidatedItemCount = 0;
     RetrievedItemCount = 0;
-    MaximumLimit = MaximumCapacityLimit;
+    MaximumCapacityLimit = MaximumCapacityLimit;
     
     // 获取系统对象集合
     ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(RuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemContext + ObjectHandleSecondaryOffset),
@@ -5207,6 +5207,15 @@ uint8_t FreeObjectHandle(void) {
  * @note 这是一个简化实现，仅检查空字符
  * @warning 如果字符不为空，将触发系统退出操作
  */
+/**
+ * @brief 验证字符安全性
+ * 
+ * 该函数验证输入字符的安全性，如果字符不为空字符则执行系统退出操作。
+ * 主要用于系统安全检查，防止无效字符输入。
+ * 
+ * @param CharacterToValidate 要验证的字符
+ * @return uint8_t 验证结果，0表示成功，非0表示失败
+ */
 uint8_t ValidateCharacterSafety(char CharacterToValidate) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
   if (CharacterToValidate != '\0') {
@@ -5236,31 +5245,40 @@ uint8_t ValidateCharacterSafety(char CharacterToValidate) {
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
+/**
+ * @brief 验证对象句柄安全性
+ * 
+ * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
+ * 包括上下文验证、内存缓冲区检查和系统退出操作。
+ * 
+ * @param ObjectHandleToValidate 要验证的对象句柄
+ * @return uint8_t 验证结果，0表示成功，非0表示失败
+ */
 uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
-  uint8_t HandleValidationStatus;
-  int64_t ValidatedContextMemoryAddress;
+  uint8_t ValidationStatusCode;
+  int64_t ContextMemoryAddress;
   
   // 验证对象上下文并获取内存地址
-  HandleValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedContextMemoryAddress);
-  if ((int)HandleValidationStatus != 0) {
-    return HandleValidationStatus;
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ContextMemoryAddress);
+  if ((int)ValidationStatusCode != 0) {
+    return ValidationStatusCode;
   }
   
   // 调整验证后的内存地址
-  if (ValidatedContextMemoryAddress == 0) {
-    ValidatedContextMemoryAddress = 0;
+  if (ContextMemoryAddress == 0) {
+    ContextMemoryAddress = 0;
   }
   else {
-    ValidatedContextMemoryAddress = ValidatedContextMemoryAddress - 8;
+    ContextMemoryAddress = ContextMemoryAddress - 8;
   }
   
   // 检查对象句柄是否有效
-  if (*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ContextMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextMemoryAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ContextMemoryAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
