@@ -81282,7 +81282,19 @@ void SetSystemResourceHandlerTemplateAndValidate(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_18090c4f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文方法指针调用
+ * 
+ * 该函数负责检查验证上下文的方法指针，如果存在则调用
+ * 指定偏移量处的方法函数。这是一个动态方法调用函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会调用验证上下文方法指针偏移量0x38处的方法
+ * @warning 原始函数名为Unwind_18090c4f0，现已重命名为ExecuteValidationContextMethodPointerCall
+ */
+void ExecuteValidationContextMethodPointerCall(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextMethodPointerOffset8) != (int64_t *)0x0) {
