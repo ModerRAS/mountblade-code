@@ -28156,7 +28156,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   int IntegerStackC8;
   ulong long ConcatenatedSystemValue;
   
-  CalculationFlags1A0 = 0xfffffffffffffffe;
+  CalculationFlagsExtended = 0xfffffffffffffffe;
   ConcatenatedSystemValue = SystemEncryptionKeyTemplate ^ (ulong long)aSystemThreadStackSize;
   CopySystemDataStructure(SystemSystemStackBufferE8,
                 (long long)*(int *)(SystemTextureManagerPointer + 0x1d40) * 0xd0 +
@@ -28670,7 +28670,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   long long SystemMemoryAllocationOffset1b8;
   uint32_t SystemOperationResultb0;
   ulong long SystemResourceHandle1a8;
-  uint32_t CalculationFlags1A0;
+  uint32_t CalculationFlagsExtended;
   uint SystemResourceCount19c;
   uint8_t SystemStackFlag;
   uint32_t SystemOperationResult94;
@@ -28715,9 +28715,9 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   StackDoublePointerF0 = &pGlobalDataFlags;
   pGlobalDataFlags = &SystemGlobalDataReference;
   StackVariable1a8 = 0;
-  LongStackVariable1b8 = 0;
-  StackVariable1b0 = 0;
-  StackVariable19c = 0x100;
+  LongStackVariableSecondary = 0;
+  StackVariablePrimary = 0;
+  StackVariableControl = 0x100;
   SystemStackFlag = 0;
   StackVariable194 = 0;
   SystemThreadContext = &SystemStringTemplate;
@@ -28725,8 +28725,8 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
     SystemThreadContext = *(void* **)(ConfigurationDataPointer + 8);
   }
   SetupSystemDataBuffer(&pGlobalDataFlags,SystemThreadContext);
-  CalculationFlags1A0 = 0;
-  StackVariable19c = StackVariable19c & 0xffffff00;
+  CalculationFlagsExtended = 0;
+  StackVariableControl = StackVariableControl & 0xffffff00;
   resourceAllocationContext = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x60d30,0x10,0x1f);
   SystemCalculatedBufferPointer = (long long *)InitializeSystemMemoryAllocator(resourceAllocationContext,&pGlobalDataFlags);
   StackDoublePointer170 = (void* **)SystemCalculatedBufferPointer;
@@ -42542,7 +42542,7 @@ void ProcessSystemResourceCounter(int *SystemResourceManager)
   void*2 SystemDataBufferSecondary [4];
   void* *pointerUnsigned1b0;
   uint32_t *SystemResourceHandle1a8;
-  uint32_t CalculationFlags1A0;
+  uint32_t CalculationFlagsExtended;
   void* SystemStackFlag;
   uint32_t SystemTimestampValue;
   void* *SystemMemoryTemplatePtr;
@@ -42584,7 +42584,7 @@ void ProcessSystemResourceCounter(int *SystemResourceManager)
   pointerUnsigned1b0 = &SystemGlobalDataReference;
   SystemStackFlag = 0;
   SystemResourceHandle1a8 = (uint32_t *)0x0;
-  CalculationFlags1A0 = 0;
+  CalculationFlagsExtended = 0;
   SystemThreadContext = (uint32_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x13,0x13);
   *(uint8_t *)SystemThreadContext = 0;
   SystemResourceHandle1a8 = SystemThreadContext;
@@ -42596,7 +42596,7 @@ void ProcessSystemResourceCounter(int *SystemResourceManager)
   SystemThreadContext[3] = 0x6f736e6f;
   *(void*2 *)(SystemThreadContext + 4) = 0x656c;
   *(uint8_t *)((long long)SystemThreadContext + 0x12) = 0;
-  CalculationFlags1A0 = 0x12;
+  CalculationFlagsExtended = 0x12;
   ThreadContextIndicator = SystemMemoryAllocationOffset160 - SystemMemoryAllocationOffset168 >> 5;
   if (ThreadContextIndicator != 0) {
     HashTableNodePointer = (void* *)(SystemMemoryAllocationOffset168 + 8);
@@ -44042,7 +44042,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* *pGlobalDataFlags;
   void* *pointerUnsigned1b8;
   uint32_t StackUnsignedValue1A8;
-  void* *pCalculationFlags1A0;
+  void* *pCalculationFlagsExtended;
   void* *pSystemStackFlag;
   uint32_t TimeStructurePointer;
   void* *LocalSystemStackBuffer;
@@ -44416,19 +44416,19 @@ SystemResultCheckLoop:
     if (*(void* **)(resourceCounter + 8) != (void* *)0x0) {
       SystemResourceStringPointer = *(void* **)(resourceCounter + 8);
     }
-    ProcessSystemQueue(&pCalculationFlags1A0,SystemResourceStringPointer);
+    ProcessSystemQueue(&pCalculationFlagsExtended,SystemResourceStringPointer);
     SystemResourceStringPointer = &SystemStringTemplate;
     if (pSystemStackFlag != (void* *)0x0) {
       SystemResourceStringPointer = pSystemStackFlag;
     }
     ConfigureSystemDataBuffer(&MemoryContextPointer,&SystemConfigBufferTemplate3,SystemResourceStringPointer);
-    pCalculationFlags1A0 = &SystemGlobalDataReference;
+    pCalculationFlagsExtended = &SystemGlobalDataReference;
     if (pSystemStackFlag != (void* *)0x0) {
         SystemCleanupFunction();
     }
     pSystemStackFlag = (void* *)0x0;
     TimeStructurePointer = 0;
-    pCalculationFlags1A0 = &SystemMemoryAllocatorReference;
+    pCalculationFlagsExtended = &SystemMemoryAllocatorReference;
   }
   resourceCounter = StackInteger278;
   fwrite(StackInteger328,1,(long long)StackInteger320,StackInteger278);
@@ -44800,7 +44800,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
         SystemCleanupFunction();
     }
     StackCleanupFlag = 0;
-    CalculationFlags1A0 = (ulong long)CalculationFlags1A0._4_4_ << 0x20;
+    CalculationFlagsExtended = (ulong long)CalculationFlagsExtended._4_4_ << 0x20;
     SystemGameControllerBuffer = &SystemMemoryAllocatorReference;
     goto SystemStatusCheckPoint;
   }
@@ -44856,7 +44856,7 @@ SystemIndexCheckPoint:
     SystemMemoryContext = &SystemMemoryAllocatorReference;
     ExecuteSystemOperation(&pSystemStackFlag,&dataBufferContext,systemIndex + 7,0xffffffff);
     SystemGameControllerBuffer = &SystemGlobalDataReference;
-    CalculationFlags1A0 = 0;
+    CalculationFlagsExtended = 0;
     StackCleanupFlag = 0;
     StackUnsignedValue1A8 = 0;
     pSystemConfigurationId = &SystemGlobalDataReference;
@@ -44958,7 +44958,7 @@ SystemIndexCheckPoint:
     SystemThreadContextSecondary = SystemThreadContextSecondary & SystemMemoryAlignmentMask;
     pSystemConfigurationId = &SystemMemoryAllocatorReference;
     StackCleanupFlag = 0;
-    CalculationFlags1A0 = CalculationFlags1A0 & SystemMemoryAlignmentMask;
+    CalculationFlagsExtended = CalculationFlagsExtended & SystemMemoryAlignmentMask;
     SystemGameControllerBuffer = &SystemMemoryAllocatorReference;
     dataBufferContext = &SystemGlobalDataReference;
     if (MemoryAllocatorReferencePointer != (void* *)0x0) {
@@ -64317,7 +64317,7 @@ ResourceInitializationLoop:
                 SystemOperationFlag1b8._4_4_ = *(uint32_t *)(SystemThreadHandle3 + 8 + SystemThreadHandle1);
                 SystemOperationFlag1b8._0_4_ = *(uint32_t *)(SystemThreadHandle3 + 4 + SystemThreadHandle1);
                 uStack_1bc = *(uint32_t *)(SystemThreadHandle3 + SystemThreadHandle1);
-                CalculationFlags1A0 = (int *)ConcatenatedSystemValue((uint32_t)SystemOperationFlag1b8,uStack_1bc);
+                CalculationFlagsExtended = (int *)ConcatenatedSystemValue((uint32_t)SystemOperationFlag1b8,uStack_1bc);
                 SystemStackFlag = (int *)ConcatenatedSystemValue(0x7f7fffff,SystemOperationFlag1b8._4_4_);
                 piStack_1b0 = (int *)ConcatenatedSystemValue(piStack_1b0._4_4_,0x7f7fffff);
                 resourceAddress1 = (ulong long)*SystemHashNodeData2;
@@ -64570,7 +64570,7 @@ ThreadContextCleanup:
     } while ((ulong long)(long long)systemResult7 < resourceAddress1);
     SystemContextPointer = (uint)SystemParameterPointer;
     if (!isResourceAvailable4) {
-      CalculationFlags1A0 = (int *)0x0;
+      CalculationFlagsExtended = (int *)0x0;
       SystemStackFlag = (int *)0x0;
       piStack_190 = (int *)0x0;
       TimeStructurePointer = 3;
@@ -64585,7 +64585,7 @@ ThreadContextCleanup:
       LoopCounter = 1;
       piStack_1f8 = *(int **)(*paresourceAddress2 + longValue170);
       SystemIntegerPointer5 = pointerToInteger20;
-      CalculationFlags1A0 = SystemIntegerPointer4;
+      CalculationFlagsExtended = SystemIntegerPointer4;
       SystemStackFlag = pointerToInteger20;
       piStack_190 = pointerToInteger20;
       if (1 < (ulong long)(*(long long *)(*paresourceAddress2 + longValue170 + 8) - (long long)piStack_1f8 >> 2)) {
@@ -64722,7 +64722,7 @@ LabelExpandSystemThread:
                 SystemIntegerPointer6 = pointerToInteger25;
                 SystemIntegerPointer3 = piStack_1b0;
                 SystemIntegerPointer4 = SystemIntegerPointer5;
-                CalculationFlags1A0 = SystemIntegerPointer5;
+                CalculationFlagsExtended = SystemIntegerPointer5;
                 SystemStackFlag = pointerToInteger20;
                 isResourceAvailable4 = true;
               }
@@ -64774,7 +64774,7 @@ MemoryAllocationComplete:
     *(int **)(paGlobalDataFlags2[1] + longValue170) = SystemIntegerPointer5;
     TimeStructurePointer = *(uint32_t *)(paGlobalDataFlags2[1] + longValue170 + 8);
     *(uint32_t *)(paGlobalDataFlags2[1] + longValue170 + 8) = 3;
-    CalculationFlags1A0 = SystemIntegerPointer3;
+    CalculationFlagsExtended = SystemIntegerPointer3;
     if (pSystemMemoryAllocationOffset168 < pSystemMemoryAllocationOffset160) {
       resourceAddress1 = (long long)pointerToInteger26 - (long long)SystemIntegerPointer6;
       *(uint32_t *)(pSystemMemoryAllocationOffset168 + 3) = 3;
