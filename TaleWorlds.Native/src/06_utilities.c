@@ -88844,7 +88844,12 @@ void ExecuteValidationContextCallbackProcessing(uint8_t ObjectContext, int64_t V
 
 
 
-void Unwind_18090d590(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -89071,7 +89076,12 @@ void ExecuteSystemResourceTableTraversalAndCleanup(uint8_t ObjectContext, int64_
 
 
 
-void Unwind_18090d660(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希状态并释放内存
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceHashStatusAndReleaseMemory(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -89100,7 +89110,12 @@ void Unwind_18090d660(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d680(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandlerType2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xee8,0x18,2,ResourceTypeHandler018,0xfffffffffffffffe);

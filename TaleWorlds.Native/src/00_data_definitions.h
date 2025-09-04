@@ -5673,7 +5673,7 @@ Label_1801d5c43:
       pModuleInitializationResult3 = SystemEngineContext;
       SystemTertiaryParameter = SystemMultiLevelPointer;
       ModuleInitializationResult9 = lStack_a8;
-      SystemQuaternaryParameter = uStackX_20;
+      SystemQuaternaryParameter = SystemUnionParameter;
     } while (StringIndex1 < (int)SystemDataPointer);
   }
   uStack_110 = 3;
@@ -5975,7 +5975,7 @@ Label_180203fb6:
         OutputDebugStringA(auStack_258);
       }
       FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)SystemParameterPointer + 0x5e) - 1) *
-                            uStackX_18._4_4_,&StackProcessingBuffer1);
+                            SystemUnionData._4_4_,&StackProcessingBuffer1);
       FloatResult = (float)modff();
       FloatInterpolationResult298 = (FloatSourceValue28c - FloatInterpolationResult298) * FloatResult + FloatInterpolationResult298;
       FloatInterpolationResult294 = (FloatSourceValue288 - FloatInterpolationResult294) * FloatResult + FloatInterpolationResult294;
@@ -5999,7 +5999,7 @@ Label_180203fb6:
     break;
   case 0x16:
     iStack_2c8 = SystemQuaternaryParameter;
-    ProcessModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&uStackX_18);
+    ProcessModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
 code_r0x0001802a14f5:
     *SystemSecondaryParameter = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
     CharValue = (byte)StackProcessingBuffer1;
@@ -6015,7 +6015,7 @@ code_r0x0001802a1528:
     break;
   case 0x1e:
     iStack_2c8 = SystemQuaternaryParameter;
-    pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&uStackX_18);
+    pUnsignedIndex = (uint16_t *)GetModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
     fVar16 = (float)ConvertToFloatValue(pUnsignedIndex[2]);
     FloatTemp = (float)ConvertToFloatValue(pUnsignedIndex[1]);
     FloatCalculationResult = (float)ConvertToFloatValue(*pUnsignedIndex);
@@ -6027,7 +6027,7 @@ code_r0x0001802a1528:
     break;
   case 0x20:
     iStack_2c8 = SystemQuaternaryParameter;
-    ValidateModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&uStackX_18);
+    ValidateModuleInitializationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
     *SystemSecondaryParameter = (float)StackProcessingBuffer1;
     SystemSecondaryParameter[2] = (float)uStack_2a8;
 code_r0x0001802a1ad1:
@@ -6040,13 +6040,13 @@ code_r0x0001802a1ade:
     if (SystemQuaternaryParameter == 0) {
       LoopCounter1 = *(ushort *)((longlong)SystemParameterPointer + 0x5e) - 1;
       LoopCounter3 = *(ushort *)((longlong)SystemParameterPointer + 0x5c) - 1;
-      uStackX_18._0_4_ = (float)SystemTertiaryParameter;
-      if ((int)((float)LoopCounter3 * (float)uStackX_18) <= LoopCounter3) {
-        LoopCounter3 = (int)((float)LoopCounter3 * (float)uStackX_18);
+      SystemUnionData._0_4_ = (float)SystemTertiaryParameter;
+      if ((int)((float)LoopCounter3 * (float)SystemUnionData) <= LoopCounter3) {
+        LoopCounter3 = (int)((float)LoopCounter3 * (float)SystemUnionData);
       }
-      uStackX_18._4_4_ = (float)((ulonglong)SystemTertiaryParameter >> 0x20);
-      if ((int)((float)LoopCounter1 * uStackX_18._4_4_) <= LoopCounter1) {
-        LoopCounter1 = (int)((float)LoopCounter1 * uStackX_18._4_4_);
+      SystemUnionData._4_4_ = (float)((ulonglong)SystemTertiaryParameter >> 0x20);
+      if ((int)((float)LoopCounter1 * SystemUnionData._4_4_) <= LoopCounter1) {
+        LoopCounter1 = (int)((float)LoopCounter1 * SystemUnionData._4_4_);
       }
       IntegerError = 0;
       if (-1 < LoopCounter1) {
@@ -6066,7 +6066,7 @@ code_r0x0001802a1ade:
     else if (SystemQuaternaryParameter == 1) {
       ConfigureModuleInitializationSettings(SystemParameterPointer,&uStackX_18,SystemTertiaryParameter,&FloatInterpolationResult298);
       fVar16 = (float)modff((float)(int)(*(ushort *)((longlong)SystemParameterPointer + 0x5e) - 1) *
-                            uStackX_18._4_4_,&StackProcessingBuffer1);
+                            SystemUnionData._4_4_,&StackProcessingBuffer1);
       FloatTemp = (float)modff();
       FloatInterpolationResult298 = (FloatSourceValue288 - FloatInterpolationResult298) * FloatTemp + FloatInterpolationResult298;
       FloatInterpolationResult294 = (FloatSourceValue284 - FloatInterpolationResult294) * FloatTemp + FloatInterpolationResult294;
@@ -6090,7 +6090,7 @@ code_r0x0001802a1ade:
     break;
   case 0x27:
     iStack_2c8 = SystemQuaternaryParameter;
-    ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&uStackX_18);
+    ProcessModuleConfigurationData(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
     fVar16 = 1.5259022e-05;
     *SystemSecondaryParameter = (float)(ushort)StackProcessingBuffer1 * 1.5259022e-05;
     SecondaryParameterResult = (uint)StackProcessingBuffer1._2_2_;
@@ -6098,7 +6098,7 @@ code_r0x0001802a1ade:
     goto code_r0x0001802a16a1;
   case 0x28:
     iStack_2c8 = SystemQuaternaryParameter;
-    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&uStackX_18);
+    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
     fVar16 = 0.003921569;
     *SystemSecondaryParameter = (float)(byte)StackProcessingBuffer1 * 0.003921569;
     SecondaryParameterResult = (uint)StackProcessingBuffer1._1_1_;
@@ -6106,7 +6106,7 @@ code_r0x0001802a1ade:
     goto code_r0x0001802a16a1;
   case 0x29:
     iStack_2c8 = SystemQuaternaryParameter;
-    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&uStackX_18);
+    InitializeModuleConfiguration(ModuleInitializationResult0,&StackProcessingBuffer1,SystemParameterPointer,&SystemUnionData);
 code_r0x0001802a1677:
     fVar16 = 0.003921569;
     *SystemSecondaryParameter = (float)StackProcessingBuffer1._2_1_ * 0.003921569;
@@ -6119,14 +6119,14 @@ code_r0x0001802a16a1:
     break;
   case 0x2b:
     iStack_2c8 = SystemQuaternaryParameter;
-    ProcessModuleSystemData(ModuleInitializationResult0,abStack_2b8,SystemParameterPointer,&uStackX_18);
+    ProcessModuleSystemData(ModuleInitializationResult0,abStack_2b8,SystemParameterPointer,&SystemUnionData);
     SystemSecondaryParameter[1] = 0.0;
     SystemSecondaryParameter[2] = 0.0;
     SystemSecondaryParameter[3] = 0.0;
     *SystemSecondaryParameter = (float)abStack_2b8[0];
     break;
   case 0x2c:
-    MemoryAllocationResult = GetModuleMemoryAllocation(ModuleInitializationResult0,SystemParameterPointer,&uStackX_18);
+    MemoryAllocationResult = GetModuleMemoryAllocation(ModuleInitializationResult0,SystemParameterPointer,&SystemUnionData);
     fVar16 = (float)MemoryAllocationResult;
 code_r0x0001802a1829:
     *SystemSecondaryParameter = fVar16;
@@ -6825,7 +6825,7 @@ NetworkRequestDefaultHandler:
   *SystemSecondaryParameter = (longlong)pLongLoop;
 NetworkRequestComplete:
 code_r0x000180329ed1:
-  stackBufferByteValue = (byte)auStackX_20[0];
+  stackBufferByteValue = (byte)SystemArrayBuffer[0];
   goto NetworkRequestDefaultHandler;
 }
 /**
@@ -6849,8 +6849,8 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   uint64_t MemoryAllocationResult;
   longlong *MemoryPointerArray;
   longlong SystemStateValue;
-  longlong *plStackX_18;
-  uint32_t auStackX_20 [2];
+  longlong *SystemMemoryPointer2;
+  uint32_t SystemArrayBuffer [2];
   longlong *plStack_80;
   longlong *plStack_78;
   uint64_t StackParameter2;
