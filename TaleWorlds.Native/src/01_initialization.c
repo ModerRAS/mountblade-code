@@ -22113,8 +22113,8 @@ void* * SystemMemoryBatchInitializer(void* *SystemResourceManager,long long *Mem
   long long *PrimaryResourceHandle;
   long long *resourcePoolPointer;
   uint32_t resourceAllocationContext;
-  long long SystemProcessBufferPtr;
   long long *SystemLocalContextPointer;
+  long long SystemMemoryBatchPointer;
   
   *SystemResourceManager = MemoryBlockPointer;
   if (MemoryRegionStart != MemoryRegionEnd) {
@@ -22136,7 +22136,7 @@ void* * SystemMemoryBatchInitializer(void* *SystemResourceManager,long long *Mem
       SystemLocalContextPointer[-0x18] = 0;
       ConfigurationFlag[4] = SystemLocalContextPointer[-0x17];
       ConfigurationFlag[5] = SystemLocalContextPointer[-0x16];
-      SystemProcessBufferPtr = SystemLocalContextPointer[-0x14];
+      SystemMemoryBatchPointer = SystemLocalContextPointer[-0x14];
       ConfigurationFlag[6] = SystemLocalContextPointer[-0x15];
       ConfigurationFlag[7] = SystemProcessingBufferPointer;
       SystemProcessBufferPtr = SystemLocalContextPointer[-0x12];

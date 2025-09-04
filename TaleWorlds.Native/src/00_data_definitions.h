@@ -3140,18 +3140,18 @@ LabelStringProcessingSpaceCheck2:
   MemoryAllocationResult = AllocateSystemMemory(SystemMemoryAllocationPointer,0x213458,8,10);
   SystemMemoryConfigurationPointer = ConfigureMemoryAllocation(MemoryAllocationResult);
   MemoryPointerArray = (longlong *)AllocateSystemMemory(SystemMemoryAllocationPointer,0xe8,8,3);
-  plStackX_10 = MemoryPointerArray;
+  SystemMemoryPointerArray = MemoryPointerArray;
   ProcessMemoryData(MemoryPointerArray);
   *MemoryPointerArray = (longlong)&SystemGlobalDataTemplate;
-  pplStackX_18 = (longlong **)(MemoryPointerArray + 0x18);
-  *pplStackX_18 = (longlong *)&SystemBufferTemplate;
+  SystemMemoryPointerArray2 = (longlong **)(MemoryPointerArray + 0x18);
+  *SystemMemoryPointerArray2 = (longlong *)&SystemBufferTemplate;
   MemoryPointerArray[0x19] = 0;
   *(uint32_t *)(MemoryPointerArray + 0x1a) = 0;
-  *pplStackX_18 = (longlong *)&SystemNullPointer;
+  *SystemMemoryPointerArray2 = (longlong *)&SystemNullPointer;
   MemoryPointerArray[0x1b] = 0;
   MemoryPointerArray[0x19] = 0;
   *(uint32_t *)(MemoryPointerArray + 0x1a) = 0;
-  (*(code *)(*pplStackX_18)[2])(pplStackX_18,SystemContextPointer);
+  (*(code *)(*SystemMemoryPointerArray2)[2])(SystemMemoryPointerArray2,SystemContextPointer);
   MemoryPointerArray[0x1c] = Parameter2Value;
   StackMemoryPointerArray = MemoryPointerArray;
   (ExecuteMemoryFunction28)(MemoryPointerArray);
@@ -4100,19 +4100,19 @@ Label_CharacterValidationComplete:
     MemoryAllocationResult = MemoryManagerDataAddress;
     if ((NetworkModuleDataAddress != 0) &&
        (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
-      pSystemStackPointer = &plStackX_10;
-      plStackX_10 = pModuleInitializationResult;
+      pSystemStackPointer = &SystemMemoryPointerArray;
+      SystemMemoryPointerArray = pModuleInitializationResult;
       (ExecuteModuleInitialization28)();
-      ProcessNetworkPacket(MemoryAllocationResult,&plStackX_10);
+      ProcessNetworkPacket(MemoryAllocationResult,&SystemMemoryPointerArray);
     }
     MemoryAllocationResult = MemoryManagerDataAddress;
     if (*(char *)(SystemControlDataAddress + 0xa0) == '\0') {
       if ((NetworkModuleDataAddress != 0) &&
          (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
-        pSystemStackPointer = &plStackX_18;
-        plStackX_18 = pModuleInitializationResult;
+        pSystemStackPointer = &SystemMemoryPointerArray2;
+        SystemMemoryPointerArray2 = pModuleInitializationResult;
         (ExecuteModuleInitialization28)();
-        ProcessNetworkConnection(MemoryAllocationResult,&plStackX_18,0);
+        ProcessNetworkConnection(MemoryAllocationResult,&SystemMemoryPointerArray2,0);
         pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228);
         *(uint64_t *)(NetworkModuleDataAddress + 0x228) = 0;
         if (pModuleInitializationResult != (longlong *)0x0) {
@@ -4209,19 +4209,19 @@ Label_CharacterValidationComplete:
     MemoryAllocationResult = MemoryManagerDataAddress;
     if ((NetworkModuleDataAddress != 0) &&
        (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
-      pSystemStackPointer = &plStackX_10;
-      plStackX_10 = pModuleInitializationResult;
+      pSystemStackPointer = &SystemMemoryPointerArray;
+      SystemMemoryPointerArray = pModuleInitializationResult;
       (ExecuteModuleInitialization28)();
-      ProcessNetworkPacket(MemoryAllocationResult,&plStackX_10);
+      ProcessNetworkPacket(MemoryAllocationResult,&SystemMemoryPointerArray);
     }
     MemoryAllocationResult = MemoryManagerDataAddress;
     if (*(char *)(SystemControlDataAddress + 0xa0) == '\0') {
       if ((NetworkModuleDataAddress != 0) &&
          (pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228), pModuleInitializationResult != (longlong *)0x0)) {
-        pSystemStackPointer = &plStackX_18;
-        plStackX_18 = pModuleInitializationResult;
+        pSystemStackPointer = &SystemMemoryPointerArray2;
+        SystemMemoryPointerArray2 = pModuleInitializationResult;
         (ExecuteModuleInitialization28)();
-        ProcessNetworkConnection(MemoryAllocationResult,&plStackX_18,0);
+        ProcessNetworkConnection(MemoryAllocationResult,&SystemMemoryPointerArray2,0);
         pModuleInitializationResult = *(longlong **)(NetworkModuleDataAddress + 0x228);
         *(uint64_t *)(NetworkModuleDataAddress + 0x228) = 0;
         if (pModuleInitializationResult != (longlong *)0x0) {
@@ -5096,7 +5096,7 @@ Label_ModuleInitializationComplete:
   }
   SystemContextData = *(uint64_t **)(*SystemParameterPointer + 0x18);
   pcVar3 = *(code **)*SystemContextData;
-  pplStackX_10 = &SystemStackPointer;
+  SystemStackPointerArray = &SystemStackPointer;
   SystemStackPointer = *(longlong **)(*SystemParameterPointer + 0x10);
   if (SystemStackPointer != (longlong *)0x0) {
     (**(code **)(*SystemStackPointer + 0x28))();
@@ -5228,11 +5228,11 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       SystemMemoryInitialized = SystemMemoryInitialized == '\0';
     }
     if (SystemMemoryInitialized != '\0') {
-      (*(code *)(*in_RCX[0xc170])[9])(in_RCX[0xc170],alStackX_10[0] + 0x120);
+      (*(code *)(*in_RCX[0xc170])[9])(in_RCX[0xc170],SystemModuleArray[0] + 0x120);
     }
   }
-  ModuleInitializationResult0 = alStackX_10[0];
-  if ((*(int *)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x110) != 0) &&
+  ModuleInitializationResult0 = SystemModuleArray[0];
+  if ((*(int *)(*(longlong *)(SystemModuleArray[0] + 0x3580) + 0x110) != 0) &&
      (MemoryAddress2 = MemoryAddress6, MemoryAddress5 = MemoryAddress6, (longlong)in_RCX[0x1d] - (longlong)in_RCX[0x1c] >> 3 != 0))
   {
     do {
@@ -5246,16 +5246,16 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
   }
   ppplStack_b8 = (longlong ***)0x0;
   StackCounter3 = (longlong *)CONCAT44(StackCounter3._4_4_,(uint32_t)StackCounter3);
-  if (*(int *)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x110) != 0) {
+  if (*(int *)(*(longlong *)(SystemModuleArray[0] + 0x3580) + 0x110) != 0) {
     StackCounter3 = (longlong *)CONCAT44(StackCounter3._4_4_,(uint32_t)StackCounter3);
-    if ((((*(byte *)(alStackX_10[0] + 0x1bd8) & 0x20) != 0) &&
+    if ((((*(byte *)(SystemModuleArray[0] + 0x1bd8) & 0x20) != 0) &&
         (StackCounter3 = (longlong *)CONCAT44(StackCounter3._4_4_,(uint32_t)StackCounter3),
         *(char *)(SystemEngineContext + 0xf8) != '\0')) &&
        (StackCounter3 = (longlong *)CONCAT44(StackCounter3._4_4_,(uint32_t)StackCounter3),
        6 < *(int *)(in_RCX + 0x4f8))) {
       UnsignedSize = AllocateSystemMemory(SystemMemoryAllocator,0xe0,8,3);
       ppSystemStackPointer = (longlong ***)&StackCounter2;
-      plStack_68 = alStackX_10;
+      SystemMemoryPointer = SystemModuleArray;
       pStackParameter1 = &SystemBufferPrimaryTemplate;
       StackBufferPointer2 = &SystemBufferSecondaryTemplate;
       StackParameter2._0_4_ = SUB84(in_RCX,0);
@@ -5292,11 +5292,11 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
         }
       }
     }
-    ProcessSystemModuleShutdown(in_RCX,alStackX_10[0]);
+    ProcessSystemModuleShutdown(in_RCX,SystemModuleArray[0]);
     UnsignedSize = MemoryManagerDataAddress;
     if (((in_RCX[0x89] != (longlong ****)0x0) && (*(char *)(SystemEngineContext + 0xfa) != '\0')) &&
-       ((*(longlong *)(alStackX_10[0] + 0x3580) != 0 &&
-        (*(int *)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x110) != 0)))) {
+       ((*(longlong *)(SystemModuleArray[0] + 0x3580) != 0 &&
+        (*(int *)(*(longlong *)(SystemModuleArray[0] + 0x3580) + 0x110) != 0)))) {
       StackParameter2 = &pppplStackX_20;
       pppplStackX_20 = (longlong ****)in_RCX[0x89][0x461];
       if (pppplStackX_20 != (longlong ****)0x0) {
@@ -5324,8 +5324,8 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
         }
       }
     }
-    ModuleInitializationResult0 = alStackX_10[0];
-    pModuleInitializationResult1 = *(longlong **)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x630);
+    ModuleInitializationResult0 = SystemModuleArray[0];
+    pModuleInitializationResult1 = *(longlong **)(*(longlong *)(SystemModuleArray[0] + 0x3580) + 0x630);
     if (pModuleInitializationResult1 != (longlong *)0x0) {
       plStack_78 = pModuleInitializationResult1;
       (**(code **)(*pModuleInitializationResult1 + 0x28))(pModuleInitializationResult1);
@@ -5337,13 +5337,13 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
     }
     ppppModuleInitializationResult3 = in_RCX[99];
     if (ppppModuleInitializationResult3 != (longlong ****)0x0) {
-      (*(code *)(*ppppModuleInitializationResult3)[0x1f])(ppppModuleInitializationResult3,alStackX_10[0]);
+      (*(code *)(*ppppModuleInitializationResult3)[0x1f])(ppppModuleInitializationResult3,SystemModuleArray[0]);
     }
     if (in_RCX[0x22] != (longlong ****)0x0) {
-      (*(code *)in_RCX[0x23])(alStackX_10[0]);
+      (*(code *)in_RCX[0x23])(SystemModuleArray[0]);
     }
     if ((*(char *)(in_RCX + 0xb74) != '\0') &&
-       (ModuleInitializationResult0 = *(longlong *)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x530), ModuleInitializationResult0 != 0)) {
+       (ModuleInitializationResult0 = *(longlong *)(*(longlong *)(SystemModuleArray[0] + 0x3580) + 0x530), ModuleInitializationResult0 != 0)) {
       *(uint32_t *)(ModuleInitializationResult0 + 0x40) = 0x41200000;
     }
     if (*(int *)(in_RCX + 0xa3a) != 0) {
@@ -5362,7 +5362,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       if (IntegerError != 0) {
         memcpy(pppppModuleInitializationResult7[1],in_RCX[0xa3b],0x20000);
       }
-      ModuleInitializationResult0 = *(longlong *)(*(longlong *)(alStackX_10[0] + 0x3580) + 0x118);
+      ModuleInitializationResult0 = *(longlong *)(*(longlong *)(SystemModuleArray[0] + 0x3580) + 0x118);
       if (ModuleInitializationResult0 != 0) {
         *(longlong ******)(ModuleInitializationResult0 + 0x98c8) =
              in_RCX + (longlong)*(int *)(in_RCX + 0xa39) * 0x121 + 0x7f7;
@@ -6918,7 +6918,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     }
     else {
       pModuleInitializationResult = (longlong *)(SystemParameterPointer + 0x3d8);
-      plStackX_18 = pModuleInitializationResult;
+      SystemMemoryPointerArray2 = pModuleInitializationResult;
       IntegerCounter = _Mtx_lock(pModuleInitializationResult);
       if (IntegerCounter != 0) {
         __Throw_C_error_std__YAXH_Z(IntegerCounter);
@@ -7443,13 +7443,13 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   puStack_20 = &SystemBufferPointerPrimary;
   pStackCounter5 = &SystemBufferPointerSecondary;
   pModuleInitializationResult = (longlong *)CreateMemoryManagerContext(StringProcessingResult,alStack_30);
-  plStackX_18 = pModuleInitializationResult;
+  SystemMemoryPointerArray2 = pModuleInitializationResult;
   if (pModuleInitializationResult != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult + 0x28))(pModuleInitializationResult);
   }
   StringProcessingResult = MemoryManagerDataAddress;
   pplStackX_20 = &plStackX_10;
-  plStackX_10 = pModuleInitializationResult;
+  SystemMemoryPointerArray = pModuleInitializationResult;
   if (pModuleInitializationResult != (longlong *)0x0) {
     (**(code **)(*pModuleInitializationResult + 0x28))(pModuleInitializationResult);
   }

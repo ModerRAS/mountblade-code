@@ -88490,7 +88490,12 @@ void ClearSenaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_18090d4c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理第七级资源哈希状态地址并释放相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearSeptenaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -88526,7 +88531,12 @@ void Unwind_18090d4c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d4d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理第七级资源哈希状态地址并释放相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearSeptenaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -88562,7 +88572,12 @@ void Unwind_18090d4d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d4e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理第八级资源哈希状态地址并释放相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearOctonaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -88598,7 +88613,12 @@ void Unwind_18090d4e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d4f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理第九级资源哈希状态地址并释放相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearNonaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -88692,7 +88712,12 @@ void ExecuteValidationResourceCleanupLoopOperation(uint8_t ObjectContext,int64_t
 
 
 
-void Unwind_18090d530(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源清理循环操作并设置资源处理器模板
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteSystemResourceCleanupLoopAndSetTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;

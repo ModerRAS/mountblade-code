@@ -1402,7 +1402,7 @@ void ValidateNetworkPacketSecurity(void)
 {
   // 初始化验证参数
   NetworkPacketHashAlgorithm = HASH_ALGORITHM_SHA256;                         // 设置哈希算法为SHA-256
-  PacketSignatureMethod = SIGNATURE_METHOD_RSA;                        // 设置签名方法为RSA
+  NetworkPacketSignatureMethod = SIGNATURE_METHOD_RSA;                        // 设置签名方法为RSA
   PacketEncryptionKeyLength = ENCRYPTION_KEY_LENGTH_256B;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
@@ -1419,8 +1419,8 @@ void ValidateNetworkPacketSecurity(void)
   PacketSecurityCertificateData = NetworkSecurityEnabled;                 // 初始化安全证书数据
   
   // 初始化加密缓冲区
-  PacketEncryptionBuffer = NetworkBufferInitialized;                 // 初始化数据包加密缓冲区
-  PacketCompressionBuffer = NetworkBufferInitialized;                // 初始化数据包压缩缓冲区
+  NetworkPacketEncryptionBuffer = NetworkBufferInitialized;                 // 初始化数据包加密缓冲区
+  NetworkPacketCompressionBuffer = NetworkBufferInitialized;                // 初始化数据包压缩缓冲区
   
   // 初始化压缩参数
   PacketDataCompressionLevel = COMPRESSION_LEVEL_DEFAULT;                  // 设置压缩级别为6（默认级别）
@@ -1563,15 +1563,17 @@ uint32_t NetworkPacketSignatureMethod;                         // 数据包签�
 uint32_t PacketEncryptionKeyLength;                     // 数据包加密密钥长度
 uint32_t PacketValidationBufferPool;                     // 数据包验证缓冲池
 uint32_t PacketValidationBufferSize;                     // 数据包验证缓冲区大小
+uint32_t PacketSecurityValidationData;                   // 数据包安全验证数据
 uint32_t PacketSecurityValidationInfo;                   // 数据包安全验证信息
+uint32_t PacketSecurityEncryptionData;                   // 数据包安全加密数据
 uint32_t PacketSecurityEncryptionInfo;                   // 数据包安全加密信息
+uint32_t PacketSecurityAuthenticationData;              // 数据包安全认证数据
 uint32_t PacketSecurityAuthenticationInfo;              // 数据包安全认证信息
+uint32_t PacketSecurityAuthorizationData;               // 数据包安全授权数据
 uint32_t PacketSecurityAuthorizationInfo;               // 数据包安全授权信息
 uint32_t PacketSecurityAuditInfo;                        // 数据包安全审计信息
 uint32_t PacketSecurityPolicyInfo;                       // 数据包安全策略信息
 uint32_t PacketSecurityCertificateInfo;                  // 数据包安全证书信息
-uint32_t PacketEncryptionBuffer;                         // 数据包加密缓冲区
-uint32_t PacketCompressionBuffer;                        // 数据包压缩缓冲区
 uint32_t PacketCompressionDataLevel;                    // 数据包压缩数据级别
 uint32_t PacketCompressionLevel;                         // 数据包压缩级别
 uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算法类型
@@ -2238,10 +2240,10 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
         return IntermediateProcessingResult;
       }
     }
-    PacketProcessingResult = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);
-    return PacketProcessingResult;
+    IntermediateProcessingResult = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);
+    return IntermediateProcessingResult;
   }
-  return PacketProcessingResult;
+  return IntermediateProcessingResult;
 }
 
 /**
