@@ -20958,11 +20958,11 @@ void InitializeSystemCoreEngine(void)
   uint8_t systemInputData [648];
   ulong long systemSecurityHash;
   
-  CalculationFlagss4f8 = 0xfffffffffffffffe;
-  encryptionValue68 = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer698;
-  systemStateFlags5b8 = 0;
+  SystemCalculationFlags = 0xfffffffffffffffe;
+  SystemEncryptionValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer698;
+  SystemStateFlags = 0;
   if (*(int *)(SystemGlobalStatusFlags + 0x224) - SystemMemoryAllocationCounter < 0xfb) {
-      ValidateSystemChecksum(encryptionValue68 ^ (ulong long)EncryptionBuffer698);
+      ValidateSystemChecksum(SystemEncryptionValue ^ (ulong long)EncryptionBuffer698);
   }
   *(uint8_t *)(SystemSystemResourceManager + 0x39) = 1;
   SystemDataTable = (long long ***)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,200,8,3);
@@ -20993,17 +20993,17 @@ void InitializeSystemCoreEngine(void)
     SetupSystemResources(&LocalStackConfigurationPointer);
   }
   SystemDataBufferPointer = &SystemDataBufferTemplateB;
-  DataBufferPtr4E0 = DataBuffer4D0;
-  DataBuffer4D0[0] = 0;
-  configurationFlags4d8 = 0x18;
-  strcpy_s(DataBuffer4D0,0x40,&SystemDataBufferTemplateJ);
+  SystemDataBufferPtr4E0 = SystemDataBuffer4D0;
+  SystemDataBuffer4D0[0] = 0;
+  SystemConfigurationFlags4D8 = 0x18;
+  strcpy_s(SystemDataBuffer4D0,0x40,&SystemDataBufferTemplateJ);
   InitializeResourceManager(SystemSystemResourceManager,&SystemDataBufferPointer,&LocalStackConfigurationPointer);
   SystemDataBufferPointer = &SystemMemoryAllocatorReference;
   SystemEncryptionKeyPointer = &SystemDataBufferTemplateB;
-  DataBufferPointer = DataBufferArray;
-  DataBufferArray[0] = 0;
-  ConfigurationFlags = 0xb;
-  strcpy_s(DataBufferArray,0x40,&SystemDataBufferTemplateK);
+  SystemDataBufferPointer = SystemDataBufferArray;
+  SystemDataBufferArray[0] = 0;
+  SystemConfigurationFlags = 0xb;
+  strcpy_s(SystemDataBufferArray,0x40,&SystemDataBufferTemplateK);
   InitializeResourceManager(SystemSystemResourceManager,&SystemEncryptionKeyPointer,&LocalStackConfigurationPointer);
   SystemEncryptionKeyPointer = &SystemMemoryAllocatorReference;
   SystemScaleFactorBuffer = &SystemDataBufferTemplateB;
@@ -36238,7 +36238,7 @@ long long InitializeSystemContext(long long SystemResourceManager)
 
 
 void*
-ProcessSystemDataOperation(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+ExecuteSystemDataOperation(void* SystemResourceManager, void* ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
 
 {
   CreateSystemObject(ConfigurationDataPointer,SystemContextManagerPointer + 0xe0,AdditionalParameter,ConfigurationFlag,0,InvalidHandleValue);
