@@ -714,11 +714,11 @@ uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t Conn
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManager;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
 uint32_t NetworkConnectionManagerContext;             // 网络连接管理器上下文，存储连接管理的上下文信息和状态数据
-uint32_t NetworkConnectionFlags;                    // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
-uint32_t NetworkConnectionTimeout;                // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
+uint32_t NetworkConnectionStateFlags;                 // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
+uint32_t NetworkConnectionTimeoutValue;               // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
 uint32_t NetworkMaxConnections;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
-uint32_t NetworkConnectionAttributes;                // 网络连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
-uint32_t NetworkConnectionState;                     // 网络连接状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
+uint32_t NetworkConnectionAttributeFlags;              // 网络连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
+uint32_t NetworkConnectionCurrentState;                // 网络连接状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
 uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板，用于格式化错误报告数据
 
 // 网络协议和地址配置
@@ -733,15 +733,15 @@ uint32_t NetworkClientPortNumber;                         // 网络客户端端�
 uint32_t NetworkSocketDescriptor;                     // 网络套接字文件描述符，操作系统分配的套接字标识符
 uint32_t NetworkSocketCategory;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
 uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
-uint32_t NetworkSocketIndex;                              // 网络套接字索引，套接字在表中的索引位置
+uint32_t NetworkSocketTableIndex;                        // 网络套接字索引，套接字在表中的索引位置
 uint32_t NetworkSocketContext;                                 // 网络套接字上下文，套接字的运行时上下文数据
 uint32_t NetworkSocketRuntimeData;                                // 网络套接字运行时数据，套接字相关的数据存储
 uint32_t NetworkSocketRuntimeContext;                            // 网络套接字运行时上下文，套接字的运行时上下文数据
-uint32_t NetworkSocketSize;                                  // 网络套接字大小，套接字结构体的大小
+uint32_t NetworkSocketStructureSize;                     // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
-uint32_t NetworkConnectionPriority;                           // 网络连接优先级，定义连接在资源竞争中的优先级别
-uint32_t NetworkConnectionContextSize;                         // 网络连接上下文大小，连接上下文数据结构的大小
+uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
+uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文大小，连接上下文数据结构的大小
 uint32_t NetworkConnectionQuality;                             // 网络连接质量，评估连接质量的质量指标
 uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽，连接可用的带宽资源
 uint32_t NetworkConnectionLatency;                             // 网络连接延迟，网络通信的延迟时间
@@ -862,17 +862,17 @@ void InitializeNetworkConnectionPool(void)
 {
   // 初始化连接池配置参数
   NetworkConnectionPoolCapacity = CONNECTION_POOL_CAPACITY;           // 设置连接池最大容量
-  NetworkConnectionPoolAllocationCount = 0;        // 重置分配计数器
-  NetworkConnectionPoolDeallocationCount = 0;      // 重置释放计数器
+  NetworkConnectionPoolAllocationCount = 0;        // 重置分配计数器为0
+  NetworkConnectionPoolDeallocationCount = 0;      // 重置释放计数器为0
   NetworkConnectionPoolHealthStatus = HEALTH_STATUS_NORMAL;         // 设置健康状态为正常
   
   // 初始化连接池管理器
   NetworkConnectionPoolManager = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
-  NetworkConnectionPoolCurrentIndex = 0;                  // 重置索引
+  NetworkConnectionPoolCurrentIndex = 0;                  // 重置索引为0
   
   // 初始化性能监控
-  NetworkConnectionPoolMetrics = 0;    // 重置性能指标
-  NetworkConnectionPoolStats = 0;            // 重置统计信息
+  NetworkConnectionPoolMetrics = 0;    // 重置性能指标为0
+  NetworkConnectionPoolStats = 0;            // 重置统计信息为0
 }
 
 /**
@@ -996,7 +996,7 @@ void InitializeNetworkSocketHandle(void)
   // 初始化套接字基本参数
   NetworkSocketDescriptor = SOCKET_DESCRIPTOR_INVALID;        // 初始化文件描述符为无效值
   NetworkSocketContextSize = SOCKET_CONTEXT_SIZE;                // 设置套接字上下文大小为256字节
-  NetworkSocketIndex = 0;                           // 重置套接字索引
+  NetworkSocketIndex = 0;                           // 重置套接字索引为0
   NetworkSocketSize = SOCKET_SIZE;                         // 设置套接字大小为64字节
   
   // 初始化套接字配置
@@ -1004,8 +1004,8 @@ void InitializeNetworkSocketHandle(void)
   NetworkSocketProtocolType = TCP_PROTOCOL;                 // 设置协议类型为TCP协议
   
   // 初始化套接字数据缓冲区
-  NetworkSocketRuntimeData = 0;                            // 重置套接字运行时数据指针
-  NetworkSocketContext = 0;                         // 重置套接字上下文
+  NetworkSocketRuntimeData = 0;                            // 重置套接字运行时数据指针为NULL
+  NetworkSocketContext = 0;                         // 重置套接字上下文为NULL
   
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;                    // 设置协议版本为1.0
@@ -1064,11 +1064,11 @@ void StartListeningForNetworkConnections(void)
 {
   // 设置监听队列参数
   NetworkConnectionRequestQueue = NetworkQueueEnabled;                // 初始化连接请求队列
-  NetworkPendingRequestCount = 0;                     // 重置待处理请求数量
+  NetworkPendingRequestCount = 0;                     // 重置待处理请求数量为0
   
   // 设置连接限制参数
   NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;                // 设置最大连接数为100
-  NetworkActiveConnectionsCount = 0;                   // 重置活跃连接计数
+  NetworkActiveConnectionsCount = 0;                   // 重置活跃连接计数为0
   
   // 初始化连接状态管理器
   NetworkConnectionStateManager = NetworkConnectionStateEnabled;               // 设置状态管理器为启用状态
@@ -1079,10 +1079,10 @@ void StartListeningForNetworkConnections(void)
   NetworkTimeoutProcessor = NetworkInvalidTimeoutProcessor;                // 初始化超时处理器
   
   // 初始化连接统计信息
-  NetworkTotalConnectionAttempts = 0;                       // 重置连接尝试次数
-  NetworkFailedConnectionAttempts = 0;                       // 重置连接失败次数
-  NetworkAverageConnectionTime = 0;                           // 重置连接时间
-  NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间
+  NetworkTotalConnectionAttempts = 0;                       // 重置连接尝试次数为0
+  NetworkFailedConnectionAttempts = 0;                       // 重置连接失败次数为0
+  NetworkAverageConnectionTime = 0;                           // 重置连接时间为0
+  NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间为0
 }
 
 /**
@@ -1500,9 +1500,9 @@ void ProcessNetworkPackets(void)
   
   // 初始化事件处理
   NetworkEventSize = NetworkEventSize64Bytes;                              // 设置事件大小为64字节
-  NetworkEventIndex = 0x00;                            // 重置事件索引
+  NetworkEventIndex = 0x00;                            // 重置事件索引为0
   NetworkCallbackSize = NetworkCallbackSize64Bytes;                           // 设置回调大小为64字节
-  NetworkCallbackIndex = 0x00;                          // 重置回调索引
+  NetworkCallbackIndex = 0x00;                          // 重置回调索引为0
 }
 
 /**
@@ -1521,7 +1521,7 @@ void HandleNetworkErrors(void)
 {
   // 初始化错误处理参数
   NetworkErrorProcessor = NetworkSystemEnabled;                         // 初始化错误处理器
-  NetworkErrorCounter = 0x00;                            // 重置错误计数器
+  NetworkErrorCounter = 0x00;                            // 重置错误计数器为0
   
   // 初始化错误报告缓冲区
   NetworkErrorReportSize = 0x0B;                         // 设置错误报告大小为11字节
@@ -2939,9 +2939,9 @@ NetworkHandle ProcessNetworkPacketData(NetworkHandle *PacketData, int64_t Handle
 }
 
 /**
- * @brief 完成数据包处理
+ * @brief 完成数据包处理（带偏移量）
  * 
- * 完成网络数据包的处理工作，更新状态并清理资源，确保处理过程的完整性
+ * 完成网络数据包的处理工作，使用偏移量定位并更新状态，清理资源，确保处理过程的完整性
  * 
  * @param PacketData 数据包数据指针数组，包含待完成处理的数据包信息
  * @param FinalizeOffset 完成偏移量，用于定位完成处理的数据
@@ -2951,7 +2951,7 @@ NetworkHandle ProcessNetworkPacketData(NetworkHandle *PacketData, int64_t Handle
  * @note 此函数会更新数据包状态并清理临时资源
  * @warning 如果完成处理失败，可能会导致资源泄漏或状态不一致
  */
-NetworkHandle FinalizePacketProcessing(NetworkHandle *PacketData, int64_t FinalizeOffset, uint32_t FinalizeValue)
+NetworkHandle FinalizePacketProcessingWithOffset(NetworkHandle *PacketData, int64_t FinalizeOffset, uint32_t FinalizeValue)
 {
   // 数据包完成处理变量
   uint32_t PacketFinalizationResult;              // 数据包完成处理结果
