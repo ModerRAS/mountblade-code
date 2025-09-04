@@ -15374,10 +15374,10 @@ void CalculateFloatValueAndValidateResources(void)
   uint32_t XmmFirstComponent;
   uint32_t ResourceContextOffset;
   
-  if (0 < InputParameter) {
+  if (0 < SystemInputParameter) {
     ResourceHashValidationSecondary = (uint64_t)(uint)FloatRegisterValue;
     ResourceHashStatusPrimary = (uint64_t)(uint)FloatRegisterValue;
-    InputParameterLimit = InputParameter;
+    InputParameterLimit = SystemInputParameter;
     do {
       LocalContextPointer = *(int64_t *)(SystemContextRegister + 0x20);
       ResourceTablePointer = *(int64_t *)(ResourceHashStatusPrimary + 0x10 + LocalContextPointer);
