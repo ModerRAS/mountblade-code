@@ -11032,10 +11032,10 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
 {
   void* StringProcessingTemplate;
     
-  int FormatValidationStatus = ValidateDataFormat(ValidationContext,DataLength,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
-  int StringOperationStatus = ProcessStringOperation(ValidationContext + FormatValidationStatus,DataLength - FormatValidationStatus,&StringProcessingTemplate);
-  int ProcessedByteCount = FormatValidationStatus + StringOperationStatus;
-  int DataContentStatus = ParseDataContent(ProcessedByteCount + ValidationContext,DataLength - ProcessedByteCount,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  int DataFormatValidationResult = ValidateDataFormat(ValidationContext,DataLength,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
+  int StringProcessingResult = ProcessStringOperation(ValidationContext + DataFormatValidationResult,DataLength - DataFormatValidationResult,&StringProcessingTemplate);
+  int TotalProcessedBytes = DataFormatValidationResult + StringProcessingResult;
+  int DataContentParsingResult = ParseDataContent(TotalProcessedBytes + ValidationContext,DataLength - TotalProcessedBytes,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
   ProcessedByteCount = ProcessedByteCount + DataContentStatus;
   int StringValidationStatus = ProcessStringOperation(ProcessedByteCount + ValidationContext,DataLength - ProcessedByteCount,&StringProcessingTemplate);
   ProcessedByteCount = ProcessedByteCount + StringValidationStatus;
