@@ -2050,7 +2050,7 @@ SecondaryNetworkProcessingComplete:
  */
 NetworkHandle CleanupNetworkSystem(void)
 {
-  return NetworkConnectionCompletionHandle;
+  return ConnectionCompletionHandle;
 }
 
 /**
