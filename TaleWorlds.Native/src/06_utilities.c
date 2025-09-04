@@ -93378,7 +93378,18 @@ void ExecuteResourceContextCleanupCallback(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090ec60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文循环边界清理回调
+ * 
+ * 该函数用于检查并执行验证上下文中循环边界的清理回调函数
+ * 确保循环相关资源能够正确释放
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和清理相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec60
+ */
+void ExecuteValidationContextLoopBoundCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + ValidationContextLoopBoundOffset) != (int64_t *)0x0) {
@@ -93389,7 +93400,18 @@ void Unwind_18090ec60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ec70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文循环数据清理回调
+ * 
+ * 该函数用于检查并执行验证上下文中循环数据的清理回调函数
+ * 确保循环数据相关资源能够正确释放
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和清理相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec70
+ */
+void ExecuteValidationContextLoopDataCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + ValidationContextLoopDataOffset) != (int64_t *)0x0) {
