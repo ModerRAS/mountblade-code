@@ -16026,12 +16026,12 @@ uint8_t ValidateResourceRenderingState(void)
 
 
  /**
- * @brief 空操作函数
+ * @brief 执行备用无操作
  * 
  * 该函数不执行任何操作，直接返回
  * 用作占位符或默认的空实现
  */
-void ExecuteNullOperation(void)
+void ExecuteAlternateNullOperation(void)
 {
   return;
 }

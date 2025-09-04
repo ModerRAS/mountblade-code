@@ -198,19 +198,19 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define CONTEXT_SIZE_512B 0x200                           // 512字节上下文大小
 
 // 网络超时常量
-#define TIMEOUT_1_SECOND 0x3E8                             // 1秒超时
-#define TIMEOUT_5_SECONDS 0x1388                           // 5秒超时
-#define TIMEOUT_30_SECONDS 0x7530                          // 30秒超时
-#define TIMEOUT_5_MINUTES 0x493E0                          // 5分钟超时
-#define HEARTBEAT_30_SECONDS 0x1E                          // 30秒心跳
-#define HEARTBEAT_60_SECONDS 0x3C                          // 60秒心跳
+#define NetworkTimeoutOneSecond 0x3E8                             // 1秒超时
+#define NetworkTimeoutFiveSeconds 0x1388                           // 5秒超时
+#define NetworkTimeoutThirtySeconds 0x7530                          // 30秒超时
+#define NetworkTimeoutFiveMinutes 0x493E0                          // 5分钟超时
+#define NetworkHeartbeatThirtySeconds 0x1E                          // 30秒心跳
+#define NetworkHeartbeatSixtySeconds 0x3C                          // 60秒心跳
 
 // 网络质量常量
-#define CONNECTION_QUALITY_GOOD 0x05                       // 良好连接质量
-#define LATENCY_50MS 0x32                                     // 50毫秒延迟
-#define BANDWIDTH_4KB 0x1000                                 // 4KB带宽
-#define HIGH_RELIABILITY_LEVEL 0x01                           // 高可靠性级别
-#define WINDOW_SCALE_16 0x10                                 // 窗口缩放16
+#define NetworkConnectionQualityGood 0x05                       // 良好连接质量
+#define NetworkLatencyFiftyMilliseconds 0x32                                     // 50毫秒延迟
+#define NetworkBandwidthFourKilobytes 0x1000                                 // 4KB带宽
+#define NetworkReliabilityLevelHigh 0x01                           // 高可靠性级别
+#define NetworkWindowScaleSixteen 0x10                                 // 窗口缩放16
 
 // 网络连接配置常量
 #define NETWORK_QUEUE_ENABLED 0x01                           // 网络队列启用标志
