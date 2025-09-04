@@ -3280,9 +3280,9 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
               SystemMemoryBufferPointer = (uint8_t *)AllocateSystemMemory(SystemMemoryAllocator,(longlong)LoopCounterValue,0x13);
               *SystemMemoryBufferPointer = 0;
               StackMemoryPointer = SystemMemoryBufferPointer;
-              allocationSize = GetMemoryAllocationSize(pMemoryAddress1);
+              allocationSize = GetMemoryAllocationSize(SystemMemoryBufferPointer);
               StackProcessingBuffer = CONCAT44(StackProcessingBuffer._4_4_,allocationSize);
-              memcpy(pMemoryAddress1,pMemoryAddress7,LoopCounter9);
+              memcpy(SystemMemoryBufferPointer,pMemoryAddress7,LoopCounter9);
             }
           }
           StackUnsignedValue = 0;
