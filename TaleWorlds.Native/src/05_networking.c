@@ -1840,17 +1840,17 @@ NetworkMainProcessingLoop:
     if (ConnectionStatusBuffer != (NetworkStatus *)0x0) {
       int32_t ProcessingStatus = (int)ConnectionOperationBuffer[1];
       int64_t NetworkStatusIterator = (long long)ProcessingStatus;
-      if ((PacketProcessingStatus != 0) && (ConnectionContextHandle = *ConnectionOperationBuffer, 0 < PacketProcessingStatus)) {
+      if ((ProcessingStatus != 0) && (ConnectionContextHandle = *ConnectionOperationBuffer, 0 < ProcessingStatus)) {
         NetworkStatus *NetworkStatusBuffer = ConnectionStatusBuffer;
         do {
           NetworkStatus *ConnectionContextData = (NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + (long long)NetworkStatusBuffer);
-          NetworkStatus CurrentNetworkValidationStatus = ConnectionContextData[1];
-          NetworkStatus CurrentNetworkTimeoutStatus = ConnectionContextData[2];
-          NetworkStatus CurrentNetworkSecondaryStatus = ConnectionContextData[3];
+          NetworkStatus CurrentValidationStatus = ConnectionContextData[1];
+          NetworkStatus CurrentTimeoutStatus = ConnectionContextData[2];
+          NetworkStatus CurrentSecondaryStatus = ConnectionContextData[3];
           *NetworkStatusBuffer = *ConnectionContextData;
-          NetworkStatusBuffer[1] = CurrentNetworkValidationStatus;
-          NetworkStatusBuffer[2] = CurrentNetworkTimeoutStatus;
-          NetworkStatusBuffer[3] = CurrentNetworkSecondaryStatus;
+          NetworkStatusBuffer[1] = CurrentValidationStatus;
+          NetworkStatusBuffer[2] = CurrentTimeoutStatus;
+          NetworkStatusBuffer[3] = CurrentSecondaryStatus;
           NetworkStatusBuffer[4] = *(NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + -4 + (long long)(NetworkStatusBuffer + 5));
           NetworkStatusIterator = NetworkStatusIterator + -1;
           NetworkStatusBuffer = NetworkStatusBuffer + 5;
