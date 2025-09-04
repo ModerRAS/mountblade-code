@@ -2269,43 +2269,43 @@ void ValidateConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionDat
                            uint32_t ValidationBufferSize, uint32_t ValidationMode)
 {
   // 连接数据验证变量
-  uint32_t ValidationStatus;                              // 验证状态
-  uint32_t DataIntegrityCheck;                            // 数据完整性检查
-  uint32_t SecurityComplianceCheck;                        // 安全合规检查
+  uint32_t ConnectionValidationStatus;                       // 连接验证状态
+  uint32_t DataIntegrityValidationResult;                    // 数据完整性验证结果
+  uint32_t SecurityComplianceValidationResult;               // 安全合规验证结果
   
   // 初始化验证状态
-  ValidationStatus = 0x00;
-  DataIntegrityCheck = 0x00;
-  SecurityComplianceCheck = 0x00;
+  ConnectionValidationStatus = 0x00;
+  DataIntegrityValidationResult = 0x00;
+  SecurityComplianceValidationResult = 0x00;
   
   // 执行数据完整性检查
   if (ConnectionData != 0) {
-    DataIntegrityCheck = 0x01;  // 数据完整性检查通过
+    DataIntegrityValidationResult = 0x01;  // 数据完整性检查通过
   }
   
   // 执行安全合规检查
   if (ConnectionTable != 0) {
-    SecurityComplianceCheck = 0x01;  // 安全合规检查通过
+    SecurityComplianceValidationResult = 0x01;  // 安全合规检查通过
   }
   
   // 根据验证模式设置验证结果
   if (ValidationMode == NetworkConnectionBasicValidationMode) {
     // 基本验证模式
-    ValidationStatus = DataIntegrityCheck & SecurityComplianceCheck;
+    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult;
   } else if (ValidationMode == NetworkConnectionStrictValidationMode) {
     // 严格验证模式
-    ValidationStatus = DataIntegrityCheck & SecurityComplianceCheck & 0x01;
+    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult & 0x01;
   } else {
     // 默认验证模式
-    ValidationStatus = 0x01;
+    ConnectionValidationStatus = 0x01;
   }
   
   // 设置安全验证数据
   if (SecurityValidationData && ValidationBufferSize > 0) {
     memset(SecurityValidationData, 0, ValidationBufferSize);
-    ((uint32_t*)SecurityValidationData)[0] = ValidationStatus;
-    ((uint32_t*)SecurityValidationData)[1] = DataIntegrityCheck;
-    ((uint32_t*)SecurityValidationData)[2] = SecurityComplianceCheck;
+    ((uint32_t*)SecurityValidationData)[0] = ConnectionValidationStatus;
+    ((uint32_t*)SecurityValidationData)[1] = DataIntegrityValidationResult;
+    ((uint32_t*)SecurityValidationData)[2] = SecurityComplianceValidationResult;
     ((uint32_t*)SecurityValidationData)[3] = ValidationMode;
   }
 }
