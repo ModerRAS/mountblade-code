@@ -90404,7 +90404,13 @@ void ExecuteSystemResourceCallbackAtOffset13E8(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090df80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调处理（偏移量0x1400）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090df80
+ */
+void ExecuteSystemResourceCallbackAtOffset1400(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
