@@ -60578,13 +60578,13 @@ SystemStatusCheck:
     SystemConfigurationFlag = *(uint *)(*(long long *)(SystemMemoryPointer + 0x1b8) + 0x138);
     if ((SystemConfigurationFlag & 0x20) != 0) {
       SystemStatusFlag = '\0';
-      goto LAB_SetSystemStatus;
+      goto LabelSetSystemStatus;
     }
-    if ((SystemConfigurationFlag & 0x10) == 0) goto LAB_CheckSystemStatus;
+    if ((SystemConfigurationFlag & 0x10) == 0) goto LabelCheckSystemStatus;
     IsSystemByteValid = (*(byte *)(SystemResourceManager + 0xfd) & 2) == 0;
   }
   SystemStatusFlag = IsSystemByteValid + '\x01';
-LAB_SetSystemStatus:
+LabelSetSystemStatus:
   *(char *)(SystemResourceManager + 0xff) = SystemStatusFlag;
   SystemMemoryPointer = *(long long *)(SystemResourceManager + 0x1b8);
   SystemConfigurationFlag = *(uint *)(SystemMemoryPointer + 0x138) & 0x3000;
@@ -60688,13 +60688,13 @@ SystemStatusCheck:
     OperationCode = *(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x138);
     if ((OperationCode & 0x20) != 0) {
       systemStatusFlag = '\0';
-      goto LAB_SetSystemStatus;
+      goto LabelSetSystemStatus;
     }
-    if ((OperationCode & 0x10) == 0) goto LAB_CheckSystemStatus;
+    if ((OperationCode & 0x10) == 0) goto LabelCheckSystemStatus;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
-LAB_SetSystemStatus:
+LabelSetSystemStatus:
   *(char *)(memoryBlockAddress + 0xff) = systemStatusFlag;
   resourceDataIndex = *(long long *)(memoryBlockAddress + 0x1b8);
   OperationCode = *(uint *)(resourceDataIndex + 0x138) & 0x3000;
@@ -60800,13 +60800,13 @@ SystemStatusCheck:
     OperationCode = *(uint *)(*(long long *)(in_RCX + 0x1b8) + 0x138);
     if ((OperationCode & 0x20) != 0) {
       systemStatusFlag = '\0';
-      goto LAB_SetSystemStatus;
+      goto LabelSetSystemStatus;
     }
-    if ((OperationCode & 0x10) == 0) goto LAB_CheckSystemStatus;
+    if ((OperationCode & 0x10) == 0) goto LabelCheckSystemStatus;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
-LAB_SetSystemStatus:
+LabelSetSystemStatus:
   *(char *)(memoryBlockAddress + 0xff) = systemStatusFlag;
   resourceDataIndex = *(long long *)(memoryBlockAddress + 0x1b8);
   OperationCode = *(uint *)(resourceDataIndex + 0x138) & 0x3000;
@@ -60902,13 +60902,13 @@ SystemStatusCheck:
     OperationCode = *(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x138);
     if ((OperationCode & 0x20) != 0) {
       systemStatusFlag = '\0';
-      goto LAB_SetSystemStatus;
+      goto LabelSetSystemStatus;
     }
-    if ((OperationCode & 0x10) == 0) goto LAB_CheckSystemStatus;
+    if ((OperationCode & 0x10) == 0) goto LabelCheckSystemStatus;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
-LAB_SetSystemStatus:
+LabelSetSystemStatus:
   *(char *)(memoryBlockAddress + 0xff) = systemStatusFlag;
   resourceDataIndex = *(long long *)(memoryBlockAddress + 0x1b8);
   OperationCode = *(uint *)(resourceDataIndex + 0x138) & 0x3000;
@@ -64612,12 +64612,12 @@ ThreadHandleValidation:
                 SystemTimeFlag1d8 = (long long)pointerToInteger26 - (long long)pointerToInteger25;
                 if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
                   SystemThreadHandle1 = 1;
-LAB_CreateSystemThread:
+LabelCreateSystemThread:
                   SystemIntegerPointer6 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemThreadHandle1 * 4,3);
                 }
                 else {
                   SystemThreadHandle1 = ((long long)SystemTimeFlag1d8 >> 2) * 2;
-                  if (SystemThreadHandle1 != 0) goto LAB_CreateSystemThread;
+                  if (SystemThreadHandle1 != 0) goto LabelCreateSystemThread;
                 }
                 if (pointerToInteger25 != pointerToInteger26) {
                     memmove(SystemIntegerPointer6,pointerToInteger25,SystemTimeFlag1d8);
@@ -64650,13 +64650,13 @@ LAB_CreateSystemThread:
                 SystemTimeFlag1d8 = (long long)pointerToInteger20 - (long long)SystemIntegerPointer4;
                 if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
                   SystemThreadHandle1 = 1;
-LAB_ExpandSystemThread:
+LabelExpandSystemThread:
                   SystemIntegerPointer5 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemThreadHandle1 * 4,3);
                 }
                 else {
                   SystemThreadHandle1 = ((long long)SystemTimeFlag1d8 >> 2) * 2;
                   SystemIntegerPointer5 = SystemIntegerPointer6;
-                  if (SystemThreadHandle1 != 0) goto LAB_ExpandSystemThread;
+                  if (SystemThreadHandle1 != 0) goto LabelExpandSystemThread;
                 }
                 if (SystemIntegerPointer4 != pointerToInteger20) {
                     memmove(SystemIntegerPointer5,SystemIntegerPointer4,SystemTimeFlag1d8);
@@ -64696,7 +64696,7 @@ LAB_ExpandSystemThread:
         piStack_208 = SystemIntegerPointer3;
         piStack_1f8 = pointerToInteger26;
         if ((((long long)pointerToInteger26 - (long long)SystemIntegerPointer6 & SystemMemoryAddressAlignmentMaskU) == 0) || (!isResourceAvailable4))
-        goto LAB_CheckSystemResource;
+        goto LabelCheckSystemResource;
         isResourceAvailable4 = piStack_218 != (int *)0x0;
         piStack_218 = SystemIntegerPointer6;
         if (isResourceAvailable4) {
@@ -64828,12 +64828,12 @@ MemoryAllocationComplete:
   if (SystemIntegerPointer4 != (int *)0x0) {
       SystemCleanupFunction(SystemIntegerPointer4);
   }
-LAB_UpdateSystemContext:
+LabelUpdateSystemContext:
   SystemContextPointer = SystemContextPointer + 1;
   SystemParameterPointer = (ulong long)SystemContextPointer;
   longValue1d0 = longValue1d0 + 1;
-  if (*SystemIntegerPointer <= (int)SystemContextPointer) goto LAB_UpdateSystemContext;
-  goto LAB_ExitSystem;
+  if (*SystemIntegerPointer <= (int)SystemContextPointer) goto LabelUpdateSystemContext;
+  goto LabelExitSystem;
 }
 
 
@@ -65041,9 +65041,9 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   InitializeSystemContext(&SystemConfigurationFlags);
   SystemThreadFlags = *(long long *)(SystemResourceManager + 0x210);
   if (SystemThreadFlags == 0) {
-LAB_CheckThreadFlags1:
+LabelCheckThreadFlags1:
     if (*(long long *)(SystemResourceManager + 0xa8) == 0) {
-LAB_CheckThreadFlags2:
+LabelCheckThreadFlags2:
       LOCK();
       *(uint8_t *)((long long)PrimaryResourceHandle4 + 0x15) = 4;
       UNLOCK();
