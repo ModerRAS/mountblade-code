@@ -1650,7 +1650,6 @@ NetworkHandle ProcessNetworkConnectionRequest(NetworkHandle ConnectionContext, N
   
   NetworkConnectionContext = 0;
   if (ValidationStatusCode == 0) {
-NetworkValidationProcessingContinue:
     if ((0 < *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset)) && (*ConnectionValidationResult != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionTableHandle + NetworkConnectionTableOffset), *ConnectionValidationResult, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
     }
@@ -1664,7 +1663,7 @@ NetworkValidationProcessingContinue:
       if ((int)ConnectionValidationResult[1] != 0) {
           memcpy(NetworkConnectionContext, *ConnectionValidationResult, (long long)(int)ConnectionValidationResult[1]);
       }
-      goto NetworkProcessingSuccess;
+      return NetworkConnectionContext;
     }
   }
   return NetworkErrorConnectionFailed;
@@ -1692,10 +1691,10 @@ NetworkHandle InitializeNetworkConnectionSystem(void)
   NetworkConnectionStatusFlags = NetworkStatusActiveFlag;
   
   // 设置连接超时时间
-  NetworkConnectionTimeoutDuration = 30000;  // 30秒
+  NetworkConnectionTimeoutDuration = NetworkConnectionTimeoutDefault;  // 30秒
   
   // 初始化最大连接数
-  NetworkMaximumConnectionsLimit = 100;
+  NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;
   
   // 这里可以添加更多的初始化逻辑
   // 例如：初始化套接字、设置协议栈、分配缓冲区等
