@@ -658,7 +658,7 @@ uint32_t CloseConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionF
 // =============================================================================
 
 // 网络连接基础配置变量
-uint32_t NetworkConnectionTableHandle;                    // 网络连接表管理句柄，用于访问和管理连接表的入口点
+uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
 uint32_t NetworkConnectionStatusFlags;                    // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
 uint32_t NetworkConnectionTimeoutDuration;                // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
 uint32_t NetworkMaximumConnectionsLimit;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
@@ -678,7 +678,7 @@ uint32_t NetworkSocketDescriptor;                     // 网络套接字文件�
 uint32_t NetworkSocketCategory;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
 uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
 uint32_t NetworkSocketIndex;                              // 网络套接字索引，套接字在表中的索引位置
-uint32_t NetworkSocketData;                                // 网络套接字数据，套接字相关的数据存储
+uint32_t NetworkSocketRuntimeData;                                // 网络套接字运行时数据，套接字相关的数据存储
 uint32_t NetworkSocketContext;                              // 网络套接字上下文，套接字的运行时上下文信息
 uint32_t NetworkSocketSize;                                  // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
@@ -719,8 +719,8 @@ void *NetworkConnectionQuaternaryProcessingConfig;// 网络连接第四处理配
 void *NetworkConnectionQuinaryProcessingConfig;  // 网络连接第五处理配置数据，第五级处理流程的配置信息
 
 // 网络连接上下文和数据变量
-uint32_t NetworkConnectionContext;                          // 网络连接上下文，存储连接的运行时上下文信息
-uint32_t NetworkConnectionContextData;                      // 网络连接上下文数据，上下文相关的数据存储
+uint32_t NetworkConnectionActiveContext;                          // 网络连接活动上下文，存储连接的运行时上下文信息
+uint32_t NetworkConnectionActiveContextData;                      // 网络连接活动上下文数据，上下文相关的数据存储
 uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文，安全相关的上下文信息
 uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池，用于管理连接的缓冲区资源
 uint32_t NetworkConnectionRequestData;                     // 网络连接请求数据，存储连接请求的相关信息
@@ -864,7 +864,7 @@ void InitializeNetworkSocketHandle(void)
  * 
  * @return void 无返回值
  */
-void NetworkBindSocket(void)
+void NetworkBindSocketToAddress(void)
 {
   // 设置网络地址和端口配置
   NetworkServerIpAddress = IPV4_LOCALHOST;               // 设置为127.0.0.1 (本地回环地址)
@@ -901,7 +901,7 @@ uint32_t NetworkSocketBindingStatus;
  * 
  * @return void 无返回值
  */
-void NetworkListenConnections(void)
+void NetworkStartListeningForConnections(void)
 {
   // 设置监听队列参数
   NetworkConnectionRequestQueue = 0x01;                // 初始化连接请求队列
