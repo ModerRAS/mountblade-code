@@ -93321,7 +93321,21 @@ void ExecuteValidationContextExtendedCleanupCallback(uint8_t ObjectContext, int6
 
 
 
-void Unwind_18090ec40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源管理器初始化简化版本
+ * 
+ * 该函数是系统资源管理器初始化的简化版本，执行基本的初始化操作：
+ * - 设置资源处理器模板
+ * - 验证系统状态
+ * - 重置系统标志和状态
+ * - 设置数据结构指针
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和初始化相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec40
+ */
+void ExecuteSystemResourceManagerInitializationSimplified(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -93339,7 +93353,18 @@ void Unwind_18090ec40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ec50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理回调
+ * 
+ * 该函数用于检查并执行资源上下文的清理回调函数
+ * 确保资源在释放时能够正确清理
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和清理相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec50
+ */
+void ExecuteResourceContextCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
