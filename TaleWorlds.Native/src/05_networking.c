@@ -862,8 +862,8 @@ void InitializeNetworkConnectionPool(void)
 
 // 网络连接配置数据结构指针
 void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
-void *NetworkConnectionPrimaryConfiguration = &NetworkConnectionPrimaryConfig;
-void *NetworkConnectionSecondaryConfiguration = &NetworkConnectionSecondaryConfig;
+void *NetworkConnectionConfigPrimary = &NetworkConnectionPrimaryConfig;
+void *NetworkConnectionConfigSecondary = &NetworkConnectionSecondaryConfig;
 void *NetworkConnectionProcessingConfiguration = &NetworkConnectionProcessingConfig;
 void *NetworkConnectionTransportConfiguration = &NetworkConnectionTransportConfig;
 void *NetworkConnectionProtocolConfiguration = &NetworkConnectionProtocolConfig;
@@ -871,7 +871,7 @@ void *NetworkConnectionValidationConfiguration = &NetworkConnectionValidationCon
 void *NetworkConnectionRoutingConfigurationPrimary = &NetworkConnectionRoutingPrimaryConfig;
 void *NetworkConnectionRoutingConfigurationSecondary = &NetworkConnectionRoutingSecondaryConfig;
 void *NetworkConnectionRoutingConfigurationTertiary = &NetworkConnectionRoutingTertiaryConfig;
-void *NetworkConnectionRoutingConfigurationQuaternary = &NetworkConnectionRoutingQuaternaryConfig;
+void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingQuaternaryConfig;
 
 // 网络连接配置数据定义
 
