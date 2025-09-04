@@ -20773,22 +20773,22 @@ ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long Com
   comparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
   ResourceMemoryOffset = *(long long *)(SystemResourceManager + 8);
   if (comparisonIndex < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - ResourceMemoryOffset >> 8)) {
-    systemValue = *(int *)(ComparisonDataPointer + 0x10);
-    systemResult = *(int *)(comparisonIndex * 0x100 + 0x10 + ResourceMemoryOffset);
-    if (systemResult == systemValue) {
-      if (systemResult != 0) {
+    byteDifference = *(int *)(ComparisonDataPointer + 0x10);
+    comparisonResult = *(int *)(comparisonIndex * 0x100 + 0x10 + ResourceMemoryOffset);
+    if (comparisonResult == byteDifference) {
+      if (comparisonResult != 0) {
         sourceBytePointer = *(byte **)(comparisonIndex * 0x100 + 8 + ResourceMemoryOffset);
-        SystemMemoryPointer = *(long long *)(ComparisonDataPointer + 8) - (long long)sourceBytePointer;
+        memoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)sourceBytePointer;
         do {
-          comparisonBytePointer = sourceBytePointer + SystemMemoryPointer;
-          systemValue = (uint)*sourceBytePointer - (uint)*comparisonBytePointer;
-          if (systemValue != 0) break;
+          comparisonBytePointer = sourceBytePointer + memoryOffset;
+          byteDifference = (uint)*sourceBytePointer - (uint)*comparisonBytePointer;
+          if (byteDifference != 0) break;
           sourceBytePointer = sourceBytePointer + 1;
         } while (*comparisonBytePointer != 0);
       }
     }
-    else if (systemResult != 0) goto SystemResultCheck;
-    if (systemValue == 0) {
+    else if (comparisonResult != 0) goto ComparisonResultCheck;
+    if (byteDifference == 0) {
 SystemResultHandler:
       return comparisonIndex & SystemMaxUnsigned32Bit;
     }
