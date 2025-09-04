@@ -60606,7 +60606,7 @@ void ProcessSystemResourceManagerStatus(long long SystemResourceManager)
                                *(float *)(resourceDataIndex + 0x98) < 0.0);
   }
   if (*(long long *)(SystemMemoryPointer + 0x1b8) == 0) {
-LAB_SystemStatusCheck:
+SystemStatusCheck:
     IsSystemByteValid = (*(byte *)(SystemResourceManager + 0xfd) & 2) != 0;
   }
   else {
@@ -60716,7 +60716,7 @@ void ValidateSystemResourceManagerStatus(long long SystemResourceManager)
                                *(float *)(resourceDataIndex + 0x98) < 0.0);
   }
   if (*(long long *)(SystemResourceManager + 0x1b8) == 0) {
-LAB_SystemStatusCheck:
+SystemStatusCheck:
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) != 0;
   }
   else {
@@ -60828,7 +60828,7 @@ void ProcessSystemFloatTransformation(float SystemResourceManager, float Configu
                              (in_XMM5_Da * ConfigurationFlag - *(float *)(in_RAX + 0x74) * in_XMM4_Da) *
                              *(float *)(in_RAX + 0x98) < systemFloatValue);
   if (*(long long *)(in_RCX + 0x1b8) == 0) {
-LAB_SystemStatusCheck:
+SystemStatusCheck:
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) != 0;
   }
   else {
@@ -60930,7 +60930,7 @@ void ProcessSystemResourceStatusAndConfiguration(long long SystemResourceManager
   float systemFloatValue;
   
   if (*(long long *)(SystemResourceManager + 0x1b8) == 0) {
-LAB_SystemStatusCheck:
+SystemStatusCheck:
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) != 0;
   }
   else {
