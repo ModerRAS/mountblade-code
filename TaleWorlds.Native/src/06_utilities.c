@@ -4600,35 +4600,35 @@ void ValidateSystemObjectCollection(void)
   uint64_t SecurityKey;
   
   // 生成安全验证令牌
-  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspace;
+  SecurityKey = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspace;
   
   // 初始化系统上下文
-  SystemObjectContext = GetSystemContextHandle();
-  SystemRuntimeData = GetSystemRuntimeData();
+  SystemContext = GetSystemContextHandle();
+  RuntimeData = GetSystemRuntimeData();
   
   // 检查系统对象上下文是否有效
-  if (*(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset) != 0) {
-    SystemObjectDataBuffer = ProcessingWorkspace;
-    ValidatedObjectTotal = 0;
-    RetrievedObjectCount = 0;
-    MaximumCollectionLimit = MaximumCapacityLimit;
+  if (*(int64_t *)(SystemContext + ObjectHandleSecondaryOffset) != 0) {
+    DataBuffer = ProcessingWorkspace;
+    ValidatedCount = 0;
+    RetrievedCount = 0;
+    MaxLimit = MaximumCapacityLimit;
     
     // 获取系统对象集合
-    SystemObjectValidationResult = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemObjectContext + ObjectHandleSecondaryOffset),
+    ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(RuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (SystemObjectValidationResult == 0) {
-      RetrievedObjectCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
-      if (0 < RetrievedObjectCount) {
-        CollectionBufferIndex = PointerSizeBytes;
+    if (ValidationResult == 0) {
+      RetrievedCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
+      if (0 < RetrievedCount) {
+        BufferIndex = PointerSizeBytes;
         do {
-          CurrentObjectId = *(uint8_t *)(SystemObjectDataBuffer + CollectionBufferIndex);
-          SystemObjectValidationResult = ValidateSystemObject(CurrentObjectId);
-          if (SystemObjectValidationResult != 2) {
-                  HandleInvalidSystemObject(CurrentObjectId, 1);
+          ObjectId = *(uint8_t *)(DataBuffer + BufferIndex);
+          ValidationResult = ValidateSystemObject(ObjectId);
+          if (ValidationResult != 2) {
+                  HandleInvalidSystemObject(ObjectId, 1);
           }
-          ValidatedObjectTotal++;
-          CollectionBufferIndex += 8;
-        } while (ValidatedObjectTotal < RetrievedObjectCount);
+          ValidatedCount++;
+          BufferIndex += 8;
+        } while (ValidatedCount < RetrievedCount);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
@@ -4637,7 +4637,7 @@ void ValidateSystemObjectCollection(void)
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ProcessingWorkspace);
+  PerformSecurityValidation(SecurityKey ^ (uint64_t)ProcessingWorkspace);
 }
 
 
@@ -5091,30 +5091,30 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @return uint8_t 操作状态码，0表示成功，非0表示错误码
  */
 uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
-  int64_t ValidatedObjectMemoryAddress;
-  uint8_t ObjectValidationStatus;
-  int64_t ObjectValidationBuffer [4];
+  int64_t MemoryAddress;
+  uint8_t ValidationStatus;
+  int64_t ValidationBuffer [4];
   
   // 验证对象上下文的有效性
-  ObjectValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationBuffer);
-  if ((int)ObjectValidationStatus != 0) {
-    return ObjectValidationStatus;
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ValidationBuffer);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   
   // 调整对象验证缓冲区地址
-  if (ObjectValidationBuffer[0] != 0) {
-    ObjectValidationBuffer[0] = ObjectValidationBuffer[0] - 8;
+  if (ValidationBuffer[0] != 0) {
+    ValidationBuffer[0] = ValidationBuffer[0] - 8;
   }
   
   // 获取验证后的对象内存地址
-  ValidatedObjectMemoryAddress = *(int64_t *)(ObjectValidationBuffer[0] + ObjectHandleOffset);
-  if (ValidatedObjectMemoryAddress != 0) {
+  MemoryAddress = *(int64_t *)(ValidationBuffer[0] + ObjectHandleOffset);
+  if (MemoryAddress != 0) {
     // 增加对象引用计数
-    *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
+    *(int *)(MemoryAddress + ObjectReferenceCountOffset) = *(int *)(MemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ObjectValidationStatus = CheckSystemStatus(), (int)ObjectValidationStatus != 0)) {
-      return ObjectValidationStatus;
+    if ((*(char *)(MemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
+      return ValidationStatus;
     }
     return OperationSuccessCode;
   }
