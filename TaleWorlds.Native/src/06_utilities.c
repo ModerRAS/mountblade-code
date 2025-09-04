@@ -9359,10 +9359,10 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
     }
     *(uint *)(ObjectContext + 8) = *(int *)(ObjectContext + 8) + MemoryAlignment16Bytes & MemoryAlignmentMask;
     OperationResult = ExecuteSystemOperation(*(uint8_t *)(ResourceTablePointerSystemContext + SystemOperationContextOffset));
-    if ((int)loopCondition == 0) {
+    if ((int)ValidationStatus == 0) {
       return 0;
     }
-    return loopCondition;
+    return ValidationStatus;
   }
   return ResourceValidationError;
 }

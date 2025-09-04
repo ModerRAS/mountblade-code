@@ -25279,7 +25279,7 @@ void SystemEventHandler(void)
  * @return 返回初始化后的系统资源指针
  */
 uint8_t *
-InitializeSystemResourceBuffer(uint8_t *systemResourcePointer, void* reservedParam2, void* reservedParam3, void* reservedParam4)
+SetupSystemResourceBuffer(uint8_t *SystemResourcePointer, void* ReservedParam2, void* ReservedParam3, void* ReservedParam4)
 
 {
   long long *primaryResourcePointer;
@@ -25623,7 +25623,7 @@ void ExecuteSystemResourceCallback(long long* SystemResourceManager)
  * @note 这是内存管理系统的核心函数之一
  */
 void* *
-SystemMemoryTemplateManager(void* *SystemResourceManager,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+ManageSystemMemoryTemplate(void* *SystemResourceManager, unsigned long long ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
 
 {
   if (SystemResourceManager[2] != 0) {
