@@ -84586,7 +84586,22 @@ void ExecuteSystemContextResourceSecurityCleanup(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_18090ce10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文扩展区域的安全处理和清理操作
+ * 
+ * 该函数执行验证上下文扩展区域的安全处理流程，使用不同的偏移量：
+ * 1. 调用验证上下文扩展区域的清理回调函数
+ * 2. 设置系统资源处理模板到扩展区域
+ * 3. 检查扩展区域的安全状态并执行紧急退出
+ * 4. 清理扩展区域的安全标志和数据
+ * 5. 设置系统数据结构指针到扩展区域
+ * 6. 调用扩展区域的额外清理回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090ce10
+ */
+void ExecuteValidationContextExtendedSecurityCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x388) != (int64_t *)0x0) {
@@ -85275,7 +85290,13 @@ void CleanupResourceHashStatusAddressOffset110(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_18090d040(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证和清理操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d040
+ */
+void ExecuteResourceHashStatusValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
