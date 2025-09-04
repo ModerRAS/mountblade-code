@@ -23594,7 +23594,7 @@ void InitializeSystemDataCleaner(void)
   int systemCode;
   uint SystemOperationCounter;
   ulong long SystemOperationFlags;
-  void* *pEncryptionKeyValue;
+  void* *encryptionKeyBuffer;
   uint StringOffsetValue;
   
   InitializeSystemComponents();
@@ -23604,12 +23604,12 @@ void InitializeSystemDataCleaner(void)
     LocalSystemOffset = 0;
     SystemThreadFlags = 0;
     do {
-      initializationStatusFlag = pEncryptionKeyValue[SystemThreadFlags];
+      initializationStatusFlag = encryptionKeyBuffer[SystemThreadFlags];
       if (((byte)(initializationStatusFlag + 0x9fU) < 0x1a) ||
          (((byte)(initializationStatusFlag - 0x30U) < 0x30 &&
           ((0x87fffffe03ffU >> ((long long)(char)(initializationStatusFlag - 0x30U) & 0x3fU) & 1) != 0)))) {
         if (LocalSystemOffset != SystemThreadFlags) {
-          pEncryptionKeyValue[LocalSystemOffset] = initializationStatusFlag;
+          encryptionKeyBuffer[LocalSystemOffset] = initializationStatusFlag;
         }
         systemCode = systemCode + 1;
         LocalSystemOffset = LocalSystemOffset + 1;
@@ -23619,11 +23619,11 @@ void InitializeSystemDataCleaner(void)
       SystemThreadFlags = SystemThreadFlags + 1;
     } while (SystemOperationCounter < SystemMaxOperationCount);
   }
-  pEncryptionKeyValue[systemCode] = 0;
+  encryptionKeyBuffer[systemCode] = 0;
   ResourceHashEntryPointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x28,8,CONCAT71((int7)(SystemOperationFlags >> 8),3));
   HashTableNodePointer = &SystemStringTemplate;
-  if (pEncryptionKeyValue != (void* *)0x0) {
-    HashTableNodePointer = pEncryptionKeyValue;
+  if (encryptionKeyBuffer != (void* *)0x0) {
+    HashTableNodePointer = encryptionKeyBuffer;
   }
   ProcessSystemQueue(ResourceHashEntryPointer + 1,HashTableNodePointer);
   pathStringPointer = (char *)ResourceHashEntryPointer[2];
