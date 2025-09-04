@@ -7654,7 +7654,6 @@ SystemErrorHandler:
  * @param bufferContext 缓冲区上下文指针
  */
 void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t BufferContextParameter)
-
 {
   int PackageValidationStatusCode;
   int BufferSize;
@@ -7666,7 +7665,7 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t BufferConte
   int64_t PrimaryContextPointer;
   int64_t SecondaryContextPointer;
   
-  ValidationStatus = ProcessSystemContext(SystemContext, BufferContextParameter, *(uint8_t *)(SecondaryContextPointer + 8));
+  ValidationStatus = ProcessSystemContext(SystemContext, BufferContextParameter, *(uint8_t *)(SecondaryContextPointer + SystemContextSecondaryDataOffset));
   if (ValidationStatus != 0) {
     return;
   }
@@ -7680,40 +7679,40 @@ void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t BufferConte
     return;
   }
   CapacityCheck = (int)*(uint *)(SecondaryContextPointer + BufferContextCapacityOffset) >> ResourceValidationError;
-  BufferSize = (*(uint *)(secondaryContextPointer + BufferContextCapacityOffset) ^ CapacityCheck) - CapacityCheck;
-  ValidationStatus = *(int *)(secondaryContextPointer + BufferContextSizeOffset) + 1;
-  if (OperationResult < ResourceIndex) {
-    OperationStatus = (int)((float)OperationResult * 1.5);
-    if (ResourceIndex <= OperationResult) {
-      ResourceIndex = OperationResult;
+  BufferSize = (*(uint *)(SecondaryContextPointer + BufferContextCapacityOffset) ^ CapacityCheck) - CapacityCheck;
+  ValidationStatus = *(int *)(SecondaryContextPointer + BufferContextSizeOffset) + 1;
+  if (BufferSize < ValidationStatus) {
+    BufferSize = (int)((float)BufferSize * 1.5);
+    if (ValidationStatus <= BufferSize) {
+      ValidationStatus = BufferSize;
     }
-    if (ResourceIndex < 8) {
-      ResourceIndex = 8;
+    if (ValidationStatus < 8) {
+      ValidationStatus = 8;
     }
-    if (ResourceIndex < *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset)) goto ResourceErrorHandler;
-    if (ResourceIndex != 0) {
-      if ((0x3ffffffe < ResourceIndex * 8 - 1U) ||
-         (ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemManagerContextOffset),ResourceIndex * 8,&ResourceAllocationTemplate,
-                                0xf4,0), ResourceIndex == 0)) goto ResourceErrorHandler;
-      if (*(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) != 0) {
-              memcpy(ResourceIndex,*(uint8_t *)(StackParameterBuffer + StackParameterBufferDataOffset),
-               (int64_t)*(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) << 3);
+    if (ValidationStatus < *(int *)(SecondaryContextPointer + BufferContextSizeOffset)) goto ResourceErrorHandler;
+    if (ValidationStatus != 0) {
+      if ((0x3ffffffe < ValidationStatus * 8 - 1U) ||
+         (NewBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemManagerContextOffset),ValidationStatus * 8,&ResourceAllocationTemplate,
+                                0xf4,0), NewBufferPointer == 0)) goto ResourceErrorHandler;
+      if (*(int *)(SecondaryContextPointer + BufferContextSizeOffset) != 0) {
+              memcpy(NewBufferPointer,*(uint8_t *)(SecondaryContextPointer + BufferContextDataOffset),
+               (int64_t)*(int *)(SecondaryContextPointer + BufferContextSizeOffset) << 3);
       }
     }
-    if ((0 < *(int *)(StackParameterBuffer + StackParameterBufferCapacityOffset)) && (*(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset) != 0))
+    if ((0 < *(int *)(SecondaryContextPointer + BufferContextCapacityOffset)) && (*(int64_t *)(SecondaryContextPointer + BufferContextDataOffset) != 0))
     {
-            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemManagerContextOffset),*(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset),
+            ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemManagerContextOffset),*(int64_t *)(SecondaryContextPointer + BufferContextDataOffset),
                     &ResourceAllocationTemplate,0x100,1);
     }
-    *(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset) = ResourceIndex;
-    *(int *)(StackParameterBuffer + StackParameterBufferCapacityOffset) = ResourceIndex;
+    *(int64_t *)(SecondaryContextPointer + BufferContextDataOffset) = NewBufferPointer;
+    *(int *)(SecondaryContextPointer + BufferContextCapacityOffset) = ValidationStatus;
   }
   *(int64_t *)
-   (*(int64_t *)(StackParameterBuffer + StackParameterBufferDataOffset) + (int64_t)*(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) * 8) =
-       StackParameterContext;
-  *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) = *(int *)(StackParameterBuffer + StackParameterBufferSizeOffset) + 1;
+   (*(int64_t *)(SecondaryContextPointer + BufferContextDataOffset) + (int64_t)*(int *)(SecondaryContextPointer + BufferContextSizeOffset) * 8) =
+       BufferContextParameter;
+  *(int *)(SecondaryContextPointer + BufferContextSizeOffset) = *(int *)(SecondaryContextPointer + BufferContextSizeOffset) + 1;
 ResourceManagementErrorHandler:
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + SystemContextResourceManagerOffset));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset));
 }
 
 

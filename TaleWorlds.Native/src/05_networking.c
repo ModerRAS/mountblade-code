@@ -687,6 +687,7 @@ uint32_t NetworkSocketDescriptor;                     // 网络套接字文件�
 uint32_t NetworkSocketCategory;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
 uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
 uint32_t NetworkSocketIndex;                              // 网络套接字索引，套接字在表中的索引位置
+uint32_t NetworkSocketContext;                                 // 网络套接字上下文，套接字的运行时上下文数据
 uint32_t NetworkSocketRuntimeData;                                // 网络套接字运行时数据，套接字相关的数据存储
 uint32_t NetworkSocketContextData;                              // 网络套接字上下文数据，套接字的运行时上下文数据
 uint32_t NetworkSocketSize;                                  // 网络套接字大小，套接字结构体的大小
@@ -3018,20 +3019,6 @@ void ClearNetworkConnectionStack(void* ConnectionBuffer)
   }
 }
 
-/**
- * @brief 复制连接缓冲区
- * 
- * 复制网络连接的缓冲区数据，用于数据备份和传输。此函数负责将源缓冲区中的
- * 连接数据复制到目标位置，确保数据在传输过程中的完整性和一致性。
- * 
- * @param SourceBuffer 源缓冲区指针，包含要复制的连接数据
- * @return void 无返回值
- * 
- * @note 此函数执行连接数据的备份操作，确保数据安全性和可恢复性
- * @warning 如果源缓冲区为空或数据损坏，复制操作可能会失败
- * 
- * @security 该函数确保数据在复制过程中的完整性和机密性
- */
 /**
  * @brief 复制网络连接缓冲区
  * 
