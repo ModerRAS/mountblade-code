@@ -13181,14 +13181,14 @@ uint64_t AllocateAndCopyArrayData(int64_t *ArrayPointer, int NewSize)
   int64_t IterationCounter;
   uint8_t *DestinationPointer;
   
-  if (newSize < (int)ArrayPointer[1]) {
+  if (NewSize < (int)ArrayPointer[1]) {
     return ErrorInvalidObjectHandle;
   }
   NewArrayBuffer = (uint8_t *)0x0;
-  if (newSize != 0) {
-    if (newSize * 0xc - 1U < 0x3fffffff) {
+  if (NewSize != 0) {
+    if (NewSize * 0xc - 1U < 0x3fffffff) {
       NewArrayBuffer = (uint8_t *)
-               AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),newSize * 0xc,&ResourceAllocationTemplate,
+               AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),NewSize * 0xc,&ResourceAllocationTemplate,
                              0xf4,0,0,1);
       if (NewArrayBuffer != (uint8_t *)0x0) {
         OldSize = (int)ArrayPointer[1];
@@ -13299,20 +13299,20 @@ uint8_t GetMemoryAllocationFailureCode(void)
  * 如果新大小小于当前大小，返回错误码
  * 
  * @param ArrayPointer 数组指针的指针
- * @param newSize 新的数组大小
+ * @param NewSize 新的数组大小
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t ResizeArray(int64_t *ArrayPointer, int newSize)
+uint64_t ResizeArray(int64_t *ArrayPointer, int NewSize)
 {
   int64_t NewMemoryBlock;
   
-  if (newSize < (int)ArrayPointer[1]) {
+  if (NewSize < (int)ArrayPointer[1]) {
     return ErrorInvalidObjectHandle;
   }
   NewMemoryBlock = 0;
-  if (newSize != 0) {
-    if (newSize * 0xc - 1U < 0x3fffffff) {
-      NewMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),newSize * 0xc,&ResourceAllocationTemplate,
+  if (NewSize != 0) {
+    if (NewSize * 0xc - 1U < 0x3fffffff) {
+      NewMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),NewSize * 0xc,&ResourceAllocationTemplate,
                             0xf4,0,0,1);
       if (NewMemoryBlock != 0) {
         if ((int)ArrayPointer[1] != 0) {
@@ -13342,7 +13342,7 @@ CleanupOldMemory:
  * 与ResizeArray类似，但使用不同的参数传递方式
  * 
  * @param ArrayHeader 数组头部指针
- * @param newSize 新的数组大小
+ * @param NewSize 新的数组大小
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
 uint64_t ExpandArray(uint8_t ArrayHeader, int NewSize)
@@ -13361,8 +13361,8 @@ CleanupOldMemory:
     *(int *)((int64_t)ArrayPointer + 0xc) = CurrentSize;
     return 0;
   }
-  if (newSize * 0xc - 1U < 0x3fffffff) {
-    NewMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),newSize * 0xc,&ResourceAllocationTemplate,0xf4,
+  if (NewSize * 0xc - 1U < 0x3fffffff) {
+    NewMemoryBlock = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),NewSize * 0xc,&ResourceAllocationTemplate,0xf4,
                           0);
     if (NewMemoryBlock != 0) {
       if ((int)ArrayPointer[1] != 0) {
@@ -32816,18 +32816,18 @@ void SystemStateResetHandler(void)
  * 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
- * @param commandParam 命令参数
- * @param flagsParam 标志参数
+ * @param CommandParam 命令参数
+ * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationContext, uint8_t commandParam, uint8_t flagsParam)
+void ResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CommandParam, uint8_t FlagsParam)
 
 {
   uint8_t *pResourceHash;
   
   pResourceHash = *(uint8_t **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + ValidationContextCleanupFunctionOffset);
   if (pResourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*pResourceHash,CommandParam,FlagsParam,0xfffffffffffffffe);
           ReleaseResourceHandle(pResourceHash);
   }
   return;
@@ -32843,18 +32843,18 @@ void ResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationContext, u
  * 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
- * @param commandParam 命令参数
- * @param flagsParam 标志参数
+ * @param CommandParam 命令参数
+ * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceCommandExecutorAlternative(uint8_t ObjectContext, int64_t ValidationContext, uint8_t commandParam, uint8_t flagsParam)
+void ResourceCommandExecutorAlternative(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CommandParam, uint8_t FlagsParam)
 
 {
   uint8_t *pResourceHash;
   
   pResourceHash = *(uint8_t **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + ValidationContextCleanupFunctionOffset);
   if (pResourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*pResourceHash,CommandParam,FlagsParam,0xfffffffffffffffe);
           ReleaseResourceHandle(pResourceHash);
   }
   return;
@@ -32871,14 +32871,14 @@ void ResourceCommandExecutorAlternative(uint8_t ObjectContext, int64_t Validatio
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  * @param settingsParam 设置参数
- * @param flagsParam 标志参数
+ * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void SystemSettingsConfigurator(uint8_t ObjectContext, int64_t ValidationContext, uint8_t settingsParam, uint8_t flagsParam)
+void SystemSettingsConfigurator(uint8_t ObjectContext, int64_t ValidationContext, uint8_t settingsParam, uint8_t FlagsParam)
 
 {
   ConfigureSystemSettings(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10),
-                settingsParam,flagsParam,0xfffffffffffffffe);
+                settingsParam,FlagsParam,0xfffffffffffffffe);
   return;
 }
 
@@ -32893,14 +32893,14 @@ void SystemSettingsConfigurator(uint8_t ObjectContext, int64_t ValidationContext
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  * @param requestParam 请求参数
- * @param flagsParam 标志参数
+ * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceRequestHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t requestParam, uint8_t flagsParam)
+void ResourceRequestHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t requestParam, uint8_t FlagsParam)
 
 {
   ProcessResourceRequest(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10),
-                requestParam,flagsParam,0xfffffffffffffffe);
+                requestParam,FlagsParam,0xfffffffffffffffe);
   return;
 }
 
@@ -32915,14 +32915,14 @@ void ResourceRequestHandler(uint8_t ObjectContext, int64_t ValidationContext, ui
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  * @param requestParam 请求参数
- * @param flagsParam 标志参数
+ * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceRequestHandlerAlternative(uint8_t ObjectContext, int64_t ValidationContext, uint8_t requestParam, uint8_t flagsParam)
+void ResourceRequestHandlerAlternative(uint8_t ObjectContext, int64_t ValidationContext, uint8_t requestParam, uint8_t FlagsParam)
 
 {
   ProcessResourceRequest(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10),
-                requestParam,flagsParam,0xfffffffffffffffe);
+                requestParam,FlagsParam,0xfffffffffffffffe);
   return;
 }
 
@@ -32936,18 +32936,18 @@ void ResourceRequestHandlerAlternative(uint8_t ObjectContext, int64_t Validation
  * 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
- * @param commandParam 命令参数
- * @param flagsParam 标志参数
+ * @param CommandParam 命令参数
+ * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ContextResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationContext, uint8_t commandParam, uint8_t flagsParam)
+void ContextResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CommandParam, uint8_t FlagsParam)
 
 {
   uint8_t *pResourceHash;
   
   pResourceHash = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x30);
   if (pResourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x20,*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x20,*pResourceHash,CommandParam,FlagsParam,0xfffffffffffffffe);
           ReleaseResourceHandle(pResourceHash);
   }
   return;
@@ -32963,18 +32963,18 @@ void ContextResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationCon
  * 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
- * @param commandParam 命令参数
- * @param flagsParam 标志参数
+ * @param CommandParam 命令参数
+ * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void SystemResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationContext, uint8_t commandParam, uint8_t flagsParam)
+void SystemResourceCommandExecutor(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CommandParam, uint8_t FlagsParam)
 
 {
   uint8_t *pResourceHash;
   
   pResourceHash = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x60);
   if (pResourceHash != (uint8_t *)0x0) {
-    ExecuteResourceCommand(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x50,*pResourceHash,commandParam,flagsParam,0xfffffffffffffffe);
+    ExecuteResourceCommand(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x50,*pResourceHash,CommandParam,FlagsParam,0xfffffffffffffffe);
           ReleaseResourceHandle(pResourceHash);
   }
   return;

@@ -894,7 +894,7 @@ uint32_t NetworkConnectionValidationConfig = 0x00;
  * 
  * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
  */
-uint32_t NetworkConnectionRoutingConfigPrimaryData = 0x00;
+uint32_t NetworkConnectionRoutingConfigPrimary = 0x00;
 
 /**
  * @brief 网络连接路由次要配置数据
@@ -1156,7 +1156,7 @@ int32_t CleanupNetworkConnectionContext(int64_t ConnectionContext);
  * @param ValidationResult 验证结果
  * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkValidateBufferTimeout(int64_t BufferData, int32_t TimeoutValue, int64_t ValidationResult);
+int32_t ValidateNetworkBufferTimeout(int64_t BufferData, int32_t TimeoutValue, int64_t ValidationResult);
 
 /**
  * @brief 使用加密处理缓冲区
@@ -1168,7 +1168,7 @@ int32_t NetworkValidateBufferTimeout(int64_t BufferData, int32_t TimeoutValue, i
  * @param EncryptionKey 加密密钥
  * @return int32_t 处理结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkProcessBufferWithEncryption(int64_t EncryptedBuffer, int32_t BufferSize, int64_t EncryptionKey);
+int32_t ProcessNetworkBufferWithEncryption(int64_t EncryptedBuffer, int32_t BufferSize, int64_t EncryptionKey);
 
 /**
  * @brief 管理网络句柄
@@ -1180,7 +1180,7 @@ int32_t NetworkProcessBufferWithEncryption(int64_t EncryptedBuffer, int32_t Buff
  * @param HandleContext 句柄上下文
  * @return int32_t 管理结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkManageHandle(int64_t ConnectionHandle, int32_t HandleSize, int64_t HandleContext);
+int32_t ManageNetworkHandle(int64_t ConnectionHandle, int32_t HandleSize, int64_t HandleContext);
 
 /**
  * @brief 网络加密数据包数据
@@ -1192,7 +1192,7 @@ int32_t NetworkManageHandle(int64_t ConnectionHandle, int32_t HandleSize, int64_
  * @param EncryptionKey 加密密钥
  * @return int32_t 加密结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkEncryptPacket(int64_t PacketData, int32_t PacketSize, int64_t EncryptionKey);
+int32_t EncryptNetworkPacket(int64_t PacketData, int32_t PacketSize, int64_t EncryptionKey);
 
 /**
  * @brief 网络处理安全上下文
@@ -1204,7 +1204,7 @@ int32_t NetworkEncryptPacket(int64_t PacketData, int32_t PacketSize, int64_t Enc
  * @param ContextData 上下文数据
  * @return int32_t 处理结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkProcessSecurity(int64_t SecurityContext, int32_t ContextSize, int64_t ContextData);
+int32_t ProcessNetworkSecurity(int64_t SecurityContext, int32_t ContextSize, int64_t ContextData);
 
 /**
  * @brief 网络获取连接数量
@@ -1214,7 +1214,7 @@ int32_t NetworkProcessSecurity(int64_t SecurityContext, int32_t ContextSize, int
  * @param ConnectionContext 连接上下文
  * @return int32_t 连接数量
  */
-int32_t NetworkGetConnectionCount(int64_t ConnectionContext);
+int32_t GetNetworkConnectionCount(int64_t ConnectionContext);
 
 /**
  * @brief 网络通过索引获取连接
