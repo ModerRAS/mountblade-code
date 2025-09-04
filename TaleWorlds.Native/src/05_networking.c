@@ -2174,9 +2174,9 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
     NetworkStatus PrimaryConnectionState = *(NetworkStatus *)(ConnectionContext + NetworkPacketDataSecondaryOffset);
     ConnectionStatusArray[0] = PrimaryConnectionState;
     NetworkPacketProcessor PacketProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-    ProcessingResult = PacketProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ConnectionStatusArray, 4);
-    if ((int)ProcessingResult != 0) {
-      return ProcessingResult;
+    PacketValidationResult = PacketProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ConnectionStatusArray, 4);
+    if ((int)PacketValidationResult != 0) {
+      return PacketValidationResult;
     }
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;

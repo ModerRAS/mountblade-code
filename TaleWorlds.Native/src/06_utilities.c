@@ -88155,7 +88155,12 @@ void ExecuteResourceHashStatusCleanupHandlerOffset370v23(uint8_t ObjectContext,i
 
 
 
-void Unwind_18090d440(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希状态地址并释放相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -88191,7 +88196,12 @@ void Unwind_18090d440(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d450(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理辅助资源哈希状态地址并释放相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearSecondaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -88275,7 +88285,12 @@ void ProcessResourceHashStatusCleanup(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_18090d470(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理第三级资源哈希状态地址并释放相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearTertiaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
