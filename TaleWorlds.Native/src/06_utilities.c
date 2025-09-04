@@ -4523,16 +4523,16 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int ObjectValidationStatus;
-  int64_t ObjectCollectionIterator;
-  int ProcessedObjectCount;
-  uint8_t ObjectMetadataBuffer[32];
-  int64_t ObjectHandleArray[2];
-  uint8_t *ObjectListBuffer;
-  int TotalObjectsCount;
-  uint32_t MaxProcessingLimit;
-  uint8_t ObjectProcessingBuffer[512];
-  uint64_t SecurityValidationKey;
+  int ValidationStatus;
+  int64_t CollectionIterator;
+  int ProcessedCount;
+  uint8_t MetadataBuffer[32];
+  int64_t HandleArray[2];
+  uint8_t *ListBuffer;
+  int TotalCount;
+  uint32_t MaxLimit;
+  uint8_t ProcessingBuffer[512];
+  uint64_t SecurityKey;
   
   // 生成安全验证令牌
   SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataBuffer;
