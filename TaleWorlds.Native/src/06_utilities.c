@@ -4847,13 +4847,13 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
 {
   int64_t *OperationResultPointer;
   int64_t *ResourceTable;
-  int64_t *ResourceIndex;
+  int64_t *ResourceIndexPointer;
   int ObjectValidationStatus;
   uint SystemProcessingResult;
   uint64_t OperationResult;
   int64_t *ResourceData;
   int64_t *ContextData;
-  int64_t *CleanupData;
+  int64_t *CleanupDataPointer;
   int64_t *NullPointer;
   int64_t MemoryContext;
   int64_t ValidationData;
@@ -4865,9 +4865,9 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
   ObjectValidationStatus = (int)OperationResult;
   if (ObjectValidationStatus == 0) {
     NullPointer = (int64_t *)0x0;
-    CleanupData = NullPointer;
+    CleanupDataPointer = NullPointer;
     if (ValidationData != 0) {
-      CleanupData = (int64_t *)(ValidationData + ValidationContextCleanupOffset);
+      CleanupDataPointer = (int64_t *)(ValidationData + ValidationContextCleanupOffset);
     }
     OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterPrimaryOffset),&ValidationData);
     PackageValidationStatus = (int)OperationResult;
@@ -9477,15 +9477,15 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(void)
            (FifthFloatResult = *(float *)(ResourceTablePointerPointer + 0x3c), InputFloatValue <= *(float *)(ResourceTablePointerPointer + 0x3c))) {
           FifthFloatResult = InputFloatValue;
         }
-        *PSecondFloatResult = calculatedFloatValue;
+        *PrimaryFloatResult = CalculatedFloatValue;
       }
       ResourceCount = ResourceCount + 1;
-      PSecondFloatResult = floatParameterValue + 1;
+      SecondaryFloatResult = floatParameterValue + 1;
     } while ((int)ResourceCount < *(int *)(ResourceContext + 0x18));
     if (0 < *(int *)(ResourceContext + 0x18)) {
-      ResourceTablePointerPointer = (ResourceContext + 0x20) - (int64_t)floatParameterValue;
+      ResourceTablePointerData = (ResourceContext + 0x20) - (int64_t)floatParameterValue;
       do {
-        OperationStatus = *(int *)((int64_t)floatParameterValue + ResourceTablePointerPointer);
+        OperationStatus = *(int *)((int64_t)floatParameterValue + ResourceTablePointerData);
         if (OperationResult != -1) {
           *(float *)(*(int64_t *)(ContextResourceHashStatus + 0x20) + 4 + (int64_t)OperationResult * 0x18) = *floatParameterValue;
         }
@@ -12479,7 +12479,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       goto HANDLE_CONTEXT_ERROR;
     }
     float FifthMatrixElement = *(float *)(ResourceContextDataPointer + 0x18);
-    float CalculatedFloatResult = calculatedFloatValue;
+    float ProcessedFloatResult = CalculatedFloatValue;
     if (OperationResult != -1) {
       CalculatedFloatResult = *(float *)(ObjectContext + ObjectContextDataOffset5);
       OperationStatus = -1;
@@ -13066,8 +13066,8 @@ uint64_t ProcessExtendedResourcePoolDataValidation(uint8_t extendedResourcePoolI
     uint32_t *ResourceDataAddress = (uint32_t *)((int64_t)ResourceCount * 0x10 + *(int64_t *)(SystemRegisterContext + 0x10));
     *(uint32_t *)(SystemRegisterContext + 0x20) = ResourceDataAddress[1];
     ResourceDataAddress[1] = 0xffffffff;
-    *ResourceDataAddress = *resourceDataValue;
-    *(uint8_t *)(ResourceDataAddress + 2) = *resourceRegisterPointer;
+    *ResourceDataAddress = *ResourceDataValue;
+    *(uint8_t *)(ResourceDataAddress + 2) = *ResourceRegisterPointer;
   }
   *ResourceContext = ResourceCount;
   *(int *)(SystemRegisterContext + 0x24) = *(int *)(SystemRegisterContext + 0x24) + 1;
@@ -13239,8 +13239,8 @@ MemoryAllocationComplete:
   if ((0 < *(int *)((int64_t)ArrayPointer + 0xc)) && (*ArrayPointer != 0)) {
           ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ArrayPointer,&ResourceAllocationTemplate,0x100,1);
   }
-  *ArrayPointer = (int64_t)newArrayBuffer;
-  *(int *)((int64_t)ArrayPointer + 0xc) = newSize;
+  *ArrayPointer = (int64_t)NewArrayBuffer;
+  *(int *)((int64_t)ArrayPointer + 0xc) = NewSize;
   return 0;
 }
 
@@ -13354,8 +13354,8 @@ CleanupOldMemory:
   if ((0 < *(int *)((int64_t)ArrayPointer + 0xc)) && (*ArrayPointer != 0)) {
           ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*ArrayPointer,&ResourceAllocationTemplate,0x100,1);
   }
-  *ArrayPointer = newMemoryBlock;
-  *(int *)((int64_t)ArrayPointer + 0xc) = newSize;
+  *ArrayPointer = NewMemoryBlock;
+  *(int *)((int64_t)ArrayPointer + 0xc) = NewSize;
   return 0;
 }
 
@@ -14391,9 +14391,9 @@ void ProcessComplexResourceWithRegisters(void)
   float FinalResultFloat;
   uint32_t SystemContextFlags;
   float ResourceFloatValue;
-  uint8_t *dataTypeTemplate;
+  uint8_t *DataTypeTemplate;
   int ResourceValidationErrorCode;
-  uint32_t extendedValidationFlags;
+  uint32_t ExtendedValidationFlags;
   float TemporaryResourceValue;
   int64_t SystemResourceContext;
   float ResultFloatValue;
