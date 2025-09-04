@@ -18420,18 +18420,18 @@ void InitializeEngineModuleA(void)
 void InitializeEngineModuleB(void)
 
 {
-  uint64_t registerR9;
+  uint64_t RegisterR9;
   void *ParameterStackPointer;
-  uint8_t *bufferPtr;
-  uint32_t bufferSize;
-  uint8_t stringBuffer [136];
+  uint8_t *BufferPointer;
+  uint32_t BufferSize;
+  uint8_t StringBuffer [136];
   
-  paramStackPtr = &SystemDataBufferMainTemplateA;
-  bufferPtr = stringBuffer;
-  stringBuffer[0] = 0;
-  bufferSize = 0x11;
-  strcpy_s(stringBuffer,0x80,&SystemStringConstantBufferSizeE,registerR9,InvalidHandleValue);
-  SystemMemoryRegionCacheE = SystemMemoryAllocationFunction(&paramStackPtr);
+  ParameterStackPointer = &SystemDataBufferMainTemplateA;
+  BufferPointer = StringBuffer;
+  StringBuffer[0] = 0;
+  BufferSize = 0x11;
+  strcpy_s(StringBuffer,0x80,&SystemStringConstantBufferSizeE,RegisterR9,InvalidHandleValue);
+  SystemMemoryRegionCacheE = SystemMemoryAllocationFunction(&ParameterStackPointer);
   return;
 }
 
@@ -22814,11 +22814,11 @@ void ProcessSystemStringCopySmall(long long targetBuffer, long long sourceString
 void ProcessSystemMemoryCopySmall(long long targetBuffer, void* sourceData, int copyLength)
 
 {
-  if (copyLength + 1 < 0x40) {
-      memcpy(*(uint8_t **)(targetBuffer + 8), sourceData, (long long)copyLength);
+  if (copyLength + 1 < StringBufferSize) {
+      memcpy(*(uint8_t **)(targetBuffer + SystemStringBufferOffset), sourceData, (long long)copyLength);
   }
-  **(uint8_t **)(targetBuffer + 8) = 0;
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
+  **(uint8_t **)(targetBuffer + SystemStringBufferOffset) = 0;
+  *(uint32_t *)(targetBuffer + SystemStringLengthOffset) = 0;
   return;
 }
 
