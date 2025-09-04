@@ -845,28 +845,28 @@ void *NetworkConnectionRoutingConfigurationQuaternary = &NetworkConnectionRoutin
  * 
  * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
  */
-uint32_t NetworkConnectionContextTemplateData = 0x00;
+uint32_t NetworkConnectionContextTemplate = 0x00;
 
 /**
  * @brief 网络连接主要配置数据
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
-uint32_t NetworkConnectionPrimaryConfigData = 0x00;
+uint32_t NetworkConnectionPrimaryConfig = 0x00;
 
 /**
  * @brief 网络连接次要配置数据
  * 
  * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
  */
-uint32_t NetworkConnectionSecondaryConfigData = 0x00;
+uint32_t NetworkConnectionSecondaryConfig = 0x00;
 
 /**
  * @brief 网络连接处理配置数据
  * 
  * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
  */
-uint32_t NetworkConnectionProcessingConfigData = 0x00;
+uint32_t NetworkConnectionProcessingConfig = 0x00;
 
 /**
  * @brief 网络连接传输配置数据

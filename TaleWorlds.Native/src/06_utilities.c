@@ -13341,11 +13341,11 @@ CleanupOldMemory:
  * 该函数用于扩展动态数组的大小，分配新的内存空间并复制现有数据
  * 与ResizeArray类似，但使用不同的参数传递方式
  * 
- * @param arrayHeader 数组头部指针
+ * @param ArrayHeader 数组头部指针
  * @param newSize 新的数组大小
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t ExpandArray(uint8_t arrayHeader, int newSize)
+uint64_t ExpandArray(uint8_t ArrayHeader, int NewSize)
 {
   int64_t NewMemoryBlock;
   int64_t *ArrayPointer;
