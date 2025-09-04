@@ -84432,7 +84432,13 @@ void ClearResourceDataOffset20FlagsAndRelease(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090cd30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据偏移0x20的第3位标志位并释放系统资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cd30
+ */
+void ClearResourceDataOffset20Bit3FlagsAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 8) != 0) {
@@ -84444,7 +84450,16 @@ void Unwind_18090cd30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cd60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据偏移0x20的标志位（位4）并释放系统资源
+ * 
+ * 检查资源数据偏移0x20处的第4位标志，如果置位则清除并释放对应的系统资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cd60
+ */
+void ClearResourceDataOffset20Bit4AndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 0x10) != 0) {
