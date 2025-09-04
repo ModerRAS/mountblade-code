@@ -74174,7 +74174,7 @@ void RegisterResourceHandlerAtOffsetC68(uint8_t ObjectContext,int64_t Validation
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_18090a570
  */
-void Unwind_ResourceTablePointerCleanupProcessor(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceTablePointerCleanupProcessor(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79999,6 +79999,11 @@ void UnwindSystemContextPointerReset(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
+/**
+ * @brief 在验证上下文的0x2a0偏移处设置系统数据结构指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void SetSystemDataStructurePointerAtOffset2A0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -80008,6 +80013,11 @@ void SetSystemDataStructurePointerAtOffset2A0(uint8_t ObjectContext,int64_t Vali
 
 
 
+/**
+ * @brief 在验证上下文的三级偏移0处设置系统数据结构指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void SetSystemDataStructurePointerAtTertiaryOffset0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -80017,6 +80027,11 @@ void SetSystemDataStructurePointerAtTertiaryOffset0(uint8_t ObjectContext,int64_
 
 
 
+/**
+ * @brief 在验证上下文的0x3c0偏移处设置系统数据结构指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void SetSystemDataStructurePointerAtOffset3C0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -80386,25 +80401,66 @@ void ProcessResourceTableWithCleanup(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_18090c260(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源数据清理
+ * 
+ * 该函数负责处理资源数据的清理操作，包括资源数据处理和清理选项的应用。
+ * 此函数是资源管理系统的清理过程的重要组成部分。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return void 无返回值
+ * @note 此函数会调用ProcessResourceData来处理资源数据清理
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c260
+ */
+void ExecuteResourceDataCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
-  ProcessResourceData(ValidationContext + 0x48,*(uint8_t *)(ValidationContext + ValidationContextSecondaryCountOffset),CleanupOption,CleanupFlag,0xfffffffffffffffe);
+  ProcessResourceData(ValidationContext + ValidationContextTertiaryOffset,*(uint8_t *)(ValidationContext + ValidationContextSecondaryCountOffset),CleanupOption,CleanupFlag,SystemCleanupHandler);
   return;
 }
 
 
 
-void Unwind_18090c270(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放系统内存
+ * 
+ * 该函数负责释放系统内存资源，清理验证上下文中的内存分配。
+ * 此函数是内存管理系统的清理过程的重要组成部分。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return void 无返回值
+ * @note 此函数会调用ReleaseSystemMemory来释放系统内存
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c270
+ */
+void ReleaseSystemMemoryHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  ReleaseSystemMemory(ValidationContext + 0x180);
+  ReleaseSystemMemory(ValidationContext + SystemMemoryReleaseOffset);
   return;
 }
 
 
 
-void Unwind_18090c280(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态验证
+ * 
+ * 该函数负责处理资源哈希状态的验证操作，包括内存地址计算、
+ * 资源索引验证和状态同步。此函数是资源管理系统的验证过程的重要组成部分。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return void 无返回值
+ * @note 此函数会验证资源哈希状态并同步相关数据结构
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c280
+ */
+void ProcessResourceHashStatusValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -80412,18 +80468,18 @@ void Unwind_18090c280(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xe8);
+  ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextTertiaryOffset);
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
     return;
   }
   MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
+    ResourceIndex = MemoryAddressIncrement + SystemContextSecondaryOffset + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * ResourceTableEntrySize;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
+    if ((*(void ***)(MemoryAddressIncrement + SystemContextTertiaryOffset) == &ExceptionList) && (*(char *)(ResourceIndex + ResourceEntryValidationOffset) == '\0')) {
+      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + ResourceEntryStatusOffset);
+      *(uint8_t **)(ResourceIndex + ResourceEntryStatusOffset) = ResourceHashStatusAddress;
+      ResourceIndexPointer = (int *)(ResourceIndex + ResourceEntryIndexOffset);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
       if (*ResourceIndexPointer == 0) {
         SystemCleanupHandler();
