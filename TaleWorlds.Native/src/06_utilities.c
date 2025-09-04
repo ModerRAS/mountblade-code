@@ -80752,7 +80752,19 @@ void DestroyBasicIOStreamResource(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void Unwind_18090c380(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源索引和哈希表的初始化
+ * 
+ * 该函数负责初始化资源索引结构，设置资源哈希和表指针
+ * 并处理相关的资源清理工作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会设置资源索引的哈希值和表指针
+ * @warning 原始函数名：Unwind_18090c380
+ */
+void ProcessResourceIndexAndHashInitialization(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   uint8_t ResourceHash;
