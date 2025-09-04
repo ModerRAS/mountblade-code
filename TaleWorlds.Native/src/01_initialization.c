@@ -2792,7 +2792,7 @@ void InitializeSystemMemoryNode(void)
     PreviousNode = AllocatedNode;
   }
   PreviousNode[NodeIdentifier1Index] = DataComparisonTemplateLId1;
-  PreviousNode[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  PreviousNode[NodeIdentifier2Index] = DataComparisonTemplateLId2;
   PreviousNode[NodeDataPointerIndex] = &SystemDataNodeI;
   PreviousNode[NodeActiveFlagIndex] = NodeInactiveFlag;
   PreviousNode[10] = InitializationFlag;
@@ -2959,7 +2959,7 @@ void InitializeSystemDataTableStructureC(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
-  HashTableNodePointer[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
+  HashTableNodePointer[NodeIdentifier1Index] = DataComparisonTemplateEId1;
   HashTableNodePointer[NodeIdentifier2Index] = 0xc160408bde99e59f;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeA;
   HashTableNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
@@ -7499,7 +7499,7 @@ void InitializeSystemSearchManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
-  HashTableNodePointer[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
+  HashTableNodePointer[NodeIdentifier1Index] = DataComparisonTemplateEId1;
   HashTableNodePointer[NodeIdentifier2Index] = 0xc160408bde99e59f;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeA;
   HashTableNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
@@ -8553,7 +8553,7 @@ void InitializeSystemNetworkManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
-  HashTableNodePointer[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
+  HashTableNodePointer[NodeIdentifier1Index] = DataComparisonTemplateEId1;
   HashTableNodePointer[NodeIdentifier2Index] = 0xc160408bde99e59f;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeA;
   HashTableNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
@@ -16116,7 +16116,7 @@ void InitializeSystemLoggingComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
-  HashTableNodePointer[NodeIdentifier1Index] = 0x449bafe9b77ddd3c;
+  HashTableNodePointer[NodeIdentifier1Index] = DataComparisonTemplateEId1;
   HashTableNodePointer[NodeIdentifier2Index] = 0xc160408bde99e59f;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeA;
   HashTableNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
