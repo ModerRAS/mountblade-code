@@ -1236,7 +1236,7 @@ int64_t GetNetworkConnectionByIndex(int64_t ConnectionContext, int32_t Connectio
  * @param PacketData 数据包数据
  * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkValidateProtocol(int64_t NetworkData, int64_t PacketData);
+int32_t ValidateNetworkProtocol(int64_t NetworkData, int64_t PacketData);
 
 // 网络连接事件处理器
 uint32_t NetworkConnectionEventProcessor;
@@ -1861,12 +1861,12 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
       
       // 如果状态缓冲区有效，处理连接数据
       if (ConnectionStatusBuffer != (NetworkConnectionStatus *)0x0) {
-        int32_t ActiveConnectionsCount = (int)ConnectionContext[1];
-        int64_t ConnectionProcessingIndex = (long long)ActiveConnectionsCount;
+        int32_t ActiveConnectionCount = (int)ConnectionContext[1];
+        int64_t ConnectionProcessingCounter = (long long)ActiveConnectionCount;
         int64_t ConnectionBaseAddress = 0;  // 连接基地址
         
         // 如果有活跃连接，处理连接数据
-        if ((ActiveConnectionsCount != 0) && (ConnectionBaseAddress = *ConnectionContext, 0 < ActiveConnectionsCount)) {
+        if ((ActiveConnectionCount != 0) && (ConnectionBaseAddress = *ConnectionContext, 0 < ActiveConnectionCount)) {
           NetworkConnectionStatus *ConnectionStatusPointer = ConnectionStatusBuffer;
           
           // 循环处理所有连接数据
