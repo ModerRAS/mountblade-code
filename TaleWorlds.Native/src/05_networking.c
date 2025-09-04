@@ -192,7 +192,17 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define CONNECTION_QUALITY_GOOD 0x05                       // 良好连接质量
 #define LATENCY_50MS 0x32                                     // 50毫秒延迟
 #define BANDWIDTH_4KB 0x1000                                 // 4KB带宽
+#define HIGH_RELIABILITY_LEVEL 0x01                           // 高可靠性级别
 #define WINDOW_SCALE_16 0x10                                 // 窗口缩放16
+
+// 网络连接配置常量
+#define NETWORK_QUEUE_ENABLED 0x01                           // 网络队列启用标志
+#define CONNECTION_STATE_ENABLED 0x01                        // 连接状态启用标志
+#define EVENT_QUEUE_ENABLED 0x01                             // 事件队列启用标志
+#define INVALID_CALLBACK_HANDLER 0xFFFFFFFF                  // 无效回调处理器
+#define INVALID_TIMEOUT_PROCESSOR 0xFFFFFFFF                 // 无效超时处理器
+#define DEFAULT_MAX_CONNECTIONS 100                           // 默认最大连接数
+#define CONNECTION_CONTEXT_ENABLED 0x01                       // 连接上下文启用标志
 
 // 网络安全常量
 #define SECURITY_LEVEL_HIGH 0x03                           // 高安全级别
@@ -302,30 +312,30 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define SOCKET_RESET 0x00                                     // 套接字重置
 #define SOCKET_DATA_RESET 0x00                               // 套接字数据重置
 #define EVENT_RESET 0x00                                      // 事件重置
-#define CALLBACK_RESET 0x00                          // 回调重置
-#define QUEUE_RESET 0x00                             // 队列重置
-#define HANDLER_RESET 0x00                           // 处理器重置
-#define STATS_RESET 0x00                             // 统计重置
-#define CONNECTION_TIME_RESET 0x00                  // 连接时间重置
-#define ACTIVITY_RESET 0x00                          // 活动重置
+#define CALLBACK_RESET 0x00                                    // 回调重置
+#define QUEUE_RESET 0x00                                      // 队列重置
+#define HANDLER_RESET 0x00                                    // 处理器重置
+#define STATS_RESET 0x00                                      // 统计重置
+#define CONNECTION_TIME_RESET 0x00                             // 连接时间重置
+#define ACTIVITY_RESET 0x00                                    // 活动重置
 
 // 网络数据传输常量
-#define SEQUENCE_INITIAL 0x01                        // 初始序列号
-#define ACK_INITIAL 0x01                             // 初始确认号
-#define BYTES_RESET 0x00                             // 字节重置
-#define PACKETS_RESET 0x00                           // 数据包重置
-#define RETRANSMIT_COUNT_RESET 0x00                 // 重传计数重置
-#define LOSS_RATE_RESET 0x00                         // 丢包率重置
-#define MONITOR_ENABLED 0x01                        // 监控器启用
-#define ROUND_TRIP_TIME_RESET 0x00                  // 往返时间重置
-#define QUEUE_ENABLED 0x01                          // 队列启用
-#define BUFFER_ENABLED 0x01                         // 缓冲区启用
-#define INDEX_RESET 0x00                            // 索引重置
-#define PACKET_INDEX_RESET 0x00                     // 数据包索引重置
-#define ERROR_RATE_RESET 0x00                       // 错误率重置
-#define HEALTH_GOOD 0x01                             // 健康状态良好
-#define STABILITY_HIGH 0x01                          // 稳定性高
-#define PERFORMANCE_GOOD 0x01                        // 性能良好
+#define SEQUENCE_INITIAL 0x01                                  // 初始序列号
+#define ACK_INITIAL 0x01                                       // 初始确认号
+#define BYTES_RESET 0x00                                      // 字节重置
+#define PACKETS_RESET 0x00                                    // 数据包重置
+#define RETRANSMIT_COUNT_RESET 0x00                          // 重传计数重置
+#define LOSS_RATE_RESET 0x00                                  // 丢包率重置
+#define MONITOR_ENABLED 0x01                                  // 监控器启用
+#define ROUND_TRIP_TIME_RESET 0x00                            // 往返时间重置
+#define QUEUE_ENABLED 0x01                                    // 队列启用
+#define BUFFER_ENABLED 0x01                                   // 缓冲区启用
+#define INDEX_RESET 0x00                                      // 索引重置
+#define PACKET_INDEX_RESET 0x00                               // 数据包索引重置
+#define ERROR_RATE_RESET 0x00                                 // 错误率重置
+#define HEALTH_GOOD 0x01                                       // 健康状态良好
+#define STABILITY_HIGH 0x01                                    // 稳定性高
+#define PERFORMANCE_GOOD 0x01                                  // 性能良好
 
 // 网络数据包验证常量
 #define VALIDATION_POOL_ENABLED 0x01                // 验证池启用
@@ -1058,7 +1068,7 @@ void AcceptNetworkConnection(void)
   NetworkConnectionQuality = CONNECTION_QUALITY_GOOD;                     // 设置连接质量为良好
   NetworkConnectionBandwidth = BANDWIDTH_4KB;                 // 设置连接带宽为4KB
   NetworkConnectionLatency = LATENCY_50MS;                     // 设置连接延迟为50ms
-  NetworkConnectionReliabilityLevel = 0x01;                 // 设置连接可靠性为高
+  NetworkConnectionReliabilityLevel = HIGH_RELIABILITY_LEVEL;                 // 设置连接可靠性为高
   
   // 初始化安全参数
   NetworkSecurityLevel = SECURITY_LEVEL_HIGH;                         // 设置安全级别为高
