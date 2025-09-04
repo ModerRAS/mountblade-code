@@ -80218,11 +80218,11 @@ void ExecuteResourceTableCleanupAndSystemExit(uint8_t ObjectContext,int64_t Vali
 
 
 /**
- * 设置系统数据结构指针在第三级偏移量0处
+ * 设置系统数据结构指针在第三级偏移量处
  * @param ObjectContext 对象上下文
  * @param ValidationContext 验证上下文
  */
-void SetSystemDataStructurePointerAtTertiaryOffset0_2(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtTertiaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset0) = &SystemDataStructure;
@@ -80232,11 +80232,11 @@ void SetSystemDataStructurePointerAtTertiaryOffset0_2(uint8_t ObjectContext,int6
 
 
 /**
- * 设置系统数据结构指针在偏移量0x3C0处
+ * 设置系统数据结构指针在指定偏移量处
  * @param ObjectContext 对象上下文
  * @param ValidationContext 验证上下文
  */
-void SetSystemDataStructurePointerAtOffset3C0_2(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtSpecifiedOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x3c0) = &SystemDataStructure;
@@ -80250,7 +80250,7 @@ void SetSystemDataStructurePointerAtOffset3C0_2(uint8_t ObjectContext,int64_t Va
  * @param ObjectContext 对象上下文
  * @param ValidationContext 验证上下文
  */
-void ExecuteResourceTableCleanupAndSystemExit_2(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceTableCleanupAndSystemExit(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
