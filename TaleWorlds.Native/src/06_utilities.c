@@ -5682,7 +5682,7 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
  * 
  * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandleDetailed(void)
+uint8_t ProcessResourceBatchInitialization(void)
 
 {
   int64_t ResourceDataOffset;
@@ -6089,7 +6089,7 @@ void TerminateSystem(void) {
  * 
  * @return void 无返回值
  */
-void PerformNoOperation(void) {
+void ExecuteNullOperation(void) {
   return;
 }
 
@@ -6104,7 +6104,7 @@ void PerformNoOperation(void) {
  * @param ResourceHandle 资源句柄，用于标识要处理的资源
  * @return 操作结果或资源数据，0表示成功，非0表示错误码
  */
-uint64_t HandleResourceOperation(int64_t ResourceHandle) {
+uint64_t ProcessResourceHandleValidation(int64_t ResourceHandle) {
   uint8_t ResourceValidationStatus;
   int64_t AdjustedResourceMemoryPointer;
   int64_t ValidatedResourceMemoryAddress;
@@ -83449,7 +83449,18 @@ void ProcessResourceTableDataAndMemoryOperationsVersionG(uint8_t ObjectContext, 
 
 
 
-void Unwind_18090cab0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移0x5a0处
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的0x5a0偏移处
+ * 这是一个简单的指针设置操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090cab0
+ */
+void SetSystemDataStructurePointerToValidationContext5A0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x5a0) = &SystemDataStructure;
