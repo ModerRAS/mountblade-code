@@ -522,7 +522,7 @@ uint32_t ValidateSecureConnectionHandle(NetworkHandle ConnectionContext, Network
  * @param ConnectionContext 连接上下文指针
  * @return NetworkHandle 连接句柄
  */
-NetworkHandle GetConnectionHandle(int64_t *ConnectionContext);
+NetworkHandle RetrieveConnectionHandle(int64_t *ConnectionContext);
 
 /**
  * @brief 验证网络连接条目
@@ -533,7 +533,7 @@ NetworkHandle GetConnectionHandle(int64_t *ConnectionContext);
  * @param NetworkFlags 网络标志
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t VerifyConnectionEntry(int64_t ConnectionContext, uint32_t NetworkFlags);
+uint32_t ValidateConnectionEntry(int64_t ConnectionContext, uint32_t NetworkFlags);
 
 /**
  * @brief 初始化网络上下文
@@ -543,7 +543,7 @@ uint32_t VerifyConnectionEntry(int64_t ConnectionContext, uint32_t NetworkFlags)
  * @param NetworkContext 网络上下文
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t InitializeContext(int64_t NetworkContext);
+uint32_t SetupNetworkContext(int64_t NetworkContext);
 
 /**
  * @brief 处理网络上下文条目
