@@ -4464,26 +4464,26 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int ValidationStatusCode;
-  int64_t CollectionIterator;
+  int64_t ObjectCollectionIterator;
   int ProcessedObjectCount;
-  uint8_t SecurityMetadataBuffer[32];
+  uint8_t SecurityValidationMetadataBuffer[32];
   int64_t ContextHandleArray[2];
   uint8_t *ObjectDataBuffer;
   int TotalObjectCount;
-  uint32_t MaximumItemLimit;
-  uint8_t DataProcessingBuffer[512];
+  uint32_t MaximumProcessingLimit;
+  uint8_t ObjectProcessingWorkspace[512];
   uint64_t SecurityValidationToken;
   
   // 生成安全验证令牌
-  SecurityValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)SecurityMetadataBuffer;
+  SecurityValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)SecurityValidationMetadataBuffer;
   
   // 获取上下文句柄
   ValidationStatusCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ContextHandleArray);
   if ((ValidationStatusCode == 0) && (*(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset) != 0)) {
-    ObjectDataBuffer = DataProcessingBuffer;
+    ObjectDataBuffer = ObjectProcessingWorkspace;
     ProcessedObjectCount = 0;
     TotalObjectCount = 0;
-    MaximumItemLimit = MaximumProcessableItemsLimit;
+    MaximumProcessingLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
     ValidationStatusCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset),
@@ -4491,9 +4491,9 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     if (ValidationStatusCode == 0) {
       TotalObjectCount = *(int *)(ObjectDataBuffer + ObjectDataArraySizeOffset);
       if (0 < TotalObjectCount) {
-        CollectionIterator = 0;
+        ObjectCollectionIterator = 0;
         do {
-          uint8_t ObjectValidationState = *(uint8_t *)(ObjectDataBuffer + CollectionIterator);
+          uint8_t ObjectValidationState = *(uint8_t *)(ObjectDataBuffer + ObjectCollectionIterator);
           ValidationStatusCode = ValidateObjectStatus(ObjectValidationState);
           if (ValidationStatusCode != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectValidationState, 1);
@@ -5114,6 +5114,14 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  * @note 此函数从全局状态获取当前对象句柄进行释放操作
  */
+/**
+ * @brief 释放对象句柄
+ * 
+ * 该函数用于释放系统对象的句柄，清理相关资源并回收内存
+ * 执行对象句柄的释放操作和系统状态更新
+ * 
+ * @return 释放操作结果状态码
+ */
 uint8_t ReleaseObjectHandle(void) {
   int64_t CurrentActiveObjectHandle = 0;
   int64_t ObjectMemoryAddress;
@@ -5144,6 +5152,15 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
+/**
+ * @brief 验证字符输入
+ * 
+ * 该函数用于验证输入字符的有效性，如果字符不为空则触发系统退出
+ * 这是一个简单的字符验证函数，用于输入安全检查
+ * 
+ * @param CharacterToValidate 要验证的字符
+ * @return 验证结果状态码
+ */
 uint8_t ValidateCharacterInput(char CharacterToValidate) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
   if (CharacterToValidate != '\0') {
@@ -5163,6 +5180,15 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
  * 
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
+ */
+/**
+ * @brief 验证对象句柄安全性
+ * 
+ * 该函数用于验证对象句柄的安全性，确保对象访问权限和有效性
+ * 包含对象上下文验证和内存地址安全检查
+ * 
+ * @param ObjectHandleToValidate 要验证的对象句柄
+ * @return 安全验证结果状态码
  */
 uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
   uint8_t SecurityValidationResult;
@@ -5204,6 +5230,14 @@ uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
  * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
  * @warning 验证失败时会触发系统退出操作
  */
+/**
+ * @brief 从寄存器验证对象句柄
+ * 
+ * 该函数从系统寄存器中获取对象句柄并进行验证
+ * 包含寄存器值检查和内存地址计算操作
+ * 
+ * @return 验证结果状态码
+ */
 uint32_t ValidateObjectHandleFromRegister(void) {
   int64_t RegisterObjectPointer = 0;
   int64_t ValidatedMemoryAddress;
@@ -5237,6 +5271,14 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * 
  * @return void 无返回值
  * @note 此函数会立即终止当前进程的执行
+ */
+/**
+ * @brief 触发系统异常
+ * 
+ * 该函数用于触发系统异常处理流程
+ * 执行系统退出操作以进入异常处理状态
+ * 
+ * @return 无返回值
  */
 void TriggerSystemException(void) {
   // 执行系统退出操作，触发异常处理流程
@@ -6012,6 +6054,14 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
  * 
  * @return 处理结果，0表示成功，非0表示错误码
  */
+/**
+ * @brief 处理系统资源
+ * 
+ * 该函数用于处理系统资源操作，包括资源验证和处理
+ * 包含系统上下文验证和资源迭代处理
+ * 
+ * @return 处理结果状态码
+ */
 uint32_t ProcessSystemResource(void) {
   int64_t SystemContextToValidate;
   int64_t ResourceProcessingIterator;
@@ -6043,6 +6093,14 @@ uint32_t ProcessSystemResource(void) {
  * @note 此函数不会返回，会直接终止程序
  * @warning 调用此函数将立即终止系统运行
  */
+/**
+ * @brief 终止系统
+ * 
+ * 该函数用于安全地终止系统运行
+ * 执行系统退出操作以确保系统正常关闭
+ * 
+ * @return 无返回值
+ */
 void TerminateSystem(void) {
   ExecuteSystemExitOperation();
 }
@@ -6052,6 +6110,14 @@ void TerminateSystem(void) {
  * 
  * 该函数是一个空操作函数，直接返回而不执行任何操作。
  * 用于系统架构中的占位操作或默认行为。
+ * 
+ * @return 无返回值
+ */
+/**
+ * @brief 空操作函数（主版本）
+ * 
+ * 该函数是一个空操作函数，不执行任何操作
+ * 用于系统流程中的占位操作
  * 
  * @return 无返回值
  */
@@ -6069,6 +6135,15 @@ void ReturnNoOperationPrimary(void) {
  * 
  * @param ResourceHandle 资源句柄，用于标识要处理的资源
  * @return 处理结果，0表示成功，非0表示错误码
+ */
+/**
+ * @brief 处理资源操作
+ * 
+ * 该函数用于处理系统资源的相关操作
+ * 包含资源验证、内存地址获取和操作处理
+ * 
+ * @param ResourceHandle 资源句柄
+ * @return 操作结果或资源数据
  */
 uint64_t HandleResourceOperation(int64_t ResourceHandle) {
   uint8_t ValidationResult;
