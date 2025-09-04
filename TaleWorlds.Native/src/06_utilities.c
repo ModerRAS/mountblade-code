@@ -342,6 +342,7 @@
 #define SystemContextResourceCounterOffset 0x1af0
 #define SystemContextSecondaryResourceFlagOffset 0x1ac0
 #define SystemContextSecondaryResourceCounterOffset 0x1ad0
+#define SystemContextResourceTableLargeOffset 0x40000        // 系统上下文资源表大偏移量
 
 // 校验和种子值常量
 #define ChecksumSeedValueFEFB 0x46464542
@@ -13843,8 +13844,8 @@ uint8_t ExpandResourceTablePointerCapacity(int64_t ObjectContext)
   
   if ((*(int64_t *)(ObjectContext + 8) != 0) && (TableEntryIndex = *(int *)(ObjectContext + ObjectContextMatrixScaleOffset), 0 < TableEntryIndex)) {
     LoopCounter = *(int64_t *)(ObjectContext + ObjectContextRangeDataOffset);
-    if (0x40000 < TableEntryIndex) {
-      ResourceTablePointer = AllocateResourceTablePointer(SystemContextPointer + 0x40000,10);
+    if (SystemContextResourceTableLargeOffset < TableEntryIndex) {
+      ResourceTablePointer = AllocateResourceTablePointer(SystemContextPointer + SystemContextResourceTableLargeOffset,10);
       if (ResourceTablePointer != 0) {
         TableEntryIndex = ((int)ResourceTablePointer - (int)SystemContextPointer) + 1;
       }
@@ -14106,7 +14107,7 @@ ResourceProcessingHandler:
         ResourceCount = ValidateBufferContext(ResourceTablePointer,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + ValidationContextCleanupFunctionOffset);
-        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + ValidationContextSecondaryResourceOffset);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSenary;
@@ -14153,7 +14154,7 @@ ResourceProcessingHandler:
         ResourceCount = ValidateBufferContext(ResourceTablePointer,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + ValidationContextCleanupFunctionOffset);
-        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + ValidationContextSecondaryResourceOffset);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSenary;
@@ -14200,7 +14201,7 @@ ResourceProcessingHandler:
         ResourceCount = ValidateBufferContext(ResourceTablePointer,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + ValidationContextCleanupFunctionOffset);
-        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + ValidationContextSecondaryResourceOffset);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSenary;
@@ -14247,7 +14248,7 @@ ResourceProcessingHandler:
         ResourceCount = ValidateBufferContext(ResourceTablePointer,&GraphicsDataFlag);
         if (ResourceCount != 0) goto ResourceErrorHandler;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + ValidationContextCleanupFunctionOffset);
-        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + ValidationContextSecondaryResourceOffset);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSenary;
@@ -14297,7 +14298,7 @@ ResourceProcessingHandler:
         ResourceCount = ValidateBufferContext(ResourceTablePointer,&GraphicsDataFlag);
         if (ResourceCount != 0) break;
         ResourceContextSize = *(uint32_t *)(SystemResourceContext + ValidationContextCleanupFunctionOffset);
-        ResourceContextPointer = *(uint *)(SystemContextPointer + 0x14);
+        ResourceContextPointer = *(uint *)(SystemContextPointer + ValidationContextSecondaryResourceOffset);
         ResourceContextFlags = *(uint32_t *)(SystemResourceContext + 0x18);
         ResourceContextOffset = *(uint32_t *)(SystemResourceContext + 0x1c);
         GraphicsDataSecondaryBuffer = &GraphicsProcessingTemplateSeptenary;
@@ -79375,7 +79376,16 @@ void ExecuteValidationContextTertiaryResourceCleanup(uint8_t ObjectContext, int6
 
 
 
-void Unwind_18090be40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源事务回调处理
+ * 
+ * 该函数开始一个资源事务，然后执行验证上下文中的回调函数
+ * 主要用于资源管理的事务处理流程
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceTransactionCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -79387,7 +79397,16 @@ void Unwind_18090be40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090be50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位1
+ * 
+ * 该函数检查并清理ResourceData+0x20地址的第一个标志位
+ * 如果标志位被设置，则清除该标志并处理资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceDataFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -79399,7 +79418,16 @@ void Unwind_18090be50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090be80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位2
+ * 
+ * 该函数检查并清理ResourceData+0x20地址的第二个标志位
+ * 如果标志位被设置，则清除该标志并处理资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceDataFlag2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 2) != 0) {
@@ -79411,7 +79439,16 @@ void Unwind_18090be80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090beb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源扩展数据标志位1
+ * 
+ * 该函数检查并清理ResourceData+0x48地址的第一个标志位
+ * 如果标志位被设置，则清除该标志并处理系统对象资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceExtendedDataFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x48) & 1) != 0) {
@@ -79423,7 +79460,16 @@ void Unwind_18090beb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bee0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位1（替代版本）
+ * 
+ * 该函数检查并清理ResourceData+0x20地址的第一个标志位
+ * 与ClearResourceDataFlag1类似，但处理的是验证上下文+0x38地址的资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceDataFlag1Alternate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -79435,7 +79481,16 @@ void Unwind_18090bee0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bf10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位3
+ * 
+ * 该函数检查并清理ResourceData+0x30地址的第一个标志位
+ * 如果标志位被设置，则清除该标志并处理系统对象资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceDataFlag3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -79447,7 +79502,16 @@ void Unwind_18090bf10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bf40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构句柄
+ * 
+ * 该函数将系统数据结构句柄设置到验证上下文中
+ * 主要用于初始化系统数据结构的引用
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructureHandle(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ValidationContextSystemHandleOffset) = &SystemDataStructure;
@@ -79456,7 +79520,16 @@ void Unwind_18090bf40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bf50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调
+ * 
+ * 该函数从验证上下文中获取资源上下文，并执行相应的回调函数
+ * 主要用于资源处理的回调机制
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79470,7 +79543,16 @@ void Unwind_18090bf50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bf60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调
+ * 
+ * 该函数从验证上下文中获取资源上下文，并执行相应的回调函数
+ * 与ExecuteResourceContextCallback类似，但处理逻辑略有不同
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceProcessingCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79484,7 +79566,16 @@ void Unwind_18090bf60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bf70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源事务回滚和回调处理
+ * 
+ * 该函数处理资源事务的回滚操作，并执行多个回调函数
+ * 包括主要数据回调、次要数据回调和清理回调等
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceTransactionRollbackAndCallbacks(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79508,7 +79599,16 @@ void Unwind_18090bf70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bf80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要数据回调
+ * 
+ * 该函数执行验证上下文中次要数据的回调函数
+ * 主要用于处理次要资源数据的回调操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteSecondaryDataCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x40) != (int64_t *)0x0) {
@@ -79519,7 +79619,16 @@ void Unwind_18090bf80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bf90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行主要数据回调
+ * 
+ * 该函数开始一个资源事务，并执行验证上下文中主要数据的回调函数
+ * 主要用于处理主要资源数据的回调操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecutePrimaryDataCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -79531,7 +79640,16 @@ void Unwind_18090bf90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bfa0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行扩展资源上下文回调
+ * 
+ * 该函数从验证上下文的扩展地址中获取资源上下文，并执行相应的回调函数
+ * 主要用于处理扩展资源数据的回调操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteExtendedResourceContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79545,7 +79663,18 @@ void Unwind_18090bfa0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bfb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源哈希表清理
+ * 
+ * 该函数遍历资源哈希表，并对每个哈希条目执行清理操作
+ * 主要用于资源表的批量清理和释放
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteResourceHashTableCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
@@ -79567,7 +79696,18 @@ void Unwind_18090bfb0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090bfc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源数据传输处理
+ * 
+ * 该函数处理资源数据的传输操作，包括清理选项和标志的处理
+ * 主要用于资源数据的批量传输和清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteResourceDataTransfer(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(ValidationContext + 0x20) + 0x20,
@@ -79578,7 +79718,18 @@ void Unwind_18090bfc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090bfd0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源数据验证处理
+ * 
+ * 该函数处理资源数据的验证操作，包括清理选项和标志的处理
+ * 主要用于资源数据的批量验证和清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteResourceDataValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(ValidationContext + 0x20) + 0x50,
@@ -79589,7 +79740,16 @@ void Unwind_18090bfd0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090bfe0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表遍历和回调
+ * 
+ * 该函数遍历资源表，并对每个有效的资源条目执行回调函数
+ * 主要用于资源表的批量处理和回调执行
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceTableTraversalAndCallbacks(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

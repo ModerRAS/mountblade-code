@@ -1024,20 +1024,20 @@ void BindNetworkSocketToAddress(void)
 void StartListeningForNetworkConnections(void)
 {
   // 设置监听队列参数
-  NetworkConnectionRequestQueue = 0x01;                // 初始化连接请求队列
+  NetworkConnectionRequestQueue = NETWORK_QUEUE_ENABLED;                // 初始化连接请求队列
   NetworkPendingRequestCount = 0;                     // 重置待处理请求数量
   
   // 设置连接限制参数
-  NetworkMaximumConnectionsLimit = 100;                // 设置最大连接数为100
+  NetworkMaximumConnectionsLimit = DEFAULT_MAX_CONNECTIONS;                // 设置最大连接数为100
   NetworkActiveConnectionsCount = 0;                   // 重置活跃连接计数
   
   // 初始化连接状态管理器
-  NetworkConnectionStateManager = 0x01;               // 设置状态管理器为启用状态
+  NetworkConnectionStateManager = CONNECTION_STATE_ENABLED;               // 设置状态管理器为启用状态
   
   // 初始化事件处理系统
-  NetworkEventQueue = 0x01;                           // 初始化事件队列
-  NetworkCallbackHandler = 0xFFFFFFFF;                 // 初始化回调处理器
-  NetworkTimeoutProcessor = 0xFFFFFFFF;                // 初始化超时处理器
+  NetworkEventQueue = EVENT_QUEUE_ENABLED;                           // 初始化事件队列
+  NetworkCallbackHandler = INVALID_CALLBACK_HANDLER;                 // 初始化回调处理器
+  NetworkTimeoutProcessor = INVALID_TIMEOUT_PROCESSOR;                // 初始化超时处理器
   
   // 初始化连接统计信息
   NetworkTotalConnectionAttempts = 0;                       // 重置连接尝试次数
@@ -1061,7 +1061,7 @@ void StartListeningForNetworkConnections(void)
 void AcceptNetworkConnection(void)
 {
   // 分配新的连接资源
-  NetworkConnectionActiveContext = 0x01;                      // 初始化连接上下文
+  NetworkConnectionActiveContext = CONNECTION_CONTEXT_ENABLED;                      // 初始化连接上下文
   NetworkConnectionContextSize = CONTEXT_SIZE_512B;                // 设置连接上下文大小
   
   // 设置连接参数
@@ -1300,16 +1300,16 @@ uint32_t NetworkConnectionEventProcessor;
 void TransmitNetworkData(void)
 {
   // 初始化数据包参数
-  NetworkPacketSequence = 0x01;                         // 初始化数据包序列号
-  NetworkAcknowledgeNumber = 0x01;                      // 初始化确认号
+  NetworkPacketSequence = SEQUENCE_INITIAL;                         // 初始化数据包序列号
+  NetworkAcknowledgeNumber = ACK_INITIAL;                      // 初始化确认号
   NetworkWindowScale = WINDOW_SCALE_16;                            // 设置窗口缩放为16
   NetworkRetransmitTimer = TIMEOUT_5_SECONDS;                       // 设置重传计时器为5秒
   NetworkKeepAliveTime = HEARTBEAT_30_SECONDS;                          // 设置保持连接时间为30秒
   NetworkHeartbeatTimeout = HEARTBEAT_60_SECONDS;                      // 设置心跳超时时间为60秒
   
   // 初始化数据包缓冲区
-  NetworkPacketBufferPointer = 0x01;                     // 初始化数据包缓冲区指针
-  NetworkPacketHeaderPointer = 0x01;                     // 初始化数据包头指针
+  NetworkPacketBufferPointer = BUFFER_ENABLED;                     // 初始化数据包缓冲区指针
+  NetworkPacketHeaderPointer = BUFFER_ENABLED;                     // 初始化数据包头指针
   NetworkPacketPayloadSize = PACKET_PAYLOAD_1KB;                      // 设置数据包负载大小为1KB
   NetworkMaxPacketSize = MAX_PACKET_SIZE_2KB;                         // 设置最大数据包大小为2KB
   
@@ -1343,37 +1343,37 @@ void RetrieveNetworkPacketData(void)
   // 初始化接收参数
   NetworkBytesReceived = 0;                             // 重置接收字节数
   NetworkPacketsReceived = 0;                            // 重置接收数据包数量
-  NetworkRoundTripTime = 0x00;                          // 重置往返时间
+  NetworkRoundTripTime = ROUND_TRIP_TIME_RESET;                          // 重置往返时间
   
   // 初始化数据包队列
-  NetworkPacketQueue = 0x01;                            // 初始化数据包队列
+  NetworkPacketQueue = QUEUE_ENABLED;                            // 初始化数据包队列
   NetworkPacketQueueSize = PACKET_QUEUE_SIZE;                       // 设置数据包队列大小为256
   
   // 初始化缓冲区管理
-  NetworkBufferManager = 0x01;                          // 初始化缓冲区管理器
+  NetworkBufferManager = BUFFER_ENABLED;                          // 初始化缓冲区管理器
   NetworkBufferSize = BUFFER_SIZE_4KB;                            // 设置缓冲区大小为4KB
-  NetworkBufferIndex = 0x00;                            // 重置缓冲区索引
+  NetworkBufferIndex = INDEX_RESET;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
-  NetworkPacketContext = 0x01;                          // 初始化数据包上下文
+  NetworkPacketContext = BUFFER_ENABLED;                          // 初始化数据包上下文
   NetworkPacketContextSize = CONTEXT_SIZE_256B;                    // 设置数据包上下文大小为256字节
-  NetworkPacketData = 0x01;                             // 初始化数据包数据
-  NetworkPacketIndex = 0x00;                            // 重置数据包索引
+  NetworkPacketData = BUFFER_ENABLED;                             // 初始化数据包数据
+  NetworkPacketIndex = PACKET_INDEX_RESET;                            // 重置数据包索引
   
   // 初始化数据包处理
-  NetworkPacketHeaderData = 0x01;                       // 初始化数据包头数据
+  NetworkPacketHeaderData = BUFFER_ENABLED;                       // 初始化数据包头数据
   NetworkPacketHeaderSize = PACKET_HEADER_SIZE_32B;                       // 设置数据包头大小为32字节
-  NetworkPacketTrailerData = 0x01;                      // 初始化数据包尾数据
+  NetworkPacketTrailerData = BUFFER_ENABLED;                      // 初始化数据包尾数据
   NetworkPacketTrailerSize = PACKET_TRAILER_SIZE_16B;                      // 设置数据包尾大小为16字节
   
   // 初始化抖动缓冲区
-  NetworkConnectionJitterBuffer = 0x01;                // 初始化抖动缓冲区
-  NetworkConnectionErrorRate = 0x00;                   // 重置错误率
+  NetworkConnectionJitterBuffer = BUFFER_ENABLED;                // 初始化抖动缓冲区
+  NetworkConnectionErrorRate = ERROR_RATE_RESET;                   // 重置错误率
   
   // 初始化连接健康监控
-  NetworkConnectionHealth = 0x01;                       // 设置连接健康状态为良好
-  NetworkConnectionStability = 0x01;                    // 设置连接稳定性为高
-  NetworkConnectionPerformance = 0x01;                  // 设置连接性能为良好
+  NetworkConnectionHealth = HEALTH_GOOD;                       // 设置连接健康状态为良好
+  NetworkConnectionStability = STABILITY_HIGH;                    // 设置连接稳定性为高
+  NetworkConnectionPerformance = PERFORMANCE_GOOD;                  // 设置连接性能为良好
 }
 
 /**
