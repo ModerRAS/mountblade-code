@@ -2918,12 +2918,12 @@ NetworkHandle HandleNetworkPacketData(NetworkHandle *PacketData, int64_t HandleO
   }
   
   // 根据处理模式处理数据
-  if (ProcessingMode == 0x01) {
+  if (ProcessingMode == NetworkOperationSuccess) {
     // 基本处理模式
     PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult;
   } else if (ProcessingMode == 0x02) {
     // 严格处理模式
-    PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult & 0x01;
+    PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult & NetworkOperationSuccess;
   } else {
     // 默认处理模式
     PacketDataProcessingResult = NetworkOperationSuccess;
@@ -3003,11 +3003,11 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
   
   // 验证连接句柄有效性
   if (ConnectionHandle != 0) {
-    MemoryAllocationResult = 0x01;  // 内存分配成功
+    MemoryAllocationResult = NetworkOperationSuccess;  // 内存分配成功
   }
   
   // 设置安全参数
-  SecuritySetupResult = 0x01;  // 安全设置成功
+  SecuritySetupResult = NetworkOperationSuccess;  // 安全设置成功
   
   // 综合初始化结果
   ContextInitializationResult = MemoryAllocationResult & SecuritySetupResult;
