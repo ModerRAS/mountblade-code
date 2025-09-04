@@ -19703,14 +19703,14 @@ void FinalizeSystemInitialization(void)
  * @param reservedParam4 保留参数4
  * @return 返回系统指针池指针
  */
-void** InitializeSystemPointerPool(void** systemPointerPool, unsigned long long initializationFlags, void* reservedParam3, void* reservedParam4)
+void** InitializeSystemPointerPool(void** SystemPointerPool, unsigned long long InitializationFlags, void* ReservedParam3, void* ReservedParam4)
 
 {
-  *systemPointerPool = &SystemMemoryAllocatorReference;
-  if ((initializationFlags & 1) != 0) {
-    free(systemPointerPool, 0x1018, reservedParam3, reservedParam4, InvalidHandleValue);
+  *SystemPointerPool = &SystemMemoryAllocatorReference;
+  if ((InitializationFlags & 1) != 0) {
+    free(SystemPointerPool, 0x1018, ReservedParam3, ReservedParam4, InvalidHandleValue);
   }
-  return systemPointerPool;
+  return SystemPointerPool;
 }
 
 
@@ -19725,22 +19725,22 @@ void** InitializeSystemPointerPool(void** systemPointerPool, unsigned long long 
  * @param cleanupFlags 清理标志，用于控制是否释放内存
  * @return 返回清理后的系统资源指针
  */
-void* CleanupSystemCompletionPortResources(void* systemResourcePointer, uint32_t cleanupFlags)
+void* CleanupSystemCompletionPortResources(void* SystemResourcePointer, uint32_t CleanupFlags)
 
 {
-  *systemResourcePointer = &SystemCompletionPortTemplate;
-  PostQueuedCompletionStatus(systemResourcePointer[0x42686],0,0xffffffffffffffff,0,InvalidHandleValue);
-  CloseHandle(systemResourcePointer[0x42686]);
-  if (systemResourcePointer[0x42687] != 0) {
+  *SystemResourcePointer = &SystemCompletionPortTemplate;
+  PostQueuedCompletionStatus(SystemResourcePointer[0x42686],0,0xffffffffffffffff,0,InvalidHandleValue);
+  CloseHandle(SystemResourcePointer[0x42686]);
+  if (SystemResourcePointer[0x42687] != 0) {
       TerminateSystemProcess();
   }
   _Mtx_destroy_in_situ();
   _Mtx_destroy_in_situ();
-  CleanupSystemResourceData(systemResourcePointer);
-  if ((cleanupFlags & 1) != 0) {
-    free(systemResourcePointer,0x213458);
+  CleanupSystemResourceData(SystemResourcePointer);
+  if ((CleanupFlags & 1) != 0) {
+    free(SystemResourcePointer,0x213458);
   }
-  return systemResourcePointer;
+  return SystemResourcePointer;
 }
 
 
