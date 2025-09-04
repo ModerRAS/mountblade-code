@@ -554,10 +554,10 @@ void FinalizeSystemInitialization(void);
  * 
  * 这是整个游戏系统的主要入口点，负责初始化和管理所有核心系统组件
  */
-void* GameSystemMainEntryPoint;
-void* SystemGlobalDataReference;              // 全局系统数据引用
-void* SystemPrimaryMemoryPool;                // 主系统内存池
-void* SystemPrimaryDataTable;                 // 系统数据表引用
+void* SystemGameCoreMainEntryPoint;
+void* SystemGlobalDataPointer;              // 全局系统数据引用
+void* SystemMainMemoryPool;                // 主系统内存池
+void* SystemMainDataTable;                 // 系统数据表引用
 void* SystemSecondaryMemoryPool;                  // 次系统内存池
 void* SystemSecondaryDataTable;                   // 次系统数据表
 void* SystemCacheMemoryPool;                   // 缓存系统内存池
@@ -1157,7 +1157,7 @@ void* SystemNetworkEventHandler;          // SystemNetworkEventHandler
 void* SystemGlobalDataManager;      // SystemGlobalDataManager
 
 // 系统全局数据指针
-void* SystemGlobalDataReference;        // SystemGlobalDataReference
+void* SystemGlobalDataPointer;        // SystemGlobalDataReference
 void* SystemGlobalDataSecondary;        // SystemGlobalDataSecondary
 void* SystemGlobalDataTertiary;        // SystemGlobalDataTertiary
 void* SystemGlobalDataQuaternary;        // SystemGlobalDataQuaternary
