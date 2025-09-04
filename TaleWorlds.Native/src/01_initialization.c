@@ -5185,14 +5185,14 @@ void InitializeSystemStringProcessor(void)
   long long StringParameter;
   void** CallbackPointer;
   uint8_t* DataBufferPointer;
-  int BufferCapacityValue;
+  int DataBufferSize;
   uint8_t DataBuffer[136];
   
   CallbackPointer = &SystemStringProcessorNode;
   DataBufferPointer = DataBuffer;
   DataBuffer[0] = 0;
-  BufferCapacityValue = SYSTEM_DATA_BUFFER_SIZE_DEFAULT;
-  strcpy_s(DataBuffer, StringBufferCapacityValue, &SystemStringProcessorTemplate, StringParameter, InvalidHandleValue);
+  DataBufferSize = SYSTEM_DATA_BUFFER_SIZE_DEFAULT;
+  strcpy_s(DataBuffer, DataBufferSize, &SystemStringProcessorTemplate, StringParameter, InvalidHandleValue);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&CallbackPointer);
   return;
 }
@@ -18509,17 +18509,17 @@ int InitializeSystemThreadPool(void)
 void SystemNetworkManagerInitializer(void)
 
 {
-  void* registerR9Value;
+  void* RegisterR9Parameter;
   void* *stackPointerParameter;
   uint8_t *SystemStackBufferPointer;
-  uint32_t SystemStackBufferCapacityValue;
+  uint32_t SystemStackBufferSize;
   uint8_t SystemConfigProcessBuffer[136];
   
   stackPointerParameter = &SystemGlobalDataTertiary;
   SystemStackBufferPointer = SystemStackBuffer;
   SystemConfigProcessBuffer[0] = 0;
-  SystemStackBufferCapacityValue = 0x10;
-  strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemStringConstantConfigPathC,registerR9Value,InvalidHandleValue);
+  SystemStackBufferSize = 0x10;
+  strcpy_s(SystemConfigProcessBuffer,SystemStackBufferSize,&SystemStringConstantConfigPathC,RegisterR9Parameter,InvalidHandleValue);
   SystemMemoryRegionCacheC = SystemMemoryAllocationFunction(&stackPointerParameter);
   return;
 }
@@ -18580,17 +18580,17 @@ CallbackTableInitializationComplete:
 void InitializeEngineModuleA(void)
 
 {
-  uint64_t RegisterR9;
+  uint64_t RegisterR9Parameter;
   void *ParameterStackPointer;
   uint8_t *BufferPointer;
-  uint32_t BufferCapacityValue;
+  uint32_t StringBufferSize;
   uint8_t StringBuffer [136];
   
   ParameterStackPointer = &SystemDataBufferMainTemplateA;
   BufferPointer = StringBuffer;
   StringBuffer[0] = 0;
-  BufferCapacityValue = 0x17;
-  strcpy_s(StringBuffer,0x80,&SystemStringConstantBufferTemplateD,RegisterR9,InvalidHandleValue);
+  StringBufferSize = 0x17;
+  strcpy_s(StringBuffer,StringBufferSize,&SystemStringConstantBufferTemplateD,RegisterR9Parameter,InvalidHandleValue);
   SystemMemoryRegionCacheD = SystemMemoryAllocationFunction(&ParameterStackPointer);
   return;
 }
@@ -18606,17 +18606,17 @@ void InitializeEngineModuleA(void)
 void InitializeEngineModuleB(void)
 
 {
-  uint64_t RegisterR9;
+  uint64_t RegisterR9Parameter;
   void *ParameterStackPointer;
   uint8_t *BufferPointer;
-  uint32_t BufferCapacityValue;
+  uint32_t StringBufferSize;
   uint8_t StringBuffer [136];
   
   ParameterStackPointer = &SystemDataBufferMainTemplateA;
   BufferPointer = StringBuffer;
   StringBuffer[0] = 0;
-  BufferCapacityValue = 0x11;
-  strcpy_s(StringBuffer,0x80,&SystemStringConstantBufferCapacityValueE,RegisterR9,InvalidHandleValue);
+  StringBufferSize = 0x11;
+  strcpy_s(StringBuffer,StringBufferSize,&SystemStringConstantBufferCapacityValueE,RegisterR9Parameter,InvalidHandleValue);
   SystemMemoryRegionCacheE = SystemMemoryAllocationFunction(&ParameterStackPointer);
   return;
 }
