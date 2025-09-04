@@ -1953,15 +1953,15 @@ NetworkMainProcessingLoop:
     if (NetworkStatusBufferPointer != (NetworkStatus *)0x0) {
       int32_t NetworkProcessingCode = (int)NetworkOperationBuffer[1];
       int64_t NetworkStatusIterator = (long long)NetworkProcessingCode;
-      if ((ProcessingStatusCode != 0) && (NetworkContextHandle = *NetworkOperationBuffer, 0 < ProcessingStatusCode)) {
+      if ((NetworkProcessingCode != 0) && (NetworkContextHandle = *NetworkOperationBuffer, 0 < NetworkProcessingCode)) {
         NetworkStatus *NetworkStatusBuffer = NetworkStatusBufferPointer;
         do {
           NetworkStatus *ConnectionContextDataPointer = (NetworkStatus *)((NetworkContextHandle - (long long)NetworkStatusBufferPointer) + (long long)NetworkStatusBuffer);
-          NetworkStatus CurrentValidationStatus = ConnectionContextDataPointer[1];
+          NetworkStatus ValidationStatus = ConnectionContextDataPointer[1];
           NetworkStatus CurrentTimeoutStatus = ConnectionContextDataPointer[2];
           NetworkStatus CurrentSecondaryStatus = ConnectionContextDataPointer[3];
           *NetworkStatusBuffer = *ConnectionContextDataPointer;
-          NetworkStatusBuffer[1] = CurrentValidationStatus;
+          NetworkStatusBuffer[1] = ValidationStatus;
           NetworkStatusBuffer[2] = CurrentTimeoutStatus;
           NetworkStatusBuffer[3] = CurrentSecondaryStatus;
           NetworkStatusBuffer[4] = *(NetworkStatus *)((NetworkContextHandle - (long long)NetworkStatusBufferPointer) + -4 + (long long)(NetworkStatusBuffer + 5));
