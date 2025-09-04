@@ -27066,8 +27066,8 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
   uint32_t systemStackBufferConfiguration [2];
   long long *stackPointer2c0;
   void* stackValue2b8;
-  void* SystemStackBufferPointerArray [67];
-  long long SystemStackBufferData [3];
+  void* systemStackBufferPointerArray [67];
+  long long systemStackBufferData [3];
   uint32_t stackValue78;
   ulong long stackValue68;
   ulong long systemValue11;
@@ -27080,11 +27080,11 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
   SystemPerformanceValue = floatValue;
   systemValue16 = RetrieveSystemStatusFlags();
   systemValue16 = SynchronizeSystemData(systemValue16,dataSyncPointer);
-  CalculationFlags1 = CheckSystemFlag(systemValue16,0x52);
-  CalculationFlags2 = CheckSystemFlag(1,0x51);
+  calculationFlag1 = CheckSystemFlag(systemValue16,0x52);
+  calculationFlag2 = CheckSystemFlag(1,0x51);
   ResourceDataPosition = 0xe0;
-  if (CalculationFlags2 == '\0') {
-    if (CalculationFlags1 == '\0') goto SystemValidation;
+  if (calculationFlag2 == '\0') {
+    if (calculationFlag1 == '\0') goto SystemValidation;
   }
   else {
 

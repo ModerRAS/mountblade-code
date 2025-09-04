@@ -84005,7 +84005,21 @@ void ReleaseResourceReferenceAndExecuteCleanupV3(void)
 
 
 
-void Unwind_18090cbd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源表指针清理操作
+ * 
+ * 该函数负责清理系统资源表指针，执行内存操作和资源索引处理。
+ * 它会验证上下文参数，处理资源表的循环引用，并更新系统状态。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含验证数据和状态信息
+ * @return void 无返回值
+ * 
+ * @note 此函数主要用于系统资源管理和内存清理操作
+ * @warning 如果验证上下文无效，可能导致系统不稳定
+ * @remark 原始函数名：Unwind_18090cbd0
+ */
+void ExecuteSystemResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -84088,7 +84102,20 @@ void ReleaseResourceReferenceAndCleanup(void)
 
 
 
-void Unwind_18090cc00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源状态重置和清理操作
+ * 
+ * 该函数负责重置系统资源状态并执行清理操作
+ * 包括资源表指针处理、状态标志重置和内存清理
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源状态重置和清理操作
+ * @warning 调用此函数可能会触发系统紧急退出
+ * @remark 原始函数名：Unwind_18090cc00
+ */
+void ExecuteSystemResourceStateResetAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
