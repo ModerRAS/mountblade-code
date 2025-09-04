@@ -92010,7 +92010,12 @@ void Unwind_18090e820(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e830(void)
+/**
+ * 减少资源引用计数并调用管理器
+ * 递减资源引用计数并调用资源管理器方法
+ * @remark 原始函数名：Unwind_18090e830
+ */
+void DecrementResourceReferenceAndCallManager(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
@@ -92066,7 +92071,12 @@ void Unwind_18090e840(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e850(void)
+/**
+ * 减少资源引用计数并调用管理器（版本2）
+ * 递减资源引用计数并调用资源管理器方法
+ * @remark 原始函数名：Unwind_18090e850
+ */
+void DecrementResourceReferenceAndCallManagerV2(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
@@ -92122,7 +92132,12 @@ void Unwind_18090e860(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e870(void)
+/**
+ * 减少资源引用计数并调用管理器（版本3）
+ * 递减资源引用计数并调用资源管理器方法
+ * @remark 原始函数名：Unwind_18090e870
+ */
+void DecrementResourceReferenceAndCallManagerV3(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
@@ -92141,7 +92156,14 @@ void Unwind_18090e880(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e890(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置系统数据结构指针
+ * 在验证上下文中设置系统数据结构指针
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e890
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ValidationContextLoopBoundOffset) = &SystemDataStructure;
@@ -92485,7 +92507,19 @@ void Unwind_18090e9b0(void)
 
 
 
-void Unwind_18090e9c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源哈希状态清理操作
+ * 
+ * 在系统unwind过程中清理资源哈希状态，
+ * 遍历资源哈希地址并执行清理回调。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @note 原始函数名：Unwind_18090e9c0
+ */
+void ExecuteResourceHashStatusCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
