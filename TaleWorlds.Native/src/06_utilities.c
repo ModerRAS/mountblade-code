@@ -4589,18 +4589,18 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 void ValidateSystemObjectCollection(void)
 {
   uint8_t ObjectId;
-  int ValidationResult;
+  int ValidationStatusCode;
   int64_t SystemContext;
   int64_t RuntimeData;
   int64_t BufferIndex;
-  int ValidatedCount;
+  int ValidatedItemCount;
   uint8_t *DataBuffer;
-  int RetrievedCount;
-  uint32_t MaxLimit;
-  uint64_t SecurityKey;
+  int RetrievedItemCount;
+  uint32_t MaximumLimit;
+  uint64_t SecurityValidationKey;
   
   // 生成安全验证令牌
-  SecurityKey = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspace;
+  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspace;
   
   // 初始化系统上下文
   SystemContext = GetSystemContextHandle();
@@ -4609,26 +4609,26 @@ void ValidateSystemObjectCollection(void)
   // 检查系统对象上下文是否有效
   if (*(int64_t *)(SystemContext + ObjectHandleSecondaryOffset) != 0) {
     DataBuffer = ProcessingWorkspace;
-    ValidatedCount = 0;
-    RetrievedCount = 0;
-    MaxLimit = MaximumCapacityLimit;
+    ValidatedItemCount = 0;
+    RetrievedItemCount = 0;
+    MaximumLimit = MaximumCapacityLimit;
     
     // 获取系统对象集合
-    ValidationResult = FetchSystemObjectCollection(*(uint8_t *)(RuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemContext + ObjectHandleSecondaryOffset),
+    ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(RuntimeData + SystemContextSecondaryDataOffset), *(int64_t *)(SystemContext + ObjectHandleSecondaryOffset),
                           &ProcessingWorkspace);
-    if (ValidationResult == 0) {
-      RetrievedCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
-      if (0 < RetrievedCount) {
+    if (ValidationStatusCode == 0) {
+      RetrievedItemCount = *(int *)(ProcessingWorkspace + ObjectDataArraySizeOffset);
+      if (0 < RetrievedItemCount) {
         BufferIndex = PointerSizeBytes;
         do {
           ObjectId = *(uint8_t *)(DataBuffer + BufferIndex);
-          ValidationResult = ValidateSystemObject(ObjectId);
-          if (ValidationResult != 2) {
+          ValidationStatusCode = ValidateSystemObject(ObjectId);
+          if (ValidationStatusCode != 2) {
                   HandleInvalidSystemObject(ObjectId, 1);
           }
-          ValidatedCount++;
+          ValidatedItemCount++;
           BufferIndex += 8;
-        } while (ValidatedCount < RetrievedCount);
+        } while (ValidatedItemCount < RetrievedItemCount);
       }
       ReleaseSystemObjectCollection(&ProcessingWorkspace);
     }
@@ -4637,7 +4637,7 @@ void ValidateSystemObjectCollection(void)
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityKey ^ (uint64_t)ProcessingWorkspace);
+  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ProcessingWorkspace);
 }
 
 
