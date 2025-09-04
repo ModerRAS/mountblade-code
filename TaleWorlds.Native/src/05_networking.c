@@ -1968,13 +1968,13 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
 NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
   // 安全验证缓冲区
-  NetworkByte PacketValidationBuffer [32];                    // 数据包验证缓冲区，用于存储验证过程中的临时数据
-  NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
+  NetworkByte NetworkPacketValidationBuffer [32];                    // 数据包验证缓冲区，用于存储验证过程中的临时数据
+  NetworkByte NetworkPacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation);
+  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, NetworkPacketEncryptionBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBinaryData, NetworkMagicDebugMemoryCheck), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodePacket(PacketData, NetworkPacketValidationBuffer, 0, NetworkPacketMagicBinaryData, NetworkMagicDebugMemoryCheck), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
@@ -1985,7 +1985,7 @@ NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t C
       }
       SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationPrimaryOffset);
       if ((int)SecurityValidationResult == 0) {
-          FinalizePacketProcessing(PacketData, PacketValidationBuffer);
+          FinalizePacketProcessing(PacketData, NetworkPacketValidationBuffer);
       }
     }
   }
