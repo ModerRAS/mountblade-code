@@ -1330,10 +1330,10 @@ void TransmitNetworkData(void)
   NetworkPacketLossRate = 0x00;                         // 重置丢包率
   
   // 初始化性能监控
-  NetworkThroughputMonitor = 0x01;                     // 初始化吞吐量监控器
-  NetworkLatencyMonitor = 0x01;                         // 初始化延迟监控器
-  NetworkBandwidthMonitor = 0x01;                       // 初始化带宽监控器
-  NetworkPacketMonitor = 0x01;                          // 初始化数据包监控器
+  NetworkThroughputMonitor = NetworkMonitorActive;                     // 初始化吞吐量监控器
+  NetworkLatencyMonitor = NetworkMonitorActive;                         // 初始化延迟监控器
+  NetworkBandwidthMonitor = NetworkMonitorActive;                       // 初始化带宽监控器
+  NetworkPacketMonitor = NetworkMonitorActive;                          // 初始化数据包监控器
 }
 
 /**
@@ -1406,7 +1406,7 @@ void ValidateNetworkPacketSecurity(void)
   PacketEncryptionKeyLength = ENCRYPTION_KEY_LENGTH_256B;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
-  PacketValidationBufferPool = 0x01;                   // 初始化验证缓冲池
+  PacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
   PacketValidationBufferSize = VALIDATION_BUFFER_SIZE_39B;                   // 设置验证缓冲区大小为39字节
   
   // 初始化安全验证
