@@ -11384,38 +11384,38 @@ void FinalizeSecurityOperationWrapper(void)
  */
 int ValidateResourceTableAccess(uint64_t ResourceHandle)
 {
-  int ResourcePackageValidationStatus;
-  int64_t ResourceObjectContextPointer;
-  int64_t ResourceTablePointerPointer;
-  int64_t *ResourceSystemContextPointer;
-  int64_t ResourceSavedRegisterValue;
-  uint64_t ResourceStackSecurityToken;
+  int ResourceValidationStatus;
+  int64_t ResourceContextPointer;
+  int64_t ResourceTablePointer;
+  int64_t *SystemContextPointer;
+  int64_t SavedRegisterValue;
+  uint64_t SecurityToken;
   
   // 获取对象上下文指针
-  ResourceObjectContextPointer = ObjectContext;
+  ResourceContextPointer = ObjectContext;
   
   // 获取资源表指针
-  ResourceTablePointerPointer = (**(code **)(InputParameter + SystemResourceTableCallOffset))();
-  if (ResourceTablePointerPointer == 0) {
+  ResourceTablePointer = (**(code **)(InputParameter + SystemResourceTableCallOffset))();
+  if (ResourceTablePointer == 0) {
     // 执行安全操作（资源表指针为空）
     ExecuteSecurityOperation(&SecurityStackBuffer, SecurityStackBufferSize, &SecurityOperationData, 
-                           ResourceObjectContextPointer & UInt32MaximumValue,
-                           ResourceObjectContextPointer.SecurityValidationField);
+                           ResourceContextPointer & UInt32MaximumValue,
+                           ResourceContextPointer.SecurityValidationField);
   }
   
   // 验证资源表指针
-  if (**(int **)(ResourceTablePointerPointer + ResourceTablePointerValidationOffset) == 0) {
+  if (**(int **)(ResourceTablePointer + ResourceTablePointerValidationOffset) == 0) {
     // 检查资源可用性
-    int ResourceAvailabilityStatus = CheckResourceAvailability(*(uint32_t *)(SystemRegisterContext + SystemRegisterContextIdentifierOffset));
-    if (ResourceAvailabilityStatus != 0) goto ValidationSuccessLabel;
+    int AvailabilityStatus = CheckResourceAvailability(*(uint32_t *)(SystemRegisterContext + SystemRegisterContextIdentifierOffset));
+    if (AvailabilityStatus != 0) goto ValidationSuccessLabel;
   }
   
   // 设置资源系统上下文指针
-  *ResourceSystemContextPointer = ResourceTablePointerPointer;
+  *SystemContextPointer = ResourceTablePointer;
   
 ValidationSuccessLabel:
   // 完成安全操作
-  FinalizeSecurityOperation(ResourceStackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+  FinalizeSecurityOperation(SecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
