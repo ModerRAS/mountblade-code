@@ -131,6 +131,12 @@
 #define ResourceAccessFlagOffset 0xc4                  // 资源访问标志偏移
 #define ResourceHandleBackupOffset 0x68                // 资源句柄备份偏移
 #define ResourceAccessEnabledFlag 1                    // 资源访问启用标志
+
+// 资源表访问相关常量
+#define ResourceTablePointerValidationOffset 0x18       // 资源表指针验证偏移
+#define SecurityStackBufferSize 0x27                    // 安全栈缓冲区大小
+#define SystemRegisterContextIdentifierOffset 0x1d      // 系统寄存器上下文标识符偏移
+#define SystemResourceTableCallOffset 0x288             // 系统资源表调用偏移
 #define ResourceTableOffsetDenary 0x5c
 #define ResourceTableSizeLimit 0x74
 #define ResourceTableHeaderValidationOffset 0x18
@@ -11228,27 +11234,27 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
   uint8_t SecurityDataBuffer[32];
   uint ResourceValidationFlagHigh;
   uint ResourceValidationFlagLow;
-  uint ResourceSecurityByteFirst;
-  uint ResourceSecurityByteSecond;
-  uint ResourceSecurityByteThird;
-  uint ResourceSecurityByteFourth;
-  uint ResourceStatusByteFirst;
-  uint ResourceStatusByteSecond;
-  uint ResourceStatusByteThird;
-  uint ResourceStatusByteFourth;
-  uint ResourceControlByteFirst;
+  uint ResourceSecurityFirstByte;
+  uint ResourceSecuritySecondByte;
+  uint ResourceSecurityThirdByte;
+  uint ResourceSecurityFourthByte;
+  uint ResourceStatusFirstByte;
+  uint ResourceStatusSecondByte;
+  uint ResourceStatusThirdByte;
+  uint ResourceStatusFourthByte;
+  uint ResourceControlFirstByte;
   uint32_t ResourceAccessControlWord;
-  uint ResourceAccessByteFirst;
-  uint ResourceAccessByteSecond;
-  uint ResourceAccessByteThird;
+  uint ResourceAccessFirstByte;
+  uint ResourceAccessSecondByte;
+  uint ResourceAccessThirdByte;
   int64_t ResourceHandleBackup;
   uint8_t ResourceChecksumData[40];
   uint64_t PrimaryOperationParameter;
   int64_t* ResourceContext;
   uint32_t ResourceSecurityFlag;
-  uint32_t ResourceValidationByteFirst;
-  uint32_t ResourceValidationByteSecond;
-  uint32_t ResourceValidationByteThird;
+  uint32_t ResourceValidationFirstByte;
+  uint32_t ResourceValidationSecondByte;
+  uint32_t ResourceValidationThirdByte;
   uint32_t ResourceSecurityHighByte;
   uint32_t ResourceStatusHighByte;
   uint32_t ResourceAccessWord;
@@ -11262,34 +11268,53 @@ void ProcessResourceIndexAndSecurity(int64_t ObjectContext, uint32_t* Validation
   void* SecurityOperationData;
   uint64_t SecurityEncryptionKey;
   
+  // 安全加密参数计算
   uint64_t EncryptedOperationParameter = SecurityEncryptionKey ^ (uint64_t)SecurityDataBuffer;
+  
+  // 获取资源上下文
   ResourceContext = *(int64_t **)(ObjectContext + ObjectResourceContextOffset);
   if (ResourceContext != (int64_t *)0x0) {
+    // 提取安全标志和验证字节
     ResourceSecurityFlag = *ValidationContext;
-    ResourceValidationByteFirst = ValidationContext[1];
-    ResourceValidationByteSecond = ValidationContext[2];
-    ResourceValidationByteThird = ValidationContext[3];
+    ResourceValidationFirstByte = ValidationContext[1];
+    ResourceValidationSecondByte = ValidationContext[2];
+    ResourceValidationThirdByte = ValidationContext[3];
+    
+    // 执行资源安全处理
     ResourceIndex = (**(code **)(*ResourceContext + ResourceSecurityProcessingOffset))(ResourceContext, &ResourceSecurityFlag, 1);
     if (ResourceIndex == 0) {
-      ResourceSecurityHighByte = ResourceValidationByteSecond >> 0x18;
-      ResourceStatusHighByte = ResourceValidationByteThird >> 0x18;
-      ResourceAccessWord = ResourceValidationByteFirst >> 0x10;
-      ResourceStatusMidHighByte = ResourceValidationByteThird >> 0x10 & 0xff;
-      ResourceStatusMidByte = ResourceValidationByteThird >> 8 & 0xff;
-      ResourceStatusLowByte = ResourceValidationByteThird & 0xff;
-      ResourceSecurityMidHighByte = ResourceValidationByteSecond >> 0x10 & 0xff;
-      ResourceSecurityMidByte = ResourceValidationByteSecond >> 8 & 0xff;
-      ResourceSecurityLowByte = ResourceValidationByteSecond & 0xff;
-      ResourceAccessControlValue = ResourceValidationByteFirst & 0xffff;
-      ExecuteSecurityOperation(ResourceChecksumData, 0x27, &SecurityOperationData, ResourceSecurityFlag);
+      // 提取高字节和访问控制字
+      ResourceSecurityHighByte = ResourceValidationSecondByte >> SecurityByteHighShift;
+      ResourceStatusHighByte = ResourceValidationThirdByte >> SecurityByteHighShift;
+      ResourceAccessWord = ResourceValidationFirstByte >> SecurityAccessWordShift;
+      
+      // 提取状态字节（高、中、低）
+      ResourceStatusMidHighByte = (ResourceValidationThirdByte >> SecurityStatusMidHighShift) & SecurityByteMask;
+      ResourceStatusMidByte = (ResourceValidationThirdByte >> SecurityStatusMidShift) & SecurityByteMask;
+      ResourceStatusLowByte = ResourceValidationThirdByte & SecurityByteMask;
+      
+      // 提取安全字节（高、中、低）
+      ResourceSecurityMidHighByte = (ResourceValidationSecondByte >> SecuritySecurityMidHighShift) & SecurityByteMask;
+      ResourceSecurityMidByte = (ResourceValidationSecondByte >> SecuritySecurityMidShift) & SecurityByteMask;
+      ResourceSecurityLowByte = ResourceValidationSecondByte & SecurityByteMask;
+      
+      // 提取访问控制值
+      ResourceAccessControlValue = ResourceValidationFirstByte & SecurityAccessControlMask;
+      
+      // 执行安全操作
+      ExecuteSecurityOperation(ResourceChecksumData, SecurityOperationType, &SecurityOperationData, ResourceSecurityFlag);
     }
-    if (((*(byte *)(ResourceIndex + 0xc4) & 1) != 0) &&
-       ((ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x68), ResourceHandleBackup != 0 ||
+    
+    // 验证资源访问权限
+    if (((*(byte *)(ResourceIndex + ResourceAccessFlagOffset) & ResourceAccessEnabledFlag) != 0) &&
+       ((ResourceHandleBackup = *(int64_t *)(ResourceIndex + ResourceHandleBackupOffset), ResourceHandleBackup != 0 ||
         (OperationStatus = ValidateResourceAccess(ObjectContext, ResourceIndex, &ResourceHandleBackup), OperationStatus == 0)))) {
       *ResourceIndexOutput = ResourceHandleBackup;
     }
   }
-        FinalizeSecurityOperation(EncryptedOperationParameter ^ (uint64_t)SecurityDataBuffer);
+  
+  // 完成安全操作
+  FinalizeSecurityOperation(EncryptedOperationParameter ^ (uint64_t)SecurityDataBuffer);
 }
 
 
@@ -11360,19 +11385,31 @@ int ValidateResourceTableAccess(uint64_t ResourceHandle)
   int64_t ResourceSavedRegisterValue;
   uint64_t ResourceStackSecurityToken;
   
+  // 获取对象上下文指针
   ResourceObjectContextPointer = ObjectContext;
-  ResourceTablePointerPointer = (**(code **)(InputParameter + 0x288))();
+  
+  // 获取资源表指针
+  ResourceTablePointerPointer = (**(code **)(InputParameter + SystemResourceTableCallOffset))();
   if (ResourceTablePointerPointer == 0) {
-          ExecuteSecurityOperation(&SecurityStackBuffer,0x27,&SecurityOperationData,ResourceObjectContextPointer & 0xffffffff,
-                  ResourceObjectContextPointer.SecurityValidationField);
+    // 执行安全操作（资源表指针为空）
+    ExecuteSecurityOperation(&SecurityStackBuffer, SecurityStackBufferSize, &SecurityOperationData, 
+                           ResourceObjectContextPointer & UInt32MaximumValue,
+                           ResourceObjectContextPointer.SecurityValidationField);
   }
+  
+  // 验证资源表指针
   if (**(int **)(ResourceTablePointerPointer + ResourceTablePointerValidationOffset) == 0) {
+    // 检查资源可用性
     int ResourceAvailabilityStatus = CheckResourceAvailability(*(uint32_t *)(SystemRegisterContext + SystemRegisterContextIdentifierOffset));
     if (ResourceAvailabilityStatus != 0) goto ValidationSuccessLabel;
   }
+  
+  // 设置资源系统上下文指针
   *ResourceSystemContextPointer = ResourceTablePointerPointer;
+  
 ValidationSuccessLabel:
-        FinalizeSecurityOperation(ResourceStackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
+  // 完成安全操作
+  FinalizeSecurityOperation(ResourceStackSecurityToken ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
