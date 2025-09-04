@@ -41387,7 +41387,7 @@ ulong long GetSystemResourceStatusValue(long long* SystemResourceManager,uint *C
   uint SystemInitializationStatus;
   uint resourceCreationFlags;
   long long ResourceMemoryOffset;
-  ulong long in_RAX;
+  ulong long ResourceStatusValue;
   ulong long *ResourceAddressPointer;
   ulong long *SystemThreadContext;
   ulong long *resourceEntryPointer;
@@ -41398,7 +41398,7 @@ ulong long GetSystemResourceStatusValue(long long* SystemResourceManager,uint *C
   
   ResourceMemoryOffset = *SystemResourceManager;
   if ((*(long long *)(ConfigurationDataPointer + 6) == 0) && (ResourceMemoryOffset == 0)) {
-    return in_RAX & SystemMemoryStatusAlignmentMask;
+    return ResourceStatusValue & SystemMemoryStatusAlignmentMask;
   }
   SystemInitializationStatus = *(uint *)(SystemResourceManager + 1);
   resourceCreationFlags = *(uint *)(SystemResourceManager + 0x4c);
