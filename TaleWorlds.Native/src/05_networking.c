@@ -2360,9 +2360,9 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
                           uint32_t MagicNumber1, uint32_t MagicNumber2)
 {
   // 数据包解码变量
-  uint32_t DecodingStatus;                                  // 解码状态
-  uint32_t MagicValidationResult;                           // 魔数验证结果
-  uint32_t PacketIntegrityStatus;                           // 数据包完整性状态
+  uint32_t PacketDecodingStatus;                             // 数据包解码状态
+  uint32_t PacketMagicValidationResult;                      // 数据包魔数验证结果
+  uint32_t PacketDataIntegrityStatus;                        // 数据包完整性状态
   
   // 初始化解码状态
   DecodingStatus = NetworkValidationFailure;
