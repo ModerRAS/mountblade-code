@@ -64020,7 +64020,7 @@ MemoryAllocationLoop:
         }
         else {
           ResourceDataCounter = ResourceDataCounter * 2;
-          if (ResourceDataCounter != 0) goto LAB_180079c12;
+          if (ResourceDataCounter != 0) goto MemoryAllocationLoop;
         }
         if (SystemIntegerPointer5 != pointerToInteger20) {
             memmove(SystemIntegerPointer3,SystemIntegerPointer5,(long long)pointerToInteger20 - (long long)SystemIntegerPointer5);
@@ -64046,7 +64046,7 @@ MemoryAllocationLoop:
         ResourceDataCounter = (long long)pointerToInteger20 - (long long)SystemIntegerPointer5 >> 2;
         if (ResourceDataCounter == 0) {
           ResourceDataCounter = 1;
-LAB_180079cd7:
+ResourceDataProcessing:
           SystemIntegerPointer3 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,ResourceDataCounter * 4,
                                          *(uint8_t *)(ResourceMemoryOffset + 0x18 + longValue170));
           pointerToInteger20 = *(int **)(ResourceMemoryOffset + 8 + SystemThreadHandle3);
