@@ -15218,30 +15218,30 @@ void SystemInitializerPrimary(void)
               FloatDataPointer = FloatPointer + 1;
             } while ((int)LoopCounterValue < 6);
             ResourceSecurityHashValue = CalculateSecurityHash(ResourceRegisterPointer + 200);
-            ResourceHashValidationQuaternary = resourceHashValidationValue;
+            ResourceHashValidationQuaternary = ResourceHashValidationValue;
             if ((float)(ResourceSecurityHashValue / 0x30) != 0.0) {
-              resourceTemplatePointer = &SystemResourceTemplateJob;
-              contextBufferPointer = StackContextBuffer;
-              floatRegisterValue = FloatRegisterValue;
-              floatResourceValue = (float)(ResourceSecurityHashValue / 0x30);
-              ResourceIndexTertiary = GetAndValidateResourceData(resourceHashValidationValue,&PrimaryObjectResourceBuffer);
+              ResourceTemplatePointer = &SystemResourceTemplateJob;
+              ContextBufferPointer = StackContextBuffer;
+              FloatRegisterValue = FloatRegisterValue;
+              FloatResourceValue = (float)(ResourceSecurityHashValue / 0x30);
+              ResourceIndexTertiary = GetAndValidateResourceData(ResourceHashValidationValue,&PrimaryObjectResourceBuffer);
               ResourceHashValidationQuaternary = ObjectContextPointer;
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
-              resourceTemplatePointer = &SystemResourceTemplateKernel;
-              contextBufferPointer = StackContextBuffer;
-              floatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
-              floatRegisterValue = FloatRegisterValue;
+              ResourceTemplatePointer = &SystemResourceTemplateKernel;
+              ContextBufferPointer = StackContextBuffer;
+              FloatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
+              FloatRegisterValue = FloatRegisterValue;
               ResourceIndexTertiary = GetAndValidateResourceData(ResourceHashValidationQuaternary,&PrimaryObjectResourceBuffer);
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
             }
             ResourceIndexTertiary = GetResourceType(ResourceRegisterPointer);
             if (ResourceIndexTertiary != 2) {
-              resourceTemplatePointer = &SystemResourceTemplateLibrary;
-              contextBufferPointer = StackContextBuffer;
-              floatRegisterValue = FloatRegisterValue;
-              ResourceIndexTertiary = GetAndValidateResourceData(resourceValidationHash,&PrimaryObjectResourceBuffer);
+              ResourceTemplatePointer = &SystemResourceTemplateLibrary;
+              ContextBufferPointer = StackContextBuffer;
+              FloatRegisterValue = FloatRegisterValue;
+              ResourceIndexTertiary = GetAndValidateResourceData(ResourceValidationHash,&PrimaryObjectResourceBuffer);
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
             }
             ResourceIndexTertiary = GetResourceType(ResourceRegisterPointer);
