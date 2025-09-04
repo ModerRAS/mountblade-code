@@ -95627,7 +95627,7 @@ void ExecuteResourceTableTraversalAndCleanupVariant1(uint8_t ObjectContext,int64
 
 
 
-void Unwind_18090f370(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceTableValidationLoop(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -95675,7 +95675,7 @@ void ExecuteResourceConfigurationProcessing(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090f3b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemContextCallbackChain(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
