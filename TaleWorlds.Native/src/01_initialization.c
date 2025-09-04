@@ -42886,7 +42886,7 @@ int FormatSystemResourceString(void* SystemResourceManager,void* ConfigurationDa
 ulong long SearchSystemResource(long long* SystemResourceManager,long long ConfigurationDataPointer)
 
 {
-  byte *pisByteValid;
+  byte *byteValidationPointer;
   uint resourceCreationFlags;
   uint resourceAllocationContext;
   long long SystemProcessingBufferPointer;
@@ -42913,11 +42913,11 @@ ulong long SearchSystemResource(long long* SystemResourceManager,long long Confi
           pisMemoryReady = *(byte **)(SystemAllocationFlags + 8 + SystemProcessingBufferPointer);
           SystemMemoryPointer = *(long long *)(ComparisonDataPointer + 8) - (long long)pisMemoryReady;
           do {
-            pisByteValid = pisMemoryReady + SystemMemoryPointer;
-            ResourceHash = (uint)*pisMemoryReady - (uint)*pisByteValid;
+            byteValidationPointer = pisMemoryReady + SystemMemoryPointer;
+            ResourceHash = (uint)*pisMemoryReady - (uint)*byteValidationPointer;
             if (ResourceHash != 0) break;
             pisMemoryReady = pisMemoryReady + 1;
-          } while (*pisByteValid != 0);
+          } while (*byteValidationPointer != 0);
         }
 MemoryAllocationLoop:
         if (ResourceHash == 0) {
@@ -58982,8 +58982,8 @@ SystemSecurityValidationFailed:
     }
     if (*(int *)(ThreadHandle1 + 0x1fc) * 3 == 0) goto SystemResourceValidationPoint;
 SystemResourceProcessingComplete:
-    SystemOperationResult1 = ReleaseSystemResource(SystemResourceManager);
-    if ((SystemOperationResult1 == '\0') || (ConfigurationFlag == 0)) {
+    SystemOperationResult = ReleaseSystemResource(SystemResourceManager);
+    if ((SystemOperationResult == '\0') || (ConfigurationFlag == 0)) {
       ReleaseSystemResourceManager(SystemResourceManager,0);
       if ((*(byte *)(SystemResourceManager + 0xfe) & 4) == 0) {
         ConfigurationData = ConfigureSystemResourceManagerExtended(SystemResourceManager,ConfigurationDataPointer);

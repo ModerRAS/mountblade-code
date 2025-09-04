@@ -15771,57 +15771,57 @@ OperationResultHandler:
 void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t ValidationContext,uint32_t EncryptionStatusFlag)
 
 {
-  int64_t LoopCounter;
-  int64_t ResourceTablePtr;
-  int PackageValidationStatus;
+  int64_t LoopIterator;
+  int64_t ResourceTablePointer;
+  int PackageValidationResult;
   int ResultRecordIndex;
-  int TableEntryIndex;
-  int ProcessedResultIndex;
-  int ValidationStatusCode;
+  int TableEntryIterator;
+  int ProcessedResultCount;
+  int SecurityValidationStatusCode;
   uint8_t SecurityEncryptionBuffer [32];
-  uint32_t DataChecksumBuffer [2];
-  uint8_t *NetworkRequestTemplatePtr;
-  uint32_t SecurityContextId;
+  uint32_t DataChecksumArray [2];
+  uint8_t *NetworkRequestTemplatePointer;
+  uint32_t SecurityContextIdentifier;
   uint32_t EncryptionKeyIndex;
-  uint8_t *SecurityDataPtr;
-  uint32_t ResourceHandle;
-  uint32_t MemoryBlockSize;
-  int ResourceValidationIndex;
-  uint32_t ProcessId;
-  uint32_t ThreadId;
-  uint32_t SessionId;
-  uint32_t UserId;
-  uint32_t GroupId;
-  uint8_t SecurityDataBuffer[64];
-  uint64_t EncryptedValue;
+  uint8_t *SecurityDataPointer;
+  uint32_t ResourceHandleIdentifier;
+  uint32_t MemoryAllocationSize;
+  int ResourceValidationIterator;
+  uint32_t ProcessIdentifier;
+  uint32_t ThreadIdentifier;
+  uint32_t SessionIdentifier;
+  uint32_t UserIdentifier;
+  uint32_t GroupIdentifier;
+  uint8_t SecurityDataProcessingBuffer[64];
+  uint64_t EncryptedSecurityValue;
   
-  EncryptedValue = SecurityEncryptionKey ^ (uint64_t)SecurityEncryptionBuffer;
+  EncryptedSecurityValue = SecurityEncryptionKey ^ (uint64_t)SecurityEncryptionBuffer;
   int ResourceProcessingCounter = 0;
-  int LoopIndex = 0;
+  int LoopIterator = 0;
   do {
-    if ((LoopIndex < 0) || (*(int *)(ValidationContext + ValidationContextLoopBoundOffset) <= LoopIndex)) goto LoopExit;
-    LoopCounter = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextLoopDataOffset) + (int64_t)LoopIndex * 8);
+    if ((LoopIterator < 0) || (*(int *)(ValidationContext + ValidationContextLoopBoundOffset) <= LoopIterator)) goto LoopExit;
+    LoopIterator = *(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextLoopDataOffset) + (int64_t)LoopIterator * 8);
     if (**(int **)(SystemContextPointer + ResourceContextExtendedOffset) != 0) {
-      DataChecksumBuffer[0] = 0;
-      int ValidationStatusCode = ValidateBufferContext(*(int **)(SystemContextPointer + ResourceContextExtendedOffset),DataChecksumBuffer);
-      if (ValidationStatusCode != 0) {
+      DataChecksumArray[0] = 0;
+      int BufferValidationStatusCode = ValidateBufferContext(*(int **)(SystemContextPointer + ResourceContextExtendedOffset),DataChecksumArray);
+      if (BufferValidationStatusCode != 0) {
 LoopExit:
-              FinalizeSecurityOperation(EncryptedValue ^ (uint64_t)SecurityEncryptionBuffer);
+              FinalizeSecurityOperation(EncryptedSecurityValue ^ (uint64_t)SecurityEncryptionBuffer);
       }
       uint32_t FirstDataSegment = *(uint32_t *)(SystemResourceContext + ValidationContextCleanupFunctionOffset);
       uint32_t SecondDataSegment = *(uint32_t *)(SystemResourceContext + 0x14);
       uint32_t ThirdDataSegment = *(uint32_t *)(SystemResourceContext + 0x18);
       uint32_t FourthDataSegment = *(uint32_t *)(SystemResourceContext + 0x1c);
-      uint32_t OperationFlag = 0;
+      uint32_t SecurityOperationFlag = 0;
       int NextResultIndex = ResourceProcessingCounter + 1;
       MemoryOperationTemplate = &SystemMemoryTemplateA;
-      uint32_t ChecksumValue = DataChecksumBuffer[0];
-      uint32_t EncryptionParam = EncryptionStatusFlag;
-      int ResultIndex = ResourceProcessingCounter;
+      uint32_t DataChecksumValue = DataChecksumArray[0];
+      uint32_t EncryptionParameter = EncryptionStatusFlag;
+      int CurrentResultIndex = ResourceProcessingCounter;
       int ResourceValidationResult = GetAndValidateResourceData(ObjectContext,&SecurityContextPointer);
       if (ResourceHashStatus != 0) goto LoopExit;
       int InternalProcessingCounter = 0;
-      int TableEntryIndex = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
+      int TableValidationResult = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
       int ValidationLoopCounter = NextResultIndex;
       if (0 < TableEntryIndex) {
         do {
