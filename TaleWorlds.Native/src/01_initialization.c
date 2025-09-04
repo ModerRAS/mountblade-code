@@ -136,7 +136,7 @@
 #define ResourceDataBoneScaleOffset         0x29c
 #define ResourceDataFinalScaleOffset        0x2a4
 #define DataComparisonTemplateIId2   0xb97f048d2153e1b0
-#define DataComparisonTemplateLId1   0x402feffe4481676e
+#define DataComparisonTemplateSystemNodeId1   0x402feffe4481676e
 #define DataComparisonTemplateLId2   0xd4c2151109de93a0
 #define DataComparisonTemplateMId1   0x4384dcc4b6d3f417
 #define DataComparisonTemplateMId2   0x92a15d52fe2679bd
@@ -6080,7 +6080,7 @@ void InitializeSystemMemoryNode(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNodePointer,SystemPreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
     SystemPreviousNodePointer = SystemAllocatedNodePointer;
   }
-  SystemPreviousNodePointer[NodeIdentifier1Index] = DataComparisonTemplateLId1;
+  SystemPreviousNodePointer[NodeIdentifier1Index] = DataComparisonTemplateSystemNodeId1;
   SystemPreviousNodePointer[NodeIdentifier2Index] = 0xd4c2151109de93a0;
   SystemPreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeI;
   SystemPreviousNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
@@ -19777,27 +19777,7 @@ void** SystemMemoryAllocatorReferenceManager(void** systemResourceManager, unsig
 
 
 
-// 函数: void InitializeSystemResources(long long SystemResourceManager,long long ResourceFlags)
-/**
- * @brief 系统字符串复制处理器
- * 
- * 该函数处理系统字符串复制操作，包括长度验证和安全复制。
- * 当源字符串长度小于0x400时，直接复制；否则调用安全处理函数。
- * 
- * @param targetBuffer 目标缓冲区指针
- * @param sourceString 源字符串指针
- */
-/**
- * @brief 处理系统字符串复制操作
- * 
- * 该函数负责处理系统字符串的复制操作，包括字符串长度计算和
- * 安全复制。当字符串长度超过限制时，会调用字符串分配函数。
- * 
- * @param targetBuffer 目标缓冲区指针
- * @param sourceString 源字符串指针
- */
 void ProcessSystemStringCopy(long long targetBuffer, long long sourceString)
-
 {
   long long stringLength;
   
@@ -19812,8 +19792,7 @@ void ProcessSystemStringCopy(long long targetBuffer, long long sourceString)
   } while (*(char *)(sourceString + stringLength) != '\0');
   if ((int)stringLength < 0x400) {
     *(int *)(targetBuffer + 0x10) = (int)stringLength;
-                    000180045f19. Too many branches
-                        strcpy_s(*(void* *)(targetBuffer + 8),0x400);
+    strcpy_s(*(void* *)(targetBuffer + 8),0x400);
     return;
   }
   ProcessSystemStringAllocation(&SystemStringAllocationHandler,0x400,sourceString);
@@ -19826,18 +19805,7 @@ void ProcessSystemStringCopy(long long targetBuffer, long long sourceString)
 
 
 // 函数: void ProcessSystemConfiguration(long long SystemResourceManager,void* ConfigurationDataPointer,int AdditionalParameter)
-/**
- * @brief 系统内存复制处理器
- * 
- * 该函数处理系统内存复制操作，包括边界检查和安全复制。
- * 当复制长度小于0x400时，执行内存复制操作。
- * 
- * @param targetBuffer 目标缓冲区指针
- * @param sourceData 源数据指针
- * @param copyLength 复制长度
- */
 void ProcessSystemMemoryCopy(long long systemResourceManager,void* sourceDataPointer,int bytesToCopy)
-
 {
   if (bytesToCopy + 1 < 0x400) {
       memcpy(*(uint8_t **)(systemResourceManager + 8),sourceDataPointer,(long long)bytesToCopy);
@@ -19850,14 +19818,7 @@ void ProcessSystemMemoryCopy(long long systemResourceManager,void* sourceDataPoi
 
 
 
-// 函数: void ExecuteSystemMemoryCopyOperation(void)
-/**
- * @brief 执行系统内存复制操作
- * 
- * 该函数执行系统内存复制操作，是一个内存复制的辅助函数。
- */
 void ExecuteSystemMemoryCopyOperation(void)
-
 {
     memcpy();
 }

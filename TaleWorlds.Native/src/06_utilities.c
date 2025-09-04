@@ -82333,7 +82333,14 @@ void ExecuteResourceCleanupCallbackAtOffset138(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090c6e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文中偏移量0x130处的资源清理回调函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c6e0
+ */
+void ExecuteResourceCleanupCallbackAtOffset130(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x130) != (int64_t *)0x0) {
@@ -82344,7 +82351,14 @@ void Unwind_18090c6e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c6f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源安全处理偏移量处的清理回调函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c6f0
+ */
+void ExecuteResourceSecurityCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ResourceSecurityProcessingOffset) != (int64_t *)0x0) {
@@ -82355,7 +82369,14 @@ void Unwind_18090c6f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c700(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据标志位并执行资源操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c700
+ */
+void ClearResourceDataFlagsAndExecuteOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
