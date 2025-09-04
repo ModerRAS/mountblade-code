@@ -4470,19 +4470,6 @@ uint8_t SystemDataBufferSeptenary;
 uint8_t SystemMemoryFlagKernel;
 
  /**
- * @brief 处理游戏对象集合
- * 
- * 该函数负责处理游戏对象集合的批量操作
- * 包括对象状态验证、安全检查和集合管理
- * 支持大规模对象集合的高效处理
- * 
- * @param GameContext 游戏上下文指针，包含游戏状态和配置信息
- * @param SystemContext 系统上下文指针，包含系统资源和状态信息
- * @return 无返回值
- * @note 该函数会进行安全验证和对象状态检查
- * @warning 处理大量对象时可能影响性能，建议在适当时机调用
- */
-/**
  * 处理游戏对象集合
  * 遍历并验证游戏中的所有对象，确保它们的状态有效
  * 
