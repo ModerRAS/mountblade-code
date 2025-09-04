@@ -5162,15 +5162,6 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
- /**
- * @brief 验证字符输入安全性
- * 检查输入字符是否为空字符，如果不是则触发系统退出操作
- * 
- * @param CharacterToValidate 要验证的字符
- * @return uint8_t 验证结果，0表示成功，非0表示失败
- * @note 该函数用于防止非预期的字符输入，确保系统安全
- * @warning 非空字符会导致系统退出，使用时需谨慎
- */
 uint8_t ValidateCharacterInput(char CharacterToValidate) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
   if (CharacterToValidate != '\0') {
