@@ -53077,13 +53077,13 @@ MemoryProcessingContinue:
     if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
-LABEL_RESOURCE_CLEANUP_COMPLETE:
+ResourceCleanupComplete:
     SystemThreadState = 0;
     SystemResourceHandleF0 = (void* *)0x0;
     pMemoryBufferPointer = &SystemMemoryAllocatorReference;
       ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemConcatenatedBuffer448);
   }
-LABEL_DATA_BUFFER_INITIALIZATION:
+DataBufferInitialization:
   SystemDataBufferPointer = &SystemStringTemplate;
   if (pSystemResourceDataIndex != (void* *)0x0) {
     SystemDataBufferPointer = pSystemResourceDataIndex;
