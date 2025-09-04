@@ -1410,17 +1410,17 @@ void ValidateNetworkPacketSecurity(void)
   PacketValidationBufferSize = VALIDATION_BUFFER_SIZE_39B;                   // 设置验证缓冲区大小为39字节
   
   // 初始化安全验证
-  PacketSecurityValidationData = 0x01;                 // 初始化安全验证数据
-  PacketSecurityEncryptionData = 0x01;                 // 初始化安全加密数据
-  PacketSecurityAuthenticationData = 0x01;              // 初始化安全认证数据
-  PacketSecurityAuthorizationData = 0x01;               // 初始化安全授权数据
-  PacketSecurityAuditData = 0x01;                       // 初始化安全审计数据
-  PacketSecurityPolicyData = 0x01;                      // 初始化安全策略数据
-  PacketSecurityCertificateData = 0x01;                 // 初始化安全证书数据
+  PacketSecurityValidationData = NetworkSecurityEnabled;                 // 初始化安全验证数据
+  PacketSecurityEncryptionData = NetworkSecurityEnabled;                 // 初始化安全加密数据
+  PacketSecurityAuthenticationData = NetworkSecurityEnabled;              // 初始化安全认证数据
+  PacketSecurityAuthorizationData = NetworkSecurityEnabled;               // 初始化安全授权数据
+  PacketSecurityAuditData = NetworkSecurityEnabled;                       // 初始化安全审计数据
+  PacketSecurityPolicyData = NetworkSecurityEnabled;                      // 初始化安全策略数据
+  PacketSecurityCertificateData = NetworkSecurityEnabled;                 // 初始化安全证书数据
   
   // 初始化加密缓冲区
-  PacketEncryptionBuffer = 0x01;                 // 初始化数据包加密缓冲区
-  PacketCompressionBuffer = 0x01;                // 初始化数据包压缩缓冲区
+  PacketEncryptionBuffer = NetworkBufferInitialized;                 // 初始化数据包加密缓冲区
+  PacketCompressionBuffer = NetworkBufferInitialized;                // 初始化数据包压缩缓冲区
   
   // 初始化压缩参数
   PacketDataCompressionLevel = COMPRESSION_LEVEL_DEFAULT;                  // 设置压缩级别为6（默认级别）
