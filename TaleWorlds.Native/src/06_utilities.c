@@ -81023,7 +81023,19 @@ void SetSecondarySystemDataStructurePointer(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_18090c450(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的资源上下文系统数据结构指针
+ * 
+ * 该函数负责在验证上下文的资源上下文验证偏移处设置系统数据结构指针
+ * 用于资源上下文的系统数据结构初始化和配置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会在验证上下文的ResourceContextValidationOffset8偏移处设置系统数据结构指针
+ * @warning 原始函数名为Unwind_18090c450，现已重命名为SetResourceContextSystemDataStructurePointer
+ */
+void SetResourceContextSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ResourceContextValidationOffset8) = &SystemDataStructure;
@@ -81032,8 +81044,13 @@ void Unwind_18090c450(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c460(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090c460
+ */
+void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + 0x1d8) = &SystemDataStructure;
   return;
@@ -81041,8 +81058,13 @@ void Unwind_18090c460(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c470(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 设置系统数据结构指针到验证上下文（使用资源上下文验证偏移）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090c470
+ */
+void SetSystemDataStructurePointerToValidationContextWithOffset(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + ResourceContextValidationOffset8) = &SystemDataStructure;
   return;
@@ -84382,8 +84404,13 @@ void ProcessResourceHashStatusCleanupSecondary(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090d070(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 处理资源哈希状态地址的三次清理和释放
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d070
+ */
+void ProcessResourceHashStatusCleanupTertiary(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int32_t *ResourceTablePointerIndexPointer;
   uint8_t *ResourceHashStatusAddress;
