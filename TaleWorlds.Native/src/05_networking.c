@@ -19,6 +19,13 @@ typedef uint32_t NetworkConnectionStatus;
 typedef uint8_t NetworkDataByte;
 
 /**
+ * @brief 网络字节类型
+ * 
+ * 用于表示网络数据包中的字节数据，提供统一的字节处理接口
+ */
+typedef uint8_t NetworkByte;
+
+/**
  * @brief 网络句柄类型
  * 
  * 用于表示网络连接、数据包等资源的句柄，提供统一的资源管理接口
@@ -1752,13 +1759,13 @@ NetworkHandle ProcessNetworkConnectionRequest(NetworkHandle ConnectionContext, N
   int32_t ConnectionValidationStatusCode;               // 连接验证状态码
   
   NetworkConnectionContext = 0;
-  ValidationStatusCode = 0;  // 初始化验证状态码
-  if (ValidationStatusCode == 0) {
+  ConnectionValidationStatusCode = 0;  // 初始化验证状态码
+  if (ConnectionValidationStatusCode == 0) {
     if ((0 < *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset)) && (*ConnectionValidationResult != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *ConnectionValidationResult, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
     }
     *ConnectionValidationResult = NetworkConnectionContext;
-    *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset) = ValidationStatusCode;
+    *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset) = ConnectionValidationStatusCode;
     return 0;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
