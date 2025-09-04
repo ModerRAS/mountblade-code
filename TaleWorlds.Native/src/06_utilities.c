@@ -796,6 +796,10 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define ObjectContextPointerOffset 0x10
 #define ResourceTablePointerOffset 0x2b0
 #define ResourceDataOffset 0x78
+#define ResourceDataStatusFlagsOffset 0x34
+#define ResourceFlag1Mask 1
+#define ResourceFlag1ClearMask 0xfffffffe
+#define ResourceOperationPrimaryOffset 0x70
 #define SystemResourceManagerOffset 0x98
 #define ObjectArrayDataOffset 0x20
 #define ObjectArrayCapacityOffset 0x28
