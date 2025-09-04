@@ -5692,10 +5692,10 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
       ArrayBaseOffset = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)ResourceArrayPointer;
       do {
         // 步骤5: 获取当前资源标识符
-        ResourceId = *(int *)(ArrayBaseOffset + (int64_t)ResourceArrayPointer);
-        if (ResourceId != -1) {
+        ResourceIdentifier = *(int *)(ArrayBaseOffset + (int64_t)ResourceArrayPointer);
+        if (ResourceIdentifier != -1) {
           // 步骤6: 计算资源数据表地址
-          ResourceDataTableAddress = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceId * ResourceIdentifierOffset;
+          ResourceDataTableAddress = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceIdentifier * ResourceIdentifierOffset;
           // 步骤7: 获取资源上下文句柄并验证
           int64_t ResourceContextHandle = *(int64_t *)(ResourceDataTableAddress + 8);
           if ((ResourceContextHandle == 0)) {
@@ -19134,11 +19134,11 @@ uint8_t ProcessResourcePropertySet(int64_t ObjectContext, uint32_t *ValidationCo
  * 该函数负责验证资源的各种属性，并处理资源的哈希值
  * 检查资源属性的有效性，并根据哈希值进行相应的处理
  * 
- * @param resourceId 资源ID，用于标识要验证的资源
+ * @param ResourceIdentifier 资源标识符，用于标识要验证的资源
  * @return 无返回值
  * @note 此函数会在资源验证过程中调用多个资源属性检查函数
  */
-void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceId)
+void ValidateResourcePropertiesAndProcessHash(uint32_t ResourceIdentifier)
 {
   uint ResourceHash;
   uint8_t *ResourceHashStatus;
