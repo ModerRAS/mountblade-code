@@ -52595,7 +52595,7 @@ ResourceAllocationComplete:
     pUnsignedStackFlagSecondary = SystemDataBufferPointer;
     CurrentThreadId = StartSystemThread(SystemDataBufferPointer);
     EncryptionOffsetSecondary = ConcatenatedSystemValue(EncryptionOffsetSecondary._4_4_,CurrentThreadId);
-    goto LABEL_SYSTEM_MEMORY_HANDLER;
+    goto SystemMemoryHandler;
   }
   if (SystemDataBufferPointer != (uint8_t *)0x0) {
     SystemDataBufferPointer[SystemContextPointer] = 0;
@@ -52621,7 +52621,7 @@ ResourceAllocationComplete:
           *SystemDataBufferPointer = 0;
         }
         else {
-          if (ResourceHash <= SystemOperationStatus4) goto LABEL_SYSTEM_VALIDATION_HANDLER;
+          if (ResourceHash <= SystemOperationStatus4) goto SystemValidationHandler;
           SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
           SystemDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemDataBufferPointer,ResourceHash,0x10);
         }
@@ -52659,7 +52659,7 @@ MemoryPoolInitialized:
     if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
-    goto LABEL_SYSTEM_STATUS_HANDLER;
+    goto SystemStatusHandler;
   }
   systemIndex = WaitForSingleObject(SystemSemaphoreHandle,1);
   resourceCounter = SystemAllocationTemplate;
@@ -52668,7 +52668,7 @@ MemoryPoolInitialized:
     if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
-    goto LABEL_SYSTEM_STATUS_HANDLER;
+    goto SystemStatusHandler;
   }
   SystemConfigurationFlags = SystemAllocationTemplate;
   pSystemThreadContextSecondary = &SystemGlobalDataReference;
