@@ -30591,7 +30591,7 @@ void CleanupResourceHashValidationResources(uint8_t ExceptionHandlerType, int64_
     }
     else {
       ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
-                          ResourceHashStatusPointer,MemoryAddressIncrement,0xfffffffffffffffe);
+                          ResourceHashStatusPointer,MemoryAddressIncrement,MemoryCleanupTriggerValue);
     }
   }
   return;
@@ -30671,7 +30671,7 @@ void CleanupNestedResourceHashStatusResources(uint8_t ExceptionHandlerType, int6
     }
     else {
       ValidateMemoryAccess(resourceBase,CONCAT71(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
-                          ResourceHashStatus,resourceBase,0xfffffffffffffffe);
+                          ResourceHashStatus,resourceBase,MemoryCleanupTriggerValue);
     }
   }
   return;
@@ -30984,7 +30984,7 @@ void ProcessResourceValidation(uint8_t ObjectContext, int64_t ValidationContext,
   
   ResourceValidationFunction = *(code **)(*(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + ValidationContextCleanupFunctionOffset);
   if (ResourceValidationFunction != (code *)0x0) {
-    (*ResourceValidationFunction)(*(int64_t *)(ValidationContext + ValidationContextPrimaryOffset), 0, 0, CleanupFlag, 0xfffffffffffffffe);
+    (*ResourceValidationFunction)(*(int64_t *)(ValidationContext + ValidationContextPrimaryOffset), 0, 0, CleanupFlag, MemoryCleanupTriggerValue);
   }
   return;
 }
@@ -30992,16 +30992,14 @@ void ProcessResourceValidation(uint8_t ObjectContext, int64_t ValidationContext,
 
 
 /**
- * 在异常处理时恢复系统数据结构指针到验证上下文的0xf0偏移位置
- * 用于系统异常处理过程中的状态恢复
+ * @brief 在异常处理时恢复系统数据结构指针到验证上下文的0xf0偏移位置
+ * 
+ * 该函数用于在系统异常处理过程中恢复数据结构指针
+ * 确保系统状态能够正确恢复到异常前的状态
+ * 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
- */
-/**
- * 在异常处理时恢复系统数据结构指针到验证上下文的0xf0偏移位置
- * 用于系统异常处理过程中的状态恢复
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * @return 无返回值
  */
 void RestoreSystemDataStructureToContextOffsetSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
