@@ -52785,7 +52785,7 @@ ThreadConfigurationComplete:
       *SystemMemoryContext = 0;
     }
     else {
-      if (SystemOperationStatus4 <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_THREAD_HANDLER;
+      if (SystemOperationStatus4 <= (uint)SystemMemoryAllocationOffset) goto SystemThreadHandler;
       SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,SystemOperationStatus4,0x10);
     }
@@ -52806,7 +52806,7 @@ SystemInitializationComplete:
       *SystemMemoryContext = 0;
     }
     else {
-      if (CurrentThreadId <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_CONTEXT_HANDLER;
+      if (CurrentThreadId <= (uint)SystemMemoryAllocationOffset) goto SystemContextHandler;
       SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,CurrentThreadId,0x10);
     }
@@ -52838,7 +52838,7 @@ MemoryAllocationComplete:
           *SystemMemoryContext = 0;
         }
         else {
-          if (ResourceHash <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_ALLOCATION_CHECK;
+          if (ResourceHash <= (uint)SystemMemoryAllocationOffset) goto SystemAllocationCheck;
           SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
           SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,ResourceHash,0x10);
         }
@@ -52860,7 +52860,7 @@ SystemMemoryInitializationStart:
       *SystemMemoryContext = 0;
     }
     else {
-      if (ResourceHash <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_MEMORY_CHECK;
+      if (ResourceHash <= (uint)SystemMemoryAllocationOffset) goto SystemMemoryCheck;
       SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,ResourceHash,0x10);
     }
@@ -53029,7 +53029,7 @@ MemoryProcessingContinue:
         return;
       }
     }
-    else if (systemIndex == 3) goto LABEL_SYSTEM_THREAD_EXIT;
+    else if (systemIndex == 3) goto SystemThreadExit;
     if (SystemGlobalStatusFlags == 0) {
       charFlag = '\x01';
     }
@@ -53194,7 +53194,7 @@ LABEL_THREAD_INITIALIZATION:
   else if (threadCreationFlags < 0x13) {
     stackParameterOffset = 0x11;
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x13,0x10,0x13);
-    goto LABEL_SYSTEM_OPERATION_CHECK;
+    goto SystemOperationCheck;
   }
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
   stackParameterOffset = 0x12;
@@ -53210,7 +53210,7 @@ LABEL_THREAD_ALLOCATION_CONTEXT:
   else if ((uint)threadHandleValue < 0x14) {
     stackParameterOffset = 0x12;
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x14,0x10,0x13);
-    goto LABEL_SYSTEM_STATUS_CHECK;
+    goto SystemStatusCheck;
   }
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
   stackParameterOffset = 0x13;

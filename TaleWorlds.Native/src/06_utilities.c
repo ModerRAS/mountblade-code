@@ -80523,7 +80523,7 @@ void ReleaseSystemMemoryAtExtendedOffset(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_18090c2c0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemMemoryAtExtendedOffsetSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x180);
@@ -80532,8 +80532,17 @@ void Unwind_18090c2c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c2d0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源哈希状态验证和清理
+ * 
+ * 对指定验证上下文中的资源哈希状态进行验证和清理操作。
+ * 该函数处理资源哈希状态的验证流程，确保资源状态的一致性和正确性。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090c2d0
+ */
+void ExecuteResourceHashStatusValidation(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int32_t *ResourceTablePointerIndexPointer;
   uint8_t *ResourceHashStatusAddress;
@@ -80568,8 +80577,17 @@ void Unwind_18090c2d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c2e0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行扩展资源哈希状态验证和清理
+ * 
+ * 对指定验证上下文中的资源哈希状态进行扩展验证和清理操作。
+ * 该函数处理资源哈希状态的验证流程，确保资源状态的一致性和正确性。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090c2e0
+ */
+void ExecuteResourceHashStatusValidationExtended(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int32_t *ResourceTablePointerIndexPointer;
   uint8_t *ResourceHashStatusAddress;
