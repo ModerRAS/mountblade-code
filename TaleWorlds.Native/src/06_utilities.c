@@ -75256,7 +75256,20 @@ void ExecuteResourceDeallocationHandler(uint8_t ObjectContext,int64_t Validation
  * @note 此函数在异常处理过程中被调用，用于确保资源内存的正确释放
  * @warning 如果资源表指针为空，可能会触发系统紧急退出操作
  */
-void Unwind_ExecuteResourceMemoryRelease(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源内存释放操作
+ * 
+ * 该函数负责释放系统中的资源内存，遍历资源表并调用相应的释放函数
+ * 确保所有资源都被正确清理，防止内存泄漏
+ * 
+ * @param ObjectContext 对象上下文，包含当前操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数通常在系统关闭或资源清理阶段调用
+ * @warning 调用此函数前必须确保资源表已正确初始化
+ * @warning 原始函数名：Unwind_ExecuteResourceMemoryRelease
+ */
+void ExecuteResourceMemoryRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -82199,7 +82212,20 @@ void Unwind_18090c690(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c6a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到矩阵变换上下文
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的矩阵变换偏移位置
+ * 用于在矩阵变换过程中建立数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，包含当前操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数通常在矩阵变换处理阶段调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c6a0
+ */
+void SetSystemDataStructurePointerToMatrixContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2f0) = &SystemDataStructure;
