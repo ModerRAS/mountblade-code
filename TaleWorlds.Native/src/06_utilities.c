@@ -4493,10 +4493,10 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
       if (0 < TotalObjectCount) {
         CollectionIterator = 0;
         do {
-          uint8_t CurrentObjectState = *(uint8_t *)(ObjectDataBuffer + CollectionIterator);
-          ValidationStatusCode = ValidateObjectStatus(CurrentObjectState);
+          uint8_t ObjectValidationState = *(uint8_t *)(ObjectDataBuffer + CollectionIterator);
+          ValidationStatusCode = ValidateObjectStatus(ObjectValidationState);
           if (ValidationStatusCode != RegistrationStatusSuccess) {
-                  HandleInvalidObject(CurrentObjectState, 1);
+                  HandleInvalidObject(ObjectValidationState, 1);
           }
           ProcessedObjectCount++;
           CollectionIterator += ResourceEntrySizeBytes;
@@ -4752,9 +4752,9 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
       }
       else {
         // 验证对象注册数据
-        uint8_t DataValidationResult = ValidateObjectRegistrationData(ObjectRegistrationData + RegistrationValidationDataOffset, RegistrationHandle);
-        if ((int)DataValidationResult != 0) {
-          return DataValidationResult;
+        uint8_t RegistrationValidationResult = ValidateObjectRegistrationData(ObjectRegistrationData + RegistrationValidationDataOffset, RegistrationHandle);
+        if ((int)RegistrationValidationResult != 0) {
+          return RegistrationValidationResult;
         }
       }
     }
@@ -12313,7 +12313,7 @@ VALIDATION_FAILURE_HANDLER:
     else {
       if (SystemOperationStatus == '\x06') {
         SystemOperationStatus = ProcessObjectData(*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
-        if (SystemOperationStatus == '\0') goto HANDLE_VALIDATION_FAILED;
+        if (SystemOperationStatus == '\0') goto ValidationFailureHandler;
         *ValidationContext = 0;
         goto HandleSystemError;
       }
@@ -12325,16 +12325,16 @@ VALIDATION_FAILURE_HANDLER:
             *ValidationContext = 0;
             goto HandleSystemError;
           }
-          goto HANDLE_VALIDATION_FAILED;
+          goto ValidationFailureHandler;
         }
       }
       else {
-        if ((SystemOperationStatus != '\x02') || ((*(byte *)(ObjectContext + ObjectContextEncryptionOffset) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
+        if ((SystemOperationStatus != '\x02') || ((*(byte *)(ObjectContext + ObjectContextEncryptionOffset) & 4) != 0)) goto ValidationFailureHandler;
         SecurityValidationFlag = *(uint32_t *)(SystemDataPointer + 0x20);
         OperationStatus = ProcessDataWithContext(ObjectContext,OperationResult,&SecurityValidationFlag);
         if (OperationResult != 0) goto HandleSystemError;
         OperationStatus = ValidateObjectContext(SecurityValidationFlag,SecurityContextArray);
-        if ((OperationResult != 0) || (*(int *)(SecurityContextArray[0] + 0x30) != 2)) goto HANDLE_VALIDATION_FAILED;
+        if ((OperationResult != 0) || (*(int *)(SecurityContextArray[0] + 0x30) != 2)) goto ValidationFailureHandler;
       }
     }
     *ValidationContext = 0;
@@ -12393,7 +12393,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
     int OperationStatus = *(int *)(ObjectContext + ObjectContextOperationStatusOffset);
     if (ResourceIterationIndex < OperationResult) {
       *(int *)(ObjectContext + ObjectContextResourceIterationOffset) = ResourceIterationIndex + 1;
-      goto HANDLE_CONTEXT_ERROR;
+      goto ContextErrorHandler;
     }
     float FifthMatrixElement = *(float *)(ResourceContextDataPointer + 0x18);
     float ProcessedFloatResult = CalculatedFloatValue;
@@ -12430,7 +12430,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
                         (ContextResourceHashStatus,ResourceIterationIndex,*(uint32_t *)(ResourceContextDataPointer + 0x18),
                          *(uint8_t *)(SystemRegisterContext + 0xb8));
       CalculationResult = StackParameterContextExtended;
-      if (ResourceHashStatus != 0) goto HANDLE_CONTEXT_ERROR;
+      if (ResourceHashStatus != 0) goto ContextErrorHandler;
     }
     if ((((SystemOperationStatus != '\0') && (ValidationStatusCode = *CalculationResult, *CalculationResult = ResourceHashStatus + 1, ResourceHashStatus < 10)) &&
         ((*(uint *)(SystemRegisterContext + 0x6c) >> 0x18 & 1) == 0)) &&
@@ -12443,9 +12443,9 @@ VALIDATION_FAILURE_HANDLER:
   else {
     if (SystemOperationStatus == '\x06') {
       SystemOperationStatus = ProcessObjectData(*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
-      if (SystemOperationStatus == '\0') goto HANDLE_VALIDATION_FAILED;
+      if (SystemOperationStatus == '\0') goto ValidationFailureHandler;
       *SystemContext = 0;
-      goto HANDLE_CONTEXT_ERROR;
+      goto ContextErrorHandler;
     }
     if (SystemOperationStatus == '\a') {
       SystemOperationStatus = ProcessObjectData(*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
@@ -12453,19 +12453,19 @@ VALIDATION_FAILURE_HANDLER:
         if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(SystemRegisterContext + 0x58) + 0x90) + 0x790) +
                     0x1c8) != 0) {
           *SystemContext = 0;
-          goto HANDLE_CONTEXT_ERROR;
+          goto ContextErrorHandler;
         }
-        goto HANDLE_VALIDATION_FAILED;
+        goto ValidationFailureHandler;
       }
     }
     else {
-      if ((SystemOperationStatus != '\x02') || ((*(byte *)(ObjectContext + ObjectContextEncryptionOffset) & 4) != 0)) goto HANDLE_VALIDATION_FAILED;
+      if ((SystemOperationStatus != '\x02') || ((*(byte *)(ObjectContext + ObjectContextEncryptionOffset) & 4) != 0)) goto ValidationFailureHandler;
       ResourceContextSecondary.HighPart = *(uint32_t *)(ResourceContextDataPointer + 0x20);
       OperationStatus = ProcessDataWithContext(ObjectContext,ResourceIterationIndex,(int64_t)&ObjectSecondaryBuffer + 4);
-      if (OperationResult != 0) goto HANDLE_CONTEXT_ERROR;
+      if (OperationResult != 0) goto ContextErrorHandler;
       OperationStatus = ValidateObjectContext(ResourceContextSecondary.HighPart,SystemExecutionPointer + -0x78);
       if ((OperationResult != 0) || (*(int *)(*(int64_t *)(SystemExecutionPointer + -0x78) + 0x30) != 2))
-      goto HANDLE_VALIDATION_FAILED;
+      goto ValidationFailureHandler;
     }
   }
   *SystemContext = 0;
@@ -16450,7 +16450,7 @@ uint8_t FindResourceHashTableEntry(int64_t *ObjectContext,char *ValidationContex
       ResourceDataAddress = (char *)(ObjectContext[4] + 1 + (uint64_t)(*ResourceHashPtr & 0xffffff));
       ResourceValidationResultCode = *ValidationContext;
       while (ResourceValidationResultCode != '\0') {
-        if (*ResourceDataAddress == '\0') goto HANDLE_RESOURCE_DATA_END;
+        if (*ResourceDataAddress == '\0') goto ResourceDataProcessingComplete;
         ResourceValidationResultCode = ProcessResourceData(ResourceValidationResultCode);
         ResourceDataValidationResultCode = ProcessResourceData(*ResourceDataAddress);
         if (ResourceValidationResultCode != ResourceDataValidationResultCode) break;
@@ -16462,7 +16462,7 @@ uint8_t FindResourceHashTableEntry(int64_t *ObjectContext,char *ValidationContex
       if (*ResourceDataAddress != '\0') {
         return 0x4a;
       }
-HANDLE_RESOURCE_DATA_END:
+ResourceDataProcessingComplete:
       ResourceValidationResultCode = *ValidationContext;
     }
     ResourceValidationFlag = *(byte *)((int64_t)ResourceHashAddress + 7);
@@ -30321,12 +30321,12 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
   int64_t* ExceptionHandlerPointer;
   
   // 获取异常处理函数指针
-  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
   
   // 检查异常处理函数指针是否有效
-  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
+  if (ExceptionHandlerPointer != (int64_t *)0x0) {
     // 调用异常处理函数
-    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
+    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -30345,7 +30345,7 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t** ExceptionHandlerFunctionPointerArray;
+  int64_t** SecondaryExceptionHandlerArray;
   
   // 获取次级异常处理函数指针表
   ExceptionHandlerFunctionPointerArray = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
