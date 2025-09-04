@@ -2011,6 +2011,10 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   NetworkStatus ProcessingStatusArray [4];                 // 数据包处理状态数组，存储处理过程中的状态信息
   NetworkHandle PacketProcessingResult;                    // 数据包处理结果，用于存储各个验证步骤的结果
   
+  // 初始化处理结果
+  ProcessingResult = 0;
+  PacketProcessingResult = 0;
+  
   // 根据数据包大小选择不同的处理路径
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
