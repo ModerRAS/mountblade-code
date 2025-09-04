@@ -94263,15 +94263,17 @@ void ValidateSystemResourceHash(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 /**
- * @brief 清理资源上下文
+ * @brief 执行资源上下文清理操作
  * 
- * 该函数在异常处理过程中被调用，用于清理资源上下文
- * 确保资源被正确释放，避免内存泄漏
+ * 该函数负责在异常处理过程中执行资源上下文的清理操作。
+ * 它会调用资源上下文中的清理函数来释放相关资源。
  * 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_ResourceContextCleanup
  */
-void Unwind_ResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94286,15 +94288,17 @@ void Unwind_ResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationConte
 
 
 /**
- * @brief 验证资源哈希值
+ * @brief 执行资源哈希验证操作
  * 
  * 该函数在异常处理过程中被调用，用于验证资源哈希值
  * 确保资源的完整性和正确性
  * 
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_ResourceHashValidation
  */
-void Unwind_ResourceHashValidation(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHashValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -95372,7 +95376,18 @@ void ExecuteResourceHashStatusValidationVariant4(uint8_t ObjectContext,int64_t V
 
 
 
-void Unwind_18090f270(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态重置操作
+ * 
+ * 该函数在异常处理过程中被调用，用于重置资源哈希状态
+ * 确保资源状态的一致性和正确性
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f270
+ */
+void ExecuteResourceHashStatusReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -95408,7 +95423,18 @@ void Unwind_18090f270(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f290(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证操作
+ * 
+ * 该函数在异常处理过程中被调用，用于验证资源哈希状态
+ * 确保资源状态的正确性和一致性
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f290
+ */
+void ExecuteResourceHashStatusValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -95914,7 +95940,20 @@ void Unwind_18090f570(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源优化清理回调操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行资源优化清理回调操作
+ * 通过调用资源优化处理函数来清理相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f590
+ */
+void ExecuteResourceOptimizationCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x470,
@@ -95925,7 +95964,18 @@ void Unwind_18090f590(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f5b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行扩展资源上下文清理操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行扩展资源上下文的清理操作
+ * 通过调用资源上下文中的清理函数来释放相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f5b0
+ */
+void ExecuteExtendedResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -95939,7 +95989,18 @@ void Unwind_18090f5b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f5d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要资源上下文清理操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行次要资源上下文的清理操作
+ * 通过调用资源上下文中的清理函数来释放相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f5d0
+ */
+void ExecuteSecondaryResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

@@ -27870,30 +27870,30 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
     InterpolationFactorX = 1.0;
   }
   *(float *)(SystemResourceManager + 0x234) = InterpolationFactorX;
-  renderStatus3 = (uint)*(float *)(SystemAllocationFlags + 0x17ec);
-  renderStatus5 = (uint)*(float *)(SystemAllocationFlags + 0x17f0);
-  renderStatus4 = renderStatus3;
-  renderStatusValue1 = renderStatus5;
+  renderStatusPrimary = (uint)*(float *)(SystemAllocationFlags + 0x17ec);
+  renderStatusSecondary = (uint)*(float *)(SystemAllocationFlags + 0x17f0);
+  renderStatusTertiary = renderStatusPrimary;
+  renderStatusValuePrimary = renderStatusSecondary;
   if (1.0 <= InterpolationFactorX) {
     InterpolationFactorX = 1.0;
-    scaleResult2 = 1.0;
+    scaleFactorSecondary = 1.0;
   }
   else {
-    while (0 < (int)renderStatusValue1) {
-      renderStatusValue2 = (int)renderStatus4 % (int)renderStatusValue1;
-      renderStatus4 = renderStatusValue1;
-      renderStatusValue1 = renderStatusValue2;
+    while (0 < (int)renderStatusValuePrimary) {
+      renderStatusValueSecondary = (int)renderStatusTertiary % (int)renderStatusValuePrimary;
+      renderStatusTertiary = renderStatusValuePrimary;
+      renderStatusValuePrimary = renderStatusValueSecondary;
     }
-    CalculationFlags = (int)renderStatus3 / (int)renderStatus4;
-    InterpolationFactorX = (float)(int)renderStatus3;
+    CalculationFlags = (int)renderStatusPrimary / (int)renderStatusTertiary;
+    InterpolationFactorX = (float)(int)renderStatusPrimary;
     do {
-      renderStatus3 = (uint)(InterpolationFactorX * InterpolationFactorX);
+      renderStatusPrimary = (uint)(InterpolationFactorX * InterpolationFactorX);
       if (1 < CalculationFlags) {
-        renderStatus3 = ((renderStatus3 - 1) - (int)(renderStatus3 - 1) % CalculationFlags) + CalculationFlags;
+        renderStatusPrimary = ((renderStatusPrimary - 1) - (int)(renderStatusPrimary - 1) % CalculationFlags) + CalculationFlags;
       }
-      SystemInitializationStatus = (long long)(int)(((int)renderStatus5 / (int)renderStatus4) * renderStatus3) / (long long)CalculationFlags;
-      renderStatusValue1 = (uint)SystemInitializationStatus;
-      if (((renderStatus3 & 1) == 0) && ((SystemInitializationStatus & 1) == 0)) goto SystemFlagHandlerCheck;
+      SystemInitializationStatus = (long long)(int)(((int)renderStatusSecondary / (int)renderStatusTertiary) * renderStatusPrimary) / (long long)CalculationFlags;
+      renderStatusValuePrimary = (uint)SystemInitializationStatus;
+      if (((renderStatusPrimary & 1) == 0) && ((SystemInitializationStatus & 1) == 0)) goto SystemFlagHandlerCheck;
       InterpolationFactorX = InterpolationFactorX + 0.01;
       *(float *)(SystemResourceManager + 0x234) = InterpolationFactorX;
     } while (InterpolationFactorX <= 1.0);
@@ -27907,7 +27907,7 @@ SystemFlagHandlerCheck:
   InterpolationFactorX = *(float *)(SystemResourceManager + 0x238);
   if (1.0 <= InterpolationFactorX) {
     InterpolationFactorX = 1.0;
-    scaleResult2 = 1.0;
+    scaleFactorSecondary = 1.0;
   }
   else {
     CurrentThreadIdentifier = (ulong long)renderStatus5;
