@@ -61216,7 +61216,19 @@ void SetResourceHashAddressToCacheTemplate(uint8_t ObjectContext, int64_t Valida
  * 
  * @note 该函数用于资源清理操作，设置资源哈希表指针到哈希表003
  */
-void ExecuteResourceCleanupCallbackAtOffset38(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 初始化三级资源哈希表指针
+ * 
+ * 该函数用于初始化ValidationContext中的三级资源哈希表指针
+ * 将TertiaryResourceHashTable的地址存储到ValidationContext + 0x38位置
+ * 
+ * @param ObjectContext 对象上下文，用于资源处理的上下文信息
+ * @param ValidationContext 验证上下文，包含资源处理的验证信息
+ * @return 无返回值
+ * 
+ * @note 该函数用于初始化资源哈希表指针，偏移量0x38
+ */
+void InitializeTertiaryResourceHashTablePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x38) = &TertiaryResourceHashTable;
@@ -61237,7 +61249,19 @@ void ExecuteResourceCleanupCallbackAtOffset38(uint8_t ObjectContext,int64_t Vali
  * 
  * @note 该函数用于资源清理操作，检查ValidationContext + ValidationContextDataOffset + 0x8位置的值
  */
-void ExecuteResourceCleanupCallbackAtOffset68(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源清理回调函数（偏移量0x68）
+ * 
+ * 该函数从ValidationContext + ValidationContextDataOffset位置的偏移量8处检查资源状态，
+ * 如果资源状态不为0，则执行系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，用于资源处理的上下文信息
+ * @param ValidationContext 验证上下文，包含资源处理的验证信息
+ * @return 无返回值
+ * 
+ * @note 该函数用于资源清理操作，检查ValidationContext + ValidationContextDataOffset + 0x8位置的值
+ */
+void ExecuteResourceCleanupCallbackWithEmergencyExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 8) != 0) {
@@ -61260,7 +61284,19 @@ void ExecuteResourceCleanupCallbackAtOffset68(uint8_t ObjectContext,int64_t Vali
  * 
  * @note 该函数用于资源清理操作，检查ValidationContext + ValidationContextDataOffset + 0x30位置的值
  */
-void ExecuteResourceCleanupCallbackAtOffset78(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源清理回调函数（偏移量0x78）
+ * 
+ * 该函数从ValidationContext + ValidationContextDataOffset位置的偏移量48处检查资源状态，
+ * 如果资源状态不为0，则执行系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，用于资源处理的上下文信息
+ * @param ValidationContext 验证上下文，包含资源处理的验证信息
+ * @return 无返回值
+ * 
+ * @note 该函数用于资源清理操作，检查ValidationContext + ValidationContextDataOffset + 0x30位置的值
+ */
+void ExecuteResourceCleanupCallbackWithExtendedValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x30) != 0) {
@@ -61283,7 +61319,19 @@ void ExecuteResourceCleanupCallbackAtOffset78(uint8_t ObjectContext,int64_t Vali
  * 
  * @note 该函数用于资源清理操作，检查ValidationContext + 0x40 + 0x8位置的值
  */
-void ExecuteResourceCleanupCallbackAtOffset48(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源清理回调函数（偏移量0x48）
+ * 
+ * 该函数从ValidationContext + SystemContextResourceOffset位置的偏移量8处检查资源状态，
+ * 如果资源状态不为0，则执行系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，用于资源处理的上下文信息
+ * @param ValidationContext 验证上下文，包含资源处理的验证信息
+ * @return 无返回值
+ * 
+ * @note 该函数用于资源清理操作，检查ValidationContext + SystemContextResourceOffset + 0x8位置的值
+ */
+void ExecuteResourceCleanupCallbackWithSystemContextValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8) != 0) {
@@ -61306,7 +61354,19 @@ void ExecuteResourceCleanupCallbackAtOffset48(uint8_t ObjectContext,int64_t Vali
  * 
  * @note 该函数用于资源清理操作，检查ValidationContext + 0x40 + 0x30位置的值
  */
-void ExecuteResourceCleanupCallbackAtOffset58(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源清理回调函数（偏移量0x58）
+ * 
+ * 该函数从ValidationContext + SystemContextResourceOffset位置的偏移量48处检查资源状态，
+ * 如果资源状态不为0，则执行系统紧急退出
+ * 
+ * @param ObjectContext 对象上下文，用于资源处理的上下文信息
+ * @param ValidationContext 验证上下文，包含资源处理的验证信息
+ * @return 无返回值
+ * 
+ * @note 该函数用于资源清理操作，检查ValidationContext + SystemContextResourceOffset + 0x30位置的值
+ */
+void ExecuteResourceCleanupCallbackWithExtendedSystemContextValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x30) != 0) {

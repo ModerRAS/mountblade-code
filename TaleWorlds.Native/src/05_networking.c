@@ -1831,37 +1831,37 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
 NetworkHandle UpdateNetworkConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
-  NetworkStatus *ContextData;                           // 上下文数据指针
-  int32_t PacketProcessingStatus;                       // 数据包处理状态
-  int64_t ContextHandle;                               // 上下文句柄
-  NetworkStatus ValidationStatus;                       // 验证状态
-  NetworkStatus TimeoutStatus;                          // 超时状态
-  NetworkStatus SecondaryProcessingStatus;              // 次级处理状态
-  NetworkStatus *StatusBuffer;                          // 状态缓冲区
-  int64_t ProcessingCounter;                           // 处理计数器
-  NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
-  int64_t *OperationBuffer;                             // 操作缓冲区
-  int32_t UpdateOperationCode;                         // 更新操作代码
+  NetworkStatus *NetworkContextDataPointer;                           // 上下文数据指针
+  int32_t PacketProcessingStatusCode;                       // 数据包处理状态
+  int64_t NetworkContextHandle;                               // 上下文句柄
+  NetworkStatus ConnectionValidationStatus;                       // 验证状态
+  NetworkStatus ConnectionTimeoutStatus;                          // 超时状态
+  NetworkStatus SecondaryProcessingStatusCode;              // 次级处理状态
+  NetworkStatus *NetworkStatusBufferPointer;                          // 状态缓冲区
+  int64_t StatusProcessingCounter;                           // 处理计数器
+  NetworkStatus *NetworkPacketFlagsBuffer;                     // 数据包标志缓冲区
+  int64_t *NetworkOperationBuffer;                             // 操作缓冲区
+  int32_t ConnectionUpdateOperationCode;                         // 更新操作代码
   
-  StatusBuffer = (NetworkStatus *)0x0;
-  if (UpdateOperationCode == 0) {
+  NetworkStatusBufferPointer = (NetworkStatus *)0x0;
+  if (ConnectionUpdateOperationCode == 0) {
 NetworkMainProcessingLoop:
-    if ((0 < *(int *)((long long)OperationBuffer + ConnectionParameterOffset)) && (*OperationBuffer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *OperationBuffer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)((long long)NetworkOperationBuffer + ConnectionParameterOffset)) && (*NetworkOperationBuffer != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *NetworkOperationBuffer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
     }
-    *OperationBuffer = (long long)ProcessedNetworkConnectionPacketHandle;
-    *(int *)((long long)OperationBuffer + ConnectionParameterOffset) = UpdateOperationCode;
+    *NetworkOperationBuffer = (long long)ProcessedNetworkConnectionPacketHandle;
+    *(int *)((long long)NetworkOperationBuffer + ConnectionParameterOffset) = ConnectionUpdateOperationCode;
     return 0;
   }
   if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
-    StatusBuffer = (NetworkStatus *)
+    NetworkStatusBufferPointer = (NetworkStatus *)
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                            NetworkConnectionFinalizeValue, 0);
-    if (StatusBuffer != (NetworkStatus *)0x0) {
-      int32_t ProcessingStatus = (int)OperationBuffer[1];
-      int64_t NetworkStatusIterator = (long long)ProcessingStatus;
-      if ((ProcessingStatus != 0) && (ContextHandle = *OperationBuffer, 0 < ProcessingStatus)) {
-        NetworkStatus *NetworkStatusBuffer = StatusBuffer;
+    if (NetworkStatusBufferPointer != (NetworkStatus *)0x0) {
+      int32_t ProcessingStatusCode = (int)NetworkOperationBuffer[1];
+      int64_t NetworkStatusIterator = (long long)ProcessingStatusCode;
+      if ((ProcessingStatusCode != 0) && (NetworkContextHandle = *NetworkOperationBuffer, 0 < ProcessingStatusCode)) {
+        NetworkStatus *NetworkStatusBuffer = NetworkStatusBufferPointer;
         do {
           NetworkStatus *ConnectionContextData = (NetworkStatus *)((ContextHandle - (long long)StatusBuffer) + (long long)NetworkStatusBuffer);
           NetworkStatus CurrentValidationStatus = ConnectionContextData[1];
