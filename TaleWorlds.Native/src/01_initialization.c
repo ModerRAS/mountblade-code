@@ -19419,24 +19419,24 @@ uint32_t FinalSystemInitialization(void)
   }
   (*SystemCallbackFunction)(SystemInterfacePointer,&StackController);
   CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemGlobalManager,SystemTemporaryManager);
-  TemporaryManager9 = (long long ***)AllocateSystemMemory(CalculationFlags,0,SystemObjectHandle);
-  if (TemporaryManager9 != (long long ***)0x0) {
-    (*(code *)(*TemporaryManager9)[5])(TemporaryManager9);
+  SystemSecondaryTemporaryManager = (long long ***)AllocateSystemMemory(CalculationFlags,0,SystemObjectHandle);
+  if (SystemSecondaryTemporaryManager != (long long ***)0x0) {
+    (*(code *)(*SystemSecondaryTemporaryManager)[5])(SystemSecondaryTemporaryManager);
   }
   SystemInterfacePointer = *(void* **)(SystemObjectHandle + 400);
   SystemCallbackFunction = *(code **)*SystemInterfacePointer;
   SystemStackManager = (long long ****)&SystemStackController;
-  SystemStackController = (long long **)TemporaryManager9;
-  if (TemporaryManager9 != (long long ***)0x0) {
-    (*(code *)(*TemporaryManager9)[5])(TemporaryManager9);
+  SystemStackController = (long long **)SystemSecondaryTemporaryManager;
+  if (SystemSecondaryTemporaryManager != (long long ***)0x0) {
+    (*(code *)(*SystemSecondaryTemporaryManager)[5])(SystemSecondaryTemporaryManager);
   }
   (*SystemCallbackFunction)(SystemInterfacePointer,&SystemStackController);
   ProcessSystemCallback(*(void* *)(SystemObjectHandle + 400));
-  if (TemporaryManager9 != (long long ***)0x0) {
-    (*(code *)(*TemporaryManager9)[7])(TemporaryManager9);
+  if (SystemSecondaryTemporaryManager != (long long ***)0x0) {
+    (*(code *)(*SystemSecondaryTemporaryManager)[7])(SystemSecondaryTemporaryManager);
   }
-  if (TemporaryManager8 != (long long ****)0x0) {
-    (*(code *)(*TemporaryManager8)[7])(TemporaryManager8);
+  if (SystemPrimaryTemporaryManager != (long long ****)0x0) {
+    (*(code *)(*SystemPrimaryTemporaryManager)[7])(SystemPrimaryTemporaryManager);
   }
   SystemTemporaryManager = SystemManagerPointerStorage;
   *(uint8_t *)(SystemManagerPointerStorage[1] + 0x80) = 1;
@@ -19448,7 +19448,7 @@ uint32_t FinalSystemInitialization(void)
     else {
       SystemActiveStatus = (*(code *)SystemControllerInstance[0xd])();
     }
-    TemporaryManager8 = SystemManagerPointerStorage;
+    SystemPrimaryTemporaryManager = SystemManagerPointerStorage;
     if (SystemActiveStatus != '\0') break;
     Sleep(1);
   }
