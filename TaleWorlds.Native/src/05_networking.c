@@ -2193,8 +2193,8 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
   // 数据包处理状态变量
   NetworkHandle PacketProcessingResult;                        // 数据包验证结果，存储整个处理流程的最终状态
   NetworkStatus ConnectionStateArray [6];                      // 连接状态数组，存储连接的各级状态信息
-  NetworkStatus SecurityValidationArray [4];                 // 数据包验证状态数组，存储验证过程中的状态信息
-  NetworkStatus DataProcessingArray [4];                 // 数据包处理状态数组，存储处理过程中的状态信息
+  NetworkStatus SecurityValidationArray [4];                 // 安全验证状态数组，存储验证过程中的状态信息
+  NetworkStatus DataProcessingArray [4];                     // 数据处理状态数组，存储处理过程中的状态信息
   NetworkHandle ProcessingStepResult;                    // 中间处理结果，用于存储各个验证步骤的结果
   
   // 初始化处理结果
