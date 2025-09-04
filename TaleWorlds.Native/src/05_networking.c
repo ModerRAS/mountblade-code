@@ -2365,50 +2365,50 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
   uint32_t PacketDataIntegrityStatus;                        // 数据包完整性状态
   
   // 初始化解码状态
-  DecodingStatus = NetworkValidationFailure;
-  MagicValidationResult = NetworkValidationFailure;
-  PacketIntegrityStatus = NetworkValidationFailure;
+  PacketDecodingStatus = NetworkValidationFailure;
+  PacketMagicValidationResult = NetworkValidationFailure;
+  PacketDataIntegrityStatus = NetworkValidationFailure;
   
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证第一个魔数
     if (MagicNumber1 == NetworkPacketMagicLiveConnection || MagicNumber1 == NetworkPacketMagicValidation) {
-      MagicValidationResult |= NetworkPacketFirstMagicValidMask;
+      PacketMagicValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证第二个魔数
     if (MagicNumber2 == NetworkPacketMagicBinaryData || MagicNumber2 == NetworkMagicDebugMemoryCheck) {
-      MagicValidationResult |= NetworkPacketSecondMagicValidMask;
+      PacketMagicValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
   
   // 检查数据完整性
-  if (MagicValidationResult == NetworkPacketMagicValidationMask) {
-    PacketIntegrityStatus = NetworkValidationSuccess;
+  if (PacketMagicValidationResult == NetworkPacketMagicValidationMask) {
+    PacketDataIntegrityStatus = NetworkValidationSuccess;
   }
   
   // 根据解码模式处理数据
   if (DecodingMode == NetworkPacketBasicDecodingMode) {
     // 基本解码模式
-    DecodingStatus = MagicValidationResult & NetworkPacketMagicValidationMask;
+    PacketDecodingStatus = PacketMagicValidationResult & NetworkPacketMagicValidationMask;
   } else if (DecodingMode == NetworkPacketStrictDecodingMode) {
     // 严格解码模式
-    DecodingStatus = PacketIntegrityStatus & NetworkValidationSuccess;
+    PacketDecodingStatus = PacketDataIntegrityStatus & NetworkValidationSuccess;
   } else {
     // 默认解码模式
-    DecodingStatus = NetworkValidationSuccess;
+    PacketDecodingStatus = NetworkValidationSuccess;
   }
   
   // 设置输出缓冲区
   if (OutputBuffer) {
     memset(OutputBuffer, 0, NetworkStandardBufferSize);
-    OutputBuffer[0] = (NetworkByte)DecodingStatus;
-    OutputBuffer[1] = (NetworkByte)MagicValidationResult;
-    OutputBuffer[2] = (NetworkByte)PacketIntegrityStatus;
+    OutputBuffer[0] = (NetworkByte)PacketDecodingStatus;
+    OutputBuffer[1] = (NetworkByte)PacketMagicValidationResult;
+    OutputBuffer[2] = (NetworkByte)PacketDataIntegrityStatus;
     OutputBuffer[3] = (NetworkByte)DecodingMode;
   }
   
-  return DecodingStatus;  // 返回解码状态
+  return PacketDecodingStatus;  // 返回解码状态
 }
 
 /**
