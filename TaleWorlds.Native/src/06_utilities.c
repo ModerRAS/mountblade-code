@@ -82803,7 +82803,18 @@ void ExecuteResourceCleanupCallbackAtOffset238(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090c880(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文偏移量600处的资源清理回调函数
+ * 
+ * 该函数负责执行验证上下文中偏移量600位置的资源清理回调函数
+ * 检查验证上下文中偏移量600位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c880
+ */
+void ExecuteResourceCleanupCallbackAtOffset600(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 600) != (int64_t *)0x0) {
@@ -82843,7 +82854,14 @@ void Unwind_18090c8b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c8c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置系统数据结构指针到偏移量0x570
+ * 在验证上下文的指定偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToOffset570(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x570) = &SystemDataStructure;
@@ -82852,7 +82870,14 @@ void Unwind_18090c8c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c8d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置系统数据结构指针到偏移量0x610
+ * 在验证上下文的指定偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToOffset610(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x610) = &SystemDataStructure;
@@ -82861,7 +82886,14 @@ void Unwind_18090c8d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c8e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置系统数据结构指针到偏移量0x6b0
+ * 在验证上下文的指定偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToOffset6b0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x6b0) = &SystemDataStructure;
