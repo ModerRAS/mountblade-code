@@ -5085,12 +5085,12 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @return uint8_t 初始化结果状态码，0表示成功，非0表示失败
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
-  uint8_t ValidationResult;
+  uint8_t ValidationStatus;
   int64_t ValidatedMemoryAddress;
   
   // 验证对象上下文并获取内存地址
-  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedMemoryAddress);
-  if ((int)ValidationResult == 0) {
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ValidatedMemoryAddress);
+  if ((int)ValidationStatus == 0) {
     // 调整验证后的内存地址
     if (ValidatedMemoryAddress == 0) {
       ValidatedMemoryAddress = 0;
@@ -5103,9 +5103,9 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
     if (*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset) != 0) {
       ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
     }
-    ValidationResult = OperationSuccessCode;
+    ValidationStatus = OperationSuccessCode;
   }
-  return ValidationResult;
+  return ValidationStatus;
 }
 
 
@@ -5120,17 +5120,17 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * @note 此函数从全局状态获取当前对象句柄进行释放操作
  */
 uint8_t ReleaseObjectHandle(void) {
-  int64_t CurrentActiveObjectHandle = 0;
+  int64_t ActiveObjectHandle = 0;
   int64_t ObjectMemoryAddress;
   
   // 获取当前对象句柄（这里从系统状态中获取）
-  CurrentActiveObjectHandle = GetCurrentObjectHandle();
+  ActiveObjectHandle = GetCurrentObjectHandle();
   
-  if (CurrentActiveObjectHandle == 0) {
+  if (ActiveObjectHandle == 0) {
     ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryAddress = CurrentActiveObjectHandle - 8;
+    ObjectMemoryAddress = ActiveObjectHandle - 8;
   }
   
   // 如果对象内存地址有效，执行释放操作
@@ -11046,7 +11046,7 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
   int TotalProcessedBytes = DataFormatValidationResult + StringProcessingResult;
   int DataContentParsingResult = ParseDataContent(TotalProcessedBytes + ValidationContext,DataLength - TotalProcessedBytes,*(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
   TotalProcessedBytes = TotalProcessedBytes + DataContentParsingResult;
-  int StringValidationStatus = ProcessStringOperation(ProcessedByteCount + ValidationContext,DataLength - ProcessedByteCount,&StringProcessingTemplate);
+  int StringValidationResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,DataLength - TotalProcessedBytes,&StringProcessingTemplate);
   ProcessedByteCount = ProcessedByteCount + StringValidationStatus;
   int StringExtendedValidationStatus = ProcessStringValidation(ProcessedByteCount + ValidationContext,DataLength - ProcessedByteCount,ObjectContext + ObjectContextProcessingDataOffset,
                         *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset));
@@ -78957,7 +78957,17 @@ void ExecuteResourceCleanupWithFlagsOperationD40(uint8_t ObjectContext,int64_t V
 
 
 
-void Unwind_18090bd50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数将系统数据结构的地址设置到验证上下文的指定偏移量处。
+ * 这是一个简单的指针设置操作，用于初始化系统数据结构的引用。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return void 无返回值
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x260) = &SystemDataStructure;
