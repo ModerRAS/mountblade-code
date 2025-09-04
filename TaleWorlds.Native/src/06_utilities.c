@@ -105761,12 +105761,11 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SystemResourceValidationErrorOffset0x90 0x90
 #define SystemResourceValidationErrorOffset0x98 0x98
 #define SystemResourceDataValidationErrorOffset 0xa0
-#define SystemResourceValidationErrorOffset0xA0 0xa0
 #define SystemResourceValidationErrorOffset0xA8 0xa8
+#define SystemResourceValidationErrorOffset0xB0 0xb0
 #define SystemResourceValidationErrorOffset0xC0 0xc0
 #define SystemResourceValidationErrorOffset0xD0 0xd0
 #define SystemResourceValidationErrorOffset0xE0 0xe0
-#define SystemResourceValidationErrorOffset0xB0 0xb0
 #define SystemResourceValidationErrorOffset0xF8 0xf8
 #define SystemResourceExtendedValidationErrorCode 0x928c9d
 #define SystemRegisterContextValidationShift SystemResourceValidationErrorOffset0x38
