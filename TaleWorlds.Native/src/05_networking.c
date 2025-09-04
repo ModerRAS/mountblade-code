@@ -1854,7 +1854,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
       // 如果状态缓冲区有效，处理连接数据
       if (NetworkConnectionStatusBufferPointer != (NetworkConnectionStatus *)0x0) {
         int32_t TotalConnectionsCount = (int)ConnectionContext[1];
-        int64_t ConnectionProcessingCounter = (long long)TotalConnectionsCount;
+        int64_t ConnectionProcessingIndex = (long long)TotalConnectionsCount;
         int64_t ConnectionBaseAddress = 0;  // 连接基地址
         
         // 如果有活跃连接，处理连接数据
@@ -1879,9 +1879,9 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkConnectionStatusPointer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)NetworkConnectionStatusBufferPointer) + -4 + (long long)(NetworkConnectionStatusPointer + 5));
             
             // 更新计数器
-            ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
+            ConnectionProcessingIndex = ConnectionProcessingIndex - 1;
             NetworkConnectionStatusPointer = NetworkConnectionStatusPointer + 5;
-          } while (ConnectionProcessingCounter != 0);
+          } while (ConnectionProcessingIndex != 0);
         }
         return NetworkSuccessStatus;
       }
@@ -2241,9 +2241,9 @@ NetworkHandle ValidateNetworkConnectionPacket(int64_t ConnectionContext, Network
 NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   // 数据包处理变量
-  NetworkHandle ProcessingResult;                    // 数据包处理结果，存储处理流程的最终状态
-  NetworkByte DecodedDataBuffer [32];             // 已解码数据流缓冲区，用于存储解码后的数据流信息
-  uint32_t TertiaryStatusValue;                   // 第三级状态值，用于确定处理策略
+  NetworkHandle PacketProcessingResult;                    // 数据包处理结果，存储处理流程的最终状态
+  NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区，用于存储解码后的数据流信息
+  uint32_t PacketTertiaryStatusValue;                   // 数据包第三级状态值，用于确定处理策略
   
   // 获取第三级状态值
   TertiaryStatusValue = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
