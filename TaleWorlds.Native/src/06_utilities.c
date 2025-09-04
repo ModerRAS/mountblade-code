@@ -45296,7 +45296,7 @@ void ResetSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 void ResetSystemContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x50) = &SystemDataStructure;
+  **(uint8_t **)(ValidationContext + SystemContextResetOffset) = &SystemDataStructure;
   return;
 }
 
@@ -45307,7 +45307,7 @@ void ResetResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 {
   uint8_t *ResourceHashPtr;
   
-  ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x20);
+  ResourceHashPtr = *(uint8_t **)(ValidationContext + SystemContextResourceHashOffset);
   *ResourceHashPtr = &ResourceHashTemplate;
   *ResourceHashPtr = &ResourceAllocationTemplate;
   *ResourceHashPtr = &ResourceCacheTemplate;
@@ -45319,7 +45319,7 @@ void ResetResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 void ResetSystemDataReference(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 0x20) = &SystemDataStructure;
+  *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextDataReferenceOffset) + SystemContextDataStructureOffset) = &SystemDataStructure;
   return;
 }
 
