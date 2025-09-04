@@ -794,8 +794,14 @@ uint32_t NetworkConnectionResponseInfo;                    // 网络连接响应
 uint32_t NetworkConnectionErrorInfo;                       // 网络连接错误信息，存储连接错误的相关信息
 uint32_t NetworkConnectionStatusInfo;                      // 网络连接状态信息，存储连接状态的相关信息
 uint32_t NetworkConnectionTimeoutInfo;                     // 网络连接超时信息，存储连接超时的相关信息
-uint32_t NetworkConnectionValidationInfo;                   // 网络连接验证信息，存储连接验证的相关信息
-uint32_t NetworkConnectionEncryptionInfo;                   // 网络连接加密信息，存储连接加密的相关信息
+/**
+ * @brief 网络连接验证上下文信息，存储连接验证的相关信息
+ */
+uint32_t NetworkConnectionVerificationInfo;
+/**
+ * @brief 网络连接加密上下文信息，存储连接加密的相关信息
+ */
+uint32_t NetworkConnectionEncryptionContext;
 uint32_t NetworkConnectionCompressionInfo;                 // 网络连接压缩信息，存储连接压缩的相关信息
 
 // 网络缓冲区管理变量
