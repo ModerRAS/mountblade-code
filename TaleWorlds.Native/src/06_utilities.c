@@ -6041,19 +6041,19 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 uint32_t ProcessSystemResource(void) {
   int64_t SystemContextToValidate;
   int64_t ResourceProcessingIterator;
-  int64_t CalculatedSystemContextPointer;
+  int64_t AdjustedSystemContextPointer;
   
   SystemContextToValidate = SystemInputParameter;
   if (SystemContextToValidate == 0) {
-    CalculatedSystemContextPointer = 0;
+    AdjustedSystemContextPointer = 0;
   }
   else {
-    CalculatedSystemContextPointer = SystemContextToValidate - 8;
+    AdjustedSystemContextPointer = SystemContextToValidate - 8;
   }
-  if (*(int64_t *)(CalculatedSystemContextPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(CalculatedSystemContextPointer + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset), 1);
 }
 
 
@@ -30400,12 +30400,12 @@ void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCo
   int64_t** SecondaryExceptionHandlerArray;
   
   // 获取次级异常处理函数指针表
-  ExceptionHandlerFunctionPointerArray = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
+  SecondaryExceptionHandlerArray = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
   
   // 检查异常处理函数指针表是否有效
-  if (ExceptionHandlerFunctionPointerArray != (int64_t *)0x0) {
+  if (SecondaryExceptionHandlerArray != (int64_t *)0x0) {
     // 调用次级异常处理函数
-    (**(code **)(*ExceptionHandlerFunctionPointerArray + ExceptionHandlerFunctionPointerOffset))();
+    (**(code **)(*SecondaryExceptionHandlerArray + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
