@@ -2580,12 +2580,12 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
 NetworkHandle HandlePacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 数据包头部处理变量
-  uint32_t HeaderProcessingStatus;                         // 头部处理状态
+  uint32_t PacketHeaderStatus;                         // 头部处理状态
   uint32_t HeaderValidationResult;                         // 头部验证结果
   uint32_t ContextProcessingStatus;                        // 上下文处理状态
   
   // 初始化处理状态
-  HeaderProcessingStatus = NetworkValidationFailure;
+  PacketHeaderStatus = NetworkValidationFailure;
   HeaderValidationResult = NetworkValidationFailure;
   ContextProcessingStatus = NetworkValidationFailure;
   
