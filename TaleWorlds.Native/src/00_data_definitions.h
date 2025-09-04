@@ -7838,10 +7838,10 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
   FloatStackMaximum = 1e+08;
   FloatStackLarge = 1e+08;
   FloatStackMedium = 1e+08;
-  fStack_150 = 1e+08;
+  FloatStackSmall = 1e+08;
   uStack_14c = 0;
-  fStack_148 = -1e+08;
-  fStack_144 = -1e+08;
+  FloatStackMinimum = -1e+08;
+  FloatStackNegative1 = -1e+08;
   fStack_140 = -1e+08;
   uStack_13c = 0;
   IntegerError = *(char *)(SystemParameterPointer + 0x858) + -1;

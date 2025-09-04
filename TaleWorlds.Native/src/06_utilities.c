@@ -5131,28 +5131,28 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文，包含要初始化句柄的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t SetupObjectHandle(int64_t ObjectContext) {
-  uint8_t HandleValidationResult;
-  int64_t ObjectMemoryLocation;
+uint8_t InitializeObjectHandle(int64_t ObjectContext) {
+  uint8_t ValidationStatus;
+  int64_t ObjectMemoryAddress;
   
   // 验证对象上下文并获取内存地址
-  HandleValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ObjectMemoryLocation);
-  if ((int)HandleValidationResult == 0) {
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ObjectMemoryAddress);
+  if ((int)ValidationStatus == 0) {
     // 调整验证后的内存地址
-    if (ObjectMemoryLocation == 0) {
-      ObjectMemoryLocation = 0;
+    if (ObjectMemoryAddress == 0) {
+      ObjectMemoryAddress = 0;
     }
     else {
-      ObjectMemoryLocation = ObjectMemoryLocation - 8;
+      ObjectMemoryAddress = ObjectMemoryAddress - 8;
     }
     
     // 检查对象句柄是否有效，如果有效则执行系统退出操作
-    if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
-      ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
+    if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
+      ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
     }
-    HandleValidationResult = OperationSuccessCode;
+    ValidationStatus = OperationSuccessCode;
   }
-  return HandleValidationResult;
+  return ValidationStatus;
 }
 
 
@@ -78466,7 +78466,17 @@ void ProcessResourceCleanupHandlerE(uint8_t ObjectContext,int64_t ValidationCont
 
 
 
-void Unwind_18090ba70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调函数
+ * 
+ * 该函数从系统资源上下文中获取资源处理指针
+ * 并调用相应的回调函数来处理资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090ba70
+ */
+void ExecuteResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
