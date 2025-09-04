@@ -1898,9 +1898,9 @@ NetworkHandle SetupNetworkSystem(void)
 NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkConnectionStatus *ConnectionContextArray;  // 网络连接上下文数据数组
-  NetworkConnectionStatus PacketProcessingStatus;              // 数据包处理状态
-  NetworkConnectionStatus ConnectionValidationStatus;          // 连接验证状态
+  NetworkConnectionStatus *NetworkContextArray;  // 网络连接上下文数据数组
+  NetworkConnectionStatus ProcessingStatus;              // 数据包处理状态
+  NetworkConnectionStatus ValidationStatus;          // 连接验证状态
   
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[ConnectionContextActiveCountIndex]) {
@@ -1908,7 +1908,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *ConnectionStatusBufferPointer = NULL;
+  NetworkConnectionStatus *StatusBufferPtr = NULL;
   
   // 处理有效的数据包
   if (PacketData != 0) {
