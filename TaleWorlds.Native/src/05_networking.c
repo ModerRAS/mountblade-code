@@ -655,11 +655,14 @@ uint32_t NetworkConnectionContextSize;                         // 网络连接�
 uint32_t NetworkConnectionQuality;                             // 网络连接质量
 uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽
 uint32_t NetworkConnectionLatency;                             // 网络连接延迟
-uint32_t NetworkSecurityLevel;                                 // 网络安全级别
-uint32_t NetworkAuthenticationType;                           // 网络认证类型
-uint32_t NetworkEncryptionAlgorithm;                          // 网络加密算法
-uint32_t NetworkCompressionMethod;                             // 网络压缩方法
-uint32_t NetworkSessionTimeoutDuration;                         // 网络会话超时持续时间
+uint32_t NetworkConnectionQuality;                             // 网络连接质量
+uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽
+uint32_t NetworkConnectionLatency;                             // 网络连接延迟
+uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别
+uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型
+uint32_t NetworkConnectionEncryptionAlgorithm;                // 网络加密算法
+uint32_t NetworkConnectionCompressionMethod;                  // 网络压缩方法
+uint32_t NetworkConnectionSessionTimeoutDuration;             // 网络会话超时持续时间
 uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针
 uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针
 uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小

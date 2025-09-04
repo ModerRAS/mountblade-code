@@ -9388,16 +9388,16 @@ uint8_t ValidateObjectContextAndProcessFloatRange(int64_t ObjectContext,int64_t 
         if (*(int *)(ResourceDataPointer + ResourceValidationOffset) != 0) {
           return ResourceValidationError;
         }
-        MinimumRangeValue = *(float *)(ResourceDataPointer + ResourceRangeLowerBoundOffset);
-        if ((*(float *)(ResourceDataPointer + ResourceRangeLowerBoundOffset) <= CurrentFloatProcessingValue) &&
-           (MaximumRangeValue = *(float *)(ResourceDataPointer + ResourceRangeUpperBoundOffset), CurrentFloatProcessingValue <= *(float *)(ResourceDataPointer + ResourceRangeUpperBoundOffset))) {
-          MinimumRangeValue = CurrentFloatProcessingValue;
+        MinimumFloatValue = *(float *)(ResourceDataPointer + ResourceRangeLowerBoundOffset);
+        if ((*(float *)(ResourceDataPointer + ResourceRangeLowerBoundOffset) <= CurrentFloatValue) &&
+           (MaximumFloatValue = *(float *)(ResourceDataPointer + ResourceRangeUpperBoundOffset), CurrentFloatValue <= *(float *)(ResourceDataPointer + ResourceRangeUpperBoundOffset))) {
+          MinimumFloatValue = CurrentFloatValue;
         }
-        *FloatProcessingPointer = MinimumRangeValue;
+        *FloatDataPointer = MinimumFloatValue;
       }
-      ValidationProcessingCounter = (int)ResourceProcessingHash + 1;
-      ResourceProcessingHash = (uint64_t)ValidationProcessingCounter;
-      FloatParameterIncrement = FloatParameterValue + 1;
+      ProcessingIterator = (int)ResourceHash + 1;
+      ResourceHash = (uint64_t)ProcessingIterator;
+      ArrayElementIndex++;
     } while ((int)ValidationProcessingCounter < *(int *)(ObjectContext + ObjectContextValidationDataOffset));
     if (0 < *(int *)(ObjectContext + ObjectContextValidationDataOffset)) {
       ResourceTablePointerProcessingPointer = (ObjectContext + ObjectContextProcessingDataOffset) - (int64_t)FloatParameterValue;
