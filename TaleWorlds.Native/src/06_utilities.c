@@ -85007,7 +85007,21 @@ void ExecuteSystemResourceCleanupOperation2B8(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090cf90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调函数清理
+ * 
+ * 该函数负责清理系统资源回调函数，主要功能包括：
+ * - 验证资源回调函数指针的有效性
+ * - 执行资源回调函数的清理操作
+ * - 确保系统资源的正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要清理的资源对象
+ * @param ValidationContext 验证上下文，包含验证数据和状态信息
+ * 
+ * @note 这是简化实现，仅执行基本的回调函数清理
+ * @warning 原始函数名：Unwind_18090cf90
+ */
+void ExecuteSystemResourceCallbackCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x2e8) != (int64_t *)0x0) {
@@ -85018,7 +85032,21 @@ void Unwind_18090cf90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cfa0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调函数清理（次要版本）
+ * 
+ * 该函数负责清理系统资源回调函数，是上一个函数的变体，主要功能包括：
+ * - 验证资源回调函数指针的有效性
+ * - 执行资源回调函数的清理操作
+ * - 确保系统资源的正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要清理的资源对象
+ * @param ValidationContext 验证上下文，包含验证数据和状态信息
+ * 
+ * @note 这是简化实现，仅执行基本的回调函数清理
+ * @warning 原始函数名：Unwind_18090cfa0
+ */
+void ExecuteSystemResourceCallbackCleanupSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x3b0) != (int64_t *)0x0) {
@@ -85029,7 +85057,22 @@ void Unwind_18090cfa0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cfb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器模板
+ * 
+ * 该函数负责初始化系统资源处理器模板，主要功能包括：
+ * - 设置系统资源处理器模板的指针
+ * - 验证资源处理器的状态
+ * - 执行紧急退出操作（如果需要）
+ * - 重置资源处理器的状态
+ * 
+ * @param ObjectContext 对象上下文，标识要初始化的资源对象
+ * @param ValidationContext 验证上下文，包含验证数据和状态信息
+ * 
+ * @note 这是简化实现，仅执行基本的初始化操作
+ * @warning 原始函数名：Unwind_18090cfb0
+ */
+void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x3b8) = &SystemResourceHandlerTemplate;
@@ -85044,7 +85087,21 @@ void Unwind_18090cfb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cfc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调函数清理（第三版本）
+ * 
+ * 该函数负责清理系统资源回调函数，是前两个函数的变体，主要功能包括：
+ * - 验证资源回调函数指针的有效性
+ * - 执行资源回调函数的清理操作
+ * - 确保系统资源的正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要清理的资源对象
+ * @param ValidationContext 验证上下文，包含验证数据和状态信息
+ * 
+ * @note 这是简化实现，仅执行基本的回调函数清理
+ * @warning 原始函数名：Unwind_18090cfc0
+ */
+void ExecuteSystemResourceCallbackCleanupTertiary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 1000) != (int64_t *)0x0) {
@@ -86316,7 +86373,17 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetb0v2(uint8_t ObjectContext,int
 
 
 
-void Unwind_18090d1c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量0xb0版本3
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d1c0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffsetb0v3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -86352,7 +86419,17 @@ void Unwind_18090d1c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d1d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量0xb0版本4
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d1d0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffsetb0v4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -86388,7 +86465,17 @@ void Unwind_18090d1d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d1e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量0xf0版本5
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d1e0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffsetf0v5(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
