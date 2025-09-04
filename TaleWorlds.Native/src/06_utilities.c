@@ -5256,7 +5256,7 @@ uint32_t ValidateObjectHandleFromRegister(void) {
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(AdjustedMemoryAddress + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectContextOffset), 1);
   return OperationSuccessCode;
 }
 
@@ -6591,7 +6591,7 @@ uint32_t ValidateStackObject(void)
 {
   int64_t ValidatedStackObjectPointer;
   
-  ValidatedStackObjectPointer = InputParameter;
+  ValidatedStackObjectPointer = SystemInputParameter;
   if (ValidatedStackObjectPointer != 0) {
     ValidatedStackObjectPointer = ValidatedStackObjectPointer + -8;
   }
