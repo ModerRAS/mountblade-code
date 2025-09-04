@@ -7759,8 +7759,8 @@ void ProcessDynamicBufferReallocation(void)
   uint8_t StackParameterContextSixty;
   
   ResourceIndex = 0;
-  BufferPointer = InputParameter + 8;
-  if (InputParameter == 0) {
+  BufferPointer = SystemInputParameter + 8;
+  if (SystemInputParameter == 0) {
     BufferPointer = ResourceIndex;
   }
   ResourceIndex = ValidateBufferContext(BufferPointer);
