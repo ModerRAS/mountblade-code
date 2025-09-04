@@ -1924,7 +1924,7 @@ void InitializeSystemThreadPool(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -1984,7 +1984,7 @@ void InitializeSystemEventManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -2045,7 +2045,7 @@ void InitializeSystemResourceManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -2943,7 +2943,7 @@ void InitializeSystemDataTableStructureB(void)
   SystemRootPointer = (long long*)GetSystemRootPointer();
   DataTablePointer = (void**)*SystemRootPointer;
   NodeActiveFlag = *(char*)((long long)DataTablePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   PreviousNode = DataTablePointer;
   CurrentNode = (void**)DataTablePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -3223,7 +3223,7 @@ void InitializeSystemDataTableStructureG(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -3549,7 +3549,7 @@ void InitializeSystemDataTable(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -3651,7 +3651,7 @@ void InitializeMemoryAllocator(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -3764,7 +3764,7 @@ void InitializeConfigurationManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -3980,7 +3980,7 @@ void InitializeSystemResourceManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -4094,7 +4094,7 @@ void InitializeSystemDataTable(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -4204,7 +4204,7 @@ void InitializeSystemNetworkManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -4369,7 +4369,7 @@ void InitializeSystemDebugManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -4483,7 +4483,7 @@ void InitializeSystemResourcePool(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -4654,7 +4654,7 @@ void InitializeSystemPerformanceMonitor(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -4882,7 +4882,7 @@ void InitializeSystemSecurityManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -5688,7 +5688,7 @@ void InitializeSystemDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -5804,7 +5804,7 @@ void InitializeSystemMemoryNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -6005,7 +6005,7 @@ void InitializeSystemResourceNode(void)
   SystemDataTable = (void*)GetSystemRootPointer();
   RootNodePointer = (void**)*(long long*)SystemDataTable;
   IsResourceNodeActive = *(bool*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   SystemPreviousNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (!IsResourceNodeActive) {
@@ -6119,7 +6119,7 @@ void InitializeSystemMemoryNode(void)
   SystemDataTable = (void*)GetSystemRootPointer();
   RootNodePointer = (void**)*(long long*)SystemDataTable;
   IsMemoryNodeActive = *(bool*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   SystemPreviousNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (!IsMemoryNodeActive) {
@@ -6233,7 +6233,7 @@ void InitializeSystemConfigurationManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -6721,7 +6721,7 @@ void InitializeSystemEventNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -6837,7 +6837,7 @@ void InitializeSystemMemoryPoolManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -6953,7 +6953,7 @@ void InitializeSystemResourceManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -7127,7 +7127,7 @@ void InitializeSystemDataProcessor(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -7243,7 +7243,7 @@ void InitializeSystemMemoryManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -7358,7 +7358,7 @@ void InitializeSystemResourceInitializer(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -7838,7 +7838,7 @@ void InitializeSystemResourceManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -7954,7 +7954,7 @@ void InitializeSystemSecurityManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -8070,7 +8070,7 @@ void InitializeSystemNetworkManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -8347,7 +8347,7 @@ void InitializeSystemResourceManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -8449,7 +8449,7 @@ void InitializeSystemLogManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -8551,7 +8551,7 @@ void InitializeSystemSecurityMonitor(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -8806,7 +8806,7 @@ void InitializeSystemThreadManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -8959,7 +8959,7 @@ void InitializeSystemServiceManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -9068,7 +9068,7 @@ void InitializeSystemModuleManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -9181,7 +9181,7 @@ void InitializeSystemPluginManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -9442,7 +9442,7 @@ void InitializeSystemResourceNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -9550,7 +9550,7 @@ void InitializeSystemDataTableNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -9654,7 +9654,7 @@ void InitializeSystemEventNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -9704,7 +9704,7 @@ void InitializeSystemThreadNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -9827,7 +9827,7 @@ void InitializeSystemNetworkNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -9951,7 +9951,7 @@ void InitializeSystemInputNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -10013,7 +10013,7 @@ void InitializeSystemPhysicsNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -10075,7 +10075,7 @@ void InitializeSystemFileSystemNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -10137,7 +10137,7 @@ void InitializeSystemDatabaseNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -10196,7 +10196,7 @@ void InitializeSystemConfigurationManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -10317,7 +10317,7 @@ void InitializeSystemNetworkConfigurationManager(void)
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   RootNodePointerPointer = (void**)*SystemDataTablePointer;
   SystemNodeActiveFlag = *(char*)((long long)RootNodePointerPointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   SystemHashTableNodePointerPointer = RootNodePointerPointer;
   CurrentNodePointerPointer = (void**)RootNodePointerPointer[1];
   while (SystemNodeActiveFlag == '\0') {
@@ -10787,7 +10787,7 @@ void InitializeSystemStringProcessorG(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -10887,7 +10887,7 @@ void InitializeSystemStringProcessorI(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -10987,7 +10987,7 @@ void InitializeSystemStringProcessorK(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -11137,7 +11137,7 @@ void InitializeSystemStringProcessorN(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -11262,7 +11262,7 @@ void InitializeSystemStringProcessorP(void)
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   RootNodePointerPointer = (void**)*SystemDataTablePointer;
   SystemNodeActiveFlag = *(char*)((long long)RootNodePointerPointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointerPointer = RootNodePointerPointer;
   CurrentNodePointerPointer = (void**)RootNodePointerPointer[1];
   while (SystemNodeActiveFlag == '\0') {
@@ -11375,7 +11375,7 @@ void InitializeSystemStringProcessorR(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -11525,7 +11525,7 @@ void InitializeSystemStringProcessorU(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -11625,7 +11625,7 @@ void InitializeSystemStringProcessorW(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -11725,7 +11725,7 @@ void InitializeSystemStringProcessorY(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -11883,7 +11883,7 @@ void InitializeSystemMemoryManagerB(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -11983,7 +11983,7 @@ void InitializeSystemMemoryManagerD(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12083,7 +12083,7 @@ void InitializeSystemMemoryManagerF(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12193,7 +12193,7 @@ void InitializeSystemDataTableConfigurator(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12255,7 +12255,7 @@ void InitializeSystemMemoryManagerG(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12305,7 +12305,7 @@ void InitializeSystemMemoryManagerH(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12355,7 +12355,7 @@ void InitializeSystemMemoryManagerI(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12413,7 +12413,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12471,7 +12471,7 @@ void InitializeSystemEventDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12529,7 +12529,7 @@ void InitializeSystemResourceNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12645,7 +12645,7 @@ void InitializeSystemDeviceNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12807,7 +12807,7 @@ void InitializeSystemDeviceNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12864,7 +12864,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12921,7 +12921,7 @@ void InitializeSystemEventDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -12978,7 +12978,7 @@ void InitializeSystemMemoryAllocatorNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -13035,7 +13035,7 @@ void InitializeSystemConfigurationNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -13092,7 +13092,7 @@ void InitializeSystemEventNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -13149,7 +13149,7 @@ void InitializeSystemResourceNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -13263,7 +13263,7 @@ void InitializeSystemStringProcessor(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -13492,7 +13492,7 @@ void InitializeSystemResourceDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -13606,7 +13606,7 @@ void InitializeSystemStringDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -13720,7 +13720,7 @@ void InitializeSystemDeviceDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -13966,7 +13966,7 @@ void InitializeSystemPerformanceNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14080,7 +14080,7 @@ void InitializeSystemNetworkNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14194,7 +14194,7 @@ void InitializeSystemProcessNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14368,7 +14368,7 @@ void InitializeSystemEventManagerI(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14472,7 +14472,7 @@ void InitializeSystemEventManagerK(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14576,7 +14576,7 @@ void InitializeSystemEventManagerM(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14786,7 +14786,7 @@ void InitializeSystemResourceManagerB(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14838,7 +14838,7 @@ void InitializeSystemResourceManagerC(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14890,7 +14890,7 @@ void InitializeSystemResourceManagerD(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14942,7 +14942,7 @@ void InitializeSystemResourceManagerE(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -14995,7 +14995,7 @@ void InitializeSystemResourceManagerF(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15048,7 +15048,7 @@ void InitializeSystemResourceManagerG(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15101,7 +15101,7 @@ void InitializeSystemResourceManagerH(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15216,7 +15216,7 @@ void InitializeSystemResourceManagerJ(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15382,7 +15382,7 @@ void InitializeSystemDebugManagerA(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15435,7 +15435,7 @@ void InitializeSystemDebugManagerB(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15546,7 +15546,7 @@ void InitializeSystemResourceAllocator(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15604,7 +15604,7 @@ void InitializeSystemDataTableAllocator(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15655,7 +15655,7 @@ void InitializeSystemResourceComponent(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15706,7 +15706,7 @@ void InitializeSystemAllocatorComponent(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15757,7 +15757,7 @@ void InitializeSystemConfigurationComponent(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15808,7 +15808,7 @@ void InitializeSystemCoreComponent(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15859,7 +15859,7 @@ void InitializeSystemMemoryComponent(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -15961,7 +15961,7 @@ void InitializeSystemEventComponent(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16012,7 +16012,7 @@ void InitializeSystemSecurityComponent(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16063,7 +16063,7 @@ void InitializeSystemNetworkComponent(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16432,7 +16432,7 @@ void InitializeSystemSubcomponentA(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16536,7 +16536,7 @@ void InitializeSystemSubcomponentC(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16640,7 +16640,7 @@ void InitializeSystemSubcomponentE(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16692,7 +16692,7 @@ void InitializeSystemSubcomponentF(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16744,7 +16744,7 @@ void InitializeSystemSubcomponentG(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16796,7 +16796,7 @@ void InitializeSystemSubcomponentH(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16903,7 +16903,7 @@ void InitializeSystemSubcomponentI(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -16955,7 +16955,7 @@ void InitializeSystemSubcomponentJ(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17007,7 +17007,7 @@ void InitializeSystemSubcomponentK(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17059,7 +17059,7 @@ void InitializeSystemSubcomponentL(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17160,7 +17160,7 @@ void InitializeSystemSubcomponentN(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17216,7 +17216,7 @@ void InitializeSystemNodeManagerPrimary(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17504,7 +17504,7 @@ void InitializeSystemResourceManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17620,7 +17620,7 @@ void InitializeSystemMemoryManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17740,7 +17740,7 @@ void InitializeSystemResourceInitializationNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17852,7 +17852,7 @@ void InitializeBaseAllocatorNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17908,7 +17908,7 @@ void InitializeSystemDataTableNode(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -17964,7 +17964,7 @@ void ResourceInitializationCallbackSetter(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -18020,7 +18020,7 @@ void SystemAllocatorNodeInitializer(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -18076,7 +18076,7 @@ void SystemConfigurationNodeInitializer(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -18132,7 +18132,7 @@ void SystemEventNodeInitializer(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -18188,7 +18188,7 @@ void SystemMemoryManagementNodeInitializer(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -18300,7 +18300,7 @@ void SystemResourceTrackerInitializer(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -19009,7 +19009,7 @@ void InitializeMainSystemController(long long SystemParameter)
   }
   SystemGlobalControllerPointer = ControllerPointer;
   if ((void* )SystemGlobalControllerPointer == &SystemVirtualTableTemplateB) {
-    if (SystemInitStatusFlag != 0) {
+    if (SystemInitializationStatusFlag != 0) {
       InitializeSystemEventDispatcher();
     }
   }
@@ -19196,7 +19196,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
     SystemGlobalDataReferencePtrSecondary = &SystemGlobalDataReference;
     GlobalDataFlagsSecondary = 0;
     AlternateStringBufferSecondary = (void* *)0x0;
-    SystemInitStatusFlag = 0;
+    SystemInitializationStatusFlag = 0;
     SystemMemoryAllocationOffset = (long long *)ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,0x10);
     OperationResult = GetComputerNameA(ComputerNameBufferPointer,&MemoryBufferCapacityValue);
     if (OperationResult == 0) {
@@ -20980,12 +20980,12 @@ void InitializeSystemCoreEngine(void)
   SystemMemoryCallbackHandler = (long long **)SystemDataTable;
   (*(code *)(*SystemDataTable)[5])(SystemDataTable);
   SystemOperationStatus = SystemAllocationTemplate;
-  SystemInitStatusFlag = 1;
+  SystemInitializationStatusFlag = 1;
   SystemDataTableManager = &SystemMemoryCallbackHandler;
   SystemMemoryCallbackHandler = (long long **)SystemDataTable;
   (*(code *)(*SystemDataTable)[5])(SystemDataTable);
   SystemManagerInitialize(SystemOperationStatus,&SystemMemoryCallbackHandler);
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   (*(code *)(*SystemDataTable)[7])(SystemDataTable);
   InitializeSystemContext(&LocalStackConfigurationPointer,&SystemConfigurationTemplate);
   if (IntegerStackInitializationFlag == 0) {
@@ -25939,11 +25939,11 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   char arrayChar336 [2];
   uint MemoryAllocationSize;
   void* *MemoryContextPointer;
-  char *charPointer328;
+  char *SystemCharacterBufferPointer;
   uint SystemMemoryBufferCapacityValue;
   void* SystemMemoryBufferPointer;
   void* *GlobalDataReferencePointer;
-  uint8_t *GlobalDataReferencePointer8;
+  uint8_t *SystemGlobalDataBufferPointer;
   uint SystemResourceStatusFlag;
   void* SystemResourceValue;
   ulong long SystemDataIndexCounter;
@@ -26759,7 +26759,7 @@ void SystemDataInitializer(void)
     InitializeSystemDataMemoryContext(resourceAllocationContext,&SystemModuleContextPointerA,0);
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
-  if (SystemInitStatusFlag != 0) {
+  if (SystemInitializationStatusFlag != 0) {
     FinalizeSystemMemorySetup();
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
@@ -26779,7 +26779,7 @@ void SystemDataInitializer(void)
     InitializeSystemDataMemoryContext(resourceAllocationContext,&SystemModuleContextPointerA,0);
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
-  if (SystemInitStatusFlag != 0) {
+  if (SystemInitializationStatusFlag != 0) {
     FinalizeSystemMemorySetup();
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
@@ -26791,7 +26791,7 @@ void SystemDataInitializer(void)
     InitializeSystemDataMemoryContext(resourceAllocationContext,&SystemModuleContextPointerA,0);
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
-  if (SystemInitStatusFlag != 0) {
+  if (SystemInitializationStatusFlag != 0) {
     FinalizeSystemMemorySetup();
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
@@ -27081,12 +27081,12 @@ void InitializeSystemResourceAllocator(long long systemResourceHandle)
   UNLOCK();
   resourceDataIndex = SystemPerformancePreviousStorage;
   if (SystemPerformancePreviousStorage == 0) {
-    QueryPerformanceCounter(&stackValue20);
-    resourceDataIndex = stackValue20;
+    QueryPerformanceCounter(&SystemPerformanceTimestamp);
+    resourceDataIndex = SystemPerformanceTimestamp;
   }
   *(double *)(systemResourceHandle + 0x68) = (double)(resourceDataIndex - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage;
   if (SystemMemoryFlag != '\0') {
-    stackValue58 = 0x180c91288;
+    SystemMutexAddress = 0x180c91288;
     SystemOperationStatus = _Mtx_lock(0x180c91288);
     if (SystemOperationStatus != 0) {
       __Throw_C_error_std__YAXH_Z(SystemOperationStatus);
@@ -27490,7 +27490,7 @@ bool SystemResourceValidator(long long SystemResourceManager)
   void* *ThreadLocalStorage;
   void* *GlobalDataReferencePointer;
   byte *SystemByteBuffer28;
-  int SystemInteger20;
+  int SystemOperationFlag;
   
   SystemDataPointer = (void* *)(SystemResourceManager + 0x2e0);
   SetupSystemMemory(&GlobalDataReferencePointer);
@@ -27498,7 +27498,7 @@ bool SystemResourceValidator(long long SystemResourceManager)
   ThreadLocalStorage = SystemDataPointer;
   if (SystemThreadStorage != (void* *)0x0) {
     do {
-      if (SystemInteger20 == 0) {
+      if (SystemOperationFlag == 0) {
         isValidOperation = false;
         SystemHashBucket = (void* *)SystemThreadStorage[1];
       }
@@ -27674,14 +27674,14 @@ void SystemMemoryAllocator(long long resourceManagerPointer, long long allocatio
     return;
   }
   SystemProcessFlagsPointer = &SystemGlobalDataReference;
-  SystemProcessFlags58 = 0;
-  EncryptionValue68 = (void**)0x0;
+  SystemProcessFlags = 0;
+  EncryptionKeyPointer = (void**)0x0;
   SystemThreadContext = 0;
   ResourceAddressPointer = (void**)CreateSystemThreadObject(SystemMemoryPoolTemplate, 0x10, 0x13, ConfigurationFlag, InvalidHandleValue);
   *(uint8_t*)ResourceAddressPointer = 0;
-  EncryptionValue68 = ResourceAddressPointer;
+  EncryptionKeyPointer = ResourceAddressPointer;
   resourceCreationFlags = StartSystemThread(ResourceAddressPointer);
-  SystemProcessFlags58 = ConcatenatedSystemValue(SystemProcessFlags58.HighPart, resourceCreationFlags);
+  SystemProcessFlags = ConcatenatedSystemValue(SystemProcessFlags.HighPart, resourceCreationFlags);
   *ResourceAddressPointer = 0x53454c55444f4d5f;
   *(void**)(ResourceAddressPointer + 1) = 0x2a5f;
   *(uint8_t*)((long long)ResourceAddressPointer + 10) = 0;
@@ -28709,7 +28709,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   
   MemoryBufferPointer = 0xfffffffffffffffe;
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)StackArray238;
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   StackDoublePointerF0 = &pGlobalDataFlags;
   pGlobalDataFlags = &SystemGlobalDataReference;
   StackVariable1a8 = 0;
@@ -28808,7 +28808,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   LongStackVariable1d8 = SystemMemoryAllocationOffset200;
   SystemThreadStackSize.PrimaryField = (uint32_t)SystemResourceOffset1f0;
   SystemOperationOffset1f8 = 0;
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   SystemMemoryAllocationOffset200 = 0;
   SystemResourceOffset1f0 = 0;
   SystemGlobalReference208 = &SystemMemoryAllocatorReference;
@@ -30154,13 +30154,13 @@ void ManageSystemResourceBuffer(void* SystemResourceManager,void* ConfigurationD
   *(uint8_t *)(SystemConfigurationBlock + 0x3a0) = 1;
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
-  if (SystemInitStatusFlag != 0) {
+  if (SystemInitializationStatusFlag != 0) {
     FinalizeSystemMemorySetup();
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
-  if (SystemInitStatusFlag != 0) {
+  if (SystemInitializationStatusFlag != 0) {
     FinalizeSystemMemorySetup();
   }
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
@@ -44457,7 +44457,7 @@ SystemResultCheckLoop:
       SystemCleanupFunction();
   }
   SystemGlobalDataReferencePtr2 = (void* *)0x0;
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   pStackAllocationSize = &SystemMemoryAllocatorReference;
   MemoryContextPointer = &SystemGlobalDataReference;
   if (StackInteger328 == 0) {
@@ -51312,7 +51312,7 @@ void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* Configu
   
   ResourceOffset = SystemInitializationFlag;
   SystemValue = 0xfffffffffffffffe;
-  if (SystemInitStatusFlag != 0) {
+  if (SystemInitializationStatusFlag != 0) {
     SystemFlags = SystemInitializationFlag + 0xf0;
     DataIndex = SystemInitializationFlag + 0x110;
     SystemIndex = _Mtx_lock(DataIndex);
@@ -64113,7 +64113,7 @@ MemoryAllocationRetry:
     } while (SystemConfigurationPointer != 0);
   }
   SystemContextPointer = 0;
-  SystemInitStatusFlag = 0;
+  SystemInitializationStatusFlag = 0;
   if (*SystemIntegerPointer < 1) {
 ResourceInitializationLoop:
     InitializeResourceBuffer(&longValue170);
