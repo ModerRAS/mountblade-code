@@ -867,10 +867,10 @@ void *NetworkConnectionConfigSecondary = &NetworkConnectionSecondaryConfig;
 void *NetworkConnectionConfigProcessing = &NetworkConnectionProcessingConfig;
 void *NetworkConnectionConfigTransport = &NetworkConnectionTransportConfig;
 void *NetworkConnectionConfigProtocol = &NetworkConnectionProtocolConfig;
-void *NetworkConnectionValidationConfiguration = &NetworkConnectionValidationConfig;
-void *NetworkConnectionRoutingConfigurationPrimary = &NetworkConnectionRoutingPrimaryConfig;
-void *NetworkConnectionRoutingConfigurationSecondary = &NetworkConnectionRoutingSecondaryConfig;
-void *NetworkConnectionRoutingConfigurationTertiary = &NetworkConnectionRoutingTertiaryConfig;
+void *NetworkConnectionConfigValidation = &NetworkConnectionValidationConfig;
+void *NetworkConnectionRoutingConfigPrimary = &NetworkConnectionRoutingPrimaryConfig;
+void *NetworkConnectionRoutingConfigSecondary = &NetworkConnectionRoutingSecondaryConfig;
+void *NetworkConnectionRoutingConfigTertiary = &NetworkConnectionRoutingTertiaryConfig;
 void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingQuaternaryConfig;
 
 // 网络连接配置数据定义
