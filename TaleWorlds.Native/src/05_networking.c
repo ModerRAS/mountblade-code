@@ -1604,14 +1604,14 @@ void NetworkInitializeConnectionState(void)
 void NetworkResetConnectionPointer(void)
 {
   // 连接指针重置变量
-  uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
+  uint8_t *NetworkConnectionStateBuffer;                   // 连接状态缓冲区指针
   int64_t NetworkContextData;                       // 网络上下文数据
   uint64_t *NetworkDataBuffer;                      // 网络数据缓冲区指针
   uint32_t ConnectionStateFlags;                    // 连接状态标志位
   int32_t ConnectionId;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionId) + ConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionId) + ConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + ConnectionStateDataOffset);

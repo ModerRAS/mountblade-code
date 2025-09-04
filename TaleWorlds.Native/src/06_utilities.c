@@ -4556,16 +4556,16 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     MaximumItemLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
-    ValidationStatusCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset),
+    ValidationResultCode = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset),
                           &ObjectListBuffer);
-    if (ValidationStatusCode == 0) {
+    if (ValidationResultCode == 0) {
       TotalItemCount = *(int *)(ObjectListBuffer + ObjectDataArraySizeOffset);
       if (0 < TotalItemCount) {
         CollectionItemIterator = 0;
         do {
           uint8_t CurrentObjectState = *(uint8_t *)(ObjectListBuffer + CollectionItemIterator);
-          ValidationStatusCode = ValidateObjectStatus(CurrentObjectState);
-          if (ValidationStatusCode != RegistrationStatusSuccess) {
+          ValidationResultCode = ValidateObjectStatus(CurrentObjectState);
+          if (ValidationResultCode != RegistrationStatusSuccess) {
                   HandleInvalidObject(CurrentObjectState, 1);
           }
           ProcessedItemCount++;
