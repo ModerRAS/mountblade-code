@@ -83026,7 +83026,14 @@ void SetSystemDataStructurePointerToOffset318(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090c980(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置系统数据结构指针到偏移量0x350
+ * 在验证上下文的指定偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToOffset350(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x350) = &SystemDataStructure;
