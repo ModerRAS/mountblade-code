@@ -923,14 +923,14 @@ uint32_t NetworkConnectionRoutingSecondaryConfig = 0x00;  // 网络连接路由�
  * 
  * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
  */
-uint32_t NetworkConnectionRoutingConfigTertiaryData = 0x00;   // 网络连接路由第三配置数据
+uint32_t NetworkConnectionRoutingTertiaryConfig = 0x00;   // 网络连接路由第三配置数据
 
 /**
  * @brief 网络连接路由第四配置数据
  * 
  * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
  */
-uint32_t NetworkConnectionRoutingConfigQuaternaryData = 0x00;  // 网络连接路由第四配置数据
+uint32_t NetworkConnectionRoutingQuaternaryConfig = 0x00;  // 网络连接路由第四配置数据
 
 /**
  * @brief 初始化网络套接字句柄

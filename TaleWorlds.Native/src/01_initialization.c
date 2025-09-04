@@ -2599,7 +2599,7 @@ void InitializeSystemEventManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -2935,7 +2935,7 @@ void InitializeSystemDataTableStructureC(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -2991,7 +2991,7 @@ void InitializeSystemDataTableStructureD(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3047,7 +3047,7 @@ void InitializeSystemDataTableStructureE(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3103,7 +3103,7 @@ void InitializeSystemDataTableStructureF(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3215,7 +3215,7 @@ void InitializeSystemDataTableStructureH(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3271,7 +3271,7 @@ void InitializeSystemDataTableStructureI(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3377,7 +3377,7 @@ void InitializeSystemMemoryManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3536,7 +3536,7 @@ void InitializeSystemNodeTree(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3751,7 +3751,7 @@ void InitializeEventSystem(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3806,7 +3806,7 @@ void InitializeSystemMemoryManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3861,7 +3861,7 @@ void InitializeSystemThreadPoolManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -3973,7 +3973,7 @@ void InitializeSystemNodeTree(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -4195,7 +4195,7 @@ void InitializeSystemSecurityManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -4250,7 +4250,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -4362,7 +4362,7 @@ void InitializeSystemMemoryAllocator(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -4704,7 +4704,7 @@ void InitializeSystemEventHandler(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -4761,7 +4761,7 @@ void InitializeSystemNetworkManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -4875,7 +4875,7 @@ void InitializeSystemDataTableStructureA(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -5828,7 +5828,7 @@ void InitializeSystemConfigurationNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -5885,7 +5885,7 @@ void InitializeSystemEventNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -6541,7 +6541,7 @@ void InitializeSystemDataTableNode(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -6599,7 +6599,7 @@ void InitializeSystemConfigurationNode(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -6715,7 +6715,7 @@ void InitializeSystemNodeTreeProcessor(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -6947,7 +6947,7 @@ void InitializeSystemEventHandler(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -7005,7 +7005,7 @@ void InitializeSystemTaskManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -7121,7 +7121,7 @@ void InitializeSystemCommunicationManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -7484,7 +7484,7 @@ void InitializeSystemSearchManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -7542,7 +7542,7 @@ void InitializeSystemIndexManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -7600,7 +7600,7 @@ void InitializeSystemCacheManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -7658,7 +7658,7 @@ void InitializeSystemLogManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -7716,7 +7716,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -7832,7 +7832,7 @@ void InitializeSystemEventDispatcher(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8064,7 +8064,7 @@ void InitializeSystemStorageManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8122,7 +8122,7 @@ void InitializeSystemProcessManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8180,7 +8180,7 @@ void InitializeSystemThreadManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8334,7 +8334,7 @@ void InitializeSystemMemoryManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8538,7 +8538,7 @@ void InitializeSystemNetworkManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8589,7 +8589,7 @@ void InitializeSystemStorageManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8640,7 +8640,7 @@ void InitializeSystemMemoryManagerNode(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8691,7 +8691,7 @@ void InitializeSystemConfigurationManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8793,7 +8793,7 @@ void InitializeSystemProcessManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8844,7 +8844,7 @@ void InitializeSystemDeviceManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -8946,7 +8946,7 @@ void InitializeSystemDriverManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -9263,7 +9263,7 @@ void InitializeSystemFrameworkManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -9713,7 +9713,7 @@ void InitializeSystemSecurityNode(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -10312,7 +10312,7 @@ void InitializeSystemSearchConfigurationManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -10623,7 +10623,7 @@ void InitializeSystemStringProcessorE(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -10673,7 +10673,7 @@ void InitializeSystemStringProcessorF(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -10773,7 +10773,7 @@ void InitializeSystemStringProcessorH(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -10973,7 +10973,7 @@ void InitializeSystemStringProcessorL(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -11023,7 +11023,7 @@ void InitializeSystemStringProcessorM(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -11361,7 +11361,7 @@ void InitializeSystemStringProcessorS(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -11411,7 +11411,7 @@ void InitializeSystemStringProcessorT(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -11511,7 +11511,7 @@ void InitializeSystemStringProcessorV(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -11719,7 +11719,7 @@ void InitializeSystemStringProcessorZ(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -11769,7 +11769,7 @@ void InitializeSystemMemoryManagerA(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -11869,7 +11869,7 @@ void InitializeSystemMemoryManagerC(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -12074,7 +12074,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -12523,7 +12523,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -12686,7 +12686,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -13142,7 +13142,7 @@ void InitializeSystemDataNode(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -13314,7 +13314,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -13371,7 +13371,7 @@ void InitializeSystemEventDataNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -13485,7 +13485,7 @@ void InitializeSystemDataNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -13731,7 +13731,7 @@ void InitializeSystemSearchNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -13788,7 +13788,7 @@ void InitializeSystemDebugNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -13845,7 +13845,7 @@ void InitializeSystemLoggingNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -13959,7 +13959,7 @@ void InitializeSystemSecurityNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -14188,7 +14188,7 @@ void InitializeSystemEventManagerG(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -14246,7 +14246,7 @@ void InitializeSystemEventManagerH(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -14356,7 +14356,7 @@ void InitializeSystemEventManagerJ(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -14670,7 +14670,7 @@ void InitializeSystemResourceManagerA(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -15090,7 +15090,7 @@ void InitializeSystemResourceManagerI(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -15424,7 +15424,7 @@ void InitializeSystemDebugManagerC(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -15846,7 +15846,7 @@ void InitializeSystemThreadComponent(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -16050,7 +16050,7 @@ void InitializeSystemDatabaseComponent(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -16101,7 +16101,7 @@ void InitializeSystemLoggingComponent(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -16163,7 +16163,7 @@ void InitializeSystemPerformanceComponent(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -16214,7 +16214,7 @@ void InitializeSystemDiagnosticComponent(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -16265,7 +16265,7 @@ void InitializeSystemDebugComponent(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -16316,7 +16316,7 @@ void InitializeSystemPluginComponent(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -16420,7 +16420,7 @@ void InitializeSystemSubcomponentB(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -17265,7 +17265,7 @@ void InitializeSystemNodeManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -17324,7 +17324,7 @@ void InitializeSystemSearchManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -17732,7 +17732,7 @@ void InitializeGameCoreSystemNode(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
@@ -18180,7 +18180,7 @@ void SystemThreadManagerInitializer(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemCallbackPointer;
+  void* SystemEventCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;

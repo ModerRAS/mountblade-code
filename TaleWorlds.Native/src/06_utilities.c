@@ -83042,7 +83042,14 @@ void SetSystemDataStructurePointerToOffset350(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090c990(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行偏移量0x140处的回调函数
+ * 检查验证上下文中偏移量0x140处的函数指针，如果存在则执行
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteCallbackAtOffset140(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x140) != (int64_t *)0x0) {
@@ -83053,7 +83060,14 @@ void Unwind_18090c990(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c9a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 清理资源数据标志位
+ * 检查资源数据的标志位，如果设置了第一位则清除并执行资源操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceDataFlagAndProcess(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
