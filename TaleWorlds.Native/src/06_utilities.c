@@ -16032,8 +16032,13 @@ uint8_t ValidateResourceRenderingState(void)
 
 
 
- void ExecuteNullOperation(void)
-
+ /**
+ * @brief 空操作函数
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 用作占位符或默认的空实现
+ */
+void ExecuteNullOperation(void)
 {
   return;
 }
