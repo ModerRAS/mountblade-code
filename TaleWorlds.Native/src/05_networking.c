@@ -2530,42 +2530,42 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   if (PacketData && *PacketData != 0) {
     // 验证主魔数
     if (PrimaryMagicNumber == NetworkPacketMagicLiveConnection || PrimaryMagicNumber == NetworkPacketMagicValidation) {
-      PacketMagicValidationResult |= NetworkPacketFirstMagicValidMask;
+      MagicValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证次魔数
     if (SecondaryMagicNumber == NetworkPacketMagicBinaryData || SecondaryMagicNumber == NetworkMagicDebugMemoryCheck) {
-      PacketMagicValidationResult |= NetworkPacketSecondMagicValidMask;
+      MagicValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
   
   // 检查数据完整性
-  if (PacketMagicValidationResult == NetworkPacketMagicValidationMask) {
-    PacketDataIntegrityStatus = NetworkValidationSuccess;
+  if (MagicValidationResult == NetworkPacketMagicValidationMask) {
+    DataIntegrityStatus = NetworkValidationSuccess;
   }
   
   // 根据解码模式处理数据
   if (DecodingMode == NetworkPacketBasicDecodingMode) {
     // 基本解码模式
-    PacketDecodingStatus = PacketMagicValidationResult & NetworkPacketMagicValidationMask;
+    DecodingStatus = MagicValidationResult & NetworkPacketMagicValidationMask;
   } else if (DecodingMode == NetworkPacketStrictDecodingMode) {
     // 严格解码模式
-    PacketDecodingStatus = PacketDataIntegrityStatus & NetworkValidationSuccess;
+    DecodingStatus = DataIntegrityStatus & NetworkValidationSuccess;
   } else {
     // 默认解码模式
-    PacketDecodingStatus = NetworkValidationSuccess;
+    DecodingStatus = NetworkValidationSuccess;
   }
   
   // 设置输出缓冲区
   if (OutputBuffer) {
     memset(OutputBuffer, 0, NetworkStandardBufferSize);
-    OutputBuffer[0] = (NetworkByte)PacketDecodingStatus;
-    OutputBuffer[1] = (NetworkByte)PacketMagicValidationResult;
-    OutputBuffer[2] = (NetworkByte)PacketDataIntegrityStatus;
+    OutputBuffer[0] = (NetworkByte)DecodingStatus;
+    OutputBuffer[1] = (NetworkByte)MagicValidationResult;
+    OutputBuffer[2] = (NetworkByte)DataIntegrityStatus;
     OutputBuffer[3] = (NetworkByte)DecodingMode;
   }
   
-  return PacketDecodingStatus;  // 返回解码状态
+  return DecodingStatus;  // 返回解码状态
 }
 
 /**
