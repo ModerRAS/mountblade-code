@@ -1951,8 +1951,8 @@ NetworkMainProcessingLoop:
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                            NetworkConnectionFinalizeValue, 0);
     if (NetworkStatusBufferPointer != (NetworkStatus *)0x0) {
-      int32_t ProcessingStatusCode = (int)NetworkOperationBuffer[1];
-      int64_t NetworkStatusIterator = (long long)ProcessingStatusCode;
+      int32_t NetworkProcessingCode = (int)NetworkOperationBuffer[1];
+      int64_t NetworkStatusIterator = (long long)NetworkProcessingCode;
       if ((ProcessingStatusCode != 0) && (NetworkContextHandle = *NetworkOperationBuffer, 0 < ProcessingStatusCode)) {
         NetworkStatus *NetworkStatusBuffer = NetworkStatusBufferPointer;
         do {
