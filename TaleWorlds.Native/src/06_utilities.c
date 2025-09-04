@@ -15250,15 +15250,15 @@ void SystemInitializerPrimary(void)
               ResourceTemplatePointer = &SystemResourceTemplateMemory;
               ContextBufferPointer = StackContextBuffer;
               FloatRegisterValue = FloatRegisterValue;
-              floatResourceValue = FloatRegisterValue;
-              ResourceIndexTertiary = GetAndValidateResourceData(resourceSecurityHash,&PrimaryObjectResourceBuffer);
-              ResourceHashValidationQuaternary = resourceHashValue;
+              FloatResourceValue = FloatRegisterValue;
+              ResourceIndexTertiary = GetAndValidateResourceData(ResourceSecurityHash,&PrimaryObjectResourceBuffer);
+              ResourceHashValidationQuaternary = ResourceHashValue;
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
             }
             if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 3 & 1) != 0) {
-              resourceTemplatePointer = &SystemResourceTemplateNetwork;
-              contextBufferPointer = StackContextBuffer;
-              floatRegisterValue = FloatRegisterValue;
+              ResourceTemplatePointer = &SystemResourceTemplateNetwork;
+              ContextBufferPointer = StackContextBuffer;
+              FloatRegisterValue = FloatRegisterValue;
               GetAndValidateResourceData(ResourceHashValidationQuaternary,&PrimaryObjectResourceBuffer);
             }
           }
