@@ -91311,7 +91311,17 @@ void RegisterResourceOperationHandler4(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_18090e5a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调3
+ * 
+ * 在系统unwind过程中执行资源清理回调，
+ * 处理偏移量0xe18处的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e5a0
+ */
+void ExecuteResourceCleanupCallback3(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -91325,7 +91335,17 @@ void Unwind_18090e5a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e5c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源类型处理器488
+ * 
+ * 在系统unwind过程中注册资源类型处理器，
+ * 处理大小为0x488的资源类型。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e5c0
+ */
+void RegisterResourceTypeHandler488(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0xe8),0x488,2,ResourceTypeHandler488);
@@ -91334,7 +91354,17 @@ void Unwind_18090e5c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e5f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源类型处理器128
+ * 
+ * 在系统unwind过程中注册资源类型处理器，
+ * 处理大小为0x128的资源类型。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e5f0
+ */
+void RegisterResourceTypeHandler128(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0xe8),0x128,2,ResourceTypeHandler128);
@@ -91343,7 +91373,17 @@ void Unwind_18090e5f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e620(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源类型处理器018
+ * 
+ * 在系统unwind过程中注册资源类型处理器，
+ * 处理大小为0x18的资源类型。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e620
+ */
+void RegisterResourceTypeHandler018(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 8,0x18,2,ResourceTypeHandler018);
@@ -91352,7 +91392,17 @@ void Unwind_18090e620(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e650(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调4
+ * 
+ * 在系统unwind过程中执行资源清理回调，
+ * 处理偏移量8处的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e650
+ */
+void ExecuteResourceCleanupCallback4(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -91366,7 +91416,17 @@ void Unwind_18090e650(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e660(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调5
+ * 
+ * 在系统unwind过程中执行资源清理回调，
+ * 处理偏移量0xe8+8处的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e660
+ */
+void ExecuteResourceCleanupCallback5(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
