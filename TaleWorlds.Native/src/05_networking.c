@@ -653,11 +653,11 @@ uint32_t NetworkClientIpAddress;                          // 网络客户端IP�
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号
 
 // 网络套接字和缓冲区配置
-uint32_t NetworkSocketDescriptor;                     // 网络套接字文件描述符
-uint32_t NetworkSocketCategory;                           // 网络套接字类别
-uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型
+uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符
+uint32_t NetworkSocketType;                           // 网络套接字类别
+uint32_t NetworkSocketProtocol;                       // 网络套接字协议类型
 uint32_t NetworkSocketIndex;                              // 网络套接字索引
-uint32_t NetworkSocketData;                                // 网络套接字数据
+uint32_t NetworkSocketDataBuffer;                                // 网络套接字数据
 uint32_t NetworkSocketContext;                              // 网络套接字上下文
 uint32_t NetworkSocketSize;                                  // 网络套接字大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本
