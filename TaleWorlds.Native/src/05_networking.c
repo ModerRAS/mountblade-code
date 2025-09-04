@@ -1502,7 +1502,6 @@ uint32_t NetworkConnectionOptions;                        // 网络连接选项
 uint32_t NetworkConnectionConfig;                         // 网络连接配置
 uint32_t NetworkConnectionSettings;                       // 网络连接设置
 uint32_t NetworkConnectionContextHandle;                 // 网络连接上下文句柄
-uint32_t NetworkConnectionContextSize;                  // 网络连接上下文大小
 uint32_t NetworkConnectionContextData;                  // 网络连接上下文数据
 uint32_t NetworkConnectionContextConfig;                // 网络连接上下文配置
 uint32_t NetworkValidationResultPointer;              // 连接验证结果指针
