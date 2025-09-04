@@ -37068,7 +37068,7 @@ uint32_t GetSystemResourceStatus(long long SystemResourceManager)
  * 
  * @return 系统输入管理器的综合状态值
  * 
- 05cfc0：CheckSystemInputManagerStatus
+ CheckSystemInputManagerStatus
  */
 int CheckSystemInputManagerStatus(void)
 
@@ -37127,7 +37127,7 @@ int CheckSystemInputManagerStatus(void)
  * @param SystemResourceManager 系统资源指针
  * @param ConfigurationDataPointer 配置数据指针
  * 
- 05d0e0：InitializeSystemResources
+ InitializeSystemResources
  */
 void InitializeSystemResources(ulong long SystemResourceManager,long long ConfigurationDataPointer)
 
@@ -37290,7 +37290,7 @@ void ProcessExtraOutputResource(void* SystemResourceManager,long long Configurat
  * @note 此函数会递归调用自身处理配置数据
  * @warning 此函数包含不返回的子程序调用，可能导致程序终止
  * 
- 05d260：ProcessSystemResourceConfiguration
+ ProcessSystemResourceConfiguration
  */
 void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* *ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -37324,7 +37324,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* *Confi
  * @param ConfigurationFlag 配置标志
  * @note 此函数内部调用ProcessSystemResourceConfiguration处理配置数据
  * 
- 05d310：ProcessSystemResourceConfigurationWrapper
+ ProcessSystemResourceConfigurationWrapper
  */
 void ProcessSystemResourceConfigurationWrapper(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -37348,7 +37348,7 @@ void ProcessSystemResourceConfigurationWrapper(long long SystemResourceManager,v
  * @param ConfigurationFlag 配置标志
  * @note 此函数内部调用ProcessSystemResourceConfiguration处理配置数据
  * 
- 05d330：ProcessSystemResourceConfigurationWrapperB
+ ProcessSystemResourceConfigurationWrapperB
  */
 void ProcessSystemResourceConfigurationWrapperB(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -37372,7 +37372,7 @@ void ProcessSystemResourceConfigurationWrapperB(long long SystemResourceManager,
  * @param ConfigurationFlag 配置标志
  * @note 此函数内部调用ProcessSystemResourceConfiguration处理配置数据
  * 
- 05d360：ProcessSystemResourceConfigurationWrapperC
+ ProcessSystemResourceConfigurationWrapperC
  */
 void ProcessSystemResourceConfigurationWrapperC(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -37396,7 +37396,7 @@ void ProcessSystemResourceConfigurationWrapperC(long long SystemResourceManager,
  * @param ConfigurationFlag 配置标志，用于格式化参数
  * @note 此函数使用标准输出流进行格式化输出
  * 
- 05d3a0：FormatSystemResourceOutput
+ FormatSystemResourceOutput
  */
 void FormatSystemResourceOutput(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -37429,7 +37429,7 @@ void FormatSystemResourceOutput(void* SystemResourceManager,void* ConfigurationD
  * @return 匹配的资源指针，如果未找到则返回NULL
  * @note 此函数使用字符串长度和内容比较进行精确匹配
  * 
- 05d400：SearchSystemResourceString
+ SearchSystemResourceString
  */
 void* * SearchSystemResourceString(long long SystemResourceManager,char *ConfigurationDataPointer)
 
@@ -37493,7 +37493,7 @@ void* * SearchSystemResourceString(long long SystemResourceManager,char *Configu
  * @return 匹配的配置数据指针，如果未找到则返回NULL
  * @note 此函数使用字符串长度和内容比较进行精确匹配
  * 
- 05d430：SearchAndCompareSystemResourceString
+ SearchAndCompareSystemResourceString
  */
 void* * SearchAndCompareSystemResourceString(void* SystemResourceManager,void* *ConfigurationDataPointer)
 
@@ -37545,7 +37545,7 @@ void* * SearchAndCompareSystemResourceString(void* SystemResourceManager,void* *
  * @param ConfigurationDataPointer 配置数据指针
  * @return 匹配的数据指针，如果未找到则返回NULL
  * 
- 05d484：FindSystemResourceDataPointer
+ FindSystemResourceDataPointer
  */
 void* * FindSystemResourceDataPointer(void* SystemResourceManager,void* *ConfigurationDataPointer)
 
@@ -37595,7 +37595,7 @@ void* * FindSystemResourceDataPointer(void* SystemResourceManager,void* *Configu
  * @param SystemResourceManager 系统资源指针
  * @return 数据指针
  * 
- 05d498：GetSystemResourceDataPointer
+ GetSystemResourceDataPointer
  */
 void* GetSystemResourceDataPointer(long long SystemResourceManager)
 
@@ -37616,7 +37616,7 @@ void* GetSystemResourceDataPointer(long long SystemResourceManager)
  * @param AdditionalParameter 额外参数（字符串长度）
  * @return 匹配的资源指针，未找到返回NULL
  * 
- 05d4b0：FindSystemResourceStringMatch
+ FindSystemResourceStringMatch
  */
 void* * FindSystemResourceStringMatch(long long SystemResourceManager,char *ConfigurationDataPointer,long long AdditionalParameter)
 
@@ -37682,7 +37682,7 @@ void* * FindSystemResourceStringMatch(long long SystemResourceManager,char *Conf
  * @param AdditionalParameter 额外参数（用于匹配）
  * @return 匹配的配置数据指针，未找到返回NULL
  * 
- 05d4e0：FindMatchingConfigurationResource
+ FindMatchingConfigurationResource
  */
 void* * FindMatchingConfigurationResource(void* SystemResourceManager,void* *ConfigurationDataPointer,long long AdditionalParameter)
 
@@ -37734,7 +37734,7 @@ void* * FindMatchingConfigurationResource(void* SystemResourceManager,void* *Con
  * @param AdditionalParameter 额外参数（用于匹配）
  * @return 匹配的配置数据指针，未找到返回NULL
  * 
- 05d534：FindMatchingConfigurationDataResource
+ FindMatchingConfigurationDataResource
  */
 void* * FindMatchingConfigurationDataResource(void* SystemResourceManager,void* *ConfigurationDataPointer,long long AdditionalParameter)
 
@@ -37783,7 +37783,7 @@ void* * FindMatchingConfigurationDataResource(void* SystemResourceManager,void* 
  * @param SystemResourceManager 系统资源指针
  * @return 配置指针
  * 
- 05d548：GetSystemResourceConfigurationPointer
+ GetSystemResourceConfigurationPointer
  */
 void* GetSystemResourceConfigurationPointer(long long SystemResourceManager)
 
@@ -38150,7 +38150,7 @@ void GlobalThreadManager(void)
  * 
  * @note 这是一个空操作函数，仅用于系统初始化的完整性
  * 
- 05db19：SystemNoOperationC
+ SystemNoOperationC
  */
 void SystemNoOperationC(void)
 
@@ -38169,7 +38169,7 @@ void SystemNoOperationC(void)
  * 
  * @param SystemResourceManager 系统资源指针，包含线程池信息
  * 
- 05db30：ResumeSystemThreads
+ ResumeSystemThreads
  */
 void ResumeSystemThreads(long long SystemResourceManager)
 
@@ -38205,7 +38205,7 @@ void ResumeSystemThreads(long long SystemResourceManager)
  * 
  * @note 这是一个系统线程恢复函数，使用寄存器变量进行线程管理
  * 
- 05db5e：ResumeSystemThreadsB
+ ResumeSystemThreadsB
  */
 void ResumeSystemThreadsB(void)
 
@@ -71281,7 +71281,7 @@ void* GetResourceOffsetPointer(void* resourcePointer);
  * 
  * @return 系统资源状态
  * 
- 05f430：GetSystemResourceStatus
+ GetSystemResourceStatus
  */
 long long GetSystemResourceStatus(void);
 
@@ -71290,7 +71290,7 @@ long long GetSystemResourceStatus(void);
  * 
  * 该函数负责初始化系统资源处理器，设置资源处理环境和参数
  * 
- 060200：InitializeSystemResourceHandler
+ InitializeSystemResourceHandler
  */
 void InitializeSystemResourceHandler(void);
 
@@ -71299,7 +71299,7 @@ void InitializeSystemResourceHandler(void);
  * 
  * 该函数负责验证系统资源上下文的有效性和完整性
  * 
- 060420：ValidateSystemResourceContext
+ ValidateSystemResourceContext
  */
 void ValidateSystemResourceContext(void);
 
@@ -71315,7 +71315,7 @@ void ValidateSystemResourceContext(void);
  * @param configurationMask 配置掩码
  * @return 配置结果状态
  * 
- 20eba0：ConfigureSystemResourceContext
+ ConfigureSystemResourceContext
  */
 char ConfigureSystemResourceContext(void* ResourceHandle, int ConfigFlag, long long AdditionalParameter, long long ConfigurationFlag, long long ConfigurationMask);
 
@@ -71324,7 +71324,7 @@ char ConfigureSystemResourceContext(void* ResourceHandle, int ConfigFlag, long l
  * 
  * 该函数负责完成系统资源的配置过程，进行最终的状态设置
  * 
- 20f530：FinalizeSystemResourceConfiguration
+ FinalizeSystemResourceConfiguration
  */
 void FinalizeSystemResourceConfiguration(void);
 
@@ -71333,7 +71333,7 @@ void FinalizeSystemResourceConfiguration(void);
  * 
  * 该函数负责清理系统资源处理器，释放相关资源
  * 
- 20e6c0：CleanupSystemResourceHandler
+ CleanupSystemResourceHandler
  */
 void CleanupSystemResourceHandler(void);
 
@@ -71345,7 +71345,7 @@ void CleanupSystemResourceHandler(void);
  * @param resourceHandle 资源句柄
  * @param releaseFlag 释放标志
  * 
- 64e0d0：ReleaseSystemResourceHandle
+ ReleaseSystemResourceHandle
  */
 void ReleaseSystemResourceHandle(void* ResourceHandle, int ReleaseFlag);
 
@@ -71361,7 +71361,7 @@ void ReleaseSystemResourceHandle(void* ResourceHandle, int ReleaseFlag);
  * @param SystemOperationStatus 系统状态
  * @return 处理结果状态
  * 
- 060e40：ProcessSystemResourceData
+ ProcessSystemResourceData
  */
 char ProcessSystemResourceData(void* ResourceHandle, void* DataPointer, void* ResultPointer, long long ConfigurationFlag, long long SystemOperationStatus);
 
@@ -71372,7 +71372,7 @@ char ProcessSystemResourceData(void* ResourceHandle, void* DataPointer, void* Re
  * 
  * @return 系统资源状态
  * 
- 060a50：ValidateSystemResourceStatus
+ ValidateSystemResourceStatus
  */
 char ValidateSystemResourceStatus(void);
 
