@@ -9009,7 +9009,6 @@ uint8_t ProcessParameterizedFloatComparison(uint32_t ComparisonParameter)
  * @warning 函数中使用了魔法数字，应该替换为有意义的常量
  */
 uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedComparisonParameter)
-
 {
   float ProcessedFloatValue;
   uint8_t ComparisonResult;
@@ -9024,16 +9023,16 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedCompari
   ObjectContext = 0;
   StackBuffer = 0;
   
-  ComparisonResult = ValidateObjectContextAndProcessData(ObjectContext,SimplifiedProcessingContext + RangeDataMinOffset,SimplifiedProcessingContext + RangeDataMaxOffset);
+  ComparisonResult = ValidateObjectContextAndProcessData(ObjectContext, SystemContext + SystemContextValidationDataOffset, SystemContext + SystemContextProcessingDataOffset);
   if ((int)ComparisonResult == 0) {
-    ProcessedFloatValue = *(float *)(SimplifiedProcessingContext + RangeDataMaxOffset);
-    if ((*(float *)(SimplifiedResourceContext + RangeLowerBoundOffset) <= ProcessedFloatValue) &&
-       (ProcessedFloatValue < *(float *)(SimplifiedResourceContext + RangeUpperBoundOffset) || ProcessedFloatValue == *(float *)(SimplifiedResourceContext + RangeUpperBoundOffset))) {
-      ComparisonResult = *(uint8_t *)(SimplifiedSystemExecutionPointer + SystemExecutionStatusOffset);
-      *(float *)(SimplifiedResourceContextSecondary + ResourceDataOffset) = ProcessedFloatValue;
+    ProcessedFloatValue = *(float *)(SystemContext + SystemContextProcessingDataOffset);
+    if ((*(float *)(DataPointer + DataRangeMinOffset) <= ProcessedFloatValue) &&
+       (ProcessedFloatValue < *(float *)(DataPointer + DataRangeMaxOffset) || ProcessedFloatValue == *(float *)(DataPointer + DataRangeMaxOffset))) {
+      ComparisonResult = *(uint8_t *)(SystemContext + SystemResourceManagerOffset);
+      *(float *)(StackBuffer + StackBufferDataOffset) = ProcessedFloatValue;
       ReleaseSystemContextResources(ComparisonResult);
     }
-    ComparisonResult = SystemStatusConstant;
+    ComparisonResult = ErrorValueOutOfRange;
   }
   return ComparisonResult;
 }
