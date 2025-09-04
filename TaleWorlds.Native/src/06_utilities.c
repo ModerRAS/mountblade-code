@@ -89730,28 +89730,43 @@ void RegisterResourceHandlerType80AtOffset6a80(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090db20(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型1160（偏移量0x6b28）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090db20
+ */
+void RegisterResourceHandlerType1160AtOffset6b28(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x6b28,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x6b28, 0x488, 2, ResourceTypeHandler488, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090db40(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型80（偏移量0x7440）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090db40
+ */
+void RegisterResourceHandlerType80AtOffset7440(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x7440,0x50,2,ResourceTypeHandler050,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x7440, 0x50, 2, ResourceTypeHandler050, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090db60(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型152（偏移量0x74e8）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090db60
+ */
+void RegisterResourceHandlerType152AtOffset74e8(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x74e8,0x98,2,ResourceTypeHandler098,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x74e8, 0x98, 2, ResourceTypeHandler098, 0xfffffffffffffffe);
   return;
 }
 
@@ -89779,10 +89794,15 @@ void RegisterResourceTypeHandler248Extended(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090dba0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型584（偏移量0x48）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dba0
+ */
+void RegisterResourceHandlerType584AtOffset48(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48),0x248,2,ResourceTypeHandler248);
+  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48), 0x248, 2, ResourceTypeHandler248);
   return;
 }
 
@@ -89854,17 +89874,27 @@ void RegisterResourceTypeHandler488Standard(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090dc60(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型2312（偏移量0x48）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dc60
+ */
+void RegisterResourceHandlerType2312AtOffset48(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48),0x908,2,ResourceTypeHandler908);
+  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x48), 0x908, 2, ResourceTypeHandler908);
   return;
 }
 
 
 
-void Unwind_18090dc90(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源上下文回调函数（偏移量0x48，偏移量8）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dc90
+ */
+void ExecuteResourceContextCallbackAtOffset48Offset8(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
