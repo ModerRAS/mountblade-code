@@ -74208,7 +74208,7 @@ void ExecuteResourceTablePointerCleanupProcessor(uint8_t ObjectContext,int64_t V
  * @param CleanupFlag 清理标志
  * @remark 原始函数名：Unwind_18090a580
  */
-void Unwind_ResourceTablePointerAccessCleanupProcessor(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteResourceTablePointerAccessCleanupProcessor(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTablePointerAccess(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x10),
