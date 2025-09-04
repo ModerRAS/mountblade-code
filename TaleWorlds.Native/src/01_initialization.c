@@ -58991,7 +58991,7 @@ SystemResourceProcessingComplete:
         SystemActiveFlag = OperationCompleteFlag | *(byte *)(SystemResourceManager + 0xfe) & 0xfb;
         SecurityParameter = CONCAT71((int7)((ulong long)ConfigurationData >> 8),SystemActiveFlag);
         *(byte *)(SystemResourceManager + 0xfe) = SystemActiveFlag;
-        if ((OperationCompleteFlag & 4) == 0) goto FUN_180077ef9;
+        if ((OperationCompleteFlag & 4) == 0) goto SystemResourceCleanupPoint;
       }
       ResourceHash = *(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x388);
       if (((ResourceHash >> 0x19 & 1) != 0) ||
