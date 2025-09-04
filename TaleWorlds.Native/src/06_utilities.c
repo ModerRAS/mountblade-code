@@ -30486,7 +30486,7 @@ void ProcessTertiaryContextException(uint8_t ExceptionContext, int64_t SystemCon
  * @return void 无返回值
  * @note 此函数重置资源哈希模板以恢复系统状态
  */
-void HandleQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashDataPointer;
   
   // 获取资源哈希数据指针
