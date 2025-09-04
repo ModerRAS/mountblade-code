@@ -2859,7 +2859,7 @@ NetworkHandle HandleNetworkPacketData(NetworkHandle *PacketData, int64_t HandleO
  * @note 此函数会更新数据包状态并清理临时资源
  * @warning 如果完成处理失败，可能会导致资源泄漏或状态不一致
  */
-NetworkHandle CompletePacketProcessing(NetworkHandle *PacketData, int64_t FinalizeOffset, uint32_t FinalizeValue)
+NetworkHandle FinalizeNetworkPacketProcessing(NetworkHandle *PacketData, int64_t FinalizeOffset, uint32_t FinalizeValue)
 {
   // 数据包完成处理变量
   uint32_t PacketFinalizationResult;              // 数据包完成处理结果
