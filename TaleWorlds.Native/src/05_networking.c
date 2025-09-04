@@ -2094,11 +2094,11 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
   NetworkStatus ConnectionStatusArray [6];                      // 连接状态数组，存储连接的各级状态信息
   NetworkStatus ValidationStatusArray [4];                 // 数据包验证状态数组，存储验证过程中的状态信息
   NetworkStatus ProcessingStatusArray [4];                 // 数据包处理状态数组，存储处理过程中的状态信息
-  NetworkHandle PacketProcessingResult;                    // 数据包处理结果，用于存储各个验证步骤的结果
+  NetworkHandle PacketProcessingStatus;                    // 数据包处理状态，用于存储各个验证步骤的结果
   
   // 初始化处理结果
   ProcessingResult = 0;
-  PacketProcessingResult = 0;
+  PacketProcessingStatus = 0;
   
   // 根据数据包大小选择不同的处理路径
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
@@ -2115,8 +2115,8 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    NetworkStatus SecondaryConnectionValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetSecond);
-    ValidationStatusArray[0] = SecondaryConnectionValidationStatus;
+    NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetSecond);
+    ValidationStatusArray[0] = SecondaryValidationStatus;
     NetworkPacketProcessor ValidationProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
     ProcessingResult = ValidationProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
     if ((int)ProcessingResult != 0) {
@@ -2127,8 +2127,8 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    NetworkStatus TertiaryConnectionValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
-    ValidationStatusArray[0] = TertiaryConnectionValidationStatus;
+    NetworkStatus TertiaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
+    ValidationStatusArray[0] = TertiaryValidationStatus;
     NetworkPacketProcessor TertiaryValidationProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
     ProcessingResult = TertiaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
     if ((int)ProcessingResult != 0) {
@@ -2138,8 +2138,8 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorInvalidPacket;
   }
-  NetworkStatus QuaternaryConnectionValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
-  ValidationStatusArray[0] = QuaternaryConnectionValidationStatus;
+  NetworkStatus QuaternaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
+  ValidationStatusArray[0] = QuaternaryValidationStatus;
   NetworkPacketProcessor QuaternaryValidationProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
   ProcessingResult = QuaternaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
   if ((int)ProcessingResult != 0) {
@@ -2148,8 +2148,8 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorInvalidPacket;
   }
-  NetworkStatus PrimaryConnectionDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffsetFirst);
-  ProcessingStatusArray[0] = PrimaryConnectionDataStatus;
+  NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffsetFirst);
+  ProcessingStatusArray[0] = PrimaryDataStatus;
   NetworkPacketProcessor DataStatusProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
   ProcessingResult = DataStatusProcessor(*(NetworkHandle **)(*PacketData + 8), ProcessingStatusArray, 4);
   if ((int)ProcessingResult == 0) {

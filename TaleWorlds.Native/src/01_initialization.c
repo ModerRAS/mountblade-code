@@ -60153,7 +60153,7 @@ void InitializeSystemVectorCalculations(void)
   MemoryAllocationFlags = InputStackParameter78;
   ThreadCreationFlags = InputStackParameter70;
   ResourceCreationFlags = InputStackParameter68;
-  SystemContextPointer = InputStackParameter60;
+  SystemContextPointer = SystemResourceParameter;
   IsAudioSystemActive = *(byte *)(SystemContextPointer + 0x1bd8);
   CalculationFlags = *(int *)(SystemStatusFlags + 0x224);
   if (((*(byte *)(memoryBlockAddress + 0xfd) & 1) == 0) &&

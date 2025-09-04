@@ -6126,7 +6126,7 @@ void TerminateSystem(void) {
  * 
  * @return 无返回值
  */
-void ReturnNoOperationPrimary(void) {
+void PerformNoOperation(void) {
   return;
 }
 
@@ -30406,7 +30406,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @return void 无返回值
  * @note 此函数在异常处理过程中被自动调用
  */
-void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessPrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerPointer;
   
   // 获取异常处理函数指针
@@ -30433,7 +30433,7 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @note 此函数在异常处理过程中被自动调用
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
-void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t** SecondaryExceptionHandlerArray;
   
   // 获取次级异常处理函数指针表
@@ -30459,7 +30459,7 @@ void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemCon
  * @param SystemContext 系统上下文指针，包含系统运行时状态数据
  * @return 无返回值
  */
-void HandleTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessTertiaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   int64_t* ExceptionHandlerFunctionPointer;
   
   // 获取第三级异常处理函数指针
