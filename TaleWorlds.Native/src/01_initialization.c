@@ -1446,14 +1446,14 @@ void InitializeGameCoreSystem(void)
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   RootNodePointerPointer = (void**)*SystemDataTablePointer;
-  IsNodeActive = *(bool*)((long long)RootNodePointerPointer[1] + SystemNodeActiveFlagOffset);
+  IsGameCoreNodeActive = *(bool*)((long long)RootNodePointerPointer[1] + SystemNodeActiveFlagOffset);
   GameCoreInitializationHandler = GetGameCoreSystemInitializationFunction;
   SystemPreviousNodePointer = RootNodePointerPointer;
   CurrentNodePointerPointer = (void**)RootNodePointerPointer[1];
   
-  while (!IsNodeActive) {
-    NodeIdentifierComparisonResult = memcmp(CurrentNodePointerPointer + 4, &GameCoreSystemId, SystemIdentifierSize);
-    if (NodeIdentifierComparisonResult < 0) {
+  while (!IsGameCoreNodeActive) {
+    GameCoreIdentifierComparisonResult = memcmp(CurrentNodePointerPointer + 4, &GameCoreSystemId, SystemIdentifierSize);
+    if (GameCoreIdentifierComparisonResult < 0) {
       NextNodePointerPointer = (void**)CurrentNodePointerPointer[SystemNodeNextPointerOffset];
       CurrentNodePointerPointer = SystemPreviousNodePointer;
     }
