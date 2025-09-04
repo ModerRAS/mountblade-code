@@ -300,7 +300,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define TIMEOUT_INVALID 0xFFFFFFFF                            // 无效超时句柄
 #define CONTEXT_INITIALIZED 0x01                              // 上下文已初始化
 #define RELIABILITY_HIGH 0x01                                // 高可靠性
-#define ENCRYPTION_KEY_DEMO 0x12345678                       // 演示加密密钥
+#define ENCRYPTION_KEY_DEMO_VALUE 0x12345678                       // 演示加密密钥
 #define FLAGS_RESET 0x00                                      // 重置标志
 #define CONTEXT_RELEASED 0x00                                 // 上下文已释放
 #define SIZE_RESET 0x00                                       // 大小重置
@@ -320,8 +320,8 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define ACTIVITY_RESET 0x00                                    // 活动重置
 
 // 网络数据传输常量
-#define SEQUENCE_INITIAL 0x01                                  // 初始序列号
-#define ACK_INITIAL 0x01                                       // 初始确认号
+#define NETWORK_SEQUENCE_INITIAL_VALUE 0x01                                  // 初始序列号
+#define NETWORK_ACK_INITIAL_VALUE 0x01                                       // 初始确认号
 #define BYTES_RESET 0x00                                      // 字节重置
 #define PACKETS_RESET 0x00                                    // 数据包重置
 #define RETRANSMIT_COUNT_RESET 0x00                          // 重传计数重置

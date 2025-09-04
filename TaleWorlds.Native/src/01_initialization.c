@@ -149,15 +149,15 @@
 // 系统参数常量
 #define SystemMaxSemaphoreCount                    0x7fffffff
 #define SystemStringBufferCapacity               0x80
-#define SystemInvalidHandleValue                    0xfffffffffffffffe
-#define SystemSemaphoreMaxCount              0x7fffffff
-#define SystemEventHandlerSize               0x20
-#define SystemEventHandlerCapacity          8
-#define InvalidHandleValue                    0xfffffffffffffffe
-#define MaxUint64Value                        0xffffffffffffffff
-#define MemoryFlagFreeEnabled                0x1
-#define MemoryBlockSize                       0x98
-#define StringBufferCapacity                      0x40
+#define SystemInvalidHandleValue               0xfffffffffffffffe
+#define SystemSemaphoreMaxCount                 0x7fffffff
+#define SystemEventHandlerSize                  0x20
+#define SystemEventHandlerCapacity             8
+#define InvalidHandleValue                     0xfffffffffffffffe
+#define MaxUint64Value                         0xffffffffffffffff
+#define MemoryFlagFreeEnabled                  0x1
+#define MemoryBlockSize                        0x98
+#define StringBufferCapacity                   0x40
 
 // 系统控制器相关常量
 #define SystemControllerAllocationSize        0xc0
