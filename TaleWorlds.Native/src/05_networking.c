@@ -2022,11 +2022,11 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
       return NetworkErrorInvalidPacket;
     }
     NetworkStatus TertiaryConnectionValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
-    PacketValidationStatusArray[0] = TertiaryConnectionValidationStatus;
-    PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
-                      (*(NetworkHandle **)(*PacketData + 8), PacketValidationStatusArray, 4);
-    if ((int)PacketProcessingResult != 0) {
-      return PacketProcessingResult;
+    ValidationStatusArray[0] = TertiaryConnectionValidationStatus;
+    ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
+                      (*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+    if ((int)ProcessingResult != 0) {
+      return ProcessingResult;
     }
   }
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
