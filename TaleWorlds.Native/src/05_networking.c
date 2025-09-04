@@ -873,21 +873,21 @@ uint32_t NetworkConnectionProcessingConfig = 0x00;
  * 
  * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
  */
-uint32_t NetworkConnectionTransportConfigData = 0x00;
+uint32_t NetworkConnectionTransportConfig = 0x00;
 
 /**
  * @brief 网络连接协议配置数据
  * 
  * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
  */
-uint32_t NetworkConnectionProtocolConfigData = 0x00;
+uint32_t NetworkConnectionProtocolConfig = 0x00;
 
 /**
  * @brief 网络连接验证配置数据
  * 
  * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
  */
-uint32_t NetworkConnectionValidationConfigData = 0x00;
+uint32_t NetworkConnectionValidationConfig = 0x00;
 
 /**
  * @brief 网络连接路由主要配置数据
@@ -1125,7 +1125,7 @@ void CloseNetworkConnectionHandler(void)
  * @param ValidationResult 验证结果
  * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkValidateConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
+int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
 
 /**
  * @brief 网络安全守卫检查
@@ -1134,7 +1134,7 @@ int32_t NetworkValidateConnectionId(int64_t ConnectionContext, int64_t PacketDat
  * 
  * @param SecurityValue 安全值
  */
-void CheckNetworkSecurityGuard(uint64_t SecurityValue);
+void ValidateNetworkSecurityGuard(uint64_t SecurityValue);
 
 /**
  * @brief 清理网络连接上下文
@@ -1144,7 +1144,7 @@ void CheckNetworkSecurityGuard(uint64_t SecurityValue);
  * @param ConnectionContext 连接上下文
  * @return int32_t 清理结果，0表示成功，其他值表示错误码
  */
-int32_t NetworkCleanupConnectionContext(int64_t ConnectionContext);
+int32_t CleanupNetworkConnectionContext(int64_t ConnectionContext);
 
 /**
  * @brief 验证缓冲区超时
