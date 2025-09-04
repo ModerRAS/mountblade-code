@@ -6068,22 +6068,14 @@ uint32_t ProcessSystemResource(void) {
 
 
  /**
- * @brief 执行系统终止
- * 
- * 该函数负责执行系统终止操作
- * 调用系统终止函数来结束程序运行
- * 
- * @return 无返回值
- * @note 此函数不会返回，会直接终止程序
- * @warning 调用此函数将立即终止系统运行
- */
-/**
  * @brief 终止系统
  * 
  * 该函数用于安全地终止系统运行
  * 执行系统退出操作以确保系统正常关闭
  * 
  * @return 无返回值
+ * @note 此函数不会返回，会直接终止程序
+ * @warning 调用此函数将立即终止系统运行
  */
 void TerminateSystem(void) {
   ExecuteSystemExitOperation();
