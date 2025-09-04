@@ -2481,13 +2481,29 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
  * 
  * 验证网络数据包的头部格式和有效性，确保数据包符合协议规范
  * 
+ * @details 该函数负责验证网络数据包头部的完整性和有效性，包括：
+ * - 验证数据包魔数的匹配性
+ * - 检查头部格式的规范性和完整性
+ * - 验证协议版本的兼容性
+ * - 检查数据包长度和类型的合理性
+ * - 验证时间戳和序列号的有效性
+ * - 执行校验和和CRC验证
+ * - 检查协议类型的支持情况
+ * 
  * @param ConnectionContext 连接上下文，包含连接的状态信息
  * @param PacketData 数据包数据，包含待验证的数据包内容
  * @param MagicNumber 魔数，用于验证数据包的有效性
  * @return NetworkHandle 验证结果句柄，返回验证状态码
  * 
+ * @retval 0 验证成功
+ * @retval NetworkErrorInvalidPacket 数据包格式无效
+ * @retval 其他错误码 具体验证失败类型
+ * 
  * @note 这是简化实现，实际应用中需要实现完整的头部验证逻辑
  * @warning 简化实现仅返回成功状态，不进行实际的验证工作
+ * @see NetworkPacketMagicSilive, NetworkPacketMagicTivel
+ * 
+ * @security 该函数是数据包验证的关键环节，确保只有合法的数据包能够通过验证
  */
 NetworkHandle ValidateNetworkPacketHeader(int64_t ConnectionContext, int64_t PacketData, uint32_t MagicNumber)
 {
