@@ -19398,7 +19398,7 @@ void InitializeSystemThreadManager(void)
   void* CurrentThreadHandle;
   uint32_t ThreadCreationResult;
   void* ThreadManagerObject;
-  void* ThreadRegisterR9;
+  void* ThreadRegisterGeneralPurpose;
   void* ErrorHandlingPointer;
   void* ThreadManagerInstance;
   uint32_t ThreadOperationFlags;
@@ -24260,7 +24260,7 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
   void* *memoryAllocationEnd;
   char ConfigurationBuffer [32];
   ulong long EncryptionKeyValue;
-  void* StackParameter2;
+  void* StackParameterSecondary;
   
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer;
   StackParamSecondary = AdditionalParameter;
@@ -25039,7 +25039,7 @@ void SystemResourceAllocate(long long SystemResourceManager)
   uint8_t SystemSystemStackBufferA8 [8];
   void** SystemDataPointer;
   uint secondarySystemDataBuffer;
-  void* systemFlag88;
+  void* SystemConfigurationFlag;
   void* SystemFlagTertiary;
   void* SystemUnsignedFlagSecondary;
   uint32_t SystemProcessFlagsSecondary;
@@ -25877,7 +25877,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   long long SystemThreadHandleSecondary;
   ulong long SecurityParameter;
   uint NetworkConnectionFlags;
-  void* resourceCreationFlags7;
+  void* ResourceCreationFlagsPrimary;
   ulong long resourceCreationFlags8;
   ulong long ResourceCreationFlags;
   uint resourceAllocationContext0;
