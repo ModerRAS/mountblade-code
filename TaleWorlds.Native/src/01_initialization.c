@@ -1100,7 +1100,7 @@ void* SystemDataNodeLinkageFourth;            // 系统数据节点链接第四�
 void* SystemDataNodeLinkageFifth;               // 系统数据节点链接第五表
 void* SystemConfigurationDataPointerTertiary;        // 系统配置数据指针第三
 void* SystemConfigurationDataPointerQuaternary;        // 系统配置数据指针第四
-void* SystemResourceTemplate;        // 系统资源模板
+void* SystemResourceManager;        // 系统资源管理器
 void* SystemDebugStatusFlag;  // 系统调试状态标志
 void* SystemStringBuffer;        // 系统字符串缓冲区
 void* SystemNodeLinkPointerPrimary;        // 系统节点链接指针主表
@@ -19665,7 +19665,7 @@ void ProcessSystemStringCopy(long long TargetBuffer, long long SourceString)
  * @param BytesToCopy 要复制的字节数
  * @note 这是系统内存处理的重要组成部分，确保内存复制的安全性
  */
-void ProcessSystemMemoryCopy(long long SystemResourceManager,void* DataSourcePointer,int CopyLength)
+void CopySystemMemoryData(long long SystemResourceManager,void* DataSourcePointer,int CopyLength)
 
 {
   if (CopyLength + 1 < 0x1000) {
@@ -19818,7 +19818,7 @@ void ProcessSystemMemoryCopy(long long systemResourceManager,void* sourceDataPoi
 
 
 
-void ExecuteSystemMemoryCopyOperation(void)
+void PerformSystemMemoryCopy(void)
 {
     memcpy();
 }
@@ -19826,16 +19826,7 @@ void ExecuteSystemMemoryCopyOperation(void)
 
 
 
-// 函数: void SetupSystemMemory(uint8_t *SystemResourceManager)
-/**
- * @brief 重置系统缓冲区
- * 
- * 该函数重置系统缓冲区，将缓冲区内容清零并重置相关计数器。
- * 
- * @param bufferPointer 缓冲区指针
- */
 void ResetSystemProcessingBuffer(uint8_t *BufferPointer)
-
 {
   long long BufferOffset;
   
