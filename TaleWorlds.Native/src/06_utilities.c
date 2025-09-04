@@ -5092,11 +5092,11 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ObjectMemoryAddress;
   uint8_t ValidationStatus;
-  int64_t ObjectValidationWorkspace [4];
-  int64_t *ValidatedObjectContextPointer;
+  int64_t ValidationWorkspace[4];
+  int64_t *ValidatedObjectPointer;
   
   // 验证对象上下文的有效性
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ObjectValidationWorkspace);
+  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ValidationWorkspace);
   if ((int)ObjectValidationResult != 0) {
     return ObjectValidationResult;
   }
