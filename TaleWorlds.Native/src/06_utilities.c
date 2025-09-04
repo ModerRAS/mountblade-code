@@ -83238,7 +83238,16 @@ void ReleaseResourceReferenceCounterC(void)
 
 
 
-void Unwind_18090ca40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表数据并执行内存操作(扩展版本)
+ * 
+ * 该函数与ProcessResourceTableDataAndMemoryOperations功能相似，
+ * 但使用不同的验证上下文偏移量(0x130)。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ProcessResourceTableDataAndMemoryOperationsExtended(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -83283,7 +83292,15 @@ void Unwind_18090ca40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ca50(void)
+/**
+ * @brief 释放资源引用计数器D
+ * 
+ * 递减资源引用计数器并调用资源管理器的处理函数。
+ * 用于系统资源的释放和清理操作。
+ * 
+ * @note 这是资源释放链中的第四个函数，与前三个功能相同
+ */
+void ReleaseResourceReferenceCounterD(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;

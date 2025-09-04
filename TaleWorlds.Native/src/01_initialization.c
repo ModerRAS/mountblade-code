@@ -64274,7 +64274,7 @@ ResourceInitializationLoop:
                   SystemThreadHandle1 = ((long long)paresourceAllocationContext7 - (long long)paResourceAllocationContext) / 0x14;
                   if (SystemThreadHandle1 == 0) {
                     SystemConfigurationPointer = 1;
-LAB_18007ac04:
+SystemConfigurationAllocation:
                     paresourceAddress2 = (uint8_t (*) [16])
                                CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemConfigurationPointer * 0x14,
                                              (char)piStack_218[resourceAddress1 * 8 + 6]);
@@ -64485,7 +64485,7 @@ LAB_18007ac04:
     } while( true );
   }
   longValue1d0 = 0;
-LAB_180079e40:
+ThreadContextCleanup:
   paresourceAddress2 = (uint8_t (*) [16])(longValue1d0 * 0x20);
   pointerToInteger20 = *(int **)(*paresourceAddress2 + longValue170);
   resourceAddress1 = *(long long *)(*paresourceAddress2 + longValue170 + 8) - (long long)pointerToInteger20 >> 2;
