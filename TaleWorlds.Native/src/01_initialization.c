@@ -64971,7 +64971,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
     *(char*)((long long)PrimaryResourceHandle4 + 0x15) = '\x01';
   }
   UNLOCK();
-  if (!isByteValid5) goto LAB_18007b8fd;
+  if (!isByteValid5) goto ByteValidationCheck;
   SystemThreadFlags = SystemResourceManager;
   if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) == 0) {
     SystemThreadFlags = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
@@ -64982,7 +64982,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
       *(char*)((long long)PrimaryResourceHandle4 + 0x15) = '\x03';
     }
     UNLOCK();
-    goto LAB_18007b8fd;
+    goto ByteValidationCheck;
   }
   if (*PrimaryResourceHandle4 == 0) {
     HashTableNodePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x28,8,0x20);
@@ -65028,7 +65028,7 @@ LAB_ThreadFlagsCheck2:
     }
   }
   else {
-    if (*(int *)(SystemThreadFlags + 0x60) == 0) goto LAB_18007b454;
+    if (*(int *)(SystemThreadFlags + 0x60) == 0) goto ThreadFlagsLoop2;
     if (SystemThreadFlags == 0) goto LAB_18007b44a;
   }
   ThreadContextFlag = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xa0,8,0x20);
