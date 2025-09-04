@@ -13362,7 +13362,7 @@ bool SystemAudioIsInitialized(void)
   uint StringProcessingResult;
   int IntegerResult;
   longlong LongLoop;
-  uint64_t uVar6;
+  uint64_t memoryValidationResult;
   longlong SystemStateValue;
   longlong LongOffset;
   longlong LongAddress;
