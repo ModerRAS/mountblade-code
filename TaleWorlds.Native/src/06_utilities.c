@@ -653,7 +653,7 @@ uint32_t HandleSystemObjectState(uint32_t SystemObjectHandle);
  * 
  * @return 无返回值
  */
-void PerformSystemShutdown(void);
+void ExecuteSystemShutdown(void);
 
 /**
  * @brief 执行系统操作
@@ -665,7 +665,7 @@ void PerformSystemShutdown(void);
  * @param ContextBuffer 上下文缓冲区
  * @return 操作结果状态码
  */
-uint32_t ExecuteSystemOperation(uint32_t OperationHandle, void* ContextBuffer);
+uint32_t PerformSystemOperation(uint32_t OperationHandle, void* ContextBuffer);
 
 /**
  * @brief 处理网络请求
@@ -680,7 +680,7 @@ uint32_t ExecuteSystemOperation(uint32_t OperationHandle, void* ContextBuffer);
  * @param Timeout 超时时间
  * @return 处理结果状态码
  */
-uint32_t ProcessNetworkRequest(void* NetworkContext, void* RequestTemplate, uint32_t RequestType, uint32_t Priority, uint32_t Timeout);
+uint32_t HandleNetworkRequest(void* NetworkContext, void* RequestTemplate, uint32_t RequestType, uint32_t Priority, uint32_t Timeout);
 
 /**
  * @brief 检查系统状态（无参数版本）
@@ -689,7 +689,7 @@ uint32_t ProcessNetworkRequest(void* NetworkContext, void* RequestTemplate, uint
  * 
  * @return 系统状态码，0表示正常，非0表示异常
  */
-uint32_t GetSystemStatus(void);
+uint32_t RetrieveSystemStatus(void);
 
 /**
  * @brief 处理系统对象操作
@@ -701,7 +701,7 @@ uint32_t GetSystemStatus(void);
  * @param OperationType 操作类型
  * @return 操作结果状态码
  */
-uint32_t ExecuteSystemObjectOperation(void* ObjectContext, uint32_t OperationType);
+uint32_t PerformSystemObjectOperation(void* ObjectContext, uint32_t OperationType);
 
 /**
  * @brief 处理系统上下文验证
@@ -712,7 +712,7 @@ uint32_t ExecuteSystemObjectOperation(void* ObjectContext, uint32_t OperationTyp
  * @param SystemContext 系统上下文
  * @return 验证结果状态码
  */
-uint32_t VerifySystemContext(void* SystemContext);
+uint32_t ValidateSystemContext(void* SystemContext);
 
 /**
  * @brief 释放验证资源
@@ -723,7 +723,7 @@ uint32_t VerifySystemContext(void* SystemContext);
  * @param ResourceHandles 资源句柄数组
  * @return 释放结果状态码
  */
-uint32_t ReleaseValidationResources(void* ResourceHandles);
+uint32_t FreeValidationResources(void* ResourceHandles);
 
 #define SystemObjectContextSize 0x1000
 #define SystemDataStructureSize 0x1000
@@ -1074,6 +1074,7 @@ uint32_t ReleaseValidationResources(void* ResourceHandles);
  * 
  * 该函数负责初始化系统中各个模块之间的依赖关系
  * 建立模块间的通信机制和数据共享通道
+ * 确保模块按正确的顺序加载和初始化
  * 
  * @param ModuleHandle 模块句柄，用于标识特定的模块实例
  * @param ModuleContext 模块上下文，包含模块运行所需的环境信息
@@ -1104,11 +1105,11 @@ void* ModuleDependencyHandle;                            // 模块依赖句柄
 
 // 系统运行时全局变量
 int64_t GlobalSystemInputParameter;                     // 全局系统输入参数
-int32_t SystemOperationStatus;                           // 系统操作状态码
+int32_t SystemOperationStatusCode;                      // 系统操作状态码
 void* SystemRegisterData;                               // 系统寄存器数据
 void* SystemObjectContextBuffer;                         // 系统对象上下文缓冲区
 uint8_t SystemResourceAllocationTemplate;                // 系统资源分配模板
-uint8_t ProcessingWorkspace[1024];                       // 处理工作空间缓冲区
+uint8_t ProcessingWorkspaceBuffer[1024];                 // 处理工作空间缓冲区
 
 /**
  * @brief 初始化核心引擎模块
@@ -1116,6 +1117,7 @@ uint8_t ProcessingWorkspace[1024];                       // 处理工作空间�
  * 该函数负责初始化游戏引擎的核心引擎模块
  * 设置核心引擎模块所需的数据结构和运行环境
  * 包括内存管理、任务调度和基础服务
+ * 为其他系统模块提供基础支持
  * 
  * @return 无返回值
  * @note 此函数必须在系统启动时调用
@@ -1125,7 +1127,7 @@ void SetupCoreEngineModule(void);
 // 核心引擎模块全局变量
 void* CoreEngineInstance;                                // 核心引擎实例
 void* CoreEngineConfiguration;                           // 核心引擎配置
-uint32_t CoreEngineInitializationStatus;                 // 核心引擎初始化状态
+uint32_t CoreEngineInitializationStatusCode;             // 核心引擎初始化状态码
 void* CoreEngineHandle;                                  // 核心引擎句柄
 
  /**
@@ -1143,7 +1145,7 @@ void SetupRenderingEngineModule(void);
 // 渲染引擎模块全局变量
 void* RenderingEngineInstance;                          // 渲染引擎实例
 void* RenderingEngineConfiguration;                     // 渲染引擎配置
-uint32_t RenderingEngineInitializationStatus;           // 渲染引擎初始化状态
+uint32_t RenderingEngineInitializationStatusCode;       // 渲染引擎初始化状态码
 void* RenderingEngineHandle;                             // 渲染引擎句柄
 void* RenderingEngineExecutionContext;                   // 渲染引擎执行上下文
 /**
