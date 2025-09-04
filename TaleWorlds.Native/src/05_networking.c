@@ -1922,17 +1922,17 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
       // 如果状态缓冲区有效，处理连接数据
       if (StatusBufferPtr != NULL) {
         int32_t ActiveConnectionsCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
-        int64_t ProcessingCounter = (long long)ActiveConnectionsCount;
-        int64_t ContextBasePointer = 0;  // 连接上下文基地址指针
+        int64_t ConnectionProcessingCounter = (long long)ActiveConnectionsCount;
+        int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址指针
         
         // 如果有活跃连接，处理连接数据
-        if ((ActiveConnectionsCount != 0) && (ContextBasePointer = *ConnectionContext, 0 < ActiveConnectionsCount)) {
+        if ((ActiveConnectionsCount != 0) && (ConnectionContextBaseAddress = *ConnectionContext, 0 < ActiveConnectionsCount)) {
           NetworkConnectionStatus *StatusPtr = StatusBufferPtr;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ContextBasePointer - (long long)StatusBufferPtr) + (long long)StatusPtr);
+            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)StatusBufferPtr) + (long long)StatusPtr);
             
             // 提取连接状态信息
             NetworkConnectionStatus PacketStatus = ContextDataArray[ConnectionContextPacketStatusIndex];
@@ -1944,12 +1944,12 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             StatusPtr[ConnectionContextPacketStatusIndex] = PacketStatus;
             StatusPtr[ConnectionContextDataStatusIndex] = DataStatus;
             StatusPtr[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            StatusPtr[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ContextBasePointer - (long long)StatusBufferPtr) + -4 + (long long)(StatusPtr + ConnectionContextStatusEntrySize));
+            StatusPtr[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)StatusBufferPtr) + -4 + (long long)(StatusPtr + ConnectionContextStatusEntrySize));
             
             // 更新计数器
-            ProcessingCounter = ProcessingCounter - 1;
+            ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
             StatusPtr = StatusPtr + ConnectionContextStatusEntrySize;
-          } while (ProcessingCounter != 0);
+          } while (ConnectionProcessingCounter != 0);
         }
         return NetworkOperationSuccessCode;
       }
@@ -1998,7 +1998,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   
   ConnectionStatusBufferPointer = (NetworkStatus *)0x0;
   if (ConnectionUpdateOperationCode == 0) {
-PrimaryConnectionProcessingComplete:
+PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset)) && (*ConnectionOperationBuffer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
     }
@@ -2029,7 +2029,7 @@ PrimaryConnectionProcessingComplete:
           NetworkStatusBuffer = NetworkStatusBuffer + ConnectionContextStatusEntrySize;
         } while (StatusProcessingIterator != 0);
       }
-SecondaryConnectionProcessingComplete:
+SecondaryNetworkProcessingComplete:
       // 网络处理循环完成，继续后续处理
       return 0;
     }
