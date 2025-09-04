@@ -19876,8 +19876,8 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
   uint8_t StackSecurityBuffer [32];
   void* SystemSecurityFlag;
   void* *SystemMemoryReference;
-  uint8_t* SystemProcessBufferPtr;
-  uint32_t SystemProcessingBufferLength;
+  uint8_t* SystemBufferPointer;
+  uint32_t SystemBufferLength;
   uint8_t SystemDataBuffer [1032];
   unsigned long long SystemChecksumValue;
   
