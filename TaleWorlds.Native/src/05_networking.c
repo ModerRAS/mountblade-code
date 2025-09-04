@@ -96,6 +96,12 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define PrimaryMagicNumberIndex 1                               // 主要魔数索引
 #define SecondaryMagicNumberIndex 2                             // 次要魔数索引
 
+// 安全验证数据索引常量
+#define ConnectionValidationStatusIndex 0                       // 连接验证状态索引
+#define DataIntegrityValidationIndex 1                           // 数据完整性验证索引
+#define SecurityComplianceValidationIndex 2                     // 安全合规性验证索引
+#define ValidationModeDataIndex 3                               // 验证模式数据索引
+
 // 网络连接相关偏移量 - 连接上下文和状态管理
 #define NetworkConnectionContextOffset 0x78                    // 网络连接上下文偏移量
 #define NetworkConnectionValidationOffset 0x24                 // 网络连接验证偏移量
@@ -2520,10 +2526,10 @@ void ValidateConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionDat
   // 设置安全验证数据
   if (SecurityValidationData && ValidationBufferSize > 0) {
     memset(SecurityValidationData, 0, ValidationBufferSize);
-    ((uint32_t*)SecurityValidationData)[0] = ConnectionValidationStatus;
-    ((uint32_t*)SecurityValidationData)[1] = DataIntegrityValidationResult;
-    ((uint32_t*)SecurityValidationData)[2] = SecurityComplianceValidationResult;
-    ((uint32_t*)SecurityValidationData)[3] = ValidationMode;
+    ((uint32_t*)SecurityValidationData)[ConnectionValidationStatusIndex] = ConnectionValidationStatus;
+    ((uint32_t*)SecurityValidationData)[DataIntegrityValidationIndex] = DataIntegrityValidationResult;
+    ((uint32_t*)SecurityValidationData)[SecurityComplianceValidationIndex] = SecurityComplianceValidationResult;
+    ((uint32_t*)SecurityValidationData)[ValidationModeDataIndex] = ValidationMode;
   }
 }
 
