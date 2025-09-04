@@ -5154,9 +5154,9 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return 验证结果状态码
  */
-uint8_t ValidateCharacterInput(char CharacterToValidate) {
+uint8_t ValidateCharacterInput(char InputCharacter) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
-  if (CharacterToValidate != '\0') {
+  if (InputCharacter != '\0') {
     ExecuteSystemExitOperation();
   }
   return OperationSuccessCode;

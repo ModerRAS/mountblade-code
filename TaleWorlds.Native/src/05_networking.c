@@ -212,8 +212,8 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define CONNECTION_SIZE_256B 0x100             // 连接大小256字节
 #define EVENT_SIZE_64B 0x40                    // 事件大小64字节
 #define CALLBACK_SIZE_64B 0x40                 // 回调大小64字节
-#define RETRY_COUNT_3 0x03                     // 重试次数3次
-#define BACKOFF_TIME_2S 0x07D0                 // 退避时间2秒
+#define RETRY_COUNT_MAXIMUM 0x03               // 最大重试次数3次
+#define BACKOFF_TIME_2_SECONDS 0x07D0          // 退避时间2秒
 
 // 网络数据包常量
 #define PACKET_HEADER_SIZE_32B 0x20            // 数据包头大小32字节
@@ -238,6 +238,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkChecksumValid 0x01                    // 校验和有效
 #define NetworkPacketSizeLimit 0x55            // 数据包大小限制（85字节）
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
+#define NetworkStandardBufferSize 0x100         // 标准缓冲区大小（256字节）
 
 // 网络连接验证偏移量常量
 #define NetworkConnectionValidationOffsetSecond 0x54   // 第二级连接验证偏移量
