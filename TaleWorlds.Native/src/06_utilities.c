@@ -18409,7 +18409,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
                 if (ProcessingStatusCode == 0) {
                   if (0 < ResourceCount) {
                     do {
-                      ResourceTablePointerPointer = *(int64_t *)(ValidationContext + 0x1c);
+                      ResourceTablePointerPointer = *(int64_t *)(ValidationContext + ValidationContextPropertyOffset4);
                       ResourceStatus.UIntValue = *(uint32_t *)(ResourceTablePointerPointer + ContextResourceHashStatus * 8);
                       ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                                         (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
