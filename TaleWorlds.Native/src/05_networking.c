@@ -1738,16 +1738,16 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
       // 如果状态缓冲区有效，处理连接数据
       if (ConnectionStatusBuffer != (NetworkConnectionStatus *)0x0) {
         int32_t ActiveNetworkConnectionCount = (int)ConnectionContext[1];
-        int64_t ConnectionProcessingCounter = (long long)ActiveNetworkConnectionCount;
+        int64_t NetworkConnectionIterator = (long long)ActiveNetworkConnectionCount;
         
         // 如果有活跃连接，处理连接数据
         if ((ActiveNetworkConnectionCount != 0) && (ConnectionBaseAddress = *ConnectionContext, 0 < ActiveNetworkConnectionCount)) {
-          NetworkConnectionStatus *PacketStatusBuffer = ConnectionStatusBuffer;
+          NetworkConnectionStatus *NetworkConnectionStatusBuffer = ConnectionStatusBuffer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ConnectionContextArray = (NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + (long long)PacketStatusBuffer);
+            NetworkConnectionStatus *ConnectionContextArray = (NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + (long long)NetworkConnectionStatusBuffer);
             
             // 提取连接状态信息
             NetworkConnectionStatus CurrentPacketStatus = ConnectionContextArray[1];
@@ -1755,16 +1755,16 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkConnectionStatus CurrentValidationResult = ConnectionContextArray[3];
             
             // 更新数据包缓冲区状态
-            *PacketStatusBuffer = *ConnectionContextArray;
-            PacketStatusBuffer[1] = CurrentPacketStatus;
-            PacketStatusBuffer[2] = CurrentDataStatus;
-            PacketStatusBuffer[3] = CurrentValidationResult;
-            PacketStatusBuffer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + -4 + (long long)(PacketStatusBuffer + 5));
+            *NetworkConnectionStatusBuffer = *ConnectionContextArray;
+            NetworkConnectionStatusBuffer[1] = CurrentPacketStatus;
+            NetworkConnectionStatusBuffer[2] = CurrentDataStatus;
+            NetworkConnectionStatusBuffer[3] = CurrentValidationResult;
+            NetworkConnectionStatusBuffer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + -4 + (long long)(NetworkConnectionStatusBuffer + 5));
             
             // 更新迭代计数器
-            ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
-            PacketStatusBuffer = PacketStatusBuffer + 5;
-          } while (ConnectionProcessingCounter != 0);
+            NetworkConnectionIterator = NetworkConnectionIterator - 1;
+            NetworkConnectionStatusBuffer = NetworkConnectionStatusBuffer + 5;
+          } while (NetworkConnectionIterator != 0);
         }
         goto NetworkProcessingLoop;
       }
@@ -1828,22 +1828,22 @@ NetworkMainProcessingLoop:
                            NetworkConnectionFinalizeValue, 0);
     if (ConnectionStatusBuffer != (NetworkStatus *)0x0) {
       int32_t PacketProcessingStatus = (int)ConnectionOperationBuffer[1];
-      int64_t StatusProcessingCounter = (long long)PacketProcessingStatus;
+      int64_t NetworkStatusIterator = (long long)PacketProcessingStatus;
       if ((PacketProcessingStatus != 0) && (ConnectionContextHandle = *ConnectionOperationBuffer, 0 < PacketProcessingStatus)) {
-        NetworkStatus *PacketFlagsBuffer = ConnectionStatusBuffer;
+        NetworkStatus *NetworkStatusBuffer = ConnectionStatusBuffer;
         do {
-          NetworkStatus *ConnectionContextData = (NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + (long long)PacketFlagsBuffer);
+          NetworkStatus *ConnectionContextData = (NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + (long long)NetworkStatusBuffer);
           NetworkStatus CurrentValidationStatus = ConnectionContextData[1];
           NetworkStatus CurrentTimeoutStatus = ConnectionContextData[2];
           NetworkStatus CurrentSecondaryStatus = ConnectionContextData[3];
-          *PacketFlagsBuffer = *ConnectionContextData;
-          PacketFlagsBuffer[1] = CurrentValidationStatus;
-          PacketFlagsBuffer[2] = CurrentTimeoutStatus;
-          PacketFlagsBuffer[3] = CurrentSecondaryStatus;
-          PacketFlagsBuffer[4] = *(NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + -4 + (long long)(PacketFlagsBuffer + 5));
-          StatusProcessingCounter = StatusProcessingCounter + -1;
-          PacketFlagsBuffer = PacketFlagsBuffer + 5;
-        } while (StatusProcessingCounter != 0);
+          *NetworkStatusBuffer = *ConnectionContextData;
+          NetworkStatusBuffer[1] = CurrentValidationStatus;
+          NetworkStatusBuffer[2] = CurrentTimeoutStatus;
+          NetworkStatusBuffer[3] = CurrentSecondaryStatus;
+          NetworkStatusBuffer[4] = *(NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + -4 + (long long)(NetworkStatusBuffer + 5));
+          NetworkStatusIterator = NetworkStatusIterator + -1;
+          NetworkStatusBuffer = NetworkStatusBuffer + 5;
+        } while (NetworkStatusIterator != 0);
       }
 NetworkProcessingLoop:
       // 网络处理循环完成，继续后续处理
@@ -1939,24 +1939,24 @@ NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t C
   NetworkByte PacketValidationBuffer [32];                    // 数据包验证缓冲区
   NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区
   
-  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
-  if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)SecurityValidationResult == 0)) {
+  NetworkHandle PacketSecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  if (((int)PacketSecurityValidationResult == 0) &&
+     (PacketSecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)PacketSecurityValidationResult == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
-    if ((int)SecurityValidationResult == 0) {
+    PacketSecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    if ((int)PacketSecurityValidationResult == 0) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
-      if ((int)SecurityValidationResult == 0) {
+      PacketSecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
+      if ((int)PacketSecurityValidationResult == 0) {
           FinalizePacketProcessing(PacketData, PacketValidationBuffer);
       }
     }
   }
-  return SecurityValidationResult;
+  return PacketSecurityValidationResult;
 }
 
 /**
