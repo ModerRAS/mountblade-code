@@ -5019,6 +5019,15 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的元数据和控制信息
  * @return uint8_t 操作状态码，0表示成功，非0表示错误码
  */
+/**
+ * @brief 增加对象引用计数
+ * 
+ * 该函数用于增加系统对象的引用计数，确保对象在使用过程中不会被意外释放
+ * 包含对象上下文验证和系统状态检查
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @return 操作结果状态码
+ */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
   uint8_t ValidationResult;
@@ -5060,6 +5069,15 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
  * 
  * @param ObjectContext 对象上下文，包含要初始化句柄的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
+ */
+/**
+ * @brief 初始化对象句柄
+ * 
+ * 该函数用于初始化系统对象的句柄，设置对象的基本属性和状态
+ * 包含对象上下文验证和内存地址调整操作
+ * 
+ * @param ObjectContext 对象上下文指针
+ * @return 初始化结果状态码
  */
 uint8_t InitializeObjectHandle(int64_t ObjectContext) {
   uint8_t ValidationResult;
