@@ -14018,7 +14018,18 @@ uint8_t ValidateAndGetBufferContext(int64_t ObjectContext,uint8_t ValidationCont
 
 
 
- void ProcessComplexResourceOperation(uint8_t ResourceContext, int64_t ValidationContext, uint OperationFlags, char OperationType)
+ /**
+ * @brief 处理复杂资源操作
+ * 
+ * 该函数处理复杂的资源操作，包括图形数据处理、矩阵变换和标志位操作
+ * 主要用于处理复杂的图形和资源管理任务
+ * 
+ * @param ResourceContext 资源上下文，包含资源的状态和数据信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param OperationFlags 操作标志，控制处理流程
+ * @param OperationType 操作类型，指定要执行的操作种类
+ */
+void ProcessComplexResourceOperation(uint8_t ResourceContext, int64_t ValidationContext, uint OperationFlags, char OperationType)
 
 {
   int64_t LoopCounter;
@@ -15021,18 +15032,12 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
     }
   }
 /**
- * @brief 缓冲区验证错误跳转函数
- * 
- * 该函数是缓冲区验证过程中的错误跳转点，用于处理缓冲区验证失败的情况
- * 当缓冲区验证过程中发生错误时，跳转到统一的错误处理流程
- * 
- * @param stackData 栈数据，包含错误处理的上下文信息
- * @note 此函数不返回，直接跳转到错误处理程序
- */
-/**
  * @brief 缓冲区验证错误处理器
  * 
  * 该函数负责处理缓冲区验证错误，执行必要的清理操作
+ * 当缓冲区验证过程中发生错误时，跳转到统一的错误处理流程
+ * 
+ * @note 此函数不返回，直接跳转到错误处理程序
  */
 void BufferValidationErrorHandler(void)
 {
