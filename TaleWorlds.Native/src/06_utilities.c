@@ -83527,7 +83527,11 @@ void Unwind_18090cad0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cae0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置验证上下文中的系统数据结构指针
+ * 用于在异常处理过程中重置系统数据结构引用
+ */
+void Unwind_SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ValidationContextDataOffset0) = &SystemDataStructure;
