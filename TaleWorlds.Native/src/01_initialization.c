@@ -577,14 +577,14 @@ void* SystemEmergencyDataTable;               // 紧急系统数据表
  */
 void* SystemGameCoreMainEntryPoint;
 void* SystemCoreMemoryAllocator;                // 核心系统内存分配器
-void* CoreSystemDataTable;                     // 核心系统数据表
-void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
-void* CoreSystemPrimaryConfiguration;           // 核心系统主配置
-void* CoreSystemSecondaryConfiguration;           // 核心系统次配置
-void* CoreSystemCacheConfiguration;            // 核心系统缓存配置
-void* CoreSystemEmergencyConfiguration;        // 核心系统紧急配置
+void* SystemCoreDataTable;                     // 核心系统数据表
+void* SystemCoreMemoryBuffer;                  // 核心系统内存缓冲区
+void* SystemCorePrimaryConfiguration;           // 核心系统主配置
+void* SystemCoreSecondaryConfiguration;           // 核心系统次配置
+void* SystemCoreCacheConfiguration;            // 核心系统缓存配置
+void* SystemCoreEmergencyConfiguration;        // 核心系统紧急配置
 
-void* PhysicsSystemPointer;                     // 物理系统指针
+void* SystemPhysicsEnginePointer;                     // 物理系统指针
 void* NetworkSystemPointer;                     // 网络系统指针
 void* GameLogicSystemPointer;                   // 游戏逻辑系统指针
 void* UISystemPointer;                          // UI系统指针
