@@ -152,6 +152,18 @@
 #define MemoryBlockSize                       0x98
 #define StringBufferSize                      0x40
 
+// 系统控制器相关常量
+#define SystemControllerAllocationSize        0xc0
+#define SystemMemoryAlignment                 8
+#define SystemAllocationPriority              3
+#define SystemControllerActiveFlagOffset       2
+#define SystemControllerFieldOffset           3
+#define SystemControllerDefaultValue          -4
+#define SystemVirtualTableMethodOffset        0x68
+#define SystemVirtualTableInitializeOffset    0x28
+#define SystemVirtualTableCleanupOffset       0x38
+#define SystemVirtualTableEventOffset         0x60
+
 /**
  * @brief 处理系统内存页面
  * 
