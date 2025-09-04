@@ -91774,7 +91774,17 @@ void ExecuteResourceLoopProcessingVariantA(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090e7c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源循环处理操作（变体B）
+ * 
+ * 在系统unwind过程中执行资源循环处理操作的变体B，
+ * 使用方法指针偏移量进行验证。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e7c0
+ */
+void ExecuteResourceLoopProcessingVariantB(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -91819,7 +91829,17 @@ void Unwind_18090e7c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e7d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源循环处理操作（变体C）
+ * 
+ * 在系统unwind过程中执行资源循环处理操作的变体C，
+ * 使用不同的验证上下文偏移量。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e7d0
+ */
+void ExecuteResourceLoopProcessingVariantC(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -91864,7 +91884,17 @@ void Unwind_18090e7d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e7e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源循环处理操作（变体D）
+ * 
+ * 在系统unwind过程中执行资源循环处理操作的变体D，
+ * 使用不同的验证上下文偏移量。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e7e0
+ */
+void ExecuteResourceLoopProcessingVariantD(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -94338,7 +94368,17 @@ void Unwind_18090f180(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f190(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源初始化和验证操作
+ * 
+ * 在系统unwind过程中执行资源初始化和验证操作，
+ * 设置系统上下文指针并验证资源状态。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f190
+ */
+void ExecuteSystemResourceInitializationAndValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -96951,7 +96991,20 @@ void SetSystemDataStructurePointerToValidationContextOffset88(uint8_t ObjectCont
 
 
 
-void Unwind_1809100a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到次要资源上下文偏移0x20处
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的次要资源上下文的0x20偏移处。
+ * 首先从验证上下文中获取次要资源上下文指针，然后在该上下文的0x20偏移处设置系统数据结构指针。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数通过次要资源上下文设置系统数据结构指针
+ * @warning 调用前必须确保验证上下文和次要资源上下文已正确初始化
+ * @remark 原始函数名：Unwind_1809100a0
+ */
+void SetSystemDataStructurePointerToSecondaryResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) + 0x20) = &SystemDataStructure;
@@ -96960,7 +97013,21 @@ void Unwind_1809100a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809100b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行主资源管理器清理回调函数
+ * 
+ * 该函数负责从验证上下文的主资源管理器中获取资源上下文，并执行其清理回调函数。
+ * 首先从验证上下文中获取主资源管理器指针，然后从该管理器的0x98偏移处获取资源上下文，
+ * 如果资源上下文有效，则调用其清理回调函数（偏移0x38处）。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数通过主资源管理器执行资源清理
+ * @warning 调用前必须确保验证上下文和主资源管理器已正确初始化
+ * @remark 原始函数名：Unwind_1809100b0
+ */
+void ExecutePrimaryResourceManagerCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
