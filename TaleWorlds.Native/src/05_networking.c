@@ -1,8 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-// =============================================================================
 // 网络系统类型定义
-// =============================================================================
 
 /**
  * @brief 网络状态类型
@@ -39,9 +37,7 @@ typedef uint32_t NetworkResourceHandle;
  */
 typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectionStatus*, int32_t);
 
-// =============================================================================
 // 网络系统常量定义
-// =============================================================================
 #define NetworkContextSystemOffset 0x98
 #define NetworkSessionDataOffset 0x200
 #define ConnectionStateBufferOffset 0x28
@@ -382,9 +378,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define DATA_VALID_PASS 0x01                        // 数据验证通过
 #define NULL_POINTER 0x0                            // 空指针
 
-// =============================================================================
 // 网络系统函数声明
-// =============================================================================
 
 /**
  * @brief 比较网络连接时间戳
@@ -425,7 +419,7 @@ uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *Se
  * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
  * @see ValidateNetworkConnectionPacket, ProcessNetworkConnectionPacket
  */
-NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData);
+NetworkHandle ProcessNetworkPacketData(int64_t *ConnectionContext, int32_t PacketData);
 
 /**
  * @brief 发送网络数据包
@@ -669,9 +663,7 @@ uint32_t ProcessArrayData(int64_t NetworkContextArray, uint32_t ArrayIndex);
  */
 uint32_t CloseConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
 
-// =============================================================================
 // 网络系统全局变量
-// =============================================================================
 
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
@@ -788,9 +780,7 @@ uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理
  */
 uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
 
-// =============================================================================
 // 网络连接池和套接字管理函数
-// =============================================================================
 
 /**
  * @brief 初始化网络连接池
@@ -834,9 +824,7 @@ void *NetworkConnectionRoutingConfigSecondary = &NetworkConnectionRoutingConfigS
 void *NetworkConnectionRoutingConfigTertiary = &NetworkConnectionRoutingConfigTertiaryData;
 void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfigQuaternaryData;
 
-// =============================================================================
 // 网络连接配置数据定义
-// =============================================================================
 
 /**
  * @brief 网络连接上下文模板数据
@@ -1113,9 +1101,7 @@ void CloseNetworkConnectionHandler(void)
   NetworkLastActivity = 0;                             // 重置最后活动时间
 }
 
-// =============================================================================
 // 网络安全和验证函数
-// =============================================================================
 
 /**
  * @brief 验证网络连接ID
@@ -1246,9 +1232,7 @@ uint32_t NetworkConnectionEventProcessor;
 // 网络连接状态常量
 #define NetworkConnectionNotFound 0xFFFFFFFF
 
-// =============================================================================
 // 网络数据传输和处理函数
-// =============================================================================
 
 /**
  * @brief 传输数据
@@ -1839,7 +1823,7 @@ NetworkHandle SetupNetworkSystem(void)
  * @note 此函数会进行数据包验证、状态更新和连接管理
  * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
  */
-NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
+NetworkHandle ProcessNetworkPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
   NetworkConnectionStatus *NetworkConnectionContextArray;  // 网络连接上下文数据数组
@@ -1925,7 +1909,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
  * @note 此函数使用状态机模式处理连接状态转换
  * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
  */
-NetworkHandle UpdateNetworkConnectionStatus(NetworkHandle ConnectionContext, int32_t PacketData)
+NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
   NetworkStatus *NetworkContextDataPointer;                           // 上下文数据指针
@@ -1992,7 +1976,7 @@ NetworkProcessingLoop:
  * @note 此函数应在所有网络连接组件初始化完成后调用
  * @warning 返回的句柄应被妥善保存，用于后续的网络连接管理操作
  */
-NetworkHandle CleanupNetworkConnectionSystem(void)
+NetworkHandle CleanupNetworkSystem(void)
 {
   return NetworkConnectionFinalizeValue;
 }
