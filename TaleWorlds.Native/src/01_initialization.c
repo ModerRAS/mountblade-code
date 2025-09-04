@@ -1480,9 +1480,9 @@ void InitializeGameCoreSystem(void)
   long long* SystemDataTablePointer;
   long long SystemMemoryAllocationSize;
   void** CurrentNodePointerPointer;
-  void** SystemPreviousNodePointer;
+  void** PreviousNodePointer;
   void** NextNodePointerPointer;
-  void** SystemAllocatedNodePointer;
+  void** AllocatedNodePointer;
   void* GameCoreInitializationHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
@@ -53352,7 +53352,7 @@ SystemResourceValidation:
     resourceAllocationContext = StartSystemThread(pointerToUnsignedStackFlagTertiary);
     SystemUnsignedFlagSecondary = ConcatenatedSystemValue(SystemUnsignedFlagSecondary.HighPart,resourceAllocationContext);
   }
-LABEL_SYSTEM_RESOURCE_CONFIGURATION:
+SystemResourceConfiguration:
   *(void*2 *)(pointerToUnsignedStackFlagTertiary + SystemFlagTertiary) = 10;
   SystemFlagTertiary = resourceCreationFlags + 0xe;
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferA);
@@ -53541,7 +53541,7 @@ SystemResourceHashProcessingStart:
         pEncryptionOffset1 = SystemDataBufferPointer;
         MemoryBufferPointer._0_4_ = StartSystemThread(SystemDataBufferPointer);
       }
-LABEL_SYSTEM_RESOURCE_SETUP:
+SystemResourceSetup:
         memcpy(SystemDataBufferPointer + SystemContextPointer,ConfigurationDataPointer,(long long)((int)ResourceDataCounter + 2));
     }
   }
