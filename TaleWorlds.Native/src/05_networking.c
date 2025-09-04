@@ -2065,7 +2065,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   }
   NetworkStatus PrimaryConnectionDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffsetFirst);
   ProcessingStatusArray[0] = PrimaryConnectionDataStatus;
-  ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ProcessingStatusArray, 4);
+  NetworkPacketProcessor DataStatusProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
+  ProcessingResult = DataStatusProcessor(*(NetworkHandle **)(*PacketData + 8), ProcessingStatusArray, 4);
   if ((int)ProcessingResult == 0) {
     if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
