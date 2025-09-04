@@ -606,14 +606,14 @@ uint32_t SetupNetworkConnection(NetworkHandle ConnectionHandle);
  * @param ConnectionHandle 连接句柄
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t VerifyConnectionStatus(NetworkHandle ConnectionHandle);
+uint32_t ValidateConnectionStatus(NetworkHandle ConnectionHandle);
 
 /**
  * @brief 重置网络连接状态
  * 
  * 重置网络连接的状态，清理连接数据
  */
-void ResetConnectionState(void);
+void ResetNetworkConnectionState(void);
 
 /**
  * @brief 处理网络验证队列
@@ -623,7 +623,7 @@ void ResetConnectionState(void);
  * @param ValidationContext 验证上下文
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessValidationQueue(int64_t ValidationContext);
+uint32_t ProcessNetworkValidationQueue(int64_t ValidationContext);
 
 /**
  * @brief 清理网络连接缓存
