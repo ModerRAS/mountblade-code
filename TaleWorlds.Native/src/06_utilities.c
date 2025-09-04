@@ -95510,7 +95510,7 @@ void ExecuteResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContex
 
 
 
-void Unwind_18090f2f0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -107072,7 +107072,7 @@ uint32_t InitializeNetworkBufferDataWithSecurity(uint8_t BufferHandle, int64_t B
   *(uint8_t *)(BufferContext + 0x40) = BufferHandle;
   *(uint8_t *)(BufferContext + 0x30) = BufferHandle;
   *(uint8_t *)(BufferContext + 0x38) = **(uint8_t **)(BufferContext + 0x30);
-  if (**(int **)(BufferContext + 0x38) != -ResourceValidationError928c9d) {
+  if (**(int **)(BufferContext + 0x38) != -SystemResourceExtendedValidationErrorCode) {
     *(uint32_t *)(BufferContext + 0x20) = 0;
     return *(uint32_t *)(BufferContext + 0x20);
   }
