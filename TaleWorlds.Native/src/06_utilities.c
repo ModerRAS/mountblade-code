@@ -35037,7 +35037,7 @@ void CleanMemorySegments(uint8_t ObjectContext,int64_t ValidationContext)
       (**(code **)(*(int64_t *)*ResourceIndexPointer + 0x38))();
     }
   }
-  if (*ResourceTablePointerPointer == 0) {
+  if (*ResourceTablePointer == 0) {
     return;
   }
         ExecuteSystemEmergencyExit();
