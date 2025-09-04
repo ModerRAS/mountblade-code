@@ -209,6 +209,16 @@ typedef uint32_t NetworkResourceHandle;
 #define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值 (125)
 #define NetworkConnectionBasicValidationMode 0x01    // 基本验证模式
 #define NetworkConnectionStrictValidationMode 0x02    // 严格验证模式
+#define NetworkPacketBasicDecodingMode 0x01          // 基本解码模式
+#define NetworkPacketStrictDecodingMode 0x02          // 严格解码模式
+#define NetworkPacketMagicValidationMask 0x03        // 魔数验证掩码
+#define NetworkPacketFirstMagicValidMask 0x01        // 第一个魔数有效掩码
+#define NetworkPacketSecondMagicValidMask 0x02       // 第二个魔数有效掩码
+#define NetworkValidationSuccess 0x01                // 验证成功状态
+#define NetworkValidationFailure 0x00                // 验证失败状态
+#define NetworkIntegrityCheckSuccess 0x01            // 完整性检查成功
+#define NetworkDataFormatValid 0x01                 // 数据格式有效
+#define NetworkChecksumValid 0x01                    // 校验和有效
 #define NetworkPacketSizeLimit 0x55            // 数据包大小限制（85字节）
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
@@ -2339,25 +2349,25 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
   if (PacketData && *PacketData != 0) {
     // 验证第一个魔数
     if (MagicNumber1 == NetworkPacketMagicSilive || MagicNumber1 == NetworkPacketMagicTivel) {
-      MagicNumberValidationResult |= 0x01;
+      MagicNumberValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证第二个魔数
     if (MagicNumber2 == NetworkPacketMagicBivel || MagicNumber2 == NetworkMagicDebugFood) {
-      MagicNumberValidationResult |= 0x02;
+      MagicNumberValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
   
   // 检查数据完整性
-  if (MagicNumberValidationResult == 0x03) {
+  if (MagicNumberValidationResult == NetworkPacketMagicValidationMask) {
     PacketDataIntegrityCheck = 0x01;
   }
   
   // 根据解码模式处理数据
-  if (DecodingMode == 0x01) {
+  if (DecodingMode == NetworkPacketBasicDecodingMode) {
     // 基本解码模式
-    DecodingStatusCode = MagicNumberValidationResult & 0x03;
-  } else if (DecodingMode == 0x02) {
+    DecodingStatusCode = MagicNumberValidationResult & NetworkPacketMagicValidationMask;
+  } else if (DecodingMode == NetworkPacketStrictDecodingMode) {
     // 严格解码模式
     DecodingStatusCode = PacketDataIntegrityCheck & 0x01;
   } else {
@@ -2621,12 +2631,12 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
   
   // 验证数据包指针有效性
   if (PacketData && *PacketData != 0) {
-    ChecksumValidationResult = 0x01;  // 校验和验证通过
+    ChecksumValidationResult = NetworkChecksumValid;  // 校验和验证通过
   }
   
   // 验证完整性偏移量有效性
   if (IntegrityOffset >= 0) {
-    DataFormatValidationResult = 0x01;  // 数据格式验证通过
+    DataFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
   }
   
   // 综合完整性验证结果
