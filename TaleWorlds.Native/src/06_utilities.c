@@ -91440,7 +91440,17 @@ void ExecuteResourceCleanupCallback5(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090e670(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器类型248（偏移量0xe8）
+ * 
+ * 在系统unwind过程中注册指定偏移量的资源处理器，
+ * 用于管理类型为0x248的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e670
+ */
+void RegisterResourceHandlerType248OffsetE8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0xe8),0x248,2,ResourceTypeHandler248);
