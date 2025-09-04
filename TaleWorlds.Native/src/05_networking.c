@@ -365,11 +365,11 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络连接管理常量
 #define NETWORK_TABLE_INDEX_RESET_VALUE 0x00                      // 表索引重置
 #define NetworkConnectionManagerEnabledFlag 0x01              // 连接管理器启用
-#define NETWORK_CONNECTION_DATA_ENABLED_FLAG 0x01                // 连接数据启用
-#define NETWORK_ROUTING_ENABLED_FLAG 0x01                        // 路由启用
-#define NETWORK_QUEUE_BUFFER_ENABLED_FLAG 0x01                   // 队列缓冲区启用
-#define NETWORK_CACHE_ENABLED_FLAG 0x01                          // 缓存启用
-#define NETWORK_FILTER_ENABLED_FLAG 0x01                         // 过滤器启用
+#define NetworkConnectionDataEnabledFlag 0x01                // 连接数据启用
+#define NetworkRoutingEnabledFlag 0x01                        // 路由启用
+#define NetworkQueueBufferEnabledFlag 0x01                   // 队列缓冲区启用
+#define NetworkCacheEnabledFlag 0x01                          // 缓存启用
+#define NetworkFilterEnabledFlag 0x01                         // 过滤器启用
 #define NETWORK_BANDWIDTH_RESET_VALUE 0x00                        // 带宽重置
 #define NETWORK_LATENCY_RESET_VALUE 0x00                          // 延迟重置
 #define NETWORK_PACKET_LOSS_RESET_VALUE 0x00                      // 数据包丢失重置
