@@ -44135,8 +44135,6 @@ void ValidateSystemResourceIntegrity(uint8_t ObjectContext,int64_t ValidationCon
  * @return 无返回值
  * @note 此函数在系统资源初始化过程中被调用
  * @warning 初始化失败时可能会触发系统紧急退出
- * 
- * 原始函数名为Unwind_180904510，现已重命名为InitializeSystemResourceHandlerExtended2
  */
 void InitializeSystemResourceHandlerSecondary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
@@ -83152,7 +83150,15 @@ void ReleaseResourceReferenceCounterA(void)
 
 
 
-void Unwind_18090ca10(void)
+/**
+ * @brief 释放资源引用计数器B
+ * 
+ * 递减资源引用计数器并调用资源管理器的处理函数。
+ * 用于系统资源的释放和清理操作。
+ * 
+ * @note 这是资源释放链中的第二个函数，与ReleaseResourceReferenceCounterA功能相同
+ */
+void ReleaseResourceReferenceCounterB(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
