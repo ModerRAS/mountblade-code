@@ -1750,9 +1750,9 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
 NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 连接请求处理变量
-  int64_t NetworkConnectionContext;              // 网络连接上下文句柄
-  int64_t *ConnectionValidationResult;          // 连接验证结果指针
-  int32_t ConnectionValidationStatusCode;               // 连接验证状态码
+  int64_t ConnectionContextHandle;              // 网络连接上下文句柄
+  int64_t *ValidationResultPointer;          // 连接验证结果指针
+  int32_t ValidationStatusCode;               // 连接验证状态码
   
   NetworkConnectionContext = 0;
   ConnectionValidationStatusCode = 0;  // 初始化验证状态码
@@ -1860,23 +1860,23 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *NetworkContextDataArray = (NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)NetworkConnectionStatusBufferPointer) + (long long)NetworkConnectionStatusPointer);
+            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + (long long)ConnectionStatusPointer);
             
             // 提取连接状态信息
-            NetworkConnectionStatus CurrentPacketStatus = NetworkContextDataArray[1];
-            NetworkConnectionStatus CurrentDataStatus = NetworkContextDataArray[2];
-            NetworkConnectionStatus CurrentValidationStatus = NetworkContextDataArray[3];
+            NetworkConnectionStatus CurrentPacketStatus = ContextDataArray[1];
+            NetworkConnectionStatus CurrentDataStatus = ContextDataArray[2];
+            NetworkConnectionStatus CurrentValidationStatus = ContextDataArray[3];
             
             // 更新数据包缓冲区状态
-            *NetworkConnectionStatusPointer = *NetworkContextDataArray;
-            NetworkConnectionStatusPointer[1] = CurrentPacketStatus;
-            NetworkConnectionStatusPointer[2] = CurrentDataStatus;
-            NetworkConnectionStatusPointer[3] = CurrentValidationStatus;
-            NetworkConnectionStatusPointer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)NetworkConnectionStatusBufferPointer) + -4 + (long long)(NetworkConnectionStatusPointer + 5));
+            *ConnectionStatusPointer = *ContextDataArray;
+            ConnectionStatusPointer[1] = CurrentPacketStatus;
+            ConnectionStatusPointer[2] = CurrentDataStatus;
+            ConnectionStatusPointer[3] = CurrentValidationStatus;
+            ConnectionStatusPointer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + -4 + (long long)(ConnectionStatusPointer + 5));
             
             // 更新计数器
             ConnectionProcessingIndex = ConnectionProcessingIndex - 1;
-            NetworkConnectionStatusPointer = NetworkConnectionStatusPointer + 5;
+            ConnectionStatusPointer = ConnectionStatusPointer + 5;
           } while (ConnectionProcessingIndex != 0);
         }
         return NetworkSuccessStatus;
