@@ -92753,28 +92753,44 @@ void ExecuteResourceHashStatusCleanup(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_18090e9d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
+/**
+ * @brief 资源哈希清理处理器
+ * 
+ * 该函数遍历资源哈希表并执行清理操作，确保所有相关资源都被正确释放
+ * 
+ * @param ObjectContext 对象上下文，标识要清理的对象
+ * @param ValidationContext 验证上下文，包含清理所需的验证信息
+ * @param CleanupOption 清理选项，指定清理的方式和范围
+ * @param CleanupFlag 清理标志，控制清理过程中的具体行为
+ */
+void ExecuteResourceHashCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 {
   uint8_t *ResourceHashPtr;
   uint8_t *ResourceHashStatusAddress;
-  uint8_t CleanupFlag;
+  uint8_t LocalCleanupFlag;
   
-  cleanupFlag = MemoryCleanupTriggerValue;
+  LocalCleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x40);
-  for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextSecondaryCleanupOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
-    (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
+  for (ResourceHashStatusAddress = *(uint8_t **)(ValidationContext + ValidationContextSecondaryCleanupOffset); ResourceHashStatusAddress != ResourceHashPtr; ResourceHashStatusAddress = ResourceHashStatusAddress + 4) {
+    (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress, 0, CleanupOption, CleanupFlag, LocalCleanupFlag);
   }
   if (*(int64_t *)(ValidationContext + 0x38) == 0) {
     return;
   }
-        ExecuteSystemEmergencyExit();
+  ExecuteSystemEmergencyExit();
 }
 
 
 
-void Unwind_18090e9e0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统资源状态标志位2
+ * 
+ * 该函数检查并清除资源数据的第二个状态标志位，然后释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void ReleaseSystemResourceStatusFlag2(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
     *(uint *)(ResourceData + 0x30) = *(uint *)(ResourceData + 0x30) & 0xfffffffd;
@@ -92785,8 +92801,15 @@ void Unwind_18090e9e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ea10(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统资源状态标志位8
+ * 
+ * 该函数检查并清除资源数据的第八个状态标志位，然后释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void ReleaseSystemResourceStatusFlag8(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((*(uint *)(ResourceData + 0x30) & 8) != 0) {
     *(uint *)(ResourceData + 0x30) = *(uint *)(ResourceData + 0x30) & 0xfffffff7;
@@ -92797,8 +92820,15 @@ void Unwind_18090ea10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ea40(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统资源状态标志位0x10
+ * 
+ * 该函数检查并清除资源数据的第0x10个状态标志位，然后释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void ReleaseSystemResourceStatusFlag0x10(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((*(uint *)(ResourceData + 0x30) & 0x10) != 0) {
     *(uint *)(ResourceData + 0x30) = *(uint *)(ResourceData + 0x30) & 0xffffffef;
@@ -92809,8 +92839,15 @@ void Unwind_18090ea40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ea70(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统资源状态标志位0x20
+ * 
+ * 该函数检查并清除资源数据的第0x20个状态标志位，然后释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void ReleaseSystemResourceStatusFlag0x20(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((*(uint *)(ResourceData + 0x30) & 0x20) != 0) {
     *(uint *)(ResourceData + 0x30) = *(uint *)(ResourceData + 0x30) & 0xffffffdf;
@@ -92821,8 +92858,15 @@ void Unwind_18090ea70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eaa0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统资源状态标志位0x40
+ * 
+ * 该函数检查并清除资源数据的第0x40个状态标志位，然后释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void ReleaseSystemResourceStatusFlag0x40(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((*(uint *)(ResourceData + 0x30) & 0x40) != 0) {
     *(uint *)(ResourceData + 0x30) = *(uint *)(ResourceData + 0x30) & 0xffffffbf;
@@ -92833,8 +92877,15 @@ void Unwind_18090eaa0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ead0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放系统资源状态标志位0x80
+ * 
+ * 该函数检查并清除资源数据的第0x80个状态标志位，然后释放相应的系统资源
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含操作所需的验证信息
+ */
+void ReleaseSystemResourceStatusFlag0x80(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((*(uint *)(ResourceData + 0x30) & 0x80) != 0) {
     *(uint *)(ResourceData + 0x30) = *(uint *)(ResourceData + 0x30) & 0xffffff7f;
