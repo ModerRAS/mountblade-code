@@ -647,7 +647,7 @@ void* ResourceMemoryRegionDeprecated;
 /**
  * @brief 资源系统状态标志
  */
-int ResourceSystemOperationalStatus;
+int ResourceSystemOperationalState;
 
 /**
  * @brief 资源系统时间戳
@@ -761,22 +761,22 @@ void* SystemDataTableEntryBackup;
 /**
  * @brief 系统状态标志主标志
  */
-char SystemPrimaryStatusFlag;
+char SystemPrimaryStatusIndicator;
 
 /**
  * @brief 系统状态标志备份标志
  */
-char SystemBackupStatusFlag;
+char SystemBackupStatusIndicator;
 
 /**
  * @brief 系统状态标志缓存标志
  */
-char SystemCacheStatusFlag;
+char SystemCacheStatusIndicator;
 
 /**
  * @brief 系统状态标志临时标志
  */
-char SystemTemporaryStatusFlag;
+char SystemTemporaryStatusIndicator;
 /**
  * @brief 系统内存块主块
  */
@@ -816,22 +816,22 @@ uint8_t SystemPrimaryByteValue;
 uint8_t SystemBackupByteValue;
 uint8_t SystemCacheByteValue;
 long long SystemBackupTimestamp;
-bool SystemFlagMain;
+bool SystemPrimaryFlag;
 void* SystemMemoryBlockCompression;
 void* SystemMemoryBlockEncryption;
 void* SystemMemoryBlockVirtualization;
 void* SystemMemoryBlockSandbox;
-char SystemStatusFlagReserved;
+char SystemReservedStatusIndicator;
 void* SystemFunctionPointerReserved;
 void* SystemMemoryBlockSnapshot;
 void* SystemMemoryBlockCheckpoint;
 void* SystemMemoryBlockRollback;
-bool SystemFlagBackup;
+bool SystemSecondaryFlag;
 void* SystemMemoryBlockMirror;
 void* SystemMemoryBlockReplica;
 void* SystemMemoryBlockShadow;
 void* SystemMemoryBlockClone;
-char SystemStatusFlagSecure;
+char SystemSecurityStatusIndicator;
 void* SystemMemoryBlockVault;
 void* SystemMemoryBlockSafe;
 void* SystemMemoryBlockLockbox;
@@ -839,7 +839,7 @@ void* SystemMemoryBlockArchivePrimary;
 void* SystemMemoryBlockArchiveSecondary;
 void* SystemMemoryBlockArchiveTertiary;
 void* SystemMemoryBlockArchiveQuaternary;
-char SystemStatusFlagProtected;
+char SystemProtectionStatusIndicator;
 void* SystemDataTableEntrySystem;
 void* SystemMemoryBlockArchiveQuinary;
 void* SystemDataTableEntryKernel;
