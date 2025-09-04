@@ -80981,7 +80981,19 @@ void ExecuteEmergencyExitAndResourceCleanup(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_18090c430(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的主系统数据结构指针
+ * 
+ * 该函数负责在验证上下文的指定偏移量处设置系统数据结构指针
+ * 用于系统数据结构的初始化和配置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会在验证上下文的0x168偏移处设置系统数据结构指针
+ * @warning 原始函数名为Unwind_18090c430，现已重命名为SetPrimarySystemDataStructurePointer
+ */
+void SetPrimarySystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x168) = &SystemDataStructure;
@@ -80990,7 +81002,19 @@ void Unwind_18090c430(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c440(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文的次级系统数据结构指针
+ * 
+ * 该函数负责在验证上下文的指定偏移量处设置系统数据结构指针
+ * 用于系统数据结构的次级初始化和配置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会在验证上下文的0x1d8偏移处设置系统数据结构指针
+ * @warning 原始函数名为Unwind_18090c440，现已重命名为SetSecondarySystemDataStructurePointer
+ */
+void SetSecondarySystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1d8) = &SystemDataStructure;

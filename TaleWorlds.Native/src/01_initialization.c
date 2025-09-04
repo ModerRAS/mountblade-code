@@ -18615,13 +18615,13 @@ void SetSystemPointerB(void)
   
   SystemOperationStatus = GetSystemStatus(1);
   if (SystemOperationStatus != 0) {
-    SystemDisplayContextB = 0x180be15c0;
+    SystemDisplayContextB = DisplayContextTertiaryAddress;
     return;
   }
   SystemOperationStatus = GetSystemStatus(0);
-  SystemDisplayContextB = 0x180be14e0;
+  SystemDisplayContextB = DisplayContextQuaternaryAddress;
   if (SystemOperationStatus != 0) {
-    SystemDisplayContextB = 0x180be1550;
+    SystemDisplayContextB = DisplayContextQuinaryAddress;
   }
   return;
 }
