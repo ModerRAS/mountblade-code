@@ -58384,7 +58384,7 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
   SystemOperationStatus4 = SystemOperationStatusSecondary % (ulong long)*(uint *)(resourceCounter + 0x10);
   for (pSystemOutputStatus = *(ulong long **)(*(long long *)(resourceCounter + 8) + SystemOperationStatus4 * 8); pSystemOutputStatus != (ulong long *)0x0
       ; pSystemOutputStatus = (ulong long *)pSystemOutputStatus[1]) {
-    if (SystemOperationStatusSecondary == *pSystemOutputStatus) goto LAB_180076feb;
+    if (SystemOperationStatusSecondary == *pSystemOutputStatus) goto LabelSystemOutputStatusCheck;
   }
   PrimaryResourceHandle = *(long long **)(resourceCounter + 0x30);
   SystemOperationFlags = (long long)(int)PrimaryResourceHandle[2] + 0xfU & MAX_UNSIGNED_32_BITfffffff0;

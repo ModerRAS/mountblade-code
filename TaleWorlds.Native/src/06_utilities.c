@@ -5132,7 +5132,7 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * @return uint8_t 释放操作结果状态码，0表示成功，非0表示失败
  * @note 此函数从全局状态获取当前对象句柄进行释放操作
  */
-uint8_t ReleaseObjectHandle(void) {
+uint8_t ReleaseCurrentObjectHandle(void) {
   int64_t CurrentObjectHandle = 0;
   int64_t ObjectMemoryAddress;
   
