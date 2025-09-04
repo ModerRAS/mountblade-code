@@ -27928,16 +27928,16 @@ SystemFlagHandlerCheck:
         renderStatusValuePrimary = ((renderStatusValuePrimary - 1) - (int)(renderStatusValuePrimary - 1) % CalculationFlags) + CalculationFlags;
       }
       SystemInitializationStatus = (long long)(int)(((int)renderStatusSecondary / (int)renderStatusTertiary) * renderStatusValuePrimary) / (long long)CalculationFlags;
-      if (((renderStatusValue1 & 1) == 0) && ((SystemInitializationStatus & 1) == 0)) goto SystemFlagHandler;
+      if (((renderStatusValuePrimary & 1) == 0) && ((SystemInitializationStatus & 1) == 0)) goto SystemFlagHandler;
       InterpolationFactorX = InterpolationFactorX + 0.01;
       *(float *)(SystemResourceManager + 0x238) = InterpolationFactorX;
     } while (InterpolationFactorX <= 1.0);
     *(uint32_t *)(SystemResourceManager + 0x238) = 0x3f800000;
 SystemFlagHandler:
-    InterpolationFactorX = (float)(int)renderStatusValue1 / (float)(int)renderStatus3;
-    scaleResult2 = (float)(int)SystemInitializationStatus / (float)(int)renderStatus5;
+    InterpolationFactorX = (float)(int)renderStatusValuePrimary / (float)(int)renderStatusPrimary;
+    scaleFactorSecondary = (float)(int)SystemInitializationStatus / (float)(int)renderStatusSecondary;
   }
-  *(ulong long *)(SystemResourceManager + 0x25c) = ConcatenatedSystemValue(scaleResult2,InterpolationFactorX);
+  *(ulong long *)(SystemResourceManager + 0x25c) = ConcatenatedSystemValue(scaleFactorSecondary,InterpolationFactorX);
   return;
 }
 
