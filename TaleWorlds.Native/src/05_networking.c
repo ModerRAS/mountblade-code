@@ -1940,15 +1940,15 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkConnectionStatus ValidationStatus = ContextDataArray[ConnectionContextValidationStatusIndex];
             
             // 更新数据包缓冲区状态
-            *StatusPtr = *ContextDataArray;
-            StatusPtr[ConnectionContextPacketStatusIndex] = PacketStatus;
-            StatusPtr[ConnectionContextDataStatusIndex] = DataStatus;
-            StatusPtr[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            StatusPtr[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)StatusBufferPtr) + -4 + (long long)(StatusPtr + ConnectionContextStatusEntrySize));
+            *ConnectionStatusPtr = *ContextDataArray;
+            ConnectionStatusPtr[ConnectionContextPacketStatusIndex] = PacketStatus;
+            ConnectionStatusPtr[ConnectionContextDataStatusIndex] = DataStatus;
+            ConnectionStatusPtr[ConnectionContextValidationStatusIndex] = ValidationStatus;
+            ConnectionStatusPtr[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)StatusBufferPtr) + -4 + (long long)(ConnectionStatusPtr + ConnectionContextStatusEntrySize));
             
             // 更新计数器
             ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
-            StatusPtr = StatusPtr + ConnectionContextStatusEntrySize;
+            ConnectionStatusPtr = ConnectionStatusPtr + ConnectionContextStatusEntrySize;
           } while (ConnectionProcessingCounter != 0);
         }
         return NetworkOperationSuccessCode;
