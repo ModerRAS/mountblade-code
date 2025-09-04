@@ -4560,16 +4560,16 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
           }
           ProcessedCount++;
           CollectionIterator += ResourceEntrySizeBytes;
-        } while (ProcessedObjectCount < TotalObjectsCount);
+        } while (ProcessedCount < TotalCount);
       }
-      FreeObjectListMemory(&ObjectListBuffer);
+      FreeObjectListMemory(&ListBuffer);
     }
     else {
-      FreeObjectListMemory(&ObjectListBuffer);
+      FreeObjectListMemory(&ListBuffer);
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityValidationKey ^ (uint64_t)ObjectMetadataBuffer);
+  PerformSecurityValidation(SecurityKey ^ (uint64_t)MetadataBuffer);
 }
 
 
