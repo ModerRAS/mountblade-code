@@ -90559,7 +90559,17 @@ void ExecuteResourceHashStatusResetAndMemoryCleanup(uint8_t ObjectContext, int64
 
 
 
-void Unwind_18090e020(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理操作1
+ * 
+ * 在系统unwind过程中执行资源上下文的清理操作，
+ * 通过验证上下文获取资源上下文并调用相应的清理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e020
+ */
+void ExecuteResourceContextCleanupOperation1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90573,7 +90583,17 @@ void Unwind_18090e020(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e040(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理操作2
+ * 
+ * 在系统unwind过程中执行资源上下文的清理操作，
+ * 通过验证上下文获取资源上下文并调用相应的清理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e040
+ */
+void ExecuteResourceContextCleanupOperation2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -108910,7 +108930,7 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SystemRegisterContextValidationOffset 0x1c
 
 // 系统资源验证失败错误码常量
-#define SystemResourceValidationErrorOffset0x38 0x38
+#define SystemResourceValidationErrorOffsetInitial 0x38
 #define SystemResourceValidationErrorOffsetMinimal 0x40
 #define SystemResourceValidationErrorOffsetReduced 0x48
 #define SystemResourceValidationErrorOffsetModerate 0x50
