@@ -85647,7 +85647,13 @@ void ValidateExtendedResourceHashMemoryAddress(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_18090d0c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态清理处理函数 - 偏移量0x390
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d0c0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffset390(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -85683,7 +85689,13 @@ void Unwind_18090d0c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d0d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态清理处理函数 - 偏移量0x3b0
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d0d0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffset3b0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -85719,7 +85731,13 @@ void Unwind_18090d0d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d0e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态清理处理函数 - 偏移量0x490
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d0e0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffset490(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -85755,7 +85773,13 @@ void Unwind_18090d0e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d0f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态清理处理函数 - 偏移量0x2f0
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d0f0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffset2f0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87032,7 +87056,13 @@ void Unwind_18090d2f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d300(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x250）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d300
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset250(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87068,7 +87098,13 @@ void Unwind_18090d300(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d310(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x270）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d310
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset270(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87192,7 +87228,13 @@ void ExecuteResourceCleanupWithOptionsAndFlagsVariant3(uint8_t ObjectContext,int
 
 
 
-void Unwind_18090d360(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x390）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d360
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset390(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87228,7 +87270,13 @@ void Unwind_18090d360(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d370(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x390，变体）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d370
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset390Variant(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87264,7 +87312,13 @@ void Unwind_18090d370(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d380(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x3b0）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d380
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset3b0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
