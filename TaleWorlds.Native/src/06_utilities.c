@@ -4845,38 +4845,38 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
         SystemStatus = (int)OperationResult;
         return SystemStatus;
       }
-      ResourceTablePointer = (int64_t *)(MemoryContext + MemoryContextResourceTablePointerOffset);
-      ResourceData = (int64_t *)(*ResourceTablePointer - ResourceTablePointerEntrySize);
-      if (*ResourceTablePointer == 0) {
-        ResourceData = NullPointer;
+      ResourceTableIterator = (int64_t *)(MemoryContext + MemoryContextResourceTablePointerOffset);
+      ResourceDataPointer = (int64_t *)(*ResourceTableIterator - ResourceTablePointerEntrySize);
+      if (*ResourceTableIterator == 0) {
+        ResourceDataPointer = NullPointer;
       }
-      ContextData = NullPointer;
-      ResourceIndexPointer = NullPointer;
-      if (ResourceData != (int64_t *)0x0) {
-        ContextData = ResourceData + ResourcePointerOffset;
+      ValidationContext = NullPointer;
+      ResourceEntryIndex = NullPointer;
+      if (ResourceDataPointer != (int64_t *)0x0) {
+        ValidationContext = ResourceDataPointer + ResourcePointerOffset;
       }
       while( true ) {
-        if (ContextData == ResourceTablePointer) {
-          *(int64_t **)(MemoryContext + MemoryContextCleanupDataOffset) = CleanupDataPointer;
-          ProcessMemoryData(MemoryContext,CleanupDataPointer);
-          CleanupDataPointer[2] = MemoryContext;
+        if (ValidationContext == ResourceTableIterator) {
+          *(int64_t **)(MemoryContext + MemoryContextCleanupDataOffset) = CleanupHandler;
+          ProcessMemoryData(MemoryContext,CleanupHandler);
+          CleanupHandler[2] = MemoryContext;
           OperationResult = ProcessSystemObjectOperation(MemoryContext);
           if ((int)OperationResult == 0) {
             return 0;
           }
           return SystemStatus;
         }
-        if ((int)CleanupDataPointer[5] <= (int)ResourceIndexPointer) {
+        if ((int)CleanupHandler[5] <= (int)ResourceEntryIndex) {
           return ErrorInvalidObjectHandle;
         }
-        ResourceData = ContextData + ResourceDataEntryOffset;
-        if (ContextData == (int64_t *)0x0) {
-          ResourceData = (int64_t *)ResourceHandleOffset;
+        ResourceDataPointer = ValidationContext + ResourceDataEntryOffset;
+        if (ValidationContext == (int64_t *)0x0) {
+          ResourceDataPointer = (int64_t *)ResourceHandleOffset;
         }
-        *(int64_t *)(CleanupDataPointer[4] + ResourceCleanupOffset + (int64_t)ResourceTablePointer) = *ResourceData;
-        if (ContextData == ResourceTablePointer) break;
-        ResourceData = (int64_t *)(*ContextData - ResourceTablePointerEntrySize);
-        if (*ContextData == 0) {
+        *(int64_t *)(CleanupHandler[4] + ResourceCleanupOffset + (int64_t)ResourceTableIterator) = *ResourceDataPointer;
+        if (ValidationContext == ResourceTableIterator) break;
+        ResourceDataPointer = (int64_t *)(*ValidationContext - ResourceTablePointerEntrySize);
+        if (*ValidationContext == 0) {
           ResourceData = NullPointer;
         }
         ContextData = NullPointer;
