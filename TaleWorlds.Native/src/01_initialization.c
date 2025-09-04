@@ -23490,8 +23490,8 @@ void InitializeSystemThreadPoolManager(void)
   void* *memoryAllocationBuffer;
   uint ConcatenatedSystemValue;
   void* SystemOperationCounter;
-  void* *pointerUnsigned38;
-  uint8_t *pointerUnsigned30;
+  void* *resourceTemplatePointer;
+  uint8_t *operationCountBuffer;
   uint32_t EncryptionKeyValue;
   uint8_t SystemMaxOperationCount [16];
   ulong long SystemEncryptionOffset;
@@ -23504,15 +23504,15 @@ void InitializeSystemThreadPoolManager(void)
     SetSystemInitializationFlag(1);
     CheckSystemInitializationStatus();
   }
-  pointerUnsigned38 = &SystemResourceTemplateSecondary;
-  pointerUnsigned30 = SystemMaxOperationCount;
+  resourceTemplatePointer = &SystemResourceTemplateSecondary;
+  operationCountBuffer = SystemMaxOperationCount;
   SystemMaxOperationCount[0] = 0;
   EncryptionKeyValue = 6;
   strcpy_s(SystemMaxOperationCount,0x10,&SystemStringConstantWindowTitleJ);
   encryptionValue68 = 1;
-  ProcessSystemWindowTitle(ThreadTitleBuffer,&pointerUnsigned38);
+  ProcessSystemWindowTitle(ThreadTitleBuffer,&resourceTemplatePointer);
   encryptionValue68 = 0;
-  pointerUnsigned38 = &SystemMemoryAllocatorReference;
+  resourceTemplatePointer = &SystemMemoryAllocatorReference;
   systemValue = ConcatenatedSystemValue + 0xf;
   ProcessSystemStringData(ThreadTitleBuffer,systemValue);
   ResourceHashEntryPointer = (uint32_t *)(memoryAllocationBuffer + ConcatenatedSystemValue);
