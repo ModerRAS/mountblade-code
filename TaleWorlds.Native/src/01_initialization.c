@@ -5781,7 +5781,7 @@ void InitializeSystemStringConfigurationManager(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -9157,7 +9157,7 @@ void InitializeSystemConfigurationManager(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -9198,7 +9198,7 @@ void InitializeSystemExtensionManager(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -9222,7 +9222,7 @@ void InitializeSystemLibraryManager(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -9673,7 +9673,7 @@ void InitializeSystemPerformanceNode(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10353,7 +10353,7 @@ void InitializeSystemDebugInfoManager(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10384,7 +10384,7 @@ void InitializeSystemLogManager(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10415,7 +10415,7 @@ void InitializeSystemStringProcessorA(void)
   void* *SystemStringPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemStringPointer = &SystemStringConstant;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10446,7 +10446,7 @@ void InitializeSystemStringProcessorB(void)
   void* *SystemStringPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemStringPointer = &SystemStringConstant;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10477,7 +10477,7 @@ void InitializeSystemStringProcessorC(void)
   void* *SystemStringPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemStringPointer = &SystemStringConstant;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10500,7 +10500,7 @@ void InitializeSystemStringProcessorA(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10523,7 +10523,7 @@ void InitializeSystemStringProcessorB(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10553,7 +10553,7 @@ void InitializeSystemStringProcessorC(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -10583,7 +10583,7 @@ void InitializeSystemStringProcessorD(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -13238,7 +13238,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -13267,7 +13267,7 @@ void InitializeSystemDeviceNodeManager(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -14547,7 +14547,7 @@ void InitializeSystemEventManagerN(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -15188,7 +15188,7 @@ void InitializeSystemResourceManagerK(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -15214,7 +15214,7 @@ void InitializeSystemResourceManagerL(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -15240,7 +15240,7 @@ void InitializeSystemResourceManagerM(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -15266,7 +15266,7 @@ void InitializeSystemResourceManagerN(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -17030,7 +17030,7 @@ void InitializeSystemSubcomponentM(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -18275,7 +18275,7 @@ void SystemPerformanceMonitorInitializer(void)
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   SystemDataPointer = &SystemGlobalDataTertiary;
   SystemProcessBufferPtr = SystemConfigurationProcessingBuffer;
@@ -18416,7 +18416,7 @@ void SystemNetworkManagerInitializer(void)
   void* *stackPointerParameter;
   uint8_t *SystemStackBufferPointer;
   uint32_t SystemStackBufferCapacity;
-  uint8_t SystemConfigurationProcessingBuffer[136];
+  uint8_t SystemConfigProcessBuffer[136];
   
   stackPointerParameter = &SystemGlobalDataTertiary;
   SystemStackBufferPointer = SystemStackBuffer;
@@ -21289,7 +21289,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   void* *SystemStackFlagSecondary;
   char *CharacterBufferPointer;
   uint32_t secondarySystemDataBuffer;
-  ulong long StackParameterC;
+  ulong long StackParamC;
   void* *systemStackPointer;
   char *CharacterPointer;
   uint32_t SystemUnsignedFlagSecondary;
@@ -22880,7 +22880,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
   void* *SystemDataBufferPointerA8;
   uint8_t *SystemParameterPointerA;
   uint32_t secondarySystemDataBuffer;
-  uint8_t SystemStackParameterC [72];
+  uint8_t SystemStackParamC [72];
   ulong long SystemEncryptionKey;
   
   systemDataBuffer = 0xfffffffffffffffe;
@@ -24239,7 +24239,7 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
   void* StackParameter2;
   
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer;
-  StackParameterSecondary = AdditionalParameter;
+  StackParamSecondary = AdditionalParameter;
   ConfigurationParameter = ConfigurationFlag;
   SystemHashNodeData = (ulong long *)SystemGlobalDataAllocate();
   SystemProcessFlags = 0;
@@ -26099,7 +26099,7 @@ uint32_t GetSystemResourceStatus(void)
   void* *stringBufferPointer;
   long long stringBufferOffset;
   uint stringBufferIndex;
-  void* StackParameterC;
+  void* StackParamC;
   void* systemSemaphore;
   uint8_t systemDataBuffer [32];
   uint8_t threadLocalStorageBuffer [40];
@@ -29930,7 +29930,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
   uint8_t UnsignedStackFlagQuaternary;
   uint8_t UnsignedStackFlagSecondary;
   void* *stackParameterB;
-  void* *pStackParameterC;
+  void* *pStackParamC;
   uint SystemDebugFlag;
   ulong long SystemResourceFlag;
   long long SystemPerformanceCounter;
@@ -43478,7 +43478,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
   int stackVariableA8;
   ulong long UnsignedStackFlagSecondary;
   void* *stackParameterB;
-  void* *pStackParameterC;
+  void* *pStackParamC;
   void* systemFlag88;
   uint32_t SystemFlagTertiary;
   void* SystemUnsignedFlagSecondary;
@@ -43637,7 +43637,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   uint32_t StackUnsignedValueA0;
   uint32_t StackUnsignedValue9C;
   ulong long systemConfigurationValue;
-  ulong long StackParameterC;
+  ulong long StackParamC;
   uint8_t StackFlag88;
   void* stackPointer87;
   long long dataBufferLength;
@@ -44931,7 +44931,7 @@ void ConfigureSystemDataProcessing(void* ResourceManager, void* ConfigurationDat
   int CalculationFlags;
   long long LocalDataIndex;
   void** SystemDataPointer;
-  void** StackParameterB;
+  void** StackParamB;
   uint32_t SystemConfigValue;
   void* SystemFlag88;
   uint8_t SystemCounterBuffer80 [72];
@@ -48573,7 +48573,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   uint8_t SystemFlagArrayB0 [16];
   code *CodePointerA0;
   code *SystemFunctionPointer98;
-  uint8_t SystemStackParameterC [16];
+  uint8_t SystemStackParamC [16];
   code *CodePointer80;
   code *SystemFunctionPointer78;
   void* SystemProcessFlags70;
@@ -52068,7 +52068,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   void* *SystemDataBufferPointerA8;
   uint32_t UnsignedStackFlagSecondary;
   ulong long secondarySystemDataBuffer;
-  void* *pStackParameterC;
+  void* *pStackParamC;
   void* *pointerToUnsignedStackFlagTertiary;
   uint32_t SystemFlagTertiary;
   ulong long SystemUnsignedFlagSecondary;
@@ -53994,7 +53994,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   void* *SystemDataBufferPointerA8;
   uint32_t UnsignedStackFlagSecondary;
   ulong long secondarySystemDataBuffer;
-  void* *pStackParameterC;
+  void* *pStackParamC;
   uint8_t *pointerToUnsignedStackFlagTertiary;
   uint32_t SystemFlagTertiary;
   ulong long SystemUnsignedFlagSecondary;
@@ -57590,7 +57590,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
   uint8_t systemDataBuffer;
   void* SystemFlagSecondary;
   void* UnsignedStackFlagSecondary;
-  void* StackParameterC;
+  void* StackParamC;
   
   SystemConfigValue = 0xfffffffffffffffe;
   while( true ) {

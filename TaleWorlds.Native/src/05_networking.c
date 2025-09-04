@@ -213,6 +213,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define SIGNATURE_METHOD_RSA 0x01                         // RSA签名方法
 #define ENCRYPTION_KEY_LENGTH_256B 0x100                  // 256位加密密钥长度
 #define COMPRESSION_LEVEL_DEFAULT 0x06                    // 默认压缩级别
+#define DEFAULT_SESSION_ENCRYPTION_KEY 0x12345678          // 默认会话加密密钥
 
 // 网络连接常量
 #define CONNECTION_MODE_CLIENT 0x01            // 客户端连接模式
@@ -1069,7 +1070,7 @@ void AcceptNetworkConnection(void)
   NetworkCompressionMethod = COMPRESSION_ZLIB;                      // 设置压缩方法为ZLIB
   
   // 初始化会话参数
-  NetworkSessionEncryptionKey = 0x12345678;            // 设置会话加密密钥
+  NetworkSessionEncryptionKey = DEFAULT_SESSION_ENCRYPTION_KEY;    // 设置会话加密密钥为默认值
   NetworkSessionTimeoutDuration = TIMEOUT_5_MINUTES;              // 设置会话超时时间为300秒
   NetworkHandshakeTimeout = TIMEOUT_5_SECONDS;                     // 设置握手超时时间为5秒
   NetworkAuthenticationTimeout = TIMEOUT_5_SECONDS;               // 设置认证超时时间为5秒
