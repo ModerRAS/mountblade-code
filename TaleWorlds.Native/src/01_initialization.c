@@ -21217,10 +21217,10 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
   if (NodeIdentifierCompareResult == -1) {
     NodeIdentifierCompareResult = FindSystemDataIndexAlternative(&SystemResourceTemplate,ConfigurationDataPointer);
   }
-  HashTableNode = (void* *)(SystemInitializationDataStart + 0xd0 + (long long)systemCounter * 0x100);
-  ResourceAddressPointer = HashTableNode;
-  if ((void* *)HashTableNode[2] != (void* *)0x0) {
-    SystemThreadStorage = (void* *)HashTableNode[2];
+  CurrentSearchNode = (void* *)(SystemInitializationDataStart + 0xd0 + (long long)NodeIdentifierCompareResult * 0x100);
+  SystemNextNode = CurrentSearchNode;
+  if ((void* *)CurrentSearchNode[2] != (void* *)0x0) {
+    SystemCurrentNode = (void* *)CurrentSearchNode[2];
     do {
       if (*(int *)(AdditionalParameter + 0x10) == 0) {
         SystemHashBucket = (void* *)SystemThreadStorage[1];
