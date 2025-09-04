@@ -4890,15 +4890,15 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
         ResourceData = NullPointer;
       }
       ContextData = NullPointer;
-      ResourceIndex = NullPointer;
+      ResourceIndexPointer = NullPointer;
       if (ResourceData != (int64_t *)0x0) {
         ContextData = ResourceData + ResourcePointerOffset;
       }
       while( true ) {
         if (ContextData == ResourceTablePointer) {
-          *(int64_t **)(MemoryContext + MemoryContextCleanupDataOffset) = CleanupData;
-          ProcessMemoryData(MemoryContext,CleanupData);
-          CleanupData[2] = MemoryContext;
+          *(int64_t **)(MemoryContext + MemoryContextCleanupDataOffset) = CleanupDataPointer;
+          ProcessMemoryData(MemoryContext,CleanupDataPointer);
+          CleanupDataPointer[2] = MemoryContext;
           OperationResult = ProcessSystemObjectOperation(MemoryContext);
           if ((int)OperationResult == 0) {
             return 0;

@@ -1994,8 +1994,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    NetworkStatus SecondaryValidation = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetSecond);
-    PacketValidationStatusArray[0] = SecondaryValidation;
+    NetworkStatus NetworkSecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetSecond);
+    PacketValidationStatusArray[0] = NetworkSecondaryValidationStatus;
     PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), PacketValidationStatusArray, 4);
     if ((int)PacketProcessingResult != 0) {
@@ -2006,8 +2006,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    NetworkStatus TertiaryValidation = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
-    PacketValidationStatusArray[0] = TertiaryValidation;
+    NetworkStatus NetworkTertiaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
+    PacketValidationStatusArray[0] = NetworkTertiaryValidationStatus;
     PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
                       (*(NetworkHandle **)(*PacketData + 8), PacketValidationStatusArray, 4);
     if ((int)PacketProcessingResult != 0) {
@@ -2017,8 +2017,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorInvalidPacket;
   }
-  NetworkStatus QuaternaryValidation = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
-  PacketValidationStatusArray[0] = QuaternaryValidation;
+  NetworkStatus NetworkQuaternaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
+  PacketValidationStatusArray[0] = NetworkQuaternaryValidationStatus;
   PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), PacketValidationStatusArray, 4);
   if ((int)PacketProcessingResult != 0) {
     return PacketProcessingResult;
@@ -2026,8 +2026,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorInvalidPacket;
   }
-  NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffsetFirst);
-  PacketProcessingStatusArray[0] = PrimaryDataStatus;
+  NetworkStatus NetworkPrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffsetFirst);
+  PacketProcessingStatusArray[0] = NetworkPrimaryDataStatus;
   PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), PacketProcessingStatusArray, 4);
   if ((int)PacketProcessingResult == 0) {
     if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
