@@ -152,7 +152,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkStatusTerminator 0x06
 
 // 网络系统常量
-#define NetworkMagicDebugFood 0xdeadf00d       // 调试魔数，用于内存检查
+#define NetworkMagicDebugMemoryCheck 0xdeadf00d       // 调试魔数，用于内存检查
 #define NetworkPacketMagicInvalid 0x464f4f44   // 兼容性别名，"FOOD" - 表示无效数据包
 #define NetworkMaxIntValue NetworkMaximumSignedInt32Value  // 兼容性别名 - 最大32位有符号整数值
 #define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
@@ -1975,7 +1975,7 @@ NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t C
   // 第一层验证：使用活跃连接魔数进行解码验证
   NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBinaryData, NetworkMagicDebugMemoryCheck), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
@@ -2116,7 +2116,7 @@ NetworkHandle ValidateNetworkConnectionPacket(int64_t ConnectionContext, Network
   // 第一层验证：使用活跃连接魔数进行解码验证
   PacketValidationStatusCode = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation);
   if (((int)PacketValidationStatusCode == 0) &&
-     (PacketValidationStatusCode = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)PacketValidationStatusCode == 0)) {
+     (PacketValidationStatusCode = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkPacketMagicBinaryData, NetworkMagicDebugMemoryCheck), (int)PacketValidationStatusCode == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
@@ -2374,7 +2374,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
     
     // 验证第二个魔数
-    if (MagicNumber2 == NetworkPacketMagicBivel || MagicNumber2 == NetworkMagicDebugFood) {
+    if (MagicNumber2 == NetworkPacketMagicBinaryData || MagicNumber2 == NetworkMagicDebugMemoryCheck) {
       MagicNumberValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
