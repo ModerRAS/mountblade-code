@@ -52717,7 +52717,7 @@ ThreadCreationComplete:
     SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
     StackContextValue = 1;
     SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,3,0x10);
-    goto LABEL_SYSTEM_BUFFER_HANDLER;
+    goto SystemBufferHandler;
   }
   *(void*2 *)(SystemMemoryContext + StackContextValue) = 10;
   StackContextValue = 2;
@@ -52742,7 +52742,7 @@ ThreadCreationComplete:
         }
         else {
           CurrentThreadId = StackContextValue;
-          if (SystemOperationStatus4 <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_ALLOCATION_HANDLER;
+          if (SystemOperationStatus4 <= (uint)SystemMemoryAllocationOffset) goto SystemAllocationHandler;
           SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
           StackContextValue = ResourceHash;
           SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,SystemOperationStatus4,0x10);

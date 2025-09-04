@@ -80496,7 +80496,7 @@ void ProcessResourceHashStatusValidation(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_18090c290(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteResourceDataCleanupWithSecondaryCount(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(ValidationContext + 0x48,*(uint8_t *)(ValidationContext + ValidationContextSecondaryCountOffset),CleanupOption,CleanupFlag,0xfffffffffffffffe);
@@ -80505,7 +80505,7 @@ void Unwind_18090c290(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c2a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteResourceDataCleanupWithSecondaryCountAlt(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceData(ValidationContext + 0x48,*(uint8_t *)(ValidationContext + ValidationContextSecondaryCountOffset),CleanupOption,CleanupFlag,0xfffffffffffffffe);
@@ -80514,7 +80514,7 @@ void Unwind_18090c2a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c2b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemMemoryAtExtendedOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x180);
