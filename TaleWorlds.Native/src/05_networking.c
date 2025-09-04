@@ -2809,7 +2809,7 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
  * @note 此函数会根据处理模式选择不同的数据处理策略
  * @warning 如果数据处理失败，系统会记录错误日志并尝试恢复
  */
-NetworkHandle ProcessPacketData(NetworkHandle *PacketData, int64_t HandleOffset, uint32_t ProcessingMode, int64_t ConnectionContext)
+NetworkHandle HandleNetworkPacketData(NetworkHandle *PacketData, int64_t HandleOffset, uint32_t ProcessingMode, int64_t ConnectionContext)
 {
   // 数据包数据处理变量
   uint32_t PacketDataProcessingResult;             // 数据包数据处理结果
