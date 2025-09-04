@@ -25917,14 +25917,14 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint32_t GlobalDataFlags;
   void* *pointerUnsigned1b8;
   void* *pointerUnsigned1b0;
-  int intValue1a8;
-  uint32_t CalculationFlags1A0;
+  int intValue1;
+  uint32_t calculationFlags1;
   void* *pSystemStackFlag;
-  void* *pointerUnsigned190;
+  void* *pointerUnsigned1;
   int intValue188;
-  uint32_t ConcatenatedSystemValue0;
-  void* *pCalculationFlags178;
-  long long LongValue170;
+  uint32_t concatenatedSystemValue;
+  void* *pCalculationFlags1;
+  long long longValue1;
   uint32_t encryptionKeySize;
   void* threadLocalStoragePointer;
   ulong long resourceCreationFlagsLength;
@@ -27082,7 +27082,7 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
   systemValue16 = SynchronizeSystemData(systemValue16,dataSyncPointer);
   calculationFlag1 = CheckSystemFlag(systemValue16,0x52);
   calculationFlag2 = CheckSystemFlag(1,0x51);
-  ResourceDataPosition = 0xe0;
+  resourceDataPosition = 0xe0;
   if (calculationFlag2 == '\0') {
     if (calculationFlag1 == '\0') goto SystemValidation;
   }
@@ -58565,7 +58565,7 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
         CleanupMemoryAllocator(&memoryAllocationBuffer);
         LocalSystemOffset = SystemResourceManager[0x37];
       }
-      if ((*(ulong long *)(LocalSystemOffset + 0x140) & resourceAllocationContext) != 0) goto LAB_18007738d;
+      if ((*(ulong long *)(LocalSystemOffset + 0x140) & resourceAllocationContext) != 0) goto ResourceAllocationCheck;
     }
     SystemCalculatedBufferPointer = SystemResourceManager;
     if ((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x20) == 0) {
@@ -60371,7 +60371,7 @@ ThreadStatusProcessing:
     if (*(char *)(SystemThreadHandle2 + 0x38c) == '\t') {
       in_RAX = CheckSystemStatus(SystemThreadHandle2);
       *(char *)(SystemThreadHandle2 + 0x38c) = (char)in_RAX;
-      if ((char)in_RAX == '\t') goto LAB_180077fcf;
+      if ((char)in_RAX == '\t') goto TabCharacterCheck;
     }
   }
   return in_RAX & MAX_UNSIGNED_32_BITffffff00;
@@ -63988,7 +63988,7 @@ ResourceDataProcessing:
         }
         else {
           ResourceDataCounter = ResourceDataCounter * 2;
-          if (ResourceDataCounter != 0) goto LAB_180079cd7;
+          if (ResourceDataCounter != 0) goto ResourceDataValidation;
         }
         if (SystemIntegerPointer5 != pointerToInteger20) {
             memmove(SystemIntegerPointer3,SystemIntegerPointer5,(long long)pointerToInteger20 - (long long)SystemIntegerPointer5);
@@ -64588,12 +64588,12 @@ ThreadHandleValidation:
                 SystemTimeFlag1d8 = (long long)pointerToInteger26 - (long long)pointerToInteger25;
                 if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
                   SystemThreadHandle1 = 1;
-LAB_18007a203:
+LAB_SystemThreadCreate:
                   SystemIntegerPointer6 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemThreadHandle1 * 4,3);
                 }
                 else {
                   SystemThreadHandle1 = ((long long)SystemTimeFlag1d8 >> 2) * 2;
-                  if (SystemThreadHandle1 != 0) goto LAB_18007a203;
+                  if (SystemThreadHandle1 != 0) goto LAB_SystemThreadCreate;
                 }
                 if (pointerToInteger25 != pointerToInteger26) {
                     memmove(SystemIntegerPointer6,pointerToInteger25,SystemTimeFlag1d8);
@@ -64626,13 +64626,13 @@ LAB_18007a203:
                 SystemTimeFlag1d8 = (long long)pointerToInteger20 - (long long)SystemIntegerPointer4;
                 if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
                   SystemThreadHandle1 = 1;
-LAB_18007a142:
+LAB_SystemThreadExpand:
                   SystemIntegerPointer5 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemThreadHandle1 * 4,3);
                 }
                 else {
                   SystemThreadHandle1 = ((long long)SystemTimeFlag1d8 >> 2) * 2;
                   SystemIntegerPointer5 = SystemIntegerPointer6;
-                  if (SystemThreadHandle1 != 0) goto LAB_18007a142;
+                  if (SystemThreadHandle1 != 0) goto LAB_SystemThreadExpand;
                 }
                 if (SystemIntegerPointer4 != pointerToInteger20) {
                     memmove(SystemIntegerPointer5,SystemIntegerPointer4,SystemTimeFlag1d8);
@@ -64672,7 +64672,7 @@ LAB_18007a142:
         piStack_208 = SystemIntegerPointer3;
         piStack_1f8 = pointerToInteger26;
         if ((((long long)pointerToInteger26 - (long long)SystemIntegerPointer6 & MAX_UNSIGNED_32_BITfffffffcU) == 0) || (!isResourceAvailable4))
-        goto LAB_18007a312;
+        goto LAB_SystemResourceCheck;
         isResourceAvailable4 = piStack_218 != (int *)0x0;
         piStack_218 = SystemIntegerPointer6;
         if (isResourceAvailable4) {
@@ -64681,8 +64681,8 @@ LAB_18007a142:
       } while( true );
     }
   }
-  goto LAB_18007a58b;
-LAB_18007a312:
+  goto MemoryAllocationComplete;
+MemoryAllocationComplete:
   if (piStack_218 != (int *)0x0) {
     piStack_218 = SystemIntegerPointer6;
       SystemCleanupFunction();
@@ -64804,7 +64804,7 @@ LAB_18007a312:
   if (SystemIntegerPointer4 != (int *)0x0) {
       SystemCleanupFunction(SystemIntegerPointer4);
   }
-LAB_18007a58b:
+LAB_SystemContextUpdate:
   SystemContextPointer = SystemContextPointer + 1;
   SystemParameterPointer = (ulong long)SystemContextPointer;
   longValue1d0 = longValue1d0 + 1;
@@ -65017,9 +65017,9 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   InitializeSystemContext(&SystemConfigurationFlags);
   SystemThreadFlags = *(long long *)(SystemResourceManager + 0x210);
   if (SystemThreadFlags == 0) {
-LAB_18007b44a:
+ThreadFlagsLoop1:
     if (*(long long *)(SystemResourceManager + 0xa8) == 0) {
-LAB_18007b454:
+ThreadFlagsLoop2:
       LOCK();
       *(uint8_t *)((long long)PrimaryResourceHandle4 + 0x15) = 4;
       UNLOCK();
