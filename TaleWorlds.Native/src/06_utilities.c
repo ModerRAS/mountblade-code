@@ -5237,31 +5237,31 @@ uint8_t CheckCharacterSecurity(char InputCharacter) {
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
-  uint8_t ValidationStatus;
-  int64_t ValidatedObjectMemoryAddress;
+uint8_t VerifyObjectHandleSecurity(int64_t ObjectHandleToCheck) {
+  uint8_t SecurityValidationResult;
+  int64_t VerifiedObjectMemoryLocation;
   
   // 验证对象上下文并获取内存地址
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedObjectMemoryAddress);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  SecurityValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToCheck + ObjectHandleOffset), &VerifiedObjectMemoryLocation);
+  if ((int)SecurityValidationResult != 0) {
+    return SecurityValidationResult;
   }
   
   // 调整验证后的内存地址
-  if (ValidatedObjectMemoryAddress == 0) {
-    ValidatedObjectMemoryAddress = 0;
+  if (VerifiedObjectMemoryLocation == 0) {
+    VerifiedObjectMemoryLocation = 0;
   }
   else {
-    ValidatedObjectMemoryAddress = ValidatedObjectMemoryAddress - 8;
+    VerifiedObjectMemoryLocation = VerifiedObjectMemoryLocation - 8;
   }
   
   // 检查对象句柄是否有效
-  if (*(int64_t *)(ValidatedObjectMemoryAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(VerifiedObjectMemoryLocation + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectMemoryAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(VerifiedObjectMemoryLocation + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
