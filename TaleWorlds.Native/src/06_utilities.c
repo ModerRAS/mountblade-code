@@ -96014,7 +96014,18 @@ void ExecuteSecondaryResourceContextCleanup(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090f5f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行第三级资源上下文清理操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行第三级资源上下文的清理操作
+ * 通过调用资源上下文中的清理函数来释放相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f5f0
+ */
+void ExecuteTertiaryResourceContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -96028,7 +96039,20 @@ void Unwind_18090f5f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f610(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源验证清理回调操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行资源验证清理回调操作
+ * 通过调用资源验证处理函数来清理相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f610
+ */
+void ExecuteResourceValidationCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceValidation(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x40e0,
@@ -96039,7 +96063,20 @@ void Unwind_18090f610(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f630(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源请求清理回调操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行资源请求清理回调操作
+ * 通过调用资源请求处理函数来清理相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f630
+ */
+void ExecuteResourceRequestCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceRequest(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x4110,

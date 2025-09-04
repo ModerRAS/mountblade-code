@@ -27899,21 +27899,21 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
     } while (InterpolationFactorX <= 1.0);
     *(uint32_t *)(SystemResourceManager + 0x234) = 0x3f800000;
 SystemFlagHandlerCheck:
-    InterpolationFactorX = (float)(int)renderStatus3 / InterpolationFactorX;
-    scaleResult2 = (float)(int)renderStatusValue1 / (float)(int)renderStatus5;
-    renderStatus5 = renderStatusValue1;
+    InterpolationFactorX = (float)(int)renderStatusPrimary / InterpolationFactorX;
+    scaleFactorSecondary = (float)(int)renderStatusValuePrimary / (float)(int)renderStatusSecondary;
+    renderStatusSecondary = renderStatusValuePrimary;
   }
-  *(ulong long *)(SystemResourceManager + 0x254) = ConcatenatedSystemValue(scaleResult2,InterpolationFactorX);
+  *(ulong long *)(SystemResourceManager + 0x254) = ConcatenatedSystemValue(scaleFactorSecondary,InterpolationFactorX);
   InterpolationFactorX = *(float *)(SystemResourceManager + 0x238);
   if (1.0 <= InterpolationFactorX) {
     InterpolationFactorX = 1.0;
     scaleFactorSecondary = 1.0;
   }
   else {
-    CurrentThreadIdentifier = (ulong long)renderStatus5;
-    SystemInitializationStatus = (ulong long)renderStatus3;
-    renderStatus4 = renderStatus3;
-    renderStatusValue1 = renderStatus5;
+    CurrentThreadIdentifier = (ulong long)renderStatusSecondary;
+    SystemInitializationStatus = (ulong long)renderStatusPrimary;
+    renderStatusTertiary = renderStatusPrimary;
+    renderStatusValuePrimary = renderStatusSecondary;
     while (threadContextValue = CurrentThreadIdentifier, 0 < (int)renderStatusValue1) {
       renderStatus4 = (uint)threadContextValue;
       SystemInitializationStatus = (long long)(int)SystemInitializationStatus % (long long)(int)renderStatus4;
