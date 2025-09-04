@@ -82946,7 +82946,14 @@ void ExecuteSecondarySystemCleanupCallback(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090c930(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置系统数据结构指针到偏移量0x2a8
+ * 在验证上下文的指定偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToOffset2a8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2a8) = &SystemDataStructure;
@@ -82955,7 +82962,14 @@ void Unwind_18090c930(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c940(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置系统数据结构指针到偏移量0x890
+ * 在验证上下文的指定偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToOffset890(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x890) = &SystemDataStructure;

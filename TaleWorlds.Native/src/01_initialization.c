@@ -20,7 +20,7 @@
 #define ResourceStringAddress         0x180d48d24
 #define StringOffsetAddress           0x180c84871
 #define MutexSecurityAddress          0x180c91910
-#define DataCheckAddress             0x180d49150
+#define DataValidationAddress        0x180d49150
 
 // SystemResourceManager结构体字段偏移量
 #define ResourceDataPointerOffset    1
@@ -34,7 +34,7 @@
 #define NodeNextPointerOffset       2
 #define NodeHeadPointerOffset       0
 #define NodeAllocationExtraSize     0x20
-#define NodeInactiveFlag             0
+#define NodeInactiveFlagValue        0
 
 // 系统节点结构体字段索引
 #define NodeIdentifier1Index         6
@@ -45,20 +45,20 @@
 #define GameCoreIdentifier1             0x4fc124d23d41985f
 #define GameCoreIdentifier2             0xe2f4a30d6e6ae482
 #define GameCoreId                    0x4fc124d23d41985f
-#define GameCoreNodeData               0
+#define GameCoreNodeDataValue          0
 #define BaseAllocatorIdentifier1       0x4770584fbb1df897
 #define BaseAllocatorIdentifier2       0x47f249e43f66f2ab
 #define BaseAllocatorFlag              1
-#define BaseAllocatorNodeData         0
+#define BaseAllocatorNodeDataValue    0
 #define DataTableIdentifier1     0x544e41445441424c
 #define DataTableIdentifier2     0x4552455345525441
 #define DataTableFlag           2
 #define MemoryIdentifier1         0x46ecbd4daf41613e
 #define MemoryIdentifier2         0xdc42c056bbde8482
-#define MemoryFlag               0
+#define MemoryFlagValue          0
 #define AllocatorIdentifier1      0x4c868a42644030f6
 #define AllocatorIdentifier2      0xc29193aa9d9b35b9
-#define AllocatorFlag            0
+#define AllocatorFlagValue        0
 #define ConfigurationIdentifier1  0x40ea3a798283cbbb
 #define ConfigurationIdentifier2  0x7f74eb2c5a7fadae
 #define ConfigurationFlag        3
@@ -19688,7 +19688,7 @@ void CopySystemMemoryData(long long SystemResourceManager,void* DataSourcePointe
  * 
  * @note 这是一个低级别的系统操作函数
  */
-void ExecuteSystemMemoryCopyOperation(void)
+void PerformSystemMemoryCopyOperation(void)
 
 {
     memcpy();
@@ -24203,7 +24203,7 @@ void* * InitializeSystemReferencePointer(void* *referencePointer,ulong long memo
  * @param ConfigurationDataPointer 控制标志位，如果第0位为1则释放内存
  * @return 返回系统数据缓冲区模板的引用
  */
-void* * GetSystemDataBufferTemplateG(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
+void* * GetSystemDataBufferConfigurationG(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourceManager = &SystemDataBufferTemplateG;
@@ -24283,7 +24283,7 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
  * @param ConfigurationDataPointer 控制标志位，如果第0位为1则释放内存
  * @return 返回系统数据缓冲区模板的引用
  */
-void* * GetSystemDataBufferTemplateF(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
+void* * GetSystemDataBufferConfigurationF(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourceManager = &SystemDataBufferTemplateF;
@@ -24305,7 +24305,7 @@ void* * GetSystemDataBufferTemplateF(void* *SystemResourceManager,ulong long Con
  * @param ConfigurationDataPointer 控制标志位，如果第0位为1则释放内存
  * @return 返回系统数据缓冲区模板的引用
  */
-void* * GetSystemDataBufferTemplateD(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
+void* * GetSystemDataBufferConfigurationD(void* *SystemResourceManager,ulong long ConfigurationDataPointer)
 
 {
   *SystemResourceManager = &SystemDataBufferTemplateD;
@@ -25581,7 +25581,7 @@ ManageSystemMemoryTemplate(void* *SystemResourceManager, unsigned long long Conf
  * 
  * @param SystemResourceManager 系统资源指针
  */
-void SystemMemoryTemplateCleanup(void* *SystemResourceManager)
+void CleanupSystemMemoryTemplate(void* *SystemResourceManager)
 
 {
   if (SystemResourceManager[2] != 0) {
@@ -36191,7 +36191,7 @@ ExecuteSystemDataOperation(void* SystemResourceManager, void* ConfigurationDataP
  * 
  18005c210
  */
-void* * ConfigureSystemResourceMemoryTemplate(void* *SystemResourceManager,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void* * ConfigureSystemResourceMemoryBuffer(void* *SystemResourceManager,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
   if ((code *)SystemResourceManager[6] != (code *)0x0) {
