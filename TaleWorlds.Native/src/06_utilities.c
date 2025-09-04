@@ -999,7 +999,6 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define ObjectContextSecurityContextOffset 0x4c
 
 // 系统上下文相关偏移量常量
-#define SystemContextResourceOffset 0x180985054
 #define SystemContextPrimaryResourceManagerOffset 0x68
 #define SystemContextSecondaryResourceManagerOffset 0x70
 #define SystemContextSchedulerOffset 0x98
@@ -45008,19 +45007,6 @@ void ExecuteSystemResourceDestroyCallback(uint8_t ObjectContext,int64_t Validati
 
 
 
-/**
- * @brief 销毁条件变量
- * 
- * 该函数负责销毁系统中的条件变量
- * 
- * @return 无返回值
- */
-void DestroyConditionVariable(void)
-
-{
-  _Cnd_destroy_in_situ();
-  return;
-}
 
 
 
@@ -52220,17 +52206,6 @@ void UnwindSystemContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-/**
- * @brief 条件变量销毁器：销毁条件变量资源
- * 
- * 该函数负责销毁条件变量资源，确保线程同步资源的正确清理
- */
-void DestroyConditionVariable(void)
-
-{
-  _Cnd_destroy_in_situ();
-  return;
-}
 
 
 
@@ -53508,22 +53483,6 @@ void ReleaseResourceHandleAndValidateStatus(uint8_t ObjectContext, int64_t Valid
 
 
 
-/**
- * @brief 销毁条件变量
- * 
- * 该函数负责销毁条件变量，释放相关资源。
- * 
- * @return 无返回值
- * @note 此函数会销毁条件变量
- * @warning 销毁后条件变量将不再可用
- * @remark 原始函数名：Unwind_180905f00
- */
-void DestroyConditionVariable(void)
-
-{
-  _Cnd_destroy_in_situ();
-  return;
-}
 
 
 
