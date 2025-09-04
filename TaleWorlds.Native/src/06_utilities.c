@@ -74881,7 +74881,19 @@ void CleanupResourceHashStatus(uint8_t ObjectContext, int64_t ValidationContext)
  * @note 此函数在异常处理过程中被调用，用于确保资源分配状态的正确清理
  * @warning 清理过程中可能会触发系统紧急退出操作
  */
-void Unwind_ExecuteResourceAllocationCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源分配清理操作
+ * 
+ * 该函数负责清理已分配的资源和相关内存
+ * 释放资源分配时占用的内存和相关数据结构
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会安全地释放资源分配相关的内存
+ * @remark 原始函数名：Unwind_ExecuteResourceAllocationCleanup
+ */
+void ExecuteResourceAllocationCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x48) != (int64_t *)0x0) {
@@ -75180,7 +75192,19 @@ void ValidateResourceHashStatusCode(uint8_t ObjectContext, int64_t ValidationCon
  * @note 此函数在异常处理过程中被调用，用于确保资源的正确释放
  * @warning 资源释放过程中可能会触发系统清理操作
  */
-void Unwind_ExecuteResourceDeallocationHandler(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源释放处理操作
+ * 
+ * 该函数负责处理资源的释放和回收
+ * 确保资源被正确释放并返回到资源池中
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会安全地处理资源释放操作
+ * @remark 原始函数名：Unwind_ExecuteResourceDeallocationHandler
+ */
+void ExecuteResourceDeallocationHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -81629,7 +81653,19 @@ void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int
 
 
 
-void Unwind_18090c590(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源验证操作
+ * 
+ * 该函数负责验证系统资源的完整性和状态
+ * 确保资源在系统中的正确性和可用性
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会验证系统资源的完整性
+ * @remark 原始函数名：Unwind_18090c590
+ */
+void ValidateSystemResourceIntegrity(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -81673,7 +81709,19 @@ void Unwind_18090c590(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c5a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源状态检查操作
+ * 
+ * 该函数负责检查系统资源的状态和可用性
+ * 确保资源处于正确的状态以供系统使用
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会检查系统资源的当前状态
+ * @remark 原始函数名：Unwind_18090c5a0
+ */
+void CheckSystemResourceStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x3b0) = &SystemDataStructure;
@@ -81683,7 +81731,17 @@ void Unwind_18090c5a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c5b0(void)
+/**
+ * @brief 执行系统资源重置操作
+ * 
+ * 该函数负责重置系统资源到初始状态
+ * 清理资源状态并准备重新初始化
+ * 
+ * @return 无返回值
+ * @note 此函数会重置系统资源的状态
+ * @remark 原始函数名：Unwind_18090c5b0
+ */
+void ResetSystemResources(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
