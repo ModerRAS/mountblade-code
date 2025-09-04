@@ -45334,6 +45334,18 @@ void ResetSystemContextReference(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
+/**
+ * @brief 释放系统互斥锁
+ * 
+ * 该函数负责释放系统中的互斥锁资源
+ * 解锁互斥锁并处理可能出现的错误情况
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含互斥锁的位置信息
+ * @return 无返回值
+ * @note 此函数会调用互斥锁解锁操作
+ * @warning 如果解锁失败，会抛出标准错误异常
+ */
 void ReleaseSystemMutexLock(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -45348,6 +45360,18 @@ void ReleaseSystemMutexLock(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
+/**
+ * @brief 清理系统资源上下文主函数
+ * 
+ * 该函数负责清理系统资源上下文的主要状态，包括释放资源、
+ * 重置状态标志和清理内存结构等操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文，包含系统状态和资源管理信息
+ * @return 无返回值
+ * @note 此函数会进行安全验证，确保资源被正确释放
+ * @warning 调用此函数前必须确保系统上下文已正确初始化
+ */
 void CleanupSystemResourceContextPrimary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
