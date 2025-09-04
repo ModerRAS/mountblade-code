@@ -24,8 +24,8 @@
 
 // SystemResourceManager结构体字段偏移量
 #define ResourceDataPointerOffset    1
-#define SystemResourceHashTableOffset     2
-#define SystemResourceFlagsOffset          4
+#define ResourceHashTableOffset     2
+#define ResourceFlagsOffset          4
 #define SystemResourceMemoryPoolOffset     5
 
 // 系统节点相关常量
