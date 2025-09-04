@@ -5167,22 +5167,22 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * @note 此函数从全局状态获取当前对象句柄进行释放操作
  */
 uint8_t ReleaseObjectHandle(void) {
-  int64_t ActiveObjectHandle = 0;
-  int64_t ObjectMemoryLocation;
+  int64_t CurrentObjectHandle = 0;
+  int64_t ObjectMemoryAddress;
   
   // 获取当前对象句柄（这里从系统状态中获取）
-  ActiveObjectHandle = GetCurrentObjectHandle();
+  CurrentObjectHandle = GetCurrentObjectHandle();
   
-  if (ActiveObjectHandle == 0) {
-    ObjectMemoryLocation = 0;
+  if (CurrentObjectHandle == 0) {
+    ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryLocation = ActiveObjectHandle - 8;
+    ObjectMemoryAddress = CurrentObjectHandle - 8;
   }
   
   // 如果对象内存地址有效，执行释放操作
-  if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
+  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
   }
   return OperationSuccessCode;
 }
@@ -5217,9 +5217,9 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t CheckCharacterSecurity(char InputCharacter) {
+uint8_t ValidateCharacterInput(char CharacterToValidate) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
-  if (InputCharacter != '\0') {
+  if (CharacterToValidate != '\0') {
     ExecuteSystemExitOperation();
   }
   return OperationSuccessCode;

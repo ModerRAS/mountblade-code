@@ -7842,7 +7842,7 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
   uStack_14c = 0;
   FloatStackMinimum = -1e+08;
   FloatStackNegative1 = -1e+08;
-  fStack_140 = -1e+08;
+  FloatStackNegative2 = -1e+08;
   uStack_13c = 0;
   IntegerError = *(char *)(SystemParameterPointer + 0x858) + -1;
   ModuleInitializationResult1 = (longlong)IntegerError;
@@ -10234,6 +10234,13 @@ Label_18060bbae:
   }
   return;
 }
+/**
+ * @brief 获取系统性能时间
+ * 
+ * 使用QueryPerformanceCounter获取高精度时间戳，并转换为秒为单位的时间值
+ * 
+ * @return 返回系统性能时间（秒）
+ */
 double SystemGetPerformanceTime(void)
 {
   int64_t ModuleInitializationResult;
