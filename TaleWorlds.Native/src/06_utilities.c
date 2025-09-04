@@ -568,7 +568,7 @@
  * @param ValidationParameter 验证参数值低7位
  * @return 合并后的64位值
  */
-uint64_t CombineSystemContextWithValidationParam(uint64_t SystemContext, uint8_t ValidationParameter);
+uint64_t MergeSystemContextWithValidationParameter(uint64_t SystemContext, uint8_t ValidationParameter);
 
 /**
  * @brief 计算数据校验和
@@ -582,7 +582,7 @@ uint64_t CombineSystemContextWithValidationParam(uint64_t SystemContext, uint8_t
  * @param ChecksumSeed 校验种子值
  * @return 计算得到的校验和值
  */
-uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
+uint64_t CalculateDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed);
 
 /**
  * @brief 计算数据校验和(扩展版)
@@ -597,7 +597,7 @@ uint64_t ComputeDataChecksum(uint64_t SystemContext, void* DataBuffer, int Algor
  * @param ExtendedParameter 扩展参数
  * @return 计算得到的校验和值
  */
-uint64_t ComputeExtendedDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed, uint32_t ExtendedParameter);
+uint64_t CalculateExtendedDataChecksum(uint64_t SystemContext, void* DataBuffer, int AlgorithmType, uint32_t ChecksumSeed, uint32_t ExtendedParameter);
 
 /**
  * @brief 验证内存访问
@@ -609,7 +609,7 @@ uint64_t ComputeExtendedDataChecksum(uint64_t SystemContext, void* DataBuffer, i
  * @param AccessValidationFlag 访问验证标志
  * @return 验证结果
  */
-uint32_t ValidateMemoryAccessSafety(void* MemoryAddress, uint64_t AccessValidationFlag);
+uint32_t VerifyMemoryAccessSafety(void* MemoryAddress, uint64_t AccessValidationFlag);
 
 /**
  * @brief 终止系统进程
@@ -620,7 +620,7 @@ uint32_t ValidateMemoryAccessSafety(void* MemoryAddress, uint64_t AccessValidati
  * @param TerminationSecurityToken 终止安全令牌，用于验证终止操作的合法性
  * @return 无返回值，函数不会返回
  */
-void TerminateSystemProcess(uint64_t TerminationSecurityToken);
+void ShutdownSystemProcess(uint64_t TerminationSecurityToken);
 
 /**
  * @brief 检查系统状态
@@ -632,7 +632,7 @@ void TerminateSystemProcess(uint64_t TerminationSecurityToken);
  * @param StatusCheckType 状态检查类型 (0=基本检查, 1=详细检查)
  * @return 系统状态码，0表示正常，非0表示异常
  */
-uint32_t CheckSystemHealthStatus(void* SystemContext, uint32_t StatusCheckType);
+uint32_t VerifySystemHealthStatus(void* SystemContext, uint32_t StatusCheckType);
 
 /**
  * @brief 处理系统对象状态
@@ -643,7 +643,7 @@ uint32_t CheckSystemHealthStatus(void* SystemContext, uint32_t StatusCheckType);
  * @param SystemObjectHandle 系统对象句柄
  * @return 处理结果状态码
  */
-uint32_t ManageSystemObjectState(uint32_t SystemObjectHandle);
+uint32_t HandleSystemObjectState(uint32_t SystemObjectHandle);
 
 /**
  * @brief 执行系统退出操作（无参数版本）
