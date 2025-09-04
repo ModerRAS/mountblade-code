@@ -2009,6 +2009,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   NetworkStatus ConnectionStatusArray [6];                      // 连接状态数组，存储连接的各级状态信息
   NetworkStatus ValidationStatusArray [4];                 // 数据包验证状态数组，存储验证过程中的状态信息
   NetworkStatus ProcessingStatusArray [4];                 // 数据包处理状态数组，存储处理过程中的状态信息
+  NetworkHandle PacketProcessingResult;                    // 数据包处理结果，用于存储各个验证步骤的结果
   
   // 根据数据包大小选择不同的处理路径
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
@@ -2770,29 +2771,29 @@ NetworkHandle FinalizePacket(NetworkHandle *PacketData, int64_t FinalizeOffset, 
   uint32_t PacketResourceCleanupResult;           // 数据包资源清理结果
   
   // 初始化完成状态
-  FinalizationResult = 0x00;
-  StatusUpdateResult = 0x00;
-  ResourceCleanupResult = 0x00;
+  PacketFinalizationResult = 0x00;
+  PacketStatusUpdateResult = 0x00;
+  PacketResourceCleanupResult = 0x00;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    StatusUpdateResult = 0x01;  // 状态更新成功
+    PacketStatusUpdateResult = 0x01;  // 状态更新成功
   }
   
   // 验证完成偏移量有效性
   if (FinalizeOffset >= 0) {
-    ResourceCleanupResult = 0x01;  // 资源清理成功
+    PacketResourceCleanupResult = 0x01;  // 资源清理成功
   }
   
   // 验证完成值有效性
   if (FinalizeValue != 0) {
-    StatusUpdateResult &= 0x01;  // 完成值验证通过
+    PacketStatusUpdateResult &= 0x01;  // 完成值验证通过
   }
   
   // 综合完成处理结果
-  FinalizationResult = StatusUpdateResult & ResourceCleanupResult;
+  PacketFinalizationResult = PacketStatusUpdateResult & PacketResourceCleanupResult;
   
-  return FinalizationResult;  // 返回完成处理结果
+  return PacketFinalizationResult;  // 返回完成处理结果
 }
 
 /**
