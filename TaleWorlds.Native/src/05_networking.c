@@ -713,57 +713,58 @@ void *NetworkConnectionQuaternaryProcessingConfig;// 网络连接第四处理配
 void *NetworkConnectionQuinaryProcessingConfig;  // 网络连接第五处理配置数据，第五级处理流程的配置信息
 
 // 网络连接上下文和数据变量
-uint32_t NetworkConnectionContext;                          // 网络连接上下文
-uint32_t NetworkConnectionContextData;                      // 网络连接上下文数据
-uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文
-uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池
-uint32_t NetworkConnectionRequestData;                     // 网络连接请求数据
-uint32_t NetworkConnectionResponseData;                    // 网络连接响应数据
-uint32_t NetworkConnectionErrorData;                       // 网络连接错误数据
-uint32_t NetworkConnectionStatusData;                      // 网络连接状态数据
-uint32_t NetworkConnectionTimeoutData;                     // 网络连接超时数据
-uint32_t NetworkConnectionValidationData;                   // 网络连接验证数据
-uint32_t NetworkConnectionEncryptionData;                   // 网络连接加密数据
-uint32_t NetworkConnectionCompressionData;                 // 网络连接压缩数据
+uint32_t NetworkConnectionContext;                          // 网络连接上下文，存储连接的运行时上下文信息
+uint32_t NetworkConnectionContextData;                      // 网络连接上下文数据，上下文相关的数据存储
+uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文，安全相关的上下文信息
+uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池，用于管理连接的缓冲区资源
+uint32_t NetworkConnectionRequestData;                     // 网络连接请求数据，存储连接请求的相关信息
+uint32_t NetworkConnectionResponseData;                    // 网络连接响应数据，存储连接响应的相关信息
+uint32_t NetworkConnectionErrorData;                       // 网络连接错误数据，存储连接错误的相关信息
+uint32_t NetworkConnectionStatusData;                      // 网络连接状态数据，存储连接状态的相关信息
+uint32_t NetworkConnectionTimeoutData;                     // 网络连接超时数据，存储连接超时的相关信息
+uint32_t NetworkConnectionValidationData;                   // 网络连接验证数据，存储连接验证的相关信息
+uint32_t NetworkConnectionEncryptionData;                   // 网络连接加密数据，存储连接加密的相关信息
+uint32_t NetworkConnectionCompressionData;                 // 网络连接压缩数据，存储连接压缩的相关信息
 
 // 网络缓冲区管理变量
-uint32_t NetworkValidationBufferPool;                      // 网络验证缓冲池
-uint32_t NetworkPacketEncryptionBuffer;                    // 网络数据包加密缓冲区
-uint32_t NetworkPacketCompressionBuffer;                   // 网络数据包压缩缓冲区
-uint32_t NetworkPacketRoutingBuffer;                       // 网络数据包路由缓冲区
-uint32_t NetworkPacketQueueBuffer;                         // 网络数据包队列缓冲区
-uint32_t NetworkPacketCacheBuffer;                         // 网络数据包缓存缓冲区
-uint32_t NetworkPacketFilterBuffer;                        // 网络数据包过滤缓冲区
+uint32_t NetworkValidationBufferPool;                      // 网络验证缓冲池，用于验证操作的缓冲区资源池
+uint32_t NetworkPacketEncryptionBuffer;                    // 网络数据包加密缓冲区，用于数据包加密处理的缓冲区
+uint32_t NetworkPacketCompressionBuffer;                   // 网络数据包压缩缓冲区，用于数据包压缩处理的缓冲区
+uint32_t NetworkPacketRoutingBuffer;                       // 网络数据包路由缓冲区，用于数据包路由选择的缓冲区
+uint32_t NetworkPacketQueueBuffer;                         // 网络数据包队列缓冲区，用于数据包队列管理的缓冲区
+uint32_t NetworkPacketCacheBuffer;                         // 网络数据包缓存缓冲区，用于数据包缓存存储的缓冲区
+uint32_t NetworkPacketFilterBuffer;                        // 网络数据包过滤缓冲区，用于数据包过滤处理的缓冲区
 
 // 网络安全相关变量
-uint32_t NetworkSecurityContextDataPrimary;                // 网络安全上下文主要数据
-uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据
-uint32_t NetworkSecurityEncryptionData;                    // 网络安全加密数据
-uint32_t NetworkSecurityAuthenticationData;                 // 网络安全认证数据
-uint32_t NetworkSecurityAuthorizationData;                  // 网络安全授权数据
-uint32_t NetworkSecurityAuditData;                         // 网络安全审计数据
-uint32_t NetworkSecurityPolicyData;                        // 网络安全策略数据
-uint32_t NetworkSecurityCertificateData;                   // 网络安全证书数据
+uint32_t NetworkSecurityContextDataPrimary;                // 网络安全上下文主要数据，存储主要的安全上下文信息
+uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据，用于安全验证的相关数据
+uint32_t NetworkSecurityEncryptionData;                    // 网络安全加密数据，用于安全加密的相关数据
+uint32_t NetworkSecurityAuthenticationData;                 // 网络安全认证数据，用于身份认证的相关数据
+uint32_t NetworkSecurityAuthorizationData;                  // 网络安全授权数据，用于权限授权的相关数据
+uint32_t NetworkSecurityAuditData;                         // 网络安全审计数据，用于安全审计的相关数据
+uint32_t NetworkSecurityPolicyData;                        // 网络安全策略数据，用于安全策略配置的相关数据
+uint32_t NetworkSecurityCertificateData;                   // 网络安全证书数据，用于证书管理的相关数据
 
 // 网络连接池管理变量
-uint32_t NetworkConnectionPoolData;                    // 网络连接池数据指针
-uint32_t NetworkConnectionPoolMetadata;                // 网络连接池元数据
-uint32_t NetworkConnectionPoolStatistics;              // 网络连接池统计信息
-uint32_t NetworkConnectionPoolConfiguration;            // 网络连接池配置
-uint32_t NetworkConnectionPoolHealthStatus;             // 网络连接池健康状态
-uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能指标
-uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配计数
-uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数
-uint32_t NetworkConnectionPoolCapacity;                 // 网络连接池容量
-uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引
-uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理器
+uint32_t NetworkConnectionPoolData;                    // 网络连接池数据指针，指向连接池的数据存储区域
+uint32_t NetworkConnectionPoolMetadata;                // 网络连接池元数据，连接池的元数据信息
+uint32_t NetworkConnectionPoolStatistics;              // 网络连接池统计信息，连接池的统计和计数信息
+uint32_t NetworkConnectionPoolConfiguration;            // 网络连接池配置，连接池的配置参数设置
+uint32_t NetworkConnectionPoolHealthStatus;             // 网络连接池健康状态，连接池的健康状态指示
+uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能指标，连接池的性能测量数据
+uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配计数，连接池分配操作的计数
+uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数，连接池释放操作的计数
+uint32_t NetworkConnectionPoolCapacity;                 // 网络连接池容量，连接池的最大容量
+uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引，连接池的索引位置
+uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理器，连接池的管理器句柄
 
 /**
  * @brief 网络连接表变量 - 管理网络连接的表结构和索引
  * 
- * 该变量维护所有活跃网络连接的表结构，包括连接索引、状态信息和资源引用
+ * 该变量维护所有活跃网络连接的表结构，包括连接索引、状态信息和资源引用。
+ * 它是网络连接管理的核心数据结构，提供了高效的连接查找和管理功能。
  */
-uint32_t NetworkConnectionTable;                       // 网络连接表管理器
+uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
 
 // =============================================================================
 // 网络连接池和套接字管理函数
@@ -2014,8 +2015,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     }
     NetworkStatus PrimaryConnectionState = *(NetworkStatus *)(ConnectionContext + NetworkPacketDataSecondaryOffset);
     ConnectionStatusArray[0] = PrimaryConnectionState;
-    ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))
-                      (*(NetworkHandle **)(*PacketData + 8), ConnectionStatusArray, 4);
+    NetworkPacketProcessor PacketProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
+    ProcessingResult = PacketProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ConnectionStatusArray, 4);
     if ((int)ProcessingResult != 0) {
       return ProcessingResult;
     }
