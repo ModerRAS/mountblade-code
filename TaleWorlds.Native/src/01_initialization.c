@@ -263,12 +263,13 @@
 #define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2 DataComparisonTemplateAlphaId2
 
 /**
- * @brief 处理系统内存页面
+ * @brief 处理系统内存页
  * 
- * 处理系统内存页面，包括页面分配、映射和管理操作。
- * 用于系统内存管理的基础操作。
+ * 处理系统内存页，包括内存页的分配、释放和管理操作。
+ * 用于系统内存页的生命周期管理。
  * 
- * @param MemoryPointer 内存地址，指定要处理的内存页面位置
+ * @param MemoryPointer 内存指针，指向需要处理的内存页
+ * 
  * @return 无返回值
  */
 void HandleSystemMemoryPage(long long MemoryPointer);
@@ -558,24 +559,23 @@ void* SystemGameCoreMainEntryPoint;
 void* SystemGlobalDataPointer;              // 全局系统数据引用
 void* SystemMainMemoryPool;                // 主系统内存池
 void* SystemMainDataTable;                 // 系统数据表引用
-void* SystemSecondaryMemoryPool;                // 次系统内存池
-void* SystemSecondaryDataTable;                // 次系统数据表
-void* SystemCacheMemoryPool;                  // 缓存系统内存池
-void* SystemCacheDataTable;                   // 缓存系统数据表
-void* SystemTemporaryMemoryPool;              // 临时系统内存池
-void* SystemTemporaryDataTable;               // 临时系统数据表
-void* SystemReservedMemoryPool;               // 保留系统内存池
-void* SystemReservedDataTable;                // 保留系统数据表
-void* SystemEmergencyMemoryPool;              // 紧急系统内存池
-void* SystemEmergencyDataTable;               // 紧急系统数据表
+void* SystemSecondaryMemoryPool;           // 次系统内存池
+void* SystemSecondaryDataTable;            // 次系统数据表
+void* SystemCacheMemoryPool;               // 缓存系统内存池
+void* SystemCacheDataTable;                // 缓存系统数据表
+void* SystemTemporaryMemoryPool;           // 临时系统内存池
+void* SystemTemporaryDataTable;            // 临时系统数据表
+void* SystemReservedMemoryPool;            // 保留系统内存池
+void* SystemReservedDataTable;             // 保留系统数据表
+void* SystemEmergencyMemoryPool;           // 紧急系统内存池
+void* SystemEmergencyDataTable;            // 紧急系统数据表
 
 // 核心系统函数指针和相关数据
 /**
- * @brief 游戏核心系统主入口点
+ * @brief 核心系统组件指针
  * 
  * 负责初始化游戏的核心系统组件，包括物理引擎、渲染系统等
  */
-void* SystemGameCoreMainEntryPoint;
 void* SystemCoreMemoryAllocator;                // 核心系统内存分配器
 void* SystemCoreDataTable;                     // 核心系统数据表
 void* SystemCoreMemoryBuffer;                  // 核心系统内存缓冲区
@@ -63757,7 +63757,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   uint SystemThreadStackSize;
   uint GlobalDataFlags;
   uint32_t StackUnsignedValue1BC;
-  void* SystemOperationFlag1b8;
+  void* SystemOperationFlagQuaternary;
   int *piStack_1b0;
   uint32_t StackUnsignedValue1A8;
   void* CalculationFlagsPrimary;
