@@ -53799,7 +53799,7 @@ ResourceAddressValidation:
               *ResourceDataBufferPointer = 0;
             }
             else {
-              if (ResourceHash <= (uint)SystemThreadContextFlags) goto LAB_1800728ad;
+              if (ResourceHash <= (uint)SystemThreadContextFlags) goto ResourceHashValidation;
               pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
               ResourceBufferPointer130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointer130,ResourceHash,0x10);
             }
@@ -53842,14 +53842,14 @@ SystemResourceOperationFinalize:
           *ResourceDataBufferPointer = 0;
         }
         else {
-          if (resourceAddress <= (uint)SystemThreadContextFlags) goto LAB_1800729bd;
+          if (resourceAddress <= (uint)SystemThreadContextFlags) goto OperationCodeValidation;
           pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
           ResourceBufferPointer130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointer130,resourceAddress,0x10);
         }
         ThreadContextFlag = StartSystemThread(ResourceBufferPointer130);
         SystemThreadContextFlags = ConcatenatedSystemValue(SystemThreadContextFlags._4_4_,ThreadContextFlag);
       }
-LAB_1800729bd:
+OperationCodeValidation:
       SystemDataConfigurationPointer = (void* *)(ResourceBufferPointer130 + SystemMemoryAllocationOffset);
       *SystemDataConfigurationPointer = 0x232323232323233c;
       SystemDataConfigurationPointer[1] = 0x2323232323232323;
@@ -57581,7 +57581,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         Sleep();
       }
       systemStatusFlag = '\0';
-LAB_180075f4f:
+FloatScalingValidation:
       LOCK();
       primaryFloatPointer = secondaryFloatPointer + 0x3a;
       scalingFactor = *primaryFloatPointer;
@@ -63679,7 +63679,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
         Sleep();
       }
       systemStatusFlag = '\0';
-LAB_180075f4f:
+FloatScalingValidation:
       LOCK();
       primaryFloatPointer = pfloatValue4 + 0x3a;
       floatValue6 = *primaryFloatPointer;
