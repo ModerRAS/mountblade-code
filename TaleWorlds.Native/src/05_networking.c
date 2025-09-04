@@ -2727,7 +2727,7 @@ NetworkHandle HandleConnectionData(int64_t ConnectionContext, int64_t PacketData
  * @note 此函数会检查上下文数据的完整性和安全性
  * @warning 如果上下文验证失败，连接将被视为不安全并终止
  */
-NetworkHandle VerifyConnectionContext(NetworkHandle PacketData, int64_t ContextOffset)
+NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t ContextOffset)
 {
   // 连接上下文验证变量
   uint32_t ContextValidationResult;              // 上下文验证结果
@@ -2767,7 +2767,7 @@ NetworkHandle VerifyConnectionContext(NetworkHandle PacketData, int64_t ContextO
  * @note 此函数会检查数据包的完整性校验和、数据格式和内容有效性
  * @warning 如果完整性验证失败，数据包将被拒绝并可能触发安全警报
  */
-NetworkHandle VerifyNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t IntegrityOffset)
+NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t IntegrityOffset)
 {
   // 数据包完整性验证变量
   uint32_t PacketIntegrityValidationResult;           // 数据包完整性验证结果
