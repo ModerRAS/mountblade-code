@@ -45328,7 +45328,7 @@ void ResetSystemDataReference(uint8_t ObjectContext,int64_t ValidationContext)
 void ResetSystemContextReference(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x28) = &SystemDataStructure;
+  **(uint8_t **)(ValidationContext + SystemContextReferenceOffset) = &SystemDataStructure;
   return;
 }
 
@@ -90013,19 +90013,29 @@ void ProcessResourceTablePointerHashCleanup(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_18090dd20(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型1160（偏移量0x488）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dd20
+ */
+void RegisterResourceHandlerType1160AtOffset488(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40),0x488,2,ResourceTypeHandler488);
+  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40), 0x488, 2, ResourceTypeHandler488);
   return;
 }
 
 
 
-void Unwind_18090dd50(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型584（偏移量0x248）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dd50
+ */
+void RegisterResourceHandlerType584AtOffset248(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40),0x248,2,ResourceTypeHandler248);
+  RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40), 0x248, 2, ResourceTypeHandler248);
   return;
 }
 
