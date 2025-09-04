@@ -79929,7 +79929,18 @@ void ExecuteSystemContextResourceDataTransfer(uint8_t ObjectContext,int64_t Vali
 
 
 
-void UnwindResourceDataTransfer(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源数据传输
+ * 
+ * 该函数处理系统资源数据的传输操作，包括清理选项和标志的处理
+ * 使用SystemContextResourceOffset作为系统资源上下文的偏移量
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteSystemResourceDataTransfer(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
@@ -79939,7 +79950,18 @@ void UnwindResourceDataTransfer(uint8_t ObjectContext,int64_t ValidationContext,
 
 
 
-void UnwindResourceDataValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源数据验证
+ * 
+ * 该函数处理系统资源数据的验证操作，包括清理选项和标志的处理
+ * 使用SystemContextResourceOffset作为系统资源上下文的偏移量
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteSystemResourceDataValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
