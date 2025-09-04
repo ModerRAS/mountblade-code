@@ -75837,10 +75837,17 @@ void ClearResourceDataFlagsAndReleaseSystemResource(uint8_t ObjectContext, int64
 
 /**
  * @brief 清理辅助资源数据中的标志位并释放系统资源
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
+ * 
+ * 该函数负责清理辅助资源数据中的标志位，并在标志位设置时释放相应的系统资源
+ * 主要用于系统辅助资源的管理和清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会检查辅助资源数据的标志位并执行相应的资源释放操作
+ * @warning 如果标志位被设置，系统会释放对应的辅助资源
  */
-void Unwind_ClearSecondaryResourceDataFlags(uint8_t ObjectContext, int64_t ValidationContext)
+void ClearSecondaryResourceDataFlagsAndReleaseSystemResource(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x60) & 1) != 0) {
@@ -89709,10 +89716,15 @@ void Unwind_18090dae0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090db00(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型80（偏移量0x6a80）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090db00
+ */
+void RegisterResourceHandlerType80AtOffset6a80(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x6a80,0x50,2,ResourceTypeHandler050,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x6a80, 0x50, 2, ResourceTypeHandler050, 0xfffffffffffffffe);
   return;
 }
 
