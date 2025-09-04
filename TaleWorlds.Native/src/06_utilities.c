@@ -5505,10 +5505,10 @@ uint8_t InitializeObjectHandleEnhanced(int64_t ObjectContext)
     }
     if ((*(char *)(ValidatedContextHandle + ContextHandleSystemFlagsOffset) == '\0') ||
        ((*(uint *)(*(int64_t *)(ValidatedContextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset) >> 1 & 1) == 0)) {
-      uint SystemConfigurationFlags = *(uint *)(*(int64_t *)(ValidatedContextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset);
-      SystemValidationResult = SystemConfigurationFlags >> SystemConfigurationValidationShift;
+      uint SystemConfigurationValue = *(uint *)(*(int64_t *)(ValidatedContextHandle + ContextHandleRegistrationDataOffset) + SystemConfigurationFlagsOffset);
+      SystemValidationResult = SystemConfigurationValue >> SystemConfigurationValidationShift;
       if ((SystemValidationResult & 1) == 0) {
-        if ((((SystemConfigurationFlags >> SystemConfigurationFloatCheckShift & 1) != 0) && (FloatConversionResult = (int)ProcessedFloatValue, FloatConversionResult != Int32MinimumValue)) &&
+        if ((((SystemConfigurationValue >> SystemConfigurationFloatCheckShift & 1) != 0) && (FloatConversionResult = (int)ProcessedFloatValue, FloatConversionResult != Int32MinimumValue)) &&
            ((float)FloatConversionResult != ProcessedFloatValue)) {
           union {
             float ProcessedFloatParameter;
