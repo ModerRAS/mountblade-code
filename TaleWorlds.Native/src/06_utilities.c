@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 内存管理相关常量
 #define MemoryAddressAlignmentMask 0xffffffffffc00000
 #define MemoryResourceTablePointerOffset 0x70
 #define MemoryResourceDataOffset 0x80
@@ -17,7 +16,6 @@
 #define MemoryAllocationOverflowMask 0xffffffffffffff0
 #define MemoryAllocationAlignmentMask 0xfffffffffffffff0
 
-// 对象上下文相关常量
 #define ObjectContextOffset 0x10
 #define ObjectContextSecondaryDataOffset 0x18
 #define ObjectContextExtendedDataOffset 0x30
