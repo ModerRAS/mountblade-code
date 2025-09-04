@@ -1453,10 +1453,10 @@ void ProcessNetworkPackets(void)
   NetworkConnectionIndex = 0x00;               // 重置连接索引
   
   // 初始化路由和过滤缓冲区
-  NetworkPacketRoutingBuffer = 0x01;            // 初始化数据包路由缓冲区
-  NetworkPacketQueueBuffer = 0x01;              // 初始化数据包队列缓冲区
-  NetworkPacketCacheBuffer = 0x01;              // 初始化数据包缓存缓冲区
-  NetworkPacketFilterBuffer = 0x01;             // 初始化数据包过滤缓冲区
+  NetworkPacketRoutingBuffer = NetworkBufferInitialized;            // 初始化数据包路由缓冲区
+  NetworkPacketQueueBuffer = NetworkBufferInitialized;              // 初始化数据包队列缓冲区
+  NetworkPacketCacheBuffer = NetworkBufferInitialized;              // 初始化数据包缓存缓冲区
+  NetworkPacketFilterBuffer = NetworkBufferInitialized;             // 初始化数据包过滤缓冲区
   
   // 初始化网络统计
   NetworkBandwidthUsage = 0x00;                         // 重置带宽使用量
@@ -1491,7 +1491,7 @@ void ProcessNetworkPackets(void)
 void HandleNetworkErrors(void)
 {
   // 初始化错误处理参数
-  NetworkErrorProcessor = 0x01;                         // 初始化错误处理器
+  NetworkErrorProcessor = NetworkSystemEnabled;                         // 初始化错误处理器
   NetworkErrorCounter = 0x00;                            // 重置错误计数器
   
   // 初始化错误报告缓冲区
@@ -2959,12 +2959,12 @@ NetworkHandle FinalizeNetworkPacketProcessing(NetworkHandle *PacketData, int64_t
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    PacketStatusUpdateResult = 0x01;  // 状态更新成功
+    PacketStatusUpdateResult = NetworkOperationSuccess;  // 状态更新成功
   }
   
   // 验证完成偏移量有效性
   if (FinalizeOffset >= 0) {
-    PacketResourceCleanupResult = 0x01;  // 资源清理成功
+    PacketResourceCleanupResult = NetworkOperationSuccess;  // 资源清理成功
   }
   
   // 验证完成值有效性
