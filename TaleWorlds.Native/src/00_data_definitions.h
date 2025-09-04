@@ -7889,18 +7889,18 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       FloatComparisonResult1 = MatrixTransformResult138;
       if (MatrixTransformResult138 < MatrixTransformResult128) {
         fVar18 = MatrixTransformResult138;
-        fStack_198 = MatrixTransformResult128;
+        FloatStoredResult198 = MatrixTransformResult128;
       }
       FloatValue = FloatComparisonValue134;
       FloatComparisonResult2 = FloatComparisonValue124;
       if (FloatComparisonValue134 < FloatComparisonValue124) {
         FloatValue = FloatComparisonValue124;
-        fStack_194 = FloatComparisonValue134;
+        FloatStoredResult194 = FloatComparisonValue134;
       }
       FloatComparisonResult3 = FloatComparisonValue130;
-      FloatStackMaximum = fStack_120;
-      if (FloatComparisonValue130 < fStack_120) {
-        FloatComparisonResult3 = fStack_120;
+      FloatStackMaximum = FloatComparisonValue120;
+      if (FloatComparisonValue130 < FloatComparisonValue120) {
+        FloatComparisonResult3 = FloatComparisonValue120;
         FloatStackMaximum = FloatComparisonValue130;
       }
       FloatComparisonResult3 = FloatComparisonResult3 + FloatCalculationResult;
@@ -7931,13 +7931,13 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       }
       FloatStackMinimum = FloatComparisonResult1;
       FloatStackNegative1 = FloatComparisonResult2;
-      fStack_140 = fStack_190;
+      FloatStoredResult140 = FloatStoredResult190;
       uStack_13c = StackCounter5c;
       ModuleInitializationResult2 = ModuleInitializationResult2 + -0x30;
       ModuleInitializationResult1 = ModuleInitializationResult1 + -1;
-      FloatCalculationResult = fStack_198;
-      FloatResult = fStack_194;
-      fVar16 = fStack_190;
+      FloatCalculationResult = FloatStoredResult198;
+      FloatResult = FloatStoredResult194;
+      fVar16 = FloatStoredResult190;
       MemoryAddress7 = StackCounter5c;
       MemoryAddress9 = uStack_17c;
       FloatStackLarge = fVar18;
@@ -7952,62 +7952,62 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
   *(uint32_t *)(SystemParameterPointer + 0x8a0) = 0;
   *(uint64_t *)(SystemParameterPointer + 0x890) = 0;
   *(uint64_t *)(SystemParameterPointer + 0x898) = 0x7f7fffff00000000;
-  fStack_198 = fVar18;
+  FloatStoredResult198 = fVar18;
   if (*(float *)(SystemParameterPointer + 0x870) < fVar18) {
-    fStack_198 = *(float *)(SystemParameterPointer + 0x870);
+    FloatStoredResult198 = *(float *)(SystemParameterPointer + 0x870);
   }
-  fStack_194 = FloatValue;
+  FloatStoredResult194 = FloatValue;
   if (*(float *)(SystemParameterPointer + 0x874) < FloatValue) {
-    fStack_194 = *(float *)(SystemParameterPointer + 0x874);
+    FloatStoredResult194 = *(float *)(SystemParameterPointer + 0x874);
   }
-  fStack_190 = FloatStackMaximum;
+  FloatStoredResult190 = FloatStackMaximum;
   if (*(float *)(SystemParameterPointer + 0x878) < FloatStackMaximum) {
-    fStack_190 = *(float *)(SystemParameterPointer + 0x878);
+    FloatStoredResult190 = *(float *)(SystemParameterPointer + 0x878);
   }
-  *(ulonglong *)(SystemParameterPointer + 0x870) = CONCAT44(fStack_194,fStack_198);
-  *(ulonglong *)(SystemParameterPointer + 0x878) = CONCAT44(StackCounter5c,fStack_190);
-  fStack_198 = fVar18;
+  *(ulonglong *)(SystemParameterPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(SystemParameterPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  FloatStoredResult198 = fVar18;
   if (fVar18 < *(float *)(SystemParameterPointer + 0x880)) {
-    fStack_198 = *(float *)(SystemParameterPointer + 0x880);
+    FloatStoredResult198 = *(float *)(SystemParameterPointer + 0x880);
   }
-  fStack_194 = FloatValue;
+  FloatStoredResult194 = FloatValue;
   if (FloatValue < *(float *)(SystemParameterPointer + 0x884)) {
-    fStack_194 = *(float *)(SystemParameterPointer + 0x884);
+    FloatStoredResult194 = *(float *)(SystemParameterPointer + 0x884);
   }
-  fStack_190 = FloatStackMaximum;
+  FloatStoredResult190 = FloatStackMaximum;
   if (FloatStackMaximum < *(float *)(SystemParameterPointer + 0x888)) {
-    fStack_190 = *(float *)(SystemParameterPointer + 0x888);
+    FloatStoredResult190 = *(float *)(SystemParameterPointer + 0x888);
   }
-  *(ulonglong *)(SystemParameterPointer + 0x880) = CONCAT44(fStack_194,fStack_198);
-  *(ulonglong *)(SystemParameterPointer + 0x888) = CONCAT44(StackCounter5c,fStack_190);
-  fStack_198 = FloatCalculationResult;
+  *(ulonglong *)(SystemParameterPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(SystemParameterPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  FloatStoredResult198 = FloatCalculationResult;
   if (*(float *)(SystemParameterPointer + 0x870) < FloatCalculationResult) {
-    fStack_198 = *(float *)(SystemParameterPointer + 0x870);
+    FloatStoredResult198 = *(float *)(SystemParameterPointer + 0x870);
   }
-  fStack_194 = FloatResult;
+  FloatStoredResult194 = FloatResult;
   if (*(float *)(SystemParameterPointer + 0x874) < FloatResult) {
-    fStack_194 = *(float *)(SystemParameterPointer + 0x874);
+    FloatStoredResult194 = *(float *)(SystemParameterPointer + 0x874);
   }
-  fStack_190 = fVar16;
+  FloatStoredResult190 = fVar16;
   if (*(float *)(SystemParameterPointer + 0x878) < fVar16) {
-    fStack_190 = *(float *)(SystemParameterPointer + 0x878);
+    FloatStoredResult190 = *(float *)(SystemParameterPointer + 0x878);
   }
-  *(ulonglong *)(SystemParameterPointer + 0x870) = CONCAT44(fStack_194,fStack_198);
-  *(ulonglong *)(SystemParameterPointer + 0x878) = CONCAT44(StackCounter5c,fStack_190);
-  fStack_198 = FloatCalculationResult;
+  *(ulonglong *)(SystemParameterPointer + 0x870) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(SystemParameterPointer + 0x878) = CONCAT44(StackCounter5c,FloatStoredResult190);
+  FloatStoredResult198 = FloatCalculationResult;
   if (FloatCalculationResult < *(float *)(SystemParameterPointer + 0x880)) {
-    fStack_198 = *(float *)(SystemParameterPointer + 0x880);
+    FloatStoredResult198 = *(float *)(SystemParameterPointer + 0x880);
   }
-  fStack_194 = FloatResult;
+  FloatStoredResult194 = FloatResult;
   if (FloatResult < *(float *)(SystemParameterPointer + 0x884)) {
-    fStack_194 = *(float *)(SystemParameterPointer + 0x884);
+    FloatStoredResult194 = *(float *)(SystemParameterPointer + 0x884);
   }
-  fStack_190 = fVar16;
+  FloatStoredResult190 = fVar16;
   if (fVar16 < *(float *)(SystemParameterPointer + 0x888)) {
-    fStack_190 = *(float *)(SystemParameterPointer + 0x888);
+    FloatStoredResult190 = *(float *)(SystemParameterPointer + 0x888);
   }
-  *(ulonglong *)(SystemParameterPointer + 0x880) = CONCAT44(fStack_194,fStack_198);
-  *(ulonglong *)(SystemParameterPointer + 0x888) = CONCAT44(StackCounter5c,fStack_190);
+  *(ulonglong *)(SystemParameterPointer + 0x880) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+  *(ulonglong *)(SystemParameterPointer + 0x888) = CONCAT44(StackCounter5c,FloatStoredResult190);
   if (*(longlong *)(SystemParameterPointer + 0x8a8) != 0) {
     ModuleInitializationResult1 = *(longlong *)(*(longlong *)(SystemParameterPointer + 0x8a8) + 0x260);
   }
@@ -8029,34 +8029,34 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       LOCK();
       UNLOCK();
       pfVar3 = *(float **)(SystemParameterPointer + 0x860);
-      fStack_198 = FloatCalculationResult;
+      FloatStoredResult198 = FloatCalculationResult;
       if (*pfVar3 < FloatCalculationResult) {
-        fStack_198 = *pfVar3;
+        FloatStoredResult198 = *pfVar3;
       }
-      fStack_194 = FloatResult;
+      FloatStoredResult194 = FloatResult;
       if (pfVar3[1] < FloatResult) {
-        fStack_194 = pfVar3[1];
+        FloatStoredResult194 = pfVar3[1];
       }
-      fStack_190 = fVar16;
+      FloatStoredResult190 = fVar16;
       if (pfVar3[2] < fVar16) {
-        fStack_190 = pfVar3[2];
+        FloatStoredResult190 = pfVar3[2];
       }
-      *(ulonglong *)pfVar3 = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar3 + 2) = CONCAT44(StackCounter5c,fStack_190);
-      fStack_198 = FloatCalculationResult;
+      *(ulonglong *)pfVar3 = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+      *(ulonglong *)(pfVar3 + 2) = CONCAT44(StackCounter5c,FloatStoredResult190);
+      FloatStoredResult198 = FloatCalculationResult;
       if (FloatCalculationResult < pfVar3[4]) {
-        fStack_198 = pfVar3[4];
+        FloatStoredResult198 = pfVar3[4];
       }
-      fStack_194 = FloatResult;
+      FloatStoredResult194 = FloatResult;
       if (FloatResult < pfVar3[5]) {
-        fStack_194 = pfVar3[5];
+        FloatStoredResult194 = pfVar3[5];
       }
-      fStack_190 = fVar16;
+      FloatStoredResult190 = fVar16;
       if (fVar16 < pfVar3[6]) {
-        fStack_190 = pfVar3[6];
+        FloatStoredResult190 = pfVar3[6];
       }
-      *(ulonglong *)(pfVar3 + 4) = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,fStack_190);
+      *(ulonglong *)(pfVar3 + 4) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+      *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,FloatStoredResult190);
       SystemConfigFlag2 = '\0';
     }
     if (((fVar18 < *pfVar9) || (FloatValue < pfVar9[1])) || (FloatStackMaximum < pfVar9[2])) {
@@ -8065,34 +8065,34 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       LOCK();
       UNLOCK();
       pfVar9 = *(float **)(SystemParameterPointer + 0x860);
-      fStack_198 = fVar18;
+      FloatStoredResult198 = fVar18;
       if (*pfVar9 < fVar18) {
-        fStack_198 = *pfVar9;
+        FloatStoredResult198 = *pfVar9;
       }
-      fStack_194 = FloatValue;
+      FloatStoredResult194 = FloatValue;
       if (pfVar9[1] < FloatValue) {
-        fStack_194 = pfVar9[1];
+        FloatStoredResult194 = pfVar9[1];
       }
-      fStack_190 = FloatStackMaximum;
+      FloatStoredResult190 = FloatStackMaximum;
       if (pfVar9[2] < FloatStackMaximum) {
-        fStack_190 = pfVar9[2];
+        FloatStoredResult190 = pfVar9[2];
       }
-      *(ulonglong *)pfVar9 = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar9 + 2) = CONCAT44(StackCounter5c,fStack_190);
-      fStack_198 = fVar18;
+      *(ulonglong *)pfVar9 = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+      *(ulonglong *)(pfVar9 + 2) = CONCAT44(StackCounter5c,FloatStoredResult190);
+      FloatStoredResult198 = fVar18;
       if (fVar18 < pfVar9[4]) {
-        fStack_198 = pfVar9[4];
+        FloatStoredResult198 = pfVar9[4];
       }
-      fStack_194 = FloatValue;
+      FloatStoredResult194 = FloatValue;
       if (FloatValue < pfVar9[5]) {
-        fStack_194 = pfVar9[5];
+        FloatStoredResult194 = pfVar9[5];
       }
-      fStack_190 = FloatStackMaximum;
+      FloatStoredResult190 = FloatStackMaximum;
       if (FloatStackMaximum < pfVar9[6]) {
-        fStack_190 = pfVar9[6];
+        FloatStoredResult190 = pfVar9[6];
       }
-      *(ulonglong *)(pfVar9 + 4) = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,fStack_190);
+      *(ulonglong *)(pfVar9 + 4) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+      *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,FloatStoredResult190);
       SystemConfigFlag2 = '\0';
     }
     pfVar9 = *(float **)(SystemParameterPointer + 0x868);
@@ -8104,34 +8104,34 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       LOCK();
       UNLOCK();
       pfVar3 = *(float **)(SystemParameterPointer + 0x868);
-      fStack_198 = FloatCalculationResult;
+      FloatStoredResult198 = FloatCalculationResult;
       if (*pfVar3 < FloatCalculationResult) {
-        fStack_198 = *pfVar3;
+        FloatStoredResult198 = *pfVar3;
       }
-      fStack_194 = FloatResult;
+      FloatStoredResult194 = FloatResult;
       if (pfVar3[1] < FloatResult) {
-        fStack_194 = pfVar3[1];
+        FloatStoredResult194 = pfVar3[1];
       }
-      fStack_190 = fVar16;
+      FloatStoredResult190 = fVar16;
       if (pfVar3[2] < fVar16) {
-        fStack_190 = pfVar3[2];
+        FloatStoredResult190 = pfVar3[2];
       }
-      *(ulonglong *)pfVar3 = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar3 + 2) = CONCAT44(StackCounter5c,fStack_190);
-      fStack_198 = FloatCalculationResult;
+      *(ulonglong *)pfVar3 = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+      *(ulonglong *)(pfVar3 + 2) = CONCAT44(StackCounter5c,FloatStoredResult190);
+      FloatStoredResult198 = FloatCalculationResult;
       if (FloatCalculationResult < pfVar3[4]) {
-        fStack_198 = pfVar3[4];
+        FloatStoredResult198 = pfVar3[4];
       }
-      fStack_194 = FloatResult;
+      FloatStoredResult194 = FloatResult;
       if (FloatResult < pfVar3[5]) {
-        fStack_194 = pfVar3[5];
+        FloatStoredResult194 = pfVar3[5];
       }
-      fStack_190 = fVar16;
+      FloatStoredResult190 = fVar16;
       if (fVar16 < pfVar3[6]) {
-        fStack_190 = pfVar3[6];
+        FloatStoredResult190 = pfVar3[6];
       }
-      *(ulonglong *)(pfVar3 + 4) = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,fStack_190);
+      *(ulonglong *)(pfVar3 + 4) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+      *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,FloatStoredResult190);
       SystemConfigFlag2 = '\0';
     }
     if (((fVar18 < *pfVar9) || (FloatValue < pfVar9[1])) || (FloatStackMaximum < pfVar9[2])) {
@@ -8140,34 +8140,34 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       LOCK();
       UNLOCK();
       pfVar9 = *(float **)(SystemParameterPointer + 0x868);
-      fStack_198 = fVar18;
+      FloatStoredResult198 = fVar18;
       if (*pfVar9 < fVar18) {
-        fStack_198 = *pfVar9;
+        FloatStoredResult198 = *pfVar9;
       }
-      fStack_194 = FloatValue;
+      FloatStoredResult194 = FloatValue;
       if (pfVar9[1] < FloatValue) {
-        fStack_194 = pfVar9[1];
+        FloatStoredResult194 = pfVar9[1];
       }
-      fStack_190 = FloatStackMaximum;
+      FloatStoredResult190 = FloatStackMaximum;
       if (pfVar9[2] < FloatStackMaximum) {
-        fStack_190 = pfVar9[2];
+        FloatStoredResult190 = pfVar9[2];
       }
-      *(ulonglong *)pfVar9 = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar9 + 2) = CONCAT44(StackCounter5c,fStack_190);
-      fStack_198 = fVar18;
+      *(ulonglong *)pfVar9 = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+      *(ulonglong *)(pfVar9 + 2) = CONCAT44(StackCounter5c,FloatStoredResult190);
+      FloatStoredResult198 = fVar18;
       if (fVar18 < pfVar9[4]) {
-        fStack_198 = pfVar9[4];
+        FloatStoredResult198 = pfVar9[4];
       }
-      fStack_194 = FloatValue;
+      FloatStoredResult194 = FloatValue;
       if (FloatValue < pfVar9[5]) {
-        fStack_194 = pfVar9[5];
+        FloatStoredResult194 = pfVar9[5];
       }
-      fStack_190 = FloatStackMaximum;
+      FloatStoredResult190 = FloatStackMaximum;
       if (FloatStackMaximum < pfVar9[6]) {
-        fStack_190 = pfVar9[6];
+        FloatStoredResult190 = pfVar9[6];
       }
-      *(ulonglong *)(pfVar9 + 4) = CONCAT44(fStack_194,fStack_198);
-      *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,fStack_190);
+      *(ulonglong *)(pfVar9 + 4) = CONCAT44(FloatStoredResult194,FloatStoredResult198);
+      *(ulonglong *)(pfVar9 + 6) = CONCAT44(StackCounter5c,FloatStoredResult190);
       SystemConfigFlag2 = '\0';
     }
   }

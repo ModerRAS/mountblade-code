@@ -73201,7 +73201,7 @@ void RegisterResourceHandlerAtOffsetC08(uint8_t ObjectContext, int64_t Validatio
  * @param ObjectContext 对象上下文，用于标识需要处理的资源对象
  * @param ValidationContext 验证上下文，包含系统资源和状态信息
  */
-void Unwind_ProcessResourceContextAtOffsetValidation(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceContextAtOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -73228,7 +73228,7 @@ void Unwind_ProcessResourceContextAtOffsetValidation(uint8_t ObjectContext,int64
  * 
  * @note 该函数是系统异常处理机制的一部分，用于确保资源在异常情况下能够正确释放
  */
-void Unwind_RegisterResourceHandlerForSystemCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterResourceCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xc60,8,0x14,ProcessResourceOperation);
