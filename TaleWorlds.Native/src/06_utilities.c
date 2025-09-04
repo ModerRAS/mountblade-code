@@ -4543,11 +4543,11 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     ListBuffer = ProcessingBuffer;
     ProcessedCount = 0;
     TotalCount = 0;
-    MaxProcessingLimit = MaximumProcessableItemsLimit;
+    MaxLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
-    ObjectValidationStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(ObjectHandleArray[0] + RegistrationHandleOffset),
-                          &ObjectListBuffer);
+    ValidationStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(HandleArray[0] + RegistrationHandleOffset),
+                          &ListBuffer);
     if (ObjectValidationStatus == 0) {
       TotalObjectsCount = *(int *)(ObjectListBuffer + ObjectDataArraySizeOffset);
       if (0 < TotalObjectsCount) {

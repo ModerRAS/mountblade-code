@@ -19581,19 +19581,19 @@ void ExecuteSystemCallback(long long *CallbackParameter)
 void ProcessSystemStringCopy(long long TargetBuffer, long long SourceString)
 
 {
-  long long SourceStringLength;
+  long long StringLength;
   
   if (SourceString == 0) {
     *(uint32_t *)(TargetBuffer + STRING_LENGTH_OFFSET) = 0;
     **(uint8_t **)(TargetBuffer + STRING_DATA_OFFSET) = 0;
     return;
   }
-  SourceStringLength = -1;
+  StringLength = -1;
   do {
-    SourceStringLength = SourceStringLength + 1;
-  } while (*(char *)(SourceString + SourceStringLength) != '\0');
-  if ((int)SourceStringLength < 0x1000) {
-    *(int *)(TargetBuffer + STRING_LENGTH_OFFSET) = (int)SourceStringLength;
+    StringLength = StringLength + 1;
+  } while (*(char *)(SourceString + StringLength) != '\0');
+  if ((int)StringLength < 0x1000) {
+    *(int *)(TargetBuffer + STRING_LENGTH_OFFSET) = (int)StringLength;
                     000180045b59. Too many branches
                         strcpy_s(*(void* *)(SystemResourceManager + 8),0x1000);
     return;
@@ -19618,11 +19618,11 @@ void ProcessSystemStringCopy(long long TargetBuffer, long long SourceString)
  * @param BytesToCopy 要复制的字节数
  * @note 这是系统内存处理的重要组成部分，确保内存复制的安全性
  */
-void ProcessSystemMemoryCopy(long long SystemResourceManager,void* SourceDataPointer,int BytesToCopy)
+void ProcessSystemMemoryCopy(long long SystemResourceManager,void* SourceDataPointer,int CopyLength)
 
 {
-  if (BytesToCopy + 1 < 0x1000) {
-      memcpy(*(uint8_t **)(SystemResourceManager + RESOURCE_DATA_OFFSET),SourceDataPointer,(long long)BytesToCopy);
+  if (CopyLength + 1 < 0x1000) {
+      memcpy(*(uint8_t **)(SystemResourceManager + RESOURCE_DATA_OFFSET),SourceDataPointer,(long long)CopyLength);
   }
   **(uint8_t **)(SystemResourceManager + RESOURCE_DATA_OFFSET) = 0;
   *(uint32_t *)(SystemResourceManager + RESOURCE_LENGTH_OFFSET) = 0;
@@ -19657,14 +19657,14 @@ void ExecuteSystemMemoryCopyOperation(void)
  * @param bufferPointer 指向需要重置的缓冲区的指针
  * @note 这是一个辅助函数，用于清理和重置系统缓冲区状态
  */
-void ResetSystemBuffer(uint8_t *bufferPointer)
+void ResetSystemBuffer(uint8_t *BufferPointer)
 
 {
-  long long bufferOffset;
+  long long BufferOffset;
   
-  *bufferPointer = 0;
-  bufferOffset = (long long)bufferPointer;
-  *(uint32_t *)(bufferOffset + 0x10) = 0;
+  *BufferPointer = 0;
+  BufferOffset = (long long)BufferPointer;
+  *(uint32_t *)(BufferOffset + 0x10) = 0;
   return;
 }
 
@@ -19879,14 +19879,14 @@ void ExecuteSystemMemoryCopyOperation(void)
  * 
  * @param bufferPointer 缓冲区指针
  */
-void ResetSystemBuffer(uint8_t *bufferPointer)
+void ResetSystemBuffer(uint8_t *BufferPointer)
 
 {
-  long long bufferOffset;
+  long long BufferOffset;
   
-  *bufferPointer = 0;
-  bufferOffset = (long long)bufferPointer;
-  *(uint32_t *)(bufferOffset + 0x10) = 0;
+  *BufferPointer = 0;
+  BufferOffset = (long long)BufferPointer;
+  *(uint32_t *)(BufferOffset + 0x10) = 0;
   return;
 }
 
