@@ -28103,14 +28103,14 @@ ContextValidationCheck:
         ValidationStatusCode = ErrorInvalidObjectHandle;
       }
       else if (ResourceTablePointerPointer[2] == 0) {
-MemoryBoundaryCheckLoop1:
+ResourceHashCalculationLoop:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,ResourceChecksumData,1,1,0);
       }
       else {
         ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto MemoryBoundaryCheckLoop1;
+          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto ResourceHashCalculationLoop;
           ValidationStatusCode = 0x11;
         }
       }
