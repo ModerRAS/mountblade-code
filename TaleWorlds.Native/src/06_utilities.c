@@ -15809,7 +15809,7 @@ LoopExit:
       int ResultIndex = ResourceProcessingCounter;
       int ResourceValidationResult = GetAndValidateResourceData(ObjectContext,&SecurityContextPointer);
       if (ResourceHashStatus != 0) goto LoopExit;
-      int ResourceProcessingCounter = 0;
+      int InternalProcessingCounter = 0;
       int TableEntryIndex = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
       int ValidationLoopCounter = NextResultIndex;
       if (0 < TableEntryIndex) {
@@ -15829,7 +15829,7 @@ LoopExit:
             if (SecondaryOperationResult != 0) goto LoopExit;
             *(uint8_t *)(ObjectContext + 4) = 0;
           }
-          ResourceProcessingCounter = ResourceProcessingCounter + 1;
+          InternalProcessingCounter = InternalProcessingCounter + 1;
           int TableValidationStatus = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
         } while (ResourceProcessingCounter < tableResourceHashStatus);
       }
