@@ -19884,8 +19884,8 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
   SystemSecurityFlag = 0xfffffffffffffffe;
   SystemChecksumValue = SystemEncryptionKeyTemplate ^ (unsigned long long)StackSecurityBuffer;
   SystemMemoryReference = &SystemMemoryTemplateF;
-  SystemProcessBufferPtr = SystemDataBuffer;
-  SystemProcessingBufferLength = 0;
+  SystemBufferPointer = SystemDataBuffer;
+  SystemBufferLength = 0;
   SystemDataBuffer[0] = 0;
   StringSearchResult = strstr(*(void* *)(MainParameter + 8));
   if (StringSearchResult != 0) {
