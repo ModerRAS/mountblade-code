@@ -88525,7 +88525,13 @@ void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int
 
 
 
-void Unwind_18090d550(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文处理回调
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d550
+ */
+void ExecuteResourceContextProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
