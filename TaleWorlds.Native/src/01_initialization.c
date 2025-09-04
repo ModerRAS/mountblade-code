@@ -1044,8 +1044,8 @@ void* SystemDataNodeFifth;           // 系统数据节点第五节点
 void* SystemDataNodeSixth;            // 系统数据节点第六节点
 void* SystemDataNodeSeventh;         // 系统数据节点第七节点
 void* SystemDataNodeEighth;          // 系统数据节点第八节点
-void* SystemDataNodeNonary;            // 系统数据节点第九节点
-void* SystemDataNodeDenary;            // 系统数据节点第十节点
+void* SystemDataNodeNinth;            // 系统数据节点第九节点
+void* SystemDataNodeTenth;            // 系统数据节点第十节点
 void* SystemDataNodeUndenary;          // 系统数据节点第十一节点
 void* SystemDataNodeDuodenary;         // 系统数据节点第十二节点
 void* SystemDataNodeTridenary;         // 系统数据节点第十三节点
