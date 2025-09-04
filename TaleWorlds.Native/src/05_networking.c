@@ -1671,6 +1671,7 @@ NetworkHandle ProcessNetworkConnectionRequest(NetworkHandle ConnectionContext, N
   int32_t ValidationStatusCode;               // 连接验证状态码
   
   NetworkConnectionContext = 0;
+  ValidationStatusCode = 0;  // 初始化验证状态码
   if (ValidationStatusCode == 0) {
     if ((0 < *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset)) && (*ConnectionValidationResult != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), *ConnectionValidationResult, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
@@ -1741,14 +1742,8 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
 {
   // 数据包处理变量
   NetworkConnectionStatus *NetworkConnectionContextArray;  // 网络连接上下文数据数组
-  int32_t TotalActiveConnections;                    // 活跃连接数量
-  int64_t ConnectionBaseAddress;                     // 连接基地址
   NetworkConnectionStatus PacketProcessingResult;              // 数据包处理结果
-  NetworkConnectionStatus DataProcessingStatus;                // 数据处理状态
   NetworkConnectionStatus ConnectionValidationResult;          // 连接验证结果
-  NetworkConnectionStatus *NetworkStatusBuffer;          // 网络状态缓冲区指针
-  int64_t ConnectionProcessingIterator;               // 处理迭代计数器
-  NetworkConnectionStatus *NetworkPacketBuffer;         // 网络数据包缓冲区指针
   
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[1]) {
@@ -2683,24 +2678,24 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
   uint32_t PacketDataFormatValidationResult;         // 数据包数据格式验证结果
   
   // 初始化验证状态
-  IntegrityValidationResult = 0x00;
-  ChecksumValidationResult = 0x00;
-  DataFormatValidationResult = 0x00;
+  PacketIntegrityValidationResult = 0x00;
+  PacketChecksumValidationResult = 0x00;
+  PacketDataFormatValidationResult = 0x00;
   
   // 验证数据包指针有效性
   if (PacketData && *PacketData != 0) {
-    ChecksumValidationResult = NetworkChecksumValid;  // 校验和验证通过
+    PacketChecksumValidationResult = NetworkChecksumValid;  // 校验和验证通过
   }
   
   // 验证完整性偏移量有效性
   if (IntegrityOffset >= 0) {
-    DataFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
+    PacketDataFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
   }
   
   // 综合完整性验证结果
-  IntegrityValidationResult = ChecksumValidationResult & DataFormatValidationResult;
+  PacketIntegrityValidationResult = PacketChecksumValidationResult & PacketDataFormatValidationResult;
   
-  return IntegrityValidationResult;  // 返回完整性验证结果
+  return PacketIntegrityValidationResult;  // 返回完整性验证结果
 }
 
 /**
@@ -2720,38 +2715,38 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
 NetworkHandle HandlePacketData(NetworkHandle *PacketData, int64_t HandleOffset, uint32_t ProcessingMode, int64_t ConnectionContext)
 {
   // 数据包数据处理变量
-  uint32_t DataProcessingResult;                  // 数据处理结果
-  uint32_t DataParsingResult;                     // 数据解析结果
-  uint32_t DataValidationResult;                  // 数据验证结果
+  uint32_t PacketDataProcessingResult;             // 数据包数据处理结果
+  uint32_t PacketDataParsingResult;                // 数据包数据解析结果
+  uint32_t PacketDataValidationResult;             // 数据包数据验证结果
   
   // 初始化处理状态
-  DataProcessingResult = 0x00;
-  DataParsingResult = 0x00;
-  DataValidationResult = 0x00;
+  PacketDataProcessingResult = 0x00;
+  PacketDataParsingResult = 0x00;
+  PacketDataValidationResult = 0x00;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    DataParsingResult = 0x01;  // 数据解析成功
+    PacketDataParsingResult = 0x01;  // 数据解析成功
   }
   
   // 验证句柄偏移量有效性
   if (HandleOffset >= 0) {
-    DataValidationResult = 0x01;  // 数据验证成功
+    PacketDataValidationResult = 0x01;  // 数据验证成功
   }
   
   // 根据处理模式处理数据
   if (ProcessingMode == 0x01) {
     // 基本处理模式
-    DataProcessingResult = DataParsingResult & DataValidationResult;
+    PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult;
   } else if (ProcessingMode == 0x02) {
     // 严格处理模式
-    DataProcessingResult = DataParsingResult & DataValidationResult & 0x01;
+    PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult & 0x01;
   } else {
     // 默认处理模式
-    DataProcessingResult = 0x01;
+    PacketDataProcessingResult = 0x01;
   }
   
-  return DataProcessingResult;  // 返回数据处理结果
+  return PacketDataProcessingResult;  // 返回数据处理结果
 }
 
 /**
@@ -2770,9 +2765,9 @@ NetworkHandle HandlePacketData(NetworkHandle *PacketData, int64_t HandleOffset, 
 NetworkHandle FinalizePacket(NetworkHandle *PacketData, int64_t FinalizeOffset, uint32_t FinalizeValue)
 {
   // 数据包完成处理变量
-  uint32_t FinalizationResult;                    // 完成处理结果
-  uint32_t StatusUpdateResult;                    // 状态更新结果
-  uint32_t ResourceCleanupResult;                 // 资源清理结果
+  uint32_t PacketFinalizationResult;              // 数据包完成处理结果
+  uint32_t PacketStatusUpdateResult;              // 数据包状态更新结果
+  uint32_t PacketResourceCleanupResult;           // 数据包资源清理结果
   
   // 初始化完成状态
   FinalizationResult = 0x00;
