@@ -7855,9 +7855,9 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
     uStack_16c = 0x7f7fffff;
     uStack_15c = 0x7f7fffff;
     ModuleInitializationResult2 = ModuleInitializationResult1 * 0x30;
-    fStack_108 = fVar4;
-    fStack_104 = fVar5;
-    fStack_100 = fVar6;
+    VectorComponentX = fVar4;
+    VectorComponentY = fVar5;
+    VectorComponentZ = fVar6;
     do {
       ModuleInitializationResult0 = *(longlong *)(SystemParameterPointer + 0x850) + ModuleInitializationResult2;
       NetworkRequestStatus = *(char *)(ModuleInitializationResult0 + 0x2c);
@@ -7871,12 +7871,12 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       FloatValue = pfVar9[1];
       FloatCalculationResult = pfVar9[2];
       fStack_cc = pfVar9[3];
-      fStack_d8 = fVar18;
-      fStack_d4 = FloatValue;
-      fStack_d0 = FloatCalculationResult;
+      FloatCalculationTemp1 = fVar18;
+      FloatCalculationTemp2 = FloatValue;
+      FloatCalculationTemp3 = FloatCalculationResult;
       pfVar9 = (float *)ProcessVectorCalculation(&uStack_e8,auStack_c8,ModuleInitializationResult0);
-      fStack_170 = (FloatCalculationResult + pfVar9[2]) - fVar6;
-      fStack_174 = (FloatValue + pfVar9[1]) - fVar5;
+      TransformResultX = (FloatCalculationResult + pfVar9[2]) - fVar6;
+      TransformResultY = (FloatValue + pfVar9[1]) - fVar5;
       fStack_178 = (fVar18 + *pfVar9) - fVar4;
       ProcessMatrixTransformation(&uStack_118,&fStack_138,&fStack_178);
       pfVar9 = (float *)ProcessVectorCalculation(&uStack_e8,auStack_b8,ModuleInitializationResult0 + 0x10);
