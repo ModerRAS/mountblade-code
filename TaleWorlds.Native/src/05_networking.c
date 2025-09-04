@@ -1371,13 +1371,13 @@ void RetrieveNetworkPacketData(void)
   NetworkPacketIndex = PACKET_INDEX_RESET;                            // 重置数据包索引
   
   // 初始化数据包处理
-  NetworkPacketHeaderData = BUFFER_ENABLED;                       // 初始化数据包头数据
-  NetworkPacketHeaderSize = PACKET_HEADER_SIZE_32B;                       // 设置数据包头大小为32字节
-  NetworkPacketTrailerData = BUFFER_ENABLED;                      // 初始化数据包尾数据
-  NetworkPacketTrailerSize = PACKET_TRAILER_SIZE_16B;                      // 设置数据包尾大小为16字节
+  NetworkPacketHeaderData = NetworkBufferEnabledFlag;                       // 初始化数据包包头数据
+  NetworkPacketHeaderSize = NetworkPacketHeaderSize32Bytes;                       // 设置数据包头大小为32字节
+  NetworkPacketTrailerData = NetworkBufferEnabledFlag;                      // 初始化数据包尾数据
+  NetworkPacketTrailerSize = NetworkPacketTrailerSize16Bytes;                      // 设置数据包尾大小为16字节
   
   // 初始化抖动缓冲区
-  NetworkConnectionJitterBuffer = BUFFER_ENABLED;                // 初始化抖动缓冲区
+  NetworkConnectionJitterBuffer = NetworkBufferEnabledFlag;                // 初始化抖动缓冲区
   NetworkConnectionErrorRate = ERROR_RATE_RESET;                   // 重置错误率
   
   // 初始化连接健康监控
@@ -1401,13 +1401,13 @@ void RetrieveNetworkPacketData(void)
 void ValidateNetworkPacketSecurity(void)
 {
   // 初始化验证参数
-  NetworkPacketHashAlgorithm = HASH_ALGORITHM_SHA256;                         // 设置哈希算法为SHA-256
-  NetworkPacketSignatureMethod = SIGNATURE_METHOD_RSA;                        // 设置签名方法为RSA
+  NetworkPacketHashAlgorithm = NetworkHashAlgorithmSHA256;                         // 设置哈希算法为SHA-256
+  NetworkPacketSignatureMethod = NetworkSignatureMethodRSA;                        // 设置签名方法为RSA
   PacketEncryptionKeyLength = NetworkEncryptionKeyLength256Bits;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
   PacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
-  PacketValidationBufferSize = VALIDATION_BUFFER_SIZE_39B;                   // 设置验证缓冲区大小为39字节
+  PacketValidationBufferSize = NetworkValidationBufferSize39Bytes;                   // 设置验证缓冲区大小为39字节
   
   // 初始化安全验证
   PacketSecurityValidationData = NetworkSecurityEnabled;                 // 初始化安全验证数据
