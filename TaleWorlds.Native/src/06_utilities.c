@@ -4499,7 +4499,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
                   HandleInvalidObject(ObjectValidationState, 1);
           }
           ProcessedObjectCount++;
-          CollectionIterator += ResourceEntrySizeBytes;
+          ObjectCollectionIterator += ResourceEntrySizeBytes;
         } while (ProcessedObjectCount < TotalObjectCount);
       }
       FreeObjectListMemory(&ObjectDataBuffer);
@@ -4509,7 +4509,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)SecurityMetadataBuffer);
+  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)SecurityValidationMetadataBuffer);
 }
 
 
@@ -6049,18 +6049,10 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
  /**
  * @brief 处理系统资源
  * 
- * 该函数负责处理系统资源，根据资源状态执行相应操作
- * 如果资源无效则返回错误码，否则执行资源操作
- * 
- * @return 处理结果，0表示成功，非0表示错误码
- */
-/**
- * @brief 处理系统资源
- * 
  * 该函数用于处理系统资源操作，包括资源验证和处理
  * 包含系统上下文验证和资源迭代处理
  * 
- * @return 处理结果状态码
+ * @return 处理结果状态码，0表示成功，非0表示错误码
  */
 uint32_t ProcessSystemResource(void) {
   int64_t SystemContextToValidate;
@@ -6106,14 +6098,6 @@ void TerminateSystem(void) {
 }
 
 /**
- * @brief 空操作函数
- * 
- * 该函数是一个空操作函数，直接返回而不执行任何操作。
- * 用于系统架构中的占位操作或默认行为。
- * 
- * @return 无返回值
- */
-/**
  * @brief 空操作函数（主版本）
  * 
  * 该函数是一个空操作函数，不执行任何操作
@@ -6130,20 +6114,11 @@ void ReturnNoOperationPrimary(void) {
  /**
  * @brief 处理资源操作
  * 
- * 该函数负责处理资源操作，根据资源状态执行相应操作
- * 如果资源无效则返回错误码，否则执行资源操作
- * 
- * @param ResourceHandle 资源句柄，用于标识要处理的资源
- * @return 处理结果，0表示成功，非0表示错误码
- */
-/**
- * @brief 处理资源操作
- * 
  * 该函数用于处理系统资源的相关操作
  * 包含资源验证、内存地址获取和操作处理
  * 
- * @param ResourceHandle 资源句柄
- * @return 操作结果或资源数据
+ * @param ResourceHandle 资源句柄，用于标识要处理的资源
+ * @return 操作结果或资源数据，0表示成功，非0表示错误码
  */
 uint64_t HandleResourceOperation(int64_t ResourceHandle) {
   uint8_t ValidationResult;
