@@ -80622,8 +80622,17 @@ void ExecuteResourceHashStatusValidationExtended(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_18090c2f0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 初始化系统内存表指针
+ * 
+ * 初始化指定验证上下文中的系统内存表指针，确保内存表的正确引用。
+ * 该函数处理系统内存表的初始化操作，为后续的内存管理提供基础。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090c2f0
+ */
+void InitializeSystemMemoryTablePointer(uint8_t ObjectContext, int64_t ValidationContext)
 {
   **(uint8_t **)(ValidationContext + ResourceContextSecondaryOffset) = &SystemMemoryTable001;
   return;
@@ -80631,8 +80640,17 @@ void Unwind_18090c2f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c300(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 初始化系统数据结构指针
+ * 
+ * 初始化指定验证上下文中的系统数据结构指针，确保数据结构的正确引用。
+ * 该函数处理系统数据结构的初始化操作，为后续的数据管理提供基础。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090c300
+ */
+void InitializeSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 8) = &SystemDataStructure;
   return;

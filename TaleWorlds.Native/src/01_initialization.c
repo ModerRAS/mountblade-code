@@ -53187,7 +53187,7 @@ void InitializeSystemResourceManager(void* SystemResourceManager,long long Confi
     stackParameterOffset = 0x11;
     threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x13,0x13);
     *threadObjectPointer = 0;
-LABEL_THREAD_INITIALIZATION:
+ThreadInitialization:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
@@ -53203,7 +53203,7 @@ LABEL_THREAD_INITIALIZATION:
     stackParameterOffset = 0x12;
     threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x14,0x13);
     *threadObjectPointer = 0;
-LABEL_THREAD_ALLOCATION_CONTEXT:
+ThreadAllocationContext:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
