@@ -1499,19 +1499,6 @@ void* GetSystemInitializationFunction;
  * 
  * @return void 无返回值
  */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 初始化游戏核心系统节点，设置系统标识符和处理器。
- * 用于游戏核心系统的初始化和配置工作。
- * 
- * @return 无返回值
- */
-/**
- * 初始化游戏核心系统
- * 遍历系统节点树，查找并激活游戏核心系统节点
- * 设置游戏核心系统的初始化处理器和内存分配
- */
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
@@ -64539,13 +64526,13 @@ ThreadContextCleanup:
             SystemTimeFlag1d8 = (long long)piStack_210 - (long long)pointerToInteger25;
             if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
               piStack_1f0 = (int *)0x1;
-LAB_180079fb3:
+ThreadHandleValidation:
               SystemIntegerPointer6 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)piStack_1f0 * 4,
                                              CONCAT71((int7)(SystemConfigurationPointer >> 8),3));
             }
             else {
               piStack_1f0 = (int *)(((long long)SystemTimeFlag1d8 >> 2) * 2);
-              if (piStack_1f0 != (int *)0x0) goto LAB_180079fb3;
+              if (piStack_1f0 != (int *)0x0) goto ThreadHandleValidation;
             }
             if (pointerToInteger25 != pointerToInteger26) {
                 memmove(SystemIntegerPointer6,pointerToInteger25,SystemTimeFlag1d8);

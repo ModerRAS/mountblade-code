@@ -44762,8 +44762,6 @@ void ExecuteSystemResourceCleanupCallback(uint8_t ObjectContext,int64_t Validati
  * @return 无返回值
  * @note 此函数在系统资源清理过程中被调用
  * @warning 清理失败时可能会触发系统紧急退出
- * 
- * 原始函数名为Unwind_180904710，现已重命名为ExecuteSystemResourceCleanupCallbackWrapper2
  */
 void ExecuteSystemResourceCleanupCallbackSecondary(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
@@ -83311,7 +83309,15 @@ void ReleaseResourceReferenceCounterD(void)
 
 
 
-void Unwind_18090ca60(void)
+/**
+ * @brief 释放资源引用计数器E
+ * 
+ * 递减资源引用计数器并调用资源管理器的处理函数。
+ * 用于系统资源的释放和清理操作。
+ * 
+ * @note 这是资源释放链中的第五个函数，与前四个功能相同
+ */
+void ReleaseResourceReferenceCounterE(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
@@ -83322,7 +83328,16 @@ void Unwind_18090ca60(void)
 
 
 
-void Unwind_18090ca70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表数据并执行内存操作(版本F)
+ * 
+ * 该函数与前面两个资源表处理函数功能相似，
+ * 但使用不同的验证上下文偏移量(400)。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ProcessResourceTableDataAndMemoryOperationsVersionF(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -83366,7 +83381,15 @@ void Unwind_18090ca70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ca80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文(偏移量0x540)
+ * 
+ * 将系统数据结构指针设置到验证上下文的指定偏移量(0x540)处。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToValidationContextOffset540(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x540) = &SystemDataStructure;
@@ -83376,7 +83399,15 @@ void Unwind_18090ca80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ca90(void)
+/**
+ * @brief 释放资源引用计数器F
+ * 
+ * 递减资源引用计数器并调用资源管理器的处理函数。
+ * 用于系统资源的释放和清理操作。
+ * 
+ * @note 这是资源释放链中的第六个函数，与前五个功能相同
+ */
+void ReleaseResourceReferenceCounterF(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
@@ -83387,7 +83418,16 @@ void Unwind_18090ca90(void)
 
 
 
-void Unwind_18090caa0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表数据并执行内存操作(版本G)
+ * 
+ * 该函数与前面几个资源表处理函数功能相似，
+ * 但使用ResourceValidationError0作为验证上下文偏移量。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ProcessResourceTableDataAndMemoryOperationsVersionG(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
