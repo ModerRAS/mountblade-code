@@ -90065,7 +90065,13 @@ void RegisterResourceHandlerType584AtOffset248(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090dd80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册908类型资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dd80
+ */
+void RegisterResourceTypeHandler908(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40),0x908,2,ResourceTypeHandler908);
@@ -90074,7 +90080,13 @@ void Unwind_18090dd80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ddb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册050类型资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090ddb0
+ */
+void RegisterResourceTypeHandler050(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40),0x50,2,ResourceTypeHandler050);
@@ -90083,7 +90095,13 @@ void Unwind_18090ddb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090dde0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册098类型资源处理器
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dde0
+ */
+void RegisterResourceTypeHandler098(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40),0x98,2,ResourceTypeHandler098);
@@ -90108,7 +90126,13 @@ void DestroyMutexFunctionv1(void)
 
 
 
-void Unwind_18090de20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源清理回调
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090de20
+ */
+void ExecuteSystemResourceCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0xe0) != (int64_t *)0x0) {
