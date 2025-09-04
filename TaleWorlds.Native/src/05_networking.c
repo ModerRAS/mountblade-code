@@ -1932,7 +1932,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)StatusBufferPtr) + (long long)StatusPtr);
+            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)StatusBufferPtr) + (long long)ConnectionStatusPtr);
             
             // 提取连接状态信息
             NetworkConnectionStatus PacketStatus = ContextDataArray[ConnectionContextPacketStatusIndex];
