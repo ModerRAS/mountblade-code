@@ -80791,7 +80791,13 @@ void ProcessResourceIndexAndHashInitialization(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090c390(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090c390
+ */
+void ExecuteResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

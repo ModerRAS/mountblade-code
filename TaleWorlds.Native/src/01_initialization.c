@@ -1028,8 +1028,8 @@ void* SystemMemoryAllocationTableEntryTridenary;    // 系统内存分配表条�
 void* SystemMemoryAllocationTableEntryQuattuordenary; // 系统内存分配表条目第十四个
 void* SystemMemoryAllocationTableEntryQuindenary;    // 系统内存分配表条目第十五个
 void* SystemMemoryAllocationTableEntrySexdenary;     // 系统内存分配表条目第十六个
-void* SystemMemoryAllocationTableEntry17;           // 系统内存分配表条目第十七个
-void* SystemMemoryAllocationTableEntry18;           // 系统内存分配表条目第十八个
+void* SystemMemoryAllocationTableEntrySeptendecenary; // 系统内存分配表条目第十七个
+void* SystemMemoryAllocationTableEntryOctodecenary;  // 系统内存分配表条目第十八个
 
 void* SystemDataNodeFirstRoot;       // 系统数据节点第一根节点
 void* SystemDataNodeSecondRoot;     // 系统数据节点第二根节点
@@ -30102,12 +30102,12 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
     if (pStackParameterC != (void* *)0x0) {
         SystemCleanupFunction();
     }
-    pSystemConfigurationValue = (void* *)0x0;
-    SystemFlagTertiary = SystemFlagTertiary & MAX_UNSIGNED_32_BIT00000000;
-    stackParameterB = &SystemMemoryAllocatorReference;
+    SystemConfigurationValue = (void* *)0x0;
+    SystemResourceFlag = SystemResourceFlag & MAX_UNSIGNED_32_BIT00000000;
+    StackParameterB = &SystemMemoryAllocatorReference;
   }
-  ExecuteSystemCommand(&stackParameterB,systemFlag88 + systemOffset);
-    memcpy(pStackParameterC + systemFlag88,SystemCharBuffer,(long long)((int)SystemMemoryPointer + 2));
+  ExecuteSystemCommand(&StackParameterB,SystemDebugFlag + SystemStringOffset);
+    memcpy(StackParameterC + SystemDebugFlag,SystemCharBuffer,(long long)((int)SystemMemoryPointer + 2));
 }
 
 
@@ -30129,21 +30129,21 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
 void ManageSystemResourceBuffer(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  long long resourceDataIndex;
-  char validationStatusFlag;
+  long long ResourceDataIndex;
+  char ValidationStatusFlag;
   uint8_t SystemResourceStatusFlag [16];
-  void* *systemParameterPointer;
-  void* *systemResourceHandle;
+  void* *SystemParameterPointer;
+  void* *SystemResourceHandle;
   
   ExecuteSystemInitialization(SystemResourceManager,1,1,ConfigurationFlag,InvalidHandleValue);
   if (SystemCleanupHandler != (long long *)0x0) {
-    validationStatusFlag = (**(code **)(*SystemCleanupHandler + 0x48))();
-    if ((validationStatusFlag != '\0') && (SystemCleanupHandler[2] != 0)) {
+    ValidationStatusFlag = (**(code **)(*SystemCleanupHandler + 0x48))();
+    if ((ValidationStatusFlag != '\0') && (SystemCleanupHandler[2] != 0)) {
       (*(code *)SystemCleanupHandler[0x11])(0);
     }
   }
-  pSystemMaxOperationCount = &SystemStackData1;
-  pConcatenatedSystemValue = &SystemStackData2;
+  SystemMaxOperationCount = &SystemStackData1;
+  ConcatenatedSystemValue = &SystemStackData2;
   ProcessSystemResourceData(SystemResourceStatusFlag);
   *(uint8_t *)(SystemConfigurationBlock + 0x3a0) = 1;
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
@@ -30202,9 +30202,9 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   
   SystemMemoryAllocationOffset = 0xfffffffffffffffe;
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)aSystemConfigurationId;
-  pSystemMemoryContext = &pEncryptionOffset1;
-  pEncryptionOffset1 = &SystemResourceTemplatePrimary;
-  pEncryptionOffsetSecondary = StackMemoryBufferF0;
+  SystemMemoryContext = &EncryptionOffset1;
+  EncryptionOffset1 = &SystemResourceTemplatePrimary;
+  EncryptionOffsetSecondary = StackMemoryBufferF0;
   MemoryBufferPointer = 0;
   StackMemoryBufferF0[0] = 0;
   SystemProcessFlagsSecondary = 0x17;
@@ -30213,8 +30213,8 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   SystemProcessFlags = CreateSystemObject(SystemOperationStatus,ConfigurationDataPointer);
   ThreadContextFlag = AdditionalParameter;
   SystemOperationStatus = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x100,8,3);
-  pResourceHashEntryPointer = (void* **)InitializeResourceContext(SystemOperationStatus,&systemHashPointer);
-  ppUnsignedStackFlagPrimary = pResourceHashEntryPointer;
+  ResourceHashEntryPointer = (void* **)InitializeResourceContext(SystemOperationStatus,&SystemHashPointer);
+  UnsignedStackFlagPrimary = ResourceHashEntryPointer;
   if (pResourceHashEntryPointer != (void* **)0x0) {
     (**(code **)(*pResourceHashEntryPointer + 0x28))(pResourceHashEntryPointer);
   }
