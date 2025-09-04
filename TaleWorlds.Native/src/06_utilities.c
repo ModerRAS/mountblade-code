@@ -80348,7 +80348,7 @@ void ProcessResourceTableWithHashValidation(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090c220(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceTableOperation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
                     // WARNING: Could not recover jumptable at 0x00018090c232. Too many branches
@@ -80359,7 +80359,7 @@ void Unwind_18090c220(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c240(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceTableWithCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t ResourceHash;
