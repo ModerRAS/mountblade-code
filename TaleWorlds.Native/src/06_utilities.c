@@ -74047,7 +74047,7 @@ void RegisterResourceHandlerAtOffsetC08(uint8_t ObjectContext,int64_t Validation
  * @return 无返回值
  * @note 此函数在资源处理过程中调用，用于执行特定的回调操作
  */
-void Unwind_ExecuteResourceContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -74072,7 +74072,7 @@ void Unwind_ExecuteResourceContextCallback(uint8_t ObjectContext,int64_t Validat
  * @return 无返回值
  * @note 此函数在异常处理时调用，确保资源正确注册
  */
-void Unwind_RegisterResourceHandlerAtC60(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterResourceHandlerAtOffsetC60(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0xc60,8,0x14,ProcessResourceOperation);
