@@ -1505,6 +1505,11 @@ void* GetSystemInitializationFunction;
  * 
  * @return 无返回值
  */
+/**
+ * 初始化游戏核心系统
+ * 遍历系统节点树，查找并激活游戏核心系统节点
+ * 设置游戏核心系统的初始化处理器和内存分配
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
@@ -2564,7 +2569,7 @@ void InitializeSystemThreadManager(void)
     HashTableNodePointer = AllocatedMemoryNode;
   }
   HashTableNodePointer[NodeIdentifier1Index] = DataComparisonTemplateHId1;
-  HashTableNodePointer[NodeIdentifier2Index] = 0xdcfdc333a769ec93;
+  HashTableNodePointer[NodeIdentifier2Index] = DataComparisonTemplateHId2;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
   HashTableNodePointer[NodeActiveFlagIndex] = 1;
   HashTableNodePointer[10] = SystemEventCallback;
