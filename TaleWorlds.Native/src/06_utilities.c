@@ -91168,7 +91168,17 @@ void RegisterExtendedResourceHandler1(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_18090e440(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册扩展资源处理器2
+ * 
+ * 在系统unwind过程中注册扩展资源处理器，
+ * 处理偏移量0xb70处的资源，类型为0x128。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e440
+ */
+void RegisterExtendedResourceHandler2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xb70,0x128,2,ResourceTypeHandler128,0xfffffffffffffffe);
@@ -91177,7 +91187,17 @@ void Unwind_18090e440(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e460(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源操作处理器1
+ * 
+ * 在系统unwind过程中注册资源操作处理器，
+ * 处理偏移量0xdc8处的资源，大小为8字节。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e460
+ */
+void RegisterResourceOperationHandler1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xdc8,8,2,ProcessResourceOperation);
@@ -91186,7 +91206,17 @@ void Unwind_18090e460(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e4a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源操作处理器2
+ * 
+ * 在系统unwind过程中注册资源操作处理器，
+ * 处理偏移量0xdd8处的资源，大小为8字节。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e4a0
+ */
+void RegisterResourceOperationHandler2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xdd8,8,2,ProcessResourceOperation);
@@ -91195,7 +91225,17 @@ void Unwind_18090e4a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e4e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源操作处理器3
+ * 
+ * 在系统unwind过程中注册资源操作处理器，
+ * 处理偏移量0xde8处的资源，大小为8字节。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e4e0
+ */
+void RegisterResourceOperationHandler3(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xde8,8,2,ProcessResourceOperation);
@@ -91204,7 +91244,17 @@ void Unwind_18090e4e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e520(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调1
+ * 
+ * 在系统unwind过程中执行资源清理回调，
+ * 处理偏移量0xdf8处的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e520
+ */
+void ExecuteResourceCleanupCallback1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -91218,7 +91268,17 @@ void Unwind_18090e520(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e540(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调2
+ * 
+ * 在系统unwind过程中执行资源清理回调，
+ * 处理偏移量0xe00处的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e540
+ */
+void ExecuteResourceCleanupCallback2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -91232,7 +91292,17 @@ void Unwind_18090e540(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e560(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源操作处理器4
+ * 
+ * 在系统unwind过程中注册资源操作处理器，
+ * 处理偏移量0xe08处的资源，大小为8字节。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e560
+ */
+void RegisterResourceOperationHandler4(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xe08,8,2,ProcessResourceOperation);
