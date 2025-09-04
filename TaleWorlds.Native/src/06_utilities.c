@@ -42005,17 +42005,20 @@ void CleanupSystemResourceHandlerSetDuodecimal(uint8_t ObjectContext,int64_t Val
  * @warning 调用此函数后，相关资源将不再可用
  */
 /**
- * @brief 清理系统资源处理器集合（第十三组）
+ * @brief 清理系统资源紧急处理集合
  * 
- * 该函数用于清理系统资源处理器集合中的第十三组处理器
+ * 该函数用于清理系统资源处理器中的紧急处理集合
+ * 在系统遇到紧急情况时，负责清理相关资源并重置系统状态
  * 包含循环计数和系统资源处理器的清理操作
  * 
  * @param ObjectContext 对象上下文，包含要清理的资源信息
  * @param ValidationContext 验证上下文，包含系统验证状态信息
  * @param CleanupOption 清理选项，指定清理的方式
  * @param CleanupFlag 清理标志，控制清理行为的标志位
+ * @note 此函数主要用于紧急情况下的资源清理
+ * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSet13(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void CleanupSystemResourceHandlerEmergencySet(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -63694,7 +63697,7 @@ void SetSystemDataStructurePointerAtPrimaryOffset(uint8_t ObjectContext,int64_t 
  * @return 无返回值
  * @note 此函数主要用于资源数据标志位的清理
  */
-void CleanupResourceDataFlagBitVersion1(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceDataFlagBitMemoryVersion(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -64470,7 +64473,7 @@ void ResetSystemResourceHandlerTemplateAlternate(uint8_t ObjectContext,int64_t V
  * @param ValidationContext 验证上下文，包含验证所需的数据和参数
  * @return 无返回值
  */
-void CleanupResourceDataFlagBitVersion1(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceDataFlagBitSystemVersion(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -69268,7 +69271,7 @@ void ExecuteResourceHashValidationAndIndexManagement(uint8_t ObjectContext, int6
 
 
 
-void ProcessSystemResourceCleanupPhase1(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupInitialPhase(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -69463,7 +69466,7 @@ void ProcessSystemResourceCleanupPhase9(uint8_t ObjectContext,int64_t Validation
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_1809091b0
  */
-void ProcessSystemResourceCleanupPhase1(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessSystemResourceCleanupContextPhase(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

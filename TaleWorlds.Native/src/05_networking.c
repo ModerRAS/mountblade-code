@@ -713,6 +713,7 @@ uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t Conn
 
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManager;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
+uint32_t NetworkConnectionManagerContext;             // 网络连接管理器上下文，存储连接管理的上下文信息和状态数据
 uint32_t NetworkConnectionFlags;                    // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
 uint32_t NetworkConnectionTimeout;                // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
 uint32_t NetworkMaxConnections;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
@@ -808,7 +809,7 @@ uint32_t NetworkPacketFilterBuffer;                        // 网络数据包过
 
 // 网络安全相关变量
 uint32_t NetworkSecurityContextPrimary;                // 网络安全上下文主要数据，存储主要的安全上下文信息
-uint32_t NetworkSecurityValidationData;                    // 网络安全验证信息，用于安全验证的相关数据
+uint32_t NetworkSecurityValidationBuffer;                  // 网络安全验证缓冲区，用于存储安全验证过程中的临时数据
 uint32_t NetworkSecurityEncryptionInfo;                    // 网络安全加密信息，用于安全加密的相关数据
 uint32_t NetworkSecurityAuthenticationInfo;                 // 网络安全认证信息，用于身份认证的相关数据
 uint32_t NetworkSecurityAuthorizationInfo;                  // 网络安全授权信息，用于权限授权的相关数据
@@ -1620,7 +1621,9 @@ uint32_t NetworkCallbackSize;                              // 网络回调大小
 uint32_t NetworkCallbackIndex;                             // 网络回调索引
 uint32_t NetworkPortRangeStart;                            // 网络端口范围起始值
 uint32_t NetworkPortRangeEnd;                              // 网络端口范围结束值
-uint32_t NetworkConnectionTimeout;                          // 网络连接超时时间
+uint32_t NetworkConnectionTimeoutDuration;                 // 网络连接超时持续时间，用于管理连接的生命周期
+uint32_t NetworkMaximumConnectionsLimit;                   // 网络最大连接数限制，控制同时连接的数量
+uint32_t NetworkConnectionStatusFlags;                     // 网络连接状态标志，记录连接的各种状态信息
 uint32_t NetworkSecurityConfigurationFlags;          // 网络安全配置标志
 uint32_t NetworkAuthenticationSecurityLevel;       // 网络认证安全级别
 uint32_t NetworkEncryptionAlgorithmType;            // 网络加密算法类型
@@ -1651,7 +1654,7 @@ uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
  * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据
  */
 uint32_t NetworkProcessedPacketIdentifier;          // 已处理的网络连接数据包标识符
-uint32_t NetworkSecurityValidationData;                    // 网络安全验证数据
+uint32_t NetworkSecurityValidationBuffer;                  // 网络安全验证缓冲区，用于存储安全验证过程中的临时数据
 uint32_t NetworkBufferTemplatePointer;                     // 网络缓冲区模板指针
 uint32_t NetworkConnectionDefaultData;                    // 网络连接默认数据
 uint32_t NetworkConnectionSourceAddress;                   // 网络连接源地址
@@ -1847,14 +1850,14 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
   ValidationStatusCode = 0;  // 初始化验证结果码
   if (ValidationStatusCode == 0) {
     if ((0 < *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset)) && (*ConnectionValidationResult != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationResult, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationResult, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     *ConnectionValidationResult = ConnectionContextId;
     *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset) = ValidationStatusCode;
     return 0;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
-    ConnectionContextId = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationData, NetworkConnectionCompletionHandle, 0);
+    ConnectionContextId = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
     if (ConnectionContextId != 0) {
       if ((int)ConnectionValidationResult[1] != 0) {
           memcpy(ConnectionContextId, *ConnectionValidationResult, (long long)(int)ConnectionValidationResult[1]);
@@ -1887,8 +1890,8 @@ NetworkHandle SetupNetworkSystem(void)
   NetworkConnectionStatusFlags = NetworkStatusActiveFlag;
   
   // 设置连接超时时间
-  NetworkConnectionTimeoutDuration = NetworkConnectionTimeoutDefault;  // 30秒
-  NetworkConnectionTimeout = NetworkConnectionTimeoutDuration;        // 统一超时设置
+  NetworkConnectionTimeout = NetworkConnectionTimeoutDefault;  // 30秒
+  NetworkConnectionTimeoutDuration = NetworkConnectionTimeout;        // 统一超时设置
   
   // 初始化最大连接数
   NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;
@@ -1915,9 +1918,9 @@ NetworkHandle SetupNetworkSystem(void)
 NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkConnectionStatus *NetworkContextArray;  // 网络连接上下文数据数组
-  NetworkConnectionStatus ProcessingStatus;              // 数据包处理状态
-  NetworkConnectionStatus ValidationStatus;          // 连接验证状态
+  NetworkConnectionStatus *NetworkContextArray;      // 网络连接上下文数据数组
+  NetworkConnectionStatus PacketProcessingStatus;      // 数据包处理状态
+  NetworkConnectionStatus ConnectionValidationStatus;  // 连接验证状态
   
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[ConnectionContextActiveCountIndex]) {
@@ -1925,31 +1928,31 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *StatusBufferPtr = NULL;
+  NetworkConnectionStatus *ConnectionStatusBufferPtr = NULL;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      StatusBufferPtr = (NetworkConnectionStatus *)
-               ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
+      ConnectionStatusBufferPtr = (NetworkConnectionStatus *)
+               ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
                              NetworkConnectionCompletionHandle, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (StatusBufferPtr != NULL) {
+      if (ConnectionStatusBufferPtr != NULL) {
         int32_t ActiveConnectionsCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionProcessingCounter = (long long)ActiveConnectionsCount;
         int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址指针
         
         // 如果有活跃连接，处理连接数据
         if ((ActiveConnectionsCount != 0) && (ConnectionContextBaseAddress = *ConnectionContext, 0 < ActiveConnectionsCount)) {
-          NetworkConnectionStatus *ConnectionStatusPtr = StatusBufferPtr;
+          NetworkConnectionStatus *ConnectionStatusPtr = ConnectionStatusBufferPtr;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)StatusBufferPtr) + (long long)ConnectionStatusPtr);
+            NetworkConnectionStatus *ContextDataArray = (NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)ConnectionStatusBufferPtr) + (long long)ConnectionStatusPtr);
             
             // 提取连接状态信息
             NetworkConnectionStatus PacketStatus = ContextDataArray[ConnectionContextPacketStatusIndex];
@@ -1961,7 +1964,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             ConnectionStatusPtr[ConnectionContextPacketStatusIndex] = PacketStatus;
             ConnectionStatusPtr[ConnectionContextDataStatusIndex] = DataStatus;
             ConnectionStatusPtr[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            ConnectionStatusPtr[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)StatusBufferPtr) + -4 + (long long)(ConnectionStatusPtr + ConnectionContextStatusEntrySize));
+            ConnectionStatusPtr[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)ConnectionStatusBufferPtr) + -4 + (long long)(ConnectionStatusPtr + ConnectionContextStatusEntrySize));
             
             // 更新计数器
             ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
@@ -1975,7 +1978,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   // 验证连接安全性
   if ((0 < *(int *)((long long)ConnectionContext + ConnectionParameterOffset)) && (*ConnectionContext != 0)) {
-      ValidateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
+      ValidateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
   }
   
   // 更新连接上下文和参数
