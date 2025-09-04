@@ -25927,7 +25927,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   ulong long ResourceCreationFlags;
   uint resourceAllocationContext0;
   bool IsSystemResourceMatch;
-  uint32_t SystemRegisterValue2;
+  uint32_t SystemRegisterValueSecondary;
   uint32_t SystemRegisterValue;
   uint8_t SystemByteArray [32];
   uint8_t SystemByteValue;
@@ -25980,7 +25980,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   void* *SystemGlobalDataReferencePtr2;
   long long LongValue1F0;
   uint StackMemoryOffset;
-  uint32_t GlobalDataFlags2;
+  uint32_t GlobalDataFlagsSecondary;
   void* *SystemGlobalDataReferencePtr;
   long long LongValue1D0;
   uint SystemThreadStackSize;
@@ -25988,7 +25988,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   void* *pointerUnsigned1b8;
   void* *pointerUnsigned1b0;
   int intValue1;
-  uint32_t calculationFlags1;
+  uint32_t calculationFlagsPrimary;
   void* *pSystemStackFlag;
   void* *pointerUnsigned1;
   int intValue188;
@@ -58941,7 +58941,7 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   ulong long StackContextValue;
   void* *MemoryOffsetArray [2];
   long long StackValue3;
-  void* EncryptionOffset1;
+  void* EncryptionOffsetPrimary;
   void* EncryptionOffsetSecondary;
   void* MemoryBufferPointer;
   void* StackPointerF0;
@@ -63831,7 +63831,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   void* SystemThreadContextIndicators;
   uint32_t UnsignedStackFlagPrimary;
   void* UnsignedStackFlagSecondary;
-  void* EncryptionOffset1;
+  void* EncryptionOffsetPrimary;
   void* EncryptionOffsetSecondary;
   void* MemoryBufferPointer;
   void* StackPointerF0;
@@ -70077,18 +70077,18 @@ void* NormalizeAudioData(void)
   int audioWeightFactor4;
   float *audioOutputBufferPtr;
   
-  audioBufferPointer = audioInputData;
+  AudioBufferPointer = audioInputData;
   do {
-    processedAudioBit = 0;
-    audioProcessingLoop = audioBitDepth;
-    audioShiftRegister = currentAudioSample;
+    ProcessedAudioBit = 0;
+    AudioProcessingLoop = audioBitDepth;
+    AudioShiftRegister = currentAudioSample;
     if (audioBitDepth != 0) {
       do {
-        audioBitMask = audioShiftRegister & 1;
-        audioShiftRegister = audioShiftRegister >> 1;
-        processedAudioBit = processedAudioBit * 2 | audioBitMask;
-        audioProcessingLoop = audioProcessingLoop + -1;
-      } while (audioProcessingLoop != 0);
+        AudioBitMask = AudioShiftRegister & 1;
+        AudioShiftRegister = AudioShiftRegister >> 1;
+        ProcessedAudioBit = ProcessedAudioBit * 2 | AudioBitMask;
+        AudioProcessingLoop = AudioProcessingLoop + -1;
+      } while (AudioProcessingLoop != 0);
     }
     currentAudioSample = currentAudioSample + 1;
     audioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (long long)(int)processedAudioBit * 8);
