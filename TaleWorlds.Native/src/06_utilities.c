@@ -117,6 +117,20 @@
 #define ResourceTableOffsetSeptenary 0x6c
 #define ResourceTableOffsetOctonary 0x70
 #define ResourceTableOffsetNonary 0x74
+
+// 安全处理相关常量
+#define SecurityByteHighShift 0x18                    // 高字节位移（24位）
+#define SecurityAccessWordShift 0x10                  // 访问控制字位移（16位）
+#define SecurityStatusMidHighShift 0x10               // 状态中高位移（16位）
+#define SecurityStatusMidShift 8                      // 状态中位位移（8位）
+#define SecuritySecurityMidHighShift 0x10             // 安全中高位移（16位）
+#define SecuritySecurityMidShift 8                    // 安全中位位移（8位）
+#define SecurityByteMask 0xff                         // 字节掩码
+#define SecurityAccessControlMask 0xffff              // 访问控制掩码
+#define SecurityOperationType 0x27                    // 安全操作类型
+#define ResourceAccessFlagOffset 0xc4                  // 资源访问标志偏移
+#define ResourceHandleBackupOffset 0x68                // 资源句柄备份偏移
+#define ResourceAccessEnabledFlag 1                    // 资源访问启用标志
 #define ResourceTableOffsetDenary 0x5c
 #define ResourceTableSizeLimit 0x74
 #define ResourceTableHeaderValidationOffset 0x18
