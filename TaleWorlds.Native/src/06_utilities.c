@@ -4523,27 +4523,27 @@ uint8_t SystemMemoryFlagKernel;
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
-  int ValidationStatus;
-  int64_t CollectionIterator;
-  int ProcessedCount;
-  uint8_t MetadataBuffer[32];
-  int64_t HandleArray[2];
-  uint8_t *ListBuffer;
-  int TotalCount;
-  uint32_t MaxLimit;
-  uint8_t ProcessingBuffer[512];
-  uint64_t SecurityKey;
+  int ValidationStatusCode;
+  int64_t CollectionItemIterator;
+  int ProcessedItemCount;
+  uint8_t SecurityMetadataBuffer[32];
+  int64_t ContextHandleArray[2];
+  uint8_t *ObjectListBuffer;
+  int TotalItemCount;
+  uint32_t MaximumLimit;
+  uint8_t DataProcessingBuffer[512];
+  uint64_t SecurityValidationKey;
   
   // 生成安全验证令牌
-  SecurityKey = SystemSecurityValidationKeySeed ^ (uint64_t)MetadataBuffer;
+  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)SecurityMetadataBuffer;
   
   // 获取上下文句柄
-  ValidationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), HandleArray);
-  if ((ValidationStatus == 0) && (*(int64_t *)(HandleArray[0] + RegistrationHandleOffset) != 0)) {
-    ListBuffer = ProcessingBuffer;
-    ProcessedCount = 0;
-    TotalCount = 0;
-    MaxLimit = MaximumProcessableItemsLimit;
+  ValidationStatusCode = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), ContextHandleArray);
+  if ((ValidationStatusCode == 0) && (*(int64_t *)(ContextHandleArray[0] + RegistrationHandleOffset) != 0)) {
+    ObjectListBuffer = DataProcessingBuffer;
+    ProcessedItemCount = 0;
+    TotalItemCount = 0;
+    MaximumLimit = MaximumProcessableItemsLimit;
     
     // 获取对象列表
     ValidationStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(HandleArray[0] + RegistrationHandleOffset),

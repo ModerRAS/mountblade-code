@@ -1761,9 +1761,9 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkConnectionStatus *ContextArray = (NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + (long long)ConnectionStatusPtr);
             
             // 提取连接状态信息
-            NetworkConnectionStatus CurrentConnectionPacketStatus = ContextArray[1];
-            NetworkConnectionStatus CurrentConnectionDataStatus = ContextArray[2];
-            NetworkConnectionStatus CurrentConnectionValidationStatus = ContextArray[3];
+            NetworkConnectionStatus CurrentPacketStatus = ContextArray[1];
+            NetworkConnectionStatus CurrentDataStatus = ContextArray[2];
+            NetworkConnectionStatus CurrentValidationStatus = ContextArray[3];
             
             // 更新数据包缓冲区状态
             *ConnectionStatusPtr = *ContextArray;
@@ -2033,18 +2033,18 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     return NetworkErrorInvalidPacket;
   }
   NetworkStatus QuaternaryConnectionValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
-  PacketValidationStatusArray[0] = QuaternaryConnectionValidationStatus;
-  PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), PacketValidationStatusArray, 4);
-  if ((int)PacketProcessingResult != 0) {
-    return PacketProcessingResult;
+  ValidationStatusArray[0] = QuaternaryConnectionValidationStatus;
+  ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+  if ((int)ProcessingResult != 0) {
+    return ProcessingResult;
   }
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorInvalidPacket;
   }
   NetworkStatus PrimaryConnectionDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffsetFirst);
-  PacketProcessingStatusArray[0] = PrimaryConnectionDataStatus;
-  PacketProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), PacketProcessingStatusArray, 4);
-  if ((int)PacketProcessingResult == 0) {
+  ProcessingStatusArray[0] = PrimaryConnectionDataStatus;
+  ProcessingResult = (**(code **)**(NetworkHandle **)(*PacketData + 8))(*(NetworkHandle **)(*PacketData + 8), ProcessingStatusArray, 4);
+  if ((int)ProcessingResult == 0) {
     if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
