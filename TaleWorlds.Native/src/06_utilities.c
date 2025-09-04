@@ -90649,7 +90649,7 @@ void ExecuteResourceProcessingCallbackAtOffset14F8(uint8_t ObjectContext,int64_t
 
 
 
-void Unwind_18090e0c0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceProcessingCallbackAtOffset1500(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90663,7 +90663,7 @@ void Unwind_18090e0c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e0e0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceProcessingCallbackAtOffset1508(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90677,7 +90677,7 @@ void Unwind_18090e0e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e100(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceProcessingCallbackAtOffset1510(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90972,7 +90972,15 @@ void Unwind_18090e3e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e3f0(void)
+/**
+ * @brief 执行互斥锁销毁操作
+ * 
+ * 在系统unwind过程中销毁互斥锁资源，
+ * 确保系统资源正确释放。
+ * 
+ * @note 原始函数名：Unwind_18090e3f0
+ */
+void ExecuteMutexDestructionOperation(void)
 
 {
   MutexDestroyInPlace();
@@ -90981,7 +90989,17 @@ void Unwind_18090e3f0(void)
 
 
 
-void Unwind_18090e400(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文互斥锁销毁操作
+ * 
+ * 在系统unwind过程中根据验证上下文销毁互斥锁资源，
+ * 确保系统资源正确释放。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e400
+ */
+void ExecuteValidationContextMutexDestruction(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   MutexDestroyInPlace(*(uint8_t *)(ValidationContext + 0xe8));
