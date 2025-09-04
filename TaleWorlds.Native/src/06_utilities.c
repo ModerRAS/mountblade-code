@@ -89951,8 +89951,13 @@ void RegisterResourceHandlerType24AtSystemContextOffset(uint8_t ObjectContext, i
 
 
 
-void Unwind_18090dd00(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 处理系统上下文资源哈希状态清理
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dd00
+ */
+void ProcessSystemContextResourceHashCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 {
   uint8_t *ResourceHashPtr;
   int64_t *ResourceTablePointerPointer;
@@ -89977,8 +89982,13 @@ void Unwind_18090dd00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090dd10(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 处理资源表指针哈希状态清理
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dd10
+ */
+void ProcessResourceTablePointerHashCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 {
   uint8_t *ResourceHashPtr;
   int64_t *ResourceTablePointerPointer;
