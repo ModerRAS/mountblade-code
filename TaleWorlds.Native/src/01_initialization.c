@@ -25996,7 +25996,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint32_t securityFlags;
   void* systemSemaphore;
   void* *stackParameterB;
-  uint8_t *pStackParameterC;
+  uint8_t *stackParameterPointerC;
   uint32_t systemStateFlags;
   uint8_t systemStateBuffer [72];
   ulong long encryptionKey;
@@ -27679,7 +27679,7 @@ void SystemMemoryAllocator(long long resourceManagerPointer, long long allocatio
     *(void**)(ResourceAddressPointer + 1) = 0x5f53;
     *(uint8_t*)((long long)ResourceAddressPointer + 10) = 0;
     SystemFlagTertiary = 10;
-    GetSystemCounter(SystemResourceManager + 0x2c0,&pStackParameterC);
+    GetSystemCounter(SystemResourceManager + 0x2c0,&stackParameterPointerC);
     pSystemConfigurationValue = &SystemGlobalDataReference;
       SystemCleanupFunction(ResourceAddressPointer);
   }
@@ -29127,8 +29127,8 @@ PathSeparatorFound:
                     SystemMemoryAllocatorStatus = SystemMemoryAllocatorStatus & MAX_UNSIGNED_32_BIT;
                   }
                   SystemResourceStringPointer = &SystemStringTemplate;
-                  if (pStackParameterC != (void* *)0x0) {
-                    SystemResourceStringPointer = pStackParameterC;
+                  if (stackParameterPointerC != (void* *)0x0) {
+                    SystemResourceStringPointer = stackParameterPointerC;
                   }
                   ConfigureSystemDataBuffer(&SystemResourceHandleF0,&SystemDataBufferConfig2,SystemResourceStringPointer);
                   ProcessSystemDataTransfer(&SystemResourceHandleF0,&SystemUnsignedFlagPointer);
@@ -31840,7 +31840,7 @@ long long * InitializeSystemModule(long long SystemResourceManager,long long *Co
   uint resourceCreationFlags;
   long long ResourceMemoryOffset;
   long long SystemProcessingBufferPointer;
-  byte *pisMemoryReady;
+  byte *memoryStatusPointer;
   long long SystemThreadFlags;
   void* ThreadContextFlag;
   char SystemStackBuffer [8];

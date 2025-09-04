@@ -15823,12 +15823,12 @@ LoopExit:
       int InternalProcessingCounter = 0;
       int TableValidationResult = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
       int ValidationLoopCounter = NextResultIndex;
-      if (0 < TableEntryIndex) {
+      if (0 < TableValidationResult) {
         do {
-          uint32_t LoopFlag = 0;
+          uint32_t SecurityLoopFlag = 0;
           ResourceTablePointer = ObjectContext[4];
           uint8_t *MemoryOperationTemplate = &SystemMemoryTemplateB;
-          uint32_t ChecksumValueSecondary = DataChecksumBuffer[0];
+          uint32_t SecondaryChecksumValue = DataChecksumArray[0];
           if (((char)ResourceTablePointer == '\0') && (int SystemStatusResult = CheckSystemStatus(ObjectContext,1), SystemStatusResult != 0))
           goto LoopExit;
           int MemoryOperationResult = (**(code **)(MemoryOperationTemplate + 0x10))(&MemoryOperationTemplate,ProcessingBuffer,0x200);
@@ -15841,11 +15841,11 @@ LoopExit:
             *(uint8_t *)(ObjectContext + 4) = 0;
           }
           InternalProcessingCounter = InternalProcessingCounter + 1;
-          int TableValidationStatus = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
+          int TableValidationStatusCode = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
         } while (InternalProcessingCounter < tableResourceHashStatus);
       }
     }
-    LoopIndex = LoopIndex + 1;
+    LoopIterator = LoopIterator + 1;
   } while( true );
 }
 
