@@ -44177,8 +44177,6 @@ void InitializeSystemResourceHandlerSecondary(uint8_t ObjectContext,int64_t Vali
  * @return 无返回值
  * @note 此函数在系统资源初始化过程中被调用
  * @warning 初始化失败时可能会触发系统紧急退出
- * 
- * 原始函数名为Unwind_180904530，现已重命名为InitializeSystemResourceHandlerExtended3
  */
 void InitializeSystemResourceHandlerTertiary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
@@ -44736,8 +44734,6 @@ void ExecuteSystemResourceCleanupCallback(uint8_t ObjectContext,int64_t Validati
  * @return 无返回值
  * @note 此函数在系统资源清理过程中被调用
  * @warning 清理失败时可能会触发系统紧急退出
- * 
- * 原始函数名为Unwind_180904700，现已重命名为ExecuteSystemResourceCleanupCallback
  */
 void ExecuteSystemResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
@@ -83169,7 +83165,16 @@ void ReleaseResourceReferenceCounterB(void)
 
 
 
-void Unwind_18090ca20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表数据并执行内存操作
+ * 
+ * 该函数遍历资源表，检查资源状态并执行相应的内存数据访问操作。
+ * 涉及复杂的资源索引管理和系统上下文处理。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ProcessResourceTableDataAndMemoryOperations(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -83214,7 +83219,15 @@ void Unwind_18090ca20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ca30(void)
+/**
+ * @brief 释放资源引用计数器C
+ * 
+ * 递减资源引用计数器并调用资源管理器的处理函数。
+ * 用于系统资源的释放和清理操作。
+ * 
+ * @note 这是资源释放链中的第三个函数，与前两个功能相同
+ */
+void ReleaseResourceReferenceCounterC(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
