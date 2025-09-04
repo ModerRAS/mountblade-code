@@ -128,14 +128,14 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 
 // 网络连接相关偏移量
 #define NetworkConnectionHeaderOffset 0x10
-#define NetworkConnectionValidationOffsetFirst 0xd8
-#define NetworkConnectionValidationOffsetSecond 0x54
-#define NetworkConnectionValidationOffsetThird 0x78
-#define NetworkConnectionValidationOffsetFourth 0x58
-#define NetworkConnectionDataOffsetFirst 0x5c
+#define NetworkConnectionValidationPrimaryOffset 0xd8
+#define NetworkConnectionValidationSecondaryOffset 0x54
+#define NetworkConnectionValidationTertiaryOffset 0x78
+#define NetworkConnectionValidationQuaternaryOffset 0x58
+#define NetworkConnectionDataPrimaryOffset 0x5c
 #define NetworkConnectionValidatorOffset 0x60
-#define NetworkConnectionIntegrityOffsetFirst 0x70
-#define NetworkConnectionIntegrityOffsetSecond 0x74
+#define NetworkConnectionIntegrityPrimaryOffset 0x70
+#define NetworkConnectionIntegritySecondaryOffset 0x74
 #define NetworkConnectionFinalizeOffset 0x7c
 #define NetworkConnectionSecurityContextOffset 0xf8
 #define NetworkConnectionHandleContextOffset 0xe8
@@ -153,7 +153,6 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 
 // 网络系统常量
 #define NetworkMagicDebugMemoryCheck 0xdeadf00d       // 调试魔数，用于内存检查
-#define NetworkPacketMagicInvalid 0x464f4f44   // 兼容性别名，"FOOD" - 表示无效数据包
 #define NetworkMaxIntValue NetworkMaximumSignedInt32Value  // 兼容性别名 - 最大32位有符号整数值
 #define NetworkFloatOne 0x3f800000             // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000     // 浮点数-1.0的十六进制表示
@@ -1984,7 +1983,7 @@ NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t C
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
+      SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationPrimaryOffset);
       if ((int)SecurityValidationResult == 0) {
           FinalizePacketProcessing(PacketData, PacketValidationBuffer);
       }
@@ -2126,7 +2125,7 @@ NetworkHandle ValidateNetworkConnectionPacket(int64_t ConnectionContext, Network
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
+      PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationPrimaryOffset);
       if ((((int)PacketValidationStatusCode == 0) && (PacketValidationStatusCode = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)PacketValidationStatusCode == 0)) &&
          (PacketValidationStatusCode = HandlePacketData(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)PacketValidationStatusCode == 0)) {
           FinalizePacketProcessing(PacketData, ConnectionSecurityBuffer);
