@@ -61389,7 +61389,19 @@ void ExecuteResourceCleanupCallbackWithExtendedSystemContextValidation(uint8_t O
  * @note 此函数会设置系统资源处理器模板
  * @warning 如果系统状态异常，会触发紧急退出
  */
-void InitializeSystemResourceHandlerExtendedVersion1(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器基础扩展
+ * 
+ * 该函数负责初始化系统资源处理器的扩展功能
+ * 设置系统上下文指针并验证系统状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会设置系统资源处理器模板
+ * @warning 如果系统状态异常，会触发紧急退出
+ */
+void InitializeSystemResourceHandlerWithBasicExtension(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t SystemInitializationCounter;
