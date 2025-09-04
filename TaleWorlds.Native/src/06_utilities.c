@@ -4806,29 +4806,29 @@ uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
  */
 uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t SystemContext)
 {
-  int64_t *OperationResultPointer;
-  int64_t *ResourceTable;
-  int64_t *ResourceIndexPointer;
+  int64_t *ResourceTableBase;
+  int64_t *ResourceTableEntry;
+  int64_t *ResourceEntryIndex;
   int ObjectValidationStatus;
   uint SystemProcessingResult;
   uint64_t OperationResult;
-  int64_t *ResourceData;
-  int64_t *ContextData;
-  int64_t *CleanupDataPointer;
+  int64_t *ResourceDataPointer;
+  int64_t *ValidationContext;
+  int64_t *CleanupHandler;
   int64_t *NullPointer;
   int64_t MemoryContext;
   int64_t ValidationData;
   int PackageValidationStatus;
-  int64_t *ResourceTablePointer;
+  int64_t *ResourceTableIterator;
   int SystemStatus;
   
   OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterSecondaryOffset),&ValidationData);
   ObjectValidationStatus = (int)OperationResult;
   if (ObjectValidationStatus == 0) {
     NullPointer = (int64_t *)0x0;
-    CleanupDataPointer = NullPointer;
+    CleanupHandler = NullPointer;
     if (ValidationData != 0) {
-      CleanupDataPointer = (int64_t *)(ValidationData + ValidationContextCleanupOffset);
+      CleanupHandler = (int64_t *)(ValidationData + ValidationContextCleanupOffset);
     }
     OperationResult = ValidateObjectContext(*(uint32_t *)(RequestParameters + RequestParameterPrimaryOffset),&ValidationData);
     PackageValidationStatus = (int)OperationResult;
@@ -4837,7 +4837,7 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
       SystemProcessingResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset),*(int64_t *)(ValidationData + ValidationContextObjectDataOffset) + ValidationContextObjectDataOffset,
                             &MemoryContext);
       if (SystemProcessingResult != 0) {
-        CleanupValidationData(CleanupDataPointer);
+        CleanupValidationData(CleanupHandler);
         return (uint64_t)SystemProcessingResult;
       }
       if (((*(uint *)(*(int64_t *)(ValidationData + ValidationContextObjectDataOffset) + ValidationContextSecurityDataOffset) >> 2 & 1) == 0) &&
