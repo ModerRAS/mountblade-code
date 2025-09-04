@@ -813,6 +813,7 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define SystemLoopEndOffset 0xd0
 #define SystemResourceStatusOffset 0x60
 #define ValidationContextResultOffset 400
+#define ValidationContextSecondaryOffset 0x90
 #define SystemResourceManagerOffset 0x98
 #define ObjectArrayDataOffset 0x20
 #define ObjectArrayCapacityOffset 0x28
@@ -80230,6 +80231,11 @@ void SetSystemDataStructurePointerAtTertiaryOffset0_2(uint8_t ObjectContext,int6
 
 
 
+/**
+ * 设置系统数据结构指针在偏移量0x3C0处
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void SetSystemDataStructurePointerAtOffset3C0_2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -80239,6 +80245,11 @@ void SetSystemDataStructurePointerAtOffset3C0_2(uint8_t ObjectContext,int64_t Va
 
 
 
+/**
+ * 执行资源表清理并系统退出
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void ExecuteResourceTableCleanupAndSystemExit_2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -96836,7 +96847,21 @@ void ExecuteSystemContextComprehensiveCleanup(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_180910080(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源清理回调函数数组
+ * 
+ * 该函数负责遍历系统上下文中的多个资源指针，并执行每个资源指针的清理回调函数。
+ * 它会检查从0x68到0x10（每隔8字节）的多个偏移位置，如果该位置有有效的资源指针，
+ * 则调用该资源的清理回调函数（偏移0x38处）。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @note 此函数会清理系统中的多个资源句柄
+ * @warning 必须确保系统上下文指针已正确初始化
+ * @remark 原始函数名：Unwind_180910080
+ */
+void ExecuteSystemResourceCleanupCallbackArray(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
