@@ -53516,6 +53516,7 @@ SystemResourceHashProcessingStart:
     goto SystemOperationSetup;
   }
 SystemOperationSetup:
+  /* 系统操作设置：配置数据缓冲区指针 */
   if (SystemDataBufferPointer != (uint8_t *)0x0) {
     SystemDataBufferPointer[SystemContextPointer] = 0;
   }
@@ -53548,6 +53549,7 @@ SystemOperationSetup:
         MemoryBufferPointer._0_4_ = StartSystemThread(SystemDataBufferPointer);
       }
 SystemResourceSetup:
+        /* 系统资源设置：复制配置数据到系统数据缓冲区 */
         memcpy(SystemDataBufferPointer + SystemContextPointer,ConfigurationDataPointer,(long long)((int)ResourceDataCounter + 2));
     }
   }

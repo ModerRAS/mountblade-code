@@ -867,49 +867,49 @@ uint32_t NetworkConnectionContextTemplateData = 0x00;         // 网络连接上
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
-uint32_t NetworkConnectionPrimaryConfig = 0x00;
+uint32_t NetworkConnectionPrimaryConfigData = 0x00;           // 网络连接主要配置数据
 
 /**
  * @brief 网络连接次要配置数据
  * 
  * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
  */
-uint32_t NetworkConnectionSecondaryConfig = 0x00;
+uint32_t NetworkConnectionSecondaryConfigData = 0x00;         // 网络连接次要配置数据
 
 /**
  * @brief 网络连接处理配置数据
  * 
  * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
  */
-uint32_t NetworkConnectionProcessingConfig = 0x00;
+uint32_t NetworkConnectionProcessingConfigData = 0x00;       // 网络连接处理配置数据
 
 /**
  * @brief 网络连接传输配置数据
  * 
  * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
  */
-uint32_t NetworkConnectionTransportConfig = 0x00;
+uint32_t NetworkConnectionTransportConfigData = 0x00;        // 网络连接传输配置数据
 
 /**
  * @brief 网络连接协议配置数据
  * 
  * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
  */
-uint32_t NetworkConnectionProtocolConfig = 0x00;
+uint32_t NetworkConnectionProtocolConfigData = 0x00;         // 网络连接协议配置数据
 
 /**
  * @brief 网络连接验证配置数据
  * 
  * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
  */
-uint32_t NetworkConnectionValidationConfig = 0x00;
+uint32_t NetworkConnectionValidationConfigData = 0x00;        // 网络连接验证配置数据
 
 /**
  * @brief 网络连接路由主要配置数据
  * 
  * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
  */
-uint32_t NetworkConnectionRoutingConfigPrimary = 0x00;
+uint32_t NetworkConnectionRoutingConfigPrimaryData = 0x00;    // 网络连接路由主要配置数据
 
 /**
  * @brief 网络连接路由次要配置数据
