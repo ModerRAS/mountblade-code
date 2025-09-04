@@ -19380,16 +19380,16 @@ uint32_t FinalSystemInitialization(void)
     }
   }
   SystemManagerInstance = (long long ****)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,8,3,CalculationFlags);
-  StackManager8 = SystemManagerInstance;
+  SystemPrimaryManager = SystemManagerInstance;
   InitializeSystemDataTableManager(SystemManagerInstance);
   *SystemManagerInstance = (long long ***)&SystemManagerGlobalTable;
-  StackManager20 = (long long ***)SystemManagerInstance;
+  SystemSecondaryManager = (long long ***)SystemManagerInstance;
   (*(code *)(*SystemManagerInstance)[5])(SystemManagerInstance);
   SystemObjectHandle = SystemAllocationTemplate;
-  SystemSuperManager = &StackManager8;
-  StackManager8 = SystemManagerInstance;
+  SystemSuperManager = &SystemPrimaryManager;
+  SystemPrimaryManager = SystemManagerInstance;
   (*(code *)(*SystemManagerInstance)[5])(SystemManagerInstance);
-  SystemManagerInitialize(SystemObjectHandle,&StackManager8);
+  SystemManagerInitialize(SystemObjectHandle,&SystemPrimaryManager);
   while( true ) {
     if (*SystemManagerInstance == (long long ***)&SystemManagerGlobalTable) {
       SystemActiveStatus = *(char *)(SystemManagerInstance + 2) != '\0';
@@ -19403,8 +19403,8 @@ uint32_t FinalSystemInitialization(void)
   InitializeSystemManager();
   SystemObjectHandle = SystemContextManagerPointer;
   MemoryAllocationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
-  TemporaryManager8 = (long long ****)AllocateSystemMemory(MemoryAllocationFlags,2,SystemObjectHandle);
-  TemporaryManager14 = TemporaryManager8;
+  SystemTemporaryManager = (long long ****)AllocateSystemMemory(MemoryAllocationFlags,2,SystemObjectHandle);
+  SystemTemporaryManagerBackup = SystemTemporaryManager;
   if (TemporaryManager8 != (long long ****)0x0) {
     (*(code *)(*TemporaryManager8)[5])(TemporaryManager8);
   }
