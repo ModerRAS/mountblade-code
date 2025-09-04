@@ -81075,8 +81075,15 @@ void SetSystemDataStructurePointerToValidationContextWithOffset(uint8_t ObjectCo
 
 /**
  * @brief 销毁第四级互斥锁
+ * 
+ * 该函数负责减少资源引用计数器并调用资源管理器的销毁函数
+ * 用于释放和清理第四级互斥锁资源
+ * 
+ * @return 无返回值
+ * @note 此函数会将资源引用计数器减1，并调用资源管理器的销毁函数
+ * @warning 原始函数名为Unwind_DestroyMutexQuaternary，现已重命名为DestroyMutexQuaternary
  */
-void Unwind_DestroyMutexQuaternary(void)
+void DestroyMutexQuaternary(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;

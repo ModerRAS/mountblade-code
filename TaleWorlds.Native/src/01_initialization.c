@@ -191,6 +191,19 @@
 #define DisplayContextQuaternaryAddress      0x180be14e0
 #define DisplayContextQuinaryAddress         0x180be1550
 
+// 虚函数表偏移量常量
+#define VirtualTableInitializeMethodOffset  0x28
+#define VirtualTableCleanupMethodOffset     0x38
+#define VirtualTableMethodOffset            0x68
+#define VirtualTableEventMethodOffset       0x10
+
+// 内存管理相关偏移量
+#define MemoryAllocationGranularity         0x100
+#define ResourceTableEntrySize              0x100
+#define ResourceTableDataOffset             0x10
+#define HashTableEntrySize                  0x69
+#define SmallHashTableEntrySize             0xb
+
 // 系统事件相关常量
 #define SystemEventBroadcastOffset            0x20
 #define SystemSystemStatusFlagOffset          0x1ed
@@ -2550,7 +2563,7 @@ void InitializeSystemThreadManager(void)
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
-  HashTableNodePointer[NodeIdentifier1Index] = 0x43330a43fcdb3653;
+  HashTableNodePointer[NodeIdentifier1Index] = DataComparisonTemplateHId1;
   HashTableNodePointer[NodeIdentifier2Index] = 0xdcfdc333a769ec93;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeQuinaryRoot;
   HashTableNodePointer[NodeActiveFlagIndex] = 1;
@@ -19090,16 +19103,16 @@ void InitializeSystemInfoAndUserEnvironment(void)
     AllocatedMemoryPointer = (long long *)AllocateSystemMemory(MemoryAllocationSize,8,SystemContextHandle);
     MemoryBlockPointer = AllocatedMemoryPointer;
     if (AllocatedMemoryPointer != (long long *)0x0) {
-      (**(code **)(*AllocatedMemoryPointer + 0x28))(AllocatedMemoryPointer);
+      (**(code **)(*AllocatedMemoryPointer + VirtualTableInitializeMethodOffset))(AllocatedMemoryPointer);
     }
     *(uint32_t *)(AllocatedMemoryPointer + 0xd) = 0xbb80073;
     SystemInterfacePointer = *(void* **)(SystemContextHandle + 400);
     InterfaceFunctionPointer = *(code **)*SystemInterfacePointer;
     ComputerNameBufferPointer = &MemoryBufferCapacity;
     MemoryBufferCapacity = AllocatedMemoryPointer;
-    (**(code **)(*AllocatedMemoryPointer + 0x28))(AllocatedMemoryPointer);
+    (**(code **)(*AllocatedMemoryPointer + VirtualTableInitializeMethodOffset))(AllocatedMemoryPointer);
     (*InterfaceFunctionPointer)(SystemInterfacePointer,&MemoryBufferCapacity);
-    (**(code **)(*AllocatedMemoryPointer + 0x38))(AllocatedMemoryPointer);
+    (**(code **)(*AllocatedMemoryPointer + VirtualTableCleanupMethodOffset))(AllocatedMemoryPointer);
     ConfigureInputSystem();
     SystemGlobalDataReferencePtr = &SystemGlobalDataReference;
     GlobalDataFlags = 0;
@@ -20489,7 +20502,7 @@ void ProcessSystemMemoryRange(long long *MemoryRangePointer)
   long long CurrentMemoryPointer;
   
   MemoryRangeEnd = MemoryRangePointer[1];
-  for (CurrentMemoryPointer = *MemoryRangePointer; CurrentMemoryPointer != MemoryRangeEnd; CurrentMemoryPointer = CurrentMemoryPointer + 0x100) {
+  for (CurrentMemoryPointer = *MemoryRangePointer; CurrentMemoryPointer != MemoryRangeEnd; CurrentMemoryPointer = CurrentMemoryPointer + MemoryAllocationGranularity) {
     HandleSystemMemoryPage(CurrentMemoryPointer);
   }
   if (*MemoryRangePointer == 0) {
@@ -21670,7 +21683,7 @@ void ProcessSystemMemoryRegion(long long* SystemResourceManager)
   long long SystemResourceTableIterator;
   
   SystemResourceTableEnd = SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
-  for (SystemResourceTableIterator = *SystemResourceManager; SystemResourceTableIterator != SystemResourceTableEnd; SystemResourceTableIterator = SystemResourceTableIterator + 0x100) {
+  for (SystemResourceTableIterator = *SystemResourceManager; SystemResourceTableIterator != SystemResourceTableEnd; SystemResourceTableIterator = SystemResourceTableIterator + ResourceTableEntrySize) {
     HandleSystemMemoryPage(SystemResourceTableIterator);
   }
   if (*SystemResourceManager == 0) {
