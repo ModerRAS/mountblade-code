@@ -51217,7 +51217,7 @@ MutexUnlockComplete:
         *(long long *)SystemCalculatedBufferPointer[1] = *SystemCalculatedBufferPointer;
           SystemCleanupFunction();
       }
-      goto LABEL_SYSTEM_RESOURCE_HANDLER;
+      goto SystemResourceHandler;
     }
     SystemCalculatedBufferPointer = (long long *)*SystemCalculatedBufferPointer;
   } while( true );
@@ -51563,7 +51563,7 @@ MutexUnlockComplete:
         *(long long *)SystemResourceOffsetPointer[1] = *SystemResourceOffsetPointer;
           SystemCleanupFunction();
       }
-      goto LABEL_SYSTEM_RESOURCE_HANDLER;
+      goto SystemResourceHandler;
     }
     SystemResourceOffsetPointer = (long long *)*SystemResourceOffsetPointer;
   } while( true );
@@ -52215,7 +52215,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
        ((AdditionalParameter != '\0' && (*(int *)(SystemGlobalStatusFlags + 0x340) != 2)))) {
       SystemOperationStatusPrimary = 1;
       SystemStackByte = 1;
-      goto LABEL_SYSTEM_OPERATION_HANDLER;
+      goto SystemOperationHandler;
     }
     if (SystemDebugFlag == '\0') {
       systemFunctionPointer = (code *)swi(3);
@@ -52845,7 +52845,7 @@ MemoryAllocationComplete:
         ThreadContextFlag = StartSystemThread(SystemMemoryContext);
         SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
       }
-LABEL_SYSTEM_MEMORY_INITIALIZATION_START:
+SystemMemoryInitializationStart:
         memcpy(SystemMemoryContext + StackContextValue,ResourceDataOffset,(long long)((int)ResourceDataCounter + 2));
     }
   }
@@ -52867,7 +52867,7 @@ LABEL_SYSTEM_MEMORY_INITIALIZATION_START:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
   }
-LABEL_MEMORY_PROCESSING_CONTINUE:
+MemoryProcessingContinue:
   *(void*2 *)(SystemMemoryContext + StackContextValue) = 10;
   StackContextValue = systemIndex;
   if (resourceCounter != 0) {
