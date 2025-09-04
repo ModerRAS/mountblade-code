@@ -88776,7 +88776,12 @@ void ExecuteResourceContextProcessingCallback(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090d560(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文验证回调
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextValidationCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
