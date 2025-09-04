@@ -73707,7 +73707,7 @@ void Unwind_ExecuteSecondaryResourceTablePointerCleanup(uint8_t ObjectContext,in
 
 
 
-void Unwind_ExecuteTertiaryResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteTertiaryResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

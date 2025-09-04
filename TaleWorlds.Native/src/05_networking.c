@@ -1313,7 +1313,7 @@ void NetworkTransmitData(void)
  * 
  * @return void 无返回值
  */
-void NetworkRetrieveData(void)
+void NetworkRetrievePacketData(void)
 {
   // 初始化接收参数
   NetworkBytesReceived = 0;                             // 重置接收字节数
@@ -1363,7 +1363,7 @@ void NetworkRetrieveData(void)
  * 
  * @return void 无返回值
  */
-void NetworkValidatePacketAuthenticity(void)
+void NetworkValidatePacketSecurity(void)
 {
   // 初始化验证参数
   PacketHashAlgorithm = HASH_ALGORITHM_SHA256;                         // 设置哈希算法为SHA-256
@@ -1405,7 +1405,7 @@ void NetworkValidatePacketAuthenticity(void)
  * 
  * @return void 无返回值
  */
-void NetworkProcessPacketHandling(void)
+void NetworkProcessPackets(void)
 {
   // 初始化处理参数
   NetworkConnectionTableIndex = 0x00;          // 重置连接表索引
@@ -1448,7 +1448,7 @@ void NetworkProcessPacketHandling(void)
  * 
  * @note 此函数会记录错误并尝试自动恢复
  */
-void NetworkManageErrorHandling(void)
+void NetworkHandleErrors(void)
 {
   // 初始化错误处理参数
   NetworkErrorProcessor = 0x01;                         // 初始化错误处理器
