@@ -27532,7 +27532,7 @@ SystemValidationCheck:
       if (*(int *)(SystemDataBufferPointer + 6) == 0) goto SystemValueValidation;
       if (SystemInteger20 != 0) {
         stringPointer = (byte *)SystemDataBufferPointer[5];
-        localDataIndex = (long long)SystemByteBuffer28 - (long long)stringPointer;
+        localDataIndex = (long long)SystemStringBufferPrimary - (long long)stringPointer;
         do {
           byteValue = *stringPointer;
           CurrentThreadIdentifier = (uint)stringPointer[localDataIndex];
@@ -27821,10 +27821,10 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   float InterpolationFactor5;
   float InterpolationFactorX;
   float scaleResult2;
-  float SystemDataValue1;
-  float SystemDataValue2;
-  float SystemDataValue3;
-  float SystemDataValue4;
+  float SystemDataValuePrimary;
+  float SystemDataValueSecondary;
+  float SystemDataValueTertiary;
+  float SystemDataValueQuaternary;
   
   SystemMemoryPointer = SystemNodeManagerPointer;
   if ((*(long long *)(SystemDataMemoryContext + 0x7ab8) == 0) || (*(int *)(SystemNodeManagerPointer + 0x540) < 1)) {
@@ -27837,10 +27837,10 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
     scaleFactorX = (float)exp2f(SystemNodeManagerPointer,contextParameter,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
     if (*(char *)(SystemResourceManager + 0x22d) == '\0') {
       SystemMemoryPointer = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
-      if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValue1) &&
-         (CheckSystemDataAvailability(&SystemDataValue1), SystemDataValue1 == -1)) {
-        SystemDataValue2 = ConfigurationDataPointer;
-        InitializeSystemDataPointer(&SystemDataValue1);
+      if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValuePrimary) &&
+         (CheckSystemDataAvailability(&SystemDataValuePrimary), SystemDataValuePrimary == -1)) {
+        SystemDataValueSecondary = ConfigurationDataPointer;
+        InitializeSystemDataPointer(&SystemDataValuePrimary);
       }
       calculationResult1 = (float)exp2f();
       InterpolationFactor1 = (float)exp2f();
