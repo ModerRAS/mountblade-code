@@ -3810,7 +3810,7 @@ void InitializeEventSystem(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemEventCallback;
+  void* EventSystemCallback;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
