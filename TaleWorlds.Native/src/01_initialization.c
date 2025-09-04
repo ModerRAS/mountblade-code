@@ -19438,10 +19438,10 @@ uint32_t FinalSystemInitialization(void)
   if (TemporaryManager8 != (long long ****)0x0) {
     (*(code *)(*TemporaryManager8)[7])(TemporaryManager8);
   }
-  TemporaryManager14 = SystemManagerPointerStorage;
+  SystemTemporaryManager = SystemManagerPointerStorage;
   *(uint8_t *)(SystemManagerPointerStorage[1] + 0x80) = 1;
   while( true ) {
-    SystemControllerInstance = *TemporaryManager14[1];
+    SystemControllerInstance = *SystemTemporaryManager[1];
     if (SystemControllerInstance == (long long **)&SystemControllerDefaultTable) {
       SystemActiveStatus = *(char *)(TemporaryManager14[1] + 2) != '\0';
     }

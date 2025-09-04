@@ -81482,7 +81482,16 @@ void CleanupSystemDataStructure0x7f0(uint8_t ObjectContext, int64_t ValidationCo
  * @param ObjectContext 对象上下文参数
  * @param ValidationContext 验证上下文参数
  */
-void InitializeSystemDataStructure0x800(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 初始化系统数据结构
+ * 
+ * 该函数用于初始化系统数据结构，将系统数据结构指针设置到验证上下文中
+ * 使用0x800偏移量来定位数据结构的位置
+ * 
+ * @param ObjectContext 对象上下文，包含要初始化的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ */
+void InitializeSystemDataStructure(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + 0x7f0) = &SystemDataStructure;
   return;
