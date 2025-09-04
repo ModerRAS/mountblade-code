@@ -3541,13 +3541,13 @@ uint8_t SystemMemoryStackTable;
  * @note 此函数会更新内存块大小相关的系统状态
  */
 void GetMemoryBlockSize(void);
-uint8_t SystemMemoryConfigDataPrimary;
-uint8_t SystemMemoryConfigDataSecondary;
-uint8_t SystemMemoryConfigDataTertiary;
-uint8_t SystemMemoryConfigDataTemplateMemoryPool;
+uint8_t SystemMemoryConfigPrimaryData;
+uint8_t SystemMemoryConfigSecondaryData;
+uint8_t SystemMemoryConfigTertiaryData;
+uint8_t SystemMemoryConfigMemoryPoolTemplate;
 uint8_t AudioEffectProcessorDataTable;
-uint8_t SystemMemoryConfigDataTemplateFileSystem;
-uint8_t AudioMixerConfigurationTable;
+uint8_t SystemMemoryConfigFileSystemTemplate;
+uint8_t AudioMixerConfigTable;
 uint8_t InputDeviceStateDataTable;
 uint8_t InputEventQueueDataTable;
 uint8_t InputMappingDataTable;
@@ -91062,7 +91062,17 @@ void UnwindResourceHashValidator(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void Unwind_18090e3e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表指针清理操作
+ * 
+ * 在系统unwind过程中清理资源表指针，
+ * 遍历资源表并执行清理操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e3e0
+ */
+void ExecuteResourceTablePointerCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -91120,7 +91130,17 @@ void ExecuteValidationContextMutexDestruction(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090e410(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册 tertiary 资源处理器
+ * 
+ * 在系统unwind过程中注册tertiary资源处理器，
+ * 处理类型为0x488的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e410
+ */
+void RegisterTertiaryResourceHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + ResourceContextTertiaryOffset),0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
@@ -91129,7 +91149,17 @@ void Unwind_18090e410(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e420(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册扩展资源处理器1
+ * 
+ * 在系统unwind过程中注册扩展资源处理器，
+ * 处理偏移量0x918处的资源，类型为0x128。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e420
+ */
+void RegisterExtendedResourceHandler1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0x918,0x128,2,ResourceTypeHandler128,0xfffffffffffffffe);
