@@ -888,28 +888,28 @@ uint32_t NetworkConnectionProcessingConfig = 0x00;       // 网络连接处理�
  * 
  * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
  */
-uint32_t NetworkConnectionTransportConfigData = 0x00;        // 网络连接传输配置数据
+uint32_t NetworkConnectionTransportConfig = 0x00;        // 网络连接传输配置数据
 
 /**
  * @brief 网络连接协议配置数据
  * 
  * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
  */
-uint32_t NetworkConnectionProtocolConfigData = 0x00;         // 网络连接协议配置数据
+uint32_t NetworkConnectionProtocolConfig = 0x00;         // 网络连接协议配置数据
 
 /**
  * @brief 网络连接验证配置数据
  * 
  * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
  */
-uint32_t NetworkConnectionValidationConfigData = 0x00;        // 网络连接验证配置数据
+uint32_t NetworkConnectionValidationConfig = 0x00;        // 网络连接验证配置数据
 
 /**
  * @brief 网络连接路由主要配置数据
  * 
  * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
  */
-uint32_t NetworkConnectionRoutingConfigPrimaryData = 0x00;    // 网络连接路由主要配置数据
+uint32_t NetworkConnectionRoutingPrimaryConfig = 0x00;    // 网络连接路由主要配置数据
 
 /**
  * @brief 网络连接路由次要配置数据

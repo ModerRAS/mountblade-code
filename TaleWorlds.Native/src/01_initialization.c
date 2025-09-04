@@ -61,7 +61,7 @@
 #define AllocatorFlagValue        0
 #define ConfigurationIdentifier1  0x40ea3a798283cbbb
 #define ConfigurationIdentifier2  0x7f74eb2c5a7fadae
-#define ConfigurationFlag        3
+#define ConfigurationFlagValue    3
 
 // 系统管理器表偏移量
 #define CompletionPortHandleOffset    0x42686
