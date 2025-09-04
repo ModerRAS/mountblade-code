@@ -18758,7 +18758,7 @@ uint8_t ResourceIntegrityValidator(int64_t ObjectContext, uint32_t *ValidationCo
   if (((((ResourceIndex == 0) && (ResourceIndex = ValidateResourceEntry(ObjectContext,ValidationContext + 1), ResourceIndex == 0)) &&
        (((*(byte *)(ValidationContext + 1) & 0x20) == 0 ||
         (ResourceIndex = GetResourceStatus(ObjectContext,ValidationContext + 2), ResourceIndex == 0)))) &&
-      (((ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + 0xe), ResourceIndex == 0 &&
+      (((ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + ValidationContextPropertyOffset5), ResourceIndex == 0 &&
         (ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + 0xf), ResourceIndex == 0)) &&
        (ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + ValidationContextMethodPointerOffset), ResourceIndex == 0)))) &&
      (ResourceIndex = VerifyResourceIntegrity(ObjectContext,ValidationContext + 0x11), ResourceIndex == 0)) {
