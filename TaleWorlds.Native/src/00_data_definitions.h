@@ -4643,8 +4643,8 @@ uint64_t * InitializeMemoryBuffer(uint64_t *memoryBufferPtr)
   InitializeInputSystem();
   if ((SystemReleaseFlag == '\0') &&
      (pModuleInitializationResult = *(longlong **)(SystemMemoryManager + 0x18), pModuleInitializationResult != (longlong *)0x0)) {
-    cVar3 = (**(code **)*pModuleInitializationResult)(pModuleInitializationResult);
-    if (cVar3 != '\0') {
+    moduleInitializationStatus = (**(code **)*pModuleInitializationResult)(pModuleInitializationResult);
+    if (moduleInitializationStatus != '\0') {
       (**(code **)(*pModuleInitializationResult + 0x28))(pModuleInitializationResult);
     }
   }

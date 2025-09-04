@@ -248,7 +248,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkChecksumValid 0x01                           // 校验和有效
 #define NetworkPacketSizeLimit 0x55                          // 数据包大小限制（85字节）
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
-#define NetworkStandardBufferSize 0x100                       // 标准缓冲区大小（256字节）
+#define NetworkStandardBufferSizeLarge 0x100                   // 大型标准缓冲区大小（256字节）
 
 // 网络连接验证偏移量常量
 #define NetworkConnectionValidationOffsetSecond 0x54         // 第二级连接验证偏移量
