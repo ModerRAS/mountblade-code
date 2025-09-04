@@ -1952,24 +1952,24 @@ NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t C
   NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle PacketSecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
-  if (((int)PacketSecurityValidationResult == 0) &&
-     (PacketSecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)PacketSecurityValidationResult == 0)) {
+  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  if (((int)SecurityValidationResult == 0) &&
+     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    PacketSecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
-    if ((int)PacketSecurityValidationResult == 0) {
+    SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    if ((int)SecurityValidationResult == 0) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      PacketSecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
-      if ((int)PacketSecurityValidationResult == 0) {
+      SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationOffsetFirst);
+      if ((int)SecurityValidationResult == 0) {
           FinalizePacketProcessing(PacketData, PacketValidationBuffer);
       }
     }
   }
-  return PacketSecurityValidationResult;
+  return SecurityValidationResult;
 }
 
 /**
