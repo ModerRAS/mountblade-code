@@ -27630,20 +27630,20 @@ void SystemMemoryAllocator(long long resourceManagerPointer, long long allocatio
   void* SystemProcessFlags58;
   
   ThreadContextFlag = 0xfffffffffffffffe;
-  PrimaryResourcePointer = (long long *)(SystemResourceManager + 0xd8);
+  PrimaryResourcePointer = (long long*)(resourceManagerPointer + 0xd8);
   SystemThreadFlags = 0;
-  if ((*(long long *)(SystemResourceManager + 0xe0) - *PrimaryResourcePointer & MAX_UNSIGNED_32_BITffffffe0U) != 0) {
+  if ((*(long long*)(resourceManagerPointer + 0xe0) - *PrimaryResourcePointer & MAX_UNSIGNED_32_BITffffffe0U) != 0) {
     InitializeConfigurationData(ConfigurationDataPointer);
-    CurrentThreadId = *(long long *)(SystemResourceManager + 0xe0) - *PrimaryResourcePointer >> 5;
+    CurrentThreadId = *(long long*)(resourceManagerPointer + 0xe0) - *PrimaryResourcePointer >> 5;
     if (0 < (int)CurrentThreadId) {
       CurrentThreadId = CurrentThreadId & MAX_UNSIGNED_32_BIT;
       do {
-        if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
-          *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
+        if (*(unsigned long long*)(ConfigurationDataPointer + 8) < *(unsigned long long*)(ConfigurationDataPointer + 0x10)) {
+          *(unsigned long long*)(ConfigurationDataPointer + 8) = *(unsigned long long*)(ConfigurationDataPointer + 8) + 0x20;
           InitializeSystemMemoryAllocator();
         }
         else {
-          ProcessSystemConfiguration(ConfigurationDataPointer,*PrimaryResourcePointer + SystemThreadFlags);
+          ProcessSystemConfiguration(ConfigurationDataPointer, *PrimaryResourcePointer + SystemThreadFlags);
         }
         SystemThreadFlags = SystemThreadFlags + 0x20;
         CurrentThreadId = CurrentThreadId - 1;
@@ -27652,32 +27652,32 @@ void SystemMemoryAllocator(long long resourceManagerPointer, long long allocatio
     return;
   }
   SystemProcessFlagsPointer = &SystemGlobalDataReference;
-  systemProcessFlags58 = 0;
-  pencryptionValue68 = (void* *)0x0;
+  SystemProcessFlags58 = 0;
+  EncryptionValue68 = (void**)0x0;
   SystemThreadContext = 0;
-  ResourceAddressPointer = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13,ConfigurationFlag,InvalidHandleValue);
-  *(uint8_t *)ResourceAddressPointer = 0;
-  pencryptionValue68 = ResourceAddressPointer;
+  ResourceAddressPointer = (void**)CreateSystemThreadObject(SystemMemoryPoolTemplate, 0x10, 0x13, ConfigurationFlag, InvalidHandleValue);
+  *(uint8_t*)ResourceAddressPointer = 0;
+  EncryptionValue68 = ResourceAddressPointer;
   resourceCreationFlags = StartSystemThread(ResourceAddressPointer);
-  systemProcessFlags58 = ConcatenatedSystemValue(systemProcessFlags58.HighPart,resourceCreationFlags);
+  SystemProcessFlags58 = ConcatenatedSystemValue(SystemProcessFlags58.HighPart, resourceCreationFlags);
   *ResourceAddressPointer = 0x53454c55444f4d5f;
-  *(void*2 *)(ResourceAddressPointer + 1) = 0x2a5f;
-  *(uint8_t *)((long long)ResourceAddressPointer + 10) = 0;
+  *(void**)(ResourceAddressPointer + 1) = 0x2a5f;
+  *(uint8_t*)((long long)ResourceAddressPointer + 10) = 0;
   SystemThreadContext = 10;
-  systemCounter = GetSystemCounter(SystemResourceManager + 0x2c0,&SystemProcessFlagsPointer);
-  if (-1 < systemCounter) {
-    pSystemConfigurationValue = &SystemGlobalDataReference;
+  SystemCounter = GetSystemCounter(resourceManagerPointer + 0x2c0, &SystemProcessFlagsPointer);
+  if (-1 < SystemCounter) {
+    SystemConfigurationValue = &SystemGlobalDataReference;
     SystemUnsignedFlagSecondary = 0;
-    pointerToUnsignedStackFlag88 = (void* *)0x0;
+    UnsignedStackFlag88 = (void**)0x0;
     SystemFlagTertiary = 0;
-    ResourceAddressPointer = (void* *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13,ConfigurationFlag,ThreadContextFlag);
-    *(uint8_t *)ResourceAddressPointer = 0;
-    pointerToUnsignedStackFlag88 = ResourceAddressPointer;
+    ResourceAddressPointer = (void**)CreateSystemThreadObject(SystemMemoryPoolTemplate, 0x10, 0x13, ConfigurationFlag, ThreadContextFlag);
+    *(uint8_t*)ResourceAddressPointer = 0;
+    UnsignedStackFlag88 = ResourceAddressPointer;
     resourceCreationFlags = StartSystemThread(ResourceAddressPointer);
-    SystemUnsignedFlagSecondary = ConcatenatedSystemValue(SystemUnsignedFlagSecondary.HighPart,resourceCreationFlags);
+    SystemUnsignedFlagSecondary = ConcatenatedSystemValue(SystemUnsignedFlagSecondary.HighPart, resourceCreationFlags);
     *ResourceAddressPointer = 0x454c55444f4d5f2a;
-    *(void*2 *)(ResourceAddressPointer + 1) = 0x5f53;
-    *(uint8_t *)((long long)ResourceAddressPointer + 10) = 0;
+    *(void**)(ResourceAddressPointer + 1) = 0x5f53;
+    *(uint8_t*)((long long)ResourceAddressPointer + 10) = 0;
     SystemFlagTertiary = 10;
     GetSystemCounter(SystemResourceManager + 0x2c0,&pStackParameterC);
     pSystemConfigurationValue = &SystemGlobalDataReference;
