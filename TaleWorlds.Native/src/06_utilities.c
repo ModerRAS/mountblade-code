@@ -41995,7 +41995,18 @@ void CleanupSystemResourceHandlerSetDuodecimal(uint8_t ObjectContext,int64_t Val
  * @note 此函数会清理系统资源处理器集合13中的所有资源
  * @warning 调用此函数后，相关资源将不再可用
  */
-void CleanupSystemResourceHandlerSetTredecimal(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 清理系统资源处理器集合（第十三组）
+ * 
+ * 该函数用于清理系统资源处理器集合中的第十三组处理器
+ * 包含循环计数和系统资源处理器的清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理行为的标志位
+ */
+void CleanupSystemResourceHandlerSet13(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;

@@ -19388,7 +19388,7 @@ uint32_t FinalSystemInitialization(void)
   SystemSecondaryManager = (long long ***)SystemManagerInstance;
   (*(code *)(*SystemManagerInstance)[5])(SystemManagerInstance);
   SystemObjectHandle = SystemAllocationTemplate;
-  SystemSuperManager = &SystemPrimaryManager;
+  SystemGlobalManager = &SystemPrimaryManager;
   SystemPrimaryManager = SystemManagerInstance;
   (*(code *)(*SystemManagerInstance)[5])(SystemManagerInstance);
   SystemManagerInitialize(SystemObjectHandle,&SystemPrimaryManager);
@@ -19418,19 +19418,19 @@ uint32_t FinalSystemInitialization(void)
     (*(code *)(*SystemTemporaryManager)[5])(SystemTemporaryManager);
   }
   (*SystemCallbackFunction)(SystemInterfacePointer,&StackController);
-  CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemSuperManager,TemporaryManager14);
+  CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemGlobalManager,SystemTemporaryManager);
   TemporaryManager9 = (long long ***)AllocateSystemMemory(CalculationFlags,0,SystemObjectHandle);
   if (TemporaryManager9 != (long long ***)0x0) {
     (*(code *)(*TemporaryManager9)[5])(TemporaryManager9);
   }
   SystemInterfacePointer = *(void* **)(SystemObjectHandle + 400);
   SystemCallbackFunction = *(code **)*SystemInterfacePointer;
-  StackManager8 = (long long ****)&StackController18;
-  StackController18 = (long long **)TemporaryManager9;
+  SystemStackManager = (long long ****)&SystemStackController;
+  SystemStackController = (long long **)TemporaryManager9;
   if (TemporaryManager9 != (long long ***)0x0) {
     (*(code *)(*TemporaryManager9)[5])(TemporaryManager9);
   }
-  (*SystemCallbackFunction)(SystemInterfacePointer,&StackController18);
+  (*SystemCallbackFunction)(SystemInterfacePointer,&SystemStackController);
   ProcessSystemCallback(*(void* *)(SystemObjectHandle + 400));
   if (TemporaryManager9 != (long long ***)0x0) {
     (*(code *)(*TemporaryManager9)[7])(TemporaryManager9);
