@@ -1,3 +1,22 @@
+/**
+ * @file 06_utilities.c
+ * @brief 系统工具函数库
+ * 
+ * 该文件包含了Mount & Blade游戏引擎的核心工具函数和实用程序。
+ * 提供了内存管理、资源处理、系统初始化、验证等功能。
+ * 
+ * 主要功能：
+ * - 内存分配和管理
+ * - 资源表操作
+ * - 系统状态验证
+ * - 异常处理
+ * - 数据处理和转换
+ * 
+ * @author Mount & Blade 开发团队
+ * @version 1.0
+ * @date 2024
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
 // 内存管理相关常量
@@ -119,15 +138,15 @@
 #define ResourceTableOffsetNonary 0x74
 
 // 安全处理相关常量
-#define SecurityByteHighShift 0x18                    // 高字节位移（24位）
-#define SecurityAccessWordShift 0x10                  // 访问控制字位移（16位）
-#define SecurityStatusMidHighShift 0x10               // 状态中高位移（16位）
-#define SecurityStatusMidShift 8                      // 状态中位位移（8位）
-#define SecuritySecurityMidHighShift 0x10             // 安全中高位移（16位）
-#define SecuritySecurityMidShift 8                    // 安全中位位移（8位）
-#define SecurityByteMask 0xff                         // 字节掩码
-#define SecurityAccessControlMask 0xffff              // 访问控制掩码
-#define SecurityOperationType 0x27                    // 安全操作类型
+#define SecurityByteHighShift 0x18                    // 安全字节高位位移（24位）
+#define SecurityAccessWordShift 0x10                  // 安全访问控制字位移（16位）
+#define SecurityStatusMidHighShift 0x10               // 安全状态中高位移（16位）
+#define SecurityStatusMidShift 8                      // 安全状态中位位移（8位）
+#define SecuritySecurityMidHighShift 0x10             // 安全系统中高位移（16位）
+#define SecuritySecurityMidShift 8                    // 安全系统中位位移（8位）
+#define SecurityByteMask 0xff                         // 安全字节掩码
+#define SecurityAccessControlMask 0xffff              // 安全访问控制掩码
+#define SecurityOperationType 0x27                    // 安全操作类型标识符
 #define ResourceAccessFlagOffset 0xc4                  // 资源访问标志偏移
 #define ResourceHandleBackupOffset 0x68                // 资源句柄备份偏移
 #define ResourceAccessEnabledFlag 1                    // 资源访问启用标志
@@ -138,20 +157,20 @@
 #define SystemRegisterContextIdentifierOffset 0x1d      // 系统寄存器上下文标识符偏移
 #define SystemResourceTableCallOffset 0x288             // 系统资源表调用偏移
 #define ResourceTableOffsetTenth 0x5c                          // 资源表第十个偏移量（Denary表示十进制，改为更直观的Tenth）
-#define ResourceTableSizeLimit 0x74
-#define ResourceTableHeaderValidationOffset 0x18
+#define ResourceTableSizeLimit 0x74                    // 资源表大小限制
+#define ResourceTableHeaderValidationOffset 0x18       // 资源表头部验证偏移量
 
 // 系统上下文相关常量
-#define SystemContextOffset 0x17c
-#define SystemContextBaseOffset 800
-#define SystemContextMethodOffset 600
-#define SystemContextResourceTablePointerOffset 0x2e8
-#define SystemContextOperationFlagOffset 0x200
-#define SystemContextArraySizeOffset 0x17c
-#define SystemContextErrorDataProcessingOffset 0x1a0
-#define SystemContextStatusFlag1Offset 0x180
-#define SystemContextStatusFlag2Offset 0x184
-#define SystemContextSecondaryDataProcessingOffset 0x18
+#define SystemContextOffset 0x17c                       // 系统上下文基础偏移量
+#define SystemContextBaseOffset 800                    // 系统上下文基地址偏移量
+#define SystemContextMethodOffset 600                  // 系统上下文方法表偏移量
+#define SystemContextResourceTablePointerOffset 0x2e8  // 系统上下文资源表指针偏移量
+#define SystemContextOperationFlagOffset 0x200         // 系统上下文操作标志偏移量
+#define SystemContextArraySizeOffset 0x17c             // 系统上下文数组大小偏移量
+#define SystemContextErrorDataProcessingOffset 0x1a0       // 系统上下文错误数据处理偏移量
+#define SystemContextStatusFlag1Offset 0x180               // 系统上下文状态标志1偏移量
+#define SystemContextStatusFlag2Offset 0x184               // 系统上下文状态标志2偏移量
+#define SystemContextSecondaryDataProcessingOffset 0x18    // 系统上下文次级数据处理偏移量
 #define SystemContextPrimaryDataProcessingOffset 0x20
 #define SystemContextResourceManagerOffset 0x50
 #define SystemContextCallbackPointerOffset 0x58
