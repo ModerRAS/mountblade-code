@@ -198,6 +198,20 @@
 
 // 数据验证和处理相关常量
 #define DataValidationResultOffset 0xc
+
+// 系统验证相关常量
+#define SystemValidationStatusOffset 0x110
+#define ResourceSecurityProcessingOffset 0x114
+#define SystemMemoryAddressMask 0xffffffffffc00000
+#define SystemResourceTableOffset 0x80
+#define SystemMemoryShiftBits 0x10
+#define SystemResourceTableEntrySize 0x50
+#define SystemResourceTablePointerOffset 4
+#define SystemExceptionListOffset 0x70
+#define SystemResourceStatusOffset 0xe
+#define SystemResourceDataOffset 0x20
+#define SystemResourceReferenceCountOffset 0x18
+#define SystemMemoryValidationMask 0xfffffffffffffffe
 #define ResourcePoolIndexOffset 1
 #define ResourceIndexMinimum 0
 #define NullPointerValue 0x0
