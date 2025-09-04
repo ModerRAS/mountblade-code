@@ -396,11 +396,11 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
  * 
  * 比较两个网络连接的时间戳，确定连接的先后顺序和时间关系
  * 
- * @param FirstTimestamp 第一个时间戳指针
- * @param SecondTimestamp 第二个时间戳指针
- * @return uint32_t 比较结果：0表示相等，正数表示第一个大于第二个，负数表示第一个小于第二个
+ * @param SourceTimestamp 源时间戳指针，用于比较的基准时间戳
+ * @param TargetTimestamp 目标时间戳指针，用于比较的目标时间戳
+ * @return uint32_t 比较结果：0表示相等，正数表示源时间戳大于目标时间戳，负数表示源时间戳小于目标时间戳
  */
-uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *SecondTimestamp);
+uint32_t CompareNetworkConnectionTimestamps(int64_t *SourceTimestamp, int64_t *TargetTimestamp);
 
 /**
  * @brief 处理网络连接数据包数据
@@ -1450,8 +1450,8 @@ void ProcessNetworkPackets(void)
   // 初始化重试机制
   NetworkRetryInterval = TIMEOUT_1_SECOND;                        // 设置重试间隔为1秒
   NetworkTimeoutInterval = TIMEOUT_5_SECONDS;                     // 设置超时间隔为5秒
-  NetworkConnectionRetryCount = RETRY_COUNT_3;             // 设置连接重试次数为3次
-  NetworkConnectionBackoffTime = BACKOFF_TIME_2S;           // 设置连接退避时间为2秒
+  NetworkConnectionRetryCount = RETRY_COUNT_MAXIMUM;             // 设置连接重试次数为3次
+  NetworkConnectionBackoffTime = BACKOFF_TIME_2_SECONDS;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
   NetworkEventSize = EVENT_SIZE_64B;                              // 设置事件大小为64字节
@@ -2478,12 +2478,12 @@ void ValidateConnectionSecurity(NetworkHandle ConnectionTable, int64_t Connectio
  * @param PacketData 数据包数据指针数组
  * @param OutputBuffer 输出缓冲区
  * @param DecodingMode 解码模式
- * @param MagicNumber1 魔数1
- * @param MagicNumber2 魔数2
+ * @param PrimaryMagicNumber 主魔数，用于数据包类型识别
+ * @param SecondaryMagicNumber 次魔数，用于额外的数据包验证
  * @return NetworkHandle 解码结果句柄
  */
 NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
-                          uint32_t MagicNumber1, uint32_t MagicNumber2)
+                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 数据包解码变量
   uint32_t PacketDecodingStatus;                             // 数据包解码状态
@@ -2497,13 +2497,13 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
-    // 验证第一个魔数
-    if (MagicNumber1 == NetworkPacketMagicLiveConnection || MagicNumber1 == NetworkPacketMagicValidation) {
+    // 验证主魔数
+    if (PrimaryMagicNumber == NetworkPacketMagicLiveConnection || PrimaryMagicNumber == NetworkPacketMagicValidation) {
       PacketMagicValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
-    // 验证第二个魔数
-    if (MagicNumber2 == NetworkPacketMagicBinaryData || MagicNumber2 == NetworkMagicDebugMemoryCheck) {
+    // 验证次魔数
+    if (SecondaryMagicNumber == NetworkPacketMagicBinaryData || SecondaryMagicNumber == NetworkMagicDebugMemoryCheck) {
       PacketMagicValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
@@ -2704,8 +2704,8 @@ NetworkHandle VerifyNetworkPacketHeader(int64_t ConnectionContext, int64_t Packe
  * @param PacketData 数据包数据，包含待解码的数据流
  * @param OutputBuffer 输出缓冲区，用于存储解码后的数据
  * @param DecodingMode 解码模式，指定解码算法和参数
- * @param MagicNumber1 魔数1，用于数据流验证
- * @param MagicNumber2 魔数2，用于额外的数据流验证
+ * @param PrimaryStreamMagicNumber 流主魔数，用于数据流验证
+ * @param SecondaryStreamMagicNumber 流次魔数，用于额外的数据流验证
  * @return NetworkHandle 解码结果句柄，返回解码状态码
  * 
  * @retval 0 解码成功
@@ -2719,7 +2719,7 @@ NetworkHandle VerifyNetworkPacketHeader(int64_t ConnectionContext, int64_t Packe
  * @security 该函数处理敏感数据流，需要确保解码过程的安全性和数据的机密性
  */
 NetworkHandle DecodeNetworkPacketDataStream(int64_t PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
-                                   uint32_t MagicNumber1, uint32_t MagicNumber2)
+                                   uint32_t PrimaryStreamMagicNumber, uint32_t SecondaryStreamMagicNumber)
 {
   // 简化实现：仅初始化输出缓冲区
   // 实际实现应该包括：
