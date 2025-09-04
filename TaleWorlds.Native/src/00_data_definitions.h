@@ -30,8 +30,8 @@ char GameEngineStatusFlags[2];
 // 游戏字符串数据缓冲区 - 用于存储字符串处理数据
 void* GameStringDataBuffer[3];
 
-// 游戏字符串标志 - 用于存储字符串处理状态
-char GameStringProcessingFlags[3];
+// 游戏字符串处理状态标志 - 用于存储字符串处理状态
+char GameStringProcessingStatusFlags[3];
 
 // 游戏配置缓冲区 - 用于存储游戏配置数据
 void* GameConfigurationBuffer[2];
@@ -233,93 +233,8 @@ void* SystemConfigurationValidationParameter41;
 void* SystemConfigurationValidationParameter42;
 
 // 系统配置数据扩展参数组 - 用于扩展系统配置数据和存储额外配置信息
-void* SystemConfigDataExtendedReserved1;
-void* SystemConfigDataExtendedReserved2;
-void* SystemConfigDataExtendedReserved3;
-void* SystemConfigDataExtendedReserved4;
-void* SystemConfigDataExtendedReserved5;
-void* SystemConfigDataExtendedReserved6;
-void* SystemConfigDataExtendedReserved7;
-void* SystemConfigDataExtendedReserved8;
-void* SystemConfigDataExtendedReserved9;
-void* SystemConfigDataExtendedReserved10;
-void* SystemConfigDataExtendedReserved11;
-void* SystemConfigDataExtendedReserved12;
-void* SystemConfigDataExtendedReserved13;
-void* SystemConfigDataExtendedReserved14;
-void* SystemConfigDataExtendedReserved15;
-void* SystemConfigDataExtendedReserved16;
-void* SystemConfigDataExtendedReserved17;
-void* SystemConfigDataExtendedReserved18;
-void* SystemConfigDataExtendedReserved19;
-void* SystemConfigDataExtendedReserved20;
-void* SystemConfigDataExtendedReserved21;
-void* SystemConfigDataExtendedReserved22;
-void* SystemConfigDataExtendedReserved23;
-void* SystemConfigDataExtendedReserved24;
-void* SystemConfigDataExtendedReserved25;
-void* SystemConfigDataExtendedReserved26;
-void* SystemConfigDataExtendedReserved27;
-void* SystemConfigDataExtendedReserved28;
-void* SystemConfigDataExtendedReserved29;
-void* SystemConfigDataExtendedReserved30;
-void* SystemConfigDataExtendedReserved31;
-void* SystemConfigDataExtendedReserved32;
-void* SystemConfigDataExtendedReserved33;
-void* SystemConfigDataExtendedReserved34;
-void* SystemConfigDataExtendedReserved35;
-void* SystemConfigDataExtendedReserved36;
-void* SystemConfigDataExtendedReserved37;
-void* SystemConfigDataExtendedReserved38;
-void* SystemConfigDataExtendedReserved39;
-void* SystemConfigDataExtendedReserved40;
-void* SystemConfigDataExtendedReserved41;
-void* SystemConfigDataExtendedReserved42;
-void* SystemConfigDataExtendedReserved43;
-void* SystemConfigDataExtendedReserved44;
-void* SystemConfigDataExtendedReserved45;
-void* SystemConfigDataExtendedReserved46;
-void* SystemConfigDataExtendedReserved47;
-void* SystemConfigDataExtendedReserved48;
-void* SystemConfigDataExtendedReserved49;
-void* SystemConfigDataExtendedReserved50;
-void* SystemConfigDataExtendedReserved51;
-void* SystemConfigDataExtendedReserved52;
-void* SystemConfigDataExtendedReserved53;
-void* SystemConfigDataExtendedReserved54;
-void* SystemConfigDataExtendedReserved55;
-void* SystemConfigDataExtendedReserved56;
-void* SystemConfigDataExtendedReserved57;
-void* SystemConfigDataExtendedReserved58;
-void* SystemConfigDataExtendedReserved59;
-void* SystemConfigDataExtendedReserved60;
-void* SystemConfigDataExtendedReserved61;
-void* SystemConfigDataExtendedReserved62;
-void* SystemConfigDataExtendedReserved63;
-void* SystemConfigDataExtendedReserved64;
-void* SystemConfigDataExtendedReserved65;
-void* SystemConfigDataExtendedReserved66;
-void* SystemConfigDataExtendedReserved67;
-void* SystemConfigDataExtendedReserved68;
-void* SystemConfigDataExtendedReserved69;
-void* SystemConfigDataExtendedReserved70;
-void* SystemConfigDataExtendedReserved71;
-void* SystemConfigDataExtendedReserved72;
-void* SystemConfigDataExtendedReserved73;
-void* SystemConfigDataExtendedReserved74;
-void* SystemConfigDataExtendedReserved75;
-void* SystemConfigDataExtendedReserved76;
-void* SystemConfigDataExtendedReserved77;
-void* SystemConfigDataExtendedReserved78;
-void* SystemConfigDataExtendedReserved79;
-void* SystemConfigDataExtendedReserved80;
-void* SystemConfigDataExtendedReserved81;
-void* SystemConfigDataExtendedReserved82;
-void* SystemConfigDataExtendedReserved83;
-void* SystemConfigDataExtendedReserved84;
-void* SystemConfigDataExtendedReserved85;
-void* SystemConfigDataExtendedReserved86;
-void* SystemConfigDataExtendedReserved87;
+// 系统配置扩展数据保留区域 - 用于存储系统配置的扩展数据
+void* SystemConfigExtendedDataBuffer[87];
 
 // 系统配置全局数据 - 用于存储全局配置数据
 void* SystemConfigurationDataGlobal;
@@ -343,8 +258,8 @@ char* SystemModuleAudioBuffer;
 char* SystemModuleGraphicsBuffer;
 
 // 字符串处理器标志 - 用于字符串处理操作
-uint32_t StringProcessingFlags;
-uint32_t SystemMutexStatusFlags;
+uint32_t StringProcessingControlFlags;
+uint32_t SystemMutexLockStatusFlags;
 
 // 字符串处理系统实例的配置变量
 void* PrimaryStringProcessorMemoryPool;
