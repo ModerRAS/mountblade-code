@@ -1983,17 +1983,17 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
 NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
-  NetworkStatus *NetworkConnectionContextDataPointer;                           // 上下文数据指针
-  int32_t NetworkPacketProcessingStatusCode;                       // 数据包处理状态
-  int64_t NetworkConnectionContextHandle;                               // 上下文句柄
-  NetworkStatus NetworkConnectionValidationStatus;                       // 验证状态
-  NetworkStatus NetworkConnectionTimeoutStatus;                          // 超时状态
-  NetworkStatus NetworkSecondaryProcessingStatusCode;              // 次级处理状态
-  NetworkStatus *NetworkConnectionStatusBufferPointer;                          // 状态缓冲区
-  int64_t NetworkStatusProcessingCounter;                           // 处理计数器
-  NetworkStatus *NetworkPacketFlagsBuffer;                     // 数据包标志缓冲区
-  int64_t *NetworkConnectionOperationBuffer;                             // 操作缓冲区
-  int32_t NetworkConnectionUpdateOperationCode;                         // 更新操作代码
+  NetworkStatus *ConnectionContextDataPointer;                           // 上下文数据指针
+  int32_t PacketProcessingStatusCode;                       // 数据包处理状态
+  int64_t ConnectionContextHandle;                               // 上下文句柄
+  NetworkStatus ConnectionValidationStatus;                       // 验证状态
+  NetworkStatus ConnectionTimeoutStatus;                          // 超时状态
+  NetworkStatus SecondaryProcessingStatusCode;              // 次级处理状态
+  NetworkStatus *ConnectionStatusBufferPointer;                          // 状态缓冲区
+  int64_t StatusProcessingCounter;                           // 处理计数器
+  NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
+  int64_t *ConnectionOperationBuffer;                             // 操作缓冲区
+  int32_t ConnectionUpdateOperationCode;                         // 更新操作代码
   
   NetworkConnectionStatusBufferPointer = (NetworkStatus *)0x0;
   if (NetworkConnectionUpdateOperationCode == 0) {
