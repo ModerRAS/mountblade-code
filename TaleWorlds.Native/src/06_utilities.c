@@ -93578,7 +93578,7 @@ void ExecuteCleanupOperationCallback(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090ed10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupCallbackWrapper4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -93592,7 +93592,7 @@ void Unwind_18090ed10(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090ed20(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemResourceCleanupAndReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xf8) != (int64_t *)0x0) {
@@ -93613,7 +93613,7 @@ void Unwind_18090ed20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ed30(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemResourceCleanupWithLoop(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -93637,7 +93637,7 @@ void Unwind_18090ed30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ed40(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemResourceTableCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextResourceTableOffset) != (int64_t *)0x0) {
@@ -93648,7 +93648,7 @@ void Unwind_18090ed40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ed50(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemResourceCleanupAndResetContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 200) = &SystemResourceHandlerTemplate;
@@ -93663,7 +93663,7 @@ void Unwind_18090ed50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ed60(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemResourceCleanupWithCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xf8) != (int64_t *)0x0) {
@@ -93705,7 +93705,7 @@ void ExecuteSystemResourceCleanup(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void Unwind_18090ed80(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemResourceCleanupWithProcessingPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -93719,7 +93719,7 @@ void Unwind_18090ed80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ed90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupCallbackWrapper7(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -93733,7 +93733,7 @@ void Unwind_18090ed90(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090eda0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupCallbackWrapper8(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -93771,7 +93771,7 @@ void InitializeResourceHashProcessingTemplate(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090edc0(uint8_t ObjectContext,int64_t ValidationContext)
+void SetTertiaryResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + ResourceSecurityProcessingOffset) = &TertiaryResourceHashTable;
@@ -93780,7 +93780,7 @@ void Unwind_18090edc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090edd0(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeResourceHashTemplates(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
