@@ -1867,7 +1867,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   NetworkConnectionStatus ConnectionValidationStatus;          // 连接验证状态
   
   // 验证数据包参数的有效性
-  if (PacketData < (int)ConnectionContext[1]) {
+  if (PacketData < (int)ConnectionContext[ConnectionContextActiveCountIndex]) {
     return NetworkConnectionNotFound;
   }
   
@@ -1885,7 +1885,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
       
       // 如果状态缓冲区有效，处理连接数据
       if (ConnectionStatusBuffer != (NetworkConnectionStatus *)0x0) {
-        int32_t ActiveConnectionCount = (int)ConnectionContext[1];
+        int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionProcessingCounter = (long long)ActiveConnectionCount;
         int64_t ConnectionBaseAddress = 0;  // 连接基地址
         

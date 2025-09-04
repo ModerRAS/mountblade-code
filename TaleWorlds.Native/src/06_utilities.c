@@ -83905,7 +83905,13 @@ void ReleaseResourceReferenceAndExecuteCleanupV2(void)
 
 
 
-void Unwind_18090cbc0(void)
+/**
+ * @brief 释放资源引用计数并执行清理操作（第三个版本）
+ * 
+ * 该函数负责减少资源引用计数并执行相应的清理操作
+ * 与前两个函数功能相同，可能是不同的实现版本
+ */
+void ReleaseResourceReferenceAndExecuteCleanupV3(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
