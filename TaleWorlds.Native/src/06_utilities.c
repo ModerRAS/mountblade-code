@@ -5097,25 +5097,25 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   
   // 验证对象上下文的有效性
   ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ValidationWorkspace);
-  if ((int)ObjectValidationResult != 0) {
-    return ObjectValidationResult;
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   
   // 调整对象验证缓冲区地址
-  ValidatedObjectContextPointer = (int64_t *)ObjectValidationWorkspace[0];
-  if (ValidatedObjectContextPointer != 0) {
-    ValidatedObjectContextPointer = (int64_t *)((int64_t)ValidatedObjectContextPointer - 8);
+  ValidatedObjectPointer = (int64_t *)ValidationWorkspace[0];
+  if (ValidatedObjectPointer != 0) {
+    ValidatedObjectPointer = (int64_t *)((int64_t)ValidatedObjectPointer - 8);
   }
   
   // 获取验证后的对象内存地址
-  ObjectMemoryLocation = *(int64_t *)(ValidatedObjectContextPointer + ObjectHandleOffset);
-  if (ObjectMemoryLocation != 0) {
+  ObjectMemoryAddress = *(int64_t *)(ValidatedObjectPointer + ObjectHandleOffset);
+  if (ObjectMemoryAddress != 0) {
     // 增加对象引用计数
-    *(int *)(ObjectMemoryLocation + ObjectReferenceCountOffset) = *(int *)(ObjectMemoryLocation + ObjectReferenceCountOffset) + 1;
+    *(int *)(ObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ObjectMemoryLocation + ObjectSystemStatusOffset) != '\0') && (ObjectValidationResult = CheckSystemStatus(), (int)ObjectValidationResult != 0)) {
-      return ObjectValidationResult;
+    if ((*(char *)(ObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
+      return ValidationStatus;
     }
     return OperationSuccessCode;
   }

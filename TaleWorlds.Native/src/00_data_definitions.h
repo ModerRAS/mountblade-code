@@ -4727,7 +4727,7 @@ uint HandleMutexOperations(void)
 {
   uint in_EAX;
   int LoopCounter;
-  longlong LongCounter;
+  longlong LoopCounter;
   if (SystemNetworkManager != 0) {
     LongCounter = SystemNetworkManager + 0x110;
     LoopCounter = _Mtx_lock(LongCounter);
@@ -5156,8 +5156,8 @@ longlong ProcessMemoryRegionCleanupAndDataMigration(longlong StartAddress, longl
 {
   uint64_t *pMemoryAddress;
   uint64_t *SystemContextData;
-  longlong LongIndex;
-  longlong LongValue;
+  longlong IndexValue;
+  longlong DataValue;
   LongValue = SystemSecondaryParameter - SystemParameterPointer >> 5;
   if (0 < LongValue) {
     LongIndex = SystemTertiaryParameter - SystemSecondaryParameter;
@@ -5198,7 +5198,7 @@ longlong ProcessMemoryRegionCleanupAndDataMigration(longlong StartAddress, longl
 longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longlong RegionOffset, longlong CleanupTarget)
 {
   uint64_t *pMemoryAddress;
-  longlong LongCounter;
+  longlong LoopCounter;
   uint64_t *StringProcessingResultPointer;
   longlong StackFramePointer;
   longlong LoopCounterRegister;
@@ -6524,7 +6524,7 @@ uint8_t NormalizeColorLuminance(uint64_t *color_data)
   float *lightness_component;
   float *chroma_component;
   float *gamma_component;
-  float temp_float;
+  float TemporaryColorValue;
   uint32_t batch_loop_counter;
   float *output_buffer;
   float *input_buffer;
@@ -6990,7 +6990,7 @@ Label_18032b98e:
 longlong FindAndValidateSystemModule(longlong SystemContext, uint ModuleId, uint ValidationType)
 {
   int64_t ModuleInitializationResult;
-  longlong LongCounter;
+  longlong LoopCounter;
   uint *StringProcessingResultPointer;
   if ((*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
                0x48) < _SystemConfigurationValidationResult2) && (ValidateSystemConfigurationTemplate(&SystemConfigurationValidationResult2), _SystemConfigurationValidationResult2 == -1)) {
@@ -7089,7 +7089,7 @@ ProcessSystemModuleConfiguration(uint64_t SystemId, longlong *DataBuffer, uint64
 {
   int64_t ModuleInitializationResult;
   ulonglong BufferSize;
-  longlong LongIndex;
+  longlong IndexValue;
   uint64_t NetworkRequestResult;
   longlong LongLoop;
   longlong LongData;
@@ -7128,8 +7128,8 @@ uint8_t SystemModuleInitializeCleanup(void)
 {
   uint in_EAX;
   int64_t ModuleInitializationResult;
-  longlong LongCounter;
-  longlong LongIndex;
+  longlong LoopCounter;
+  longlong IndexValue;
   uint8_t unaff_SIL;
   ulonglong NetworkRequestResult;
   uint *pMemoryAllocationResult;
@@ -7169,7 +7169,7 @@ uint64_t
 InitializeNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequestArrayPointer,longlong *MemoryDataPointer,uint NetworkRequestFlags,char ConfigurationOption)
 {
   int64_t ModuleInitializationResult;
-  longlong LongCounter;
+  longlong LoopCounter;
   uint StringProcessingResult;
   ulonglong NetworkRequestResult;
   ulonglong MemoryAllocationResult;
@@ -7224,7 +7224,7 @@ uint8_t SystemModuleProcessRequest(uint64_t SystemId, uint64_t RequestType, long
   uint BufferSize;
   ulonglong in_RAX;
   ulonglong StringProcessingResult;
-  longlong LongValue;
+  longlong DataValue;
   uint UnassignedEdi;  // 未分配的EDI寄存器值
   uint8_t RegisterR10B;  // R10B寄存器的字节值
   longlong *UnassignedR13;  // 未分配的R13寄存器指针
@@ -7274,9 +7274,9 @@ ValidateNetworkRequestSystem(uint64_t SystemContextPointer,longlong *NetworkRequ
              uint ConfigurationOption)
 {
   ulonglong MemoryAddress;
-  longlong LongCounter;
-  longlong LongIndex;
-  longlong LongValue;
+  longlong LoopCounter;
+  longlong IndexValue;
+  longlong DataValue;
   longlong LongLoop;
   uint64_t UnsignedVariable6;  // 无符号变量6，用于存储计算结果
   uint *pUnsignedValue;
@@ -7314,8 +7314,8 @@ uint8_t SystemModuleInitializeFinal(void)
 {
   uint RegisterEax;  // EAX寄存器值
   int64_t ModuleInitializationResult;
-  longlong LongCounter;
-  longlong LongIndex;
+  longlong LoopCounter;
+  longlong IndexValue;
   uint8_t UnassignedSil;  // 未分配的SIL寄存器值
   ulonglong NetworkRequestResult;
   uint *MemoryAllocationPointer;
@@ -8219,7 +8219,7 @@ int SystemDataProcessBatch(uint64_t SystemContextPointer,uint64_t BufferSizePara
 {
   int IterationCounter;
   longlong LongIterationCounter;
-  longlong LongIndex;
+  longlong IndexValue;
   void *NetworkResponseData;
   void *StackBufferPointer;
   longlong StackBufferLong;
@@ -10250,7 +10250,7 @@ bool SystemCompareStringData(longlong StringDataPointer1,longlong StringDataPoin
   char NetworkRequestStatus;
   char BooleanCheck;
   int IntegerCounter;
-  longlong LongValue;
+  longlong DataValue;
   char *pBooleanFlag;
   LongValue = -1;
   do {
@@ -10339,9 +10339,9 @@ Label_18062995a:
 int SystemDataCompareFunction(longlong DataStructurePointer1,longlong DataStructurePointer2)
 {
   int LoopCounter;
-  longlong LongCounter;
+  longlong LoopCounter;
   int IntegerCounter;
-  longlong LongValue;
+  longlong DataValue;
   ulonglong MemoryAllocationResult;
   LoopCounter = *(int *)(SystemSecondaryParameter + 0x10);
   IntegerCounter = *(int *)(SystemParameterPointer + 0x10) - LoopCounter;
@@ -11349,7 +11349,7 @@ int SystemBufferProcessData(uint64_t BufferId, uint64_t ProcessData, uint64_t *R
   char BooleanCheck;
   char *pcVar3;
   char *unaff_RBX;
-  longlong LongValue;
+  longlong DataValue;
   char *pBooleanFlag;
   int in_R11D;
   while (in_R11D = in_R11D + 1, unaff_RBX == (char *)0x0) {
@@ -11400,7 +11400,7 @@ int SystemBufferVerifyData(uint64_t BufferId, uint64_t VerifyData, uint64_t *Res
   char *pcVar3;
   char *unaff_RBX;
   char *unaff_RDI;
-  longlong LongValue;
+  longlong DataValue;
   char *pBooleanFlag;
   int in_R11D;
   do {
@@ -11453,9 +11453,9 @@ uint32_t SystemGetBufferSize(void)
 longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong configData)
 {
   int64_t ModuleInitializationResult;
-  longlong LongCounter;
+  longlong LoopCounter;
   char *pcVar3;
-  longlong LongValue;
+  longlong DataValue;
   uint64_t MemoryAllocationResult;
   void *pStackCounter4;
   char *pcStack_28;
@@ -11493,9 +11493,9 @@ longlong SystemBufferConfigure(uint64_t bufferId, uint64_t bufferSize, longlong 
 longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong configData)
 {
   int64_t ModuleInitializationResult;
-  longlong LongCounter;
+  longlong LoopCounter;
   char *pcVar3;
-  longlong LongValue;
+  longlong DataValue;
   void *pStackCounter4;
   char *pcStack_28;
   ModuleInitializationResult = ProcessSystemInitializationData();
@@ -11531,9 +11531,9 @@ longlong SystemBufferSetup(uint64_t bufferId, uint64_t setupData, longlong confi
 longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong configData, uint64_t flags)
 {
   int64_t ModuleInitializationResult;
-  longlong LongCounter;
+  longlong LoopCounter;
   char *pcVar3;
-  longlong LongValue;
+  longlong DataValue;
   void *pStackCounter4;
   char *pcStack_28;
   ModuleInitializationResult = ProcessSystemInitializationData(SystemParameterPointer,&SystemInitializationDataBuffer,SystemTertiaryParameter,SystemQuaternaryParameter,SystemMutexFlags);
@@ -11569,8 +11569,8 @@ longlong SystemBufferInitialize(uint64_t bufferId, uint64_t initData, longlong c
 longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong configData)
 {
   int LoopCounter;
-  longlong LongCounter;
-  longlong LongIndex;
+  longlong LoopCounter;
+  longlong IndexValue;
   char *pcVar4;
   longlong LongLoop;
   uint64_t uVar6;
@@ -11614,9 +11614,9 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
 longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong configData)
 {
   int64_t ModuleInitializationResult;
-  longlong LongCounter;
+  longlong LoopCounter;
   char *pcVar3;
-  longlong LongValue;
+  longlong DataValue;
   uint64_t MemoryAllocationResult;
   void *pStackCounter4;
   char *pcStack_28;
@@ -11654,8 +11654,8 @@ longlong SystemBufferManage(uint64_t bufferId, uint64_t manageData, longlong con
 longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong configData)
 {
   longlong *pModuleInitializationResult;
-  longlong LongCounter;
-  longlong LongIndex;
+  longlong LoopCounter;
+  longlong IndexValue;
   char *pcVar4;
   longlong LongLoop;
   void *pStackCounter4;
@@ -11694,8 +11694,8 @@ longlong SystemBufferControl(uint64_t bufferId, uint64_t controlData, longlong c
 longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong configData)
 {
   longlong *pModuleInitializationResult;
-  longlong LongCounter;
-  longlong LongIndex;
+  longlong LoopCounter;
+  longlong IndexValue;
   char *pcVar4;
   longlong LongLoop;
   uint64_t uVar6;
@@ -11738,9 +11738,9 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
 longlong SystemBufferOperate(uint64_t bufferId, uint64_t operateData, uint64_t *resultData)
 {
   uint64_t MemoryAddress;
-  longlong LongCounter;
+  longlong LoopCounter;
   uint64_t *StringProcessingResultPointer;
-  longlong LongValue;
+  longlong DataValue;
   uint8_t aStackCounter5 [16];
   LongCounter = ProcessSystemInitializationData();
   if (LongCounter != 0) {
@@ -11885,7 +11885,7 @@ uint32_t SystemGetDeviceParameter(int deviceId)
 uint64_t SystemMemoryAllocate(uint64_t MemorySize)
 {
   uint64_t MemoryAddress;
-  longlong LongCounter;
+  longlong LoopCounter;
   MemoryAddress = MemoryAllocateEx(SystemMemoryAllocator,memorySize,0x19);
   LongCounter = MemoryValidateEx(MemoryAddress);
   LOCK();
@@ -11911,8 +11911,8 @@ uint64_t SystemMemoryResize(uint64_t MemoryAddress, uint64_t NewSize)
 longlong SystemMemoryFree(longlong *memoryPtr)
 {
   int *pLoopCounter;
-  longlong LongCounter;
-  longlong LongIndex;
+  longlong LoopCounter;
+  longlong IndexValue;
   ulonglong NetworkRequestResult;
   LongCounter = MemoryValidateEx();
   LongIndex = SystemInitializationCounter;
@@ -12143,7 +12143,7 @@ uint64_t SystemDataInitialize(int initFlags)
   byte CharValue;
   int StringIndex;
   uint StringProcessingResult;
-  longlong LongValue;
+  longlong DataValue;
   float *pfVar5;
   int LoopCounterValue;
   float *SecondaryColorProcessingPointer;
@@ -12740,7 +12740,7 @@ HandleNetworkOperation(longlong NetworkContextPointer,longlong OperationType,lon
              uint64_t *TimeoutParameter,char OperationFlag1,char OperationFlag2)
 {
   uint MemoryAddress;
-  longlong LongCounter;
+  longlong LoopCounter;
   byte NetworkStatusFlag;
   uint32_t *pNetworkRequestResult;
   uint64_t MemoryAllocationResult;
@@ -12958,7 +12958,7 @@ int SystemAudioProcessData(uint32_t AudioBufferPointer,byte *AudioDataPointer)
 {
   char NetworkRequestStatus;
   int StringIndex;
-  longlong LongIndex;
+  longlong IndexValue;
   if (SystemProcessingEnabledFlag == '\0') {
     return -0x7f6dfffb;
   }
@@ -13000,7 +13000,7 @@ int SystemAudioGetStatus(void)
 {
   char NetworkRequestStatus;
   int StringIndex;
-  longlong LongIndex;
+  longlong IndexValue;
   byte *unaff_RBX;
   uint32_t unaff_ESI;
   LongIndex = GetMemoryIndex(unaff_ESI);
@@ -13336,7 +13336,7 @@ Label_1808fbebe:
 bool SystemAudioIsInitialized(void)
 {
   short sVar1;
-  longlong LongCounter;
+  longlong LoopCounter;
   uint StringProcessingResult;
   int IntegerResult;
   longlong LongLoop;
@@ -13451,9 +13451,9 @@ Label_1808fbebe:
 bool SystemAudioIsPlaying(void)
 {
   short sVar1;
-  longlong LongCounter;
-  longlong LongIndex;
-  longlong LongValue;
+  longlong LoopCounter;
+  longlong IndexValue;
+  longlong DataValue;
   uint64_t MemoryAllocationResult;
   int LoopCounterValue;
   longlong unaff_RBX;
