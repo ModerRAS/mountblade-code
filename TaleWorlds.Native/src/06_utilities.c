@@ -18109,23 +18109,28 @@ uint8_t InitializeResourceBuffer(void)
   int64_t *ResourceContext;
   int ResultRecordIndex;
   int ResourceContextSecondary;
+  int BufferSize;
+  
+  ResourceContext = (int64_t *)GetResourceContext();
+  ResourceContextSecondary = GetResourceContextSecondary();
   
   if (ResourceContextSecondary == 0) {
-    FreeMemoryResource();
+    FreeMemoryResource(ResourceContext);
   }
   else {
-    OperationStatus = ResourceContextSecondary + 1;
-    ValidationStatusCode = (int)*(uint *)((int64_t)ResourceContext + 0xc) >> ResourceValidationError;
-    if (((int)((*(uint *)((int64_t)ResourceContext + 0xc) ^ ResourceHashStatus) - ResourceHashStatus) < OperationResult) &&
-       (ValidationStatusCode = CheckResourceTablePointerStatus(), (int)ValidationStatusCode != 0)) {
+    BufferSize = ResourceContextSecondary + 1;
+    ValidationStatusCode = (int)*(uint *)((int64_t)ResourceContext + ResourceTableValidationOffset) >> ResourceValidationErrorBit;
+    if (((int)((*(uint *)((int64_t)ResourceContext + ResourceTableValidationOffset) ^ ResourceHashStatus) - ResourceHashStatus) < BufferSize) &&
+       (ValidationStatusCode = CheckResourceTablePointerStatus(ResourceContext, BufferSize), (int)ValidationStatusCode != 0)) {
       return ResourceHashStatus;
     }
-    ResourceIndex = (int)ResourceContext[1];
-    if (ResourceIndex < OperationResult) {
-            memset((int64_t)ResourceIndex + *ResourceContext,0,(int64_t)(OperationResult - ResourceIndex));
+    ResultRecordIndex = (int)ResourceContext[1];
+    if (ResultRecordIndex < BufferSize) {
+            memset((int64_t)ResultRecordIndex + *ResourceContext,0,(int64_t)(BufferSize - ResultRecordIndex));
     }
-    *(int *)(ResourceContext + 1) = OperationResult;
-    ValidationStatusCode = ReadResourceData();
+    *(int *)(ResourceContext + 1) = BufferSize;
+    ValidationStatusCode = ReadResourceData(ResourceContext, ResourceContextSecondary);
+    ResourceHashStatus = (uint8_t)ValidationStatusCode;
     if ((int)ResourceHashStatus != 0) {
       return ResourceHashStatus;
     }
