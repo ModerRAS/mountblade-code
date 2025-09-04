@@ -73712,7 +73712,7 @@ void SetupSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_ExecuteValidationContextResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteValidationContextTertiaryResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -73734,7 +73734,7 @@ void Unwind_ExecuteValidationContextResourceCleanup(uint8_t ObjectContext,int64_
 
 
 
-void Unwind_ExecuteSecondaryResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSecondaryResourceTablePointerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -80017,7 +80017,7 @@ void SetSystemDataStructurePointerAtTertiaryOffset0(uint8_t ObjectContext,int64_
 
 
 
-void Unwind_18090c0f0(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtOffset3C0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x3c0) = &SystemDataStructure;
@@ -80026,7 +80026,7 @@ void Unwind_18090c0f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c100(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceTableCleanupAndSystemExit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -80046,7 +80046,7 @@ void Unwind_18090c100(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c110(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtTertiaryOffset0_2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset0) = &SystemDataStructure;
@@ -80055,7 +80055,7 @@ void Unwind_18090c110(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c120(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtOffset3C0_2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x3c0) = &SystemDataStructure;
@@ -80064,7 +80064,7 @@ void Unwind_18090c120(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c130(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceTableCleanupAndSystemExit_2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -80084,7 +80084,7 @@ void Unwind_18090c130(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c140(uint8_t ObjectContext,int64_t ValidationContext)
+void SetResourceHashStatusWithValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -80120,7 +80120,7 @@ void Unwind_18090c140(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c150(uint8_t ObjectContext,int64_t ValidationContext)
+void ResetSystemContextAndCleanupResources(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -80141,7 +80141,7 @@ void Unwind_18090c150(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c160(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHandlerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -80155,7 +80155,7 @@ void Unwind_18090c160(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c170(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemResourceCleanupWithLoop(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -80176,7 +80176,7 @@ void Unwind_18090c170(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c180(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecutePrimaryResourceManagerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -80190,7 +80190,7 @@ void Unwind_18090c180(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c190(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupPrimary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -80204,7 +80204,7 @@ void Unwind_18090c190(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c1a0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -80218,7 +80218,7 @@ void Unwind_18090c1a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c1b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupTertiary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x40) = &SystemMemoryTable001;
@@ -80227,7 +80227,20 @@ void Unwind_18090c1b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c1c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态更新
+ * 
+ * 该函数负责处理资源哈希状态的更新操作，包括内存地址计算、
+ * 资源索引验证和状态同步。此函数是资源管理系统的重要组成部分。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return void 无返回值
+ * @note 此函数会更新资源哈希状态并同步相关数据结构
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c1c0
+ */
+void ProcessResourceHashStatusUpdate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -80235,18 +80248,18 @@ void Unwind_18090c1c0(uint8_t ObjectContext,int64_t ValidationContext)
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x20) + 8);
+  ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextValidationCodeOffset) + 8);
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
     return;
   }
   MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
   if (MemoryAddressMask != 0) {
-    ResourceIndex = MemoryAddressIncrement + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * 0x50;
+    ResourceIndex = MemoryAddressIncrement + SystemContextSecondaryOffset + ((int64_t)ResourceHashStatusAddress - MemoryAddressIncrement >> 0x10) * ResourceTableEntrySize;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
-      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
-      *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      ResourceIndexPointer = (int *)(ResourceIndex + 0x18);
+    if ((*(void ***)(MemoryAddressIncrement + SystemContextTertiaryOffset) == &ExceptionList) && (*(char *)(ResourceIndex + ResourceEntryValidationOffset) == '\0')) {
+      *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + ResourceEntryStatusOffset);
+      *(uint8_t **)(ResourceIndex + ResourceEntryStatusOffset) = ResourceHashStatusAddress;
+      ResourceIndexPointer = (int *)(ResourceIndex + ResourceEntryIndexOffset);
       *ResourceIndexPointer = *ResourceIndexPointer + -1;
       if (*ResourceIndexPointer == 0) {
         SystemCleanupHandler();
@@ -80263,13 +80276,26 @@ void Unwind_18090c1c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c1d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统上下文处理循环
+ * 
+ * 该函数负责执行系统上下文的处理循环，包括循环计数器管理和
+ * 处理状态码的设置。此函数是系统处理流程的重要组成部分。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return void 无返回值
+ * @note 此函数会初始化系统上下文指针并设置处理状态
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c1d0
+ */
+void ExecuteSystemContextProcessingLoop(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
   int ProcessingStatusCode;
   
-  SystemContextPointer = ValidationContext + 0x138;
+  SystemContextPointer = ValidationContext + SystemContextProcessingOffset;
   *(uint8_t **)((int64_t)*(int *)(*(int64_t *)(ValidationContext + 0x80) + 4) + -0xb8 + SystemContextPointer) =
        &SystemMemoryPointer001;
   OperationStatus = *(int *)(*(int64_t *)(ValidationContext + 0x80) + 4);
@@ -80284,7 +80310,7 @@ void Unwind_18090c1d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c1e0(uint8_t ObjectContext,int64_t ValidationContext)
+void DestroyBasicIOStreamWithOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
                     // WARNING: Could not recover jumptable at 0x00018090c1f2. Too many branches
@@ -80295,7 +80321,7 @@ void Unwind_18090c1e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c200(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceTableWithHashValidation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t ResourceHash;
