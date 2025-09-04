@@ -4599,7 +4599,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 void ValidateSystemObjectCollection(void)
 {
   uint8_t ObjectId;
-  int ValidationStatusCode;
+  int ValidationResultCode;
   int64_t SystemContext;
   int64_t RuntimeData;
   int64_t BufferIndex;
