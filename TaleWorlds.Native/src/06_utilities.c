@@ -30817,7 +30817,7 @@ void ReleaseSystemResourceFlagVariantTwo(uint8_t ExceptionCode, int64_t Exceptio
  * @param exceptionCode 异常代码
  * @param ExceptionContext 异常上下文
  */
-void ResetResourceDescriptor(uint8_t exceptionCode, int64_t ExceptionContext)
+void ResetResourceDescriptor(uint8_t ExceptionCode, int64_t ExceptionContext)
 
 {
   *(uint8_t *)(ExceptionContext + 0x68) = &ResourceDescriptorTemplate;
