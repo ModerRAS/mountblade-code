@@ -1771,15 +1771,16 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
       if (NetworkConnectionStatusBufferPointer != (NetworkConnectionStatus *)0x0) {
         int32_t TotalConnectionsCount = (int)ConnectionContext[1];
         int64_t ConnectionProcessingCounter = (long long)TotalConnectionsCount;
+        int64_t ConnectionBaseAddress = 0;  // 连接基地址
         
         // 如果有活跃连接，处理连接数据
-        if ((TotalConnectionsCount != 0) && (ConnectionBaseMemoryAddress = *ConnectionContext, 0 < TotalConnectionsCount)) {
+        if ((TotalConnectionsCount != 0) && (ConnectionBaseAddress = *ConnectionContext, 0 < TotalConnectionsCount)) {
           NetworkConnectionStatus *NetworkConnectionStatusPointer = NetworkConnectionStatusBufferPointer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *NetworkContextDataArray = (NetworkConnectionStatus *)((ConnectionBaseMemoryAddress - (long long)NetworkConnectionStatusBufferPointer) + (long long)NetworkConnectionStatusPointer);
+            NetworkConnectionStatus *NetworkContextDataArray = (NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)NetworkConnectionStatusBufferPointer) + (long long)NetworkConnectionStatusPointer);
             
             // 提取连接状态信息
             NetworkConnectionStatus CurrentPacketStatus = NetworkContextDataArray[1];
@@ -1791,7 +1792,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkConnectionStatusPointer[1] = CurrentPacketStatus;
             NetworkConnectionStatusPointer[2] = CurrentDataStatus;
             NetworkConnectionStatusPointer[3] = CurrentValidationStatus;
-            NetworkConnectionStatusPointer[4] = *(NetworkConnectionStatus *)((ConnectionBaseMemoryAddress - (long long)NetworkConnectionStatusBufferPointer) + -4 + (long long)(NetworkConnectionStatusPointer + 5));
+            NetworkConnectionStatusPointer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)NetworkConnectionStatusBufferPointer) + -4 + (long long)(NetworkConnectionStatusPointer + 5));
             
             // 更新计数器
             ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
@@ -2677,9 +2678,9 @@ NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t Contex
 NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t IntegrityOffset)
 {
   // 数据包完整性验证变量
-  uint32_t IntegrityValidationResult;             // 完整性验证结果
-  uint32_t ChecksumValidationResult;             // 校验和验证结果
-  uint32_t DataFormatValidationResult;           // 数据格式验证结果
+  uint32_t PacketIntegrityValidationResult;           // 数据包完整性验证结果
+  uint32_t PacketChecksumValidationResult;           // 数据包校验和验证结果
+  uint32_t PacketDataFormatValidationResult;         // 数据包数据格式验证结果
   
   // 初始化验证状态
   IntegrityValidationResult = 0x00;

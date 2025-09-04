@@ -61491,7 +61491,18 @@ void InitializeSystemResourceHandlerWithAdvancedExtension(uint8_t ObjectContext,
  * @note 此函数会执行资源上下文的回调函数
  * @warning 回调函数的执行可能会导致系统状态的变化
  */
-void ExecuteResourceContextCallbackExtendedVersion1(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数基础版本
+ * 
+ * 该函数负责执行资源上下文的回调操作
+ * 从ValidationContext中获取资源上下文并执行回调
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会从ValidationContext + SystemContextOperationOffset + 0xb0位置获取资源上下文
+ */
+void ExecuteResourceContextCallbackWithBasicExtension(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ProcessPointer;
@@ -61517,7 +61528,19 @@ void ExecuteResourceContextCallbackExtendedVersion1(uint8_t ObjectContext,int64_
  * @note 此函数会设置资源验证表和处理器模板
  * @warning 如果资源状态异常，会触发紧急退出
  */
-void InitializeSystemResourceHandlerExtendedVersion3(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器专业扩展
+ * 
+ * 该函数负责初始化系统资源处理器的专业扩展功能
+ * 设置资源哈希指针并验证资源状态
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数会设置资源验证表和处理器模板
+ * @warning 如果资源状态异常，会触发紧急退出
+ */
+void InitializeSystemResourceHandlerWithProfessionalExtension(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
