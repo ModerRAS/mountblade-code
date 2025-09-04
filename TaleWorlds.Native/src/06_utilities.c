@@ -95002,8 +95002,13 @@ void Unwind_18090fa30(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fa50(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行系统回调函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090fa50
+ */
+void ExecuteSystemCallbackFunction(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x148) != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)**(int64_t **)(ValidationContext + 0x148) + 0x38))();
@@ -95013,8 +95018,13 @@ void Unwind_18090fa50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fa60(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放共享SRW锁（版本1）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090fa60
+ */
+void ReleaseSharedSRWLockVersion1(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if (*(char *)(ValidationContext + ResourceSecurityProcessingOffset) != '\0') {
     ReleaseSRWLockShared(*(uint8_t *)(ValidationContext + 0x148));
@@ -95024,8 +95034,13 @@ void Unwind_18090fa60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fa70(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放共享SRW锁（版本2）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090fa70
+ */
+void ReleaseSharedSRWLockVersion2(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if (*(char *)(ValidationContext + ResourceSecurityProcessingOffset) != '\0') {
     ReleaseSRWLockShared(*(uint8_t *)(ValidationContext + 0x148));
@@ -95035,8 +95050,13 @@ void Unwind_18090fa70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fa80(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放共享SRW锁（版本3）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090fa80
+ */
+void ReleaseSharedSRWLockVersion3(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if (*(char *)(ValidationContext + 0x160) != '\0') {
     ReleaseSRWLockShared(*(uint8_t *)(ValidationContext + 0x158));
@@ -95046,8 +95066,13 @@ void Unwind_18090fa80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fa90(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 释放共享SRW锁（版本4）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090fa90
+ */
+void ReleaseSharedSRWLockVersion4(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if (*(char *)(ValidationContext + 0x160) != '\0') {
     ReleaseSRWLockShared(*(uint8_t *)(ValidationContext + 0x158));
