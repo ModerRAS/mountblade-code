@@ -88799,7 +88799,12 @@ void ExecuteResourceContextValidationCallback(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090d570(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文处理回调函数2
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextProcessingCallback2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -88813,7 +88818,12 @@ void Unwind_18090d570(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d580(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调处理
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteValidationContextCallbackProcessing(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xb8) != (int64_t *)0x0) {

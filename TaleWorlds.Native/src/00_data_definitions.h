@@ -5272,7 +5272,7 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       UnsignedSize = MemoryManagerDataAddress;
       ppplStack_80 = (longlong ***)0x0;
       if (*(int *)(SystemPerformanceData + 0x380) == 0) {
-        pppplStackX_20 = &ppSystemStackPointer;
+        SystemMultiStackPointer = &ppSystemStackPointer;
         ppSystemStackPointer = ppplStack_b8;
         if (ppplStack_b8 != (longlong ***)0x0) {
           (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
@@ -5297,12 +5297,12 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
     if (((in_RCX[0x89] != (longlong ****)0x0) && (*(char *)(SystemEngineContext + 0xfa) != '\0')) &&
        ((*(longlong *)(SystemModuleArray[0] + 0x3580) != 0 &&
         (*(int *)(*(longlong *)(SystemModuleArray[0] + 0x3580) + 0x110) != 0)))) {
-      StackParameter2 = &pppplStackX_20;
-      pppplStackX_20 = (longlong ****)in_RCX[0x89][0x461];
-      if (pppplStackX_20 != (longlong ****)0x0) {
-        (*(code *)(*pppplStackX_20)[5])();
+      StackParameter2 = &SystemMultiStackPointer;
+      SystemMultiStackPointer = (longlong ****)in_RCX[0x89][0x461];
+      if (SystemMultiStackPointer != (longlong ****)0x0) {
+        (*(code *)(*SystemMultiStackPointer)[5])();
       }
-      ProcessNetworkConnection(UnsignedSize,&pppplStackX_20,0);
+      ProcessNetworkConnection(UnsignedSize,&SystemMultiStackPointer,0);
     }
     if ((*(char *)((longlong)in_RCX + 0x563) != '\0') &&
        (0 < (int)(((longlong)in_RCX[0xb6] - (longlong)in_RCX[0xb5]) / 0xc))) {
@@ -5671,7 +5671,7 @@ Label_1801d5c43:
       StringIndex1 = StringIndex1 + 1;
       ppppppSystemStackPointer = (longlong *******)CONCAT44(ppppppSystemStackPointer._4_4_,StringIndex1);
       pModuleInitializationResult3 = SystemEngineContext;
-      SystemTertiaryParameter = pppppppuStackX_18;
+      SystemTertiaryParameter = SystemMultiLevelPointer;
       ModuleInitializationResult9 = lStack_a8;
       SystemQuaternaryParameter = uStackX_20;
     } while (StringIndex1 < (int)SystemDataPointer);
