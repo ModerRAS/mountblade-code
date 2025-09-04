@@ -1,0 +1,32 @@
+// 简化版本的美化脚本
+// 用于手动替换 99_unmatched_functions.c 中的 FUN_ 函数名
+
+// 常见函数名替换模式
+// FUN_18062b8b0 -> MemoryAllocationManager
+// FUN_180628ca0 -> StringBufferAllocator
+// FUN_18005ce30 -> DataBufferProcessor
+// FUN_18009eae0 -> StringFormatHandler
+// FUN_1800b4910 -> XmlDataProcessor
+// FUN_1800b08e0 -> ResourceHandler
+// FUN_180058080 -> ArrayIterator
+// FUN_180075030 -> DataStreamProcessor
+// FUN_180628d60 -> StringIndexer
+// FUN_18005e890 -> ResourceAccessor
+// FUN_180095000 -> XmlElementProcessor
+// FUN_1800c1420 -> XmlFormatter
+// FUN_1800b1230 -> DataValidator
+// FUN_180094e80 -> ResourceInitializer
+// FUN_1800763c0 -> ResourceFinalizer
+// FUN_1800b31f0 -> StringComposer
+// FUN_1800c0750 -> ContextInitializer
+// FUN_1800c2d60 -> StringProcessor
+// FUN_1800c3070 -> DataFormatter
+// FUN_1800c2ab0 -> ElementProcessor
+// FUN_1802c1260 -> ResourceLoader
+// FUN_18009e9e0 -> StringCreator
+// FUN_180299eb0 -> TextFormatter
+// FUN_1800946d0 -> BufferManager
+// FUN_1802c8dc0 -> ContextProcessor
+// FUN_1800bd5c0 -> DataOrganizer
+// FUN_1800b2450 -> ResourceBuilder
+// FUN_18023a940 -> SystemContextProvider

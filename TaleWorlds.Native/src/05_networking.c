@@ -2246,7 +2246,7 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
  * @note 此函数会根据数据包状态选择不同的处理策略
  * @warning 处理过程中如果发现数据包格式错误，会立即返回相应的错误码
  */
-NetworkHandle HandleNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
+NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   // 数据包处理变量
   NetworkHandle PacketProcessingResult;                    // 数据包处理结果，存储处理流程的最终状态
