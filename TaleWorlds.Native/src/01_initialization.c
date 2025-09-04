@@ -52843,7 +52843,7 @@ MemoryAllocationComplete:
         ThreadContextFlag = StartSystemThread(SystemMemoryContext);
         SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
       }
-LABEL_SYSTEM_MEMORY_VALIDATION_START:
+LABEL_SYSTEM_MEMORY_INITIALIZATION_START:
         memcpy(SystemMemoryContext + StackValue2,resourceDataIndex5,(long long)((int)resourceDataIndex7 + 2));
     }
   }
@@ -52865,7 +52865,7 @@ LABEL_SYSTEM_MEMORY_VALIDATION_START:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
   }
-LABEL_SYSTEM_MEMORY_VALIDATION_CONTINUE:
+LABEL_SYSTEM_MEMORY_PROCESSING_CONTINUE:
   *(void*2 *)(SystemMemoryContext + StackValue2) = 10;
   StackValue2 = systemIndex;
   if (resourceCounter != 0) {
@@ -53201,7 +53201,7 @@ LABEL_THREAD_OBJECT_INITIALIZATION:
     stackParameterOffset = 0x12;
     threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x14,0x13);
     *threadObjectPointer = 0;
-LAB_180071b69:
+LABEL_THREAD_ALLOCATION_CONTEXT:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
