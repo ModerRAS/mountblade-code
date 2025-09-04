@@ -94396,7 +94396,17 @@ void ExecuteSystemResourceInitializationAndValidation(uint8_t ObjectContext, int
 
 
 
-void Unwind_18090f1a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理指针操作
+ * 
+ * 在系统unwind过程中执行资源处理指针操作，
+ * 处理资源上下文并调用相关处理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f1a0
+ */
+void ExecuteResourceProcessingPointerOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
