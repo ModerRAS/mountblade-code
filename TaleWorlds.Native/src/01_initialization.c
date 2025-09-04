@@ -64593,7 +64593,7 @@ LAB_CreateSystemThread:
                 }
                 else {
                   SystemThreadHandle1 = ((long long)SystemTimeFlag1d8 >> 2) * 2;
-                  if (SystemThreadHandle1 != 0) goto LAB_SystemThreadCreate;
+                  if (SystemThreadHandle1 != 0) goto LAB_CreateSystemThread;
                 }
                 if (pointerToInteger25 != pointerToInteger26) {
                     memmove(SystemIntegerPointer6,pointerToInteger25,SystemTimeFlag1d8);
@@ -64626,7 +64626,7 @@ LAB_CreateSystemThread:
                 SystemTimeFlag1d8 = (long long)pointerToInteger20 - (long long)SystemIntegerPointer4;
                 if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
                   SystemThreadHandle1 = 1;
-LAB_SystemThreadExpand:
+LAB_ExpandSystemThread:
                   SystemIntegerPointer5 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemThreadHandle1 * 4,3);
                 }
                 else {
