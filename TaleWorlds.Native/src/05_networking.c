@@ -2909,12 +2909,12 @@ NetworkHandle HandleNetworkPacketData(NetworkHandle *PacketData, int64_t HandleO
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    PacketDataParsingResult = 0x01;  // 数据解析成功
+    PacketDataParsingResult = NetworkOperationSuccess;  // 数据解析成功
   }
   
   // 验证句柄偏移量有效性
   if (HandleOffset >= 0) {
-    PacketDataValidationResult = 0x01;  // 数据验证成功
+    PacketDataValidationResult = NetworkOperationSuccess;  // 数据验证成功
   }
   
   // 根据处理模式处理数据
