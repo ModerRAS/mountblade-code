@@ -742,9 +742,9 @@ uint32_t NetworkProtocolVersion;                              // 网络协议版
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
 uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
 uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文大小，连接上下文数据结构的大小
-uint32_t NetworkConnectionQuality;                             // 网络连接质量，评估连接质量的质量指标
-uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽，连接可用的带宽资源
-uint32_t NetworkConnectionLatency;                             // 网络连接延迟，网络通信的延迟时间
+uint32_t NetworkConnectionQualityLevel;                 // 网络连接质量，评估连接质量的质量指标
+uint32_t NetworkConnectionBandwidthValue;                // 网络连接带宽，连接可用的带宽资源
+uint32_t NetworkConnectionLatencyValue;                   // 网络连接延迟，网络通信的延迟时间
 uint32_t NetworkConnectionReliability;                         // 网络连接可靠性，连接的稳定性和可靠性指标
 uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别，连接的安全保护级别
 uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
