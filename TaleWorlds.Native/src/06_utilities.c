@@ -73729,7 +73729,7 @@ void ExecuteTertiaryResourceTableCleanup(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_HandleResourceTablePointerAccessWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void HandleResourceTableAccessWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTablePointerAccess(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x740,
@@ -73895,7 +73895,7 @@ void DestroySystemMutex8(void)
  * 
  * @note 该函数会检查资源哈希地址的有效性，只有在地址有效时才执行清理操作
  */
-void Unwind_ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceHashCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
@@ -74005,7 +74005,7 @@ void ManageResourceTablePointerEntryWithCleanup(uint8_t ObjectContext, int64_t V
 
 
 
-void Unwind_ProcessResourceOperationWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ProcessResourceOperationWithCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceOperation(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0xbd8,
@@ -74027,7 +74027,7 @@ void Unwind_ProcessResourceOperationWithCleanup(uint8_t ObjectContext,int64_t Va
  * @return 无返回值
  * @note 此函数在异常处理时调用，确保资源正确注册
  */
-void Unwind_RegisterResourceHandlerAtC08(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterResourceHandlerAtOffsetC08(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0xc08,8,10,ProcessResourceOperation,0xfffffffffffffffe);
