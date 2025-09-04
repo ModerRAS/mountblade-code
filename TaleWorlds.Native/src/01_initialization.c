@@ -64808,8 +64808,8 @@ LAB_SystemContextUpdate:
   SystemContextPointer = SystemContextPointer + 1;
   SystemParameterPointer = (ulong long)SystemContextPointer;
   longValue1d0 = longValue1d0 + 1;
-  if (*SystemIntegerPointer <= (int)SystemContextPointer) goto LAB_18007a5ac;
-  goto LAB_180079e40;
+  if (*SystemIntegerPointer <= (int)SystemContextPointer) goto LAB_SystemContextUpdate;
+  goto LAB_SystemExit;
 }
 
 
@@ -65017,9 +65017,9 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   InitializeSystemContext(&SystemConfigurationFlags);
   SystemThreadFlags = *(long long *)(SystemResourceManager + 0x210);
   if (SystemThreadFlags == 0) {
-ThreadFlagsLoop1:
+LAB_ThreadFlagsCheck1:
     if (*(long long *)(SystemResourceManager + 0xa8) == 0) {
-ThreadFlagsLoop2:
+LAB_ThreadFlagsCheck2:
       LOCK();
       *(uint8_t *)((long long)PrimaryResourceHandle4 + 0x15) = 4;
       UNLOCK();
@@ -65152,7 +65152,7 @@ SystemResourceCleanupPoint:
   (**(code **)(*PrimaryResourceDataPointer + 0x38))(PrimaryResourceDataPointer);
   (**(code **)(*PrimaryResourceHandle0 + 0x38))(PrimaryResourceHandle0);
   ProcessSystemStatus(&SystemConfigurationFlags);
-LAB_18007b8fd:
+ByteValidationCheck:
   return (ulong long)((byte)(*(char*)((long long)PrimaryResourceHandle4 + 0x15) - 2U) < 2);
 }
 
@@ -67368,7 +67368,7 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
   if (SystemResourceOffsetPointer != (long long *)0x0) {
     (**(code **)(*SystemResourceOffsetPointer + 0x38))();
   }
-LAB_18007eb55:
+MemoryPointerValidation:
   *(char *)(SystemResourceManager + 0xf4) = ConfigurationDataPointer;
   CleanupSystemResourceEncryption(SystemStackBuffer40);
   if (pLocalMemoryPointer != (long long *)0x0) {
@@ -68245,7 +68245,7 @@ void InitializeSystemResourceEncryption(uint8_t *SystemResourceManager,void* Con
     Sleep();
   }
   SystemOperationStatusFlag = '\0';
-LAB_18007f5cb:
+LocalDataValidation:
   ResourceHash = _Thrd_id();
   *(uint32_t *)(localDataIndex + 0xf0) = ResourceHash;
   if (SystemOperationStatusFlag == '\0') {
@@ -68401,7 +68401,7 @@ void InitializeSystemThreadSynchronizer(long long* SystemResourceManager)
     Sleep(0);
   }
   validationStatusFlag = '\0';
-LAB_18007f7cf:
+ResourceDataValidationLoop:
   LOCK();
   *(int *)(resourceDataIndex + 0xe8) = *(int *)(resourceDataIndex + 0xe8) + 1;
   UNLOCK();
@@ -68477,7 +68477,7 @@ void ProcessSystemResourceHandle(long long* SystemResourceManager)
       Sleep();
     }
     SystemStatus = '\0';
-LAB_18007f89f:
+SystemHandleValidation:
     LOCK();
     ResourceIndexPointer = (int *)(SystemHandle + 0xe8);
     ResourceIndex = *ResourceIndexPointer;
@@ -68526,7 +68526,7 @@ uint GetSystemResourceStatusFlag(void)
     Sleep();
   }
   charFlag = '\0';
-LAB_18007f89f:
+SystemHandleValidation:
   LOCK();
   SystemDataPointer = (uint *)(memoryBlockAddress + 0xe8);
   CurrentThreadId = *SystemDataPointer;
