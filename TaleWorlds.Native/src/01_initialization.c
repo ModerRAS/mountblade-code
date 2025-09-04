@@ -30556,7 +30556,7 @@ void SystemResourceListInitializer(void)
  * @note 这是系统内存管理的重要函数，用于初始化和配置内存分配器
  */
 void* *
-SystemMemoryAllocatorConfigurator(void* *SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+ConfigureSystemMemoryAllocator(void* *SystemResourceManager, long long ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
 
 {
   long long stringLength;
