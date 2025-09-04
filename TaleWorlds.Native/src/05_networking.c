@@ -122,8 +122,8 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkPacketMagicLiveConnection 0x5453494c    // "LIVE" - 表示活跃连接魔数
 #define NetworkPacketMagicValidation 0x54495645          // "EVIT" - 表示数据包验证魔数
 #define NetworkPacketMagicBinaryData 0x42495645          // "EVIB" - 表示二进制数据魔数
-#define NetworkPacketMagicTnvel 0x544e5645    // "EVNT" - 表示事件数据魔数
-#define NetworkPacketMagicBtvel 0x42545645    // "EVBT" - 表示批处理数据魔数
+#define NetworkPacketMagicEventData 0x544e5645    // "EVNT" - 表示事件数据魔数
+#define NetworkPacketMagicBatchData 0x42545645    // "EVBT" - 表示批处理数据魔数
 #define NetworkPacketMagicInvalid 0x464f4f44   // "FOOD" - 表示无效数据包魔数
 
 // 网络连接相关偏移量
@@ -2159,17 +2159,17 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
   // 检查第三级状态是否在限制范围内，以确定处理策略
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {
     // 处理状态限制内的数据包
-    PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
+    PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicEventData);
     if ((int)PacketProcessingResult == 0) {
       PacketProcessingResult = 0;  // 验证成功
     }
   }
   else {
     // 处理状态限制外的数据包，需要解码处理
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicTnvel);
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicEventData);
     if ((int)PacketProcessingResult == 0) {
       // 验证数据包头部
-      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBtvel);
+      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
       if ((int)PacketProcessingResult == 0) {
         // 处理连接数据
         NetworkHandle DataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
