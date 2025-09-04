@@ -5871,7 +5871,7 @@ void InitializeSystemMemoryNodeManager(void)
 void InitializeSystemStringConfigurationManager(void)
 
 {
-  void* SystemRegisterValue;
+  void* SystemParameter;
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
@@ -5881,7 +5881,7 @@ void InitializeSystemStringConfigurationManager(void)
   SystemProcessBufferPtr = SystemConfigProcessBuffer;
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0xb;
-  strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemConfigurationTemplateA,SystemRegisterValue,InvalidHandleValue);
+  strcpy_s(SystemConfigProcessBuffer,SystemConfigValue,&SystemConfigurationTemplateA,SystemParameter,InvalidHandleValue);
   SystemGlobalDataProcessorResult = SystemGlobalDataProcessor(&SystemDataPointer);
   return;
 }
@@ -9250,7 +9250,7 @@ void InitializeSystemPluginManager(void)
 void InitializeSystemConfigurationManager(void)
 
 {
-  void* SystemRegisterValue;
+  void* SystemParameter;
   void** SystemDataPointer;
   uint8_t* SystemProcessBufferPtr;
   uint32_t SystemConfigValue;
@@ -9260,7 +9260,7 @@ void InitializeSystemConfigurationManager(void)
   SystemProcessBufferPtr = SystemConfigProcessBuffer;
   SystemConfigProcessBuffer[0] = 0;
   SystemConfigValue = 0xc;
-  strcpy_s(SystemConfigProcessBuffer,StringBufferCapacityValue,&SystemConfigurationTemplateB,SystemRegisterValue,InvalidHandleValue);
+  strcpy_s(SystemConfigProcessBuffer,SystemConfigValue,&SystemConfigurationTemplateB,SystemParameter,InvalidHandleValue);
   SystemMemoryAllocationPrimaryEntry = SystemMemoryAllocationFunction(&SystemParameterPointer);
   return;
 }
