@@ -2177,21 +2177,21 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
       return NetworkErrorInvalidPacket;
     }
     NetworkStatus PrimaryConnectionState = *(NetworkStatus *)(ConnectionContext + NetworkPacketDataSecondaryOffset);
-    ConnectionStatusArray[0] = PrimaryConnectionState;
+    ConnectionStateArray[0] = PrimaryConnectionState;
     NetworkPacketProcessor PacketProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-    PacketValidationResult = PacketProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ConnectionStatusArray, 4);
-    if ((int)PacketValidationResult != 0) {
-      return PacketValidationResult;
+    PacketProcessingResult = PacketProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ConnectionStateArray, 4);
+    if ((int)PacketProcessingResult != 0) {
+      return PacketProcessingResult;
     }
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
     NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetSecond);
-    ValidationStatusArray[0] = SecondaryValidationStatus;
+    SecurityValidationArray[0] = SecondaryValidationStatus;
     NetworkPacketProcessor ValidationProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-    PacketValidationResult = ValidationProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
-    if ((int)PacketValidationResult != 0) {
-      return PacketValidationResult;
+    PacketProcessingResult = ValidationProcessorFunction(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
+    if ((int)PacketProcessingResult != 0) {
+      return PacketProcessingResult;
     }
   }
   else {
@@ -2308,12 +2308,12 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
 NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
   // 数据包处理变量
-  NetworkHandle PacketProcessingResult;                    // 数据包处理结果，存储处理流程的最终状态
+  NetworkHandle ConnectionPacketResult;                    // 数据包处理结果，存储处理流程的最终状态
   NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区，用于存储解码后的数据流信息
-  uint32_t PacketTertiaryStatusValue;                   // 数据包第三级状态值，用于确定处理策略
+  uint32_t PacketTertiaryStatus;                   // 数据包第三级状态值，用于确定处理策略
   
   // 获取第三级状态值
-  PacketTertiaryStatusValue = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
+  PacketTertiaryStatus = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
   
   // 根据数据包状态选择不同的处理路径
   if (PacketTertiaryStatusValue < NetworkPacketStatusLimit) {
