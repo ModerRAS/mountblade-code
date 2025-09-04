@@ -66595,7 +66595,16 @@ void UnwindSystemCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext
 
 
 
-void UnwindResourceValidator180908980(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 清理资源事务处理器
+ * 
+ * 该函数用于清理和回滚资源事务，处理系统资源验证和上下文清理
+ * 包含事务回滚、资源处理和系统句柄清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，包含系统验证状态信息
+ */
+void CleanupResourceTransactionHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
