@@ -78863,7 +78863,18 @@ void DestroyTertiaryMutex(void)
 
 
 
-void Unwind_18090bd10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源表条目
+ * 
+ * 该函数用于清理系统资源表中的条目，遍历所有资源指针，
+ * 释放资源句柄并清理相关的内存地址。如果清理过程中发现异常，
+ * 会执行系统紧急退出操作。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return void 无返回值
+ */
+void CleanupResourceTableEntries(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
