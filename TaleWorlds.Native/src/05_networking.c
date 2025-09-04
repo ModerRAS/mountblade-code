@@ -1936,9 +1936,11 @@ void NetworkCleanupConnectionResources(NetworkHandle ConnectionContext)
  */
 NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
-  NetworkByte PacketValidationBuffer [32];                    // 数据包验证缓冲区
-  NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区
+  // 安全验证缓冲区
+  NetworkByte PacketValidationBuffer [32];                    // 数据包验证缓冲区，用于存储验证过程中的临时数据
+  NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
+  // 第一层验证：使用活跃连接魔数进行解码验证
   NetworkHandle PacketSecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
   if (((int)PacketSecurityValidationResult == 0) &&
      (PacketSecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)PacketSecurityValidationResult == 0)) {
@@ -1975,11 +1977,13 @@ NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t C
  */
 NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int64_t *PacketData)
 {
-  NetworkHandle PacketProcessingResult;                        // 数据包处理结果
-  NetworkStatus ConnectionStatusArray [6];                      // 连接状态数组
-  NetworkStatus PacketValidationStatusArray [4];                 // 数据包验证状态数组
-  NetworkStatus PacketProcessingStatusArray [4];                 // 数据包处理状态数组
+  // 数据包处理状态变量
+  NetworkHandle PacketProcessingResult;                        // 数据包处理结果，存储整个处理流程的最终状态
+  NetworkStatus ConnectionStatusArray [6];                      // 连接状态数组，存储连接的各级状态信息
+  NetworkStatus PacketValidationStatusArray [4];                 // 数据包验证状态数组，存储验证过程中的状态信息
+  NetworkStatus PacketProcessingStatusArray [4];                 // 数据包处理状态数组，存储处理过程中的状态信息
   
+  // 根据数据包大小选择不同的处理路径
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
