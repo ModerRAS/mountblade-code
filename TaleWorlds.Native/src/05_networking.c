@@ -1750,15 +1750,15 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkConnectionStatus *ContextArray = (NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + (long long)ConnectionStatusPtr);
             
             // 提取连接状态信息
-            NetworkConnectionStatus CurrentPacketStatus = ContextArray[1];
-            NetworkConnectionStatus CurrentDataStatus = ContextArray[2];
-            NetworkConnectionStatus CurrentValidationStatus = ContextArray[3];
+            NetworkConnectionStatus CurrentConnectionPacketStatus = ContextArray[1];
+            NetworkConnectionStatus CurrentConnectionDataStatus = ContextArray[2];
+            NetworkConnectionStatus CurrentConnectionValidationStatus = ContextArray[3];
             
             // 更新数据包缓冲区状态
             *ConnectionStatusPtr = *ContextArray;
-            ConnectionStatusPtr[1] = CurrentPacketStatus;
-            ConnectionStatusPtr[2] = CurrentDataStatus;
-            ConnectionStatusPtr[3] = CurrentValidationStatus;
+            ConnectionStatusPtr[1] = CurrentConnectionPacketStatus;
+            ConnectionStatusPtr[2] = CurrentConnectionDataStatus;
+            ConnectionStatusPtr[3] = CurrentConnectionValidationStatus;
             ConnectionStatusPtr[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + -4 + (long long)(ConnectionStatusPtr + 5));
             
             // 更新计数器
@@ -1833,13 +1833,13 @@ NetworkMainProcessingLoop:
         NetworkStatus *NetworkStatusBuffer = ConnectionStatusBuffer;
         do {
           NetworkStatus *ConnectionContextData = (NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + (long long)NetworkStatusBuffer);
-          NetworkStatus CurrentValidationStatus = ConnectionContextData[1];
-          NetworkStatus CurrentTimeoutStatus = ConnectionContextData[2];
-          NetworkStatus CurrentSecondaryStatus = ConnectionContextData[3];
+          NetworkStatus CurrentNetworkValidationStatus = ConnectionContextData[1];
+          NetworkStatus CurrentNetworkTimeoutStatus = ConnectionContextData[2];
+          NetworkStatus CurrentNetworkSecondaryStatus = ConnectionContextData[3];
           *NetworkStatusBuffer = *ConnectionContextData;
-          NetworkStatusBuffer[1] = CurrentValidationStatus;
-          NetworkStatusBuffer[2] = CurrentTimeoutStatus;
-          NetworkStatusBuffer[3] = CurrentSecondaryStatus;
+          NetworkStatusBuffer[1] = CurrentNetworkValidationStatus;
+          NetworkStatusBuffer[2] = CurrentNetworkTimeoutStatus;
+          NetworkStatusBuffer[3] = CurrentNetworkSecondaryStatus;
           NetworkStatusBuffer[4] = *(NetworkStatus *)((ConnectionContextHandle - (long long)ConnectionStatusBuffer) + -4 + (long long)(NetworkStatusBuffer + 5));
           NetworkStatusIterator = NetworkStatusIterator + -1;
           NetworkStatusBuffer = NetworkStatusBuffer + 5;
