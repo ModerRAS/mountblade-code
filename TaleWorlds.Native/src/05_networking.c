@@ -983,7 +983,7 @@ void InitializeNetworkSocketHandle(void)
 void BindNetworkSocketToAddress(void)
 {
   // 设置网络地址和端口配置
-  NetworkServerIpAddress = IPV4_LOCALHOST;               // 设置为127.0.0.1 (本地回环地址)
+  NetworkServerIpAddress = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
   NetworkServerPortNumber = PORT_HTTP_ALT;                   // 设置端口为8080
   NetworkClientIpAddress = CLIENT_IP_ANY;               // 客户端IP地址初始化为0.0.0.0
   NetworkClientPortNumber = CLIENT_PORT_ANY;                   // 客户端端口初始化为0
