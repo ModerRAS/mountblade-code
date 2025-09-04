@@ -1464,10 +1464,10 @@ void ProcessNetworkPackets(void)
   NetworkPacketLoss = 0x00;                             // 重置数据包丢失率
   
   // 初始化重试机制
-  NetworkRetryInterval = TIMEOUT_1_SECOND;                        // 设置重试间隔为1秒
+  NetworkRetryInterval = NetworkTimeoutOneSecond;                        // 设置重试间隔为1秒
   NetworkTimeoutInterval = NetworkTimeoutFiveSeconds;                     // 设置超时间隔为5秒
-  NetworkConnectionRetryCount = RETRY_COUNT_MAXIMUM;             // 设置连接重试次数为3次
-  NetworkConnectionBackoffTime = BACKOFF_TIME_2_SECONDS;           // 设置连接退避时间为2秒
+  NetworkConnectionRetryCount = NetworkRetryCountMaximum;             // 设置连接重试次数为3次
+  NetworkConnectionBackoffTime = NetworkBackoffTimeTwoSeconds;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
   NetworkEventSize = EVENT_SIZE_64B;                              // 设置事件大小为64字节
