@@ -15754,10 +15754,10 @@ OperationResultHandler:
  * 
  * @param ObjectContext 对象上下文指针
  * @param ValidationContext 验证上下文指针
- * @param encryptionFlag 加密标志参数
+ * @param EncryptionStatusFlag 加密状态标志参数
  * @return 无返回值
  */
-void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t ValidationContext,uint32_t encryptionFlag)
+void ExecuteSecurityEncryptionValidation(int64_t *ObjectContext,int64_t ValidationContext,uint32_t EncryptionStatusFlag)
 
 {
   int64_t LoopCounter;
@@ -15805,7 +15805,7 @@ LoopExit:
       int NextResultIndex = ProcessingResultCounter + 1;
       MemoryOperationTemplate = &SystemMemoryTemplateA;
       uint32_t ChecksumValue = DataChecksumBuffer[0];
-      uint32_t EncryptionParam = encryptionFlag;
+      uint32_t EncryptionParam = EncryptionStatusFlag;
       int ResultIndex = ProcessingResultCounter;
       int ResourceValidationResult = GetAndValidateResourceData(ObjectContext,&SecurityContextPointer);
       if (ResourceHashStatus != 0) goto LoopExit;
