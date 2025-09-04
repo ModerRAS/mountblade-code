@@ -80658,7 +80658,18 @@ void InitializeSystemDataStructurePointer(uint8_t ObjectContext, int64_t Validat
 
 
 
-void Unwind_18090c310(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源处理器模板
+ * 
+ * 初始化系统资源处理器模板，设置系统上下文和资源处理函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会设置系统资源处理器模板并初始化相关上下文
+ * @warning 原始函数名：Unwind_18090c310
+ */
+void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -80676,7 +80687,18 @@ void Unwind_18090c310(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c320(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 设置验证上下文中的系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会将系统数据结构指针设置到验证上下文中
+ * @warning 原始函数名：Unwind_18090c320
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + ValidationContextResourceTableOffset) = &SystemDataStructure;
@@ -80685,7 +80707,18 @@ void Unwind_18090c320(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c330(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理基本IOS资源
+ * 
+ * 检查资源数据状态并清理基本IOS资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会检查资源数据标志位并清理相应的IOS资源
+ * @warning 原始函数名：Unwind_18090c330
+ */
+void CleanupBasicIOSResource(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -80697,7 +80730,18 @@ void Unwind_18090c330(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c360(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 销毁基本IO流
+ * 
+ * 销毁系统上下文中的基本IO流资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会销毁系统上下文中的基本IO流资源
+ * @warning 原始函数名：Unwind_18090c360
+ */
+void DestroyBasicIOStreamResource(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
                     // WARNING: Could not recover jumptable at 0x00018090c36b. Too many branches

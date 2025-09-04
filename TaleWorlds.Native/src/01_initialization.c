@@ -44,8 +44,8 @@
 #define NodeHandlerIndex            10
 #define GameCoreIdentifier1             0x4fc124d23d41985f
 #define GameCoreIdentifier2             0xe2f4a30d6e6ae482
-#define GameCoreSystemId                    0x4fc124d23d41985f
-#define GameCoreSystemNodeData               0
+#define GameCoreId                    0x4fc124d23d41985f
+#define GameCoreNodeData               0
 #define BaseAllocatorSystemIdentifier1       0x4770584fbb1df897
 #define BaseAllocatorSystemIdentifier2       0x47f249e43f66f2ab
 #define BaseAllocatorSystemFlag              1
@@ -30047,9 +30047,9 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
     *(void* *)(SystemThreadContext + 4) = 0x746365746564206b;
     SystemThreadContext[6] = 0x202c6465;
     *(uint8_t *)(SystemThreadContext + 7) = 0;
-    systemFlag88 = 0x1c;
-    ExecuteSystemCommand(&stackParameterB,0x3e);
-    SystemThreadContext = (uint32_t *)(pStackParameterC + systemFlag88);
+    SystemDebugFlag = 0x1c;
+    ExecuteSystemCommand(&StackParameterB,0x3e);
+    SystemThreadContext = (uint32_t *)(StackParameterC + SystemDebugFlag);
     *SystemThreadContext = 0x69676e65;
     SystemThreadContext[1] = 0x6420656e;
     SystemThreadContext[2] = 0x6e206469;
@@ -30060,25 +30060,25 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
     SystemThreadContext[7] = 0x6f662065;
     *(void*2 *)(SystemThreadContext + 8) = 0x2072;
     *(uint8_t *)((long long)SystemThreadContext + 0x22) = 0;
-    systemFlag88 = 0x3e;
+    SystemDebugFlag = 0x3e;
     InitializeProcessSystem(SystemCharBuffer,&SystemDataBufferTemplateI,900);
-    resourceAllocationContext = systemFlag88;
+    ResourceAllocationContext = SystemDebugFlag;
     SystemProcessingBufferPointer = -1;
     do {
       SystemMemoryPointer = SystemProcessingBufferPointer;
       SystemProcessingBufferPointer = SystemMemoryPointer + 1;
     } while (SystemCharBuffer[SystemMemoryPointer + 1] != '\0');
-    systemOffset = (int)(SystemMemoryPointer + 1);
-    if (0 < systemOffset) break;
-    SystemOperationStatus = systemFlag88 + 10;
-    ExecuteSystemCommand(&stackParameterB,SystemOperationStatus);
-    resourceEntryPointer = (void* *)(pStackParameterC + systemFlag88);
+    SystemStringOffset = (int)(SystemMemoryPointer + 1);
+    if (0 < SystemStringOffset) break;
+    SystemOperationStatus = SystemDebugFlag + 10;
+    ExecuteSystemCommand(&StackParameterB,SystemOperationStatus);
+    ResourceEntryPointer = (void* *)(StackParameterC + SystemDebugFlag);
     *resourceEntryPointer = 0x73646e6f63657320;
     *(void*2 *)(resourceEntryPointer + 1) = 0x2021;
     *(uint8_t *)((long long)resourceEntryPointer + 10) = 0;
-    systemFlag88 = SystemOperationStatus;
-    ExecuteSystemCommand(&stackParameterB,resourceAllocationContext + 0x2b);
-    SystemThreadContext = (uint32_t *)(pStackParameterC + systemFlag88);
+    SystemDebugFlag = SystemOperationStatus;
+    ExecuteSystemCommand(&StackParameterB,ResourceAllocationContext + 0x2b);
+    SystemThreadContext = (uint32_t *)(StackParameterC + SystemDebugFlag);
     *SystemThreadContext = 0x65766544;
     SystemThreadContext[1] = 0x65706f6c;
     SystemThreadContext[2] = 0x6e692072;
@@ -30094,7 +30094,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
     }
     UnsignedStackFlagSecondary = 0;
     UnsignedStackFlagQuaternary = 0;
-    systemFlag88 = resourceAllocationContext + 0x2b;
+    SystemDebugFlag = ResourceAllocationContext + 0x2b;
     (**(code **)(*(long long *)*SystemMemoryBlockStorage + 0x20))
               ((long long *)*SystemMemoryBlockStorage,&SystemProcessingBufferConfig,0x175c,SystemOperationCounterPointer);
     *(double *)(SystemResourceManager + 0xc0) = SystemPerformanceTimeElapsed;
