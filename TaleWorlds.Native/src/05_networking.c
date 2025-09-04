@@ -40,9 +40,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络系统常量定义
 #define NetworkContextSystemOffset 0x98                  // 网络上下文系统偏移量
 #define NetworkSessionDataOffset 0x200                   // 网络会话数据偏移量
-#define ConnectionStateBufferOffset 0x28                // 连接状态缓冲区偏移量
+#define NetworkConnectionStateBufferOffset 0x28                // 连接状态缓冲区偏移量
 #define ConnectionStateDataOffset 0x20                   // 连接状态数据偏移量
-#define ConnectionStateFlagsOffset 0x24                  // 连接状态标志偏移量
+#define NetworkConnectionStateFlagsOffset 0x24                  // 连接状态标志偏移量
 #define ConnectionParameterOffset 0xc                     // 连接参数偏移量
 #define NetworkConnectionTableOffset 0x1a0                // 网络连接表偏移量
 #define ConnectionEntrySize 0x14                          // 连接条目大小
@@ -1143,7 +1143,7 @@ void CloseNetworkConnectionHandler(void)
 {
   // 清理连接状态
   NetworkConnectionStatusFlags = 0x00;                // 重置连接状态标志
-  NetworkConnectionStateFlags = 0x00;                 // 重置连接状态标志
+  NetworkNetworkConnectionStateFlags = 0x00;                 // 重置连接状态标志
   NetworkConnectionExtendedFlags = 0x00;              // 重置连接扩展标志
   
   // 释放连接资源
@@ -1686,7 +1686,7 @@ uint32_t NetworkSystemContext;                             // 网络系统上下
 uint32_t NetworkSessionIdentifier;                         // 网络会话标识符
 uint32_t NetworkContextPointer;                            // 网络上下文指针
 uint32_t NetworkContextData;                               // 网络上下文数据
-uint32_t NetworkConnectionIdentifier;                     // 网络连接标识符
+uint32_t NetworkNetworkConnectionIdentifier;                     // 网络连接标识符
 uint32_t NetworkConnectionState;                           // 网络连接状态
 uint32_t NetworkConnectionParameters;                     // 网络连接参数
 uint32_t NetworkConnectionOptions;                        // 网络连接选项
@@ -1732,33 +1732,33 @@ uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓
 void InitializeNetworkConnectionState(void)
 {
   // 网络连接初始化变量
-  uint8_t *NetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
+  uint8_t *NetworkNetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
   int32_t NetworkConnectionInitializationStatus;      // 网络连接初始化结果状态
-  int64_t NetworkSystemContextData;                 // 网络系统上下文数据
-  int32_t NetworkConnectionIdentifier;               // 网络连接标识符
-  uint32_t NetworkConnectionStateFlags;              // 网络连接状态标志位
+  int64_t NetworkNetworkSystemContextData;                 // 网络系统上下文数据
+  int32_t NetworkNetworkConnectionIdentifier;               // 网络连接标识符
+  uint32_t NetworkNetworkConnectionStateFlags;              // 网络连接状态标志位
   int32_t NetworkConnectionSessionId;                // 网络连接会话ID
   uint64_t *NetworkConnectionStateData;               // 网络连接状态数据指针
-  int64_t NetworkContextDataPointer;                    // 网络上下文指针
+  int64_t NetworkConnectionContextPointer;             // 网络连接上下文指针
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
-  if (*(int *)(*(int64_t *)(SystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkSessionId) {
-    *ConnectionStateBuffer = 0;  // 重置状态缓冲区
+  if (*(int *)(*(int64_t *)(NetworkSystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkSessionId) {
+    *NetworkConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + 8) = ((int)ConnectionStateBuffer - ConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + 8) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
-    NetworkInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextDataPointer + NetworkContextSystemOffset));
-    if (NetworkInitializationStatus == 0) {
-      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateDataOffset);
+    NetworkConnectionInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextDataPointer + NetworkContextSystemOffset));
+    if (NetworkConnectionInitializationStatus == 0) {
+      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + ConnectionStateDataOffset);
     }
     CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
-  CopyConnectionBuffer(ConnectionStateBuffer);
+  CopyConnectionBuffer(NetworkConnectionStateBuffer);
 }
 
 /**
@@ -1773,14 +1773,14 @@ void InitializeNetworkConnectionState(void)
 void ResetNetworkConnectionPointer(void)
 {
   // 网络连接指针重置变量
-  uint8_t *NetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
+  uint8_t *NetworkNetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
   int64_t NetworkContextData;                       // 网络上下文数据
   uint64_t *NetworkDataBuffer;                      // 网络数据缓冲区指针
-  uint32_t NetworkConnectionStateFlags;              // 网络连接状态标志位
-  int32_t ConnectionIdentifier;                             // 连接标识符
+  uint32_t NetworkNetworkConnectionStateFlags;              // 网络连接状态标志位
+  int32_t NetworkConnectionIdentifier;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + ConnectionStateDataOffset);
@@ -2382,13 +2382,13 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * 
  * 将连接状态和句柄信息合并为一个单一的值，便于后续处理
  * 
- * @param ConnectionStateFlags 连接状态标志
- * @param ConnectionIdentifier 连接标识符
+ * @param NetworkConnectionStateFlags 连接状态标志
+ * @param NetworkConnectionIdentifier 连接标识符
  * @return uint64_t 合并后的连接状态和句柄值
  */
-uint64_t CombineConnectionStateAndHandle(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
+uint64_t CombineConnectionStateAndHandle(uint32_t NetworkConnectionStateFlags, uint32_t NetworkConnectionIdentifier)
 {
-  return ((uint64_t)ConnectionStateFlags << 32) | ConnectionIdentifier;
+  return ((uint64_t)NetworkConnectionStateFlags << 32) | NetworkConnectionIdentifier;
 }
 
 /**

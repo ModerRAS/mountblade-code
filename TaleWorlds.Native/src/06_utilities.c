@@ -432,6 +432,59 @@
 #define SystemTemporaryVariableInitialValue -0x8000000000000000
 #define SystemTemporarySecondaryVariableInitialValue -0x80000000
 
+// 内存布局偏移常量
+#define MemoryPoolIndexOffset 0x8088
+#define MemoryPoolDataTableOffset 0x80b0
+#define MemoryPoolDataArrayOffset 0x80d8
+
+// 资源操作常量
+#define ResourceTableEntryArraySize 0x20
+#define ResourceTableEntryPointerSize 8
+#define ResourceTableEntryDataSize 0xc
+
+// 资源哈希操作常量
+#define ResourceHashOperationMultiplier 0x278
+#define ResourceHashSecondaryOperationMultiplier 0x1a8
+
+// 资源数据偏移常量
+#define ResourceDataValidationOffset 0x30
+#define ResourceDataStatusOffset 0x52
+#define ResourceDataSecondaryStatusOffset 0x5a
+#define ResourceDataTertiaryStatusOffset 0x70
+#define ResourceDataQuaternaryStatusOffset 0x7e
+#define ResourceDataQuinaryStatusOffset 0x8b
+#define ResourceDataSenaryStatusOffset 0x32
+
+// 系统执行指针偏移常量
+#define SystemExecutionPointerPrimaryOffset 0x7f
+#define SystemExecutionPointerSecondaryOffset 0x25
+#define SystemExecutionPointerTertiaryOffset 0x45
+#define SystemExecutionPointerQuaternaryOffset 0x77
+
+// 资源处理偏移常量
+#define ResourceProcessingPrimaryOffset 0x1035
+#define ResourceProcessingSecondaryOffset 0x103b
+#define ResourceProcessingTertiaryOffset 0x102f
+
+// 资源上下文偏移常量
+#define ResourceContextDataOffset 0x12
+#define ResourceContextSecondaryDataOffset 0x14
+
+// 资源哈希状态偏移常量
+#define ResourceHashStatusPrimaryOffset 0x103b
+#define ResourceHashStatusSecondaryOffset 0x1037
+#define ResourceHashStatusTertiaryOffset 0x1031
+#define ResourceHashStatusQuaternaryOffset 0x103d
+#define ResourceHashStatusQuinaryOffset 0x1035
+
+// 资源索引偏移常量
+#define ResourceIndexPointerOffset 0x103b
+#define ResourceIndexSecondaryPointerOffset 0x1037
+#define ResourceIndexTertiaryPointerOffset 0x1031
+
+// 错误处理偏移常量
+#define ErrorInvalidResourceDataSecondaryTablePointerOffset 0x60
+
 // 文件资源相关常量
 #define FileResourceLockOffset 0x858
 #define FileResourceStatusOffset 0x868
@@ -95032,7 +95085,17 @@ void ExecuteResourceProcessingPointerOperation(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090f1b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证
+ * 
+ * 在系统unwind过程中执行资源哈希状态验证，
+ * 验证资源哈希状态并执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f1b0
+ */
+void ExecuteResourceHashStatusValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -95068,7 +95131,17 @@ void Unwind_18090f1b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f1d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证（变体1）
+ * 
+ * 在系统unwind过程中执行资源哈希状态验证，
+ * 验证资源哈希状态并执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f1d0
+ */
+void ExecuteResourceHashStatusValidationVariant1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
