@@ -1732,11 +1732,11 @@ uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓
 void InitializeNetworkConnectionState(void)
 {
   // 网络连接初始化变量
-  uint8_t *NetworkNetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
+  uint8_t *NetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
   int32_t NetworkConnectionInitializationStatus;      // 网络连接初始化结果状态
   int64_t NetworkSystemContextData;                 // 网络系统上下文数据
-  int32_t NetworkNetworkConnectionIdentifier;               // 网络连接标识符
-  uint32_t NetworkNetworkConnectionStateFlags;              // 网络连接状态标志位
+  int32_t NetworkConnectionIdentifier;               // 网络连接标识符
+  uint32_t NetworkConnectionStateFlags;              // 网络连接状态标志位
   int32_t NetworkConnectionSessionId;                // 网络连接会话ID
   uint64_t *NetworkConnectionStateData;               // 网络连接状态数据指针
   int64_t NetworkConnectionContextPointer;             // 网络连接上下文指针
@@ -1773,10 +1773,10 @@ void InitializeNetworkConnectionState(void)
 void ResetNetworkConnectionPointer(void)
 {
   // 网络连接指针重置变量
-  uint8_t *NetworkNetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
+  uint8_t *NetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
   int64_t NetworkContextData;                       // 网络上下文数据
   uint64_t *NetworkDataBuffer;                      // 网络数据缓冲区指针
-  uint32_t NetworkNetworkConnectionStateFlags;              // 网络连接状态标志位
+  uint32_t NetworkConnectionStateFlags;              // 网络连接状态标志位
   int32_t NetworkConnectionIdentifier;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
