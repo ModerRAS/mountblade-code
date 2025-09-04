@@ -189,20 +189,20 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define HEARTBEAT_60_SECONDS 0x3C                          // 60秒心跳
 
 // 网络质量常量
-#define CONNECTION_QUALITY_GOOD 0x05            // 良好连接质量
-#define LATENCY_50MS 0x32                      // 50毫秒延迟
-#define BANDWIDTH_4KB 0x1000                   // 4KB带宽
-#define WINDOW_SCALE_16 0x10                   // 窗口缩放16
+#define CONNECTION_QUALITY_GOOD 0x05                       // 良好连接质量
+#define LATENCY_50MS 0x32                                     // 50毫秒延迟
+#define BANDWIDTH_4KB 0x1000                                 // 4KB带宽
+#define WINDOW_SCALE_16 0x10                                 // 窗口缩放16
 
 // 网络安全常量
-#define SECURITY_LEVEL_HIGH 0x03               // 高安全级别
-#define AUTH_TYPE_PASSWORD 0x01                // 密码认证类型
-#define ENCRYPTION_AES 0x01                    // AES加密算法
-#define COMPRESSION_ZLIB 0x01                  // ZLIB压缩方法
-#define HASH_ALGORITHM_SHA256 0x01             // SHA-256哈希算法
-#define SIGNATURE_METHOD_RSA 0x01              // RSA签名方法
-#define ENCRYPTION_KEY_LENGTH_256B 0x100       // 256位加密密钥长度
-#define COMPRESSION_LEVEL_DEFAULT 0x06         // 默认压缩级别
+#define SECURITY_LEVEL_HIGH 0x03                           // 高安全级别
+#define AUTH_TYPE_PASSWORD 0x01                            // 密码认证类型
+#define ENCRYPTION_AES 0x01                               // AES加密算法
+#define COMPRESSION_ZLIB 0x01                             // ZLIB压缩方法
+#define HASH_ALGORITHM_SHA256 0x01                        // SHA-256哈希算法
+#define SIGNATURE_METHOD_RSA 0x01                         // RSA签名方法
+#define ENCRYPTION_KEY_LENGTH_256B 0x100                  // 256位加密密钥长度
+#define COMPRESSION_LEVEL_DEFAULT 0x06                    // 默认压缩级别
 
 // 网络连接常量
 #define CONNECTION_MODE_CLIENT 0x01            // 客户端连接模式
@@ -216,92 +216,92 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define BACKOFF_TIME_2_SECONDS 0x07D0          // 退避时间2秒
 
 // 网络数据包常量
-#define PACKET_HEADER_SIZE_32B 0x20            // 数据包头大小32字节
-#define PACKET_TRAILER_SIZE_16B 0x10           // 数据包尾大小16字节
-#define PACKET_PAYLOAD_SIZE_1KB 0x400           // 数据包负载大小1KB
-#define MAXIMUM_PACKET_SIZE_2KB 0x800          // 最大数据包大小2KB
-#define PACKET_PROCESSING_SIZE_256B 0x100      // 数据包处理大小256字节
-#define VALIDATION_BUFFER_SIZE_39B 0x27        // 验证缓冲区大小39字节
-#define NetworkErrorInvalidPacket 0x1c         // 无效数据包错误码
-#define NetworkConnectionFinalizeValue 0x7d    // 连接完成状态值 (125)
-#define NetworkConnectionBasicValidationMode 0x01    // 基本验证模式
-#define NetworkConnectionStrictValidationMode 0x02    // 严格验证模式
-#define NetworkPacketBasicDecodingMode 0x01          // 基本解码模式
-#define NetworkPacketStrictDecodingMode 0x02          // 严格解码模式
-#define NetworkPacketMagicValidationMask 0x03        // 魔数验证掩码
-#define NetworkPacketFirstMagicValidMask 0x01        // 第一个魔数有效掩码
-#define NetworkPacketSecondMagicValidMask 0x02       // 第二个魔数有效掩码
-#define NetworkValidationSuccess 0x01                // 验证成功状态
-#define NetworkValidationFailure 0x00                // 验证失败状态
-#define NetworkIntegrityCheckSuccess 0x01            // 完整性检查成功
-#define NetworkDataFormatValid 0x01                 // 数据格式有效
-#define NetworkChecksumValid 0x01                    // 校验和有效
-#define NetworkPacketSizeLimit 0x55            // 数据包大小限制（85字节）
+#define PACKET_HEADER_SIZE_32B 0x20                        // 数据包头大小32字节
+#define PACKET_TRAILER_SIZE_16B 0x10                       // 数据包尾大小16字节
+#define PACKET_PAYLOAD_SIZE_1KB 0x400                      // 数据包负载大小1KB
+#define MAXIMUM_PACKET_SIZE_2KB 0x800                     // 最大数据包大小2KB
+#define PACKET_PROCESSING_SIZE_256B 0x100                 // 数据包处理大小256字节
+#define VALIDATION_BUFFER_SIZE_39B 0x27                   // 验证缓冲区大小39字节
+#define NetworkErrorInvalidPacket 0x1c                     // 无效数据包错误码
+#define NetworkConnectionFinalizeValue 0x7d                // 连接完成状态值 (125)
+#define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
+#define NetworkConnectionStrictValidationMode 0x02           // 严格验证模式
+#define NetworkPacketBasicDecodingMode 0x01                 // 基本解码模式
+#define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
+#define NetworkPacketMagicValidationMask 0x03               // 魔数验证掩码
+#define NetworkPacketFirstMagicValidMask 0x01               // 第一个魔数有效掩码
+#define NetworkPacketSecondMagicValidMask 0x02              // 第二个魔数有效掩码
+#define NetworkValidationSuccess 0x01                       // 验证成功状态
+#define NetworkValidationFailure 0x00                       // 验证失败状态
+#define NetworkIntegrityCheckSuccess 0x01                   // 完整性检查成功
+#define NetworkDataFormatValid 0x01                        // 数据格式有效
+#define NetworkChecksumValid 0x01                           // 校验和有效
+#define NetworkPacketSizeLimit 0x55                          // 数据包大小限制（85字节）
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
-#define NetworkStandardBufferSize 0x100         // 标准缓冲区大小（256字节）
+#define NetworkStandardBufferSize 0x100                       // 标准缓冲区大小（256字节）
 
 // 网络连接验证偏移量常量
-#define NetworkConnectionValidationOffsetSecond 0x54   // 第二级连接验证偏移量
-#define NetworkConnectionValidationOffsetThird 0x78    // 第三级连接验证偏移量
-#define NetworkConnectionValidationOffsetFourth 0x58   // 第四级连接验证偏移量
-#define NetworkConnectionDataOffsetFirst 0x5c          // 第一级连接数据偏移量
-#define NetworkConnectionIntegrityOffsetFirst 0x70     // 第一级连接完整性偏移量
-#define NetworkConnectionIntegrityOffsetSecond 0x74    // 第二级连接完整性偏移量
-#define NetworkConnectionFinalizeOffset 0x7c           // 连接完成偏移量
+#define NetworkConnectionValidationOffsetSecond 0x54         // 第二级连接验证偏移量
+#define NetworkConnectionValidationOffsetThird 0x78          // 第三级连接验证偏移量
+#define NetworkConnectionValidationOffsetFourth 0x58         // 第四级连接验证偏移量
+#define NetworkConnectionDataOffsetFirst 0x5c                // 第一级连接数据偏移量
+#define NetworkConnectionIntegrityOffsetFirst 0x70           // 第一级连接完整性偏移量
+#define NetworkConnectionIntegrityOffsetSecond 0x74          // 第二级连接完整性偏移量
+#define NetworkConnectionFinalizeOffset 0x7c                 // 连接完成偏移量
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
 // 网络缓冲区对齐和大小常量
-#define NetworkBufferAlignmentMask 0xfffffffc    // 网络缓冲区对齐掩码（4字节对齐）
-#define NetworkBitShift31Value 0x1f              // 31位偏移值
-#define NetworkByteMaskValue 0xff                 // 字节掩码值
-#define NetworkConnectionAlignmentSize 4          // 网络连接对齐大小（4字节）
-#define NetworkContextTableOffset 0xb0            // 网络上下文表偏移量
-#define NetworkConnectionIdOffset 0x98            // 网络连接ID偏移量
-#define NetworkStatusDataOffset 0x200             // 网络状态数据偏移量
-#define NetworkResourceAllocationSize 0x20        // 网络资源分配大小（32字节）
-#define NetworkResourceAllocationSizeEx 0x28     // 网络资源扩展分配大小（40字节）
-#define NetworkHandleStorageSize 0x30            // 网络句柄存储大小（48字节）
-#define NetworkPacketProcessingSize 0x100         // 网络数据包处理大小（256字节）
-#define NetworkValidationBufferSize 0x27         // 网络验证缓冲区大小（39字节）
-#define NetworkErrorReportSize 0xb                // 网络错误报告大小（11字节）
-#define NetworkSecurityReportSize 0xd             // 网络安全报告大小（13字节）
-#define NetworkConnectionReportSize 0xf          // 网络连接报告大小（15字节）
-#define NetworkPacketReportSize 0xc               // 网络数据包报告大小（12字节）
+#define NetworkBufferAlignmentMask 0xfffffffc              // 网络缓冲区对齐掩码（4字节对齐）
+#define NetworkBitShift31Value 0x1f                        // 31位偏移值
+#define NetworkByteMaskValue 0xff                           // 字节掩码值
+#define NetworkConnectionAlignmentSize 4                    // 网络连接对齐大小（4字节）
+#define NetworkContextTableOffset 0xb0                      // 网络上下文表偏移量
+#define NetworkConnectionIdOffset 0x98                     // 网络连接ID偏移量
+#define NetworkStatusDataOffset 0x200                       // 网络状态数据偏移量
+#define NetworkResourceAllocationSize 0x20                  // 网络资源分配大小（32字节）
+#define NetworkResourceAllocationSizeEx 0x28               // 网络资源扩展分配大小（40字节）
+#define NetworkHandleStorageSize 0x30                       // 网络句柄存储大小（48字节）
+#define NetworkPacketProcessingSize 0x100                    // 网络数据包处理大小（256字节）
+#define NetworkValidationBufferSize 0x27                    // 网络验证缓冲区大小（39字节）
+#define NetworkErrorReportSize 0xb                          // 网络错误报告大小（11字节）
+#define NetworkSecurityReportSize 0xd                       // 网络安全报告大小（13字节）
+#define NetworkConnectionReportSize 0xf                     // 网络连接报告大小（15字节）
+#define NetworkPacketReportSize 0xc                         // 网络数据包报告大小（12字节）
 
 // 网络连接默认配置
-#define NetworkConnectionTimeoutDefault 30000     // 默认连接超时时间（30秒）
-#define NetworkDefaultMaxConnections 100          // 默认最大连接数
-#define NetworkSuccessStatus 0                    // 网络操作成功状态
-#define NetworkStandardBufferSize 32               // 标准缓冲区大小
-#define NetworkConnectionBufferSize 48             // 连接缓冲区大小
+#define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
+#define NetworkDefaultMaxConnections 100                    // 默认最大连接数
+#define NetworkSuccessStatus 0                              // 网络操作成功状态
+#define NetworkStandardBufferSize 32                         // 标准缓冲区大小
+#define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
 // 网络连接配置常量
-#define CONNECTION_POOL_CAPACITY 1000              // 连接池容量
-#define HEALTH_STATUS_NORMAL 0x01                    // 正常健康状态
-#define MANAGER_HANDLE_INVALID 0xFFFFFFFF            // 无效管理器句柄
-#define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF         // 无效套接字描述符
-#define CLIENT_IP_ANY 0x00000000                     // 任意客户端IP地址
-#define CLIENT_PORT_ANY 0x0000                       // 任意客户端端口
-#define SOCKET_BOUND 0x01                            // 套接字已绑定标志
-#define ACTIVE_CONNECTIONS_MAX 100                  // 最大活跃连接数
-#define PENDING_REQUESTS_INITIAL 0                   // 初始待处理请求数
-#define QUEUE_INITIALIZED 0x01                      // 队列已初始化
-#define CALLBACK_INVALID 0xFFFFFFFF                  // 无效回调句柄
-#define TIMEOUT_INVALID 0xFFFFFFFF                   // 无效超时句柄
-#define CONTEXT_INITIALIZED 0x01                     // 上下文已初始化
-#define RELIABILITY_HIGH 0x01                        // 高可靠性
-#define ENCRYPTION_KEY_DEMO 0x12345678               // 演示加密密钥
-#define FLAGS_RESET 0x00                             // 重置标志
-#define CONTEXT_RELEASED 0x00                        // 上下文已释放
-#define SIZE_RESET 0x00                              // 大小重置
-#define POOL_RELEASED 0x00                          // 连接池已释放
-#define SECURITY_RESET 0x00                         // 安全重置
-#define AUTH_RESET 0x00                              // 认证重置
-#define ENCRYPTION_RESET 0x00                        // 加密重置
-#define COMPRESSION_RESET 0x00                      // 压缩重置
-#define SOCKET_RESET 0x00                            // 套接字重置
-#define SOCKET_DATA_RESET 0x00                      // 套接字数据重置
-#define EVENT_RESET 0x00                             // 事件重置
+#define CONNECTION_POOL_CAPACITY 1000                       // 连接池容量
+#define HEALTH_STATUS_NORMAL 0x01                             // 正常健康状态
+#define MANAGER_HANDLE_INVALID 0xFFFFFFFF                     // 无效管理器句柄
+#define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF                  // 无效套接字描述符
+#define CLIENT_IP_ANY 0x00000000                            // 任意客户端IP地址
+#define CLIENT_PORT_ANY 0x0000                              // 任意客户端端口
+#define SOCKET_BOUND 0x01                                    // 套接字已绑定标志
+#define ACTIVE_CONNECTIONS_MAX 100                           // 最大活跃连接数
+#define PENDING_REQUESTS_INITIAL 0                          // 初始待处理请求数
+#define QUEUE_INITIALIZED 0x01                               // 队列已初始化
+#define CALLBACK_INVALID 0xFFFFFFFF                           // 无效回调句柄
+#define TIMEOUT_INVALID 0xFFFFFFFF                            // 无效超时句柄
+#define CONTEXT_INITIALIZED 0x01                              // 上下文已初始化
+#define RELIABILITY_HIGH 0x01                                // 高可靠性
+#define ENCRYPTION_KEY_DEMO 0x12345678                       // 演示加密密钥
+#define FLAGS_RESET 0x00                                      // 重置标志
+#define CONTEXT_RELEASED 0x00                                 // 上下文已释放
+#define SIZE_RESET 0x00                                       // 大小重置
+#define POOL_RELEASED 0x00                                    // 连接池已释放
+#define SECURITY_RESET 0x00                                   // 安全重置
+#define AUTH_RESET 0x00                                       // 认证重置
+#define ENCRYPTION_RESET 0x00                                 // 加密重置
+#define COMPRESSION_RESET 0x00                               // 压缩重置
+#define SOCKET_RESET 0x00                                     // 套接字重置
+#define SOCKET_DATA_RESET 0x00                               // 套接字数据重置
+#define EVENT_RESET 0x00                                      // 事件重置
 #define CALLBACK_RESET 0x00                          // 回调重置
 #define QUEUE_RESET 0x00                             // 队列重置
 #define HANDLER_RESET 0x00                           // 处理器重置

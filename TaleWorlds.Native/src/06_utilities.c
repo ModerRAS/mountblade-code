@@ -79352,8 +79352,20 @@ void ExecuteResourceStatusResetAndOperation(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090be30(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行验证上下文中的第三级资源清理回调
+ * 
+ * 该函数负责执行验证上下文中第三级计数器偏移处的资源清理回调函数。
+ * 主要用于系统资源清理过程中的特定阶段处理。
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据和指针
+ * 
+ * @note 原始函数名为Unwind_18090be30，现已重命名为ExecuteValidationContextTertiaryResourceCleanup
+ * @warning 如果回调函数指针为空，可能会引发异常
+ * @see ValidationContextTertiaryCountOffset
+ */
+void ExecuteValidationContextTertiaryResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 {
   if (*(int64_t **)(ValidationContext + ValidationContextTertiaryCountOffset) != (int64_t *)0x0) {
     (**(code **)(**(int64_t **)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x38))();
@@ -81490,7 +81502,16 @@ void Unwind_18090c700(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c730(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统回调函数（偏移量0x148）
+ * 
+ * 该函数负责执行系统回调函数，用于处理系统资源管理中的回调操作
+ * 检查验证上下文中偏移量0x148位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void ExecuteSystemCallback0x148(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x148) != (int64_t *)0x0) {
@@ -81501,7 +81522,16 @@ void Unwind_18090c730(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c740(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统回调函数（偏移量0x160）
+ * 
+ * 该函数负责执行系统回调函数，用于处理系统资源管理中的回调操作
+ * 检查验证上下文中偏移量0x160位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void ExecuteSystemCallback0x160(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x160) != (int64_t *)0x0) {
@@ -81512,7 +81542,16 @@ void Unwind_18090c740(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c750(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统回调函数（偏移量0x180）
+ * 
+ * 该函数负责执行系统回调函数，用于处理系统资源管理中的回调操作
+ * 检查验证上下文中偏移量0x180位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void ExecuteSystemCallback0x180(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x180) != (int64_t *)0x0) {
@@ -81523,7 +81562,18 @@ void Unwind_18090c750(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c760(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统清理回调函数（偏移量0x110）
+ * 
+ * 该函数负责执行系统清理回调函数，用于处理系统资源管理中的清理操作
+ * 检查验证上下文中偏移量0x110位置的代码指针，如果存在则执行清理回调
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @param CleanupOption 清理选项参数
+ * @param CleanupFlag 清理标志参数
+ */
+void ExecuteSystemCleanupCallback0x110(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x110) != (code *)0x0) {
@@ -81534,7 +81584,16 @@ void Unwind_18090c760(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c770(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统回调函数（偏移量0x158）
+ * 
+ * 该函数负责执行系统回调函数，用于处理系统资源管理中的回调操作
+ * 检查验证上下文中偏移量0x158位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ */
+void ExecuteSystemCallback0x158(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x158) != (int64_t *)0x0) {

@@ -177,6 +177,32 @@
 #define SystemSecondaryAllocationSize         0x28
 #define SystemControllerAddress               0x180c91060
 
+// 系统配置标识符常量
+#define SystemConfigurationIdentifier         SystemConfigurationSystemIdentifier1
+
+// 系统数据比较模板A常量
+#define SystemDataComparisonTemplateA         SystemDataComparisonTemplateAlphaId1
+
+// 系统节点分配额外大小常量
+#define SYSTEM_NODE_ALLOCATION_EXTRA_SIZE     SystemNodeAllocationExtraSize
+
+// 系统配置节点标识符常量
+#define SYSTEM_CONFIGURATION_NODE_IDENTIFIER1 SystemConfigurationSystemIdentifier1
+#define SYSTEM_CONFIGURATION_NODE_IDENTIFIER2 SystemConfigurationSystemIdentifier2
+#define SYSTEM_CONFIGURATION_NODE_FLAG        SystemConfigurationSystemFlag
+
+// 系统事件节点标识符常量
+#define SYSTEM_EVENT_NODE_IDENTIFIER1        SystemEventSystemIdentifier1
+#define SYSTEM_EVENT_NODE_IDENTIFIER2        SystemEventSystemIdentifier2
+
+// 系统资源节点标识符常量
+#define SYSTEM_RESOURCE_NODE_IDENTIFIER1     SystemResourceSystemIdentifier1
+#define SYSTEM_RESOURCE_NODE_IDENTIFIER2     SystemResourceSystemIdentifier2
+
+// 系统数据比较模板标识符常量
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1 SystemDataComparisonTemplateAlphaId1
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2 SystemDataComparisonTemplateAlphaId2
+
 /**
  * @brief 处理系统内存页面
  * 
@@ -20632,7 +20658,7 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   }
   EncryptionContextPointer = &SystemEncryptionValueTriple;
   SystemEncryptionValueTriple = &SystemEncryptionValueTriple;
-  SystemEncryptionPointer60 = &SystemEncryptionValueTriple;
+  SystemEncryptionPointerPrimary = &SystemEncryptionValueTriple;
   InitializeSystemStructure(&SystemMemoryContextPointer,SystemHashNodeData);
   SystemResourceCounterTotal = 0;
   SystemResourceCounterActive = 0;
@@ -20640,12 +20666,12 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   SystemDataBufferPointer = 0;
   SystemStackStatusFlagAvailable = 0;
   SystemResourceCounterPending = 0;
-  SystemResourceCounterA0 = 0;
+  SystemResourceCounterProcessed = 0;
   SystemConfigPrimaryValue = 0;
   SystemConfigSecondaryValue = 0;
-  SystemResourceCounter88 = 0;
-  SystemResourceCounter80 = 0;
-  SystemResourceCounter78 = 0;
+  SystemResourceCounterAllocated = 0;
+  SystemResourceCounterFreed = 0;
+  SystemResourceCounterCached = 0;
   SystemProcessFlagsSecondary = 0;
   OperationCode = *(ulong long *)(SystemResourceManager + 0x10);
   if (OperationCode < *(ulong long *)(SystemResourceManager + 0x18)) {
@@ -21056,7 +21082,7 @@ void InitializeSystemCoreEngine(void)
     SystemMemoryAllocatorReferenceSecondary = &SystemMemoryAllocatorReference;
   }
   SystemGlobalDataReferenceTertiary = &SystemGlobalDataReference;
-  SystemDataProcessingFlag1 = 0;
+  SystemDataProcessingFlagPrimary = 0;
   SystemDataProcessingFlagSecondary = 0;
   SystemDataProcessingFlag3 = 0;
   SystemGlobalDataReferenceQuaternary = &SystemGlobalDataReference;
@@ -52832,7 +52858,7 @@ MemoryAllocationComplete:
         ThreadContextFlag = StartSystemThread(SystemMemoryContext);
         SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
       }
-LABEL_TARGET_NODE_VALIDATION_START:
+LABEL_SYSTEM_TARGET_NODE_VALIDATION_START:
         memcpy(SystemMemoryContext + StackValue2,resourceDataIndex5,(long long)((int)resourceDataIndex7 + 2));
     }
   }
@@ -52854,7 +52880,7 @@ LABEL_TARGET_NODE_VALIDATION_START:
     ThreadContextFlag = StartSystemThread(SystemMemoryContext);
     SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContextFlag);
   }
-LABEL_TARGET_NODE_VALIDATION_CONTINUE:
+LABEL_SYSTEM_TARGET_NODE_VALIDATION_CONTINUE:
   *(void*2 *)(SystemMemoryContext + StackValue2) = 10;
   StackValue2 = systemIndex;
   if (resourceCounter != 0) {
@@ -53064,7 +53090,7 @@ LABEL_TARGET_NODE_VALIDATION_CONTINUE:
     if (pSystemResourceDataIndex != (void* *)0x0) {
         SystemCleanupFunction();
     }
-LABEL_MEMORY_ALLOCATION_COMPLETE:
+LABEL_SYSTEM_MEMORY_ALLOCATION_COMPLETE:
     SystemThreadState = 0;
     SystemResourceHandleF0 = (void* *)0x0;
     pMemoryBufferPointer = &SystemMemoryAllocatorReference;
