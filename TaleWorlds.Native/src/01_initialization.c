@@ -53587,7 +53587,7 @@ SystemResourceSetup:
       }
       SystemStatusByte = SystemOperationResult;
       if (SystemAllocationTemplate == 0) {
-LAB_1800722f5:
+ResourceAllocationLoop:
         resourceCounter = SystemRenderManagerPointer;
         if ((SystemRenderManagerPointer != 0) && (*(char *)(SystemRenderManagerPointer + 0x1609) != '\x01')) {
           ProcessSystemResourceAllocation(*(void* *)(SystemGlobalStatusFlags + 8),
@@ -53603,7 +53603,7 @@ LAB_1800722f5:
         systemCounter = *(int *)(**(long long **)(SystemAllocationTemplate + 8) + 0x48);
         systemValue = _Thrd_id();
         SystemControlByte = systemValue == systemCounter;
-        if ((bool)SystemControlByte) goto LAB_1800722f5;
+        if ((bool)SystemControlByte) goto ResourceAllocationLoop;
       }
       if (validationStatusFlag != '\0') {
         if ((SystemMode == '\0') || (*(int *)(SystemGlobalStatusFlags + 0x340) == 2)) {
@@ -53671,7 +53671,7 @@ SystemResourceDataProcessing:
         SystemMemoryAllocationOffset = 0x15;
         ResourceBufferPointer130 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x17,0x13);
         *ResourceDataBufferPointer = 0;
-LAB_1800725ac:
+SystemOperationComplete:
         ThreadContextFlag = StartSystemThread(ResourceBufferPointer130);
         SystemThreadContextFlags = ConcatenatedSystemValue(SystemThreadContextFlags._4_4_,ThreadContextFlag);
       }
@@ -53679,7 +53679,7 @@ LAB_1800725ac:
         pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
         SystemMemoryAllocationOffset = 0x15;
         ResourceDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceDataBufferPointer,0x17,0x10);
-        goto LAB_1800725ac;
+        goto SystemOperationComplete;
       }
       *(void*2 *)(ResourceBufferPointer130 + SystemMemoryAllocationOffset) = 10;
       SystemMemoryAllocationOffset = 0x16;
@@ -53722,7 +53722,7 @@ SystemResourceHashProcessing:
         SystemMemoryAllocationOffset = ResourceHash;
         ResourceBufferPointer130 = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x18,0x13);
         *ResourceDataBufferPointer = 0;
-LAB_1800726e7:
+SystemContextValidation:
         ThreadContextFlag = StartSystemThread(ResourceBufferPointer130);
         SystemThreadContextFlags = ConcatenatedSystemValue(SystemThreadContextFlags._4_4_,ThreadContextFlag);
       }
@@ -53730,7 +53730,7 @@ LAB_1800726e7:
         pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
         SystemMemoryAllocationOffset = ResourceHash;
         ResourceBufferPointer130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointer130,0x18,0x10);
-        goto LAB_1800726e7;
+        goto SystemContextValidation;
       }
       *(void*2 *)(ResourceBufferPointer130 + SystemMemoryAllocationOffset) = 0x3a;
       SystemMemoryAllocationOffset = 0x17;
@@ -53768,14 +53768,14 @@ SystemMemoryAllocationComplete:
           *ResourceDataBufferPointer = 0;
         }
         else {
-          if (resourceAddress <= (uint)SystemThreadContextFlags) goto LAB_1800727ff;
+          if (resourceAddress <= (uint)SystemThreadContextFlags) goto ResourceAddressValidation;
           pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
           ResourceBufferPointer130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointer130,resourceAddress,0x10);
         }
         ThreadContextFlag = StartSystemThread(ResourceBufferPointer130);
         SystemThreadContextFlags = ConcatenatedSystemValue(SystemThreadContextFlags._4_4_,ThreadContextFlag);
       }
-LAB_1800727ff:
+ResourceAddressValidation:
       SystemDataConfigurationPointer = (void* *)(ResourceBufferPointer130 + SystemMemoryAllocationOffset);
       *SystemDataConfigurationPointer = 0x6973736572707845;
       *(uint32_t *)(SystemDataConfigurationPointer + 1) = 0x203a6e6f;
@@ -53806,7 +53806,7 @@ LAB_1800727ff:
             ThreadContextFlag = StartSystemThread(ResourceBufferPointer130);
             SystemThreadContextFlags = ConcatenatedSystemValue(SystemThreadContextFlags._4_4_,ThreadContextFlag);
           }
-LAB_1800728ad:
+ResourceHashValidation:
             memcpy(ResourceBufferPointer130 + SystemMemoryAllocationOffset,ConfigurationFlag,(long long)((int)ResourceDataCounter + 2));
         }
       }
