@@ -1558,11 +1558,11 @@ void InitializeSystemDataTableBaseAllocator(void)
   void* BaseAllocatorInitializationHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
-  RootNodePointerPointer = (void**)*SystemDataTablePointer;
-  IsBaseAllocatorNodeActive = *(bool*)((long long)RootNodePointerPointer[1] + SystemNodeActiveFlagOffset);
+  RootNodePointer = (void**)*SystemDataTablePointer;
+  IsBaseAllocatorNodeActive = *(bool*)((long long)RootNodePointer[1] + SystemNodeActiveFlagOffset);
   BaseAllocatorInitializationHandler = GetBaseAllocatorSystemInitializationFunction;
-  SystemPreviousNodePointer = RootNodePointerPointer;
-  CurrentNodePointerPointer = (void**)RootNodePointerPointer[1];
+  PreviousNodePointer = RootNodePointer;
+  CurrentNodePointer = (void**)RootNodePointer[1];
   
   while (!IsBaseAllocatorNodeActive) {
     BaseAllocatorIdentifierComparisonResult = memcmp(CurrentNodePointerPointer + 4, &BaseAllocatorSystemIdentifier1, SystemIdentifierSize);
