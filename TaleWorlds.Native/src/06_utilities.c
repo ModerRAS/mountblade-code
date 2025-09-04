@@ -15167,19 +15167,19 @@ void SystemInitializerPrimary(void)
           SystemXmmRegisterPrimary = Xmm6RegisterPrimary;
           SystemXmmRegisterSecondary = Xmm6RegisterSecondary;
           if (primaryTemporaryFloatValue != 1.0) {
-            floatResourceValue = primaryTemporaryFloatValue;
-            resourceTemplatePointer = &SystemResourceTemplateFile;
-            contextBufferPointer = StackContextBuffer;
-            floatRegisterValue = FloatRegisterValue;
-            ResourceIndexTertiary = GetAndValidateResourceData(primaryTemporaryFloatValue,&PrimaryObjectResourceBuffer);
-            primaryTemporaryFloatValue = secondaryFloatResult;
+            FloatResourceValue = PrimaryTemporaryFloatValue;
+            ResourceTemplatePointer = &SystemResourceTemplateFile;
+            ContextBufferPointer = StackContextBuffer;
+            FloatRegisterValue = FloatRegisterValue;
+            ResourceIndexTertiary = GetAndValidateResourceData(PrimaryTemporaryFloatValue,&PrimaryObjectResourceBuffer);
+            PrimaryTemporaryFloatValue = SecondaryFloatResult;
             if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
           }
-          ResourceIndexTertiary = CheckResourceIntegrity(primaryTemporaryFloatValue,&ObjectStackBufferTertiary,0);
+          ResourceIndexTertiary = CheckResourceIntegrity(PrimaryTemporaryFloatValue,&ObjectStackBufferTertiary,0);
           if (ResourceIndexTertiary == 0) {
             if (StackFloatParameter != 1.0) {
-              floatResourceValue = StackFloatParameter;
-              resourceTemplatePointer = &SystemResourceTemplateGraphics;
+              FloatResourceValue = StackFloatParameter;
+              ResourceTemplatePointer = &SystemResourceTemplateGraphics;
               contextBufferPointer = StackContextBuffer;
               floatRegisterValue = FloatRegisterValue;
               ResourceIndexTertiary = GetAndValidateResourceData(StackFloatParameter,&PrimaryObjectResourceBuffer);
