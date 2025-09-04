@@ -6863,12 +6863,12 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
   if ((SystemQuaternaryParameter >> 1 & 1) != 0) {
     InitializeSystemDataProcessing(SystemDataProcessorSecondary,&plStack_78,SystemTertiaryParameter + 0x14,1);
     pNetworkRequestResult = (uint64_t *)CreateNetworkRequestContext();
-    ProcessNetworkRequestData(*pNetworkRequestResult,&plStackX_18);
+    ProcessNetworkRequestData(*pNetworkRequestResult,&SystemMemoryPointer2);
     if (plStack_80 != (longlong *)0x0) {
       (**(code **)(*plStack_80 + 0x38))();
     }
-    ProcessNetworkRequestValidation(plStackX_18,&plStack_78);
-    *(uint *)(plStackX_18 + 0x20) = *(uint *)(plStackX_18 + 0x20) | 0x40000000;
+    ProcessNetworkRequestValidation(SystemMemoryPointer2,&plStack_78);
+    *(uint *)(SystemMemoryPointer2 + 0x20) = *(uint *)(SystemMemoryPointer2 + 0x20) | 0x40000000;
     auStackX_20[0] = *SystemTertiaryParameter;
     pModuleInitializationResult = (longlong *)(SystemParameterPointer + 0x3d8);
     plStack_80 = pModuleInitializationResult;
