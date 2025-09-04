@@ -63941,7 +63941,7 @@ void ExecuteSystemResourceSecondaryCleanupOperation(uint8_t ObjectContext,int64_
  * 
  * 原始函数名为Unwind_180907e70，现已重命名为ExecuteSystemResourceCleanupOperation3
  */
-void ExecuteSystemResourceCleanupOperation3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceTertiaryCleanupOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + ResourceSecurityProcessingOffset) != (code *)0x0) {
@@ -63966,7 +63966,7 @@ void ExecuteSystemResourceCleanupOperation3(uint8_t ObjectContext,int64_t Valida
  * 
  * 原始函数名为Unwind_180907e80，现已重命名为ExecuteSystemResourceCleanupOperation4
  */
-void ExecuteSystemResourceCleanupOperation4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceQuaternaryCleanupOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
