@@ -30716,7 +30716,7 @@ void HandleExceptionResourceCleanup(uint8_t ExceptionCode, int64_t ExceptionCont
     }
     else {
       ValidateMemoryAccess(memoryMask,CONCAT71(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
-                          resourcePointer,memoryMask,0xfffffffffffffffe);
+                          resourcePointer,memoryMask,MemoryCleanupTriggerValue);
     }
   }
   return;
@@ -30934,7 +30934,7 @@ void ProcessObjectContextCleanup(uint8_t ObjectContext, int64_t ValidationContex
   
   CleanupFunctionPointer = *(code **)(*(int64_t *)(ValidationContext + ValidationContextPrimaryOffset) + ValidationContextCleanupFunctionOffset);
   if (CleanupFunctionPointer != (code *)0x0) {
-    (*CleanupFunctionPointer)(*(int64_t *)(ValidationContext + ValidationContextPrimaryOffset), 0, 0, CleanupFlag, 0xfffffffffffffffe);
+    (*CleanupFunctionPointer)(*(int64_t *)(ValidationContext + ValidationContextPrimaryOffset), 0, 0, CleanupFlag, MemoryCleanupTriggerValue);
   }
   return;
 }
@@ -31494,7 +31494,7 @@ void ExecuteResourceCleanupLoop(uint8_t ObjectContext, int64_t ValidationContext
   uint8_t *ValidationStatusCodeAddress;
   uint8_t CleanupStatusFlag;
   
-  CleanupStatusFlag = 0xfffffffffffffffe;
+  CleanupStatusFlag = MemoryCleanupTriggerValue;
   HashDataPointer = *(uint8_t **)(ValidationContext + 0x50);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x48); ValidationStatusCodeAddress != HashDataPointer; ValidationStatusCodeAddress = ValidationStatusCodeAddress + 4) {
     (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress,0,CleanupOption,CleanupStatusFlag,CleanupStatusFlag);
@@ -31527,7 +31527,7 @@ void ExecuteValidationCleanupLoop(uint8_t ObjectContext, int64_t ValidationConte
   uint8_t *ValidationStatusCodeAddress;
   uint8_t CleanupStatusFlag;
   
-  CleanupStatusFlag = 0xfffffffffffffffe;
+  CleanupStatusFlag = MemoryCleanupTriggerValue;
   HashDataPointer = *(uint8_t **)(ValidationContext + 0x50);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x48); ValidationStatusCodeAddress != HashDataPointer; ValidationStatusCodeAddress = ValidationStatusCodeAddress + 4) {
     (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress,0,CleanupOption,CleanupFlag,CleanupStatusFlag);
@@ -31579,7 +31579,7 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContext, int
     }
     else {
       ValidateMemoryAccess(MemoryAddressOffset,CONCAT71(0xff000000,*(void ***)(MemoryAddressOffset + 0x70) == &ExceptionList),
-                          ValidationStatusCodeDataPointer,MemoryAddressOffset,0xfffffffffffffffe);
+                          ValidationStatusCodeDataPointer,MemoryAddressOffset,MemoryCleanupTriggerValue);
     }
   }
   return;
@@ -31826,7 +31826,7 @@ void ExecuteResourceHashCleanupCallbacks(uint8_t ObjectContext, int64_t Validati
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x128);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x120); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -36088,7 +36088,7 @@ void UnwindResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationContex
   uint8_t *ResourceHashStatusPointer;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x28); ValidationStatusCodeAddress != ResourceHashPtr; ValidationStatusCodeAddress = ResourceHashStatusPointer + 4) {
     (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47051,7 +47051,7 @@ void ExecuteResourceHashValidationCallbacks(uint8_t ObjectContext,int64_t Valida
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 200);
   for (ResourceHashStatusAddress = *(uint8_t **)(ValidationContext + ValidationContextResourceTableOffset); ResourceHashStatusAddress != ResourceHashAddress; ResourceHashStatusAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47086,7 +47086,7 @@ void ExecuteResourceHashValidationLoop(uint8_t ObjectContext,int64_t ValidationC
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 200);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextResourceTableOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47246,7 +47246,7 @@ void ExecuteResourceCleanupWithValidation(uint8_t ObjectContext,int64_t Validati
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ValidationContextSystemObjectOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x90); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47281,7 +47281,7 @@ void ProcessResourceHashAndCleanup(uint8_t ObjectContext,int64_t ValidationConte
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ValidationContextSystemObjectOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x90); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47442,7 +47442,7 @@ void ExecuteResourceCleanupAndValidateSystem(uint8_t ObjectContext,int64_t Valid
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x28);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x20); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47475,7 +47475,7 @@ void BatchExecuteResourceCleanupAndValidateSystem(uint8_t ObjectContext,int64_t 
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x28);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x20); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47581,7 +47581,7 @@ void ExecuteSystemResourceCleanupAndValidateContext(uint8_t ObjectContext,int64_
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ValidationContextPrimaryOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextSystemObjectOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47700,7 +47700,7 @@ void ExecuteSystemResourceCleanupWithFlags(uint8_t ObjectContext,int64_t Validat
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x48);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x40); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -47756,7 +47756,7 @@ void ProcessSystemResourceValidationWithFlags(uint8_t ObjectContext,int64_t Vali
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ValidationContextPrimaryOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextSystemObjectOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -48033,7 +48033,7 @@ void CleanupResourceHandlersAtMemoryOffset(uint8_t ObjectContext,int64_t Validat
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceSecurityProcessingOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x148); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -48067,7 +48067,7 @@ void CleanupResourceHandlersAtExtendedOffset(uint8_t ObjectContext, int64_t Vali
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + SystemResourceHandlerExtendedListOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + SystemResourceHandlerExtendedOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress, 0, CleanupOption, CleanupFlag, cleanupFlag);
@@ -48159,7 +48159,7 @@ void CleanupResourceHandlersAtExtendedOffset(uint8_t ObjectContext,int64_t Valid
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x110);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextMethodPointerOffset8); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -48207,7 +48207,7 @@ void CleanupResourceHandlersAtStandardOffset(uint8_t ObjectContext,int64_t Valid
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ValidationContextGraphicsDataOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextSecurityDataOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -48361,7 +48361,7 @@ void CleanupResourceHandleAndHashValidation(uint8_t ObjectContext,int64_t Valida
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceSecurityProcessingOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x148); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -48554,7 +48554,7 @@ void CleanupThreadManagerResources(uint8_t ObjectContext,int64_t ValidationConte
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x110);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextMethodPointerOffset8); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -54702,7 +54702,7 @@ void ExecuteResourceHashCleanupCallbacks(uint8_t ObjectContext, int64_t Validati
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xe8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xe0); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -54779,7 +54779,7 @@ void ExecuteResourceCleanupHandlers(uint8_t ObjectContext,int64_t ValidationCont
   uint8_t *ValidationStatusCodeAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xe8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xe0); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ValidationStatusCodeAddress + 4) {
     (**(code **)*ValidationStatusCodeAddress)(ValidationStatusCodeAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -63373,7 +63373,7 @@ void ExecuteResourceHashStatusCallbacks(uint8_t ObjectContext, int64_t Validatio
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x170);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x168); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -63533,7 +63533,7 @@ void ExecuteResourceHashValidationCallbacks(uint8_t ObjectContext,int64_t Valida
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x170);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x168); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -63884,7 +63884,7 @@ void ExecuteSystemResourceCleanupOperation4(uint8_t ObjectContext,int64_t Valida
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x28); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -90611,7 +90611,7 @@ void Unwind_18090e9c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x40);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextSecondaryCleanupOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -90631,7 +90631,7 @@ void Unwind_18090e9d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x40);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextSecondaryCleanupOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -95337,7 +95337,7 @@ void Unwind_1809102e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xf0);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xe8); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -95357,7 +95357,7 @@ void Unwind_1809102f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceContextExtendedOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 200); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -95377,7 +95377,7 @@ void Unwind_180910300(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xf0);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xe8); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -95455,7 +95455,7 @@ void Unwind_180910330(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceContextExtendedOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 200); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100306,7 +100306,7 @@ void Unwind_180911860(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceContextSecondaryOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x70); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100326,7 +100326,7 @@ void Unwind_180911870(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x118);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x110); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100346,7 +100346,7 @@ void Unwind_180911880(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xf8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xf0); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100366,7 +100366,7 @@ void Unwind_180911890(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xd8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ResourceContextExtendedOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100386,7 +100386,7 @@ void Unwind_1809118a0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xb8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xb0); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100406,7 +100406,7 @@ void Unwind_1809118b0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x138);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x130); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100471,7 +100471,7 @@ void Unwind_1809118e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + ResourceContextSecondaryOffset);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x70); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100527,7 +100527,7 @@ void Unwind_180911900(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x118);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x110); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100547,7 +100547,7 @@ void Unwind_180911910(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xf8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xf0); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100567,7 +100567,7 @@ void Unwind_180911920(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xd8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ResourceContextExtendedOffset); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100587,7 +100587,7 @@ void Unwind_180911930(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0xb8);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0xb0); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
@@ -100607,7 +100607,7 @@ void Unwind_180911940(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   uint8_t *ResourceHashStatusAddress;
   uint8_t CleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = MemoryCleanupTriggerValue;
   ResourceHashPtr = *(uint8_t **)(ValidationContext + 0x138);
   for (ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + 0x130); ValidationStatusCodeAddress != ResourceHashAddress; ValidationStatusCodeAddress = ResourceHashStatusAddress + 4) {
     (**(code **)*ResourceHashStatusAddress)(ResourceHashStatusAddress,0,CleanupOption,CleanupFlag,cleanupFlag);
