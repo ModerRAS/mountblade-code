@@ -26952,9 +26952,9 @@ void InitializeSystemResourceAllocator(long long systemResourceHandle)
   long long stackValue80;
   long long stackValue78;
   long long ***stackPointer70;
-  void* stackValue68;
+  void* StackValuePrimary;
   long long **stackPointer60;
-  void* stackValue58;
+  void* StackValueSecondary;
   ulong long loopCounter;
   
   resourceDataIndex = SystemRuntimeCounter;
@@ -27078,7 +27078,7 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
   long long **stackPointer328;
   void* *stackPointer320;
   uint32_t stackValue318;
-  void* stackValue308;
+  void* StackValueTertiary;
   char stackFlag300;
   char systemSyncBuffer [7];
   long long *stackPointer2f8;
@@ -27086,10 +27086,10 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
   void* *stackPointer2e8;
   void* *stackPointer2e0;
   uint32_t stackValue2d8;
-  void* stackValue2d0;
+  void* StackValueQuaternary;
   uint32_t systemStackBufferConfiguration [2];
   long long *stackPointer2c0;
-  void* stackValue2b8;
+  void* StackValueQuinary;
   void* systemStackBufferPointerArray [67];
   long long systemStackBufferData [3];
   uint32_t stackValue78;
@@ -27601,7 +27601,7 @@ void SystemMemoryAllocator(long long resourceManagerPointer, long long allocatio
   void** SystemProcessFlagsPointer;
   void** EncryptionValue68;
   uint32_t SystemThreadContext;
-  void* SystemProcessFlags58;
+  void* SystemProcessFlagsPrimary;
   
   ThreadContextFlag = 0xfffffffffffffffe;
   PrimaryResourceHandle = (long long*)(resourceManagerPointer + 0xd8);
@@ -28096,13 +28096,13 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   int IdentifierCompareResult;
   uint8_t aSystemThreadStackSize [32];
   void* **SystemResourceTriplePointerA;
-  void* CalculationFlags1A0;
+  void* CalculationFlagsPrimary;
   void* *pSystemStackFlag;
-  void* SystemResourceHandle190;
+  void* SystemResourceHandlePrimary;
   int intValue188;
   uint8_t SystemSystemStackBufferE8 [16];
   void* *systemDataPointer;
-  void* SystemResourceHandleD0;
+  void* SystemResourceHandleSecondary;
   int IntegerStackC8;
   ulong long ConcatenatedSystemValue;
   
@@ -28610,7 +28610,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   void* *systemMemoryPointer;
   long long SystemMemoryAllocationOffset200;
   uint SystemResourceCountSecondary;
-  void* SystemResourceHandle1f0;
+  void* SystemResourceHandleTertiary;
   uint32_t SystemConfigPrimaryValuee8;
   void* *pGlobalDataFlags2;
   long long SystemMemoryAllocationOffset1d8;
@@ -44704,7 +44704,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   void* *pointerUnsigned1b8;
   long long StackCleanupFlag;
   uint32_t SystemThreadCleanupFlag;
-  void* CalculationFlags1A0;
+  void* CalculationFlagsPrimary;
   void* *pSystemStackFlag;
   long long SystemMemoryAllocationOffset190;
   uint32_t ConcatenatedSystemValue0;
@@ -48603,7 +48603,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   void* SystemProcessFlags70;
   void* EncryptionValue68;
   void* ThreadContextFlag;
-  void* SystemProcessFlags58;
+  void* SystemProcessFlagsPrimary;
   int StackVariable48;
   uint32_t StackUnsignedValue44;
   int StackInteger40;
@@ -63760,7 +63760,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   void* SystemOperationFlag1b8;
   int *piStack_1b0;
   uint32_t StackUnsignedValue1A8;
-  void* CalculationFlags1A0;
+  void* CalculationFlagsPrimary;
   void* SystemStackFlag;
   int *piStack_190;
   uint32_t ConcatenatedSystemValue8;
