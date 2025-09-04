@@ -82213,7 +82213,14 @@ void SetSystemDataStructurePointerToSecondaryContext(uint8_t ObjectContext, int6
 
 
 
-void Unwind_18090c670(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移量0x110
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c670
+ */
+void SetSystemDataStructurePointerToOffset110(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x110) = &SystemDataStructure;
