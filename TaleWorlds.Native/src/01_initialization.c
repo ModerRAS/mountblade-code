@@ -70091,101 +70091,101 @@ void* NormalizeAudioData(void)
       } while (AudioProcessingLoop != 0);
     }
     currentAudioSample = currentAudioSample + 1;
-    audioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (long long)(int)processedAudioBit * 8);
-    audioWeightedSum2 = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + (long long)(int)processedAudioBit * 8);
-    audioNormalizedValue = SQRT(audioWeightedSum2 * audioWeightedSum2 + audioNormalizedValue * audioNormalizedValue) * 2.5;
-    if (audioMaxAmplitude <= audioNormalizedValue) {
-      audioNormalizedValue = audioMaxAmplitude;
+    AudioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (long long)(int)ProcessedAudioBit * 8);
+    AudioWeightedSum2 = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + (long long)(int)ProcessedAudioBit * 8);
+    AudioNormalizedValue = SQRT(AudioWeightedSum2 * AudioWeightedSum2 + AudioNormalizedValue * AudioNormalizedValue) * 2.5;
+    if (audioMaxAmplitude <= AudioNormalizedValue) {
+      AudioNormalizedValue = audioMaxAmplitude;
     }
-    *audioBufferPointer = audioNormalizedValue;
-    audioBufferPointer = audioBufferPointer + 1;
+    *AudioBufferPointer = AudioNormalizedValue;
+    AudioBufferPointer = AudioBufferPointer + 1;
   } while ((int)currentAudioSample < (int)totalAudioChannels);
   if (audioOutputBufferPtr != (float *)0x0) {
-    audioProcessingIndex = 0;
+    AudioProcessingIndex = 0;
     if (0 < (int)totalAudioChannels) {
-      audioNormalizedValue = audioAccumulatedSum1;
+      AudioNormalizedValue = audioAccumulatedSum1;
       if (7 < totalAudioChannels) {
-        audioShiftRegister = totalAudioChannels & 0x80000007;
-        if ((int)audioShiftRegister < 0) {
-          audioShiftRegister = (audioShiftRegister - 1 | 0xfffffff8) + 1;
+        AudioShiftRegister = totalAudioChannels & 0x80000007;
+        if ((int)AudioShiftRegister < 0) {
+          AudioShiftRegister = (AudioShiftRegister - 1 | 0xfffffff8) + 1;
         }
-        audioInverseCoeffArray._0_4_ = audioWindowOffset1 + -1;
-        audioInverseCoeffArray._4_4_ = audioWindowOffset2 + -1;
-        audioInverseCoeffArray._8_4_ = audioWindowOffset3 + -1;
-        audioInverseCoeffArray._12_4_ = audioWindowOffset4 + -1;
-        audioCoefficientArray._0_4_ = (float)audioInverseCoeffArray._0_4_;
-        audioCoefficientArray._4_4_ = (float)audioInverseCoeffArray._4_4_;
-        audioCoefficientArray._8_4_ = (float)audioInverseCoeffArray._8_4_;
-        audioCoefficientArray._12_4_ = (float)audioInverseCoeffArray._12_4_;
-        audioInverseCoeffArray = rcpps(audioInverseCoeffArray,audioCoefficientArray);
-        audioNormalizedValue = 0.0;
-        audioWeightedSum2 = 0.0;
-        audioWeightedSum3 = 0.0;
-        audioIntermediateResult = 0.0;
-        audioFilterCoeff1 = audioInverseCoeffArray._0_4_;
-        audioFilterCoeff2 = audioInverseCoeffArray._4_4_;
-        audioFilterCoeff3 = audioInverseCoeffArray._8_4_;
-        audioFilterCoeff4 = audioInverseCoeffArray._12_4_;
-        audioWeightedSum1 = 0.0;
-        audioWeightedSum4 = 0.0;
-        audioChannelSum1 = 0.0;
-        audioChannelSum2 = 0.0;
-        audioChannelSum3 = 0.0;
-        audioChannelSum4 = 0.0;
-        audioFilterResult = 0.0;
-        audioAccumulatedSum1 = 0.0;
-        audioAccumulatedSum2 = 0.0;
-        audioAccumulatedSum3 = 0.0;
-        audioAccumulatedSum4 = 0.0;
-        audioFilterCoeff1 = (audioFilterCoeff1 + audioFilterCoeff1) - audioFilterCoeff1 * audioFilterCoeff1 * audioCoefficientArray._0_4_;
-        audioFilterCoeff2 = (audioFilterCoeff2 + audioFilterCoeff2) - audioFilterCoeff2 * audioFilterCoeff2 * audioCoefficientArray._4_4_;
-        audioFilterCoeff3 = (audioFilterCoeff3 + audioFilterCoeff3) - audioFilterCoeff3 * audioFilterCoeff3 * audioCoefficientArray._8_4_;
-        audioFilterCoeff4 = (audioFilterCoeff4 + audioFilterCoeff4) - audioFilterCoeff4 * audioFilterCoeff4 * audioCoefficientArray._12_4_;
-        audioBufferPointer = audioInputData;
-        audioProcessingIndex = audioProcessingIndex;
+        AudioInverseCoeffArray._0_4_ = audioWindowOffset1 + -1;
+        AudioInverseCoeffArray._4_4_ = audioWindowOffset2 + -1;
+        AudioInverseCoeffArray._8_4_ = audioWindowOffset3 + -1;
+        AudioInverseCoeffArray._12_4_ = audioWindowOffset4 + -1;
+        AudioCoefficientArray._0_4_ = (float)AudioInverseCoeffArray._0_4_;
+        AudioCoefficientArray._4_4_ = (float)AudioInverseCoeffArray._4_4_;
+        AudioCoefficientArray._8_4_ = (float)AudioInverseCoeffArray._8_4_;
+        AudioCoefficientArray._12_4_ = (float)AudioInverseCoeffArray._12_4_;
+        AudioInverseCoeffArray = rcpps(AudioInverseCoeffArray,AudioCoefficientArray);
+        AudioNormalizedValue = 0.0;
+        AudioWeightedSum2 = 0.0;
+        AudioWeightedSum3 = 0.0;
+        AudioIntermediateResult = 0.0;
+        AudioFilterCoeff1 = AudioInverseCoeffArray._0_4_;
+        AudioFilterCoeff2 = AudioInverseCoeffArray._4_4_;
+        AudioFilterCoeff3 = AudioInverseCoeffArray._8_4_;
+        AudioFilterCoeff4 = AudioInverseCoeffArray._12_4_;
+        AudioWeightedSum1 = 0.0;
+        AudioWeightedSum4 = 0.0;
+        AudioChannelSum1 = 0.0;
+        AudioChannelSum2 = 0.0;
+        AudioChannelSum3 = 0.0;
+        AudioChannelSum4 = 0.0;
+        AudioFilterResult = 0.0;
+        AudioAccumulatedSum1 = 0.0;
+        AudioAccumulatedSum2 = 0.0;
+        AudioAccumulatedSum3 = 0.0;
+        AudioAccumulatedSum4 = 0.0;
+        AudioFilterCoeff1 = (AudioFilterCoeff1 + AudioFilterCoeff1) - AudioFilterCoeff1 * AudioFilterCoeff1 * AudioCoefficientArray._0_4_;
+        AudioFilterCoeff2 = (AudioFilterCoeff2 + AudioFilterCoeff2) - AudioFilterCoeff2 * AudioFilterCoeff2 * AudioCoefficientArray._4_4_;
+        AudioFilterCoeff3 = (AudioFilterCoeff3 + AudioFilterCoeff3) - AudioFilterCoeff3 * AudioFilterCoeff3 * AudioCoefficientArray._8_4_;
+        AudioFilterCoeff4 = (AudioFilterCoeff4 + AudioFilterCoeff4) - AudioFilterCoeff4 * AudioFilterCoeff4 * AudioCoefficientArray._12_4_;
+        AudioBufferPointer = audioInputData;
+        AudioProcessingIndex = AudioProcessingIndex;
         do {
-          audioSampleValue1 = *audioDataPointer;
-          audioSampleValue2 = audioDataPointer[1];
-          audioSampleValue3 = audioDataPointer[2];
-          audioSampleValue4 = audioDataPointer[3];
-          audioProcessingFlags = -(uint)(0.0001 < audioSampleValue1);
-          audioThresholdFlag9 = -(uint)(0.0001 < audioSampleValue2);
-          audioThresholdFlag15 = -(uint)(0.0001 < audioSampleValue3);
-          audioThresholdFlag16 = -(uint)(0.0001 < audioSampleValue4);
-          audioStatusIndex1 = audioStatusIndex4 + 8;
-          audioSampleValue5 = audioDataPointer[4];
-          audioSampleValue6 = audioDataPointer[5];
-          audioSampleValue7 = audioDataPointer[6];
-          audioSampleValue8 = audioDataPointer[7];
-          audioDataPointer = audioDataPointer + 8;
-          audioWeightedResult17 = (float)((uint)((float)audioStatusIndex4 * (float)audioCoeffA * 0.5 * audioCoeff20 * audioSampleValue1 +
-                                 audioWeightedResult17) & audioProcessingFlags | ~audioProcessingFlags & (uint)audioWeightedResult17);
-          audioWeightedResult29 = (float)((uint)((float)(audioStatusIndex4 + 1) * (float)audioCoeffB * 0.5 * audioCoeff22 * audioSampleValue2
-                                 + audioWeightedResult29) & audioThresholdFlag9 | ~audioThresholdFlag9 & (uint)audioWeightedResult29);
-          audioWeightedResult31 = (float)((uint)((float)(audioStatusIndex4 + 2) * (float)audioCoeffC * 0.5 * audioCoeff23 * audioSampleValue3
-                                 + audioWeightedResult31) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioWeightedResult31);
-          audioWeightedResult19 = (float)((uint)((float)(audioStatusIndex4 + 3) * (float)audioCoeffD * 0.5 * audioCoeff24 * audioSampleValue4
-                                 + audioWeightedResult19) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioWeightedResult19);
-          audioWeightedResult25 = (float)((uint)(audioSampleValue1 + audioWeightedResult25) & audioProcessingFlags | ~audioProcessingFlags & (uint)audioWeightedResult25);
-          audioWeightedResult26 = (float)((uint)(audioSampleValue2 + audioWeightedResult26) & audioThresholdFlag9 | ~audioThresholdFlag9 & (uint)audioWeightedResult26);
-          audioWeightedResult27 = (float)((uint)(audioSampleValue3 + audioWeightedResult27) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioWeightedResult27);
-          audioWeightedResult28 = (float)((uint)(audioSampleValue4 + audioWeightedResult28) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioWeightedResult28);
-          audioProcessingFlags = -(uint)(0.0001 < audioSampleValue5);
-          audioThresholdFlag9 = -(uint)(0.0001 < audioSampleValue6);
-          audioThresholdFlag15 = -(uint)(0.0001 < audioSampleValue7);
-          audioThresholdFlag16 = -(uint)(0.0001 < audioSampleValue8);
-          audioWeightedResult30 = (float)((uint)((float)(audioStatusIndex4 + 4) * (float)audioCoeffA * 0.5 * audioCoeff20 * audioSampleValue5
-                                 + audioWeightedResult30) & audioProcessingFlags | ~audioProcessingFlags & (uint)audioWeightedResult30);
-          audioWeightedResult32 = (float)((uint)((float)(audioStatusIndex4 + 5) * (float)audioCoeffB * 0.5 * audioCoeff22 * audioSampleValue6
-                                 + audioWeightedResult32) & audioThresholdFlag9 | ~audioThresholdFlag9 & (uint)audioWeightedResult32);
-          audioWeightedResult33 = (float)((uint)((float)(audioStatusIndex4 + 6) * (float)audioCoeffC * 0.5 * audioCoeff23 * audioSampleValue7
-                                 + audioWeightedResult33) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioWeightedResult33);
-          audioWeightedResult34 = (float)((uint)((float)(audioStatusIndex4 + 7) * (float)audioCoeffD * 0.5 * audioCoeff24 * audioSampleValue8
-                                 + audioWeightedResult34) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioWeightedResult34);
-          audioWeightedResult35 = (float)((uint)(audioSampleValue5 + audioWeightedResult35) & audioProcessingFlags | ~audioProcessingFlags & (uint)audioWeightedResult35);
-          audioWeightedResult36 = (float)((uint)(audioSampleValue6 + audioWeightedResult36) & audioThresholdFlag9 | ~audioThresholdFlag9 & (uint)audioWeightedResult36);
-          audioWeightedResult37 = (float)((uint)(audioSampleValue7 + audioWeightedResult37) & audioThresholdFlag15 | ~audioThresholdFlag15 & (uint)audioWeightedResult37);
-          audioWeightedResult38 = (float)((uint)(audioSampleValue8 + audioWeightedResult38) & audioThresholdFlag16 | ~audioThresholdFlag16 & (uint)audioWeightedResult38);
+          AudioSampleValue1 = *audioDataPointer;
+          AudioSampleValue2 = audioDataPointer[1];
+          AudioSampleValue3 = audioDataPointer[2];
+          AudioSampleValue4 = audioDataPointer[3];
+          AudioProcessingFlags = -(uint)(0.0001 < AudioSampleValue1);
+          AudioThresholdFlag9 = -(uint)(0.0001 < AudioSampleValue2);
+          AudioThresholdFlag15 = -(uint)(0.0001 < AudioSampleValue3);
+          AudioThresholdFlag16 = -(uint)(0.0001 < AudioSampleValue4);
+          AudioStatusIndex1 = audioStatusIndex4 + 8;
+          AudioSampleValue5 = audioDataPointer[4];
+          AudioSampleValue6 = audioDataPointer[5];
+          AudioSampleValue7 = audioDataPointer[6];
+          AudioSampleValue8 = audioDataPointer[7];
+          AudioDataPointer = audioDataPointer + 8;
+          AudioWeightedResult17 = (float)((uint)((float)audioStatusIndex4 * (float)audioCoeffA * 0.5 * audioCoeff20 * AudioSampleValue1 +
+                                 AudioWeightedResult17) & AudioProcessingFlags | ~AudioProcessingFlags & (uint)AudioWeightedResult17);
+          AudioWeightedResult29 = (float)((uint)((float)(audioStatusIndex4 + 1) * (float)audioCoeffB * 0.5 * audioCoeff22 * AudioSampleValue2
+                                 + AudioWeightedResult29) & AudioThresholdFlag9 | ~AudioThresholdFlag9 & (uint)AudioWeightedResult29);
+          AudioWeightedResult31 = (float)((uint)((float)(audioStatusIndex4 + 2) * (float)audioCoeffC * 0.5 * audioCoeff23 * AudioSampleValue3
+                                 + AudioWeightedResult31) & AudioThresholdFlag15 | ~AudioThresholdFlag15 & (uint)AudioWeightedResult31);
+          AudioWeightedResult19 = (float)((uint)((float)(audioStatusIndex4 + 3) * (float)audioCoeffD * 0.5 * audioCoeff24 * AudioSampleValue4
+                                 + AudioWeightedResult19) & AudioThresholdFlag16 | ~AudioThresholdFlag16 & (uint)AudioWeightedResult19);
+          AudioWeightedResult25 = (float)((uint)(AudioSampleValue1 + AudioWeightedResult25) & AudioProcessingFlags | ~AudioProcessingFlags & (uint)AudioWeightedResult25);
+          AudioWeightedResult26 = (float)((uint)(AudioSampleValue2 + AudioWeightedResult26) & AudioThresholdFlag9 | ~AudioThresholdFlag9 & (uint)AudioWeightedResult26);
+          AudioWeightedResult27 = (float)((uint)(AudioSampleValue3 + AudioWeightedResult27) & AudioThresholdFlag15 | ~AudioThresholdFlag15 & (uint)AudioWeightedResult27);
+          AudioWeightedResult28 = (float)((uint)(AudioSampleValue4 + AudioWeightedResult28) & AudioThresholdFlag16 | ~AudioThresholdFlag16 & (uint)AudioWeightedResult28);
+          AudioProcessingFlags = -(uint)(0.0001 < AudioSampleValue5);
+          AudioThresholdFlag9 = -(uint)(0.0001 < AudioSampleValue6);
+          AudioThresholdFlag15 = -(uint)(0.0001 < AudioSampleValue7);
+          AudioThresholdFlag16 = -(uint)(0.0001 < AudioSampleValue8);
+          AudioWeightedResult30 = (float)((uint)((float)(audioStatusIndex4 + 4) * (float)audioCoeffA * 0.5 * audioCoeff20 * AudioSampleValue5
+                                 + AudioWeightedResult30) & AudioProcessingFlags | ~AudioProcessingFlags & (uint)AudioWeightedResult30);
+          AudioWeightedResult32 = (float)((uint)((float)(audioStatusIndex4 + 5) * (float)audioCoeffB * 0.5 * audioCoeff22 * AudioSampleValue6
+                                 + AudioWeightedResult32) & AudioThresholdFlag9 | ~AudioThresholdFlag9 & (uint)AudioWeightedResult32);
+          AudioWeightedResult33 = (float)((uint)((float)(audioStatusIndex4 + 6) * (float)audioCoeffC * 0.5 * audioCoeff23 * AudioSampleValue7
+                                 + AudioWeightedResult33) & AudioThresholdFlag15 | ~AudioThresholdFlag15 & (uint)AudioWeightedResult33);
+          AudioWeightedResult34 = (float)((uint)((float)(audioStatusIndex4 + 7) * (float)audioCoeffD * 0.5 * audioCoeff24 * AudioSampleValue8
+                                 + AudioWeightedResult34) & AudioThresholdFlag16 | ~AudioThresholdFlag16 & (uint)AudioWeightedResult34);
+          AudioWeightedResult35 = (float)((uint)(AudioSampleValue5 + AudioWeightedResult35) & AudioProcessingFlags | ~AudioProcessingFlags & (uint)AudioWeightedResult35);
+          AudioWeightedResult36 = (float)((uint)(AudioSampleValue6 + AudioWeightedResult36) & AudioThresholdFlag9 | ~AudioThresholdFlag9 & (uint)AudioWeightedResult36);
+          AudioWeightedResult37 = (float)((uint)(AudioSampleValue7 + AudioWeightedResult37) & AudioThresholdFlag15 | ~AudioThresholdFlag15 & (uint)AudioWeightedResult37);
+          AudioWeightedResult38 = (float)((uint)(AudioSampleValue8 + AudioWeightedResult38) & AudioThresholdFlag16 | ~AudioThresholdFlag16 & (uint)AudioWeightedResult38);
           audioStatusIndex4 = audioStatusIndex1;
         } while (audioStatusIndex1 < (int)(audioTotalChannels - audioThresholdFlag13));
         audioTotalSum = audioWeightedResult27 + audioWeightedResult37 + audioWeightedResult25 + audioWeightedResult35 + audioWeightedResult28 + audioWeightedResult38 + audioWeightedResult26 + audioWeightedResult36;

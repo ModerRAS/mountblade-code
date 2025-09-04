@@ -1,7 +1,3 @@
-#!/usr/bin/env python3
-"""
-批量美化99_unmatched_functions.c文件中的LAB_标签
-"""
 
 import re
 import sys
