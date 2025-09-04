@@ -30513,7 +30513,7 @@ void ProcessQuaternaryContextException(uint8_t ExceptionContext, int64_t SystemC
  * @return void 无返回值
  * @note 此函数重置资源分配和缓存模板以恢复系统状态
  */
-void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessQuinaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   uint8_t *ResourceHashPointer;
   
   // 获取资源哈希指针
@@ -30539,7 +30539,7 @@ void HandleQuinaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @return void 无返回值
  * @note 此函数重置资源缓存模板以恢复系统状态
  */
-void HandleSenaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
+void ProcessSenaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
   // 重置资源缓存模板以恢复系统状态
   **(uint8_t **)(SystemContext + ExceptionHandlerResourceHashOffset) = ResourceCacheTemplate;
   return;
