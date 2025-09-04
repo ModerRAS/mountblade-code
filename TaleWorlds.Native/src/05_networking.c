@@ -1861,19 +1861,6 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
 /**
  * @brief 处理网络连接请求
  * 
- * 该函数负责处理网络连接请求，验证连接参数，并建立安全连接。
- * 它会检查连接的有效性，进行安全验证，并根据验证结果建立或拒绝连接。
- * 
- * @param ConnectionContext 连接上下文句柄，包含连接状态和验证所需的信息
- * @param PacketData 数据包数据句柄，包含连接请求的详细信息
- * @return NetworkHandle 处理结果句柄，0表示成功，非0值表示具体的错误码
- * 
- * @note 此函数会进行严格的安全验证，确保只有合法的连接请求能够通过
- * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
- */
-/**
- * @brief 处理网络连接请求
- * 
  * 处理来自客户端的网络连接请求，包括验证连接参数、建立连接上下文、
  * 初始化连接状态等操作。此函数是网络连接建立的核心处理函数。
  * 
