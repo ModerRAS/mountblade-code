@@ -1887,9 +1887,9 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             ConnectionStatusPointer[4] = *(NetworkConnectionStatus *)((ConnectionBaseAddress - (long long)ConnectionStatusBuffer) + -4 + (long long)(ConnectionStatusPointer + 5));
             
             // 更新计数器
-            ConnectionProcessingIndex = ConnectionProcessingIndex - 1;
+            ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
             ConnectionStatusPointer = ConnectionStatusPointer + 5;
-          } while (ConnectionProcessingIndex != 0);
+          } while (ConnectionProcessingCounter != 0);
         }
         return NetworkSuccessStatus;
       }
