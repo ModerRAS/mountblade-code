@@ -48601,7 +48601,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   code *CodePointer80;
   code *SystemFunctionPointer78;
   void* SystemProcessFlags70;
-  void* EncryptionValue68;
+  void* EncryptionValuePrimary;
   void* ThreadContextFlag;
   void* SystemProcessFlagsPrimary;
   int StackVariable48;
@@ -56952,7 +56952,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager, 
   float InterpolationFactor5;
   float MagnitudeSquaredValue;
   uint8_t SystemStackBuffer[184];
-  void* Value30;
+  void* ValuePrimary;
   
   SystemOperationStatus = *(uint*)(SystemResourceManager + 0x100) & 0xfbffffff;
   *(uint*)(SystemResourceManager + 0x100) = SystemOperationStatus;
