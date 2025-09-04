@@ -105812,7 +105812,7 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SecurityOperationTypeValidation 0x27
 #define ResourceAccessValidationOffset 0xc4
 #define ResourceHandleBackupOffset 0x68
-#define NullPointerValue 0x0
+#define NullPointerValue 0
 
 
 
