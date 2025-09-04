@@ -558,10 +558,10 @@ void* SystemGameCoreMainEntryPoint;
 void* SystemGlobalDataPointer;              // 全局系统数据引用
 void* SystemMainMemoryPool;                // 主系统内存池
 void* SystemMainDataTable;                 // 系统数据表引用
-void* SystemSecondaryMemoryPool;                  // 次系统内存池
-void* SystemSecondaryDataTable;                   // 次系统数据表
-void* SystemCacheMemoryPool;                   // 缓存系统内存池
-void* SystemCacheDataTable;                    // 缓存系统数据表
+void* SystemSecondaryMemoryPool;                // 次系统内存池
+void* SystemSecondaryDataTable;                // 次系统数据表
+void* SystemCacheMemoryPool;                  // 缓存系统内存池
+void* SystemCacheDataTable;                   // 缓存系统数据表
 void* SystemTemporaryMemoryPool;              // 临时系统内存池
 void* SystemTemporaryDataTable;               // 临时系统数据表
 void* SystemReservedMemoryPool;               // 保留系统内存池
@@ -575,8 +575,8 @@ void* SystemEmergencyDataTable;               // 紧急系统数据表
  * 
  * 负责初始化游戏的核心系统组件，包括物理引擎、渲染系统等
  */
-void* GameCoreSystemMainEntryPoint;
-void* CoreSystemMemoryAllocator;                // 核心系统内存分配器
+void* SystemGameCoreMainEntryPoint;
+void* SystemCoreMemoryAllocator;                // 核心系统内存分配器
 void* CoreSystemDataTable;                     // 核心系统数据表
 void* CoreSystemMemoryBuffer;                  // 核心系统内存缓冲区
 void* CoreSystemPrimaryConfiguration;           // 核心系统主配置
