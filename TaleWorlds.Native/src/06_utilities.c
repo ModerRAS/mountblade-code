@@ -6137,16 +6137,14 @@ void TerminateSystem(void)
 
 
 
- void ReturnNoOperationPrimary(void)
+ void PerformNoOperation(void)
 /**
- * @brief 空操作返回函数（简化实现）
+ * @brief 空操作函数
  * 
  * 该函数是一个空操作函数，直接返回而不执行任何操作。
- * 这是一个简化的占位符函数，用于系统架构中的占位操作。
+ * 用于系统架构中的占位操作或默认行为。
  * 
  * @return 无返回值
- * @note 这是一个简化实现，仅执行返回操作
- * @warning 此函数为空实现，仅用于占位
  */
 void ReturnNoOperationPrimary(void)
 
@@ -30402,15 +30400,15 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerPointer;
+  int64_t* ExceptionHandlerFunctionPointer;
   
   // 获取异常处理函数指针
-  ExceptionHandlerPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
+  ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
   
   // 检查异常处理函数指针是否有效
-  if (ExceptionHandlerPointer != (int64_t *)0x0) {
+  if (ExceptionHandlerFunctionPointer != (int64_t *)0x0) {
     // 调用异常处理函数
-    (**(code **)(*(int64_t *)ExceptionHandlerPointer + ExceptionHandlerFunctionPointerOffset))();
+    (**(code **)(*(int64_t *)ExceptionHandlerFunctionPointer + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
@@ -30429,15 +30427,15 @@ void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @warning 调用此函数会释放相关资源并恢复系统状态
  */
 void HandleSecondaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t** ExceptionHandlerFunctionPointerTable;
+  int64_t** ExceptionHandlerFunctionPointerArray;
   
   // 获取次级异常处理函数指针表
-  ExceptionHandlerFunctionPointerTable = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
+  ExceptionHandlerFunctionPointerArray = *(int64_t **)(SystemContext + ExceptionHandlerSecondaryContextOffset);
   
   // 检查异常处理函数指针表是否有效
-  if (ExceptionHandlerFunctionPointerTable != (int64_t *)0x0) {
+  if (ExceptionHandlerFunctionPointerArray != (int64_t *)0x0) {
     // 调用次级异常处理函数
-    (**(code **)(*ExceptionHandlerFunctionPointerTable + ExceptionHandlerFunctionPointerOffset))();
+    (**(code **)(*ExceptionHandlerFunctionPointerArray + ExceptionHandlerFunctionPointerOffset))();
   }
   return;
 }
