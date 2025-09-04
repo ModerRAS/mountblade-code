@@ -2975,17 +2975,6 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
 }
 
 /**
- * @brief 清理连接堆栈
- * 
- * 清理网络连接的堆栈数据，释放相关资源，防止内存泄漏
- * 
- * @param ConnectionBuffer 连接缓冲区指针，包含需要清理的连接数据
- * @return void 无返回值
- * 
- * @note 此函数在连接断开或系统关闭时调用，确保资源正确释放
- * @warning 如果清理不完全，可能会导致内存泄漏或系统资源耗尽
- */
-/**
  * @brief 清理网络连接堆栈
  * 
  * 清理网络连接的堆栈缓冲区，释放相关资源并重置连接状态。
