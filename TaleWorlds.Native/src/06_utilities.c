@@ -5489,22 +5489,22 @@ uint8_t ValidateAndProcessObjectStatus(int64_t ObjectContext)
 {
   uint8_t StatusValidationCode;
   int64_t ResourceContextBuffer[2];
-  int64_t StackValidationBuffer[2];
+  int64_t ValidationStackData[2];
   
   // 验证对象上下文
-  StatusValidationCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), StackValidationBuffer);
+  StatusValidationCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), ValidationStackData);
   if ((int)StatusValidationCode == 0) {
     // 调整验证栈数据
     if (StackValidationBuffer[0] == 0) {
-      StackValidationBuffer[0] = 0;
+      ValidationStackData[0] = 0;
     }
     else {
-      StackValidationBuffer[0] = StackValidationBuffer[0] - 8;
+      ValidationStackData[0] = ValidationStackData[0] - 8;
     }
     
     // 初始化资源上下文缓冲区
     ResourceContextBuffer[0] = 0;
-    StatusValidationCode = ValidateResourceContext(StackValidationBuffer[0], ObjectContext + ObjectContextProcessingDataOffset, ResourceContextBuffer);
+    StatusValidationCode = ValidateResourceContext(ValidationStackData[0], ObjectContext + ObjectContextProcessingDataOffset, ResourceContextBuffer);
     if ((int)StatusValidationCode == 0) {
       // 处理资源上下文
       if (ResourceContextBuffer[0] != 0) {
@@ -5750,15 +5750,14 @@ uint8_t InitializeObjectHandleDetailed(void)
 
 
 /**
- * @brief 获取系统成功错误代码
+ * 获取系统错误成功代码
  * 
- * 该函数返回系统操作成功的标准错误代码
- * 通常用于表示操作成功完成的状态码
+ * 该函数返回系统定义的错误成功代码，用于标识操作成功状态
+ * 在错误处理和状态检查中使用
  * 
- * @return uint64_t 返回成功错误代码0x1c
+ * @return uint64_t 系统错误成功代码
  */
 uint64_t GetSystemErrorSuccessCode(void)
-
 {
   return ErrorInvalidObjectHandle;
 }
@@ -90071,7 +90070,21 @@ void SetTertiaryResourceHashTable(uint8_t ObjectContext,int64_t ValidationContex
 
 
 
-void Unwind_18090ee20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行验证上下文清理回调
+ * 
+ * 该函数负责执行验证上下文的清理回调函数
+ * 从验证上下文中获取清理回调函数指针，并调用该函数执行清理操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含清理回调函数指针
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @note 此函数在验证上下文清理时调用
+ * @warning 调用此函数会执行清理回调函数
+ * @remark 原始函数名：Unwind_18090ee20
+ */
+void ExecuteValidationContextCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
