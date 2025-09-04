@@ -59199,16 +59199,16 @@ SystemResourceProcessingComplete:
       floatValue1 = *(float *)(SystemResourceManager + 0x148);
       floatValue4 = *(float *)(SystemResourceManager + 0x154);
       BaseValue = *(float *)(SystemResourceManager + 0x150);
-      fStack_a8 = floatValue3 * InterpolationFactorY + floatValue2 * ScaleValue + floatValue1 * InterpolationFactorV;
-      fStack_a4 = floatValue3 * InterpolationFactorZ + floatValue2 * ScalingFactor + floatValue1 * MagnitudeSquared;
-      fStack_a0 = floatValue3 * InterpolationFactorA + floatValue2 * OffsetValue + floatValue1 * ResultValue1;
-      fStack_9c = floatValue3 * InterpolationFactorW + floatValue2 * RatioValue + floatValue1 * ResultValue2;
+      MatrixResult9 = floatValue3 * InterpolationFactorY + floatValue2 * ScaleValue + floatValue1 * InterpolationFactorV;
+      MatrixResult10 = floatValue3 * InterpolationFactorZ + floatValue2 * ScalingFactor + floatValue1 * MagnitudeSquared;
+      MatrixResult11 = floatValue3 * InterpolationFactorA + floatValue2 * OffsetValue + floatValue1 * ResultValue1;
+      MatrixResult12 = floatValue3 * InterpolationFactorW + floatValue2 * RatioValue + floatValue1 * ResultValue2;
       floatValue1 = *(float *)(SystemResourceManager + 0x158);
-      fStack_98 = floatValue4 * InterpolationFactorY + BaseValue * ScaleValue + floatValue1 * InterpolationFactorV + AdditionalParameter[0xc];
-      fStack_94 = floatValue4 * InterpolationFactorZ + BaseValue * ScalingFactor + floatValue1 * MagnitudeSquared + AdditionalParameter[0xd];
-      fStack_90 = floatValue4 * InterpolationFactorA + BaseValue * OffsetValue + floatValue1 * ResultValue1 + AdditionalParameter[0xe];
-      fStack_8c = floatValue4 * InterpolationFactorW + BaseValue * RatioValue + floatValue1 * ResultValue2 + AdditionalParameter[0xf];
-      AdditionalParameter = &fStack_c8;
+      MatrixResult13 = floatValue4 * InterpolationFactorY + BaseValue * ScaleValue + floatValue1 * InterpolationFactorV + AdditionalParameter[0xc];
+      MatrixResult14 = floatValue4 * InterpolationFactorZ + BaseValue * ScalingFactor + floatValue1 * MagnitudeSquared + AdditionalParameter[0xd];
+      MatrixResult15 = floatValue4 * InterpolationFactorA + BaseValue * OffsetValue + floatValue1 * ResultValue1 + AdditionalParameter[0xe];
+      MatrixResult16 = floatValue4 * InterpolationFactorW + BaseValue * RatioValue + floatValue1 * ResultValue2 + AdditionalParameter[0xf];
+      AdditionalParameter = &MatrixResult1;
     }
     InitializeSystemEncryptionParameters(&EncryptionOffset1,ConfigurationDataPointer + 0xc,*(uint8_t *)(SystemResourceManager + 0xf7),AdditionalParameter);
     ResourceHash = ConfigurationDataPointer[0x6f6];
