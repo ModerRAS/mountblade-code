@@ -65,11 +65,11 @@
 
 // 系统管理器表偏移量
 #define CompletionPortHandleOffset    0x42686
-#define SystemResourceManagerOffset         0x42687
-#define SystemMemoryFreeSize                0x213458
+#define ResourceManagerOffset         0x42687
+#define MemoryFreeSize                0x213458
 
 // 位操作和数学计算相关常量
-#define SystemBitMask32Bit                    0x1f
+#define BitMask32Bit                    0x1f
 #define SystemMaxUnsigned32Bit               0xffffffff
 #define SystemSineLookupTableSize            0x7fff
 #define SystemQuadrantShiftBits              0xd
@@ -171,6 +171,25 @@
 #define SystemVirtualTableInitializeOffset    0x28
 #define SystemVirtualTableCleanupOffset       0x38
 #define SystemVirtualTableEventOffset         0x60
+
+// 设备上下文配置常量
+#define DeviceContextConfigOffset             0x330
+#define DeviceContextEnableFlag               4
+
+// 系统参数配置常量
+#define SystemParameterConfigurationMask      0x4000000000000000
+#define SystemParameterConfigurationLimit     0xffff7fff
+#define SystemParameterConfigurationCount     0xd
+
+// 设备状态常量
+#define DeviceStatusActiveFlag                0xffffffff
+
+// 显示上下文地址常量
+#define DisplayContextPrimaryAddress         0x180be14a8
+#define DisplayContextSecondaryAddress       0x180be14c0
+#define DisplayContextTertiaryAddress        0x180be15c0
+#define DisplayContextQuaternaryAddress      0x180be14e0
+#define DisplayContextQuinaryAddress         0x180be1550
 
 // 系统事件相关常量
 #define SystemEventBroadcastOffset            0x20
@@ -18531,11 +18550,11 @@ int InitializeSystemConfiguration(void)
   SystemConfigurationSize = 0x100;
   ConfigurationIndex = 0;
   do {
-    ConfigureSystemParameters(ConfigurationIndex,0x4000000000000000,0xffff7fff,0);
+    ConfigureSystemParameters(ConfigurationIndex,SystemParameterConfigurationMask,SystemParameterConfigurationLimit,0);
     ConfigurationIndex = ConfigurationIndex + 1;
-  } while (ConfigurationIndex < 0xd);
-  *(uint *)(SystemDeviceContextPointer + 0x330) = *(uint *)(SystemDeviceContextPointer + 0x330) | 4;
-  SystemDeviceStatusFlag = 0xffffffff;
+  } while (ConfigurationIndex < SystemParameterConfigurationCount);
+  *(uint *)(SystemDeviceContextPointer + DeviceContextConfigOffset) = *(uint *)(SystemDeviceContextPointer + DeviceContextConfigOffset) | DeviceContextEnableFlag;
+  SystemDeviceStatusFlag = DeviceStatusActiveFlag;
   SystemCallbackResult = SystemEventCallback(&SystemEventParameterA);
   return (SystemCallbackResult != 0) - 1;
 }
@@ -18573,9 +18592,9 @@ void SetSystemPointerA(void)
   int SystemOperationStatus;
   
   SystemOperationStatus = GetSystemStatus(0);
-  SystemDisplayContextA = 0x180be14a8;
+  SystemDisplayContextA = DisplayContextPrimaryAddress;
   if (SystemOperationStatus != 0) {
-    SystemDisplayContextA = 0x180be14c0;
+    SystemDisplayContextA = DisplayContextSecondaryAddress;
   }
   return;
 }
@@ -19487,7 +19506,7 @@ uint32_t FinalSystemInitialization(void)
     *SystemManagerTable = (long long ***)&SystemManagerCompletionTable;
     PostQueuedCompletionStatus(SystemManagerTable[CompletionPortHandleOffset],0,0xffffffffffffffff);
     CloseHandle(SystemManagerTable[CompletionPortHandleOffset]);
-    SystemResourceManager = (long long ***)(SystemManagerTable + SystemResourceManagerOffset);
+    SystemResourceManager = (long long ***)(SystemManagerTable + ResourceManagerOffset);
     if ((long long ***)*SystemCleanupFlagPointer != (long long ***)0x0) {
         SystemCleanupFunction();
     }
@@ -19732,14 +19751,14 @@ void* CleanupSystemCompletionPortResources(void* SystemResourceHandle, uint32_t 
   *SystemResourceHandle = &SystemCompletionPortTemplate;
   PostQueuedCompletionStatus(SystemResourceHandle[CompletionPortHandleOffset],0,0xffffffffffffffff,0,InvalidHandleValue);
   CloseHandle(SystemResourceHandle[CompletionPortHandleOffset]);
-  if (SystemResourceHandle[SystemResourceManagerOffset] != 0) {
+  if (SystemResourceHandle[ResourceManagerOffset] != 0) {
       TerminateSystemProcess();
   }
   _Mtx_destroy_in_situ();
   _Mtx_destroy_in_situ();
   CleanupSystemResourceData(SystemResourceHandle);
   if ((CleanupFlags & 1) != 0) {
-    free(SystemResourceHandle,SystemMemoryFreeSize);
+    free(SystemResourceHandle,MemoryFreeSize);
   }
   return SystemResourceHandle;
 }
