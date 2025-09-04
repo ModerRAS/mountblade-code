@@ -61725,7 +61725,7 @@ void InitializeSystemDataStructureTertiaryReference(void)
  * 
  * 该函数负责清理系统数据指针，释放相关资源
  */
-void CleanupSystemDataPointerTypeVersion1(void)
+void CleanupSystemDataPrimaryPointer(void)
 
 {
   SystemDataSeptenaryPointer = &SystemDataStructure;
@@ -61740,7 +61740,7 @@ void CleanupSystemDataPointerTypeVersion1(void)
  * 
  * 该函数负责清理系统数据指针，释放相关资源
  */
-void CleanupSystemDataPointerTypeVersion2(void)
+void CleanupSystemDataSecondaryPointer(void)
 
 {
   SystemDataOctonaryPointer = &SystemDataStructure;
