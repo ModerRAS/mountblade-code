@@ -75920,10 +75920,15 @@ void ProcessTertiaryResourceCleanup(uint8_t ObjectContext, int64_t ValidationCon
 
 /**
  * @brief 执行第四级资源释放操作
+ * 
+ * 在系统unwind过程中执行第四级资源释放操作，
+ * 清理资源数据的第2个标志位，并释放相关的系统资源。
+ * 
  * @param ObjectContext 对象上下文
  * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_ExecuteQuaternaryResourceRelease
  */
-void Unwind_ExecuteQuaternaryResourceRelease(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteQuaternaryResourceRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -91526,7 +91531,17 @@ void RegisterResourceHandlerType098OffsetE8(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_18090e730(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源标志位1清理操作
+ * 
+ * 在系统unwind过程中检查并清理资源数据的第1位标志，
+ * 如果标志位被设置，则执行相应的资源操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e730
+ */
+void ExecuteResourceFlagBit1Cleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -91539,7 +91554,17 @@ void Unwind_18090e730(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e760(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源循环处理操作
+ * 
+ * 在系统unwind过程中执行资源循环处理操作，
+ * 通过循环计数器处理多个资源项。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e760
+ */
+void ExecuteResourceLoopProcessing(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
