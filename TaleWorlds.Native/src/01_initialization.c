@@ -60060,13 +60060,13 @@ void InitializeSystemVectorCalculations(void)
   float *VectorParameterPointer;
   long long SystemContextPointer;
   uint32_t AudioSystemActivationFlag;
-  void* InputParameterA;
-  void* InputParameterB;
-  void* InputParameterC;
-  void* InputParameterD;
-  void* InputParameterE;
-  void* InputParameterF;
-  void* InputParameterG;
+  void* SystemParameterA;
+  void* SystemParameterB;
+  void* SystemParameterC;
+  void* SystemParameterD;
+  void* SystemParameterE;
+  void* SystemParameterF;
+  void* SystemResourceParameter;
   void* ThreadCreationParameter;
   float VectorComponentX;
   float VectorComponentY;
@@ -60094,7 +60094,7 @@ void InitializeSystemVectorCalculations(void)
   uint32_t TransformParameterG;
   uint32_t TransformParameterH;
   float *VectorParameterArray;
-  void* StackParameterI;
+  void* TransformContext;
   
   AudioSystemActivationFlag = 0xffffffff;
   ProcessSystemContextAllocation(SystemContextPointer + 0x3388,&SystemStackBuffer30);
@@ -60148,12 +60148,12 @@ void InitializeSystemVectorCalculations(void)
   }
   ConfigureSystemContextBuffer(&SystemStackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),VectorParameterPointer);
   NetworkConnectionFlags = ThreadCreationParameter;
-  SecurityParameter = InputStackParameter90;
-  ConfigurationData = InputStackParameter88;
-  InitializationFlags = InputStackParameter80;
-  MemoryAllocationFlags = InputStackParameter78;
-  ThreadCreationFlags = InputStackParameter70;
-  ResourceCreationFlags = InputStackParameter68;
+  SecurityParameter = SystemSecurityParameter;
+  ConfigurationData = SystemConfigurationParameter;
+  InitializationFlags = SystemInitializationParameter;
+  MemoryAllocationFlags = SystemMemoryParameter;
+  ThreadCreationFlags = SystemThreadParameter;
+  ResourceCreationFlags = SystemResourceCreationParameter;
   SystemContextPointer = SystemResourceParameter;
   IsAudioSystemActive = *(byte *)(SystemContextPointer + 0x1bd8);
   CalculationFlags = *(int *)(SystemStatusFlags + 0x224);
