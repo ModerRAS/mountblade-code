@@ -42,66 +42,70 @@
 #define RegistrationArrayInitialSize 8                      // 注册数组初始大小
 #define RegistrationArrayGrowthFactor 1.5                   // 注册数组增长因子
 
-#define ThreadLocalStorageDataOffset 0x18
-#define ThreadResourceStateOffset 0x20
-#define ThreadResourceCountOffset 0x30
+// 线程相关常量
+#define ThreadLocalStorageDataOffset 0x18                // 线程本地存储数据偏移量
+#define ThreadResourceStateOffset 0x20                    // 线程资源状态偏移量
+#define ThreadResourceCountOffset 0x30                    // 线程资源计数偏移量
 
-#define ResourceManagementStateOffset 0x4
-#define ResourceManagementCleanupOffset 0x5
-#define ResourceManagementStatusOffset 0x7
-#define ResourceTablePointerIndexMultiplier 8
-#define ResourceEntrySizeMultiplier 12
-#define ResourceEntrySizeBytes 0xc
-#define ResourceEntrySize 0xc
-#define ResourceSizeLimit 0x3fffffff
-#define ResourceHandleMask 0xffffffff
-#define ResourceHashMask 0xffff7fff
-#define ResourceHashShiftMask 0xffffc000
-#define ResourceHashReservedBit 0x4000
-#define ResourceHashValueMask 0x7fff
-#define ResourceDataOffset 4
-#define ResourcePoolEntrySize 4
-#define ResourcePoolSecondaryOffset 4
-#define ResourceContextOffsetStandard 0x48
-#define ResourceContextOffsetExtended 0x90
-#define ResourceContextOffsetSecondary 0xb0
-#define ResourceContextOffsetTertiary 0xb4
-#define ResourceContextOffsetAlternate 0x6c
-#define ResourceContextOffsetHandle 0xf8
-#define ErrorInvalidObjectHandle 0x1c
-#define ErrorInvalidRegistrationData 0x1d
-#define ErrorInvalidResourceData 0x1e
-#define ResourceValidationError 0x1f
-#define ErrorFlagCheckFailure 0x2e
-#define ErrorPointerCheckFailure 0x4c
-#define ErrorStatusCheckFailure 0x4e
-#define ErrorFloatValidationFailure 0x1d
-#define SystemOperationErrorCode 0x4a
-#define SystemStatusConstant 0x1c
+// 资源管理相关常量
+#define ResourceManagementStateOffset 0x4                  // 资源管理状态偏移量
+#define ResourceManagementCleanupOffset 0x5                 // 资源管理清理偏移量
+#define ResourceManagementStatusOffset 0x7                 // 资源管理状态偏移量
+#define ResourceTablePointerIndexMultiplier 8              // 资源表指针索引乘数
+#define ResourceEntrySizeMultiplier 12                     // 资源条目大小乘数
+#define ResourceEntrySizeBytes 0xc                         // 资源条目大小（字节）
+#define ResourceEntrySize 0xc                               // 资源条目大小
+#define ResourceSizeLimit 0x3fffffff                       // 资源大小限制
+#define ResourceHandleMask 0xffffffff                      // 资源句柄掩码
+#define ResourceHashMask 0xffff7fff                         // 资源哈希掩码
+#define ResourceHashShiftMask 0xffffc000                   // 资源哈希移位掩码
+#define ResourceHashReservedBit 0x4000                     // 资源哈希保留位
+#define ResourceHashValueMask 0x7fff                        // 资源哈希值掩码
+#define ResourceDataOffset 4                                 // 资源数据偏移量
+#define ResourcePoolEntrySize 4                             // 资源池条目大小
+#define ResourcePoolSecondaryOffset 4                      // 资源池次要偏移量
+#define ResourceContextOffsetStandard 0x48                 // 资源上下文标准偏移量
+#define ResourceContextOffsetExtended 0x90                 // 资源上下文扩展偏移量
+#define ResourceContextOffsetSecondary 0xb0                // 资源上下文次要偏移量
+#define ResourceContextOffsetTertiary 0xb4                  // 资源上下文第三级偏移量
+#define ResourceContextOffsetAlternate 0x6c                 // 资源上下文替代偏移量
+#define ResourceContextOffsetHandle 0xf8                    // 资源上下文句柄偏移量
+// 错误代码相关常量
+#define ErrorInvalidObjectHandle 0x1c                       // 无效对象句柄错误
+#define ErrorInvalidRegistrationData 0x1d                  // 无效注册数据错误
+#define ErrorInvalidResourceData 0x1e                       // 无效资源数据错误
+#define ResourceValidationError 0x1f                         // 资源验证错误
+#define ErrorFlagCheckFailure 0x2e                           // 标志检查失败错误
+#define ErrorPointerCheckFailure 0x4c                        // 指针检查失败错误
+#define ErrorStatusCheckFailure 0x4e                        // 状态检查失败错误
+#define ErrorFloatValidationFailure 0x1d                     // 浮点数验证失败错误
+#define SystemOperationErrorCode 0x4a                       // 系统操作错误代码
+#define SystemStatusConstant 0x1c                            // 系统状态常量
 
-#define MaximumProcessableItemsLimit 0xffffffc0
-#define MaximumCapacityLimit 0xffffffc0
-#define SystemMaxIntValue 0x7fffffff
-#define ValidationSizeLimit 0x3fffffff
-#define ResourceSizeLimit 0x3fffffff
+// 系统限制相关常量
+#define MaximumProcessableItemsLimit 0xffffffc0               // 最大可处理项目限制
+#define MaximumCapacityLimit 0xffffffc0                      // 最大容量限制
+#define SystemMaxIntValue 0x7fffffff                          // 系统最大整数值
+#define ValidationSizeLimit 0x3fffffff                       // 验证大小限制
+#define ResourceSizeLimit 0x3fffffff                         // 资源大小限制
 
 // 资源清理相关常量
-#define DirectoryResourceTableOffset 0x8a8
-#define DirectoryResourceHashPointerOffset 0x8b0
-#define ResourceHashStatusAddressOffset 0x8c8
-#define StreamResourceLockOffset 0x8e8
-#define StreamResourceStatusOffset 0x8f8
+#define DirectoryResourceTableOffset 0x8a8                  // 目录资源表偏移量
+#define DirectoryResourceHashPointerOffset 0x8b0           // 目录资源哈希指针偏移量
+#define ResourceHashStatusAddressOffset 0x8c8               // 资源哈希状态地址偏移量
+#define StreamResourceLockOffset 0x8e8                      // 流资源锁偏移量
+#define StreamResourceStatusOffset 0x8f8                    // 流资源状态偏移量
 
 // 浮点数相关常量
-#define FloatInfinityMask 0x7f800000
-#define FloatNegativeInfinity 0xbf800000
-#define FloatOneValue 0x3f800000
-#define SystemFloatMaxValue 256.0
+#define FloatInfinityMask 0x7f800000                         // 浮点数无穷大掩码
+#define FloatNegativeInfinity 0xbf800000                     // 浮点数负无穷大
+#define FloatOneValue 0x3f800000                            // 浮点数1.0的十六进制表示
+#define SystemFloatMaxValue 256.0                            // 系统浮点数最大值
 
 // 整数范围常量
-#define Int32MinimumValue -0x80000000
-#define UInt32MaximumValue 0xffffffff
-#define UInt64MaximumValue 0xffffffffffffffff
+#define Int32MinimumValue -0x80000000                        // 32位有符号整数最小值
+#define UInt32MaximumValue 0xffffffff                        // 32位无符号整数最大值
+#define UInt64MaximumValue 0xffffffffffffffff                // 64位无符号整数最大值
 
 // 资源表偏移常量
 #define ResourceTableOffsetPrimary 0x50
