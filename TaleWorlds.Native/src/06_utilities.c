@@ -15831,7 +15831,7 @@ LoopExit:
           }
           InternalProcessingCounter = InternalProcessingCounter + 1;
           int TableValidationStatus = ValidateTableEntry(*(uint8_t *)(SystemContextPointer + ResourceContextExtendedOffset));
-        } while (ResourceProcessingCounter < tableResourceHashStatus);
+        } while (InternalProcessingCounter < tableResourceHashStatus);
       }
     }
     LoopIndex = LoopIndex + 1;
