@@ -4548,18 +4548,18 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     // 获取对象列表
     ValidationStatus = FetchObjectList(*(uint8_t *)(SystemContext + ThreadLocalStorageDataOffset), *(int64_t *)(HandleArray[0] + RegistrationHandleOffset),
                           &ListBuffer);
-    if (ObjectValidationStatus == 0) {
-      TotalObjectsCount = *(int *)(ObjectListBuffer + ObjectDataArraySizeOffset);
-      if (0 < TotalObjectsCount) {
-        ObjectCollectionIterator = 0;
+    if (ValidationStatus == 0) {
+      TotalCount = *(int *)(ListBuffer + ObjectDataArraySizeOffset);
+      if (0 < TotalCount) {
+        CollectionIterator = 0;
         do {
-          uint8_t CurrentObjectState = *(uint8_t *)(ObjectListBuffer + ObjectCollectionIterator);
-          ObjectValidationStatus = ValidateObjectStatus(CurrentObjectState);
-          if (ObjectValidationStatus != RegistrationStatusSuccess) {
+          uint8_t CurrentObjectState = *(uint8_t *)(ListBuffer + CollectionIterator);
+          ValidationStatus = ValidateObjectStatus(CurrentObjectState);
+          if (ValidationStatus != RegistrationStatusSuccess) {
                   HandleInvalidObject(CurrentObjectState, 1);
           }
-          ProcessedObjectCount++;
-          ObjectCollectionIterator += ResourceEntrySizeBytes;
+          ProcessedCount++;
+          CollectionIterator += ResourceEntrySizeBytes;
         } while (ProcessedObjectCount < TotalObjectsCount);
       }
       FreeObjectListMemory(&ObjectListBuffer);

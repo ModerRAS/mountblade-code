@@ -19959,6 +19959,18 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
  * 
  * @note 这是系统同步机制的重要组成部分，确保信号量的正确释放
  */
+/**
+ * @brief 释放系统信号量
+ * 
+ * 该函数负责释放系统信号量，增加信号量的计数。
+ * 它会循环尝试释放信号量，直到成功为止。
+ * 
+ * @param SemaphoreHandle 信号量句柄指针
+ * @param ReleaseCount 释放计数，指定要增加的信号量数量
+ * 
+ * @note 这是系统线程同步的重要组成部分，确保信号量的正确释放
+ * @note 函数会持续尝试释放直到成功，确保同步机制的可靠性
+ */
 void ReleaseSystemSemaphore(void* *SemaphoreHandle,uint32_t ReleaseCount)
 
 {
@@ -20349,7 +20361,17 @@ void* * GetSystemMemoryAllocatorReference(void* *MemoryAllocatorPointer,ulong lo
 
 
 
-// 函数: void UnlockSystemMutex(void* *SystemResourceManager)
+/**
+ * @brief 解锁系统互斥锁（简化版本）
+ * 
+ * 该函数负责解锁系统互斥锁的简化版本，直接调用_Mtx_unlock函数。
+ * 如果解锁失败，会抛出相应的错误。
+ * 
+ * @param MutexHandle 互斥锁指针
+ * 
+ * @note 这是系统线程同步的简化版本，确保互斥锁的正确解锁
+ * @note 如果解锁失败会抛出C标准错误
+ */
 void UnlockSystemMutex(void* *MutexHandle)
 
 {
