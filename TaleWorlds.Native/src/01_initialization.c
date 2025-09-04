@@ -33399,7 +33399,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   void* *stackPointer11;
   void* *stackPointer12;
   void* *stackPointer13;
-  void* stackPointer14;
+  void* StackPointerFourteenth;
   void* *stackPointer15;
   uint8_t *stackPointer16;
   uint32_t stackValue17;

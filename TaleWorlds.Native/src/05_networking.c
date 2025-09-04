@@ -2011,16 +2011,16 @@ PrimaryNetworkProcessingComplete:
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                            NetworkConnectionCompletionHandle, 0);
     if (ConnectionStatusBufferPointer != NULL) {
-      int32_t NetworkProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
-      int64_t StatusProcessingIterator = (long long)NetworkProcessingCode;
-      if ((NetworkProcessingCode != 0) && (ConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < NetworkProcessingCode)) {
-        NetworkStatus *NetworkStatusBuffer = ConnectionStatusBufferPointer;
+      int32_t NetworkOperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
+      int64_t StatusProcessingIterator = (long long)NetworkOperationProcessingCode;
+      if ((NetworkOperationProcessingCode != 0) && (ConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < NetworkOperationProcessingCode)) {
+        NetworkStatus *NetworkConnectionStatusBuffer = ConnectionStatusBufferPointer;
         do {
-          NetworkStatus *ContextStatusPointer = (NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusBufferPointer) + (long long)NetworkStatusBuffer);
+          NetworkStatus *ContextStatusPointer = (NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusBufferPointer) + (long long)NetworkConnectionStatusBuffer);
           NetworkStatus ValidationStatus = ContextStatusPointer[NetworkStatusValidationIndex];
           NetworkStatus TimeoutStatus = ContextStatusPointer[NetworkStatusTimeoutIndex];
           NetworkStatus SecondaryStatus = ContextStatusPointer[NetworkStatusSecondaryIndex];
-          *NetworkStatusBuffer = *ContextStatusPointer;
+          *NetworkConnectionStatusBuffer = *ContextStatusPointer;
           NetworkStatusBuffer[NetworkStatusValidationIndex] = ValidationStatus;
           NetworkStatusBuffer[NetworkStatusTimeoutIndex] = TimeoutStatus;
           NetworkStatusBuffer[NetworkStatusSecondaryIndex] = SecondaryStatus;
