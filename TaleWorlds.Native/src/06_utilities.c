@@ -4905,14 +4905,14 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
           }
           return SystemStatus;
         }
-        if ((int)CleanupData[5] <= (int)ResourceIndex) {
+        if ((int)CleanupDataPointer[5] <= (int)ResourceIndexPointer) {
           return ErrorInvalidObjectHandle;
         }
         ResourceData = ContextData + ResourceDataEntryOffset;
         if (ContextData == (int64_t *)0x0) {
           ResourceData = (int64_t *)ResourceHandleOffset;
         }
-        *(int64_t *)(CleanupData[4] + ResourceCleanupOffset + (int64_t)ResourceTablePointer) = *ResourceData;
+        *(int64_t *)(CleanupDataPointer[4] + ResourceCleanupOffset + (int64_t)ResourceTablePointer) = *ResourceData;
         if (ContextData == ResourceTablePointer) break;
         ResourceData = (int64_t *)(*ContextData - ResourceTablePointerEntrySize);
         if (*ContextData == 0) {
@@ -4923,7 +4923,7 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
           ContextData = ResourceData + ResourcePointerOffset;
         }
         ResourceTablePointer = ResourceTablePointer + ResourcePointerOffset;
-        ResourceIndex++;
+        ResourceIndexPointer++;
       }
       return ErrorInvalidObjectHandle;
     }
