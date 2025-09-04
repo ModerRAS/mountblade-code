@@ -1046,8 +1046,8 @@ void* SystemDataNodeSeventh;         // 系统数据节点第七节点
 void* SystemDataNodeEighth;          // 系统数据节点第八节点
 void* SystemDataNodeNinth;            // 系统数据节点第九节点
 void* SystemDataNodeTenth;            // 系统数据节点第十节点
-void* SystemDataNodeUndenary;          // 系统数据节点第十一节点
-void* SystemDataNodeDuodenary;         // 系统数据节点第十二节点
+void* SystemDataNodeEleventh;          // 系统数据节点第十一节点
+void* SystemDataNodeTwelfth;         // 系统数据节点第十二节点
 void* SystemDataNodeTridenary;         // 系统数据节点第十三节点
 void* SystemDataNodeQuattuordenary;    // 系统数据节点第十四节点
 void* SystemDataNodeQuindenary;        // 系统数据节点第十五节点
@@ -64012,7 +64012,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
         ResourceDataCounter = (long long)pointerToInteger20 - (long long)SystemIntegerPointer5 >> 2;
         if (ResourceDataCounter == 0) {
           ResourceDataCounter = 1;
-LAB_180079c12:
+MemoryAllocationLoop:
           SystemIntegerPointer3 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,ResourceDataCounter * 4,
                                          *(uint8_t *)(ResourceMemoryOffset + 0x18 + longValue170));
           pointerToInteger20 = *(int **)(ResourceMemoryOffset + 8 + SystemThreadHandle3);
