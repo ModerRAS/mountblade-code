@@ -83483,7 +83483,16 @@ void Unwind_ReleaseResourceReferenceAndCleanup(void)
 
 
 
-void Unwind_18090cad0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源表指针释放和内存清理操作
+ * 
+ * 该函数负责在系统资源释放过程中执行内存区域的清理和重置
+ * 处理资源表指针的释放和相关内存结构的清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ProcessResourceTablePointerReleaseAndMemoryCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -83567,7 +83576,16 @@ void ResourceReferenceCleanupHandlerSecondary(void)
 
 
 
-void Unwind_18090cb00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源索引验证和清理操作
+ * 
+ * 该函数负责验证系统资源索引的有效性并执行相应的清理操作
+ * 处理资源索引的验证和内存区域的清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteSystemResourceIndexValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -83672,7 +83690,14 @@ void Unwind_18090cb20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cb30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置验证上下文中的系统数据结构指针到第三级偏移量
+ * 用于在异常处理过程中重置系统数据结构引用到第三级位置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToTertiaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x6c0) = &SystemDataStructure;
