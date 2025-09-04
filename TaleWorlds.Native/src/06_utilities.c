@@ -84492,7 +84492,13 @@ void ClearResourceDataOffset20Bit5AndRelease(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_18090cdc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据偏移0x20的第6位标志位并释放系统资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cdc0
+ */
+void ClearResourceDataOffset20Bit6FlagsAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 0x40) != 0) {
@@ -84504,7 +84510,22 @@ void Unwind_18090cdc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cdf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源安全处理和清理操作
+ * 
+ * 该函数执行系统资源的安全处理流程，包括：
+ * 1. 调用验证上下文中的清理回调函数
+ * 2. 设置系统资源处理模板
+ * 3. 检查安全处理状态并执行紧急退出
+ * 4. 清理安全处理标志和数据
+ * 5. 设置系统数据结构指针
+ * 6. 调用额外的清理回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cdf0
+ */
+void ExecuteSystemResourceSecurityCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x178) != (int64_t *)0x0) {
@@ -84525,7 +84546,23 @@ void Unwind_18090cdf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ce00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统上下文资源安全处理和清理操作
+ * 
+ * 该函数执行系统上下文的资源安全处理流程，包括：
+ * 1. 获取验证上下文的次要清理偏移量
+ * 2. 调用系统上下文中的清理回调函数
+ * 3. 设置系统资源处理模板
+ * 4. 检查资源上下文第三级偏移量并执行紧急退出
+ * 5. 清理资源上下文标志和数据
+ * 6. 设置系统数据结构指针
+ * 7. 调用额外的清理回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090ce00
+ */
+void ExecuteSystemContextResourceSecurityCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;

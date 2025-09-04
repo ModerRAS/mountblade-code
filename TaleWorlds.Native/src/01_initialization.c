@@ -60560,7 +60560,7 @@ SystemStatusCheck:
     IsSystemByteValid = (*(byte *)(SystemResourceManager + 0xfd) & 2) == 0;
   }
   SystemStatusFlag = IsSystemByteValid + '\x01';
-LAB_SystemStatusSet:
+LAB_SetSystemStatus:
   *(char *)(SystemResourceManager + 0xff) = SystemStatusFlag;
   SystemMemoryPointer = *(long long *)(SystemResourceManager + 0x1b8);
   SystemConfigurationFlag = *(uint *)(SystemMemoryPointer + 0x138) & 0x3000;
@@ -64588,7 +64588,7 @@ ThreadHandleValidation:
                 SystemTimeFlag1d8 = (long long)pointerToInteger26 - (long long)pointerToInteger25;
                 if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
                   SystemThreadHandle1 = 1;
-LAB_SystemThreadCreate:
+LAB_CreateSystemThread:
                   SystemIntegerPointer6 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemThreadHandle1 * 4,3);
                 }
                 else {
@@ -68473,7 +68473,7 @@ void ProcessSystemResourceHandle(long long* SystemResourceManager)
       UNLOCK();
       if (IsHandleAvailable) break;
       ResourceIndex = _Thrd_id();
-      if ((*(int *)(SystemHandle + 0xf0) == ResourceIndex) || (*(int *)(SystemHandle + 0xf0) != 0)) goto LAB_18007f89f;
+      if ((*(int *)(SystemHandle + 0xf0) == ResourceIndex) || (*(int *)(SystemHandle + 0xf0) != 0)) goto SystemHandleValidation;
       Sleep();
     }
     SystemStatus = '\0';
@@ -68522,7 +68522,7 @@ uint GetSystemResourceStatusFlag(void)
     if (isThreadActive) break;
     systemIndex = _Thrd_id();
     if ((*(int *)(memoryBlockAddress + 0xf0) == systemIndex) || (*(int *)(memoryBlockAddress + 0xf0) != 0))
-    goto LAB_18007f89f;
+    goto SystemHandleValidation;
     Sleep();
   }
   charFlag = '\0';
