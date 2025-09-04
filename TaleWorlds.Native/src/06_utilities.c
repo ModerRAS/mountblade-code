@@ -86019,7 +86019,13 @@ void CleanupQuaternaryResourceHashStatus(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_18090d150(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证和清理操作（偏移量0x270）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d150
+ */
+void ExecuteResourceHashStatusValidationAndCleanupOffset270(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -86055,7 +86061,13 @@ void Unwind_18090d150(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d160(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证和清理操作（偏移量0x278）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d160
+ */
+void ExecuteResourceHashStatusValidationAndCleanupOffset278(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
