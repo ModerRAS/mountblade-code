@@ -19765,19 +19765,7 @@ void GuardCheckICall(void)
 
 
 
-/**
- * @brief 系统内存分配器引用管理器
- * 
- * 该函数管理系统内存分配器的引用，根据标志位决定是否释放内存。
- * 
- * @param SystemResourceManager 指向内存分配器引用的指针
- * @param MemoryFlags 标志位，控制是否释放内存
- * @param MemoryFreeParam1 内存释放参数1
- * @param MemoryFreeParam2 内存释放参数2
- * @return 返回内存分配器引用指针
- */
 void** SystemMemoryAllocatorReferenceManager(void** systemResourceManager, unsigned long long memoryFlags, void* memoryFreeParam1, void* memoryFreeParam2)
-
 {
   *systemResourceManager = &SystemMemoryAllocatorReference;
   if ((memoryFlags & 1) != 0) {

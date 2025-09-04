@@ -82229,7 +82229,14 @@ void SetSystemDataStructurePointerToOffset110(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090c680(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移量0x410
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c680
+ */
+void SetSystemDataStructurePointerToOffset410(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x410) = &SystemDataStructure;
@@ -82238,7 +82245,14 @@ void Unwind_18090c680(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c690(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移量0x290
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c690
+ */
+void SetSystemDataStructurePointerToOffset290(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x290) = &SystemDataStructure;
