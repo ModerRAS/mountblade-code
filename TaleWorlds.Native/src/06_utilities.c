@@ -4524,12 +4524,15 @@ uint8_t SystemMemoryFlagKernel;
 /**
  * @brief 处理游戏对象集合
  * 
- * 该函数用于处理游戏对象集合的批量操作，包括对象验证、状态检查和清理。
- * 通过安全验证和上下文句柄获取，确保对象处理的安全性。
+ * 该函数负责处理游戏对象集合的批量操作
+ * 包括对象状态验证、安全检查和集合管理
+ * 支持大规模对象集合的高效处理
  * 
- * @param GameContext 游戏上下文，包含游戏相关的状态信息
- * @param SystemContext 系统上下文，包含系统相关的状态信息
- * @return void 无返回值
+ * @param GameContext 游戏上下文指针，包含游戏状态和配置信息
+ * @param SystemContext 系统上下文指针，包含系统资源和状态信息
+ * @return 无返回值
+ * @note 该函数会进行安全验证和对象状态检查
+ * @warning 处理大量对象时可能影响性能，建议在适当时机调用
  */
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
