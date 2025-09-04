@@ -5096,9 +5096,9 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidationBuffer [4];
   
   // 验证对象上下文的有效性
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ValidationBuffer);
-  if ((int)ValidationStatus != 0) {
-    return ValidationStatus;
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ValidationBuffer);
+  if ((int)ValidationStatusCode != 0) {
+    return ValidationStatusCode;
   }
   
   // 调整对象验证缓冲区地址
@@ -5113,8 +5113,8 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
     *(int *)(MemoryAddress + ObjectReferenceCountOffset) = *(int *)(MemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(MemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationStatus = CheckSystemStatus(), (int)ValidationStatus != 0)) {
-      return ValidationStatus;
+    if ((*(char *)(MemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationStatusCode = CheckSystemStatus(), (int)ValidationStatusCode != 0)) {
+      return ValidationStatusCode;
     }
     return OperationSuccessCode;
   }
