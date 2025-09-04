@@ -88938,7 +88938,13 @@ void SetSystemDataStructurePointerAtSecurityDataOffset(uint8_t ObjectContext, in
 
 
 
-void Unwind_18090d630(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置偏移0x1b8处的系统数据结构指针（重复函数）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d630
+ */
+void SetSystemDataStructurePointerAtOffset1b8Duplicate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1b8) = &SystemDataStructure;
@@ -88947,7 +88953,13 @@ void Unwind_18090d630(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d640(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置偏移ValidationContextSecurityDataOffset处的系统数据结构指针（重复函数）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d640
+ */
+void SetSystemDataStructurePointerAtSecurityDataOffsetDuplicate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ValidationContextSecurityDataOffset) = &SystemDataStructure;
@@ -88956,7 +88968,13 @@ void Unwind_18090d640(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d650(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源表遍历和清理
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d650
+ */
+void ExecuteSystemResourceTableTraversalAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
