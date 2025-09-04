@@ -2601,7 +2601,7 @@ void InitializeSystemThreadManager(void)
 void InitializeSystemEventManager(void)
 
 {
-  char NodeActiveFlag;
+  char IsNodeActive;
   void** SystemDataTable;
   int IdentifierCompareResult;
   long long* MemorySystemPointer;
@@ -63450,12 +63450,12 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   void* ThreadContextFlag;
   void* *memoryAllocationBuffer;
   float SystemFloatValue3;
-  float fStack_4c;
+  float SystemStackFloatValue4C;
   void* *pSystemEncryptionKey;
   void* SystemOperationCounter;
   void* SystemContextValue;
   uint8_t SystemResourceStatusFlagCompact [8];
-  float *pfStack_28;
+  float *SystemStackFloatPointer28;
   uint32_t SystemMaxOperationCount;
   
   SystemContextValue = 0xfffffffffffffffe;
@@ -63463,13 +63463,13 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     SystemResourceStatusFlagCompact[0] = 0;
     SystemMaxOperationCount = 0;
     SystemFlagTertiary = 0x1800795fa;
-    pfStack_28 = SystemResourceManager;
+    SystemStackFloatPointer28 = SystemResourceManager;
     InitializeSystemResourceEncryption(SystemResourceStatusFlagCompact);
     SystemFlagTertiary = 0x180079605;
-    floatValue6 = (float)GetSystemTimeValue(0);
-    if ((10 < (int)floatValue6) ||
+    SystemTimeFloatValue = (float)GetSystemTimeValue(0);
+    if ((10 < (int)SystemTimeFloatValue) ||
        ((int)(*(int *)(*(long long *)(SystemResourceManager + 0x84) + 0x88) +
-             (*(int *)(*(long long *)(SystemResourceManager + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)floatValue6)) {
+             (*(int *)(*(long long *)(SystemResourceManager + 0x84) + 0x88) >> 0x1f & 3U)) >> 2 < (int)SystemTimeFloatValue)) {
       pSystemEncryptionKey = &SystemStringTemplate;
       if (*(void* **)(SystemResourceManager + 6) != (void* *)0x0) {
         pSystemEncryptionKey = *(void* **)(SystemResourceManager + 6);
@@ -63477,7 +63477,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       SystemOperationCounter = ConcatenatedSystemValue(SystemOperationCounter._4_4_,*(uint32_t *)(*(long long *)(SystemResourceManager + 0x84) + 0x60));
       memoryAllocationBuffer = &SystemMemoryBufferTemplateA;
       SystemFlagTertiary = 0x18007967a;
-      SystemFloatValue3 = floatValue6;
+      SystemFloatValue3 = SystemTimeFloatValue;
       SystemManagerSetFlags(SystemContextManagerPointer,0,0x80000000000,3);
     }
     SystemResourceManager[0x40] = (float)((uint)SystemResourceManager[0x40] | 0x10000);
@@ -63485,11 +63485,11 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     CleanupSystemResourceEncryption(SystemResourceStatusFlagCompact);
   }
   SystemContextValue = 0xfffffffffffffffe;
-  pfloatValue7 = SystemResourceManager;
+  SystemFloatPointer7 = SystemResourceManager;
   if ((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x20) == 0) {
-    pfloatValue7 = (float *)GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x6c));
+    SystemFloatPointer7 = (float *)GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x6c));
   }
-  if ((*(long long *)(pfloatValue7 + 0x84) != 0) && (((uint)SystemResourceManager[0x40] & 0x80) == 0)) {
+  if ((*(long long *)(SystemFloatPointer7 + 0x84) != 0) && (((uint)SystemResourceManager[0x40] & 0x80) == 0)) {
     primaryFloatPointer = SystemResourceManager + 0x9d;
     primaryFloatPointer[0] = 1e+08;
     primaryFloatPointer[1] = 1e+08;
