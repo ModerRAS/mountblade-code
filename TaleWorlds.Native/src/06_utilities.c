@@ -14663,7 +14663,7 @@ void ProcessContextDataValidation(int64_t *ObjectContext,int64_t *ValidationCont
   uint8_t DataBuffer [512];
   uint64_t SecurityParameter;
   
-  securityParameter = SecurityEncryptionKey ^ (uint64_t)encryptionBuffer;
+  SecurityParameter = SecurityEncryptionKey ^ (uint64_t)encryptionBuffer;
   SystemContextPointer = ObjectContext[4];
   if (((char)SystemContextPointer != '\0') || (OperationResult = CheckSystemStatus(ObjectContext,1), OperationResult == 0)) {
     OperationResult = (**(code **)(*ValidationContext + ValidationContextMethodPointerOffset))(ValidationContext,DataBuffer,0x200);
