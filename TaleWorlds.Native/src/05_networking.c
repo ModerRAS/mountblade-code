@@ -92,6 +92,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define MagicValidationIndex 1                                  // 魔数验证索引
 #define DataIntegrityIndex 2                                    // 数据完整性索引
 #define DecodingModeIndex 3                                     // 解码模式索引
+#define PacketDecodingModeIndex 0                               // 数据包解码模式索引
+#define PrimaryMagicNumberIndex 1                               // 主要魔数索引
+#define SecondaryMagicNumberIndex 2                             // 次要魔数索引
 
 // 网络连接相关偏移量 - 连接上下文和状态管理
 #define NetworkConnectionContextOffset 0x78                    // 网络连接上下文偏移量
