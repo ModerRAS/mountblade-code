@@ -4966,25 +4966,24 @@ uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemConte
   int SystemValidationStatus;
   uint8_t AccessValidationStatus;
   int64_t ObjectValidationBuffer [2];
+  int64_t *PrimaryValidationContext;
   
   AccessValidationStatus = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + ObjectHandleMemoryOffset), ObjectValidationBuffer);
+  PrimaryValidationContext = (int64_t *)ObjectValidationBuffer[0];
   SystemObjectHandle = ObjectValidationBuffer[0];
   if ((int)AccessValidationStatus != 0) {
     return AccessValidationStatus;
   }
-  (*(int *)(ObjectValidationBuffer[0] + ResourceCountOffset))++;
-  if (*(int *)(ObjectValidationBuffer[0] + ResourceTertiaryCounterOffset) + *(int *)(ObjectValidationBuffer[0] + ResourceSecondaryCounterOffset) +
-      *(int *)(ObjectValidationBuffer[0] + ResourceCountOffset) == 1) {
-    ObjectValidationBuffer[0] = 0;
+  (*(int *)(PrimaryValidationContext + ResourceCountOffset))++;
+  if (*(int *)(PrimaryValidationContext + ResourceTertiaryCounterOffset) + *(int *)(PrimaryValidationContext + ResourceSecondaryCounterOffset) +
+      *(int *)(PrimaryValidationContext + ResourceCountOffset) == 1) {
+    PrimaryValidationContext = 0;
     SystemValidationStatus = ValidateSystemObjectConfiguration(ObjectValidationBuffer);
     if (SystemValidationStatus == 0) {
       SystemValidationStatus = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + SystemContextSecondaryDataOffset),
                             *(uint8_t *)(SystemContextParameters + 800));
-      if (SystemValidationStatus == 0) {
-              ReleaseValidationResources(ObjectValidationBuffer);
-      }
     }
-          ReleaseValidationResources(ObjectValidationBuffer);
+    ReleaseValidationResources(ObjectValidationBuffer);
   }
   return 0;
 }
@@ -5011,15 +5010,17 @@ uint64_t UpdateObjectStatusFlags(int64_t ObjectContext)
   int64_t *ObjectCollectionIterator;
   int64_t SystemContextArray[4];
   uint32_t *ObjectStatusFlagsBuffer;
+  int64_t *PrimarySystemContext;
   
   StatusUpdateResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextDataArrayOffset), SystemContextArray);
   if ((int)StatusUpdateResult == 0) {
-    ObjectCollectionIterator = *(int64_t **)(SystemContextArray[0] + ContextHandlesIteratorOffset);
-    while ((*(int64_t **)(SystemContextArray[0] + ContextHandlesIteratorOffset) <= ObjectCollectionIterator &&
-           (ObjectCollectionIterator < *(int64_t **)(SystemContextArray[0] + ContextHandlesIteratorOffset) + *(int *)(SystemContextArray[0] + ContextHandlesCapacityOffset)))) {
+    PrimarySystemContext = SystemContextArray[0];
+    ObjectCollectionIterator = *(int64_t **)(PrimarySystemContext + ContextHandlesIteratorOffset);
+    while ((*(int64_t **)(PrimarySystemContext + ContextHandlesIteratorOffset) <= ObjectCollectionIterator &&
+           (ObjectCollectionIterator < *(int64_t **)(PrimarySystemContext + ContextHandlesIteratorOffset) + *(int *)(PrimarySystemContext + ContextHandlesCapacityOffset)))) {
       ObjectInstance = *ObjectCollectionIterator;
       ObjectCollectionIterator = ObjectCollectionIterator + 1;
-      if ((*(int64_t *)(ObjectInstance + ObjectContextValidationDataOffset) == *(int64_t *)(SystemContextArray[0] + ObjectHandleSecondaryOffset)) &&
+      if ((*(int64_t *)(ObjectInstance + ObjectContextValidationDataOffset) == *(int64_t *)(PrimarySystemContext + ObjectHandleSecondaryOffset)) &&
          (ObjectInstance = *(int64_t *)(ObjectInstance + ObjectContextOffset), ObjectInstance != 0)) {
         ObjectStatusFlagsBuffer = (uint32_t *)(ObjectInstance + SystemContextFlagCheckOffset);
         *ObjectStatusFlagsBuffer = *ObjectStatusFlagsBuffer | 4;
@@ -5082,18 +5083,6 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于增加系统对象的引用计数，这是对象生命周期管理的重要部分。
- * 当对象被引用时，需要增加其引用计数以确保对象不会被提前释放。
- * 函数会先验证对象上下文的有效性，然后安全地增加对象的引用计数。
- * 
- * @param ObjectContext 对象上下文指针，包含对象的引用信息
- * @return uint8_t 操作结果状态码，0表示成功，非0表示失败
- * @note 引用计数用于跟踪对象被引用的次数，当计数为0时对象可以被释放
- * @warning 如果对象上下文无效，函数会返回相应的错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数用于增加指定对象的引用计数，确保对象在使用期间不会被意外释放。
  * 这是对象生命周期管理的重要函数，通过维护引用计数来控制对象的释放时机。
  * 
@@ -5104,6 +5093,7 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   int64_t MemoryAddress;
   uint8_t ValidationStatusCode;
   int64_t ValidationBuffer [4];
+  int64_t *PrimaryValidationContext;
   
   // 验证对象上下文的有效性
   ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ValidationBuffer);
@@ -5112,12 +5102,13 @@ uint8_t IncreaseObjectReferenceCount(int64_t ObjectContext) {
   }
   
   // 调整对象验证缓冲区地址
-  if (ValidationBuffer[0] != 0) {
-    ValidationBuffer[0] = ValidationBuffer[0] - 8;
+  PrimaryValidationContext = (int64_t *)ValidationBuffer[0];
+  if (PrimaryValidationContext != 0) {
+    PrimaryValidationContext = (int64_t *)((int64_t)PrimaryValidationContext - 8);
   }
   
   // 获取验证后的对象内存地址
-  MemoryAddress = *(int64_t *)(ValidationBuffer[0] + ObjectHandleOffset);
+  MemoryAddress = *(int64_t *)(PrimaryValidationContext + ObjectHandleOffset);
   if (MemoryAddress != 0) {
     // 增加对象引用计数
     *(int *)(MemoryAddress + ObjectReferenceCountOffset) = *(int *)(MemoryAddress + ObjectReferenceCountOffset) + 1;
