@@ -3497,37 +3497,37 @@ uint8_t MemoryBlockHeader;
 uint8_t MemoryAllocationTracker;
 uint8_t MemoryAllocationArena;
 uint8_t MemoryAllocationChunk;
-uint8_t MemoryAllocationPage;
-uint8_t MemoryAllocationSegment;
-uint8_t MemoryAllocationRegion;
-uint8_t MemoryAllocationZone;
-uint8_t MemoryAllocationCache;
-uint8_t MemoryAllocationBuffer;
-uint8_t MemoryAllocationDescriptor;
-uint8_t MemoryAllocationSize;
-uint8_t MemoryAllocationFlags;
-uint8_t MemoryAllocationTable;
-uint8_t MemoryAllocationQueue;
-uint8_t MemoryAllocationStack;
-uint8_t MemoryAllocationList;
-uint8_t MemoryAllocationArray;
-uint8_t MemoryAllocationVector;
-uint8_t MemoryAllocationMatrix;
-uint8_t MemoryAllocationMap;
-uint8_t MemoryAllocationSet;
-uint8_t MemoryAllocationCollection;
-uint8_t MemoryAllocationTree;
-uint8_t MemoryAllocationGraph;
-uint8_t MemoryAllocationNetwork;
+uint8_t MemoryPageAllocationUnit;
+uint8_t MemorySegmentAllocationUnit;
+uint8_t MemoryRegionAllocationUnit;
+uint8_t MemoryZoneAllocationUnit;
+uint8_t MemoryCacheAllocationUnit;
+uint8_t MemoryBufferAllocationUnit;
+uint8_t MemoryDescriptorAllocationUnit;
+uint8_t MemorySizeAllocationUnit;
+uint8_t MemoryFlagsAllocationUnit;
+uint8_t MemoryTableAllocationUnit;
+uint8_t MemoryQueueAllocationUnit;
+uint8_t MemoryStackAllocationUnit;
+uint8_t MemoryListAllocationUnit;
+uint8_t MemoryArrayAllocationUnit;
+uint8_t MemoryVectorAllocationUnit;
+uint8_t MemoryMatrixAllocationUnit;
+uint8_t MemoryMapAllocationUnit;
+uint8_t MemorySetAllocationUnit;
+uint8_t MemoryCollectionAllocationUnit;
+uint8_t MemoryTreeAllocationUnit;
+uint8_t MemoryGraphAllocationUnit;
+uint8_t MemoryNetworkAllocationUnit;
 
- uint8_t MemoryPoolManager;
-// 内存分配器 - 负责内存分配操作
-uint8_t MemoryAllocationManager;
-uint8_t SystemMemoryDescriptor;
-uint8_t MemoryPoolBuffer;
-uint8_t SystemMemoryCache;
-uint8_t SystemMemoryHeap;
-uint8_t SystemMemoryStack;
+ uint8_t SystemMemoryPoolManager;
+// 系统内存分配器 - 负责系统内存分配操作
+uint8_t SystemMemoryAllocationManager;
+uint8_t SystemMemoryDescriptorTable;
+uint8_t SystemMemoryPoolBuffer;
+uint8_t SystemMemoryCacheTable;
+uint8_t SystemMemoryHeapTable;
+uint8_t SystemMemoryStackTable;
 
  void* SystemMemoryConfigurationDataTemplateSpecialA;
 
@@ -90783,7 +90783,12 @@ void RegisterResourceHandler248AtOffset2378(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090e280(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 注册248类型资源处理器在偏移量0x2810处
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandler248AtOffset2810(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x2810,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
@@ -90792,7 +90797,12 @@ void Unwind_18090e280(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e2a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源处理回调函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceProcessingCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90806,7 +90816,12 @@ void Unwind_18090e2a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e2c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 注册488类型资源处理器在偏移量0x3d38处
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandler488AtOffset3d38(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x3d38,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
@@ -90815,71 +90830,168 @@ void Unwind_18090e2c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e2e0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型908（偏移18000）
+ * 
+ * 该函数负责注册特定类型的资源处理器
+ * 在验证上下文的指定偏移处注册资源类型908的处理器
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会注册资源类型908的处理器
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090e2e0
+ */
+void RegisterResourceHandlerType908Offset18000(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 18000,0x908,2,ResourceTypeHandler908,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 18000, 0x908, 2, ResourceTypeHandler908, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090e300(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型908（偏移0x5868）
+ * 
+ * 该函数负责注册特定类型的资源处理器
+ * 在验证上下文的指定偏移处注册资源类型908的处理器
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会注册资源类型908的处理器
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090e300
+ */
+void RegisterResourceHandlerType908Offset5868(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x5868,0x908,2,ResourceTypeHandler908,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x5868, 0x908, 2, ResourceTypeHandler908, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090e320(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型050（偏移0x6a80）
+ * 
+ * 该函数负责注册特定类型的资源处理器
+ * 在验证上下文的指定偏移处注册资源类型050的处理器
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会注册资源类型050的处理器
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090e320
+ */
+void RegisterResourceHandlerType050Offset6a80(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x6a80,0x50,2,ResourceTypeHandler050,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x6a80, 0x50, 2, ResourceTypeHandler050, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090e340(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型488（偏移0x6b28）
+ * 
+ * 该函数负责注册特定类型的资源处理器
+ * 在验证上下文的指定偏移处注册资源类型488的处理器
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会注册资源类型488的处理器
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090e340
+ */
+void RegisterResourceHandlerType488Offset6b28(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x6b28,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x6b28, 0x488, 2, ResourceTypeHandler488, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090e360(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型050（偏移0x7440）
+ * 
+ * 该函数负责注册特定类型的资源处理器
+ * 在验证上下文的指定偏移处注册资源类型050的处理器
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会注册资源类型050的处理器
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090e360
+ */
+void RegisterResourceHandlerType050Offset7440(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x7440,0x50,2,ResourceTypeHandler050,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x7440, 0x50, 2, ResourceTypeHandler050, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090e380(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型098（偏移0x74e8）
+ * 
+ * 该函数负责注册特定类型的资源处理器
+ * 在验证上下文的指定偏移处注册资源类型098的处理器
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会注册资源类型098的处理器
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090e380
+ */
+void RegisterResourceHandlerType098Offset74e8(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x74e8,0x98,2,ResourceTypeHandler098,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x74e8, 0x98, 2, ResourceTypeHandler098, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090e3a0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型248（偏移0x7620）
+ * 
+ * 该函数负责注册特定类型的资源处理器
+ * 在验证上下文的指定偏移处注册资源类型248的处理器
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会注册资源类型248的处理器
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090e3a0
+ */
+void RegisterResourceHandlerType248Offset7620(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x7620,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x7620, 0x248, 2, ResourceTypeHandler248, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090e3c0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源哈希状态验证和清理操作
+ * 
+ * 该函数负责验证资源哈希状态并执行相应的清理操作。
+ * 检查资源索引和验证结果，执行必要的内存访问验证和资源清理。
+ * 当资源索引计数器归零时，触发系统清理处理程序。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会验证资源哈希状态并执行清理操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090e3c0
+ */
+void ExecuteResourceHashStatusValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int32_t *ResourceTablePointerIndexPointer;
   uint8_t *ResourceHashStatusAddress;
@@ -90905,8 +91017,8 @@ void Unwind_18090e3c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
-                          ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
+      ValidateMemoryAccess(MemoryAddressAlignment, CONCAT71(0xff000000, *(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+                          ResourceHashStatusAddress, MemoryAddressAlignment, 0xfffffffffffffffe);
     }
   }
   return;
