@@ -91984,7 +91984,7 @@ void ProcessResourceTablePointerOperation(uint8_t ObjectContext,int64_t Validati
 
 
 
-void Unwind_18090e800(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceTablePointerOperationExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
