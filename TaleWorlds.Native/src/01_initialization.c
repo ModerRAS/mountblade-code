@@ -19443,7 +19443,7 @@ uint32_t FinalSystemInitialization(void)
   while( true ) {
     SystemControllerInstance = *SystemTemporaryManager[1];
     if (SystemControllerInstance == (long long **)&SystemControllerDefaultTable) {
-      SystemActiveStatus = *(char *)(TemporaryManager14[1] + 2) != '\0';
+      SystemActiveStatus = *(char *)(SystemTemporaryManager[1] + 2) != '\0';
     }
     else {
       SystemActiveStatus = (*(code *)SystemControllerInstance[0xd])();
@@ -19452,7 +19452,7 @@ uint32_t FinalSystemInitialization(void)
     if (SystemActiveStatus != '\0') break;
     Sleep(1);
   }
-  StackManager8 = SystemManagerPointerStorage;
+  SystemStackManager = SystemManagerPointerStorage;
   if (SystemManagerPointerStorage != (long long ****)0x0) {
     SystemManagerPointer = __RTCastToVoid(SystemManagerPointerStorage);
     *SystemManagerTable = (long long ***)&SystemManagerCompletionTable;
