@@ -136,9 +136,9 @@
 #define ResourceDataBoneScaleOffset         0x29c
 #define ResourceDataFinalScaleOffset        0x2a4
 #define DataComparisonTemplateIId2   0xb97f048d2153e1b0
-#define SystemDataComparisonTemplateLId1   0x402feffe4481676e
-#define SystemDataComparisonTemplateLId2   0xd4c2151109de93a0
-#define SystemDataComparisonTemplateMId1   0x4384dcc4b6d3f417
+#define DataComparisonTemplateLId1   0x402feffe4481676e
+#define DataComparisonTemplateLId2   0xd4c2151109de93a0
+#define DataComparisonTemplateMId1   0x4384dcc4b6d3f417
 #define SystemDataComparisonTemplateMId2   0x92a15d52fe2679bd
 #define SystemDataComparisonTemplateNId1   0x4140994454d56503
 #define SystemDataComparisonTemplateNId2   0x399eced9bb5517ad
