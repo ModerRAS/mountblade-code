@@ -347,15 +347,15 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NETWORK_CERTIFICATE_ENABLED_FLAG 0x01                    // 证书启用
 
 // 网络连接管理常量
-#define TABLE_INDEX_RESET 0x00                      // 表索引重置
-#define CONNECTION_MANAGER_ENABLED 0x01              // 连接管理器启用
-#define CONNECTION_DATA_ENABLED 0x01                // 连接数据启用
-#define ROUTING_ENABLED 0x01                        // 路由启用
-#define QUEUE_BUFFER_ENABLED 0x01                   // 队列缓冲区启用
-#define CACHE_ENABLED 0x01                          // 缓存启用
-#define FILTER_ENABLED 0x01                         // 过滤器启用
-#define BANDWIDTH_RESET 0x00                        // 带宽重置
-#define LATENCY_RESET 0x00                          // 延迟重置
+#define NETWORK_TABLE_INDEX_RESET_VALUE 0x00                      // 表索引重置
+#define NETWORK_CONNECTION_MANAGER_ENABLED_FLAG 0x01              // 连接管理器启用
+#define NETWORK_CONNECTION_DATA_ENABLED_FLAG 0x01                // 连接数据启用
+#define NETWORK_ROUTING_ENABLED_FLAG 0x01                        // 路由启用
+#define NETWORK_QUEUE_BUFFER_ENABLED_FLAG 0x01                   // 队列缓冲区启用
+#define NETWORK_CACHE_ENABLED_FLAG 0x01                          // 缓存启用
+#define NETWORK_FILTER_ENABLED_FLAG 0x01                         // 过滤器启用
+#define NETWORK_BANDWIDTH_RESET_VALUE 0x00                        // 带宽重置
+#define NETWORK_LATENCY_RESET_VALUE 0x00                          // 延迟重置
 #define PACKET_LOSS_RESET 0x00                      // 数据包丢失重置
 
 // 网络错误处理常量
