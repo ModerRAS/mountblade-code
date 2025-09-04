@@ -5301,7 +5301,7 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * 
  * @return 无返回值
  */
-void TriggerSystemException(void) {
+void RaiseSystemException(void) {
   // 执行系统退出操作，触发异常处理流程
   ExecuteSystemExitOperation();
 }
@@ -6119,10 +6119,6 @@ void TerminateSystem(void) {
 }
 
 /**
- * @brief 空操作函数（主版本）
- * 
- * 该函数是一个空操作函数，不执行任何操作
- /**
  * @brief 执行无操作
  * 
  * 该函数用于执行空操作，主要用于系统流程中的占位操作。
