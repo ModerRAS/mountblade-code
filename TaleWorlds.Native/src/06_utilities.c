@@ -91939,7 +91939,7 @@ void ExecuteResourceLoopProcessingVariantD(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090e7f0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceTablePointerOperation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
