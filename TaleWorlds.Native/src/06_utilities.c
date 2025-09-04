@@ -4535,7 +4535,7 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
   uint64_t SecurityKey;
   
   // 生成安全验证令牌
-  SecurityValidationKey = SystemSecurityValidationKeySeed ^ (uint64_t)ObjectMetadataBuffer;
+  SecurityKey = SystemSecurityValidationKeySeed ^ (uint64_t)MetadataBuffer;
   
   // 获取上下文句柄
   ValidationStatus = RetrieveContextHandles(*(uint32_t *)(GameContext + ObjectContextOffset), HandleArray);

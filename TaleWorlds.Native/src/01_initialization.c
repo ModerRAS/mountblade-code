@@ -31730,51 +31730,51 @@ void FreeSystemResourcesFromManager(long long* SystemResourceManager)
 void DestroyRenderingSystem(void)
 
 {
-  int* SystemIntegerPointer;
+  int* SystemStatusPointer;
   void** SystemDataTable;
   long long ResourceMemoryOffset;
-  ulong long resourceAddress;
+  ulong long ResourceAddress;
   
-  ResourceHashEntryPointer = SystemRenderManagerPointer;
+  RenderManagerPointer = SystemRenderManagerPointer;
   if (SystemRenderManagerPointer == (void* *)0x0) {
     return;
   }
   ReleaseSystemResources();
-  if ((long long *)ResourceHashEntryPointer[0x30b] != (long long *)0x0) {
-    (**(code **)(*(long long *)ResourceHashEntryPointer[0x30b] + 0x38))();
+  if ((long long *)RenderManagerPointer[0x30b] != (long long *)0x0) {
+    (**(code **)(*(long long *)RenderManagerPointer[0x30b] + 0x38))();
   }
   _Mtx_destroy_in_situ();
-  if ((long long *)ResourceHashEntryPointer[0x300] != (long long *)0x0) {
-    (**(code **)(*(long long *)ResourceHashEntryPointer[0x300] + 0x38))();
+  if ((long long *)RenderManagerPointer[0x300] != (long long *)0x0) {
+    (**(code **)(*(long long *)RenderManagerPointer[0x300] + 0x38))();
   }
-  if ((long long *)ResourceHashEntryPointer[0x2d3] != (long long *)0x0) {
-    (**(code **)(*(long long *)ResourceHashEntryPointer[0x2d3] + 0x38))();
+  if ((long long *)RenderManagerPointer[0x2d3] != (long long *)0x0) {
+    (**(code **)(*(long long *)RenderManagerPointer[0x2d3] + 0x38))();
   }
-  if ((long long *)ResourceHashEntryPointer[0x2c0] != (long long *)0x0) {
-    (**(code **)(*(long long *)ResourceHashEntryPointer[0x2c0] + 0x38))();
+  if ((long long *)RenderManagerPointer[0x2c0] != (long long *)0x0) {
+    (**(code **)(*(long long *)RenderManagerPointer[0x2c0] + 0x38))();
   }
-  ExecuteDataOperation(ResourceHashEntryPointer + 0x116);
-  ProcessDataValidation(ResourceHashEntryPointer + 6);
-  if (ResourceHashEntryPointer[2] != 0) {
+  ExecuteDataOperation(RenderManagerPointer + 0x116);
+  ProcessDataValidation(RenderManagerPointer + 6);
+  if (RenderManagerPointer[2] != 0) {
       SystemCleanupFunction();
   }
-  SystemMemoryPageBase = (ulong long)ResourceHashEntryPointer & MAX_UNSIGNED_32_BITffc00000;
+  SystemMemoryPageBase = (ulong long)RenderManagerPointer & MAX_UNSIGNED_32_BITffc00000;
   if (SystemMemoryPageBase != 0) {
-    ResourceMemoryOffset = SystemMemoryPageBase + 0x80 + ((long long)ResourceHashEntryPointer - SystemMemoryPageBase >> 0x10) * 0x50;
+    ResourceMemoryOffset = SystemMemoryPageBase + 0x80 + ((long long)RenderManagerPointer - SystemMemoryPageBase >> 0x10) * 0x50;
     ResourceMemoryOffset = ResourceMemoryOffset - (ulong long)*(uint *)(ResourceMemoryOffset + 4);
-    if ((*(void ***)(resourceAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
-      *ResourceHashEntryPointer = *(void* *)(ResourceMemoryOffset + 0x20);
-      *(void* **)(ResourceMemoryOffset + 0x20) = ResourceHashEntryPointer;
-      SystemIntegerPointer = (int *)(ResourceMemoryOffset + 0x18);
-      *SystemIntegerPointer = *SystemIntegerPointer + -1;
-      if (*SystemIntegerPointer == 0) {
+    if ((*(void ***)(ResourceAddress + 0x70) == &ExceptionList) && (*(char *)(ResourceMemoryOffset + 0xe) == '\0')) {
+      *RenderManagerPointer = *(void* *)(ResourceMemoryOffset + 0x20);
+      *(void* **)(ResourceMemoryOffset + 0x20) = RenderManagerPointer;
+      SystemStatusPointer = (int *)(ResourceMemoryOffset + 0x18);
+      *SystemStatusPointer = *SystemStatusPointer + -1;
+      if (*SystemStatusPointer == 0) {
         ReleaseSystemResource();
         return;
       }
     }
     else {
-      SystemExceptionCheck(resourceAddress,CONCAT71(0xff000000,*(void ***)(resourceAddress + 0x70) == &ExceptionList),
-                          ResourceHashEntryPointer,resourceAddress,InvalidHandleValue);
+      SystemExceptionCheck(ResourceAddress,CONCAT71(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+                          RenderManagerPointer,ResourceAddress,InvalidHandleValue);
     }
   }
   return;
@@ -31798,48 +31798,48 @@ void DestroyRenderingSystem(void)
 void ProcessSystemStringData(long long SystemResourceManager,long long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  char SystemNodeFlag;
-  long long SystemThreadHandle;
-  char *pathStringPointer;
-  char *pSystemOperationStatusFlag;
+  char StringProcessingFlag;
+  long long CharacterPosition;
+  char *PathStringPointer;
+  char *StringProcessingPointer;
   void* CurrentThreadId;
-  void* *memoryAllocationEnd;
-  long long SystemStatusFlag48;
-  uint32_t SystemOperationCounter;
+  void* *MemoryAllocationEnd;
+  long long SystemProcessingStatus;
+  uint32_t OperationCounter;
   ulong long SystemContextValue;
   
   CurrentThreadId = 0xfffffffffffffffe;
-  pathStringPointer = *(char **)(SystemResourceManager + 8);
-  initializationStatusFlag = *pathStringPointer;
-  pSystemOperationStatusFlag = pathStringPointer;
-  if (initializationStatusFlag != '\0') {
+  PathStringPointer = *(char **)(SystemResourceManager + 8);
+  StringProcessingFlag = *PathStringPointer;
+  StringProcessingPointer = PathStringPointer;
+  if (StringProcessingFlag != '\0') {
     do {
-      SystemThreadHandle = strchr(AdditionalParameter,(int)initializationStatusFlag);
-      if ((SystemThreadHandle != 0) && (pSystemOperationStatusFlag != pathStringPointer)) {
-        memoryAllocationEnd = &SystemGlobalDataReference;
+      CharacterPosition = strchr(AdditionalParameter,(int)StringProcessingFlag);
+      if ((CharacterPosition != 0) && (StringProcessingPointer != PathStringPointer)) {
+        MemoryAllocationEnd = &SystemGlobalDataReference;
         SystemContextValue = 0;
-        SystemStatusFlag48 = 0;
-        SystemOperationCounter = 0;
-        ProcessSystemMemoryAllocation(&memoryAllocationEnd,pSystemOperationStatusFlag,(int)pathStringPointer - (int)pSystemOperationStatusFlag,ConfigurationFlag,CurrentThreadId);
-        pSystemOperationStatusFlag = pathStringPointer + 1;
+        SystemProcessingStatus = 0;
+        OperationCounter = 0;
+        ProcessSystemMemoryAllocation(&MemoryAllocationEnd,StringProcessingPointer,(int)PathStringPointer - (int)StringProcessingPointer,ConfigurationFlag,CurrentThreadId);
+        StringProcessingPointer = PathStringPointer + 1;
         if (*(ulong long *)(ConfigurationDataPointer + 8) < *(ulong long *)(ConfigurationDataPointer + 0x10)) {
           *(ulong long *)(ConfigurationDataPointer + 8) = *(ulong long *)(ConfigurationDataPointer + 8) + 0x20;
           InitializeSystemMemoryAllocator();
         }
         else {
-          ProcessSystemConfiguration(ConfigurationDataPointer,&memoryAllocationEnd);
+          ProcessSystemConfiguration(ConfigurationDataPointer,&MemoryAllocationEnd);
         }
-        memoryAllocationEnd = &SystemGlobalDataReference;
-        if (SystemStatusFlag48 != 0) {
+        MemoryAllocationEnd = &SystemGlobalDataReference;
+        if (SystemProcessingStatus != 0) {
             SystemCleanupFunction();
         }
-        SystemStatusFlag48 = 0;
+        SystemProcessingStatus = 0;
         SystemContextValue = SystemContextValue & MAX_UNSIGNED_32_BIT00000000;
-        memoryAllocationEnd = &SystemMemoryAllocatorReference;
+        MemoryAllocationEnd = &SystemMemoryAllocatorReference;
       }
-      pathStringPointer = pathStringPointer + 1;
-      initializationStatusFlag = *pathStringPointer;
-    } while (initializationStatusFlag != '\0');
+      PathStringPointer = PathStringPointer + 1;
+      StringProcessingFlag = *PathStringPointer;
+    } while (StringProcessingFlag != '\0');
     if (pSystemOperationStatusFlag != pathStringPointer) {
       memoryAllocationEnd = &SystemGlobalDataReference;
       SystemContextValue = 0;
