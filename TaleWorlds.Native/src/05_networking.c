@@ -1104,9 +1104,9 @@ void AcceptNetworkConnection(void)
   NetworkConnectionContextSize = ContextSize512Bytes;                // 设置连接上下文大小
   
   // 设置连接参数
-  NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
-  NetworkConnectionBandwidth = NetworkBandwidthFourKilobytes;                 // 设置连接带宽为4KB
-  NetworkConnectionLatency = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
+  NetworkConnectionQualityLevel = NetworkConnectionQualityGood;                     // 设置连接质量为良好
+  NetworkConnectionBandwidthValue = NetworkBandwidthFourKilobytes;                 // 设置连接带宽为4KB
+  NetworkConnectionLatencyValue = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
   NetworkConnectionReliabilityLevel = NetworkReliabilityLevelHigh;                 // 设置连接可靠性为高
   
   // 初始化安全参数
@@ -1569,6 +1569,10 @@ uint32_t NetworkLatency;                            // 网络延迟
 uint32_t NetworkPacketLoss;                         // 网络数据包丢失率
 uint32_t NetworkPacketRetransmissionCount;          // 网络数据包重传次数
 uint32_t NetworkActiveConnectionsCount;             // 活跃网络连接数量
+uint32_t NetworkTotalConnectionAttempts;            // 网络连接总尝试次数
+uint32_t NetworkFailedConnectionAttempts;            // 网络连接失败尝试次数
+uint32_t NetworkAverageConnectionTime;               // 网络平均连接时间
+uint32_t NetworkLastActivityTimestamp;              // 网络最后活动时间戳
 uint32_t NetworkPacketSequence;                     // 网络数据包序列号
 uint32_t NetworkAcknowledgeNumber;                  // 网络确认号
 uint32_t NetworkWindowScale;                         // 网络窗口缩放
@@ -1654,6 +1658,7 @@ uint32_t NetworkAuthenticationContext;               // 网络认证上下文
 uint32_t NetworkSecurityContext;                     // 网络安全上下文
 uint32_t NetworkEventContext;                        // 网络事件上下文
 uint32_t NetworkCallbackContext;                      // 网络回调上下文
+uint32_t NetworkSocketContextSize;                     // 网络套接字上下文大小
 uint32_t NetworkConnectionStateManager;               // 网络连接状态管理器
 uint32_t NetworkEventQueue;                            // 网络事件队列
 uint32_t NetworkCallbackHandler;                        // 网络回调处理器
