@@ -2246,34 +2246,34 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
   uint32_t PacketTertiaryStatusValue;                   // 数据包第三级状态值，用于确定处理策略
   
   // 获取第三级状态值
-  TertiaryStatusValue = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
+  PacketTertiaryStatusValue = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
   
   // 根据数据包状态选择不同的处理路径
-  if (TertiaryStatusValue < NetworkPacketStatusLimit) {
+  if (PacketTertiaryStatusValue < NetworkPacketStatusLimit) {
     // 处理状态限制内的数据包
-    ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicEventData);
-    if ((int)ProcessingResult == 0) {
-      ProcessingResult = NetworkSuccessStatus;  // 验证成功
+    PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicEventData);
+    if ((int)PacketProcessingResult == 0) {
+      PacketProcessingResult = NetworkSuccessStatus;  // 验证成功
     }
   }
   else {
     // 处理状态限制外的数据包，需要解码处理
-    ProcessingResult = DecodePacketDataStream(PacketData, DecodedDataBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicEventData);
-    if ((int)ProcessingResult == 0) {
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicEventData);
+    if ((int)PacketProcessingResult == 0) {
       // 验证数据包头部
-      ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
-      if ((int)ProcessingResult == 0) {
+      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
+      if ((int)PacketProcessingResult == 0) {
         // 处理连接数据
         NetworkHandle DataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
         if ((int)DataProcessingResult == 0) {
             // 完成数据包处理
-            FinalizePacketProcessing(PacketData, DecodedDataBuffer);
+            FinalizePacketProcessing(PacketData, DecodedDataStreamBuffer);
         }
       }
     }
   }
   
-  return ProcessingResult;  // 返回处理结果
+  return PacketProcessingResult;  // 返回处理结果
 }
 
 // =============================================================================
