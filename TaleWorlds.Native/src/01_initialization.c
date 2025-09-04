@@ -20789,37 +20789,37 @@ ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long Com
     }
     else if (comparisonResult != 0) goto ComparisonResultCheck;
     if (byteDifference == 0) {
-SystemResultHandler:
+ComparisonResultHandler:
       return comparisonIndex & SystemMaxUnsigned32Bit;
     }
   }
-SystemResultCheck:
+ComparisonResultCheck:
   comparisonIndex = 0;
   dataSizeLimit = *(long long *)(SystemResourceManager + 0x10) - ResourceMemoryOffset >> 8;
   if (dataSizeLimit != 0) {
-    systemValue = *(int *)(ComparisonDataPointer + 0x10);
+    byteDifference = *(int *)(ComparisonDataPointer + 0x10);
     loopCounterValue = comparisonIndex;
     do {
-      systemResult = *(int *)(loopCounter + 0x10 + ResourceMemoryOffset);
-      CalculationFlags = systemValue;
-      if (systemResult == systemValue) {
-        if (systemResult != 0) {
+      comparisonResult = *(int *)(loopCounter + 0x10 + ResourceMemoryOffset);
+      CalculationFlags = byteDifference;
+      if (comparisonResult == byteDifference) {
+        if (comparisonResult != 0) {
           sourceBytePointer = *(byte **)(loopCounter + 8 + ResourceMemoryOffset);
-          SystemMemoryPointer = *(long long *)(ComparisonDataPointer + 8) - (long long)sourceBytePointer;
+          memoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)sourceBytePointer;
           do {
-            comparisonBytePointer = sourceBytePointer + SystemMemoryPointer;
+            comparisonBytePointer = sourceBytePointer + memoryOffset;
             CalculationFlags = (uint)*sourceBytePointer - (uint)*comparisonBytePointer;
             if (CalculationFlags != 0) break;
             sourceBytePointer = sourceBytePointer + 1;
           } while (*comparisonBytePointer != 0);
         }
-SystemResultZeroHandler:
+ComparisonResultZeroHandler:
         if (CalculationFlags == 0) {
           *(int *)(SystemResourceManager + 0x68) = (int)comparisonIndex;
-          goto SystemResultHandler;
+          goto ComparisonResultHandler;
         }
       }
-      else if (systemResult == 0) goto SystemResultZeroHandler;
+      else if (comparisonResult == 0) goto ComparisonResultZeroHandler;
       indexCounter = (int)comparisonIndex + 1;
       comparisonIndex = (ulong long)indexCounter;
       loopCounterValue = loopCounter + 0x100;
