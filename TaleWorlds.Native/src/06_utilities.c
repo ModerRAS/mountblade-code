@@ -5960,15 +5960,14 @@ uint8_t ValidateResourceHandle(int64_t ResourceHandle)
 
 
 /**
- * @brief 验证寄存器中的指针值
+ * 验证寄存器中的指针值
  * 
  * 该函数验证RAX寄存器中的指针值，并进行必要的调整
  * 主要用于系统底层操作和内存管理
  * 
- * @return 验证结果，0x1c表示验证失败
+ * @return uint32_t 验证结果，0x1c表示验证失败
  */
 uint32_t ValidateRegisterPointer(void)
-
 {
   int64_t RegisterContentValue;
   int64_t AdjustedRegisterPointer;
@@ -5990,15 +5989,17 @@ uint32_t ValidateRegisterPointer(void)
 
 
  /**
- * @brief 触发系统关闭
+ * 触发系统关闭
  * 
  * 该函数负责触发系统的关闭过程
  * 调用系统关闭函数来终止程序运行
+ * 
+ * @note 此函数不会返回，会直接调用系统退出操作
  */
 void InitiateSystemShutdown(void)
-
 {
-        ExecuteSystemExitOperation();
+  // 执行系统退出操作，确保系统安全关闭
+  ExecuteSystemExitOperation();
 }
 
 
@@ -30753,7 +30754,7 @@ void HandleExceptionResourceCleanup(uint8_t ExceptionCode, int64_t ExceptionCont
  * @param exceptionCode 异常代码
  * @param ExceptionContext 异常上下文
  */
-void ReleaseSystemResourceFlag(uint8_t exceptionCode, int64_t ExceptionContext)
+void ReleaseSystemResourceFlag(uint8_t ExceptionCode, int64_t ExceptionContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
@@ -30774,7 +30775,7 @@ void ReleaseSystemResourceFlag(uint8_t exceptionCode, int64_t ExceptionContext)
  * @param exceptionCode 异常代码
  * @param ExceptionContext 异常上下文
  */
-void ReleaseSystemResourceFlagVariantOne(uint8_t exceptionCode, int64_t ExceptionContext)
+void ReleaseSystemResourceFlagVariantOne(uint8_t ExceptionCode, int64_t ExceptionContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 1) != 0) {
