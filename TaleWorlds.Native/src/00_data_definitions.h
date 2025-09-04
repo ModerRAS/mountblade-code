@@ -7877,30 +7877,30 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       pfVar9 = (float *)ProcessVectorCalculation(&uStack_e8,auStack_c8,ModuleInitializationResult0);
       TransformResultX = (FloatCalculationResult + pfVar9[2]) - fVar6;
       TransformResultY = (FloatValue + pfVar9[1]) - fVar5;
-      fStack_178 = (fVar18 + *pfVar9) - fVar4;
+      TransformResultZ = (fVar18 + *pfVar9) - fVar4;
       ProcessMatrixTransformation(&uStack_118,&fStack_138,&fStack_178);
       pfVar9 = (float *)ProcessVectorCalculation(&uStack_e8,auStack_b8,ModuleInitializationResult0 + 0x10);
-      fStack_160 = (FloatCalculationResult + pfVar9[2]) - fVar6;
-      fStack_164 = (FloatValue + pfVar9[1]) - fVar5;
-      fStack_168 = (fVar18 + *pfVar9) - fVar4;
+      SecondaryTransformX = (FloatCalculationResult + pfVar9[2]) - fVar6;
+      SecondaryTransformY = (FloatValue + pfVar9[1]) - fVar5;
+      SecondaryTransformZ = (fVar18 + *pfVar9) - fVar4;
       ProcessMatrixTransformation(&uStack_118,&fStack_128,&fStack_168);
       FloatCalculationResult = *(float *)(ModuleInitializationResult0 + 0x24);
       fVar18 = fStack_128;
-      fStack_198 = fStack_138;
+      FloatComparisonResult1 = fStack_138;
       if (fStack_138 < fStack_128) {
         fVar18 = fStack_138;
         fStack_198 = fStack_128;
       }
       FloatValue = fStack_134;
-      fStack_194 = fStack_124;
+      FloatComparisonResult2 = fStack_124;
       if (fStack_134 < fStack_124) {
         FloatValue = fStack_124;
         fStack_194 = fStack_134;
       }
-      fStack_190 = fStack_130;
+      FloatComparisonResult3 = fStack_130;
       FloatStackMaximum = fStack_120;
       if (fStack_130 < fStack_120) {
-        fStack_190 = fStack_120;
+        FloatComparisonResult3 = fStack_120;
         FloatStackMaximum = fStack_130;
       }
       fStack_190 = fStack_190 + FloatCalculationResult;

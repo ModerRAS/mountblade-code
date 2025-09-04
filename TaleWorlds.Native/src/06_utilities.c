@@ -5248,11 +5248,11 @@ uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
   }
   
   // 调整验证后的内存地址
-  if (VerifiedObjectMemoryLocation == 0) {
-    VerifiedObjectMemoryLocation = 0;
+  if (ValidatedObjectMemoryAddress == 0) {
+    ValidatedObjectMemoryAddress = 0;
   }
   else {
-    VerifiedObjectMemoryLocation = VerifiedObjectMemoryLocation - 8;
+    ValidatedObjectMemoryAddress = ValidatedObjectMemoryAddress - 8;
   }
   
   // 检查对象句柄是否有效
