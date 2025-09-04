@@ -1894,7 +1894,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *ConnectionStatusBuffer = (NetworkConnectionStatus *)0x0;
+  NetworkConnectionStatus *ConnectionStatusBuffer = NULL;
   
   // 处理有效的数据包
   if (PacketData != 0) {
@@ -1906,7 +1906,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
                              NetworkConnectionFinalizeValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (ConnectionStatusBuffer != (NetworkConnectionStatus *)0x0) {
+      if (ConnectionStatusBuffer != NULL) {
         int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionProcessingCounter = (long long)ActiveConnectionCount;
         int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址
@@ -1996,7 +1996,7 @@ NetworkMainProcessingLoop:
     NetworkConnectionStatusBufferPointer = (NetworkStatus *)
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationInfo,
                            NetworkConnectionFinalizeValue, 0);
-    if (NetworkConnectionStatusBufferPointer != (NetworkStatus *)0x0) {
+    if (NetworkConnectionStatusBufferPointer != NULL) {
       int32_t NetworkProcessingCode = (int)NetworkConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t NetworkStatusProcessingIterator = (long long)NetworkProcessingCode;
       if ((NetworkProcessingCode != 0) && (NetworkConnectionContextHandle = *NetworkConnectionOperationBuffer, 0 < NetworkProcessingCode)) {
