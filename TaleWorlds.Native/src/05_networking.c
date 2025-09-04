@@ -1321,7 +1321,7 @@ void TransmitNetworkData(void)
   NetworkPacketBufferPointer = BUFFER_ENABLED;                     // 初始化数据包缓冲区指针
   NetworkPacketHeaderPointer = BUFFER_ENABLED;                     // 初始化数据包头指针
   NetworkPacketPayloadSize = PACKET_PAYLOAD_SIZE_1KB;                      // 设置数据包负载大小为1KB
-  NetworkMaxPacketSize = MAXIMUM_PACKET_SIZE_2KB;                         // 设置最大数据包大小为2KB
+  NetworkMaximumPacketSize = MAXIMUM_PACKET_SIZE_2KB;                         // 设置最大数据包大小为2KB
   
   // 初始化传输统计
   NetworkBytesSent = 0;                                 // 重置发送字节数
@@ -1401,7 +1401,7 @@ void RetrieveNetworkPacketData(void)
 void ValidateNetworkPacketSecurity(void)
 {
   // 初始化验证参数
-  PacketHashAlgorithm = HASH_ALGORITHM_SHA256;                         // 设置哈希算法为SHA-256
+  NetworkPacketHashAlgorithm = HASH_ALGORITHM_SHA256;                         // 设置哈希算法为SHA-256
   PacketSignatureMethod = SIGNATURE_METHOD_RSA;                        // 设置签名方法为RSA
   PacketEncryptionKeyLength = ENCRYPTION_KEY_LENGTH_256B;                   // 设置加密密钥长度为256位
   
@@ -2184,9 +2184,9 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
     NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetSecond);
     ValidationStatusArray[0] = SecondaryValidationStatus;
     NetworkPacketProcessor ValidationProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-    ProcessingResult = ValidationProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
-    if ((int)ProcessingResult != 0) {
-      return ProcessingResult;
+    PacketValidationResult = ValidationProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+    if ((int)PacketValidationResult != 0) {
+      return PacketValidationResult;
     }
   }
   else {
@@ -2196,9 +2196,9 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
     NetworkStatus TertiaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
     ValidationStatusArray[0] = TertiaryValidationStatus;
     NetworkPacketProcessor TertiaryValidationProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-    ProcessingResult = TertiaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
-    if ((int)ProcessingResult != 0) {
-      return ProcessingResult;
+    PacketValidationResult = TertiaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+    if ((int)PacketValidationResult != 0) {
+      return PacketValidationResult;
     }
   }
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
@@ -2207,9 +2207,9 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
   NetworkStatus QuaternaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
   ValidationStatusArray[0] = QuaternaryValidationStatus;
   NetworkPacketProcessor QuaternaryValidationProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-  ProcessingResult = QuaternaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
-  if ((int)ProcessingResult != 0) {
-    return ProcessingResult;
+  PacketValidationResult = QuaternaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), ValidationStatusArray, 4);
+  if ((int)PacketValidationResult != 0) {
+    return PacketValidationResult;
   }
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorInvalidPacket;
@@ -2217,25 +2217,25 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
   NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataPrimaryOffset);
   ProcessingStatusArray[0] = PrimaryDataStatus;
   NetworkPacketProcessor DataStatusProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-  ProcessingResult = DataStatusProcessor(*(NetworkHandle **)(*PacketData + 8), ProcessingStatusArray, 4);
-  if ((int)ProcessingResult == 0) {
+  PacketValidationResult = DataStatusProcessor(*(NetworkHandle **)(*PacketData + 8), ProcessingStatusArray, 4);
+  if ((int)PacketValidationResult == 0) {
     if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      PacketProcessingResult = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
-      if ((int)PacketProcessingResult != 0) {
-        return PacketProcessingResult;
+      IntermediateProcessingResult = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
+      if ((int)IntermediateProcessingResult != 0) {
+        return IntermediateProcessingResult;
       }
     }
     else {
-      PacketProcessingResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetFirst);
-      if ((int)PacketProcessingResult != 0) {
-        return PacketProcessingResult;
+      IntermediateProcessingResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetFirst);
+      if ((int)IntermediateProcessingResult != 0) {
+        return IntermediateProcessingResult;
       }
-      PacketProcessingResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetSecond);
-      if ((int)PacketProcessingResult != 0) {
-        return PacketProcessingResult;
+      IntermediateProcessingResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetSecond);
+      if ((int)IntermediateProcessingResult != 0) {
+        return IntermediateProcessingResult;
       }
     }
     PacketProcessingResult = FinalizePacket(PacketData, ConnectionContext + NetworkConnectionFinalizeOffset, NetworkConnectionFinalizeValue);

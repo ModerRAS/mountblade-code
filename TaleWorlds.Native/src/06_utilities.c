@@ -88449,7 +88449,12 @@ void ClearQuaternaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_18090d4b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理第六级资源哈希状态地址并释放相关资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearSenaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
