@@ -26985,28 +26985,28 @@ void InitializeSystemResourceAllocator(long long systemResourceHandle)
     *memoryAllocationPointer = (long long *)&MemoryAllocationPool;
     *(uint32_t *)(memoryAllocationPointer + 5) = 4;
     memoryAllocationPointer[4] = primaryResourceHandle;
-    stackPointer70 = (long long ***)memoryAllocationPointer;
-    stackPointer60 = memoryAllocationPointer;
+    systemContextPointer70 = (long long ***)memoryAllocationPointer;
+    systemContextPointer60 = memoryAllocationPointer;
     (*(code *)(*memoryAllocationPointer)[5])(memoryAllocationPointer);
     ResourceHashEntryPointer = (void* *)primaryResourceHandle[0x28];
     programCounter = *(code **)*ResourceHashEntryPointer;
-    stackPointer70 = &stackPointer8;
-    stackPointer8 = memoryAllocationPointer;
+    systemContextPointer70 = &systemContextPointer;
+    systemContextPointer = memoryAllocationPointer;
     (*(code *)(*memoryAllocationPointer)[5])(memoryAllocationPointer);
-    (*programCounter)(ResourceHashEntryPointer,&stackPointer8);
+    (*programCounter)(ResourceHashEntryPointer,&systemContextPointer);
     ProcessSystemCallback(primaryResourceHandle[0x28]);
     (*(code *)(*memoryAllocationPointer)[7])(memoryAllocationPointer);
   }
   resourceDataIndex = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
-  systemValueSecondary = loopCounter;
+  systemSecondaryValue = loopCounter;
   if (resourceDataIndex / 0x1c != 0) {
     do {
       ProcessSystemMemory(resourceDataIndex,renderStride * 0x1c + *(long long *)(SystemRenderManagerPointer + 0x10));
-      renderItemCounter = (int)loopCounter + 1;
-      loopCounterValue = (ulong long)renderItemCounter;
+      processedItemCount = (int)loopCounter + 1;
+      loopCounterValue = (ulong long)processedItemCount;
       resourceDataIndex = *(long long *)(SystemRenderManagerPointer + 0x18) - *(long long *)(SystemRenderManagerPointer + 0x10);
-      systemValueSecondary = (long long)(int)renderItemCounter;
-    } while ((ulong long)(long long)(int)renderItemCounter < (ulong long)(resourceDataIndex / 0x1c));
+      systemSecondaryValue = (long long)(int)processedItemCount;
+    } while ((ulong long)(long long)(int)processedItemCount < (ulong long)(resourceDataIndex / 0x1c));
   }
   *(void* *)(SystemRenderManagerPointer + 0x18) = *(void* *)(SystemRenderManagerPointer + 0x10);
   *(uint8_t *)(*(long long *)(*(long long *)(systemResourceHandle + 8) + 0x140) + 0x208) = 1;
@@ -42446,10 +42446,10 @@ void ConfigureInputSystem(void)
 {
   uint8_t SystemMaxOperationCount8Compact [48];
   uint32_t SystemTimeFlag1d8;
-  void* SystemOperationFlag190;
+  void* SystemOperationFlagPrimary;
   void* ConcatenatedSystemValue8;
   void* ConcatenatedSystemValue0;
-  void* CalculationFlags178;
+  void* CalculationFlagsSecondary;
   uint8_t SystemStackBuffer2 [256];
   ulong long SystemContextValue;
   
@@ -42502,7 +42502,7 @@ void ProcessSystemResourceCounter(int *SystemResourceManager)
   long long SystemMemoryAllocationOffset160;
   void* SystemConfigurationId;
   uint32_t SystemResourceSize;
-  void* SystemThreadId148;
+  void* SystemThreadIdPrimary;
   ulong long SystemContextValue;
   
   SystemThreadId148 = 0xfffffffffffffffe;
@@ -43322,7 +43322,7 @@ void InitializeAndConfigureSystemResources(void* SystemResourceManager)
   uint32_t SystemResourceStatusFlag;
   void* SystemResourceValue;
   long long SystemMemoryAllocationOffset2f0;
-  void* SystemOperationFlag2e0;
+  void* SystemOperationFlagTertiary;
   long long SystemMemoryAllocationOffset2d8;
   void* *SystemBufferPointer;
   void* *pSystemDataCount;
@@ -43972,14 +43972,14 @@ void ReleaseSystemResource(void* SystemResourceManager)
   long long StackInteger268;
   void* SystemResourceHandle;
   void* *TertiaryMemoryPointer;
-  void* stackPointer250;
+  void* StackPointerTwoHundredFiftieth;
   uint32_t SystemDataBufferOffset;
   void* *pSystemThreadStackSize;
   long long StackInteger238;
   uint32_t SystemMemoryAlignment;
   void* *SystemStringTemplatePtr2;
   void* *SystemStringTemplatePtr;
-  void* stackPointer210;
+  void* StackPointerTwoHundredTenth;
   uint32_t SystemMaxOperationCount8;
   void* *pStackAllocationSize;
   void* *SystemGlobalDataReferencePtr2;
@@ -44002,7 +44002,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   uint32_t SystemThreadId148;
   void* *pSystemThreadContextSecondary;
   void* *SystemMemoryContext;
-  void* stackPointer130;
+  void* StackPointerOneHundredThirtieth;
   uint32_t SystemMemoryAllocationOffset;
   void* SystemThreadContextFlags;
   void* *pUnsignedStackFlagPrimary;
@@ -46873,7 +46873,7 @@ void ConfigureSystemResourceAndProcessData(long long SystemResourceManager,long 
   long long SystemThreadHandle;
   long long ResourceMemoryOffset;
   uint8_t aSystemStackFlag [32];
-  void* CalculationFlags178;
+  void* CalculationFlagsSecondary;
   void* *SystemMemoryAllocatorPointer;
   uint8_t *SystemResourceHandle160;
   uint32_t SystemConfigurationId;
@@ -48580,7 +48580,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   long long SystemMemorySize;
   long long SystemContextValue230;
   uint8_t SystemMemoryAlignment;
-  void* StackPointer218;
+  void* StackPointerTwoHundredEighteenth;
   int StackVariable210;
   uint32_t SystemMaxOperationCountc;
   void* SystemMaxOperationCount8;
