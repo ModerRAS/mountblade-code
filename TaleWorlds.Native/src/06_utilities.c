@@ -32897,11 +32897,11 @@ void ResourceCommandExecutorAlternative(uint8_t ObjectContext, int64_t Validatio
  * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void SystemSettingsConfigurator(uint8_t ObjectContext, int64_t ValidationContext, uint8_t settingsParam, uint8_t FlagsParam)
+void SystemSettingsConfigurator(uint8_t ObjectContext, int64_t ValidationContext, uint8_t SettingsParameter, uint8_t FlagsParameter)
 
 {
   ConfigureSystemSettings(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x10),
-                settingsParam,FlagsParam,0xfffffffffffffffe);
+                SettingsParameter,FlagsParameter,0xfffffffffffffffe);
   return;
 }
 
@@ -32919,11 +32919,11 @@ void SystemSettingsConfigurator(uint8_t ObjectContext, int64_t ValidationContext
  * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceRequestHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t requestParam, uint8_t FlagsParam)
+void ResourceRequestHandler(uint8_t ObjectContext, int64_t ValidationContext, uint8_t RequestParameter, uint8_t FlagsParameter)
 
 {
-  ProcessResourceRequest(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10),
-                requestParam,FlagsParam,0xfffffffffffffffe);
+  ProcessResourceRequest(*(int64_t )(ValidationContext + ResourceContextSecondaryOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10),
+                RequestParameter,FlagsParameter,0xfffffffffffffffe);
   return;
 }
 
@@ -32941,11 +32941,11 @@ void ResourceRequestHandler(uint8_t ObjectContext, int64_t ValidationContext, ui
  * @param FlagsParam 标志参数
  * @note 此函数在异常处理过程中被调用
  */
-void ResourceRequestHandlerAlternative(uint8_t ObjectContext, int64_t ValidationContext, uint8_t requestParam, uint8_t FlagsParam)
+void ResourceRequestHandlerAlternative(uint8_t ObjectContext, int64_t ValidationContext, uint8_t RequestParameter, uint8_t FlagsParameter)
 
 {
   ProcessResourceRequest(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ResourceContextSecondaryOffset) + 0x10),
-                requestParam,FlagsParam,0xfffffffffffffffe);
+                RequestParameter,FlagsParameter,0xfffffffffffffffe);
   return;
 }
 
