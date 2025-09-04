@@ -93167,7 +93167,18 @@ void RegisterExtendedResourceOperationHandler(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090ebf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文清理和系统重置
+ * 
+ * 该函数执行验证上下文的清理操作，包括系统句柄的重置和紧急退出处理
+ * 确保系统资源正确释放并重置到初始状态
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和系统状态相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ebf0
+ */
+void ExecuteValidationContextCleanupAndSystemReset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 200) != (int64_t *)0x0) {
@@ -93303,7 +93314,18 @@ void Unwind_18090ec70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ec80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行方法指针回调函数
+ * 
+ * 该函数通过验证上下文的方法指针偏移量获取回调函数并执行
+ * 用于处理系统方法调用和回调操作
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和方法指针相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec80
+ */
+void ExecuteMethodPointerCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextMethodPointerOffset0) != (int64_t *)0x0) {
@@ -93314,7 +93336,18 @@ void Unwind_18090ec80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ec90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行扩展资源上下文回调函数
+ * 
+ * 该函数通过验证上下文的扩展资源指针获取回调函数并执行
+ * 用于处理扩展资源的回调操作
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和扩展资源相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec90
+ */
+void ExecuteExtendedResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x90) != (int64_t *)0x0) {
@@ -93325,7 +93358,18 @@ void Unwind_18090ec90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eca0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源数据标志和操作
+ * 
+ * 该函数检查资源数据的特定标志位，并根据标志状态执行相应的资源操作
+ * 用于处理资源状态的变更和操作触发
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和资源操作相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090eca0
+ */
+void ProcessResourceDataFlagsAndOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0xd0) & 1) != 0) {
@@ -93337,7 +93381,18 @@ void Unwind_18090eca0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ecd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文方法回调
+ * 
+ * 该函数通过验证上下文的方法指针获取回调函数并执行
+ * 用于处理验证过程中的方法调用
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和方法回调相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ecd0
+ */
+void ExecuteValidationContextMethodCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextMethodPointerOffset0) != (int64_t *)0x0) {
@@ -93348,7 +93403,18 @@ void Unwind_18090ecd0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ece0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要资源上下文回调
+ * 
+ * 该函数通过验证上下文的次要计数偏移量获取资源上下文，并执行相应的回调函数
+ * 用于处理次要资源的操作和管理
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和次要资源相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ece0
+ */
+void ExecuteSecondaryResourceContextCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -93362,7 +93428,18 @@ void Unwind_18090ece0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ecf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行扩展资源回调函数
+ * 
+ * 该函数通过验证上下文的扩展资源指针获取回调函数并执行
+ * 用于处理扩展资源的操作和管理
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和扩展资源相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ecf0
+ */
+void ExecuteExtendedResourceCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x90) != (int64_t *)0x0) {
@@ -93373,7 +93450,20 @@ void Unwind_18090ecf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ed00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行清理操作回调函数
+ * 
+ * 该函数通过验证上下文获取清理回调函数，并根据清理选项和标志执行相应的清理操作
+ * 用于处理系统资源的清理和释放
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和清理相关信息
+ * @param CleanupOption 清理选项，指定清理的类型和方式
+ * @param CleanupFlag 清理标志，控制清理过程的行为
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ed00
+ */
+void ExecuteCleanupOperationCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
