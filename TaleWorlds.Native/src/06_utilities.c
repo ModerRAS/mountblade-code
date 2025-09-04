@@ -15474,10 +15474,10 @@ void CalculateFloatValueAndValidateResources(void)
         do {
           CalculatedFloatValue = *(float *)(SystemContextRegister + -0x180985054 + (int64_t)FloatPointer);
           if (InputFloatValue != *FloatPointer) {
-            contextBufferPointer = StackContextBuffer;
-            resourceTemplatePointer = &SystemResourceTemplateInput;
-            floatRegisterValue = FloatRegisterValue;
-            floatResourceValue = LoopCounterValue;
+            ContextBufferPointer = StackContextBuffer;
+            ResourceTemplatePointer = &SystemResourceTemplateInput;
+            FloatRegisterValue = FloatRegisterValue;
+            FloatResourceValue = LoopCounterValue;
             StackFloatSecondaryValue = InputFloatValue;
             ResourceIndexTertiary = GetAndValidateResourceData(InputFloatValue,&PrimaryObjectResourceBuffer);
             if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
@@ -15486,7 +15486,7 @@ void CalculateFloatValueAndValidateResources(void)
           FloatDataPointer = FloatPointer + 1;
         } while ((int)LoopCounterValue < 6);
         ResourceSecurityHashValue = CalculateSecurityHash(ResourceRegisterPointer + 200);
-        ResourceHashValidationTertiary = secondaryFloatResult;
+        ResourceHashValidationTertiary = SecondaryFloatResult;
         if ((float)(ResourceSecurityHashValue / 0x30) != 0.0) {
           resourceTemplatePointer = &SystemResourceTemplateJob;
           contextBufferPointer = StackContextBuffer;
