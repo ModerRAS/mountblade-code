@@ -53252,14 +53252,14 @@ SystemThreadValidation:
     stackParameterOffset = threadCreationFlags;
     threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x15,0x13);
     *threadObjectPointer = 0;
-LABEL_SYSTEM_THREAD_OPERATION:
+SystemThreadOperation:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
   else if ((uint)threadHandleValue < 0x15) {
     stackParameterOffset = threadCreationFlags;
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x15,0x10,0x13);
-    goto LABEL_SYSTEM_THREAD_OPERATION;
+    goto SystemThreadOperation;
   }
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 0x3a;
   stackParameterOffset = 0x14;
@@ -53282,7 +53282,7 @@ LABEL_SYSTEM_THREAD_OPERATION:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
-LABEL_SYSTEM_THREAD_CONFIGURATION:
+SystemThreadConfiguration:
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
   systemOperationStatus2 = threadCreationFlags + 0xd;
   stackParameterOffset = systemOperationStatus1;
@@ -53296,7 +53296,7 @@ LABEL_SYSTEM_THREAD_CONFIGURATION:
       *threadObjectPointer = 0;
     }
     else {
-      if (systemOperationStatus1 <= (uint)threadHandleValue) goto LABEL_SYSTEM_THREAD_SETUP;
+      if (systemOperationStatus1 <= (uint)threadHandleValue) goto SystemThreadSetup;
       threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,systemOperationStatus1,0x10,0x13);
     }
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
