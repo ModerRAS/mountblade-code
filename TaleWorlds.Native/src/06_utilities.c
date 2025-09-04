@@ -5172,10 +5172,6 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
- * 
- * @param ObjectHandleToValidate 要验证的对象句柄
- * @return 安全验证结果状态码
- */
 uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
   uint8_t SecurityValidationResult;
   int64_t ValidatedObjectMemoryLocation;
