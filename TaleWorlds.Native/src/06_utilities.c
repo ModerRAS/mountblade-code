@@ -162,6 +162,13 @@
 
 // 验证相关常量
 #define ValidationContextShift 3
+#define ValidationContextPropertyOffset1 0xc
+#define ValidationContextPropertyOffset2 0x14
+#define ValidationContextPropertyOffset3 0x18
+#define ValidationContextPropertyOffset4 0x1c
+#define ValidationContextPropertyOffset5 0xe
+#define ValidationContextPropertyOffset6 0xf
+#define ValidationContextSecondaryOffset 0x220
 #define PackageValidationStatusBit 1
 #define ValidationArraySizeMultiplier 3
 #define ValidationSizeLimit 0x3fffffff
@@ -14128,7 +14135,7 @@ void ProcessComplexResourceOperation(uint8_t ResourceContext, int64_t Validation
   ResourceSecurityFlag = SecurityEncryptionKey ^ (uint64_t)GraphicsDataBuffer;
   TableEntryIndex = 0;
   if (CleanupOption != 0) {
-    ValidationStatusCode = *(int *)(ValidationContext + 0x220);
+    ValidationStatusCode = *(int *)(ValidationContext + ValidationContextSecondaryOffset);
     if (ValidationStatusCode == 0) {
       SecurityContextBuffer = &SecurityValidationTemplatePrimary;
       ResourceOperationCounter = 0;
@@ -17495,9 +17502,9 @@ uint8_t ProcessResourceDataParsing(int64_t *dataContext,uint32_t *DataBuffer)
   
   ResourceIndex = GetResourceProperty();
   if (ResourceIndex == 0) {
-    ResourceIndex = GetResourceProperty(ObjectContext,ValidationContext + 0xc);
+    ResourceIndex = GetResourceProperty(ObjectContext,ValidationContext + ValidationContextPropertyOffset1);
     if (ResourceIndex == 0) {
-      ResourceIndex = GetResourceProperty(ObjectContext,ValidationContext + 0x18);
+      ResourceIndex = GetResourceProperty(ObjectContext,ValidationContext + ValidationContextPropertyOffset3);
       if (ResourceIndex == 0) {
         GetResourceProperty(ObjectContext,ValidationContext + ResourceContextValidationOffset);
       }
@@ -17583,7 +17590,7 @@ uint8_t ProcessResourceDataValidation(uint8_t *resourceHandle,int64_t offset)
         if ((int)ValidationStatusCode == 0) {
           ValidationStatusCode = CalculateResourceHash(ResourceHash,ValidationContext + ValidationContextMethodPointerOffset);
           if ((int)ValidationStatusCode == 0) {
-            ValidationStatusCode = CalculateResourceHash(ResourceHash,ValidationContext + 0x14);
+            ValidationStatusCode = CalculateResourceHash(ResourceHash,ValidationContext + ValidationContextPropertyOffset2);
           }
         }
       }
@@ -18365,7 +18372,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
               ResourceCount = ContextResourceHashStatus;
               if (0 < ResourceCount) {
                 do {
-                  ResourceTablePointerPointer = *(int64_t *)(ValidationContext + 0x14) + LoopIncrement;
+                  ResourceTablePointerPointer = *(int64_t *)(ValidationContext + ValidationContextPropertyOffset2) + LoopIncrement;
                   ProcessingStatusCode = GetResourceEntry(ObjectContext,ResourceTablePointerPointer);
                   if (ProcessingStatusCode != 0) {
                     return (uint8_t)ProcessingStatusCode;
@@ -18393,7 +18400,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
                   LoopIncrement = LoopIncrement + ResourceTableEntrySize;
                 } while ((int64_t)ResourceCount < (int64_t)ResourceCount);
               }
-              ProcessingStatusCode = RetrieveResourceData(ObjectContext,ValidationContext + 0x18);
+              ProcessingStatusCode = RetrieveResourceData(ObjectContext,ValidationContext + ValidationContextPropertyOffset3);
               if (ProcessingStatusCode == 0) {
                 ResourceCount = ValidationContext[ErrorInvalidResourceData];
                 ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
@@ -94332,7 +94339,17 @@ void Unwind_ResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_18090ef60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证（变体2）
+ * 
+ * 在系统unwind过程中执行资源哈希状态验证，
+ * 验证资源哈希状态并执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090ef60
+ */
+void ExecuteResourceHashStatusValidationVariant2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -95272,7 +95289,17 @@ void ExecuteResourceHashStatusValidationVariant2(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_18090f230(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证（变体3）
+ * 
+ * 在系统unwind过程中执行资源哈希状态验证，
+ * 验证资源哈希状态并执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f230
+ */
+void ExecuteResourceHashStatusValidationVariant3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -95308,7 +95335,17 @@ void Unwind_18090f230(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f250(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证（变体4）
+ * 
+ * 在系统unwind过程中执行资源哈希状态验证，
+ * 验证资源哈希状态并执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f250
+ */
+void ExecuteResourceHashStatusValidationVariant4(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -95508,7 +95545,15 @@ void Unwind_18090f2f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f310(void)
+/**
+ * @brief 执行互斥锁销毁操作
+ * 
+ * 在系统unwind过程中执行互斥锁销毁操作，
+ * 调用MutexDestroyInPlace函数销毁互斥锁。
+ * 
+ * @note 原始函数名：Unwind_18090f310
+ */
+void ExecuteMutexDestructionOperation(void)
 
 {
   MutexDestroyInPlace();
@@ -95517,7 +95562,17 @@ void Unwind_18090f310(void)
 
 
 
-void Unwind_18090f330(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表遍历和清理操作
+ * 
+ * 在系统unwind过程中执行资源表遍历和清理操作，
+ * 遍历资源表中的所有资源并调用相应的处理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f330
+ */
+void ExecuteResourceTableTraversalAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -95539,7 +95594,17 @@ void Unwind_18090f330(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f350(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表遍历和清理操作（变体1）
+ * 
+ * 在系统unwind过程中执行资源表遍历和清理操作，
+ * 遍历资源表中的所有资源并调用相应的处理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f350
+ */
+void ExecuteResourceTableTraversalAndCleanupVariant1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -95586,7 +95651,19 @@ void Unwind_18090f370(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f390(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源配置处理操作
+ * 
+ * 在系统unwind过程中执行资源配置处理操作，
+ * 调用ProcessResourceConfiguration函数处理资源配置。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @note 原始函数名：Unwind_18090f390
+ */
+void ExecuteResourceConfigurationProcessing(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceConfiguration(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x2c8,
