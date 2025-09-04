@@ -39,7 +39,7 @@
 #define SystemNodeIdentifier1Index         6
 #define SystemNodeIdentifier2Index         7
 #define SystemNodeDataPointerIndex        8
-#define NodeActiveFlagIndex                 9
+#define SystemNodeActiveFlagIndex           9
 #define SystemNodeHandlerIndex            10
 #define GameCoreSystemIdentifier1             0x4fc124d23d41985f
 #define GameCoreSystemIdentifier2             0xe2f4a30d6e6ae482
@@ -9300,11 +9300,11 @@ void InitializeSystemSearchManagerD(void)
     PreviousSystemNode = AllocatedSystemNode;
   }
   
-  previousSystemNode[6] = 0x431d7c8d7c475be2;
-  previousSystemNode[7] = 0xb97f048d2153e1b0;
-  previousSystemNode[8] = &SystemDataNodeF;
-  previousSystemNode[9] = 4;
-  previousSystemNode[10] = EventCallbackPointer;
+  PreviousSystemNode[6] = 0x431d7c8d7c475be2;
+  PreviousSystemNode[7] = 0xb97f048d2153e1b0;
+  PreviousSystemNode[8] = &SystemDataNodeF;
+  PreviousSystemNode[9] = 4;
+  PreviousSystemNode[10] = EventCallbackPointer;
   return;
 }
 
@@ -53302,7 +53302,7 @@ SystemThreadConfiguration:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
-LABEL_SYSTEM_THREAD_SETUP:
+SystemThreadSetup:
   HashTableNodePointer = (void* *)(threadObjectPointer + stackParameterOffset);
   *HashTableNodePointer = 0x6973736572707845;
   *(uint32_t *)(HashTableNodePointer + 1) = 0x203a6e6f;
@@ -53332,7 +53332,7 @@ LABEL_SYSTEM_THREAD_SETUP:
         resourceAllocationContext = StartSystemThread(pointerToUnsignedStackFlagTertiary);
         SystemUnsignedFlagSecondary = ConcatenatedSystemValue(SystemUnsignedFlagSecondary.HighPart,resourceAllocationContext);
       }
-LABEL_SYSTEM_RESOURCE_VALIDATION:
+SystemResourceValidation:
         memcpy(pointerToUnsignedStackFlagTertiary + SystemFlagTertiary,ConfigurationFlag,(long long)((int)SystemAllocationFlags + 2));
     }
   }
