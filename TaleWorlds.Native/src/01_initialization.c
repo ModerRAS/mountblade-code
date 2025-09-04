@@ -2034,14 +2034,14 @@ void InitializeSystemDataTable(void)
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   SystemRootPointer = (void**)*SystemDataTablePointer;
-  IsNodeActive = *(char*)((long long)SystemRootPointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  IsDataTableNodeActive = *(char*)((long long)SystemRootPointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   SystemInitializationHandler = 0;
   PreviousSystemNode = SystemRootPointer;
   CurrentSystemNode = (void**)SystemRootPointer[1];
   
-  while (!IsNodeActive) {
-    IdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SYSTEM_DATA_COMPARISON_TEMPLATE_B, SYSTEM_IDENTIFIER_SIZE);
-    if (IdentifierComparisonResult < 0) {
+  while (!IsDataTableNodeActive) {
+    DataTableIdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SYSTEM_DATA_COMPARISON_TEMPLATE_B, SYSTEM_IDENTIFIER_SIZE);
+    if (DataTableIdentifierComparisonResult < 0) {
       NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       CurrentSystemNode = PreviousSystemNode;
     }
@@ -2050,11 +2050,11 @@ void InitializeSystemDataTable(void)
     }
     PreviousSystemNode = CurrentSystemNode;
     CurrentSystemNode = NextSystemNode;
-    IsNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    IsDataTableNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   
   if ((PreviousSystemNode == SystemRootPointer) || 
-      (IdentifierComparisonResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_B, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierComparisonResult < 0)) {
+      (DataTableIdentifierComparisonResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_B, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), DataTableIdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
     AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     PreviousSystemNode = AllocatedSystemNode;
