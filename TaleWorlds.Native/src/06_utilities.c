@@ -82825,7 +82825,18 @@ void ExecuteResourceCleanupCallbackAtOffset600(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_18090c890(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文偏移量0处的资源清理回调函数
+ * 
+ * 该函数负责执行验证上下文中偏移量0位置的资源清理回调函数
+ * 检查验证上下文中偏移量0位置的指针，如果存在则执行回调函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c890
+ */
+void ExecuteResourceCleanupCallbackAtOffset0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ResourceContextValidationOffset0) != (int64_t *)0x0) {
@@ -82836,7 +82847,18 @@ void Unwind_18090c890(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c8a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到偏移量0x148
+ * 
+ * 该函数负责在验证上下文的偏移量0x148处设置系统数据结构指针
+ * 将全局系统数据结构地址存储到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c8a0
+ */
+void SetSystemDataStructurePointerToOffset148(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x148) = &SystemDataStructure;
@@ -82845,7 +82867,18 @@ void Unwind_18090c8a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c8b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到偏移量0x430
+ * 
+ * 该函数负责在验证上下文的偏移量0x430处设置系统数据结构指针
+ * 将全局系统数据结构地址存储到验证上下文的指定位置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c8b0
+ */
+void SetSystemDataStructurePointerToOffset430(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x430) = &SystemDataStructure;
@@ -83079,7 +83112,15 @@ void ClearResourceDataFlagAndProcess(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090c9d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清除资源数据次级标志并处理操作
+ * 
+ * 该函数检查资源数据的次级标志位(位1)，如果置位则清除并调用处理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearResourceDataSecondaryFlagAndProcess(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -84468,7 +84509,18 @@ void FinalizeSystemCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源索引指针（偏移0x288）
+ * 
+ * 该函数负责清理位于验证上下文0x288偏移处的资源索引指针
+ * 通过调用资源清理函数来释放相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源索引指针
+ * @return 无返回值
+ * @warning 原始函数名：Unwind_18090cf60
+ */
+void CleanupResourceIndexPointer288(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x288) != (int64_t *)0x0) {
@@ -84479,7 +84531,18 @@ void Unwind_18090cf60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源索引指针（偏移0x2b0）
+ * 
+ * 该函数负责清理位于验证上下文0x2b0偏移处的资源索引指针
+ * 通过调用资源清理函数来释放相关资源
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源索引指针
+ * @return 无返回值
+ * @warning 原始函数名：Unwind_18090cf70
+ */
+void CleanupResourceIndexPointer2B0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x2b0) != (int64_t *)0x0) {
@@ -84490,7 +84553,18 @@ void Unwind_18090cf70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cf80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源清理操作（偏移0x2b8）
+ * 
+ * 该函数负责执行位于验证上下文0x2b8偏移处的系统资源清理操作
+ * 设置系统资源处理器模板和数据结构，并在必要时执行紧急退出
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含系统资源数据
+ * @return 无返回值
+ * @warning 原始函数名：Unwind_18090cf80
+ */
+void ExecuteSystemResourceCleanupOperation2B8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0x2b8) = &SystemResourceHandlerTemplate;
