@@ -5233,24 +5233,6 @@ uint8_t ValidateCharacterSafety(char CharacterToValidate) {
 
 
 /**
- * @brief 验证对象句柄有效性
- * 
- * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
- * 包括上下文验证、内存缓冲区检查和系统退出操作。
- * 
- * @param ObjectHandleToValidate 要验证的对象句柄
- * @return uint8_t 验证结果，0表示成功，非0表示失败
- */
-/**
- * @brief 验证对象句柄安全性
- * 
- * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
- * 包括上下文验证、内存缓冲区检查和系统退出操作。
- * 
- * @param ObjectHandleToValidate 要验证的对象句柄
- * @return uint8_t 验证结果，0表示成功，非0表示失败
- */
-/**
  * @brief 验证对象句柄安全性
  * 
  * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
@@ -5261,44 +5243,34 @@ uint8_t ValidateCharacterSafety(char CharacterToValidate) {
  */
 uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
   uint8_t ValidationStatusCode;
-  int64_t ContextMemoryAddress;
+  int64_t ValidatedContextAddress;
   
   // 验证对象上下文并获取内存地址
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ContextMemoryAddress);
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedContextAddress);
   if ((int)ValidationStatusCode != 0) {
     return ValidationStatusCode;
   }
   
   // 调整验证后的内存地址
-  if (ContextMemoryAddress == 0) {
-    ContextMemoryAddress = 0;
+  if (ValidatedContextAddress == 0) {
+    ValidatedContextAddress = 0;
   }
   else {
-    ContextMemoryAddress = ContextMemoryAddress - 8;
+    ValidatedContextAddress = ValidatedContextAddress - 8;
   }
   
   // 检查对象句柄是否有效
-  if (*(int64_t *)(ContextMemoryAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(ContextMemoryAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedContextAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
 
 
-/**
- * @brief 从寄存器验证对象句柄
- * 
- * 从系统寄存器获取对象指针，验证其有效性并执行相应操作。
- * 此函数用于系统级别的对象句柄验证，通常在底层操作中使用。
- * 
- * @return uint32_t 验证结果，0表示成功，ErrorInvalidObjectHandle表示错误
- * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
- * @warning 验证失败时会触发系统退出操作
- */
 /**
  * @brief 从寄存器验证对象句柄
  * 
