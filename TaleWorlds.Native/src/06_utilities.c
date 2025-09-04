@@ -83795,7 +83795,20 @@ void ReleaseResourceReferenceAndExecuteCleanup(void)
 
 
 
-void Unwind_18090cb60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源状态验证和清理操作
+ * 
+ * 该函数负责验证系统资源状态并执行清理操作
+ * 包括资源表指针处理、内存区域验证和状态更新
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源状态验证和清理操作
+ * @warning 调用此函数可能会触发系统紧急退出
+ * @remark 原始函数名：Unwind_18090cb60
+ */
+void ExecuteSystemResourceStatusValidationAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -83859,7 +83872,20 @@ void SetSystemDataStructurePointerToValidationContextOffset720(uint8_t ObjectCon
 
 
 
-void Unwind_18090cb80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源内存分配和状态更新
+ * 
+ * 该函数负责系统资源的内存分配和状态更新操作
+ * 包括资源表指针处理、内存分配和状态标志更新
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源内存分配和状态更新
+ * @warning 调用此函数可能会触发系统紧急退出
+ * @remark 原始函数名：Unwind_18090cb80
+ */
+void ExecuteSystemResourceMemoryAllocationAndStateUpdate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -84012,8 +84038,18 @@ void Unwind_18090cbd0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cbe0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 设置验证上下文系统数据结构指针（偏移量0x7e0）
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的指定偏移量位置
+ * 用于初始化或重置系统数据结构的引用
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态和资源信息
+ * @return 无返回值
+ * @note 原始函数名：Unwind_18090cbe0
+ */
+void SetSystemDataStructurePointerToValidationContextOffset7E0(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + 0x7e0) = &SystemDataStructure;
   return;
@@ -84022,8 +84058,16 @@ void Unwind_18090cbe0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cbf0(void)
-
+/**
+ * @brief 释放资源引用计数并调用清理函数
+ * 
+ * 该函数减少资源引用计数，并通过资源管理器调用清理函数
+ * 用于资源的生命周期管理和内存释放
+ * 
+ * @return 无返回值
+ * @note 原始函数名：Unwind_18090cbf0
+ */
+void ReleaseResourceReferenceAndCleanup(void)
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
   (**(code **)(*ResourceManagerPointer + 0x20))();

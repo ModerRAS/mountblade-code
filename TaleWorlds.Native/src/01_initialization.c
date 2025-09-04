@@ -27035,16 +27035,16 @@ void InitializeSystemDataSynchronizer(long long systemResourceHandle,void* dataS
 
 {
   long long *primaryResourceHandle;
-  char CalculationFlags1;
-  char CalculationFlags2;
-  int SystemOperationStatus;
+  char calculationFlag1;
+  char calculationFlag2;
+  int systemOperationStatus;
   uint32_t systemStatusFlag;
   uint8_t *systemDataPointer;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
+  void** currentNodePointer;
+  void** nextNodePointer;
   long long resourceCounter;
   uint systemThreadCounter;
-  long long ResourceDataPosition;
+  long long resourceDataPosition;
   ulong long systemMemorySize;
   long long *primaryResourceHandle4;
   float TransformValueC;
