@@ -2600,15 +2600,15 @@ NetworkHandle HandlePacketHeader(NetworkHandle PacketData, int64_t HeaderContext
   }
   
   // 综合处理结果
-  HeaderProcessingStatus = HeaderValidationResult & ContextProcessingStatus;
+  PacketHeaderStatus = HeaderValidationResult & ContextProcessingStatus;
   
   // 如果处理成功，更新头部状态
-  if (HeaderProcessingStatus == NetworkValidationSuccess) {
+  if (PacketHeaderStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的头部处理逻辑
     // 例如：解析头部字段、验证头部格式等
   }
   
-  return HeaderProcessingStatus;  // 返回处理状态
+  return PacketHeaderStatus;  // 返回处理状态
 }
 
 /**
@@ -2623,31 +2623,31 @@ NetworkHandle HandlePacketHeader(NetworkHandle PacketData, int64_t HeaderContext
 void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *ProcessingBuffer)
 {
   // 数据包处理完成变量
-  uint32_t PacketFinalizationStatus;                      // 数据包完成状态
-  uint32_t PacketBufferCleanupStatus;                     // 数据包缓冲区清理状态
-  uint32_t PacketDataValidationStatus;                    // 数据包数据验证状态
+  uint32_t FinalizationStatus;                      // 数据包完成状态
+  uint32_t BufferCleanupStatus;                     // 数据包缓冲区清理状态
+  uint32_t DataValidationStatus;                    // 数据包数据验证状态
   
   // 初始化完成状态
-  PacketFinalizationStatus = NetworkValidationFailure;
-  PacketBufferCleanupStatus = NetworkValidationFailure;
-  PacketDataValidationStatus = NetworkValidationFailure;
+  FinalizationStatus = NetworkValidationFailure;
+  BufferCleanupStatus = NetworkValidationFailure;
+  DataValidationStatus = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    PacketDataValidationStatus = NetworkValidationSuccess;  // 数据验证通过
+    DataValidationStatus = NetworkValidationSuccess;  // 数据验证通过
   }
   
   // 清理处理缓冲区
   if (ProcessingBuffer) {
     memset(ProcessingBuffer, 0, NetworkStandardBufferSize);
-    PacketBufferCleanupStatus = NetworkValidationSuccess;  // 缓冲区清理成功
+    BufferCleanupStatus = NetworkValidationSuccess;  // 缓冲区清理成功
   }
   
   // 综合完成状态
-  PacketFinalizationStatus = PacketDataValidationStatus & PacketBufferCleanupStatus;
+  FinalizationStatus = DataValidationStatus & BufferCleanupStatus;
   
   // 如果完成成功，更新处理状态
-  if (PacketFinalizationStatus == NetworkValidationSuccess) {
+  if (FinalizationStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的完成处理逻辑
     // 例如：更新统计信息、通知回调函数等
   }
