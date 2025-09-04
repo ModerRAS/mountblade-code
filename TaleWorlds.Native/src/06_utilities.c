@@ -12306,7 +12306,7 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
            (OperationStatus = *ParameterPointer, *ParameterPointer = OperationResult + 1, OperationResult < 10)) &&
           ((*(uint *)(ObjectContext + ObjectContextEncryptionOffset) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(ObjectContext + ObjectContextEncryptionOffset) >> 0x19 & 1) != 0 && (MaxOperationCount == *(int *)(ObjectContext + ObjectContextDataOffset4))))) {
-VALIDATION_FAILURE_HANDLER:
+ValidationFailureHandler:
               memcpy(SecurityDataLargeBuffer,SystemDataPointer,(int64_t)*(int *)(SystemDataPointer + 8));
       }
     }
@@ -12436,7 +12436,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
         ((*(uint *)(SystemRegisterContext + 0x6c) >> 0x18 & 1) == 0)) &&
        (((*(uint *)(SystemRegisterContext + 0x6c) >> 0x19 & 1) != 0 && (OperationStatus == *(int *)(SystemRegisterContext + 0xb0)))))
     {
-VALIDATION_FAILURE_HANDLER:
+ValidationFailureHandler:
             memcpy(SystemExecutionPointer + -0x10,ResourceContextDataPointer,(int64_t)*(int *)(ResourceContextDataPointer + 8));
     }
   }
