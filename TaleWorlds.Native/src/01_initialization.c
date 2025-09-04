@@ -53497,6 +53497,7 @@ SystemInitializationCheck:
   resourceAddress = 0;
   if (*(long long *)(resourceCounter + 8) == 0) {
 SystemResourceHashProcessingStart:
+    /* 处理资源哈希值和状态标志 */
     SystemOperationStatusFlags = resourceAddress;
     if (ResourceHash != 0) {
         memcpy(SystemDataBufferPointer,*(void* *)(resourceCounter + 8),SystemContextPointer);
