@@ -1547,18 +1547,18 @@ void InitializeSystemDataTableBaseAllocator(void)
  */
 void InitializeSystemDataTableAllocator(void)
 {
-  bool IsSystemNodeActive;
-  void** SystemDataTablePointer;
-  int SystemIdentifierComparisonResult;
-  long long* SystemMemoryPointer;
-  long long SystemTimestampValue;
-  void** SystemRootNodePointer;
-  void** SystemCurrentNodePointer;
-  void** SystemNextNodePointer;
-  void** SystemPreviousNodePointer;
-  void** SystemAllocatedNodePointer;
-  uint64_t SystemInitializationFlag;
-  long long SystemMemoryAllocationSize;
+  bool IsNodeActive;
+  void** DataTablePointer;
+  int IdentifierComparisonResult;
+  long long* MemoryPointer;
+  long long TimestampValue;
+  void** RootNodePointer;
+  void** CurrentNodePointer;
+  void** NextNodePointer;
+  void** PreviousNodePointer;
+  void** AllocatedNodePointer;
+  uint64_t InitializationFlag;
+  long long MemoryAllocationSize;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
   SystemRootNodePointer = (void**)*SystemDataTablePointer;
@@ -18346,36 +18346,36 @@ void SystemNetworkManagerInitializer(void)
 uint64_t InitializeThreadLocalStorageCallbackTable(void)
 
 {
-  uint64_t threadLocalStoragePtr;
-  int *callbackTable;
+  uint64_t LocalStoragePointer;
+  int *CallbackTable;
   
-  threadLocalStoragePtr = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  *(uint64_t *)(threadLocalStoragePtr + 0x18) = &SystemMemoryAllocatorReference;
-  *(uint64_t *)(threadLocalStoragePtr + 0x20) = 0;
-  *(uint32_t *)(threadLocalStoragePtr + 0x28) = 0;
-  *(uint64_t *)(threadLocalStoragePtr + 0x18) = &SystemGlobalDataReference;
-  *(uint64_t *)(threadLocalStoragePtr + 0x30) = 0;
-  *(uint64_t *)(threadLocalStoragePtr + 0x20) = 0;
-  *(uint32_t *)(threadLocalStoragePtr + 0x28) = 0;
-  threadLocalStoragePtr = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  callbackTable = *(int **)(threadLocalStoragePtr + 0x50);
-  if (callbackTable == (int *)0x0) {
-    callbackTable = (int *)(threadLocalStoragePtr + 0x60);
+  LocalStoragePointer = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  *(uint64_t *)(LocalStoragePointer + 0x18) = &SystemMemoryAllocatorReference;
+  *(uint64_t *)(LocalStoragePointer + 0x20) = 0;
+  *(uint32_t *)(LocalStoragePointer + 0x28) = 0;
+  *(uint64_t *)(LocalStoragePointer + 0x18) = &SystemGlobalDataReference;
+  *(uint64_t *)(LocalStoragePointer + 0x30) = 0;
+  *(uint64_t *)(LocalStoragePointer + 0x20) = 0;
+  *(uint32_t *)(LocalStoragePointer + 0x28) = 0;
+  LocalStoragePointer = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
+  CallbackTable = *(int **)(LocalStoragePointer + 0x50);
+  if (CallbackTable == (int *)0x0) {
+    CallbackTable = (int *)(LocalStoragePointer + 0x60);
   }
   else {
-    if (*callbackTable != 0x1e) goto CallbackTableInitializationComplete;
-    callbackTable = (int *)malloc(0x100);
+    if (*CallbackTable != 0x1e) goto CallbackTableInitializationComplete;
+    CallbackTable = (int *)malloc(0x100);
     free(0);
-    if (callbackTable == (int *)0x0) {
+    if (CallbackTable == (int *)0x0) {
       return 0xffffffff;
     }
-    *(uint64_t *)(callbackTable + 2) = *(uint64_t *)(threadLocalStoragePtr + 0x50);
+    *(uint64_t *)(CallbackTable + 2) = *(uint64_t *)(LocalStoragePointer + 0x50);
   }
-  *callbackTable = 0;
-  *(int **)(threadLocalStoragePtr + 0x50) = callbackTable;
+  *CallbackTable = 0;
+  *(int **)(LocalStoragePointer + 0x50) = CallbackTable;
 CallbackTableInitializationComplete:
-  *(code **)(callbackTable + (uint64_t)*callbackTable * 2 + 4) = SystemTableCallbackFunction;
-  *callbackTable = *callbackTable + 1;
+  *(code **)(CallbackTable + (uint64_t)*CallbackTable * 2 + 4) = SystemTableCallbackFunction;
+  *CallbackTable = *CallbackTable + 1;
   return 0;
 }
 
