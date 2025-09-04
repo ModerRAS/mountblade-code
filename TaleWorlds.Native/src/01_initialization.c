@@ -1433,9 +1433,9 @@ void* GetSystemInitializationFunction;
  */
 void InitializeGameCoreSystem(void)
 {
-  bool IsNodeActive;
+  bool IsGameCoreNodeActive;
   void** RootNodePointerPointer;
-  int NodeIdentifierComparisonResult;
+  int GameCoreIdentifierComparisonResult;
   long long* SystemDataTablePointer;
   long long SystemMemoryAllocationSize;
   void** CurrentNodePointerPointer;
