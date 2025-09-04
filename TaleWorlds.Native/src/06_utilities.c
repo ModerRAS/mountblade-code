@@ -83581,17 +83581,18 @@ void ProcessResourceTableDataAndMemoryOperationsVersionG(uint8_t ObjectContext, 
 
 
 /**
- * @brief 设置系统数据结构指针到验证上下文偏移0x5a0处
+ * @brief 设置验证上下文中的系统数据结构指针
  * 
- * 该函数负责将系统数据结构指针设置到验证上下文的0x5a0偏移处
- * 这是一个简单的指针设置操作
+ * 该函数将系统数据结构指针设置到验证上下文的指定偏移量处
+ * 用于在验证操作中访问系统数据结构
  * 
- * @param ObjectContext 对象上下文参数
- * @param ValidationContext 验证上下文参数
+ * @param ObjectContext 对象上下文参数，包含对象的状态和配置信息
+ * @param ValidationContext 验证上下文参数，包含验证所需的数据和状态
  * @return 无返回值
+ * @note 此函数在系统验证过程中被调用，用于建立数据结构引用
  * @remark 原始函数名：Unwind_18090cab0
  */
-void SetSystemDataStructurePointerToValidationContext5A0(uint8_t ObjectContext, int64_t ValidationContext)
+void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x5a0) = &SystemDataStructure;
