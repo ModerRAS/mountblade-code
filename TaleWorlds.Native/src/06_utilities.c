@@ -94956,7 +94956,17 @@ void ExecuteResourceProcessingOperation(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void Unwind_18090f180(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理操作（变体1）
+ * 
+ * 在系统unwind过程中执行资源处理操作，
+ * 调用资源上下文中的处理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f180
+ */
+void ExecuteResourceProcessingOperationVariant1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

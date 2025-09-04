@@ -1737,8 +1737,8 @@ void InitializeNetworkConnectionState(void)
   int64_t NetworkSystemContextData;                 // 网络系统上下文数据
   int32_t NetworkConnectionIdentifier;               // 网络连接标识符
   uint32_t NetworkConnectionStateFlags;              // 网络连接状态标志位
-  int32_t NetworkSessionId;                // 网络会话ID
-  uint64_t *ConnectionStateData;                     // 连接状态数据指针
+  int32_t NetworkConnectionSessionId;                // 网络连接会话ID
+  uint64_t *NetworkConnectionStateData;               // 网络连接状态数据指针
   int64_t NetworkContextDataPointer;                    // 网络上下文指针
   
   // 计算连接状态缓冲区位置
