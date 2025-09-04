@@ -1685,10 +1685,10 @@ void InitializeNetworkConnectionState(void)
 void ResetNetworkConnectionPointer(void)
 {
   // 连接指针重置变量
-  uint8_t *NetworkConnectionStateBuffer;                   // 连接状态缓冲区指针
-  int64_t NetworkContextData;                       // 网络上下文数据
-  uint64_t *NetworkDataBuffer;                      // 网络数据缓冲区指针
-  uint32_t ConnectionStateFlags;                    // 连接状态标志位
+  uint8_t *StateBuffer;                   // 连接状态缓冲区指针
+  int64_t ContextData;                       // 网络上下文数据
+  uint64_t *DataBuffer;                      // 网络数据缓冲区指针
+  uint32_t StateFlags;                    // 连接状态标志位
   int32_t ConnectionId;                             // 连接标识符
   
   // 计算连接状态缓冲区位置

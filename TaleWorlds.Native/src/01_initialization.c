@@ -60143,9 +60143,9 @@ void InitializeSystemVectorCalculations(void)
          FloatTransformValue4 * InterpolationFactorX + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue9 * InterpolationFactorV + FloatParameterArray[0xe];
     FloatTransformDC =
          FloatTransformValue4 * InterpolationFactorY + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue9 * MagnitudeSquared + FloatParameterArray[0xf];
-    pfloatValue29 = &stackBufferA0;
+    VectorParameterPointer = &TransformStackBuffer;
   }
-  ConfigureSystemContextBuffer(&SystemStackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),pfloatValue29);
+  ConfigureSystemContextBuffer(&SystemStackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(memoryBlockAddress + 0xf7),VectorParameterPointer);
   NetworkConnectionFlags = ThreadCreationParameter;
   SecurityParameter = InputStackParameter90;
   ConfigurationData = InputStackParameter88;
@@ -60155,7 +60155,7 @@ void InitializeSystemVectorCalculations(void)
   ResourceCreationFlags = InputStackParameter68;
   SystemContextPointer = InputStackParameter60;
   IsAudioSystemActive = *(byte *)(SystemContextPointer + 0x1bd8);
-  CalculationFlags = *(int *)(SystemGlobalStatusFlags + 0x224);
+  CalculationFlags = *(int *)(SystemStatusFlags + 0x224);
   if (((*(byte *)(memoryBlockAddress + 0xfd) & 1) == 0) &&
      ((*(int *)(memoryBlockAddress + 0x1d0) == CalculationFlags || (*(int *)(memoryBlockAddress + 0x1d0) == CalculationFlags + -1)))) {
     isSystemActive7 = 0;
