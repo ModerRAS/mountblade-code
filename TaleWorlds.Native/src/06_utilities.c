@@ -15929,7 +15929,7 @@ uint8_t InitializeResourceRenderingConfiguration(int64_t *ObjectContext)
           ContextValidationStatusCode = *(uint32_t *)(SystemContextPointer + 0x1161c);
           ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkRequestTemplateSecondary,*(uint32_t *)(SystemContextPointer + 0x1160c),
                                 *(uint32_t *)(SystemContextPointer + 0x11610),*(uint32_t *)(SystemContextPointer + 0x11614),
-                                *(uint32_t *)(SystemContextPointer + 0x11618),ContextResourceHashStatus,SecurityHashValue,ResourceCount,LoopIncrement);
+                                *(uint32_t *)(SystemContextPointer + 0x11618),ContextResourceHashStatus,SecurityHashValue,ResourceCount,LoopStepIncrement);
           if (((int)ValidationStatusCode == 0) &&
              (ValidationStatusCode = ProcessNetworkRequest(ObjectContext,&NetworkConfigurationTemplate,*(uint32_t *)(SystemContextPointer + 0x11628),
                                     (double)*(float *)(SystemContextPointer + 0x11640),
