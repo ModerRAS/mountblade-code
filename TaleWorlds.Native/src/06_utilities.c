@@ -200,7 +200,7 @@
 #define DataValidationResultOffset 0xc
 #define ResourcePoolIndexOffset 1
 #define ResourceIndexMinimum 0
-#define NullPointerValue 0
+#define NullPointerValue 0x0
 #define ValidationStatusSuccess 0
 #define ResourceAllocationSize 0x100
 #define ResourceAllocationFlag 1
@@ -756,7 +756,7 @@ uint32_t FreeValidationResources(void* ResourceHandles);
 #define ResourceCountOffset 0x28
 #define ResourceCapacityOffset 0x2c
 #define SystemContextAllocationOffset 0x1a0
-#define NullPointerValue 0x0
+#define NullPointerValue 0x0x0
 #define BufferDataOffset 0x10
 #define ResourceStatusFlagsOffset 0x34
 #define ResourceStatusActiveMask 0x11
@@ -105832,7 +105832,7 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SecurityOperationTypeValidation 0x27
 #define ResourceAccessValidationOffset 0xc4
 #define ResourceHandleBackupOffset 0x68
-#define NullPointerValue 0
+#define NullPointerValue 0x0
 
 
 
