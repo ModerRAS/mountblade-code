@@ -9042,28 +9042,26 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(uint32_t SimplifiedCompari
 /**
  * @brief 获取系统状态常量
  * 
- * 该函数返回一个系统状态常量值
- * 用于标识特定的系统状态或操作结果
+ * 该函数返回系统状态常量值，用于标识特定的系统状态或操作结果
+ * 这个常量在系统运行时用于各种状态检查和错误处理
  * 
- * @return 返回状态常量值 0x1c
+ * @return uint8_t 返回系统状态常量值
  */
 uint8_t GetSystemStatusConstant(void)
-
 {
-  return ErrorInvalidObjectHandle;
+  return SystemStatusConstant;
 }
 
 
 
 
  /**
- * @brief 空操作函数
+ * @brief 执行系统空操作
  * 
- * 该函数不执行任何操作，直接返回
- * 用作占位符或空操作
+ * 该函数不执行任何操作，直接返回。用作系统中的占位符函数
+ * 在需要函数指针但不能执行实际操作的场景中使用
  */
 void ExecuteSystemNullOperation(void)
-
 {
   return;
 }
