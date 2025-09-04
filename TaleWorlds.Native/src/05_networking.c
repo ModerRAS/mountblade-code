@@ -825,6 +825,19 @@ void InitializeNetworkConnectionPool(void)
   NetworkConnectionPoolUsageStatistics = 0;            // 重置统计信息
 }
 
+/**
+ * @brief 初始化网络套接字句柄
+ * 
+ * 初始化网络套接字的基本参数和配置，为后续的网络通信做准备。
+ * 此函数负责设置套接字的描述符、上下文大小、索引等基本参数。
+ * 
+ * @note 此函数会在网络系统启动时调用，确保套接字句柄正确初始化
+ * @warning 如果初始化失败，系统将无法进行网络通信
+ * 
+ * @return void 无返回值
+ */
+void InitializeNetworkSocketHandle(void)
+
 // 网络连接配置数据结构指针
 void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
 void *NetworkConnectionPrimaryConfiguration = &NetworkConnectionPrimaryConfigData;
@@ -1130,9 +1143,15 @@ int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketDat
 /**
  * @brief 网络安全守卫检查
  * 
- * 进行网络安全守卫检查，确保网络连接的安全性
+ * 进行网络安全守卫检查，确保网络连接的安全性。此函数负责验证安全值的有效性，
+ * 检查网络连接的安全状态，并根据验证结果采取相应的安全措施。
  * 
- * @param SecurityValue 安全值
+ * @param SecurityValue 安全值，包含安全验证所需的信息
+ * 
+ * @note 此函数是网络安全的重要组成部分，确保连接的安全性
+ * @warning 如果安全验证失败，可能会终止连接或触发安全警报
+ * 
+ * @return void 无返回值
  */
 void ValidateNetworkSecurityGuard(uint64_t SecurityValue);
 
@@ -1440,9 +1459,14 @@ void ProcessNetworkPackets(void)
 /**
  * @brief 管理网络错误处理
  * 
- * 管理网络错误的处理和恢复，记录错误并尝试自动恢复
+ * 管理网络错误的处理和恢复，记录错误并尝试自动恢复。此函数负责初始化错误处理器、
+ * 错误计数器、连接统计信息等。错误处理系统会自动记录错误类型、错误频率、
+ * 错误恢复情况等，并根据错误类型采取相应的恢复措施。
  * 
  * @note 此函数会记录错误并尝试自动恢复
+ * @warning 如果错误无法恢复，系统可能会终止连接或重启网络服务
+ * 
+ * @return void 无返回值
  */
 void HandleNetworkErrors(void)
 {
@@ -1659,26 +1683,26 @@ void InitializeNetworkConnectionState(void)
   uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
   int32_t InitializationResult;               // 初始化结果状态
   int64_t SystemContext;                      // 网络系统上下文数据
-  int32_t ConnectionId;                     // 连接标识符
+  int32_t ConnectionIdentifier;                     // 连接标识符
   uint32_t StateFlags;                    // 连接状态标志位
-  int32_t SessionId;                 // 网络会话ID
+  int32_t SessionIdentifier;                // 网络会话ID
   uint64_t *ConnectionStateData;                     // 连接状态数据指针
   int64_t ContextPointer;                    // 网络上下文指针
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionId) + ConnectionStateBufferOffset);
+  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
-  if (*(int *)(*(int64_t *)(SystemContext + NetworkContextSystemOffset) + NetworkSessionDataOffset) == SessionId) {
+  if (*(int *)(*(int64_t *)(SystemContext + NetworkContextSystemOffset) + NetworkSessionDataOffset) == SessionIdentifier) {
     *ConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionId) + 8) = ((int)ConnectionStateBuffer - ConnectionId) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionIdentifier) + 8) = ((int)ConnectionStateBuffer - ConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
     InitializationResult = InitializeConnectionContext(*(NetworkHandle *)(ContextPointer + NetworkContextSystemOffset));
     if (InitializationResult == 0) {
-      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionId) + ConnectionStateDataOffset);
+      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionIdentifier) + ConnectionStateDataOffset);
     }
     CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
@@ -1701,10 +1725,10 @@ void ResetNetworkConnectionPointer(void)
   int64_t ContextData;                       // 网络上下文数据
   uint64_t *DataBuffer;                      // 网络数据缓冲区指针
   uint32_t StateFlags;                    // 连接状态标志位
-  int32_t ConnectionId;                             // 连接标识符
+  int32_t ConnectionIdentifier;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  StateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionId) + ConnectionStateBufferOffset);
+  StateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *DataBuffer = (uint64_t)*(uint *)(ContextData + ConnectionStateDataOffset);
