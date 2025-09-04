@@ -342,29 +342,29 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NETWORK_PACKETS_RESET_VALUE 0x00                                    // 数据包重置
 #define NETWORK_RETRANSMIT_COUNT_RESET_VALUE 0x00                          // 重传计数重置
 #define NETWORK_LOSS_RATE_RESET_VALUE 0x00                                  // 丢包率重置
-#define NETWORK_MONITOR_ENABLED_FLAG 0x01                                  // 监控器启用
+#define NetworkMonitorEnabledFlag 0x01                                  // 监控器启用
 #define NETWORK_ROUND_TRIP_TIME_RESET_VALUE 0x00                            // 往返时间重置
-#define NETWORK_QUEUE_ENABLED_FLAG 0x01                                    // 队列启用
-#define NETWORK_BUFFER_ENABLED_FLAG 0x01                                   // 缓冲区启用
+#define NetworkQueueEnabledFlag 0x01                                    // 队列启用
+#define NetworkBufferEnabledFlag 0x01                                   // 缓冲区启用
 #define NETWORK_INDEX_RESET_VALUE 0x00                                      // 索引重置
 #define NETWORK_PACKET_INDEX_RESET_VALUE 0x00                               // 数据包索引重置
 #define NETWORK_ERROR_RATE_RESET_VALUE 0x00                                 // 错误率重置
-#define NETWORK_HEALTH_GOOD_FLAG 0x01                                       // 健康状态良好
-#define NETWORK_STABILITY_HIGH_FLAG 0x01                                    // 稳定性高
-#define NETWORK_PERFORMANCE_GOOD_FLAG 0x01                                  // 性能良好
+#define NetworkHealthGoodFlag 0x01                                       // 健康状态良好
+#define NetworkStabilityHighFlag 0x01                                    // 稳定性高
+#define NetworkPerformanceGoodFlag 0x01                                  // 性能良好
 
 // 网络数据包验证常量
-#define NETWORK_VALIDATION_POOL_ENABLED_FLAG 0x01                // 验证池启用
-#define NETWORK_SECURITY_DATA_ENABLED_FLAG 0x01                  // 安全数据启用
-#define NETWORK_ENCRYPTION_ENABLED_FLAG 0x01                     // 加密启用
-#define NETWORK_COMPRESSION_ENABLED_FLAG 0x01                    // 压缩启用
-#define NETWORK_AUDIT_ENABLED_FLAG 0x01                          // 审计启用
-#define NETWORK_POLICY_ENABLED_FLAG 0x01                         // 策略启用
-#define NETWORK_CERTIFICATE_ENABLED_FLAG 0x01                    // 证书启用
+#define NetworkValidationPoolEnabledFlag 0x01                // 验证池启用
+#define NetworkSecurityDataEnabledFlag 0x01                  // 安全数据启用
+#define NetworkEncryptionEnabledFlag 0x01                     // 加密启用
+#define NetworkCompressionEnabledFlag 0x01                    // 压缩启用
+#define NetworkAuditEnabledFlag 0x01                          // 审计启用
+#define NetworkPolicyEnabledFlag 0x01                         // 策略启用
+#define NetworkCertificateEnabledFlag 0x01                    // 证书启用
 
 // 网络连接管理常量
 #define NETWORK_TABLE_INDEX_RESET_VALUE 0x00                      // 表索引重置
-#define NETWORK_CONNECTION_MANAGER_ENABLED_FLAG 0x01              // 连接管理器启用
+#define NetworkConnectionManagerEnabledFlag 0x01              // 连接管理器启用
 #define NETWORK_CONNECTION_DATA_ENABLED_FLAG 0x01                // 连接数据启用
 #define NETWORK_ROUTING_ENABLED_FLAG 0x01                        // 路由启用
 #define NETWORK_QUEUE_BUFFER_ENABLED_FLAG 0x01                   // 队列缓冲区启用
