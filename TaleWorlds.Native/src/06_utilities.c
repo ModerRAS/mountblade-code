@@ -4506,15 +4506,15 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
     if (OperationStatusCode == 0) {
       TotalObjectCount = *(int *)(ObjectDataBuffer + ObjectDataArraySizeOffset);
       if (0 < TotalObjectCount) {
-        CollectionIterator = 0;
+        ObjectCollectionIterator = 0;
         do {
-          uint8_t ObjectState = *(uint8_t *)(ObjectDataBuffer + CollectionIterator);
+          uint8_t ObjectState = *(uint8_t *)(ObjectDataBuffer + ObjectCollectionIterator);
           OperationStatusCode = ValidateObjectStatus(ObjectState);
           if (OperationStatusCode != RegistrationStatusSuccess) {
                   HandleInvalidObject(ObjectState, 1);
           }
           ProcessedItemCount++;
-          CollectionIterator += ResourceEntrySizeBytes;
+          ObjectCollectionIterator += ResourceEntrySizeBytes;
         } while (ProcessedItemCount < TotalObjectCount);
       }
       FreeObjectListMemory(&ObjectDataBuffer);
@@ -4545,7 +4545,7 @@ void ValidateSystemObjectCollection(void)
 {
   uint8_t CurrentObjectIdentifier;
   int ValidationStatus;
-  int64_t SystemContextHandle;
+  int64_t SystemContextPointer;
   int64_t SystemRuntimeData;
   int64_t BufferOffset;
   int ValidatedObjectCount;
@@ -4558,11 +4558,11 @@ void ValidateSystemObjectCollection(void)
   SecurityValidationToken = SystemSecurityValidationKeySeed ^ (uint64_t)ProcessingWorkspaceBuffer;
   
   // 初始化系统上下文
-  SystemContextHandle = GetSystemContextHandle();
+  SystemContextPointer = GetSystemContextHandle();
   SystemRuntimeData = GetSystemRuntimeData();
   
   // 检查系统对象上下文是否有效
-  if (*(int64_t *)(SystemContextHandle + ObjectHandleSecondaryOffset) != 0) {
+  if (*(int64_t *)(SystemContextPointer + ObjectHandleSecondaryOffset) != 0) {
     ObjectDataBuffer = ProcessingWorkspaceBuffer;
     ValidatedObjectCount = 0;
     RetrievedObjectCount = 0;
@@ -79119,7 +79119,18 @@ void ValidateAndCleanupResourceContext(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_18090bd80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源事务回滚和清理操作
+ * 
+ * 该函数首先检查是否需要回滚资源事务，然后开始新的资源事务。
+ * 接着执行多个资源清理回调函数，最后处理次要资源上下文。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return void 无返回值
+ * @remark 原始函数名：Unwind_18090bd80
+ */
+void ExecuteResourceTransactionRollbackAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
