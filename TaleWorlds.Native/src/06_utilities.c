@@ -197,6 +197,7 @@
 #define ObjectContextSecondaryHandleOffset 0x38
 #define ObjectContextResourceCountOffset 0x38
 #define ObjectContextValidationParamOffset 0xc
+#define ObjectContextMethodTableOffset 8
 #define SystemManagerContextOffset 0x38
 #define ObjectContextMemoryAllocationOffset 0x38
 
@@ -18173,29 +18174,36 @@ uint8_t ProcessResourceTablePointerEntries(int64_t ObjectContext, int64_t *Valid
   int64_t DataOffset;
   int64_t MemoryRegion;
   int SystemCommandArray [2];
+  int EntryIndex;
+  int EntryCount;
+  int64_t EntryOffset;
   
-  ResourceIndex = (int)ValidationContext[1];
-  SystemCommandArray[0] = ResourceIndex;
-  ValidationStatusCode = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),SystemCommandArray,4);
+  EntryCount = (int)ValidationContext[1];
+  SystemCommandArray[0] = EntryCount;
+  ValidationStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))(*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),SystemCommandArray,4);
+  ResourceHashStatus = (uint8_t)ValidationStatusCode;
+  
   if ((int)ValidationStatusCode == 0) {
-    if (0 < ResourceIndex) {
-      LoopOffset = 0;
-      ResourceTablePointerPointer = LoopOffset;
+    if (0 < EntryCount) {
+      EntryIndex = 0;
+      EntryOffset = 0;
       do {
         ResourceTablePointer = *ValidationContext;
-        ValidationStatusCode = GetResourceEntry(ObjectContext,ResourceTablePointer + ResourceTablePointerPointer);
+        ValidationStatusCode = GetResourceEntry(ObjectContext,ResourceTablePointer + EntryOffset);
+        ResourceHashStatus = (uint8_t)ValidationStatusCode;
         if ((int)ResourceHashStatus != 0) {
           return ResourceHashStatus;
         }
-        SystemCommandArray[0] = *(int *)(ResourceTablePointer + ResourceTablePointerPointer + ValidationContextCleanupFunctionOffset);
-        ValidationStatusCode = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                          (*(uint8_t **)(ObjectContext + 8),SystemCommandArray,4);
+        SystemCommandArray[0] = *(int *)(ResourceTablePointer + EntryOffset + ValidationContextCleanupFunctionOffset);
+        ValidationStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                          (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),SystemCommandArray,4);
+        ResourceHashStatus = (uint8_t)ValidationStatusCode;
         if ((int)ResourceHashStatus != 0) {
           return ResourceHashStatus;
         }
-        LoopOffset = LoopOffset + 1;
-        ResourceTablePointerPointer = ResourceTablePointerPointer + 0x14;
-      } while (LoopOffset < ResourceIndex);
+        EntryIndex = EntryIndex + 1;
+        EntryOffset = EntryOffset + ResourceTableEntrySize;
+      } while (EntryIndex < EntryCount);
     }
     ProcessingStatusCode = 0;
   }
@@ -18219,17 +18227,19 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
 
 {
   int ProcessingStatusCode;
-  int ProcessingStatusCode;
   uint ValidationStatusCode;
   uint64_t MemoryAddressIncrement;
   int64_t MemoryRegion;
   uint64_t ContextResourceHashStatus;
   uint32_t SecurityHashValue;
   uint64_t MemorySize;
-  uint8_t ValidationContext;
+  uint8_t ResourceStatus;
+  uint64_t LoopIncrement;
+  int ResourceCount;
+  int64_t ResourceTablePointerPointer;
   
-  ValidationContext = CONCAT44(ValidationContext.FloatValue,*ValidationContext);
-  ResourceIndex = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
+  ResourceStatus = CONCAT44(ValidationContext[0],*ValidationContext);
+  ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))(*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
   if (ResourceIndex == 0) {
     ValidationContext = *(uint8_t *)(ValidationContext + 2);
     ResourceIndex = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),&ValidationContext,8);
