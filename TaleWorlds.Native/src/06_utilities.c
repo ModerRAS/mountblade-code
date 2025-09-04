@@ -4479,7 +4479,7 @@ uint8_t SystemMemoryFlagKernel;
 void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
 {
   int OperationStatusCode;
-  int64_t CollectionIterator;
+  int64_t ObjectCollectionIterator;
   int ProcessedItemCount;
   uint8_t SecurityValidationBuffer[32];
   int64_t ContextHandleArray[2];
@@ -79072,7 +79072,18 @@ void SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationCont
 
 
 
-void Unwind_18090bd60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置主系统数据结构指针
+ * 
+ * 该函数将系统数据结构的地址设置到验证上下文的主偏移量处。
+ * 这是一个简单的指针设置操作，用于初始化主系统数据结构的引用。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return void 无返回值
+ * @remark 原始函数名：Unwind_18090bd60
+ */
+void SetPrimarySystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ValidationContextPrimaryOffset) = &SystemDataStructure;
@@ -79081,7 +79092,18 @@ void Unwind_18090bd60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bd70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证并清理资源上下文状态
+ * 
+ * 该函数检查验证上下文中的特定状态标志，如果满足条件则清理资源上下文。
+ * 主要用于资源释放后的状态重置和验证。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return void 无返回值
+ * @remark 原始函数名：Unwind_18090bd70
+ */
+void ValidateAndCleanupResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0x51) == '\0') {
