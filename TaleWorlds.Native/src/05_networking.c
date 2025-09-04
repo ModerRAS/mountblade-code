@@ -246,6 +246,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkConnectionFinalizeValue 0x7d                // 连接完成状态值 (125)
 #define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
 #define NetworkConnectionStrictValidationMode 0x02           // 严格验证模式
+#define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
 #define NetworkPacketBasicDecodingMode 0x01                 // 基本解码模式
 #define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
 #define NetworkPacketMagicValidationMask 0x03               // 魔数验证掩码
@@ -2437,7 +2438,7 @@ void ValidateConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionDat
     ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult;
   } else if (ValidationMode == NetworkConnectionStrictValidationMode) {
     // 严格验证模式
-    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult & 0x01;
+    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult & NetworkValidationSuccessMask;
   } else {
     // 默认验证模式
     ConnectionValidationStatus = 0x01;
