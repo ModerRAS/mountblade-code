@@ -6859,7 +6859,7 @@ void ProcessMessageQueue(int64_t MessageQueueHandle, uint8_t ConfigurationParame
 uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t OperationFlag)
 
 {
-  uint ResourceHash;
+  uint ResourceHashValue;
   uint64_t ResourceHashResult;
   int64_t ResourceIndex;
   uint8_t ValidationContext;
@@ -6882,9 +6882,9 @@ uint64_t ProcessSystemResourceAllocation(int64_t ResourceHandle, uint8_t Operati
         ResourceHandleValue = *(int64_t *)(ResourceHandle + ObjectHandleMemoryOffset);
         ResourceOperationBuffer[0] = 2;
       }
-      ResourceHash = ProcessResourceOperationEx(OperationFlag,ResourceOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
-      ResourceHashResult = (uint64_t)ResourceHash;
-      if (ResourceHash == 0) {
+      ResourceHashValue = ProcessResourceOperationEx(OperationFlag,ResourceOperationBuffer,*(uint32_t *)(ResourceHandle + ObjectDataSizeOffset),ValidationContext);
+      ResourceHashResult = (uint64_t)ResourceHashValue;
+      if (ResourceHashValue == 0) {
         ResourceHashResult = 0;
       }
       else if (ResourceIndex != 0) {
@@ -6933,9 +6933,9 @@ int ValidateSystemConfigurationParameter(uint32_t SystemConfigParameter)
     ValidationStatusCode = 2;
   }
   int64_t *ConfigurationDataPointer = ObjectContext;
-  ResourceIndex = ProcessResourceOperationEx();
-  if (ResourceIndex == 0) {
-    ResourceIndex = 0;
+  int64_t ResourceIndexValue = ProcessResourceOperationEx();
+  if (ResourceIndexValue == 0) {
+    ResourceIndexValue = 0;
   }
   else if (SystemResourceTablePointer != 0) {
     ProcessResourceRelease(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset),SystemResourceTablePointer,&ResourceAllocationTemplate,0xe9,ResourceHashStatus);
