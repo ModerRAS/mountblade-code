@@ -60404,14 +60404,14 @@ ThreadStatusProcessing:
       ThreadCreationFlags = InitializeSystemThreadCreation(ConfigurationDataPointer,SystemResourceManager,AdditionalParameter,&systemFlag88,primaryConfigurationParameter,secondaryConfigurationParameter);
       return ThreadCreationFlags;
     }
-    in_RAX = 0;
+    ThreadInitializationResult = 0;
     if (*(char *)(SystemThreadHandle2 + 0x38c) == '\t') {
-      in_RAX = CheckSystemStatus(SystemThreadHandle2);
-      *(char *)(SystemThreadHandle2 + 0x38c) = (char)in_RAX;
-      if ((char)in_RAX == '\t') goto TabCharacterCheck;
+      ThreadInitializationResult = CheckSystemStatus(SystemThreadHandle2);
+      *(char *)(SystemThreadHandle2 + 0x38c) = (char)ThreadInitializationResult;
+      if ((char)ThreadInitializationResult == '\t') goto TabCharacterCheck;
     }
   }
-  return in_RAX & SystemMemoryStatusAlignmentMask;
+  return ThreadInitializationResult & SystemMemoryStatusAlignmentMask;
 }
 
 
@@ -60433,11 +60433,11 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   long long memoryBlockAddress;
   float *systemDataIndexPtr;
   uint32_t SystemResourceCounter;
-  float in_XMM0_Dc;
-  float in_XMM1_Dc;
-  float in_XMM4_Da;
-  float in_XMM4_Db;
-  float in_XMM4_Dc;
+  float InputFloatValue1;
+  float InputFloatValue2;
+  float InputFloatValue3;
+  float InputFloatValue4;
+  float InputFloatValue5;
   float AudioInterpolationCoeff1;
   uint32_t StackParameter28;
   float FloatTransform30;
@@ -60467,7 +60467,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   ScaleValue = systemDataIndexPtr[10];
   floatValue1 = *(float *)(memoryBlockAddress + 0x124);
   floatValue2 = *(float *)(memoryBlockAddress + 0x130);
-  FloatTransform30 = floatValue1 * in_XMM4_Da + (float)SystemResourceManager * floatValue4 + (float)ConfigurationDataPointer * floatValue7;
+  FloatTransform30 = floatValue1 * InputFloatValue3 + (float)SystemResourceManager * floatValue4 + (float)ConfigurationDataPointer * floatValue7;
   FloatStack34 =
        floatValue1 * in_XMM4_Db + (float)((ulong long)SystemResourceManager >> 0x20) * BaseValue +
        (float)((ulong long)ConfigurationDataPointer >> 0x20) * floatValue8;
