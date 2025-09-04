@@ -11595,10 +11595,10 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
   longlong IndexValue;
   char *pcVar4;
   longlong LongLoop;
-  uint64_t uVar6;
+  uint64_t memoryValidationResult;
   void *pStackCounter4;
   char *pcStack_28;
-  uVar6 = SystemMutexFlags;
+  memoryValidationResult = SystemMutexFlags;
   LongCounter = ProcessSystemInitializationData();
   if (LongCounter == 0) {
     return 0;
@@ -11720,10 +11720,10 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
   longlong IndexValue;
   char *pcVar4;
   longlong LongLoop;
-  uint64_t uVar6;
+  uint64_t memoryValidationResult;
   void *pStackCounter3;
   char *pcStack_50;
-  uVar6 = SystemMutexFlags;
+  memoryValidationResult = SystemMutexFlags;
   LongCounter = ProcessSystemInitializationData();
   if (LongCounter != 0) {
     pModuleInitializationResult = (longlong *)(LongCounter + 8);

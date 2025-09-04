@@ -50011,7 +50011,7 @@ ThreadIdValidationCheck:
       if (resourceCounter != 0) {
         return resourceCounter;
       }
-      goto LABEL_SYSTEM_ERROR_HANDLER;
+      goto SystemErrorHandler;
     }
     LOCK();
     CurrentThreadId = *ResourceHashEntryPointer;
