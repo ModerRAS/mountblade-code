@@ -90314,7 +90314,13 @@ void RegisterSystemResourceHandlerAtOffsetEE8(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090dec0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册系统资源释放处理器（偏移量0xf20）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dec0
+ */
+void RegisterSystemResourceReleaseHandlerAtOffsetF20(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0xf20,0x20,0x1d,ReleaseSystemResource);
@@ -90378,7 +90384,13 @@ void ProcessSecondaryResourceContextCleanup(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_18090df60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源回调处理（偏移量0x13e8）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090df60
+ */
+void ExecuteSystemResourceCallbackAtOffset13E8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90669,7 +90681,13 @@ void Unwind_18090e1e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e200(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册238类型资源处理器在1598偏移处
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e200
+ */
+void RegisterResourceTypeHandler238AtOffset1598(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x1598,0x238,2,ResourceTypeHandler238);
