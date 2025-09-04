@@ -689,7 +689,7 @@ uint32_t NetworkSocketProtocolType;                       // 网络套接字协�
 uint32_t NetworkSocketIndex;                              // 网络套接字索引，套接字在表中的索引位置
 uint32_t NetworkSocketContext;                                 // 网络套接字上下文，套接字的运行时上下文数据
 uint32_t NetworkSocketRuntimeData;                                // 网络套接字运行时数据，套接字相关的数据存储
-uint32_t NetworkSocketContextData;                              // 网络套接字上下文数据，套接字的运行时上下文数据
+uint32_t NetworkSocketRuntimeContext;                            // 网络套接字运行时上下文，套接字的运行时上下文数据
 uint32_t NetworkSocketSize;                                  // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
@@ -826,7 +826,7 @@ void InitializeNetworkConnectionPool(void)
 }
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplate = &NetworkConnectionContextTemplateData;
+void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
 void *NetworkConnectionPrimaryConfiguration = &NetworkConnectionPrimaryConfigData;
 void *NetworkConnectionSecondaryConfiguration = &NetworkConnectionSecondaryConfigData;
 void *NetworkConnectionProcessingConfiguration = &NetworkConnectionProcessingConfigData;
