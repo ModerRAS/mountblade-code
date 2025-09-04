@@ -168,6 +168,8 @@
 #define PerformanceMonitorIdentifier2   0x92a15d52fe2679bd
 #define DataComparisonTemplateNId1   0x4140994454d56503
 #define DataComparisonTemplateNId2   0x399eced9bb5517ad
+#define DebugManagerIdentifier1   0x4140994454d56503
+#define DebugManagerIdentifier2   0x399eced9bb5517ad
 #define DataComparisonTemplateOId1   0x40db4257e97d3df8
 #define DataComparisonTemplateOId2   0x81d539e33614429f
 #define MemoryComparisonTemplateId1   0x4e33c4803e67a08f
@@ -5098,26 +5100,26 @@ void InitializeSystemPerformanceMonitor(void)
 void InitializeSystemDebugManager(void)
 
 {
-  char NodeActiveFlag;
+  char IsNodeActive;
   void** SystemDataTable;
-  int IdentifierCompareResult;
+  int IdentifierComparisonResult;
   long long* MemorySystemPointer;
   long long SystemTimestamp;
   void** RootNodePointer;
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTableNodePointer;
-  void* SystemDebugData;
+  void* DebugManagerData;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  SystemDebugData = 0;
+  IsNodeActive = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
+  DebugManagerData = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
-  while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
-    if (IdentifierCompareResult < 0) {
+  while (IsNodeActive == '\0') {
+    IdentifierComparisonResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    if (IdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
     }
@@ -5126,17 +5128,17 @@ void InitializeSystemDebugManager(void)
     }
     HashTableNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsNodeActive = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == RootNodePointer) || (IdentifierCompareResult = memcmp(&SystemDataComparisonTemplateN,HashTableNodePointer + 4,0x10), IdentifierCompareResult < 0)) {
+  if ((HashTableNodePointer == RootNodePointer) || (IdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateN,HashTableNodePointer + 4,0x10), IdentifierComparisonResult < 0)) {
     long long MemoryAllocationSize;
     void** AllocatedMemoryNode;
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
-  HashTableNodePointer[NodeIdentifier1Index] = 0x4140994454d56503;
-  HashTableNodePointer[NodeIdentifier2Index] = 0x399eced9bb5517ad;
+  HashTableNodePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
+  HashTableNodePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTableNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTableNodePointer[10] = ResourceInitializationCallback;
