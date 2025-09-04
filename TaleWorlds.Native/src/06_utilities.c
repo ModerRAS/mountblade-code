@@ -12873,11 +12873,11 @@ uint8_t InsertOrUpdateResourceInHashTable(int64_t *hashTablePointer, uint *Resou
  * 该函数用于在资源池中查找指定的资源键，如果找到则更新其值，
  * 如果未找到则在池中插入新的资源条目。当池容量不足时会自动扩容。
  * 
- * @param resourcePoolId 资源池标识符
- * @param searchKey 要查找或插入的资源键
+ * @param ResourcePoolId 资源池标识符
+ * @param SearchKey 要查找或插入的资源键
  * @return uint64_t 操作结果状态码，0表示成功
  */
-uint64_t FindOrInsertInResourcePool(uint8_t resourcePoolId, int searchKey)
+uint64_t FindOrInsertInResourcePool(uint8_t ResourcePoolId, int SearchKey)
 {
   int64_t PoolDataAddress;
   int HashTableIndex;
@@ -13143,10 +13143,10 @@ uint32_t ValidateAndGetBufferContext(uint8_t BufferContext)
  * 主要用于动态数组的管理和扩容操作
  * 
  * @param ArrayPointer 数组指针，包含数组的基本信息和容量
- * @param newSize 新的数组大小，用于确定分配的内存空间
+ * @param NewSize 新的数组大小，用于确定分配的内存空间
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t AllocateAndCopyArrayData(int64_t *ArrayPointer,int newSize)
+uint64_t AllocateAndCopyArrayData(int64_t *ArrayPointer, int NewSize)
 
 {
   int OldSize;
