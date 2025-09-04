@@ -5597,12 +5597,12 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
           // 步骤6: 计算资源数据表地址
           ResourceDataTableAddress = *(int64_t *)(SystemContextPointer + ResourceContextOffset) + (int64_t)ResourceIdentifier * ResourceIdentifierOffset;
           // 步骤7: 获取资源上下文句柄并验证
-          int64_t ResourceContextHandle = *(int64_t *)(ResourceDataTableAddress + 8);
-          if ((ResourceContextHandle == 0)) {
+          int64_t ResourceContextPointer = *(int64_t *)(ResourceDataTableAddress + 8);
+          if ((ResourceContextPointer == 0)) {
             return ErrorInvalidObjectHandle;
           }
           // 步骤8: 执行资源操作
-          InitializationStatus = ProcessResourceOperation(ResourceContextHandle, *ResourceArrayPointer, 0);
+          InitializationStatus = ProcessResourceOperation(ResourceContextPointer, *ResourceArrayPointer, 0);
           // 步骤9: 检查资源操作结果
           if ((int)InitializationStatus != 0) {
             return InitializationStatus;
