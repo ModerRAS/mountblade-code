@@ -2360,55 +2360,55 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
                           uint32_t MagicNumber1, uint32_t MagicNumber2)
 {
   // 数据包解码变量
-  uint32_t DecodingStatusCode;                                // 解码状态码
-  uint32_t MagicNumberValidationResult;                      // 魔数验证结果
-  uint32_t PacketDataIntegrityCheck;                         // 数据包完整性检查
+  uint32_t DecodingStatus;                                  // 解码状态
+  uint32_t MagicValidationResult;                           // 魔数验证结果
+  uint32_t PacketIntegrityStatus;                           // 数据包完整性状态
   
   // 初始化解码状态
-  DecodingStatusCode = 0x00;
-  MagicNumberValidationResult = 0x00;
-  PacketDataIntegrityCheck = 0x00;
+  DecodingStatus = NetworkValidationFailure;
+  MagicValidationResult = NetworkValidationFailure;
+  PacketIntegrityStatus = NetworkValidationFailure;
   
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证第一个魔数
     if (MagicNumber1 == NetworkPacketMagicLiveConnection || MagicNumber1 == NetworkPacketMagicValidation) {
-      MagicNumberValidationResult |= NetworkPacketFirstMagicValidMask;
+      MagicValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证第二个魔数
     if (MagicNumber2 == NetworkPacketMagicBinaryData || MagicNumber2 == NetworkMagicDebugMemoryCheck) {
-      MagicNumberValidationResult |= NetworkPacketSecondMagicValidMask;
+      MagicValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
   
   // 检查数据完整性
-  if (MagicNumberValidationResult == NetworkPacketMagicValidationMask) {
-    PacketDataIntegrityCheck = 0x01;
+  if (MagicValidationResult == NetworkPacketMagicValidationMask) {
+    PacketIntegrityStatus = NetworkValidationSuccess;
   }
   
   // 根据解码模式处理数据
   if (DecodingMode == NetworkPacketBasicDecodingMode) {
     // 基本解码模式
-    DecodingStatusCode = MagicNumberValidationResult & NetworkPacketMagicValidationMask;
+    DecodingStatus = MagicValidationResult & NetworkPacketMagicValidationMask;
   } else if (DecodingMode == NetworkPacketStrictDecodingMode) {
     // 严格解码模式
-    DecodingStatusCode = PacketDataIntegrityCheck & 0x01;
+    DecodingStatus = PacketIntegrityStatus & NetworkValidationSuccess;
   } else {
     // 默认解码模式
-    DecodingStatusCode = 0x01;
+    DecodingStatus = NetworkValidationSuccess;
   }
   
   // 设置输出缓冲区
   if (OutputBuffer) {
     memset(OutputBuffer, 0, NetworkStandardBufferSize);
-    OutputBuffer[0] = (NetworkByte)DecodingStatusCode;
-    OutputBuffer[1] = (NetworkByte)MagicNumberValidationResult;
-    OutputBuffer[2] = (NetworkByte)PacketDataIntegrityCheck;
+    OutputBuffer[0] = (NetworkByte)DecodingStatus;
+    OutputBuffer[1] = (NetworkByte)MagicValidationResult;
+    OutputBuffer[2] = (NetworkByte)PacketIntegrityStatus;
     OutputBuffer[3] = (NetworkByte)DecodingMode;
   }
   
-  return DecodingStatusCode;  // 返回解码状态
+  return DecodingStatus;  // 返回解码状态
 }
 
 /**
@@ -2466,31 +2466,31 @@ NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContex
 void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *ProcessingBuffer)
 {
   // 数据包处理完成变量
-  uint32_t FinalizationStatusCode;                        // 完成状态码
-  uint32_t BufferCleanupResultCode;                       // 缓冲区清理结果码
-  uint32_t DataValidationResultCode;                      // 数据验证结果码
+  uint32_t FinalizationStatus;                            // 完成状态
+  uint32_t BufferCleanupStatus;                           // 缓冲区清理状态
+  uint32_t DataValidationStatus;                          // 数据验证状态
   
   // 初始化完成状态
-  FinalizationStatusCode = 0x00;
-  BufferCleanupResultCode = 0x00;
-  DataValidationResultCode = 0x00;
+  FinalizationStatus = NetworkValidationFailure;
+  BufferCleanupStatus = NetworkValidationFailure;
+  DataValidationStatus = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    DataValidationResultCode = 0x01;  // 数据验证通过
+    DataValidationStatus = NetworkValidationSuccess;  // 数据验证通过
   }
   
   // 清理处理缓冲区
   if (ProcessingBuffer) {
     memset(ProcessingBuffer, 0, NetworkStandardBufferSize);
-    BufferCleanupResultCode = 0x01;  // 缓冲区清理成功
+    BufferCleanupStatus = NetworkValidationSuccess;  // 缓冲区清理成功
   }
   
   // 综合完成状态
-  FinalizationStatusCode = DataValidationResultCode & BufferCleanupResultCode;
+  FinalizationStatus = DataValidationStatus & BufferCleanupStatus;
   
   // 如果完成成功，更新处理状态
-  if (FinalizationStatusCode == 0x01) {
+  if (FinalizationStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的完成处理逻辑
     // 例如：更新统计信息、通知回调函数等
   }
