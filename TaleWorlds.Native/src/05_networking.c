@@ -41,7 +41,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkContextSystemOffset 0x98                  // 网络上下文系统偏移量
 #define NetworkSessionDataOffset 0x200                   // 网络会话数据偏移量
 #define NetworkConnectionStateBufferOffset 0x28                // 连接状态缓冲区偏移量
-#define ConnectionStateDataOffset 0x20                   // 连接状态数据偏移量
+#define NetworkConnectionStateDataOffset 0x20                   // 连接状态数据偏移量
 #define NetworkConnectionStateFlagsOffset 0x24                  // 连接状态标志偏移量
 #define ConnectionParameterOffset 0xc                     // 连接参数偏移量
 #define NetworkConnectionTableOffset 0x1a0                // 网络连接表偏移量
@@ -1683,7 +1683,7 @@ uint32_t NetworkConnectionHealth;                           // 网络连接健�
 uint32_t NetworkConnectionStability;                        // 网络连接稳定性
 uint32_t NetworkInitializationResult;                     // 网络初始化结果
 uint32_t NetworkSystemContext;                             // 网络系统上下文
-uint32_t NetworkSessionIdentifier;                         // 网络会话标识符
+uint32_t NetworkConnectionSessionIdentifier;                         // 网络会话标识符
 uint32_t NetworkContextPointer;                            // 网络上下文指针
 uint32_t NetworkContextData;                               // 网络上下文数据
 uint32_t NetworkNetworkConnectionIdentifier;                     // 网络连接标识符
@@ -1734,7 +1734,7 @@ void InitializeNetworkConnectionState(void)
   // 网络连接初始化变量
   uint8_t *NetworkNetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
   int32_t NetworkConnectionInitializationStatus;      // 网络连接初始化结果状态
-  int64_t NetworkNetworkSystemContextData;                 // 网络系统上下文数据
+  int64_t NetworkSystemContextData;                 // 网络系统上下文数据
   int32_t NetworkNetworkConnectionIdentifier;               // 网络连接标识符
   uint32_t NetworkNetworkConnectionStateFlags;              // 网络连接状态标志位
   int32_t NetworkConnectionSessionId;                // 网络连接会话ID
@@ -1745,16 +1745,16 @@ void InitializeNetworkConnectionState(void)
   NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
-  if (*(int *)(*(int64_t *)(NetworkSystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkSessionId) {
+  if (*(int *)(*(int64_t *)(NetworkSystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkConnectionSessionId) {
     *NetworkConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
     *(uint *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + 8) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
-    NetworkConnectionInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextDataPointer + NetworkContextSystemOffset));
+    NetworkConnectionInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkConnectionContextPointer + NetworkContextSystemOffset));
     if (NetworkConnectionInitializationStatus == 0) {
-      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + ConnectionStateDataOffset);
+      *NetworkConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateDataOffset);
     }
     CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
@@ -1783,7 +1783,7 @@ void ResetNetworkConnectionPointer(void)
   NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
-  *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + ConnectionStateDataOffset);
+  *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + NetworkConnectionStateDataOffset);
   
   // 清理连接堆栈
   CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
