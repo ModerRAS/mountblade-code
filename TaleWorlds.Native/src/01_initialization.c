@@ -53467,8 +53467,8 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   long long StackInteger78;
   uint32_t SystemEncryptionStatus;
   void* ThreadContextFlag;
-  void* systemProcessFlags58;
-  void* ConcatenatedSystemValue;
+  void* systemProcessFlags;
+  void* concatenatedSystemValue;
   ulong long SystemEncryptionKey;
   
   ThreadContextFlag = 0xfffffffffffffffe;
@@ -53478,7 +53478,10 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   SystemStackFlagQuaternary = 0;
   SystemParameterFlagB0 = AdditionalParameter;
   SystemConfigurationFlag88 = ConfigurationFlag;
+  /* 检查系统初始化和详细输出标志，如果设置了则跳转到初始化检查 */
   if ((SystemInitializationFlag != '\0') || (SystemVerboseFlag != '\0')) goto SystemInitializationCheck;
+SystemInitializationCheck:
+  /* 初始化系统处理标志和连接值 */
   systemProcessFlags58 = 0;
   ConcatenatedSystemValue = 0;
   FormatSystemResourceString(&systemProcessFlags58,0x10,&SystemDataBufferTemplateI,AdditionalParameter);
@@ -53511,6 +53514,7 @@ SystemResourceHashProcessingStart:
     MemoryBufferPointer = ConcatenatedSystemValue(MemoryBufferPointer._4_4_,resourceAddress);
     goto SystemOperationSetup;
   }
+SystemOperationSetup:
   if (SystemDataBufferPointer != (uint8_t *)0x0) {
     SystemDataBufferPointer[SystemContextPointer] = 0;
   }

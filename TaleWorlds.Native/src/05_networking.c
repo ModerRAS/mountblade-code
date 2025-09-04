@@ -248,7 +248,6 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkChecksumValid 0x01                           // 校验和有效
 #define NetworkPacketSizeLimit 0x55                          // 数据包大小限制（85字节）
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
-#define NetworkStandardBufferSizeLarge 0x100                   // 大型标准缓冲区大小（256字节）
 
 // 网络连接验证偏移量常量
 #define NetworkConnectionValidationOffsetSecond 0x54         // 第二级连接验证偏移量
@@ -282,7 +281,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
 #define NetworkSuccessStatus 0                              // 网络操作成功状态
-#define NetworkStandardBufferSizeSmall 32                        // 小型标准缓冲区大小
+#define NetworkStandardBufferSize 256                         // 标准缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
 // 网络连接配置常量
@@ -861,7 +860,7 @@ void *NetworkConnectionRoutingConfigurationQuaternary = &NetworkConnectionRoutin
  * 
  * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
  */
-uint32_t NetworkConnectionContextTemplate = 0x00;
+uint32_t NetworkConnectionContextTemplateData = 0x00;         // 网络连接上下文模板数据
 
 /**
  * @brief 网络连接主要配置数据
