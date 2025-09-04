@@ -5162,13 +5162,8 @@ uint8_t ReleaseObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
- * 这是一个简单的字符验证函数，用于输入安全检查
- * 
- * @param CharacterToValidate 要验证的字符
- * @return 验证结果状态码
- */
-/**
- * 验证字符输入安全性
+ /**
+ * @brief 验证字符输入安全性
  * 检查输入字符是否为空字符，如果不是则触发系统退出操作
  * 
  * @param CharacterToValidate 要验证的字符
