@@ -10144,7 +10144,7 @@ Label_18060b1f5:
       if (NetworkRequestStatus == '\0') {
         NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBD,1);
         if (NetworkRequestStatus != '\0') goto Label_18060b9cb;
-        NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&UNK_180a1029c,1);
+        NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataC1,1);
         if (NetworkRequestStatus != '\0') goto Label_18060ad3e;
         NetworkRequestStatus = ValidateSystemConfigurationData(aStackParameter1,&SystemConfigurationDataBE,1);
         if (NetworkRequestStatus != '\0') goto Label_18060acd8;
@@ -11746,7 +11746,7 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
     if (pcStack_50 != (char *)0x0) {
       pcVar4 = pcStack_50;
     }
-    ProcessMemoryAllocation(pcVar4,&UNK_180a3cca0,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,SystemTertiaryParameter + 0xc,SystemTertiaryParameter + 0x10
+    ProcessMemoryAllocation(pcVar4,&SystemMemoryAllocationBuffer,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,SystemTertiaryParameter + 0xc,SystemTertiaryParameter + 0x10
                   ,SystemTertiaryParameter + 0x14,SystemTertiaryParameter + 0x18,SystemTertiaryParameter + 0x1c,SystemTertiaryParameter + 0x20,SystemTertiaryParameter + 0x24,
                   SystemTertiaryParameter + 0x28,SystemTertiaryParameter + 0x2c,SystemTertiaryParameter + 0x30,SystemTertiaryParameter + 0x34,SystemTertiaryParameter + 0x38,
                   SystemTertiaryParameter + 0x3c,LongCounter,uVar6);
@@ -11838,7 +11838,7 @@ uint64_t SystemBufferProcess(uint64_t bufferId)
          0x180bf4000;
     FlsSetValue(BufferSize);
   }
-  HandleSystemConfigurationData(&UNK_180a3d988,&ExceptionList);
+  HandleSystemConfigurationData(&SystemExceptionHandlerData,&ExceptionList);
   ModuleInitializationResult = cpuid_Extended_Feature_Enumeration_info(7);
   SystemConfigFlag8 = (byte)(*(uint *)(ModuleInitializationResult + 8) >> 4) & 1;
   GetSystemInfo(auStack_40);
