@@ -35739,26 +35739,24 @@ void ProcessFileHandleCleanup(uint8_t ObjectContext, int64_t ValidationContext, 
  * @note 此函数在目录操作完成后调用，确保资源正确释放
  * @warning 调用此函数前必须确保相关资源已正确初始化
  */
-void ProcessDirectoryHandleCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
-{
-  uint8_t *ResourceHashPointer;
-  int64_t *ResourceTablePointer;
-  uint8_t *ResourceHashStatusPointer;
-  uint8_t *ValidationStatusPointer;
-  int64_t ResourceCleanupStepValue;
-  uint8_t ResourceCleanupCompleteFlag;
+void ProcessDirectoryHandleCleanup(uint8_t DirectoryContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
+  uint8_t *DirectoryResourceHashPointer;
+  int64_t *DirectoryResourceTablePointer;
+  uint8_t *DirectoryHashStatusPointer;
+  uint8_t *DirectoryValidationStatusPointer;
+  int64_t DirectoryCleanupStepValue;
+  uint8_t DirectoryCleanupCompleteFlag;
   
-  ResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + DirectoryResourceTableOffset);
-  ResourceCleanupStepValue = MemoryCleanupTriggerValue;
-  ResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + DirectoryResourceHashPointerOffset);
-  for (ValidationStatusPointer = (uint8_t *)*ResourceTablePointer; ResourceHashStatusPointer != ResourceHashPointer; ValidationStatusPointer = ResourceHashStatusPointer + 4) {
-    (**(code **)*ResourceHashStatusPointer)(ResourceHashStatusPointer,0,CleanupOption,CleanupFlag,ResourceCleanupStepValue);
+  DirectoryResourceTablePointer = (int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + DirectoryResourceTableOffset);
+  DirectoryCleanupStepValue = MemoryCleanupTriggerValue;
+  DirectoryResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + DirectoryResourceHashPointerOffset);
+  for (DirectoryValidationStatusPointer = (uint8_t *)*DirectoryResourceTablePointer; DirectoryHashStatusPointer != DirectoryResourceHashPointer; DirectoryValidationStatusPointer = DirectoryHashStatusPointer + 4) {
+    (**(code **)*DirectoryHashStatusPointer)(DirectoryHashStatusPointer, 0, CleanupOption, CleanupFlag, DirectoryCleanupStepValue);
   }
-  if (*ResourceTablePointer == 0) {
+  if (*DirectoryResourceTablePointer == 0) {
     return;
   }
-        ExecuteSystemEmergencyExit();
+  ExecuteSystemEmergencyExit();
 }
 
 
@@ -35841,15 +35839,13 @@ void ReleaseStreamResourceLock(uint8_t StreamContext, int64_t ValidationContext,
  * @return 无返回值
  * @note 此函数在上下文重置过程中被调用
  */
-void UnwindContextResetHandler(uint8_t ObjectContext,int64_t ValidationContext)
-
-{
-  int64_t ResourceContextHandle;
+void UnwindContextResetHandler(uint8_t ContextObject, int64_t ValidationContext) {
+  int64_t SystemResourceContextHandle;
   
-  ResourceContextHandle = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
+  SystemResourceContextHandle = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   *(uint8_t *)(SystemContextPointer + 0x918) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + 0x920) != 0) {
-          ExecuteSystemEmergencyExit();
+    ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + 0x920) = 0;
   *(uint32_t *)(SystemContextPointer + 0x930) = 0;
