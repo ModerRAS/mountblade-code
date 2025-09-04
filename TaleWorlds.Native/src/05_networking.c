@@ -263,10 +263,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkConnectionValidationOffsetSecond 0x54         // 第二级连接验证偏移量
 #define NetworkConnectionValidationOffsetThird 0x78          // 第三级连接验证偏移量
 #define NetworkConnectionValidationOffsetFourth 0x58         // 第四级连接验证偏移量
-#define NetworkConnectionDataOffsetFirst 0x5c                // 第一级连接数据偏移量
+// 注意：这个常量已被 NetworkConnectionDataPrimaryOffset 替代，保持兼容性
 #define NetworkConnectionIntegrityOffsetFirst 0x70           // 第一级连接完整性偏移量
 #define NetworkConnectionIntegrityOffsetSecond 0x74          // 第二级连接完整性偏移量
-#define NetworkConnectionFinalizeOffset 0x7c                 // 连接完成偏移量
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
 // 网络缓冲区对齐和大小常量
@@ -2206,7 +2205,7 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
   if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorInvalidPacket;
   }
-  NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataOffsetFirst);
+  NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataPrimaryOffset);
   ProcessingStatusArray[0] = PrimaryDataStatus;
   NetworkPacketProcessor DataStatusProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
   ProcessingResult = DataStatusProcessor(*(NetworkHandle **)(*PacketData + 8), ProcessingStatusArray, 4);
