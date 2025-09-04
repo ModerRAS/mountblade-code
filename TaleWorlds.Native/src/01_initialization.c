@@ -1476,49 +1476,49 @@ void* GetSystemInitializationFunction;
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
-  void** RootNodePointerPointer;
+  void** RootNodePointer;
   int GameCoreIdentifierComparisonResult;
   long long* SystemDataTablePointer;
   long long SystemMemoryAllocationSize;
-  void** CurrentNodePointerPointer;
+  void** CurrentNodePointer;
   void** PreviousNodePointer;
-  void** NextNodePointerPointer;
+  void** NextNodePointer;
   void** AllocatedNodePointer;
   void* GameCoreInitializationHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
-  RootNodePointerPointer = (void**)*SystemDataTablePointer;
-  IsGameCoreNodeActive = *(bool*)((long long)RootNodePointerPointer[1] + SystemNodeActiveFlagOffset);
+  RootNodePointer = (void**)*SystemDataTablePointer;
+  IsGameCoreNodeActive = *(bool*)((long long)RootNodePointer[1] + SystemNodeActiveFlagOffset);
   GameCoreInitializationHandler = GetGameCoreSystemInitializationFunction;
-  SystemPreviousNodePointer = RootNodePointerPointer;
-  CurrentNodePointerPointer = (void**)RootNodePointerPointer[1];
+  PreviousNodePointer = RootNodePointer;
+  CurrentNodePointer = (void**)RootNodePointer[1];
   
   while (!IsGameCoreNodeActive) {
-    GameCoreIdentifierComparisonResult = memcmp(CurrentNodePointerPointer + 4, &GameCoreSystemId, SystemIdentifierSize);
+    GameCoreIdentifierComparisonResult = memcmp(CurrentNodePointer + 4, &GameCoreSystemId, SystemIdentifierSize);
     if (GameCoreIdentifierComparisonResult < 0) {
-      NextNodePointerPointer = (void**)CurrentNodePointerPointer[SystemNodeNextPointerOffset];
-      CurrentNodePointerPointer = SystemPreviousNodePointer;
+      NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
+      CurrentNodePointer = PreviousNodePointer;
     }
     else {
-      NextNodePointerPointer = (void**)CurrentNodePointerPointer[SystemNodeHeadPointerOffset];
+      NextNodePointer = (void**)CurrentNodePointer[SystemNodeHeadPointerOffset];
     }
-    SystemPreviousNodePointer = CurrentNodePointerPointer;
-    CurrentNodePointerPointer = NextNodePointerPointer;
-    IsGameCoreNodeActive = *(bool*)((long long)NextNodePointerPointer + SystemNodeActiveFlagOffset);
+    PreviousNodePointer = CurrentNodePointer;
+    CurrentNodePointer = NextNodePointer;
+    IsGameCoreNodeActive = *(bool*)((long long)NextNodePointer + SystemNodeActiveFlagOffset);
   }
   
-  if ((SystemPreviousNodePointer == RootNodePointerPointer) || 
-      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemId, SystemPreviousNodePointer + 4, SystemIdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
+  if ((PreviousNodePointer == RootNodePointer) || 
+      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemId, PreviousNodePointer + 4, SystemIdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &SystemAllocatedNodePointer, SystemPreviousNodePointer, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
-    SystemPreviousNodePointer = SystemAllocatedNodePointer;
+    AllocateSystemMemory(SystemDataTablePointer, &AllocatedNodePointer, PreviousNodePointer, SystemMemoryAllocationSize + SystemNodeAllocationExtraSize, SystemMemoryAllocationSize);
+    PreviousNodePointer = AllocatedNodePointer;
   }
   
-  SystemPreviousNodePointer[SystemNodeIdentifier1Index] = GameCoreSystemIdentifier1;
-  SystemPreviousNodePointer[SystemNodeIdentifier2Index] = GameCoreSystemIdentifier2;
-  SystemPreviousNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
-  SystemPreviousNodePointer[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
-  SystemPreviousNodePointer[SystemNodeHandlerIndex] = GameCoreInitializationHandler;
+  PreviousNodePointer[SystemNodeIdentifier1Index] = GameCoreSystemIdentifier1;
+  PreviousNodePointer[SystemNodeIdentifier2Index] = GameCoreSystemIdentifier2;
+  PreviousNodePointer[SystemNodeDataPointerIndex] = &GameCoreSystemNodeData;
+  PreviousNodePointer[SystemNodeActiveFlagIndex] = SystemNodeInactiveFlag;
+  PreviousNodePointer[SystemNodeHandlerIndex] = GameCoreInitializationHandler;
   return;
 }
 
