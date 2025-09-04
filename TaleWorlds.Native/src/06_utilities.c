@@ -5328,6 +5328,16 @@ uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
  * 
  * @return 验证结果状态码
  */
+/**
+ * @brief 验证来自寄存器的对象句柄
+ * 
+ * 该函数用于验证从系统寄存器获取的对象句柄是否有效。
+ * 通过计算内存地址偏移并检查对象上下文来验证句柄的有效性。
+ * 
+ * @return uint32_t 验证结果状态码
+ *         - 成功：返回验证后的内存地址
+ *         - 失败：返回ErrorInvalidObjectHandle错误码
+ */
 uint32_t ValidateObjectHandleFromRegister(void) {
   int64_t RegisterObjectPointer = 0;
   int64_t ValidatedMemoryAddress;
@@ -95177,7 +95187,15 @@ void ExecuteResourceHashStatusValidationVariant1(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_18090f1f0(void)
+/**
+ * @brief 执行互斥锁销毁
+ * 
+ * 在系统unwind过程中执行互斥锁销毁操作，
+ * 调用互斥锁销毁函数。
+ * 
+ * @note 原始函数名：Unwind_18090f1f0
+ */
+void ExecuteMutexDestruction(void)
 
 {
   MutexDestroyInPlace();
@@ -95186,7 +95204,17 @@ void Unwind_18090f1f0(void)
 
 
 
-void Unwind_18090f200(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行互斥锁销毁和验证
+ * 
+ * 在系统unwind过程中执行互斥锁销毁和验证操作，
+ * 验证系统状态后调用互斥锁销毁函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f200
+ */
+void ExecuteMutexDestructionAndValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t *)(*(int64_t *)(ValidationContext + ValidationContextDataOffset) + 0x60) != 0) {
@@ -95198,7 +95226,17 @@ void Unwind_18090f200(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f210(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源哈希状态验证（变体2）
+ * 
+ * 在系统unwind过程中执行资源哈希状态验证，
+ * 验证资源哈希状态并执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f210
+ */
+void ExecuteResourceHashStatusValidationVariant2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
