@@ -19405,17 +19405,17 @@ uint32_t FinalSystemInitialization(void)
   MemoryAllocationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
   SystemTemporaryManager = (long long ****)AllocateSystemMemory(MemoryAllocationFlags,2,SystemObjectHandle);
   SystemTemporaryManagerBackup = SystemTemporaryManager;
-  if (TemporaryManager8 != (long long ****)0x0) {
-    (*(code *)(*TemporaryManager8)[5])(TemporaryManager8);
+  if (SystemTemporaryManager != (long long ****)0x0) {
+    (*(code *)(*SystemTemporaryManager)[5])(SystemTemporaryManager);
   }
   SystemInterfacePointer = *(void* **)(SystemObjectHandle + 400);
   SystemCallbackFunction = *(code **)*SystemInterfacePointer;
-  StackManager8 = &StackManager10;
-  StackManager10 = (long long ***)TemporaryManager8;
-  if (TemporaryManager8 != (long long ****)0x0) {
-    (*(code *)(*TemporaryManager8)[5])(TemporaryManager8);
+  SystemStackManager = &StackController;
+  StackController = (long long ***)SystemTemporaryManager;
+  if (SystemTemporaryManager != (long long ****)0x0) {
+    (*(code *)(*SystemTemporaryManager)[5])(SystemTemporaryManager);
   }
-  (*SystemCallbackFunction)(SystemInterfacePointer,&StackManager10);
+  (*SystemCallbackFunction)(SystemInterfacePointer,&StackController);
   CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemSuperManager,TemporaryManager14);
   TemporaryManager9 = (long long ***)AllocateSystemMemory(CalculationFlags,0,SystemObjectHandle);
   if (TemporaryManager9 != (long long ***)0x0) {
