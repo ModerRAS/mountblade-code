@@ -356,11 +356,11 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NETWORK_FILTER_ENABLED_FLAG 0x01                         // 过滤器启用
 #define NETWORK_BANDWIDTH_RESET_VALUE 0x00                        // 带宽重置
 #define NETWORK_LATENCY_RESET_VALUE 0x00                          // 延迟重置
-#define PACKET_LOSS_RESET 0x00                      // 数据包丢失重置
+#define NETWORK_PACKET_LOSS_RESET_VALUE 0x00                      // 数据包丢失重置
 
 // 网络错误处理常量
-#define ERROR_PROCESSOR_ENABLED 0x01                 // 错误处理器启用
-#define ERROR_COUNT_RESET 0x00                      // 错误计数重置
+#define NETWORK_ERROR_PROCESSOR_ENABLED_FLAG 0x01                 // 错误处理器启用
+#define NETWORK_ERROR_COUNT_RESET_VALUE 0x00                      // 错误计数重置
 #define REPORT_SIZE_11B 0x0B                        // 11字节报告大小
 #define REPORT_SIZE_13B 0x0D                        // 13字节报告大小
 #define REPORT_SIZE_15B 0x0F                        // 15字节报告大小
