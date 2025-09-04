@@ -90607,7 +90607,7 @@ void ExecuteResourceContextCleanupOperation2(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_18090e060(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceProcessingCallbackAtOffset14E8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90621,7 +90621,7 @@ void Unwind_18090e060(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e080(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceProcessingCallbackAtOffset14F0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -90635,7 +90635,7 @@ void Unwind_18090e080(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e0a0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceProcessingCallbackAtOffset14F8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
