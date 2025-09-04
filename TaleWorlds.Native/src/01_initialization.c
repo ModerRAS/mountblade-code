@@ -22591,7 +22591,7 @@ InitializeSystemSyncObject(void* *SyncObject, void* SyncContextParameter, void* 
  * @note 这是内存管理的重要函数，确保内存正确释放和分配器设置
  */
 void* *
-FreeMemoryAndSetAllocator(void* *MemoryBlock,ulong long MemoryFlags,void* SyncContextParameter,void* SyncConfigurationParameter)
+ReleaseMemoryAndConfigureAllocator(void* *MemoryBlock, unsigned long long MemoryFlags, void* SyncContextParameter, void* SyncConfigurationParameter)
 
 {
   *MemoryBlock = &SystemMemoryAllocatorReference;
