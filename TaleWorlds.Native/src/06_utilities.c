@@ -4876,7 +4876,7 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
       SystemProcessingResult = ProcessSystemObjectValidation(*(uint8_t *)(SystemContext + SystemContextSecondaryDataOffset),*(int64_t *)(ValidationData + ValidationContextObjectDataOffset) + ValidationContextObjectDataOffset,
                             &MemoryContext);
       if (SystemProcessingResult != 0) {
-        CleanupValidationData(CleanupData);
+        CleanupValidationData(CleanupDataPointer);
         return (uint64_t)SystemProcessingResult;
       }
       if (((*(uint *)(*(int64_t *)(ValidationData + ValidationContextObjectDataOffset) + ValidationContextSecurityDataOffset) >> 2 & 1) == 0) &&
