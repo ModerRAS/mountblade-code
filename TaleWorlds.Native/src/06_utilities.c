@@ -79999,7 +79999,7 @@ void UnwindSystemContextPointerReset(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_18090c0d0(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtOffset2A0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x2a0) = &SystemDataStructure;
@@ -80008,7 +80008,7 @@ void Unwind_18090c0d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c0e0(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerAtTertiaryOffset0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ResourceContextTertiaryOffset0) = &SystemDataStructure;
