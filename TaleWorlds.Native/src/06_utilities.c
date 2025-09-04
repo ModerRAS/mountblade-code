@@ -65,7 +65,6 @@
 #define ResourceContextOffsetTertiary 0xb4
 #define ResourceContextOffsetAlternate 0x6c
 #define ResourceContextOffsetHandle 0xf8
-// 错误码常量定义
 #define ErrorInvalidObjectHandle 0x1c
 #define ErrorInvalidRegistrationData 0x1d
 #define ErrorInvalidResourceData 0x1e
@@ -77,7 +76,6 @@
 #define SystemOperationErrorCode 0x4a
 #define SystemStatusConstant 0x1c
 
-// 系统限制常量
 #define MaximumProcessableItemsLimit 0xffffffc0
 #define MaximumCapacityLimit 0xffffffc0
 #define SystemMaxIntValue 0x7fffffff
