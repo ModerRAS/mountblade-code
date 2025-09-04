@@ -3277,9 +3277,9 @@ void InitializeNativeCoreCLR(uint64_t InitFlags)
               if (LoopCounter9 < 0x10) {
                 LoopCounterValue = 16;
               }
-              pMemoryAddress1 = (uint8_t *)AllocateSystemMemory(SystemMemoryAllocator,(longlong)LoopCounterValue,0x13);
-              *pMemoryAddress1 = 0;
-              StackMemoryPointer = pMemoryAddress1;
+              SystemMemoryBufferPointer = (uint8_t *)AllocateSystemMemory(SystemMemoryAllocator,(longlong)LoopCounterValue,0x13);
+              *SystemMemoryBufferPointer = 0;
+              StackMemoryPointer = SystemMemoryBufferPointer;
               allocationSize = GetMemoryAllocationSize(pMemoryAddress1);
               StackProcessingBuffer = CONCAT44(StackProcessingBuffer._4_4_,allocationSize);
               memcpy(pMemoryAddress1,pMemoryAddress7,LoopCounter9);
@@ -3917,7 +3917,7 @@ LabelSystemOperationExit:
         StackCounter40 = 0;
         SystemDataPointer = lStack_260;
         if (pMemoryAddress1 != (uint8_t *)0x0) {
-          *pMemoryAddress1 = 0;
+          *SystemMemoryBufferPointer = 0;
         }
       }
       else {
@@ -4376,7 +4376,7 @@ Label_ModuleConfigurationStart:
     SystemModuleContext = (longlong *)*configurationPointer;
     SystemInitializeSecondary(&SystemInitializationBufferA,0,0);
     ConfigureSystemComponent(&SystemConstantDD);
-    initializationFlag = 0x40000000;
+    SystemInitializationFlag = 0x40000000;
     auStack_2c8[0] = 0x3f800000;
     StackParameter14 = 0x20000;
     StackParameterPointer = &SystemRegistrationBuffer;
