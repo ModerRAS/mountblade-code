@@ -80954,11 +80954,21 @@ void ProcessExtendedResourceHashStatusRelease(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090c420(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行紧急退出和资源上下文清理
+ * 
+ * 该函数负责检查系统状态并在需要时执行紧急退出
+ * 然后清理资源上下文
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会先检查系统状态，然后清理资源上下文
+ * @warning 原始函数名：Unwind_18090c420
+ */
+void ExecuteEmergencyExitAndResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *ResourceProcessingPointer;
-  
   if (*(int64_t *)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1d8) != 0) {
           ExecuteSystemEmergencyExit();
   }
