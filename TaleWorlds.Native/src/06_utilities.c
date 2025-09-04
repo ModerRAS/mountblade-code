@@ -4994,12 +4994,12 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
     return 0;
   }
   ResourceValidationContext[0] = 0;
-  int SystemValidationResult = ValidateSystemObjectConfiguration(ResourceValidationContext);
-  if (SystemValidationResult == 0) {
-    SystemValidationResult = ProcessSystemObjectOperation(ValidatedSystemContext,0);
-    if (SystemValidationResult == 0) {
-      SystemValidationResult = ProcessSystemContextValidation(SystemContext);
-      if (SystemValidationResult == 0) {
+  int SystemConfigurationValidationResult = ValidateSystemObjectConfiguration(ResourceValidationContext);
+  if (SystemConfigurationValidationResult == 0) {
+    SystemConfigurationValidationResult = ProcessSystemObjectOperation(ValidatedSystemContext,0);
+    if (SystemConfigurationValidationResult == 0) {
+      SystemConfigurationValidationResult = ProcessSystemContextValidation(SystemContext);
+      if (SystemConfigurationValidationResult == 0) {
               ReleaseValidationResources(ResourceValidationContext);
       }
     }
@@ -5098,7 +5098,7 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  */
 uint8_t ReleaseObjectHandle(void) {
   int64_t CurrentActiveObjectHandle = 0;
-  int64_t ObjectMemoryLocation;
+  int64_t ObjectMemoryAddress;
   
   // 获取当前对象句柄（这里从系统状态中获取）
   CurrentActiveObjectHandle = GetCurrentObjectHandle();
@@ -12469,7 +12469,7 @@ ValidationFailureHandler:
     }
   }
   *SystemContext = 0;
-CONTEXT_ERROR_HANDLER:
+ContextErrorHandler:
         FinalizeSecurityOperation(*(uint64_t *)(SystemExecutionPointer + 0x5f0) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
@@ -25097,7 +25097,7 @@ uint64_t ResourceDataVerifier(int64_t ObjectContext,int64_t *ValidationContext)
       }
       ValidationStatusCode = CalculateResourceHash(*ResourceContext,ResourceValidationBuffer,1,4,0);
     }
-VALIDATION_CHECKPOINT:
+ValidationCheckpoint:
     if ((int)ResourceHashStatus != 0) {
       return ResourceHashStatus;
     }
@@ -25181,7 +25181,7 @@ uint64_t ValidateAndProcessResourceDataIntegrity(void)
       }
       ResourceValidationResult = CalculateResourceHash(*ResourceSystemContext, &ResourceDataSize, 1, 4, 0);
     }
-VALIDATION_CHECKPOINT:
+ValidationCheckpoint:
     if ((int)ResourceHashResult != 0) {
       return ResourceHashResult;
     }
