@@ -15245,11 +15245,11 @@ void SystemInitializerPrimary(void)
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
             }
             ResourceIndexTertiary = GetResourceType(ResourceRegisterPointer);
-            ResourceHashValidationQuaternary = resourceSecurityHash;
+            ResourceHashValidationQuaternary = ResourceSecurityHash;
             if (ResourceIndexTertiary == 4) {
-              resourceTemplatePointer = &SystemResourceTemplateMemory;
-              contextBufferPointer = StackContextBuffer;
-              floatRegisterValue = FloatRegisterValue;
+              ResourceTemplatePointer = &SystemResourceTemplateMemory;
+              ContextBufferPointer = StackContextBuffer;
+              FloatRegisterValue = FloatRegisterValue;
               floatResourceValue = FloatRegisterValue;
               ResourceIndexTertiary = GetAndValidateResourceData(resourceSecurityHash,&PrimaryObjectResourceBuffer);
               ResourceHashValidationQuaternary = resourceHashValue;
