@@ -939,21 +939,21 @@ void* SystemInitializationProgressStatus;
 // 系统内存分配器 - 负责动态内存分配和管理
 
 // 系统数据比较模板和节点指针
-void* SystemDataComparisonTemplateA;  // 系统数据比较模板A
-void* SystemDataComparisonTemplateB;  // 系统数据比较模板B
-void* SystemDataComparisonTemplateC;  // 系统数据比较模板C
-void* SystemDataComparisonTemplateD;  // 系统数据比较模板D
-void* SystemDataComparisonTemplateE;  // 系统数据比较模板E
-void* SystemDataComparisonTemplateF;  // 系统数据比较模板F
-void* SystemDataComparisonTemplateG;  // 系统数据比较模板G
-void* SystemDataComparisonTemplateH;  // 系统数据比较模板H
-void* SystemDataComparisonTemplateI;  // 系统数据比较模板I
-void* SystemDataComparisonTemplateJ;  // 系统数据比较模板J
-void* SystemDataComparisonTemplateK;  // 系统数据比较模板K
-void* SystemDataComparisonTemplateL;  // 系统数据比较模板L
-void* SystemDataComparisonTemplateM;  // 系统数据比较模板M
-void* SystemDataComparisonTemplateN;  // 系统数据比较模板N
-void* SystemDataComparisonTemplateO;  // 系统数据比较模板O
+void* SystemDataComparisonTemplateAlpha;  // 系统数据比较模板A
+void* SystemDataComparisonTemplateBeta;   // 系统数据比较模板B
+void* SystemDataComparisonTemplateGamma;  // 系统数据比较模板C
+void* SystemDataComparisonTemplateDelta;  // 系统数据比较模板D
+void* SystemDataComparisonTemplateEpsilon; // 系统数据比较模板E
+void* SystemDataComparisonTemplateZeta;   // 系统数据比较模板F
+void* SystemDataComparisonTemplateEta;    // 系统数据比较模板G
+void* SystemDataComparisonTemplateTheta;  // 系统数据比较模板H
+void* SystemDataComparisonTemplateIota;   // 系统数据比较模板I
+void* SystemDataComparisonTemplateKappa;  // 系统数据比较模板J
+void* SystemDataComparisonTemplateLambda; // 系统数据比较模板K
+void* SystemDataComparisonTemplateMu;     // 系统数据比较模板L
+void* SystemDataComparisonTemplateNu;     // 系统数据比较模板M
+void* SystemDataComparisonTemplateXi;     // 系统数据比较模板N
+void* SystemDataComparisonTemplateOmicron; // 系统数据比较模板O
 
 // 系统内存分配表条目 - 用于存储内存分配的结果
 void* SystemMemoryAllocationTableEntryPrimary;    // 系统内存分配表条目第一个
@@ -1095,15 +1095,15 @@ void* SystemConfigurationDataQuaternary;
 void* SystemConfigurationDataQuinary;
 void* SystemConfigurationDataSenary;
 // 系统数据缓冲区 - 主要数据序列
-void* SystemDataBufferPrimaryFirst;     // 主要数据缓冲区第一个
-void* SystemDataBufferPrimarySecond;    // 主要数据缓冲区第二个
-void* SystemDataBufferPrimaryThird;     // 主要数据缓冲区第三个
-void* SystemDataBufferPrimaryFourth;    // 主要数据缓冲区第四个
-void* SystemDataBufferPrimaryFifth;     // 主要数据缓冲区第五个
-void* SystemDataBufferPrimarySixth;     // 主要数据缓冲区第六个
-void* SystemDataBufferPrimarySeventh;   // 主要数据缓冲区第七个
-void* SystemDataBufferPrimaryEighth;    // 主要数据缓冲区第八个
-void* SystemDataBufferPrimaryNinth;     // 主要数据缓冲区第九个
+void* SystemDataBufferPrimaryAlpha;     // 主要数据缓冲区第一个
+void* SystemDataBufferPrimaryBeta;      // 主要数据缓冲区第二个
+void* SystemDataBufferPrimaryGamma;     // 主要数据缓冲区第三个
+void* SystemDataBufferPrimaryDelta;     // 主要数据缓冲区第四个
+void* SystemDataBufferPrimaryEpsilon;   // 主要数据缓冲区第五个
+void* SystemDataBufferPrimaryZeta;      // 主要数据缓冲区第六个
+void* SystemDataBufferPrimaryEta;       // 主要数据缓冲区第七个
+void* SystemDataBufferPrimaryTheta;     // 主要数据缓冲区第八个
+void* SystemDataBufferPrimaryIota;      // 主要数据缓冲区第九个
 
 // 系统配置管理器
 void* SystemConfigurationManager;
