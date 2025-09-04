@@ -212,6 +212,7 @@
 #define SystemResourceDataOffset 0x20
 #define SystemResourceReferenceCountOffset 0x18
 #define SystemMemoryValidationMask 0xfffffffffffffffe
+#define SystemResourceCleanupOffset 0x1b0
 #define ResourcePoolIndexOffset 1
 #define ResourceIndexMinimum 0
 #define NullPointerValue 0x0
@@ -86998,7 +86999,17 @@ void CleanupResourceHashStatusAddressOffset1A0(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_18090d280(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量0x190版本12
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d280
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffset190v12(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87034,7 +87045,17 @@ void Unwind_18090d280(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d290(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量0x190版本13
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d290
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffset190v13(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87070,7 +87091,17 @@ void Unwind_18090d290(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d2a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量0x190版本14
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d2a0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffset190v14(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87106,7 +87137,17 @@ void Unwind_18090d2a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d2b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量0x1d0版本14
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d2b0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffset1D0v14(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -87142,7 +87183,17 @@ void Unwind_18090d2b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d2c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量ResourceValidationError0版本15
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d2c0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffsetResourceValidationError0v15(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
