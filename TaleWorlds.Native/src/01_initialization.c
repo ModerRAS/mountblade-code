@@ -19695,17 +19695,7 @@ void ExecuteSystemMemoryCopyOperation(void)
 
 
 
-/**
- * @brief 重置系统缓冲区
- * 
- * 该函数负责重置系统缓冲区，将缓冲区内容清零，
- * 并重置相关的偏移量计数器。
- * 
- * @param bufferPointer 指向需要重置的缓冲区的指针
- * @note 这是一个辅助函数，用于清理和重置系统缓冲区状态
- */
 void ResetSystemProcessingBuffer(uint8_t *BufferPointer)
-
 {
   long long BufferOffset;
   
@@ -19718,20 +19708,7 @@ void ResetSystemProcessingBuffer(uint8_t *BufferPointer)
 
 
 
-/**
- * @brief 系统初始化完成处理函数
- * 
- * 该函数在系统初始化完成后执行，调用系统的完成处理函数。
- * 这是系统初始化过程的最后一步，负责执行所有初始化完成后的清理和设置工作。
- * 
- * @note 这是一个系统完成处理函数，通常在初始化过程结束时调用
- * @note 函数会调用SystemDataOperation()来完成最终的数据操作
- * @note 这是系统启动序列中的最后一个函数
- * 
- * @return 无返回值
- */
 void FinalizeSystemInitialization(void)
-
 {
     SystemDataOperation();
 }

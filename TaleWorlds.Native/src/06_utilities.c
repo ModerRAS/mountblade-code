@@ -82072,7 +82072,20 @@ void Unwind_18090c620(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c630(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的指定偏移位置
+ * 用于在系统初始化和资源管理过程中建立数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，包含当前操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数通常在系统初始化阶段调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c630
+ */
+void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x170) = &SystemDataStructure;
@@ -82081,7 +82094,20 @@ void Unwind_18090c630(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c640(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到资源管理上下文
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的资源管理偏移位置
+ * 用于在资源管理过程中建立数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，包含当前操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数通常在资源管理初始化阶段调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c640
+ */
+void SetSystemDataStructurePointerToResourceContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x4d0) = &SystemDataStructure;
@@ -82090,7 +82116,20 @@ void Unwind_18090c640(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c650(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到扩展验证上下文
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的扩展验证偏移位置
+ * 用于在扩展验证过程中建立数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，包含当前操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数通常在扩展验证阶段调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c650
+ */
+void SetSystemDataStructurePointerToExtendedContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x3b0) = &SystemDataStructure;
@@ -82099,7 +82138,20 @@ void Unwind_18090c650(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c660(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到二级资源上下文
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的二级资源偏移位置
+ * 用于在二级资源管理过程中建立数据结构引用
+ * 
+ * @param ObjectContext 对象上下文，包含当前操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数通常在二级资源管理阶段调用
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090c660
+ */
+void SetSystemDataStructurePointerToSecondaryContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x470) = &SystemDataStructure;
