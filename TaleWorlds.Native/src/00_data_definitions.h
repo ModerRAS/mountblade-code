@@ -7836,7 +7836,7 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
   fVar18 = 1e+08;
   FloatValue = 1e+08;
   FloatStackMaximum = 1e+08;
-  fStack_158 = 1e+08;
+  FloatStackLarge = 1e+08;
   fStack_154 = 1e+08;
   fStack_150 = 1e+08;
   uStack_14c = 0;

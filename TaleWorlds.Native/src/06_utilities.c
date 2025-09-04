@@ -5089,8 +5089,8 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
  * @param ObjectContext 对象上下文指针，包含对象的元数据和控制信息
  * @return uint8_t 操作状态码，0表示成功，非0表示错误码
  */
-uint8_t IncrementObjectReferenceCounter(int64_t ObjectContext) {
-  int64_t ObjectMemoryLocation;
+uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
+  int64_t ObjectMemoryAddress;
   uint8_t ObjectValidationResult;
   int64_t ObjectValidationWorkspace [4];
   int64_t *ValidatedObjectContextPointer;
