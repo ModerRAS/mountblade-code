@@ -14567,7 +14567,7 @@ void ProcessComplexResourceWithRegisters(void)
           ExtendedValidationFlags = SystemContextFlags;
           TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
-          ResultFloatValue = calculatedFloatValue;
+          ResultFloatValue = CalculatedFloatValue;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
@@ -14608,10 +14608,10 @@ void ProcessComplexResourceWithRegisters(void)
         if ((TemporaryIndex != 0) || (TemporaryIndex = SearchResourceTablePointer(ResourceTablePointerPointer,&stackFloatValue,0), TemporaryIndex != 0)) break;
         if (resourceFloatValue != 1.0) {
           TemporaryResourceValue = ResourceFloatValue;
-          dataTypeTemplate = &SystemDataTypeTemplateDatabase;
+          DataTypeTemplate = &SystemDataTypeTemplateDatabase;
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = TemporaryIndex;
-          TemporaryIndex = GetAndValidateResourceData(resourceFloatValue,&ObjectResourceBuffer);
+          TemporaryIndex = GetAndValidateResourceData(ResourceFloatValue,&ObjectResourceBuffer);
           if (TemporaryIndex != 0) break;
         }
       }
@@ -14619,7 +14619,7 @@ void ProcessComplexResourceWithRegisters(void)
     } while( true );
   }
 ValidationErrorHandler:
-        FinalizeSecurityOperation(*(uint64_t *)(executionContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
+        FinalizeSecurityOperation(*(uint64_t *)(ExecutionContext + 0x1d0) ^ (uint64_t)&SystemSecurityValidationBuffer);
 }
 
 
