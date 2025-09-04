@@ -22366,7 +22366,7 @@ void ResourceIntegrityValidator(void)
   uint8_t *ResourceContext;
   uint ArrayElementStepSize;
   int64_t MemoryRegion;
-  int ResourceDataAddressD;
+  int ResourceDataLength;
   int64_t SystemContextRegister;
   uint StackParameter;
   uint RegisterStorage;
@@ -22443,7 +22443,7 @@ void ResourceIntegrityValidator(void)
     }
   }
 ResourceOperationStatus:
-  if (ResourceDataAddressD == 0) {
+  if (ResourceDataLength == 0) {
     ResourceIndex = ProcessResourceValidation();
   }
   else {
@@ -28073,7 +28073,7 @@ ContextValidationCheck:
           goto ResourceAccessCheck;
         }
         ResourceAccessCounter = 0;
-        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
+        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ResourceAccessCounter);
         ValidationSuccess = ValidationStatusCode == 0;
         if (ValidationSuccess) {
           if ((uint64_t)ResourceTablePointerPointer[2] < (uint64_t)ResourceAccessCounter + 1) {
@@ -28108,7 +28108,7 @@ ResourceHashCalculationLoop:
       }
       else {
         ResourceAccessCounter = 0;
-        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
+        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ResourceAccessCounter);
         if (ValidationStatusCode == 0) {
           if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto ResourceHashCalculationLoop;
           ValidationStatusCode = 0x11;
@@ -28142,7 +28142,7 @@ ResourceAccessValidationLoop:
       }
       else {
         ResourceAccessCounter = 0;
-        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
+        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ResourceAccessCounter);
         if (ValidationStatusCode == 0) {
           if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto ResourceAccessValidationLoop;
           ValidationStatusCode = 0x11;
@@ -28176,7 +28176,7 @@ ResourceIntegrityCheckLoop:
       }
       else {
         ResourceAccessCounter = 0;
-        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
+        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ResourceAccessCounter);
         if (ValidationStatusCode == 0) {
           if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto ResourceIntegrityCheckLoop;
           ValidationStatusCode = 0x11;
@@ -28208,7 +28208,7 @@ ResourceFinalValidationLoop:
       }
       else {
         ResourceAccessCounter = 0;
-        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
+        ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ResourceAccessCounter);
         if (ValidationStatusCode == 0) {
           if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto ResourceFinalValidationLoop;
           ValidationStatusCode = 0x11;
@@ -28269,7 +28269,7 @@ uint64_t ProcessResourceTablePointerValidationAndOperations(void)
   uint64_t ResourceContextOffset;
   int64_t SystemExecutionPointer;
   int64_t *SystemRegisterContext;
-  int ResourceDataAddressD;
+  int ResourceDataLength;
   int64_t SystemContextRegister;
   bool ContextValidationFlag;
   bool MemorySizeCheck;
@@ -28279,16 +28279,16 @@ uint64_t ProcessResourceTablePointerValidationAndOperations(void)
     return ErrorInvalidObjectHandle;
   }
   SystemContextPointer = *SystemRegisterContext;
-  ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x10,ResourceDataAddressD + 3);
+  ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x10,ResourceDataLength + 3);
   LoopIncrement = (uint64_t)ResourceHashStatus;
   if (ValidationStatusCode == 0) {
-    ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x14,ResourceDataAddressD + 1);
+    ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x14,ResourceDataLength + 1);
     LoopIncrement = (uint64_t)ResourceHashStatus;
     if (ValidationStatusCode == 0) {
-      ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x16,ResourceDataAddressD + 1);
+      ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x16,ResourceDataLength + 1);
       LoopIncrement = (uint64_t)ResourceHashStatus;
       if (ValidationStatusCode == 0) {
-        ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x18,ResourceDataAddressD + 7);
+        ValidationStatusCode = ReadResourceData(SystemContextPointer,SystemContextRegister + 0x18,ResourceDataLength + 7);
         LoopIncrement = (uint64_t)ResourceHashStatus;
       }
     }
@@ -28341,7 +28341,7 @@ uint64_t ProcessResourceTablePointerValidationAndOperations(void)
   }
   else if (ResourceTablePointerPointer[2] == 0) {
 ContextDataValidation:
-    LoopIncrement = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x41,ResourceDataAddressD,4,0);
+    LoopIncrement = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x41,ResourceDataLength,4,0);
   }
   else {
     *(uint32_t *)(SystemExecutionPointer + 0x77) = 0;
@@ -28375,7 +28375,7 @@ ResourceAccessCheck:
       else {
         if (ResourceTablePointerPointer[2] == 0) {
 ContextValidationCheck:
-          ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
+          ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,0);
           goto ResourceAccessCheck;
         }
         *(uint32_t *)(SystemExecutionPointer + -0x45) = 0;
@@ -28411,7 +28411,7 @@ ContextValidationCheck:
       }
       else if (ResourceTablePointerPointer[2] == 0) {
 MemoryBoundaryCheckLoopPrimary:
-        ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
+        ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,0);
       }
       else {
         *(uint32_t *)(SystemExecutionPointer + -0x45) = 0;
@@ -28447,7 +28447,7 @@ MemoryBoundaryCheckLoopPrimary:
       }
       else if (ResourceTablePointerPointer[2] == 0) {
 MemoryBoundaryCheckLoopSecondary:
-        ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
+        ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,0);
       }
       else {
         *(uint32_t *)(SystemExecutionPointer + -0x45) = 0;
@@ -28483,7 +28483,7 @@ MemoryBoundaryCheckLoopSecondary:
       }
       else if (ResourceTablePointerPointer[2] == 0) {
 MemoryBoundaryCheckLoopTertiary:
-        ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
+        ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,0);
       }
       else {
         *(uint32_t *)(SystemExecutionPointer + -0x45) = 0;
@@ -28519,7 +28519,7 @@ MemoryBoundaryCheckLoopTertiary:
       }
       else if (ResourceTablePointerPointer[2] == 0) {
 MemoryBoundaryCheckLoopQuaternary:
-        ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
+        ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,0);
       }
       else {
         *(uint32_t *)(SystemExecutionPointer + -0x45) = 0;
@@ -28547,9 +28547,9 @@ MemoryBoundaryCheckLoopQuaternary:
   }
   if ((((!ContextValidationFlag) && (*(char *)(SystemExecutionPointer + 0x77) == '\0')) && (*(char *)(SystemExecutionPointer + 0x7f) == '\0'))
      && (!ValidationSuccess)) {
-    ResourceDataAddressD = 0;
+    ResourceDataLength = 0;
   }
-  *(int *)(SystemContextRegister + 0x38) = ResourceDataAddressD;
+  *(int *)(SystemContextRegister + 0x38) = ResourceDataLength;
   ValidationStatusCode = *(uint *)(SystemRegisterContext + 8);
 SecurityValidationFailed:
   LoopIncrement = 0;
@@ -28576,7 +28576,7 @@ uint64_t ProcessResourceDataValidationAndAllocation(uint8_t ObjectContext,uint8_
   uint64_t ResourceContextOffset;
   int64_t SystemExecutionPointer;
   int64_t *SystemRegisterContext;
-  uint32_t ResourceDataAddressD;
+  uint32_t ResourceDataLength;
   int64_t SystemContextRegister;
   bool ContextValidationFlag;
   bool MemorySizeCheck;
@@ -28595,7 +28595,7 @@ uint64_t ProcessResourceDataValidationAndAllocation(uint8_t ObjectContext,uint8_
   else {
     if (ResourceContext[2] == CleanupOption) {
 ResourceCleanupValidation:
-      LoopIncrement = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x41,ResourceDataAddressD,4,CleanupOption);
+      LoopIncrement = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x41,ResourceDataLength,4,CleanupOption);
     }
     else {
       *(int *)(SystemExecutionPointer + 0x77) = (int)CleanupOption;
@@ -28637,7 +28637,7 @@ ResourceAccessCheck:
     else {
       if (ResourceContext[2] == 0) {
 ContextValidationCheck:
-        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,0);
+        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,0);
         goto ResourceAccessCheck;
       }
       *(int *)(SystemExecutionPointer + -0x45) = (int)CleanupOption;
@@ -28675,7 +28675,7 @@ ContextValidationCheck:
     else {
       if (ResourceContext[2] == 0) {
 SecondaryResourceHashCalculationLoop:
-        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,CleanupOption);
+        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,CleanupOption);
       }
       else {
         *(int *)(SystemExecutionPointer + -0x45) = (int)CleanupOption;
@@ -28718,7 +28718,7 @@ BoundaryCheckComplete:
     else {
       if (ResourceContext[2] == 0) {
 SecondaryResourceAccessValidationLoop:
-        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,CleanupOption);
+        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,CleanupOption);
       }
       else {
         *(int *)(SystemExecutionPointer + -0x45) = (int)CleanupOption;
@@ -28761,7 +28761,7 @@ DataCheckComplete:
     else {
       if (ResourceContext[2] == 0) {
 SecondaryResourceIntegrityCheckLoop:
-        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,CleanupOption);
+        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,CleanupOption);
       }
       else {
         *(int *)(SystemExecutionPointer + -0x45) = (int)CleanupOption;
@@ -28803,8 +28803,8 @@ IntegrityCheckComplete:
     }
     else {
       if (ResourceContext[2] == 0) {
-MemoryBoundaryCheckLoop4:
-        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,CleanupOption);
+SecondaryResourceFinalValidationLoop:
+        ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataLength,ResourceDataLength,CleanupOption);
       }
       else {
         *(int *)(SystemExecutionPointer + -0x45) = (int)CleanupOption;
@@ -28837,9 +28837,9 @@ VerificationComplete:
   }
   if ((((!ContextValidationFlag) && (*(char *)(SystemExecutionPointer + 0x77) == '\0')) && (*(char *)(SystemExecutionPointer + 0x7f) == '\0'))
      && (!ValidationSuccess)) {
-    ResourceDataAddressD = (uint32_t)CleanupOption;
+    ResourceDataLength = (uint32_t)CleanupOption;
   }
-  *(uint32_t *)(SystemContextRegister + 0x38) = ResourceDataAddressD;
+  *(uint32_t *)(SystemContextRegister + 0x38) = ResourceDataLength;
   InputParameterValue = *(uint *)(SystemRegisterContext + 8);
 SecurityValidationFailed:
   if (InputParameterValue < 0x7f) {
