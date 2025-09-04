@@ -40037,8 +40037,8 @@ void* ExpandSystemResourceAllocatorB(void)
   ResourceRegister9[2] = resourceEntryPointer;
   ResourceRegister9[3] = SystemThreadContext;
   *ResourceRegister9 = *(void* *)(StringIteratorPointer + 0x58);
-  in_R9[1] = *(long long *)(StringIteratorPointer + 0x58) - 1U & SystemStackFrameOffset - 1U;
-  *(void* **)(StringIteratorPointer + 0x60) = in_R9;
+  ResourceRegister9[1] = *(long long *)(StringIteratorPointer + 0x58) - 1U & SystemStackFrameOffset - 1U;
+  *(void* **)(StringIteratorPointer + 0x60) = ResourceRegister9;
   *(long long *)(StringIteratorPointer + 0x58) = *(long long *)(StringIteratorPointer + 0x58) << 1;
   return CONCAT71((int7)(SystemStackFrameOffset - 1U >> 8),1);
 }
@@ -64283,7 +64283,7 @@ LAB_18007ac04:
                   }
                   else {
                     SystemConfigurationPointer = SystemThreadHandle1 * 2;
-                    if (SystemConfigurationPointer != 0) goto LAB_18007ac04;
+                    if (SystemConfigurationPointer != 0) goto SystemConfigurationAllocation;
                   }
                   paGlobalDataFlags2 = paresourceAddress2;
                   if (paResourceAllocationContext != paresourceAllocationContext7) {
