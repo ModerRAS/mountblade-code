@@ -80811,7 +80811,19 @@ void ExecuteResourceProcessingCallback(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_18090c3b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态的释放和清理
+ * 
+ * 该函数负责处理资源哈希状态的释放操作
+ * 包括内存地址验证、资源索引管理和清理处理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会处理资源哈希状态的释放和相关的内存清理
+ * @warning 原始函数名：Unwind_18090c3b0
+ */
+void ProcessResourceHashStatusRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -80820,6 +80832,7 @@ void Unwind_18090c3b0(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x1d8);
+  ResourceHashStatusAddress = ValidationStatusCodeAddress;
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
     return;
   }
@@ -80847,11 +80860,21 @@ void Unwind_18090c3b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c3d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要资源上下文的清理回调
+ * 
+ * 该函数负责执行次要资源上下文的清理操作
+ * 通过调用资源上下文中注册的清理函数来释放资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会调用次要资源上下文的清理函数
+ * @warning 原始函数名：Unwind_18090c3d0
+ */
+void ExecuteSecondaryResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *ResourceProcessingPointer;
-  
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x70);
   if (ResourceContext != (int64_t *)0x0) {
     (**(code **)(*ResourceContext + 0x38))();
@@ -80861,7 +80884,19 @@ void Unwind_18090c3d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c3e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行主要资源管理操作
+ * 
+ * 该函数负责执行主要资源管理操作
+ * 通过调用资源管理函数来处理资源的分配和释放
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会调用资源管理函数处理资源
+ * @warning 原始函数名：Unwind_18090c3e0
+ */
+void ExecutePrimaryResourceManagement(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   ExecuteResourceManagement(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x80);
@@ -84218,8 +84253,13 @@ void Unwind_18090d040(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d050(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 处理资源哈希状态地址的清理和释放
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d050
+ */
+void ProcessResourceHashStatusCleanupExtended(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int32_t *ResourceTablePointerIndexPointer;
   uint8_t *ResourceHashStatusAddress;

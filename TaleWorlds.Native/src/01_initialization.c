@@ -46,22 +46,22 @@
 #define GameCoreIdentifier2             0xe2f4a30d6e6ae482
 #define GameCoreId                    0x4fc124d23d41985f
 #define GameCoreNodeData               0
-#define BaseAllocatorSystemIdentifier1       0x4770584fbb1df897
-#define BaseAllocatorSystemIdentifier2       0x47f249e43f66f2ab
-#define BaseAllocatorSystemFlag              1
-#define BaseAllocatorSystemNodeData         0
-#define SystemDataTableSystemIdentifier1     0x544e41445441424c
-#define SystemDataTableSystemIdentifier2     0x4552455345525441
-#define SystemDataTableSystemFlag           2
-#define SystemMemorySystemIdentifier1         0x46ecbd4daf41613e
-#define SystemMemorySystemIdentifier2         0xdc42c056bbde8482
-#define SystemMemorySystemFlag               0
-#define SystemAllocatorSystemIdentifier1      0x4c868a42644030f6
-#define SystemAllocatorSystemIdentifier2      0xc29193aa9d9b35b9
-#define SystemAllocatorSystemFlag            0
-#define SystemConfigurationSystemIdentifier1  0x40ea3a798283cbbb
-#define SystemConfigurationSystemIdentifier2  0x7f74eb2c5a7fadae
-#define SystemConfigurationSystemFlag        3
+#define BaseAllocatorIdentifier1       0x4770584fbb1df897
+#define BaseAllocatorIdentifier2       0x47f249e43f66f2ab
+#define BaseAllocatorFlag              1
+#define BaseAllocatorNodeData         0
+#define DataTableIdentifier1     0x544e41445441424c
+#define DataTableIdentifier2     0x4552455345525441
+#define DataTableFlag           2
+#define MemoryIdentifier1         0x46ecbd4daf41613e
+#define MemoryIdentifier2         0xdc42c056bbde8482
+#define MemoryFlag               0
+#define AllocatorIdentifier1      0x4c868a42644030f6
+#define AllocatorIdentifier2      0xc29193aa9d9b35b9
+#define AllocatorFlag            0
+#define ConfigurationIdentifier1  0x40ea3a798283cbbb
+#define ConfigurationIdentifier2  0x7f74eb2c5a7fadae
+#define ConfigurationFlag        3
 
 // 系统管理器表偏移量
 #define SystemCompletionPortHandleOffset    0x42686
@@ -92,16 +92,16 @@
 #define STRING_DATA_OFFSET             SystemStringBufferOffset
 
 // 系统标识符常量
-#define SystemEventSystemIdentifier1          0x45b8d074df27d12f
-#define SystemEventSystemIdentifier2          0x8d98f4c06880eda4
-#define SystemResourceSystemIdentifier1       0x42d293584c8cf3e5
-#define SystemResourceSystemIdentifier2       0x355ffeb2d29e668a
-#define SystemDataComparisonTemplateAlphaId1   0x421c3cedd07d816d
-#define SystemDataComparisonTemplateAlphaId2   0xbec25de793b7afa6
-#define SystemDataComparisonTemplateBetaId1   0x4c22bb0c326587ce
-#define SystemDataComparisonTemplateBetaId2   0x5e3cf00ce2978287
-#define SystemDataComparisonTemplateKappaId1   0x4b2d79e470ee4e2c
-#define SystemDataComparisonTemplateKappaId2   0x9c552acd3ed5548d
+#define EventSystemIdentifier1          0x45b8d074df27d12f
+#define EventSystemIdentifier2          0x8d98f4c06880eda4
+#define ResourceSystemIdentifier1       0x42d293584c8cf3e5
+#define ResourceSystemIdentifier2       0x355ffeb2d29e668a
+#define DataComparisonTemplateAlphaId1   0x421c3cedd07d816d
+#define DataComparisonTemplateAlphaId2   0xbec25de793b7afa6
+#define DataComparisonTemplateBetaId1   0x4c22bb0c326587ce
+#define DataComparisonTemplateBetaId2   0x5e3cf00ce2978287
+#define DataComparisonTemplateKappaId1   0x4b2d79e470ee4e2c
+#define DataComparisonTemplateKappaId2   0x9c552acd3ed5548d
 #define SystemDataComparisonTemplateLambdaId1   0x49086ba08ab981a7
 #define SystemDataComparisonTemplateLambdaId2   0xa9191d34ad910696
 
@@ -182,7 +182,7 @@
 #define SystemConfigurationIdentifier         SystemConfigurationSystemIdentifier1
 
 // 系统数据比较模板A常量
-#define SystemDataComparisonTemplateA         SystemDataComparisonTemplateAlphaId1
+#define SystemDataComparisonTemplateA         DataComparisonTemplateAlphaId1
 
 // 系统节点分配额外大小常量
 #define SYSTEM_NODE_ALLOCATION_EXTRA_SIZE     NodeAllocationExtraSize
@@ -201,8 +201,8 @@
 #define SYSTEM_RESOURCE_NODE_IDENTIFIER2     SystemResourceSystemIdentifier2
 
 // 系统数据比较模板标识符常量
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1 SystemDataComparisonTemplateAlphaId1
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2 SystemDataComparisonTemplateAlphaId2
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1 DataComparisonTemplateAlphaId1
+#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2 DataComparisonTemplateAlphaId2
 
 /**
  * @brief 处理系统内存页面
@@ -800,7 +800,7 @@ char SystemPrimaryStatusIndicator;
 /**
  * @brief 系统状态标志备份标志
  */
-char SystemBackupStatusIndicator;
+char SystemSecondaryStatusIndicator;
 
 /**
  * @brief 系统状态标志缓存标志
@@ -959,7 +959,7 @@ void* SystemMemoryRegionTwoHundredThree;
 void* SystemMemoryRegionTwoHundredFour;
 void* SystemMemoryRegionTwoHundredFive;
 void* SystemMemoryRegionExtendedTwoHundredSix;
-char SystemEighthStatusIndicator;
+char SystemAdditionalStatusIndicator;
 void* SystemMemoryRegionExtendedTwoHundredSeven;
 void* SystemMemoryRegionExtendedTwoHundredEight;
 void* SystemDataTableEntryTwelfth;
