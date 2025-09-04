@@ -74230,7 +74230,21 @@ void ExecuteResourceTablePointerAccessCleanupProcessor(uint8_t ObjectContext,int
  * @param CleanupFlag 清理标志
  * @remark 原始函数名：Unwind_18090a590
  */
-void Unwind_ResourceTablePointerAccessCleanupProcessorAlternate(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 处理资源表指针访问清理操作（备用版本）
+ * 
+ * 该函数负责处理资源表指针的访问和清理操作
+ * 执行资源表的访问控制和清理流程
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * @note 此函数是资源表指针访问清理的备用实现
+ * @remark 原始函数名：Unwind_ResourceTablePointerAccessCleanupProcessorAlternate
+ */
+void ProcessResourceTablePointerAccessCleanupAlternate(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceTablePointerAccess(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x10),
@@ -74803,7 +74817,19 @@ void SystemMutexUnlockHandler(uint8_t ObjectContext, int64_t ValidationContext)
  * @note 此函数访问偏移量0x40处的资源哈希验证状态码地址
  * @note 当引用计数为0时会调用系统清理处理器
  */
-void Unwind_ResourceHashStatusCleanupHandler(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态清理操作
+ * 
+ * 该函数负责清理资源哈希状态和相关数据
+ * 重置资源哈希的状态标志并释放相关资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会安全地清理资源哈希状态
+ * @remark 原始函数名：Unwind_ResourceHashStatusCleanupHandler
+ */
+void CleanupResourceHashStatus(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceReferenceCountPointer;
