@@ -2434,13 +2434,13 @@ void* HandleNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int6
   }
   
   // 设置连接上下文数据
-  ConnectionContextBuffer[0] = ConnectionState;
-  ConnectionContextBuffer[1] = ConnectionId;
-  ConnectionContextBuffer[2] = SecurityValidationResult;
-  ConnectionContextBuffer[3] = FinalizeValue;
-  ConnectionContextBuffer[4] = ProcessingFlags;
-  ConnectionContextBuffer[5] = ValidationFlags;
-  ConnectionContextBuffer[6] = ProcessingMode;
+  ConnectionContextBuffer[ConnectionStateIndex] = ConnectionState;
+  ConnectionContextBuffer[ConnectionIdIndex] = ConnectionId;
+  ConnectionContextBuffer[SecurityValidationIndex] = SecurityValidationResult;
+  ConnectionContextBuffer[FinalizeValueIndex] = FinalizeValue;
+  ConnectionContextBuffer[ProcessingFlagsIndex] = ProcessingFlags;
+  ConnectionContextBuffer[ValidationFlagsIndex] = ValidationFlags;
+  ConnectionContextBuffer[ProcessingModeIndex] = ProcessingMode;
   
   return ConnectionContextBuffer;
 }
