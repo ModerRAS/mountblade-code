@@ -5667,7 +5667,7 @@ uint8_t InitializeObjectHandleComplex(int64_t ObjectContext)
 
 {
   int64_t ResourceDataTableAddress;
-  int ResourceId;
+  int ResourceIdentifier;
   uint8_t InitializationStatus;
   uint32_t *ResourceArrayPointer;
   uint64_t AdjustedContextHandle;
@@ -5734,18 +5734,18 @@ uint8_t InitializeObjectHandleDetailed(void)
 
 {
   int64_t ResourceDataOffset;
-  int ResourceId;
+  int ResourceIdentifier;
   int64_t RegisterValue;
-  uint8_t OperationResult;
-  uint32_t *ResourceIdPointer;
+  uint8_t OperationResultCode;
+  uint32_t *ResourceIdentifierPointer;
   uint64_t SystemContextPointer;
   int64_t SystemContext;
   uint SystemConfigFlags;
-  uint64_t LoopCounter;
+  uint64_t IterationCount;
   int64_t BaseAddressOffset;
   int64_t InputContext;
   
-  LoopCounter = 0;
+  IterationCount = 0;
   InputContext = InputParameter;
   if (InputContext == 0) {
     SystemContextPointer = 0;
