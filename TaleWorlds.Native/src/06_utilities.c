@@ -5256,12 +5256,12 @@ uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
   }
   
   // 检查对象句柄是否有效
-  if (*(int64_t *)(VerifiedObjectMemoryLocation + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ValidatedObjectMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(VerifiedObjectMemoryLocation + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedObjectMemoryAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
