@@ -864,9 +864,9 @@ void InitializeNetworkConnectionPool(void)
 void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
 void *NetworkConnectionConfigPrimary = &NetworkConnectionPrimaryConfig;
 void *NetworkConnectionConfigSecondary = &NetworkConnectionSecondaryConfig;
-void *NetworkConnectionProcessingConfiguration = &NetworkConnectionProcessingConfig;
-void *NetworkConnectionTransportConfiguration = &NetworkConnectionTransportConfig;
-void *NetworkConnectionProtocolConfiguration = &NetworkConnectionProtocolConfig;
+void *NetworkConnectionConfigProcessing = &NetworkConnectionProcessingConfig;
+void *NetworkConnectionConfigTransport = &NetworkConnectionTransportConfig;
+void *NetworkConnectionConfigProtocol = &NetworkConnectionProtocolConfig;
 void *NetworkConnectionValidationConfiguration = &NetworkConnectionValidationConfig;
 void *NetworkConnectionRoutingConfigurationPrimary = &NetworkConnectionRoutingPrimaryConfig;
 void *NetworkConnectionRoutingConfigurationSecondary = &NetworkConnectionRoutingSecondaryConfig;
