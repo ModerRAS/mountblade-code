@@ -57204,7 +57204,7 @@ void InitializeSystemResourceManager(void* *SystemResourceManager)
   }
   ResourceMemoryOffset = SystemResourceManager[0x3c];
   if (ResourceMemoryOffset != 0) {
-    ConfigureSystemMemoryRegion(ResourceMemoryOffset,0x18,0x10,FUN_18007bb70,resourceAddress,ResourceMemoryOffset);
+    ConfigureSystemMemoryRegion(ResourceMemoryOffset,0x18,0x10,ProcessResourceMemoryAllocation,resourceAddress,ResourceMemoryOffset);
       SystemCleanupFunction(ResourceMemoryOffset);
   }
   SystemResourceManager[0x3c] = 0;
