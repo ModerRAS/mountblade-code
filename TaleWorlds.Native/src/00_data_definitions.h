@@ -6869,7 +6869,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     }
     ProcessNetworkRequestValidation(SystemMemoryPointer2,&plStack_78);
     *(uint *)(SystemMemoryPointer2 + 0x20) = *(uint *)(SystemMemoryPointer2 + 0x20) | 0x40000000;
-    auStackX_20[0] = *SystemTertiaryParameter;
+    SystemArrayBuffer[0] = *SystemTertiaryParameter;
     pModuleInitializationResult = (longlong *)(SystemParameterPointer + 0x3d8);
     plStack_80 = pModuleInitializationResult;
     IntegerCounter = _Mtx_lock(pModuleInitializationResult);
@@ -6910,7 +6910,7 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     }
   }
   else {
-    auStackX_20[0] = *SystemTertiaryParameter;
+    SystemArrayBuffer[0] = *SystemTertiaryParameter;
     SystemStateValue = GetSystemStateValue(SystemParameterPointer);
     if (SystemStateValue == 0) {
       *SystemSecondaryParameter = 0;
