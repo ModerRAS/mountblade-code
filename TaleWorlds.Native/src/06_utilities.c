@@ -296,6 +296,10 @@
 #define ResourceHashFlagBit 0x4000
 #define ResourceHashValueMask 0x7fff
 
+// 资源表验证相关常量
+#define ResourceTableValidationOffset 0xc
+#define ResourceValidationErrorBit 2
+
 // 验证上下文偏移常量
 #define ValidationContextPrimaryOffset 0xa0
 #define ValidationContextSecondaryOffset 0xa8
@@ -18056,17 +18060,18 @@ uint8_t QueryResourceTablePointer(uint8_t ObjectContext, int64_t *ValidationCont
   
   StackBuffer[0] = 0;
   ValidationStatusCode = LoadResourceData(ObjectContext,StackBuffer);
+  ResourceHashStatus = (uint8_t)ValidationStatusCode;
   if ((int)ResourceHashStatus != 0) {
     return ResourceHashStatus;
   }
-  LoopOffset = (int64_t)StackBuffer[0];
+  DataOffset = (int64_t)StackBuffer[0];
   if (StackBuffer[0] == 0) {
     FreeMemoryResource(ValidationContext);
   }
   else {
     TableEntryIndex = StackBuffer[0] + 1;
-    ValidationStatusCode = (int)*(uint *)((int64_t)ValidationContext + 0xc) >> ResourceValidationError;
-    if (((int)((*(uint *)((int64_t)ValidationContext + 0xc) ^ ResourceHashStatus) - ResourceHashStatus) < TableEntryIndex) &&
+    ValidationStatusCode = (int)*(uint *)((int64_t)ValidationContext + ResourceTableValidationOffset) >> ResourceValidationErrorBit;
+    if (((int)((*(uint *)((int64_t)ValidationContext + ResourceTableValidationOffset) ^ ResourceHashStatus) - ResourceHashStatus) < TableEntryIndex) &&
        (ValidationStatusCode = CheckResourceTablePointerStatus(ValidationContext,TableEntryIndex), (int)ValidationStatusCode != 0)) {
       return ResourceHashStatus;
     }
@@ -18075,11 +18080,12 @@ uint8_t QueryResourceTablePointer(uint8_t ObjectContext, int64_t *ValidationCont
             memset((int64_t)ResourceIndex + *ValidationContext,0,(int64_t)(TableEntryIndex - ResourceIndex));
     }
     *(int *)(ValidationContext + 1) = TableEntryIndex;
-    ValidationStatusCode = ReadResourceData(ObjectContext,*ValidationContext,LoopOffset);
+    ValidationStatusCode = ReadResourceData(ObjectContext,*ValidationContext,DataOffset);
+    ResourceHashStatus = (uint8_t)ValidationStatusCode;
     if ((int)ResourceHashStatus != 0) {
       return ResourceHashStatus;
     }
-    *(uint8_t *)(LoopOffset + *ValidationContext) = 0;
+    *(uint8_t *)(DataOffset + *ValidationContext) = 0;
   }
   return 0;
 }
