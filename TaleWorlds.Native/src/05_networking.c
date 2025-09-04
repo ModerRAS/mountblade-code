@@ -1143,7 +1143,7 @@ void CloseNetworkConnectionHandler(void)
 {
   // 清理连接状态
   NetworkConnectionStatusFlags = 0x00;                // 重置连接状态标志
-  NetworkNetworkConnectionStateFlags = 0x00;                 // 重置连接状态标志
+  NetworkConnectionStateFlags = 0x00;                 // 重置连接状态标志
   NetworkConnectionExtendedFlags = 0x00;              // 重置连接扩展标志
   
   // 释放连接资源
@@ -1686,7 +1686,7 @@ uint32_t NetworkSystemContext;                             // 网络系统上下
 uint32_t NetworkConnectionSessionIdentifier;                         // 网络会话标识符
 uint32_t NetworkContextPointer;                            // 网络上下文指针
 uint32_t NetworkContextData;                               // 网络上下文数据
-uint32_t NetworkNetworkConnectionIdentifier;                     // 网络连接标识符
+uint32_t NetworkConnectionIdentifier;                     // 网络连接标识符
 uint32_t NetworkConnectionState;                           // 网络连接状态
 uint32_t NetworkConnectionParameters;                     // 网络连接参数
 uint32_t NetworkConnectionOptions;                        // 网络连接选项
