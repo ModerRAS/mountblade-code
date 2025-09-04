@@ -60057,7 +60057,7 @@ void InitializeSystemVectorCalculations(void)
   byte isSystemActive7;
   long long memoryBlockAddress;
   byte IsAudioSystemActive;
-  float *pfloatValue29;
+  float *VectorParameterPointer;
   long long SystemContextPointer;
   uint32_t AudioSystemActivationFlag;
   void* InputParameterA;
@@ -60092,12 +60092,12 @@ void InitializeSystemVectorCalculations(void)
   uint32_t StackParameterF;
   uint32_t StackParameterG;
   uint32_t StackParameterH;
-  float *FloatParameterArray;
+  float *VectorParameterArray;
   void* StackParameterI;
   
   AudioSystemActivationFlag = 0xffffffff;
   ProcessSystemContextAllocation(SystemContextPointer + 0x3388,&SystemStackBuffer30);
-  pfloatValue29 = FloatParameterArray;
+  VectorParameterPointer = VectorParameterArray;
   if ((*(uint *)(memoryBlockAddress + 0x100) & 0x4000000) != 0) {
     FloatVectorFirstComponent = *FloatParameterArray;
     FloatVectorSecondComponent = FloatParameterArray[1];
