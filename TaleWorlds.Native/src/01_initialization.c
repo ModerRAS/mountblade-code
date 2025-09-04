@@ -16853,16 +16853,16 @@ int InitializeSystemPerformanceMonitor(void)
 void InitializeSystemSubcomponentI(void)
 
 {
-  char NodeActiveFlag;
-  void** SystemDataTable;
-  int IdentifierCompareResult;
-  long long* MemorySystemPointer;
-  long long SystemTimestamp;
-  void** RootNodePointer;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTableNodePointer;
-  uint64_t SystemInitializationStatusFlag;
+  char PerformanceMonitorNodeActiveFlag;
+  void** PerformanceMonitorSystemDataTable;
+  int PerformanceMonitorIdentifierCompareResult;
+  long long* PerformanceMonitorMemorySystemPointer;
+  long long PerformanceMonitorSystemTimestamp;
+  void** PerformanceMonitorRootNodePointer;
+  void** PerformanceMonitorCurrentNodePointer;
+  void** PerformanceMonitorNextNodePointer;
+  void** PerformanceMonitorHashTableNodePointer;
+  uint64_t PerformanceMonitorInitializationStatusFlag;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
