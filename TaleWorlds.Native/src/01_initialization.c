@@ -20274,6 +20274,7 @@ void ResetSystemDataBuffer(uint8_t *dataBufferPointer)
   long long bufferOffset;
   
   *dataBufferPointer = 0;
+  bufferOffset = (long long)dataBufferPointer;
   *(uint32_t *)(bufferOffset + 0x10) = 0;
   return;
 }
