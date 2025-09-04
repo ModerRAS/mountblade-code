@@ -52768,7 +52768,7 @@ ThreadConfigurationComplete:
     SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
     StackContextValue = ResourceHash;
     SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,4,0x10);
-    goto LAB_180070ee8;
+    goto LABEL_SYSTEM_INITIALIZATION_HANDLER;
   }
   *(void*2 *)(SystemMemoryContext + StackContextValue) = 0x3a;
   StackContextValue = 3;
@@ -52785,7 +52785,7 @@ ThreadConfigurationComplete:
       *SystemMemoryContext = 0;
     }
     else {
-      if (SystemOperationStatus4 <= (uint)SystemMemoryAllocationOffset) goto LAB_180070f81;
+      if (SystemOperationStatus4 <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_THREAD_HANDLER;
       SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,SystemOperationStatus4,0x10);
     }
@@ -52806,7 +52806,7 @@ SystemInitializationComplete:
       *SystemMemoryContext = 0;
     }
     else {
-      if (CurrentThreadId <= (uint)SystemMemoryAllocationOffset) goto LAB_180071000;
+      if (CurrentThreadId <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_CONTEXT_HANDLER;
       SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,CurrentThreadId,0x10);
     }
@@ -52838,7 +52838,7 @@ MemoryAllocationComplete:
           *SystemMemoryContext = 0;
         }
         else {
-          if (ResourceHash <= (uint)SystemMemoryAllocationOffset) goto LAB_1800710b8;
+          if (ResourceHash <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_ALLOCATION_CHECK;
           SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
           SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,ResourceHash,0x10);
         }
@@ -52860,7 +52860,7 @@ LABEL_SYSTEM_MEMORY_INITIALIZATION_START:
       *SystemMemoryContext = 0;
     }
     else {
-      if (ResourceHash <= (uint)SystemMemoryAllocationOffset) goto LAB_18007113f;
+      if (ResourceHash <= (uint)SystemMemoryAllocationOffset) goto LABEL_SYSTEM_MEMORY_CHECK;
       SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
       SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,ResourceHash,0x10);
     }
@@ -53029,7 +53029,7 @@ LABEL_MEMORY_PROCESSING_CONTINUE:
         return;
       }
     }
-    else if (systemIndex == 3) goto LAB_1800715eb;
+    else if (systemIndex == 3) goto LABEL_SYSTEM_THREAD_EXIT;
     if (SystemGlobalStatusFlags == 0) {
       charFlag = '\x01';
     }
@@ -53194,7 +53194,7 @@ LABEL_THREAD_INITIALIZATION:
   else if (threadCreationFlags < 0x13) {
     stackParameterOffset = 0x11;
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x13,0x10,0x13);
-    goto LAB_180071af3;
+    goto LABEL_SYSTEM_OPERATION_CHECK;
   }
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
   stackParameterOffset = 0x12;
@@ -53210,7 +53210,7 @@ LABEL_THREAD_ALLOCATION_CONTEXT:
   else if ((uint)threadHandleValue < 0x14) {
     stackParameterOffset = 0x12;
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x14,0x10,0x13);
-    goto LAB_180071b69;
+    goto LABEL_SYSTEM_STATUS_CHECK;
   }
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
   stackParameterOffset = 0x13;
@@ -53235,7 +53235,7 @@ LABEL_THREAD_ALLOCATION_CONTEXT:
         }
         else {
           systemOperationStatus1 = stackParameterOffset;
-          if (systemOperationStatus2 <= (uint)threadHandleValue) goto LAB_180071c1a;
+          if (systemOperationStatus2 <= (uint)threadHandleValue) goto LABEL_SYSTEM_THREAD_VALIDATION;
           stackParameterOffset = threadCreationFlags;
           threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,systemOperationStatus2,0x10,0x13);
         }
@@ -53243,7 +53243,7 @@ LABEL_THREAD_ALLOCATION_CONTEXT:
         threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
         systemOperationStatus1 = stackParameterOffset;
       }
-LAB_180071c1a:
+LABEL_SYSTEM_THREAD_VALIDATION:
       stackParameterOffset = systemOperationStatus1;
         memcpy(threadObjectPointer + stackParameterOffset,ConfigurationDataPointer,(long long)((int)memoryAllocationFlags + 2));
     }
@@ -53252,14 +53252,14 @@ LAB_180071c1a:
     stackParameterOffset = threadCreationFlags;
     threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x15,0x13);
     *threadObjectPointer = 0;
-LAB_180071c93:
+LABEL_SYSTEM_THREAD_OPERATION:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
   else if ((uint)threadHandleValue < 0x15) {
     stackParameterOffset = threadCreationFlags;
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x15,0x10,0x13);
-    goto LAB_180071c93;
+    goto LABEL_SYSTEM_THREAD_OPERATION;
   }
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 0x3a;
   stackParameterOffset = 0x14;
@@ -53276,13 +53276,13 @@ LAB_180071c93:
       *threadObjectPointer = 0;
     }
     else {
-      if (systemOperationStatus2 <= (uint)threadHandleValue) goto LAB_180071d1f;
+      if (systemOperationStatus2 <= (uint)threadHandleValue) goto LABEL_SYSTEM_THREAD_CONFIGURATION;
       threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,systemOperationStatus2,0x10,0x13);
     }
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
-LAB_180071d1f:
+LABEL_SYSTEM_THREAD_CONFIGURATION:
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
   systemOperationStatus2 = threadCreationFlags + 0xd;
   stackParameterOffset = systemOperationStatus1;
@@ -53296,13 +53296,13 @@ LAB_180071d1f:
       *threadObjectPointer = 0;
     }
     else {
-      if (systemOperationStatus1 <= (uint)threadHandleValue) goto LAB_180071d94;
+      if (systemOperationStatus1 <= (uint)threadHandleValue) goto LABEL_SYSTEM_THREAD_SETUP;
       threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,systemOperationStatus1,0x10,0x13);
     }
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
   }
-LAB_180071d94:
+LABEL_SYSTEM_THREAD_SETUP:
   HashTableNodePointer = (void* *)(threadObjectPointer + stackParameterOffset);
   *HashTableNodePointer = 0x6973736572707845;
   *(uint32_t *)(HashTableNodePointer + 1) = 0x203a6e6f;
@@ -53326,13 +53326,13 @@ LAB_180071d94:
           *pointerToUnsignedStackFlagTertiary = 0;
         }
         else {
-          if (resourceCreationFlags <= (uint)SystemUnsignedFlagSecondary) goto LAB_180071e34;
+          if (resourceCreationFlags <= (uint)SystemUnsignedFlagSecondary) goto LABEL_SYSTEM_RESOURCE_VALIDATION;
           pointerToUnsignedStackFlagTertiary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pointerToUnsignedStackFlagTertiary,resourceCreationFlags,0x10,0x13);
         }
         resourceAllocationContext = StartSystemThread(pointerToUnsignedStackFlagTertiary);
         SystemUnsignedFlagSecondary = ConcatenatedSystemValue(SystemUnsignedFlagSecondary.HighPart,resourceAllocationContext);
       }
-LAB_180071e34:
+LABEL_SYSTEM_RESOURCE_VALIDATION:
         memcpy(pointerToUnsignedStackFlagTertiary + SystemFlagTertiary,ConfigurationFlag,(long long)((int)SystemAllocationFlags + 2));
     }
   }
@@ -53346,13 +53346,13 @@ LAB_180071e34:
       *pointerToUnsignedStackFlagTertiary = 0;
     }
     else {
-      if (SystemOperationStatusSecondary <= (uint)SystemUnsignedFlagSecondary) goto LAB_180071eb0;
+      if (SystemOperationStatusSecondary <= (uint)SystemUnsignedFlagSecondary) goto LABEL_SYSTEM_RESOURCE_CONFIGURATION;
       pointerToUnsignedStackFlagTertiary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pointerToUnsignedStackFlagTertiary,SystemOperationStatusSecondary,0x10,0x13);
     }
     resourceAllocationContext = StartSystemThread(pointerToUnsignedStackFlagTertiary);
     SystemUnsignedFlagSecondary = ConcatenatedSystemValue(SystemUnsignedFlagSecondary.HighPart,resourceAllocationContext);
   }
-LAB_180071eb0:
+LABEL_SYSTEM_RESOURCE_CONFIGURATION:
   *(void*2 *)(pointerToUnsignedStackFlagTertiary + SystemFlagTertiary) = 10;
   SystemFlagTertiary = resourceCreationFlags + 0xe;
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferA);
@@ -53477,7 +53477,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   SystemStackFlagQuaternary = 0;
   SystemParameterFlagB0 = AdditionalParameter;
   SystemConfigurationFlag88 = ConfigurationFlag;
-  if ((SystemInitializationFlag != '\0') || (SystemVerboseFlag != '\0')) goto LAB_180072d7b;
+  if ((SystemInitializationFlag != '\0') || (SystemVerboseFlag != '\0')) goto LABEL_SYSTEM_INITIALIZATION_CHECK;
   systemProcessFlags58 = 0;
   ConcatenatedSystemValue = 0;
   FormatSystemResourceString(&systemProcessFlags58,0x10,&SystemDataBufferTemplateI,AdditionalParameter);
@@ -53508,7 +53508,7 @@ SystemResourceHashProcessingStart:
     pEncryptionOffset1 = SystemDataBufferPointer;
     resourceAddress = StartSystemThread(SystemDataBufferPointer);
     MemoryBufferPointer = ConcatenatedSystemValue(MemoryBufferPointer._4_4_,resourceAddress);
-    goto LAB_180072120;
+    goto LABEL_SYSTEM_OPERATION_SETUP;
   }
   if (SystemDataBufferPointer != (uint8_t *)0x0) {
     SystemDataBufferPointer[SystemContextPointer] = 0;
@@ -53534,14 +53534,14 @@ SystemResourceHashProcessingStart:
           *SystemDataBufferPointer = 0;
         }
         else {
-          if (ResourceHash <= SystemOperationStatusFlags) goto LAB_1800721e1;
+          if (ResourceHash <= SystemOperationStatusFlags) goto LABEL_SYSTEM_RESOURCE_SETUP;
           pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
           SystemDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemDataBufferPointer,ResourceHash,0x10);
         }
         pEncryptionOffset1 = SystemDataBufferPointer;
         MemoryBufferPointer._0_4_ = StartSystemThread(SystemDataBufferPointer);
       }
-LAB_1800721e1:
+LABEL_SYSTEM_RESOURCE_SETUP:
         memcpy(SystemDataBufferPointer + SystemContextPointer,ConfigurationDataPointer,(long long)((int)ResourceDataCounter + 2));
     }
   }
