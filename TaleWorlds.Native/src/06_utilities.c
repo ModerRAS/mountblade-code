@@ -35868,16 +35868,14 @@ void UnwindContextResetHandler(uint8_t ContextObject, int64_t ValidationContext)
  * @return 无返回值
  * @note 此函数在文件流清理过程中被调用
  */
-void HandleFileStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
-{
-  uint8_t *ResourceHashPtr;
+void HandleFileStreamCleanup(uint8_t FileStreamContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
+  uint8_t *FileStreamResourceHashPointer;
   
-  ResourceHashPtr = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x948);
-  if (ResourceHashPtr != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x938,*ResourceHashPtr,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    ResetSystemState(ResourceHashPtr);
-          ReleaseResourceHandle(ResourceHashPtr);
+  FileStreamResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x948);
+  if (FileStreamResourceHashPointer != (uint8_t *)0x0) {
+    HandleResourceAllocation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x938, *FileStreamResourceHashPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ResetSystemState(FileStreamResourceHashPointer);
+    ReleaseResourceHandle(FileStreamResourceHashPointer);
   }
   return;
 }
@@ -35897,16 +35895,14 @@ void HandleFileStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,uin
  * @return 无返回值
  * @note 此函数在内存流清理过程中被调用
  */
-void HandleMemoryStreamCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
-{
-  uint8_t *ResourceHashPtr;
+void HandleMemoryStreamCleanup(uint8_t MemoryStreamContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
+  uint8_t *MemoryStreamResourceHashPointer;
   
-  ResourceHashPtr = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x978);
-  if (ResourceHashPtr != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x968,*ResourceHashPtr,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    ResetSystemState(ResourceHashPtr);
-          ReleaseResourceHandle(ResourceHashPtr);
+  MemoryStreamResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x978);
+  if (MemoryStreamResourceHashPointer != (uint8_t *)0x0) {
+    HandleResourceAllocation(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x968, *MemoryStreamResourceHashPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ResetSystemState(MemoryStreamResourceHashPointer);
+    ReleaseResourceHandle(MemoryStreamResourceHashPointer);
   }
   return;
 }
