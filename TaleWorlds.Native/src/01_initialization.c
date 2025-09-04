@@ -49204,9 +49204,9 @@ void ConfigureSystemResourceNode(void* SystemResourceManager,void* Configuration
   }
   ResourceMemoryOffset = CreateSystemThreadObject(SystemMemoryPoolTemplate,SystemProcessingBufferPointer * 0x1a8,(char)systemDataIndexPtr[3]);
   AdditionalParameter = systemDataIndexPtr[1];
-  in_R10 = *systemDataIndexPtr;
+  ResourceConfigurationOffset = *systemDataIndexPtr;
 ResourceCreationComplete:
-  InitializeSystemMemoryAllocatorWithHashNodes(&stackBuffer50,in_R10,AdditionalParameter,ResourceMemoryOffset);
+  InitializeSystemMemoryAllocatorWithHashNodes(&stackBuffer50,ResourceConfigurationOffset,AdditionalParameter,ResourceMemoryOffset);
   SystemThreadHandle = InputStackParameter50;
   ProcessSystemResourceData(InputStackParameter50);
   resourceDataIndex = systemDataIndexPtr[1];
@@ -60800,17 +60800,17 @@ void ProcessSystemFloatTransformation(float SystemResourceManager, float Configu
   float InputScalingFactor2;
   float systemFloatValue;
   
-  ScalingFactor = (*(float *)(in_RAX + 0x74) * ConfigurationDataPointer - AdditionalParameter * ConfigurationFlag) * *(float *)(in_RAX + 0x90);
-  CalculateSystemValue(ScalingFactor,(AdditionalParameter * in_XMM4_Da - SystemResourceManager * ConfigurationDataPointer) * *(float *)(in_RAX + 0x94)
+  ScalingFactor = (*(float *)(ResourceConfigurationData + 0x74) * ConfigurationDataPointer - AdditionalParameter * ConfigurationFlag) * *(float *)(ResourceConfigurationData + 0x90);
+  CalculateSystemValue(ScalingFactor,(AdditionalParameter * InputScalingFactor1 - SystemResourceManager * ConfigurationDataPointer) * *(float *)(ResourceConfigurationData + 0x94)
                              + ScalingFactor +
-                             (in_XMM5_Da * ConfigurationFlag - *(float *)(in_RAX + 0x74) * in_XMM4_Da) *
-                             *(float *)(in_RAX + 0x98) < systemFloatValue);
-  if (*(long long *)(in_RCX + 0x1b8) == 0) {
+                             (InputScalingFactor2 * ConfigurationFlag - *(float *)(ResourceConfigurationData + 0x74) * InputScalingFactor1) *
+                             *(float *)(ResourceConfigurationData + 0x98) < systemFloatValue);
+  if (*(long long *)(ResourceDataPointer + 0x1b8) == 0) {
 SystemStatusCheck:
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) != 0;
   }
   else {
-    SystemOperationCode = *(uint *)(*(long long *)(in_RCX + 0x1b8) + 0x138);
+    SystemOperationCode = *(uint *)(*(long long *)(ResourceDataPointer + 0x1b8) + 0x138);
     if ((SystemOperationCode & 0x20) != 0) {
       systemStatusFlag = '\0';
       goto LabelSetSystemStatus;
