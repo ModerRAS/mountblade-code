@@ -78868,6 +78868,15 @@ void ExecuteResourceCleanupCallback1(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
+/**
+ * @brief 执行资源清理回调函数2
+ * 
+ * 该函数用于在系统异常处理时清理资源回调函数2，防止内存泄漏。
+ * 主要用于系统资源管理的清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证资源状态
+ */
 void ExecuteResourceCleanupCallback2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
