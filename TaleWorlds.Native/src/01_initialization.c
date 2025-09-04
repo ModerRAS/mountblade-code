@@ -58351,7 +58351,7 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
         (SystemStatusFlagPointer = SystemHashNodeData, SystemPoolPointer = resourcePoolPointer, SystemOperationStatusSecondary != *SystemHashNodeData));
         SystemHashNodeData = (ulong long *)SystemHashNodeData[1]) {
     }
-    if (SystemStatusFlagPointer != pSystemOutputStatus) goto LAB_180076feb;
+    if (SystemStatusFlagPointer != pSystemOutputStatus) goto LabelSystemOutputStatusCheck;
   }
   PrimaryResourceHandle = ConfigurationDataPointer + 5;
   resourceCounter = ConfigurationDataPointer[7] - *PrimaryResourceHandle;

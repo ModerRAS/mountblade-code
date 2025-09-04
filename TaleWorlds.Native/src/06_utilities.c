@@ -83541,7 +83541,11 @@ void Unwind_SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t Validat
 
 
 
-void Unwind_18090caf0(void)
+/**
+ * 释放资源引用计数器并调用资源管理器清理函数
+ * 用于在异常处理过程中减少资源引用计数
+ */
+void Unwind_ReleaseResourceReferenceAndCleanup2(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
