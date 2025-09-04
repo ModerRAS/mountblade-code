@@ -443,7 +443,7 @@ uint32_t TransmitNetworkPacket(int64_t SocketDescriptor, NetworkHandle Connectio
  * @param ConnectionContext 连接上下文
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidatePacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
+uint32_t ValidateNetworkPacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
 
 /**
  * @brief 处理网络连接请求
@@ -782,6 +782,8 @@ uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放�
 uint32_t NetworkConnectionPoolCapacity;                 // 网络连接池容量，连接池的最大容量
 uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引，连接池的索引位置
 uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理器，连接池的管理器句柄
+uint32_t NetworkConnectionPoolCurrentIndex;              // 网络连接池当前索引，连接池当前使用的索引位置
+uint32_t NetworkConnectionPoolUsageStatistics;           // 网络连接池使用统计，连接池的使用统计信息
 
 /**
  * @brief 网络连接表变量 - 管理网络连接的表结构和索引
