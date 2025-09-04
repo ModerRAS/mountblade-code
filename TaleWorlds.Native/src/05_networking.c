@@ -698,10 +698,14 @@ uint32_t NetworkConnectionContextSize;                         // 网络连接�
 uint32_t NetworkConnectionQuality;                             // 网络连接质量，评估连接质量的质量指标
 uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽，连接可用的带宽资源
 uint32_t NetworkConnectionLatency;                             // 网络连接延迟，网络通信的延迟时间
+uint32_t NetworkConnectionReliability;                         // 网络连接可靠性，连接的稳定性和可靠性指标
 uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别，连接的安全保护级别
 uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
+uint32_t NetworkAuthenticationType;                          // 网络认证类型，系统使用的认证机制类型
 uint32_t NetworkConnectionEncryptionAlgorithm;                // 网络加密算法，数据传输使用的加密算法
+uint32_t NetworkEncryptionAlgorithm;                          // 网络加密算法，系统使用的加密算法类型
 uint32_t NetworkConnectionCompressionMethod;                  // 网络压缩方法，数据压缩使用的算法方法
+uint32_t NetworkCompressionMethod;                            // 网络压缩方法，系统使用的压缩算法类型
 uint32_t NetworkConnectionSessionTimeoutDuration;             // 网络会话超时持续时间，会话无活动的超时时间
 uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针，指向数据包缓冲区的内存地址
 uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针，指向数据包头部信息的内存地址
@@ -715,6 +719,10 @@ uint32_t NetworkPacketPayloadSize;                        // 网络数据包负�
 uint32_t NetworkMaximumPacketSize;                            // 网络最大数据包大小，系统允许的最大数据包大小
 uint32_t NetworkEncryptionKey;                            // 网络加密密钥，用于数据加密的密钥值
 uint32_t NetworkCompressionLevel;                         // 网络压缩级别，数据压缩的压缩级别设置
+uint32_t NetworkSessionEncryptionKey;                     // 网络会话加密密钥，用于会话数据加密的密钥值
+uint32_t NetworkHandshakeTimeout;                          // 网络握手超时时间，握手过程的最大等待时间
+uint32_t NetworkAuthenticationTimeout;                     // 网络认证超时时间，认证过程的最大等待时间
+uint32_t NetworkEncryptionTimeout;                         // 网络加密超时时间，加密过程的最大等待时间
 
 // 网络连接配置数据指针
 void *NetworkConnectionInitializationConfig;    // 网络连接初始化配置数据，连接初始化时使用的配置信息
@@ -732,6 +740,7 @@ void *NetworkConnectionQuinaryProcessingConfig;   // 网络连接第五处理配
 uint32_t NetworkConnectionActiveContext;                          // 网络连接活动上下文，存储连接的运行时上下文信息
 uint32_t NetworkConnectionActiveContextData;                      // 网络连接活动上下文数据，上下文相关的数据存储
 uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文，安全相关的上下文信息
+uint32_t NetworkSecurityLevel;                             // 网络安全级别，系统的整体安全保护级别
 uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池，用于管理连接的缓冲区资源
 uint32_t NetworkConnectionRequestData;                     // 网络连接请求数据，存储连接请求的相关信息
 uint32_t NetworkConnectionResponseData;                    // 网络连接响应数据，存储连接响应的相关信息
@@ -806,25 +815,25 @@ void InitializeNetworkConnectionPool(void)
   
   // 初始化连接池管理器
   NetworkConnectionPoolManager = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
-  NetworkConnectionPoolIndex = 0;                  // 重置索引
+  NetworkConnectionPoolCurrentIndex = 0;                  // 重置索引
   
   // 初始化性能监控
   NetworkConnectionPoolPerformanceMetrics = 0;    // 重置性能指标
-  NetworkConnectionPoolStatistics = 0;            // 重置统计信息
+  NetworkConnectionPoolUsageStatistics = 0;            // 重置统计信息
 }
 
 // 网络连接配置数据结构指针
 void *NetworkConnectionContextTemplate = &NetworkConnectionContextTemplateData;
-void *NetworkConnectionPrimaryConfig = &NetworkConnectionPrimaryConfigData;
-void *NetworkConnectionSecondaryConfig = &NetworkConnectionSecondaryConfigData;
-void *NetworkConnectionProcessingConfig = &NetworkConnectionProcessingConfigData;
-void *NetworkConnectionTransportConfig = &NetworkConnectionTransportConfigData;
-void *NetworkConnectionProtocolConfig = &NetworkConnectionProtocolConfigData;
-void *NetworkConnectionValidationConfig = &NetworkConnectionValidationConfigData;
-void *NetworkConnectionRoutingConfigPrimary = &NetworkConnectionRoutingConfigPrimaryData;
-void *NetworkConnectionRoutingConfigSecondary = &NetworkConnectionRoutingConfigSecondaryData;
-void *NetworkConnectionRoutingConfigTertiary = &NetworkConnectionRoutingConfigTertiaryData;
-void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingConfigQuaternaryData;
+void *NetworkConnectionPrimaryConfiguration = &NetworkConnectionPrimaryConfigData;
+void *NetworkConnectionSecondaryConfiguration = &NetworkConnectionSecondaryConfigData;
+void *NetworkConnectionProcessingConfiguration = &NetworkConnectionProcessingConfigData;
+void *NetworkConnectionTransportConfiguration = &NetworkConnectionTransportConfigData;
+void *NetworkConnectionProtocolConfiguration = &NetworkConnectionProtocolConfigData;
+void *NetworkConnectionValidationConfiguration = &NetworkConnectionValidationConfigData;
+void *NetworkConnectionRoutingConfigurationPrimary = &NetworkConnectionRoutingConfigPrimaryData;
+void *NetworkConnectionRoutingConfigurationSecondary = &NetworkConnectionRoutingConfigSecondaryData;
+void *NetworkConnectionRoutingConfigurationTertiary = &NetworkConnectionRoutingConfigTertiaryData;
+void *NetworkConnectionRoutingConfigurationQuaternary = &NetworkConnectionRoutingConfigQuaternaryData;
 
 // 网络连接配置数据定义
 
@@ -1007,10 +1016,10 @@ void StartListeningForNetworkConnections(void)
   NetworkTimeoutProcessor = 0xFFFFFFFF;                // 初始化超时处理器
   
   // 初始化连接统计信息
-  NetworkConnectionAttempts = 0;                       // 重置连接尝试次数
-  NetworkConnectionFailures = 0;                       // 重置连接失败次数
-  NetworkConnectionTime = 0;                           // 重置连接时间
-  NetworkLastActivity = 0;                             // 重置最后活动时间
+  NetworkTotalConnectionAttempts = 0;                       // 重置连接尝试次数
+  NetworkFailedConnectionAttempts = 0;                       // 重置连接失败次数
+  NetworkAverageConnectionTime = 0;                           // 重置连接时间
+  NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间
 }
 
 /**
@@ -1035,7 +1044,7 @@ void AcceptNetworkConnection(void)
   NetworkConnectionQuality = CONNECTION_QUALITY_GOOD;                     // 设置连接质量为良好
   NetworkConnectionBandwidth = BANDWIDTH_4KB;                 // 设置连接带宽为4KB
   NetworkConnectionLatency = LATENCY_50MS;                     // 设置连接延迟为50ms
-  NetworkConnectionReliability = 0x01;                 // 设置连接可靠性为高
+  NetworkConnectionReliabilityLevel = 0x01;                 // 设置连接可靠性为高
   
   // 初始化安全参数
   NetworkSecurityLevel = SECURITY_LEVEL_HIGH;                         // 设置安全级别为高
@@ -1052,7 +1061,7 @@ void AcceptNetworkConnection(void)
   
   // 更新连接统计
   NetworkActiveConnectionsCount++;                     // 增加活跃连接计数
-  NetworkConnectionAttempts++;                         // 增加连接尝试计数
+  NetworkTotalConnectionAttempts++;                         // 增加连接尝试计数
 }
 
 /**
@@ -1099,8 +1108,8 @@ void CloseNetworkConnectionHandler(void)
   
   // 重置统计信息
   NetworkActiveConnectionsCount = 0;                   // 重置活跃连接计数
-  NetworkConnectionTime = 0;                           // 重置连接时间
-  NetworkLastActivity = 0;                             // 重置最后活动时间
+  NetworkAverageConnectionTime = 0;                           // 重置连接时间
+  NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间
 }
 
 // 网络安全和验证函数

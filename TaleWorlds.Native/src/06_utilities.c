@@ -7645,13 +7645,14 @@ SystemErrorHandler:
 
 
  /**
- * @brief 处理系统缓冲区扩展
+ * @brief 处理系统数据缓冲区扩容操作
  * 
- * 该函数处理系统缓冲区的扩展操作，根据需要重新分配内存
- * 采用1.5倍的增长策略，最小容量为8个元素
+ * 该函数负责处理系统数据缓冲区的扩容操作，当缓冲区容量不足时，
+ * 会分配新的内存空间，复制原有数据，并更新缓冲区指针。
+ * 采用1.5倍的增长策略来优化内存使用效率，并包含完整的安全验证。
  * 
- * @param SystemContext 系统上下文指针
- * @param bufferContext 缓冲区上下文指针
+ * @param SystemContext 系统上下文，包含系统状态和资源管理信息
+ * @param BufferContextParameter 缓冲区上下文参数，用于标识要操作的缓冲区
  */
 void ProcessSystemDataBufferExpansion(uint8_t SystemContext, uint8_t BufferContextParameter)
 {
@@ -7723,66 +7724,64 @@ ResourceManagementErrorHandler:
  * @brief 处理动态缓冲区重新分配操作
  * 
  * 该函数负责处理动态缓冲区的重新分配操作，当缓冲区需要扩容时，
- * 会分配新的内存空间，复制原有数据，并释放旧的内存空间。
- * 采用1.5倍的增长策略来优化内存使用效率。
+ * 会分配新的内存空间，复制原有数据，并更新缓冲区指针。
+ * 采用1.5倍的增长策略来优化内存使用效率，包含完整的安全验证。
  * 
- * @param None 无参数
+ * @param None 无参数，使用全局系统上下文进行操作
  */
 void ProcessDynamicBufferReallocation(void)
-
 {
   int ProcessingStatusCode;
   int MemoryAllocationStatus;
   int64_t InputParameterValue;
-  int64_t ResourceIndex;
+  int64_t NewBufferPointer;
   int64_t BufferPointer;
-  uint ResourceContextOffset;
+  uint CurrentCapacity;
   int64_t ResourceContext;
   int64_t ResourceContextData;
-  uint8_t StackParameterContextSixty;
+  uint8_t SystemContextParameter;
   
-  ResourceIndex = 0;
+  NewBufferPointer = 0;
   BufferPointer = SystemInputParameter + 8;
   if (SystemInputParameter == 0) {
-    BufferPointer = ResourceIndex;
+    BufferPointer = NewBufferPointer;
   }
-  ResourceIndex = ValidateBufferContext(BufferPointer);
-  if (ResourceIndex != 0) {
+  ProcessingStatusCode = ValidateBufferContext(BufferPointer);
+  if (ProcessingStatusCode != 0) {
     return;
   }
-  ResourceContextOffset = (int)*(uint *)(ResourceContext + ResourceContextCapacityOffset) >> ResourceValidationError;
-  OperationStatus = (*(uint *)(ResourceContext + ResourceContextCapacityOffset) ^ ResourceContextOffset) - ResourceContextOffset;
-  ResourceIndex = *(int *)(ResourceContext + ResourceContextSizeOffset) + 1;
-  if (OperationResult < ResourceIndex) {
-    OperationStatus = (int)((float)OperationResult * 1.5);
-    if (ResourceIndex <= OperationResult) {
-      ResourceIndex = OperationResult;
+  CurrentCapacity = (int)*(uint *)(ResourceContext + ResourceContextCapacityOffset) >> ResourceValidationError;
+  MemoryAllocationStatus = (*(uint *)(ResourceContext + ResourceContextCapacityOffset) ^ CurrentCapacity) - CurrentCapacity;
+  ProcessingStatusCode = *(int *)(ResourceContext + ResourceContextSizeOffset) + 1;
+  if (MemoryAllocationStatus < ProcessingStatusCode) {
+    MemoryAllocationStatus = (int)((float)MemoryAllocationStatus * 1.5);
+    if (ProcessingStatusCode <= MemoryAllocationStatus) {
+      ProcessingStatusCode = MemoryAllocationStatus;
     }
-    if (ResourceIndex < 8) {
-      ResourceIndex = 8;
+    if (ProcessingStatusCode < 8) {
+      ProcessingStatusCode = 8;
     }
-    if (ResourceIndex < *(int *)(ResourceContext + ResourceContextSizeOffset)) goto MemoryErrorHandler;
-    if (ResourceIndex != 0) {
-      if (0x3ffffffe < ResourceIndex * 8 - 1U) goto MemoryErrorHandler;
-      ResourceIndex = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemManagerContextOffset),ResourceIndex * 8,&ResourceAllocationTemplate,0xf4,0)
-      ;
-      if (ResourceIndex == 0) goto MemoryErrorHandler;
+    if (ProcessingStatusCode < *(int *)(ResourceContext + ResourceContextSizeOffset)) goto MemoryErrorHandler;
+    if (ProcessingStatusCode != 0) {
+      if (0x3ffffffe < ProcessingStatusCode * 8 - 1U) goto MemoryErrorHandler;
+      NewBufferPointer = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemManagerContextOffset),ProcessingStatusCode * 8,&ResourceAllocationTemplate,0xf4,0);
+      if (NewBufferPointer == 0) goto MemoryErrorHandler;
       if (*(int *)(ResourceContext + ResourceContextSizeOffset) != 0) {
-              memcpy(ResourceIndex,*(uint8_t *)(ResourceContext + ResourceContextDataOffset),(int64_t)*(int *)(ResourceContext + ResourceContextSizeOffset) << 3);
+              memcpy(NewBufferPointer,*(uint8_t *)(ResourceContext + ResourceContextDataOffset),(int64_t)*(int *)(ResourceContext + ResourceContextSizeOffset) << 3);
       }
     }
     if ((0 < *(int *)(ResourceContext + ResourceContextCapacityOffset)) && (*(int64_t *)(ResourceContext + ResourceContextDataOffset) != 0)) {
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemManagerContextOffset),*(int64_t *)(ResourceContext + ResourceContextDataOffset),
                     &ResourceAllocationTemplate,0x100,1);
     }
-    *(int64_t *)(ResourceContext + ResourceContextDataOffset) = ResourceIndex;
-    *(int *)(ResourceContext + ResourceContextCapacityOffset) = ResourceIndex;
+    *(int64_t *)(ResourceContext + ResourceContextDataOffset) = NewBufferPointer;
+    *(int *)(ResourceContext + ResourceContextCapacityOffset) = ProcessingStatusCode;
   }
   *(uint8_t *)(*(int64_t *)(ResourceContext + ResourceContextDataOffset) + (int64_t)*(int *)(ResourceContext + ResourceContextSizeOffset) * 8) =
-       StackParameterContext;
+       SystemContextParameter;
   *(int *)(ResourceContext + ResourceContextSizeOffset) = *(int *)(ResourceContext + ResourceContextSizeOffset) + 1;
 MemoryManagementErrorHandler:
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + SystemContextResourceManagerOffset));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemContextResourceManagerOffset));
 }
 
 
@@ -7799,33 +7798,32 @@ MemoryManagementErrorHandler:
  * @param configSize 配置大小，指定配置数据的尺寸
  */
 void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationSize)
-
 {
   int CurrentConfigValue;
   int CalculatedSize;
-  int64_t SystemContext;
+  int64_t NewSystemContext;
   int64_t MemoryContext;
   int NewConfigurationSize;
   int64_t ThreadContext;
-  uint8_t StackParameter;
+  uint8_t ConfigurationParameter;
   
   NewConfigurationSize = ConfigurationIndex + 1;
   if (CurrentConfigValue - ConfigurationSize < NewConfigurationSize) {
-    ResourceIndex = (int)((float)(InputParameterValue - ValidationContext) * 1.5);
-    if (OperationResult <= ResourceIndex) {
-      OperationStatus = ResourceIndex;
+    CalculatedSize = (int)((float)(InputParameterValue - ValidationContext) * 1.5);
+    if (NewConfigurationSize <= CalculatedSize) {
+      NewConfigurationSize = CalculatedSize;
     }
-    if (OperationResult < 8) {
-      OperationStatus = 8;
+    if (NewConfigurationSize < 8) {
+      NewConfigurationSize = 8;
     }
-    if (OperationResult < ObjectContext) goto SystemOperationErrorHandler;
-    if (OperationResult != 0) {
-      if (0x3ffffffe < OperationResult * 8 - 1U) goto SystemOperationErrorHandler;
-      SystemContext = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),OperationResult * 8,&ResourceAllocationTemplate,
+    if (NewConfigurationSize < ConfigurationIndex) goto SystemOperationErrorHandler;
+    if (NewConfigurationSize != 0) {
+      if (0x3ffffffe < NewConfigurationSize * 8 - 1U) goto SystemOperationErrorHandler;
+      NewSystemContext = AllocateMemoryBlock(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),NewConfigurationSize * 8,&ResourceAllocationTemplate,
                                 0xf4);
-      if (SystemContext == 0) goto SystemOperationErrorHandler;
+      if (NewSystemContext == 0) goto SystemOperationErrorHandler;
       if (*(int *)(ResourceContext + ResourceCountOffset) != 0) {
-              memcpy(SystemContext,*(uint8_t *)(ResourceContext + ResourceDataPointerOffset),(int64_t)*(int *)(ResourceContext + ResourceCountOffset) << 3
+              memcpy(NewSystemContext,*(uint8_t *)(ResourceContext + ResourceDataPointerOffset),(int64_t)*(int *)(ResourceContext + ResourceCountOffset) << 3
               );
       }
     }
@@ -7833,14 +7831,14 @@ void ProcessSystemConfigurationUpdate(int ConfigurationIndex, int ConfigurationS
             ProcessResourceAllocation(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),*(int64_t *)(ResourceContext + ResourceDataPointerOffset),
                     &ResourceAllocationTemplate,0x100,1);
     }
-    *(int64_t *)(ResourceContext + ResourceDataPointerOffset) = SystemContext;
-    *(int *)(ResourceContext + ResourceCapacityOffset) = OperationResult;
+    *(int64_t *)(ResourceContext + ResourceDataPointerOffset) = NewSystemContext;
+    *(int *)(ResourceContext + ResourceCapacityOffset) = NewConfigurationSize;
   }
   *(uint8_t *)(*(int64_t *)(ResourceContext + ResourceDataPointerOffset) + (int64_t)*(int *)(ResourceContext + ResourceCountOffset) * 8) =
-       StackParameterContext;
+       ConfigurationParameter;
   *(int *)(ResourceContext + ResourceCountOffset) = *(int *)(ResourceContext + ResourceCountOffset) + 1;
 SystemOperationErrorHandler:
-        ReleaseSystemContextResources(*(uint8_t *)(SystemContextPointer + ValidationContextLoopCounterOffset));
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContext + ValidationContextLoopCounterOffset));
 }
 
 
