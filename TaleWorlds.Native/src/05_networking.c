@@ -1763,7 +1763,7 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
  * @note 此函数会进行严格的安全验证，确保只有合法的连接请求能够通过
  * @warning 验证失败时会返回具体的错误码，调用者需要根据错误码进行相应处理
  */
-NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
+NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 连接请求处理变量
   int64_t NetworkConnectionContext;              // 网络连接上下文句柄
@@ -1803,7 +1803,7 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
  * @note 此函数在网络系统启动时调用，确保所有连接处理资源正确初始化
  * @warning 如果初始化失败，系统将无法建立新的网络连接
  */
-NetworkHandle SetupNetworkConnectionSystem(void)
+NetworkHandle SetupNetworkSystem(void)
 {
   // 初始化网络连接表
   if (NetworkConnectionTable == 0) {

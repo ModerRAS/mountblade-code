@@ -5364,12 +5364,12 @@ void ResetSystemState(void)
  */
 uint8_t HandleComplexObject(int64_t ObjectContext)
 {
-  uint8_t ValidationStatus;
-  int64_t ResourceOperationBuffer[2];
-  int64_t ValidatedContextArray[2];
+  uint8_t ValidationResult;
+  int64_t ResourceWorkspace[2];
+  int64_t ValidatedContextData[2];
   
   // 验证对象上下文
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ValidatedContextArray);
+  ValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), ValidatedContextData);
   if ((int)ValidationStatus == 0) {
     // 调整验证后的上下文地址
     if (ValidatedContextArray[0] == 0) {
@@ -5995,21 +5995,21 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
  * @return 处理结果，0表示成功，非0表示错误码
  */
 uint32_t ProcessSystemResource(void) {
-  int64_t ValidatedSystemContext;
-  int64_t ResourceProcessingCounter;
-  int64_t AdjustedSystemContextPointer;
+  int64_t SystemContextToValidate;
+  int64_t ResourceProcessingIterator;
+  int64_t CalculatedSystemContextPointer;
   
-  ValidatedSystemContext = InputParameter;
-  if (ValidatedSystemContext == 0) {
-    AdjustedSystemContextPointer = 0;
+  SystemContextToValidate = InputParameter;
+  if (SystemContextToValidate == 0) {
+    CalculatedSystemContextPointer = 0;
   }
   else {
-    AdjustedSystemContextPointer = ValidatedSystemContext - 8;
+    CalculatedSystemContextPointer = SystemContextToValidate - 8;
   }
-  if (*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(CalculatedSystemContextPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(AdjustedSystemContextPointer + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(CalculatedSystemContextPointer + ObjectContextOffset), 1);
 }
 
 
@@ -30318,7 +30318,7 @@ void InitializeUtilitySystemWithParameters(uint8_t *systemParameters)
  * @note 此函数在异常处理过程中被自动调用
  */
 void HandlePrimaryContextException(uint8_t ExceptionContext, int64_t SystemContext) {
-  int64_t* ExceptionHandlerFunctionPointer;
+  int64_t* ExceptionHandlerPointer;
   
   // 获取异常处理函数指针
   ExceptionHandlerFunctionPointer = (int64_t *)**(int64_t **)(SystemContext + ExceptionHandlerPrimaryContextOffset);
