@@ -5131,28 +5131,28 @@ uint8_t IncrementObjectReferenceCounter(int64_t ObjectContext) {
  * @param ObjectContext 对象上下文，包含要初始化句柄的对象信息
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  */
-uint8_t InitializeObjectHandle(int64_t ObjectContext) {
-  uint8_t ValidationStatus;
-  int64_t ObjectMemoryAddress;
+uint8_t SetupObjectHandle(int64_t ObjectContext) {
+  uint8_t HandleValidationResult;
+  int64_t ObjectMemoryLocation;
   
   // 验证对象上下文并获取内存地址
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ObjectMemoryAddress);
-  if ((int)ValidationStatus == 0) {
+  HandleValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextOffset), &ObjectMemoryLocation);
+  if ((int)HandleValidationResult == 0) {
     // 调整验证后的内存地址
-    if (ObjectMemoryAddress == 0) {
-      ObjectMemoryAddress = 0;
+    if (ObjectMemoryLocation == 0) {
+      ObjectMemoryLocation = 0;
     }
     else {
-      ObjectMemoryAddress = ObjectMemoryAddress - 8;
+      ObjectMemoryLocation = ObjectMemoryLocation - 8;
     }
     
     // 检查对象句柄是否有效，如果有效则执行系统退出操作
-    if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
-      ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
+    if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
+      ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
     }
-    ValidationStatus = OperationSuccessCode;
+    HandleValidationResult = OperationSuccessCode;
   }
-  return ValidationStatus;
+  return HandleValidationResult;
 }
 
 
@@ -5166,23 +5166,23 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  * @return uint8_t 操作状态码，0表示成功，非0表示失败
  * @note 此函数从全局状态获取当前对象句柄进行释放操作
  */
-uint8_t FreeObjectHandle(void) {
-  int64_t CurrentObjectHandle = 0;
-  int64_t ObjectMemoryAddress;
+uint8_t ReleaseObjectHandle(void) {
+  int64_t ActiveObjectHandle = 0;
+  int64_t ObjectMemoryLocation;
   
   // 获取当前对象句柄（这里从系统状态中获取）
-  CurrentObjectHandle = GetCurrentObjectHandle();
+  ActiveObjectHandle = GetCurrentObjectHandle();
   
-  if (CurrentObjectHandle == 0) {
-    ObjectMemoryAddress = 0;
+  if (ActiveObjectHandle == 0) {
+    ObjectMemoryLocation = 0;
   }
   else {
-    ObjectMemoryAddress = CurrentObjectHandle - 8;
+    ObjectMemoryLocation = ActiveObjectHandle - 8;
   }
   
   // 如果对象内存地址有效，执行释放操作
-  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
+  if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
   }
   return OperationSuccessCode;
 }
@@ -5217,9 +5217,9 @@ uint8_t FreeObjectHandle(void) {
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-uint8_t ValidateCharacterSafety(char CharacterToValidate) {
+uint8_t CheckCharacterSecurity(char InputCharacter) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
-  if (CharacterToValidate != '\0') {
+  if (InputCharacter != '\0') {
     ExecuteSystemExitOperation();
   }
   return OperationSuccessCode;
