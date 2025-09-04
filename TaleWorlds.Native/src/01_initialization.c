@@ -112,11 +112,11 @@
 #define DataComparisonTemplateEId2   0xc160408bde99e59f
 #define DataComparisonTemplateFId1   0x45425dc186a5d575
 #define DataComparisonTemplateFId2   0xfab48faa65382fa5
-#define SystemDataComparisonTemplateGId1   0x40afa5469b6ac06d
-#define SystemDataComparisonTemplateGId2   0x2f4bab01d34055a5
-#define SystemDataComparisonTemplateHId1   0x43330a43fcdb3653
-#define SystemDataComparisonTemplateHId2   0xdcfdc333a769ec93
-#define SystemDataComparisonTemplateIId1   0x431d7c8d7c475be2
+#define DataComparisonTemplateGId1   0x40afa5469b6ac06d
+#define DataComparisonTemplateGId2   0x2f4bab01d34055a5
+#define DataComparisonTemplateHId1   0x43330a43fcdb3653
+#define DataComparisonTemplateHId2   0xdcfdc333a769ec93
+#define DataComparisonTemplateIId1   0x431d7c8d7c475be2
 
 // 资源数据偏移量常量
 #define ResourceDataTransformXOffset        0x130
@@ -135,7 +135,7 @@
 #define ResourceDataBoneRotationOffset      0x298
 #define ResourceDataBoneScaleOffset         0x29c
 #define ResourceDataFinalScaleOffset        0x2a4
-#define SystemDataComparisonTemplateIId2   0xb97f048d2153e1b0
+#define DataComparisonTemplateIId2   0xb97f048d2153e1b0
 #define SystemDataComparisonTemplateLId1   0x402feffe4481676e
 #define SystemDataComparisonTemplateLId2   0xd4c2151109de93a0
 #define SystemDataComparisonTemplateMId1   0x4384dcc4b6d3f417

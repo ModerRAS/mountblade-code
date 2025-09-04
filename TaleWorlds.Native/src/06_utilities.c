@@ -80905,7 +80905,19 @@ void ExecutePrimaryResourceManagement(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_18090c400(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理扩展资源哈希状态的释放和清理
+ * 
+ * 该函数负责处理扩展资源哈希状态的释放操作
+ * 包括内存地址验证、资源索引管理和清理处理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会处理扩展资源哈希状态的释放和相关的内存清理
+ * @warning 原始函数名：Unwind_18090c400
+ */
+void ProcessExtendedResourceHashStatusRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -80914,6 +80926,7 @@ void Unwind_18090c400(uint8_t ObjectContext,int64_t ValidationContext)
   uint64_t MemoryAddressIncrement;
   
   ValidationStatusCodeAddress = *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset) + 0x2d0);
+  ResourceHashStatusAddress = ValidationStatusCodeAddress;
   if (ResourceHashStatusAddress == (uint8_t *)0x0) {
     return;
   }
