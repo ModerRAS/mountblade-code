@@ -4556,14 +4556,14 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t CurrentObjectId;
-  int ValidationStatusCode;
+  uint8_t CurrentObjectIdentifier;
+  int ValidationStatus;
   int64_t SystemContextHandle;
   int64_t SystemRuntimeData;
-  int64_t BufferPosition;
+  int64_t BufferOffset;
   int ValidatedObjectCount;
   uint8_t *ObjectDataBuffer;
-  int RetrievedObjectCount;
+  int RetrievedObjectsTotal;
   uint32_t MaximumCapacityLimit;
   uint64_t SecurityValidationToken;
   
