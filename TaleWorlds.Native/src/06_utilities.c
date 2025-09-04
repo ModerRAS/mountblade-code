@@ -14532,7 +14532,7 @@ void ProcessComplexResourceWithRegisters(void)
           ExtendedValidationFlags = SystemContextFlags;
           TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
-          finalResultFloat = CalculatedFloatResultFinal;
+          finalResultFloat = CalculatedSenaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
@@ -14576,7 +14576,7 @@ void ProcessComplexResourceWithRegisters(void)
           ExtendedValidationFlags = SystemContextFlags;
           ValidationErrorCode = ValidationErrorCode;
           ValidationErrorCode = GetAndValidateResourceData(ResourceFloatValue,&ObjectResourceBuffer);
-          FinalResultFloat = CalculatedFloatResultFinal;
+          FinalResultFloat = CalculatedSeptenaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x28) != '\0') {
@@ -14585,7 +14585,7 @@ void ProcessComplexResourceWithRegisters(void)
           ExtendedValidationFlags = SystemContextFlags;
           TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
-          ResultFloatValue = CalculatedFloatValue;
+          ResultFloatValue = CalculatedSeptenaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
         if (*(char *)(ResourceTablePointerPointer + 0x29) != '\0') {
