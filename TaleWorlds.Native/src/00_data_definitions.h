@@ -7912,8 +7912,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       if (FloatStackLarge < fVar18) {
         fVar18 = FloatStackLarge;
       }
-      if (fStack_154 < FloatValue) {
-        FloatValue = fStack_154;
+      if (FloatStackMedium < FloatValue) {
+        FloatValue = FloatStackMedium;
       }
       if (fStack_150 < FloatStackMaximum) {
         FloatStackMaximum = fStack_150;
@@ -7941,7 +7941,7 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       MemoryAddress7 = StackCounter5c;
       MemoryAddress9 = uStack_17c;
       FloatStackLarge = fVar18;
-      fStack_154 = FloatValue;
+      FloatStackMedium = FloatValue;
     } while (-1 < ModuleInitializationResult1);
   }
   *(uint64_t *)(SystemParameterPointer + 0x870) = 0x4cbebc204cbebc20;
