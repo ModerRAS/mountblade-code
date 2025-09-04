@@ -1915,19 +1915,19 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      ConnectionStatusBufferPointer = (NetworkConnectionStatus *)
+      StatusBufferPtr = (NetworkConnectionStatus *)
                ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                              NetworkConnectionCompletionHandle, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (ConnectionStatusBufferPointer != NULL) {
-        int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
-        int64_t ConnectionProcessingCounter = (long long)ActiveConnectionCount;
-        int64_t ConnectionContextBasePointer = 0;  // 连接上下文基地址指针
+      if (StatusBufferPtr != NULL) {
+        int32_t ActiveConnectionsCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
+        int64_t ProcessingCounter = (long long)ActiveConnectionsCount;
+        int64_t ContextBasePointer = 0;  // 连接上下文基地址指针
         
         // 如果有活跃连接，处理连接数据
-        if ((ActiveConnectionCount != 0) && (ConnectionContextBasePointer = *ConnectionContext, 0 < ActiveConnectionCount)) {
-          NetworkConnectionStatus *ConnectionStatusPointer = ConnectionStatusBufferPointer;
+        if ((ActiveConnectionsCount != 0) && (ContextBasePointer = *ConnectionContext, 0 < ActiveConnectionsCount)) {
+          NetworkConnectionStatus *StatusPtr = StatusBufferPtr;
           
           // 循环处理所有连接数据
           do {
