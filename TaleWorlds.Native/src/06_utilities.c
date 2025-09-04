@@ -80216,6 +80216,11 @@ void ExecuteResourceTableCleanupAndSystemExit(uint8_t ObjectContext,int64_t Vali
 
 
 
+/**
+ * 设置系统数据结构指针在第三级偏移量0处
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
 void SetSystemDataStructurePointerAtTertiaryOffset0_2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
