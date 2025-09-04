@@ -30152,11 +30152,11 @@ uint8_t ValidateResourceId(int64_t ObjectContext,int64_t *ValidationContext)
     if (*(int *)(ResourceData[1] + 0x18) != 0) {
       return ErrorInvalidObjectHandle;
     }
-    CommandParameters[0] = *(uint32_t *)(ObjectContext + ObjectContextQuaternaryHandleOffset);
-    ResourceHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
-                      (*(uint8_t **)(*ValidationContext + 8),CommandParameters,4);
-    if ((int)ResourceHash != 0) {
-      return ResourceHash;
+    ResourceCommandParameters[0] = *(uint32_t *)(ObjectContext + ObjectContextQuaternaryHandleOffset);
+    ResourceValidationHash = (**(code **)**(uint8_t **)(*ValidationContext + 8))
+                      (*(uint8_t **)(*ValidationContext + 8),ResourceCommandParameters,4);
+    if ((int)ResourceValidationHash != 0) {
+      return ResourceValidationHash;
     }
   }
   else {
