@@ -36939,7 +36939,7 @@ DataManagerCheck:
  * @param ConfigurationFlag 配置标志，控制配置行为
  * @return 配置后的系统资源指针
  * 
- 05cdb0：ConfigureSystemResourceMemoryAllocator
+ ConfigureSystemResourceMemoryAllocator
  */
 void* *
 ConfigureSystemResourceMemoryAllocator(void* *SystemResourceManager,ulong long ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
@@ -37037,7 +37037,7 @@ void* * InitializeResourceContext(void* *SystemResourceManager,void* *Configurat
  * @param SystemResourceManager 系统资源指针，包含互斥锁和状态信息
  * @return 系统资源状态值
  * 
- 05cf50：GetSystemResourceStatus
+ GetSystemResourceStatus
  */
 uint32_t GetSystemResourceStatus(long long SystemResourceManager)
 
