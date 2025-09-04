@@ -89021,7 +89021,11 @@ void Unwind_18090dec0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090df00(void)
+/**
+ * 销毁互斥锁资源
+ * 用于在异常处理过程中销毁互斥锁资源
+ */
+void DestroyMutexResourceInPlace(void)
 
 {
   MutexDestroyInPlace();
