@@ -2156,15 +2156,15 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
 NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64_t *PacketData)
 {
   // 数据包处理状态变量
-  NetworkHandle ProcessingResult;                        // 数据包处理结果，存储整个处理流程的最终状态
+  NetworkHandle PacketValidationResult;                        // 数据包验证结果，存储整个处理流程的最终状态
   NetworkStatus ConnectionStatusArray [6];                      // 连接状态数组，存储连接的各级状态信息
   NetworkStatus ValidationStatusArray [4];                 // 数据包验证状态数组，存储验证过程中的状态信息
   NetworkStatus ProcessingStatusArray [4];                 // 数据包处理状态数组，存储处理过程中的状态信息
-  NetworkHandle PacketProcessingStatus;                    // 数据包处理状态，用于存储各个验证步骤的结果
+  NetworkHandle IntermediateProcessingResult;                    // 中间处理结果，用于存储各个验证步骤的结果
   
   // 初始化处理结果
-  ProcessingResult = 0;
-  PacketProcessingStatus = 0;
+  PacketValidationResult = 0;
+  IntermediateProcessingResult = 0;
   
   // 根据数据包大小选择不同的处理路径
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
