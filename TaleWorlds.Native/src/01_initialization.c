@@ -22988,7 +22988,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
 
 
 void* *
-InitializeStringBufferWithBackup(void* *StringBuffer,long long StringLength,void* ReservedParam3,void* ReservedParam4)
+CreateStringBufferWithBackup(void* *StringBuffer, long long StringLength, void* ReservedParam3, void* ReservedParam4)
 
 {
   long long CharacterIndex;
