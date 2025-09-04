@@ -383,6 +383,14 @@ int VerifySystemConfiguration(long long ConfigurationFlags, void* ConfigurationC
  * 
  * @return 系统状态标志，返回当前系统的状态标志位
  */
+/**
+ * @brief 获取系统状态标志
+ * 
+ * 获取系统状态标志，用于系统状态的监控和管理。
+ * 返回系统当前的状态信息。
+ * 
+ * @return 系统状态标志
+ */
 long long RetrieveSystemStatusFlags(void);
 
 /**
@@ -443,6 +451,15 @@ void RefreshSystemData(void* DataPointer);
  * @param MemoryContext 内存上下文指针
  * @return 验证结果状态码，返回0表示成功，非0表示失败
  */
+/**
+ * @brief 验证系统内存分配
+ * 
+ * 验证系统内存分配的有效性和完整性。
+ * 用于系统内存分配的验证和检查。
+ * 
+ * @param MemoryContext 内存上下文，包含内存分配的相关信息
+ * @return 验证结果，成功返回非零值，失败返回0
+ */
 char VerifySystemMemoryAllocation(void* MemoryContext);
 
 /**
@@ -489,6 +506,15 @@ void ReleaseSystemMemoryAllocation(void* MemoryContext);
  * @param MemoryContext 内存上下文指针
  * @return 检查结果状态码
  */
+/**
+ * @brief 检查系统内存状态
+ * 
+ * 检查系统内存的状态和可用性。
+ * 用于系统内存状态的监控和管理。
+ * 
+ * @param MemoryContext 内存上下文，包含内存状态的相关信息
+ * @return 内存状态，成功返回非零值，失败返回0
+ */
 char CheckSystemMemoryStatus(void* MemoryContext);
 
 /**
@@ -523,6 +549,15 @@ void ProcessSystemDataTransfer(void* sourceContext, void* targetContext);
  * 
  * @param dataIndex 数据索引
  * @return 数据指针
+ */
+/**
+ * @brief 获取系统数据指针
+ * 
+ * 根据数据索引获取系统数据的指针。
+ * 用于系统数据的访问和管理。
+ * 
+ * @param dataIndex 数据索引，指定要获取的数据项
+ * @return 系统数据指针，返回指定数据的指针
  */
 void* GetSystemDataPointer(int dataIndex);
 
