@@ -79877,7 +79877,16 @@ void ExecuteExtendedSecondaryResourceDataValidation(uint8_t ObjectContext,int64_
 
 
 
-void Unwind_18090c060(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表遍历和回调（替代版本）
+ * 
+ * 该函数遍历资源表，并对每个有效的资源条目执行回调函数
+ * 与ExecuteResourceTableTraversalAndCallbacks功能相同，但处理逻辑略有不同
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceTableTraversalAndCallbacksAlternate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79899,7 +79908,18 @@ void Unwind_18090c060(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090c070(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统上下文资源数据传输
+ * 
+ * 该函数处理系统上下文资源数据的传输操作，包括清理选项和标志的处理
+ * 主要用于系统上下文资源数据的批量传输和清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteSystemContextResourceDataTransfer(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceDataTransfer(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
