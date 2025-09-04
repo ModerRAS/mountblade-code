@@ -28210,7 +28210,7 @@ ResourceFinalValidationLoop:
         ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto MemoryBoundaryCheckLoop4;
+          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto ResourceFinalValidationLoop;
           ValidationStatusCode = 0x11;
         }
       }
@@ -28674,7 +28674,7 @@ ContextValidationCheck:
     }
     else {
       if (ResourceContext[2] == 0) {
-MemoryBoundaryCheckLoop1:
+SecondaryResourceHashCalculationLoop:
         ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,CleanupOption);
       }
       else {
@@ -28717,7 +28717,7 @@ BoundaryCheckComplete:
     }
     else {
       if (ResourceContext[2] == 0) {
-MemoryBoundaryCheckLoop2:
+SecondaryResourceAccessValidationLoop:
         ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,CleanupOption);
       }
       else {
@@ -28760,7 +28760,7 @@ DataCheckComplete:
     }
     else {
       if (ResourceContext[2] == 0) {
-MemoryBoundaryCheckLoop3:
+SecondaryResourceIntegrityCheckLoop:
         ValidationStatusCode = CalculateResourceHash(*ResourceContext,SystemExecutionPointer + -0x49,ResourceDataAddressD,ResourceDataAddressD,CleanupOption);
       }
       else {
@@ -84343,8 +84343,18 @@ void Unwind_18090cce0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ccf0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 设置验证上下文系统数据结构指针（偏移量0xf8）
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的指定偏移量位置
+ * 用于初始化或重置系统数据结构的引用
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态和资源信息
+ * @return 无返回值
+ * @note 原始函数名：Unwind_18090ccf0
+ */
+void SetSystemDataStructurePointerToValidationContextOffsetF8(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + 0xf8) = &SystemDataStructure;
   return;
