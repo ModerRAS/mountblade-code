@@ -361,18 +361,18 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络错误处理常量
 #define NETWORK_ERROR_PROCESSOR_ENABLED_FLAG 0x01                 // 错误处理器启用
 #define NETWORK_ERROR_COUNT_RESET_VALUE 0x00                      // 错误计数重置
-#define REPORT_SIZE_11B 0x0B                        // 11字节报告大小
-#define REPORT_SIZE_13B 0x0D                        // 13字节报告大小
-#define REPORT_SIZE_15B 0x0F                        // 15字节报告大小
-#define REPORT_SIZE_12B 0x0C                        // 12字节报告大小
+#define NETWORK_REPORT_SIZE_11_BYTES 0x0B                        // 11字节报告大小
+#define NETWORK_REPORT_SIZE_13_BYTES 0x0D                        // 13字节报告大小
+#define NETWORK_REPORT_SIZE_15_BYTES 0x0F                        // 15字节报告大小
+#define NETWORK_REPORT_SIZE_12_BYTES 0x0C                        // 12字节报告大小
 
 // 网络连接状态常量
-#define PROCESSING_STATUS_ACTIVE 0x01                // 处理状态活跃
-#define CONNECTION_ID_MASK 0xFFFF                   // 连接ID掩码
-#define SECURITY_VALIDATION_PENDING 0x00            // 安全验证待处理
-#define SECURITY_VALIDATION_SUCCESS 0x01            // 安全验证成功
-#define VALIDATION_BASIC 0x01                       // 基本验证模式
-#define VALIDATION_STRICT 0x02                      // 严格验证模式
+#define NETWORK_PROCESSING_STATUS_ACTIVE_FLAG 0x01                // 处理状态活跃
+#define NETWORK_CONNECTION_ID_MASK_VALUE 0xFFFF                   // 连接ID掩码
+#define NETWORK_SECURITY_VALIDATION_PENDING_VALUE 0x00            // 安全验证待处理
+#define NETWORK_SECURITY_VALIDATION_SUCCESS_VALUE 0x01            // 安全验证成功
+#define NETWORK_VALIDATION_BASIC_MODE 0x01                       // 基本验证模式
+#define NETWORK_VALIDATION_STRICT_MODE 0x02                      // 严格验证模式
 #define VALIDATION_DEFAULT 0x01                     // 默认验证模式
 #define DECODING_BASIC 0x01                         // 基本解码模式
 #define DECODING_STRICT 0x02                        // 严格解码模式
