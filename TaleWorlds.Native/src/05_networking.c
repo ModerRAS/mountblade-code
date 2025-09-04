@@ -393,17 +393,17 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkDecodingBasicMode 0x01                         // 基本解码模式
 #define NetworkDecodingStrictMode 0x02                        // 严格解码模式
 #define NetworkDecodingDefaultMode 0x01                       // 默认解码模式
-#define NETWORK_MAGIC_VALID_FIRST_FLAG 0x01                       // 第一个魔数验证通过
-#define NETWORK_MAGIC_VALID_SECOND_FLAG 0x02                      // 第二个魔数验证通过
-#define NETWORK_MAGIC_VALID_BOTH_FLAG 0x03                        // 两个魔数都验证通过
-#define NETWORK_INTEGRITY_CHECK_PASS_FLAG 0x01                   // 完整性检查通过
-#define COMPLIANCE_CHECK_PASS 0x01                  // 合规检查通过
-#define HEADER_VALID_PASS 0x01                      // 头部验证通过
-#define CONTEXT_PROCESS_PASS 0x01                    // 上下文处理通过
-#define FINALIZATION_PASS 0x01                      // 完成处理通过
-#define BUFFER_CLEANUP_PASS 0x01                    // 缓冲区清理通过
-#define DATA_VALID_PASS 0x01                        // 数据验证通过
-#define NULL_POINTER 0x0                            // 空指针
+#define NetworkMagicValidFirstFlag 0x01                       // 第一个魔数验证通过
+#define NetworkMagicValidSecondFlag 0x02                      // 第二个魔数验证通过
+#define NetworkMagicValidBothFlag 0x03                        // 两个魔数都验证通过
+#define NetworkIntegrityCheckPassFlag 0x01                   // 完整性检查通过
+#define ComplianceCheckPass 0x01                  // 合规检查通过
+#define HeaderValidPass 0x01                      // 头部验证通过
+#define ContextProcessPass 0x01                    // 上下文处理通过
+#define FinalizationPass 0x01                      // 完成处理通过
+#define BufferCleanupPass 0x01                    // 缓冲区清理通过
+#define DataValidPass 0x01                        // 数据验证通过
+#define NullPointer 0x0                            // 空指针
 
 // 网络系统函数声明
 
