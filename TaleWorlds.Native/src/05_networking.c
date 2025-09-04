@@ -2075,10 +2075,12 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
  */
 NetworkHandle ValidateNetworkConnectionPacket(int64_t ConnectionContext, NetworkHandle *PacketData)
 {
-  NetworkHandle PacketValidationStatusCode;                     // 数据包验证状态码
-  NetworkByte ConnectionSecurityBuffer [32];            // 连接安全验证缓冲区
-  NetworkByte ConnectionEncryptionBuffer [32];                     // 连接加密缓冲区
+  // 连接包验证状态变量
+  NetworkHandle PacketValidationStatusCode;                     // 数据包验证状态码，存储验证过程的最终结果
+  NetworkByte ConnectionSecurityBuffer [32];            // 连接安全验证缓冲区，用于存储安全验证过程中的临时数据
+  NetworkByte ConnectionEncryptionBuffer [32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
   
+  // 第一层验证：使用活跃连接魔数进行解码验证
   PacketValidationStatusCode = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
   if (((int)PacketValidationStatusCode == 0) &&
      (PacketValidationStatusCode = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)PacketValidationStatusCode == 0)) {
@@ -2115,10 +2117,12 @@ NetworkHandle ValidateNetworkConnectionPacket(int64_t ConnectionContext, Network
  */
 NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
-  NetworkHandle PacketProcessingResult;                    // 数据包处理结果
-  NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区
+  // 数据包处理变量
+  NetworkHandle PacketProcessingResult;                    // 数据包处理结果，存储处理流程的最终状态
+  NetworkByte DecodedDataStreamBuffer [32];             // 已解码数据流缓冲区，用于存储解码后的数据流信息
   
   // 根据数据包状态选择不同的处理路径
+  // 检查第三级状态是否在限制范围内，以确定处理策略
   if (*(uint *)(PacketData + NetworkPacketStatusTertiaryOffset) < NetworkPacketStatusLimit) {
     // 处理状态限制内的数据包
     PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicTnvel);
