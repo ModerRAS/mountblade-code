@@ -62325,7 +62325,7 @@ void ExecuteResourceCleanupAndHandleClose(uint8_t ObjectContext,int64_t Validati
  * @param ObjectContext 对象上下文
  * @param ValidationContext 验证上下文
  */
-void SetSystemDataStructurePointerToOffsetB0(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructurePointerToSecondaryOffset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0xb0) = &SystemDataStructure;
