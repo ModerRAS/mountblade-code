@@ -92048,7 +92048,14 @@ void ReleaseResourceReferenceAndCallManager(void)
 
 
 
-void Unwind_18090e820(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x210的内存操作和数据访问
+ * 该函数验证系统标志，处理资源表指针，执行内存操作，并处理数据访问
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e820
+ */
+void ProcessResourceTableAtIndex210(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -92109,7 +92116,14 @@ void DecrementResourceReferenceAndCallManager(void)
 
 
 
-void Unwind_18090e840(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x270的内存操作和数据访问
+ * 该函数验证系统标志，处理资源表指针，执行内存操作，并处理数据访问
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e840
+ */
+void ProcessResourceTableAtIndex270(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -92170,7 +92184,14 @@ void DecrementResourceReferenceAndCallManagerV2(void)
 
 
 
-void Unwind_18090e860(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x2d0的内存操作和数据访问
+ * 该函数验证系统标志，处理资源表指针，执行内存操作，并处理数据访问
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e860
+ */
+void ProcessResourceTableAtIndex2D0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -92230,7 +92251,14 @@ void DecrementResourceReferenceAndCallManagerV3(void)
 
 
 
-void Unwind_18090e880(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x330的内存操作和数据访问
+ * 该函数验证系统标志，处理资源表指针，执行内存操作，并处理数据访问
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e880
+ */
+void ProcessResourceTableAtIndex330(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 800) = &SystemDataStructure;
@@ -92255,7 +92283,14 @@ void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationConte
 
 
 
-void Unwind_18090e8a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x390的内存操作和数据访问
+ * 该函数验证系统标志，处理资源表指针，执行内存操作，并处理数据访问
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e8a0
+ */
+void ProcessResourceTableAtIndex390(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x218) = &SystemDataStructure;
@@ -92280,7 +92315,14 @@ void SetSystemDataStructurePointerAtOffset288(uint8_t ObjectContext,int64_t Vali
 
 
 
-void Unwind_18090e8c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x3f0的内存操作和数据访问
+ * 该函数验证系统标志，处理资源表指针，执行内存操作，并处理数据访问
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090e8c0
+ */
+void ProcessResourceTableAtIndex3F0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ResourceContextExtendedOffset) = &SystemDataStructure;
@@ -94955,7 +94997,14 @@ void Unwind_18090f450(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f470(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x428的资源清理操作
+ * 该函数从验证上下文偏移0x428处获取资源上下文，并执行资源清理操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090f470
+ */
+void ProcessResourceCleanupAtOffset428(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94969,7 +95018,14 @@ void Unwind_18090f470(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f490(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x430的资源清理操作
+ * 该函数从验证上下文偏移0x430处获取资源上下文，并执行资源清理操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090f490
+ */
+void ProcessResourceCleanupAtOffset430(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94983,7 +95039,14 @@ void Unwind_18090f490(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f4b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x438的资源清理操作
+ * 该函数从验证上下文偏移0x438处获取资源上下文，并执行资源清理操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090f4b0
+ */
+void ProcessResourceCleanupAtOffset438(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94997,7 +95060,14 @@ void Unwind_18090f4b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f4d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x440的资源清理操作
+ * 该函数从验证上下文偏移0x440处获取资源上下文，并执行资源清理操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090f4d0
+ */
+void ProcessResourceCleanupAtOffset440(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -95039,7 +95109,14 @@ void Unwind_18090f510(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f530(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源表索引为0x458的资源清理操作
+ * 该函数从验证上下文偏移0x458处获取资源上下文，并执行资源清理操作
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090f530
+ */
+void ProcessResourceCleanupAtOffset458(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
