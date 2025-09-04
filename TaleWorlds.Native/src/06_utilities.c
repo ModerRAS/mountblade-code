@@ -110177,7 +110177,7 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SystemResourceValidationErrorOffsetExtended 0xe0
 #define SystemResourceValidationErrorOffsetFinal 0xf8
 #define SystemResourceExtendedValidationErrorCode 0x928c9d
-#define SystemRegisterContextValidationShift SystemResourceValidationErrorOffset0x38
+#define SystemRegisterContextValidationShift 0x38
 
 // 对象虚拟方法表偏移量常量
 #define ObjectVirtualMethodTableOffset 0x2f0
