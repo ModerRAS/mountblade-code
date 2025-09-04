@@ -12645,13 +12645,13 @@ HashValueHandler:
  * 该函数是ProcessParameterizedDataValidationAndOperation的扩展版本
  * 提供了更多的参数控制和处理选项
  * 
- * @param extendedContext 扩展上下文参数，包含更多的上下文信息
- * @param contextFlags 上下文标志，用于控制处理流程
- * @param operationIndex 操作索引，指定要执行的具体操作
- * @param hashValue 哈希值，用于数据查找和验证
+ * @param ExtendedContext 扩展上下文参数，包含更多的上下文信息
+ * @param ContextFlags 上下文标志，用于控制处理流程
+ * @param OperationIndex 操作索引，指定要执行的具体操作
+ * @param HashValue 哈希值，用于数据查找和验证
  * @return uint64_t 处理结果状态码
  */
-uint64_t ProcessExtendedParameterizedDataValidation(int64_t extendedContext, uint8_t contextFlags, int64_t operationIndex, uint hashValue)
+uint64_t ProcessExtendedParameterizedDataValidation(int64_t ExtendedContext, uint8_t ContextFlags, int64_t OperationIndex, uint HashValue)
 
 {
   int64_t LoopCounter;
