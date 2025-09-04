@@ -4720,105 +4720,105 @@ void CheckSystemFlags(void)
  */
 uint8_t ValidateObjectRegistrationStatus(int64_t ObjectContext)
 {
-  int64_t RegistrationData;
+  int64_t ObjectRegistrationData;
   int64_t RegistrationHandle;
-  uint8_t ValidationStatusCode;
-  uint8_t StatusResult;
+  uint8_t ValidationStatus;
+  uint8_t ObjectStatusResult;
   int64_t *RegistrationEntryArray;
   int RegistrationArraySize;
-  uint64_t RegistrationIterator;
-  int ExpandedRegistrationArraySize;
-  uint64_t CurrentRegistrationIndex;
-  int64_t *RegistrationBasePointer;
-  int64_t RegistrationStackPointer;
-  char SystemObjectNameBuffer[16];
-  int RegistrationIndex;
-  int CalculatedRegistrationEntrySize;
-  int RegistrationCount;
-  int FinalRegistrationSize;
+  uint64_t RegistrationSearchIndex;
+  int ExpandedRegistrationCapacity;
+  uint64_t CurrentRegistrationPosition;
+  int64_t *RegistrationArrayBasePointer;
+  int64_t RegistrationContextPointer;
+  char ObjectNameBuffer[16];
+  int RegistrationEntryIndex;
+  int RegistrationEntrySize;
+  int TotalRegistrationCount;
+  int NewRegistrationCapacity;
   
   // 获取注册上下文数据
-  ValidationStatusCode = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationStackPointer);
-  if ((int)ValidationStatusCode != 0) {
-    return ValidationStatusCode;
+  ValidationStatus = GetRegistrationContextData(*(uint32_t *)(ObjectContext + ObjectContextOffset), &RegistrationContextPointer);
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
   
   // 验证注册句柄
-  RegistrationHandle = *(int64_t *)(RegistrationStackPointer + RegistrationHandleSecondaryOffset);
-  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + RegistrationHandleOffset) != RegistrationStackPointer)) {
+  RegistrationHandle = *(int64_t *)(RegistrationContextPointer + RegistrationHandleSecondaryOffset);
+  if ((RegistrationHandle == 0) || (*(int64_t *)(RegistrationHandle + RegistrationHandleOffset) != RegistrationContextPointer)) {
     return ErrorInvalidObjectHandle;
   }
   
   // 获取注册数据
-  RegistrationData = *(int64_t *)(RegistrationHandle + RegistrationDataOffset);
-  if (RegistrationData == 0) {
+  ObjectRegistrationData = *(int64_t *)(RegistrationHandle + RegistrationDataOffset);
+  if (ObjectRegistrationData == 0) {
     return ErrorInvalidRegistrationData;
   }
   
   // 检查注册状态
   if (*(int *)(RegistrationHandle + RegistrationStatusOffset) == InvalidRegistrationStatus) {
     // 获取对象名称
-    ValidationStatusCode = GetRegisteredObjectName(RegistrationHandle, SystemObjectNameBuffer);
-    if ((int)ValidationStatusCode != 0) {
-      return ValidationStatusCode;
+    ValidationStatus = GetRegisteredObjectName(RegistrationHandle, ObjectNameBuffer);
+    if ((int)ValidationStatus != 0) {
+      return ValidationStatus;
     }
     
     // 验证对象状态
-    StatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
-    if ((int)StatusResult != 0) {
-      return StatusResult;
+    ObjectStatusResult = VerifyObjectRegistrationStatus(RegistrationHandle);
+    if ((int)ObjectStatusResult != 0) {
+      return ObjectStatusResult;
     }
     
     // 验证状态一致性
-    if ((char)ValidationStatusCode == (char)StatusResult) {
-      if (SystemObjectNameBuffer[0] == (char)StatusResult) {
+    if ((char)ValidationStatus == (char)ObjectStatusResult) {
+      if (ObjectNameBuffer[0] == (char)ObjectStatusResult) {
         // 搜索现有注册项
-        RegistrationBasePointer = (int64_t *)(RegistrationData + RegistrationArrayOffset);
-        RegistrationIterator = 0;
-        RegistrationArraySize = *(int *)(RegistrationData + RegistrationSizeOffset);
+        RegistrationArrayBasePointer = (int64_t *)(ObjectRegistrationData + RegistrationArrayOffset);
+        RegistrationSearchIndex = 0;
+        RegistrationArraySize = *(int *)(ObjectRegistrationData + RegistrationSizeOffset);
         if (0 < RegistrationArraySize) {
-          RegistrationEntryArray = (int64_t *)*RegistrationBasePointer;
-          CurrentRegistrationIndex = RegistrationIterator;
+          RegistrationEntryArray = (int64_t *)*RegistrationArrayBasePointer;
+          CurrentRegistrationPosition = RegistrationSearchIndex;
           do {
             if (*RegistrationEntryArray == RegistrationHandle) {
-              if (-1 < (int)CurrentRegistrationIndex) {
+              if (-1 < (int)CurrentRegistrationPosition) {
                 return 0;
               }
               break;
             }
-            CurrentRegistrationIndex = (uint64_t)((int)CurrentRegistrationIndex + 1);
-            RegistrationIterator++;
+            CurrentRegistrationPosition = (uint64_t)((int)CurrentRegistrationPosition + 1);
+            RegistrationSearchIndex++;
             RegistrationEntryArray++;
-          } while ((int64_t)RegistrationIterator < (int64_t)RegistrationArraySize);
+          } while ((int64_t)RegistrationSearchIndex < (int64_t)RegistrationArraySize);
         }
         
         // 检查是否需要扩容
-        RegistrationCount++;
-        if (*(int *)(RegistrationData + RegistrationCapacityOffset) < RegistrationCount) {
+        TotalRegistrationCount++;
+        if (*(int *)(ObjectRegistrationData + RegistrationCapacityOffset) < TotalRegistrationCount) {
           // 计算新的容量大小
-          ExpandedRegistrationArraySize = (int)((float)*(int *)(RegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
-          FinalRegistrationSize = RegistrationCount;
-          if (RegistrationCount <= ExpandedRegistrationArraySize) {
-            FinalRegistrationSize = ExpandedRegistrationArraySize;
+          ExpandedRegistrationCapacity = (int)((float)*(int *)(ObjectRegistrationData + RegistrationCapacityOffset) * RegistrationArrayGrowthFactor);
+          NewRegistrationCapacity = TotalRegistrationCount;
+          if (TotalRegistrationCount <= ExpandedRegistrationCapacity) {
+            NewRegistrationCapacity = ExpandedRegistrationCapacity;
           }
-          if (FinalRegistrationSize < RegistrationArrayInitialSize) {
-            ExpandedRegistrationArraySize = RegistrationArrayInitialSize;
+          if (NewRegistrationCapacity < RegistrationArrayInitialSize) {
+            ExpandedRegistrationCapacity = RegistrationArrayInitialSize;
           }
-          else if (ExpandedRegistrationArraySize < RegistrationCount) {
-            ExpandedRegistrationArraySize = RegistrationCount;
+          else if (ExpandedRegistrationCapacity < TotalRegistrationCount) {
+            ExpandedRegistrationCapacity = TotalRegistrationCount;
           }
           
           // 执行数组扩容
-          RegistrationCount = ResizeRegistrationArray(RegistrationBasePointer, ExpandedRegistrationArraySize);
-          if (RegistrationCount != 0) {
+          TotalRegistrationCount = ResizeRegistrationArray(RegistrationArrayBasePointer, ExpandedRegistrationCapacity);
+          if (TotalRegistrationCount != 0) {
             return 0;
           }
         }
         
         // 添加新的注册项
-        *(int64_t *)(*RegistrationBasePointer + (int64_t)*(int *)(RegistrationData + RegistrationSizeOffset) * 8) = RegistrationHandle;
-        (*(int *)(RegistrationData + RegistrationSizeOffset))++;
-        (*(int *)(RegistrationData + RegistrationCountOffset))++;
+        *(int64_t *)(*RegistrationArrayBasePointer + (int64_t)*(int *)(ObjectRegistrationData + RegistrationSizeOffset) * 8) = RegistrationHandle;
+        (*(int *)(ObjectRegistrationData + RegistrationSizeOffset))++;
+        (*(int *)(ObjectRegistrationData + RegistrationCountOffset))++;
       }
       else {
         // 验证对象注册数据
