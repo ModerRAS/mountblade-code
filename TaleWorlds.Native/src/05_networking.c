@@ -2021,12 +2021,12 @@ PrimaryNetworkProcessingComplete:
           NetworkStatus TimeoutStatus = ContextStatusPointer[NetworkStatusTimeoutIndex];
           NetworkStatus SecondaryStatus = ContextStatusPointer[NetworkStatusSecondaryIndex];
           *NetworkConnectionStatusBuffer = *ContextStatusPointer;
-          NetworkStatusBuffer[NetworkStatusValidationIndex] = ValidationStatus;
-          NetworkStatusBuffer[NetworkStatusTimeoutIndex] = TimeoutStatus;
-          NetworkStatusBuffer[NetworkStatusSecondaryIndex] = SecondaryStatus;
-          NetworkStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusBufferPointer) + -4 + (long long)(NetworkStatusBuffer + ConnectionContextStatusEntrySize));
+          NetworkConnectionStatusBuffer[NetworkStatusValidationIndex] = ValidationStatus;
+          NetworkConnectionStatusBuffer[NetworkStatusTimeoutIndex] = TimeoutStatus;
+          NetworkConnectionStatusBuffer[NetworkStatusSecondaryIndex] = SecondaryStatus;
+          NetworkConnectionStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusBufferPointer) + -4 + (long long)(NetworkConnectionStatusBuffer + ConnectionContextStatusEntrySize));
           StatusProcessingIterator = StatusProcessingIterator - 1;
-          NetworkStatusBuffer = NetworkStatusBuffer + ConnectionContextStatusEntrySize;
+          NetworkConnectionStatusBuffer = NetworkConnectionStatusBuffer + ConnectionContextStatusEntrySize;
         } while (StatusProcessingIterator != 0);
       }
 SecondaryNetworkProcessingComplete:

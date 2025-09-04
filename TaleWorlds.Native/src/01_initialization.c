@@ -33404,12 +33404,12 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   uint8_t *stackPointer16;
   uint32_t stackValue17;
   uint8_t SystemStackBuffer2 [16];
-  void* stackPointer17;
-  void* stackPointer18;
+  void* StackPointerSeventeenth;
+  void* StackPointerEighteenth;
   uint32_t stackValue18;
   uint32_t stackValue19;
   ulong long stackValue20;
-  void* stackPointer21;
+  void* StackPointerTwentyFirst;
   
   stackPointer21 = 0x180059023;
   allocatedMemory = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x270,8,3);
