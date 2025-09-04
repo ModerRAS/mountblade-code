@@ -3840,7 +3840,7 @@ void InitializeEventSystem(void)
   HashTableNodePointer[NodeIdentifier2Index] = DataComparisonTemplateFId2;
   HashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeM;
   HashTableNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
-  HashTableNodePointer[10] = EventCallbackPointer;
+  HashTableNodePointer[10] = EventSystemCallback;
   return;
 }
 
