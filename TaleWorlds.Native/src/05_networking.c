@@ -1447,8 +1447,8 @@ void ProcessNetworkPackets(void)
   NetworkConnectionTableSize = CONNECTION_POOL_SIZE;           // 设置连接表大小为256
   
   // 初始化连接管理
-  NetworkConnectionManager = 0x01;             // 初始化连接管理器
-  NetworkConnectionData = 0x01;                 // 初始化连接数据
+  NetworkConnectionManager = NetworkConnectionEstablished;             // 初始化连接管理器
+  NetworkConnectionData = NetworkConnectionEstablished;                 // 初始化连接数据
   NetworkConnectionSize = CONNECTION_SIZE_256B;                // 设置连接大小为256字节
   NetworkConnectionIndex = 0x00;               // 重置连接索引
   
