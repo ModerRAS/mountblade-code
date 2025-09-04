@@ -92365,24 +92365,38 @@ void ExecuteSystemHandleCleanupCallback(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_18090e8e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源管理器初始化和清理
+ * 
+ * 该函数负责初始化系统资源管理器并执行清理操作。
+ * 它会检查系统上下文中的资源管理器状态，并执行相应的初始化和清理任务。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源管理过程中被调用
+ * @warning 如果资源上下文验证失败，会触发系统紧急退出
+ * 
+ * 原始函数名为Unwind_18090e8e0，现已重命名为ExecuteSystemResourceManagerInitialization
+ */
+void ExecuteSystemResourceManagerInitialization(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
   
-  LoopCounter = *(int64_t *)(ValidationContext + 0x28);
-  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
+  LoopCounter = *(int64_t *)(ValidationContext + SystemContextLoopCounterOffset);
+  if (*(int64_t **)(SystemContextPointer + SystemContextResourceManagerOffset) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + SystemContextResourceManagerOffset) + SystemContextCleanupFunctionOffset))();
   }
-  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  *(uint8_t *)(SystemContextPointer + SystemContextHandlerTemplateOffset) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = 0;
-  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
-  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
+  *(uint32_t *)(SystemContextPointer + SystemContextStatusOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + SystemContextHandlerTemplateOffset) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + SystemContextResourceManagerOffset) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + SystemContextResourceManagerOffset) + SystemContextCleanupFunctionOffset))();
   }
   return;
 }
@@ -92642,21 +92656,47 @@ void ProcessSystemContextAtIndex158(uint8_t ObjectContext, int64_t ValidationCon
 
 
 
-void Unwind_18090e990(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文系统句柄清理回调
+ * 
+ * 该函数负责执行验证上下文中系统句柄的清理回调操作。
+ * 它会检查验证上下文中指定偏移处的系统句柄，如果存在则执行其清理回调函数。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中被调用
+ * 
+ * 原始函数名为Unwind_18090e990，现已重命名为ExecuteValidationContextSystemHandleCleanupCallback
+ */
+void ExecuteValidationContextSystemHandleCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  if (*(int64_t **)(ValidationContext + 0x128) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(ValidationContext + 0x128) + 0x38))();
+  if (*(int64_t **)(ValidationContext + ValidationContextSystemHandleOffset) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(ValidationContext + ValidationContextSystemHandleOffset) + SystemContextCleanupFunctionOffset))();
   }
   return;
 }
 
 
 
-void Unwind_18090e9a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文系统数据结构指针
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构指针。
+ * 它会将系统数据结构的地址存储到验证上下文的指定偏移处。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统初始化过程中被调用
+ * 
+ * 原始函数名为Unwind_18090e9a0，现已重命名为SetValidationContextSystemDataStructurePointer
+ */
+void SetValidationContextSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  *(uint8_t **)(ValidationContext + 800) = &SystemDataStructure;
+  *(uint8_t **)(ValidationContext + ObjectVirtualMethodTableOffset) = &SystemDataStructure;
   return;
 }
 
@@ -99887,7 +99927,20 @@ void Unwind_180910ce0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180910d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理处理函数1
+ * 
+ * 该函数负责处理系统资源的清理操作，包括重置状态、清理数据结构
+ * 和执行错误处理。使用偏移量0x1cd0来定位回调函数。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180910d00
+ */
+void ExecuteSystemResourceCleanupHandler1(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -99915,7 +99968,20 @@ void Unwind_180910d00(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180910d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理处理函数2
+ * 
+ * 该函数负责处理系统资源的清理操作，包括重置状态、清理数据结构
+ * 和执行错误处理。使用偏移量0x1d40来定位回调函数。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180910d20
+ */
+void ExecuteSystemResourceCleanupHandler2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -99943,7 +100009,20 @@ void Unwind_180910d20(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180910d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理处理函数3
+ * 
+ * 该函数负责处理系统资源的清理操作，包括重置状态、清理数据结构
+ * 和执行错误处理。使用偏移量0x1db0来定位回调函数。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180910d40
+ */
+void ExecuteSystemResourceCleanupHandler3(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -99971,7 +100050,20 @@ void Unwind_180910d40(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180910d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理处理函数4
+ * 
+ * 该函数负责处理系统资源的清理操作，包括重置状态、清理数据结构
+ * 和执行错误处理。使用偏移量0x1e20来定位回调函数。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180910d60
+ */
+void ExecuteSystemResourceCleanupHandler4(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -99999,7 +100091,20 @@ void Unwind_180910d60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180910d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理处理函数5
+ * 
+ * 该函数负责处理系统资源的清理操作，包括重置状态、清理数据结构
+ * 和执行错误处理。使用偏移量ErrorInvalidResourceDataSecondaryFunctionOffset来定位回调函数。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180910d80
+ */
+void ExecuteSystemResourceCleanupHandler5(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
@@ -100027,7 +100132,20 @@ void Unwind_180910d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_180910da0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理处理函数6
+ * 
+ * 该函数负责处理系统资源的清理操作，包括重置状态、清理数据结构
+ * 和执行错误处理。使用偏移量ResourceValidationError00来定位回调函数。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180910da0
+ */
+void ExecuteSystemResourceCleanupHandler6(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
