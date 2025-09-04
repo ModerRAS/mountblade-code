@@ -1722,30 +1722,30 @@ uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓
  */
 void InitializeNetworkConnectionState(void)
 {
-  // 连接状态初始化变量
+  // 网络连接初始化变量
   uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
-  int32_t InitializationStatus;               // 初始化结果状态
+  int32_t NetworkInitializationStatus;               // 网络初始化结果状态
   int64_t SystemContextData;                      // 网络系统上下文数据
-  int32_t ConnectionId;                     // 连接标识符
-  uint32_t StateFlags;                    // 连接状态标志位
-  int32_t SessionId;                // 网络会话ID
+  int32_t ConnectionIdentifier;                     // 连接标识符
+  uint32_t ConnectionStateFlags;                    // 连接状态标志位
+  int32_t NetworkSessionId;                // 网络会话ID
   uint64_t *ConnectionStateData;                     // 连接状态数据指针
-  int64_t ContextDataPointer;                    // 网络上下文指针
+  int64_t NetworkContextDataPointer;                    // 网络上下文指针
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionId) + ConnectionStateBufferOffset);
+  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
-  if (*(int *)(*(int64_t *)(SystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == SessionId) {
+  if (*(int *)(*(int64_t *)(SystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkSessionId) {
     *ConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionId) + 8) = ((int)ConnectionStateBuffer - ConnectionId) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + 8) = ((int)ConnectionStateBuffer - ConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
-    InitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(ContextDataPointer + NetworkContextSystemOffset));
-    if (InitializationStatus == 0) {
-      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(StateFlags, ConnectionId) + ConnectionStateDataOffset);
+    NetworkInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextDataPointer + NetworkContextSystemOffset));
+    if (NetworkInitializationStatus == 0) {
+      *ConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateDataOffset);
     }
     CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
@@ -1763,15 +1763,15 @@ void InitializeNetworkConnectionState(void)
  */
 void ResetNetworkConnectionPointer(void)
 {
-  // 连接指针重置变量
+  // 网络连接指针重置变量
   uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
   int64_t NetworkContextData;                       // 网络上下文数据
   uint64_t *NetworkDataBuffer;                      // 网络数据缓冲区指针
   uint32_t ConnectionStateFlags;                    // 连接状态标志位
-  int32_t ConnectionId;                             // 连接标识符
+  int32_t ConnectionIdentifier;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionId) + ConnectionStateBufferOffset);
+  ConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionIdentifier) + ConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + ConnectionStateDataOffset);
@@ -1841,28 +1841,28 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
  */
 NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
-  // 连接请求处理变量
-  int64_t ConnectionContextId;              // 网络连接上下文标识符
-  int64_t *ConnectionValidationResult;          // 连接验证结果指针
-  int32_t ValidationStatusCode;               // 连接验证结果码
+  // 网络连接请求处理变量
+  int64_t NetworkConnectionContextId;              // 网络连接上下文标识符
+  int64_t *NetworkConnectionValidationResult;          // 网络连接验证结果指针
+  int32_t NetworkValidationStatusCode;               // 网络连接验证结果码
   
-  ConnectionContextId = 0;
-  ValidationStatusCode = 0;  // 初始化验证结果码
-  if (ValidationStatusCode == 0) {
-    if ((0 < *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset)) && (*ConnectionValidationResult != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationResult, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+  NetworkConnectionContextId = 0;
+  NetworkValidationStatusCode = 0;  // 初始化验证结果码
+  if (NetworkValidationStatusCode == 0) {
+    if ((0 < *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset)) && (*NetworkConnectionValidationResult != 0)) {
+        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationResult, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *ConnectionValidationResult = ConnectionContextId;
-    *(int *)((long long)ConnectionValidationResult + ConnectionParameterOffset) = ValidationStatusCode;
+    *NetworkConnectionValidationResult = NetworkConnectionContextId;
+    *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset) = NetworkValidationStatusCode;
     return 0;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
-    ConnectionContextId = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
-    if (ConnectionContextId != 0) {
-      if ((int)ConnectionValidationResult[1] != 0) {
-          memcpy(ConnectionContextId, *ConnectionValidationResult, (long long)(int)ConnectionValidationResult[1]);
+    NetworkConnectionContextId = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
+    if (NetworkConnectionContextId != 0) {
+      if ((int)NetworkConnectionValidationResult[1] != 0) {
+          memcpy(NetworkConnectionContextId, *NetworkConnectionValidationResult, (long long)(int)NetworkConnectionValidationResult[1]);
       }
-      return ConnectionContextId;
+      return NetworkConnectionContextId;
     }
   }
   return NetworkErrorConnectionFailed;
@@ -3120,34 +3120,34 @@ void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
 NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
-  // 数据包解码变量
-  uint32_t PacketValidationResult;                         // 数据包验证结果
-  uint32_t HeaderDecodingStatus;                           // 头部解码状态
-  uint32_t PayloadDecodingStatus;                          // 负载解码状态
+  // 网络数据包解码变量
+  uint32_t NetworkPacketValidationResult;                         // 网络数据包验证结果
+  uint32_t NetworkHeaderDecodingStatus;                           // 网络头部解码状态
+  uint32_t NetworkPayloadDecodingStatus;                          // 网络负载解码状态
   
   // 初始化解码状态
-  PacketValidationResult = NetworkValidationFailure;
-  HeaderDecodingStatus = NetworkValidationFailure;
-  PayloadDecodingStatus = NetworkValidationFailure;
+  NetworkPacketValidationResult = NetworkValidationFailure;
+  NetworkHeaderDecodingStatus = NetworkValidationFailure;
+  NetworkPayloadDecodingStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData && OutputBuffer) {
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      HeaderDecodingStatus = NetworkValidationSuccess;
+      NetworkHeaderDecodingStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicDebugMemory) {
-      PayloadDecodingStatus = NetworkValidationSuccess;
+      NetworkPayloadDecodingStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    PacketValidationResult = HeaderDecodingStatus & PayloadDecodingStatus;
+    NetworkPacketValidationResult = NetworkHeaderDecodingStatus & NetworkPayloadDecodingStatus;
     
     // 初始化输出缓冲区
-    if (PacketValidationResult == NetworkValidationSuccess) {
+    if (NetworkPacketValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[0] = (NetworkByte)DecodingMode;
       OutputBuffer[1] = (NetworkByte)PrimaryMagicNumber;
@@ -3155,7 +3155,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
   }
   
-  return PacketValidationResult;
+  return NetworkPacketValidationResult;
 }
 
 /**
@@ -3173,31 +3173,31 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
  */
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
-  // 头部处理变量
-  uint32_t HeaderValidationResult;                         // 头部验证结果
-  uint32_t ContextProcessingStatus;                        // 上下文处理状态
-  uint32_t HeaderFormatCheckResult;                       // 头部格式检查结果
+  // 网络数据包头部处理变量
+  uint32_t NetworkHeaderValidationResult;                         // 网络头部验证结果
+  uint32_t NetworkContextProcessingStatus;                        // 网络上下文处理状态
+  uint32_t NetworkHeaderFormatCheckResult;                       // 网络头部格式检查结果
   
   // 初始化处理状态
-  HeaderValidationResult = NetworkValidationFailure;
-  ContextProcessingStatus = NetworkValidationFailure;
-  HeaderFormatCheckResult = NetworkValidationFailure;
+  NetworkHeaderValidationResult = NetworkValidationFailure;
+  NetworkContextProcessingStatus = NetworkValidationFailure;
+  NetworkHeaderFormatCheckResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    HeaderValidationResult = NetworkValidationSuccess;
+    NetworkHeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    ContextProcessingStatus = NetworkValidationSuccess;
+    NetworkContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (HeaderValidationResult == NetworkValidationSuccess && 
-      ContextProcessingStatus == NetworkValidationSuccess) {
-    HeaderFormatCheckResult = NetworkValidationSuccess;
+  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
+      NetworkContextProcessingStatus == NetworkValidationSuccess) {
+    NetworkHeaderFormatCheckResult = NetworkValidationSuccess;
   }
   
-  return HeaderFormatCheckResult;
+  return NetworkHeaderFormatCheckResult;
 }
