@@ -25,6 +25,13 @@ typedef uint8_t NetworkDataByte;
  */
 typedef uint32_t NetworkResourceHandle;
 
+/**
+ * @brief 网络数据包处理器函数指针类型
+ * 
+ * 用于定义网络数据包处理函数的函数指针类型，提供统一的处理接口
+ */
+typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectionStatus*, int32_t);
+
 // =============================================================================
 // 网络系统常量定义
 // =============================================================================
