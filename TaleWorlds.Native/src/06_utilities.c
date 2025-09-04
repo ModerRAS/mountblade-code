@@ -137,7 +137,7 @@
 #define SecurityStackBufferSize 0x27                    // 安全栈缓冲区大小
 #define SystemRegisterContextIdentifierOffset 0x1d      // 系统寄存器上下文标识符偏移
 #define SystemResourceTableCallOffset 0x288             // 系统资源表调用偏移
-#define ResourceTableOffsetDenary 0x5c
+#define ResourceTableOffsetTenth 0x5c                          // 资源表第十个偏移量（Denary表示十进制，改为更直观的Tenth）
 #define ResourceTableSizeLimit 0x74
 #define ResourceTableHeaderValidationOffset 0x18
 
@@ -20011,7 +20011,7 @@ uint8_t ProcessResourceTablePointerEntry(int64_t ResourceContext, uint8_t *Resou
                         ResourceHash = 0;
                       }
                       else if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) == 0) {
-                        ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetDenary);
+                        ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetTenth);
                       }
                       else {
                         ResourceHash = ErrorInvalidObjectHandle;
