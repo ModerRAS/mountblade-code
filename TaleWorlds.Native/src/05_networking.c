@@ -419,7 +419,7 @@ uint32_t CompareNetworkConnectionTimestamps(int64_t *FirstTimestamp, int64_t *Se
  * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
  * @see ValidateNetworkConnectionPacket, ProcessNetworkConnectionPacket
  */
-NetworkHandle ProcessNetworkPacketData(int64_t *ConnectionContext, int32_t PacketData);
+NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData);
 
 /**
  * @brief 发送网络数据包
@@ -1823,12 +1823,12 @@ NetworkHandle SetupNetworkSystem(void)
  * @note 此函数会进行数据包验证、状态更新和连接管理
  * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
  */
-NetworkHandle ProcessNetworkPacketData(int64_t *ConnectionContext, int32_t PacketData)
+NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkConnectionStatus *NetworkConnectionContextArray;  // 网络连接上下文数据数组
-  NetworkConnectionStatus PacketProcessingResult;              // 数据包处理结果
-  NetworkConnectionStatus ConnectionValidationResult;          // 连接验证结果
+  NetworkConnectionStatus *ConnectionContextArray;  // 网络连接上下文数据数组
+  NetworkConnectionStatus PacketProcessingStatus;              // 数据包处理状态
+  NetworkConnectionStatus ConnectionValidationStatus;          // 连接验证状态
   
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[1]) {
@@ -1836,26 +1836,26 @@ NetworkHandle ProcessNetworkPacketData(int64_t *ConnectionContext, int32_t Packe
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *NetworkConnectionStatusBufferPointer = (NetworkConnectionStatus *)0x0;
+  NetworkConnectionStatus *ConnectionStatusBuffer = (NetworkConnectionStatus *)0x0;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      NetworkConnectionStatusBufferPointer = (NetworkConnectionStatus *)
+      ConnectionStatusBuffer = (NetworkConnectionStatus *)
                ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerHandle + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationData,
                              NetworkConnectionFinalizeValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (NetworkConnectionStatusBufferPointer != (NetworkConnectionStatus *)0x0) {
-        int32_t TotalConnectionsCount = (int)ConnectionContext[1];
-        int64_t ConnectionProcessingIndex = (long long)TotalConnectionsCount;
+      if (ConnectionStatusBuffer != (NetworkConnectionStatus *)0x0) {
+        int32_t ActiveConnectionsCount = (int)ConnectionContext[1];
+        int64_t ConnectionProcessingIndex = (long long)ActiveConnectionsCount;
         int64_t ConnectionBaseAddress = 0;  // 连接基地址
         
         // 如果有活跃连接，处理连接数据
-        if ((TotalConnectionsCount != 0) && (ConnectionBaseAddress = *ConnectionContext, 0 < TotalConnectionsCount)) {
-          NetworkConnectionStatus *NetworkConnectionStatusPointer = NetworkConnectionStatusBufferPointer;
+        if ((ActiveConnectionsCount != 0) && (ConnectionBaseAddress = *ConnectionContext, 0 < ActiveConnectionsCount)) {
+          NetworkConnectionStatus *ConnectionStatusPointer = ConnectionStatusBuffer;
           
           // 循环处理所有连接数据
           do {
