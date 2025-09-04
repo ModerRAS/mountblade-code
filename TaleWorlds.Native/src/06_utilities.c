@@ -11059,7 +11059,7 @@ int ProcessDataWithExtendedValidator(int64_t ObjectContext,int64_t ValidationCon
   int FinalStringProcessingResult = ProcessStringOperation(TotalProcessedBytes + ValidationContext,DataLength - TotalProcessedBytes,&StringProcessingTemplate);
   TotalProcessedBytes = TotalProcessedBytes + FinalStringProcessingResult;
   int ResourceFormatValidationResult = ValidateResourceFormat(TotalProcessedBytes + ValidationContext,DataLength - TotalProcessedBytes,*(uint8_t *)(ObjectContext + ObjectContextHandleDataOffset));
-  return ProcessedByteCount + ResourceValidationResult;
+  return TotalProcessedBytes + ResourceFormatValidationResult;
 }
 
 
