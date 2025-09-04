@@ -82315,7 +82315,14 @@ void SetSystemDataStructurePointerToOffset188(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090c6d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文中偏移量0x138处的资源清理回调函数
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090c6d0
+ */
+void ExecuteResourceCleanupCallbackAtOffset138(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0x138) != (int64_t *)0x0) {
