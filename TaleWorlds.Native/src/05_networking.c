@@ -811,6 +811,8 @@ uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引
 uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理器，连接池的管理器句柄
 uint32_t NetworkConnectionPoolCurrentIndex;              // 网络连接池当前索引，连接池当前使用的索引位置
 uint32_t NetworkConnectionPoolUsageStats;           // 网络连接池使用统计，连接池的使用统计信息
+uint32_t NetworkConnectionPoolPerformanceMetrics;    // 网络连接池性能指标，连接池的性能测量数据
+uint32_t NetworkConnectionPoolUsageStatistics;       // 网络连接池使用统计，连接池的使用统计信息
 
 uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
 uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑定状态，表示套接字是否已绑定到地址
@@ -1996,7 +1998,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   
   ConnectionStatusBufferPointer = (NetworkStatus *)0x0;
   if (ConnectionUpdateOperationCode == 0) {
-NetworkPrimaryProcessingLoopLabel:
+PrimaryConnectionProcessingComplete:
     if ((0 < *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset)) && (*ConnectionOperationBuffer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &NetworkSecurityValidationData, SecurityValidationBufferSize, 1);
     }
@@ -2027,7 +2029,7 @@ NetworkPrimaryProcessingLoopLabel:
           NetworkStatusBuffer = NetworkStatusBuffer + ConnectionContextStatusEntrySize;
         } while (StatusProcessingIterator != 0);
       }
-NetworkSecondaryProcessingLoopLabel:
+SecondaryConnectionProcessingComplete:
       // 网络处理循环完成，继续后续处理
       return 0;
     }
