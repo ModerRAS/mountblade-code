@@ -28137,14 +28137,14 @@ ResourceHashCalculationLoop:
         ValidationStatusCode = ErrorInvalidObjectHandle;
       }
       else if (ResourceTablePointerPointer[2] == 0) {
-MemoryBoundaryCheckLoop2:
+ResourceAccessValidationLoop:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,ResourceChecksumData,1,1,0);
       }
       else {
         ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto MemoryBoundaryCheckLoop2;
+          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto ResourceAccessValidationLoop;
           ValidationStatusCode = 0x11;
         }
       }
@@ -28171,14 +28171,14 @@ MemoryBoundaryCheckLoop2:
         ValidationStatusCode = ErrorInvalidObjectHandle;
       }
       else if (ResourceTablePointerPointer[2] == 0) {
-MemoryBoundaryCheckLoop3:
+ResourceIntegrityCheckLoop:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,ResourceChecksumData,1,1,0);
       }
       else {
         ResourceAccessCounter = 0;
         ValidationStatusCode = ValidateResourceAccess(*ResourceTablePointerPointer,&ValidationStackA4);
         if (ValidationStatusCode == 0) {
-          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto MemoryBoundaryCheckLoop3;
+          if ((uint64_t)ResourceAccessCounter + 1 <= (uint64_t)ResourceTablePointerPointer[2]) goto ResourceIntegrityCheckLoop;
           ValidationStatusCode = 0x11;
         }
       }
@@ -28203,7 +28203,7 @@ MemoryBoundaryCheckLoop3:
         ValidationStatusCode = ErrorInvalidObjectHandle;
       }
       else if (ResourceTablePointerPointer[2] == 0) {
-MemoryBoundaryCheckLoop4:
+ResourceFinalValidationLoop:
         ValidationStatusCode = CalculateResourceHash(*ResourceTablePointerPointer,ResourceChecksumData,1,1,0);
       }
       else {
