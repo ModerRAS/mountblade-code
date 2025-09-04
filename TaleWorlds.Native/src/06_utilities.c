@@ -100173,7 +100173,20 @@ void ExecuteSystemResourceCleanupHandler6(uint8_t ObjectContext, int64_t Validat
 
 
 
-void Unwind_180910dc0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理处理函数7
+ * 
+ * 该函数负责处理系统资源的清理操作，包括重置状态、清理数据结构
+ * 和执行错误处理。使用偏移量ResourceValidationError70来定位回调函数。
+ * 
+ * @param ObjectContext 对象上下文，用于标识操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的信息
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180910dc0
+ */
+void ExecuteSystemResourceCleanupHandler7(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   int64_t LoopCounter;
