@@ -5200,11 +5200,12 @@ uint8_t ReleaseCurrentObjectHandle(void) {
 /**
  * @brief 验证字符输入
  * 
- * 该函数用于验证输入字符的有效性，如果字符不为空则触发系统退出
- * 主要用于系统安全检查，防止无效字符输入
+ * 该函数用于验证输入的字符是否有效，如果输入的字符不是空字符，
+ * 则执行系统退出操作以确保系统安全
  * 
  * @param CharacterToValidate 要验证的字符
  * @return uint8_t 验证结果，0表示成功，非0表示失败
+ * @note 此函数主要用于系统安全检查，防止无效字符输入
  */
 uint8_t ValidateCharacterInput(char CharacterToValidate) {
   // 检查字符是否为空字符，如果不是则执行系统退出操作
@@ -5307,14 +5308,6 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * 
  * @return void 无返回值
  * @note 此函数会立即终止当前进程的执行
- */
-/**
- * @brief 触发系统异常
- * 
- * 该函数用于触发系统异常处理流程
- * 执行系统退出操作以进入异常处理状态
- * 
- * @return 无返回值
  */
 void RaiseSystemException(void) {
   // 执行系统退出操作，触发异常处理流程
@@ -6126,14 +6119,14 @@ void TerminateSystem(void) {
 }
 
 /**
- * @brief 执行无操作
+ * @brief 执行系统无操作
  * 
- * 该函数用于执行空操作，主要用于系统流程中的占位操作。
+ * 该函数用于执行系统级别的空操作，主要用于系统流程中的占位操作。
  * 在某些需要函数指针但不能执行实际操作的场景中使用。
  * 
  * @return void 无返回值
  */
-void ExecuteNullOperation(void) {
+void ExecuteSystemNullOperation(void) {
   return;
 }
 

@@ -27847,7 +27847,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
       InterpolationFactor2 = (float)exp2f();
       InterpolationFactor3 = (float)exp2f();
       InterpolationFactor4 = (float)exp2f();
-      SystemDataValue2 = (1.0 - calculationResult1) * SystemDataValue2 + calculationResult1 * ConfigurationDataPointer;
+      SystemDataValueSecondary = (1.0 - calculationResult1) * SystemDataValueSecondary + calculationResult1 * ConfigurationDataPointer;
       calculationResult2 = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
       if (*(float *)(SystemGlobalStatusFlags + 0x1f8) <= (float)*(int *)(SystemNodeManagerPointer + 0x21b0)) {
         calculationResult2 = *(float *)(SystemGlobalStatusFlags + 0x1f8);
@@ -27860,13 +27860,13 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
       if (calculationResult2 <= (float)((int)InterpolationFactor5 + -1)) {
         scaleFactorY = calculationResult2;
       }
-      if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValue3) &&
-         (CheckSystemDataAvailability(&SystemDataValue3), SystemDataValue3 == -1)) {
-        SystemDataValue4 = scaleFactorY;
-        InitializeSystemDataPointer(&SystemDataValue3);
+      if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValueTertiary) &&
+         (CheckSystemDataAvailability(&SystemDataValueTertiary), SystemDataValueTertiary == -1)) {
+        SystemDataValueQuaternary = scaleFactorY;
+        InitializeSystemDataPointer(&SystemDataValueTertiary);
       }
-      SystemDataValue4 = (1.0 - calculationResult1) * SystemDataValue4 + scaleFactorY * calculationResult1;
-      InterpolationFactorZ = ((float)(int)((SystemDataValue2 / SystemDataValue4) / InterpolationFactorY) * InterpolationFactorY - 1.0) * InterpolationFactorZ *
+      SystemDataValueQuaternary = (1.0 - calculationResult1) * SystemDataValueQuaternary + scaleFactorY * calculationResult1;
+      InterpolationFactorZ = ((float)(int)((SystemDataValueSecondary / SystemDataValueQuaternary) / InterpolationFactorY) * InterpolationFactorY - 1.0) * InterpolationFactorZ *
                InterpolationFactorA + InterpolationFactorZ;
       if (InterpolationFactorZ <= InterpolationFactorX) {
         InterpolationFactorZ = InterpolationFactorX;
@@ -27881,7 +27881,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
       *(float *)(SystemResourceManager + 0x238) = InterpolationFactorX;
       ThreadCreationFlags = log2f();
       *(uint32_t *)(SystemResourceManager + 0x248) = ThreadCreationFlags;
-      *(float *)(SystemResourceManager + 0x250) = SystemDataValue2;
+      *(float *)(SystemResourceManager + 0x250) = SystemDataValueSecondary;
       SystemAllocationFlags = SystemRenderManagerPointer;
       *(uint8_t *)(SystemRenderManagerPointer + 0x162b) = 1;
       SystemMemoryPointer = SystemNodeManagerPointer;
