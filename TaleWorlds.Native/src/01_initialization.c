@@ -925,7 +925,7 @@ void* SystemMemoryRegionTwoHundredThree;
 void* SystemMemoryRegionTwoHundredFour;
 void* SystemMemoryRegionTwoHundredFive;
 void* SystemMemoryRegionExtendedTwoHundredSix;
-char SystemStatusFlagEighth;
+char SystemEighthStatusIndicator;
 void* SystemMemoryRegionExtendedTwoHundredSeven;
 void* SystemMemoryRegionExtendedTwoHundredEight;
 void* SystemDataTableEntryTwelfth;
