@@ -87486,7 +87486,13 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset490Variant(uint8_t ObjectC
 
 
 
-void Unwind_18090d3c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源引用并处理哈希状态（偏移0x4b0）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d3c0
+ */
+void ReleaseResourceReferenceAndHandleHashStatusOffset4b0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
