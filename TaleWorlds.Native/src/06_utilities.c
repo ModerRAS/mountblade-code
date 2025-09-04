@@ -5797,10 +5797,10 @@ uint8_t InitializeObjectHandleExtended(int64_t ObjectContext)
   uint8_t ResourceHash;
   int32_t *SystemValidationCodePointer;
   uint32_t *ResourceDataAddress;
-  uint LoopCounter;
-  uint64_t ContextOffset;
-  int64_t StackBuffer;
-  uint64_t ResourceIndex;
+  uint IterationCounter;
+  uint64_t ContextDataOffset;
+  int64_t TemporaryStackBuffer;
+  uint64_t CurrentResourceIndex;
   int64_t ObjectContextValidation;
   int64_t ResourceValidationContext;
   
