@@ -30532,7 +30532,7 @@ void ProcessSenaryContextException(uint8_t ExceptionContext, int64_t SystemConte
  * @param exceptionHandlerType 异常处理器类型
  * @param ExceptionContext 异常上下文指针
  */
-void UnlockMutexAndHandleException(uint8_t exceptionHandlerType, int64_t ExceptionContext)
+void UnlockMutexAndHandleException(uint8_t ExceptionHandlerType, int64_t ExceptionContext)
 
 {
   int UnlockResult;
@@ -30560,7 +30560,7 @@ void UnlockMutexAndHandleException(uint8_t exceptionHandlerType, int64_t Excepti
  * @note 此函数是异常处理链的一部分
  * @note 如果解锁失败，会抛出C标准错误
  */
-void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_t ExceptionContext)
+void UnlockResourceHandleAndHandleException(uint8_t ExceptionHandlerType, int64_t ExceptionContext)
 
 {
   int UnlockResult;
@@ -30584,7 +30584,7 @@ void UnlockResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_
  * @param exceptionHandlerType 异常处理器类型
  * @param ExceptionContext 异常上下文指针
  */
-void CleanupResourceHashValidationResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
+void CleanupResourceHashValidationResources(uint8_t ExceptionHandlerType, int64_t ExceptionContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -30637,7 +30637,7 @@ void CleanupResourceHashValidationResources(uint8_t exceptionHandlerType, int64_
  * @note 此函数与UnlockResourceHandleAndHandleException类似，但操作不同的资源句柄
  * @note 此函数访问偏移量0x88处的资源句柄
  */
-void UnlockSecondaryResourceHandleAndHandleException(uint8_t exceptionHandlerType, int64_t ExceptionContext)
+void UnlockSecondaryResourceHandleAndHandleException(uint8_t ExceptionHandlerType, int64_t ExceptionContext)
 
 {
   int UnlockResult;
@@ -30664,7 +30664,7 @@ void UnlockSecondaryResourceHandleAndHandleException(uint8_t exceptionHandlerTyp
  * @note 此函数通过两层间接寻址访问验证结果
  * @note 首先从ExceptionContext+0x20获取结构体指针，然后从该指针+0x218处获取验证结果
  */
-void CleanupNestedResourceHashStatusResources(uint8_t exceptionHandlerType, int64_t ExceptionContext)
+void CleanupNestedResourceHashStatusResources(uint8_t ExceptionHandlerType, int64_t ExceptionContext)
 
 {
   int32_t *ObjectReferenceCountPointer;
@@ -30672,12 +30672,12 @@ void CleanupNestedResourceHashStatusResources(uint8_t exceptionHandlerType, int6
   int64_t ResourceIndex;
   uint64_t ResourceBase;
   
-  ValidationStatusCode = *(uint8_t **)(*(int64_t *)(ExceptionContext + 0x20) + 0x218);
+  ResourceHashStatus = *(uint8_t **)(*(int64_t *)(ExceptionContext + 0x20) + 0x218);
   if (ResourceHashStatus == (uint8_t *)0x0) {
     return;
   }
-  resourceBase = (uint64_t)ResourceHashStatus & 0xffffffffffc00000;
-  if (resourceBase != 0) {
+  ResourceBase = (uint64_t)ResourceHashStatus & 0xffffffffffc00000;
+  if (ResourceBase != 0) {
     ResourceIndex = resourceBase + 0x80 + ((int64_t)ResourceHashStatus - resourceBase >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
     if ((*(void ***)(resourceBase + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
@@ -79229,7 +79229,17 @@ void ResetResourceDataProcessingFlag(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090bdc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文回调函数
+ * 
+ * 该函数负责执行验证上下文中的回调函数
+ * 从验证上下文中获取回调函数指针并执行
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含回调函数指针
+ * @note 原始函数名：Unwind_18090bdc0
+ */
+void ExecuteValidationContextCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextDataOffset) != (int64_t *)0x0) {
@@ -79240,7 +79250,17 @@ void Unwind_18090bdc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bdd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源事务回调函数
+ * 
+ * 该函数负责执行资源事务相关的回调函数
+ * 首先开始资源事务，然后执行验证上下文中的回调函数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含回调函数指针
+ * @note 原始函数名：Unwind_18090bdd0
+ */
+void ExecuteResourceTransactionCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -79252,7 +79272,17 @@ void Unwind_18090bdd0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bde0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调函数
+ * 
+ * 该函数负责执行资源处理相关的回调函数
+ * 从验证上下文中获取资源上下文，并执行相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源表信息
+ * @note 原始函数名：Unwind_18090bde0
+ */
+void ExecuteResourceProcessingCallback(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79266,7 +79296,17 @@ void Unwind_18090bde0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bdf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源事务回滚和回调处理
+ * 
+ * 该函数负责回滚资源事务并执行相关的回调函数
+ * 首先检查并回滚现有事务，然后开始新事务并执行多个回调函数
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含回调函数指针
+ * @note 原始函数名：Unwind_18090bdf0
+ */
+void ExecuteResourceTransactionRollbackAndCallbacks(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -79290,7 +79330,17 @@ void Unwind_18090bdf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090be00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源状态重置和操作处理
+ * 
+ * 该函数负责重置资源状态并执行相应的操作处理
+ * 检查资源数据状态标志，并根据状态执行资源操作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含操作参数
+ * @note 原始函数名：Unwind_18090be00
+ */
+void ExecuteResourceStatusResetAndOperation(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -89975,7 +90025,19 @@ void Unwind_18090edf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ee00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化资源哈希指针
+ * 
+ * 该函数负责初始化资源哈希指针
+ * 从验证上下文中获取资源哈希指针，并将其设置为资源分配模板和缓存模板
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希指针信息
+ * @note 此函数在资源初始化时调用
+ * @warning 调用此函数会修改资源哈希指针
+ * @remark 原始函数名：Unwind_18090ee00
+ */
+void InitializeResourceHashPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
@@ -89988,7 +90050,19 @@ void Unwind_18090ee00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ee10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置三级资源哈希表
+ * 
+ * 该函数负责设置三级资源哈希表
+ * 从验证上下文中获取资源哈希表指针，并将其设置为三级资源哈希表
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希表指针信息
+ * @note 此函数在资源哈希表初始化时调用
+ * @warning 调用此函数会修改资源哈希表指针
+ * @remark 原始函数名：Unwind_18090ee10
+ */
+void SetTertiaryResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x88) = &TertiaryResourceHashTable;
