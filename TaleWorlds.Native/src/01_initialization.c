@@ -44,11 +44,11 @@
 #define GameCoreSystemIdentifier1             0x4fc124d23d41985f
 #define GameCoreSystemIdentifier2             0xe2f4a30d6e6ae482
 #define GameCoreSystemId                    0x4fc124d23d41985f
-#define GameCoreSystemNodeData                    0
+#define GameCoreSystemNodeData               0
 #define BaseAllocatorSystemIdentifier1       0x4770584fbb1df897
 #define BaseAllocatorSystemIdentifier2       0x47f249e43f66f2ab
 #define BaseAllocatorSystemFlag              1
-#define BaseAllocatorSystemNodeData              0
+#define BaseAllocatorSystemNodeData         0
 #define SystemDataTableSystemIdentifier1     0x544e41445441424c
 #define SystemDataTableSystemIdentifier2     0x4552455345525441
 #define SystemDataTableSystemFlag           2
@@ -68,15 +68,15 @@
 #define SystemMemoryFreeSize                0x213458
 
 // 位操作和数学计算相关常量
-#define SystemBitMask32Bit                        0x1f
-#define SystemMaxUnsigned32Bit                   0xffffffff
-#define SystemSineLookupTableSize                0x7fff
-#define SystemQuadrantShiftBits                   0xd
-#define SystemSineTableOffset4CC                  0x4cc
-#define SystemSineTableOffset4132                 0x4132
-#define SystemSineTableOffsetFB34                0xfb34
-#define SystemSineTableOffset8132                 0x8132
-#define SystemTransformContextOffset218         0x218
+#define SystemBitMask32Bit                    0x1f
+#define SystemMaxUnsigned32Bit               0xffffffff
+#define SystemSineLookupTableSize            0x7fff
+#define SystemQuadrantShiftBits              0xd
+#define SystemSineTableOffset4CC             0x4cc
+#define SystemSineTableOffset4132            0x4132
+#define SystemSineTableOffsetFB34            0xfb34
+#define SystemSineTableOffset8132            0x8132
+#define SystemTransformContextOffset         0x218
 
 // 字符串处理相关常量
 #define SystemStringBufferCapacityDefault   0xb
@@ -148,7 +148,7 @@
 
 // 系统参数常量
 #define SystemMaxSemaphoreCount                    0x7fffffff
-#define SystemStringBufferCapacity                     0x80
+#define SystemStringBufferCapacity               0x80
 #define SystemInvalidHandleValue                    0xfffffffffffffffe
 #define SystemSemaphoreMaxCount              0x7fffffff
 #define SystemEventHandlerSize               0x20
@@ -53346,7 +53346,7 @@ SystemResourceValidation:
       *pointerToUnsignedStackFlagTertiary = 0;
     }
     else {
-      if (SystemOperationStatusSecondary <= (uint)SystemUnsignedFlagSecondary) goto LABEL_SYSTEM_RESOURCE_CONFIGURATION;
+      if (SystemOperationStatusSecondary <= (uint)SystemUnsignedFlagSecondary) goto SystemResourceConfiguration;
       pointerToUnsignedStackFlagTertiary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,pointerToUnsignedStackFlagTertiary,SystemOperationStatusSecondary,0x10,0x13);
     }
     resourceAllocationContext = StartSystemThread(pointerToUnsignedStackFlagTertiary);
