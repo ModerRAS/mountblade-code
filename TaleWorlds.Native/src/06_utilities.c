@@ -1329,6 +1329,7 @@ void SetupResourceManager(void);
  * 
  * 该函数负责配置系统资源的相关设置
  * 包括资源分配策略、缓存策略等配置参数
+ * 根据系统性能要求调整资源管理行为
  * 
  * @return 无返回值
  * @note 此函数必须在ResourceManagerInitFlag之后调用
