@@ -1,43 +1,46 @@
 #include "TaleWorlds.Native.Split.h"
 
-#define MemoryAddressAlignmentMask 0xffffffffffc00000
-#define MemoryResourceTablePointerOffset 0x70
-#define MemoryResourceDataOffset 0x80
-#define MemoryResourceEntrySize 0x50
-#define MemoryResourceHeaderSize 0x18
-#define MemoryResourceStatusOffset 0xe
-#define MemoryResourceValueOffset 0x20
-#define MemoryResourceReferenceOffset 4
-#define MemoryCleanupTriggerValue 0xfffffffffffffffe
-#define AllocatedMemoryPointerOffset 0x58
-#define MemoryAllocationTrailerSize 0x60
-#define MemoryAlignmentMask 0xfffffff0
-#define MemoryAlignment16Bytes 0xf
-#define MemoryAllocationOverflowMask 0xffffffffffffff0
-#define MemoryAllocationAlignmentMask 0xfffffffffffffff0
+// 内存管理相关常量
+#define MemoryAddressAlignmentMask 0xffffffffffc00000    // 内存地址对齐掩码
+#define MemoryResourceTablePointerOffset 0x70           // 内存资源表指针偏移量
+#define MemoryResourceDataOffset 0x80                   // 内存资源数据偏移量
+#define MemoryResourceEntrySize 0x50                    // 内存资源条目大小
+#define MemoryResourceHeaderSize 0x18                   // 内存资源头部大小
+#define MemoryResourceStatusOffset 0xe                   // 内存资源状态偏移量
+#define MemoryResourceValueOffset 0x20                   // 内存资源值偏移量
+#define MemoryResourceReferenceOffset 4                  // 内存资源引用偏移量
+#define MemoryCleanupTriggerValue 0xfffffffffffffffe     // 内存清理触发值
+#define AllocatedMemoryPointerOffset 0x58                // 已分配内存指针偏移量
+#define MemoryAllocationTrailerSize 0x60                  // 内存分配尾部大小
+#define MemoryAlignmentMask 0xfffffff0                    // 内存对齐掩码
+#define MemoryAlignment16Bytes 0xf                        // 16字节内存对齐
+#define MemoryAllocationOverflowMask 0xffffffffffffff0    // 内存分配溢出掩码
+#define MemoryAllocationAlignmentMask 0xfffffffffffffff0  // 内存分配对齐掩码
 
-#define ObjectContextOffset 0x10
-#define ObjectContextSecondaryDataOffset 0x18
-#define ObjectContextExtendedDataOffset 0x30
-#define ObjectContextValidationOffset 0x10
-#define ObjectContextHandleDataOffset 0x18
-#define ObjectContextConfigDataOffset 0x1c
-#define ObjectContextStatusOffset 8
-#define ObjectVirtualMethodTableOffset 800
-#define ObjectContextMatrixRotationDataOffset 0x2f0
+// 对象上下文相关常量
+#define ObjectContextOffset 0x10                          // 对象上下文偏移量
+#define ObjectContextSecondaryDataOffset 0x18             // 对象上下文次要数据偏移量
+#define ObjectContextExtendedDataOffset 0x30              // 对象上下文扩展数据偏移量
+#define ObjectContextValidationOffset 0x10                // 对象上下文验证偏移量
+#define ObjectContextHandleDataOffset 0x18                // 对象上下文句柄数据偏移量
+#define ObjectContextConfigDataOffset 0x1c                // 对象上下文配置数据偏移量
+#define ObjectContextStatusOffset 8                       // 对象上下文状态偏移量
+#define ObjectVirtualMethodTableOffset 800                // 对象虚拟方法表偏移量
+#define ObjectContextMatrixRotationDataOffset 0x2f0       // 对象上下文矩阵旋转数据偏移量
 
-#define RegistrationHandleOffset 0x48
-#define RegistrationDataOffset 0x38
-#define RegistrationStatusOffset 0xe4
-#define RegistrationArrayOffset 0x4d8
-#define RegistrationSizeOffset 0x4e4
-#define RegistrationCapacityOffset 0x4e8
-#define RegistrationCountOffset 0x4e0
-#define RegistrationValidationDataOffset 0x368
-#define InvalidRegistrationStatus -1
-#define RegistrationStatusSuccess 2
-#define RegistrationArrayInitialSize 8
-#define RegistrationArrayGrowthFactor 1.5
+// 注册相关常量
+#define RegistrationHandleOffset 0x48                     // 注册句柄偏移量
+#define RegistrationDataOffset 0x38                        // 注册数据偏移量
+#define RegistrationStatusOffset 0xe4                       // 注册状态偏移量
+#define RegistrationArrayOffset 0x4d8                       // 注册数组偏移量
+#define RegistrationSizeOffset 0x4e4                       // 注册大小偏移量
+#define RegistrationCapacityOffset 0x4e8                    // 注册容量偏移量
+#define RegistrationCountOffset 0x4e0                      // 注册计数偏移量
+#define RegistrationValidationDataOffset 0x368             // 注册验证数据偏移量
+#define InvalidRegistrationStatus -1                        // 无效注册状态
+#define RegistrationStatusSuccess 2                         // 注册成功状态
+#define RegistrationArrayInitialSize 8                      // 注册数组初始大小
+#define RegistrationArrayGrowthFactor 1.5                   // 注册数组增长因子
 
 #define ThreadLocalStorageDataOffset 0x18
 #define ThreadResourceStateOffset 0x20
