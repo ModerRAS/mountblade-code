@@ -193,9 +193,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define RECEIVE_BUFFER_SIZE 0x10000                          // 接收缓冲区大小64KB
 #define BUFFER_CAPACITY 0x20000                              // 缓冲区容量128KB
 #define PACKET_QUEUE_SIZE 0x100                               // 数据包队列大小256
-#define BUFFER_SIZE_4KB 0x1000                               // 4KB缓冲区大小
-#define CONTEXT_SIZE_256B 0x100                              // 256字节上下文大小
-#define CONTEXT_SIZE_512B 0x200                           // 512字节上下文大小
+#define BufferSize4Kilobytes 0x1000                               // 4KB缓冲区大小
+#define ContextSize256Bytes 0x100                              // 256字节上下文大小
+#define ContextSize512Bytes 0x200                           // 512字节上下文大小
 
 // 网络超时常量
 #define NetworkTimeoutOneSecond 0x3E8                             // 1秒超时
@@ -377,10 +377,10 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络错误处理常量
 #define NETWORK_ERROR_PROCESSOR_ENABLED_FLAG 0x01                 // 错误处理器启用
 #define NETWORK_ERROR_COUNT_RESET_VALUE 0x00                      // 错误计数重置
-#define NETWORK_REPORT_SIZE_11_BYTES 0x0B                        // 11字节报告大小
-#define NETWORK_REPORT_SIZE_13_BYTES 0x0D                        // 13字节报告大小
-#define NETWORK_REPORT_SIZE_15_BYTES 0x0F                        // 15字节报告大小
-#define NETWORK_REPORT_SIZE_12_BYTES 0x0C                        // 12字节报告大小
+#define NetworkReportSize11Bytes 0x0B                        // 11字节报告大小
+#define NetworkReportSize13Bytes 0x0D                        // 13字节报告大小
+#define NetworkReportSize15Bytes 0x0F                        // 15字节报告大小
+#define NetworkReportSize12Bytes 0x0C                        // 12字节报告大小
 
 // 网络连接状态常量
 #define NETWORK_PROCESSING_STATUS_ACTIVE_FLAG 0x01                // 处理状态活跃
@@ -1091,7 +1091,7 @@ void AcceptNetworkConnection(void)
 {
   // 分配新的连接资源
   NetworkConnectionActiveContext = NetworkConnectionContextEnabled;                      // 初始化连接上下文
-  NetworkConnectionContextSize = CONTEXT_SIZE_512B;                // 设置连接上下文大小
+  NetworkConnectionContextSize = ContextSize512Bytes;                // 设置连接上下文大小
   
   // 设置连接参数
   NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
