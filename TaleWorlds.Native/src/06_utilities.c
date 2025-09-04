@@ -45010,19 +45010,6 @@ void ExecuteSystemResourceDestroyCallback(uint8_t ObjectContext,int64_t Validati
 
 
 
-/**
- * @brief 销毁互斥锁
- * 
- * 该函数负责销毁系统中的互斥锁
- * 
- * @return 无返回值
- */
-void DestroyMutex(void)
-
-{
-  MutexDestroyInPlace();
-  return;
-}
 
 
 
@@ -53486,22 +53473,6 @@ void ReleaseResourceHandleAndValidateStatus(uint8_t ObjectContext, int64_t Valid
 
 
 
-/**
- * @brief 销毁互斥锁
- * 
- * 该函数负责销毁互斥锁，释放相关资源。
- * 
- * @return 无返回值
- * @note 此函数会销毁互斥锁
- * @warning 销毁后互斥锁将不再可用
- * @remark 原始函数名：Unwind_180905f20
- */
-void DestroyMutex(void)
-
-{
-  MutexDestroyInPlace();
-  return;
-}
 
 
 
