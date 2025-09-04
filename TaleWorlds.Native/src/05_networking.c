@@ -1360,14 +1360,14 @@ void RetrieveNetworkPacketData(void)
   NetworkPacketQueueSize = PACKET_QUEUE_SIZE;                       // 设置数据包队列大小为256
   
   // 初始化缓冲区管理
-  NetworkBufferManager = BUFFER_ENABLED;                          // 初始化缓冲区管理器
-  NetworkBufferSize = BUFFER_SIZE_4KB;                            // 设置缓冲区大小为4KB
+  NetworkBufferManager = NetworkBufferEnabledFlag;                          // 初始化缓冲区管理器
+  NetworkBufferSize = BufferSize4KB;                            // 设置缓冲区大小为4KB
   NetworkBufferIndex = INDEX_RESET;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
-  NetworkPacketContext = BUFFER_ENABLED;                          // 初始化数据包上下文
-  NetworkPacketContextSize = CONTEXT_SIZE_256B;                    // 设置数据包上下文大小为256字节
-  NetworkPacketData = BUFFER_ENABLED;                             // 初始化数据包数据
+  NetworkPacketContext = NetworkBufferEnabledFlag;                          // 初始化数据包上下文
+  NetworkPacketContextSize = ContextSize256B;                    // 设置数据包上下文大小为256字节
+  NetworkPacketData = NetworkBufferEnabledFlag;                             // 初始化数据包数据
   NetworkPacketIndex = PACKET_INDEX_RESET;                            // 重置数据包索引
   
   // 初始化数据包处理
