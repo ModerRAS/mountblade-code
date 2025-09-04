@@ -84317,8 +84317,13 @@ void ProcessResourceHashStatusCleanupExtended(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_18090d060(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 处理资源哈希状态地址的二次清理和释放
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d060
+ */
+void ProcessResourceHashStatusCleanupSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int32_t *ResourceTablePointerIndexPointer;
   uint8_t *ResourceHashStatusAddress;

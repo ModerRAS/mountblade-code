@@ -64,7 +64,7 @@
 #define ConfigurationFlag        3
 
 // 系统管理器表偏移量
-#define SystemCompletionPortHandleOffset    0x42686
+#define CompletionPortHandleOffset    0x42686
 #define SystemResourceManagerOffset         0x42687
 #define SystemMemoryFreeSize                0x213458
 
@@ -139,13 +139,13 @@
 #define DataComparisonTemplateLId1   0x402feffe4481676e
 #define DataComparisonTemplateLId2   0xd4c2151109de93a0
 #define DataComparisonTemplateMId1   0x4384dcc4b6d3f417
-#define SystemDataComparisonTemplateMId2   0x92a15d52fe2679bd
-#define SystemDataComparisonTemplateNId1   0x4140994454d56503
-#define SystemDataComparisonTemplateNId2   0x399eced9bb5517ad
-#define SystemDataComparisonTemplateOId1   0x40db4257e97d3df8
-#define SystemDataComparisonTemplateOId2   0x81d539e33614429f
-#define SystemMemoryComparisonTemplateId1   0x4e33c4803e67a08f
-#define SystemMemoryComparisonTemplateId2   0x703a29a844ce399
+#define DataComparisonTemplateMId2   0x92a15d52fe2679bd
+#define DataComparisonTemplateNId1   0x4140994454d56503
+#define DataComparisonTemplateNId2   0x399eced9bb5517ad
+#define DataComparisonTemplateOId1   0x40db4257e97d3df8
+#define DataComparisonTemplateOId2   0x81d539e33614429f
+#define MemoryComparisonTemplateId1   0x4e33c4803e67a08f
+#define MemoryComparisonTemplateId2   0x703a29a844ce399
 
 // 系统参数常量
 #define SystemMaxSemaphoreCount                    0x7fffffff
@@ -19485,8 +19485,8 @@ uint32_t FinalSystemInitialization(void)
   if (SystemManagerPointerStorage != (long long ****)0x0) {
     SystemManagerPointer = __RTCastToVoid(SystemManagerPointerStorage);
     *SystemManagerTable = (long long ***)&SystemManagerCompletionTable;
-    PostQueuedCompletionStatus(SystemManagerTable[SystemCompletionPortHandleOffset],0,0xffffffffffffffff);
-    CloseHandle(SystemManagerTable[SystemCompletionPortHandleOffset]);
+    PostQueuedCompletionStatus(SystemManagerTable[CompletionPortHandleOffset],0,0xffffffffffffffff);
+    CloseHandle(SystemManagerTable[CompletionPortHandleOffset]);
     SystemResourceManager = (long long ***)(SystemManagerTable + SystemResourceManagerOffset);
     if ((long long ***)*SystemCleanupFlagPointer != (long long ***)0x0) {
         SystemCleanupFunction();
@@ -19730,8 +19730,8 @@ void* CleanupSystemCompletionPortResources(void* SystemResourceHandle, uint32_t 
 
 {
   *SystemResourceHandle = &SystemCompletionPortTemplate;
-  PostQueuedCompletionStatus(SystemResourceHandle[SystemCompletionPortHandleOffset],0,0xffffffffffffffff,0,InvalidHandleValue);
-  CloseHandle(SystemResourceHandle[SystemCompletionPortHandleOffset]);
+  PostQueuedCompletionStatus(SystemResourceHandle[CompletionPortHandleOffset],0,0xffffffffffffffff,0,InvalidHandleValue);
+  CloseHandle(SystemResourceHandle[CompletionPortHandleOffset]);
   if (SystemResourceHandle[SystemResourceManagerOffset] != 0) {
       TerminateSystemProcess();
   }
