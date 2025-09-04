@@ -16547,8 +16547,8 @@ uint8_t ProcessResourceTimeSynchronization(int64_t *ObjectContext,char Validatio
   uint64_t PrimaryOperationParameter;
   
   *(uint8_t *)(ObjectContext + 4) = 1;
-  ValidationStatusCode = InitializeResourceContext(*(uint8_t *)(ObjectContext[1] + 0x78),&ValidationContext8);
-  if ((((int)ValidationStatusCode == 0) && (ValidationStatusCode = SetupResourceEnvironment(ValidationContext8,validationStackBuffer,0), (int)ValidationStatusCode == 0)) &&
+  ValidationStatusCode = InitializeResourceContext(*(uint8_t *)(ObjectContext[1] + 0x78),&ResourceValidationContext);
+  if ((((int)ValidationStatusCode == 0) && (ValidationStatusCode = SetupResourceEnvironment(ResourceValidationContext,validationStackBuffer,0), (int)ValidationStatusCode == 0)) &&
      (ValidationStatusCode = (**(code **)(*ObjectContext + ObjectContextValidationDataProcessingOffset))(ObjectContext), (int)ValidationStatusCode == 0)) {
     ValidationStatusCode = (uint64_t)(validationStackBuffer[0] * 48000) / (uint64_t)*(uint *)((int64_t)ObjectContext + ObjectContextHandleDataProcessingOffset);
     localContextData = ObjectContext[2];
