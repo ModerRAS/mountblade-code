@@ -102,16 +102,16 @@
 #define DataComparisonTemplateBetaId2   0x5e3cf00ce2978287
 #define DataComparisonTemplateKappaId1   0x4b2d79e470ee4e2c
 #define DataComparisonTemplateKappaId2   0x9c552acd3ed5548d
-#define SystemDataComparisonTemplateLambdaId1   0x49086ba08ab981a7
-#define SystemDataComparisonTemplateLambdaId2   0xa9191d34ad910696
+#define DataComparisonTemplateLambdaId1   0x49086ba08ab981a7
+#define DataComparisonTemplateLambdaId2   0xa9191d34ad910696
 
 // 数据比较模板标识符
-#define SystemDataComparisonTemplateDId1   0x406be72011d07d37
-#define SystemDataComparisonTemplateDId2   0x71876af946c867ab
-#define SystemDataComparisonTemplateEId1   0x449bafe9b77ddd3c
-#define SystemDataComparisonTemplateEId2   0xc160408bde99e59f
-#define SystemDataComparisonTemplateFId1   0x45425dc186a5d575
-#define SystemDataComparisonTemplateFId2   0xfab48faa65382fa5
+#define DataComparisonTemplateDId1   0x406be72011d07d37
+#define DataComparisonTemplateDId2   0x71876af946c867ab
+#define DataComparisonTemplateEId1   0x449bafe9b77ddd3c
+#define DataComparisonTemplateEId2   0xc160408bde99e59f
+#define DataComparisonTemplateFId1   0x45425dc186a5d575
+#define DataComparisonTemplateFId2   0xfab48faa65382fa5
 #define SystemDataComparisonTemplateGId1   0x40afa5469b6ac06d
 #define SystemDataComparisonTemplateGId2   0x2f4bab01d34055a5
 #define SystemDataComparisonTemplateHId1   0x43330a43fcdb3653
