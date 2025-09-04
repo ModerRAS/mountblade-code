@@ -35922,16 +35922,14 @@ void HandleMemoryStreamCleanup(uint8_t MemoryStreamContext, int64_t ValidationCo
  * @return 无返回值
  * @note 此函数在系统内存清理过程中被调用
  */
-void HandleSystemMemoryCleanup(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
-
-{
-  uint8_t *ResourceHashPtr;
+void HandleSystemMemoryCleanup(uint8_t SystemMemoryContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag) {
+  uint8_t *SystemMemoryResourceHashPointer;
   
-  ResourceHashPtr = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x48) + ValidationContextCleanupFunctionOffset);
-  if (ResourceHashPtr != (uint8_t *)0x0) {
-    HandleResourceAllocation(*(int64_t )(ValidationContext + 0x48),*ResourceHashPtr,CleanupOption,CleanupFlag,0xfffffffffffffffe);
-    ResetSystemState(ResourceHashPtr);
-          ReleaseResourceHandle(ResourceHashPtr);
+  SystemMemoryResourceHashPointer = *(uint8_t **)(*(int64_t *)(ValidationContext + 0x48) + ValidationContextCleanupFunctionOffset);
+  if (SystemMemoryResourceHashPointer != (uint8_t *)0x0) {
+    HandleResourceAllocation(*(int64_t)(ValidationContext + 0x48), *SystemMemoryResourceHashPointer, CleanupOption, CleanupFlag, 0xfffffffffffffffe);
+    ResetSystemState(SystemMemoryResourceHashPointer);
+    ReleaseResourceHandle(SystemMemoryResourceHashPointer);
   }
   return;
 }
