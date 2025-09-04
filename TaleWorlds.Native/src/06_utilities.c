@@ -96087,7 +96087,18 @@ void ExecuteResourceRequestCleanupCallback(uint8_t ObjectContext,int64_t Validat
 
 
 
-void Unwind_18090f650(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源处理器重置操作
+ * 
+ * 该函数在异常处理过程中被调用，用于执行系统资源处理器的重置操作
+ * 重置系统资源处理器的状态并确保系统的一致性
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ * @remark 原始函数名：Unwind_18090f650
+ */
+void ExecuteSystemResourceHandlerReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;

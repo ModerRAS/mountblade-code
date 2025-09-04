@@ -27914,20 +27914,20 @@ SystemFlagHandlerCheck:
     SystemInitializationStatus = (ulong long)renderStatusPrimary;
     renderStatusTertiary = renderStatusPrimary;
     renderStatusValuePrimary = renderStatusSecondary;
-    while (threadContextValue = CurrentThreadIdentifier, 0 < (int)renderStatusValue1) {
-      renderStatus4 = (uint)threadContextValue;
-      SystemInitializationStatus = (long long)(int)SystemInitializationStatus % (long long)(int)renderStatus4;
-      renderStatusValue1 = (uint)SystemInitializationStatus;
+    while (threadContextValue = CurrentThreadIdentifier, 0 < (int)renderStatusValuePrimary) {
+      renderStatusTertiary = (uint)threadContextValue;
+      SystemInitializationStatus = (long long)(int)SystemInitializationStatus % (long long)(int)renderStatusTertiary;
+      renderStatusValuePrimary = (uint)SystemInitializationStatus;
       CurrentThreadIdentifier = SystemInitializationStatus & SystemMaximumUnsigned32BitValue;
       SystemInitializationStatus = threadContextValue;
     }
-    CalculationFlags = (int)renderStatus3 / (int)renderStatus4;
+    CalculationFlags = (int)renderStatusPrimary / (int)renderStatusTertiary;
     do {
-      renderStatusValue1 = (uint)(InterpolationFactorX * (float)(int)renderStatus3);
+      renderStatusValuePrimary = (uint)(InterpolationFactorX * (float)(int)renderStatusPrimary);
       if (1 < CalculationFlags) {
-        renderStatusValue1 = ((renderStatusValue1 - 1) - (int)(renderStatusValue1 - 1) % CalculationFlags) + CalculationFlags;
+        renderStatusValuePrimary = ((renderStatusValuePrimary - 1) - (int)(renderStatusValuePrimary - 1) % CalculationFlags) + CalculationFlags;
       }
-      SystemInitializationStatus = (long long)(int)(((int)renderStatus5 / (int)renderStatus4) * renderStatusValue1) / (long long)CalculationFlags;
+      SystemInitializationStatus = (long long)(int)(((int)renderStatusSecondary / (int)renderStatusTertiary) * renderStatusValuePrimary) / (long long)CalculationFlags;
       if (((renderStatusValue1 & 1) == 0) && ((SystemInitializationStatus & 1) == 0)) goto SystemFlagHandler;
       InterpolationFactorX = InterpolationFactorX + 0.01;
       *(float *)(SystemResourceManager + 0x238) = InterpolationFactorX;
