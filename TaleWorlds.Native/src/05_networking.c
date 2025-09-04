@@ -915,7 +915,7 @@ uint32_t NetworkConnectionRoutingConfigTertiary = 0x00;
  * 
  * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
  */
-uint32_t NetworkConnectionRoutingConfigQuaternaryData = 0x00;
+uint32_t NetworkConnectionRoutingConfigQuaternary = 0x00;
 
 /**
  * @brief 初始化网络套接字句柄
