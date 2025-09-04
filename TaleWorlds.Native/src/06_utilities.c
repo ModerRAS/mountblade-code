@@ -93118,7 +93118,18 @@ void RegisterResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void Unwind_18090eb80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * 
+ * 该函数用于将系统数据结构指针设置到验证上下文的次要偏移位置
+ * 这是一个基础的系统初始化操作
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和配置相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090eb80
+ */
+void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ResourceContextSecondaryOffset) = &SystemDataStructure;
@@ -93199,7 +93210,21 @@ void ExecuteValidationContextCleanupAndSystemReset(uint8_t ObjectContext, int64_
 
 
 
-void Unwind_18090ec00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源管理器初始化
+ * 
+ * 该函数用于执行系统资源管理器的初始化过程，包括：
+ * - 检查并执行系统清理回调
+ * - 设置资源处理器模板
+ * - 验证系统状态
+ * - 重置系统标志和状态
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和初始化相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ec00
+ */
+void ExecuteSystemResourceManagerInitialization(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
