@@ -25947,6 +25947,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint SystemMemoryBufferCapacityValue;
   void* SystemMemoryBufferPointer;
   void* *GlobalDataReferencePointer;
+  void* *DataBufferPointer;
   uint8_t *SystemGlobalDataBufferPointer;
   uint SystemResourceStatusFlag;
   void* SystemResourceValue;
@@ -26046,7 +26047,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   ThreadCreationFlags = resourceCounter + 2;
   GlobalDataReferencePointer = &SystemGlobalDataReference;
   SystemResourceValue = 0;
-  GlobalDataReferencePointer8 = (uint8_t *)0x0;
+  DataBufferPointer = (uint8_t *)0x0;
   SystemResourceStatusFlag = 0;
   SystemDataMemoryContext = SystemStringTemplatePointer;
   resourceCreationFlagsLength = ThreadCreationFlags;
@@ -27827,6 +27828,10 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
   float InterpolationFactor5;
   float InterpolationFactorX;
   float scaleResult2;
+  float SystemDataValue1;
+  float SystemDataValue2;
+  float SystemDataValue3;
+  float SystemDataValue4;
   
   SystemMemoryPointer = SystemNodeManagerPointer;
   if ((*(long long *)(SystemDataMemoryContext + 0x7ab8) == 0) || (*(int *)(SystemNodeManagerPointer + 0x540) < 1)) {
@@ -33526,7 +33531,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       ThreadLocalStoragePointerSecondary = (uint8_t *)0x0;
       SystemContextValueSecondary = SystemContextValueSecondary & SystemMemoryAlignmentMask;
       MemoryAllocatorPointer398 = &SystemMemoryAllocatorReference;
-      GlobalDataReferencePointer8 = (void* *)0x0;
+      DataBufferPointer = (void* *)0x0;
       VerticalResolutionPointer = (void* *)0x0;
       SystemResourceValue = 0;
       SystemDataIndexCounter = 3;
@@ -33535,22 +33540,22 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       SystemMemoryAllocationOffsetBuffer[0] = 0;
       EncryptionKeyValue0 = 4;
       strcpy_s(SystemMemoryAllocationOffsetBuffer,0x10,&SystemResourceString1);
-      ProcessSystemResourceQueue(&ResourceDataPointer,&GlobalDataReferencePointer8,&pSystemProcessFlags);
+      ProcessSystemResourceQueue(&ResourceDataPointer,&DataBufferPointer,&pSystemProcessFlags);
       pSystemProcessFlags = &SystemMemoryAllocatorReference;
       SystemIterationIndex374 = 0;
       SystemLoopCounter2c8 = 0;
-      SystemDataCount2c0 = (long long)VerticalResolutionPointer - (long long)GlobalDataReferencePointer8 >> 5;
-      ResourceHashEntryPointer = GlobalDataReferencePointer8;
-      SystemHashNodeData = GlobalDataReferencePointer8;
+      SystemDataCount2c0 = (long long)VerticalResolutionPointer - (long long)DataBufferPointer >> 5;
+      ResourceHashEntryPointer = DataBufferPointer;
+      SystemHashNodeData = DataBufferPointer;
       ResourceAddressPointer = VerticalResolutionPointer;
       if (SystemDataCount2c0 != 0) {
         do {
           SystemAllocationFlags = SystemLoopCounter2c8;
-          ResourceHashEntryPointer = GlobalDataReferencePointer8;
+          ResourceHashEntryPointer = DataBufferPointer;
           systemCode = SystemIterationIndex374;
           SystemStringTemplatePointer = &SystemStringTemplate;
-          if ((void* *)GlobalDataReferencePointer8[SystemLoopCounter2c8 * 4 + 1] != (void* *)0x0) {
-            SystemStringTemplatePointer = (void* *)GlobalDataReferencePointer8[SystemLoopCounter2c8 * 4 + 1];
+          if ((void* *)DataBufferPointer[SystemLoopCounter2c8 * 4 + 1] != (void* *)0x0) {
+            SystemStringTemplatePointer = (void* *)DataBufferPointer[SystemLoopCounter2c8 * 4 + 1];
           }
           ResourceDataPosition = strrchr(SystemStringTemplatePointer,0x2f);
           if (ResourceDataPosition == 0) {
@@ -33700,31 +33705,31 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           MemoryContextPointer = &SystemMemoryAllocatorReference;
           SystemIterationIndex374 = systemCode + 1;
           SystemLoopCounter2c8 = ResourceDataPosition + 1;
-          ResourceHashEntryPointer = GlobalDataReferencePointer8;
-          SystemHashNodeData = GlobalDataReferencePointer8;
+          ResourceHashEntryPointer = DataBufferPointer;
+          SystemHashNodeData = DataBufferPointer;
           ResourceAddressPointer = VerticalResolutionPointer;
           systemCode = SystemIterationIndex370;
           ResourceDataPosition = SystemLoopCounter368;
         } while ((ulong long)(long long)SystemIterationIndex374 < SystemDataCount2c0);
       }
-      for (; resourceEntryPointer = VerticalResolutionPointer, SystemThreadContext = GlobalDataReferencePointer8, ResourceHashEntryPointer != VerticalResolutionPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 4)
+      for (; resourceEntryPointer = VerticalResolutionPointer, SystemThreadContext = DataBufferPointer, ResourceHashEntryPointer != VerticalResolutionPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 4)
       {
-        GlobalDataReferencePointer8 = SystemHashNodeData;
+        DataBufferPointer = SystemHashNodeData;
         VerticalResolutionPointer = ResourceAddressPointer;
         (**(code **)*ResourceHashEntryPointer)(ResourceHashEntryPointer,0);
-        SystemHashNodeData = GlobalDataReferencePointer8;
+        SystemHashNodeData = DataBufferPointer;
         ResourceAddressPointer = VerticalResolutionPointer;
         VerticalResolutionPointer = resourceEntryPointer;
-        GlobalDataReferencePointer8 = SystemThreadContext;
+        DataBufferPointer = SystemThreadContext;
       }
-      if (GlobalDataReferencePointer8 != (void* *)0x0) {
-        GlobalDataReferencePointer8 = SystemHashNodeData;
+      if (DataBufferPointer != (void* *)0x0) {
+        DataBufferPointer = SystemHashNodeData;
         VerticalResolutionPointer = ResourceAddressPointer;
           SystemCleanupFunction(SystemThreadContext);
       }
       ResourceDataPointer = &SystemGlobalDataReference;
       if (SystemMemoryAllocationOffset2e0 != 0) {
-        GlobalDataReferencePointer8 = SystemHashNodeData;
+        DataBufferPointer = SystemHashNodeData;
         VerticalResolutionPointer = ResourceAddressPointer;
           SystemCleanupFunction();
       }
@@ -33734,7 +33739,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       SystemIterationIndex370 = systemCode + 1;
       SystemLoopCounter368 = ResourceDataPosition + 1;
       SystemAllocationFlags = *(long long *)(SystemMemoryBase2b8 + 0x8a8);
-      GlobalDataReferencePointer8 = SystemHashNodeData;
+      DataBufferPointer = SystemHashNodeData;
       VerticalResolutionPointer = ResourceAddressPointer;
     } while ((ulong long)(long long)SystemIterationIndex370 <
              (ulong long)(*(long long *)(SystemMemoryBase2b8 + 0x8b0) - SystemAllocationFlags >> 5));
@@ -33838,13 +33843,13 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           if (threadLocalStoragePointer[5] != (void* ******)0x0) {
             pppSystemDataPointerPointer9 = threadLocalStoragePointer[5];
           }
-          ProcessSystemQueue(&GlobalDataReferencePointer8,pppSystemDataPointerPointer9);
+          ProcessSystemQueue(&DataBufferPointer,pppSystemDataPointerPointer9);
           SystemStringTemplatePointer = &SystemStringTemplate;
           if (SystemThreadObjectSecondary != (void* *)0x0) {
             SystemStringTemplatePointer = SystemThreadObjectSecondary;
           }
           ProcessSystemQueue(&ResourceDataPointer,SystemStringTemplatePointer);
-          InitializeSystemDataMemoryContext(ResourceDataPosition,&ResourceDataPointer,&GlobalDataReferencePointer8,&SystemEncryptionKey);
+          InitializeSystemDataMemoryContext(ResourceDataPosition,&ResourceDataPointer,&DataBufferPointer,&SystemEncryptionKey);
           ResourceDataPointer = &SystemGlobalDataReference;
           if (SystemMemoryAllocationOffset2e0 != 0) {
               SystemCleanupFunction();
@@ -33852,13 +33857,13 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           SystemMemoryAllocationOffset2e0 = 0;
           SystemResourceHandle = 0;
           ResourceDataPointer = &SystemMemoryAllocatorReference;
-          GlobalDataReferencePointer8 = (void* *)&SystemGlobalDataReference;
+          DataBufferPointer = (void* *)&SystemGlobalDataReference;
           if (VerticalResolutionPointer != (void* *)0x0) {
               SystemCleanupFunction();
           }
           VerticalResolutionPointer = (void* *)0x0;
           SystemDataIndexCounter = 0;
-          GlobalDataReferencePointer8 = (void* *)&SystemMemoryAllocatorReference;
+          DataBufferPointer = (void* *)&SystemMemoryAllocatorReference;
           MemoryContextPointer = &SystemGlobalDataReference;
           if (SystemThreadObjectSecondary != (void* *)0x0) {
               SystemCleanupFunction();
@@ -44002,7 +44007,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   int stackVariable320;
   ulong long SystemMemoryBufferPointer;
   uint32_t StackUnsignedValue310;
-  void* *GlobalDataReferencePointer8;
+  void* *DataBufferPointer;
   void* *VerticalResolutionPointer;
   uint32_t SystemResourceValue;
   ulong long SystemDataIndexCounter;
@@ -44163,7 +44168,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   SystemResourceHandle = 0;
   ResourceBufferPointer = (void* *)0x0;
   SystemAllocationFlag = 0;
-  GlobalDataReferencePointer8 = &SystemGlobalDataReference;
+  DataBufferPointer = &SystemGlobalDataReference;
   SystemDataIndexCounter = 0;
   VerticalResolutionPointer = (void* *)0x0;
   SystemResourceValue = 0;
@@ -44176,7 +44181,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   if (systemCode != 0) {
     SystemOperationFlags = ThreadContextFlag;
   }
-  ConfigureSystemDataBuffer(&GlobalDataReferencePointer8,&SystemDataBufferCapacityValueTemplate,SystemOperationFlags / 0x100000 & SystemMaxUnsigned32Bit);
+  ConfigureSystemDataBuffer(&DataBufferPointer,&SystemDataBufferCapacityValueTemplate,SystemOperationFlags / 0x100000 & SystemMaxUnsigned32Bit);
   punsignedValue348 = &SystemStringTemplate;
   ConfigureSystemDataBuffer(&MemoryContextPointer,&SystemDataBufferConfigTemplate,&SystemGlobalDataReference,&SystemDataBufferFinalTemplate);
   punsignedValue348 = &SystemStringTemplate;
@@ -44190,13 +44195,13 @@ void ReleaseSystemResource(void* SystemResourceManager)
   }
   ConfigureSystemDataBuffer(&MemoryContextPointer,&SystemDataBufferConfigTemplate,&SystemGlobalDataReference,&SystemConfigParam2);
   resourceCounter = SystemGlobalStatusFlags;
-  GlobalDataReferencePointer8 = &SystemGlobalDataReference;
+  DataBufferPointer = &SystemGlobalDataReference;
   if (VerticalResolutionPointer != (void* *)0x0) {
       SystemCleanupFunction();
   }
   VerticalResolutionPointer = (void* *)0x0;
   SystemDataIndexCounter = SystemDataIndexCounter & SystemMemoryAlignmentMask;
-  GlobalDataReferencePointer8 = &SystemMemoryAllocatorReference;
+  DataBufferPointer = &SystemMemoryAllocatorReference;
   ResourceDataPointer = &SystemGlobalDataReference;
   if (ResourceBufferPointer != (void* *)0x0) {
       SystemCleanupFunction();
