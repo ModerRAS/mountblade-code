@@ -5166,17 +5166,12 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
 /**
  * @brief 验证对象句柄安全性
  * 
- * 该函数验证对象句柄的有效性，并执行相应的资源管理操作。
- * 包括上下文验证、内存缓冲区检查和系统退出操作。
+ * 该函数用于验证对象句柄的安全性，确保对象访问权限和有效性
+ * 包含对象上下文验证和内存地址安全检查
  * 
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
-/**
- * @brief 验证对象句柄安全性
- * 
- * 该函数用于验证对象句柄的安全性，确保对象访问权限和有效性
- * 包含对象上下文验证和内存地址安全检查
  * 
  * @param ObjectHandleToValidate 要验证的对象句柄
  * @return 安全验证结果状态码
