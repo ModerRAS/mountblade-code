@@ -6241,18 +6241,18 @@ uint64_t HandleResourceOperation(int64_t ResourceHandle)
  */
 uint32_t ProcessResourceTask(void)
 {
-  int64_t TaskInputParameter;
-  int64_t CalculatedTaskContext;
+  int64_t ResourceTaskInputParameter;
+  int64_t ResourceTaskContext;
   
-  TaskInputParameter = InputParameter;
-  CalculatedTaskContext = TaskInputParameter - 8;
-  if (TaskInputParameter == 0) {
-    CalculatedTaskContext = 0;
+  ResourceTaskInputParameter = InputParameter;
+  ResourceTaskContext = ResourceTaskInputParameter - 8;
+  if (ResourceTaskInputParameter == 0) {
+    ResourceTaskContext = 0;
   }
-  if (*(int64_t *)(CalculatedTaskContext + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ResourceTaskContext + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(CalculatedTaskContext + ObjectContextOffset),1);
+        ExecuteSystemExitOperation(*(int64_t *)(ResourceTaskContext + ObjectContextOffset),1);
 }
 
 
@@ -6520,20 +6520,20 @@ uint64_t ValidateAndProcessAdvancedObjectHandle(uint64_t AdvancedObjectHandle)
  */
 uint32_t ValidateAndExecuteSystemExit(void)
 {
-  int64_t InputParameterRegister;
-  int64_t ObjectContextPointer;
+  int64_t SystemExitInputParameter;
+  int64_t SystemExitObjectContext;
   
-  InputParameterRegister = InputParameter;
-  if (InputParameterRegister == 0) {
-    ObjectContextPointer = 0;
+  SystemExitInputParameter = InputParameter;
+  if (SystemExitInputParameter == 0) {
+    SystemExitObjectContext = 0;
   }
   else {
-    ObjectContextPointer = InputParameterRegister + -8;
+    SystemExitObjectContext = SystemExitInputParameter + -8;
   }
-  if (*(int64_t *)(ObjectContextPointer + ObjectContextValidationOffset) == 0) {
+  if (*(int64_t *)(SystemExitObjectContext + ObjectContextValidationOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-  ExecuteSystemExitOperation(*(int64_t *)(ObjectContextPointer + ObjectContextValidationOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(SystemExitObjectContext + ObjectContextValidationOffset), 1);
   return 0;
 }
 

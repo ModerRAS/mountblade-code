@@ -119,9 +119,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkPacketStatusQuaternaryOffset 0x44         // 网络数据包第四级状态偏移量
 
 // 网络数据包魔数 - 用于数据包类型识别和验证
-#define NetworkPacketMagicSilive 0x5453494c    // "LIVE" - 表示活跃连接魔数
-#define NetworkPacketMagicTivel 0x54495645    // "EVIT" - 表示数据包验证魔数
-#define NetworkPacketMagicBivel 0x42495645    // "EVIB" - 表示二进制数据魔数
+#define NetworkPacketMagicLiveConnection 0x5453494c    // "LIVE" - 表示活跃连接魔数
+#define NetworkPacketMagicValidation 0x54495645          // "EVIT" - 表示数据包验证魔数
+#define NetworkPacketMagicBinaryData 0x42495645          // "EVIB" - 表示二进制数据魔数
 #define NetworkPacketMagicTnvel 0x544e5645    // "EVNT" - 表示事件数据魔数
 #define NetworkPacketMagicBtvel 0x42545645    // "EVBT" - 表示批处理数据魔数
 #define NetworkPacketMagicInvalid 0x464f4f44   // "FOOD" - 表示无效数据包魔数
@@ -1973,7 +1973,7 @@ NetworkHandle ValidateNetworkPacketSecurity(NetworkHandle *PacketData, int64_t C
   NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation);
   if (((int)SecurityValidationResult == 0) &&
      (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
@@ -2114,7 +2114,7 @@ NetworkHandle ValidateNetworkConnectionPacket(int64_t ConnectionContext, Network
   NetworkByte ConnectionEncryptionBuffer [32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  PacketValidationStatusCode = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTivel);
+  PacketValidationStatusCode = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation);
   if (((int)PacketValidationStatusCode == 0) &&
      (PacketValidationStatusCode = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkPacketMagicBivel, NetworkMagicDebugFood), (int)PacketValidationStatusCode == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
@@ -2165,7 +2165,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
   }
   else {
     // 处理状态限制外的数据包，需要解码处理
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicSilive, NetworkPacketMagicTnvel);
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicTnvel);
     if ((int)PacketProcessingResult == 0) {
       // 验证数据包头部
       PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBtvel);
@@ -2369,7 +2369,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证第一个魔数
-    if (MagicNumber1 == NetworkPacketMagicSilive || MagicNumber1 == NetworkPacketMagicTivel) {
+    if (MagicNumber1 == NetworkPacketMagicLiveConnection || MagicNumber1 == NetworkPacketMagicValidation) {
       MagicNumberValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
@@ -2518,7 +2518,7 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
  * 
  * @note 这是简化实现，实际应用中需要实现完整的头部验证逻辑
  * @warning 简化实现仅返回成功状态，不进行实际的验证工作
- * @see NetworkPacketMagicSilive, NetworkPacketMagicTivel
+ * @see NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation
  * 
  * @security 该函数是数据包验证的关键环节，确保只有合法的数据包能够通过验证
  */
