@@ -93019,7 +93019,18 @@ void SetValidationContextMethodPointerSystemData(uint8_t ObjectContext, int64_t 
 
 
 
-void Unwind_18090eb40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理回调函数
+ * 
+ * 该函数通过验证上下文获取资源上下文，并执行相应的清理回调函数
+ * 主要用于系统资源的释放和清理操作
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和回调相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090eb40
+ */
+void ExecuteResourceContextCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -93033,7 +93044,18 @@ void Unwind_18090eb40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eb50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置系统资源处理器状态
+ * 
+ * 该函数用于重置系统资源处理器的状态，包括计数器和处理器的重置
+ * 确保系统资源处理器处于正确的初始状态
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和状态相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090eb50
+ */
+void ResetSystemResourceHandlerState(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -93051,7 +93073,18 @@ void Unwind_18090eb50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eb60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文扩展清理回调函数
+ * 
+ * 该函数通过验证上下文获取扩展资源上下文，并执行相应的清理回调函数
+ * 用于处理更复杂的资源清理操作
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和回调相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090eb60
+ */
+void ExecuteResourceContextExtendedCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -93065,7 +93098,18 @@ void Unwind_18090eb60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eb70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源操作处理器
+ * 
+ * 该函数用于注册资源操作处理器，指定处理器的参数和回调函数
+ * 确保资源操作能够正确执行和管理
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和注册相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090eb70
+ */
+void RegisterResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(ValidationContext + ValidationContextPrimaryOffset,8,0x10,ProcessResourceOperation,0xfffffffffffffffe);
@@ -93083,7 +93127,18 @@ void Unwind_18090eb80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090eb90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册标准资源操作处理器
+ * 
+ * 该函数用于注册标准的资源操作处理器，使用默认参数
+ * 确保基本的资源操作能够正确执行
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和注册相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090eb90
+ */
+void RegisterStandardResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(ValidationContext + ValidationContextPrimaryOffset,8,0x10,ProcessResourceOperation);
@@ -93092,7 +93147,18 @@ void Unwind_18090eb90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ebc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册扩展资源操作处理器
+ * 
+ * 该函数用于注册扩展的资源操作处理器，使用与标准处理器相同的参数
+ * 用于处理额外的资源操作需求
+ * 
+ * @param ObjectContext 对象上下文指针，包含对象管理所需的信息
+ * @param ValidationContext 验证上下文指针，包含验证和注册相关信息
+ * @return void 无返回值
+ * @note 原始函数名：Unwind_18090ebc0
+ */
+void RegisterExtendedResourceOperationHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(ValidationContext + ValidationContextPrimaryOffset,8,0x10,ProcessResourceOperation);
