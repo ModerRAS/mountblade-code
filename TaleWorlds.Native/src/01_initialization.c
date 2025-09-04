@@ -58915,9 +58915,9 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   void* SystemMemoryAllocatorStatus;
   void* StackPointerD0;
   float MatrixResult1;
-  float fStack_c4;
-  float fStack_c0;
-  float fStack_bc;
+  float MatrixResult2;
+  float MatrixResult3;
+  float MatrixResult4;
   float fStack_b8;
   float fStack_b4;
   float fStack_b0;
