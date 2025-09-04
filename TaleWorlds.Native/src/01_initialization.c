@@ -1580,7 +1580,7 @@ void InitializeSystemDataTableBaseAllocator(void)
   void** CurrentNodePointer;
   void** PreviousNodePointer;
   void** NextNodePointer;
-  void** AllocatedNodePointer;
+  void** NewBaseAllocatorNodePointer;
   void* BaseAllocatorInitializationHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
@@ -1607,8 +1607,8 @@ void InitializeSystemDataTableBaseAllocator(void)
   if ((PreviousNodePointer == RootNodePointer) || 
       (BaseAllocatorIdentifierComparisonResult = memcmp(&BaseAllocatorSystemIdentifier1, PreviousNodePointer + 4, IdentifierSize), BaseAllocatorIdentifierComparisonResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &AllocatedNodePointer, PreviousNodePointer, SystemMemoryAllocationSize + NodeAllocationExtraSize, SystemMemoryAllocationSize);
-    PreviousNodePointer = AllocatedNodePointer;
+    AllocateSystemMemory(SystemDataTablePointer, &NewBaseAllocatorNodePointer, PreviousNodePointer, SystemMemoryAllocationSize + NodeAllocationExtraSize, SystemMemoryAllocationSize);
+    PreviousNodePointer = NewBaseAllocatorNodePointer;
   }
   
   PreviousNodePointer[NodeIdentifier1Index] = BaseAllocatorSystemIdentifier1;
@@ -1645,7 +1645,7 @@ void InitializeSystemDataTableAllocator(void)
   void** CurrentNodePointer;
   void** PreviousNodePointer;
   void** NextNodePointer;
-  void** AllocatedNodePointer;
+  void** NewDataTableNodePointer;
   void* DataTableInitializationHandler;
   
   SystemDataTablePointer = (long long*)GetSystemRootPointer();
@@ -1656,31 +1656,31 @@ void InitializeSystemDataTableAllocator(void)
   CurrentNodePointer = (void**)RootNodePointer[1];
   
   while (!IsDataTableNodeActive) {
-    DataTableIdentifierComparisonResult = memcmp(CurrentNodePointerPointer + 4, &SystemDataTableSystemIdentifier1, IdentifierSize);
+    DataTableIdentifierComparisonResult = memcmp(CurrentNodePointer + 4, &SystemDataTableSystemIdentifier1, IdentifierSize);
     if (DataTableIdentifierComparisonResult < 0) {
-      NextNodePointerPointer = (void**)CurrentNodePointerPointer[NodeNextPointerOffset];
-      CurrentNodePointerPointer = SystemPreviousNodePointer;
+      NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
+      CurrentNodePointer = PreviousNodePointer;
     }
     else {
-      NextNodePointerPointer = (void**)CurrentNodePointerPointer[NodeHeadPointerOffset];
+      NextNodePointer = (void**)CurrentNodePointer[NodeHeadPointerOffset];
     }
-    SystemPreviousNodePointer = CurrentNodePointerPointer;
-    CurrentNodePointerPointer = NextNodePointerPointer;
-    IsDataTableNodeActive = *(bool*)((long long)NextNodePointerPointer + NodeActiveFlagOffset);
+    PreviousNodePointer = CurrentNodePointer;
+    CurrentNodePointer = NextNodePointer;
+    IsDataTableNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((SystemPreviousNodePointer == RootNodePointerPointer) || 
-      (DataTableIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), DataTableIdentifierComparisonResult < 0)) {
+  if ((PreviousNodePointer == RootNodePointer) || 
+      (DataTableIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, PreviousNodePointer + 4, IdentifierSize), DataTableIdentifierComparisonResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &SystemAllocatedNodePointer, SystemPreviousNodePointer, SystemMemoryAllocationSize + NodeAllocationExtraSize, SystemMemoryAllocationSize);
-    SystemPreviousNodePointer = SystemAllocatedNodePointer;
+    AllocateSystemMemory(SystemDataTablePointer, &NewDataTableNodePointer, PreviousNodePointer, SystemMemoryAllocationSize + NodeAllocationExtraSize, SystemMemoryAllocationSize);
+    PreviousNodePointer = NewDataTableNodePointer;
   }
   
-  SystemPreviousNodePointer[NodeIdentifier1Index] = SystemDataTableSystemIdentifier1;
-  SystemPreviousNodePointer[NodeIdentifier2Index] = SystemDataTableSystemIdentifier2;
-  SystemPreviousNodePointer[NodeDataPointerIndex] = &SystemDataTableSystemNodeData;
-  SystemPreviousNodePointer[NodeActiveFlagIndex] = SystemDataTableSystemFlag;
-  SystemPreviousNodePointer[NodeHandlerIndex] = DataTableInitializationHandler;
+  PreviousNodePointer[NodeIdentifier1Index] = SystemDataTableSystemIdentifier1;
+  PreviousNodePointer[NodeIdentifier2Index] = SystemDataTableSystemIdentifier2;
+  PreviousNodePointer[NodeDataPointerIndex] = &SystemDataTableSystemNodeData;
+  PreviousNodePointer[NodeActiveFlagIndex] = SystemDataTableSystemFlag;
+  PreviousNodePointer[NodeHandlerIndex] = DataTableInitializationHandler;
   return;
 }
 
@@ -60556,7 +60556,7 @@ SystemStatusCheck:
       SystemStatusFlag = '\0';
       goto LAB_SetSystemStatus;
     }
-    if ((SystemConfigurationFlag & 0x10) == 0) goto LAB_SystemStatusCheck;
+    if ((SystemConfigurationFlag & 0x10) == 0) goto LAB_CheckSystemStatus;
     IsSystemByteValid = (*(byte *)(SystemResourceManager + 0xfd) & 2) == 0;
   }
   SystemStatusFlag = IsSystemByteValid + '\x01';
@@ -60666,7 +60666,7 @@ SystemStatusCheck:
       systemStatusFlag = '\0';
       goto LAB_SetSystemStatus;
     }
-    if ((OperationCode & 0x10) == 0) goto LAB_SystemStatusCheck;
+    if ((OperationCode & 0x10) == 0) goto LAB_CheckSystemStatus;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
@@ -60778,7 +60778,7 @@ SystemStatusCheck:
       systemStatusFlag = '\0';
       goto LAB_SetSystemStatus;
     }
-    if ((OperationCode & 0x10) == 0) goto LAB_SystemStatusCheck;
+    if ((OperationCode & 0x10) == 0) goto LAB_CheckSystemStatus;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
@@ -60880,7 +60880,7 @@ SystemStatusCheck:
       systemStatusFlag = '\0';
       goto LAB_SetSystemStatus;
     }
-    if ((OperationCode & 0x10) == 0) goto LAB_SystemStatusCheck;
+    if ((OperationCode & 0x10) == 0) goto LAB_CheckSystemStatus;
     isSystemBusy = (*(byte *)(memoryBlockAddress + 0xfd) & 2) == 0;
   }
   systemStatusFlag = isSystemBusy + '\x01';
@@ -64672,7 +64672,7 @@ LAB_ExpandSystemThread:
         piStack_208 = SystemIntegerPointer3;
         piStack_1f8 = pointerToInteger26;
         if ((((long long)pointerToInteger26 - (long long)SystemIntegerPointer6 & MAX_UNSIGNED_32_BITfffffffcU) == 0) || (!isResourceAvailable4))
-        goto LAB_SystemResourceCheck;
+        goto LAB_CheckSystemResource;
         isResourceAvailable4 = piStack_218 != (int *)0x0;
         piStack_218 = SystemIntegerPointer6;
         if (isResourceAvailable4) {
@@ -64809,7 +64809,7 @@ LAB_UpdateSystemContext:
   SystemParameterPointer = (ulong long)SystemContextPointer;
   longValue1d0 = longValue1d0 + 1;
   if (*SystemIntegerPointer <= (int)SystemContextPointer) goto LAB_UpdateSystemContext;
-  goto LAB_SystemExit;
+  goto LAB_ExitSystem;
 }
 
 
