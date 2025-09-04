@@ -63736,7 +63736,7 @@ void CleanupResourceDataFlagBitMemoryVersion(uint8_t ObjectContext,int64_t Valid
  * @return 无返回值
  * @note 此函数主要用于资源数据标志位的清理
  */
-void CleanupResourceDataFlagBitVersion2(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceDataSecondaryFlagBit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 2) != 0) {
@@ -63799,7 +63799,7 @@ void SetSystemDataStructurePointerAtOffset1C0(uint8_t ObjectContext,int64_t Vali
  * @return 无返回值
  * @note 此函数主要用于资源数据标志位的清理
  */
-void CleanupResourceDataFlagBitVersion4(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanupResourceDataQuaternaryFlagBit(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 4) != 0) {
@@ -63891,7 +63891,7 @@ void SetSecondarySystemDataStructurePointer(uint8_t ObjectContext,int64_t Valida
  * 
  * 原始函数名为Unwind_180907e50，现已重命名为ExecuteSystemResourceCleanupOperation1
  */
-void ExecuteSystemResourceCleanupOperation1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourcePrimaryCleanupOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x110) != (code *)0x0) {
@@ -63916,7 +63916,7 @@ void ExecuteSystemResourceCleanupOperation1(uint8_t ObjectContext,int64_t Valida
  * 
  * 原始函数名为Unwind_180907e60，现已重命名为ExecuteSystemResourceCleanupOperation2
  */
-void ExecuteSystemResourceCleanupOperation2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceSecondaryCleanupOperation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x130) != (code *)0x0) {
