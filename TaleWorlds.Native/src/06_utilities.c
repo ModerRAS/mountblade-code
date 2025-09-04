@@ -1955,8 +1955,8 @@ void* InputEventDataBufferQueue;
 void* PhysicsCommandDataBufferQueue;
 void* AnimationCommandDataBufferQueue;
 void* ScriptCommandDataBufferQueue;
-uint8_t SystemFileOperationQueue;
-uint8_t SystemDataStorageQueue;
+uint8_t SystemFileOperationProcessorQueue;
+uint8_t SystemDataStorageManagerQueue;
 uint8_t SystemSecurityQueue;
 uint8_t LoggingDataBufferQueue;
 uint8_t PerformanceDataBufferQueue;
@@ -3582,8 +3582,8 @@ uint8_t ResourcePoolManager;
  uint8_t ResourceOperationsProcessor;
 // 资源验证器 - 用于验证系统资源的有效性
 uint8_t ResourceValidator;
-// 资源检查器 - 用于检查系统资源状态
-uint8_t ResourceChecker;
+// 资源状态检查器 - 用于检查系统资源状态
+uint8_t ResourceStatusChecker;
 uint8_t ResourceTrackerTable;
 // 资源监控器 - 用于监控系统资源使用情况
 uint8_t ResourceUsageMonitor;
@@ -3591,8 +3591,8 @@ uint8_t ResourceMonitorTable;
 uint8_t ResourceAuditorTable;
 // 资源审计器 - 用于审计系统资源使用情况
 uint8_t ResourceAuditor;
-// 资源检查器 - 用于检查系统资源详细信息
-uint8_t ResourceInspector;
+// 资源详细检查器 - 用于检查系统资源详细信息
+uint8_t ResourceDetailedInspector;
 uint8_t ResourceCacheTable;
 uint8_t ResourceBufferTable;
 uint8_t ResourcePoolTable;
@@ -19599,7 +19599,7 @@ void ProcessResourceHash(int64_t ResourceContext, uint *ResourceHashPointer)
   uint ResourceHash;
   int ProcessResult;
   uint8_t HashType;
-  uint32_t formattedHash;
+  uint32_t FormattedResourceHash;
   
   ResourceHash = *ResourceHashPointer;
   if (ResourceHash + 0x4000 < 0x8000) {
@@ -24010,7 +24010,7 @@ uint64_t ResourceHashValidationHandler(void)
   float ObjectContextPointer;
   float RangeValue;
   float resourceValidationHash;
-  uint32_t resourceSecurityHash;
+  uint32_t ResourceSecurityValidationHash;
   uint32_t resourceHashValue;
   uint32_t PrimaryResourceHash;
   float FloatCalculationResult;
@@ -24384,7 +24384,7 @@ uint64_t ResourceContextValidationHandler(void)
   float ObjectContextPointer;
   float CalculatedFloatResult;
   float resourceValidationHash;
-  uint32_t resourceSecurityHash;
+  uint32_t ResourceSecurityValidationHash;
   uint32_t resourceHashValue;
   uint32_t ResourceHashValue;
   float FloatCalculationResult;
@@ -24641,7 +24641,7 @@ uint64_t ResourceIntegrityValidationHandler(void)
   float ObjectContextPointer;
   float CalculatedFloatResult;
   float resourceValidationHash;
-  uint32_t resourceSecurityHash;
+  uint32_t ResourceSecurityValidationHash;
   uint32_t resourceHashValue;
   uint32_t ResourceHashValue;
   float FloatCalculationResult;
@@ -24900,7 +24900,7 @@ uint64_t ProcessFloatParameterResourceHash(float ObjectContext)
   float ObjectContextPointer;
   float ValidationFloatValue;
   uint32_t resourceValidationHash;
-  uint32_t resourceSecurityHash;
+  uint32_t ResourceSecurityValidationHash;
   uint32_t ResourceSecurityHashValue;
   float resourceHashValue;
   
@@ -48641,12 +48641,12 @@ void CleanupAudioManagerResources(uint8_t ObjectContext,int64_t ValidationContex
 
 {
   int32_t *ResourceTablePointerIndexPointer;
-  uint8_t *ResourceHashStatusAddress;
+  uint8_t *ResourceHashStatusPointer;
   int64_t ResourceIndex;
   uint64_t MemoryAddressIncrement;
   
-  ValidationStatusCodeAddress = *(uint8_t **)(ValidationContext + ValidationContextSecurityDataOffset);
-  if (ResourceHashStatusAddress == (uint8_t *)0x0) {
+  ResourceHashStatusPointer = *(uint8_t **)(ValidationContext + ValidationContextSecurityDataOffset);
+  if (ResourceHashStatusPointer == (uint8_t *)0x0) {
     return;
   }
   MemoryAddressIncrement = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
