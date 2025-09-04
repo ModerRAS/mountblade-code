@@ -9293,11 +9293,11 @@ void InitializeSystemSearchManagerD(void)
     SystemNodeActiveFlag = *(char*)((long long)NextSystemNode + SystemNodeActiveFlagOffset);
   }
   
-  if ((previousSystemNode == RootNodePointer) || 
-      (IdentifierCompareResult = memcmp(&SystemDataComparisonTemplateI, previousSystemNode + 4, SystemIdentifierSize), IdentifierCompareResult < 0)) {
+  if ((PreviousSystemNode == RootNodePointer) || 
+      (IdentifierCompareResult = memcmp(&SystemDataComparisonTemplateI, PreviousSystemNode + 4, SystemIdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &allocatedSystemNode, previousSystemNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    previousSystemNode = allocatedSystemNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    PreviousSystemNode = AllocatedSystemNode;
   }
   
   previousSystemNode[6] = 0x431d7c8d7c475be2;
