@@ -1756,15 +1756,15 @@ void ResetNetworkConnectionPointer(void)
  * @security 该函数是网络安全的第一道防线，确保只有合法的连接参数能够通过验证
  * @see NetworkErrorInvalidHandle, NetworkErrorConnectionFailed
  */
-uint32_t ValidateNetworkConnectionParameters(int64_t *ParameterPointer)
+uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer)
 {
   // 检查参数指针是否有效
-  if (ParameterPointer == NULL) {
+  if (ConnectionParameterPointer == NULL) {
     return NetworkErrorInvalidHandle;
   }
   
   // 检查连接参数的基本结构
-  if (*ParameterPointer == 0) {
+  if (*ConnectionParameterPointer == 0) {
     return NetworkErrorConnectionFailed;
   }
   
