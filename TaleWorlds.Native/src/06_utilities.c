@@ -83528,10 +83528,16 @@ void Unwind_18090cad0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 /**
- * 设置验证上下文中的系统数据结构指针
+ * @brief 设置验证上下文中的系统数据结构指针
+ * 
+ * 该函数负责在验证上下文中设置系统数据结构指针
  * 用于在异常处理过程中重置系统数据结构引用
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
  */
-void Unwind_SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
+void SystemDataStructurePointerSetter(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ValidationContextDataOffset0) = &SystemDataStructure;
@@ -83542,10 +83548,15 @@ void Unwind_SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t Validat
 
 
 /**
- * 释放资源引用计数器并调用资源管理器清理函数
+ * @brief 释放资源引用计数器并调用资源管理器清理函数（第二个版本）
+ * 
+ * 该函数负责减少资源引用计数并执行资源管理器清理操作
  * 用于在异常处理过程中减少资源引用计数
+ * 这是该功能的第二个实现版本
+ * 
+ * @return 无返回值
  */
-void Unwind_ReleaseResourceReferenceAndCleanup2(void)
+void ResourceReferenceCleanupHandlerSecondary(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
@@ -83600,7 +83611,14 @@ void Unwind_18090cb00(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cb10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 设置验证上下文中的系统数据结构指针到指定偏移量
+ * 用于在异常处理过程中重置系统数据结构引用到特定位置
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void SetSystemDataStructurePointerToValidationContextOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x660) = &SystemDataStructure;
