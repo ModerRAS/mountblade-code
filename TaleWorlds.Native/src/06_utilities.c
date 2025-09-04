@@ -35770,7 +35770,7 @@ void ProcessDirectoryHandleCleanup(uint8_t DirectoryContext, int64_t ValidationC
  * @return 无返回值
  * @note 此函数在资源清理过程中被调用
  */
-void UnwindResourceCleanupHandler(uint8_t ResourceContext, int64_t ValidationContext) {
+void CleanupResourceHandler(uint8_t ResourceContext, int64_t ValidationContext) {
   int32_t *ResourceReferenceCountPointer;
   uint8_t *ResourceHashStatusAddress;
   int64_t ResourceCleanupIndex;
@@ -35837,7 +35837,7 @@ void ReleaseStreamResourceLock(uint8_t StreamContext, int64_t ValidationContext,
  * @return 无返回值
  * @note 此函数在上下文重置过程中被调用
  */
-void UnwindContextResetHandler(uint8_t ContextObject, int64_t ValidationContext) {
+void ResetContextHandler(uint8_t ContextObject, int64_t ValidationContext) {
   int64_t SystemResourceContextHandle;
   
   SystemResourceContextHandle = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
@@ -81581,7 +81581,19 @@ void DecrementResourceReferenceCounter(void)
 
 
 
-void Unwind_18090c580(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * 
+ * 该函数负责将系统数据结构指针设置到验证上下文的指定偏移量处。
+ * 这是一个简单的指针设置操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数将系统数据结构指针设置到验证上下文偏移量0x4d0处
+ * @warning 原始函数名为Unwind_18090c580，现已重命名为SetSystemDataStructurePointerToValidationContext
+ */
+void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x4d0) = &SystemDataStructure;
