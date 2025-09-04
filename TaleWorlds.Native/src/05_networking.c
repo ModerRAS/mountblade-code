@@ -1692,10 +1692,10 @@ void ResetNetworkConnectionPointer(void)
   int32_t ConnectionId;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(ConnectionStateFlags, ConnectionId) + ConnectionStateBufferOffset);
+  StateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(StateFlags, ConnectionId) + ConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
-  *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + ConnectionStateDataOffset);
+  *DataBuffer = (uint64_t)*(uint *)(ContextData + ConnectionStateDataOffset);
   
   // 清理连接堆栈
   CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
@@ -1716,15 +1716,15 @@ void ResetNetworkConnectionPointer(void)
  * @security 该函数是网络安全的第一道防线，确保只有合法的连接参数能够通过验证
  * @see NetworkErrorInvalidHandle, NetworkErrorConnectionFailed
  */
-uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
+uint32_t ValidateNetworkConnectionParameters(int64_t *ParameterPointer)
 {
   // 检查参数指针是否有效
-  if (ConnectionParameters == NULL) {
+  if (ParameterPointer == NULL) {
     return NetworkErrorInvalidHandle;
   }
   
   // 检查连接参数的基本结构
-  if (*ConnectionParameters == 0) {
+  if (*ParameterPointer == 0) {
     return NetworkErrorConnectionFailed;
   }
   
@@ -2049,28 +2049,28 @@ void ReleaseNetworkConnectionResources(NetworkHandle ConnectionContext)
 NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
   // 安全验证缓冲区
-  NetworkByte NetworkPacketValidationBuffer [32];                    // 数据包验证缓冲区，用于存储验证过程中的临时数据
-  NetworkByte NetworkPacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
+  NetworkByte ValidationBuffer [32];                    // 数据包验证缓冲区，用于存储验证过程中的临时数据
+  NetworkByte EncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, NetworkPacketEncryptionBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation);
-  if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, NetworkPacketValidationBuffer, 0, NetworkPacketMagicBinaryData, NetworkMagicDebugMemoryCheck), (int)SecurityValidationResult == 0)) {
+  NetworkHandle ValidationResult = DecodePacket(PacketData, EncryptionBuffer, 1, NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation);
+  if (((int)ValidationResult == 0) &&
+     (ValidationResult = DecodePacket(PacketData, ValidationBuffer, 0, NetworkPacketMagicBinaryData, NetworkMagicDebugMemoryCheck), (int)ValidationResult == 0)) {
     if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorInvalidPacket;
     }
-    SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
-    if ((int)SecurityValidationResult == 0) {
+    ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    if ((int)ValidationResult == 0) {
       if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorInvalidPacket;
       }
-      SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationPrimaryOffset);
-      if ((int)SecurityValidationResult == 0) {
-          FinalizePacketProcessing(PacketData, NetworkPacketValidationBuffer);
+      ValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionValidationPrimaryOffset);
+      if ((int)ValidationResult == 0) {
+          FinalizePacketProcessing(PacketData, ValidationBuffer);
       }
     }
   }
-  return SecurityValidationResult;
+  return ValidationResult;
 }
 
 /**
