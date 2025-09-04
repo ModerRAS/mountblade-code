@@ -19739,18 +19739,7 @@ void** InitializeSystemPointerPool(void** SystemPointerPool, unsigned long long 
 
 
 
-/**
- * @brief 清理系统完成端口资源
- * 
- * 该函数负责清理系统的完成端口资源，关闭句柄，销毁互斥体，
- * 并根据标志释放相关内存。这是系统资源清理的重要组成部分。
- * 
- * @param systemResourceHandle 系统资源指针
- * @param cleanupFlags 清理标志，用于控制是否释放内存
- * @return 返回清理后的系统资源指针
- */
 void* CleanupSystemCompletionPortResources(void* SystemResourceHandle, uint32_t CleanupFlags)
-
 {
   *SystemResourceHandle = &SystemCompletionPortTemplate;
   PostQueuedCompletionStatus(SystemResourceHandle[CompletionPortHandleOffset],0,0xffffffffffffffff,0,InvalidHandleValue);
@@ -19769,14 +19758,7 @@ void* CleanupSystemCompletionPortResources(void* SystemResourceHandle, uint32_t 
 
 
 
-/**
- * @brief 执行ICALL（内部调用）安全检查
- * 
- * 该函数用于执行内部调用的安全检查，确保调用的合法性
- * 这是.NET运行时安全机制的一部分
- */
 void GuardCheckICall(void)
-
 {
   return;
 }

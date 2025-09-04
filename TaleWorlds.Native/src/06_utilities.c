@@ -75767,7 +75767,21 @@ void ExecuteResourceIndexValidationAndMemoryManagementThird(uint8_t ObjectContex
  * @param ObjectContext 对象上下文
  * @param ValidationContext 验证上下文
  */
-void Unwind_ReleaseSystemResourceTableEntry(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 释放系统资源表条目
+ * 
+ * 该函数负责释放系统资源表中的特定条目
+ * 检查资源上下文是否存在，如果存在则调用相应的释放函数
+ * 确保资源被正确清理，防止内存泄漏
+ * 
+ * @param ObjectContext 对象上下文，包含当前操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数通常在资源清理阶段调用
+ * @warning 调用此函数前必须确保系统上下文已正确初始化
+ * @warning 原始函数名：Unwind_ReleaseSystemResourceTableEntry
+ */
+void ReleaseSystemResourceTableEntry(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -75786,7 +75800,21 @@ void Unwind_ReleaseSystemResourceTableEntry(uint8_t ObjectContext, int64_t Valid
  * @param ObjectContext 对象上下文
  * @param ValidationContext 验证上下文
  */
-void Unwind_ExecuteSystemOperationContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 执行系统操作上下文清理
+ * 
+ * 该函数负责清理系统操作上下文中的资源
+ * 检查操作上下文是否存在，如果存在则调用相应的清理函数
+ * 确保系统操作相关的资源被正确清理
+ * 
+ * @param ObjectContext 对象上下文，包含当前操作的对象信息
+ * @param ValidationContext 验证上下文，包含验证所需的环境信息
+ * @return 无返回值
+ * @note 此函数通常在系统操作完成或异常时调用
+ * @warning 调用此函数前必须确保系统操作上下文已正确初始化
+ * @warning 原始函数名：Unwind_ExecuteSystemOperationContextCleanup
+ */
+void ExecuteSystemOperationContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
