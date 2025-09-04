@@ -3338,7 +3338,7 @@ uint8_t LogMessageHandlerManager;
 uint8_t LogSystemTimestampManager;
 uint8_t LogMemoryPoolManager;
 uint8_t LogSystemThreadManager;
-int64_t SystemPerformanceTickCount;
+int64_t SystemPerformanceCounter;
 uint SystemConfigurationVersion;
 double SystemElapsedTime;
 double SystemClockFrequency;
@@ -78983,7 +78983,19 @@ void CleanupResourceTableEntries(uint8_t ObjectContext, int64_t ValidationContex
 
 
 
-void Unwind_18090bd20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表清理循环操作（重复实现）
+ * 
+ * 该函数是CleanupResourceTableEntries的重复实现，功能完全相同。
+ * 遍历资源表中的所有资源指针，执行清理回调函数，释放资源句柄并清空指针。
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return void 无返回值
+ * @remark 原始函数名：Unwind_18090bd20
+ * @note 此函数与CleanupResourceTableEntries功能重复，可能是编译器优化或版本差异导致
+ */
+void ExecuteResourceTableCleanupLoopDuplicate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;

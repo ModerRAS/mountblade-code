@@ -21892,9 +21892,9 @@ void* * SystemMemoryNodeFinder(long long* SystemResourceManager,void* *OutputNod
         } while (UIntValue != 0);
         if ((int)(ByteValue - UIntValue) < 1) goto ComparisonResultHandler;
       }
-LABEL_TARGET_NODE_VALIDATION_START:
+    SystemSearchNodeValidationStart:
       VoidPointer = 0;
-LABEL_TARGET_NODE_VALIDATION_CONTINUE:
+  SystemSearchNodeValidationContinue:
       if (TargetNodePointer != (long long *)0x0) {
         ProcessSystemNodeSearch(SystemResourceManager,OutputNodePointer,TargetNodePointer,VoidPointer,SearchParameters);
         return OutputNodePointer;
@@ -21933,7 +21933,7 @@ LABEL_TARGET_NODE_VALIDATION_CONTINUE:
       }
     }
   }
-ComparisonResultHandler:
+SystemComparisonResultHandler:
   ComparisonResult = true;
   MemoryListNode = (long long *)SystemResourceManager[SYSTEM_RESOURCE_HASH_TABLE_OFFSET];
   MemorySystemPointer = SystemResourceManager;
@@ -53477,7 +53477,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   SystemContextPointer = (ulong long)ResourceHash;
   resourceAddress = 0;
   if (*(long long *)(resourceCounter + 8) == 0) {
-LAB_180072120:
+SystemResourceHashProcessingStart:
     SystemOperationStatusFlags = resourceAddress;
     if (ResourceHash != 0) {
         memcpy(SystemDataPointer0,*(void* *)(resourceCounter + 8),SystemContextPointer);
@@ -53631,7 +53631,7 @@ LAB_1800722f5:
         SystemMemoryAllocationOffset = 0x14;
         ResourceDataBufferPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x16,0x13);
         *ResourceDataBufferPointer = 0;
-LAB_180072521:
+SystemResourceDataProcessing:
         ThreadContextFlag = StartSystemThread(ResourceBufferPointer130);
         SystemThreadContextFlags = ConcatenatedSystemValue(SystemThreadContextFlags._4_4_,ThreadContextFlag);
       }
