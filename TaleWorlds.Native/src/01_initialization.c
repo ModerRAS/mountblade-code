@@ -1395,62 +1395,6 @@ void* GetSystemInitializationFunction;
 /**
  * @brief 初始化游戏核心系统
  * 
- * 该函数负责初始化游戏的核心系统组件，包括创建系统节点、分配内存空间
- * 和设置游戏系统的基本参数。它会遍历系统节点树，找到合适的位置
- * 来创建游戏核心系统节点，并设置相关的标识符和处理器。
- * 
- * @note 该函数在系统初始化过程中调用，确保游戏核心系统能够正确配置
- * 和运行。函数会创建新的系统节点或使用现有节点来存储游戏核心配置。
- * 
- * @param void 无参数
- * @return void 无返回值
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 初始化游戏核心系统节点，设置系统标识符、数据指针和处理器。
- * 该函数负责在系统数据表中创建和配置游戏核心系统节点。
- * 
- * @return 无返回值
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 负责初始化游戏的核心系统组件，包括节点创建、内存分配和系统标识符设置。
- * 该函数通过遍历系统节点树来找到合适的位置创建游戏核心系统节点。
- * 
- * @note 该函数会分配内存并设置节点的各种属性，包括标识符、数据指针和处理函数。
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 该函数负责初始化游戏的核心系统组件，包括游戏状态管理、
- * 资源加载和系统配置等基础功能。它会创建必要的系统节点，
- * 设置初始化回调函数，并建立游戏运行所需的基础结构。
- * 
- * @return 无返回值
- * @note 这是系统初始化过程的关键步骤，确保游戏核心功能的正常运行
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 初始化游戏核心系统，包括系统节点的创建、配置和激活。
- * 该函数负责在系统数据表中查找或创建游戏核心系统节点，
- * 并设置相应的标识符、数据指针和处理函数。
- * 
- * @return 无返回值
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 该函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配
- * 和核心系统配置。这是游戏启动过程中的关键初始化步骤。
- * 
- * @return 无返回值
- */
-/**
- * @brief 初始化游戏核心系统
- * 
  * 该函数负责初始化游戏的核心系统组件，包括系统节点管理、内存分配
  * 和核心系统配置。这是游戏启动过程中的关键初始化步骤。
  * 
@@ -34314,7 +34258,7 @@ void CleanupSystemResources(long long* SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针数组，包含需要清理的资源
  * 
- * 原始函数名：FUN_180059640
+ 180059640
  */
 void CleanupSystemResourcesIterator(long long* SystemResourceManager)
 
@@ -34343,7 +34287,7 @@ void CleanupSystemResourcesIterator(long long* SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针，包含需要重置的资源信息
  * 
- * 原始函数名：FUN_1800596a0
+ 1800596a0
  */
 void ResetSystemResources(void* *SystemResourceManager)
 
@@ -34375,8 +34319,6 @@ void ResetSystemResources(void* *SystemResourceManager)
  * 它会检查资源状态，销毁互斥锁，确保资源被正确清理。
  * 
  * @param SystemResourceManager 系统资源指针，包含需要验证的资源信息
- * 
- * 原始函数名：FUN_180059730
  */
 void ValidateSystemResourceCleanup(long long SystemResourceManager)
 
@@ -34401,7 +34343,7 @@ void ValidateSystemResourceCleanup(long long SystemResourceManager)
  * @param AdditionalParameter 额外参数，用于控制复制行为
  * @return 返回处理后的资源指针
  * 
- * 原始函数名：FUN_180059780
+ 180059780
  */
 void* * CopySystemResourceDataExtended(void* *SystemResourceManager,void* *ConfigurationDataPointer,void* *AdditionalParameter)
 
@@ -36060,7 +36002,7 @@ void** InitializeSystemResourceManager(void** systemResourcePointer)
  * @param AdditionalParameter 额外参数
  * @param ConfigurationFlag 配置标志
  * 
- * 原始函数名：FUN_18005b960
+ 18005b960
  */
 void InitializeSystemResourceManager(void* *SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -36133,7 +36075,7 @@ void InitializeSystemResourceManager(void* *SystemResourceManager,void* Configur
  * @param AdditionalParameter 额外参数
  * @param ConfigurationFlag 配置标志
  * 
- * 原始函数名：FUN_18005ba80
+ 18005ba80
  */
 void InitializeSystemThread(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -36183,7 +36125,7 @@ void InitializeSystemThread(void* SystemResourceManager,void* ConfigurationDataP
  * @param SystemResourceManager 系统资源指针，需要被初始化的资源指针
  * @return 初始化后的系统资源指针
  * 
- * 原始函数名：FUN_18005c060
+ 18005c060
  */
 void* * InitializeSystemResourceManager(void* *SystemResourceManager)
 
@@ -36259,7 +36201,7 @@ ExecuteSystemDataOperation(void* SystemResourceManager, void* ConfigurationDataP
  * @param ConfigurationFlag 配置标志，控制配置行为
  * @return 配置后的系统资源指针
  * 
- * 原始函数名：FUN_18005c210
+ 18005c210
  */
 void* * ConfigureSystemResourceMemoryTemplate(void* *SystemResourceManager,uint ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -36326,7 +36268,7 @@ CreateMemoryAllocationHandle(void* *SystemResourceManager,void* *ConfigurationDa
  * 
  * @param SystemResourceManager 系统资源指针，指向系统资源数据结构
  * 
- * 原始函数名：FUN_18005c380
+ 18005c380
  */
 void InitializeSystemDataReference(long long SystemResourceManager)
 
@@ -36352,7 +36294,7 @@ void InitializeSystemDataReference(long long SystemResourceManager)
  * 
  * @param SystemResourceManager 系统资源指针，指向需要清理的资源数据结构
  * 
- * 原始函数名：FUN_18005c3d0
+ 18005c3d0
  */
 void CleanupSystemResourceManager(long long* SystemResourceManager)
 
@@ -36539,7 +36481,7 @@ InitializeSystemDataTableManager(void* *SystemResourceManager,void* *Configurati
  * 
  * @param SystemResourceManager 系统资源指针
  * 
- * 原始函数名：FUN_18005c650
+ 18005c650
  */
 void ProcessSystemResourceData(long long* SystemResourceManager)
 
@@ -36777,7 +36719,7 @@ void ProcessNodeManagerOperation(long long SystemResourceManager,uint32_t Config
  * @param ConfigurationDataPointer 配置数据指针，包含配置信息
  * @return 配置后的系统资源指针
  * 
- * 原始函数名：FUN_18005caa0
+ 18005caa0
  */
 void* * ConfigureSystemResources(void* *SystemResourceManager,long long ConfigurationDataPointer)
 
@@ -62513,7 +62455,7 @@ void ProcessSystemResourceValidation(long long SystemResourceManager)
  * 
  * @return 无返回值
  * 
- * 原始函数名：FUN_1800792ea
+ 1800792ea
  */
 void InitializeSystemResourcePool(void)
 
@@ -62815,7 +62757,7 @@ void InitializeSystemResourcePool(void)
  * @param ConfigurationFlag 配置标志指针
  * @return 无返回值
  * 
- * 原始函数名：FUN_180079309
+ 180079309
  */
 void ConfigureSystemResourceParameters(long long SystemResourceManager, uint ConfigurationDataPointer, void* AdditionalParameter, float *ConfigurationFlag)
 
@@ -63107,7 +63049,7 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
  * 
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007940e
+ 18007940e
  */
 void ResetSystemResourceCounter(void)
 
@@ -65339,7 +65281,7 @@ void ReleaseSystemResourceHandle(long long SystemResourceManager)
  * @param SystemResourceManager 系统资源管理器指针，包含系统资源管理信息
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007baa0
+ 18007baa0
  */
 void InitializeSystemMemoryOperationStatus(long long SystemResourceManager)
 
@@ -65365,7 +65307,7 @@ void InitializeSystemMemoryOperationStatus(long long SystemResourceManager)
  * @param SystemResourceManager 系统资源管理器指针，包含回调函数信息
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007bb70
+ 18007bb70
  */
 void ExecuteSystemResourceManagerCallbacks(long long* SystemResourceManager)
 
@@ -65933,7 +65875,7 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
  * @param SystemResourceManager 系统资源管理器指针，包含哈希表和内存分配信息
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007c790
+ 18007c790
  */
 void ConfigureSystemHashTableAndMemoryAllocation(long long* SystemResourceManager)
 
@@ -65970,7 +65912,7 @@ void ConfigureSystemHashTableAndMemoryAllocation(long long* SystemResourceManage
  * @param ConfigurationDataPointer 配置数据指针，包含要复制的配置信息
  * @return 返回配置后的系统资源管理器指针
  * 
- * 原始函数名：FUN_18007c7f0
+ 18007c7f0
  */
 void* * InitializeSystemResourceManagerConfiguration(void* *SystemResourceManager,void* *ConfigurationDataPointer)
 
@@ -66005,7 +65947,7 @@ void* * InitializeSystemResourceManagerConfiguration(void* *SystemResourceManage
  * @param ConfigurationDataPointer 配置数据指针，包含配置参数
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007c860
+ 18007c860
  */
 void ProcessSystemThreadStatusAndConfiguration(long long SystemResourceManager,uint8_t ConfigurationDataPointer)
 
@@ -67367,7 +67309,7 @@ void SystemNoOperationF(void)
  * @param ConfigurationDataPointer 配置数据指针，包含配置参数
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007e990
+ 18007e990
  */
 void ConfigureSystemResourceManagerPrimaryResourcePointer(long long SystemResourceManager,int ConfigurationDataPointer)
 
@@ -67909,7 +67851,7 @@ void SystemNoOperationH(void)
  * @param SystemResourceManager 系统资源管理器指针，包含状态标志信息
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007f0ca
+ 18007f0ca
  */
 void ResetSystemResourceManagerStatusFlags(long long SystemResourceManager)
 
@@ -68155,7 +68097,7 @@ void ProcessSystemResourceManagerMemory(void)
  * @param 无参数
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007f2cf
+ 18007f2cf
  */
 void SetSystemResourceCounter(void)
 
@@ -68502,7 +68444,7 @@ LAB_18007f7cf:
  * @param 无参数
  * @return 无返回值
  * 
- * 原始函数名：FUN_18007f820
+ 18007f820
  */
 void ExecuteSystemResourceProcessingOperation(void)
 
@@ -69777,7 +69719,7 @@ void ProcessSystemSystemHashNodeData(void)
  * @param AdditionalParameter 附加参数
  * @param ConfigurationFlag 配置标志
  * 
- * 原始函数名：FUN_18007fc35
+ 18007fc35
  */
 void CopySystemResourceDataToMemory(long long SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
@@ -69800,7 +69742,7 @@ void CopySystemResourceDataToMemory(long long SystemResourceManager,void* Config
  * 该函数是一个空操作函数，不执行任何实际操作
  * 主要用于系统初始化和清理过程中的占位操作
  * 
- * 原始函数名：FUN_18007fc63
+ 18007fc63
  */
 void SystemNullOperationC(void)
 
@@ -69817,7 +69759,7 @@ void SystemNullOperationC(void)
  * 该函数是一个空操作函数，不执行任何实际操作
  * 主要用于系统初始化和清理过程中的占位操作
  * 
- * 原始函数名：FUN_18007fc68
+ 18007fc68
  */
 void SystemNullOperationD(void)
 
@@ -69834,7 +69776,7 @@ void SystemNullOperationD(void)
  * 该函数是一个空操作函数，不执行任何实际操作
  * 主要用于系统初始化和清理过程中的占位操作
  * 
- * 原始函数名：FUN_18007fc6d
+ 18007fc6d
  */
 void SystemNullOperationE(void)
 
