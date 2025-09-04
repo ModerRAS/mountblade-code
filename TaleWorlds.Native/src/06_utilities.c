@@ -92561,7 +92561,15 @@ void Unwind_18090e9a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e9b0(void)
+/**
+ * @brief 递减资源引用计数并调用管理器
+ * 
+ * 在系统unwind过程中递减资源引用计数，
+ * 并调用资源管理器的回调函数。
+ * 
+ * @note 原始函数名：Unwind_18090e9b0
+ */
+void DecrementResourceReferenceAndCallManagerV4(void)
 
 {
   ResourceReferenceCounter = ResourceReferenceCounter + -1;
