@@ -42877,7 +42877,7 @@ ulong long SearchSystemResource(long long* SystemResourceManager,long long Confi
   uint resourceCreationFlags;
   uint resourceAllocationContext;
   long long SystemProcessBufferPtr;
-  ulong long in_RAX;
+  ulong long ResourceSearchResult;
   byte *pisMemoryReady;
   uint ResourceHash;
   ulong long ThreadContextIndicator;
@@ -42914,10 +42914,10 @@ MemoryAllocationLoop:
       else if (resourceAllocationContext == 0) goto MemoryAllocationLoop;
       systemId = systemId + 1;
       SystemAllocationFlags = SystemAllocationFlags + 0x20;
-      in_RAX = (ulong long)systemId;
-    } while (in_RAX < ThreadContextIndicator);
+      ResourceSearchResult = (ulong long)systemId;
+    } while (ResourceSearchResult < ThreadContextIndicator);
   }
-  return in_RAX & SystemMemoryStatusAlignmentMask;
+  return ResourceSearchResult & SystemMemoryStatusAlignmentMask;
 }
 
 
@@ -49182,15 +49182,15 @@ void ConfigureSystemResourceNode(void* SystemResourceManager,void* Configuration
 {
   long long resourceDataIndex;
   long long SystemThreadHandle;
-  long long in_RAX;
+  long long ResourceConfigurationValue;
   long long ResourceMemoryOffset;
   long long SystemProcessBufferPtr;
   long long SystemTimestamp;
   long long *systemDataIndexPtr;
-  long long in_R10;
+  long long ResourceConfigurationOffset;
   long long InputStackParameter50;
   
-  SystemProcessBufferPtr = SUB168(SEXT816(in_RAX) * SEXT816(AdditionalParameter - in_R10),8);
+  SystemProcessBufferPtr = SUB168(SEXT816(ResourceConfigurationValue) * SEXT816(AdditionalParameter - ResourceConfigurationOffset),8);
   SystemProcessBufferPtr = (SystemProcessingBufferPointer >> 7) - (SystemProcessingBufferPointer >> 0x3f);
   if (SystemProcessBufferPtr == 0) {
     SystemProcessBufferPtr = 1;
