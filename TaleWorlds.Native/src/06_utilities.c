@@ -15458,10 +15458,10 @@ void CalculateFloatValueAndValidateResources(void)
         do {
           CalculatedFloatValue = *FloatPointer;
           if (InputFloatValue != 0.0) {
-            contextBufferPointer = StackContextBuffer;
-            resourceTemplatePointer = &SystemResourceTemplateHardware;
-            floatRegisterValue = FloatRegisterValue;
-            floatResourceValue = LoopCounterValue;
+            ContextBufferPointer = StackContextBuffer;
+            ResourceTemplatePointer = &SystemResourceTemplateHardware;
+            FloatRegisterValue = FloatRegisterValue;
+            FloatResourceValue = LoopCounterValue;
             StackFloatSecondaryValue = InputFloatValue;
             ResourceIndexTertiary = GetAndValidateResourceData(InputFloatValue,&PrimaryObjectResourceBuffer);
             if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
