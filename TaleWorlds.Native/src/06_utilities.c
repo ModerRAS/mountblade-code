@@ -5128,21 +5128,21 @@ uint8_t InitializeObjectHandle(int64_t ObjectContext) {
  */
 uint8_t ReleaseObjectHandle(void) {
   int64_t CurrentObjectHandle = 0;
-  int64_t ObjectMemoryLocation;
+  int64_t ObjectMemoryAddress;
   
   // 获取当前对象句柄（这里从系统状态中获取）
   CurrentObjectHandle = GetCurrentObjectHandle();
   
   if (CurrentObjectHandle == 0) {
-    ObjectMemoryLocation = 0;
+    ObjectMemoryAddress = 0;
   }
   else {
-    ObjectMemoryLocation = CurrentObjectHandle - 8;
+    ObjectMemoryAddress = CurrentObjectHandle - 8;
   }
   
   // 如果对象内存地址有效，执行释放操作
-  if (*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset) != 0) {
-    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryLocation + ObjectHandleOffset), 1);
+  if (*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset) != 0) {
+    ExecuteSystemExitOperation(*(int64_t *)(ObjectMemoryAddress + ObjectHandleOffset), 1);
   }
   return OperationSuccessCode;
 }
