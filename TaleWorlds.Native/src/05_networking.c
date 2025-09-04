@@ -660,12 +660,12 @@ uint32_t NetworkConnectionAttributeFlags;                // 网络连接属性�
 uint32_t NetworkConnectionStateFlags;                     // 网络连接状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
 
 // 网络协议和地址配置
-uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
-uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本
-uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址
-uint32_t NetworkServerPortNumber;                         // 网络服务器端口号
-uint32_t NetworkClientIpAddress;                          // 网络客户端IP地址
-uint32_t NetworkClientPortNumber;                         // 网络客户端端口号
+uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）
+uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本，指定协议的版本号用于兼容性检查
+uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址，存储服务器的IP地址信息
+uint32_t NetworkServerPortNumber;                         // 网络服务器端口号，服务器监听的端口号
+uint32_t NetworkClientIpAddress;                          // 网络客户端IP地址，客户端的IP地址信息
+uint32_t NetworkClientPortNumber;                         // 网络客户端端口号，客户端使用的端口号
 
 // 网络套接字和缓冲区配置
 uint32_t NetworkSocketDescriptor;                     // 网络套接字文件描述符

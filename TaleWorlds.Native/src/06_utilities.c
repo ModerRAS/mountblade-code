@@ -10033,7 +10033,7 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int
   ValidationOperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
   SystemContextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
   SystemContextPointer = (**(code **)(**(int64_t **)(ValidationContext + SystemContextBaseOffset) + SystemContextMethodOffset))
-                    (*(int64_t **)(ValidationContext + SystemContextBaseOffset),&PrimaryOperationParameter,1);
+                    (*(int64_t **)(ValidationContext + SystemContextBaseOffset),&PrimaryValidationParameter,1);
   if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + SystemContextResourceTablePointerOffset) == 0)) {
     return SystemOperationErrorCode;
   }
@@ -35013,7 +35013,7 @@ void ResourcePoolManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void MemorySegmentCleaner(uint8_t ObjectContext,int64_t ValidationContext)
+void CleanMemorySegments(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
