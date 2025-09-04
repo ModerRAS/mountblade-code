@@ -79835,7 +79835,18 @@ void HandleResourceDataTransferRollbackAlt(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090c040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行次要资源数据验证
+ * 
+ * 该函数处理次要资源数据的验证操作，包括清理选项和标志的处理
+ * 主要用于次要资源数据的批量验证和清理
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteSecondaryResourceDataValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(ValidationContext + 0x28),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x10),
@@ -79845,7 +79856,18 @@ void Unwind_18090c040(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090c050(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行扩展次要资源数据验证
+ * 
+ * 该函数处理扩展次要资源数据的验证操作，包括清理选项和标志的处理
+ * 与ExecuteSecondaryResourceDataValidation功能相同，但可能在不同的上下文中使用
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ */
+void ExecuteExtendedSecondaryResourceDataValidation(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   ProcessResourceDataValidation(*(int64_t *)(ValidationContext + 0x28),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x28) + 0x10),
