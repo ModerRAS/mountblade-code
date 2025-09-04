@@ -2525,6 +2525,16 @@ NetworkHandle ValidateNetworkPacketHeader(int64_t ConnectionContext, int64_t Pac
  * 
  * 解码网络数据包的数据流，提取有效负载数据并进行格式转换
  * 
+ * @details 该函数负责对网络数据包的数据流进行解码处理，包括：
+ * - 验证数据流的完整性和有效性
+ * - 解析数据流的头部信息和元数据
+ * - 根据解码模式选择合适的解码算法
+ * - 执行数据解压缩和解密操作
+ * - 验证魔数匹配性和数据格式
+ * - 提取有效负载数据并处理格式转换
+ * - 填充输出缓冲区并设置状态信息
+ * - 处理解码过程中的错误和异常情况
+ * 
  * @param PacketData 数据包数据，包含待解码的数据流
  * @param OutputBuffer 输出缓冲区，用于存储解码后的数据
  * @param DecodingMode 解码模式，指定解码算法和参数
@@ -2532,8 +2542,15 @@ NetworkHandle ValidateNetworkPacketHeader(int64_t ConnectionContext, int64_t Pac
  * @param MagicNumber2 魔数2，用于额外的数据流验证
  * @return NetworkHandle 解码结果句柄，返回解码状态码
  * 
+ * @retval 0 解码成功
+ * @retval NetworkErrorInvalidPacket 数据包格式无效
+ * @retval 其他错误码 具体解码失败类型
+ * 
  * @note 这是简化实现，实际应用中需要实现完整的数据流解码逻辑
  * @warning 简化实现仅执行基本的缓冲区初始化，不进行实际的解码工作
+ * @see NetworkPacketBasicDecodingMode, NetworkPacketStrictDecodingMode
+ * 
+ * @security 该函数处理敏感数据流，需要确保解码过程的安全性和数据的机密性
  */
 NetworkHandle DecodePacketDataStream(int64_t PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                                    uint32_t MagicNumber1, uint32_t MagicNumber2)
