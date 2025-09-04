@@ -12122,7 +12122,6 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
  * @warning 如果资源池句柄无效或扩展失败，会返回相应的错误代码
  */
 uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
-
 {
   int CurrentResourceCount;
   int64_t TotalResourceCount;
@@ -12141,15 +12140,15 @@ uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
   }
   CurrentResourceCount = (int)ResourcePoolHandle[1];
   if (MaximumResourceCapacity == CurrentResourceCount) {
-    MaximumResourceCapacity = MaximumResourceCapacity * 2;
-    if (MaximumResourceCapacity < 4) {
-      MaximumResourceCapacity = 4;
+    MaximumResourceCapacity = MaximumResourceCapacity * ResourceArrayGrowthFactor;
+    if (MaximumResourceCapacity < ResourceArrayInitialSize) {
+      MaximumResourceCapacity = ResourceArrayInitialSize;
     }
-    if (((MaximumResourceCapacity <= CurrentResourceCount) || ((int)ResourcePoolHandle[3] != CurrentResourceCount)) || ((int)ResourcePoolHandle[4] != -1)) {
+    if (((MaximumResourceCapacity <= CurrentResourceCount) || ((int)ResourcePoolHandle[3] != CurrentResourceCount)) || ((int)ResourcePoolHandle[4] != InvalidRegistrationStatus)) {
       return ErrorInvalidObjectHandle;
     }
-    ValidationSignValue = (int)*(uint *)((int64_t)ResourcePoolHandle + 0x1c) >> ResourceValidationError;
-    if (((int)((*(uint *)((int64_t)ResourcePoolHandle + 0x1c) ^ ValidationSignValue) - ValidationSignValue) < MaximumResourceCapacity) &&
+    ValidationSignValue = (int)*(uint *)((int64_t)ResourcePoolHandle + ResourceContextExtendedDataOffset) >> ResourceValidationError;
+    if (((int)((*(uint *)((int64_t)ResourcePoolHandle + ResourceContextExtendedDataOffset) ^ ValidationSignValue) - ValidationSignValue) < MaximumResourceCapacity) &&
        (ExpansionStatus = ResourcePoolOperation(ResourcePoolHandle + 2,MaximumResourceCapacity), (int)ExpansionStatus != 0)) {
       return ExpansionStatus;
     }
@@ -12161,7 +12160,7 @@ uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
     ResourceInitializationCounter = ResourceSetupCounter;
     if (0 < MaximumResourceCapacity) {
       do {
-        *(uint32_t *)(*ResourcePoolHandle + ResourceInitializationCounter * 4) = 0xffffffff;
+        *(uint32_t *)(*ResourcePoolHandle + ResourceInitializationCounter * ResourceEntrySizeMultiplier) = ResourceHandleMask;
         ResourceInitializationCounter = ResourceInitializationCounter + 1;
       } while ((int64_t)ResourceInitializationCounter < (int64_t)MaximumResourceCapacity);
     }
@@ -12174,17 +12173,17 @@ uint8_t ExpandResourcePoolCapacity(int64_t *ResourcePoolHandle)
           return ErrorInvalidObjectHandle;
         }
         ExpandedPoolSize = (int64_t)(int)(*(uint *)(ResourceInitializationCounter + ResourcePoolHandle[2]) & (int)ResourcePoolHandle[1] - 1U);
-        ResourceIndexPointer = (int *)(*ResourcePoolHandle + ExpandedPoolSize * 4);
-        MaximumResourceCapacity = *(int *)(*ResourcePoolHandle + ExpandedPoolSize * 4);
-        while (MaximumResourceCapacity != -1) {
-          ResourceIndexPointer = (int *)(ResourcePoolHandle[2] + 4 + (int64_t)MaximumResourceCapacity * 0x10);
+        ResourceIndexPointer = (int *)(*ResourcePoolHandle + ExpandedPoolSize * ResourceEntrySizeMultiplier);
+        MaximumResourceCapacity = *(int *)(*ResourcePoolHandle + ExpandedPoolSize * ResourceEntrySizeMultiplier);
+        while (MaximumResourceCapacity != InvalidRegistrationStatus) {
+          ResourceIndexPointer = (int *)(ResourcePoolHandle[2] + ResourceDataOffset + (int64_t)MaximumResourceCapacity * ResourceEntrySizeBytes);
           MaximumResourceCapacity = *ResourceIndexPointer;
         }
         *ResourceIndexPointer = (int)ResourceSetupCounter;
         ResourceCopyCounter = ResourceCopyCounter + 1;
         ResourceSetupCounter = (uint64_t)((int)ResourceSetupCounter + 1);
-        *(uint32_t *)(ResourcePoolHandle[2] + 4 + ResourceInitializationCounter) = 0xffffffff;
-        ResourceInitializationCounter = ResourceInitializationCounter + 0x10;
+        *(uint32_t *)(ResourcePoolHandle[2] + ResourceDataOffset + ResourceInitializationCounter) = ResourceHandleMask;
+        ResourceInitializationCounter = ResourceInitializationCounter + ResourceEntrySizeBytes;
       } while ((int64_t)ResourceCopyCounter < (int64_t)(int)TotalResourceCount);
     }
   }
@@ -78859,7 +78858,7 @@ void ExecuteQuaternaryResourceTablePointerCleanup(uint8_t ObjectContext,int64_t 
 
 
 
-void Unwind_18090bc70(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallback1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78873,7 +78872,7 @@ void Unwind_18090bc70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bc90(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallback2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78887,7 +78886,7 @@ void Unwind_18090bc90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bcb0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceCleanupCallback3(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
