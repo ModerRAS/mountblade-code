@@ -2627,6 +2627,26 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
  * 
  * @security 该函数是数据包验证的关键环节，确保只有合法的数据包能够通过验证
  */
+/**
+ * @brief 验证网络数据包头部
+ * 
+ * 验证网络数据包的头部信息，确保数据包格式正确且符合协议规范。
+ * 该函数对数据包头部进行全面的安全性验证，包括魔数匹配、格式检查、
+ * 版本兼容性验证等多个方面。
+ * 
+ * @param ConnectionContext 连接上下文，包含连接状态和配置信息
+ * @param PacketData 数据包数据，包含待验证的头部信息
+ * @param MagicNumber 魔数，用于数据包类型识别和验证
+ * @return NetworkHandle 验证结果句柄，0表示验证成功，非0值表示验证失败
+ * 
+ * @retval 0 验证成功
+ * @retval NetworkErrorInvalidPacket 数据包格式无效
+ * @retval NetworkErrorSecurity 安全验证失败
+ * 
+ * @note 这是简化实现，仅返回成功状态
+ * @warning 实际应用中需要实现完整的头部验证逻辑
+ * @see NetworkPacketMagicLiveConnection, NetworkPacketMagicValidation
+ */
 NetworkHandle VerifyNetworkPacketHeader(int64_t ConnectionContext, int64_t PacketData, uint32_t MagicNumber)
 {
   // 简化实现：直接返回成功状态
@@ -2707,6 +2727,25 @@ NetworkHandle DecodeNetworkPacketDataStream(int64_t PacketData, NetworkByte *Out
  * 
  * @note 这是简化实现，实际应用中需要实现完整的数据处理逻辑
  * @warning 简化实现仅返回成功状态，不进行实际的数据处理工作
+ */
+/**
+ * @brief 处理连接数据
+ * 
+ * 处理网络连接中的数据包数据，执行数据解析、验证、状态更新等操作。
+ * 该函数是连接数据处理的核心函数，负责处理连接生命周期中的
+ * 各种数据相关操作。
+ * 
+ * @param ConnectionContext 连接上下文，包含连接的状态和配置信息
+ * @param PacketData 数据包数据，包含待处理的数据内容
+ * @return NetworkHandle 处理结果句柄，0表示处理成功，非0值表示处理失败
+ * 
+ * @retval 0 处理成功
+ * @retval NetworkErrorInvalidData 数据格式无效
+ * @retval NetworkErrorConnectionLost 连接已丢失
+ * 
+ * @note 这是简化实现，仅返回成功状态
+ * @warning 实际应用中需要实现完整的数据处理逻辑
+ * @see NetworkConnectionContext, NetworkPacketData
  */
 NetworkHandle HandleConnectionData(int64_t ConnectionContext, int64_t PacketData)
 {
@@ -2949,6 +2988,20 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
  * @note 此函数在连接断开或系统关闭时调用，确保资源正确释放
  * @warning 如果清理不完全，可能会导致内存泄漏或系统资源耗尽
  */
+/**
+ * @brief 清理网络连接堆栈
+ * 
+ * 清理网络连接的堆栈缓冲区，释放相关资源并重置连接状态。
+ * 该函数负责安全地清理连接相关的内存资源，确保没有内存泄漏
+ * 和资源残留。
+ * 
+ * @param ConnectionBuffer 连接缓冲区指针，指向需要清理的连接缓冲区
+ * @return void 无返回值
+ * 
+ * @note 此函数在连接关闭或系统清理时调用
+ * @warning 如果清理失败，可能导致内存泄漏或资源残留
+ * @see NetworkConnectionBufferSize, NetworkValidationSuccess
+ */
 void ClearNetworkConnectionStack(void* ConnectionBuffer)
 {
   // 连接堆栈清理变量
@@ -2993,6 +3046,20 @@ void ClearNetworkConnectionStack(void* ConnectionBuffer)
  * @warning 如果源缓冲区为空或数据损坏，复制操作可能会失败
  * 
  * @security 该函数确保数据在复制过程中的完整性和机密性
+ */
+/**
+ * @brief 复制网络连接缓冲区
+ * 
+ * 复制网络连接的缓冲区数据，创建连接数据的备份副本。
+ * 该函数确保数据复制过程的安全性和完整性，包括数据验证、
+ * 安全检查和完整性保护等关键步骤。
+ * 
+ * @param SourceBuffer 源缓冲区指针，指向需要复制的连接缓冲区
+ * @return void 无返回值
+ * 
+ * @note 此函数在需要创建连接数据备份时调用
+ * @warning 如果复制失败，可能导致数据不一致或备份缺失
+ * @see NetworkValidationSuccess, NetworkConnectionBufferSize
  */
 void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
 {

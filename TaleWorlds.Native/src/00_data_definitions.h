@@ -5977,15 +5977,15 @@ Label_180203fb6:
       FloatCalculationResult = (float)modff((float)(int)(*(ushort *)((longlong)SystemParameterPointer + 0x5e) - 1) *
                             uStackX_18._4_4_,&StackProcessingBuffer1);
       FloatResult = (float)modff();
-      fStack_298 = (fStack_28c - fStack_298) * FloatResult + fStack_298;
-      fStack_294 = (fStack_288 - fStack_294) * FloatResult + fStack_294;
-      fStack_290 = (fStack_284 - fStack_290) * FloatResult + fStack_290;
-      fVar16 = (((fStack_270 - fStack_27c) * FloatResult + fStack_27c) - fStack_294) * FloatCalculationResult +
-               fStack_294;
-      FloatTemp = (((fStack_26c - fStack_278) * FloatResult + fStack_278) - fStack_290) * FloatCalculationResult +
-               fStack_290;
-      FloatCalculationResult = (((fStack_274 - fStack_280) * FloatResult + fStack_280) - fStack_298) * FloatCalculationResult +
-               fStack_298;
+      FloatInterpolationResult298 = (FloatSourceValue28c - FloatInterpolationResult298) * FloatResult + FloatInterpolationResult298;
+      FloatInterpolationResult294 = (FloatSourceValue288 - FloatInterpolationResult294) * FloatResult + FloatInterpolationResult294;
+      FloatInterpolationResult290 = (FloatSourceValue284 - FloatInterpolationResult290) * FloatResult + FloatInterpolationResult290;
+      fVar16 = (((FloatTargetValue270 - FloatTargetValue27c) * FloatResult + FloatTargetValue27c) - FloatInterpolationResult294) * FloatCalculationResult +
+               FloatInterpolationResult294;
+      FloatTemp = (((FloatBaseValue26c - FloatTargetValue278) * FloatResult + FloatTargetValue278) - FloatInterpolationResult290) * FloatCalculationResult +
+               FloatInterpolationResult290;
+      FloatCalculationResult = (((FloatTargetValue274 - fStack_280) * FloatResult + fStack_280) - FloatInterpolationResult298) * FloatCalculationResult +
+               FloatInterpolationResult298;
     }
     else {
       fVar16 = (float)StackProcessingBuffer1;
@@ -6064,19 +6064,19 @@ code_r0x0001802a1ade:
       *(uint64_t *)(SystemSecondaryParameter + 2) = BufferSize;
     }
     else if (SystemQuaternaryParameter == 1) {
-      ConfigureModuleInitializationSettings(SystemParameterPointer,&uStackX_18,SystemTertiaryParameter,&fStack_298);
+      ConfigureModuleInitializationSettings(SystemParameterPointer,&uStackX_18,SystemTertiaryParameter,&FloatInterpolationResult298);
       fVar16 = (float)modff((float)(int)(*(ushort *)((longlong)SystemParameterPointer + 0x5e) - 1) *
                             uStackX_18._4_4_,&StackProcessingBuffer1);
       FloatTemp = (float)modff();
-      fStack_298 = (fStack_288 - fStack_298) * FloatTemp + fStack_298;
-      fStack_294 = (fStack_284 - fStack_294) * FloatTemp + fStack_294;
-      fStack_290 = (fStack_280 - fStack_290) * FloatTemp + fStack_290;
-      *SystemSecondaryParameter = (((fStack_268 - fStack_278) * FloatTemp + fStack_278) - fStack_298) * fVar16 +
-                 fStack_298;
-      SystemSecondaryParameter[1] = (((fStack_264 - fStack_274) * FloatTemp + fStack_274) - fStack_294) * fVar16 +
-                   fStack_294;
-      SystemSecondaryParameter[2] = (((fStack_260 - fStack_270) * FloatTemp + fStack_270) - fStack_290) * fVar16 +
-                   fStack_290;
+      FloatInterpolationResult298 = (FloatSourceValue288 - FloatInterpolationResult298) * FloatTemp + FloatInterpolationResult298;
+      FloatInterpolationResult294 = (FloatSourceValue284 - FloatInterpolationResult294) * FloatTemp + FloatInterpolationResult294;
+      FloatInterpolationResult290 = (fStack_280 - FloatInterpolationResult290) * FloatTemp + FloatInterpolationResult290;
+      *SystemSecondaryParameter = (((fStack_268 - FloatTargetValue278) * FloatTemp + FloatTargetValue278) - FloatInterpolationResult298) * fVar16 +
+                 FloatInterpolationResult298;
+      SystemSecondaryParameter[1] = (((FloatBaseValue264 - FloatTargetValue274) * FloatTemp + FloatTargetValue274) - FloatInterpolationResult294) * fVar16 +
+                   FloatInterpolationResult294;
+      SystemSecondaryParameter[2] = (((FloatBaseValue260 - FloatTargetValue270) * FloatTemp + FloatTargetValue270) - FloatInterpolationResult290) * fVar16 +
+                   FloatInterpolationResult290;
       SystemSecondaryParameter[3] = 3.4028235e+38;
     }
     else {
@@ -7878,30 +7878,30 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       TransformResultX = (FloatCalculationResult + pfVar9[2]) - fVar6;
       TransformResultY = (FloatValue + pfVar9[1]) - fVar5;
       TransformResultZ = (fVar18 + *pfVar9) - fVar4;
-      ProcessMatrixTransformation(&uStack_118,&fStack_138,&fStack_178);
+      ProcessMatrixTransformation(&uStack_118,&MatrixTransformResult138,&MatrixTransformResult178);
       pfVar9 = (float *)ProcessVectorCalculation(&uStack_e8,auStack_b8,ModuleInitializationResult0 + 0x10);
       SecondaryTransformX = (FloatCalculationResult + pfVar9[2]) - fVar6;
       SecondaryTransformY = (FloatValue + pfVar9[1]) - fVar5;
       SecondaryTransformZ = (fVar18 + *pfVar9) - fVar4;
-      ProcessMatrixTransformation(&uStack_118,&fStack_128,&fStack_168);
+      ProcessMatrixTransformation(&uStack_118,&MatrixTransformResult128,&MatrixTransformResult168);
       FloatCalculationResult = *(float *)(ModuleInitializationResult0 + 0x24);
-      fVar18 = fStack_128;
-      FloatComparisonResult1 = fStack_138;
-      if (fStack_138 < fStack_128) {
-        fVar18 = fStack_138;
-        fStack_198 = fStack_128;
+      fVar18 = MatrixTransformResult128;
+      FloatComparisonResult1 = MatrixTransformResult138;
+      if (MatrixTransformResult138 < MatrixTransformResult128) {
+        fVar18 = MatrixTransformResult138;
+        fStack_198 = MatrixTransformResult128;
       }
-      FloatValue = fStack_134;
-      FloatComparisonResult2 = fStack_124;
-      if (fStack_134 < fStack_124) {
-        FloatValue = fStack_124;
-        fStack_194 = fStack_134;
+      FloatValue = FloatComparisonValue134;
+      FloatComparisonResult2 = FloatComparisonValue124;
+      if (FloatComparisonValue134 < FloatComparisonValue124) {
+        FloatValue = FloatComparisonValue124;
+        fStack_194 = FloatComparisonValue134;
       }
-      FloatComparisonResult3 = fStack_130;
+      FloatComparisonResult3 = FloatComparisonValue130;
       FloatStackMaximum = fStack_120;
-      if (fStack_130 < fStack_120) {
+      if (FloatComparisonValue130 < fStack_120) {
         FloatComparisonResult3 = fStack_120;
-        FloatStackMaximum = fStack_130;
+        FloatStackMaximum = FloatComparisonValue130;
       }
       FloatComparisonResult3 = FloatComparisonResult3 + FloatCalculationResult;
       FloatComparisonResult2 = FloatComparisonResult2 + FloatCalculationResult;
@@ -7926,11 +7926,11 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       if (FloatComparisonResult2 < FloatStackNegative1) {
         FloatComparisonResult2 = FloatStackNegative1;
       }
-      if (fStack_190 < fStack_140) {
-        fStack_190 = fStack_140;
+      if (FloatComparisonResult3 < FloatStackNegative2) {
+        FloatComparisonResult3 = FloatStackNegative2;
       }
-      fStack_148 = fStack_198;
-      fStack_144 = fStack_194;
+      FloatStackMinimum = FloatComparisonResult1;
+      FloatStackNegative1 = FloatComparisonResult2;
       fStack_140 = fStack_190;
       uStack_13c = StackCounter5c;
       ModuleInitializationResult2 = ModuleInitializationResult2 + -0x30;

@@ -78634,7 +78634,17 @@ void CleanupResourceHandlerOffset3B0(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090bb70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源处理器0x3b8
+ * 
+ * 该函数负责清理位于偏移量0x3b8处的资源处理器
+ * 用于系统资源清理阶段的内存释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void CleanupResourceHandlerOffset3B8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78648,7 +78658,17 @@ void Unwind_18090bb70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bb90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源处理器0x3c0
+ * 
+ * 该函数负责清理位于偏移量0x3c0处的资源处理器
+ * 用于系统资源清理阶段的内存释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void CleanupResourceHandlerOffset3C0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78662,7 +78682,17 @@ void Unwind_18090bb90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bbb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源处理器0x3c8
+ * 
+ * 该函数负责清理位于偏移量0x3c8处的资源处理器
+ * 用于系统资源清理阶段的内存释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void CleanupResourceHandlerOffset3C8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78676,7 +78706,17 @@ void Unwind_18090bbb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bbd0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源处理器0x3d0
+ * 
+ * 该函数负责清理位于偏移量0x3d0处的资源处理器
+ * 用于系统资源清理阶段的内存释放
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数
+ * @return 无返回值
+ */
+void CleanupResourceHandlerOffset3D0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
