@@ -7835,7 +7835,7 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
   uStack_fc = *(uint32_t *)(SystemSecondaryParameter + 0x40c);
   fVar18 = 1e+08;
   FloatValue = 1e+08;
-  fStack_180 = 1e+08;
+  FloatStackMaximum = 1e+08;
   fStack_158 = 1e+08;
   fStack_154 = 1e+08;
   fStack_150 = 1e+08;
@@ -7898,15 +7898,15 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
         fStack_194 = fStack_134;
       }
       fStack_190 = fStack_130;
-      fStack_180 = fStack_120;
+      FloatStackMaximum = fStack_120;
       if (fStack_130 < fStack_120) {
         fStack_190 = fStack_120;
-        fStack_180 = fStack_130;
+        FloatStackMaximum = fStack_130;
       }
       fStack_190 = fStack_190 + FloatCalculationResult;
       fStack_194 = fStack_194 + FloatCalculationResult;
       fStack_198 = fStack_198 + FloatCalculationResult;
-      fStack_180 = fStack_180 - FloatCalculationResult;
+      FloatStackMaximum = FloatStackMaximum - FloatCalculationResult;
       FloatValue = FloatValue - FloatCalculationResult;
       fVar18 = fVar18 - FloatCalculationResult;
       if (fStack_158 < fVar18) {
@@ -7915,10 +7915,10 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       if (fStack_154 < FloatValue) {
         FloatValue = fStack_154;
       }
-      if (fStack_150 < fStack_180) {
-        fStack_180 = fStack_150;
+      if (fStack_150 < FloatStackMaximum) {
+        FloatStackMaximum = fStack_150;
       }
-      fStack_150 = fStack_180;
+      fStack_150 = FloatStackMaximum;
       uStack_14c = uStack_17c;
       if (fStack_198 < fStack_148) {
         fStack_198 = fStack_148;
@@ -7960,8 +7960,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
   if (*(float *)(SystemParameterPointer + 0x874) < FloatValue) {
     fStack_194 = *(float *)(SystemParameterPointer + 0x874);
   }
-  fStack_190 = fStack_180;
-  if (*(float *)(SystemParameterPointer + 0x878) < fStack_180) {
+  fStack_190 = FloatStackMaximum;
+  if (*(float *)(SystemParameterPointer + 0x878) < FloatStackMaximum) {
     fStack_190 = *(float *)(SystemParameterPointer + 0x878);
   }
   *(ulonglong *)(SystemParameterPointer + 0x870) = CONCAT44(fStack_194,fStack_198);
@@ -7974,8 +7974,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
   if (FloatValue < *(float *)(SystemParameterPointer + 0x884)) {
     fStack_194 = *(float *)(SystemParameterPointer + 0x884);
   }
-  fStack_190 = fStack_180;
-  if (fStack_180 < *(float *)(SystemParameterPointer + 0x888)) {
+  fStack_190 = FloatStackMaximum;
+  if (FloatStackMaximum < *(float *)(SystemParameterPointer + 0x888)) {
     fStack_190 = *(float *)(SystemParameterPointer + 0x888);
   }
   *(ulonglong *)(SystemParameterPointer + 0x880) = CONCAT44(fStack_194,fStack_198);
@@ -8013,7 +8013,7 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
   }
   *(float *)(ModuleInitializationResult1 + 0x218) = fVar18;
   *(float *)(ModuleInitializationResult1 + 0x21c) = FloatValue;
-  *(float *)(ModuleInitializationResult1 + 0x220) = fStack_180;
+  *(float *)(ModuleInitializationResult1 + 0x220) = FloatStackMaximum;
   *(uint32_t *)(ModuleInitializationResult1 + 0x224) = MemoryAddress9;
   *(float *)(ModuleInitializationResult1 + 0x228) = FloatCalculationResult;
   *(float *)(ModuleInitializationResult1 + 0x22c) = FloatResult;
@@ -8059,7 +8059,7 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,fStack_190);
       SystemConfigFlag2 = '\0';
     }
-    if (((fVar18 < *pfVar9) || (FloatValue < pfVar9[1])) || (fStack_180 < pfVar9[2])) {
+    if (((fVar18 < *pfVar9) || (FloatValue < pfVar9[1])) || (FloatStackMaximum < pfVar9[2])) {
       do {
       } while (SystemConfigFlag2 != '\0');
       LOCK();
@@ -8073,8 +8073,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       if (pfVar9[1] < FloatValue) {
         fStack_194 = pfVar9[1];
       }
-      fStack_190 = fStack_180;
-      if (pfVar9[2] < fStack_180) {
+      fStack_190 = FloatStackMaximum;
+      if (pfVar9[2] < FloatStackMaximum) {
         fStack_190 = pfVar9[2];
       }
       *(ulonglong *)pfVar9 = CONCAT44(fStack_194,fStack_198);
@@ -8087,8 +8087,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       if (FloatValue < pfVar9[5]) {
         fStack_194 = pfVar9[5];
       }
-      fStack_190 = fStack_180;
-      if (fStack_180 < pfVar9[6]) {
+      fStack_190 = FloatStackMaximum;
+      if (FloatStackMaximum < pfVar9[6]) {
         fStack_190 = pfVar9[6];
       }
       *(ulonglong *)(pfVar9 + 4) = CONCAT44(fStack_194,fStack_198);
@@ -8134,7 +8134,7 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       *(ulonglong *)(pfVar3 + 6) = CONCAT44(StackCounter5c,fStack_190);
       SystemConfigFlag2 = '\0';
     }
-    if (((fVar18 < *pfVar9) || (FloatValue < pfVar9[1])) || (fStack_180 < pfVar9[2])) {
+    if (((fVar18 < *pfVar9) || (FloatValue < pfVar9[1])) || (FloatStackMaximum < pfVar9[2])) {
       do {
       } while (SystemConfigFlag2 != '\0');
       LOCK();
@@ -8148,8 +8148,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       if (pfVar9[1] < FloatValue) {
         fStack_194 = pfVar9[1];
       }
-      fStack_190 = fStack_180;
-      if (pfVar9[2] < fStack_180) {
+      fStack_190 = FloatStackMaximum;
+      if (pfVar9[2] < FloatStackMaximum) {
         fStack_190 = pfVar9[2];
       }
       *(ulonglong *)pfVar9 = CONCAT44(fStack_194,fStack_198);
@@ -8162,8 +8162,8 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       if (FloatValue < pfVar9[5]) {
         fStack_194 = pfVar9[5];
       }
-      fStack_190 = fStack_180;
-      if (fStack_180 < pfVar9[6]) {
+      fStack_190 = FloatStackMaximum;
+      if (FloatStackMaximum < pfVar9[6]) {
         fStack_190 = pfVar9[6];
       }
       *(ulonglong *)(pfVar9 + 4) = CONCAT44(fStack_194,fStack_198);
