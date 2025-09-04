@@ -5278,15 +5278,15 @@ uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
  * @warning 验证失败时会触发系统退出操作
  */
 uint32_t ValidateObjectHandleFromRegister(void) {
-  int64_t RegisterObjectPointer = 0;
+  int64_t RegisterObjectAddress = 0;
   int64_t AdjustedMemoryAddress;
   
   // 根据寄存器值计算验证后的内存位置
-  if (RegisterObjectPointer == 0) {
+  if (RegisterObjectAddress == 0) {
     AdjustedMemoryAddress = 0;
   }
   else {
-    AdjustedMemoryAddress = RegisterObjectPointer - 8;
+    AdjustedMemoryAddress = RegisterObjectAddress - 8;
   }
   
   // 检查对象上下文是否有效
@@ -5320,7 +5320,7 @@ uint32_t ValidateObjectHandleFromRegister(void) {
  * @return void 无返回值
  * @note 此函数会立即终止当前进程的执行
  */
-void RaiseSystemException(void) {
+void TriggerSystemException(void) {
   // 执行系统退出操作，触发异常处理流程
   ExecuteSystemExitOperation();
 }

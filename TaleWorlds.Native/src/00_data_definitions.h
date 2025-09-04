@@ -7903,9 +7903,9 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
         FloatComparisonResult3 = fStack_120;
         FloatStackMaximum = fStack_130;
       }
-      fStack_190 = fStack_190 + FloatCalculationResult;
-      fStack_194 = fStack_194 + FloatCalculationResult;
-      fStack_198 = fStack_198 + FloatCalculationResult;
+      FloatComparisonResult3 = FloatComparisonResult3 + FloatCalculationResult;
+      FloatComparisonResult2 = FloatComparisonResult2 + FloatCalculationResult;
+      FloatComparisonResult1 = FloatComparisonResult1 + FloatCalculationResult;
       FloatStackMaximum = FloatStackMaximum - FloatCalculationResult;
       FloatValue = FloatValue - FloatCalculationResult;
       fVar18 = fVar18 - FloatCalculationResult;
@@ -7915,16 +7915,16 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       if (FloatStackMedium < FloatValue) {
         FloatValue = FloatStackMedium;
       }
-      if (fStack_150 < FloatStackMaximum) {
-        FloatStackMaximum = fStack_150;
+      if (FloatStackSmall < FloatStackMaximum) {
+        FloatStackMaximum = FloatStackSmall;
       }
-      fStack_150 = FloatStackMaximum;
+      FloatStackSmall = FloatStackMaximum;
       uStack_14c = uStack_17c;
-      if (fStack_198 < fStack_148) {
-        fStack_198 = fStack_148;
+      if (FloatComparisonResult1 < FloatStackMinimum) {
+        FloatComparisonResult1 = FloatStackMinimum;
       }
-      if (fStack_194 < fStack_144) {
-        fStack_194 = fStack_144;
+      if (FloatComparisonResult2 < FloatStackNegative1) {
+        FloatComparisonResult2 = FloatStackNegative1;
       }
       if (fStack_190 < fStack_140) {
         fStack_190 = fStack_140;
