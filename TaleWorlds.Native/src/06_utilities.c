@@ -14674,7 +14674,7 @@ void ProcessContextDataValidation(int64_t *ObjectContext,int64_t *ValidationCont
       *(uint8_t *)(ObjectContext + 4) = 0;
     }
   }
-        FinalizeSecurityOperation(securityParameter ^ (uint64_t)encryptionBuffer);
+        FinalizeSecurityOperation(SecurityParameter ^ (uint64_t)encryptionBuffer);
 }
 
 
