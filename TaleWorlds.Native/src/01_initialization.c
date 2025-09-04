@@ -53681,7 +53681,7 @@ SystemContextValidation:
           *ResourceDataBufferPointer = 0;
         }
         else {
-          if (SystemOperationStatusFlags <= (uint)SystemThreadContextFlags) goto LAB_180072780;
+          if (SystemOperationStatusFlags <= (uint)SystemThreadContextFlags) goto LabelSystemThreadContextSecondary;
           pSystemThreadId148 = (uint8_t *)CONCAT71(pSystemThreadId148._1_7_,0x13);
           ResourceBufferPointer130 = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointer130,SystemOperationStatusFlags,0x10);
         }
