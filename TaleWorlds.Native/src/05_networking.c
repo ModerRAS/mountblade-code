@@ -802,7 +802,10 @@ uint32_t NetworkConnectionVerificationInfo;
  * @brief 网络连接加密上下文信息，存储连接加密的相关信息
  */
 uint32_t NetworkConnectionEncryptionContext;
-uint32_t NetworkConnectionCompressionInfo;                 // 网络连接压缩信息，存储连接压缩的相关信息
+/**
+ * @brief 网络连接压缩上下文信息，存储连接压缩的相关信息
+ */
+uint32_t NetworkConnectionCompressionContext;
 
 // 网络缓冲区管理变量
 uint32_t NetworkValidationBufferPool;                      // 网络验证缓冲池，用于验证操作的缓冲区资源池
@@ -1729,11 +1732,11 @@ uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓
 void InitializeNetworkConnectionState(void)
 {
   // 网络连接初始化变量
-  uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
-  int32_t NetworkInitializationStatus;               // 网络初始化结果状态
-  int64_t SystemContextData;                      // 网络系统上下文数据
-  int32_t ConnectionIdentifier;                     // 连接标识符
-  uint32_t ConnectionStateFlags;                    // 连接状态标志位
+  uint8_t *NetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
+  int32_t NetworkConnectionInitializationStatus;      // 网络连接初始化结果状态
+  int64_t NetworkSystemContextData;                 // 网络系统上下文数据
+  int32_t NetworkConnectionIdentifier;               // 网络连接标识符
+  uint32_t NetworkConnectionStateFlags;              // 网络连接状态标志位
   int32_t NetworkSessionId;                // 网络会话ID
   uint64_t *ConnectionStateData;                     // 连接状态数据指针
   int64_t NetworkContextDataPointer;                    // 网络上下文指针
@@ -1770,10 +1773,10 @@ void InitializeNetworkConnectionState(void)
 void ResetNetworkConnectionPointer(void)
 {
   // 网络连接指针重置变量
-  uint8_t *ConnectionStateBuffer;                   // 连接状态缓冲区指针
+  uint8_t *NetworkConnectionStateBuffer;              // 网络连接状态缓冲区指针
   int64_t NetworkContextData;                       // 网络上下文数据
   uint64_t *NetworkDataBuffer;                      // 网络数据缓冲区指针
-  uint32_t ConnectionStateFlags;                    // 连接状态标志位
+  uint32_t NetworkConnectionStateFlags;              // 网络连接状态标志位
   int32_t ConnectionIdentifier;                             // 连接标识符
   
   // 计算连接状态缓冲区位置

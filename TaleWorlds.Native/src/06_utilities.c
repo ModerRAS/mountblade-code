@@ -94648,7 +94648,17 @@ void CleanupPrimaryResourceTable(uint8_t ObjectContext,int64_t ValidationContext
 
 
 
-void Unwind_18090f0d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表处理和清理操作
+ * 
+ * 在系统unwind过程中执行资源表处理和清理操作，
+ * 遍历资源表并调用相关的处理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f0d0
+ */
+void ExecuteResourceTableProcessingAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94679,7 +94689,19 @@ void Unwind_18090f0d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f0e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行回调函数处理
+ * 
+ * 在系统unwind过程中执行回调函数处理，
+ * 调用系统资源上下文中的回调函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @note 原始函数名：Unwind_18090f0e0
+ */
+void ExecuteCallbackFunctionProcessing(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -94693,7 +94715,19 @@ void Unwind_18090f0e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f0f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源操作处理
+ * 
+ * 在系统unwind过程中执行资源操作处理，
+ * 调用资源操作处理器来处理资源清理。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @note 原始函数名：Unwind_18090f0f0
+ */
+void ExecuteResourceOperationProcessing(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ResourceOperationHandler(*(int64_t *)(ValidationContext + 0x20),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x10),
@@ -94703,7 +94737,19 @@ void Unwind_18090f0f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f100(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源操作处理（变体1）
+ * 
+ * 在系统unwind过程中执行资源操作处理，
+ * 调用资源操作处理器来处理资源清理。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @note 原始函数名：Unwind_18090f100
+ */
+void ExecuteResourceOperationProcessingVariant1(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ResourceOperationHandler(*(int64_t *)(ValidationContext + 0x20),*(uint8_t *)(*(int64_t *)(ValidationContext + 0x20) + 0x10),
@@ -94713,7 +94759,17 @@ void Unwind_18090f100(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f110(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源索引验证
+ * 
+ * 在系统unwind过程中执行资源索引验证，
+ * 检查资源索引的有效性并执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f110
+ */
+void ExecuteResourceIndexValidation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94744,7 +94800,17 @@ void Unwind_18090f110(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f120(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文处理
+ * 
+ * 在系统unwind过程中执行资源上下文处理，
+ * 调用资源上下文中的清理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f120
+ */
+void ExecuteResourceContextProcessing(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94758,7 +94824,17 @@ void Unwind_18090f120(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f130(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文处理（变体1）
+ * 
+ * 在系统unwind过程中执行资源上下文处理，
+ * 调用资源上下文中的清理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f130
+ */
+void ExecuteResourceContextProcessingVariant1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -94772,7 +94848,17 @@ void Unwind_18090f130(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f140(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源重置
+ * 
+ * 在系统unwind过程中执行系统资源重置，
+ * 重置系统上下文中的资源状态。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f140
+ */
+void ExecuteSystemResourceReset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -94790,7 +94876,17 @@ void Unwind_18090f140(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f150(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源重置（变体1）
+ * 
+ * 在系统unwind过程中执行系统资源重置，
+ * 重置系统上下文中的资源状态。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f150
+ */
+void ExecuteSystemResourceResetVariant1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -94808,7 +94904,17 @@ void Unwind_18090f150(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f160(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源重置（变体2）
+ * 
+ * 在系统unwind过程中执行系统资源重置，
+ * 重置系统上下文中的资源状态。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f160
+ */
+void ExecuteSystemResourceResetVariant2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -94826,7 +94932,17 @@ void Unwind_18090f160(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f170(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理操作
+ * 
+ * 在系统unwind过程中执行资源处理操作，
+ * 调用资源上下文中的处理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090f170
+ */
+void ExecuteResourceProcessingOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
