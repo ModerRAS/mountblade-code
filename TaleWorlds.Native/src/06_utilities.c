@@ -90774,7 +90774,7 @@ void RegisterResourceHandler488AtOffset1A18(uint8_t ObjectContext,int64_t Valida
 
 
 
-void Unwind_18090e260(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterResourceHandler248AtOffset2378(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0xe0) + 0x2378,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
