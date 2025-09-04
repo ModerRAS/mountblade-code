@@ -26,7 +26,6 @@
 #define ObjectVirtualMethodTableOffset 800
 #define ObjectContextMatrixRotationDataOffset 0x2f0
 
-// 注册管理相关常量
 #define RegistrationHandleOffset 0x48
 #define RegistrationDataOffset 0x38
 #define RegistrationStatusOffset 0xe4
@@ -40,12 +39,10 @@
 #define RegistrationArrayInitialSize 8
 #define RegistrationArrayGrowthFactor 1.5
 
-// 线程本地存储相关常量
 #define ThreadLocalStorageDataOffset 0x18
 #define ThreadResourceStateOffset 0x20
 #define ThreadResourceCountOffset 0x30
 
-// 资源管理相关常量
 #define ResourceManagementStateOffset 0x4
 #define ResourceManagementCleanupOffset 0x5
 #define ResourceManagementStatusOffset 0x7
