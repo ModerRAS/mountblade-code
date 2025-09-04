@@ -1868,9 +1868,9 @@ void InitializeSystemMemoryPool(void)
  */
 void InitializeSystemThreadPool(void)
 {
-  char NodeActiveFlag;
+  bool IsNodeActive;
   void** SystemDataTable;
-  int IdentifierCompareResult;
+  int ComparisonResult;
   long long* MemorySystemPointer;
   long long SystemTimestamp;
   void** RootNodePointer;
@@ -1884,13 +1884,13 @@ void InitializeSystemThreadPool(void)
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
+  IsNodeActive = *(bool*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
-  while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4, &SystemConfigurationIdentifier, IdentifierSize);
-    if (IdentifierCompareResult < 0) {
+  while (!IsNodeActive) {
+    ComparisonResult = memcmp(CurrentNodePointer + 4, &SystemConfigurationIdentifier, IdentifierSize);
+    if (ComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
     }
@@ -1899,9 +1899,9 @@ void InitializeSystemThreadPool(void)
     }
     HashTableNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == RootNodePointer) || (IdentifierCompareResult = memcmp(&SystemConfigurationIdentifier, HashTableNodePointer + 4, IdentifierSize), IdentifierCompareResult < 0)) {
+  if ((HashTableNodePointer == RootNodePointer) || (ComparisonResult = memcmp(&SystemConfigurationIdentifier, HashTableNodePointer + 4, IdentifierSize), ComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
@@ -1928,9 +1928,9 @@ void InitializeSystemThreadPool(void)
 void InitializeSystemEventManager(void)
 
 {
-  char NodeActiveFlag;
+  bool IsNodeActive;
   void** SystemDataTable;
-  int IdentifierCompareResult;
+  int ComparisonResult;
   long long* MemorySystemPointer;
   long long SystemTimestamp;
   void** RootNodePointer;
@@ -1944,13 +1944,13 @@ void InitializeSystemEventManager(void)
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
+  IsNodeActive = *(bool*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
-  while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemEventIdentifier,IdentifierSize);
-    if (IdentifierCompareResult < 0) {
+  while (!IsNodeActive) {
+    ComparisonResult = memcmp(CurrentNodePointer + 4, &SystemEventIdentifier, IdentifierSize);
+    if (ComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
     }
@@ -1959,11 +1959,11 @@ void InitializeSystemEventManager(void)
     }
     HashTableNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == RootNodePointer) || (IdentifierCompareResult = memcmp(&SystemEventIdentifier,HashTableNodePointer + 4,IdentifierSize), IdentifierCompareResult < 0)) {
+  if ((HashTableNodePointer == RootNodePointer) || (ComparisonResult = memcmp(&SystemEventIdentifier, HashTableNodePointer + 4, IdentifierSize), ComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
   HashTableNodePointer[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
@@ -1989,9 +1989,9 @@ void InitializeSystemEventManager(void)
 void InitializeSystemResourceManager(void)
 
 {
-  char NodeActiveFlag;
+  bool IsNodeActive;
   void** SystemDataTable;
-  int IdentifierCompareResult;
+  int ComparisonResult;
   long long* MemorySystemPointer;
   long long SystemTimestamp;
   void** RootNodePointer;
@@ -2005,13 +2005,13 @@ void InitializeSystemResourceManager(void)
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
-  NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
+  IsNodeActive = *(bool*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
-  while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemResourceIdentifier,IdentifierSize);
-    if (IdentifierCompareResult < 0) {
+  while (!IsNodeActive) {
+    ComparisonResult = memcmp(CurrentNodePointer + 4, &SystemResourceIdentifier, IdentifierSize);
+    if (ComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
     }
@@ -2020,11 +2020,11 @@ void InitializeSystemResourceManager(void)
     }
     HashTableNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == RootNodePointer) || (IdentifierCompareResult = memcmp(&SystemResourceIdentifier,HashTableNodePointer + 4,IdentifierSize), IdentifierCompareResult < 0)) {
+  if ((HashTableNodePointer == RootNodePointer) || (ComparisonResult = memcmp(&SystemResourceIdentifier, HashTableNodePointer + 4, IdentifierSize), ComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
   }
   HashTableNodePointer[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
@@ -20715,17 +20715,17 @@ void InitializeSystemDataBlock(void* *SystemResourceManager,void* DataSourcePoin
 ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long ComparisonDataPointer)
 
 {
-  byte *comparisonBytePointer;
-  int comparisonResult;
-  long long ResourceMemoryOffset;
-  byte *sourceBytePointer;
-  int byteDifference;
-  int CalculationFlags;
-  ulong long dataSizeLimit;
-  long long memoryOffset;
-  uint indexCounter;
-  ulong long comparisonIndex;
-  ulong long loopCounter;
+  byte *dataBlockComparisonBytePointer;
+  int dataBlockComparisonResult;
+  long long dataBlockResourceMemoryOffset;
+  byte *dataBlockSourceBytePointer;
+  int dataBlockByteDifference;
+  int dataBlockCalculationFlags;
+  ulong long dataBlockSizeLimit;
+  long long dataBlockMemoryOffset;
+  uint dataBlockIndexCounter;
+  ulong long dataBlockComparisonIndex;
+  ulong long dataBlockLoopCounter;
   
   comparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
   ResourceMemoryOffset = *(long long *)(SystemResourceManager + 8);

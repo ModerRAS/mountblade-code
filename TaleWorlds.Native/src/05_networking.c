@@ -2065,10 +2065,10 @@ PrimaryNetworkProcessingComplete:
     if (ConnectionStatusPtr != NULL) {
       int32_t OperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t StatusIterator = (long long)OperationProcessingCode;
-      if ((OperationProcessingCode != 0) && (ContextId = *ConnectionOperationBuffer, 0 < OperationProcessingCode)) {
+      if ((OperationProcessingCode != 0) && (NetworkContextIdentifier = *ConnectionOperationBuffer, 0 < OperationProcessingCode)) {
         NetworkStatus *ConnectionStatusBuffer = ConnectionStatusPtr;
         do {
-          NetworkStatus *ContextStatusPtr = (NetworkStatus *)((ContextId - (long long)ConnectionStatusPtr) + (long long)ConnectionStatusBuffer);
+          NetworkStatus *ContextStatusPtr = (NetworkStatus *)((NetworkContextIdentifier - (long long)ConnectionStatusPtr) + (long long)ConnectionStatusBuffer);
           NetworkStatus ValidationState = ContextStatusPtr[NetworkStatusValidationIndex];
           NetworkStatus TimeoutState = ContextStatusPtr[NetworkStatusTimeoutIndex];
           NetworkStatus SecondaryState = ContextStatusPtr[NetworkStatusSecondaryIndex];
@@ -2076,7 +2076,7 @@ PrimaryNetworkProcessingComplete:
           ConnectionStatusBuffer[NetworkStatusValidationIndex] = ValidationState;
           ConnectionStatusBuffer[NetworkStatusTimeoutIndex] = TimeoutState;
           ConnectionStatusBuffer[NetworkStatusSecondaryIndex] = SecondaryState;
-          ConnectionStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((ContextId - (long long)ConnectionStatusPtr) + -4 + (long long)(ConnectionStatusBuffer + ConnectionContextStatusEntrySize));
+          ConnectionStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((NetworkContextIdentifier - (long long)ConnectionStatusPtr) + -4 + (long long)(ConnectionStatusBuffer + ConnectionContextStatusEntrySize));
           StatusIterator = StatusIterator - 1;
           ConnectionStatusBuffer = ConnectionStatusBuffer + ConnectionContextStatusEntrySize;
         } while (StatusIterator != 0);
