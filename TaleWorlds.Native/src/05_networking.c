@@ -1313,9 +1313,9 @@ void TransmitNetworkData(void)
   NetworkPacketSequence = SEQUENCE_INITIAL;                         // 初始化数据包序列号
   NetworkAcknowledgeNumber = ACK_INITIAL;                      // 初始化确认号
   NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
-  NetworkRetransmitTimer = TIMEOUT_5_SECONDS;                       // 设置重传计时器为5秒
-  NetworkKeepAliveTime = HEARTBEAT_30_SECONDS;                          // 设置保持连接时间为30秒
-  NetworkHeartbeatTimeout = HEARTBEAT_60_SECONDS;                      // 设置心跳超时时间为60秒
+  NetworkRetransmitTimer = NetworkTimeoutFiveSeconds;                       // 设置重传计时器为5秒
+  NetworkKeepAliveTime = NetworkHeartbeatThirtySeconds;                          // 设置保持连接时间为30秒
+  NetworkHeartbeatTimeout = NetworkHeartbeatSixtySeconds;                      // 设置心跳超时时间为60秒
   
   // 初始化数据包缓冲区
   NetworkPacketBufferPointer = BUFFER_ENABLED;                     // 初始化数据包缓冲区指针
@@ -1465,7 +1465,7 @@ void ProcessNetworkPackets(void)
   
   // 初始化重试机制
   NetworkRetryInterval = TIMEOUT_1_SECOND;                        // 设置重试间隔为1秒
-  NetworkTimeoutInterval = TIMEOUT_5_SECONDS;                     // 设置超时间隔为5秒
+  NetworkTimeoutInterval = NetworkTimeoutFiveSeconds;                     // 设置超时间隔为5秒
   NetworkConnectionRetryCount = RETRY_COUNT_MAXIMUM;             // 设置连接重试次数为3次
   NetworkConnectionBackoffTime = BACKOFF_TIME_2_SECONDS;           // 设置连接退避时间为2秒
   
