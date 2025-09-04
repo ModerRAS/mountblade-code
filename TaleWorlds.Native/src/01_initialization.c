@@ -2586,14 +2586,14 @@ void InitializeSystemStringHandler(void)
   uint64_t StringProcessorParameter;
   void* StringProcessorCallback;
   uint8_t* StringBufferPointer;
-  uint32_t StringBufferCapacityValue;
+  uint32_t StringBufferSize;
   uint8_t StringBuffer [136];
   
   StringProcessorCallback = &SystemStringProcessorNode;
   StringBufferPointer = StringBuffer;
   StringBuffer[0] = 0;
-  StringBufferCapacityValue = SYSTEM_STRING_BUFFER_SIZE_SHORT;
-  strcpy_s(StringBuffer, StringBufferCapacityValue, &SystemStringProcessorTemplate, StringProcessorParameter, InvalidHandleValue);
+  StringBufferSize = SYSTEM_STRING_BUFFER_SIZE_SHORT;
+  strcpy_s(StringBuffer, StringBufferSize, &SystemStringProcessorTemplate, StringProcessorParameter, InvalidHandleValue);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessorCallback);
   return;
 }
@@ -3423,14 +3423,14 @@ void InitializeSystemStringProcessor(void)
   uint64_t SystemStringParameter;
   void* StringProcessCallbackPointer;
   uint8_t* StringDataBufferPointer;
-  uint32_t StringBufferCapacityValue;
+  uint32_t StringDataBufferSize;
   uint8_t StringDataBuffer [136];
   
   StringProcessCallbackPointer = &SystemStringProcessorNode;
   StringDataBufferPointer = StringDataBuffer;
   StringDataBuffer[0] = 0;
-  StringBufferCapacityValue = SYSTEM_STRING_BUFFER_SIZE_DEFAULT;
-  strcpy_s(StringDataBuffer,StringBufferCapacityValue,&SystemStringProcessorTemplate,SystemStringParameter,InvalidHandleValue);
+  StringDataBufferSize = SYSTEM_STRING_BUFFER_SIZE_DEFAULT;
+  strcpy_s(StringDataBuffer,StringDataBufferSize,&SystemStringProcessorTemplate,SystemStringParameter,InvalidHandleValue);
   SystemStringProcessorHandle = InitializeStringProcessorCallback(&StringProcessCallbackPointer);
   return;
 }
