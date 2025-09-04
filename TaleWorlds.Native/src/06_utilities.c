@@ -86270,7 +86270,17 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetb0(uint8_t ObjectContext, int6
 
 
 
-void Unwind_18090d1b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 执行资源哈希状态清理处理函数 - 偏移量0xb0版本2
+ * 
+ * 该函数负责清理和重置资源哈希状态，处理异常情况下的资源清理工作。
+ * 它通过验证上下文中的资源哈希状态地址，执行相应的清理操作。
+ * 
+ * @param ObjectContext 对象上下文，标识要处理的对象
+ * @param ValidationContext 验证上下文，包含验证状态和资源信息
+ * @remark 原始函数名：Unwind_18090d1b0
+ */
+void ExecuteResourceHashStatusCleanupHandlerOffsetb0v2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
