@@ -1714,11 +1714,14 @@ void NetworkResetConnectionPointer(void)
  * 验证网络连接参数的有效性和安全性，包括地址、端口、协议等参数的检查。
  * 此函数是连接建立前的必要安全检查步骤，确保所有参数符合网络协议规范。
  * 
- * @param NetworkConnectionParameters 网络连接参数指针，包含待验证的连接配置信息
+ * @param ConnectionParameters 网络连接参数指针，包含待验证的连接配置信息
  * @return uint32_t 验证结果，0表示验证成功，非0值表示验证失败的具体错误码
  * 
  * @note 此函数会在连接建立前调用，确保所有参数符合安全要求
  * @warning 如果参数验证失败，连接建立过程将被中止
+ * 
+ * @security 该函数是网络安全的第一道防线，确保只有合法的连接参数能够通过验证
+ * @see NetworkErrorInvalidHandle, NetworkErrorConnectionFailed
  */
 uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
 {
