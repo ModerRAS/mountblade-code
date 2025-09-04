@@ -2294,9 +2294,9 @@ void InitializeRenderingSystemConfig(void)
   int IdentifierCompareResult;
   long long *SystemDataTable;
   long long RequiredMemorySize;
-  void** CurrentNodePointer;
-  void** PreviousNodePointer;
-  void** NextNodePointer;
+  void** CurrentNode;
+  void** PreviousNode;
+  void** NextNode;
   void** AllocatedNode;
   void* RendererHandler;
   
@@ -2305,7 +2305,7 @@ void InitializeRenderingSystemConfig(void)
   SystemNodeActiveFlag = *(char*)((long long)RootNodePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   RendererHandler = 0;
   PreviousNode = RootNodePointer;
-  CurrentNodePointer = (void**)RootNodePointer[1];
+  CurrentNode = (void**)RootNodePointer[1];
   while (!SystemNodeActiveFlag) {
     IdentifierCompareResult = memcmp(CurrentNode + 4, &RENDERING_CONFIG_TEMPLATE_IDENTIFIER, SYSTEM_IDENTIFIER_SIZE);
     if (IdentifierCompareResult < 0) {
@@ -2313,10 +2313,10 @@ void InitializeRenderingSystemConfig(void)
       CurrentNode = PreviousNode;
     }
     else {
-      NextNode = (void**)*CurrentNodePointer;
+      NextNode = (void**)*CurrentNode;
     }
     PreviousNode = CurrentNode;
-    CurrentNodePointer = NextNode;
+    CurrentNode = NextNode;
     SystemNodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   }
   if ((PreviousNode == RootNodePointer) || (IdentifierCompareResult = memcmp(&RENDERING_CONFIG_TEMPLATE_IDENTIFIER, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
