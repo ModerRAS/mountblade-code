@@ -1150,7 +1150,7 @@ void* ModuleDependencySignature;                         // 模块依赖签名
 void* ModuleDependencyHandle;                            // 模块依赖句柄
 
 // 系统运行时全局变量
-int64_t GlobalSystemInputParameter;                     // 全局系统输入参数
+int64_t SystemRuntimeInputParameter;                     // 系统运行时输入参数
 int32_t SystemOperationStatusCode;                      // 系统操作状态码
 void* SystemRegisterData;                               // 系统寄存器数据
 void* SystemObjectContextBuffer;                         // 系统对象上下文缓冲区
@@ -78845,6 +78845,15 @@ void ExecuteQuaternaryResourceTablePointerCleanup(uint8_t ObjectContext,int64_t 
 
 
 
+/**
+ * @brief 执行资源清理回调函数1
+ * 
+ * 该函数用于在系统异常处理时清理资源回调函数1，防止内存泄漏。
+ * 主要用于系统资源管理的清理流程。
+ * 
+ * @param ObjectContext 对象上下文，包含要清理的资源信息
+ * @param ValidationContext 验证上下文，用于验证资源状态
+ */
 void ExecuteResourceCleanupCallback1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
