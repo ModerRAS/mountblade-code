@@ -4,7 +4,7 @@
 #define EventHandlerPrimaryAddress       0x180c91700
 #define EventHandlerSecondaryAddress     0x180c91800
 #define FloatTableStartAddress           0x180c8aa70
-#define SystemFloatTableEndAddress         0x180c8ea71
+#define FloatTableEndAddress         0x180c8ea71
 #define SystemFloatTableSecondStartAddress 0x180c8eb70
 #define SystemSecurityContextAddress        0x180d49d50
 #define SystemMutexPrimaryAddress           0x180c96690
@@ -1048,8 +1048,8 @@ void* SystemDataNodeNinth;            // 系统数据节点第九节点
 void* SystemDataNodeTenth;            // 系统数据节点第十节点
 void* SystemDataNodeEleventh;          // 系统数据节点第十一节点
 void* SystemDataNodeTwelfth;         // 系统数据节点第十二节点
-void* SystemDataNodeTridenary;         // 系统数据节点第十三节点
-void* SystemDataNodeQuattuordenary;    // 系统数据节点第十四节点
+void* SystemDataNodeThirteenth;         // 系统数据节点第十三节点
+void* SystemDataNodeFourteenth;    // 系统数据节点第十四节点
 void* SystemDataNodeQuindenary;        // 系统数据节点第十五节点
 void* SystemDataNodeSexdenary;         // 系统数据节点第十六节点
 void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
