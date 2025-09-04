@@ -20759,13 +20759,13 @@ ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long Com
 
 {
   byte *comparisonBytePointer;
-  int systemResult;
+  int comparisonResult;
   long long ResourceMemoryOffset;
   byte *sourceBytePointer;
-  int systemValue;
+  int byteDifference;
   int CalculationFlags;
   ulong long dataSizeLimit;
-  long long SystemMemoryPointer;
+  long long memoryOffset;
   uint indexCounter;
   ulong long comparisonIndex;
   ulong long loopCounter;
