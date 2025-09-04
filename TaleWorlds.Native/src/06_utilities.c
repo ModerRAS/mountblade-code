@@ -83646,7 +83646,20 @@ void SetSystemDataStructurePointerToValidationContextOffset(uint8_t ObjectContex
 
 
 
-void Unwind_18090cb20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源状态检查和内存操作
+ * 
+ * 该函数负责检查系统资源状态并执行相应的内存操作
+ * 包括资源表指针验证、内存区域处理和状态更新
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源表指针和内存操作
+ * @warning 调用此函数可能会触发系统紧急退出
+ * @remark 原始函数名：Unwind_18090cb20
+ */
+void ExecuteSystemResourceStatusCheckAndMemoryOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -83707,7 +83720,20 @@ void SetSystemDataStructurePointerToTertiaryOffset(uint8_t ObjectContext, int64_
 
 
 
-void Unwind_18090cb40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源验证和内存访问处理
+ * 
+ * 该函数负责验证系统资源状态并处理内存访问操作
+ * 包括资源表指针验证、内存数据访问和状态更新
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会处理资源表指针和内存访问操作
+ * @warning 调用此函数可能会触发系统紧急退出
+ * @remark 原始函数名：Unwind_18090cb40
+ */
+void ExecuteSystemResourceValidationAndMemoryAccessHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -83813,8 +83839,18 @@ void Unwind_18090cb60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cb70(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 设置验证上下文系统数据结构指针（偏移量0x720）
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的指定偏移量位置
+ * 用于初始化或重置系统数据结构的引用
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态和资源信息
+ * @return 无返回值
+ * @note 原始函数名：Unwind_18090cb70
+ */
+void SetSystemDataStructurePointerToValidationContextOffset720(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + 0x720) = &SystemDataStructure;
   return;
@@ -83878,8 +83914,18 @@ void Unwind_18090cb90(void)
 
 
 
-void Unwind_18090cba0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 设置验证上下文系统数据结构指针（次要偏移量）
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的次要偏移量位置
+ * 用于初始化或重置系统数据结构的引用
+ * 
+ * @param ObjectContext 对象上下文，标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态和资源信息
+ * @return 无返回值
+ * @note 原始函数名：Unwind_18090cba0
+ */
+void SetSystemDataStructurePointerToValidationContextSecondaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 {
   *(uint8_t **)(ValidationContext + ResourceContextSecondaryOffset0) = &SystemDataStructure;
   return;
@@ -89034,7 +89080,14 @@ void DestroyMutexResourceInPlace(void)
 
 
 
-void Unwind_18090df20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理资源上下文清理操作
+ * 用于在异常处理过程中清理特定偏移量的资源上下文
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ProcessResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89048,7 +89101,14 @@ void Unwind_18090df20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090df40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * 处理次要资源上下文清理操作
+ * 用于在异常处理过程中清理次要偏移量的资源上下文
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ProcessSecondaryResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
