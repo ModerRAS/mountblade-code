@@ -10770,11 +10770,11 @@ Label_18062e8bc:
           *(uint8_t *)pMemoryAddress1 = 0;
           puStack_b8 = pMemoryAddress1;
           UnsignedValue = MemoryValidateEx(pMemoryAddress1);
-          uVar6 = pMemoryAddress0[1];
+          MemoryValidationResult = pMemoryAddress0[1];
           BufferSize = pMemoryAddress0[2];
           StringProcessingResult = pMemoryAddress0[3];
           *pMemoryAddress1 = *pMemoryAddress0;
-          pMemoryAddress1[1] = uVar6;
+          pMemoryAddress1[1] = MemoryValidationResult;
           pMemoryAddress1[2] = BufferSize;
           pMemoryAddress1[3] = StringProcessingResult;
           pMemoryAddress1[4] = pMemoryAddress0[4];
