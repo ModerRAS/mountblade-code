@@ -26378,7 +26378,7 @@ void ProcessResourceValidationAndMemoryAllocation(uint32_t ObjectContext)
             ResourceIndex = 0x1c;
           }
           if (ResourceIndex == 0) {
-            *(uint32_t *)(SystemRegisterContext + 0x200) = *(uint32_t *)(SystemRegisterContext + ValidationContextCleanupFunctionOffset);
+            *(uint32_t *)(SystemRegisterContext + ContextProcessingDataOffset) = *(uint32_t *)(SystemRegisterContext + ValidationContextCleanupFunctionOffset);
             *(uint32_t *)(SystemRegisterContext + 0x204) = *(uint32_t *)(SystemRegisterContext + 0x14);
             *(uint32_t *)(SystemRegisterContext + 0x208) = *(uint32_t *)(SystemRegisterContext + 0x18);
             *(uint32_t *)(SystemRegisterContext + 0x20c) = *(uint32_t *)(SystemRegisterContext + 0x1c);

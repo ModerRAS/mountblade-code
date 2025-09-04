@@ -21223,57 +21223,57 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
     SystemCurrentNode = (void* *)CurrentSearchNode[2];
     do {
       if (*(int *)(AdditionalParameter + 0x10) == 0) {
-        SystemHashBucket = (void* *)SystemThreadStorage[1];
+        NextSearchNode = (void* *)SystemCurrentNode[1];
         IsMatchFound = false;
       }
       else {
-        if (*(int *)(SystemThreadStorage + 6) == 0) {
+        if (*(int *)(SystemCurrentNode + 6) == 0) {
           IsMatchFound = true;
         }
         else {
-          SystemByteComparisonPointer = *(byte **)(AdditionalParameter + 8);
-          SystemStringLengthDifference = SystemThreadStorage[5] - (long long)SystemByteComparisonPointer;
+          StringComparePointer = *(byte **)(AdditionalParameter + 8);
+          StringLengthDifference = SystemCurrentNode[5] - (long long)StringComparePointer;
           do {
-            SystemComparisonCharValue = (uint)SystemByteComparisonPointer[SystemStringLengthDifference];
-            systemCounter = *SystemByteComparisonPointer - SystemComparisonCharValue;
-            if (*SystemByteComparisonPointer != SystemComparisonCharValue) break;
-            SystemByteComparisonPointer = SystemByteComparisonPointer + 1;
-          } while (SystemComparisonCharValue != 0);
-          IsMatchFound = 0 < systemCounter;
-          if (systemCounter < 1) {
-            SystemHashBucket = (void* *)SystemThreadStorage[1];
+            ComparisonValue = (uint)StringComparePointer[StringLengthDifference];
+            NodeIdentifierCompareResult = *StringComparePointer - ComparisonValue;
+            if (*StringComparePointer != ComparisonValue) break;
+            StringComparePointer = StringComparePointer + 1;
+          } while (ComparisonValue != 0);
+          IsMatchFound = 0 < NodeIdentifierCompareResult;
+          if (NodeIdentifierCompareResult < 1) {
+            NextSearchNode = (void* *)SystemCurrentNode[1];
             goto SystemNodeTraversalContinue;
           }
         }
-        SystemHashBucket = (void* *)*SystemThreadStorage;
+        NextSearchNode = (void* *)*SystemCurrentNode;
       }
 SystemNodeTraversalContinue:
       if (IsMatchFound) {
-        SystemThreadStorage = ResourceAddressPointer;
+        SystemCurrentNode = SystemNextNode;
       }
-      ResourceAddressPointer = SystemThreadStorage;
-      SystemThreadStorage = SystemHashBucket;
-    } while (SystemHashBucket != (void* *)0x0);
+      SystemNextNode = SystemCurrentNode;
+      SystemCurrentNode = NextSearchNode;
+    } while (NextSearchNode != (void* *)0x0);
   }
-  if (ResourceAddressPointer != HashTableNode) {
-    if (*(int *)(ResourceAddressPointer + 6) == 0) goto SystemNodeDataValidation;
+  if (SystemNextNode != CurrentSearchNode) {
+    if (*(int *)(SystemNextNode + 6) == 0) goto SystemNodeDataValidation;
     if (*(int *)(AdditionalParameter + 0x10) != 0) {
-      stringComparePointer = (byte *)ResourceAddressPointer[5];
-      SystemStringLengthDifference = *(long long *)(AdditionalParameter + 8) - (long long)stringComparePointer;
+      StringComparePointer = (byte *)SystemNextNode[5];
+      StringLengthDifference = *(long long *)(AdditionalParameter + 8) - (long long)StringComparePointer;
       do {
-        currentCharValue = *stringComparePointer;
-        SystemComparisonCharValue = (uint)stringComparePointer[SystemStringLengthDifference];
-        if (currentCharValue != SystemComparisonCharValue) break;
-        stringComparePointer = stringComparePointer + 1;
-      } while (SystemComparisonCharValue != 0);
-      if ((int)(currentCharValue - SystemComparisonCharValue) < 1) goto SystemNodeDataValidation;
+        FirstByteValue = *StringComparePointer;
+        ComparisonValue = (uint)StringComparePointer[StringLengthDifference];
+        if (FirstByteValue != ComparisonValue) break;
+        StringComparePointer = StringComparePointer + 1;
+      } while (ComparisonValue != 0);
+      if ((int)(FirstByteValue - ComparisonValue) < 1) goto SystemNodeDataValidation;
     }
   }
-  ResourceAddressPointer = (void* *)GetSystemNodeDataPointer(HashTableNode,&searchContextBackup);
-  ResourceAddressPointer = (void* *)*ResourceAddressPointer;
+  SystemNextNode = (void* *)GetSystemNodeDataPointer(CurrentSearchNode,&SystemContextBackup);
+  SystemNextNode = (void* *)*SystemNextNode;
 SystemNodeDataValidation:
-  SetSystemNodeRuntimeData(ResourceAddressPointer + 8,AdditionalParameter);
-  ResourceAddressPointer[0xc] = ConfigurationFlag;
+  SetSystemNodeRuntimeData(SystemNextNode + 8,AdditionalParameter);
+  SystemNextNode[0xc] = ConfigurationFlag;
   return;
 }
 
