@@ -78490,7 +78490,13 @@ void ExecuteResourceProcessingCallback(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_18090ba90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源调用 - 偏移量0x380
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090ba90
+ */
+void ProcessSystemResourceCallOffset380(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78504,7 +78510,13 @@ void Unwind_18090ba90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bab0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源调用 - 偏移量0x388
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090bab0
+ */
+void ProcessSystemResourceCallOffset388(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78518,7 +78530,13 @@ void Unwind_18090bab0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bad0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源调用 - 偏移量0x390
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090bad0
+ */
+void ProcessSystemResourceCallOffset390(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78532,7 +78550,13 @@ void Unwind_18090bad0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090baf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源调用 - 偏移量0x398
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090baf0
+ */
+void ProcessSystemResourceCallOffset398(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78546,7 +78570,13 @@ void Unwind_18090baf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bb10(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源调用 - 偏移量0x3a0
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090bb10
+ */
+void ProcessSystemResourceCallOffset3A0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -78560,7 +78590,13 @@ void Unwind_18090bb10(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090bb30(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源调用 - 偏移量0x3a8
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090bb30
+ */
+void ProcessSystemResourceCallOffset3A8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
