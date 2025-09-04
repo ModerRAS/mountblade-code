@@ -668,49 +668,49 @@ uint32_t NetworkClientIpAddress;                          // 网络客户端IP�
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号，客户端使用的端口号
 
 // 网络套接字和缓冲区配置
-uint32_t NetworkSocketDescriptor;                     // 网络套接字文件描述符
-uint32_t NetworkSocketCategory;                           // 网络套接字类别
-uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型
-uint32_t NetworkSocketIndex;                              // 网络套接字索引
-uint32_t NetworkSocketData;                                // 网络套接字数据
-uint32_t NetworkSocketContext;                              // 网络套接字上下文
-uint32_t NetworkSocketSize;                                  // 网络套接字大小
-uint32_t NetworkProtocolVersion;                              // 网络协议版本
-uint32_t NetworkConnectionMode;                               // 网络连接模式
-uint32_t NetworkConnectionPriority;                           // 网络连接优先级
-uint32_t NetworkConnectionContextSize;                         // 网络连接上下文大小
-uint32_t NetworkConnectionQuality;                             // 网络连接质量
-uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽
-uint32_t NetworkConnectionLatency;                             // 网络连接延迟
-uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别
-uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型
-uint32_t NetworkConnectionEncryptionAlgorithm;                // 网络加密算法
-uint32_t NetworkConnectionCompressionMethod;                  // 网络压缩方法
-uint32_t NetworkConnectionSessionTimeoutDuration;             // 网络会话超时持续时间
-uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针
-uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针
-uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小
-uint32_t NetworkReceiveBufferSize;                        // 网络接收缓冲区大小
-uint32_t NetworkSendBufferCapacity;                       // 网络发送缓冲区容量
-uint32_t NetworkReceiveBufferCapacity;                    // 网络接收缓冲区容量
+uint32_t NetworkSocketDescriptor;                     // 网络套接字文件描述符，操作系统分配的套接字标识符
+uint32_t NetworkSocketCategory;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
+uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
+uint32_t NetworkSocketIndex;                              // 网络套接字索引，套接字在表中的索引位置
+uint32_t NetworkSocketData;                                // 网络套接字数据，套接字相关的数据存储
+uint32_t NetworkSocketContext;                              // 网络套接字上下文，套接字的运行时上下文信息
+uint32_t NetworkSocketSize;                                  // 网络套接字大小，套接字结构体的大小
+uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
+uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
+uint32_t NetworkConnectionPriority;                           // 网络连接优先级，定义连接在资源竞争中的优先级别
+uint32_t NetworkConnectionContextSize;                         // 网络连接上下文大小，连接上下文数据结构的大小
+uint32_t NetworkConnectionQuality;                             // 网络连接质量，评估连接质量的质量指标
+uint32_t NetworkConnectionBandwidth;                           // 网络连接带宽，连接可用的带宽资源
+uint32_t NetworkConnectionLatency;                             // 网络连接延迟，网络通信的延迟时间
+uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别，连接的安全保护级别
+uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
+uint32_t NetworkConnectionEncryptionAlgorithm;                // 网络加密算法，数据传输使用的加密算法
+uint32_t NetworkConnectionCompressionMethod;                  // 网络压缩方法，数据压缩使用的算法方法
+uint32_t NetworkConnectionSessionTimeoutDuration;             // 网络会话超时持续时间，会话无活动的超时时间
+uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针，指向数据包缓冲区的内存地址
+uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针，指向数据包头部信息的内存地址
+uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小，发送缓冲区的当前大小
+uint32_t NetworkReceiveBufferSize;                        // 网络接收缓冲区大小，接收缓冲区的当前大小
+uint32_t NetworkSendBufferCapacity;                       // 网络发送缓冲区容量，发送缓冲区的最大容量
+uint32_t NetworkReceiveBufferCapacity;                    // 网络接收缓冲区容量，接收缓冲区的最大容量
 
 // 网络数据包和安全配置
-uint32_t NetworkPacketPayloadSize;                        // 网络数据包负载大小
-uint32_t NetworkMaximumPacketSize;                            // 网络最大数据包大小
-uint32_t NetworkEncryptionKey;                            // 网络加密密钥
-uint32_t NetworkCompressionLevel;                         // 网络压缩级别
+uint32_t NetworkPacketPayloadSize;                        // 网络数据包负载大小，数据包中有效数据的大小
+uint32_t NetworkMaximumPacketSize;                            // 网络最大数据包大小，系统允许的最大数据包大小
+uint32_t NetworkEncryptionKey;                            // 网络加密密钥，用于数据加密的密钥值
+uint32_t NetworkCompressionLevel;                         // 网络压缩级别，数据压缩的压缩级别设置
 
 // 网络连接配置数据指针
-void *NetworkConnectionInitializationConfig;    // 网络连接初始化配置数据
-void *NetworkConnectionAlternateConfig;         // 网络连接备用配置数据
-void *NetworkConnectionHeaderConfig;            // 网络连接头部配置数据
-void *NetworkConnectionDataConfig;              // 网络连接数据配置数据
-void *NetworkConnectionRequestConfig;           // 网络连接请求配置数据
-void *NetworkConnectionPrimaryProcessingConfig;   // 网络连接主要处理配置数据
-void *NetworkConnectionSecondaryProcessingConfig;// 网络连接次要处理配置数据
-void *NetworkConnectionTertiaryProcessingConfig;// 网络连接第三处理配置数据
-void *NetworkConnectionQuaternaryProcessingConfig;// 网络连接第四处理配置数据
-void *NetworkConnectionQuinaryProcessingConfig;  // 网络连接第五处理配置数据
+void *NetworkConnectionInitializationConfig;    // 网络连接初始化配置数据，连接初始化时使用的配置信息
+void *NetworkConnectionAlternateConfig;         // 网络连接备用配置数据，备用配置方案的数据指针
+void *NetworkConnectionHeaderConfig;            // 网络连接头部配置数据，数据包头部处理的配置信息
+void *NetworkConnectionDataConfig;              // 网络连接数据配置数据，数据处理相关的配置信息
+void *NetworkConnectionRequestConfig;           // 网络连接请求配置数据，连接请求处理的配置信息
+void *NetworkConnectionPrimaryProcessingConfig;   // 网络连接主要处理配置数据，主要处理流程的配置信息
+void *NetworkConnectionSecondaryProcessingConfig;// 网络连接次要处理配置数据，次要处理流程的配置信息
+void *NetworkConnectionTertiaryProcessingConfig;// 网络连接第三处理配置数据，第三级处理流程的配置信息
+void *NetworkConnectionQuaternaryProcessingConfig;// 网络连接第四处理配置数据，第四级处理流程的配置信息
+void *NetworkConnectionQuinaryProcessingConfig;  // 网络连接第五处理配置数据，第五级处理流程的配置信息
 
 // 网络连接上下文和数据变量
 uint32_t NetworkConnectionContext;                          // 网络连接上下文
