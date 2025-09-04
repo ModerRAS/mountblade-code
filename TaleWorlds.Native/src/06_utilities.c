@@ -9970,19 +9970,19 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t ObjectContex
 uint8_t ProcessParameterizedFloatComparison(int64_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
-  uint8_t ResourceHashStatus;
-  uint32_t PrimaryOperationParameter;
-  uint32_t SecondaryOperationParameter;
-  uint32_t OperationParameter;
-  uint32_t ContextFlag;
+  int64_t LoopIterator;
+  uint8_t ResourceProcessingStatus;
+  uint32_t PrimaryValidationParameter;
+  uint32_t SecondaryValidationParameter;
+  uint32_t OperationControlParameter;
+  uint32_t SystemConfigurationFlag;
   
-  PrimaryOperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
-  SecondaryOperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationParamOffset);
-  OperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
-  ContextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataProcessingOffset);
+  PrimaryValidationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
+  SecondaryValidationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationParamOffset);
+  OperationControlParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
+  SystemConfigurationFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataProcessingOffset);
   SystemContextPointer = (**(code **)(**(int64_t **)(ValidationContext + 800) + 600))
-                    (*(int64_t **)(ValidationContext + 800),&PrimaryOperationParameter,1);
+                    (*(int64_t **)(ValidationContext + 800),&PrimaryValidationParameter,1);
   if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + ContextSystemContextPointerOffset) == 0)) {
     ValidationStatusCode = 0x4a;
   }
@@ -9990,10 +9990,10 @@ uint8_t ProcessParameterizedFloatComparison(int64_t ObjectContext, int64_t Valid
     ValidationStatusCode = ValidateBufferContext(*(int64_t *)(SystemContextPointer + ContextSystemContextPointerOffset),ObjectContext + ObjectContextProcessingDataProcessingOffset);
     if ((int)ValidationStatusCode == 0) {
       ValidationStatusCode = CleanupSystemContextData(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
-      return ResourceHashStatus;
+      return ResourceProcessingStatus;
     }
   }
-  return ResourceHashStatus;
+  return ResourceProcessingStatus;
 }
 
 
@@ -10007,27 +10007,27 @@ uint8_t ProcessParameterizedFloatComparison(int64_t ObjectContext, int64_t Valid
 uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t IteratorIndex;
-  uint8_t ResourceHashStatus;
-  uint32_t PrimaryValidationParameter;
-  uint32_t SecondaryValidationParameter;
-  uint32_t ValidationOperationParameter;
-  uint32_t SystemContextFlag;
+  int64_t ProcessingIterator;
+  uint8_t ResourceValidationStatus;
+  uint32_t PrimaryControlParameter;
+  uint32_t SecondaryControlParameter;
+  uint32_t ValidationControlParameter;
+  uint32_t SystemContextConfigurationFlag;
   
-  PrimaryValidationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
-  SecondaryValidationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationParamOffset);
-  ValidationOperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
-  SystemContextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataProcessingOffset);
+  PrimaryControlParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
+  SecondaryControlParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationParamOffset);
+  ValidationControlParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
+  SystemContextConfigurationFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataProcessingOffset);
   SystemContextPointer = (**(code **)(**(int64_t **)(ValidationContext + SystemContextBaseOffset) + SystemContextMethodOffset))
-                    (*(int64_t **)(ValidationContext + SystemContextBaseOffset),&PrimaryValidationParameter,1);
+                    (*(int64_t **)(ValidationContext + SystemContextBaseOffset),&PrimaryControlParameter,1);
   if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + SystemContextResourceTablePointerOffset) == 0)) {
     return SystemOperationErrorCode;
   }
   ValidationStatusCode = ValidateBufferContext(*(int64_t *)(SystemContextPointer + SystemContextResourceTablePointerOffset),ObjectContext + ObjectContextProcessingDataProcessingOffset);
-  if ((int)ResourceHashStatus != 0) {
-    return ResourceHashStatus;
+  if ((int)ResourceValidationStatus != 0) {
+    return ResourceValidationStatus;
   }
-  LoopCounter = *(int64_t *)(ValidationContext + ValidationContextLoopCounterOffset);
+  ProcessingIterator = *(int64_t *)(ValidationContext + ValidationContextLoopCounterOffset);
   if (*(int *)(SystemContextPointer + SystemContextOperationFlagOffset) != 0) {
     if (((*(int *)(SystemContextPointer + SystemContextStatusFlag1Offset) == 0) && (*(int *)(SystemContextPointer + SystemContextStatusFlag2Offset) == 0)) ||
        (InitializeSecurityContext(&SecurityContextBuffer),
@@ -10038,8 +10038,8 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int
     else {
       ValidationStatusCode = ProcessResourceValidation(SystemContextPointer,ObjectContext);
     }
-    if ((int)ResourceHashStatus != 0) {
-      return ResourceHashStatus;
+    if ((int)ResourceValidationStatus != 0) {
+      return ResourceValidationStatus;
     }
   }
   return 0;
@@ -10060,8 +10060,8 @@ uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int
 void ValidateAndProcessBufferContext(int64_t ObjectContext,int64_t ValidationContext)
 
 {
-  int PackageValidationStatus;
-  uint8_t BufferContext;
+  int BufferProcessingStatusCode;
+  uint8_t BufferValidationContext;
   
   ResourceIndex = ProcessSchedulerValidation(ValidationContext,ObjectContext + ObjectContextValidationDataProcessingOffset,&ValidationContext);
   if (ResourceIndex == 0) {
@@ -10088,12 +10088,12 @@ void ValidateAndProcessBufferContext(int64_t ObjectContext,int64_t ValidationCon
 void ProcessBufferContextValidationAndCleanup(int64_t ObjectContext,int64_t ValidationContext)
 
 {
-  int ProcessingStatus;
-  int64_t StackContextData;
+  int BufferCleanupStatusCode;
+  int64_t StackProcessingContext;
   
-  ResourceIndex = ProcessSchedulerOperation(ValidationContext,ObjectContext + ObjectContextValidationDataProcessingOffset,&StackContextData);
+  ResourceIndex = ProcessSchedulerOperation(ValidationContext,ObjectContext + ObjectContextValidationDataProcessingOffset,&StackProcessingContext);
   if (ResourceIndex == 0) {
-    ResourceIndex = ValidateBufferContext(*(uint8_t *)(StackContextData + ContextStackSecurityDataProcessingOffset),ObjectContext + ObjectContextProcessingDataProcessingOffset);
+    ResourceIndex = ValidateBufferContext(*(uint8_t *)(StackProcessingContext + ContextStackSecurityDataProcessingOffset),ObjectContext + ObjectContextProcessingDataProcessingOffset);
     if (ResourceIndex == 0) {
       CleanupSystemContextData(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
     }
