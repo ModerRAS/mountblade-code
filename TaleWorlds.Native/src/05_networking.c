@@ -1575,6 +1575,7 @@ uint32_t PacketSecurityAuditData;                        // 数据包安全审�
 uint32_t PacketSecurityAuditInfo;                        // 数据包安全审计信息
 uint32_t PacketSecurityPolicyData;                       // 数据包安全策略数据
 uint32_t PacketSecurityPolicyInfo;                       // 数据包安全策略信息
+uint32_t PacketSecurityCertificateData;                  // 数据包安全证书数据
 uint32_t PacketSecurityCertificateInfo;                  // 数据包安全证书信息
 uint32_t PacketCompressionDataLevel;                    // 数据包压缩数据级别
 uint32_t PacketCompressionLevel;                         // 数据包压缩级别
