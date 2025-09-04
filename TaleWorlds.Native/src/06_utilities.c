@@ -5034,20 +5034,11 @@ uint64_t DecrementSystemResourceCount(int64_t SystemContext, uint64_t ResourceHa
 /**
  * @brief 增加对象引用计数
  * 
- * 该函数用于增加指定对象的引用计数，确保对象在使用期间不会被意外释放。
- * 这是对象生命周期管理的重要函数，通过维护引用计数来控制对象的释放时机。
- * 
- * @param ObjectContext 对象上下文指针，包含对象的元数据和控制信息
- * @return uint8_t 操作状态码，0表示成功，非0表示错误码
- */
-/**
- * @brief 增加对象引用计数
- * 
  * 该函数用于增加系统对象的引用计数，确保对象在使用过程中不会被意外释放
  * 包含对象上下文验证和系统状态检查
  * 
- * @param ObjectContext 对象上下文指针
- * @return 操作结果状态码
+ * @param ObjectContext 对象上下文指针，包含对象的元数据和控制信息
+ * @return uint8_t 操作状态码，0表示成功，非0表示错误码
  */
 uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
   int64_t ValidatedObjectMemoryAddress;
