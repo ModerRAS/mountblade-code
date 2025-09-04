@@ -19344,7 +19344,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   mutexPointer = symbolTablePointer;
   initializationResult = LockMutex(symbolTablePointer);
   if (initializationResult != 0) {
-    __Throw_C_error_std__YAXH_Z(initializationResult);
+    ThrowSystemError(initializationResult);
   }
   SymSetOptions(0x2017);
   InitializeSystemLogging(&systemGlobalDataPtr);
@@ -19401,7 +19401,7 @@ SymbolInitializationCleanup:
   SystemGlobalDataPointer = &SystemMemoryAllocatorReference;
   int MutexUnlockResult = _Mtx_unlock(ThreadMutexPointer);
   if (MutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(MutexUnlockResult);
+    ThrowSystemError(MutexUnlockResult);
   }
 SkipLibraryHandleInitialization:
   void* AllocatedMemoryBlockPrimary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
@@ -20015,7 +20015,7 @@ void UnlockSystemMutex(void* *MutexHandle)
   if (*(char *)(MutexHandle + 1) != '\0') {
     UnlockResult = _Mtx_unlock(*MutexHandle);
     if (UnlockResult != 0) {
-      __Throw_C_error_std__YAXH_Z(UnlockResult);
+      ThrowSystemError(UnlockResult);
     }
   }
   return;
@@ -20048,7 +20048,7 @@ uint64_t WaitForSystemNodeReady(long long SystemNodePointer, uint64_t TimeoutPar
   MutexHandle = SystemNodePointer + 0x48;
   MutexLockResult = _Mtx_lock();
   if (MutexLockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(MutexLockResult);
+    ThrowSystemError(MutexLockResult);
   }
   WaitFlag = true;
   if (*(char *)(SystemNodePointer + 0x98) != '\x01') {
@@ -20056,7 +20056,7 @@ uint64_t WaitForSystemNodeReady(long long SystemNodePointer, uint64_t TimeoutPar
     while (SystemNodeReady == false) {
       MutexLockResult = _Cnd_wait(SystemNodePointer,MutexHandle,ConditionVariable,SyncFlag,WaitTimeout,MutexHandle,WaitFlag);
       if (MutexLockResult != 0) {
-        __Throw_C_error_std__YAXH_Z(MutexLockResult);
+        ThrowSystemError(MutexLockResult);
       }
       NodeStatus = *(char *)(SystemNodePointer + 0x98);
     }
@@ -20064,7 +20064,7 @@ uint64_t WaitForSystemNodeReady(long long SystemNodePointer, uint64_t TimeoutPar
   *(char *)(SystemNodePointer + 0x98) = 0;
   MutexLockResult = _Mtx_unlock(MutexHandle);
   if (MutexLockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(MutexLockResult);
+    ThrowSystemError(MutexLockResult);
   }
   return 1;
 }
@@ -20390,7 +20390,7 @@ void UnlockSystemMutex(void* *MutexHandle)
   
   UnlockResult = _Mtx_unlock(*MutexHandle);
   if (UnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(UnlockResult);
+    ThrowSystemError(UnlockResult);
   }
   return;
 }
@@ -20417,16 +20417,16 @@ void LockSystemMutexAndBroadcast(long long SystemContextPointer)
   
   LockResult = _Mtx_lock(SystemContextPointer + 0x48);
   if (LockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(LockResult);
+    ThrowSystemError(LockResult);
   }
   *(uint8_t *)(SystemContextPointer + 0x98) = 1;
   LockResult = _Cnd_broadcast(SystemContextPointer);
   if (LockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(LockResult);
+    ThrowSystemError(LockResult);
   }
   LockResult = _Mtx_unlock(SystemContextPointer + 0x48);
   if (LockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(LockResult);
+    ThrowSystemError(LockResult);
   }
   return;
 }
@@ -22327,12 +22327,12 @@ void LockSystemMutex(long long SystemResourceManager,uint8_t ConfigurationDataPo
   
   SystemInitializationStatus = _Mtx_lock(SystemResourceManager + 0x48);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   *(uint8_t *)(SystemResourceManager + 0x98) = ConfigurationDataPointer;
   SystemInitializationStatus = _Mtx_unlock(SystemResourceManager + 0x48);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   return;
 }
@@ -22378,11 +22378,11 @@ void ProcessMemorySystemTimestampHandler(void* SystemResourceManager,void* *Conf
   }
   SystemInitializationStatus = _Mtx_current_owns(*ConfigurationDataPointer);
   if (SystemInitializationStatus == 0) {
-    __Throw_Cpp_error_std__YAXH_Z(4);
+    ThrowCppSystemError(4);
   }
   resourceCreationFlags = _Cnd_timedwait(SystemResourceManager,*ConfigurationDataPointer,&SystemTimeoutValue);
   if ((resourceCreationFlags & 0xfffffffd) != 0) {
-    __Throw_C_error_std__YAXH_Z(resourceCreationFlags);
+    ThrowSystemError(resourceCreationFlags);
   }
     ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)EncryptionBuffer58);
 }
@@ -22417,7 +22417,7 @@ uint8_t ProcessSystemInitializationData(long long SystemResourceManager,void* Co
   lockAcquiredFlag = 0;
   systemResult = _Mtx_lock();
   if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+    ThrowSystemError(systemResult);
   }
   lockAcquiredFlag = '\x01';
   if (*(char *)(SystemResourceManager + 0x98) == '\x01') {
@@ -22432,7 +22432,7 @@ uint8_t ProcessSystemInitializationData(long long SystemResourceManager,void* Co
   if (lockAcquiredFlag != '\0') {
     systemResult = _Mtx_unlock(mutexAddress);
     if (systemResult != 0) {
-      __Throw_C_error_std__YAXH_Z(systemResult);
+      ThrowSystemError(systemResult);
     }
   }
   return SystemInitializationStatus;
@@ -22946,7 +22946,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
   long long ResourceMemoryOffset;
   uint8_t SystemSecurityEncryptionBufferD8 [32];
   void* systemDataBuffer;
-  void* *SystemDataBufferPointerA8;
+  void* *SystemDataBufferPointer;
   uint8_t *SystemParameterPointerA;
   uint32_t secondarySystemDataBuffer;
   uint8_t SystemStackParamC [72];
@@ -23246,7 +23246,7 @@ void* SystemThreadObjectManager(long long threadPoolContext, uint32_t threadFlag
   resourceCreationFlags = CreateSystemThreadObject(SystemMemoryPoolTemplate,ConfigurationDataPointer,3,ConfigurationFlag,InvalidHandleValue);
   SystemInitializationStatus = _Mtx_lock(SystemResourceManager + 0x28);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   resourceEntryPointer = *(void* **)(SystemResourceManager + 0x10);
   if (resourceEntryPointer < *(void* **)(SystemResourceManager + 0x18)) {
@@ -23282,7 +23282,7 @@ SystemResourceAllocationHandler:
 SystemResourceAllocationComplete:
   SystemInitializationStatus = _Mtx_unlock(SystemResourceManager + 0x28);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   return resourceCreationFlags;
 }
@@ -24448,7 +24448,7 @@ void SystemDataPointerSetter(void* *dataPointer)
   SystemDataHeaderStorage = *dataPointer;
   MutexUnlockResult = _Mtx_unlock(0x180c91970);
   if (MutexUnlockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(MutexUnlockResult);
+    ThrowSystemError(MutexUnlockResult);
   }
   return;
 }
@@ -24789,7 +24789,7 @@ void SystemMutexMemoryCleaner(long long mutexPointer)
   
   lockResult = _Mtx_lock(mutexPointer + 0x28);
   if (lockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(lockResult);
+    ThrowSystemError(lockResult);
   }
   entryCounter = 0;
   memoryBase = *(long long *)(mutexPointer + 8);
@@ -24810,7 +24810,7 @@ void SystemMutexMemoryCleaner(long long mutexPointer)
   *(long long *)(mutexPointer + 0x10) = memoryBase;
   lockResult = _Mtx_unlock(mutexPointer + 0x28);
   if (lockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(lockResult);
+    ThrowSystemError(lockResult);
   }
   return;
 }
@@ -26224,23 +26224,23 @@ uint32_t GetSystemResourceStatus(void)
     SystemConfigValue = 0;
     secondarySystemOffsetCounter = 0;
     systemConfigurationValue = 0;
-    ProcessSystemData(&SystemDataBufferPointerA8,SystemInitializationStatusArray.PrimaryField);
+    ProcessSystemData(&SystemDataBufferPointer,SystemInitializationStatusArray.PrimaryField);
     CurrentThreadIdentifier = secondarySystemDataBuffer + 1;
-    ExecuteSystemCommand(&SystemDataBufferPointerA8,CurrentThreadIdentifier);
+    ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
     *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
     secondarySystemDataBuffer = CurrentThreadIdentifier;
-    ProcessSystemData(&SystemDataBufferPointerA8,aSystemInitializationStatus._0_8_ >> 0x20);
+    ProcessSystemData(&SystemDataBufferPointer,aSystemInitializationStatus._0_8_ >> 0x20);
     CurrentThreadIdentifier = secondarySystemDataBuffer + 1;
-    ExecuteSystemCommand(&SystemDataBufferPointerA8,CurrentThreadIdentifier);
+    ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
     *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
     secondarySystemDataBuffer = CurrentThreadIdentifier;
-    ProcessSystemData(&SystemDataBufferPointerA8,aSystemInitializationStatus._8_8_ & SystemMaximumUnsigned32BitValue);
+    ProcessSystemData(&SystemDataBufferPointer,aSystemInitializationStatus._8_8_ & SystemMaximumUnsigned32BitValue);
     CalculationFlags = secondarySystemDataBuffer + 1;
-    ExecuteSystemCommand(&SystemDataBufferPointerA8,CalculationFlags);
+    ExecuteSystemCommand(&SystemDataBufferPointer,CalculationFlags);
     *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
     secondarySystemDataBuffer = CalculationFlags;
-    ProcessSystemData(&SystemDataBufferPointerA8,aSystemInitializationStatus._8_8_ >> 0x20);
-    ResourceAddressPointer = (void* *)CreateSystemObject(ThreadTitleBuffer,&SystemDataBufferPointerA8);
+    ProcessSystemData(&SystemDataBufferPointer,aSystemInitializationStatus._8_8_ >> 0x20);
+    ResourceAddressPointer = (void* *)CreateSystemObject(ThreadTitleBuffer,&SystemDataBufferPointer);
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xef0,ResourceAddressPointer);
     *ResourceAddressPointer = &SystemGlobalDataReference;
     if (ResourceAddressPointer[1] != 0) {
@@ -26722,7 +26722,7 @@ void SystemDataInitializer(void)
     SystemModuleContextPointerA = (long long *)0x180c91970;
     CalculationFlags = _Mtx_lock(0x180c91970);
     if (CalculationFlags != 0) {
-      __Throw_C_error_std__YAXH_Z(CalculationFlags);
+      ThrowSystemError(CalculationFlags);
     }
     ReleaseSystemResource(*(void* *)*SystemDataPointer);
     ReleaseSystemResource(*(void* *)SystemDataPointer[1]);
@@ -26731,7 +26731,7 @@ void SystemDataInitializer(void)
     *(uint8_t *)(SystemDataPointer + 7) = 0;
     CalculationFlags = _Mtx_unlock(0x180c91970);
     if (CalculationFlags != 0) {
-      __Throw_C_error_std__YAXH_Z(CalculationFlags);
+      ThrowSystemError(CalculationFlags);
     }
   }
   SystemDataPointer = (void* *)*SystemGlobalPointerTable;
@@ -26959,7 +26959,7 @@ void InitializeSystemDataStructures(void)
     SystemProcessFlags = 0x180c91288;
     systemOffset = _Mtx_lock(0x180c91288);
     if (systemOffset != 0) {
-      __Throw_C_error_std__YAXH_Z(systemOffset);
+      ThrowSystemError(systemOffset);
     }
 
 /**
@@ -27087,7 +27087,7 @@ void InitializeSystemResourceAllocator(long long systemResourceHandle)
     SystemMutexAddress = 0x180c91288;
     SystemInitializationStatus = _Mtx_lock(0x180c91288);
     if (SystemInitializationStatus != 0) {
-      __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+      ThrowSystemError(SystemInitializationStatus);
     }
 
 /**
@@ -29597,7 +29597,7 @@ void InitializeSystemDataManager(void)
     resourceManagerPointer = (void**)*SystemSystemResourceManager;
     mutexLockResult = _Mtx_lock(0x180c91970);
     if (mutexLockResult != 0) {
-      __Throw_C_error_std__YAXH_Z(mutexLockResult);
+      ThrowSystemError(mutexLockResult);
     }
     previousDataHeader = SystemDataHeaderStorage;
     SystemDataHeaderStorage = *resourceManagerPointer;
@@ -29623,7 +29623,7 @@ void InitializeSystemDataManager(void)
     SystemDataHeaderStorage = previousDataHeader;
     mutexLockResult = _Mtx_unlock(0x180c91970);
     if (mutexLockResult != 0) {
-      __Throw_C_error_std__YAXH_Z(mutexLockResult);
+      ThrowSystemError(mutexLockResult);
     }
   }
   return;
@@ -36427,7 +36427,7 @@ void ManageSystemResourceLock(long long SystemResourceManager)
   // 锁定互斥量
   lockResult = _Mtx_lock(synchronizationObject + 0x48);
   if (lockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(lockResult);
+    ThrowSystemError(lockResult);
   }
   
   // 设置同步状态标志
@@ -36436,13 +36436,13 @@ void ManageSystemResourceLock(long long SystemResourceManager)
   // 广播条件变量通知等待的线程
   lockResult = _Cnd_broadcast(synchronizationObject);
   if (lockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(lockResult);
+    ThrowSystemError(lockResult);
   }
   
   // 解锁互斥量
   lockResult = _Mtx_unlock(synchronizationObject + 0x48);
   if (lockResult != 0) {
-    __Throw_C_error_std__YAXH_Z(lockResult);
+    ThrowSystemError(lockResult);
   }
   
   return;
@@ -37047,12 +37047,12 @@ uint32_t GetSystemResourceStatus(long long SystemResourceManager)
   
   SystemInitializationStatus = _Mtx_lock(SystemResourceManager + 0x9f0);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   resourceCreationFlags = CheckSystemInputManagerStatus();
   SystemInitializationStatus = _Mtx_unlock(SystemResourceManager + 0x9f0);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   return resourceCreationFlags;
 }
@@ -37085,31 +37085,31 @@ int CheckSystemInputManagerStatus(void)
   resourceDataIndex = SystemInputManagerPointer + 0x770;
   systemCounter = _Mtx_lock(resourceDataIndex);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   systemCounter = CheckSystemInputManagerStatus();
   systemIndex = _Mtx_unlock(resourceDataIndex);
   if (systemIndex != 0) {
-    __Throw_C_error_std__YAXH_Z(systemIndex);
+    ThrowSystemError(systemIndex);
   }
   systemIndex = _Mtx_lock(SystemThreadHandle + 0x7c0);
   if (systemIndex != 0) {
-    __Throw_C_error_std__YAXH_Z(systemIndex);
+    ThrowSystemError(systemIndex);
   }
   systemIndex = CheckSystemInputManagerStatus();
   systemValue = _Mtx_unlock(SystemThreadHandle + 0x7c0);
   if (systemValue != 0) {
-    __Throw_C_error_std__YAXH_Z(systemValue);
+    ThrowSystemError(systemValue);
   }
   systemValue = GetSystemResourceStatus(SystemThreadHandle);
   CalculationFlags = _Mtx_lock(SystemThreadHandle + 0x950);
   if (CalculationFlags != 0) {
-    __Throw_C_error_std__YAXH_Z(CalculationFlags);
+    ThrowSystemError(CalculationFlags);
   }
   CalculationFlags = CheckSystemInputManagerStatus();
   systemOffset = _Mtx_unlock(SystemThreadHandle + 0x950);
   if (systemOffset != 0) {
-    __Throw_C_error_std__YAXH_Z(systemOffset);
+    ThrowSystemError(systemOffset);
   }
   return CalculationFlags + systemIndex + systemCounter + systemValue;
 }
@@ -38908,11 +38908,11 @@ void ProcessSystemTextureManagerLock(long long SystemResourceManager)
   SystemThreadHandle = SystemTextureManagerPointer + 0x20;
   SystemInitializationStatus = _Mtx_lock(SystemThreadHandle);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   SystemInitializationStatus = _Mtx_unlock(SystemThreadHandle);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
     return;
   }
   return;
@@ -41259,7 +41259,7 @@ void InitializeSystemResource(long long* SystemResourceManager)
         SystemFlag18 = 0;
         systemCounter = _Mtx_lock();
         if (systemCounter != 0) {
-          __Throw_C_error_std__YAXH_Z(systemCounter);
+          ThrowSystemError(systemCounter);
         }
         SystemFlag18 = '\x01';
         if ((char)SystemResourceManager[0x3d] == '\x01') {
@@ -41273,7 +41273,7 @@ void InitializeSystemResource(long long* SystemResourceManager)
         }
         systemCounter = _Mtx_unlock(SystemResourceManager20);
         if (systemCounter != 0) {
-          __Throw_C_error_std__YAXH_Z(systemCounter);
+          ThrowSystemError(systemCounter);
         }
       }
 SystemFlagCheckComplete:
@@ -41314,7 +41314,7 @@ void* ProcessSystemResourceAllocationRequest(long long SystemResourceManager,cha
     else {
       systemResult = _Mtx_lock(SystemResourceManager + 0xf0);
       if (systemResult != 0) {
-        __Throw_C_error_std__YAXH_Z(systemResult);
+        ThrowSystemError(systemResult);
       }
       if ((*(long long *)(SystemResourceManager + 200) - *(long long *)(SystemResourceManager + 0xd0) >> 3) +
           ((*(long long *)(SystemResourceManager + 0xe0) - *(long long *)(SystemResourceManager + 0xc0) >> 3) + -1) * 0x20 +
@@ -41347,7 +41347,7 @@ void* ProcessSystemResourceAllocationRequest(long long SystemResourceManager,cha
       }
       systemResult = _Mtx_unlock(SystemResourceManager + 0xf0);
       if (systemResult != 0) {
-        __Throw_C_error_std__YAXH_Z(systemResult);
+        ThrowSystemError(systemResult);
       }
       SystemResourceOffsetPointer = SystemResourceHandle;
       if (SystemResourceHandle != (long long *)0x0) {
@@ -41988,7 +41988,7 @@ void ValidateSystemResourceEx(long long SystemResourceManager,long long *Configu
   LocalSystemOffset = SystemResourceManager + 0xf0;
   systemIndex = _Mtx_lock();
   if (systemIndex != 0) {
-    __Throw_C_error_std__YAXH_Z(systemIndex);
+    ThrowSystemError(systemIndex);
   }
   ThreadContextIndicator = 1;
   InitializeSystemResourcePool(SystemResourceManager + 0x98,ConfigurationDataPointer);
@@ -42004,7 +42004,7 @@ void ValidateSystemResourceEx(long long SystemResourceManager,long long *Configu
   SystemThreadSyncBroadcast(SystemResourceManager + 0x150);
   systemIndex = _Mtx_unlock(LocalSystemOffset);
   if (systemIndex != 0) {
-    __Throw_C_error_std__YAXH_Z(systemIndex);
+    ThrowSystemError(systemIndex);
   }
   if ((long long *)*ConfigurationDataPointer != (long long *)0x0) {
     (**(code **)(*(long long *)*ConfigurationDataPointer + 0x38))();
@@ -44564,7 +44564,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   long long SystemProcessBufferPtr;
   int systemValue;
   long long *SystemMemoryBlockSizePointer;
-  void* *SystemDataBufferPointerA8;
+  void* *SystemDataBufferPointer;
   long long SystemMemoryAllocationOffset;
   long long SystemDataBufferOffset;
   uint secondarySystemDataBuffer;
@@ -44579,16 +44579,16 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   
   SystemEncryptionKey = 0xfffffffffffffffe;
   SystemMemoryManagerPointer = *(long long **)(SystemMemoryBlockStorage + 0x18);
-  CreateSystemObject(&SystemDataBufferPointerA8,SystemGlobalStatusFlags + 0x170,AdditionalParameter,ConfigurationFlag,0);
+  CreateSystemObject(&SystemDataBufferPointer,SystemGlobalStatusFlags + 0x170,AdditionalParameter,ConfigurationFlag,0);
   systemValue = secondarySystemDataBuffer + 3;
-  ExecuteSystemCommand(&SystemDataBufferPointerA8,systemValue);
+  ExecuteSystemCommand(&SystemDataBufferPointer,systemValue);
   *(uint32_t *)((ulong long)secondarySystemDataBuffer + SystemDataBufferOffset) = 0x706d74;
   secondarySystemDataBuffer = systemValue;
-  SystemValidationResult = VerifySystemMemoryAllocation(&SystemDataBufferPointerA8);
+  SystemValidationResult = VerifySystemMemoryAllocation(&SystemDataBufferPointer);
   if (validationStatusFlag == '\0') {
-    ReleaseSystemMemoryAllocation(&SystemDataBufferPointerA8);
+    ReleaseSystemMemoryAllocation(&SystemDataBufferPointer);
   }
-  SystemEncryptionValue = &SystemDataBufferPointerA8;
+  SystemEncryptionValue = &SystemDataBufferPointer;
   ppsystemMemoryOffset = &SystemMemoryManagerPointer;
   ExecuteSystemResourceCommand(&SystemEncryptionValue,SystemNodeManagerPointer,&SystemNodeManagerConfiguration);
   ExecuteSystemResourceCommand(&SystemEncryptionValue,SystemMemoryManagerPointer,&SystemMemoryManagerConfig);
@@ -44628,7 +44628,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
     SystemProcessFlagsSecondary = 0;
     pointerToUnsignedStackFlagTertiary = &SystemMemoryAllocatorReference;
   }
-  CleanupSystemMemoryBuffer(&SystemDataBufferPointerA8);
+  CleanupSystemMemoryBuffer(&SystemDataBufferPointer);
   SystemStackFlagSecondary = &SystemGlobalDataReference;
   if (SystemMemoryAllocationFlagA0 != 0) {
       SystemCleanupFunction();
@@ -45820,14 +45820,14 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   AllocateSystemResource(ResourceMemoryOffset + 0x10,&LocalMemoryOffset);
   systemId = _Cnd_signal(ResourceMemoryOffset + 0x278);
   if (systemId != 0) {
-    __Throw_C_error_std__YAXH_Z(systemId);
+    ThrowSystemError(systemId);
   }
   stackPointer1 = *(void* **)(SystemResourceManager[1] + 0x1b0);
   ResourceMemoryOffset = *SystemResourceManager;
   AllocateSystemResource(ResourceMemoryOffset + 0x10,&stackPointer1);
   systemId = _Cnd_signal(ResourceMemoryOffset + 0x278);
   if (systemId != 0) {
-    __Throw_C_error_std__YAXH_Z(systemId);
+    ThrowSystemError(systemId);
   }
   ResourceMemoryOffset = *(long long *)(SystemResourceManager[1] + 0x1c0);
   if (*(long long *)(SystemResourceManager[1] + 0x1b8) != 0) {
@@ -45865,7 +45865,7 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   systemId = _Mtx_lock(ResourceMemoryOffset);
   if (systemId != 0) {
     SystemOperationCounter = 0x180068815;
-    __Throw_C_error_std__YAXH_Z(systemId);
+    ThrowSystemError(systemId);
   }
   SystemOperationCounter = 0x18006881f;
   ReleaseSystemResource(HashTableNodePointer + 4);
@@ -45875,7 +45875,7 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
   systemId = _Mtx_unlock(ResourceMemoryOffset);
   if (systemId != 0) {
     SystemOperationCounter = 0x180068847;
-    __Throw_C_error_std__YAXH_Z(systemId);
+    ThrowSystemError(systemId);
   }
   return;
 }
@@ -46008,7 +46008,7 @@ void CreateSystemIoCompletionPort(long long SystemResourceManager,long long Conf
   SystemMutexAddress = ResourceMemoryOffset;
   SystemInitializationStatus = _Mtx_lock(ResourceMemoryOffset);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   SystemThreadContext = *(void* **)(SystemResourceManager + 0x2133d8);
   if (SystemThreadContext == (void* *)0x0) {
@@ -46016,7 +46016,7 @@ void CreateSystemIoCompletionPort(long long SystemResourceManager,long long Conf
     if (0xff < SystemOperationCode) {
       SystemInitializationStatus = _Mtx_unlock(ResourceMemoryOffset);
       if (SystemInitializationStatus != 0) {
-        __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+        ThrowSystemError(SystemInitializationStatus);
       }
       _SystemConfigSizePtr = *(uint32_t *)(ConfigurationDataPointer + 0x10);
       ResourceAddressPointer = &SystemStringTemplate;
@@ -46081,7 +46081,7 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourceManager,long long Co
   ThreadContextIndicator = (ulong long)(-(uint)((CurrentThreadIdentifier & 0xfff) != 0) & 0x1000) + (CurrentThreadIdentifier & SystemMemoryBufferAlignmentMask);
   systemCounter = _Mtx_lock(SystemResourceManager + 0x200380);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   resourceEntryPointer = *(void* **)(SystemResourceManager + 0x200378);
   if (resourceEntryPointer == (void* *)0x0) {
@@ -46089,7 +46089,7 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourceManager,long long Co
     if (0xfff < SystemInitializationStatus) {
       systemCounter = _Mtx_unlock(SystemResourceManager + 0x200380);
       if (systemCounter != 0) {
-        __Throw_C_error_std__YAXH_Z(systemCounter);
+        ThrowSystemError(systemCounter);
       }
       ConfigureSystemResourceAllocation(0x20,AdditionalParameter);
       uRam00000000000001f0 = 0;
@@ -46213,14 +46213,14 @@ void ConfigureSystemResourceWithMutex(long long SystemResourceManager,void* *Con
   CloseHandle(ConfigurationDataPointer[0x25]);
   SystemInitializationStatus = _Mtx_lock(SystemResourceManager + 0x2133e0);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   (**(code **)*ConfigurationDataPointer)(ConfigurationDataPointer,0,AdditionalParameter,ConfigurationFlag,resourceCreationFlags);
   *ConfigurationDataPointer = *(void* *)(SystemResourceManager + 0x2133d8);
   *(void* **)(SystemResourceManager + 0x2133d8) = ConfigurationDataPointer;
   SystemInitializationStatus = _Mtx_unlock(SystemResourceManager + 0x2133e0);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   return;
 }
@@ -46300,14 +46300,14 @@ void ConfigureSystemResourceWithLock(long long SystemResourceManager,void* *Conf
   
   SystemInitializationStatus = _Mtx_lock(SystemResourceManager + 0x200010);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   ReleaseSystemResource(ConfigurationDataPointer + 4);
   *ConfigurationDataPointer = *(void* *)(SystemResourceManager + 0x200008);
   *(void* **)(SystemResourceManager + 0x200008) = ConfigurationDataPointer;
   SystemInitializationStatus = _Mtx_unlock(SystemResourceManager + 0x200010);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   return;
 }
@@ -48696,7 +48696,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         SystemContextValue230 = ResourceDataIndex3;
         SystemInitializationStatusPrimary = _Mtx_lock(ResourceDataIndex3);
         if (SystemInitializationStatusPrimary != 0) {
-          __Throw_C_error_std__YAXH_Z(SystemInitializationStatusPrimary);
+          ThrowSystemError(SystemInitializationStatusPrimary);
         }
         SystemMemoryAlignment = 1;
         SystemAllocationFlags = _Xtime_get_ticks();
@@ -48711,24 +48711,24 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         StackInteger40 = StackInteger210;
         SystemInitializationStatusPrimary = _Mtx_current_owns(ResourceDataIndex3);
         if (SystemInitializationStatusPrimary == 0) {
-          __Throw_Cpp_error_std__YAXH_Z(4);
+          ThrowCppSystemError(4);
         }
         SystemInitializationStatusFlags = _Cnd_timedwait(SystemResourceManager + 0x330,ResourceDataIndex3,&StackInteger48);
         if ((SystemInitializationStatusFlags & 0xfffffffd) != 0) {
-          __Throw_C_error_std__YAXH_Z(SystemInitializationStatusFlags);
+          ThrowSystemError(SystemInitializationStatusFlags);
         }
         charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemGlobalDataReferencePtr2);
         if (SystemAvailabilityFlag == '\0') {
           SystemInitializationStatusPrimary = _Mtx_unlock(ResourceDataIndex3);
           if (SystemInitializationStatusPrimary != 0) {
-            __Throw_C_error_std__YAXH_Z(SystemInitializationStatusPrimary);
+            ThrowSystemError(SystemInitializationStatusPrimary);
           }
           IsDataValid = false;
         }
         else {
           SystemInitializationStatusPrimary = _Mtx_unlock();
           if (SystemInitializationStatusPrimary != 0) {
-            __Throw_C_error_std__YAXH_Z(SystemInitializationStatusPrimary);
+            ThrowSystemError(SystemInitializationStatusPrimary);
           }
           IsDataValid = true;
         }
@@ -51192,7 +51192,7 @@ void ManageSystemInitializationState(void)
   *(int *)(resourceDataIndex + 0xec) = *(int *)(resourceDataIndex + 0xec) + 1;
   systemCounter = _Mtx_lock(resourceDataIndex + 0x98);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   SystemCalculatedBufferPointer = *(long long **)(resourceDataIndex + 0x78);
   if ((SystemCalculatedBufferPointer != (long long *)(resourceDataIndex + 0x78)) && (*(uint *)(SystemCalculatedBufferPointer + 2) < *(uint *)(resourceDataIndex + 0xec))) {
@@ -51203,12 +51203,12 @@ void ManageSystemInitializationState(void)
   }
   systemCounter = _Mtx_unlock(resourceDataIndex + 0x98);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   *(int *)(resourceDataIndex + 0x164) = *(int *)(resourceDataIndex + 0x164) + 1;
   systemCounter = _Mtx_lock(resourceDataIndex + 0x110);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   SystemCalculatedBufferPointer = *(long long **)(resourceDataIndex + 0xf0);
   do {
@@ -51216,7 +51216,7 @@ void ManageSystemInitializationState(void)
 MutexUnlockComplete:
       systemCounter = _Mtx_unlock(resourceDataIndex + 0x110);
       if (systemCounter != 0) {
-        __Throw_C_error_std__YAXH_Z(systemCounter);
+        ThrowSystemError(systemCounter);
       }
       return;
     }
@@ -51251,7 +51251,7 @@ void FinalizeSystemMemorySetup(void* SystemResourceManager,void* ConfigurationDa
   InitializeSystemHandle(SystemThreadHandle);
   systemCounter = _Mtx_lock(SystemThreadHandle + 0x98);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   if (*(long long *)(SystemThreadHandle + 0x90) != 0) {
     PrimaryResourceHandle = *(long long **)(**(long long **)(SystemThreadHandle + 0x78) + 8);
@@ -51261,11 +51261,11 @@ void FinalizeSystemMemorySetup(void* SystemResourceManager,void* ConfigurationDa
   }
   systemCounter = _Mtx_unlock(SystemThreadHandle + 0x98);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   systemCounter = _Mtx_lock(SystemThreadHandle + 0x110);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   if (*(long long *)(SystemThreadHandle + 0x108) != 0) {
     PrimaryResourceHandle = *(long long **)(**(long long **)(SystemThreadHandle + 0xf0) + 8);
@@ -51275,7 +51275,7 @@ void FinalizeSystemMemorySetup(void* SystemResourceManager,void* ConfigurationDa
   }
   systemCounter = _Mtx_unlock(SystemThreadHandle + 0x110);
   if (systemCounter != 0) {
-    __Throw_C_error_std__YAXH_Z(systemCounter);
+    ThrowSystemError(systemCounter);
   }
   return;
 }
@@ -51321,7 +51321,7 @@ void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* Configu
     DataIndex = SystemInitializationFlag + 0x110;
     SystemIndex = _Mtx_lock(DataIndex);
     if (SystemIndex != 0) {
-      __Throw_C_error_std__YAXH_Z(SystemIndex);
+      ThrowSystemError(SystemIndex);
     }
     SystemIndex = *(int *)(ResourceOffset + 0x164);
     SystemOperationResult = *(int *)(ResourceOffset + 0x160);
@@ -51341,7 +51341,7 @@ void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* Configu
     *(long long *)(ResourceOffset + 0x108) = *(long long *)(ResourceOffset + 0x108) + 1;
     SystemIndex = _Mtx_unlock(DataIndex);
     if (SystemIndex != 0) {
-      __Throw_C_error_std__YAXH_Z(SystemIndex);
+      ThrowSystemError(SystemIndex);
     }
   }
   return;
@@ -51368,12 +51368,12 @@ void* GetSystemResourceStatus(long long SystemResourceManager)
   
   OperationResult = _Mtx_lock(SystemResourceManager + 0x20);
   if (OperationResult != 0) {
-    __Throw_C_error_std__YAXH_Z(OperationResult);
+    ThrowSystemError(OperationResult);
   }
   SystemStatus = *(void* *)(SystemResourceManager + 0x18);
   OperationResult = _Mtx_unlock(SystemResourceManager + 0x20);
   if (OperationResult != 0) {
-    __Throw_C_error_std__YAXH_Z(OperationResult);
+    ThrowSystemError(OperationResult);
   }
   return SystemStatus;
 }
@@ -51451,7 +51451,7 @@ void ExecuteSystemResourceCleanup(void* *SystemResourceManager,void* Configurati
   
   OperationResult = _Mtx_lock(SystemResourceManager + 4,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
   if (OperationResult != 0) {
-    __Throw_C_error_std__YAXH_Z(OperationResult);
+    ThrowSystemError(OperationResult);
   }
   if (SystemResourceManager[3] != 0) {
     MainResourceHandle = *(long long **)(*(long long *)*SystemResourceManager + 8);
@@ -51461,7 +51461,7 @@ void ExecuteSystemResourceCleanup(void* *SystemResourceManager,void* Configurati
   }
   OperationResult = _Mtx_unlock(SystemResourceManager + 4);
   if (OperationResult != 0) {
-    __Throw_C_error_std__YAXH_Z(OperationResult);
+    ThrowSystemError(OperationResult);
   }
   return;
 }
@@ -51492,7 +51492,7 @@ void UpdateSystemResourceCounter(long long* SystemResourceManager,void* Configur
   *(int *)((long long)SystemResourceManager + 0x74) = *(int *)((long long)SystemResourceManager + 0x74) + 1;
   systemResult = _Mtx_lock(SystemResourceManager + 4,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
   if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+    ThrowSystemError(systemResult);
   }
   PrimaryResourceHandle = (long long *)*SystemResourceManager;
   if ((PrimaryResourceHandle != SystemResourceManager) && (*(uint *)(PrimaryResourceHandle + 2) < *(uint *)((long long)SystemResourceManager + 0x74))) {
@@ -51503,7 +51503,7 @@ void UpdateSystemResourceCounter(long long* SystemResourceManager,void* Configur
   }
   systemResult = _Mtx_unlock(SystemResourceManager + 4);
   if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+    ThrowSystemError(systemResult);
   }
   return;
 }
@@ -51554,7 +51554,7 @@ void ProcessSystemResourceQueue(long long* SystemResourceManager)
   *(int *)((long long)SystemResourceManager + 0x74) = *(int *)((long long)SystemResourceManager + 0x74) + 1;
   systemResult = _Mtx_lock(SystemResourceManager + 4);
   if (systemResult != 0) {
-    __Throw_C_error_std__YAXH_Z(systemResult);
+    ThrowSystemError(systemResult);
   }
   SystemResourceOffsetPointer = (long long *)*SystemResourceManager;
   do {
@@ -51562,7 +51562,7 @@ void ProcessSystemResourceQueue(long long* SystemResourceManager)
 MutexUnlockComplete:
       systemResult = _Mtx_unlock(SystemResourceManager + 4);
       if (systemResult != 0) {
-        __Throw_C_error_std__YAXH_Z(systemResult);
+        ThrowSystemError(systemResult);
       }
       return;
     }
@@ -52141,7 +52141,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   uint32_t SystemInitializationStatusFlags;
   byte byteStackD8;
   void* *alternateBufferPtrB0;
-  void* *SystemDataBufferPointerA8;
+  void* *SystemDataBufferPointer;
   uint32_t UnsignedStackFlagSecondary;
   ulong long secondarySystemDataBuffer;
   void* *pStackParamC;
@@ -53469,7 +53469,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
   uint32_t UnsignedStackFlagSenary;
   ulong long systemDataBuffer;
   uint32_t SystemFlagSecondary;
-  void* *SystemDataBufferPointerA8;
+  void* *SystemDataBufferPointer;
   void** SystemDataPointer;
   uint32_t SystemConfigValue;
   long long SystemConfigurationData;
@@ -53563,7 +53563,7 @@ SystemResourceSetup:
         memcpy(SystemDataBufferPointer + SystemContextPointer,ConfigurationDataPointer,(long long)((int)ResourceDataCounter + 2));
     }
   }
-  FinalizeSystemInitialization(&pUnsignedStackFlagSecondary,&SystemDataBufferPointerA8,&SystemProcessFlags);
+  FinalizeSystemInitialization(&pUnsignedStackFlagSecondary,&SystemDataBufferPointer,&SystemProcessFlags);
   SystemOperationMode = 0;
   pUnsignedStackFlagSecondary = &SystemGlobalDataReference;
   if (SystemDataBufferPointer != (uint8_t *)0x0) {
@@ -54067,7 +54067,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   uint32_t UnsignedStackFlagSenary;
   ulong long systemDataBuffer;
   void* *alternateBufferPtrB0;
-  void* *SystemDataBufferPointerA8;
+  void* *SystemDataBufferPointer;
   uint32_t UnsignedStackFlagSecondary;
   ulong long secondarySystemDataBuffer;
   void* *pStackParamC;
@@ -54227,7 +54227,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     }
     SystemOperationResult = 1;
     SystemInitializationStatus5 = 1;
-    pHashTableNodePointer = &SystemDataBufferPointerA8;
+    pHashTableNodePointer = &SystemDataBufferPointer;
     resourceEntryPointer = pEncryptionOffset1;
   }
   pSystemConfigValue = &SystemGlobalDataReference;
@@ -58189,12 +58189,12 @@ void IncrementSystemResourceReferenceCount(long long SystemResourceManager)
   
   SystemInitializationStatus = _Mtx_lock(0x180c91910);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   *(char *)(SystemResourceManager + 0xfc) = *(char *)(SystemResourceManager + 0xfc) + '\x01';
   SystemInitializationStatus = _Mtx_unlock(0x180c91910);
   if (SystemInitializationStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(SystemInitializationStatus);
+    ThrowSystemError(SystemInitializationStatus);
   }
   return;
 }
@@ -58222,7 +58222,7 @@ void ManageSystemResourceReferenceCount(long long SystemResourceManager)
   
   LockStatus = _Mtx_lock(0x180c91910);
   if (LockStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(LockStatus);
+    ThrowSystemError(LockStatus);
   }
   ReferenceCountPointer = (char *)(SystemResourceManager + 0xfc);
   *ReferenceCountPointer = *ReferenceCountPointer + -1;
@@ -58258,7 +58258,7 @@ void ManageSystemResourceReferenceCount(long long SystemResourceManager)
   }
   LockStatus = _Mtx_unlock(0x180c91910);
   if (LockStatus != 0) {
-    __Throw_C_error_std__YAXH_Z(LockStatus);
+    ThrowSystemError(LockStatus);
   }
   return;
 }
@@ -70010,19 +70010,28 @@ void* SystemConfigurationFlag;
 /**
  * @brief 音频数据归一化处理函数
  * 
- * 该函数负责对音频数据进行归一化处理，包括：
- * - 计算音频数据的幅度
- * - 应用归一化系数
- * - 处理多通道音频数据
- * - 批量优化处理以提高性能
+ * 该函数负责对音频数据进行归一化处理，将音频信号的幅度调整到标准范围内。
+ * 主要功能包括：
+ * - 计算音频数据的幅度和相位信息
+ * - 应用归一化系数进行信号调整
+ * - 处理多通道音频数据的并行计算
+ * - 使用位操作优化音频样本处理
+ * - 实现高效的音频信号滤波和加权
  * 
- * @return void* 返回处理结果指针
+ * @return void* 返回处理后的音频数据指针
  * 
- * @note 这是音频处理系统的核心函数，用于音频数据的预处理
+ * @note 这是音频处理系统的核心函数，用于音频数据的预处理和归一化
+ * 
+ * @处理流程:
+ * 1. 初始化音频处理参数和缓冲区
+ * 2. 对每个音频样本进行位反转和归一化计算
+ * 3. 应用滤波器系数进行信号处理
+ * 4. 计算加权结果并输出处理后的音频数据
  */
 void* NormalizeAudioData(void)
 
 {
+  // 音频通道样本变量 - 用于存储8个音频通道的样本数据
   float audioChannelSample1;
   float audioChannelSample2;
   float audioChannelSample3;
@@ -70031,12 +70040,16 @@ void* NormalizeAudioData(void)
   float audioChannelSample6;
   float audioChannelSample7;
   float audioChannelSample8;
-  uint audioBitMask;
-  uint processedAudioBit;
-  int audioProcessingLoop;
-  float *audioBufferPointer;
-  int audioNormalizationFactor;
-  float *audioInputData;
+  
+  // 音频处理控制变量
+  uint audioBitMask;              // 位掩码，用于音频样本的位操作
+  uint processedAudioBit;         // 处理后的音频位
+  int audioProcessingLoop;        // 音频处理循环计数器
+  
+  // 音频缓冲区和数据指针
+  float *audioBufferPointer;      // 音频缓冲区指针
+  int audioNormalizationFactor;   // 音频归一化因子
+  float *audioInputData;          // 音频输入数据指针
   uint audioShiftRegister;
   int audioProcessingIndex;
   uint totalAudioChannels;
@@ -70186,14 +70199,14 @@ void* NormalizeAudioData(void)
           AudioWeightedResult36 = (float)((uint)(AudioSampleValue6 + AudioWeightedResult36) & AudioThresholdFlag9 | ~AudioThresholdFlag9 & (uint)AudioWeightedResult36);
           AudioWeightedResult37 = (float)((uint)(AudioSampleValue7 + AudioWeightedResult37) & AudioThresholdFlag15 | ~AudioThresholdFlag15 & (uint)AudioWeightedResult37);
           AudioWeightedResult38 = (float)((uint)(AudioSampleValue8 + AudioWeightedResult38) & AudioThresholdFlag16 | ~AudioThresholdFlag16 & (uint)AudioWeightedResult38);
-          audioStatusIndex4 = audioStatusIndex1;
-        } while (audioStatusIndex1 < (int)(audioTotalChannels - audioThresholdFlag13));
-        audioTotalSum = audioWeightedResult27 + audioWeightedResult37 + audioWeightedResult25 + audioWeightedResult35 + audioWeightedResult28 + audioWeightedResult38 + audioWeightedResult26 + audioWeightedResult36;
-        audioWeightedResult17 = audioWeightedResult31 + audioWeightedResult33 + audioWeightedResult17 + audioWeightedResult30 + audioWeightedResult19 + audioWeightedResult34 + audioWeightedResult29 + audioWeightedResult32;
+          AudioStatusIndex4 = AudioStatusIndex1;
+        } while (AudioStatusIndex1 < (int)(audioTotalChannels - audioThresholdFlag13));
+        AudioTotalSum = AudioWeightedResult27 + AudioWeightedResult37 + AudioWeightedResult25 + AudioWeightedResult35 + AudioWeightedResult28 + AudioWeightedResult38 + AudioWeightedResult26 + AudioWeightedResult36;
+        AudioWeightedResult17 = AudioWeightedResult31 + AudioWeightedResult33 + AudioWeightedResult17 + AudioWeightedResult30 + AudioWeightedResult19 + AudioWeightedResult34 + AudioWeightedResult29 + AudioWeightedResult32;
       }
-      if (audioStatusIndex1 < (int)audioTotalChannels) {
-        if (3 < (int)(audioTotalChannels - audioStatusIndex1)) {
-          audioStatusIndex4 = audioStatusIndex1 + 2;
+      if (AudioStatusIndex1 < (int)audioTotalChannels) {
+        if (3 < (int)(audioTotalChannels - AudioStatusIndex1)) {
+          AudioStatusIndex4 = AudioStatusIndex1 + 2;
           audioWeightedResult29 = (float)audioProcessingFactor;
           audioDataPointer = audioDataIndexPtr + (long long)audioStatusIndex1 + 2;
           audioWeightedResult31 = (float)(int)audioTotalChannels;

@@ -93578,6 +93578,20 @@ void ExecuteCleanupOperationCallback(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
+/**
+ * @brief 执行系统资源清理回调包装器4
+ * 
+ * 该函数是系统资源清理回调的第四个包装器，负责调用清理回调函数
+ * 从验证上下文中获取回调函数指针，并执行清理操作
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态和资源信息
+ * @param CleanupOption 清理选项，指定清理的类型和方式
+ * @param CleanupFlag 清理标志，控制清理行为
+ * @return 无返回值
+ * @note 此函数在系统资源清理过程中调用
+ * @warning 原始函数名：Unwind_18090ed10
+ */
 void ExecuteSystemResourceCleanupCallbackWrapper4(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
@@ -93592,6 +93606,18 @@ void ExecuteSystemResourceCleanupCallbackWrapper4(uint8_t ObjectContext,int64_t 
 
 
 
+/**
+ * @brief 执行系统资源清理和重置操作
+ * 
+ * 该函数负责执行系统资源的清理操作，并重置相关状态
+ * 处理验证上下文中的资源表指针，确保系统资源被正确释放
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统状态和资源信息
+ * @return 无返回值
+ * @note 此函数在系统资源清理和状态重置时调用
+ * @warning 原始函数名：Unwind_18090ed20
+ */
 void ExecuteSystemResourceCleanupAndReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
@@ -93794,7 +93820,7 @@ void InitializeResourceHashTemplates(uint8_t ObjectContext,int64_t ValidationCon
 
 
 
-void Unwind_18090ede0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemResourceCleanupCallbackWrapper9(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -93808,7 +93834,7 @@ void Unwind_18090ede0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090edf0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSystemResourceCleanupWithSecondaryPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
