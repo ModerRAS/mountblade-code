@@ -52768,7 +52768,7 @@ ThreadConfigurationComplete:
     SystemBytePointer = (uint8_t *)CONCAT71(SystemBytePointer._1_7_,0x13);
     StackContextValue = ResourceHash;
     SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,4,0x10);
-    goto LABEL_SYSTEM_INITIALIZATION_HANDLER;
+    goto SystemInitializationHandler;
   }
   *(void*2 *)(SystemMemoryContext + StackContextValue) = 0x3a;
   StackContextValue = 3;

@@ -840,7 +840,6 @@ void InitializeNetworkConnectionPool(void)
  * 
  * @return void 无返回值
  */
-void InitializeNetworkSocketHandle(void)
 
 // 网络连接配置数据结构指针
 void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
