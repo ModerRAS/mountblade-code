@@ -18390,18 +18390,18 @@ CallbackTableInitializationComplete:
 void InitializeEngineModuleA(void)
 
 {
-  uint64_t registerR9;
+  uint64_t RegisterR9;
   void *ParameterStackPointer;
-  uint8_t *bufferPtr;
-  uint32_t bufferSize;
-  uint8_t stringBuffer [136];
+  uint8_t *BufferPointer;
+  uint32_t BufferSize;
+  uint8_t StringBuffer [136];
   
-  paramStackPtr = &SystemDataBufferMainTemplateA;
-  bufferPtr = stringBuffer;
-  stringBuffer[0] = 0;
-  bufferSize = 0x17;
-  strcpy_s(stringBuffer,0x80,&SystemStringConstantBufferTemplateD,registerR9,InvalidHandleValue);
-  SystemMemoryRegionCacheD = SystemMemoryAllocationFunction(&paramStackPtr);
+  ParameterStackPointer = &SystemDataBufferMainTemplateA;
+  BufferPointer = StringBuffer;
+  StringBuffer[0] = 0;
+  BufferSize = 0x17;
+  strcpy_s(StringBuffer,0x80,&SystemStringConstantBufferTemplateD,RegisterR9,InvalidHandleValue);
+  SystemMemoryRegionCacheD = SystemMemoryAllocationFunction(&ParameterStackPointer);
   return;
 }
 
