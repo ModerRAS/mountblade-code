@@ -15435,10 +15435,10 @@ void CalculateFloatValueAndValidateResources(void)
       RegisterStoragePrimary = Xmm6RegisterA;
       RegisterStorageSecondary = Xmm6RegisterC;
       if (StackParameterContextExtended.FloatValue != 1.0) {
-        floatResourceValue = StackParameterContextExtended.FloatValue;
-        resourceTemplatePointer = &SystemResourceTemplateFile;
-        contextBufferPointer = StackContextBuffer;
-        floatRegisterValue = FloatRegisterValue;
+        FloatResourceValue = StackParameterContextExtended.FloatValue;
+        ResourceTemplatePointer = &SystemResourceTemplateFile;
+        ContextBufferPointer = StackContextBuffer;
+        FloatRegisterValue = FloatRegisterValue;
         ResourceIndexTertiary = GetAndValidateResourceData(StackParameterContextExtended.FloatValue,&PrimaryObjectResourceBuffer);
         StackParameterContextExtended.FloatValue = FloatingPointResultThird;
         if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
@@ -15446,10 +15446,10 @@ void CalculateFloatValueAndValidateResources(void)
       ResourceIndexTertiary = CheckResourceIntegrity(StackParameterContextExtended.FloatValue,&ObjectStackBufferTertiary,0);
       if (ResourceIndexTertiary == 0) {
         if (RegisterStorageQuinary != 1.0) {
-          floatResourceValue = RegisterStorageQuinary;
-          resourceTemplatePointer = &SystemResourceTemplateGraphics;
-          contextBufferPointer = StackContextBuffer;
-          floatRegisterValue = FloatRegisterValue;
+          FloatResourceValue = RegisterStorageQuinary;
+          ResourceTemplatePointer = &SystemResourceTemplateGraphics;
+          ContextBufferPointer = StackContextBuffer;
+          FloatRegisterValue = FloatRegisterValue;
           ResourceIndexTertiary = GetAndValidateResourceData(StackFloatParameter,&PrimaryObjectResourceBuffer);
           if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
         }
