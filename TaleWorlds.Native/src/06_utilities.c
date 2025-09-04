@@ -66703,7 +66703,7 @@ void CleanupSystemValidator(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void UnwindSecurityValidator1809089a0(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteSystemSecurityValidationCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   BeginResourceTransaction();
@@ -66715,7 +66715,7 @@ void UnwindSecurityValidator1809089a0(uint8_t ObjectContext, int64_t ValidationC
 
 
 
-void UnwindTransactionHandler1809089b0(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteSystemTransactionHandlerCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -66764,7 +66764,7 @@ void SystemStateResetHandler(void)
 
 
 
-void UnwindExceptionHandler1809089e0(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteSystemExceptionHandlerCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -66978,7 +66978,7 @@ void CleanupSecondaryResourceHashStatus(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void UnwindMemoryAccessValidator180908a50(uint8_t ObjectContext, int64_t ValidationContext)
+void ExecuteSystemMemoryAccessValidationCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -108159,7 +108159,7 @@ void InitializeSystemDataCachePointer(void)
  * @note 这是一个简单的初始化函数，用于设置系统数据结构的指针
  * @warning 调用此函数前必须确保 SystemDataStructure 已正确初始化
  */
-void InitializeSystemDataStructureReference016(void)
+void InitializeSystemDataStructurePrimaryReference(void)
 
 {
   SystemDataPrimaryReferencePointer = &SystemDataStructure;

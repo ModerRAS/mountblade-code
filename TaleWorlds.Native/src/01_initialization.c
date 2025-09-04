@@ -20727,60 +20727,60 @@ ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long Com
   ulong long dataBlockComparisonIndex;
   ulong long dataBlockLoopCounter;
   
-  comparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
-  ResourceMemoryOffset = *(long long *)(SystemResourceManager + 8);
-  if (comparisonIndex < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - ResourceMemoryOffset >> 8)) {
-    byteDifference = *(int *)(ComparisonDataPointer + 0x10);
-    comparisonResult = *(int *)(comparisonIndex * 0x100 + 0x10 + ResourceMemoryOffset);
-    if (comparisonResult == byteDifference) {
-      if (comparisonResult != 0) {
-        sourceBytePointer = *(byte **)(comparisonIndex * 0x100 + 8 + ResourceMemoryOffset);
-        memoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)sourceBytePointer;
+  dataBlockComparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
+  dataBlockResourceMemoryOffset = *(long long *)(SystemResourceManager + 8);
+  if (dataBlockComparisonIndex < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - dataBlockResourceMemoryOffset >> 8)) {
+    dataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
+    dataBlockComparisonResult = *(int *)(dataBlockComparisonIndex * 0x100 + 0x10 + dataBlockResourceMemoryOffset);
+    if (dataBlockComparisonResult == dataBlockByteDifference) {
+      if (dataBlockComparisonResult != 0) {
+        dataBlockSourceBytePointer = *(byte **)(dataBlockComparisonIndex * 0x100 + 8 + dataBlockResourceMemoryOffset);
+        dataBlockMemoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)dataBlockSourceBytePointer;
         do {
-          comparisonBytePointer = sourceBytePointer + memoryOffset;
-          byteDifference = (uint)*sourceBytePointer - (uint)*comparisonBytePointer;
-          if (byteDifference != 0) break;
-          sourceBytePointer = sourceBytePointer + 1;
-        } while (*comparisonBytePointer != 0);
+          dataBlockComparisonBytePointer = dataBlockSourceBytePointer + dataBlockMemoryOffset;
+          dataBlockByteDifference = (uint)*dataBlockSourceBytePointer - (uint)*dataBlockComparisonBytePointer;
+          if (dataBlockByteDifference != 0) break;
+          dataBlockSourceBytePointer = dataBlockSourceBytePointer + 1;
+        } while (*dataBlockComparisonBytePointer != 0);
       }
     }
-    else if (comparisonResult != 0) goto ComparisonResultCheck;
-    if (byteDifference == 0) {
+    else if (dataBlockComparisonResult != 0) goto ComparisonResultCheck;
+    if (dataBlockByteDifference == 0) {
 ComparisonResultHandler:
-      return comparisonIndex & SystemMaximumUnsigned32BitValue;
+      return dataBlockComparisonIndex & SystemMaximumUnsigned32BitValue;
     }
   }
 ComparisonResultCheck:
-  comparisonIndex = 0;
-  dataSizeLimit = *(long long *)(SystemResourceManager + 0x10) - ResourceMemoryOffset >> 8;
-  if (dataSizeLimit != 0) {
-    byteDifference = *(int *)(ComparisonDataPointer + 0x10);
-    loopCounterValue = comparisonIndex;
+  dataBlockComparisonIndex = 0;
+  dataBlockSizeLimit = *(long long *)(SystemResourceManager + 0x10) - dataBlockResourceMemoryOffset >> 8;
+  if (dataBlockSizeLimit != 0) {
+    dataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
+    loopCounterValue = dataBlockComparisonIndex;
     do {
-      comparisonResult = *(int *)(loopCounter + 0x10 + ResourceMemoryOffset);
-      CalculationFlags = byteDifference;
-      if (comparisonResult == byteDifference) {
-        if (comparisonResult != 0) {
-          sourceBytePointer = *(byte **)(loopCounter + 8 + ResourceMemoryOffset);
-          memoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)sourceBytePointer;
+      dataBlockComparisonResult = *(int *)(loopCounter + 0x10 + dataBlockResourceMemoryOffset);
+      dataBlockCalculationFlags = dataBlockByteDifference;
+      if (dataBlockComparisonResult == dataBlockByteDifference) {
+        if (dataBlockComparisonResult != 0) {
+          dataBlockSourceBytePointer = *(byte **)(loopCounter + 8 + dataBlockResourceMemoryOffset);
+          dataBlockMemoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)dataBlockSourceBytePointer;
           do {
-            comparisonBytePointer = sourceBytePointer + memoryOffset;
-            CalculationFlags = (uint)*sourceBytePointer - (uint)*comparisonBytePointer;
-            if (CalculationFlags != 0) break;
-            sourceBytePointer = sourceBytePointer + 1;
-          } while (*comparisonBytePointer != 0);
+            dataBlockComparisonBytePointer = dataBlockSourceBytePointer + dataBlockMemoryOffset;
+            dataBlockCalculationFlags = (uint)*dataBlockSourceBytePointer - (uint)*dataBlockComparisonBytePointer;
+            if (dataBlockCalculationFlags != 0) break;
+            dataBlockSourceBytePointer = dataBlockSourceBytePointer + 1;
+          } while (*dataBlockComparisonBytePointer != 0);
         }
 ComparisonResultZeroHandler:
-        if (CalculationFlags == 0) {
-          *(int *)(SystemResourceManager + 0x68) = (int)comparisonIndex;
+        if (dataBlockCalculationFlags == 0) {
+          *(int *)(SystemResourceManager + 0x68) = (int)dataBlockComparisonIndex;
           goto ComparisonResultHandler;
         }
       }
-      else if (comparisonResult == 0) goto ComparisonResultZeroHandler;
-      indexCounter = (int)comparisonIndex + 1;
-      comparisonIndex = (ulong long)indexCounter;
+      else if (dataBlockComparisonResult == 0) goto ComparisonResultZeroHandler;
+      dataBlockIndexCounter = (int)dataBlockComparisonIndex + 1;
+      dataBlockComparisonIndex = (ulong long)dataBlockIndexCounter;
       loopCounterValue = loopCounter + 0x100;
-    } while ((ulong long)(long long)(int)indexCounter < dataSizeLimit);
+    } while ((ulong long)(long long)(int)dataBlockIndexCounter < dataBlockSizeLimit);
   }
   return 0xffffffff;
 }
@@ -20799,13 +20799,13 @@ ComparisonResultZeroHandler:
 void InitializeSystemController(long long* SystemResourceManager,void* *SystemConfigurationPointer)
 
 {
-  long long *PrimaryResourceHandle;
-  long long *ResourceStackPointer;
-  void** HashTableNodePointer;
-  long long *MemoryStackPointer;
-  long long **StackReferencePointer;
-  uint32_t SystemStatusFlag;
-  void* SystemMemoryHandle;
+  long long *ControllerPrimaryResourceHandle;
+  long long *ControllerResourceStackPointer;
+  void** ControllerHashTableNodePointer;
+  long long *ControllerMemoryStackPointer;
+  long long **ControllerStackReferencePointer;
+  uint32_t ControllerSystemStatusFlag;
+  void* ControllerSystemMemoryHandle;
   
   SystemMemoryHandle = 0xfffffffffffffffe;
   SystemStatusFlag = 0;
