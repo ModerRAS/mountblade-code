@@ -86700,7 +86700,19 @@ void ProcessResourceHashStatusUpdate(uint8_t ObjectContext, int64_t ValidationCo
 
 
 
-void Unwind_18090d220(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源哈希验证结果指针（偏移0x120）
+ * 
+ * 该函数负责清理位于验证上下文0x120偏移处的资源哈希验证结果指针
+ * 处理资源索引的递减和系统清理工作
+ * 
+ * @param ObjectContext 对象上下文参数
+ * @param ValidationContext 验证上下文参数，包含资源哈希验证结果指针
+ * @return 无返回值
+ * @note 此函数在异常处理过程中调用，用于清理资源哈希验证相关的资源
+ * @warning 原始函数名：Unwind_18090d220
+ */
+void CleanupResourceHashValidationResultPointerOffset120(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -88484,7 +88496,13 @@ void Unwind_18090d530(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d540(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090d540
+ */
+void SetSystemDataStructurePointerToValidationContext(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x140) = &SystemDataStructure;
