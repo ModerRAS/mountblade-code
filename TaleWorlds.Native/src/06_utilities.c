@@ -84263,7 +84263,13 @@ void SetSystemDataStructurePointerToContextOffset6C0(uint8_t ObjectContext, int6
 
 
 
-void Unwind_18090cc70(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移0x4e0
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cc70
+ */
+void SetSystemDataStructurePointerToContextOffset4E0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x4e0) = &SystemDataStructure;
@@ -84272,7 +84278,13 @@ void Unwind_18090cc70(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090cc80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针到验证上下文偏移0x720
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cc80
+ */
+void SetSystemDataStructurePointerToContextOffset720(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x720) = &SystemDataStructure;
@@ -84329,7 +84341,17 @@ void DecrementResourceReferenceCounter(void)
 
 
 
-void Unwind_18090cce0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表处理并设置验证上下文数据结构指针
+ * 
+ * 该函数处理资源表的操作，包括内存操作、资源索引处理和数据访问
+ * 最后在验证上下文的指定偏移量处设置系统数据结构指针
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cce0
+ */
+void ExecuteResourceTableProcessingAndSetDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -84392,7 +84414,13 @@ void SetSystemDataStructurePointerToValidationContextOffsetF8(uint8_t ObjectCont
 
 
 
-void Unwind_18090cd00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清理资源数据偏移0x20的标志位并释放系统资源
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090cd00
+ */
+void ClearResourceDataOffset20FlagsAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x20) & 2) != 0) {
