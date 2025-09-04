@@ -18240,127 +18240,127 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
   
   ResourceStatus = CONCAT44(ValidationContext[0],*ValidationContext);
   ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))(*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
-  if (ResourceIndex == 0) {
-    ValidationContext = *(uint8_t *)(ValidationContext + 2);
-    ResourceIndex = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),&ValidationContext,8);
-    if ((ResourceIndex == 0) && (ResourceIndex = CheckResourceAvailability(ObjectContext,ValidationContext + 4), ResourceIndex == 0)) {
-      ResourceIndex = ValidationContext[10];
-      ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
-      OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                        (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
-      ContextProcessingStatusCode = 0;
-      if (OperationStatus == 0) {
+  if (ProcessingStatusCode == 0) {
+    ResourceStatus = *(uint8_t *)(ValidationContext + 2);
+    ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))(*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,8);
+    if ((ProcessingStatusCode == 0) && (ProcessingStatusCode = CheckResourceAvailability(ObjectContext,ResourceStatus + 4), ProcessingStatusCode == 0)) {
+      ResourceCount = ValidationContext[10];
+      ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+      ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                        (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
+      ValidationStatusCode = 0;
+      if (ProcessingStatusCode == 0) {
         LoopIncrement = ContextResourceHashStatus;
-        if (0 < ResourceIndex) {
+        if (0 < ResourceCount) {
           do {
-            OperationStatus = ResourceDataAccessor(ObjectContext,(int64_t)(int)LoopCondition * 0x6c + *(int64_t *)(ValidationContext + 8));
-            if (OperationResult != 0) {
-              return;
+            ProcessingStatusCode = ResourceDataAccessor(ObjectContext,(int64_t)(int)ValidationStatusCode * 0x6c + *(int64_t *)(ValidationContext + 8));
+            if (ProcessingStatusCode != 0) {
+              return (uint8_t)ProcessingStatusCode;
             }
-            ValidationStatusCode = (int)LoopCondition + 1;
-            LoopIncrement = (uint64_t)ResourceHashStatus;
-          } while ((int)ResourceHashStatus < ResourceIndex);
+            ValidationStatusCode = (int)ValidationStatusCode + 1;
+            LoopIncrement = (uint64_t)ProcessingStatusCode;
+          } while ((int)ProcessingStatusCode < ResourceCount);
         }
-        ResourceIndex = ValidationContext[0xe];
-        ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
-        OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                          (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
-        if (OperationStatus == 0) {
+        ResourceCount = ValidationContext[0xe];
+        ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+        ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                          (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
+        if (ProcessingStatusCode == 0) {
           LoopIncrement = ContextResourceHashStatus;
-          if (0 < ResourceIndex) {
+          if (0 < ResourceCount) {
             do {
-              OperationStatus = GetResourceEntry(ObjectContext,(int64_t)(int)LoopCondition * 0x10 +
+              ProcessingStatusCode = GetResourceEntry(ObjectContext,(int64_t)(int)ValidationStatusCode * 0x10 +
                                             *(int64_t *)(ValidationContext + 0xc));
-              if (OperationResult != 0) {
-                return;
+              if (ProcessingStatusCode != 0) {
+                return (uint8_t)ProcessingStatusCode;
               }
-              ValidationStatusCode = (int)LoopCondition + 1;
-              LoopIncrement = (uint64_t)ResourceHashStatus;
-            } while ((int)ResourceHashStatus < ResourceIndex);
+              ValidationStatusCode = (int)ValidationStatusCode + 1;
+              LoopIncrement = (uint64_t)ProcessingStatusCode;
+            } while ((int)ProcessingStatusCode < ResourceCount);
           }
-          ResourceIndex = ValidationContext[0x12];
-          ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
-          OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                            (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
-          if (OperationStatus == 0) {
+          ResourceCount = ValidationContext[0x12];
+          ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+          ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                            (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
+          if (ProcessingStatusCode == 0) {
             LoopIncrement = ContextResourceHashStatus;
-            if (0 < ResourceIndex) {
+            if (0 < ResourceCount) {
               do {
-                ValidationContext = CONCAT44(ValidationContext.FloatValue,
+                ResourceStatus = CONCAT44(ValidationContext[0],
                                      *(uint32_t *)(*(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset) + LoopIncrement * 4));
-                OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                                  (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
-                if (OperationResult != 0) {
-                  return;
+                ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                                  (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
+                if (ProcessingStatusCode != 0) {
+                  return (uint8_t)ProcessingStatusCode;
                 }
                 LoopIncrement = LoopIncrement + 1;
-              } while ((int64_t)LoopIncrement < (int64_t)ResourceIndex);
+              } while ((int64_t)LoopIncrement < (int64_t)ResourceCount);
             }
-            ResourceIndex = ValidationContext[0x16];
-            ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
-            OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                              (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
-            if (OperationStatus == 0) {
+            ResourceCount = ValidationContext[0x16];
+            ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+            ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                              (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
+            if (ProcessingStatusCode == 0) {
               LoopIncrement = ContextResourceHashStatus;
               ResourceCount = ContextResourceHashStatus;
-              if (0 < ResourceIndex) {
+              if (0 < ResourceCount) {
                 do {
                   ResourceTablePointerPointer = *(int64_t *)(ValidationContext + 0x14) + LoopIncrement;
-                  OperationStatus = GetResourceEntry(ObjectContext,ResourceTablePointerPointer);
-                  if (OperationResult != 0) {
-                    return;
+                  ProcessingStatusCode = GetResourceEntry(ObjectContext,ResourceTablePointerPointer);
+                  if (ProcessingStatusCode != 0) {
+                    return (uint8_t)ProcessingStatusCode;
                   }
                   ValidationStatusCode = *(uint *)(ResourceTablePointerPointer + ValidationContextCleanupFunctionOffset);
-                  if (ResourceHashStatus < 0x8000) {
-                    ValidationContext = CONCAT62(ValidationContext.ShortValue,(short)ResourceHashStatus);
+                  if (ValidationStatusCode < ResourceHashThreshold) {
+                    ResourceStatus = CONCAT62(ValidationContext[0],(short)ValidationStatusCode);
                     SecurityHashValue = 2;
                   }
                   else {
                     SecurityHashValue = 4;
-                    ValidationContext = CONCAT44(ValidationContext.FloatValue,
-                                         (ResourceHashStatus & 0xffffc000 | 0x4000) * 2 | ResourceHashStatus & 0x7fff);
+                    ResourceStatus = CONCAT44(ValidationContext[0],
+                                         (ValidationStatusCode & ResourceHashMaskPreserve | ResourceHashFlagBit) * 2 | ValidationStatusCode & ResourceHashValueMask);
                   }
-                  OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                                    (*(uint8_t **)(ObjectContext + 8),&ValidationContext,SecurityHashValue);
-                  if (OperationResult != 0) {
-                    return;
+                  ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                                    (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,SecurityHashValue);
+                  if (ProcessingStatusCode != 0) {
+                    return (uint8_t)ProcessingStatusCode;
                   }
-                  OperationStatus = ValidateResourceEntry(ObjectContext,ResourceTablePointerPointer + 0x14);
-                  if (OperationResult != 0) {
-                    return;
+                  ProcessingStatusCode = ValidateResourceEntry(ObjectContext,ResourceTablePointerPointer + ResourceTableEntrySize);
+                  if (ProcessingStatusCode != 0) {
+                    return (uint8_t)ProcessingStatusCode;
                   }
                   ResourceCount = ResourceCount + 1;
-                  LoopIncrement = LoopIncrement + 0x18;
-                } while ((int64_t)ResourceCount < (int64_t)ResourceIndex);
+                  LoopIncrement = LoopIncrement + ResourceTableEntrySize;
+                } while ((int64_t)ResourceCount < (int64_t)ResourceCount);
               }
-              ResourceIndex = RetrieveResourceData(ObjectContext,ValidationContext + 0x18);
-              if (ResourceIndex == 0) {
-                ResourceIndex = ValidationContext[ErrorInvalidResourceData];
-                ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
-                OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                                  (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
-                if (OperationStatus == 0) {
-                  if (0 < ResourceIndex) {
+              ProcessingStatusCode = RetrieveResourceData(ObjectContext,ValidationContext + 0x18);
+              if (ProcessingStatusCode == 0) {
+                ResourceCount = ValidationContext[ErrorInvalidResourceData];
+                ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+                ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                                  (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
+                if (ProcessingStatusCode == 0) {
+                  if (0 < ResourceCount) {
                     do {
                       ResourceTablePointerPointer = *(int64_t *)(ValidationContext + 0x1c);
-                      ValidationContext.UIntValue = *(uint32_t *)(ResourceTablePointerPointer + ContextResourceHashStatus * 8);
-                      OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                                        (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
-                      if (OperationResult != 0) {
-                        return;
+                      ResourceStatus.UIntValue = *(uint32_t *)(ResourceTablePointerPointer + ContextResourceHashStatus * 8);
+                      ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                                        (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
+                      if (ProcessingStatusCode != 0) {
+                        return (uint8_t)ProcessingStatusCode;
                       }
-                      ValidationContext = CONCAT44(ValidationContext.FloatValue,*(uint32_t *)(ResourceTablePointerPointer + 4 + ContextResourceHashStatus * 8));
-                      OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
-                                        (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
-                      if (OperationResult != 0) {
-                        return;
+                      ResourceStatus = CONCAT44(ValidationContext[0],*(uint32_t *)(ResourceTablePointerPointer + 4 + ContextResourceHashStatus * 8));
+                      ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                                        (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
+                      if (ProcessingStatusCode != 0) {
+                        return (uint8_t)ProcessingStatusCode;
                       }
-                      ContextValidationStatusCode = ContextResourceHashStatus + 1;
-                    } while ((int64_t)ContextResourceHashStatus < (int64_t)ResourceIndex);
+                      ValidationStatusCode = ContextResourceHashStatus + 1;
+                    } while ((int64_t)ContextResourceHashStatus < (int64_t)ResourceCount);
                   }
-                  ValidationContext = CONCAT44(ValidationContext.FloatValue,ValidationContext[0x20]);
-                  (**(code **)**(uint8_t **)(ObjectContext + 8))
-                            (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
+                  ResourceStatus = CONCAT44(ValidationContext[0],ValidationContext[0x20]);
+                  (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
+                            (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
                 }
               }
             }
