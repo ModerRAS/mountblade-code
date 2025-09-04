@@ -1473,17 +1473,6 @@ void* GetSystemInitializationFunction;
  * 
  * @return 无返回值
  */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 该函数负责初始化游戏的核心系统组件，包括：
- * - 获取系统数据表根指针
- * - 查找或创建游戏核心系统节点
- * - 设置系统标识符和初始化处理器
- * - 配置系统内存分配
- * 
- * @note 此函数是系统初始化流程中的关键步骤，确保游戏核心系统正确启动
- */
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
