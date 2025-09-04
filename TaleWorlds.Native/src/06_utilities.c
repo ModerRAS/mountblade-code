@@ -10021,17 +10021,17 @@ uint8_t ProcessParameterizedFloatComparison(int64_t ObjectContext, int64_t Valid
 uint8_t ProcessSimplifiedParameterizedFloatComparison(int64_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
+  int64_t IteratorIndex;
   uint8_t ResourceHashStatus;
-  uint32_t PrimaryOperationParameter;
-  uint32_t SecondaryOperationParameter;
-  uint32_t OperationParameter;
-  uint32_t ContextFlag;
+  uint32_t PrimaryValidationParameter;
+  uint32_t SecondaryValidationParameter;
+  uint32_t ValidationOperationParameter;
+  uint32_t SystemContextFlag;
   
-  PrimaryOperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-  SecondaryOperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationParamOffset);
-  OperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
-  ContextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
+  PrimaryValidationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
+  SecondaryValidationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationParamOffset);
+  ValidationOperationParameter = *(uint32_t *)(ObjectContext + ObjectContextValidationDataOffset);
+  SystemContextFlag = *(uint32_t *)(ObjectContext + ObjectContextHandleDataOffset);
   SystemContextPointer = (**(code **)(**(int64_t **)(ValidationContext + SystemContextBaseOffset) + SystemContextMethodOffset))
                     (*(int64_t **)(ValidationContext + SystemContextBaseOffset),&PrimaryOperationParameter,1);
   if ((SystemContextPointer == 0) || (*(int64_t *)(SystemContextPointer + SystemContextResourceTablePointerOffset) == 0)) {
