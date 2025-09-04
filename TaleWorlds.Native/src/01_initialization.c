@@ -28615,7 +28615,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   void* *pGlobalDataFlags2;
   long long SystemMemoryAllocationOffset1d8;
   uint SystemResourceCount1d0;
-  void* SystemResourceHandle1c8;
+  void* SystemResourceHandleQuaternary;
   void* *pGlobalDataFlags;
   long long SystemMemoryAllocationOffset1b8;
   uint32_t SystemOperationStatusSecondaryb0;
@@ -28840,7 +28840,7 @@ void SystemResourceEnumerator(void)
   void* *StackResourceHandle158;
   uint8_t *SystemStackBufferPointer150;
   uint StackContextSize;
-  void* SystemStackHandle140;
+  void* SystemStackHandlePrimary;
   void* *StackResourceHandle138;
   uint8_t *SystemStackBufferPointer130;
   uint StackContextOffset;
@@ -28868,9 +28868,9 @@ void SystemResourceEnumerator(void)
   uint32_t StackBufferLimit;
   void* *StackResourceHandle58;
   void* *StackResourceHandle50;
-  void* SystemStackHandle48;
+  void* SystemStackHandleSecondary;
   uint32_t StackAllocationContext;
-  void* SystemStackHandle38;
+  void* SystemStackHandleTertiary;
   ulong long StackEncryptionKey;
   
   SystemStackHandle38 = 0xfffffffffffffffe;
@@ -33388,7 +33388,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   long long stackValue10;
   void* *stackPointer7;
   void* *stackPointer8;
-  void* stackPointer9;
+  void* StackPointerNinth;
   uint32_t stackValue11;
   void* *stackPointer10;
   long long stackValue12;
