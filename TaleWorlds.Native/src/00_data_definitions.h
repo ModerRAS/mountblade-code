@@ -5310,13 +5310,13 @@ longlong ProcessBulkMemoryCleanupAndResourceRelease(uint64_t MemoryRegion, longl
       while( true ) {
         pppLongIndex = *in_RCX[0x4ce];
         if (pppLongIndex == (longlong ***)&SystemGlobalDataPointer) {
-          cVar6 = *(char *)(in_RCX[0x4ce] + 2) != '\0';
+          systemValidationResult = *(char *)(in_RCX[0x4ce] + 2) != '\0';
         }
         else {
-          cVar6 = (*(code *)pppLongIndex[0xd])();
+          systemValidationResult = (*(code *)pppLongIndex[0xd])();
         }
         UnsignedSize = MemoryManagerDataAddress;
-        if (cVar6 != '\0') break;
+        if (systemValidationResult != '\0') break;
         ModuleInitializationResult0 = SystemDataProcessor(MemoryManagerDataAddress);
         if (ModuleInitializationResult0 != 0) {
           pModuleInitializationResult1 = (longlong *)SystemDataProcessor(UnsignedSize);
@@ -6235,8 +6235,8 @@ Label_1802a83bc:
       InitializeSystemDataProcessing(SystemDataProcessorPrimary,&SystemConfigOctonary,pUnsignedValue);
     }
   }
-  cVar3 = ProcessModuleConfigurationValidation(SystemTertiaryParameter);
-  if (cVar3 == '\0') {
+  moduleConfigurationStatus = ProcessModuleConfigurationValidation(SystemTertiaryParameter);
+  if (moduleConfigurationStatus == '\0') {
     pUnsignedValue = &SystemConstantStringPrimary;
     if (*(void **)(SystemParameterPointer + 8) != (void *)0x0) {
       pUnsignedValue = *(void **)(SystemParameterPointer + 8);
@@ -6825,7 +6825,7 @@ NetworkRequestDefaultHandler:
   *SystemSecondaryParameter = (longlong)pLongLoop;
 NetworkRequestComplete:
 code_r0x000180329ed1:
-  bVar8 = (byte)auStackX_20[0];
+  stackBufferByteValue = (byte)auStackX_20[0];
   goto NetworkRequestDefaultHandler;
 }
 /**
@@ -7809,7 +7809,7 @@ uint64_t BufferProcessSystemData(uint64_t BufferPointer,ulonglong ProcessingFlag
       UnsignedValue = (ulonglong)SystemOperationCounter;
     }
     UNLOCK();
-    if (bVar9) {
+    if (systemByteFlag) {
       apSystemStackPointer[0] = aplStackX_18;
       aplStackX_18[0] = SystemDataPointer1;
       if (SystemDataPointer1 != (longlong *)0x0) {
@@ -10793,8 +10793,8 @@ Label_18062e8bc:
                 pMemoryAddress1 = (uint32_t *)
                           MemoryCopyEx(SystemMemoryAllocator,pMemoryAddress1,IntegerCounter + 0x16U,16,0x13);
                 puStack_b8 = pMemoryAddress1;
-                uVar6 = MemoryValidateEx(pMemoryAddress1);
-                uStack_a8 = CONCAT44(uStack_a8._4_4_,uVar6);
+                memoryValidationResult = MemoryValidateEx(pMemoryAddress1);
+                uStack_a8 = CONCAT44(uStack_a8._4_4_,memoryValidationResult);
               }
               memcpy(pMemoryAddress1 + 5,SystemTertiaryParameter,(longlong)(IntegerCounter + 2));
             }

@@ -96906,15 +96906,15 @@ void Unwind_180910d80(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   
   LoopCounter = *(int64_t *)(ValidationContext + 0x80);
   if (*(code **)(SystemContextPointer + ErrorInvalidResourceDataSecondaryFunctionOffset) != (code *)0x0) {
-    (**(code **)(SystemContextPointer + ErrorInvalidResourceDataSecondaryFunctionOffset))(SystemContextPointer + SystemResourceCleanupOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
+    (**(code **)(SystemContextPointer + ErrorInvalidResourceDataSecondaryFunctionOffset))(SystemContextPointer + SystemResourceCleanupContextOffset,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceData60) != 0) {
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataHandlerTemplateOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceDataStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData60) = 0;
-  *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceData70) = 0;
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataStatusOffset) = 0;
+  *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceDataValueOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataHandlerTemplateOffset) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceData40) != 0) {
           ExecuteSystemEmergencyExit();
@@ -98902,15 +98902,15 @@ void Unwind_1809115e0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   
   LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
   if (*(code **)(SystemContextPointer + ErrorInvalidResourceDataSecondaryFunctionOffset) != (code *)0x0) {
-    (**(code **)(SystemContextPointer + ErrorInvalidResourceDataSecondaryFunctionOffset))(SystemContextPointer + SystemResourceCleanupOffset0,0,0,CleanupFlag,0xfffffffffffffffe);
+    (**(code **)(SystemContextPointer + ErrorInvalidResourceDataSecondaryFunctionOffset))(SystemContextPointer + SystemResourceCleanupContextOffset,0,0,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData58) = &SystemResourceHandlerTemplate;
-  if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceData60) != 0) {
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataHandlerTemplateOffset) = &SystemResourceHandlerTemplate;
+  if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceDataStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData60) = 0;
-  *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceData70) = 0;
-  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData58) = &SystemDataStructure;
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataStatusOffset) = 0;
+  *(uint32_t *)(SystemContextPointer + ErrorInvalidResourceDataValueOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceDataHandlerTemplateOffset) = &SystemDataStructure;
   *(uint8_t *)(SystemContextPointer + ErrorInvalidResourceData38) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ErrorInvalidResourceData40) != 0) {
           ExecuteSystemEmergencyExit();
@@ -100556,7 +100556,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   
   LoopOffset = *(int64_t *)(ValidationContext + SystemContextPrimaryResourceManagerOffset);
   ResourceContextOffset = 0;
-  ResourceIndexPointer = (int *)(LoopOffset + ErrorInvalidResourceData70);
+  ResourceIndexPointer = (int *)(LoopOffset + ErrorInvalidResourceDataValueOffset);
   SecurityHashValue = ResourceContextOffset;
   if (0 < *ResourceIndexPointer) {
     do {
@@ -100585,7 +100585,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
   }
   ResourceIndex = *(int64_t *)(LoopOffset + ErrorInvalidResourceData68);
   if (ResourceIndex == 0) {
-    *(uint32_t *)(LoopOffset + SystemResourceCleanupOffset0) = 0;
+    *(uint32_t *)(LoopOffset + SystemResourceCleanupContextOffset) = 0;
     ResourceIndex = *(int64_t *)(LoopOffset + ErrorInvalidResourceData78);
     if (ResourceIndex != 0) {
       if (GlobalUnwindContext != 0) {
@@ -100602,7 +100602,7 @@ void Unwind_180911de0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
     }
           ProcessResourceOperation(LoopOffset,SystemResourceSecondaryPointer,CleanupOption,CleanupFlag,0xfffffffffffffffe);
   }
-  *(uint8_t *)(LoopOffset + ErrorInvalidResourceData60) = 0;
+  *(uint8_t *)(LoopOffset + ErrorInvalidResourceDataStatusOffset) = 0;
   if (GlobalUnwindContext != 0) {
     *(int *)(GlobalUnwindContext + 0x3a8) = *(int *)(GlobalUnwindContext + 0x3a8) + -1;
   }

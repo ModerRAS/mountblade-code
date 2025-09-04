@@ -282,7 +282,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
 #define NetworkSuccessStatus 0                              // 网络操作成功状态
-#define NetworkStandardBufferSize 32                         // 标准缓冲区大小
+#define NetworkStandardBufferSizeSmall 32                        // 小型标准缓冲区大小
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
 // 网络连接配置常量
