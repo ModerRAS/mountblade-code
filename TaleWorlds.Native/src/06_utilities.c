@@ -81094,7 +81094,19 @@ void DestroyMutexQuaternary(void)
 
 
 
-void Unwind_18090c490(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源安全验证和数据结构指针设置
+ * 
+ * 该函数负责处理资源安全验证，包括资源条目查找、内存操作和
+ * 数据结构指针设置。这是一个复杂的资源管理函数。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会在验证上下文的0x140偏移处设置系统数据结构指针
+ * @warning 原始函数名为Unwind_18090c490，现已重命名为ProcessResourceSecurityValidationAndSetPointer
+ */
+void ProcessResourceSecurityValidationAndSetPointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t ResourceEntry;
@@ -81243,7 +81255,19 @@ void ProcessExtendedResourceContextCleanup(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090c4e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源处理器模板并进行验证检查
+ * 
+ * 该函数负责设置系统资源处理器模板，进行验证检查，
+ * 并在必要时执行紧急退出操作。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * @note 此函数会在验证上下文的多个偏移处设置不同的指针和值
+ * @warning 原始函数名为Unwind_18090c4e0，现已重命名为SetSystemResourceHandlerTemplateAndValidate
+ */
+void SetSystemResourceHandlerTemplateAndValidate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t *)(ValidationContext + 0xd8) = &SystemResourceHandlerTemplate;
