@@ -5294,25 +5294,35 @@ uint8_t ValidateObjectHandleSafety(int64_t ObjectHandleToValidate) {
  * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
  * @warning 验证失败时会触发系统退出操作
  */
+/**
+ * @brief 从寄存器验证对象句柄
+ * 
+ * 从系统寄存器获取对象指针，验证其有效性并执行相应操作。
+ * 此函数用于系统级别的对象句柄验证，通常在底层操作中使用。
+ * 
+ * @return uint32_t 验证结果，0表示成功，ErrorInvalidObjectHandle表示错误
+ * @note 此函数直接从寄存器读取对象指针，需要确保寄存器状态正确
+ * @warning 验证失败时会触发系统退出操作
+ */
 uint32_t ValidateObjectHandleFromRegister(void) {
-  int64_t RegisterStoredObjectPointer = 0;
-  int64_t CalculatedMemoryAddress;
+  int64_t ObjectPointerFromRegister = 0;
+  int64_t ValidatedMemoryAddress;
   
   // 根据寄存器值计算验证后的内存位置
-  if (RegisterStoredObjectPointer == 0) {
-    CalculatedMemoryAddress = 0;
+  if (ObjectPointerFromRegister == 0) {
+    ValidatedMemoryAddress = 0;
   }
   else {
-    CalculatedMemoryAddress = RegisterStoredObjectPointer - 8;
+    ValidatedMemoryAddress = ObjectPointerFromRegister - 8;
   }
   
   // 检查对象上下文是否有效
-  if (*(int64_t *)(CalculatedMemoryAddress + ObjectContextOffset) == 0) {
+  if (*(int64_t *)(ValidatedMemoryAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
   // 执行系统退出操作
-  ExecuteSystemExitOperation(*(int64_t *)(CalculatedMemoryAddress + ObjectContextOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectContextOffset), 1);
   return OperationSuccessCode;
 }
 
