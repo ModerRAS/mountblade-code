@@ -811,8 +811,8 @@ uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引
 uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理器，连接池的管理器句柄
 uint32_t NetworkConnectionPoolCurrentIndex;              // 网络连接池当前索引，连接池当前使用的索引位置
 uint32_t NetworkConnectionPoolUsageStats;           // 网络连接池使用统计，连接池的使用统计信息
-uint32_t NetworkConnectionPoolPerformanceMetrics;    // 网络连接池性能指标，连接池的性能测量数据
-uint32_t NetworkConnectionPoolUsageStatistics;       // 网络连接池使用统计，连接池的使用统计信息
+uint32_t NetworkConnectionPoolMetrics;    // 网络连接池性能指标，连接池的性能测量数据
+uint32_t NetworkConnectionPoolStats;       // 网络连接池使用统计，连接池的使用统计信息
 
 uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
 uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑定状态，表示套接字是否已绑定到地址
@@ -844,8 +844,8 @@ void InitializeNetworkConnectionPool(void)
   NetworkConnectionPoolCurrentIndex = 0;                  // 重置索引
   
   // 初始化性能监控
-  NetworkConnectionPoolPerformanceMetrics = 0;    // 重置性能指标
-  NetworkConnectionPoolUsageStatistics = 0;            // 重置统计信息
+  NetworkConnectionPoolMetrics = 0;    // 重置性能指标
+  NetworkConnectionPoolStats = 0;            // 重置统计信息
 }
 
 /**
