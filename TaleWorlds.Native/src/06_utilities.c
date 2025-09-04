@@ -91478,7 +91478,17 @@ void RegisterResourceHandlerType908OffsetE8(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_18090e6d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器类型050（偏移量0xe8）
+ * 
+ * 在系统unwind过程中注册指定偏移量的资源处理器，
+ * 用于管理类型为0x050的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e6d0
+ */
+void RegisterResourceHandlerType050OffsetE8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0xe8),0x50,2,ResourceTypeHandler050);
@@ -91487,7 +91497,17 @@ void Unwind_18090e6d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090e700(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器类型098（偏移量0xe8）
+ * 
+ * 在系统unwind过程中注册指定偏移量的资源处理器，
+ * 用于管理类型为0x098的资源。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @note 原始函数名：Unwind_18090e700
+ */
+void RegisterResourceHandlerType098OffsetE8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0xe8),0x98,2,ResourceTypeHandler098);
