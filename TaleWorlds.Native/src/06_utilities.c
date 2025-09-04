@@ -75813,10 +75813,17 @@ void ExecuteSystemOperationContextCleanup(uint8_t ObjectContext, int64_t Validat
 
 /**
  * @brief 清理资源数据中的标志位并释放系统资源
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
+ * 
+ * 该函数负责清理资源数据中的标志位，并在标志位设置时释放相应的系统资源
+ * 主要用于系统资源管理和清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含资源处理所需的对象信息
+ * @param ValidationContext 验证上下文，用于验证资源状态的上下文信息
+ * @return 无返回值
+ * @note 此函数会检查资源数据的标志位并执行相应的资源释放操作
+ * @warning 如果标志位被设置，系统会释放对应的资源
  */
-void Unwind_ClearResourceDataFlagsAndRelease(uint8_t ObjectContext, int64_t ValidationContext)
+void ClearResourceDataFlagsAndReleaseSystemResource(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -89303,7 +89310,12 @@ void ExecuteResourceContextCallbackAt1430(uint8_t ObjectContext,int64_t Validati
 
 
 
-void Unwind_18090d7c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1430
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt1430(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89317,7 +89329,12 @@ void Unwind_18090d7c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d7e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1448
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt1448(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -89367,7 +89384,12 @@ void Unwind_18090d7e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d800(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1460
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt1460(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89381,7 +89403,12 @@ void Unwind_18090d800(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d820(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1478
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt1478(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89395,7 +89422,12 @@ void Unwind_18090d820(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d840(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1490
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt1490(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89409,7 +89441,12 @@ void Unwind_18090d840(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d860(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数14A8
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt14A8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89423,7 +89460,12 @@ void Unwind_18090d860(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d880(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数14C0
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt14C0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89437,7 +89479,12 @@ void Unwind_18090d880(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d8a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数14D8
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt14D8(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89451,7 +89498,12 @@ void Unwind_18090d8a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d8c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数14F0
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt14F0(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89465,7 +89517,12 @@ void Unwind_18090d8c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d8e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1508
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt1508(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89479,7 +89536,12 @@ void Unwind_18090d8e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d900(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1520
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt1520(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x1558,8,2,ProcessResourceOperation);
@@ -89488,7 +89550,12 @@ void Unwind_18090d900(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d940(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器1558
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandlerAt1558(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x1568,8,2,ProcessResourceOperation);
@@ -89497,7 +89564,12 @@ void Unwind_18090d940(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d980(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器1568
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandlerAt1568(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x1578,8,2,ProcessResourceOperation);
@@ -89506,7 +89578,12 @@ void Unwind_18090d980(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d9c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器1578
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandlerAt1578(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -89520,7 +89597,12 @@ void Unwind_18090d9c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090d9e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调函数1588
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ExecuteResourceContextCallbackAt1588(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x1598,0x238,2,ResourceTypeHandler238);
@@ -89529,7 +89611,12 @@ void Unwind_18090d9e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090da20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器1598
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandlerAt1598(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x1a18,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
@@ -89538,7 +89625,12 @@ void Unwind_18090da20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090da40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器1A18
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandlerAt1A18(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x2378,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
@@ -89547,7 +89639,12 @@ void Unwind_18090da40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090da60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器2378
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void RegisterResourceHandlerAt2378(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x2810,0x248,2,ResourceTypeHandler248,0xfffffffffffffffe);
@@ -89556,8 +89653,13 @@ void Unwind_18090da60(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090da80(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源上下文回调函数（偏移量0x3cb0）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090da80
+ */
+void ExecuteResourceContextCallbackAtOffset3cb0(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
@@ -89570,19 +89672,29 @@ void Unwind_18090da80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090daa0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型1160（偏移量0x3d38）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090daa0
+ */
+void RegisterResourceHandlerType1160AtOffset3d38(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x3d38,0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x3d38, 0x488, 2, ResourceTypeHandler488, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_18090dac0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源处理器类型2312（偏移量18000）
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @remark 原始函数名：Unwind_18090dac0
+ */
+void RegisterResourceHandlerType2312AtOffset18000(uint8_t ObjectContext, int64_t ValidationContext)
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 18000,0x908,2,ResourceTypeHandler908,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 18000, 0x908, 2, ResourceTypeHandler908, 0xfffffffffffffffe);
   return;
 }
 
