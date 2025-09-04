@@ -5382,28 +5382,38 @@ void CleanupSystemResources(void)
  * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
  * @note 此函数在对象操作前调用，确保对象句柄的有效性
  */
+/**
+ * @brief 验证并处理对象句柄
+ * 
+ * 该函数验证对象句柄的有效性，并在验证通过后执行相应的系统操作。
+ * 主要用于对象操作前的安全检查，确保对象句柄指向有效的内存地址。
+ * 
+ * @param ObjectContext 对象上下文，包含要验证的对象信息
+ * @return uint8_t 返回验证结果，0表示成功，非0表示错误代码
+ * @note 此函数在对象操作前调用，确保对象句柄的有效性
+ */
 uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
 {
-  uint8_t ObjectValidationResult;
-  int64_t ValidatedMemoryAddress;
+  uint8_t ValidationStatusCode;
+  int64_t ContextMemoryAddress;
   
-  ObjectValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ValidatedMemoryAddress);
-  if ((int)ObjectValidationResult != 0) {
-    return ObjectValidationResult;
+  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationOffset), &ContextMemoryAddress);
+  if ((int)ValidationStatusCode != 0) {
+    return ValidationStatusCode;
   }
   
-  if (ValidatedMemoryAddress == 0) {
-    ValidatedMemoryAddress = 0;
+  if (ContextMemoryAddress == 0) {
+    ContextMemoryAddress = 0;
   }
   else {
-    ValidatedMemoryAddress = ValidatedMemoryAddress - 8;
+    ContextMemoryAddress = ContextMemoryAddress - 8;
   }
   
-  if (*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset) == 0) {
+  if (*(int64_t *)(ContextMemoryAddress + ObjectHandleOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
   
-  ExecuteSystemExitOperation(*(int64_t *)(ValidatedMemoryAddress + ObjectHandleOffset), 1);
+  ExecuteSystemExitOperation(*(int64_t *)(ContextMemoryAddress + ObjectHandleOffset), 1);
   return OperationSuccessCode;
 }
 
