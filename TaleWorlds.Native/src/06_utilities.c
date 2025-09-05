@@ -22689,7 +22689,7 @@ undefined8 ProcessDataCacheA0(longlong param_1,undefined8 *param_2)
   uVar1 = ValidatePortControlRequest(param_2,auStack_38,1,0x46464542);
   if (((((int)uVar1 == 0) &&
        (uVar1 = ValidatePortControlRequest(param_2,auStack_58,0,0x42464542), (int)uVar1 == 0)) &&
-      (uVar1 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
+      (uVar1 = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
       (uVar1 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
