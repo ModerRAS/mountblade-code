@@ -6829,22 +6829,33 @@ undefined8 ValidateDataReturnStatusA2(longlong dataContext,longlong systemContex
 
 
 
-undefined8 FUN_180891de0(longlong param_1,longlong param_2)
+// 函数: undefined8 ProcessUtilityDataAndExecute(longlong dataContext,longlong systemContext)
+// 
+// 工具数据处理和执行函数
+// 处理工具数据并执行相应的操作，验证数据有效性后执行系统操作
+// 
+// 参数:
+//   dataContext - 数据上下文，包含要处理的数据信息
+//   systemContext - 系统上下文，包含系统状态和操作信息
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码
+undefined8 ProcessUtilityDataAndExecute(longlong dataContext,longlong systemContext)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 operationResult;
+  longlong dataValue;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  operationResult = InitializeDataProcessing(*(undefined4 *)(dataContext + 0x10),&dataValue);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (*(char *)(lStackX_8 + 0x2c) == '\0') {
+  if (*(char *)(dataValue + 0x2c) == '\0') {
     return 0x4f;
   }
-  *(undefined1 *)(lStackX_8 + 0x2c) = 0;
+  *(undefined1 *)(dataValue + 0x2c) = 0;
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  ExecuteSystemOperation(*(undefined8 *)(systemContext + 0x98),dataContext);
 }
 
 
