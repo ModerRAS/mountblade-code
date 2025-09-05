@@ -5913,11 +5913,11 @@ undefined4 CheckMemoryStructureA0(void)
   else {
     stackPointer = inputRegisterRAX + -8;
   }
-  if (*(longlong *)(validationContext + 0x10) == 0) {
+  if (*(longlong *)(stackPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(validationContext + 0x10),1);
+  ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
 }
 
 
@@ -8274,28 +8274,28 @@ LAB_180891fc0:
 void ResetUtilitySystemAA0(void)
 
 {
-  int iVar1;
+  int validationStatus;
   int operationResult;
-  longlong in_RAX;
-  longlong lVar3;
-  longlong lVar4;
-  uint uVar5;
-  longlong unaff_RBX;
-  longlong unaff_R14;
-  undefined8 in_stack_00000060;
+  longlong inputRegisterRAX;
+  longlong stackPointer;
+  longlong adjustedPointer;
+  uint flagsValue;
+  longlong registerRBX;
+  longlong registerR14;
+  undefined8 stackParameter60;
   
-  lVar3 = 0;
-  lVar4 = in_RAX + 8;
-  if (in_RAX == 0) {
-    lVar4 = lVar3;
+  stackPointer = 0;
+  adjustedPointer = inputRegisterRAX + 8;
+  if (inputRegisterRAX == 0) {
+    adjustedPointer = stackPointer;
   }
-  iVar1 = ValidateAndProcessSystemResourceA0(lVar4);
-  if (iVar1 != 0) {
+  validationStatus = ValidateAndProcessSystemResourceA0(adjustedPointer);
+  if (validationStatus != 0) {
     return;
   }
-  uVar5 = (int)*(uint *)(unaff_RBX + 0x2c) >> 0x1f;
-  operationResult = (*(uint *)(unaff_RBX + 0x2c) ^ uVar5) - uVar5;
-  iVar1 = *(int *)(unaff_RBX + 0x28) + 1;
+  flagsValue = (int)*(uint *)(registerRBX + 0x2c) >> 0x1f;
+  operationResult = (*(uint *)(registerRBX + 0x2c) ^ flagsValue) - flagsValue;
+  validationStatus = *(int *)(registerRBX + 0x28) + 1;
   if (operationResult < iVar1) {
     operationResult = (int)((float)operationResult * 1.5);
     if (iVar1 <= operationResult) {
