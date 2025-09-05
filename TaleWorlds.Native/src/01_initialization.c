@@ -28972,7 +28972,7 @@ void SystemResourceEnumerator(void)
   uint32_t SystemMemoryAllocationBase;
   long long *SystemStatusFlagsPointer;
   long long SystemMemoryDataOffset;
-  void* *ParameterBufferB;
+  void* *SystemParameterBufferPrimary;
   void* *ParameterBufferC;
   uint32_t StackBufferSize;
   void* *StackResourceHandle78;
