@@ -574,7 +574,7 @@ void ReleaseSystemResources(void);
  * @param DataSource 源数据，用于初始化缓冲区的数据源
  * @return 无返回值
  */
-void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferCapacity, void* DataSource);
+void InitializeSystemMemoryBuffer(void* memoryTemplate, long long bufferCapacity, void* dataSource);
 
 /**
  * @brief 写入数据到缓冲区
@@ -587,7 +587,7 @@ void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferCapacity
  * @param ... 可变参数，表示要写入的数据
  * @return 无返回值
  */
-void StoreDataInBuffer(void* Buffer, long long DataSize, ...);
+void StoreDataInBuffer(void* buffer, long long dataSize, ...);
 
 /**
  * @brief 初始化系统数据表
