@@ -1155,9 +1155,9 @@ void StartListeningForConnections(void)
   
   // 初始化连接统计信息
   NetworkTotalConnectionAttempts = 0;                       // 重置网络连接尝试总次数为0
-  NetworkFailedConnectionAttempts = 0;                       // 重置连接失败次数为0
-  NetworkAverageConnectionTime = 0;                           // 重置连接时间为0
-  NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间为0
+  NetworkFailedConnectionAttempts = 0;                       // 重置网络连接失败次数为0
+  NetworkAverageConnectionTime = 0;                           // 重置网络平均连接时间为0
+  NetworkLastActivityTimestamp = 0;                             // 重置网络最后活动时间戳为0
 }
 
 /**
