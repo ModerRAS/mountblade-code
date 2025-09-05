@@ -262,7 +262,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define ConnectionStateDataIndex 1                             // 连接状态数据索引
 #define MergedConnectionDataOffset 8                           // 合并连接数据偏移量
 
-// 网络验证结果常量 - 验证处理状态定义
+/**
+ * @brief 网络验证结果常量
+ * 
+ * 定义网络验证操作的返回结果，用于判断验证是否成功
+ */
 #define NetworkValidationSuccess 0x00                          // 验证结果：成功
 #define NetworkValidationFailure 0xFF                          // 验证结果：失败
 
