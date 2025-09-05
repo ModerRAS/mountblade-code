@@ -23728,11 +23728,11 @@ ulonglong ProcessUtilityDataValidation(void)
     }
     else if (validationContextPointer[2] == 0) {
 DataProcessLabelA:
-      memoryBaseAddress = FUN_180769ed0(*validationContextPointer,&stack0x00000090,1,1,0);
+      memoryBaseAddress = FUN_180769ed0(*validationContextPointer,&stackDataBuffer,1,1,0);
     }
     else {
       stackDataSize = 0;
-      memoryBaseAddress = func_0x00018076a7d0(*validationContextPointer,&stack0x00000098);
+      memoryBaseAddress = func_0x00018076a7d0(*validationContextPointer,&stackDataSize);
       if (memoryBaseAddress == 0) {
         if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b91c;
         memoryBaseAddress = 0x11;
@@ -24032,11 +24032,11 @@ ulonglong ExecuteUtilityDataCheck(void)
     }
     else if (validationContextPointer[2] == 0) {
 DataProcessLabelA:
-      validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000090,1,1,0);
+      validationStatus = FUN_180769ed0(*validationContextPointer,&stackDataBuffer,1,1,0);
     }
     else {
       stackDataSize = 0;
-      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stack0x00000098);
+      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stackDataSize);
       if (validationStatus == 0) {
         if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b91c;
         validationStatus = 0x11;
@@ -27472,7 +27472,7 @@ ulonglong FUN_18089ce60(void)
   else {
     if (validationContextPointer[2] != 0) {
       _cStack0000000000000090 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x00000090);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stackDataBuffer);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -27481,7 +27481,7 @@ ulonglong FUN_18089ce60(void)
         goto LAB_18089cef2;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x00000098,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,&stackDataSize,1,4,0);
   }
 ValidationContextCleanup:
   if ((int)uVar2 != 0) {
@@ -27505,7 +27505,7 @@ ValidationContextCleanup:
   else {
     if (validationContextPointer[2] != 0) {
       _cStack0000000000000090 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x00000090);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stackDataBuffer);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -27514,7 +27514,7 @@ ValidationContextCleanup:
         goto LAB_18089cf93;
       }
     }
-    uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x00000098,1,4,0);
+    uVar2 = FUN_180769ed0(*validationContextPointer,&stackDataSize,1,4,0);
   }
 ValidationStateUpdate:
   if ((int)uVar2 != 0) {
@@ -27539,11 +27539,11 @@ ValidationStateUpdate:
   if (*validationContextPointer != 0) {
     if (validationContextPointer[2] == 0) {
 ValidationCompleteHandler:
-      validationStatus = FUN_180769ed0(*validationContextPointer,&stack0x00000090,1,1,0);
+      validationStatus = FUN_180769ed0(*validationContextPointer,&stackDataBuffer,1,1,0);
     }
     else {
       stackDataSize = 0;
-      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stack0x00000098);
+      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stackDataSize);
       if (validationStatus == 0) {
         if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089d034;
         validationStatus = 0x11;
@@ -27588,11 +27588,11 @@ ulonglong FUN_18089cfd6(void)
   if (*validationContextPointer != 0) {
     if (validationContextPointer[2] == unaff_R15) {
 ValidationCompleteHandler:
-      uVar2 = FUN_180769ed0(*validationContextPointer,&stack0x00000090,1);
+      uVar2 = FUN_180769ed0(*validationContextPointer,&stackDataBuffer,1);
     }
     else {
       stackDataSize = (uint)unaff_R15;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x00000098);
+      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stackDataSize);
       if (uVar2 == 0) {
         if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089d034;
         uVar2 = 0x11;
@@ -28314,7 +28314,7 @@ ulonglong FUN_18089dd54(void)
             validationStatus = memoryBaseAddress;
             if (*(int *)(registerContext[1] + 0x18) == 0) {
               uVar1 = *registerContext;
-              validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000090);
+              validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stackDataBuffer);
               if ((int)validationStatus == 0) {
                 validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000094);
               }
@@ -28394,7 +28394,7 @@ ulonglong FUN_18089dd78(void)
           validationStatus = memoryBaseAddress;
           if (*(int *)(registerContext[1] + 0x18) == 0) {
             uVar1 = *registerContext;
-            validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000090);
+            validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stackDataBuffer);
             if ((int)validationStatus == 0) {
               validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000094);
             }
@@ -28467,7 +28467,7 @@ ulonglong FUN_18089dda2(void)
           validationStatus = memoryBaseAddress;
           if (*(int *)(registerContext[1] + 0x18) == 0) {
             uVar1 = *registerContext;
-            validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000090);
+            validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stackDataBuffer);
             if ((int)validationStatus == 0) {
               validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000094);
             }
@@ -28525,7 +28525,7 @@ ulonglong FUN_18089de39(void)
   uint unaff_EDI;
   
   uVar1 = *registerContext;
-  uVar2 = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000090);
+  uVar2 = ValidateDataWithSecurityCheckA2(uVar1,&stackDataBuffer);
   if ((int)uVar2 == 0) {
     uVar2 = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000094);
   }
