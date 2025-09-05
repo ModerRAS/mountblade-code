@@ -86032,8 +86032,9 @@ void SetGlobalDataPointerB6(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9418e0(void)
-void FUN_1809418e0(void)
+// 异常处理器设置函数A0 - 设置默认异常处理器B到全局地址0x180bf6680
+// 原始函数名：FUN_1809418e0
+void SetDefaultExceptionHandlerA0(void)
 
 {
   _DAT_180bf6680 = &DefaultExceptionHandlerB;
@@ -86045,8 +86046,9 @@ void FUN_1809418e0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941900(void)
-void FUN_180941900(void)
+// 异常处理器设置函数B0 - 设置默认异常处理器B到全局地址0x180bf66b0
+// 原始函数名：FUN_180941900
+void SetDefaultExceptionHandlerB0(void)
 
 {
   _DAT_180bf66b0 = &DefaultExceptionHandlerB;
