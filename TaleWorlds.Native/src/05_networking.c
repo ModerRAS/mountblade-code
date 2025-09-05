@@ -3406,22 +3406,22 @@ void CopyNetworkConnectionBufferData(void* SourceBuffer)
   // 连接缓冲区复制变量
   uint32_t CopyOperationStatus;                     // 复制操作状态
   uint32_t DataValidationResult;                    // 数据验证结果
-  uint32_t SecurityCheckResult;                     // 安全检查结果
+  uint32_t SecurityValidationResult;                // 安全验证结果
   
   // 初始化复制状态
   CopyOperationStatus = NetworkValidationFailure;
   DataValidationResult = NetworkValidationFailure;
-  SecurityCheckResult = NetworkValidationFailure;
+  SecurityValidationResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
   if (SourceBuffer) {
     DataValidationResult = NetworkValidationSuccess;  // 数据验证通过
-    SecurityCheckResult = NetworkValidationSuccess;  // 安全检查通过
+    SecurityValidationResult = NetworkValidationSuccess;  // 安全验证通过
     
     // 在实际实现中，这里应该实现实际的缓冲区复制逻辑
     // 包括：数据验证、加密复制、完整性检查等
     // 由于这是简化实现，暂时不执行具体操作
-    CopyOperationStatus = DataValidationResult & SecurityCheckResult;
+    CopyOperationStatus = DataValidationResult & SecurityValidationResult;
   }
   
   // 如果复制成功，更新系统状态
