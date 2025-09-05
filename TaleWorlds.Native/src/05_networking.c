@@ -459,6 +459,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define STATS_RESET 0x00                                      // 统计重置
 #define CONNECTION_TIME_RESET 0x00                             // 连接时间重置
 #define ACTIVITY_RESET 0x00                                    // 活动重置
+#define EXTENDED_FLAGS_RESET 0x00                              // 扩展标志重置
 
 // 网络数据传输常量
 #define NETWORK_SEQUENCE_INITIAL_VALUE 0x01                                  // 初始序列号
@@ -1400,7 +1401,7 @@ void CloseConnection(void)
   // 清理连接状态
   NetworkConnectionStatusFlags = 0x00;                // 重置连接状态标志
   NetworkConnectionStateFlags = 0x00;                 // 重置连接状态标志
-  NetworkConnectionExtendedFlags = 0x00;              // 重置连接扩展标志
+  NetworkConnectionExtendedFlags = EXTENDED_FLAGS_RESET;              // 重置连接扩展标志
   
   // 释放连接资源
   NetworkConnectionActiveContext = 0x00;                     // 释放连接上下文
