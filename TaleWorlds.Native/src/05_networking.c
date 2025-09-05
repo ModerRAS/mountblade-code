@@ -81,12 +81,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkConnectionTypeRange 0x100                      // 网络连接类型范围
 #define NetworkConnectionTypePrimary 0x20214                   // 网络连接主要类型
 
-// 网络系统配置常量
-#define NetworkSystemDebugFlag 0x80                           // 网络系统调试标志
-#define NetworkSystemStatusOffset 0x10                        // 网络系统状态偏移量
+// 网络连接超时常量
 #define NetworkConnectionTimeoutDefault 30000                  // 网络连接默认超时时间（30秒）
-#define NetworkDefaultMaxConnections 100                       // 网络默认最大连接数
-#define NetworkMaxInt32Value 0x7fffffff                        // 32位有符号整数最大值
+#define NetworkConnectionTimeoutMs NetworkConnectionTimeoutDefault   // 网络连接超时时间（毫秒）
 
 // 网络序列号和确认号常量
 #define NetworkSequenceInitialValue 0                          // 网络序列号初始值
@@ -566,7 +563,6 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 // 网络连接默认配置
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
-#define NetworkConnectionTimeout 30000                       // 连接超时时间（30秒）
 #define NetworkStandardBufferSize 256                           // 标准缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
