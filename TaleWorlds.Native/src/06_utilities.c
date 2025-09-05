@@ -13915,8 +13915,17 @@ FUN_180897afe:
 
 
 
-// 函数: void FUN_180897859(float param_1)
-void FUN_180897859(float param_1)
+// 函数: void ProcessFloatingPointDataA0(float inputValue)
+//
+// 浮点数据处理函数A0
+// 处理输入的浮点数据，进行一系列验证和计算操作
+// 
+// 参数:
+//   inputValue - 输入的浮点数值
+// 
+// 返回值:
+//   无 - 函数执行安全检查后终止
+void ProcessFloatingPointDataA0(float inputValue)
 
 {
   float fVar1;
