@@ -65236,7 +65236,15 @@ void Unwind_18090c4e0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090c4f0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理器函数 - 验证上下文回调执行D0
+ * 
+ * 该函数负责验证异常处理上下文并执行相应的回调函数，
+ * 确保异常处理的完整性
+ * 
+ * @note 原始函数名：Unwind_18090c4f0
+ */
+void ValidateAndExecuteContextCallbackD0(undefined8 param_1,longlong param_2)
 
 {
   if (*(longlong **)(param_2 + 0x108) != (longlong *)0x0) {
