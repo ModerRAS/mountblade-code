@@ -371,7 +371,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络数据包常量
 #define NetworkPacketHeaderSize32Bytes 0x20                        // 数据包头大小32字节
 #define NetworkPacketTrailerSize16Bytes 0x10                       // 数据包尾大小16字节
-#define NetworkPacketPayloadSize1Kilobyte 0x400                      // 数据包负载大小1KB
+#define NetworkPacketPayloadSize1KB 0x400                      // 数据包负载大小1KB
 #define NetworkMaximumPacketSize2Kilobytes 0x800                     // 最大数据包大小2KB
 #define NetworkPacketProcessingSize256Bytes 0x100                 // 数据包处理大小256字节
 #define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
