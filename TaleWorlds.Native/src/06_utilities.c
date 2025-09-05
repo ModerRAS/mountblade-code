@@ -34434,7 +34434,7 @@ void ReleaseAudioResourceLock(uint8_t ObjectContext,int64_t ValidationContext,ui
 void UnwindExceptionResourceValidator(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int32_t *ResourceReferenceCountPointer;
+  int32_t *ResourceReferenceCount;
   uint8_t *ResourceHashStatusAddress;
   int64_t ResourceIndex;
   uint64_t MemoryAddressMask;

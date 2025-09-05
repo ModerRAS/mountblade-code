@@ -2264,7 +2264,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             ConnectionStatusBufferPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
             ConnectionStatusBufferPointer[ConnectionContextDataStatusIndex] = DataStatus;
             ConnectionStatusBufferPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            ConnectionStatusBufferPointer[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastContextEntryOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, ConnectionStatusBufferPointer);
+            ConnectionStatusBufferPointer[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastContextEntryOffset(ConnectionContextAddress, ConnectionStatusBuffer, ConnectionStatusBufferPointer);
             
             // 更新计数器
             ConnectionIterationCounter = ConnectionIterationCounter - 1;
