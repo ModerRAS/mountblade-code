@@ -276,7 +276,7 @@
  * 
  * @note 原始函数名：FUN_180893e69
  */
-#define UpdateSystemStatus FUN_180893e69
+#define UpdateSystemStatus UpdateSystemStatus
 
 /**
  * @brief 带安全检查的数据块处理
@@ -4019,14 +4019,14 @@ bool UtilityModulePrimaryEnabled;
 uint32_t UtilityModuleSeptenaryConfig;
 uint32_t UtilityModuleOctonaryConfig;
 bool UtilityModuleSecondaryEnabled;
-void* UtilityModuleResourcePointer1;
-void* UtilityModuleMemoryPointer1;
-void* UtilityModuleMemoryPointer2;
+void* UtilityModulePrimaryResourcePointer;
+void* UtilityModulePrimaryMemoryPointer;
+void* UtilityModuleSecondaryMemoryPointer;
 uint32_t UtilityModuleNonaryConfig;
 uint32_t UtilityModuleDenaryConfig;
 uint32_t UtilityModuleUndenaryConfig;
 uint32_t UtilityModuleDuodenaryConfig;
-void* UtilityModuleResourcePointer2;
+void* UtilityModuleSecondaryResourcePointer;
 
 // 函数: void ResetUtilityPointers1(void)
 // 
@@ -4039,10 +4039,10 @@ void* UtilityModuleResourcePointer2;
 // 返回值:
 //   无
 void ResetUtilityPointers1(void);
-uint32_t PointerResetValue1;
-uint32_t PointerResetValue2;
-uint32_t PointerResetValue3;
-uint32_t PointerResetValue4;
+uint32_t PrimaryPointerResetValue;
+uint32_t SecondaryPointerResetValue;
+uint32_t TertiaryPointerResetValue;
+uint32_t QuaternaryPointerResetValue;
 
 // 函数: void ResetUtilityPointers2(void)
 // 
@@ -4282,10 +4282,10 @@ void* UtilityDataBuffer9;
 // 函数: int32_t UtilityCompareObject;
 int32_t UtilityCompareObject;
 void* UtilityComparePointer1;
-int32_t UtilityCompareData1;
-int32_t UtilityCompareData2;
-int32_t UtilityCompareData3;
-int32_t UtilityCompareData4;
+int32_t UtilityPrimaryCompareData;
+int32_t UtilitySecondaryCompareData;
+int32_t UtilityTertiaryCompareData;
+int32_t UtilityQuaternaryCompareData;
 
 // 函数: void* UtilityProcessData8;
 void* UtilityProcessData8;
@@ -5078,11 +5078,11 @@ undefined UtilityCopyBlockStatus1;
 //   无
 void InitializeUtilitySystem(void);
 // 工具系统初始化数据变量
-int32_t UtilityInitializeErrorCode;
-int32_t UtilityInitializeMemorySize;
-int32_t UtilityInitializeThreadCount;
-int32_t UtilityInitializeBufferCount;
-int32_t UtilityInitializeSuccessFlag;
+int32_t UtilityInitializationErrorCode;
+int32_t UtilityInitializationMemorySize;
+int32_t UtilityInitializationThreadCount;
+int32_t UtilityInitializationBufferCount;
+int32_t UtilityInitializationSuccessFlag;
 
 // 函数: void ConfigureUtilitySystem(void)
 // 
@@ -12712,7 +12712,7 @@ undefined8 ProcessComplexDataStructureA0(longlong DataStructureHandle, longlong 
 undefined8 ProcessFloatingPointArrayA0(longlong ArrayDescriptor,longlong SystemContext)
 
 {
-  int iVar1;
+  int ArraySizeCheck;
   int operationResult;
   undefined8 validationStatus;
   float *pfVar4;
@@ -12735,7 +12735,7 @@ undefined8 ProcessFloatingPointArrayA0(longlong ArrayDescriptor,longlong SystemC
   if (CONCAT44(uStackX_c,fStackX_8) == 0) {
     dataFlags = securityCheckResult;
   }
-  iVar1 = *(int *)(dataFlags + 0x28);
+  ArraySizeCheck = *(int *)(dataFlags + 0x28);
   pfVar7 = (float *)(param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
   if (0 < *(int *)(param_1 + 0x18)) {
     pfVar4 = pfVar7;
@@ -12747,7 +12747,7 @@ undefined8 ProcessFloatingPointArrayA0(longlong ArrayDescriptor,longlong SystemC
         if (((uint)fStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
           return 0x1d;
         }
-        if ((operationResult < 0) || (iVar1 <= operationResult)) {
+        if ((operationResult < 0) || (ArraySizeCheck <= operationResult)) {
           return 0x1f;
         }
         lVar5 = *(longlong *)(dataFlags + 0x20) + (longlong)operationResult * 0x18;
