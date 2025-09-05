@@ -5849,7 +5849,25 @@ void FUN_180891970(longlong param_1,longlong param_2)
 #define RestoreUtilityDataBA0 FUN_180942b80
 
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
-// 功能：初始化系统事件处理器，设置事件处理回调
+//
+// 系统事件处理器初始化函数A0
+// 
+// 功能：
+// 初始化系统事件处理器，设置事件处理回调函数。该函数负责建立事件处理机制，
+// 确保系统能够正确响应和处理各种事件。
+//
+// 参数：
+//   param_1 (longlong) - 事件处理器配置参数指针，包含事件处理所需的配置信息
+//   param_2 (longlong) - 回调函数表指针，包含事件处理回调函数的地址
+//
+// 返回值：
+//   无
+//
+// 注意事项：
+//   - 调用前确保param_1和param_2参数有效
+//   - 函数内部会进行错误检查，初始化失败时会安全返回
+//   - 该函数是系统初始化的重要组成部分
+//
 void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 
 {
@@ -81762,8 +81780,9 @@ void ResetUtilityPointers3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809415f0(void)
-void FUN_1809415f0(void)
+// 函数: void ResetUtilityPointerE0(void)
+// 功能：重置工具系统指针E0到默认位置
+void ResetUtilityPointerE0(void)
 
 {
   _DAT_180bf5bc0 = &UNK_18098bcb0;
