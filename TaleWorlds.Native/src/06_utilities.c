@@ -35113,10 +35113,16 @@ void ExceptionResourceCleanupA1(undefined8 exceptionContext,longlong resourceMan
 
 
 /**
- * @brief 清理异常状态偏移量120
+ * @brief 清理异常状态偏移量120处的资源
  * 
- * 该函数用于清理异常状态偏移量为120的资源
+ * 该函数用于清理异常状态结构中偏移量为120字节处的资源
+ * 主要负责释放该位置占用的内存资源、关闭相关文件句柄、清理网络连接等
+ * 确保系统异常恢复时所有资源都能被正确释放
  * 
+ * @param param_1 系统上下文句柄
+ * @param param_2 异常状态结构指针
+ * @param param_3 清理参数1
+ * @param param_4 清理参数2
  * @note 原始函数名：Unwind_180902800
  */
 void CleanupExceptionAtOffset120(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
@@ -49982,16 +49988,16 @@ void Unwind_180906060(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180906070(undefined8 param_1,longlong param_2)
+void ExceptionCleanupWithMutexDestructionA(undefined8 exceptionHandlerContext,longlong systemContext)
 
 {
   longlong *validationContextPointer;
-  longlong *pdataContext;
+  longlong *dataContextPointer;
   
-  pdataContext = *(longlong **)(param_2 + 0x60);
+  dataContextPointer = *(longlong **)(systemContext + 0x60);
   _Mtx_destroy_in_situ();
-  validationContextPointer = (longlong *)*pdataContext;
-  if (validationContextPointer != pdataContext) {
+  validationContextPointer = (longlong *)*dataContextPointer;
+  if (validationContextPointer != dataContextPointer) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(validationContextPointer);
   }
@@ -50000,16 +50006,16 @@ void Unwind_180906070(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180906080(undefined8 param_1,longlong param_2)
+void ExceptionCleanupWithMutexDestructionB(undefined8 exceptionHandlerContext,longlong systemContext)
 
 {
   longlong *validationContextPointer;
-  longlong *pdataContext;
+  longlong *dataContextPointer;
   
-  pdataContext = (longlong *)(*(longlong *)(param_2 + 0x60) + 0x78);
+  dataContextPointer = (longlong *)(*(longlong *)(systemContext + 0x60) + 0x78);
   _Mtx_destroy_in_situ();
-  validationContextPointer = (longlong *)*pdataContext;
-  if (validationContextPointer != pdataContext) {
+  validationContextPointer = (longlong *)*dataContextPointer;
+  if (validationContextPointer != dataContextPointer) {
                     // WARNING: Subroutine does not return
     FUN_18064e900(validationContextPointer);
   }
