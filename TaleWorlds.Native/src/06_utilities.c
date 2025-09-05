@@ -4038,6 +4038,80 @@
 // 功能：处理数据操作
 #define ProcessDataOperationA9 FUN_1808db8c0
 
+// 新增的函数宏定义 - 用于替换代码中的FUN_函数调用
+
+/**
+ * @brief 执行数据处理操作B0
+ * 
+ * 该函数负责执行数据处理操作，包括数据的验证、转换和存储
+ * 
+ * @note 原始函数名：FUN_1808ddf80
+ */
+#define ExecuteDataProcessingOperationB0 FUN_1808ddf80
+
+/**
+ * @brief 获取内存基地址
+ * 
+ * 该函数负责获取系统的内存基地址，用于内存管理操作
+ * 
+ * @note 原始函数名：FUN_18089bd70
+ */
+#define GetMemoryBaseAddress FUN_18089bd70
+
+/**
+ * @brief 执行内存分配操作
+ * 
+ * 该函数负责执行内存分配操作，为系统分配所需的内存空间
+ * 
+ * @note 原始函数名：FUN_1808a4a20
+ */
+#define ExecuteMemoryAllocationOperation FUN_1808a4a20
+
+/**
+ * @brief 执行系统资源操作
+ * 
+ * 该函数负责执行系统资源操作，包括资源的分配、管理和释放
+ * 
+ * @note 原始函数名：FUN_180847820
+ */
+#define ExecuteSystemResourceOperation FUN_180847820
+
+/**
+ * @brief 执行数据验证操作
+ * 
+ * 该函数负责执行数据验证操作，确保数据的完整性和有效性
+ * 
+ * @note 原始函数名：FUN_1808afe30
+ */
+#define ExecuteDataValidationOperation FUN_1808afe30
+
+/**
+ * @brief 执行系统初始化操作
+ * 
+ * 该函数负责执行系统初始化操作，设置系统的初始状态
+ * 
+ * @note 原始函数名：FUN_1808dde10
+ */
+#define ExecuteSystemInitializationOperation FUN_1808dde10
+
+/**
+ * @brief 处理系统数据流
+ * 
+ * 该函数负责处理系统数据流，包括数据的读取、写入和传输
+ * 
+ * @note 原始函数名：FUN_1808a7f40
+ */
+#define ProcessSystemDataStream FUN_1808a7f40
+
+/**
+ * @brief 执行系统清理操作
+ * 
+ * 该函数负责执行系统清理操作，释放系统资源并清理内存
+ * 
+ * @note 原始函数名：FUN_1808de0e0
+ */
+#define ExecuteSystemCleanupOperation FUN_1808de0e0
+
 /**
  * @brief 初始化工具模块
  * 
@@ -23341,7 +23415,7 @@ void ExecuteSystemDataProcessing(int64_t dataContext, DataBuffer operationHandle
       return;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(operationHandle,dataBuffer1);
+    ExecuteDataProcessingOperationB0(operationHandle,dataBuffer1);
   }
   return;
 }
@@ -23430,7 +23504,7 @@ DataCheckpointB:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  memoryBaseAddress = FUN_18089bd70();
+  memoryBaseAddress = GetMemoryBaseAddress();
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
