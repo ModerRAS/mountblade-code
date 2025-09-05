@@ -993,7 +993,7 @@ uint32_t NetworkConnectionTimeoutInfo;                     // 网络连接超时
  * 
  * 用于存储网络连接验证过程中的状态信息和验证结果
  */
-uint32_t NetworkConnectionVerificationInfo;
+uint32_t NetworkConnectionVerificationInfo;                    // 网络连接验证信息，存储连接验证的相关信息
 /**
  * @brief 网络连接加密上下文信息，存储连接加密的相关信息
  * 
@@ -1087,17 +1087,17 @@ void InitializeNetworkConnectionPool(void)
  */
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplatePointer = &NetworkContextTemplateConfiguration;
-void *NetworkConnectionPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;
-void *NetworkConnectionSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;
-void *NetworkConnectionProcessingConfigPointer = &NetworkConnectionProcessingConfig;
-void *NetworkConnectionTransportConfigPointer = &NetworkConnectionTransportConfig;
-void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;
-void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;
-void *NetworkConnectionRoutingPrimaryConfigPointer = &NetworkConnectionRoutingPrimaryConfig;
-void *NetworkConnectionRoutingSecondaryConfigPointer = &NetworkConnectionRoutingSecondaryConfig;
-void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig;
-void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig;
+void *NetworkConnectionContextTemplatePointer = &NetworkContextTemplateConfiguration;          // 网络连接上下文模板指针，指向模板配置数据
+void *NetworkConnectionPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;                // 网络连接主要配置指针，指向主要配置数据
+void *NetworkConnectionSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;            // 网络连接次要配置指针，指向次要配置数据
+void *NetworkConnectionProcessingConfigPointer = &NetworkConnectionProcessingConfig;           // 网络连接处理配置指针，指向处理配置数据
+void *NetworkConnectionTransportConfigPointer = &NetworkConnectionTransportConfig;             // 网络连接传输配置指针，指向传输配置数据
+void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;               // 网络连接协议配置指针，指向协议配置数据
+void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;           // 网络连接验证配置指针，指向验证配置数据
+void *NetworkConnectionRoutingPrimaryConfigPointer = &NetworkConnectionRoutingPrimaryConfig;   // 网络连接路由主要配置指针，指向路由主要配置数据
+void *NetworkConnectionRoutingSecondaryConfigPointer = &NetworkConnectionRoutingSecondaryConfig; // 网络连接路由次要配置指针，指向路由次要配置数据
+void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig; // 网络连接路由第三配置指针，指向路由第三配置数据
+void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig; // 网络连接路由第四配置指针，指向路由第四配置数据
 
 // 网络连接配置数据定义
 
@@ -1106,77 +1106,77 @@ void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutin
  * 
  * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
  */
-uint32_t NetworkConnectionContextTemplateConfiguration;         // 网络连接上下文模板配置数据
+uint32_t NetworkConnectionContextTemplateConfiguration;     // 网络连接上下文模板配置数据，用于初始化连接上下文的模板
 
 /**
  * @brief 网络连接主要配置数据
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
-uint32_t NetworkConnectionPrimaryConfig;     // 网络连接主要配置数据
+uint32_t NetworkConnectionPrimaryConfig;                    // 网络连接主要配置数据，连接的主要配置参数
 
 /**
  * @brief 网络连接次要配置数据
  * 
  * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
  */
-uint32_t NetworkConnectionSecondaryConfig;   // 网络连接次要配置数据
+uint32_t NetworkConnectionSecondaryConfig;                  // 网络连接次要配置数据，连接的次要配置参数
 
 /**
  * @brief 网络连接处理配置数据
  * 
  * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
  */
-uint32_t NetworkConnectionProcessingConfig;  // 网络连接处理配置数据
+uint32_t NetworkConnectionProcessingConfig;                 // 网络连接处理配置数据，连接处理的配置参数
 
 /**
  * @brief 网络连接传输配置数据
  * 
  * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
  */
-uint32_t NetworkConnectionTransportConfig;   // 网络连接传输配置数据
+uint32_t NetworkConnectionTransportConfig;                  // 网络连接传输配置数据，连接传输的配置参数
 
 /**
  * @brief 网络连接协议配置数据
  * 
  * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
  */
-uint32_t NetworkConnectionProtocolConfig;    // 网络连接协议配置数据
+uint32_t NetworkConnectionProtocolConfig;                   // 网络连接协议配置数据，连接协议的配置参数
 
 /**
  * @brief 网络连接验证配置数据
  * 
  * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
  */
-uint32_t NetworkConnectionValidationConfig;  // 网络连接验证配置数据
+uint32_t NetworkConnectionValidationConfig;                 // 网络连接验证配置数据，连接验证的配置参数
 
 /**
  * @brief 网络连接路由主要配置数据
  * 
  * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
  */
-uint32_t NetworkConnectionRoutingPrimaryConfig;    // 网络连接路由主要配置数据
+uint32_t NetworkConnectionRoutingPrimaryConfig;            // 网络连接路由主要配置数据，路由的主要配置参数
 
 /**
  * @brief 网络连接路由次要配置数据
  * 
  * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
  */
-uint32_t NetworkConnectionRoutingSecondaryConfig;  // 网络连接路由次要配置数据
+uint32_t NetworkConnectionRoutingSecondaryConfig;          // 网络连接路由次要配置数据，路由的次要配置参数
 
 /**
  * @brief 网络连接路由第三配置数据
  * 
  * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
  */
-uint32_t NetworkConnectionRoutingTertiaryConfig;   // 网络连接路由第三配置数据
+uint32_t NetworkConnectionRoutingTertiaryConfig;           // 网络连接路由第三配置数据，路由的第三级配置参数
 
 /**
  * @brief 网络连接路由第四配置数据
  * 
  * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
  */
-uint32_t NetworkConnectionRoutingQuaternaryConfig;  // 网络连接路由第四配置数据
+uint32_t NetworkConnectionRoutingQuaternaryConfig;          // 网络连接路由第四配置数据，路由的第四级配置参数
 
 /**
  * @brief 初始化网络套接字
@@ -2666,14 +2666,21 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @note 此函数主要用于将连接的两个关键信息合并为一个值，便于传递和存储
  * @warning 使用时需要确保状态标志和标识符都在32位范围内
  */
+
 /**
  * @brief 创建连接状态标识符
  * 
- * 将连接状态标志和连接标识符合并为一个64位值，便于统一处理
+ * 根据连接状态标志和连接标识符创建唯一的状态标识符。此函数将状态标志
+ * 和连接标识符合并为一个64位的唯一标识符，用于在网络系统中快速
+ * 定位和识别特定的连接状态。
  * 
- * @param ConnectionStateFlags 连接状态标志
- * @param ConnectionIdentifier 连接标识符
- * @return uint64_t 合并后的64位连接状态值
+ * @param ConnectionStateFlags 连接状态标志位，包含连接的各种状态信息
+ * @param ConnectionIdentifier 连接标识符，用于唯一标识一个连接
+ * @return uint64_t 生成的状态标识符，高32位为状态标志，低32位为连接标识符
+ * 
+ * @note 此函数生成的标识符用于网络连接状态的快速查找和管理
+ * @warning 调用者需要确保参数的有效性，避免生成重复的标识符
+ * @see NetworkConnectionStateFlags, NetworkConnectionIdentifier
  */
 uint64_t CreateConnectionStateIdentifier(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
 {

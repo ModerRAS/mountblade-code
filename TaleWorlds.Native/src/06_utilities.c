@@ -11827,105 +11827,168 @@ LAB_180894ebf:
 //   3. 清理无效或损坏的数据
 //   4. 重置数据结构状态
 //   5. 返回验证结果状态码
-uint FUN_180894ef0(longlong *param_1)
+/**
+ * @brief 初始化系统组件DL0
+ * 
+ * 该函数负责初始化系统组件，设置组件状态，验证数据完整性。
+ * 执行数据验证、内存清理和状态重置操作。
+ * 
+ * @param componentContext 组件上下文指针
+ * @return 初始化状态码，0表示成功，其他值表示错误状态
+ */
+uint InitializeSystemComponentDL0(longlong *componentContext)
 
 {
-  int dataCount;
+  int itemCount;
   uint validationStatus;
   uint dataCounter;
   
-  dataCounter = *(uint *)((longlong)param_1 + 0xc);
+  // 获取数据计数器
+  dataCounter = *(uint *)((longlong)componentContext + 0xc);
+  
+  // 执行数据验证（使用异或操作进行完整性检查）
   validationStatus = dataCounter ^ (int)dataCounter >> 0x1f;
   if ((int)(validationStatus - ((int)dataCounter >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
+    // 验证失败，检查组件状态
+    if (0 < (int)componentContext[1]) {
       return validationStatus;
     }
-    if ((0 < (int)dataCounter) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    if ((0 < (int)dataCounter) && (*componentContext != 0)) {
+      // 调用安全清理函数
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*componentContext,&UNK_180957f70,0x100,1);
     }
-    *param_1 = 0;
+    // 重置组件状态
+    *componentContext = 0;
     dataCounter = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
+    *(undefined4 *)((longlong)componentContext + 0xc) = 0;
   }
-  dataCount = (int)param_1[1];
-  if (dataCount < 0) {
-    if (dataCount < 0) {
-                    // WARNING: Subroutine does not return
-      memset(*param_1 + (longlong)dataCount * 0xc,0,(ulonglong)(uint)-dataCount * 0xc);
-    }
+  
+  // 检查数据项数量
+  itemCount = (int)componentContext[1];
+  if (itemCount < 0) {
+    // 清理负数项的数据内存
+    memset(*componentContext + (longlong)itemCount * 0xc,0,(ulonglong)(uint)-itemCount * 0xc);
   }
-  *(undefined4 *)(param_1 + 1) = 0;
+  
+  // 重置组件状态标志
+  *(undefined4 *)(componentContext + 1) = 0;
   dataCounter = (dataCounter ^ (int)dataCounter >> 0x1f) - ((int)dataCounter >> 0x1f);
+  
+  // 检查数据计数器状态
   if ((int)dataCounter < 1) {
     return dataCounter;
   }
-  if (0 < (int)param_1[1]) {
-    return 0x1c;
+  
+  // 检查组件数据状态
+  if (0 < (int)componentContext[1]) {
+    return 0x1c; // 返回组件状态错误码
   }
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
-                    // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+  
+  // 最终安全检查和清理
+  if ((0 < *(int *)((longlong)componentContext + 0xc)) && (*componentContext != 0)) {
+    // 调用安全清理函数
+    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*componentContext,&UNK_180957f70,0x100,1);
   }
-  *param_1 = 0;
-  *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-  return 0;
+  
+  // 完成组件初始化
+  *componentContext = 0;
+  *(undefined4 *)((longlong)componentContext + 0xc) = 0;
+  return 0; // 初始化成功
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180894fb0(longlong param_1)
+/**
+ * @brief 系统状态重置函数DX0
+ * 
+ * 该函数负责重置系统状态，执行系统资源清理和验证操作。
+ * 包括多个子系统的状态重置和资源释放。
+ * 
+ * @param systemContext 系统上下文指针
+ * @return 操作结果状态码，0表示成功，其他值表示错误状态
+ */
+undefined8 ResetSystemStateDX0(longlong systemContext)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContext;
   int operationResult;
-  undefined8 uVar3;
-  uint uVar4;
+  undefined8 operationStatus;
+  uint validationCounter;
   
-  FUN_18088c620();
-  FUN_180840270(param_1 + 0xd8);
-  operationResult = FUN_180744cc0(param_1 + 0x70);
-  if ((operationResult == 0) && (operationResult = FUN_180895130(param_1 + 0x80), operationResult == 0)) {
-    *(undefined4 *)(param_1 + 0x90) = 0xffffffff;
-    *(undefined4 *)(param_1 + 0x94) = 0;
+  // 重置系统状态DG0
+  ResetSystemStateDG0();
+  
+  // 处理系统数据DH0
+  ProcessSystemDataDH0(systemContext + 0xd8);
+  
+  // 释放系统资源DJ0
+  operationResult = ReleaseSystemResourceDJ0(systemContext + 0x70);
+  if ((operationResult == 0) && (operationResult = ValidateSystemStateDI0(systemContext + 0x80), operationResult == 0)) {
+    // 设置系统状态标志
+    *(undefined4 *)(systemContext + 0x90) = 0xffffffff;
+    *(undefined4 *)(systemContext + 0x94) = 0;
   }
-  FUN_180895130(param_1 + 0x80);
-  FUN_180744cc0(param_1 + 0x70);
-  operationResult = FUN_180744cc0(param_1 + 0x28);
-  if ((operationResult == 0) && (operationResult = FUN_180895070(param_1 + 0x38), operationResult == 0)) {
-    *(undefined4 *)(param_1 + 0x48) = 0xffffffff;
-    *(undefined4 *)(param_1 + 0x4c) = 0;
+  
+  // 验证系统状态DI0
+  ValidateSystemStateDI0(systemContext + 0x80);
+  
+  // 释放系统资源DJ0
+  ReleaseSystemResourceDJ0(systemContext + 0x70);
+  
+  // 释放另一个系统资源DJ0
+  operationResult = ReleaseSystemResourceDJ0(systemContext + 0x28);
+  if ((operationResult == 0) && (operationResult = ConfigureSystemParameterDK0(systemContext + 0x38), operationResult == 0)) {
+    // 设置系统参数标志
+    *(undefined4 *)(systemContext + 0x48) = 0xffffffff;
+    *(undefined4 *)(systemContext + 0x4c) = 0;
   }
-  FUN_180895070(param_1 + 0x38);
-  FUN_180744cc0(param_1 + 0x28);
-  FUN_180894ef0(param_1 + 0x18);
-  pvalidationContext = (longlong *)(param_1 + 8);
-  uVar4 = *(uint *)(param_1 + 0x14);
-  if ((int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f)) < 0) {
-    if (0 < *(int *)(param_1 + 0x10)) {
-      return 0x1c;
+  
+  // 配置系统参数DK0
+  ConfigureSystemParameterDK0(systemContext + 0x38);
+  
+  // 释放系统资源DJ0
+  ReleaseSystemResourceDJ0(systemContext + 0x28);
+  
+  // 初始化系统组件DL0
+  InitializeSystemComponentDL0(systemContext + 0x18);
+  
+  // 获取验证上下文
+  validationContext = (longlong *)(systemContext + 8);
+  validationCounter = *(uint *)(systemContext + 0x14);
+  
+  // 验证数据完整性
+  if ((int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f)) < 0) {
+    if (0 < *(int *)(systemContext + 0x10)) {
+      return 0x1c; // 返回系统状态错误码
     }
-    if ((0 < (int)uVar4) && (*pvalidationContext != 0)) {
-                    // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*pvalidationContext,&UNK_180957f70,0x100,1);
+    if ((0 < (int)validationCounter) && (*validationContext != 0)) {
+      // 调用安全清理函数
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*validationContext,&UNK_180957f70,0x100,1);
     }
-    *pvalidationContext = 0;
-    uVar4 = 0;
-    *(undefined4 *)(param_1 + 0x14) = 0;
+    // 重置验证上下文
+    *validationContext = 0;
+    validationCounter = 0;
+    *(undefined4 *)(systemContext + 0x14) = 0;
   }
-  operationResult = *(int *)(param_1 + 0x10);
+  
+  // 清理系统数据
+  operationResult = *(int *)(systemContext + 0x10);
   if (operationResult < 0) {
-                    // WARNING: Subroutine does not return
-    memset((longlong)operationResult + *pvalidationContext,0,(longlong)-operationResult);
+    memset((longlong)operationResult + *validationContext,0,(longlong)-operationResult);
   }
-  *(undefined4 *)(param_1 + 0x10) = 0;
-  if ((0 < (int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f))) &&
-     (uVar3 = FUN_180849030(pvalidationContext,0), (int)uVar3 != 0)) {
-    return uVar3;
+  
+  // 重置系统状态标志
+  *(undefined4 *)(systemContext + 0x10) = 0;
+  
+  // 最终验证检查
+  if ((0 < (int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f))) &&
+     (operationStatus = FUN_180849030(validationContext,0), (int)operationStatus != 0)) {
+    return operationStatus;
   }
-  return 0;
+  
+  return 0; // 系统状态重置成功
 }
 
 
