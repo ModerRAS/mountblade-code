@@ -1845,8 +1845,8 @@ undefined SerializationDataHandle;
 undefined UtilityDeserializeData;
 undefined DeserializationDataBuffer;
 undefined DeserializationDataSize;
-undefined DAT_180bf9be0;
-undefined DAT_180bf9be8;
+undefined DeserializationDataFlags;
+undefined DeserializationDataChecksum;
 undefined UNK_180a22df8;
 
 // 函数: undefined UtilityCloneData;
