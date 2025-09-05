@@ -37356,7 +37356,7 @@ void InitializeSystemResources(ulong long SystemResourceManager,long long Config
   SystemConfigurationValue = (uint)SystemResourceManager;
   SystemResourceHandle = SystemResourceManager & SystemMaximumUnsigned32BitValue;
   while (SystemConfigurationValue != 0) {
-    SystemErrorCode = SystemErrorCode + 1;
+    SystemErrorResult = SystemErrorResult + 1;
     SystemConfigurationValue = (uint)SystemResourceHandle >> 1;
     SystemResourceHandle = (ulong long)SystemConfigurationValue;
   }
@@ -37365,7 +37365,7 @@ void InitializeSystemResources(ulong long SystemResourceManager,long long Config
     SystemMemoryAllocationOffset = SystemMemoryAllocationOffset + 1;
     SystemConfigurationValue = SystemConfigurationValue >> 1;
   } while (SystemConfigurationValue != 0);
-  SystemNodeStatusFlag = (&SystemFormatDataArray)[SystemErrorCode / SystemMemoryAllocationOffset];
+  SystemNodeStatusFlag = (&SystemFormatDataArray)[SystemErrorResult / SystemMemoryAllocationOffset];
   SystemPointer1 = 0x18005d147;
   SystemFloatValue1 = (float)powf(0x44800000);
   SystemFloatValue2 = (float)(long long)SystemResourceManager;
@@ -37379,11 +37379,11 @@ void InitializeSystemResources(ulong long SystemResourceManager,long long Config
   LocalSystemPointer = 0;
   SystemPointer1 = 0;
   SystemDoublePointer = &SystemDoubleValue;
-  SystemErrorCode = __stdio_common_vsprintf(*SystemResourceHandlePointer | 1,0,0,&SystemFormatString);
-  if (SystemErrorCode < 0) {
+  SystemErrorResult = __stdio_common_vsprintf(*SystemResourceHandlePointer | 1,0,0,&SystemFormatString);
+  if (SystemErrorResult < 0) {
     SystemErrorResult = -1;
   }
-  if (SystemErrorCode < 0x400) {
+  if (SystemErrorResult < 0x400) {
     SystemPointer1 = 0;
     SystemDoublePointer = &SystemDoubleValue;
     __stdio_common_vsprintf(*SystemResourceHandlePointer | 1,SystemMainBuffer,0x400,&SystemFormatString);
@@ -37392,9 +37392,9 @@ void InitializeSystemResources(ulong long SystemResourceManager,long long Config
       LocalSystemFlags = LocalSystemPointer;
       LocalSystemPointer = LocalSystemFlags + 1;
     } while (SystemMainBuffer[LocalSystemFlags + 1] != '\0');
-    SystemErrorCode = (int)(LocalSystemFlags + 1);
-    if (0 < SystemErrorCode) {
-      ExecuteSystemCommand(ConfigurationDataPointer,*(int *)(ConfigurationDataPointer + 0x10) + SystemErrorCode);
+    SystemErrorResult = (int)(LocalSystemFlags + 1);
+    if (0 < SystemErrorResult) {
+      ExecuteSystemCommand(ConfigurationDataPointer,*(int *)(ConfigurationDataPointer + 0x10) + SystemErrorResult);
         memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),SystemMainBuffer,
              (long long)((int)LocalSystemFlags + 2));
     }
