@@ -6165,7 +6165,7 @@ void InitializeSystemResourceNode(void)
   PreviousNodePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (!IsResourceNodeActive) {
-    ResourceIdentifierComparisonResult = memcmp((void*)((long long)CurrentNodePointer + NodeIdentifierOffset),&SystemDataTemplateJ,0x10);
+    ResourceIdentifierComparisonResult = memcmp((void*)((long long)CurrentNodePointer + NodeIdentifierOffset),&SystemDataTemplateJ,SystemIdentifierComparisonSize);
     if (ResourceIdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
