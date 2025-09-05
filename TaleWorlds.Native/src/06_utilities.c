@@ -15338,7 +15338,7 @@ DataBuffer ResetSystemB0(void)
   int64_t registerContext;
   int64_t destinationIndexRegister;
   int64_t systemContext;
-  DataWord in_stack_00000050;
+  DataWord InputParam50;
   
   functionReturnValue = ProcessDataValidationA0();
   if ((int)functionReturnValue == 0) {
@@ -15931,7 +15931,7 @@ void ExecuteSecurityCheckWrapper(void)
   uint64_t stackGuardValue;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(stackGuardValue ^ (uint64_t)&StackBufferBase);
 }
 
 
