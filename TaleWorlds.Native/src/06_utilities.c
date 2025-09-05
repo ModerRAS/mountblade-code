@@ -98238,7 +98238,7 @@ void ReleaseContextLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 
 
-void Unwind_18090fcc0(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructureToResourceValidationError8(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + ResourceValidationError8) = &SystemDataStructure;

@@ -51404,8 +51404,8 @@ void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* Configu
   long long SystemFlags;
   void* SystemValue;
   uint32_t ConfigurationParameter;
-  uint32_t SystemStackParameter2;
-  uint32_t SystemStackParameter3;
+  uint32_t ResourceHandleLowPart;
+  uint32_t ResourceHandleHighPart;
   uint7 SystemStackParameter4;
   
   ResourceOffset = SystemInitializationFlag;
@@ -51421,12 +51421,12 @@ void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* Configu
     SystemOperationResult = *(int *)(ResourceOffset + 0x160);
     SystemPointer = (long long *)
              CreateSystemThreadObject(SystemMemoryPoolTemplate,0x28,*(uint8_t *)(ResourceOffset + 0x100),ConfigurationFlag,SystemValue);
-    SystemStackParameter2 = (uint32_t)SystemResourceManager;
-    SystemStackParameter3 = (uint32_t)((ulong long)SystemResourceManager >> 0x20);
+    ResourceHandleLowPart = (uint32_t)SystemResourceManager;
+    ResourceHandleHighPart = (uint32_t)((ulong long)SystemResourceManager >> 0x20);
     *(int *)(SystemPointer + 2) = SystemIndex + SystemOperationResult;
     *(uint32_t *)((long long)SystemPointer + 0x14) = ConfigurationParameter;
-    *(uint32_t *)(SystemPointer + 3) = SystemStackParameter2;
-    *(uint32_t *)((long long)SystemPointer + 0x1c) = SystemStackParameter3;
+    *(uint32_t *)(SystemPointer + 3) = ResourceHandleLowPart;
+    *(uint32_t *)((long long)SystemPointer + 0x1c) = ResourceHandleHighPart;
     SystemPointer[4] = (ulong long)SystemStackParameter4 << 8;
     *SystemPointer = SystemFlags;
     SystemPointer[1] = *(long long *)(ResourceOffset + 0xf8);
