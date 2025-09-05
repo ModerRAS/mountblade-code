@@ -36580,12 +36580,23 @@ void ExceptionHandlerValidationContext(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902b90(undefined8 param_1,longlong param_2)
+/**
+ * @brief 初始化异常处理器上下文
+ * 
+ * 该函数用于初始化异常处理器的上下文信息，设置默认的异常处理程序
+ * 并验证当前系统状态，确保异常处理系统的正确初始化
+ * 
+ * @param exceptionContext 异常上下文句柄
+ * @param threadContext 线程上下文指针
+ * 
+ * @note 原始函数名：Unwind_180902b90
+ */
+void InitializeExceptionHandlerContext(undefined8 exceptionContext, longlong threadContext)
 
 {
   longlong validationContext;
   
-  validationContext = *(longlong *)(param_2 + 0x40);
+  validationContext = *(longlong *)(threadContext + 0x40);
   *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
