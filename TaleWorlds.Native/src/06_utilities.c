@@ -93844,7 +93844,7 @@ void ResetThreadLocalStorage(void)
   longlong threadContext;
   
   threadContext = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(undefined8 *)(threadContext + 0x18) = &UNK_180a3c3e0;
+  *(undefined8 *)(threadContext + 0x18) = &TemporaryExceptionHandler;
   if (*(longlong *)(threadContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
