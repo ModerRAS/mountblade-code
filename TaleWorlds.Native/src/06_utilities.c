@@ -49928,6 +49928,17 @@ void Unwind_180906250(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 清理偏移量16处的异常状态
+ * 
+ * 该函数负责清理系统状态中偏移量为16的异常状态，清除相应的标志位
+ * 并释放相关资源。当检测到第2位标志被设置时，执行清理操作。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param systemState 系统状态指针，包含需要清理的状态信息
+ * 
+ * @note 原始函数名：Unwind_180906280
+ */
 void CleanupExceptionAtOffset16(undefined8 exceptionContext,longlong systemState)
 
 {
@@ -49940,6 +49951,18 @@ void CleanupExceptionAtOffset16(undefined8 exceptionContext,longlong systemState
 
 
 
+/**
+ * @brief 初始化异常处理器B
+ * 
+ * 该函数负责初始化系统的异常处理器B。首先设置临时异常处理器，
+ * 然后检查系统状态，如果存在未清理的资源则终止系统。
+ * 最后重置相关状态并设置默认的异常处理器B。
+ * 
+ * @param exceptionHandler 异常处理器指针
+ * @param systemContext 系统上下文指针，包含系统状态信息
+ * 
+ * @note 原始函数名：Unwind_1809062b0
+ */
 void InitializeExceptionHandlerB(undefined8 exceptionHandler,longlong systemContext)
 
 {
@@ -49956,6 +49979,17 @@ void InitializeExceptionHandlerB(undefined8 exceptionHandler,longlong systemCont
 
 
 
+/**
+ * @brief 清理偏移量80处的异常状态
+ * 
+ * 该函数负责清理系统状态中偏移量为80的异常状态，清除相应的标志位
+ * 并释放相关资源。当检测到第1位标志被设置时，执行清理操作。
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param systemState 系统状态指针，包含需要清理的状态信息
+ * 
+ * @note 原始函数名：Unwind_1809062c0
+ */
 void CleanupExceptionAtOffset80(undefined8 exceptionContext,longlong systemState)
 
 {
@@ -49968,57 +50002,57 @@ void CleanupExceptionAtOffset80(undefined8 exceptionContext,longlong systemState
 
 
 
-void Unwind_1809062f0(undefined8 param_1,longlong param_2)
+void CleanupExceptionAtOffset96(undefined8 exceptionContext,longlong systemState)
 
 {
-  if ((*(uint *)(param_2 + 0x6c) & 2) != 0) {
-    *(uint *)(param_2 + 0x6c) = *(uint *)(param_2 + 0x6c) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0xd0);
+  if ((*(uint *)(systemState + 0x6c) & 2) != 0) {
+    *(uint *)(systemState + 0x6c) = *(uint *)(systemState + 0x6c) & 0xfffffffd;
+    CleanupResourceHandler(systemState + 0xd0);
   }
   return;
 }
 
 
 
-void Unwind_180906320(undefined8 param_1,longlong param_2)
+void CleanupExceptionAtOffset112(undefined8 exceptionContext,longlong systemState)
 
 {
-  if ((*(uint *)(param_2 + 0x6c) & 4) != 0) {
-    *(uint *)(param_2 + 0x6c) = *(uint *)(param_2 + 0x6c) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x70);
+  if ((*(uint *)(systemState + 0x6c) & 4) != 0) {
+    *(uint *)(systemState + 0x6c) = *(uint *)(systemState + 0x6c) & 0xfffffffb;
+    CleanupResourceHandler(systemState + 0x70);
   }
   return;
 }
 
 
 
-void Unwind_180906350(undefined8 param_1,longlong param_2)
+void SetDefaultExceptionHandlerB(undefined8 exceptionHandler,longlong systemContext)
 
 {
-  *(undefined **)(param_2 + 0xb0) = &DefaultExceptionHandlerB;
+  *(undefined **)(systemContext + 0xb0) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180906360(undefined8 param_1,longlong param_2)
+void CleanupExceptionAtOffset128(undefined8 exceptionContext,longlong systemState)
 
 {
-  if ((*(uint *)(param_2 + 0x54) & 1) != 0) {
-    *(uint *)(param_2 + 0x54) = *(uint *)(param_2 + 0x54) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0xe8);
+  if ((*(uint *)(systemState + 0x54) & 1) != 0) {
+    *(uint *)(systemState + 0x54) = *(uint *)(systemState + 0x54) & 0xfffffffe;
+    CleanupResourceHandler(systemState + 0xe8);
   }
   return;
 }
 
 
 
-void Unwind_180906390(undefined8 param_1,longlong param_2)
+void CleanupExceptionAtOffset144(undefined8 exceptionContext,longlong systemState)
 
 {
-  if ((*(uint *)(param_2 + 0x54) & 2) != 0) {
-    *(uint *)(param_2 + 0x54) = *(uint *)(param_2 + 0x54) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x98);
+  if ((*(uint *)(systemState + 0x54) & 2) != 0) {
+    *(uint *)(systemState + 0x54) = *(uint *)(systemState + 0x54) & 0xfffffffd;
+    CleanupResourceHandler(systemState + 0x98);
   }
   return;
 }
