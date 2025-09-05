@@ -1099,16 +1099,20 @@ void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingT
 void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig; // 网络连接路由第四配置指针，指向路由第四配置数据
 
 // 网络连接配置数据定义
+uint32_t NetworkConnectionContextTemplateConfiguration;     // 网络连接上下文模板配置数据，用于初始化连接上下文的模板
+uint32_t NetworkConnectionPrimaryConfig;                    // 网络连接主要配置数据，连接的主要配置参数
+uint32_t NetworkConnectionSecondaryConfig;                  // 网络连接次要配置数据，连接的次要配置参数
+uint32_t NetworkConnectionProcessingConfig;                 // 网络连接处理配置数据，连接处理的配置参数
+uint32_t NetworkConnectionTransportConfig;                  // 网络连接传输配置数据，连接传输的配置参数
+uint32_t NetworkConnectionProtocolConfig;                   // 网络连接协议配置数据，连接协议的配置参数
+uint32_t NetworkConnectionValidationConfig;                 // 网络连接验证配置数据，连接验证的配置参数
+uint32_t NetworkConnectionRoutingPrimaryConfig;            // 网络连接路由主要配置数据，路由的主要配置参数
+uint32_t NetworkConnectionRoutingSecondaryConfig;          // 网络连接路由次要配置数据，路由的次要配置参数
+uint32_t NetworkConnectionRoutingTertiaryConfig;           // 网络连接路由第三配置数据，路由的第三级配置参数
+uint32_t NetworkConnectionRoutingQuaternaryConfig;          // 网络连接路由第四配置数据，路由的第四级配置参数
 
 /**
  * @brief 网络连接上下文模板数据
- * 
- * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
- */
-uint32_t NetworkConnectionContextTemplateConfiguration;     // 网络连接上下文模板配置数据，用于初始化连接上下文的模板
-
-/**
- * @brief 网络连接主要配置数据
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
