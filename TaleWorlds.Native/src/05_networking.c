@@ -661,13 +661,8 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkSocketDescriptorInvalid 0xFFFFFFFF              // 无效套接字描述符
 #define NetworkSocketContextSize 0x1000                     // 套接字上下文大小（4KB）
 #define NetworkTcpSocketCategory 0x01                        // TCP套接字类别
-#define NetworkPortHttpAlternative 0x1f90                     // HTTP备用端口8080
 #define NetworkClientIpAddressAny 0x00000000                 // 任意客户端IP地址
 #define NetworkClientPortAny 0x0000                          // 任意客户端端口
-#define NetworkSendBufferSize 0x10000                       // 发送缓冲区大小（64KB）
-#define NetworkReceiveBufferSize 0x10000                    // 接收缓冲区大小（64KB）
-#define NetworkBufferCapacity 0x20000                        // 缓冲区容量（128KB）
-#define NetworkPortRangeMaximum 0x270f                        // 端口范围结束值9999
 #define ExtendedFlagsReset NetworkReset_VALUE                  // 扩展标志重置
 #define NetworkSocketSize 0x100                               // 套接字结构大小（256字节）
 #define NetworkTcpProtocol 0x06                               // TCP协议号
@@ -3148,7 +3143,7 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
     OutputBuffer[PacketDecodingStatusIndex] = (NetworkByte)DecodingStatus;
     OutputBuffer[MagicNumberValidationIndex] = (NetworkByte)MagicValidationResult;
     OutputBuffer[DataIntegrityCheckIndex] = (NetworkByte)IntegrityValidationStatus;
-    OutputBuffer[DataPacketDecodingModeIndex] = (NetworkByte)DecodingMode;
+    OutputBuffer[NetworkPacketDecodingModeIndex] = (NetworkByte)DecodingMode;
   }
   
   return DecodingStatus;  // 返回解码状态
@@ -3338,7 +3333,7 @@ NetworkHandle HandleConnectionPacketData(int64_t ConnectionContext, int64_t Pack
  * @note 此函数会检查上下文数据的完整性和安全性
  * @warning 如果上下文验证失败，连接将被视为不安全并终止
  */
-NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t ContextValidationOffset)
+NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t ContextOffset)
 {
   // 连接上下文验证变量
   uint32_t ContextValidationResult;              // 上下文验证结果
@@ -3356,7 +3351,7 @@ NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t Contex
   }
   
   // 验证上下文偏移量有效性
-  if (ContextValidationOffset >= 0) {
+  if (ContextOffset >= 0) {
     ContextSecurityCheck = NetworkOperationSuccess;  // 上下文安全检查通过
   }
   
