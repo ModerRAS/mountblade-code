@@ -1571,7 +1571,7 @@ void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
   void** SystemRootNodePointer;
-  int GameCoreSystemIdentifierComparisonResult;
+  int GameCoreSystemIdComparisonResult;
   long long* SystemMainTablePointer;
   long long SystemRequiredMemorySize;
   void** SystemCurrentNodePointer;
@@ -1588,8 +1588,8 @@ void InitializeGameCoreSystem(void)
   SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
   
   while (!IsGameCoreNodeActive) {
-    GameCoreIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &GameCoreSystemId, IdentifierSize);
-    if (GameCoreIdentifierComparisonResult < 0) {
+    GameCoreSystemIdComparisonResult = memcmp(SystemCurrentNodePointer + 4, &GameCoreSystemId, IdentifierSize);
+    if (GameCoreSystemIdComparisonResult < 0) {
       SystemNextNodePointer = (void**)SystemCurrentNodePointer[NodeNextPointerOffset];
       SystemCurrentNodePointer = SystemPreviousNodePointer;
     }
@@ -1602,7 +1602,7 @@ void InitializeGameCoreSystem(void)
   }
   
   if ((SystemPreviousNodePointer == SystemRootNodePointer) || 
-      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemId, SystemPreviousNodePointer + 4, IdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
+      (GameCoreSystemIdComparisonResult = memcmp(&GameCoreSystemId, SystemPreviousNodePointer + 4, IdentifierSize), GameCoreSystemIdComparisonResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &SystemAllocatedNodePointer, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
     SystemPreviousNodePointer = SystemAllocatedNodePointer;
@@ -1619,6 +1619,24 @@ void InitializeGameCoreSystem(void)
 
 
 
+/**
+ * @brief 初始化系统数据表基础分配器
+ * 
+ * 该函数负责初始化系统数据表的基础内存分配器，创建数据表分配器节点并设置必要的初始化参数。
+ * 它会遍历系统节点树，查找或创建数据表基础分配器节点。
+ * 
+ * @details 函数执行以下操作：
+ * 1. 获取系统根节点指针
+ * 2. 遍历系统节点树查找基础分配器节点
+ * 3. 如果需要，分配新的系统节点
+ * 4. 设置节点的标识符、数据指针和处理函数
+ * 5. 配置基础分配器的系统标志
+ * 
+ * @note 该函数在系统内存管理初始化时调用，确保数据表分配器正确配置。
+ * @note 函数使用BaseAllocatorSystemIdentifier进行系统识别。
+ * 
+ * @return void 无返回值
+ */
 /**
  * @brief 初始化系统数据表基础分配器
  * 
@@ -44960,7 +44978,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
     }
     else if (*(char *)(SystemContextManagerPointer + 0x18) != '\0') {
       pSystemThreadStackSize = &SystemMessageTitle;
-      SystemAlternateStringBuffer = &SystemMessageText;
+      SystemPrimaryStringBuffer = &SystemMessageText;
       SystemGlobalDataReferencePtr = &SystemStackDataTemplate1;
       SystemManagerSetFlags(SystemContextManagerPointer,3,0xffffffff00000000,0xd);
     }
