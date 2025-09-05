@@ -14153,8 +14153,8 @@ void ProcessSystemResourceBatch(longlong *contextHandle,longlong resourceManager
   processCount = 0;
   resourceIndex = 0;
   do {
-    if ((iVar7 < 0) || (*(int *)(param_2 + 0x1a8) <= iVar7)) goto LAB_180897ce8;
-    lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x1a0) + (longlong)iVar7 * 8);
+    if ((resourceIndex < 0) || (*(int *)(resourceManager + 0x1a8) <= resourceIndex)) goto LAB_180897ce8;
+    resourceEntry = *(longlong *)(*(longlong *)(resourceManager + 0x1a0) + (longlong)resourceIndex * 8);
     if (**(int **)(lVar1 + 0xd0) != 0) {
       auStack_288[0] = 0;
       iVar3 = ValidateAndProcessSystemResourceA0(*(int **)(lVar1 + 0xd0),auStack_288);
@@ -85556,6 +85556,20 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ValidateSystemConfigCX0 FUN_1808bdd90
 #define ExecuteMemoryOperationCY0 FUN_180768b50
 #define ProcessDataValidationCZ0 FUN_18084b240
+
+// 系统组件初始化相关宏定义
+#define InitializeSystemComponentDA0 FUN_1808fd200
+#define ManageSystemResourceDB0 FUN_18076b390
+#define CleanupDataResourceDC0 FUN_1808aef40
+#define ProcessStringDataDD0 FUN_18088f5c0
+#define ValidateDataIntegrityDE0 FUN_18088f470
+
+// 数据格式转换相关宏定义
+#define ConvertDataFormatDF0 FUN_180882c20
+#define ResetSystemStateDG0 FUN_18088c620
+#define ProcessSystemDataDH0 FUN_180840270
+#define ValidateSystemStateDI0 FUN_180895130
+#define ReleaseSystemResourceDJ0 FUN_180744cc0
 
 
 
