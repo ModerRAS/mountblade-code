@@ -4275,38 +4275,38 @@ void* UtilityDataBufferInstance3;
 void* UtilityDataBufferInstance4;
 void* UtilityDataBufferInstance5;
 
-// 函数: void UtilityProcessData6;
+// 函数: void UtilityProcessData6(void);
 void* UtilityProcessData6;
-void* UtilityProcessPointer8;
-void* UtilityDataBuffer6;
-void* UtilityDataBuffer7;
-void* UtilityDataBuffer8;
-void* UtilityDataBuffer9;
+void* UtilityDataProcessorPointer8;
+void* UtilityDataBufferInstance6;
+void* UtilityDataBufferInstance7;
+void* UtilityDataBufferInstance8;
+void* UtilityDataBufferInstance9;
 
-// 函数: int32_t UtilityCompareObject;
+// 函数: int32_t UtilityCompareObject(void);
 int32_t UtilityCompareObject;
-void* UtilityComparePointer1;
+void* UtilityCompareObjectPointer1;
 int32_t UtilityPrimaryCompareData;
 int32_t UtilitySecondaryCompareData;
 int32_t UtilityTertiaryCompareData;
 int32_t UtilityQuaternaryCompareData;
 
-// 函数: void* UtilityProcessData8;
+// 函数: void* UtilityProcessData8(void);
 void* UtilityProcessData8;
-void* UtilityProcessPointer9;
-void* UtilityProcessData1;
-void* UtilityProcessData2;
-void* UtilityProcessData3;
-void* UtilityProcessData4;
-void* UtilityProcessPointer10;
+void* UtilityDataProcessorPointer9;
+void* UtilityProcessDataInstance1;
+void* UtilityProcessDataInstance2;
+void* UtilityProcessDataInstance3;
+void* UtilityProcessDataInstance4;
+void* UtilityDataProcessorPointer10;
 
-// 函数: void* UtilityProcessData9;
+// 函数: void* UtilityProcessData9(void);
 void* UtilityProcessData9;
-void* UtilityProcessConfig1;
-void* UtilityProcessConfig2;
-void* UtilityProcessConfig3;
-void* UtilityProcessConfig4;
-void* UtilityProcessUnknown1;
+void* UtilityProcessConfiguration1;
+void* UtilityProcessConfiguration2;
+void* UtilityProcessConfiguration3;
+void* UtilityProcessConfiguration4;
+void* UtilityProcessUnknownData1;
 
 // 函数: undefined UtilityProcessData10;
 undefined UtilityProcessInputData;
@@ -12719,16 +12719,16 @@ undefined8 ProcessFloatingPointArrayA0(longlong ArrayDescriptor,longlong SystemC
   int ArraySizeCheck;
   int operationResult;
   undefined8 validationStatus;
-  float *pfVar4;
-  longlong lVar5;
+  float *floatArrayPointer;
+  longlong arrayIndex;
   ulonglong dataFlags;
-  float *pfVar7;
+  float *floatDataPointer;
   ulonglong securityCheckResult;
-  uint uVar9;
-  float fVar11;
-  float fStackX_8;
-  undefined4 uStackX_c;
-  ulonglong uVar10;
+  uint iterationCounter;
+  float floatValue;
+  float tempFloatValue;
+  undefined4 tempFlagValue;
+  ulonglong loopCounter;
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&fStackX_8);
   if ((int)validationStatus != 0) {
