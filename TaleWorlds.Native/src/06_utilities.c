@@ -5120,30 +5120,30 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 void ProcessResourceCleanup(void)
 
 {
-  uint64_t resourceHandle;
-  int operationResult;
-  longlong systemContext;
-  longlong systemRegistry;
-  longlong resourceOffset;
-  int cleanupCounter;
-  undefined1 *stackBuffer;
-  int resourceCount;
-  uint32_t cleanupFlags;
-  ulonglong securityParameter;
-  undefined8 resourceCleanupBuffer;
-  undefined8 functionCallBuffer;
-  undefined8 securityValidationBuffer;
+  uint64_t ResourceHandle;
+  int OperationResult;
+  int64_t SystemContext;
+  int64_t SystemRegistry;
+  int64_t ResourceOffset;
+  int CleanupCounter;
+  uint8_t *StackBuffer;
+  int ResourceCount;
+  uint32_t CleanupFlags;
+  uint64_t SecurityParameter;
+  uint64_t ResourceCleanupBuffer;
+  uint64_t FunctionCallBuffer;
+  uint64_t SecurityValidationBuffer;
   
-  if (*(longlong *)(systemContext + 8) != 0) {
-    stackBuffer = (undefined1 *)&resourceCleanupBuffer;
-    cleanupCounter = 0;
-    resourceCount = 0;
-    cleanupFlags = 0xffffffc0;
-    operationResult = ExecuteCoreFunction(*(undefined8 *)(systemRegistry + 0x90),*(longlong *)(systemContext + 8),
-                          &functionCallBuffer);
-    if (operationResult == 0) {
-      if (0 < resourceCount) {
-        resourceOffset = 0;
+  if (*(int64_t *)(SystemContext + 8) != 0) {
+    StackBuffer = (uint8_t *)&ResourceCleanupBuffer;
+    CleanupCounter = 0;
+    ResourceCount = 0;
+    CleanupFlags = 0xffffffc0;
+    OperationResult = ExecuteCoreFunction(*(uint64_t *)(SystemRegistry + 0x90),*(int64_t *)(SystemContext + 8),
+                          &FunctionCallBuffer);
+    if (OperationResult == 0) {
+      if (0 < ResourceCount) {
+        ResourceOffset = 0;
         do {
           resourceHandle = *(undefined8 *)(stackBuffer + resourceOffset);
           operationResult = ProcessUtilityOperation(resourceHandle);
