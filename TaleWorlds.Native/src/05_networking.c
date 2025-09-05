@@ -3092,19 +3092,19 @@ PrimaryNetworkProcessingComplete:
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            NetworkConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
-      int32_t ProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
-      int64_t NetworkStatusIterationCounter = (long long)ProcessingCode;
-      if ((ProcessingCode != 0) && (ContextIdentifier = *ConnectionOperationBuffer, 0 < ProcessingCode)) {
+      int32_t ProcessingIterationCount = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
+      int64_t NetworkStatusIterationCounter = (long long)ProcessingIterationCount;
+      if ((ProcessingIterationCount != 0) && (ContextIdentifier = *ConnectionOperationBuffer, 0 < ProcessingIterationCount)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
-          NetworkStatus *NetworkContextStatusPtr = (NetworkStatus *)CalculateConnectionStatusPointerAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
-          NetworkStatus NetworkValidationState = NetworkContextStatusPtr[NetworkStatusValidationIndex];
-          NetworkStatus NetworkTimeoutState = NetworkContextStatusPtr[NetworkStatusTimeoutIndex];
-          NetworkStatus NetworkSecondaryState = NetworkContextStatusPtr[NetworkStatusSecondaryIndex];
-          *ConnectionStatusIterator = *NetworkContextStatusPtr;
-          ConnectionStatusIterator[NetworkStatusValidationIndex] = NetworkValidationState;
-          ConnectionStatusIterator[NetworkStatusTimeoutIndex] = NetworkTimeoutState;
-          ConnectionStatusIterator[NetworkStatusSecondaryIndex] = NetworkSecondaryState;
+          NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
+          NetworkStatus NetworkConnectionValidationStatus = NetworkContextStatusPointer[NetworkStatusValidationIndex];
+          NetworkStatus NetworkConnectionTimeoutStatus = NetworkContextStatusPointer[NetworkStatusTimeoutIndex];
+          NetworkStatus NetworkConnectionSecondaryStatus = NetworkContextStatusPointer[NetworkStatusSecondaryIndex];
+          *ConnectionStatusIterator = *NetworkContextStatusPointer;
+          ConnectionStatusIterator[NetworkStatusValidationIndex] = NetworkConnectionValidationStatus;
+          ConnectionStatusIterator[NetworkStatusTimeoutIndex] = NetworkConnectionTimeoutStatus;
+          ConnectionStatusIterator[NetworkStatusSecondaryIndex] = NetworkConnectionSecondaryStatus;
           ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastConnectionStatusEntryAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           NetworkStatusIterationCounter = NetworkStatusIterationCounter - 1;
           ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextEntrySize;
