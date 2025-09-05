@@ -19819,6 +19819,15 @@ void PerformSystemMemoryCopyOperation(void)
 
 
 
+/**
+ * @brief 重置系统处理缓冲区
+ * 
+ * 该函数负责重置系统处理缓冲区，将缓冲区的首字节和长度信息清零，
+ * 用于系统重新初始化或清理操作。
+ * 
+ * @param BufferPointer 指向需要重置的缓冲区的指针
+ * @note 这是一个系统级的缓冲区重置操作，确保缓冲区处于干净状态
+ */
 void ResetSystemProcessingBuffer(uint8_t *BufferPointer)
 {
   long long BufferOffset;
