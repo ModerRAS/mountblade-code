@@ -14155,26 +14155,26 @@ void ProcessSystemResourceBatch(longlong *contextHandle,longlong resourceManager
   do {
     if ((resourceIndex < 0) || (*(int *)(resourceManager + 0x1a8) <= resourceIndex)) goto LAB_180897ce8;
     resourceEntry = *(longlong *)(*(longlong *)(resourceManager + 0x1a0) + (longlong)resourceIndex * 8);
-    if (**(int **)(lVar1 + 0xd0) != 0) {
-      auStack_288[0] = 0;
-      iVar3 = ValidateAndProcessSystemResourceA0(*(int **)(lVar1 + 0xd0),auStack_288);
-      if (iVar3 != 0) {
+    if (**(int **)(resourceEntry + 0xd0) != 0) {
+      validationBuffer[0] = 0;
+      validationResult = ValidateAndProcessSystemResourceA0(*(int **)(resourceEntry + 0xd0),validationBuffer);
+      if (validationResult != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
-        ExecuteSecurityCheck(uStack_38 ^ (ulonglong)auStack_2a8);
+        ExecuteSecurityCheck(securityToken ^ (ulonglong)securityBuffer);
       }
-      uStack_24c = *(undefined4 *)(lVar1 + 0x10);
-      uStack_248 = *(undefined4 *)(lVar1 + 0x14);
-      uStack_244 = *(undefined4 *)(lVar1 + 0x18);
-      uStack_240 = *(undefined4 *)(lVar1 + 0x1c);
-      uStack_260 = 0;
-      iVar3 = iVar4 + 1;
-      puStack_268 = &UNK_180982f38;
-      uStack_23c = auStack_288[0];
-      uStack_258 = param_3;
-      iStack_250 = iVar4;
-      iVar4 = FUN_180897520(param_1,&puStack_268);
-      if (iVar4 != 0) goto LAB_180897ce8;
+      resourceData1 = *(undefined4 *)(resourceEntry + 0x10);
+      resourceData2 = *(undefined4 *)(resourceEntry + 0x14);
+      resourceData3 = *(undefined4 *)(resourceEntry + 0x18);
+      resourceData4 = *(undefined4 *)(resourceEntry + 0x1c);
+      statusFlags = 0;
+      validationResult = processCount + 1;
+      callbackPointer = &UNK_180982f38;
+      validationFlags = validationBuffer[0];
+      operationParam = operationFlags;
+      stackIndex = processCount;
+      validationResult = FUN_180897520(contextHandle,&callbackPointer);
+      if (validationResult != 0) goto LAB_180897ce8;
       iVar6 = 0;
       iVar5 = func_0x0001808c7ed0(*(undefined8 *)(lVar1 + 0xd0));
       iVar4 = iVar3;
@@ -85570,6 +85570,20 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ProcessSystemDataDH0 FUN_180840270
 #define ValidateSystemStateDI0 FUN_180895130
 #define ReleaseSystemResourceDJ0 FUN_180744cc0
+
+// 系统参数配置相关宏定义
+#define ConfigureSystemParameterDK0 FUN_180895070
+#define InitializeSystemComponentDL0 FUN_180894ef0
+#define AllocateSystemResourceDM0 FUN_180741e10
+#define ProcessDataConversionDN0 FUN_1807d1650
+#define DoubleValidateSystemDO0 FUN_180892120
+
+// 系统验证和配置相关宏定义
+#define ValidateSystemConfigDP0 FUN_180893420
+#define ExecuteSystemOperationDQ0 FUN_1808920e0
+#define ValidateDataIntegrityDR0 FUN_180891d40
+#define ProcessSystemDataDS0 FUN_180891cf0
+#define CheckSystemStatusDT0 FUN_180891ca0
 
 
 
