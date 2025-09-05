@@ -4021,6 +4021,7 @@ uint32_t UtilitySystemStatus1;
 #define SystemValidationContextPointerA0 _DAT_180c95f18   // 系统验证上下文指针A0
 #define SystemValidationCleanupFlagA0 DAT_180c95f28       // 系统验证清理标志A0
 #define SystemValidationContextCleanupA0 _DAT_180c95f20   // 系统验证上下文清理A0
+#define SystemValidationTerminationFlagA0 _DAT_180c95ef8  // 系统验证终止标志A0
 
 // 异常处理器指针变量宏定义
 #define ExceptionHandlerPointerA _DAT_180bf90b0         // 异常处理器指针A
@@ -34924,34 +34925,34 @@ void ExceptionHandler7D0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809027e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExceptionResourceCleanupA0(undefined8 exceptionContext,longlong resourceManager,undefined8 cleanupParam1,undefined8 cleanupParam2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *resourcePointer;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x80);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x70) + 0x70,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  resourcePointer = *(undefined8 **)(*(longlong *)(resourceManager + 0x70) + 0x80);
+  if (resourcePointer != (undefined8 *)0x0) {
+    ProcessResourceCleanup(*(longlong *)(resourceManager + 0x70) + 0x70,*resourcePointer,cleanupParam1,cleanupParam2,SystemCleanupFlagfffffffe);
+    ReleaseResourceReference(resourcePointer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    TerminateResource(resourcePointer);
   }
   return;
 }
 
 
 
-void Unwind_1809027f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExceptionResourceCleanupA1(undefined8 exceptionContext,longlong resourceManager,undefined8 cleanupParam1,undefined8 cleanupParam2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *resourcePointer;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  resourcePointer = *(undefined8 **)(*(longlong *)(resourceManager + 0x78) + 0x10);
+  if (resourcePointer != (undefined8 *)0x0) {
+    ProcessResourceCleanup(*(longlong *)(resourceManager + 0x78),*resourcePointer,cleanupParam1,cleanupParam2,SystemCleanupFlagfffffffe);
+    ReleaseResourceReference(resourcePointer);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    TerminateResource(resourcePointer);
   }
   return;
 }
