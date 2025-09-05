@@ -6987,7 +6987,7 @@ uint8_t UNK_180a38e60;
 uint8_t UNK_180a38e78;
 uint8_t UNK_180a38e90;
 uint8_t UNK_180a38ea0;
-uint8_t UNK_180a38ec0;
+uint8_t SystemStatusDataA;
 uint8_t UNK_180a38f10;
 uint8_t UNK_180a38f30;
 uint8_t UNK_180a04be8;
@@ -38536,7 +38536,7 @@ void ExceptionDataProcessorA0(DataBuffer param_1,int64_t param_2,DataBuffer para
 
 
 
-void Unwind_180903000(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void ExceptionDataProcessorA1(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   DataBuffer *pdataValue;
@@ -38553,7 +38553,7 @@ void Unwind_180903000(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180903010(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void ExceptionDataProcessorA2(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   DataBuffer *pdataValue;
@@ -38600,7 +38600,7 @@ void CleanupDataResourceG(DataBuffer param_1,int64_t param_2,DataBuffer param_3,
 
 
 
-void Unwind_180903050(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void ExceptionDataProcessorA3(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   FUN_180058710(*(int64_t *)(param_2 + 0x48),*(DataBuffer *)(*(int64_t *)(param_2 + 0x48) + 0x10),
