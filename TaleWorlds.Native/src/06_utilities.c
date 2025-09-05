@@ -19242,9 +19242,9 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
       resourceList = nullPointer;
       contextPointer = nullPointer;
       resourceIterator = nullPointer;
-      validationContextPointer9 = validationContextPointer6;
-      alStack_300[0] = (longlong)iVar6;
-      if (0 < iVar6) {
+      finalContext = nullPointer;
+      contextArray300[0] = (longlong)operationResult;
+      if (0 < operationResult) {
         do {
           validationContext5 = param_1[1];
           uStack_2d0 = 0;
