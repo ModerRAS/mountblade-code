@@ -19899,6 +19899,14 @@ void* CleanupSystemCompletionPortResources(void* SystemResourceHandle, uint32_t 
 
 
 
+/**
+ * @brief 系统调用保护检查
+ * 
+ * 该函数用于执行系统调用的保护检查，确保调用的安全性。
+ * 目前为空实现，保留用于后续的安全检查功能扩展。
+ * 
+ * @note 这是一个安全保护函数，用于防止未授权的系统调用
+ */
 void GuardCheckICall(void)
 {
   return;
