@@ -9929,6 +9929,50 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：验证系统数据和参数
 #define ValidateSystemDataA0 FUN_1808987e0
 
+// 原始变量名：UNK_1809864e0 - 数据配置表A0
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA0 UNK_1809864e0
+
+// 原始变量名：UNK_180986508 - 数据配置表A1
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA1 UNK_180986508
+
+// 原始变量名：UNK_180986550 - 数据配置表A2
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA2 UNK_180986550
+
+// 原始变量名：UNK_180986590 - 数据配置表A3
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA3 UNK_180986590
+
+// 原始变量名：UNK_1809865f0 - 数据配置表A4
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA4 UNK_1809865f0
+
+// 原始变量名：UNK_1809866c0 - 数据配置表A5
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA5 UNK_1809866c0
+
+// 原始变量名：UNK_180986730 - 数据配置表A6
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA6 UNK_180986730
+
+// 原始变量名：UNK_1809867b0 - 数据配置表A7
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA7 UNK_1809867b0
+
+// 原始变量名：UNK_180986850 - 数据配置表A8
+// 功能：存储数据配置信息的表结构
+#define DataConfigurationTableA8 UNK_180986850
+
+// 原始函数名：FUN_180897d20 - 数据处理函数A0
+// 功能：处理数据块和配置信息
+#define ProcessDataBlockWithConfigurationA0 FUN_180897d20
+
+// 原始函数名：FUN_180898040 - 浮点数据处理函数A0
+// 功能：处理浮点数据和信息
+#define ProcessFloatingPointDataA0 FUN_180898040
+
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
 // 系统事件处理器初始化函数A0
@@ -16705,7 +16749,7 @@ void ProcessDataPointerOperationsA0(longlong *dataPointer, longlong *resultPoint
   
   uStack_28 = _DAT_180bf00a8 ^ (ulonglong)auStack_248;
   validationContext = param_1[4];
-  if (((char)validationContext != '\0') || (operationResult = FUN_1808987e0(param_1,1), operationResult == 0)) {
+  if (((char)validationContext != '\0') || (operationResult = ValidateSystemDataA0(param_1,1), operationResult == 0)) {
     operationResult = (**(code **)(*param_2 + 0x10))(param_2,auStack_228,0x200);
     func_0x00018074b7b0(auStack_228 + operationResult,0x200 - operationResult,10);
     operationResult = (**(code **)(*param_1 + 8))(param_1,auStack_228);
@@ -17790,7 +17834,7 @@ OperationFailedLabel:
           lVar2 = param_1[4];
           puStack_280 = &UNK_1809834f8;
           uStack_270 = auStack_288[0];
-          if (((char)lVar2 == '\0') && (iVar3 = FUN_1808987e0(param_1,1), iVar3 != 0))
+          if (((char)lVar2 == '\0') && (iVar3 = ValidateSystemDataA0(param_1,1), iVar3 != 0))
           goto LAB_180897ce8;
           iVar3 = (**(code **)(puStack_280 + 0x10))(&puStack_280,auStack_238,0x200);
           func_0x00018074b7b0((longlong)auStack_238 + (longlong)iVar3,0x200 - iVar3,10);
@@ -17912,46 +17956,46 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
       uVar2 = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc);
       if ((int)uVar2 == 0) {
         memoryBaseAddress = 0x14;
-        uVar2 = FUN_180897d20(param_1,&UNK_1809864e0,2,2,0x14);
+        uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA0,2,2,0x14);
         if (((((int)uVar2 == 0) &&
-             (uVar2 = FUN_180897d20(param_1,&UNK_180986508,*(undefined4 *)(validationContext + 0x116bc)),
+             (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA1,*(undefined4 *)(validationContext + 0x116bc)),
              (int)uVar2 == 0)) &&
-            (uVar2 = FUN_180897d20(param_1,&UNK_180986550,(ulonglong)*(uint *)(validationContext + 0x6d8),
+            (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA2,(ulonglong)*(uint *)(validationContext + 0x6d8),
                                    (ulonglong)*(uint *)(validationContext + 0x6dc) /
                                    (ulonglong)*(uint *)(validationContext + 0x6d8),memoryBaseAddress), (int)uVar2 == 0)) &&
-           (uVar2 = FUN_180897d20(param_1,&UNK_180986590,*(undefined4 *)(validationContext + 0x6d0),
+           (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_180986590,*(undefined4 *)(validationContext + 0x6d0),
                                   *(undefined4 *)(validationContext + 0x1193c),*(undefined4 *)(validationContext + 0x6d4)),
            (int)uVar2 == 0)) {
           memoryBaseAddress = *(undefined4 *)(validationContext + 0x11668);
           uVar8 = *(undefined4 *)(validationContext + 0x11624);
           uVar7 = *(undefined4 *)(validationContext + 0x11620);
           uVar6 = *(undefined4 *)(validationContext + 0x1161c);
-          uVar2 = FUN_180897d20(param_1,&UNK_1809865f0,*(undefined4 *)(validationContext + 0x1160c),
+          uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_1809865f0,*(undefined4 *)(validationContext + 0x1160c),
                                 *(undefined4 *)(validationContext + 0x11610),*(undefined4 *)(validationContext + 0x11614),
                                 *(undefined4 *)(validationContext + 0x11618),uVar6,uVar7,uVar8,memoryBaseAddress);
           if (((int)uVar2 == 0) &&
-             (uVar2 = FUN_180897d20(param_1,&UNK_1809866c0,*(undefined4 *)(validationContext + 0x11628),
+             (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_1809866c0,*(undefined4 *)(validationContext + 0x11628),
                                     (double)*(float *)(validationContext + 0x11640),
                                     *(undefined4 *)(validationContext + 0x11644),
                                     *(undefined4 *)(validationContext + 0x1164c),uVar6,uVar7,uVar8,memoryBaseAddress),
              (int)uVar2 == 0)) {
             uVar6 = *(undefined4 *)(validationContext + 0x11660);
-            uVar2 = FUN_180897d20(param_1,&UNK_180986730,(double)*(float *)(validationContext + 0x11650),
+            uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_180986730,(double)*(float *)(validationContext + 0x11650),
                                   *(undefined4 *)(validationContext + 0x11654),*(undefined4 *)(validationContext + 0x11658),
                                   *(undefined4 *)(validationContext + 0x1165c),uVar6,uVar7,uVar8,memoryBaseAddress);
             if ((int)uVar2 == 0) {
               uVar5 = *(undefined4 *)(calculatedOffset + 0x10);
-              uVar2 = FUN_180897d20(param_1,&UNK_1809867b0,*(undefined4 *)(calculatedOffset + 4),
+              uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_1809867b0,*(undefined4 *)(calculatedOffset + 4),
                                     *(undefined4 *)(calculatedOffset + 8),*(undefined4 *)(calculatedOffset + 0xc),uVar5,
                                     uVar6,uVar7,uVar8,memoryBaseAddress);
               if ((((int)uVar2 == 0) &&
-                  (uVar2 = FUN_180897d20(param_1,&UNK_180986850,*(undefined4 *)(validationContext + 0x1e0),
+                  (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_180986850,*(undefined4 *)(validationContext + 0x1e0),
                                          *(undefined4 *)(param_1[1] + 0x20),
                                          *(undefined4 *)(validationContext + 0x78),uVar5,uVar6,uVar7,uVar8,memoryBaseAddress
                                         ), (int)uVar2 == 0)) &&
                  ((uVar2 = (**(code **)(*param_1 + 8))(param_1,&UNK_1809864dc), (int)uVar2 == 0 &&
                   (((*(uint *)(param_1 + 3) & 2) != 0 ||
-                   (uVar2 = FUN_180898040(param_1), (int)uVar2 == 0)))))) {
+                   (uVar2 = ProcessFloatingPointDataA0(param_1), (int)uVar2 == 0)))))) {
                 uVar2 = 0;
               }
             }
@@ -17981,16 +18025,16 @@ undefined8 GetSystemState(void)
   }
   else {
     uVar2 = (**(code **)(*registerRBX + 8))();
-    if ((((((((int)uVar2 == 0) && (uVar2 = FUN_180897d20(), (int)uVar2 == 0)) &&
-           (uVar2 = FUN_180897d20(), (int)uVar2 == 0)) &&
-          ((uVar2 = FUN_180897d20(), (int)uVar2 == 0 && (uVar2 = FUN_180897d20(), (int)uVar2 == 0)))
-          ) && ((uVar2 = FUN_180897d20(), (int)uVar2 == 0 &&
-                ((uVar2 = FUN_180897d20(), (int)uVar2 == 0 &&
-                 (uVar2 = FUN_180897d20(), (int)uVar2 == 0)))))) &&
-        (uVar2 = FUN_180897d20(), (int)uVar2 == 0)) &&
-       ((uVar2 = FUN_180897d20(), (int)uVar2 == 0 &&
+    if ((((((((int)uVar2 == 0) && (uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0)) &&
+           (uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0)) &&
+          ((uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0 && (uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0)))
+          ) && ((uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0 &&
+                ((uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0 &&
+                 (uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0)))))) &&
+        (uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0)) &&
+       ((uVar2 = ProcessDataBlockWithConfigurationA0(), (int)uVar2 == 0 &&
         (uVar2 = (**(code **)(*registerRBX + 8))(), (int)uVar2 == 0)))) {
-      if (((*(uint *)(registerRBX + 3) & 2) == 0) && (uVar2 = FUN_180898040(), (int)uVar2 != 0)) {
+      if (((*(uint *)(registerRBX + 3) & 2) == 0) && (uVar2 = ProcessFloatingPointDataA0(), (int)uVar2 != 0)) {
         return uVar2;
       }
       uVar2 = 0;
@@ -18087,7 +18131,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
   pvalidationContext6 = (longlong *)0x0;
   alStack_300[1] = 0;
   iVar6 = FUN_18088c740(alStack_300 + 1,param_1[1]);
-  if ((iVar6 == 0) && (iVar6 = FUN_1808987e0(param_1,1), iVar6 == 0)) {
+  if ((iVar6 == 0) && (iVar6 = ValidateSystemDataA0(param_1,1), iVar6 == 0)) {
     (**(code **)(*param_1 + 8))(param_1,&UNK_180986488);
     if (((*(uint *)(param_1 + 3) & 0x1000000) == 0) ||
        (iVar6 = FUN_180896c60(param_1,*(undefined8 *)(param_1[1] + 0xc0),0,1), iVar6 == 0)) {
@@ -18170,7 +18214,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
           uStack_288 = validationContext1 == 0;
           fStack_2c8 = fVar18;
           if (((char)validationContext5 == '\0') &&
-             (iVar6 = FUN_1808987e0(param_1,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), iVar6 != 0
+             (iVar6 = ValidateSystemDataA0(param_1,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), iVar6 != 0
              )) goto LAB_18089866f;
           iVar6 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
           func_0x00018074b7b0(auStack_238 + iVar6,0x200 - iVar6,10);
