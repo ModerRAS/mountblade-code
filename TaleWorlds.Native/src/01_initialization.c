@@ -3018,7 +3018,7 @@ void InitializeSystemMemoryNode(void)
   }
   PreviousNode[NodeIdentifier1Index] = SystemDataTemplateLId1;
   PreviousNode[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeI;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   PreviousNode[NodeActiveFlagIndex] = NodeInactiveFlag;
   PreviousNode[SystemNodeCallbackIndex] = InitializationFlag;
   return;

@@ -2541,10 +2541,10 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   NetworkStatus *NetworkConnectionStatusDataBuffer;                          // 网络连接状态数据缓冲区
   int64_t NetworkStatusIterationCounter;                           // 网络状态处理迭代器
   NetworkStatus *NetworkPacketFlagsBuffer;                     // 网络数据包标志缓冲区
-  int64_t *NetworkConnectionContextBuffer;                             // 网络连接操作缓冲区
+  int64_t *NetworkConnectionContextBuffer;                             // 网络连接上下文缓冲区
   int32_t NetworkConnectionUpdateOperation;                         // 网络连接更新操作代码
   NetworkStatus *NetworkConnectionStatusPointer;                          // 网络连接状态处理指针
-  int32_t NetworkConnectionProcessingCode;                              // 网络连接操作代码
+  int32_t NetworkConnectionProcessingCode;                              // 网络连接处理代码
   int64_t NetworkProcessedPacketIdentifier;                                    // 已处理网络数据包标识符
   int32_t NetworkPacketIndex;                                           // 网络数据包索引
   int32_t NetworkMaximumInt32Value;                                    // 网络最大32位整数值
