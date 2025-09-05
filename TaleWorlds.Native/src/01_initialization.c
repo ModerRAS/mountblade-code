@@ -1702,6 +1702,19 @@ void* GetSystemInitializationFunction;
  * @note 此函数假设系统表和标识符已预先定义
  * @return 无返回值
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，创建游戏核心节点并设置
+ * 必要的系统标识符和回调函数。游戏核心系统是整个游戏的
+ * 基础架构，负责管理游戏的核心功能模块。
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用系统根表和节点管理来初始化游戏核心系统
+ * @note 游戏核心系统标识符为 GameCoreSystemIdentifier1 和 GameCoreSystemIdentifier2
+ * @note 节点状态设置为非活动状态（NodeInactiveFlag）
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeInitialized;                           // 游戏核心节点是否已初始化
