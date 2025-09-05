@@ -5261,32 +5261,34 @@ undefined8 FUN_180891210(longlong param_1)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180891280(longlong param_1)
+// 函数: int ProcessResourceCopyOperation(longlong param_1)
+// 功能：处理资源复制操作，根据条件复制资源数据并执行相关操作
+int ProcessResourceCopyOperation(longlong param_1)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined1 auStackX_8 [8];
-  undefined1 auStack_50 [72];
+  int operationResult;
+  longlong resourcePointer;
+  undefined1 stackBuffer [8];
+  undefined1 dataBuffer [72];
   
-  lVar2 = 0;
+  resourcePointer = 0;
   if (0 < *(int *)(param_1 + 0x20)) {
-    lVar2 = *(longlong *)(param_1 + 0x18);
+    resourcePointer = *(longlong *)(param_1 + 0x18);
   }
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x4c),auStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = *(int *)(param_1 + 0x10);
+  operationResult = func_0x00018088c530(*(undefined4 *)(param_1 + 0x4c),stackBuffer);
+  if (operationResult == 0) {
+    operationResult = *(int *)(param_1 + 0x10);
     if (0x38 < *(int *)(param_1 + 0x10)) {
-      iVar1 = 0x38;
+      operationResult = 0x38;
     }
                     // WARNING: Subroutine does not return
-    memcpy(auStack_50,param_1 + 0x10,(longlong)iVar1);
+    memcpy(dataBuffer,param_1 + 0x10,(longlong)operationResult);
   }
-  if (lVar2 != 0) {
+  if (resourcePointer != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar2,&UNK_18095b500,0xb8,1);
+    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_18095b500,0xb8,1);
   }
-  return iVar1;
+  return operationResult;
 }
 
 
