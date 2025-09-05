@@ -888,13 +888,13 @@ uint32_t NetworkClientIpAddr;                          // 网络客户端IP地�
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号，客户端使用的端口号
 
 // 网络套接字和缓冲区配置
-uint32_t NetworkSocketDescriptor;                     // 网络套接字文件描述符，操作系统分配的套接字标识符
-uint32_t NetworkSocketCategory;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
-uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
-uint32_t NetworkSocketTableIndex;                        // 网络套接字索引，套接字在表中的索引位置
-uint32_t NetworkSocketContext;                                 // 网络套接字上下文，套接字的运行时上下文数据
-uint32_t NetworkSocketRuntimeData;                                // 网络套接字运行时数据，套接字相关的数据存储
-uint32_t NetworkSocketRuntimeContext;                            // 网络套接字运行时上下文，套接字的运行时上下文数据
+uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符，操作系统分配的套接字标识符
+uint32_t NetworkSocketType;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
+uint32_t NetworkSocketProtocol;                       // 网络套接字协议类型，套接字使用的协议类型
+uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
+uint32_t NetworkSocketContextData;                                 // 网络套接字上下文，套接字的运行时上下文数据
+uint32_t NetworkSocketRuntimeInformation;                                // 网络套接字运行时数据，套接字相关的数据存储
+uint32_t NetworkSocketRuntimeContextData;                            // 网络套接字运行时上下文，套接字的运行时上下文数据
 uint32_t NetworkSocketStructureSize;                     // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
@@ -987,17 +987,17 @@ uint32_t NetworkSecurityCertificateInfo;                   // 网络安全证书
 // 网络连接池管理变量
 uint32_t NetworkConnectionPoolInfo;                    // 网络连接池信息，指向连接池的数据存储区域
 uint32_t NetworkConnectionPoolMetadata;                // 网络连接池元数据，连接池的元数据信息
-uint32_t NetworkConnectionPoolStats;              // 网络连接池统计信息，连接池的统计和计数信息
+uint32_t NetworkConnectionPoolStatistics;              // 网络连接池统计信息，连接池的统计和计数信息
 uint32_t NetworkConnectionPoolConfig;            // 网络连接池配置，连接池的配置参数设置
-uint32_t NetworkConnectionPoolHealthStatus;             // 网络连接池健康状态，连接池的健康状态指示
-uint32_t NetworkConnectionPoolMetrics;      // 网络连接池性能指标，连接池的性能测量数据
-uint32_t NetworkConnectionPoolAllocationCount;         // 网络连接池分配计数，连接池分配操作的计数
-uint32_t NetworkConnectionPoolDeallocationCount;       // 网络连接池释放计数，连接池释放操作的计数
-uint32_t NetworkConnectionPoolCapacity;                 // 网络连接池容量，连接池的最大容量
-uint32_t NetworkConnectionPoolIndex;                    // 网络连接池索引，连接池的索引位置
-uint32_t NetworkConnectionPoolManager;                  // 网络连接池管理器，连接池的管理器句柄
-uint32_t NetworkConnectionPoolCurrentIndex;              // 网络连接池当前索引，连接池当前使用的索引位置
-uint32_t NetworkConnectionPoolUsageStats;           // 网络连接池使用统计，连接池的使用统计信息
+uint32_t NetworkConnectionPoolHealthIndicator;             // 网络连接池健康状态，连接池的健康状态指示
+uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能指标，连接池的性能测量数据
+uint32_t NetworkConnectionPoolAllocationCounter;         // 网络连接池分配计数，连接池分配操作的计数
+uint32_t NetworkConnectionPoolDeallocationCounter;       // 网络连接池释放计数，连接池释放操作的计数
+uint32_t NetworkConnectionPoolMaximumCapacity;                 // 网络连接池容量，连接池的最大容量
+uint32_t NetworkConnectionPoolCurrentPosition;                    // 网络连接池索引，连接池的索引位置
+uint32_t NetworkConnectionPoolManagerHandle;                  // 网络连接池管理器，连接池的管理器句柄
+uint32_t NetworkConnectionPoolActiveIndex;              // 网络连接池当前索引，连接池当前使用的索引位置
+uint32_t NetworkConnectionPoolUsageStatistics;           // 网络连接池使用统计，连接池的使用统计信息
 
 uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
 uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑定状态，表示套接字是否已绑定到地址
@@ -1019,18 +1019,18 @@ uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑�
 void InitializeNetworkConnectionPool(void)
 {
   // 初始化连接池配置参数
-  NetworkConnectionPoolCapacity = CONNECTION_POOL_CAPACITY;           // 设置连接池最大容量
-  NetworkConnectionPoolAllocationCount = 0;        // 重置连接池分配计数器为0
-  NetworkConnectionPoolDeallocationCount = 0;      // 重置连接池释放计数器为0
-  NetworkConnectionPoolHealthStatus = HEALTH_STATUS_NORMAL;         // 设置健康状态为正常
+  NetworkConnectionPoolMaximumCapacity = CONNECTION_POOL_CAPACITY;           // 设置连接池最大容量
+  NetworkConnectionPoolAllocationCounter = 0;        // 重置连接池分配计数器为0
+  NetworkConnectionPoolDeallocationCounter = 0;      // 重置连接池释放计数器为0
+  NetworkConnectionPoolHealthIndicator = HEALTH_STATUS_NORMAL;         // 设置健康状态为正常
   
   // 初始化连接池管理器
-  NetworkConnectionPoolManager = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
-  NetworkConnectionPoolCurrentIndex = 0;           // 重置连接池当前索引为0
+  NetworkConnectionPoolManagerHandle = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
+  NetworkConnectionPoolActiveIndex = 0;           // 重置连接池当前索引为0
   
   // 初始化性能监控
-  NetworkConnectionPoolMetrics = 0;                // 重置连接池性能指标为0
-  NetworkConnectionPoolStats = 0;             // 重置连接池统计信息为0
+  NetworkConnectionPoolPerformanceMetrics = 0;                // 重置连接池性能指标为0
+  NetworkConnectionPoolStatistics = 0;             // 重置连接池统计信息为0
 }
 
 /**
@@ -1046,7 +1046,7 @@ void InitializeNetworkConnectionPool(void)
  */
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
+void *NetworkConnectionContextTemplatePointer = &NetworkContextTemplateConfiguration;
 void *NetworkConnectionPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;
 void *NetworkConnectionSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;
 void *NetworkConnectionProcessingConfigPointer = &NetworkConnectionProcessingConfig;
@@ -1065,77 +1065,77 @@ void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutin
  * 
  * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
  */
-uint32_t NetworkContextTemplateData = 0x00;         // 网络连接上下文模板数据
+uint32_t NetworkContextTemplateConfiguration;         // 网络连接上下文模板配置数据
 
 /**
  * @brief 网络连接主要配置数据
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
-uint32_t NetworkPrimaryConfigData;           // 网络连接主要配置数据
+uint32_t NetworkPrimaryConfiguration;           // 网络连接主要配置数据
 
 /**
  * @brief 网络连接次要配置数据
  * 
  * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
  */
-uint32_t NetworkSecondaryConfigData;         // 网络连接次要配置数据
+uint32_t NetworkSecondaryConfiguration;         // 网络连接次要配置数据
 
 /**
  * @brief 网络连接处理配置数据
  * 
  * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
  */
-uint32_t NetworkProcessingConfigData;       // 网络连接处理配置数据
+uint32_t NetworkProcessingConfiguration;       // 网络连接处理配置数据
 
 /**
  * @brief 网络连接传输配置数据
  * 
  * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
  */
-uint32_t NetworkTransportConfigData;        // 网络连接传输配置数据
+uint32_t NetworkTransportConfiguration;        // 网络连接传输配置数据
 
 /**
  * @brief 网络连接协议配置数据
  * 
  * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
  */
-uint32_t NetworkProtocolConfigData;         // 网络连接协议配置数据
+uint32_t NetworkProtocolConfiguration;         // 网络连接协议配置数据
 
 /**
  * @brief 网络连接验证配置数据
  * 
  * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
  */
-uint32_t NetworkValidationConfigData;        // 网络连接验证配置数据
+uint32_t NetworkValidationConfiguration;        // 网络连接验证配置数据
 
 /**
  * @brief 网络连接路由主要配置数据
  * 
  * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
  */
-uint32_t NetworkRoutingPrimaryConfigData;    // 网络连接路由主要配置数据
+uint32_t NetworkRoutingPrimaryConfiguration;    // 网络连接路由主要配置数据
 
 /**
  * @brief 网络连接路由次要配置数据
  * 
  * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
  */
-uint32_t NetworkRoutingSecondaryConfigData;  // 网络连接路由次要配置数据
+uint32_t NetworkRoutingSecondaryConfiguration;  // 网络连接路由次要配置数据
 
 /**
  * @brief 网络连接路由第三配置数据
  * 
  * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
  */
-uint32_t NetworkRoutingTertiaryConfigData;   // 网络连接路由第三配置数据
+uint32_t NetworkRoutingTertiaryConfiguration;   // 网络连接路由第三配置数据
 
 /**
  * @brief 网络连接路由第四配置数据
  * 
  * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
  */
-uint32_t NetworkRoutingQuaternaryConfigData;  // 网络连接路由第四配置数据
+uint32_t NetworkRoutingQuaternaryConfiguration;  // 网络连接路由第四配置数据
 
 /**
  * @brief 网络连接主要配置数据
