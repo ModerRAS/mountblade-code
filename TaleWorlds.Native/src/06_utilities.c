@@ -10321,16 +10321,18 @@ void ExecuteSecurityCheckWrapper(void)
 
 
 
-// 函数: void FUN_180894c70(longlong param_1,undefined8 param_2)
-void FUN_180894c70(longlong param_1,undefined8 param_2)
+// 函数: void ValidateAndCleanupSystemResources(longlong systemContext,undefined8 resourceHandle)
+// 功能：验证系统状态并执行相应的清理操作
+// 参数：systemContext - 系统上下文指针，resourceHandle - 资源句柄
+void ValidateAndCleanupSystemResources(longlong systemContext,undefined8 resourceHandle)
 
 {
-  int iVar1;
+  int validationStatus;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if (((iVar1 == 0) && (iVar1 = FUN_18088ee20(param_2,param_1 + 0x18), iVar1 == 0)) &&
-     (iVar1 = FUN_18088f530(param_2,param_1 + 0x20,*(undefined4 *)(param_1 + 0x18)), iVar1 == 0)) {
-    FUN_18088f5c0(param_2,param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
+  validationStatus = FUN_18088ee60(resourceHandle,systemContext + 0x10);
+  if (((validationStatus == 0) && (validationStatus = FUN_18088ee20(resourceHandle,systemContext + 0x18), validationStatus == 0)) &&
+     (validationStatus = FUN_18088f530(resourceHandle,systemContext + 0x20,*(undefined4 *)(systemContext + 0x18)), validationStatus == 0)) {
+    FUN_18088f5c0(resourceHandle,systemContext + 0x20 + (longlong)*(int *)(systemContext + 0x18) * 4);
   }
   return;
 }
