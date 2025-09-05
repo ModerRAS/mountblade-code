@@ -8314,6 +8314,17 @@ uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t Resour
  * @note 该函数会遍历内存块并在符合条件的块上设置标志位
  * @warning 内存标志位的修改可能影响系统的内存管理行为
  */
+/**
+ * @brief 处理内存标志更新操作
+ * 
+ * 该函数根据内存配置参数更新内存区域的标志位。它会遍历内存区域，
+ * 查找匹配的内存块，并更新相应的标志位。
+ * 
+ * @param memoryConfig 内存配置参数指针，包含内存区域的信息
+ * @return 操作状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：ProcessMemoryFlagUpdate
+ */
 DataBuffer ProcessMemoryFlagUpdate(int64_t memoryConfig)
 
 {
@@ -8398,8 +8409,17 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
 
 
 
-// 函数: DataBuffer UpdateResourceReferenceCount(int64_t resourceHandle)
-// 功能：更新资源引用计数，增加指定资源的引用计数并进行状态检查
+/**
+ * @brief 更新资源引用计数
+ * 
+ * 该函数用于增加指定资源的引用计数，并进行状态检查以确保资源引用的有效性。
+ * 引用计数是资源管理的重要组成部分，用于跟踪资源被引用的次数。
+ * 
+ * @param resourceHandle 资源句柄，指向要更新引用计数的资源
+ * @return 操作状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：UpdateResourceReferenceCount
+ */
 DataBuffer UpdateResourceReferenceCount(int64_t resourceHandle)
 
 {
@@ -34370,7 +34390,7 @@ void SetDefaultExceptionHandlerAtOffset138(DataBuffer param_1, int64_t param_2)
  * @param param_2 参数2（目标对象指针）
  * @note 原始函数名：Unwind_180902180
  */
-void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer param_1,int64_t param_2)
+void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
   *(DataBuffer *)(param_2 + 0x1a0) = &UNK_180a3c3e0;
