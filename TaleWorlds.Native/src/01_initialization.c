@@ -9594,8 +9594,8 @@ void InitializeSystemSearchManagerD(void)
     PreviousSystemNode = AllocatedSystemNode;
   }
   
-  PreviousSystemNode[6] = 0x431d7c8d7c475be2;
-  PreviousSystemNode[7] = 0xb97f048d2153e1b0;
+  PreviousSystemNode[SystemNodeIdentifier1Index] = SystemScriptingModuleIdentifier1;
+  PreviousSystemNode[SystemNodeIdentifier2Index] = SystemNetworkModuleIdentifier2;
   PreviousSystemNode[8] = &SystemDataNodeF;
   PreviousSystemNode[9] = 4;
   PreviousSystemNode[SystemNodeCallbackIndex] = EventCallbackPointer;
@@ -9984,8 +9984,8 @@ void InitializeSystemSecurityNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4fc124d23d41985f;
-  HashTablePointer[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
@@ -10034,8 +10034,8 @@ void InitializeSystemNetworkNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4770584fbb1df897;
-  HashTablePointer[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
   HashTablePointer[NodeActiveFlagIndex] = 1;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -12345,8 +12345,8 @@ void InitializeSystemMemoryAllocatorSetup(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4fc124d23d41985f;
-  HashTablePointer[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
@@ -12400,8 +12400,8 @@ void InitializeSystemDataTableConfigurator(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4770584fbb1df897;
-  HashTablePointer[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
   HashTablePointer[NodeActiveFlagIndex] = 1;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -12957,8 +12957,8 @@ void InitializeSystemMemoryNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4fc124d23d41985f;
-  HashTablePointer[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
@@ -13014,8 +13014,8 @@ void InitializeSystemDeviceNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4770584fbb1df897;
-  HashTablePointer[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
   HashTablePointer[NodeActiveFlagIndex] = 1;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -14941,8 +14941,8 @@ void InitializeSystemResourceManagerA(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4fc124d23d41985f;
-  HashTablePointer[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
@@ -14993,8 +14993,8 @@ void InitializeSystemResourceManagerB(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4770584fbb1df897;
-  HashTablePointer[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
   HashTablePointer[NodeActiveFlagIndex] = 1;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -15713,8 +15713,8 @@ void InitializeSystemDebugManagerC(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4fc124d23d41985f;
-  HashTablePointer[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
@@ -15771,8 +15771,8 @@ void InitializeSystemResourceAllocator(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4770584fbb1df897;
-  HashTablePointer[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
   HashTablePointer[NodeActiveFlagIndex] = 1;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -18039,8 +18039,8 @@ void InitializeGameCoreSystemNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4fc124d23d41985f;
-  HashTablePointer[NodeIdentifier2Index] = 0xe2f4a30d6e6ae482;
+  HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &GAME_CORE_NODE_DATA;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
@@ -18095,8 +18095,8 @@ void InitializeBaseAllocatorNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4770584fbb1df897;
-  HashTablePointer[NodeIdentifier2Index] = 0x47f249e43f66f2ab;
+  HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateA;
   HashTablePointer[NodeActiveFlagIndex] = 1;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -20415,7 +20415,7 @@ uint64_t WaitForSystemNodeReady(long long SystemNodePointer, uint64_t TimeoutPar
     ThrowSystemError(MutexLockResult);
   }
   WaitFlag = true;
-  if (*(char *)(SystemNodePointer + 0x98) != '\x01') {
+  if (*(char *)(SystemNodePointer + 0x98) != SystemStatusActive) {
     char NodeStatus = *(char *)(SystemNodePointer + 0x98);
     while (SystemNodeReady == false) {
       MutexLockResult = _Cnd_wait(SystemNodePointer,MutexHandle,ConditionVariable,SyncFlag,WaitTimeout,MutexHandle,WaitFlag);
@@ -22786,8 +22786,8 @@ uint8_t ProcessSystemInitializationData(long long SystemResourceManager,void* Co
   if (mutexOperationResult != 0) {
     ThrowSystemError(mutexOperationResult);
   }
-  lockAcquiredFlag = '\x01';
-  if (*(char *)(SystemResourceManager + 0x98) == '\x01') {
+  lockAcquiredFlag = SystemStatusActive;
+  if (*(char *)(SystemResourceManager + 0x98) == SystemStatusActive) {
     SystemInitializationStatus = 1;
   }
   else {

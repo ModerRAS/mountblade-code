@@ -50029,59 +50029,79 @@ void Unwind_180905d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180905db0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 执行偏移量178处的处理器函数
+ * 
+ * 该函数从上下文数据中获取位于偏移量178处的处理器函数指针，
+ * 并在处理器函数存在时调用它，传递相关参数和系统清理标志。
+ * 
+ * @param systemContext 系统上下文，包含系统状态信息
+ * @param contextData 上下文数据，包含处理器函数指针
+ * @param param_3 保留参数3
+ * @param param_4 保留参数4
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于异常处理和系统清理操作
+ * @warning 确保contextData中的指针有效，避免空指针访问
+ * @see ExecuteHandlerAtOffset168, SetExceptionHandlerAtOffset30
+ */
+void ExecuteHandlerAtOffset178(undefined8 systemContext,longlong contextData,undefined8 param_3,undefined8 param_4)
 
 {
-  code *pcVar1;
+  code *handlerFunction;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0x178);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
+  handlerFunction = *(code **)(*(longlong *)(contextData + 0x50) + 0x178);
+  if (handlerFunction != (code *)0x0) {
+    (*handlerFunction)(*(longlong *)(contextData + 0x50) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905dd0(undefined8 param_1,longlong param_2)
+void SetUnknownHandlerAtOffset50(undefined8 systemContext,longlong contextData)
 
 {
-  **(undefined8 **)(param_2 + 0x50) = &UNK_1809ff488;
+  **(undefined8 **)(contextData + 0x50) = &UNK_1809ff488;
   return;
 }
 
 
 
-void Unwind_180905de0(undefined8 param_1,longlong param_2)
+void SetUnknownHandlerAtOffset60(undefined8 systemContext,longlong contextData)
 
 {
-  **(undefined8 **)(param_2 + 0x60) = &UNK_1809ff488;
+  **(undefined8 **)(contextData + 0x60) = &UNK_1809ff488;
   return;
 }
 
 
 
-void Unwind_180905df0(undefined8 param_1,longlong param_2)
+void ProcessDataWithMaskAndOffset(undefined8 systemContext,longlong processData)
 
 {
-  FUN_180069530((ulonglong)(*(uint *)(param_2 + 0x30) & 0x1f) * 0x1a8 +
-                *(longlong *)(param_2 + 0x28));
-  *(undefined1 *)
-   ((*(longlong *)(param_2 + 0x28) - (ulonglong)(*(uint *)(param_2 + 0x30) & 0x1f)) + 0x352f) = 1;
-  return;
-}
-
-
-
-void Catch_180905e00(undefined8 param_1,longlong param_2)
-
-{
-  longlong validationContext;
+  uint32_t maskValue;
+  ulonglong calculatedOffset;
   
-  validationContext = *(longlong *)(param_2 + 0x60);
-  CleanupSystem(validationContext);
-  ConfigureSystemParametersA0(*(longlong *)(param_2 + 0x70) + 8,0);
-  ExecuteSystemOperation(*(undefined8 *)(validationContext + 0x50),*(undefined8 *)(param_2 + 0x78));
+  maskValue = *(uint *)(processData + 0x30) & 0x1f;
+  calculatedOffset = (ulonglong)maskValue * 0x1a8 + *(longlong *)(processData + 0x28);
+  FUN_180069530(calculatedOffset);
+  *(undefined1 *)((*(longlong *)(processData + 0x28) - (ulonglong)maskValue) + 0x352f) = 1;
+  return;
+}
+
+
+
+void HandleSystemException(undefined8 exceptionContext,longlong contextData)
+
+{
+  longlong systemContext;
+  
+  systemContext = *(longlong *)(contextData + 0x60);
+  CleanupSystem(systemContext);
+  ConfigureSystemParametersA0(*(longlong *)(contextData + 0x70) + 8,0);
+  ExecuteSystemOperation(*(undefined8 *)(systemContext + 0x50),*(undefined8 *)(contextData + 0x78));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
