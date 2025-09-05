@@ -8231,6 +8231,126 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：重置系统状态
 #define ResetSystemStateDX0 FUN_180891af0
 
+// 原始函数名：FUN_18089be10 - 数据验证和处理函数B0
+// 功能：验证和处理数据参数，执行系统操作
+#define ValidateAndProcessDataB0 FUN_18089be10
+
+// 原始函数名：FUN_18089be41 - 系统状态检查函数B0
+// 功能：检查系统状态并执行相应操作
+#define CheckSystemStatusB0 FUN_18089be41
+
+// 原始函数名：FUN_18089c019 - 系统初始化函数B0
+// 功能：初始化系统组件和状态
+#define InitializeSystemComponentsB0 FUN_18089c019
+
+// 原始函数名：FUN_18089cc29 - 空操作函数P
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationP FUN_18089cc29
+
+// 原始函数名：FUN_18089cc31 - 空操作函数Q
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationQ FUN_18089cc31
+
+// 原始函数名：FUN_18089cc41 - 空操作函数R
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationR FUN_18089cc41
+
+// 原始函数名：FUN_18089d091 - 空操作函数S
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationS FUN_18089d091
+
+// 原始函数名：FUN_18089d0a3 - 空操作函数T
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationT FUN_18089d0a3
+
+// 原始函数名：FUN_18089d0b0 - 数据处理函数C0
+// 功能：处理数据参数并执行验证
+#define ProcessDataWithValidationC0 FUN_18089d0b0
+
+// 原始函数名：FUN_18089d208 - 空操作函数U
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationU FUN_18089d208
+
+// 原始函数名：FUN_18089d23a - 空操作函数V
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationV FUN_18089d23a
+
+// 原始函数名：FUN_18089d47a - 空操作函数W
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationW FUN_18089d47a
+
+// 原始函数名：FUN_18089d520 - 数据验证函数C0
+// 功能：验证数据参数并返回结果
+#define ValidateDataParametersC0 FUN_18089d520
+
+// 原始函数名：FUN_18089d557 - 状态检查函数C0
+// 功能：检查系统状态并执行相应操作
+#define CheckSystemStateC0 FUN_18089d557
+
+// 原始函数名：FUN_18089dcd6 - 系统清理函数C0
+// 功能：清理系统资源和状态
+#define CleanupSystemResourcesC0 FUN_18089dcd6
+
+// 原始函数名：FUN_18089df30 - 系统重置函数C0
+// 功能：重置系统状态和组件
+#define ResetSystemComponentsC0 FUN_18089df30
+
+// 原始函数名：FUN_18089e0be - 系统验证函数C0
+// 功能：验证系统组件和状态
+#define ValidateSystemComponentsC0 FUN_18089e0be
+
+// 原始函数名：FUN_18089e4d7 - 系统配置函数C0
+// 功能：配置系统参数和状态
+#define ConfigureSystemParametersC0 FUN_18089e4d7
+
+// 原始函数名：FUN_18089e801 - 空操作函数X
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationX FUN_18089e801
+
+// 原始函数名：FUN_18089e811 - 空操作函数Y
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationY FUN_18089e811
+
+// 原始函数名：FUN_18089edaf - 系统初始化函数C0
+// 功能：初始化系统组件和状态
+#define InitializeSystemStateC0 FUN_18089edaf
+
+// 原始函数名：FUN_18089edc7 - 系统状态检查函数C0
+// 功能：检查系统状态并返回结果
+#define CheckSystemStateAndReturnC0 FUN_18089edc7
+
+// 原始函数名：FUN_18089ee87 - 系统验证函数C1
+// 功能：验证系统组件和配置
+#define ValidateSystemConfigurationC1 FUN_18089ee87
+
+// 原始函数名：FUN_18089eef2 - 系统处理函数C0
+// 功能：处理系统操作和状态
+#define ProcessSystemOperationsC0 FUN_18089eef2
+
+// 原始函数名：FUN_18089ef24 - 系统清理函数C1
+// 功能：清理系统资源和状态
+#define CleanupSystemStateC1 FUN_18089ef24
+
+// 原始函数名：FUN_18089f31e - 系统配置函数C1
+// 功能：配置系统参数和选项
+#define ConfigureSystemOptionsC1 FUN_18089f31e
+
+// 原始函数名：FUN_18089f474 - 空操作函数Z
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationZ FUN_18089f474
+
+// 原始函数名：FUN_18089f47c - 空操作函数AA
+// 功能：空操作函数，无实际功能
+#define UtilityNoOperationAA FUN_18089f47c
+
+// 原始函数名：FUN_18089f7fd - 系统验证函数C2
+// 功能：验证系统状态和组件
+#define ValidateSystemStateC2 FUN_18089f7fd
+
+// 原始函数名：FUN_18089fb06 - 系统处理函数C1
+// 功能：处理系统操作和数据
+#define ProcessSystemDataC1 FUN_18089fb06
+
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
 // 系统事件处理器初始化函数A0
@@ -12692,7 +12812,7 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
 
 
 
-undefined8 FUN_180895236(void)
+undefined8 UtilityNoOperationK(void)
 
 {
   longlong validationContext;
@@ -13161,7 +13281,7 @@ ValidationCompleteLabel:
 
 
 
-undefined8 FUN_180895c8b(longlong dataContext,undefined8 systemContext,longlong operationContext,uint validationFlag)
+undefined8 ProcessDataWithHashValidation(longlong dataContext,undefined8 systemContext,longlong operationContext,uint validationFlag)
 
 {
   longlong tablePointer;
@@ -13205,7 +13325,7 @@ ValidationCompleteLabel:
 
 
 
-undefined8 FUN_180895cf1(longlong param_1,undefined8 param_2,longlong param_3)
+undefined8 ValidateDataIntegrityA2(longlong param_1,undefined8 param_2,longlong param_3)
 
 {
   undefined8 uVar1;
@@ -18859,10 +18979,10 @@ void ProcessDataWithCallback(longlong systemContext, undefined4 *dataBuffer)
   stackBuffer[0] = *dataBuffer;
   callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,4);
   if (callbackResult == 0) {
-    stackBuffer[0]._0_2_ = *(undefined2 *)(dataBuffer + 1);
+    stackBuffer[0].LowWord = *(undefined2 *)(dataBuffer + 1);
     callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,2);
     if (callbackResult == 0) {
-      stackBuffer[0] = CONCAT22(stackBuffer[0]._2_2_,*(undefined2 *)((longlong)dataBuffer + 6));
+      stackBuffer[0] = CONCAT22(stackBuffer[0].HighWord,*(undefined2 *)((longlong)dataBuffer + 6));
       callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))
                         (*(undefined8 **)(systemContext + 8),stackBuffer,2);
       if (callbackResult == 0) {
@@ -20817,24 +20937,28 @@ void UtilityNoOperationA(void)
 
 
 
-undefined8 FUN_18089b5a9(int param_1)
+// 系统数据验证函数
+// 功能：验证系统数据的有效性，执行多重检查以确保数据完整性
+// 参数：validationFlag - 验证标志，控制验证流程
+// 返回值：undefined8 - 验证结果状态码，0表示成功，非0值表示错误码
+undefined8 ValidateSystemDataIntegrity(int validationFlag)
 
 {
-  longlong *pvalidationContext;
-  undefined8 uVar2;
-  longlong *registerRBX;
-  longlong unaff_RDI;
-  char in_stack_00000030;
-  undefined8 in_stack_00000038;
-  uint uStack0000000000000040;
-  undefined4 uStack0000000000000044;
+  longlong *validationContext;
+  undefined8 validationResult;
+  longlong *systemContext;
+  longlong dataContext;
+  char statusFlag;
+  undefined8 stackData;
+  uint bufferSize;
+  undefined4 bufferFlag;
   
-  if (param_1 != 0) {
+  if (validationFlag != 0) {
     return 0x1c;
   }
-  uVar2 = FUN_1808995c0(*registerRBX,unaff_RDI + 0x70);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationResult = FUN_1808995c0(*systemContext,dataContext + 0x70);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
   if (*(int *)(registerRBX[1] + 0x18) != 0) {
     return 0x1c;
@@ -21877,18 +22001,18 @@ undefined8 FUN_18089bd70(longlong param_1,undefined8 *param_2)
 
 
 89be10(longlong param_1,undefined8 *param_2,int param_3)
-void FUN_18089be10(longlong param_1,undefined8 *param_2,int param_3)
+void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int validationFlag)
 
 {
-  uint uVar1;
+  uint validationStatus;
   int operationResult;
-  int iVar3;
-  uint uVar4;
-  uint uVar5;
-  longlong lVar6;
-  uint uVar7;
-  uint auStackX_8 [2];
-  uint auStackX_20 [2];
+  int processStatus;
+  uint dataLength;
+  uint bitFlags;
+  longlong contextOffset;
+  uint processedData;
+  uint validationBuffer[2];
+  uint processDataBuffer[2];
   
   auStackX_20[0] = FUN_1808a5630(param_2,param_1,0);
   if (auStackX_20[0] != 0) {
@@ -21989,7 +22113,7 @@ DataProcessLabelC:
 
 
 89be41(void)
-void FUN_18089be41(void)
+void CheckSystemStatusB0(void)
 
 {
   uint in_EAX;
@@ -22098,7 +22222,7 @@ DataProcessLabelC:
 
 
 89c019(void)
-void FUN_18089c019(void)
+void InitializeSystemComponentsB0(void)
 
 {
   return;
@@ -24618,7 +24742,7 @@ LAB_18089cbf6:
 
 
 89cc29(void)
-void FUN_18089cc29(void)
+void UtilityNoOperationP(void)
 
 {
   return;
@@ -24628,7 +24752,7 @@ void FUN_18089cc29(void)
 
 
 89cc31(void)
-void FUN_18089cc31(void)
+void UtilityNoOperationQ(void)
 
 {
   return;
@@ -24638,7 +24762,7 @@ void FUN_18089cc31(void)
 
 
 89cc41(void)
-void FUN_18089cc41(void)
+void UtilityNoOperationR(void)
 
 {
   return;
