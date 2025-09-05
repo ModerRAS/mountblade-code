@@ -897,7 +897,7 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
-uint32_t *NetworkConnectionManagerContext = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
+uint32_t *NetworkConnectionManagerContextPointer = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
 uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据，存储连接管理的上下文信息和状态数据
 uint32_t NetworkConnectionStateFlags;                 // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
 uint32_t NetworkConnectionTimeoutMs;               // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
@@ -1020,7 +1020,7 @@ uint32_t NetworkSecurityCertificateInfo;                   // 网络安全证书
 // 网络连接池管理变量
 uint32_t NetworkConnectionPoolInfo;                    // 网络连接池信息，指向连接池的数据存储区域
 uint32_t NetworkConnectionPoolMetadata;                // 网络连接池元数据，连接池的元数据信息
-uint32_t NetworkConnectionPoolStatistics;              // 网络连接池统计信息，连接池的统计和计数信息
+uint32_t NetworkConnectionPoolStatisticsData;              // 网络连接池统计信息，连接池的统计和计数信息
 uint32_t NetworkConnectionPoolConfig;            // 网络连接池配置，连接池的配置参数设置
 uint32_t NetworkConnectionPoolHealthIndicator;             // 网络连接池健康状态，连接池的健康状态指示
 uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能指标，连接池的性能测量数据
@@ -2096,12 +2096,12 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *NetworkConnectionParameter
 NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t ConnectionContextIdentifier;      // 网络连接上下文标识符
+  int64_t NetworkConnectionContextIdentifier;      // 网络连接上下文标识符
   int64_t *NetworkValidationDataPointer;           // 网络连接验证结果数据指针
   int32_t NetworkValidationStatusCode;             // 网络连接验证状态码
   NetworkHandle NetworkConnectionHandle;           // 网络连接上下文句柄
   
-  ConnectionContextIdentifier = 0;
+  NetworkConnectionContextIdentifier = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证状态码
   if (NetworkValidationStatusCode == 0) {
     if ((0 < *(int *)CalculateContextParameterOffset(NetworkValidationDataPointer)) && (*NetworkValidationDataPointer != 0)) {

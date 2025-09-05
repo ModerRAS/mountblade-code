@@ -19694,16 +19694,16 @@ void ExecuteSystemStatusCheck(void)
   undefined8 *systemRegister;
   longlong systemContext;
   
-  if (*(uint *)(registerRBX + 8) < 0x3d) {
-    iVar1 = 0;
+  if (*(uint *)(systemRegister + 8) < 0x3d) {
+    statusResult = 0;
   }
-  else if (*(int *)(registerRBX[1] + 0x18) == 0) {
-    iVar1 = FUN_1808a2e00(*registerRBX,unaff_RDI + 0x40);
+  else if (*(int *)(systemRegister[1] + 0x18) == 0) {
+    statusResult = FUN_1808a2e00(*systemRegister,systemContext + 0x40);
   }
   else {
-    iVar1 = 0x1c;
+    statusResult = 0x1c;
   }
-  if (iVar1 == 0) {
+  if (statusResult == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
