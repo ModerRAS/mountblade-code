@@ -203,9 +203,9 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  * 
  * 定义网络连接状态相关数据结构的内存偏移量，用于访问连接状态信息
  */
-#define NetworkConnectionContextOffset 0x78                    // 网络连接上下文偏移量
-#define NetworkConnectionValidationOffset 0x24                 // 网络连接验证偏移量
-#define NetworkConnectionStatusOffset 0x98                     // 网络连接状态偏移量
+#define NetworkConnectionContextOffset 0x78                    // 网络连接上下文数据偏移量
+#define NetworkConnectionValidationOffset 0x24                 // 网络连接验证状态偏移量
+#define NetworkConnectionStatusOffset 0x98                     // 网络连接状态数据偏移量
 #define NetworkConnectionCompressionOffset 0x1c                // 网络连接压缩偏移量
 #define NetworkConnectionEncryptionOffset 0x20                 // 网络连接加密偏移量
 #define NetworkConnectionValidationStatusOffset 0x24            // 网络连接验证状态偏移量
