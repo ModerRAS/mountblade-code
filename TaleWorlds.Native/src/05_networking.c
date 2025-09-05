@@ -2035,33 +2035,33 @@ uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓
 void InitializeNetworkConnectionState(void)
 {
   // 网络连接初始化变量
-  uint8_t *ConnectionStateBuffer;                    // 网络连接状态缓冲区指针
-  int32_t ConnectionInitializationResult;           // 网络连接初始化结果状态
+  uint8_t *StateBuffer;                              // 网络连接状态缓冲区指针
+  int32_t InitializationResult;                      // 网络连接初始化结果状态
   int64_t SystemContextData;                         // 网络系统上下文数据
   int32_t ConnectionId;                              // 网络连接标识符
-  uint32_t ConnectionStateFlags;                     // 网络连接状态标志位
-  int32_t SessionId;                                // 网络连接会话ID
-  uint64_t *StateDataPointer;                       // 网络连接状态数据指针
-  int64_t *ContextPointer;                          // 网络连接上下文指针
+  uint32_t StateFlags;                               // 网络连接状态标志位
+  int32_t SessionId;                                 // 网络连接会话ID
+  uint64_t *StateDataPointer;                        // 网络连接状态数据指针
+  int64_t *ContextPointer;                           // 网络连接上下文指针
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CreateConnectionStateUniqueId(ConnectionStateFlags, ConnectionId) + NetworkConnectionStateBufferOffset);
+  StateBuffer = (uint8_t *)(CreateConnectionStateUniqueId(StateFlags, ConnectionId) + NetworkConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
   if (*(int *)(*(int64_t *)(SystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == SessionId) {
-    *ConnectionStateBuffer = 0;  // 重置状态缓冲区
+    *StateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CreateConnectionStateUniqueId(ConnectionStateFlags, ConnectionId) + MergedConnectionDataOffset) = ((int)ConnectionStateBuffer - ConnectionId) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(CreateConnectionStateUniqueId(StateFlags, ConnectionId) + MergedConnectionDataOffset) = ((int)StateBuffer - ConnectionId) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
-    ConnectionInitializationResult = InitializeConnectionContext(*(NetworkHandle *)(ContextPointer + NetworkContextSystemOffset));
-    if (ConnectionInitializationResult == 0) {
-      *StateDataPointer = (uint64_t)*(uint *)(CreateConnectionStateUniqueId(ConnectionStateFlags, ConnectionId) + NetworkConnectionStateDataOffset);
+    InitializationResult = InitializeConnectionContext(*(NetworkHandle *)(ContextPointer + NetworkContextSystemOffset));
+    if (InitializationResult == 0) {
+      *StateDataPointer = (uint64_t)*(uint *)(CreateConnectionStateUniqueId(StateFlags, ConnectionId) + NetworkConnectionStateDataOffset);
     }
     ResetConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
-  CopyConnectionBuffer(ConnectionStateBuffer);
+  CopyConnectionBuffer(StateBuffer);
 }
 
 /**
@@ -2076,14 +2076,14 @@ void InitializeNetworkConnectionState(void)
 void ResetNetworkConnectionPointer(void)
 {
   // 网络连接指针重置变量
-  uint8_t *ConnectionStateBuffer;                    // 网络连接状态缓冲区指针
-  int64_t ContextData;                              // 网络上下文数据
-  uint64_t *DataBuffer;                            // 网络数据缓冲区指针
-  uint32_t StateFlags;                             // 网络连接状态标志位
-  int32_t ConnectionId;                            // 连接标识符
+  uint8_t *StateBuffer;                              // 网络连接状态缓冲区指针
+  int64_t ContextData;                               // 网络上下文数据
+  uint64_t *DataBuffer;                              // 网络数据缓冲区指针
+  uint32_t StateFlags;                               // 网络连接状态标志位
+  int32_t ConnectionId;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CreateConnectionStateUniqueId(StateFlags, ConnectionId) + NetworkConnectionStateBufferOffset);
+  StateBuffer = (uint8_t *)(CreateConnectionStateUniqueId(StateFlags, ConnectionId) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *DataBuffer = (uint64_t)*(uint *)(ContextData + NetworkConnectionStateDataOffset);
@@ -2825,43 +2825,43 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
                            uint32_t ValidationBufferSize, uint32_t ValidationMode)
 {
   // 连接数据验证变量
-  uint32_t ConnectionValidationStatus;                       // 连接验证状态
-  uint32_t DataIntegrityValidationResult;                    // 网络数据完整性验证结果
-  uint32_t SecurityComplianceValidationResult;               // 网络安全合规验证结果
+  uint32_t ValidationStatus;                             // 连接验证状态
+  uint32_t IntegrityCheckResult;                         // 网络数据完整性验证结果
+  uint32_t SecurityCheckResult;                         // 网络安全合规验证结果
   
   // 初始化验证状态
-  ConnectionValidationStatus = NetworkValidationFailure;
-  DataIntegrityValidationResult = NetworkValidationFailure;
-  SecurityComplianceValidationResult = NetworkValidationFailure;
+  ValidationStatus = NetworkValidationFailure;
+  IntegrityCheckResult = NetworkValidationFailure;
+  SecurityCheckResult = NetworkValidationFailure;
   
   // 执行数据完整性检查
   if (ConnectionData != 0) {
-    DataIntegrityValidationResult = NetworkValidationSuccess;  // 数据完整性检查通过
+    IntegrityCheckResult = NetworkValidationSuccess;      // 数据完整性检查通过
   }
   
   // 执行安全合规检查
   if (ConnectionTable != 0) {
-    SecurityComplianceValidationResult = NetworkValidationSuccess;  // 安全合规检查通过
+    SecurityCheckResult = NetworkValidationSuccess;       // 安全合规检查通过
   }
   
   // 根据验证模式设置验证结果
   if (ValidationMode == NetworkConnectionBasicValidationMode) {
     // 基本验证模式
-    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult;
+    ValidationStatus = IntegrityCheckResult & SecurityCheckResult;
   } else if (ValidationMode == NetworkConnectionStrictValidationMode) {
     // 严格验证模式
-    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult & NetworkValidationSuccessMask;
+    ValidationStatus = IntegrityCheckResult & SecurityCheckResult & NetworkValidationSuccessMask;
   } else {
     // 默认验证模式
-    ConnectionValidationStatus = NetworkValidationSuccess;
+    ValidationStatus = NetworkValidationSuccess;
   }
   
   // 设置安全验证数据
   if (SecurityValidationData && ValidationBufferSize > 0) {
     memset(SecurityValidationData, 0, ValidationBufferSize);
-    ((uint32_t*)SecurityValidationData)[ConnectionValidationStatusIndex] = ConnectionValidationStatus;
-    ((uint32_t*)SecurityValidationData)[DataIntegrityValidationIndex] = DataIntegrityValidationResult;
-    ((uint32_t*)SecurityValidationData)[SecurityComplianceValidationIndex] = SecurityComplianceValidationResult;
+    ((uint32_t*)SecurityValidationData)[ConnectionValidationStatusIndex] = ValidationStatus;
+    ((uint32_t*)SecurityValidationData)[DataIntegrityValidationIndex] = IntegrityCheckResult;
+    ((uint32_t*)SecurityValidationData)[SecurityComplianceValidationIndex] = SecurityCheckResult;
     ((uint32_t*)SecurityValidationData)[ValidationModeDataIndex] = ValidationMode;
   }
 }
