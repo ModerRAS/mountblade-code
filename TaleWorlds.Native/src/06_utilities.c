@@ -6723,12 +6723,17 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
   uint systemStatus;
   uint64_t operationResult;
   undefined8 *dataArrayPointer;
+  undefined8 *dataIterator;
   int integerConversionValue;
   float floatDataValue;
   undefined1 vectorRegisterData [16];
   longlong stackTempValue;
+  uint processingFlags;
+  uint bitShiftedFlags;
+  undefined8 vectorRegister;
+  uint maskResult;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&stackTempValue);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackTempValue);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -6746,23 +6751,23 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
     if ((*(char *)(dataContextPointer + 0x34) == '\0') ||
        ((*(uint *)(*(longlong *)(dataContextPointer + 0x18) + 0x34) >> 1 & 1) == 0)) {
       processingFlags = *(uint *)(*(longlong *)(dataContextPointer + 0x18) + 0x34);
-      uVar2 = uVar3 >> 4;
-      if ((uVar2 & 1) == 0) {
-        if ((((uVar3 >> 3 & 1) != 0) && (iVar6 = (int)fVar7, iVar6 != -0x80000000)) &&
-           ((float)iVar6 != fVar7)) {
-          auVar8._4_4_ = fVar7;
-          auVar8._0_4_ = fVar7;
-          auVar8._8_8_ = 0;
-          uVar3 = movmskps(uVar2,auVar8);
-          fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
+      bitShiftedFlags = processingFlags >> 4;
+      if ((bitShiftedFlags & 1) == 0) {
+        if ((((processingFlags >> 3 & 1) != 0) && (integerConversionValue = (int)floatDataValue, integerConversionValue != -0x80000000)) &&
+           ((float)integerConversionValue != floatDataValue)) {
+          vectorRegister._4_4_ = floatDataValue;
+          vectorRegister._0_4_ = floatDataValue;
+          vectorRegister._8_8_ = 0;
+          maskResult = movmskps(bitShiftedFlags,vectorRegister);
+          floatDataValue = (float)(int)(integerConversionValue - (maskResult & 1));
         }
-        fVar7 = (float)ConvertFloatingPointDataA0(*(longlong *)(validationContext + 0x18),fVar7);
-        if (((*(char *)(validationContext + 0x34) == '\0') ||
-            ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) &&
-           (fVar7 != *(float *)(validationContext + 0x20))) {
-          *(float *)(validationContext + 0x20) = fVar7;
-          FUN_1808d7020(validationContext);
-          *(undefined1 *)(validationContext + 0x35) = 0;
+        floatDataValue = (float)ConvertFloatingPointDataA0(*(longlong *)(dataContextPointer + 0x18),floatDataValue);
+        if (((*(char *)(dataContextPointer + 0x34) == '\0') ||
+            ((*(uint *)(*(longlong *)(dataContextPointer + 0x18) + 0x34) >> 1 & 1) == 0)) &&
+           (floatDataValue != *(float *)(dataContextPointer + 0x20))) {
+          *(float *)(dataContextPointer + 0x20) = floatDataValue;
+          FUN_1808d7020(dataContextPointer);
+          *(undefined1 *)(dataContextPointer + 0x35) = 0;
         }
       }
     }
