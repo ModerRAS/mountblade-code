@@ -3388,7 +3388,7 @@ void ClearNetworkConnectionStack(void* ConnectionBuffer)
  * @warning 如果复制失败，可能导致数据不一致或备份缺失
  * @see NetworkValidationSuccess, NetworkConnectionBufferSize
  */
-void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
+void CopyNetworkConnectionBufferData(void* SourceBuffer)
 {
   // 连接缓冲区复制变量
   uint32_t CopyOperationStatus;                     // 复制操作状态

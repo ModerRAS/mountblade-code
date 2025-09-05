@@ -3099,9 +3099,9 @@ undefined CloneDataFlags;
 undefined CloneDataChecksum;
 undefined CloneDataHandle;
 
-// 原始函数名：FUN_180942280 - 数据验证函数A0
+// 原始函数名：FUN_180942280 - 数据验证函数A1
 // 功能：验证工具数据的完整性和有效性
-#define ValidateUtilityDataA0 FUN_180942280
+#define ValidateUtilityDataA1 FUN_180942280
 
 undefined ValidateUtilityDataA0;
 undefined UtilityDataValidationBufferA;
@@ -19426,6 +19426,9 @@ void FUN_18089a9d5(void)
 
 
 
+// 原始函数名：FUN_18089a9dd - 返回固定值函数R0
+// 功能：返回固定值0x1c
+#define ReturnFixedValueR0 FUN_18089a9dd
 undefined8 FUN_18089a9dd(void)
 
 {
