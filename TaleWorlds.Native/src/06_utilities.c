@@ -13144,7 +13144,10 @@ void FUN_180897520(longlong *param_1,longlong *param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808975e0(longlong param_1,longlong param_2)
+// 原始函数名：FUN_1808975e0 - 数据转换和验证函数A0
+// 功能：执行数据类型转换和验证操作，处理浮点和长整型数据
+#define ConvertAndValidateDataA0 FUN_1808975e0
+
 void FUN_1808975e0(longlong param_1,longlong param_2)
 
 {
