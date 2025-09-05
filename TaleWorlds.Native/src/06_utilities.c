@@ -7881,26 +7881,26 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
   if ((infFlag3 != 0 || infFlag1 != 0) || infFlag2 != 0) {
     return 0x1f;
   }
-  iVar8 = iVar9;
-  if ((*(uint *)(param_1 + 0x38) & 0x7f800000) == 0x7f800000) {
-    iVar8 = 0x1d;
+  infFlag3 = infFlag4;
+  if ((*(uint *)(dataPtr + 0x38) & 0x7f800000) == 0x7f800000) {
+    infFlag3 = 0x1d;
   }
-  iVar6 = iVar9;
-  if ((*(uint *)(param_1 + 0x34) & 0x7f800000) == 0x7f800000) {
-    iVar6 = 0x1d;
+  infFlag1 = infFlag4;
+  if ((*(uint *)(dataPtr + 0x34) & 0x7f800000) == 0x7f800000) {
+    infFlag1 = 0x1d;
   }
-  if (((uint)*(float *)(param_1 + 0x30) & 0x7f800000) == 0x7f800000) {
-    iVar9 = 0x1d;
+  if (((uint)*(float *)(dataPtr + 0x30) & 0x7f800000) == 0x7f800000) {
+    infFlag4 = 0x1d;
   }
-  if ((iVar8 != 0 || iVar6 != 0) || iVar9 != 0) {
+  if ((infFlag3 != 0 || infFlag1 != 0) || infFlag4 != 0) {
     return 0x1f;
   }
-  fVar1 = *(float *)(param_1 + 0x44);
-  iVar8 = 0;
-  uStackX_18 = *(uint *)(param_1 + 0x40);
-  fStackX_20 = *(float *)(param_1 + 0x3c);
-  alStackX_8[0] = CONCAT44(alStackX_8[0]._4_4_,fVar1);
-  iVar9 = iVar8;
+  floatComponentZ = *(float *)(dataPtr + 0x44);
+  infFlag3 = 0;
+  uintComponentW = *(uint *)(dataPtr + 0x40);
+  floatTemp = *(float *)(dataPtr + 0x3c);
+  stackBuffer[0] = CONCAT44(stackBuffer[0]._4_4_,floatComponentZ);
+  infFlag4 = infFlag3;
   if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
     iVar9 = 0x1d;
   }
