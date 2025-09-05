@@ -1899,15 +1899,6 @@ void* GetSystemInitializationFunction;
 /**
  * @brief 初始化游戏核心系统
  * 
- * 此函数负责初始化游戏的核心系统节点，包括节点查找、内存分配和标识符设置。
- * 函数会在系统表中查找或创建游戏核心系统节点，并配置其基本属性。
- * 
- * @note 此函数假设系统表和标识符已预先定义
- * @return 无返回值
- */
-/**
- * @brief 初始化游戏核心系统
- * 
  * 该函数负责初始化游戏的核心系统组件，创建游戏核心节点并设置
  * 必要的系统标识符和回调函数。游戏核心系统是整个游戏的
  * 基础架构，负责管理游戏的核心功能模块。
@@ -1918,13 +1909,6 @@ void* GetSystemInitializationFunction;
  * @note 游戏核心系统标识符为 GameCoreSystemIdentifier1 和 GameCoreSystemIdentifier2
  * @note 节点状态设置为非活动状态（NodeInactiveFlag）
  */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 初始化游戏核心系统，设置游戏核心节点和相关参数。
- * 用于游戏系统的核心初始化工作。
- * 
- * @return 无返回值
  */
 void InitializeGameCoreSystem(void)
 {
@@ -61188,13 +61172,13 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   float ScaledVectorResult44;
   float NormalizedVector48;
   uint32_t SystemDataFlag1;
-  float FloatStack50;
-  float FloatStack54;
-  float FloatStack58;
+  float ConfiguredTransform50;
+  float ConfiguredVectorResult54;
+  float ConfiguredNormalizedValue58;
   uint32_t SystemDataFlag2;
-  float FloatStack60;
-  float FloatStack64;
-  float FloatStack68;
+  float AdditionalTransformResult60;
+  float AdditionalVectorResult64;
+  float AdditionalFinalValue68;
   uint32_t SystemDataResourcePointer;
   uint32_t InputParameterE0;
   uint32_t InputParameterE8;
@@ -61208,10 +61192,10 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   MatrixElement1 = *(float *)(MemoryBlockAddress + 0x124);
   MatrixElement2 = *(float *)(MemoryBlockAddress + 0x130);
   FloatTransform30 = MatrixElement1 * InputFloatValue3 + (float)SystemResourceManager * MatrixElement4 + (float)ConfigurationDataPointer * floatValue7;
-  FloatStack34 =
+  MatrixTransformResult34 =
        MatrixElement1 * InputFloatValue4 + (float)((ulong long)SystemResourceManager >> 0x20) * BaseValue +
        (float)((ulong long)ConfigurationDataPointer >> 0x20) * CalculationResult8;
-  FloatStack38 = MatrixElement1 * InputFloatValue5 + InputFloatValue1 * floatValue6 + InputFloatValue2 * ScaleValue;
+  VectorDotProduct38 = MatrixElement1 * InputFloatValue5 + InputFloatValue1 * floatValue6 + InputFloatValue2 * ScaleValue;
   MatrixElement1 = *(float *)(MemoryBlockAddress + 0x138);
   MatrixElement3 = *(float *)(MemoryBlockAddress + 0x140);
   FloatStack40 = AudioInterpolationCoeff1 * InputFloatValue3 + MatrixElement2 * MatrixElement4 + MatrixElement1 * floatValue7;
