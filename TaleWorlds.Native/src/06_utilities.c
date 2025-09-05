@@ -5378,20 +5378,20 @@ undefined8 ValidateMemoryAccess(longlong param_1)
   longlong MemoryAccessPointer;
   
   ValidationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&MemoryAccessPointer);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  if ((int)ValidationStatus != 0) {
+    return ValidationStatus;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (MemoryAccessPointer == 0) {
+    MemoryAccessPointer = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    MemoryAccessPointer = MemoryAccessPointer + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(MemoryAccessPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(MemoryAccessPointer + 0x10),1);
 }
 
 
