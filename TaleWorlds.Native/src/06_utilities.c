@@ -20498,7 +20498,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
 // 原始函数名：FUN_180898c86 - 系统状态查询函数F0
 // 功能：查询系统状态并返回32位状态信息
 #define QuerySystemStatusWithValidation FUN_180898c86
-DataWord QuerySystemStatusF0(void)
+DataWord QuerySystemStatusWithValidation(void)
 
 {
   ByteFlag dataValue;
@@ -20567,7 +20567,7 @@ DataWord QuerySystemStatusF0(void)
 // 原始函数名：FUN_180898d31 - 数据处理函数F2
 // 功能：处理输入数据并返回32位结果
 #define ProcessDataWithOutput FUN_180898d31
-DataWord ProcessDataF2(DataBuffer param_1,int *param_2)
+DataWord ProcessDataWithOutput(DataBuffer inputDataBuffer,int *outputResult)
 
 {
   DataWord register_R13D;
