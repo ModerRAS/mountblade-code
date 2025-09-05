@@ -32829,9 +32829,9 @@ void ExceptionHandlerA0(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49148 = 0;
+  ExceptionStatusFlagA1 = 0;
   LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  if (ExceptionEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
@@ -92017,10 +92017,10 @@ void ReleaseReferenceCounter(void)
   longlong PreviousReferenceCount;
   longlong *ResourceHandlePointer;
   
-  ResourceHandlePointer = _DAT_180c92478;
-  if (_DAT_180c92478 != (longlong *)0x0) {
+  ResourceHandlePointer = GlobalReferenceCounterPointer;
+  if (GlobalReferenceCounterPointer != (longlong *)0x0) {
     LOCK();
-    ReferenceContextPointer = _DAT_180c92478 + 1;
+    ReferenceContextPointer = GlobalReferenceCounterPointer + 1;
     PreviousReferenceCount = *ReferenceContextPointer;
     *(int *)ReferenceContextPointer = (int)*ReferenceContextPointer + -1;
     UNLOCK();
