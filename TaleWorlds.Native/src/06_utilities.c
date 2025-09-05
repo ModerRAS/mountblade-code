@@ -37334,7 +37334,7 @@ void CleanupResourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
 
 
 
-void Unwind_CleanupSecondaryResource(DataBuffer param_1,int64_t param_2)
+void Unwind_CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandler)
 
 {
   int *referenceCountPointer;
