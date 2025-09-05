@@ -26876,22 +26876,22 @@ uint32_t GetSystemResourceStatus(void)
   if ((SystemInitializationStatusArray.TertiaryField != 0) && (SystemInitializationStatusArray.SecondaryField != 0)) {
     SystemStackFlagSecondary = &SystemGlobalDataReference;
     SystemConfigurationValue = 0;
-    secondarySystemOffsetCounter = 0;
+    SecondarySystemOffsetCounter = 0;
     systemConfigurationValue = 0;
     ProcessSystemData(&SystemDataBufferPointer,SystemInitializationStatusArray.PrimaryField);
     CurrentThreadIdentifier = SecondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
-    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + SecondarySystemOffsetCounter) = 0x2c;
     SecondarySystemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.HighPart);
     CurrentThreadIdentifier = SecondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
-    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + SecondarySystemOffsetCounter) = 0x2c;
     SecondarySystemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.LowPart);
     CalculationFlags = SecondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CalculationFlags);
-    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + SecondarySystemOffsetCounter) = 0x2c;
     SecondarySystemDataBuffer = CalculationFlags;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.HighPart);
     ResourceAddressPointer = (void* *)CreateSystemObject(ThreadTitleBuffer,&SystemDataBufferPointer);
