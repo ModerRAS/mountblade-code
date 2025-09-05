@@ -3,6 +3,15 @@
 // 全局数据定义
 #define DefaultDataNodePointer DAT_00000018
 
+// 系统底层函数宏定义
+#define GetSystemContextHandle func_0x000180867680
+#define ProcessSystemDataWithValidation func_0x00018074b800
+#define ProcessSystemDataWithEncryption func_0x00018074b7d0
+#define ValidateSystemConfiguration func_0x000180881f80
+#define PerformSystemValidationCheck func_0x0001808c7ed0
+#define CalculateSystemDataSize func_0x00018076b3e0
+#define AcquireSystemDataHandle func_0x0001808e3470
+
 // 全局指针设置函数宏定义 (A0-A23)
 #define SetGlobalDataPointerA0 InitializeGlobalDataPointerA0
 #define SetGlobalDataPointerA1 InitializeGlobalDataPointerA1
@@ -3181,6 +3190,39 @@
 // 原始函数名：ProcessSystemContextA0 - 上下文处理函数A0
 // 功能：处理系统上下文
 #define ProcessContextA0 ProcessSystemContextA0
+
+// 系统调用函数语义化宏定义
+// 原始函数名：FUN_18006a050 - 系统状态检查函数
+// 功能：检查系统状态并执行相应操作
+#define CheckSystemStateAndExecute FUN_18006a050
+
+// 原始函数名：FUN_180058370 - 系统参数处理函数
+// 功能：处理系统参数并执行验证
+#define ProcessSystemParametersWithValidation FUN_180058370
+
+// 原始函数名：FUN_18004b790 - 系统资源处理函数
+// 功能：处理系统资源并执行清理
+#define ProcessSystemResourcesWithCleanup FUN_18004b790
+
+// 原始函数名：FUN_180058210 - 系统数据处理函数
+// 功能：处理系统数据并执行验证
+#define ProcessSystemDataWithValidation FUN_180058210
+
+// 原始函数名：FUN_1800587d0 - 系统事件处理函数
+// 功能：处理系统事件并执行回调
+#define ProcessSystemEventsWithCallback FUN_1800587d0
+
+// 原始函数名：FUN_18005cb60 - 系统清理函数
+// 功能：清理系统资源并重置状态
+#define CleanupSystemResourcesAndReset FUN_18005cb60
+
+// 原始函数名：FUN_1800adb30 - 系统验证函数
+// 功能：验证系统组件并执行检查
+#define ValidateSystemComponentsAndCheck FUN_1800adb30
+
+// 原始函数名：FUN_180080060 - 系统终止函数
+// 功能：终止系统执行并清理资源
+#define TerminateSystemExecution FUN_180080060
 
 // Unwind函数语义化宏定义
 // 原始函数名：Unwind_180902010 - 异常处理展开函数010
