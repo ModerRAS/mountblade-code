@@ -6187,16 +6187,24 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 
 
 
-// 函数: void ProcessResourceCleanup(void)
-// 
-// 资源清理处理函数
-// 清理系统资源并执行必要的清理操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 处理资源清理
+ * 
+ * 该函数负责清理系统资源并执行必要的清理操作。它会遍历系统中的资源，
+ * 释放不再使用的资源，并执行安全检查以确保清理过程的安全性。
+ * 
+ * 该函数包含以下步骤：
+ * 1. 检查系统上下文是否有效
+ * 2. 执行核心功能以获取资源列表
+ * 3. 遍历资源列表并释放每个资源
+ * 4. 清理内存缓冲区
+ * 5. 执行安全验证
+ * 
+ * @note 此函数包含安全验证机制，确保资源清理过程的安全性
+ * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * 
+ * @see ExecuteCoreFunction, ProcessUtilityOperation, ReleaseResource, CleanupMemory
+ */
 void ProcessResourceCleanup(void)
 
 {
@@ -6248,16 +6256,22 @@ void ProcessResourceCleanup(void)
 
 
 
-// 函数: void ExecuteSystemShutdown(void)
-// 
-// 执行系统关闭函数
-// 处理系统关闭时的必要操作
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 执行系统关闭
+ * 
+ * 该函数负责处理系统关闭时的必要操作。它会执行安全检查，
+ * 确保系统在关闭过程中不会出现数据丢失或资源泄漏。
+ * 
+ * 该函数执行以下操作：
+ * 1. 准备安全上下文
+ * 2. 执行系统安全检查
+ * 3. 确保系统安全关闭
+ * 
+ * @note 此函数包含安全验证机制，确保系统关闭过程的安全性
+ * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * 
+ * @see ExecuteSecurityCheck
+ */
 void ExecuteSystemShutdown(void)
 {
   uint64_t securityContext;
@@ -6269,16 +6283,24 @@ void ExecuteSystemShutdown(void)
 
 
 
-// 函数: void ValidateSystemState(void)
-// 
-// 验证系统状态函数
-// 检查系统状态并在必要时执行清理
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 验证系统状态
+ * 
+ * 该函数负责检查系统状态并在必要时执行清理操作。它会验证系统
+ * 的当前状态，确保系统运行在正常的状态下，如果发现异常状态，
+ * 会执行相应的清理和恢复操作。
+ * 
+ * 该函数执行以下操作：
+ * 1. 检查系统上下文中的状态标志
+ * 2. 如果发现异常状态，执行资源释放
+ * 3. 清理系统内存缓冲区
+ * 4. 执行安全验证
+ * 
+ * @note 此函数包含安全验证机制，确保状态验证过程的安全性
+ * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * 
+ * @see ReleaseResource, CleanupMemory, ExecuteSecurityCheck
+ */
 void ValidateSystemState(void)
 {
   int64_t systemContextPointer;
@@ -6295,16 +6317,33 @@ void ValidateSystemState(void)
 
 
 
-// 函数: uint64_t RegisterSystemComponent(int64_t componentHandle)
-// 
-// 注册系统组件函数
-// 向系统注册新的组件并验证其有效性
-// 
-// 参数:
-//   componentHandle - 组件句柄指针
-// 
-// 返回值:
-//   uint64_t - 注册结果状态码
+/**
+ * @brief 注册系统组件
+ * 
+ * 该函数负责向系统注册新的组件并验证其有效性。它会检查组件的
+ * 完整性，验证组件数据，并将组件添加到系统的组件列表中。
+ * 
+ * 该函数执行以下操作：
+ * 1. 查询和检索系统数据
+ * 2. 验证组件句柄和系统上下文
+ * 3. 检查组件状态
+ * 4. 处理和验证输入数据
+ * 5. 在组件列表中搜索重复项
+ * 6. 动态调整组件列表容量
+ * 7. 添加新组件到列表中
+ * 
+ * @param componentHandle 组件句柄指针，包含组件的配置和状态信息
+ * @return uint64_t 注册结果状态码：
+ *         - 0: 注册成功
+ *         - 0x1c: 系统上下文验证失败
+ *         - 0x1f: 组件数据验证失败
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会动态调整组件列表的容量，使用1.5倍的增长因子
+ * @warning 如果组件已存在于列表中，函数会返回0表示成功
+ * 
+ * @see QueryAndRetrieveSystemDataA0, ProcessInputData, ValidateInputData, ValidateComponentMemory
+ */
 uint64_t RegisterSystemComponent(int64_t componentHandle)
 
 {
@@ -6363,19 +6402,19 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
           loopIndex = searchIndex;
           do {
             if (*componentPointer == processBuffer) {
-              if (-1 < (int)loopIndex) {
+              if (-1 < (int32_t)loopIndex) {
                 return 0;
               }
               break;
             }
-            loopIndex = (ulonglong)((int)loopIndex + 1);
+            loopIndex = (uint64_t)((int32_t)loopIndex + 1);
             searchIndex = searchIndex + 1;
             componentPointer = componentPointer + 1;
-          } while ((longlong)searchIndex < (longlong)componentCount);
+          } while ((int64_t)searchIndex < (int64_t)componentCount);
         }
         componentCount = componentCount + 1;
-        if (*(int *)(componentData + COMPONENT_CAPACITY_OFFSET) < componentCount) {
-          capacity = (int)((float)*(int *)(componentData + COMPONENT_CAPACITY_OFFSET) * 1.5);
+        if (*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) < componentCount) {
+          capacity = (int32_t)((float)*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) * 1.5);
           bufferSize = componentCount;
           if (componentCount <= capacity) {
             bufferSize = capacity;
@@ -6391,14 +6430,14 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
             return 0;
           }
         }
-        *(longlong *)(*componentList + (longlong)*(int *)(componentData + COMPONENT_COUNT_OFFSET) * 8) = processBuffer;
-        *(int *)(componentData + COMPONENT_COUNT_OFFSET) = *(int *)(componentData + COMPONENT_COUNT_OFFSET) + 1;
-        *(int *)(componentData + COMPONENT_ACTIVE_OFFSET) = *(int *)(componentData + COMPONENT_ACTIVE_OFFSET) + 1;
+        *(int64_t *)(*componentList + (int64_t)*(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) * 8) = processBuffer;
+        *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) + 1;
+        *(int32_t *)(componentData + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentData + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
         #define COMPONENT_COMMAND_OFFSET 0x368    // 组件命令偏移量
         queryResult = ExecuteComponentCommand(componentData + COMPONENT_COMMAND_OFFSET,processBuffer);
-        if ((int)queryResult != 0) {
+        if ((int32_t)queryResult != 0) {
           return queryResult;
         }
       }
@@ -6426,7 +6465,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
  * @note 该函数会修改模块数据结构，并在成功时建立组件间的连接关系
  * @warning 初始化失败时可能需要清理已分配的资源
  */
-ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
+uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
 
 {
   // 模块结构体偏移量定义
@@ -6440,82 +6479,82 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
   #define MODULE_COMPONENT_OFFSET 0x80      // 模块组件偏移量
   #define MODULE_VALIDATION_OFFSET 0x38    // 模块验证偏移量
   
-  longlong *validationContextPtr;
-  longlong *componentDataPtr;
-  longlong *componentInfoPtr;
-  int initializationStatus;
-  uint messageProcessingResult;
-  ulonglong systemOperationResult;
-  longlong *resourceInfoPtr;
-  longlong *contextDataPtr;
-  longlong *moduleDataPtr;
-  longlong *baseValidationContext;
-  longlong localStackContext;
-  longlong tempStackContext;
+  int64_t *validationContextPtr;
+  int64_t *componentDataPtr;
+  int64_t *componentInfoPtr;
+  int32_t initializationStatus;
+  uint32_t messageProcessingResult;
+  uint64_t systemOperationResult;
+  int64_t *resourceInfoPtr;
+  int64_t *contextDataPtr;
+  int64_t *moduleDataPtr;
+  int64_t *baseValidationContext;
+  int64_t localStackContext;
+  int64_t tempStackContext;
   
-  systemOperationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
-  initializationStatus = (int)systemOperationResult;
+  systemOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
+  initializationStatus = (int32_t)systemOperationResult;
   if (initializationStatus == 0) {
-    baseValidationContext = (longlong *)0x0;
+    baseValidationContext = (int64_t *)0x0;
     moduleDataPtr = baseValidationContext;
     if (tempStackContext != 0) {
-      moduleDataPtr = (longlong *)(tempStackContext + -8);
+      moduleDataPtr = (int64_t *)(tempStackContext + -8);
     }
-    systemOperationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&tempStackContext);
-    initializationStatus = (int)systemOperationResult;
+    systemOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&tempStackContext);
+    initializationStatus = (int32_t)systemOperationResult;
     if (initializationStatus == 0) {
       localStackContext = 0;
-      messageProcessingResult = ProcessGameMessage(*(undefined8 *)(moduleData + MODULE_DATA_OFFSET_1),*(longlong *)(tempStackContext + 8) + MODULE_DATA_OFFSET_3,
+      messageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(tempStackContext + 8) + MODULE_DATA_OFFSET_3,
                             &localStackContext);
       if (messageProcessingResult != 0) {
         CleanupSystemDataStructures(moduleDataPtr);
-        return (ulonglong)messageProcessingResult;
+        return (uint64_t)messageProcessingResult;
       }
-      if (((*(uint *)(*(longlong *)(tempStackContext + 8) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemOperationResult = ValidateSystemOperationContextA0(localStackContext), (int)systemOperationResult != 0)) {
+      if (((*(uint32_t *)(*(int64_t *)(tempStackContext + 8) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
+         (systemOperationResult = ValidateSystemOperationContextA0(localStackContext), (int32_t)systemOperationResult != 0)) {
         return systemOperationResult;
       }
-      validationContextPtr = (longlong *)(localStackContext + MODULE_CONTEXT_OFFSET);
-      resourceInfoPtr = (longlong *)(*validationContextPtr + MODULE_RESOURCE_OFFSET);
+      validationContextPtr = (int64_t *)(localStackContext + MODULE_CONTEXT_OFFSET);
+      resourceInfoPtr = (int64_t *)(*validationContextPtr + MODULE_RESOURCE_OFFSET);
       if (*validationContextPtr == 0) {
         resourceInfoPtr = baseValidationContext;
       }
       contextDataPtr = baseValidationContext;
       componentDataPtr = baseValidationContext;
       componentInfoPtr = baseValidationContext;
-      if (resourceInfoPtr != (longlong *)0x0) {
+      if (resourceInfoPtr != (int64_t *)0x0) {
         contextDataPtr = resourceInfoPtr + 3;
       }
       while( true ) {
         if (contextDataPtr == validationContextPtr) {
-          *(longlong **)(localStackContext + MODULE_COMPONENT_OFFSET) = moduleDataPtr;
+          *(int64_t **)(localStackContext + MODULE_COMPONENT_OFFSET) = moduleDataPtr;
           ExecuteSystemDataProcessing(localStackContext,moduleDataPtr);
           moduleDataPtr[2] = localStackContext;
           systemOperationResult = InitializeSystemComponent(localStackContext);
-          if ((int)systemOperationResult == 0) {
+          if ((int32_t)systemOperationResult == 0) {
             return 0;
           }
           return systemOperationResult;
         }
-        if ((int)moduleDataPtr[5] <= (int)componentInfoPtr) {
+        if ((int32_t)moduleDataPtr[5] <= (int32_t)componentInfoPtr) {
           return 0x1c;
         }
         resourceInfoPtr = contextDataPtr + 4;
-        if (contextDataPtr == (longlong *)0x0) {
-          resourceInfoPtr = (longlong *)MODULE_VALIDATION_OFFSET;
+        if (contextDataPtr == (int64_t *)0x0) {
+          resourceInfoPtr = (int64_t *)MODULE_VALIDATION_OFFSET;
         }
-        *(longlong *)(moduleDataPtr[4] + 8 + (longlong)componentDataPtr) = *resourceInfoPtr;
+        *(int64_t *)(moduleDataPtr[4] + 8 + (int64_t)componentDataPtr) = *resourceInfoPtr;
         if (contextDataPtr == validationContextPtr) break;
-        resourceInfoPtr = (longlong *)(*contextDataPtr + MODULE_RESOURCE_OFFSET);
+        resourceInfoPtr = (int64_t *)(*contextDataPtr + MODULE_RESOURCE_OFFSET);
         if (*contextDataPtr == 0) {
           resourceInfoPtr = baseValidationContext;
         }
         contextDataPtr = baseValidationContext;
-        if (resourceInfoPtr != (longlong *)0x0) {
+        if (resourceInfoPtr != (int64_t *)0x0) {
           contextDataPtr = resourceInfoPtr + 3;
         }
         componentDataPtr = componentDataPtr + 3;
-        componentInfoPtr = (longlong *)(ulonglong)((int)componentInfoPtr + 1);
+        componentInfoPtr = (int64_t *)(uint64_t)((int32_t)componentInfoPtr + 1);
       }
       return 0x1c;
     }
