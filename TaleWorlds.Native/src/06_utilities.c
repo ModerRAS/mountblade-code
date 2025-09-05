@@ -86,9 +86,6 @@
 // 功能：执行安全检查，程序不会返回
 #define ExecuteSecurityCheck FUN_180895b89
 
-// 原始函数名：FUN_1809423e0 - 工具回调执行函数B0
-// 功能：执行工具系统回调函数B0
-#define ExecuteUtilityCallbackB0 FUN_1809423e0
 
 // 原始函数名：FUN_180942400 - 工具回调执行函数B1
 // 功能：执行工具系统回调函数B1
@@ -17816,8 +17813,9 @@ void FUN_180899950(longlong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_1808999c1(undefined8 *param_1,undefined8 param_2)
-void FUN_1808999c1(undefined8 *param_1,undefined8 param_2)
+// 函数: void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
+// 功能：处理系统数据指针，执行指针操作和验证
+void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
 
 {
   undefined8 *puVar1;
@@ -17973,8 +17971,9 @@ void FUN_1808999c1(undefined8 *param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180899ae6(undefined8 *param_1)
-void FUN_180899ae6(undefined8 *param_1)
+// 函数: void InitializeSystemDataStructure(undefined8 *param_1)
+// 功能：初始化系统数据结构，设置初始值和状态
+void InitializeSystemDataStructure(undefined8 *param_1)
 
 {
   uint uVar1;
