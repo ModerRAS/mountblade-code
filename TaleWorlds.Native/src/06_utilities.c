@@ -17166,7 +17166,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar9 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
-        if ((iVar9 != 0) || (iVar9 = FUN_18088cbb0(lVar2,&fStackX_24,0), iVar9 != 0)) break;
+        if ((iVar9 != 0) || (iVar9 = ValidateDataA2(lVar2,&fStackX_24,0), iVar9 != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809844c8;
@@ -20294,17 +20294,18 @@ ProcessCheckpointB:
 
 
 
-undefined8 ValidateDataFormatA0(undefined8 param_1,undefined4 *param_2)
+undefined8 ValidateDataFormatA0(undefined8 systemContext,undefined4 *dataBuffer)
 
 {
-  undefined8 uVar1;
+  undefined8 validationResult;
   
-  uVar1 = FUN_1808aed00(param_1,param_2,4);
-  if (((int)uVar1 == 0) && (uVar1 = FUN_1808aed00(param_1,param_2 + 1,4), (int)uVar1 == 0x11)) {
-    param_2[1] = *param_2;
+  validationResult = ValidateSystemMemoryBlock(systemContext,dataBuffer,4);
+  if (((int)validationResult == 0) && 
+      (validationResult = ValidateSystemMemoryBlock(systemContext,dataBuffer + 1,4), (int)validationResult == 0x11)) {
+    dataBuffer[1] = *dataBuffer;
     return 0;
   }
-  return uVar1;
+  return validationResult;
 }
 
 
@@ -20312,14 +20313,14 @@ undefined8 ValidateDataFormatA0(undefined8 param_1,undefined4 *param_2)
 undefined8 GetSystemStatusA1(void)
 
 {
-  undefined8 uVar1;
-  undefined4 *registerRBX;
+  undefined8 statusResult;
+  undefined4 *statusBuffer;
   
-  uVar1 = FUN_1808aed00();
-  if ((int)uVar1 != 0x11) {
-    return uVar1;
+  statusResult = CheckSystemStatus();
+  if ((int)statusResult != 0x11) {
+    return statusResult;
   }
-  registerRBX[1] = *registerRBX;
+  statusBuffer[1] = *statusBuffer;
   return 0;
 }
 
