@@ -830,6 +830,71 @@
 // 功能：清理异常处理状态，偏移量200处的资源
 #define CleanupExceptionAtOffset200 Unwind_180912040
 
+// 异常处理函数语义化宏定义（18090d000系列）
+// 原始函数名：Unwind_18090d000 - 异常清理函数C0
+// 功能：清理异常处理状态，偏移量0x1d0处的资源
+#define CleanupExceptionAtOffset1D0 Unwind_18090d000
+
+// 原始函数名：Unwind_18090d010 - 异常清理函数C1
+// 功能：清理异常处理状态，偏移量0x1e0处的资源
+#define CleanupExceptionAtOffset1E0 Unwind_18090d010
+
+// 原始函数名：Unwind_18090d020 - 异常清理函数C2
+// 功能：清理异常处理状态，偏移量0x1f0处的资源
+#define CleanupExceptionAtOffset1F0 Unwind_18090d020
+
+// 原始函数名：Unwind_18090d030 - 异常清理函数C3
+// 功能：清理异常处理状态，偏移量0x200处的资源
+#define CleanupExceptionAtOffset200 Unwind_18090d030
+
+// 原始函数名：Unwind_18090d040 - 异常清理函数C4
+// 功能：清理异常处理状态，偏移量0x210处的资源
+#define CleanupExceptionAtOffset210 Unwind_18090d040
+
+// 原始函数名：Unwind_18090d050 - 异常清理函数C5
+// 功能：清理异常处理状态，偏移量0x220处的资源
+#define CleanupExceptionAtOffset220 Unwind_18090d050
+
+// 原始函数名：Unwind_18090d060 - 异常清理函数C6
+// 功能：清理异常处理状态，偏移量0x230处的资源
+#define CleanupExceptionAtOffset230 Unwind_18090d060
+
+// 原始函数名：Unwind_18090d070 - 异常清理函数C7
+// 功能：清理异常处理状态，偏移量0x240处的资源
+#define CleanupExceptionAtOffset240 Unwind_18090d070
+
+// 原始函数名：Unwind_18090d080 - 异常清理函数C8
+// 功能：清理异常处理状态，偏移量0x250处的资源
+#define CleanupExceptionAtOffset250 Unwind_18090d080
+
+// 原始函数名：Unwind_18090d090 - 异常清理函数C9
+// 功能：清理异常处理状态，偏移量0x260处的资源
+#define CleanupExceptionAtOffset260 Unwind_18090d090
+
+// 原始函数名：Unwind_18090d0a0 - 异常清理函数C10
+// 功能：清理异常处理状态，偏移量0x270处的资源
+#define CleanupExceptionAtOffset270 Unwind_18090d0a0
+
+// 原始函数名：Unwind_18090d0b0 - 异常清理函数C11
+// 功能：清理异常处理状态，偏移量0x280处的资源
+#define CleanupExceptionAtOffset280 Unwind_18090d0b0
+
+// 原始函数名：Unwind_18090d0c0 - 异常清理函数C12
+// 功能：清理异常处理状态，偏移量0x290处的资源
+#define CleanupExceptionAtOffset290 Unwind_18090d0c0
+
+// 原始函数名：Unwind_18090d0d0 - 异常清理函数C13
+// 功能：清理异常处理状态，偏移量0x2a0处的资源
+#define CleanupExceptionAtOffset2A0 Unwind_18090d0d0
+
+// 原始函数名：Unwind_18090d0e0 - 异常清理函数C14
+// 功能：清理异常处理状态，偏移量0x2b0处的资源
+#define CleanupExceptionAtOffset2B0 Unwind_18090d0e0
+
+// 原始函数名：Unwind_18090d0f0 - 异常清理函数C15
+// 功能：清理异常处理状态，偏移量0x2c0处的资源
+#define CleanupExceptionAtOffset2C0 Unwind_18090d0f0
+
 // 全局变量语义化宏定义
 // 原始变量名：_DAT_180c8a9b0 - 异常上下文指针
 // 功能：存储异常处理的上下文信息
