@@ -49351,7 +49351,7 @@ void Unwind_1809057b0(DataBuffer param_1,int64_t param_2)
       }
       FUN_18066c220(poperationResult + 10,&plStackX_10,(uint64_t)*(uint *)(poperationResult + 8),
                     *(DataWord *)(poperationResult + 9),1);
-      pcalculatedValue = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(ByteFlag *)((int64_t)poperationResult + 0x5c));
+      pcalculatedValue = (int *)CalculateSystemValue(_DAT_180c8ed18,0x18,*(ByteFlag *)((int64_t)poperationResult + 0x5c));
       *pcalculatedValue = iterationCount;
       pcalculatedValue[2] = 0;
       pcalculatedValue[3] = 0;
@@ -50105,7 +50105,7 @@ void Unwind_180905950(DataBuffer param_1,int64_t param_2)
       }
       FUN_18066c220(poperationResult + 10,&plStackX_10,(uint64_t)*(uint *)(poperationResult + 8),
                     *(DataWord *)(poperationResult + 9),1);
-      pcalculatedValue = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(ByteFlag *)((int64_t)poperationResult + 0x5c));
+      pcalculatedValue = (int *)CalculateSystemValue(_DAT_180c8ed18,0x18,*(ByteFlag *)((int64_t)poperationResult + 0x5c));
       *pcalculatedValue = iterationCount;
       pcalculatedValue[2] = 0;
       pcalculatedValue[3] = 0;
