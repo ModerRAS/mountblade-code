@@ -10009,16 +10009,16 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
 void ProcessObjectContextValidationAndIncrement(int64_t ObjectContext,int64_t ValidationContext)
 
 {
-  int PackageValidationStatusCode;
-  int64_t ContextPointer;
+  int ObjectValidationStatusCode;
+  int64_t ValidatedContextPointer;
   
-  PackageValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset),&ContextPointer);
-  if (PackageValidationStatus == 0) {
-    if (ContextPointer != 0) {
-      ContextPointer = ContextPointer + -8;
+  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset),&ValidatedContextPointer);
+  if (ObjectValidationStatusCode == 0) {
+    if (ValidatedContextPointer != 0) {
+      ValidatedContextPointer = ValidatedContextPointer + -8;
     }
-    *(int *)(ContextPointer + ContextReferenceCountOffset) = *(int *)(ContextPointer + ContextReferenceCountOffset) + 1;
-    *(uint8_t *)(ContextPointer + ContextStatusFlagOffset) = 1;
+    *(int *)(ValidatedContextPointer + ContextReferenceCountOffset) = *(int *)(ValidatedContextPointer + ContextReferenceCountOffset) + 1;
+    *(uint8_t *)(ValidatedContextPointer + ContextStatusFlagOffset) = 1;
           ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
   }
   return;
@@ -10039,16 +10039,16 @@ void ProcessObjectContextValidationAndIncrement(int64_t ObjectContext,int64_t Va
 void ProcessObjectContextValidationAndReset(int64_t ObjectContext,int64_t ValidationContext)
 
 {
-  int PackageValidationStatusCode;
-  int64_t ContextPointer;
+  int ObjectValidationStatusCode;
+  int64_t ValidatedContextPointer;
   
-  ValidationStatus = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset),&ContextPointer);
-  if (ValidationStatus == 0) {
-    if (ContextPointer != 0) {
-      ContextPointer = ContextPointer + -8;
+  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset),&ValidatedContextPointer);
+  if (ObjectValidationStatusCode == 0) {
+    if (ValidatedContextPointer != 0) {
+      ValidatedContextPointer = ValidatedContextPointer + -8;
     }
-    *(int *)(ContextPointer + ContextReferenceCountOffset) = *(int *)(ContextPointer + ContextReferenceCountOffset) + 1;
-    *(uint8_t *)(ContextPointer + ContextStatusFlagOffset) = 0;
+    *(int *)(ValidatedContextPointer + ContextReferenceCountOffset) = *(int *)(ValidatedContextPointer + ContextReferenceCountOffset) + 1;
+    *(uint8_t *)(ValidatedContextPointer + ContextStatusFlagOffset) = 0;
           ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
   }
   return;
@@ -10059,37 +10059,37 @@ void ProcessObjectContextValidationAndReset(int64_t ObjectContext,int64_t Valida
 uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t ObjectContext,int64_t SystemContext)
 
 {
-  float CalculatedFloatResult;
+  float ProcessedFloatValue;
   int64_t ResourceTablePointer;
-  uint8_t ResourceHashStatus;
-  float SecondaryFloatValue;
-  uint ValidationContext;
-  uint32_t ValidationParameterValue;
+  uint8_t ResourceValidationStatus;
+  float MinimumFloatValue;
+  uint FloatValidationContext;
+  uint32_t FloatParameter;
   
-  ValidationContext = *(uint *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
-  if ((ValidationContext & FloatInfinityMask) == FloatInfinityMask) {
+  FloatValidationContext = *(uint *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
+  if ((FloatValidationContext & FloatInfinityMask) == FloatInfinityMask) {
     return ErrorFloatValidationFailure;
   }
-  ValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset),&ValidationContext);
-  if ((int)ResourceHashStatus != 0) {
-    return ResourceHashStatus;
+  FloatValidationStatusCode = ValidateObjectContext(*(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset),&FloatValidationContext);
+  if ((int)ResourceValidationStatus != 0) {
+    return ResourceValidationStatus;
   }
-  ResourceTablePointer = *(int64_t *)(CombineFloatAndInteger(ValidationContextParam,ValidationContext) + ValidationContextCleanupFunctionOffset);
+  ResourceTablePointer = *(int64_t *)(CombineFloatAndInteger(FloatParameter,FloatValidationContext) + ValidationContextCleanupFunctionOffset);
   if (ResourceTablePointer == 0) {
     return ErrorInvalidResourceData;
   }
   if ((*(byte *)(ResourceTablePointer + ResourceValidationStatussOffset) & 0x11) != 0) {
     return ResourceValidationError;
   }
-  ComputedFloatValue = *(float *)(ObjectContext + ObjectContextValidationParamOffset);
-  SecondaryFloatValue = *(float *)(ResourceTablePointer + ResourceFloatValue1Offset);
-  if ((*(float *)(ResourceTablePointer + ResourceFloatValue1Offset) <= SourceFloatValue) &&
-     (SecondaryFloatValue = *(float *)(ResourceTablePointer + ResourceFloatValue2Offset), SourceFloatValue <= *(float *)(ResourceTablePointer + ResourceFloatValue2Offset))) {
-    SecondaryFloatValue = SourceFloatValue;
+  ProcessedFloatValue = *(float *)(ObjectContext + ObjectContextValidationParamOffset);
+  MinimumFloatValue = *(float *)(ResourceTablePointer + ResourceFloatValue1Offset);
+  if ((*(float *)(ResourceTablePointer + ResourceFloatValue1Offset) <= ProcessedFloatValue) &&
+     (MinimumFloatValue = *(float *)(ResourceTablePointer + ResourceFloatValue2Offset), ProcessedFloatValue <= *(float *)(ResourceTablePointer + ResourceFloatValue2Offset))) {
+    MinimumFloatValue = ProcessedFloatValue;
   }
-  *(float *)(ObjectContext + ObjectContextValidationParamOffset) = SourceFloatValue;
-  *(float *)(CombineValidationContextAndParam(ValidationContextParam,ValidationContext) + 4) = SourceFloatValue;
-        ReleaseSystemContextResources(*(uint8_t *)(ValidationContext + ValidationContextSystemHandleOffset),ObjectContext);
+  *(float *)(ObjectContext + ObjectContextValidationParamOffset) = ProcessedFloatValue;
+  *(float *)(CombineValidationContextAndParam(FloatParameter,FloatValidationContext) + 4) = ProcessedFloatValue;
+        ReleaseSystemContextResources(*(uint8_t *)(SystemContext + SystemResourceManagerOffset),ObjectContext);
 }
 
 
@@ -63888,7 +63888,18 @@ void SetSystemDataStructurePointerAtSecondaryOffset(uint8_t ObjectContext,int64_
  * @return 无返回值
  * @note 此函数主要用于系统初始化过程
  */
-void SetSystemDataStructurePointerAtOffset1C0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数在偏移量0x1C0处设置系统数据结构指针
+ * 用于系统初始化和配置
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含设置所需的数据
+ * @return 无返回值
+ * @note 此函数主要用于系统数据结构的初始化配置
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1c0) = &SystemDataStructure;
