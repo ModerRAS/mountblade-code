@@ -45105,7 +45105,7 @@ SystemCounterCheckPoint:
         *(uint8_t *)SystemThreadContext = 0;
         StackParameterB = SystemThreadContext;
         ResourceAddress = StartSystemThread(SystemThreadContext);
-        SystemFlag88 = ConcatenatedSystemValue(SystemFlag88._4_4_, ResourceAddress);
+        SystemFlag88 = ConcatenatedSystemValue(UNION_LOW_PART(SystemFlag88), ResourceAddress);
         *SystemThreadContext = 0x73656873617263;
         SystemConfigValue = 7;
         GetSystemCounter(SystemCounterBuffer80, &SystemParameterPointer);
@@ -45165,7 +45165,7 @@ SystemCounterCheckPoint:
       StackParameterB = (void**)CreateSystemThreadObject(SystemMemoryPoolTemplate, (long long)SystemCounter, 0x13);
       *(uint8_t *)StackParameterB = 0;
       ResourceAddress = StartSystemThread(StackParameterB);
-      SystemFlag88 = ConcatenatedSystemValue(SystemFlag88._4_4_, ResourceAddress);
+      SystemFlag88 = ConcatenatedSystemValue(UNION_LOW_PART(SystemFlag88), ResourceAddress);
       memcpy(StackParameterB, &SystemStringBuffer, CalculationFlags);
     }
     SystemConfigValue = 0;

@@ -2138,8 +2138,8 @@ NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHand
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
     ConnectionContextHandle = HandleConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
     if (ConnectionContextHandle != 0) {
-      if ((int)NetworkConnectionValidationData[1] != 0) {
-          memcpy(ConnectionContextHandle, *NetworkConnectionValidationData, (int64_t)(int)NetworkConnectionValidationData[1]);
+      if ((int)NetworkConnectionValidationData[ConnectionDataSizeIndex] != 0) {
+          memcpy(ConnectionContextHandle, *NetworkConnectionValidationData, (int64_t)(int)NetworkConnectionValidationData[ConnectionDataSizeIndex]);
       }
       return ConnectionContextHandle;
     }
@@ -2497,8 +2497,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     }
     NetworkStatus PrimaryConnectionState = *(NetworkStatus *)(ConnectionContext + NetworkPacketSecondaryDataOffset);
     ConnectionStateArray[PrimaryStateIndex] = PrimaryConnectionState;
-    NetworkPacketProcessor PrimaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-    PacketValidationResult = PrimaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), ConnectionStateArray, 4);
+    NetworkPacketProcessor PrimaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + PacketDataSizeIndex));
+    PacketValidationResult = PrimaryPacketProcessor(*(NetworkHandle **)(*PacketData + PacketDataSizeIndex), ConnectionStateArray, ArraySizeIndex);
     if ((int)PacketValidationResult != 0) {
       return PacketValidationResult;
     }
