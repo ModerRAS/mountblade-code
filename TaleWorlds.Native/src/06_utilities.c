@@ -16777,8 +16777,8 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
   int64_t iterationCount;
   int maxIndex;
   int64_t dataPointer;
-  float value1;
-  float value2;
+  float firstValue;
+  float secondValue;
   ByteFlag securityBuffer [68];
   DataWord checksumValue;
   int *resultCounterPtr;
