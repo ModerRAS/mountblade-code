@@ -15916,10 +15916,10 @@ void InitializeSystemDebugManagerSecondary(void)
 
 
 /**
- * 初始化系统调试管理器C
+ * 初始化系统调试管理器（第三模块）
  * 设置系统调试标识符和相关数据结构
  */
-void InitializeSystemDebugManagerC(void)
+void InitializeSystemDebugManagerTertiary(void)
 
 {
   char NodeActiveFlag;
