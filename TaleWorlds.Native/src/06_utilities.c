@@ -14386,39 +14386,60 @@ undefined8 ValidateSystemB0(longlong validationContext,longlong systemContext)
 
 
 
-// 函数: int ProcessUtilityDataWithCompression(longlong dataContext,longlong dataBuffer,int dataSize)
-//
-// 处理工具系统数据压缩操作
-// 对传入的数据进行压缩处理，返回处理后的数据大小
-//
-// 参数:
-//   dataContext: 数据上下文指针，包含压缩配置信息
-//   dataBuffer: 数据缓冲区指针，指向待压缩的数据
-//   dataSize: 数据大小，指定需要压缩的数据长度
-//
-// 返回值:
-//   int: 处理后的数据大小，如果失败返回错误码
+/**
+ * @brief 处理工具系统数据压缩操作
+ * 
+ * 该函数对传入的数据进行压缩处理，依次执行数据验证、缓冲区处理、
+ * 加密操作、系统缓冲区操作和验证操作。函数通过多个步骤处理数据，
+ * 确保数据压缩的安全性和完整性。
+ * 
+ * @param dataContext 数据上下文指针，包含压缩配置信息
+ * @param dataBuffer 数据缓冲区指针，指向待压缩的数据
+ * @param dataSize 数据大小，指定需要压缩的数据长度
+ * 
+ * @return int 处理后的数据大小，如果失败返回错误码
+ * 
+ * @note 原始函数名：FUN_1808930c0
+ * @warning 函数包含多个处理步骤，确保每个步骤都成功执行
+ * @see ProcessSystemDataWithValidation, ProcessSystemBufferDataA0, ProcessSystemDataWithEncryption
+ * @see ProcessSystemBufferOperationA0, ExecuteSystemBufferValidationA0
+ */
 int ProcessUtilityDataWithCompression(longlong dataContext,longlong dataBuffer,int dataSize)
 
 {
-  int iVar1;
-  int operationResult;
+  int ProcessedBytes;            // 已处理的字节数
+  int OperationResult;           // 操作结果
   
-  iVar1 = ProcessSystemDataWithValidation(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&SystemDataBufferA);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemDataWithEncryption(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&SystemDataBufferA);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemBufferOperationA0(iVar1 + param_2,param_3 - iVar1,param_1 + 0x20,
-                        *(undefined4 *)(param_1 + 0x18));
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&SystemDataBufferA);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ExecuteSystemBufferValidationA0(iVar1 + param_2,param_3 - iVar1,
-                        param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
-  return operationResult + iVar1;
+  // 第一步：验证系统数据
+  ProcessedBytes = ProcessSystemDataWithValidation(dataBuffer, dataSize, *(undefined4 *)(dataContext + 0x10));
+  
+  // 第二步：处理数据缓冲区
+  OperationResult = ProcessSystemBufferDataA0(dataBuffer + ProcessedBytes, dataSize - ProcessedBytes, &SystemDataBufferA);
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第三步：执行数据加密
+  OperationResult = ProcessSystemDataWithEncryption(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(undefined4 *)(dataContext + 0x18));
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第四步：再次处理数据缓冲区
+  OperationResult = ProcessSystemBufferDataA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, &SystemDataBufferA);
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第五步：执行系统缓冲区操作
+  OperationResult = ProcessSystemBufferOperationA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, dataContext + 0x20,
+                        *(undefined4 *)(dataContext + 0x18));
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第六步：第三次处理数据缓冲区
+  OperationResult = ProcessSystemBufferDataA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, &SystemDataBufferA);
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第七步：执行系统缓冲区验证
+  OperationResult = ExecuteSystemBufferValidationA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes,
+                        dataContext + 0x20 + (longlong)*(int *)(dataContext + 0x18) * 4);
+  
+  // 返回总处理字节数
+  return OperationResult + ProcessedBytes;
 }
 
 
