@@ -2198,7 +2198,7 @@
 
 // 原始函数名：FUN_180892880 - 浮点数验证和处理函数A1
 // 功能：验证浮点数数据的有效性，处理INF和NaN值，执行数据范围检查和更新操作
-#define ValidateAndProcessFloatingPointNumberA1 FUN_180892880
+#define ValidateAndProcessFloatingPointNumber FUN_180892880
 
 // 原始函数名：FUN_1808928d3 - 系统状态查询函数A0
 // 功能：查询系统状态并返回状态信息
@@ -4997,10 +4997,10 @@ uint8_t UtilityMemoryPoolData4;
 //   uint8_t - 分配结果状态
 uint8_t UtilityAllocateMemoryPool;
 // 内存池管理数据
-uint8_t MemoryPoolManagementData1;
-uint8_t MemoryPoolManagementData2;
-uint8_t MemoryPoolManagementData3;
-uint8_t MemoryPoolManagementData4;
+uint8_t MemoryPoolManagementDataPrimary;
+uint8_t MemoryPoolManagementDataSecondary;
+uint8_t MemoryPoolManagementDataTertiary;
+uint8_t MemoryPoolManagementDataQuaternary;
 
 // 函数: uint8_t UtilityFreeMemoryPool;
 // 
@@ -5014,32 +5014,30 @@ uint8_t MemoryPoolManagementData4;
 //   uint8_t - 释放结果状态
 uint8_t UtilityFreeMemoryPool;
 // 工具系统释放池配置
-uint8_t UtilityFreePoolConfig1;
-uint8_t UtilityFreePoolData1;
-uint8_t UtilityFreePoolConfig2;
-uint8_t UtilityFreePoolData2;
-uint8_t UtilityFreePoolConfig3;
+uint8_t UtilityFreePoolConfigPrimary;
+uint8_t UtilityFreePoolDataPrimary;
+uint8_t UtilityFreePoolConfigSecondary;
+uint8_t UtilityFreePoolDataSecondary;
+uint8_t UtilityFreePoolConfigTertiary;
 // 工具系统释放池功能指针
-uint8_t UtilityFreePoolPtr1;
-uint8_t UtilityFreePoolConfig4;
-uint8_t UtilityFreePoolPtr2;
-uint8_t UtilityFreePoolConfig5;
-uint8_t UtilityFreePoolPtr3;
-uint8_t UtilityFreePoolConfig6;
-uint8_t UtilityFreePoolPtr4;
-uint8_t UtilityFreePoolConfig7;
-uint8_t UtilityFreePoolPtr5;
-uint8_t UtilityFreePoolConfig8;
-uint8_t UtilityFreePoolPtr6;
-uint8_t UtilityFreePoolConfig9;
-uint8_t UtilityFreePoolPtr7;
-uint8_t UtilityFreePoolConfig10;
-uint8_t UtilityFreePoolPtr8;
-uint8_t UtilityFreePoolConfig11;
-uint8_t UtilityFreePoolPtr9;
-uint8_t UtilityFreePoolConfig12;
-uint8_t UtilityFreePoolPtr10;
-uint8_t UtilityFreePoolConfig13;
+uint8_t UtilityFreePoolPointerPrimary;
+uint8_t UtilityFreePoolConfigQuaternary;
+uint8_t UtilityFreePoolPointerSecondary;
+uint8_t UtilityFreePoolConfigQuinary;
+uint8_t UtilityFreePoolPointerTertiary;
+uint8_t UtilityFreePoolConfigSenary;
+uint8_t UtilityFreePoolPointerQuaternary;
+uint8_t UtilityFreePoolConfigSeptenary;
+uint8_t UtilityFreePoolPointerQuinary;
+uint8_t UtilityFreePoolConfigOctonary;
+uint8_t UtilityFreePoolPointerSenary;
+uint8_t UtilityFreePoolConfigNonary;
+uint8_t UtilityFreePoolPointerSeptenary;
+uint8_t UtilityFreePoolConfigDenary;
+uint8_t UtilityFreePoolPointerOctonary;
+uint8_t UtilityFreePoolConfigUndenary;
+uint8_t UtilityFreePoolPointerNonary;
+uint8_t UtilityFreePoolConfigDuodenary;
 // 工具系统处理数据
 uint8_t UtilityProcessData1Input;
 uint8_t UtilityProcessData1Output;
@@ -12762,56 +12760,68 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
  * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
  * @see ValidateAndProcessFloatingPointNumberA0, QuerySystemStatusA0
  */
-DataBuffer ValidateAndProcessFloatingPointNumberA1(int64_t DataHandle,int64_t ContextHandle)
-
+/**
+ * @brief 验证并处理浮点数数据
+ * 
+ * 该函数验证浮点数数据的有效性，包括数据范围检查、标志位验证等操作。
+ * 如果验证通过，会将浮点数值写入目标位置并执行后续操作。
+ * 
+ * @param DataHandle 数据句柄，包含要处理的浮点数数据
+ * @param ContextHandle 上下文句柄，用于访问系统上下文信息
+ * @return DataBuffer 操作结果缓冲区，包含处理状态和结果数据
+ * 
+ * @note 原始函数名：FUN_180892880
+ * @warning 如果数据验证失败，函数会返回相应的错误代码
+ */
+DataBuffer ValidateAndProcessFloatingPointNumber(int64_t DataHandle, int64_t ContextHandle)
 {
-  // 浮点数处理变量
-  float InputFloatValue;                           // 输入浮点数值
-  int64_t DataPointer;                           // 数据指针
-  DataBuffer OperationResult;                     // 操作结果
-  int64_t StackBuffer;                           // 栈缓冲区
-  int64_t SystemDataArray [2];                    // 系统数据数组
-  
-  // 查询系统数据并获取相关信息
-  OperationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(DataHandle + 0x10),SystemDataArray);
-  if ((int)OperationResult == 0) {
-    // 处理系统数据数组
-    if (SystemDataArray[0] == 0) {
-      SystemDataArray[0] = 0;
-    }
-    else {
-      SystemDataArray[0] = SystemDataArray[0] + -8;
-    }
-    StackBuffer = 0;
-    OperationResult = ValidateSystemDataStructureA0(SystemDataArray[0],DataHandle + 0x18,&StackBuffer);
+    // 浮点数处理变量
+    float InputFloatValue;                           // 输入浮点数值
+    int64_t DataPointer;                           // 数据指针
+    DataBuffer OperationResult;                     // 操作结果
+    int64_t StackBuffer;                           // 栈缓冲区
+    int64_t SystemDataArray [2];                    // 系统数据数组
+    
+    // 查询系统数据并获取相关信息
+    OperationResult = QueryAndRetrieveSystemData(*(DataWord *)(DataHandle + 0x10), SystemDataArray);
     if ((int)OperationResult == 0) {
-      // 验证数据指针有效性
-      if (StackBuffer == 0) {
-        return 0x4a;
-      }
-      DataPointer = *(int64_t *)(StackBuffer + 0x10);
-      if (DataPointer == 0) {
-        return 0x1e;
-      }
-      // 检查数据状态标志位
-      if ((*(byte *)(DataPointer + 0x34) & 0x11) != 0) {
-        return 0x1f;
-      }
-      // 执行数据验证操作
-      OperationResult = ValidateDataRangeAndFlagsA0(DataPointer,DataHandle + 0x25,DataHandle + 0x20);
-      if ((int)OperationResult == 0) {
-        InputFloatValue = *(float *)(DataHandle + 0x20);
-        // 验证浮点数范围
-        if ((*(float *)(DataPointer + 0x38) <= InputFloatValue) &&
-           (InputFloatValue < *(float *)(DataPointer + 0x3c) || InputFloatValue == *(float *)(DataPointer + 0x3c))) {
-          OperationResult = *(DataBuffer *)(ContextHandle + 0x98);
-          *(float *)(StackBuffer + 4) = InputFloatValue;
-                    // WARNING: Subroutine does not return
-          ExecuteSystemContextOperationA0(OperationResult,DataHandle);
+        // 处理系统数据数组
+        if (SystemDataArray[0] == 0) {
+            SystemDataArray[0] = 0;
         }
-        OperationResult = 0x1c;
-      }
-    }
+        else {
+            SystemDataArray[0] = SystemDataArray[0] - 8;
+        }
+        StackBuffer = 0;
+        OperationResult = ValidateSystemDataStructure(SystemDataArray[0], DataHandle + 0x18, &StackBuffer);
+        if ((int)OperationResult == 0) {
+            // 验证数据指针有效性
+            if (StackBuffer == 0) {
+                return 0x4a;
+            }
+            DataPointer = *(int64_t *)(StackBuffer + 0x10);
+            if (DataPointer == 0) {
+                return 0x1e;
+            }
+            // 检查数据状态标志位
+            if ((*(byte *)(DataPointer + 0x34) & 0x11) != 0) {
+                return 0x1f;
+            }
+            // 执行数据验证操作
+            OperationResult = ValidateDataRangeAndFlags(DataPointer, DataHandle + 0x25, DataHandle + 0x20);
+            if ((int)OperationResult == 0) {
+                InputFloatValue = *(float *)(DataHandle + 0x20);
+                // 验证浮点数范围
+                if ((*(float *)(DataPointer + 0x38) <= InputFloatValue) &&
+                   (InputFloatValue < *(float *)(DataPointer + 0x3c) || InputFloatValue == *(float *)(DataPointer + 0x3c))) {
+                    OperationResult = *(DataBuffer *)(ContextHandle + 0x98);
+                    *(float *)(StackBuffer + 4) = InputFloatValue;
+                    // 执行系统上下文操作
+                    ExecuteSystemContextOperation(OperationResult, DataHandle);
+                }
+                OperationResult = 0x1c;
+            }
+        }
   }
   return OperationResult;
 }
@@ -28530,16 +28540,14 @@ void UtilityNoOperationN(void)
 
 
 /**
- * @brief 数据处理函数O10
+ * @brief 系统内存地址获取函数
  * 
- * 该函数用于处理数据并返回结果
+ * 该函数用于获取系统内存基础地址
  * 
- * @param param_1 输入参数，包含处理条件
- * @param param_2 指向数据区域的指针
- * @return 处理结果状态码
+ * @return 内存基础地址
  * @note 原始函数名：FUN_18089ce30
  */
-uint64_t FUN_18089ce30(int64_t param_1,int64_t *param_2)
+uint64_t GetSystemMemoryBaseAddress(int64_t param_1,int64_t *param_2)
 
 {
   int64_t *validationContextPointer;
@@ -28662,14 +28670,14 @@ ValidationExitHandler:
 
 
 /**
- * @brief 数据处理函数O11
+ * @brief 全局资源指针获取函数
  * 
- * 该函数用于处理数据并返回结果
+ * 该函数用于获取全局资源指针
  * 
- * @return 处理结果状态码
+ * @return 全局资源指针
  * @note 原始函数名：FUN_18089ce60
  */
-uint64_t FUN_18089ce60(void)
+uint64_t GetGlobalResourcePointer(void)
 
 {
   int64_t *validationContextPointer;
@@ -28790,14 +28798,14 @@ ValidationExitHandler:
 
 
 /**
- * @brief 数据处理函数O12
+ * @brief 系统数据清理处理函数
  * 
- * 该函数用于处理数据并返回结果
+ * 该函数用于处理系统数据清理操作
  * 
  * @return 处理结果状态码
  * @note 原始函数名：FUN_18089cfd6
  */
-uint64_t FUN_18089cfd6(void)
+uint64_t ProcessSystemDataCleanup(void)
 
 {
   int64_t *validationContextPointer;
