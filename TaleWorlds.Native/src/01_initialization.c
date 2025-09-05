@@ -44165,7 +44165,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
     resourceEntryPointer = *(void* **)(ConfigurationDataPointer + 8);
   }
-  systemGlobalDataPtrB8 = (void* *)0x0;
+  systemGlobalDataPtrSecondary = (void* *)0x0;
   SystemFlagSecondary = 0xf;
   SystemMemoryBufferSize = 0;
   SystemAllocationFlags = -1;
@@ -44243,7 +44243,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
       }
       free(SystemAllocationFlags,ThreadContextIndicator);
     }
-    systemGlobalDataPtrB8 = (void* *)0x0;
+    systemGlobalDataPtrSecondary = (void* *)0x0;
     SystemFlagSecondary = 0xf;
     SystemMemoryBufferSize = 0;
       ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)encryptionBuffer);
@@ -44378,8 +44378,8 @@ SystemValueCheckComplete:
   if (0xf < threadBufferCapacityValue) {
     SystemThreadContext = (uint8_t *)CombineMemoryFlags(StackPointer,SystemMemoryBufferSize);
   }
-  systemGlobalDataPtrB8 = (void* *)((long long)systemGlobalDataPtrB8 - (long long)ResourceAddressPointer);
-    memmove(SystemThreadContext,SystemThreadContext + (long long)ResourceAddressPointer,(long long)systemGlobalDataPtrB8 + 1);
+  systemGlobalDataPtrSecondary = (void* *)((long long)systemGlobalDataPtrSecondary - (long long)ResourceAddressPointer);
+    memmove(SystemThreadContext,SystemThreadContext + (long long)ResourceAddressPointer,(long long)systemGlobalDataPtrSecondary + 1);
 }
 
 
@@ -52374,7 +52374,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
     }
     pUnsignedStackFlagQuinary = &SystemGlobalDataReference;
     UnsignedStackFlagQuaternary = 0;
-    systemGlobalDataPtrB8 = (void* *)0x0;
+    systemGlobalDataPtrSecondary = (void* *)0x0;
     SystemStackFlagPrimary = 0;
     if (!isOperationComplete) {
       SystemAllocationFlags = ProcessSystemMemoryAllocation(&DataBufferPtrE0,0);
