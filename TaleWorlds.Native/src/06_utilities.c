@@ -90936,11 +90936,22 @@ void CleanupSystemResourceManagerC(undefined8 param_1, undefined8 param_2, undef
 
 
 9425e0(void)
-void FUN_1809425e0(void)
+/**
+ * @brief 销毁互斥锁D
+ * 
+ * 该函数负责销毁互斥锁D，释放相关的系统资源
+ * 主要用于系统清理和资源释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数在系统关闭时调用，用于清理互斥锁资源
+ * @warning 确保在调用此函数前已正确释放所有依赖资源
+ * @see DestroyMutexA, DestroyMutexB, DestroyMutexC
+ */
+void DestroyMutexD(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001809425f8. Too many branches
-                    // WARNING: Treating indirect jump as call
+  // 销毁指定地址的互斥锁
   _Mtx_destroy_in_situ(0x180c91f70);
   return;
 }
@@ -90949,25 +90960,48 @@ void FUN_1809425e0(void)
 
 
 942660(void)
-void FUN_180942660(void)
+/**
+ * @brief 清理系统内存缓冲区A
+ * 
+ * 该函数负责清理系统内存缓冲区A，释放已分配的内存资源并重置相关状态
+ * 主要用于系统内存管理和资源释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会验证内存块的有效性，确保安全的内存释放操作
+ * @warning 如果内存块大小或偏移量无效，将触发参数验证错误
+ * @see CleanupSystemMemoryBufferB, CleanupSystemMemoryBufferC
+ */
+void CleanupSystemMemoryBufferA(void)
 
 {
-  longlong validationContext;
-  longlong lVar2;
+  longlong memoryContext;
+  longlong memoryPointer;
   
+  // 调用内存管理函数进行预处理
   FUN_180067070(&DAT_180bfc140);
+  
+  // 检查缓冲区大小是否超过阈值
   if (0xf < uRam0000000180bfc138) {
-    validationContext = CONCAT71(uRam0000000180bfc121,uRam0000000180bfc120);
-    lVar2 = validationContext;
+    memoryContext = CONCAT71(uRam0000000180bfc121, uRam0000000180bfc120);
+    memoryPointer = memoryContext;
+    
+    // 检查内存块大小是否过大
     if (0xfff < uRam0000000180bfc138 + 1) {
-      lVar2 = *(longlong *)(validationContext + -8);
-      if (0x1f < (validationContext - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(validationContext - lVar2,uRam0000000180bfc138 + 0x28);
+      memoryPointer = *(longlong *)(memoryContext + -8);
+      
+      // 验证内存块偏移量的有效性
+      if (0x1f < (memoryContext - memoryPointer) - 8U) {
+        // 如果偏移量无效，触发参数验证错误
+        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, uRam0000000180bfc138 + 0x28);
       }
     }
-    free(lVar2);
+    
+    // 释放内存块
+    free(memoryPointer);
   }
+  
+  // 重置缓冲区状态
   uRam0000000180bfc130 = 0;
   uRam0000000180bfc138 = 0xf;
   uRam0000000180bfc120 = 0;
