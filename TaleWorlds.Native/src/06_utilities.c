@@ -50018,22 +50018,48 @@ void Unwind_180907000(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180907010(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常解包装函数A0
+ * 
+ * 该函数负责在异常解包过程中调用指定的回调函数，
+ * 处理异常恢复相关的操作
+ * 
+ * @param ExceptionContext 异常上下文指针
+ * @param HandlerContext 处理器上下文指针
+ * @param UnusedParam1 未使用的参数1
+ * @param ExceptionData 异常数据指针
+ * 
+ * @note 原始函数名：Unwind_180907010
+ */
+void UnwindExceptionHandlerA0(undefined8 ExceptionContext, longlong HandlerContext, undefined8 UnusedParam1, undefined8 ExceptionData)
 
 {
-  if (*(code **)(param_2 + 0xe8) != (code *)0x0) {
-    (**(code **)(param_2 + 0xe8))(param_2 + 0xd8,0,0,param_4,0xfffffffffffffffe);
+  if (*(code **)(HandlerContext + 0xe8) != (code *)0x0) {
+    (**(code **)(HandlerContext + 0xe8))(HandlerContext + 0xd8, 0, 0, ExceptionData, 0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180907020(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常解包装函数A1
+ * 
+ * 该函数负责在异常解包过程中调用指定的回调函数，
+ * 处理异常恢复相关的操作
+ * 
+ * @param ExceptionContext 异常上下文指针
+ * @param HandlerContext 处理器上下文指针
+ * @param UnusedParam1 未使用的参数1
+ * @param ExceptionData 异常数据指针
+ * 
+ * @note 原始函数名：Unwind_180907020
+ */
+void UnwindExceptionHandlerA1(undefined8 ExceptionContext, longlong HandlerContext, undefined8 UnusedParam1, undefined8 ExceptionData)
 
 {
-  if (*(code **)(param_2 + 0x68) != (code *)0x0) {
-    (**(code **)(param_2 + 0x68))(param_2 + 0x58,0,0,param_4,0xfffffffffffffffe);
+  if (*(code **)(HandlerContext + 0x68) != (code *)0x0) {
+    (**(code **)(HandlerContext + 0x68))(HandlerContext + 0x58, 0, 0, ExceptionData, 0xfffffffffffffffe);
   }
   return;
 }

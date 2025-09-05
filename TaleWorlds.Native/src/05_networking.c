@@ -2765,14 +2765,14 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   
   // 初始化解码状态
   DecodingStatus = NetworkValidationFailure;
-  MagicValidationResult = NetworkValidationFailure;
-  DataIntegrityStatus = NetworkValidationFailure;
+  NetworkMagicValidationResult = NetworkValidationFailure;
+  NetworkDataIntegrityStatus = NetworkValidationFailure;
   
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证主魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || PrimaryMagicNumber == NetworkMagicValidation) {
-      MagicValidationResult |= NetworkPacketFirstMagicValidMask;
+      NetworkMagicValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证次魔数
