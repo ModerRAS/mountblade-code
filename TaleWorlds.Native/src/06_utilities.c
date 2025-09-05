@@ -6319,24 +6319,24 @@ void ProcessUtilityOperation(longlong operationParams,undefined8 systemContext)
 undefined8 ProcessFloatDataResource(longlong resourceHandle)
 
 {
-  longlong lVar1;
-  uint uVar2;
-  uint uVar3;
-  undefined8 uVar4;
-  undefined8 *puVar5;
-  int iVar6;
-  float fVar7;
-  undefined1 auVar8 [16];
-  longlong lStackX_8;
+  longlong dataContextPointer;
+  uint resourceFlags;
+  uint systemStatus;
+  undefined8 operationResult;
+  undefined8 *dataArrayPointer;
+  int integerConversionValue;
+  float floatDataValue;
+  undefined1 vectorRegisterData [16];
+  longlong stackTempValue;
   
-  uVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&stackTempValue);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  lVar1 = *(longlong *)(lStackX_8 + 8);
-  if (lVar1 != 0) {
-    fVar7 = *(float *)(param_1 + 0x14);
-    for (puVar5 = *(undefined8 **)(lVar1 + 0x48);
+  dataContextPointer = *(longlong *)(stackTempValue + 8);
+  if (dataContextPointer != 0) {
+    floatDataValue = *(float *)(param_1 + 0x14);
+    for (dataArrayPointer = *(undefined8 **)(dataContextPointer + 0x48);
         (*(undefined8 **)(lVar1 + 0x48) <= puVar5 &&
         (puVar5 < *(undefined8 **)(lVar1 + 0x48) + *(int *)(lVar1 + 0x50))); puVar5 = puVar5 + 1) {
       uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
