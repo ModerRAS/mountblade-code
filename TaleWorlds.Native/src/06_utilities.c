@@ -4009,23 +4009,23 @@
 // 返回值:
 //   无
 void InitializeUtilityModule(void);
-uint32_t UtilityModuleConfiguration1;
-uint32_t UtilityModuleConfiguration2;
-uint32_t UtilityModuleConfiguration3;
-uint32_t UtilityModuleConfiguration4;
-uint32_t UtilityModuleConfiguration5;
-uint32_t UtilityModuleConfiguration6;
-bool UtilityModuleEnabledFlag1;
-uint32_t UtilityModuleConfiguration7;
-uint32_t UtilityModuleConfiguration8;
-bool UtilityModuleEnabledFlag2;
+uint32_t UtilityModulePrimaryConfig;
+uint32_t UtilityModuleSecondaryConfig;
+uint32_t UtilityModuleTertiaryConfig;
+uint32_t UtilityModuleQuaternaryConfig;
+uint32_t UtilityModuleQuinaryConfig;
+uint32_t UtilityModuleSenaryConfig;
+bool UtilityModulePrimaryEnabled;
+uint32_t UtilityModuleSeptenaryConfig;
+uint32_t UtilityModuleOctonaryConfig;
+bool UtilityModuleSecondaryEnabled;
 void* UtilityModuleResourcePointer1;
 void* UtilityModuleMemoryPointer1;
 void* UtilityModuleMemoryPointer2;
-uint32_t UtilityModuleConfiguration9;
-uint32_t UtilityModuleConfiguration10;
-uint32_t UtilityModuleConfiguration11;
-uint32_t UtilityModuleConfiguration12;
+uint32_t UtilityModuleNonaryConfig;
+uint32_t UtilityModuleDenaryConfig;
+uint32_t UtilityModuleUndenaryConfig;
+uint32_t UtilityModuleDuodenaryConfig;
 void* UtilityModuleResourcePointer2;
 
 // 函数: void ResetUtilityPointers1(void)
