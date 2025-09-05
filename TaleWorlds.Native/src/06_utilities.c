@@ -10462,19 +10462,31 @@ void NoOperationB(void)
 
 
 
-// 函数: void FUN_180894d60(longlong param_1,undefined8 param_2)
-void FUN_180894d60(longlong param_1,undefined8 param_2)
+/**
+ * 上下文验证和处理函数 - 验证系统上下文并执行相应操作
+ * 
+ * 此函数根据传入的上下文参数执行系统验证和处理操作：
+ * 1. 使用param_2和param_1 + 0x10调用FUN_18088ee20()进行初始验证
+ * 2. 如果初始验证通过，使用param_2和param_1 + 0x18调用FUN_18088f620()进行二级验证
+ * 3. 如果二级验证通过，使用param_2和计算出的地址调用FUN_18088f5c0()进行三级验证
+ * 4. 如果所有验证都通过，调用FUN_18088f470()执行最终操作
+ * 
+ * @param contextHandle 上下文句柄，包含系统状态信息
+ * @param validationData 验证数据，用于系统验证操作
+ * @return 无返回值
+ */
+void ValidateContextAndProcess(longlong contextHandle, undefined8 validationData)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee20(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088f620(param_2,param_1 + 0x18,*(undefined4 *)(param_1 + 0x10));
-    if (iVar1 == 0) {
-      iVar1 = FUN_18088f5c0(param_2,param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
-      if (iVar1 == 0) {
-        FUN_18088f470(param_2,param_1 + 0x14);
+  validationResult = FUN_18088ee20(validationData, contextHandle + 0x10);
+  if (validationResult == 0) {
+    validationResult = FUN_18088f620(validationData, contextHandle + 0x18, *(undefined4 *)(contextHandle + 0x10));
+    if (validationResult == 0) {
+      validationResult = FUN_18088f5c0(validationData, contextHandle + 0x18 + (longlong)*(int *)(contextHandle + 0x10) * 8);
+      if (validationResult == 0) {
+        FUN_18088f470(validationData, contextHandle + 0x14);
       }
     }
   }
@@ -11130,55 +11142,77 @@ LAB_180895b69:
 
 
 // 函数: void FUN_180895b89(void)
-void FUN_180895b89(void)
+/**
+ * 安全检查执行函数 - 执行系统安全检查并终止进程
+ * 
+ * 此函数执行系统安全检查，从指定地址获取安全令牌并进行验证。
+ * 如果验证失败，系统将终止进程。
+ * 
+ * @note 这是一个不返回的函数，执行后会终止进程
+ */
+void ExecuteSecurityCheck(void)
 
 {
-  longlong unaff_RBP;
+  longlong securityContext;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(securityContext + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 
-// 函数: void FUN_180895bb0(longlong param_1,int param_2,undefined8 *param_3)
-void FUN_180895bb0(longlong param_1,int param_2,undefined8 *param_3)
+/**
+ * 数据查询和检索函数 - 根据索引查询和检索系统数据
+ * 
+ * 此函数根据传入的索引参数在系统数据结构中查询和检索数据：
+ * 1. 初始化输出参数为0
+ * 2. 通过复杂的指针运算获取数据指针
+ * 3. 验证数据指针的有效性
+ * 4. 在数据结构中搜索匹配的数据项
+ * 5. 如果找到匹配项，将数据复制到输出参数
+ * 
+ * @param dataStructure 数据结构指针，包含系统数据
+ * @param searchIndex 搜索索引，用于定位数据项
+ * @param resultData 结果数据指针，用于返回查询结果
+ * @return 无返回值
+ */
+void QueryAndRetrieveSystemData(longlong dataStructure, int searchIndex, undefined8 *resultData)
 
 {
-  undefined8 uVar1;
-  int *piVar2;
-  longlong lVar3;
-  longlong lVar4;
-  int iVar5;
+  undefined8 dataValue;
+  int *dataPointer;
+  longlong itemAddress;
+  longlong currentIndex;
+  int targetValue;
   
-  *param_3 = 0;
-  param_3[1] = 0;
-  piVar2 = (int *)(**(code **)(*(longlong *)
+  *resultData = 0;
+  resultData[1] = 0;
+  dataPointer = (int *)(**(code **)(*(longlong *)
                                 ((longlong)
-                                 *(int *)(*(longlong *)(param_1 + 0x18) + (longlong)param_2 * 0xc) +
-                                *(longlong *)(param_1 + 8)) + 0x50))();
-  if (piVar2 == (int *)0x0) {
-    iVar5 = 0;
+                                 *(int *)(*(longlong *)(dataStructure + 0x18) + (longlong)searchIndex * 0xc) +
+                                *(longlong *)(dataStructure + 8)) + 0x50))();
+  if (dataPointer == (int *)0x0) {
+    targetValue = 0;
   }
   else {
-    iVar5 = *piVar2;
+    targetValue = *dataPointer;
   }
-  if (param_2 + 1 < *(int *)(param_1 + 0x20)) {
-    lVar4 = (longlong)(param_2 + 1);
-    piVar2 = (int *)(*(longlong *)(param_1 + 0x18) + lVar4 * 0xc);
-    while (((char)piVar2[2] != '\x02' ||
-           (lVar3 = (longlong)*piVar2 + *(longlong *)(param_1 + 8), *(int *)(lVar3 + 0x20) != iVar5)
+  if (searchIndex + 1 < *(int *)(dataStructure + 0x20)) {
+    currentIndex = (longlong)(searchIndex + 1);
+    dataPointer = (int *)(*(longlong *)(dataStructure + 0x18) + currentIndex * 0xc);
+    while (((char)dataPointer[2] != '\x02' ||
+           (itemAddress = (longlong)*dataPointer + *(longlong *)(dataStructure + 8), *(int *)(itemAddress + 0x20) != targetValue)
            )) {
-      lVar4 = lVar4 + 1;
-      piVar2 = piVar2 + 3;
-      if (*(int *)(param_1 + 0x20) <= lVar4) {
+      currentIndex = currentIndex + 1;
+      dataPointer = dataPointer + 3;
+      if (*(int *)(dataStructure + 0x20) <= currentIndex) {
         return;
       }
     }
-    uVar1 = *(undefined8 *)(lVar3 + 0x18);
-    *param_3 = *(undefined8 *)(lVar3 + 0x10);
-    param_3[1] = uVar1;
+    dataValue = *(undefined8 *)(itemAddress + 0x18);
+    *resultData = *(undefined8 *)(itemAddress + 0x10);
+    resultData[1] = dataValue;
   }
   return;
 }
@@ -27082,35 +27116,49 @@ void ExceptionUnwindHandlerA4(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f60(undefined8 param_1,longlong param_2)
+/**
+ * 异常展开处理函数A0 - 处理异常展开和清理操作
+ * 
+ * 此函数处理异常展开操作，管理异常链表和资源清理：
+ * 1. 从指定位置获取异常处理指针
+ * 2. 验证指针的有效性
+ * 3. 计算异常处理程序的地址
+ * 4. 更新异常链表结构
+ * 5. 管理引用计数，必要时执行清理操作
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理信息
+ * @param unwindParam 展开参数，用于控制展开过程
+ * @return 无返回值
+ */
+void ExceptionUnwindHandlerA0(undefined8 exceptionContext, longlong unwindParam)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *referenceCounter;
+  undefined8 *exceptionHandler;
+  longlong handlerAddress;
+  ulonglong memoryRegion;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b8);
-  if (puVar2 == (undefined8 *)0x0) {
+  exceptionHandler = *(undefined8 **)(unwindParam + 0x2b8);
+  if (exceptionHandler == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  memoryRegion = (ulonglong)exceptionHandler & 0xffffffffffc00000;
+  if (memoryRegion != 0) {
+    handlerAddress = memoryRegion + 0x80 + ((longlong)exceptionHandler - memoryRegion >> 0x10) * 0x50;
+    handlerAddress = handlerAddress - (ulonglong)*(uint *)(handlerAddress + 4);
+    if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(handlerAddress + 0xe) == '\0')) {
+      *exceptionHandler = *(undefined8 *)(handlerAddress + 0x20);
+      *(undefined8 **)(handlerAddress + 0x20) = exceptionHandler;
+      referenceCounter = (int *)(handlerAddress + 0x18);
+      *referenceCounter = *referenceCounter + -1;
+      if (*referenceCounter == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(memoryRegion,CONCAT71(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
+                          exceptionHandler,memoryRegion,0xfffffffffffffffe);
     }
   }
   return;
