@@ -924,16 +924,16 @@ uint32_t NetworkConnectionQualityLevel;                     // 网络连接质�
 uint32_t NetworkConnectionBandwidth;                    // 网络连接带宽，连接可用的带宽资源
 uint32_t NetworkConnectionLatencyMs;                      // 网络连接延迟，网络通信的延迟时间
 uint32_t NetworkConnectionReliabilityLevel;                         // 网络连接可靠性，连接的稳定性和可靠性指标
-uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别，连接的安全保护级别
-uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
+uint32_t NetworkSecurityLevel;                       // 网络安全级别，连接的安全保护级别
+uint32_t NetworkAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
 uint32_t NetworkSystemAuthenticationType;                          // 网络系统认证类型，系统使用的认证机制类型
 uint32_t NetworkEncryptionAlgorithmType;                // 网络加密算法，数据传输使用的加密算法
 uint32_t NetworkSystemEncryptionAlgorithm;                          // 网络系统加密算法，系统使用的加密算法类型
 uint32_t NetworkCompressionMethodType;                  // 网络压缩方法，数据压缩使用的算法方法
 uint32_t NetworkSystemCompressionMethod;                            // 网络系统压缩方法，系统使用的压缩算法类型
 uint32_t NetworkSessionTimeoutMs;             // 网络会话超时持续时间，会话无活动的超时时间
-uint32_t NetworkPacketBuffer;                      // 网络数据包缓冲区，指向数据包缓冲区的内存地址
-uint32_t NetworkPacketHeader;                      // 网络数据包头，指向数据包头部信息的内存地址
+uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区，指向数据包缓冲区的内存地址
+uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头，指向数据包头部信息的内存地址
 uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小，发送缓冲区的当前大小
 uint32_t NetworkReceiveBufferSize;                        // 网络接收缓冲区大小，接收缓冲区的当前大小
 uint32_t NetworkSendBufferCapacity;                       // 网络发送缓冲区容量，发送缓冲区的最大容量
@@ -945,9 +945,9 @@ uint32_t NetworkMaximumPacketSize;                            // 网络最大数
 uint32_t NetworkEncryptionKey;                            // 网络加密密钥，用于数据加密的密钥值
 uint32_t NetworkCompressionLevel;                         // 网络压缩级别，数据压缩的压缩级别设置
 uint32_t NetworkSessionEncryptionKey;                     // 网络会话加密密钥，用于会话数据加密的密钥值
-uint32_t NetworkHandshakeTimeout;                          // 网络握手超时时间，握手过程的最大等待时间
-uint32_t NetworkAuthenticationTimeout;                     // 网络认证超时时间，认证过程的最大等待时间
-uint32_t NetworkEncryptionTimeout;                         // 网络加密超时时间，加密过程的最大等待时间
+uint32_t NetworkHandshakeTimeoutMs;                          // 网络握手超时时间，握手过程的最大等待时间
+uint32_t NetworkAuthenticationTimeoutMs;                     // 网络认证超时时间，认证过程的最大等待时间
+uint32_t NetworkEncryptionTimeoutMs;                         // 网络加密超时时间，加密过程的最大等待时间
 
 // 网络连接配置数据指针
 void *NetworkConnectionInitializationConfig;    // 网络连接初始化配置数据，连接初始化时使用的配置信息
@@ -1082,7 +1082,7 @@ void InitializeNetworkConnectionPool(void)
  */
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplatePointer = &NetworkContextTemplateConfiguration;          // 网络连接上下文模板指针，指向模板配置数据
+void *NetworkConnectionContextTemplatePointer;          // 网络连接上下文模板指针，指向模板配置数据
 void *NetworkConnectionPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;                // 网络连接主要配置指针，指向主要配置数据
 void *NetworkConnectionSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;            // 网络连接次要配置指针，指向次要配置数据
 void *NetworkConnectionProcessingConfigPointer = &NetworkConnectionProcessingConfig;           // 网络连接处理配置指针，指向处理配置数据

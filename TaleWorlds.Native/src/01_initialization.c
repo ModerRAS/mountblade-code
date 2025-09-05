@@ -32570,37 +32570,37 @@ void InitializeSystemResourceManager(ulong long* SystemResourceManager)
 
 {
   int *resourceCounter;
-  ulong long SystemResourceValue1;
-  ulong long SystemResourceValue2;
+  ulong long SystemResourcePrimaryValue;
+  ulong long SystemResourceSecondaryValue;
   void* *resourcePointer;
-  ulong long SystemResourceValue3;
-  long long CalculationFlagss;
+  ulong long SystemResourceTertiaryValue;
+  long long SystemResourceFlags;
   
   SystemResourceManager[1] = *SystemResourceManager;
-  SystemResourceValue1 = *SystemResourceManager;
+  SystemResourcePrimaryValue = *SystemResourceManager;
   *SystemResourceManager = 0;
-  SystemResourceValue2 = SystemResourceManager[1];
+  SystemResourceSecondaryValue = SystemResourceManager[1];
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
-  SystemResourceValue3 = SystemResourceManager[2];
+  SystemResourceTertiaryValue = SystemResourceManager[2];
   SystemResourceManager[2] = 0;
-  CalculationFlagss = SystemResourceManager[3];
+  SystemResourceFlags = SystemResourceManager[3];
   *(int *)(SystemResourceManager + 3) = (int)SystemResourceManager[3];
   resourcePointer = (void* *)*SystemResourceManager;
-  *SystemResourceManager = SystemResourceValue1;
-  SystemResourceManager[1] = SystemResourceValue2;
-  SystemResourceManager[2] = SystemResourceValue3;
-  *(int *)(SystemResourceManager + 3) = (int)CalculationFlagss;
+  *SystemResourceManager = SystemResourcePrimaryValue;
+  SystemResourceManager[1] = SystemResourceSecondaryValue;
+  SystemResourceManager[2] = SystemResourceTertiaryValue;
+  *(int *)(SystemResourceManager + 3) = (int)SystemResourceFlags;
   if (resourcePointer == (void* *)0x0) {
     return;
   }
-  SystemResourceValue1 = (ulong long)resourcePointer & SystemMemoryPageAlignmentMask;
-  if (SystemResourceValue1 != 0) {
-    CalculationFlagss = SystemResourceValue1 + 0x80 + ((long long)resourcePointer - SystemResourceValue1 >> 0x10) * 0x50;
-    CalculationFlagss = CalculationFlagss - (ulong long)*(uint *)(CalculationFlagss + 4);
-    if ((*(void ***)(SystemResourceValue1 + 0x70) == &ExceptionList) && (*(char *)(CalculationFlagss + 0xe) == '\0')) {
-      *resourcePointer = *(void* *)(CalculationFlagss + 0x20);
-      *(void* **)(CalculationFlagss + 0x20) = resourcePointer;
-      resourceCounter = (int *)(CalculationFlagss + 0x18);
+  SystemResourcePrimaryValue = (ulong long)resourcePointer & SystemMemoryPageAlignmentMask;
+  if (SystemResourcePrimaryValue != 0) {
+    SystemResourceFlags = SystemResourcePrimaryValue + 0x80 + ((long long)resourcePointer - SystemResourcePrimaryValue >> 0x10) * 0x50;
+    SystemResourceFlags = SystemResourceFlags - (ulong long)*(uint *)(SystemResourceFlags + 4);
+    if ((*(void ***)(SystemResourcePrimaryValue + 0x70) == &ExceptionList) && (*(char *)(SystemResourceFlags + 0xe) == '\0')) {
+      *resourcePointer = *(void* *)(SystemResourceFlags + 0x20);
+      *(void* **)(SystemResourceFlags + 0x20) = resourcePointer;
+      resourceCounter = (int *)(SystemResourceFlags + 0x18);
       *resourceCounter = *resourceCounter + -1;
       if (*resourceCounter == 0) {
         ReleaseSystemResource();
