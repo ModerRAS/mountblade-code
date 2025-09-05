@@ -29321,7 +29321,7 @@ ValidationDataHandler:
       }
       if ((uint64_t)validationContextPointer[2] < (uint64_t)stackByteBuffer[0] + 4) {
         validationStatus = 0x11;
-        goto LAB_18089d378;
+        goto ProcessCheckpointValidationError3;
       }
     }
     validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,auStack_68,1,4,0);
@@ -29355,7 +29355,7 @@ ValidationErrorHandler4:
         validationStatus = ValidateMemoryAllocation(param_2,dataContext + 0x10,0);
         if ((int)validationStatus == 0) {
           *(DataWord *)(dataContext + 0x44) = SystemCleanupFlag;
-          goto LAB_18089d435;
+          goto ProcessCheckpointValidationStateUpdate2;
         }
       }
       else {
@@ -29420,7 +29420,7 @@ ValidationDataHandler:
       }
       if ((uint64_t)validationContextPointer[2] < (uint64_t)in_stack_000000b8 + 4) {
         validationStatus = 0x11;
-        goto LAB_18089d378;
+        goto ProcessCheckpointValidationError3;
       }
     }
     validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x00000030,1,4,0);
@@ -29454,7 +29454,7 @@ ValidationErrorHandler4:
         validationStatus = ValidateMemoryAllocation();
         if ((int)validationStatus == 0) {
           *(DataWord *)(dataContext + 0x44) = SystemCleanupFlag;
-          goto LAB_18089d435;
+          goto ProcessCheckpointValidationStateUpdate2;
         }
       }
       else {
@@ -30449,7 +30449,7 @@ uint64_t FUN_18089e230(int64_t param_1,int64_t *param_2)
       }
       if ((uint64_t)validationContextPointer[2] < (uint64_t)auStackX_18[0] + 4) {
         functionReturnValue = 0x11;
-        goto LAB_18089e447;
+        goto ProcessCheckpointValidationComplete3;
       }
     }
     functionReturnValue = ValidateDataAndReturnStatusO3(*validationContextPointer,stackByteBuffer,1,4,0);
@@ -30553,7 +30553,7 @@ uint64_t FUN_18089e297(void)
       }
       if ((uint64_t)validationContextPointer[2] < (uint64_t)in_stack_000000b0 + 4) {
         functionReturnValue = 0x11;
-        goto LAB_18089e447;
+        goto ProcessCheckpointValidationComplete3;
       }
     }
     functionReturnValue = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
@@ -30653,7 +30653,7 @@ uint64_t FUN_18089e2be(void)
       }
       if ((uint64_t)validationContextPointer[2] < (uint64_t)in_stack_000000b0 + 4) {
         functionReturnValue = 0x11;
-        goto LAB_18089e447;
+        goto ProcessCheckpointValidationComplete3;
       }
     }
     functionReturnValue = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
@@ -30749,7 +30749,7 @@ uint64_t FUN_18089e2e8(void)
       }
       if ((uint64_t)validationContextPointer[2] < (uint64_t)in_stack_000000b0 + 4) {
         functionReturnValue = 0x11;
-        goto LAB_18089e447;
+        goto ProcessCheckpointValidationComplete3;
       }
     }
     functionReturnValue = ValidateDataAndReturnStatusO3(*validationContextPointer,&stack0x000000b8,1,4,0);
@@ -30859,7 +30859,7 @@ ValidationErrorHandler5:
                                   0,0,1);
             if (memoryPointer == 0) {
               memoryBaseAddress = 0x26;
-              goto LAB_18089e70b;
+              goto ProcessCheckpointValidationError4;
             }
             dataValue = *poperationResult;
             *(int64_t *)memoryPointer = memoryPointer;
@@ -30869,7 +30869,7 @@ ValidationErrorHandler5:
             *(DataWord *)(memoryPointer + 0x20) = 0;
             validationStatus = ConvertData(param_1 + 0x58,memoryPointer);
             memoryBaseAddress = (uint64_t)validationStatus;
-            if (validationStatus != 0) goto LAB_18089e70b;
+            if (validationStatus != 0) goto ProcessCheckpointValidationError4;
           }
         }
         FUN_18084c150(&puStack_88);
@@ -30972,7 +30972,7 @@ ValidationErrorHandler5:
           ;
           if (dataPointer == 0) {
             securityCheckResult = 0x26;
-            goto LAB_18089e70b;
+            goto ProcessCheckpointValidationError4;
           }
           dataValue1 = *ploopCounter;
           *(int64_t *)dataPointer = dataPointer;
@@ -30982,7 +30982,7 @@ ValidationErrorHandler5:
           *(DataWord *)(dataPointer + 0x20) = 0;
           operationResult = ConvertData(register_R15 + 0x58,dataPointer);
           securityCheckResult = (uint64_t)operationResult;
-          if (operationResult != 0) goto LAB_18089e70b;
+          if (operationResult != 0) goto ProcessCheckpointValidationError4;
           iterationCount = *(int *)(stackFramePointer + -0x21);
           pvalidationOutcome = *(DataWord **)(stackFramePointer + -0x29);
         }
@@ -31042,7 +31042,7 @@ ValidationErrorHandler5:
         resourceIterator = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c);
         if (resourceIterator == 0) {
           memoryBaseAddress = 0x26;
-          goto LAB_18089e70b;
+          goto ProcessCheckpointValidationError4;
         }
         dataValue = *pvalidationOutcome;
         *(int64_t *)resourceIterator = resourceIterator;
@@ -31052,7 +31052,7 @@ ValidationErrorHandler5:
         *(int *)(resourceIterator + 0x20) = (int)registerContext;
         functionReturnValue = ConvertData(register_R15 + 0x58,resourceIterator);
         memoryBaseAddress = (uint64_t)functionReturnValue;
-        if (functionReturnValue != 0) goto LAB_18089e70b;
+        if (functionReturnValue != 0) goto ProcessCheckpointValidationError4;
         operationStatus = *(int *)(stackFramePointer + -0x21);
         pdataFlags = *(DataWord **)(stackFramePointer + -0x29);
       }
@@ -95724,10 +95724,10 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define ValidationErrorHandler3 ProcessCheckpointValidationError2
 #define ValidationExitHandler ProcessCheckpointValidationExit
 #define ValidationDataHandler ProcessCheckpointValidationData
-#define ValidationErrorHandler4 LAB_18089d378
-#define ValidationStateUpdate2 LAB_18089d435
-#define ValidationCompleteHandler2 LAB_18089e447
-#define ValidationErrorHandler5 LAB_18089e70b
+#define ValidationErrorHandler4 ProcessCheckpointValidationError3
+#define ValidationStateUpdate2 ProcessCheckpointValidationStateUpdate2
+#define ValidationCompleteHandler2 ProcessCheckpointValidationComplete3
+#define ValidationErrorHandler5 ProcessCheckpointValidationError4
 #define ValidationStartHandler LAB_18089ea0f
 #define ValidationErrorHandler6 LAB_18089eaae
 #define ValidationStateHandler2 LAB_18089ea93
