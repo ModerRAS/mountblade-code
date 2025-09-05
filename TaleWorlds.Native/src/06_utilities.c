@@ -20895,7 +20895,7 @@ void UtilityNoOperationB(void)
 
 
 
-undefined8 FUN_18089b630(longlong param_1,undefined8 *param_2)
+uint64_t ValidateAndProcessData(longlong dataContext, uint64_t *validationBuffer)
 
 {
   undefined8 uVar1;
