@@ -6427,24 +6427,24 @@ void ReturnEmptyFunction(void)
 undefined8 ValidateResourceAccessChain(longlong resourceHandle)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 validationStatus;
+  longlong accessChain;
   
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&accessChain);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (accessChain == 0) {
+    accessChain = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    accessChain = accessChain + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(accessChain + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(accessChain + 0x10),1);
 }
 
 
