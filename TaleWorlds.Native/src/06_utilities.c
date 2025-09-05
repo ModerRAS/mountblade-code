@@ -3581,17 +3581,17 @@
 #define ValidateSystemConfigurationA0 FUN_1808bdd90
 
 // 系统操作函数语义化宏定义
-// 原始函数名：func_0x000180861a30 - 系统操作验证函数A0
+// 原始函数名：func_0x000180861a30 - 系统操作验证函数
 // 功能：验证系统操作上下文
-#define ValidateSystemOperationContextA0 func_0x000180861a30
+#define ValidateSystemOperationContext func_0x000180861a30
 
-// 原始函数名：func_0x0001808c8710 - 缓冲区处理函数A0
+// 原始函数名：func_0x0001808c8710 - 缓冲区处理函数
 // 功能：处理系统缓冲区数据
-#define ProcessSystemBufferA0 func_0x0001808c8710
+#define ProcessSystemBuffer func_0x0001808c8710
 
-// 原始函数名：func_0x0001808c8700 - 缓冲区处理函数A1
+// 原始函数名：func_0x0001808c8700 - 缓冲区处理函数替代版本
 // 功能：处理系统缓冲区数据的替代版本
-#define ProcessSystemBufferA1 func_0x0001808c8700
+#define ProcessSystemBufferAlternative func_0x0001808c8700
 
 // 原始函数名：func_0x0001808c8470 - 缓冲区初始化函数A0
 // 功能：初始化系统缓冲区
@@ -34577,55 +34577,93 @@ void HandleExceptionRecoveryI0(undefined8 context, longlong exceptionData, undef
 
 
 
-void Unwind_180902790(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常处理函数790
+ * 
+ * 该函数用于处理异常情况，调用系统清理函数确保资源正确释放
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含系统状态信息
+ * @param param_3 异常代码参数
+ * @param param_4 异常处理标志
+ */
+void ExceptionHandler790(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_180058210(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
+  ProcessSystemDataWithEncryption(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
                 param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809027a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常处理函数7A0
+ * 
+ * 该函数用于处理异常情况，检查并处理系统资源，确保异常情况下的系统稳定性
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含系统状态信息
+ * @param param_3 异常代码参数
+ * @param param_4 异常处理标志
+ */
+void ExceptionHandler7A0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *resourcePointer;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x30);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x70) + 0x20,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  resourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x30);
+  if (resourcePointer != (undefined8 *)0x0) {
+    ValidateSystemConfiguration(*(longlong *)(param_2 + 0x70) + 0x20,*resourcePointer,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    ManageMemory(resourcePointer);
   }
   return;
 }
 
 
 
-void Unwind_1809027b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常处理函数7B0
+ * 
+ * 该函数用于处理异常情况，检查系统资源状态并进行相应的处理
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含系统状态信息
+ * @param param_3 异常代码参数
+ * @param param_4 异常处理标志
+ */
+void ExceptionHandler7B0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *systemResourcePointer;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x60);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x70) + 0x50,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  systemResourcePointer = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x60);
+  if (systemResourcePointer != (undefined8 *)0x0) {
+    ValidateSystemConfiguration(*(longlong *)(param_2 + 0x70) + 0x50,*systemResourcePointer,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    ManageMemory(systemResourcePointer);
   }
   return;
 }
 
 
 
-void Unwind_1809027c0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数7C0
+ * 
+ * 该函数用于处理异常情况，设置异常处理器并清理系统状态
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含系统状态信息
+ */
+void ExceptionHandler7C0(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
   
   validationContext = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(validationContext + 0x28) = &ExceptionHandlerDataE0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -34638,13 +34676,21 @@ void Unwind_1809027c0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809027d0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数7D0
+ * 
+ * 该函数用于处理异常情况，设置异常处理器并清理系统状态
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含系统状态信息
+ */
+void ExceptionHandler7D0(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
   
   validationContext = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(validationContext + 0x50) = &UNK_180a3c3e0;
+  *(undefined8 *)(validationContext + 0x50) = &ExceptionHandlerDataE0;
   if (*(longlong *)(validationContext + 0x58) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
