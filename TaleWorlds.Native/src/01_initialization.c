@@ -19082,19 +19082,19 @@ void WotsMainSDLL(void* SystemParameter)
  */
 void InitializeMainSystemController(long long SystemParameter)
 {
-  long long SystemObject;
-  long long *ControllerReference;
+  long long SystemHandle;
+  long long *ControllerPointer;
   bool IsControllerActive;
-  long long *SystemMemoryBlock;
-  long long **SystemVirtualTableReference;
-  long long *SystemGlobalDataReference;
-  long long* InitializationCounter;
-  long long *SystemControllerReference;
-  void* MemoryAllocationFlags;
+  long long *MemoryBlock;
+  long long **VirtualTableReference;
+  long long *GlobalDataReference;
+  long long* InitCounter;
+  long long *SystemController;
+  void* AllocationFlags;
   
-  MemoryAllocationFlags = (void*)SystemInvalidHandleValue;
+  AllocationFlags = (void*)SystemInvalidHandleValue;
   InitializeSystemMemoryPool();
-  InitializationCounter = InitializationCounter + 1;
+  InitCounter = InitCounter + 1;
   InitializeCoreEngine();
   if (SystemGlobalControllerPointer != (long long *)0x0) {
     if ((void* )SystemGlobalControllerPointer == &SystemCoreObjectTemplate) {
@@ -19105,18 +19105,18 @@ void InitializeMainSystemController(long long SystemParameter)
     }
     if (!IsControllerActive) goto SkipControllerInitialization;
   }
-  ControllerReference = (long long )SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,SystemControllerAllocationSize,SystemMemoryAlignment,SystemAllocationPriority,MemoryAllocationFlags);
-  SystemControllerReference = ControllerReference;
-  InitializeSystemDataTableManager(ControllerReference);
-  ControllerReference = (long long)&SystemVirtualTableTemplateB;
+  ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,SystemControllerAllocationSize,SystemMemoryAlignment,SystemAllocationPriority,AllocationFlags);
+  SystemController = ControllerPointer;
+  InitializeSystemDataTableManager(ControllerPointer);
+  ControllerPointer = (long long)&SystemVirtualTableTemplateB;
   ControllerPointer[SystemControllerFieldOffset] = SystemControllerDefaultValue;
   SystemVirtualTablePointer = (long long )ControllerPointer;
   (**(code **)(ControllerPointer + SystemVirtualTableInitializeOffset))(ControllerPointer);
   SystemVirtualTablePointer = (long long )SystemGlobalControllerPointer;
   if (SystemGlobalControllerPointer != (long long )0x0) {
-    SystemObject = SystemGlobalControllerPointer;
+    SystemHandle = SystemGlobalControllerPointer;
     SystemGlobalControllerPointer = ControllerPointer;
-    (**(code **)(SystemObject + SystemVirtualTableCleanupOffset))();
+    (**(code **)(SystemHandle + SystemVirtualTableCleanupOffset))();
     ControllerPointer = SystemGlobalControllerPointer;
   }
   SystemGlobalControllerPointer = ControllerPointer;
@@ -19129,7 +19129,7 @@ void InitializeMainSystemController(long long SystemParameter)
     (**(code **)((void* )SystemGlobalControllerPointer + SystemVirtualTableEventOffset))();
   }
   ControllerPointer = SystemGlobalControllerPointer;
-  SystemGlobalDataPointer = SystemGlobalControllerPointer;
+  GlobalDataReference = SystemGlobalControllerPointer;
   SystemGlobalControllerPointer = (long long )0x0;
   if (ControllerPointer != (long long )0x0) {
     (**(code **)(ControllerPointer + SystemVirtualTableCleanupOffset))();
@@ -19148,13 +19148,13 @@ SkipControllerInitialization:
     ControllerPointer[3] = SystemControllerDefaultValue;
     ControllerPointer = (long long)&SystemMemoryTemplateQuaternary;
     ControllerPointer[4] = SystemControllerAddress;
-    SystemControllerPointer = ControllerPointer;
+    SystemController = ControllerPointer;
     (**(code **)(ControllerPointer + SystemVirtualTableInitializeOffset))(ControllerPointer);
-    SystemAllocationFlags = SystemAllocationTemplate;
-    SystemVirtualTablePointer = &SystemMemoryBlock;
-    SystemMemoryBlock = ControllerPointer;
+    AllocationFlags = SystemAllocationTemplate;
+    VirtualTablePointer = &MemoryBlock;
+    MemoryBlock = ControllerPointer;
     (**(code **)(ControllerPointer + SystemVirtualTableInitializeOffset))(ControllerPointer);
-    SystemManagerInitialize(SystemAllocationFlags,&SystemMemoryBlock);
+    SystemManagerInitialize(AllocationFlags,&MemoryBlock);
     (**(code **)(ControllerPointer + SystemVirtualTableCleanupOffset))(ControllerPointer);
   }
   return;
