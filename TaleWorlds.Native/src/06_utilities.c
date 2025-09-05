@@ -187,6 +187,13 @@
 #define ValidationContextQuaternaryPropertyOffset 0x1c           // 验证上下文第四属性偏移量
 #define ValidationContextFifthPropertyOffset 0xe            // 验证上下文第五属性偏移量
 #define ValidationContextSixthPropertyOffset 0xf            // 验证上下文第六属性偏移量
+#define ValidationContextPropertyOffset1 0xc                // 验证上下文属性偏移量1（等同于主要属性偏移量）
+#define ValidationContextPropertyOffset2 0x14               // 验证上下文属性偏移量2（等同于次要属性偏移量）
+#define ValidationContextPropertyOffset3 0x18               // 验证上下文属性偏移量3（等同于第三属性偏移量）
+#define ValidationContextPropertyOffset4 0x1c               // 验证上下文属性偏移量4（等同于第四属性偏移量）
+#define ValidationContextPropertyOffset5 0xe                // 验证上下文属性偏移量5（等同于第五属性偏移量）
+#define ValidationContextPropertyOffset6 0xf                // 验证上下文属性偏移量6（等同于第六属性偏移量）
+#define ValidationContextMethodPointerOffset4 0x110         // 验证上下文方法指针偏移量4
 #define ValidationContextSecondaryOffset 0x220           // 验证上下文次级偏移量
 #define PackageValidationStatusBit 1                      // 包验证状态位
 #define ValidationArraySizeMultiplier 3                    // 验证数组大小乘数
@@ -430,6 +437,20 @@
 #define CleanupBitMask 0xfdffffff
 #define ResetBitMask 0xfbffffff
 #define ByteAlignmentMask 0xffffff00
+
+// 资源验证错误偏移常量
+#define ResourceValidationError0 0x0                        // 资源验证错误偏移量0
+#define ResourceValidationError8 0x8                        // 资源验证错误偏移量8
+#define ResourceValidationError18 0x18                      // 资源验证错误偏移量18
+#define ResourceValidationError20 0x20                      // 资源验证错误偏移量20
+#define ResourceValidationError30 0x30                      // 资源验证错误偏移量30
+#define ResourceValidationError38 0x38                      // 资源验证错误偏移量38
+#define ResourceValidationError50 0x50                      // 资源验证错误偏移量50
+#define ResourceValidationError60 0x60                      // 资源验证错误偏移量60
+#define ResourceValidationError70 0x70                      // 资源验证错误偏移量70
+#define ResourceValidationError88 0x88                      // 资源验证错误偏移量88
+#define ResourceValidationError90 0x90                      // 资源验证错误偏移量90
+#define ResourceValidationError00 0x00                      // 资源验证错误偏移量00
 
 // 系统回调相关常量
 #define SystemCallbackTableOffset 0x18
@@ -11720,18 +11741,18 @@ uint32_t HandleResourceIndexOperation(int64_t ResourceHandle, uint32_t *Resource
     ResourceStatusFlag = ResourceDataAddress[3];
     ResourceIndex = (**(code **)(*ResourceContext + ResourceValidationProcessingOffset))(ResourceContext, &ResourceValidationStatus, 1);
     if (ResourceIndex == 0) {
-      ResourceSecurityByteFourth = ResourceSecurityFlag >> 0x18;
-      ResourceStatusByteFourth = ResourceStatusFlag >> 0x18;
-      ResourceAccessControlWord = ResourceAccessFlag >> 0x10;
-      ResourceStatusByteThird = ResourceStatusFlag >> 0x10 & 0xff;
-      ResourceStatusByteSecond = ResourceStatusFlag >> 8 & 0xff;
-      ResourceStatusByteFirst = ResourceStatusFlag & 0xff;
-      ResourceSecurityByteThird = ResourceSecurityFlag >> 0x10 & 0xff;
-      ResourceSecurityByteSecond = ResourceSecurityFlag >> 8 & 0xff;
-      ResourceSecurityByteFirst = ResourceSecurityFlag & 0xff;
-      ExecuteSecurityOperation(ResourceChecksumData, 0x27, &SecurityOperationData, ResourceValidationStatus);
+      ResourceSecurityByteFourth = ResourceSecurityFlag >> ResourceSecurityHighByteShift;
+      ResourceStatusByteFourth = ResourceStatusFlag >> ResourceStatusHighByteShift;
+      ResourceAccessControlWord = ResourceAccessFlag >> ResourceAccessWordShift;
+      ResourceStatusByteThird = ResourceStatusFlag >> ResourceStatusMidHighByteShift & ResourceStatusMidHighByteMask;
+      ResourceStatusByteSecond = ResourceStatusFlag >> ResourceStatusMidByteShift & ResourceStatusMidByteMask;
+      ResourceStatusByteFirst = ResourceStatusFlag & ResourceStatusLowByteMask;
+      ResourceSecurityByteThird = ResourceSecurityFlag >> ResourceSecurityMidHighByteShift & ResourceSecurityMidHighByteMask;
+      ResourceSecurityByteSecond = ResourceSecurityFlag >> ResourceSecurityMidByteShift & ResourceSecurityMidByteMask;
+      ResourceSecurityByteFirst = ResourceSecurityFlag & ResourceSecurityLowByteMask;
+      ExecuteSecurityOperation(ResourceChecksumData, SecurityOperationTypeValidation, &SecurityOperationData, ResourceValidationStatus);
     }
-    ResourceHandleBackup = *(int64_t *)(ResourceIndex + 0x48);
+    ResourceHandleBackup = *(int64_t *)(ResourceIndex + ResourceHandleBackupOffset);
     if ((ResourceHandleBackup != 0) || (LockStatus = AcquireResourceLock(ObjectContext, ResourceIndex, &ResourceHandleBackup), LockStatus == 0)) {
       *ResourceIndexPointer = ResourceHandleBackup;
     }
@@ -65215,7 +65236,17 @@ void InitializeSystemResourceHandlerTemplate(uint8_t ObjectContext,int64_t Valid
  * @param ValidationContext 验证上下文，包含验证所需的数据
  * @note 此函数会设置系统数据结构的指针
  */
-void ConfigureSystemDataStructureAtOffset98(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 配置系统数据结构
+ * 
+ * 该函数在验证上下文的偏移量0x98处配置系统数据结构
+ * 主要用于系统数据结构的初始化和配置
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @note 此函数会设置系统数据结构的指针
+ */
+void ConfigureSystemDataStructure(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + ValidationContextSystemObjectOffset) + 0x20) = &SystemDataStructure;
@@ -65234,7 +65265,17 @@ void ConfigureSystemDataStructureAtOffset98(uint8_t ObjectContext,int64_t Valida
  * @param ValidationContext 验证上下文，包含验证所需的数据
  * @note 此函数会设置系统数据结构的指针
  */
-void ConfigureSystemDataStructureAtOffset80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 配置系统数据结构
+ * 
+ * 该函数在验证上下文的偏移量0x80处配置系统数据结构
+ * 主要用于系统数据结构的初始化和配置
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @note 此函数会设置系统数据结构的指针
+ */
+void ConfigureSystemDataStructureSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + 0x80) + 0x20) = &SystemDataStructure;
@@ -65284,7 +65325,19 @@ void ExecuteResourceTablePointerCleanupAndHashValidation(uint8_t ObjectContext,i
  * @param CleanupFlag 清理标志，控制清理的行为
  * @note 此函数会调用ExecuteResourceCommand来执行资源命令
  */
-void ExecuteSystemResourceCleanupAtOffset60(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理操作
+ * 
+ * 该函数处理偏移量0x60处的系统资源清理操作，包括资源命令执行和句柄释放
+ * 主要用于特定位置的系统资源管理和清理流程
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @param CleanupOption 清理选项，指定清理的方式
+ * @param CleanupFlag 清理标志，控制清理的行为
+ * @note 此函数会调用ExecuteResourceCommand来执行资源命令
+ */
+void ExecuteSystemResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
@@ -65918,7 +65971,18 @@ void UnwindSystemResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext
  * @param ValidationContext 验证上下文
  * @remark 原始函数名：Unwind_1809085d0
  */
-void RegisterResourceProcessorAtOffset50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器
+ * 
+ * 该函数在偏移量0x50处注册资源处理器，用于系统资源管理
+ * 主要用于资源操作和处理器的注册
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数主要用于资源处理器的注册
+ */
+void RegisterResourceProcessor(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextOperationOffset) + 8,8,4,ProcessResourceOperation);
@@ -66355,7 +66419,17 @@ void CleanupValidationContextResourceTablePointer(uint8_t ObjectContext, int64_t
  * @param ValidationContext 验证上下文
  * @return 无返回值
  */
-void ExecuteValidationContextAtC0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文处理函数
+ * 
+ * 该函数负责执行位于验证上下文偏移量C0处的处理函数
+ * 如果验证上下文存在，则调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void ExecuteValidationContextPrimary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ValidationContextResourceTableOffset) != (int64_t *)0x0) {
@@ -66376,7 +66450,17 @@ void ExecuteValidationContextAtC0(uint8_t ObjectContext,int64_t ValidationContex
  * @param ValidationContext 验证上下文
  * @return 无返回值
  */
-void ExecuteValidationContextAtD0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文处理函数
+ * 
+ * 该函数负责执行位于验证上下文偏移量D0处的处理函数
+ * 如果验证上下文存在，则调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ */
+void ExecuteValidationContextSecondary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + ResourceContextExtendedOffset) != (int64_t *)0x0) {
@@ -66398,7 +66482,18 @@ void ExecuteValidationContextAtD0(uint8_t ObjectContext,int64_t ValidationContex
  * @return 无返回值
  * @remark 原始函数名: Unwind_180908800
  */
-void ExecuteValidationContextAtD8(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文处理函数
+ * 
+ * 该函数负责执行位于验证上下文偏移量D8处的处理函数
+ * 如果验证上下文存在，则调用相应的处理函数
+ * 
+ * @param ObjectContext 对象上下文，包含对象的状态信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据
+ * @return 无返回值
+ * @remark 原始函数名: Unwind_180908800
+ */
+void ExecuteValidationContextTertiary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(int64_t **)(ValidationContext + 0xd8) != (int64_t *)0x0) {
