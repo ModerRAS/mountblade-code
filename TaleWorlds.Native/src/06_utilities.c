@@ -100218,7 +100218,20 @@ void SecondaryExtendedResourceCleanupHandler(uint8_t ObjectContext,int64_t Valid
 
 
 
-void Unwind_180910320(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源哈希释放操作
+ * 
+ * 该函数负责处理系统资源哈希表的释放操作，包括资源引用计数递减和内存清理
+ * 当资源引用计数降至零时，触发系统清理处理程序
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * 
+ * @note 该函数处理资源哈希状态的安全释放和内存管理
+ * @warning 原始函数名：Unwind_180910320
+ */
+void ProcessSystemResourceHashRelease(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -100254,7 +100267,22 @@ void Unwind_180910320(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910330(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源清理链操作
+ * 
+ * 该函数负责执行系统资源清理链的遍历和清理操作
+ * 通过遍历资源哈希表并调用相应的清理函数来释放系统资源
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @return 无返回值
+ * 
+ * @note 该函数处理系统资源的链式清理操作
+ * @warning 原始函数名：Unwind_180910330
+ */
+void ExecuteSystemResourceCleanupChain(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
