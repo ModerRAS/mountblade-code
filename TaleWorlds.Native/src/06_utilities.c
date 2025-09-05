@@ -254,7 +254,7 @@
  * 
  * @note 原始函数名：FUN_1808995c0
  */
-#define ValidateDataWithSecurityCheck FUN_1808995c0
+#define ValidateDataWithSecurityCheck ValidateDataWithSecurityCheck
 
 /**
  * @brief 清理系统资源A0
@@ -263,7 +263,7 @@
  * 
  * @note 原始函数名：FUN_180899790
  */
-#define CleanupSystemResources FUN_180899790
+#define CleanupSystemResources CleanupSystemResources
 
 /**
  * @brief 重置系统状态A0
@@ -272,7 +272,7 @@
  * 
  * @note 原始函数名：FUN_180899799
  */
-#define ResetSystemState FUN_180899799
+#define ResetSystemState ResetSystemState
 
 /**
  * @brief 同步数据A0
@@ -281,7 +281,7 @@
  * 
  * @note 原始函数名：FUN_1808997b0
  */
-#define SynchronizeData FUN_1808997b0
+#define SynchronizeData SynchronizeData
 
 /**
  * @brief 内存管理A0
@@ -290,7 +290,7 @@
  * 
  * @note 原始函数名：FUN_180899891
  */
-#define ManageMemory FUN_180899891
+#define ManageMemory ManageMemory
 
 // 高级数据处理函数宏定义 (F系列)
 
@@ -2196,7 +2196,7 @@
 
 // 原始函数名：FUN_180897d20 - 数据块安全处理函数A0
 // 功能：处理数据块并执行安全检查，包含加密/解密操作
-#define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
+#define ProcessDataBlockWithSecurityCheckA0 ProcessDataBlockWithSecurityCheck
 
 // 原始函数名：FUN_180897d90 - 数据验证函数A0
 // 功能：验证数据结构并执行相关操作
@@ -2220,19 +2220,19 @@
 
 // 原始函数名：FUN_180899790 - 系统清理函数A0
 // 功能：清理系统资源和状态
-#define CleanupSystemResourcesA0 FUN_180899790
+#define CleanupSystemResourcesA0 CleanupSystemResources
 
 // 原始函数名：FUN_180899799 - 系统重置函数A0
 // 功能：重置系统状态和配置
-#define ResetSystemStateA0 FUN_180899799
+#define ResetSystemStateA0 ResetSystemState
 
 // 原始函数名：FUN_1808997b0 - 数据同步函数A0
 // 功能：同步数据状态
-#define SynchronizeDataA0 FUN_1808997b0
+#define SynchronizeDataA0 SynchronizeData
 
 // 原始函数名：FUN_180899891 - 内存管理函数A0
 // 功能：管理内存资源
-#define ManageMemoryA0 FUN_180899891
+#define ManageMemoryA0 ManageMemory
 
 // 原始函数名：FUN_18089b218 - 系统状态设置函数A0
 // 功能：设置系统状态并返回结果
@@ -2252,23 +2252,23 @@
 
 // 原始函数名：FUN_1808995c0 - 数据验证函数A2
 // 功能：验证数据并执行安全检查
-#define ValidateDataWithSecurityCheckA2 FUN_1808995c0
+#define ValidateDataWithSecurityCheckA2 ValidateDataWithSecurityCheck
 
 // 原始函数名：FUN_180899790 - 系统清理函数A0
 // 功能：清理系统资源和状态
-#define CleanupSystemResourcesA0 FUN_180899790
+#define CleanupSystemResourcesA0 CleanupSystemResources
 
 // 原始函数名：FUN_180899799 - 系统重置函数A0
 // 功能：重置系统状态和配置
-#define ResetSystemStateA0 FUN_180899799
+#define ResetSystemStateA0 ResetSystemState
 
 // 原始函数名：FUN_1808997b0 - 数据同步函数A0
 // 功能：同步数据到指定位置
-#define SynchronizeDataA0 FUN_1808997b0
+#define SynchronizeDataA0 SynchronizeData
 
 // 原始函数名：FUN_180899891 - 内存管理函数A0
 // 功能：管理内存分配和释放
-#define ManageMemoryA0 FUN_180899891
+#define ManageMemoryA0 ManageMemory
 
 // 原始函数名：FUN_180899950 - 数据处理函数A2
 // 功能：处理数据并执行相关操作
@@ -2996,7 +2996,7 @@
 // 数据处理函数语义化宏定义
 // 原始函数名：FUN_180897d20 - 数据安全处理函数A0
 // 功能：处理数据块并进行安全验证，执行加密操作
-#define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
+#define ProcessDataBlockWithSecurityCheckA0 ProcessDataBlockWithSecurityCheck
 
 // 系统操作函数语义化宏定义
 // 原始函数名：FUN_180899040 - 数据验证函数A0
@@ -3497,23 +3497,23 @@
 
 // 原始函数名：FUN_1808995c0 - 数据验证函数A2
 // 功能：验证数据并执行安全检查
-#define ValidateDataWithSecurityCheckA2 FUN_1808995c0
+#define ValidateDataWithSecurityCheckA2 ValidateDataWithSecurityCheck
 
 // 原始函数名：FUN_180899790 - 系统清理函数A0
 // 功能：清理系统资源
-#define CleanupSystemResourcesA0 FUN_180899790
+#define CleanupSystemResourcesA0 CleanupSystemResources
 
 // 原始函数名：FUN_180899799 - 系统重置函数A0
 // 功能：重置系统状态
-#define ResetSystemStateA0 FUN_180899799
+#define ResetSystemStateA0 ResetSystemState
 
 // 原始函数名：FUN_1808997b0 - 数据同步函数A0
 // 功能：同步数据
-#define SynchronizeDataA0 FUN_1808997b0
+#define SynchronizeDataA0 SynchronizeData
 
 // 原始函数名：FUN_180899891 - 内存管理函数A0
 // 功能：管理内存
-#define ManageMemoryA0 FUN_180899891
+#define ManageMemoryA0 ManageMemory
 
 // 数据处理函数语义化宏定义
 // 原始函数名：FUN_1808d73b0 - 浮点数据处理函数A0
@@ -10830,7 +10830,7 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 
 // 原始函数名：FUN_180897d20 - 数据处理函数A0
 // 功能：处理数据块和配置信息
-#define ProcessDataBlockWithConfigurationA0 FUN_180897d20
+#define ProcessDataBlockWithConfigurationA0 ProcessDataBlockWithSecurityCheck
 
 // 原始函数名：FUN_180898040 - 浮点数据处理函数A0
 // 功能：处理浮点数据和信息
@@ -10846,7 +10846,7 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 
 // 原始函数名：FUN_1808995c0 - 数据验证函数A2
 // 功能：验证数据和状态
-#define ValidateDataWithSecurityCheckA2 FUN_1808995c0
+#define ValidateDataWithSecurityCheckA2 ValidateDataWithSecurityCheck
 
 // 原始函数名：FUN_180899090 - 数据块处理函数A1
 // 功能：处理多个数据块
@@ -12645,12 +12645,13 @@ void UtilityNoOperationH(void)
 undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
 
 {
-  float floatValue1;
-  longlong pointer1;
-  longlong pointer2;
+  float inputValue;
+  float outputValue;
+  longlong dataPointer;
+  longlong contextPointer;
   undefined8 operationResult;
   longlong resourceHandle;
-  float floatValue2;
+  longlong arrayIndex;
   uint validationBuffer [2];
   longlong systemContextBuffer;
   
