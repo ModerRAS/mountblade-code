@@ -2202,11 +2202,11 @@ uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓
 void InitializeNetworkConnectionState(void)
 {
   // 网络连接初始化变量
-  uint8_t *StateBuffer;                              // 网络连接状态缓冲区指针
-  int32_t InitializationResult;                      // 网络连接初始化结果状态
-  int64_t SystemContextData;                         // 网络系统上下文数据
-  int32_t ConnectionId;                              // 网络连接标识符
-  uint32_t StateFlags;                               // 网络连接状态标志位
+  uint8_t *ConnectionStateBuffer;                              // 网络连接状态缓冲区指针
+  int32_t NetworkInitializationResult;                      // 网络连接初始化结果状态
+  int64_t NetworkSystemContextData;                         // 网络系统上下文数据
+  int32_t NetworkConnectionId;                              // 网络连接标识符
+  uint32_t NetworkConnectionStateFlags;                               // 网络连接状态标志位
   int32_t SessionId;                                 // 网络连接会话ID
   uint64_t *StateDataPointer;                        // 网络连接状态数据指针
   int64_t *ContextPointer;                           // 网络连接上下文指针
