@@ -33,71 +33,49 @@
 
 /**
  * @brief 数据加密处理函数A0
- * 
- * 该函数用于处理数据加密操作，保护数据安全性
- * 
  * @note 原始函数名：func_0x00018074be80
  */
 #define EncryptData EncryptData
 
 /**
  * @brief 数据验证处理函数A0
- * 
- * 该函数用于验证数据的有效性和完整性
- * 
  * @note 原始函数名：ValidateData
  */
 #define ValidateData ValidateData
 
 /**
  * @brief 内存分配处理函数A0
- * 
- * 该函数用于处理内存分配操作
- * 
  * @note 原始函数名：AllocateMemory
  */
 #define AllocateMemory AllocateMemory
 
 /**
  * @brief 内存初始化函数A0
- * 
- * 该函数用于初始化内存区域
- * 
  * @note 原始函数名：func_0x00018076b450
  */
 #define InitializeMemory InitializeMemory
 
 /**
  * @brief 数据处理函数A0
- * 
- * 该函数用于处理数据操作
- * 
  * @note 原始函数名：ProcessData
  */
 #define ProcessData ProcessData
 
 /**
  * @brief 系统状态检查函数A0
- * 
- * 该函数用于检查系统状态
- * 
  * @note 原始函数名：CheckSystemStatus
  */
 #define CheckSystemStatus CheckSystemStatus
 
 /**
  * @brief 系统初始化函数A0
- * 
- * 该函数用于初始化系统组件
- * 
  * @note 原始函数名：InitializeSystem
  */
 #define InitializeSystem InitializeSystem
 
 /**
  * @brief 参数验证函数A0
- * 
- * 该函数用于验证参数的有效性
+ * @note 原始函数名：ValidateParameter
  * 
  * @note 原始函数名：ValidateParameters
  */
@@ -6095,16 +6073,16 @@ undefined UnknownSystemDataR;
 undefined UnknownSystemDataS;
 undefined SystemDataBufferC;
 undefined SystemExceptionDataA;
-undefined UNK_180a01668;
-undefined UNK_18098b928;
-undefined UNK_180a01638;
-undefined UNK_180a01650;
-undefined DAT_180d48d30;
+undefined SystemNetworkContext;
+undefined SystemMessageQueue;
+undefined SystemConnectionHandle;
+undefined SystemSessionData;
+undefined SystemConfigurationData;
 undefined *PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
-undefined UNK_180bd8990;
-undefined UNK_180a01630;
-undefined UNK_18009ee10;
-undefined UNK_18009edf0;
+undefined SystemResourceHandle;
+undefined SystemNetworkSocket;
+undefined SystemThreadLocalStorage;
+undefined SystemExceptionVector;
 // 工具系统配置数据
 undefined UtilitySystemConfigData1;
 undefined UtilitySystemConfigData2;
@@ -6119,20 +6097,20 @@ undefined UtilitySystemConfigData9;
 // 函数: undefined UtilityCreateMemoryHeap;
 // 创建内存堆，用于动态内存分配
 undefined UtilityCreateMemoryHeap;
-undefined DAT_180d49238;
-undefined DAT_180d49250;
-undefined DAT_180d49248;
-undefined DAT_180d49240;
-undefined DAT_180d49258;
-undefined DAT_180d4925c;
-undefined UNK_180a02c10;
+undefined MemoryHeapHeader;
+undefined MemoryHeapSize;
+undefined MemoryHeapFlags;
+undefined MemoryHeapBase;
+undefined MemoryHeapLimit;
+undefined MemoryHeapAlignment;
+undefined MemoryHeapAllocator;
 
 // 函数: undefined UtilityDestroyMemoryHeap;
 // 销毁内存堆，释放相关资源
 undefined UtilityDestroyMemoryHeap;
-undefined UNK_180a07328;
-undefined UNK_180a07370;
-undefined UNK_180a18a00;
+undefined MemoryHeapDestroyHandle;
+undefined MemoryHeapCleanupFlag;
+undefined MemoryPoolAllocatorA;
 undefined UNK_180a18a20;
 undefined UNK_180a18a40;
 undefined UNK_180a18a58;
