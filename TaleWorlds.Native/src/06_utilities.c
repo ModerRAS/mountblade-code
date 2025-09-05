@@ -14072,9 +14072,6 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
 
 
 
-89492c(void)
-// 系统终止函数A
-// 调用底层系统终止函数，程序不会返回
 void TerminateSystemA(void)
 
 {
@@ -14291,7 +14288,6 @@ void TerminateSystemB(void)
 
 
 
-894bf5(void)
 /**
  * 安全检查包装函数 - 执行系统安全验证并终止进程
  * 
@@ -33761,7 +33757,7 @@ void ExceptionRecoveryHandlerB21(undefined8 exceptionContext,longlong unwindPara
 void ExceptionUnwindHandlerA31(undefined8 exceptionContext,longlong unwindParam)
 
 {
-  int *refCount;
+  int *referenceCount;
   undefined8 *exceptionTable;
   longlong exceptionHandler;
   ulonglong exceptionAddress;
@@ -33777,9 +33773,9 @@ void ExceptionUnwindHandlerA31(undefined8 exceptionContext,longlong unwindParam)
     if ((*(void ***)(exceptionAddress + 0x70) == &ExceptionList) && (*(char *)(exceptionHandler + 0xe) == '\0')) {
       *exceptionTable = *(undefined8 *)(exceptionHandler + 0x20);
       *(undefined8 **)(exceptionHandler + 0x20) = exceptionTable;
-      refCount = (int *)(exceptionHandler + 0x18);
-      *refCount = *refCount + -1;
-      if (*refCount == 0) {
+      referenceCount = (int *)(exceptionHandler + 0x18);
+      *referenceCount = *referenceCount + -1;
+      if (*referenceCount == 0) {
         CleanupExceptionHandlers();
         return;
       }
