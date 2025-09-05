@@ -2088,14 +2088,14 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   // 连接状态处理变量
   NetworkStatus *NetworkConnectionContextDataPointer;                           // 上下文数据指针
   int32_t PacketProcessingStatus;                       // 数据包处理状态
-  int64_t ConnectionContextIdentifier;                               // 上下文标识符
+  int64_t ConnectionContextIdentifier;                               // 连接上下文标识符
   NetworkStatus ConnectionValidationStatus;                       // 验证状态
   NetworkStatus ConnectionTimeoutStatus;                          // 超时状态
   NetworkStatus SecondaryProcessingStatus;              // 次级处理状态
   NetworkStatus *ConnectionStatusBuffer;                          // 状态缓冲区
   int64_t StatusIterator;                           // 处理迭代器
   NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
-  int64_t *ConnectionOperationBuffer;                             // 操作缓冲区
+  int64_t *ConnectionOperationBuffer;                             // 连接操作缓冲区
   int32_t ConnectionUpdateOperation;                         // 更新操作代码
   NetworkStatus *ConnectionStatusPointer;                          // 连接状态指针
   int32_t ConnectionOperationCode;                              // 连接操作代码
