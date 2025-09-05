@@ -1630,7 +1630,7 @@ void* GetSystemInitializationFunction;
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
-  void** SystemSystemRootNodeReference;
+  void** SystemRootNodeReference;
   int GameCoreSystemIdComparisonResult;
   long long* SystemMainTablePointer;
   long long SystemRequiredMemorySize;
@@ -1700,7 +1700,7 @@ void InitializeGameCoreSystem(void)
 void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeActive;
-  void** SystemSystemRootNodeReference;
+  void** SystemRootNodeReference;
   int BaseAllocatorSystemIdComparisonResult;
   long long* SystemMainTablePointer;
   long long SystemRequiredMemorySize;
@@ -1771,7 +1771,7 @@ void InitializeSystemDataTableBaseAllocator(void)
 void InitializeSystemDataTableAllocator(void)
 {
   bool IsDataTableNodeActive;
-  void** SystemSystemRootNodeReference;
+  void** SystemRootNodeReference;
   int DataTableSystemIdentifierComparisonResult;
   long long* SystemMainTablePointer;
   long long SystemRequiredMemorySize;
@@ -1922,7 +1922,7 @@ void InitializeSystemMemoryPool(void)
   int MemoryPoolIdentifierComparisonResult;
   long long* SystemMemoryInfoPointer;
   long long SystemCurrentOperationTimestamp;
-  void** SystemSystemRootNodeReference;
+  void** SystemRootNodeReference;
   void** SystemCurrentNodePointer;
   void** SystemNextNodePointer;
   void** SystemPreviousNodePointer;
@@ -71513,8 +71513,6 @@ void FinalizeSystemResourceConfiguration(void);
  * @brief 清理系统资源处理器函数
  * 
  * 该函数负责清理系统资源处理器，释放相关资源
- * 
- CleanupSystemResourceHandler
  */
 void CleanupSystemResourceHandler(void);
 
@@ -71525,8 +71523,6 @@ void CleanupSystemResourceHandler(void);
  * 
  * @param resourceHandle 资源句柄
  * @param releaseFlag 释放标志
- * 
- ReleaseSystemResourceHandle
  */
 void ReleaseSystemResourceHandle(void* ResourceHandle, int ReleaseFlag);
 
@@ -71541,8 +71537,6 @@ void ReleaseSystemResourceHandle(void* ResourceHandle, int ReleaseFlag);
  * @param configurationFlag 配置标志
  * @param SystemInitializationStatus 系统状态
  * @return 处理结果状态
- * 
- ProcessSystemResourceData
  */
 char ProcessSystemResourceData(void* ResourceHandle, void* DataPointer, void* ResultPointer, long long ConfigurationFlag, long long SystemInitializationStatus);
 
@@ -71552,8 +71546,6 @@ char ProcessSystemResourceData(void* ResourceHandle, void* DataPointer, void* Re
  * 该函数负责验证系统资源的当前状态
  * 
  * @return 系统资源状态
- * 
- ValidateSystemResourceStatus
  */
 char ValidateSystemResourceStatus(void);
 
