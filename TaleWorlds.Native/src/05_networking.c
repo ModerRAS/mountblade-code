@@ -1132,16 +1132,36 @@ uint32_t NetworkConnectionProcessingConfig;                 // 网络连接处�
  */
 uint32_t NetworkConnectionTransportConfig;                  // 网络连接传输配置数据，连接传输的配置参数
 
-// 网络连接协议配置数据
+/**
+ * @brief 网络连接协议配置数据
+ * 
+ * 包含网络通信协议的配置参数，定义协议版本、兼容性要求、握手流程
+ * 和协议特定的行为规则。此配置确保不同系统间的协议兼容性。
+ */
 uint32_t NetworkConnectionProtocolConfig;                   // 网络连接协议配置数据，连接协议的配置参数
 
-// 网络连接验证配置数据
+/**
+ * @brief 网络连接验证配置数据
+ * 
+ * 包含网络连接验证的配置参数，定义身份验证、数据完整性检查、
+ * 安全策略执行和异常检测机制。此配置确保连接的安全性和可靠性。
+ */
 uint32_t NetworkConnectionValidationConfig;                 // 网络连接验证配置数据，连接验证的配置参数
 
-// 网络连接路由主配置数据
+/**
+ * @brief 网络连接路由主配置数据
+ * 
+ * 包含网络路由的主要配置参数，定义路由策略、路径选择算法、负载均衡
+ * 和故障转移机制。此配置是网络路由系统的核心配置。
+ */
 uint32_t NetworkConnectionRoutingMainConfig;            // 网络连接路由主配置数据，路由的主要配置参数
 
-// 网络连接路由备用配置数据
+/**
+ * @brief 网络连接路由备用配置数据
+ * 
+ * 包含网络路由的备用配置参数，作为主配置的备份方案。当主路由配置
+ * 出现故障或不可用时，系统会自动切换到备用配置以确保服务连续性。
+ */
 uint32_t NetworkConnectionRoutingBackupConfig;          // 网络连接路由备用配置数据，路由的备用配置参数
 
 // 网络连接路由替代配置数据

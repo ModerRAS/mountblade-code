@@ -1502,15 +1502,15 @@ void* SystemDataBufferExtendedSecondary;
 void* SystemDataBufferExtendedTertiary;
 void* SystemDataBufferExtendedFinalPrime;
 void* SystemDataBufferStandardExtendedLarge;
-void* SystemDataBufferStandardExtendedResource1;
-void* SystemDataBufferStandardExtendedResource2;
-void* SystemDataBufferStandardExtendedResource3;
-void* SystemDataBufferStandardExtendedResource4;
-void* SystemDataBufferStandardExtendedResource5;
-void* SystemDataBufferStandardExtendedResource6;
-void* SystemDataBufferStandardExtendedResource7;
-void* SystemDataBufferStandardExtendedResource8;
-void* SystemDataBufferStandardExtendedResource9;
+void* SystemDataBufferStandardExtendedResourceTexture;
+void* SystemDataBufferStandardExtendedResourceModel;
+void* SystemDataBufferStandardExtendedResourceAudio;
+void* SystemDataBufferStandardExtendedResourceShader;
+void* SystemDataBufferStandardExtendedResourceScript;
+void* SystemDataBufferStandardExtendedResourceConfig;
+void* SystemDataBufferStandardExtendedResourceFont;
+void* SystemDataBufferStandardExtendedResourceAnimation;
+void* SystemDataBufferStandardExtendedResourceParticle;
 
 // 系统初始化协调器
 void* SystemInitializationCoordinator;
@@ -34007,9 +34007,9 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           ResourceHashEntryPointer = DataBufferPointer;
           SystemHashNodeData = DataBufferPointer;
           ResourceAddressPointer = VerticalResolutionPointer;
-          SystemCode = SystemIterationIndex370;
-          ResourceDataPosition = SystemLoopCounter368;
-        } while ((ulong long)(long long)SystemIterationIndex374 < SystemDataBufferCount);
+          SystemCode = SystemIterationIndexSecondary;
+          ResourceDataPosition = SystemLoopCounterSecondary;
+        } while ((ulong long)(long long)SystemIterationIndexPrimary < SystemDataBufferCount);
       }
       for (; resourceEntryPointer = VerticalResolutionPointer, SystemThreadContext = DataBufferPointer, ResourceHashEntryPointer != VerticalResolutionPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 4)
       {
