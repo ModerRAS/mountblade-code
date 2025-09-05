@@ -374,7 +374,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkPacketPayloadSize1Kilobyte 0x400                      // 数据包负载大小1KB
 #define NetworkMaximumPacketSize2Kilobytes 0x800                     // 最大数据包大小2KB
 #define NetworkPacketProcessingSize256Bytes 0x100                 // 数据包处理大小256字节
-#define NetworkValidationBufferSize39Bytes 0x27                   // 验证缓冲区大小39字节
+#define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
 #define NetworkConnectionCompletionHandleValue 0x7d                   // 连接完成状态句柄值 (125)
 #define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
@@ -1120,49 +1120,49 @@ uint32_t NetworkConnectionProcessingConfig;  // 网络连接处理配置数据
  * 
  * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
  */
-uint32_t NetworkConnectionTransportConfiguration;        // 网络连接传输配置数据
+uint32_t NetworkConnectionTransportConfig;   // 网络连接传输配置数据
 
 /**
  * @brief 网络连接协议配置数据
  * 
  * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
  */
-uint32_t NetworkConnectionProtocolConfiguration;         // 网络连接协议配置数据
+uint32_t NetworkConnectionProtocolConfig;    // 网络连接协议配置数据
 
 /**
  * @brief 网络连接验证配置数据
  * 
  * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
  */
-uint32_t NetworkConnectionValidationConfiguration;        // 网络连接验证配置数据
+uint32_t NetworkConnectionValidationConfig;  // 网络连接验证配置数据
 
 /**
  * @brief 网络连接路由主要配置数据
  * 
  * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
  */
-uint32_t NetworkConnectionRoutingPrimaryConfiguration;    // 网络连接路由主要配置数据
+uint32_t NetworkConnectionRoutingPrimaryConfig;    // 网络连接路由主要配置数据
 
 /**
  * @brief 网络连接路由次要配置数据
  * 
  * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
  */
-uint32_t NetworkConnectionRoutingSecondaryConfiguration;  // 网络连接路由次要配置数据
+uint32_t NetworkConnectionRoutingSecondaryConfig;  // 网络连接路由次要配置数据
 
 /**
  * @brief 网络连接路由第三配置数据
  * 
  * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
  */
-uint32_t NetworkConnectionRoutingTertiaryConfiguration;   // 网络连接路由第三配置数据
+uint32_t NetworkConnectionRoutingTertiaryConfig;   // 网络连接路由第三配置数据
 
 /**
  * @brief 网络连接路由第四配置数据
  * 
  * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
  */
-uint32_t NetworkConnectionRoutingQuaternaryConfiguration;  // 网络连接路由第四配置数据
+uint32_t NetworkConnectionRoutingQuaternaryConfig;  // 网络连接路由第四配置数据
 
 /**
  * @brief 网络连接主要配置数据
@@ -1709,7 +1709,7 @@ void ValidatePacketSecurity(void)
   
   // 初始化验证缓冲区
   PacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
-  PacketValidationBufferSize = NetworkValidationBufferSize39Bytes;                   // 设置验证缓冲区大小为39字节
+  PacketValidationBufferSize = NetworkValidationBufferSize;                   // 设置验证缓冲区大小为39字节
   
   // 初始化安全验证
   PacketSecurityValidationData = NetworkSecurityEnabled;                 // 初始化安全验证数据
