@@ -12059,7 +12059,23 @@ void ValidateContextAndProcess(longlong contextHandle, undefined8 validationData
 
 
 
-undefined4 FUN_180894dd0(longlong param_1,undefined8 param_2,uint param_3,longlong param_4)
+/**
+ * @brief 处理系统请求并执行验证操作
+ * 
+ * 该函数负责处理系统请求，包括参数验证、执行系统操作、管理验证上下文等。
+ * 函数会创建验证上下文，执行系统操作，并维护验证链表结构。
+ * 
+ * @param requestContext 请求上下文指针，包含请求的基本信息和参数
+ * @param requestData 请求数据，包含请求的具体内容
+ * @param operationFlags 操作标志位，控制操作的执行方式
+ * @param validationContext 验证上下文指针，用于存储验证结果和状态
+ * @return uint32_t 操作结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 此函数会创建临时的验证上下文，执行完成后会自动清理
+ * @warning 如果参数验证失败，函数会提前返回错误码
+ * @warning 函数执行过程中不会返回，最终会调用清理函数
+ */
+uint32_t ProcessSystemRequestWithValidation(longlong requestContext,undefined8 requestData,uint operationFlags,longlong validationContext)
 
 {
   longlong *pvalidationContext;
