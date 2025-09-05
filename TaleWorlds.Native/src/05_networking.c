@@ -1924,7 +1924,7 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
  * @note 此函数使用状态机模式处理连接请求的各个阶段
  * @warning 如果连接验证失败，系统会记录错误日志并拒绝连接
  */
-NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
+NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
   int64_t NetworkConnectionContextId;              // 网络连接上下文标识符
@@ -1965,7 +1965,7 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
  * @note 此函数在网络系统启动时调用，确保所有连接处理资源正确初始化
  * @warning 如果初始化失败，系统将无法建立新的网络连接
  */
-NetworkHandle SetupNetworkSystem(void)
+NetworkHandle InitializeNetworkSystem(void)
 {
   // 初始化网络连接表
   if (NetworkConnectionTable == 0) {
@@ -2173,7 +2173,7 @@ SecondaryNetworkProcessingCompleted:
  * @note 此函数应在所有网络连接组件初始化完成后调用
  * @warning 返回的句柄应被妥善保存，用于后续的网络连接管理操作
  */
-NetworkHandle CleanupNetworkSystem(void)
+NetworkHandle ShutdownNetworkSystem(void)
 {
   return ConnectionCompletionHandle;
 }
@@ -2284,7 +2284,7 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
  * @note 此函数会根据数据包类型选择不同的处理路径
  * @warning 处理过程中如果发现数据包损坏或格式错误，会立即返回错误码
  */
-NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64_t *PacketData)
+NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int64_t *PacketData)
 {
   // 数据包处理状态变量
   NetworkHandle PacketValidationResult;                        // 数据包验证结果，存储整个处理流程的最终状态
@@ -2446,7 +2446,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
     // 处理状态限制内的数据包
     ProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkMagicEventData);
     if ((int)ProcessingResult == 0) {
-      ProcessingResult = NetworkOperationSuccessCode;  // 验证成功
+      ProcessingResult = NetworkOperationSuccess;  // 验证成功
     }
   }
   else {
