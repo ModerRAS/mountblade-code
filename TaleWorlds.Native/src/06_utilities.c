@@ -1079,6 +1079,43 @@
 // 功能：存储异常处理的数据表信息
 #define ExceptionDataTable4 UNK_1809fd0a0
 
+// 工具函数宏定义
+// 原始函数名：FUN_180896140 - 数据验证和处理函数A0
+// 功能：验证输入数据并执行相应的处理操作
+#define ValidateAndProcessInputDataA0 FUN_180896140
+
+// 原始函数名：FUN_180896800 - 数据块处理函数A0
+// 功能：处理数据块并返回处理结果
+#define ProcessDataBlockA0 FUN_180896800
+
+// 原始函数名：FUN_180896830 - 数据验证函数A0
+// 功能：验证数据的有效性并返回验证结果
+#define ValidateDataBlockA0 FUN_180896830
+
+// 原始函数名：FUN_180898d84 - 系统配置处理函数A0
+// 功能：处理系统配置并返回处理结果
+#define ProcessSystemConfigurationA0 FUN_180898d84
+
+// 原始函数名：FUN_180898e56 - 系统状态获取函数A0
+// 功能：获取系统状态并返回状态信息
+#define GetSystemStateA0 FUN_180898e56
+
+// 原始函数名：FUN_180898e70 - 配置验证函数A0
+// 功能：验证配置的有效性并返回验证结果
+#define ValidateConfigurationA0 FUN_180898e70
+
+// 原始函数名：FUN_180898eb0 - 配置处理函数A0
+// 功能：处理配置数据并返回处理结果
+#define ProcessConfigurationDataA0 FUN_180898eb0
+
+// 原始函数名：FUN_180898ef0 - 配置更新函数A0
+// 功能：更新配置数据并返回更新结果
+#define UpdateConfigurationDataA0 FUN_180898ef0
+
+// 原始函数名：FUN_180898f40 - 配置验证函数A1
+// 功能：验证配置的有效性并返回验证结果
+#define ValidateConfigurationA1 FUN_180898f40
+
 // 原始变量名：_DAT_180c8a9b0 - 异常上下文指针
 // 功能：存储异常处理的上下文指针信息
 #define ExceptionContextPtr _DAT_180c8a9b0
