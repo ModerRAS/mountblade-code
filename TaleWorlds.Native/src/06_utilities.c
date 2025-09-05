@@ -532,6 +532,36 @@
 // 原始函数名：Unwind_180907f90 - 资源重置函数
 // 功能：重置资源状态和清理相关数据
 #define ResetResourceState Unwind_180907f90
+
+// 异常处理函数语义化宏定义（180911ff0系列）
+// 原始函数名：Unwind_180911ff0 - 异常清理函数B0
+// 功能：清理异常处理状态，偏移量0x48处的资源
+#define CleanupExceptionAtOffset48 Unwind_180911ff0
+
+// 原始函数名：Unwind_180912000 - 异常清理函数B1
+// 功能：清理异常处理状态，偏移量0x58处的资源
+#define CleanupExceptionAtOffset58 Unwind_180912000
+
+// 原始函数名：Unwind_180912010 - 异常清理函数B2
+// 功能：清理异常处理状态，偏移量0x68处的资源
+#define CleanupExceptionAtOffset68 Unwind_180912010
+
+// 原始函数名：Unwind_180912020 - 异常清理函数B3
+// 功能：清理异常处理状态，偏移量0x1530处的资源
+#define CleanupExceptionAtOffset1530 Unwind_180912020
+
+// 原始函数名：Unwind_180912040 - 异常清理函数B4
+// 功能：清理异常处理状态，偏移量200处的资源
+#define CleanupExceptionAtOffset200 Unwind_180912040
+
+// 全局变量语义化宏定义
+// 原始变量名：_DAT_180c8a9b0 - 异常上下文指针
+// 功能：存储异常处理的上下文信息
+#define ExceptionContext _DAT_180c8a9b0
+
+// 原始变量名：_DAT_180c8a9a8 - 异常处理数据指针
+// 功能：存储异常处理的数据指针信息
+#define ExceptionDataPointer _DAT_180c8a9a8
 #define ProcessInputData FUN_180853000
 
 // 原始函数名：FUN_180851490 - 执行游戏命令
@@ -1994,16 +2024,38 @@ undefined DAT_180bfa240;
 undefined DAT_180bfa248;
 undefined DAT_180a22fa8;
 
-// 函数: undefined FUN_180942480;
-undefined FUN_180942480;
+// 函数: undefined ProcessUtilityDataBB0;
+// 
+// 工具数据处理函数BB0
+// 
+// 功能：
+// 处理工具系统数据，执行数据转换、验证或格式化操作
+// 
+// 参数：
+//   无
+// 
+// 返回值：
+//   undefined - 数据处理结果
+undefined ProcessUtilityDataBB0;
 undefined DAT_180bfa290;
 undefined DAT_180bfa298;
 undefined DAT_180bfa2a0;
 undefined DAT_180bfa2a8;
 undefined UNK_180a23068;
 
-// 函数: undefined FUN_1809424a0;
-undefined FUN_1809424a0;
+// 函数: undefined ValidateUtilityDataBC0;
+// 
+// 工具数据验证函数BC0
+// 
+// 功能：
+// 验证工具系统数据，检查数据完整性和有效性
+// 
+// 参数：
+//   无
+// 
+// 返回值：
+//   undefined - 验证结果状态
+undefined ValidateUtilityDataBC0;
 
 // 函数: undefined FUN_1809424c0;
 undefined FUN_1809424c0;
