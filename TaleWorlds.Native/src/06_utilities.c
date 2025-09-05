@@ -31191,7 +31191,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t validationContext,int6
     return (uint64_t)validationStatus;
   }
   validationStatus = *(uint *)(param_2 + 8);
-  if (0x7e < validationStatus) goto LAB_18089ed1b;
+  if (0x7e < validationStatus) goto ProcessCheckpointValidationExit2;
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
@@ -31399,7 +31399,7 @@ ProcessCheckpointValidationState5:
   }
   *(DataWord *)(param_1 + 0x38) = dataFlags;
   validationStatus = *(uint *)(param_2 + 8);
-LAB_18089ed1b:
+ProcessCheckpointValidationExit2:
   memoryBaseAddress = 0;
   if ((0x7e < validationStatus) && (memoryBaseAddress = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
     validationStatus = OperateDataO0(*param_2,param_1 + 0x38,4);
@@ -31486,7 +31486,7 @@ uint64_t FUN_18089e87d(void)
     return (uint64_t)validationStatus;
   }
   validationStatus = *(uint *)(destinationIndexRegister + 8);
-  if (0x7e < validationStatus) goto LAB_18089ed1b;
+  if (0x7e < validationStatus) goto ProcessCheckpointValidationExit2;
   if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
     return 0x1c;
   }
@@ -31707,7 +31707,7 @@ ProcessCheckpointValidationState5:
   }
   *(int *)(register_R15 + 0x38) = register_R12D;
   validationStatus = *(uint *)(destinationIndexRegister + 8);
-LAB_18089ed1b:
+ProcessCheckpointValidationExit2:
   memoryBaseAddress = 0;
   if ((0x7e < validationStatus) && (memoryBaseAddress = 0x1c, *(int *)(destinationIndexRegister[1] + 0x18) == 0)) {
     validationStatus = OperateDataO0(*destinationIndexRegister,register_R15 + 0x38,4);
@@ -31740,7 +31740,7 @@ uint64_t FUN_18089e9af(DataBuffer param_1,DataBuffer param_2,uint64_t param_3)
   bool bVar8;
   
   operationResult = 0x1c;
-  if (0x7e < in_EAX) goto LAB_18089ed1b;
+  if (0x7e < in_EAX) goto ProcessCheckpointValidationExit2;
   if (*(int *)(destinationIndexRegister[1] + 0x18) != (int)param_3) {
     return 0x1c;
   }
@@ -31761,14 +31761,14 @@ ValidationStartHandler:
         param_3 = 0;
         if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + 0x77) + 4) {
           memoryBaseAddress = 0x11;
-          goto LAB_18089ea2c;
+          goto ProcessCheckpointValidationContext3;
         }
         goto ProcessCheckpointValidationStart2;
       }
     }
     param_3 = 0;
   }
-LAB_18089ea2c:
+ProcessCheckpointValidationContext3:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -31998,7 +31998,7 @@ ProcessCheckpointValidationError9:
   }
   *(DataWord *)(register_R15 + 0x38) = register_R12D;
   in_EAX = *(uint *)(destinationIndexRegister + 8);
-LAB_18089ed1b:
+ProcessCheckpointValidationExit2:
   if (in_EAX < 0x7f) {
     operationResult = param_3 & SystemCleanupFlag;
   }
@@ -32516,7 +32516,7 @@ void ConfigureSystemOptionsC1(void)
       if (inputParameter != 0) {
         return;
       }
-      goto LAB_18089f45f;
+      goto ProcessCheckpointValidationCase;
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(registerContext + 8) < 0x40)) {
@@ -32559,7 +32559,7 @@ void ConfigureSystemOptionsC1(void)
   if (inputParameter != 0) {
     return;
   }
-LAB_18089f45f:
+ProcessCheckpointValidationCase:
                     // WARNING: Subroutine does not return
   FUN_1808de000();
 }
@@ -48862,7 +48862,7 @@ void Unwind_1809057b0(DataBuffer param_1,int64_t param_2)
       for (pcalculatedValue = *(int **)(poperationResult[7] + dataValue2 * 8); pcalculatedValue != (int *)0x0;
           pcalculatedValue = *(int **)(pcalculatedValue + 4)) {
         if (iterationCount == *pcalculatedValue) {
-          if (pcalculatedValue != (int *)0x0) goto LAB_1801571ef;
+          if (pcalculatedValue != (int *)0x0) goto ProcessCheckpointValidationData3;
           break;
         }
       }
@@ -48881,7 +48881,7 @@ void Unwind_1809057b0(DataBuffer param_1,int64_t param_2)
       *(DataBuffer *)(pcalculatedValue + 4) = *(DataBuffer *)(poperationResult[7] + dataValue2 * 8);
       *(int **)(poperationResult[7] + dataValue2 * 8) = pcalculatedValue;
       poperationResult[9] = poperationResult[9] + 1;
-LAB_1801571ef:
+ProcessCheckpointValidationData3:
       plStackX_18 = *(int64_t **)(pcalculatedValue + 2);
       pcalculatedValue[2] = 0;
       pcalculatedValue[3] = 0;
@@ -49558,7 +49558,7 @@ void Unwind_180905950(DataBuffer param_1,int64_t param_2)
       for (pcalculatedValue = *(int **)(poperationResult[7] + dataValue2 * 8); pcalculatedValue != (int *)0x0;
           pcalculatedValue = *(int **)(pcalculatedValue + 4)) {
         if (iterationCount == *pcalculatedValue) {
-          if (pcalculatedValue != (int *)0x0) goto LAB_1801571ef;
+          if (pcalculatedValue != (int *)0x0) goto ProcessCheckpointValidationData3;
           break;
         }
       }
@@ -49577,7 +49577,7 @@ void Unwind_180905950(DataBuffer param_1,int64_t param_2)
       *(DataBuffer *)(pcalculatedValue + 4) = *(DataBuffer *)(poperationResult[7] + dataValue2 * 8);
       *(int **)(poperationResult[7] + dataValue2 * 8) = pcalculatedValue;
       poperationResult[9] = poperationResult[9] + 1;
-LAB_1801571ef:
+ProcessCheckpointValidationData3:
       plStackX_18 = *(int64_t **)(pcalculatedValue + 2);
       pcalculatedValue[2] = 0;
       pcalculatedValue[3] = 0;
@@ -95739,9 +95739,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 #define ValidationErrorHandler9 ProcessCheckpointValidationError8
 #define ValidationStateHandler5 ProcessCheckpointValidationState5
 #define ValidationErrorHandler10 ProcessCheckpointValidationError9
-#define ValidationExitHandler2 LAB_18089ed1b
-#define ValidationCaseHandler LAB_18089f45f
-#define ValidationDataHandler3 LAB_1801571ef
+#define ValidationExitHandler2 ProcessCheckpointValidationExit2
+#define ValidationCaseHandler ProcessCheckpointValidationCase
+#define ValidationDataHandler3 ProcessCheckpointValidationData3
 
 // 异常恢复处理器宏定义
 // 用于将原始的Unwind_函数名映射为语义化的异常恢复处理器名称

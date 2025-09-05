@@ -516,7 +516,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 
 // 网络数据包常量
 #define NetworkStandardPacketHeaderSize 0x20                        // 标准数据包头大小32字节
-#define Network16BytePacketTrailerSize 0x10                       // 数据包尾大小16字节
+#define NetworkPacketTrailerSize16Bytes 0x10                       // 数据包尾大小16字节
 #define NetworkPacketPayloadSize1KB 0x400                      // 数据包负载大小1KB
 #define NetworkMaximumPacketSize2KB 0x800                     // 最大数据包大小2KB
 #define NetworkStandardPacketProcessingSize 0x100                 // 标准数据包处理大小256字节
@@ -2469,9 +2469,9 @@ void InitializeNetworkDataReception(void)
 void InitializeNetworkPacketSecurityValidation(void)
 {
   // 初始化验证参数
-  NetworkPacketHashAlgorithm = NetworkHashAlgorithmSHA256;                         // 设置哈希算法为SHA-256
-  NetworkPacketSignatureMethod = NetworkSignatureMethodRSA;                        // 设置签名方法为RSA
-  NetworkPacketEncryptionKeyLength = Network256BitEncryptionKeyLength;                   // 设置加密密钥长度为256位
+  NetworkPacketHashAlgorithm = NetworkHashAlgorithmSha256;                         // 设置哈希算法为SHA-256
+  NetworkPacketSignatureMethod = NetworkSignatureMethodRsa;                        // 设置签名方法为RSA
+  NetworkPacketEncryptionKeyLength = NetworkEncryptionKeyLength256Bit;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
   NetworkPacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
@@ -2539,15 +2539,15 @@ void InitializeNetworkPacketProcessingSystem(void)
   NetworkPacketLoss = NetworkPacketsResetValue;                             // 重置数据包丢失率
   
   // 初始化重试机制
-  NetworkRetryInterval = Network1SecondTimeout;                        // 设置重试间隔为1秒
-  NetworkTimeoutInterval = Network5SecondsTimeout;                     // 设置超时间隔为5秒
+  NetworkRetryInterval = NetworkTimeoutOneSecond;                        // 设置重试间隔为1秒
+  NetworkTimeoutInterval = NetworkTimeoutFiveSeconds;                     // 设置超时间隔为5秒
   NetworkConnectionRetryCount = NetworkMaximumRetryCount;             // 设置连接重试次数为3次
   NetworkConnectionBackoffTime = NetworkBackoffTimeout;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
-  NetworkEventSize = Network64ByteEventSize;                              // 设置网络事件大小为64字节
+  NetworkEventSize = NetworkEventSize64Bytes;                              // 设置网络事件大小为64字节
   NetworkEventIndex = NetworkIndexResetValue;                            // 重置网络事件索引为0
-  NetworkCallbackSize = Network64ByteCallbackSize;                           // 设置网络回调大小为64字节
+  NetworkCallbackSize = NetworkCallbackSize64Bytes;                           // 设置网络回调大小为64字节
   NetworkCallbackIndex = NetworkIndexResetValue;                          // 重置网络回调索引为0
 }
 
