@@ -7102,14 +7102,25 @@ undefined UNK_180a3ade8;
 undefined UNK_180a3ae00;
 undefined UNK_180a3ae18;
 undefined UNK_180a2eac0;
-undefined DAT_180c92510;
+// 系统配置数据表A0
+// 功能：存储系统配置数据表信息
+#define SystemConfigurationDataTableA0 DAT_180c92510
+undefined SystemConfigurationDataTableA0;
 // 系统主缓存状态标志
 char SystemMainCacheStatusFlag;
-undefined UNK_180a3e5e8;
+// 系统状态指针A0
+// 功能：指向系统状态数据
+#define SystemStatusPointerA0 UNK_180a3e5e8
+undefined SystemStatusPointerA0;
 
-9430e0;
-undefined FUN_1809430e0;
-undefined1 DAT_180bf66d8;
+// 系统数据处理函数A0
+// 功能：处理系统数据操作
+#define ProcessSystemDataA0 FUN_1809430e0
+undefined ProcessSystemDataA0;
+// 系统标志变量A0
+// 功能：存储系统状态标志
+#define SystemFlagA0 DAT_180bf66d8
+undefined1 SystemFlagA0;
 undefined DAT_180c96858;
 undefined DAT_180bfbf64;
 undefined DAT_180bfbf7c;
