@@ -6857,9 +6857,9 @@ ulonglong ProcessUtilityDataConversion(longlong contextHandle,uint64_t operation
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int CheckUtilityPermissionG0(undefined4 param_1)
+// 函数: int CheckUtilityPermissionG0(uint32_t permissionFlags)
 // 功能：工具权限检查函数G0，检查工具的权限并根据参数执行相应的权限验证操作
-int CheckUtilityPermissionG0(undefined4 param_1)
+int CheckUtilityPermissionG0(uint32_t permissionFlags)
 
 {
   int registerValue;
