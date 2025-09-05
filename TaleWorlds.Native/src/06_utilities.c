@@ -4121,7 +4121,7 @@ uint32_t UtilityResetPrimaryPointerValue;
 uint32_t UtilityResetSecondaryPointerValue;
 uint32_t UtilityResetTertiaryPointerValue;
 uint32_t UtilityResetQuaternaryPointerValue;
-uint32_t UtilitySystemPrimaryStatus;
+uint32_t UtilitySystemPrimaryStatusIndicator;
 
 // 异常处理系统全局变量宏定义
 #define ExceptionHandlerTablePointer GlobalExceptionHandlerPointerA2     // 异常处理器表指针
@@ -22889,7 +22889,7 @@ void ExecuteSystemDataProcessing(longlong dataContext, undefined8 operationHandl
   processResult = ValidatePortControlRequest(operationHandle,dataBuffer2,1,operationFlags);
   if (((processResult == 0) && (processResult = ValidatePortControlRequest(operationHandle,dataBuffer1,0,dataSize), processResult == 0)) &&
      (processResult = FUN_180899360(operationHandle,dataContext + 0x10), processResult == 0)) {
-    if ((dataType != '\0') && (processResult = FUN_18089d490(dataContext + 0x48,operationHandle), processResult != 0)) {
+    if ((dataType != '\0') && (processResult = ValidateDataIntegrityA1(dataContext + 0x48,operationHandle), processResult != 0)) {
       return;
     }
                     // WARNING: Subroutine does not return
