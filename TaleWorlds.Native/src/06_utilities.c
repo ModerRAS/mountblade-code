@@ -1089,6 +1089,46 @@
 // 功能：查询异常处理当前状态
 #define QueryExceptionStatusA0 Unwind_180905090
 
+// 原始函数名：Unwind_1809050c0 - 异常处理程序设置函数A0
+// 功能：设置异常处理程序并清理状态
+#define SetupExceptionHandlerA0 Unwind_1809050c0
+
+// 原始函数名：Unwind_1809050d0 - 异常处理程序设置函数A1
+// 功能：设置异常处理程序并管理状态
+#define SetupExceptionHandlerA1 Unwind_1809050d0
+
+// 原始函数名：Unwind_1809050e0 - 异常处理程序设置函数A2
+// 功能：设置异常处理程序并重置标志
+#define SetupExceptionHandlerA2 Unwind_1809050e0
+
+// 原始函数名：Unwind_1809050f0 - 异常处理程序设置函数A3
+// 功能：设置异常处理程序并初始化状态
+#define SetupExceptionHandlerA3 Unwind_1809050f0
+
+// 原始函数名：Unwind_1809051a0 - 异常处理程序设置函数A4
+// 功能：设置异常处理程序并验证配置
+#define SetupExceptionHandlerA4 Unwind_1809051a0
+
+// 原始函数名：Unwind_1809051d0 - 异常处理程序设置函数A5
+// 功能：设置异常处理程序并激活处理
+#define SetupExceptionHandlerA5 Unwind_1809051d0
+
+// 原始函数名：Unwind_1809051e0 - 异常处理程序设置函数A6
+// 功能：设置异常处理程序并配置参数
+#define SetupExceptionHandlerA6 Unwind_1809051e0
+
+// 原始函数名：Unwind_1809051f0 - 异常处理程序设置函数A7
+// 功能：设置异常处理程序并执行初始化
+#define SetupExceptionHandlerA7 Unwind_1809051f0
+
+// 原始函数名：Unwind_1809052a0 - 异常处理程序设置函数A8
+// 功能：设置异常处理程序并管理系统状态
+#define SetupExceptionHandlerA8 Unwind_1809052a0
+
+// 原始函数名：Unwind_1809052b0 - 异常处理程序设置函数A9
+// 功能：设置异常处理程序并处理异常
+#define SetupExceptionHandlerA9 Unwind_1809052b0
+
 // FUN_1808函数语义化宏定义 - 工具系统函数
 
 // 原始函数名：FUN_1808fc050 - 执行安全检查
