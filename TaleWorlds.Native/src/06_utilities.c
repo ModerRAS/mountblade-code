@@ -81969,11 +81969,14 @@ void ConditionalExecuteFunctionA0(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1809414b5(undefined8 *param_1)
-void FUN_1809414b5(undefined8 *param_1)
+// 函数: void ExecuteCallbackFunction(undefined8 *callbackContext)
+// 功能：执行回调函数，传递回调上下文中的参数
+// 参数：callbackContext-回调函数的上下文指针
+// 返回值：无
+void ExecuteCallbackFunction(undefined8 *callbackContext)
 
 {
-  func_0x0001808fd024(*(undefined4 *)*param_1);
+  func_0x0001808fd024(*(undefined4 *)*callbackContext);
   return;
 }
 
@@ -82144,8 +82147,11 @@ void ReleaseMutexAndCondition(void)
 
 
 
-// 函数: void FUN_180941710(void)
-void FUN_180941710(void)
+// 函数: void CleanupThreadResources(void)
+// 功能：清理线程资源，销毁互斥锁和条件变量
+// 参数：无
+// 返回值：无
+void CleanupThreadResources(void)
 
 {
   _Mtx_destroy_in_situ();
