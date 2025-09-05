@@ -39998,18 +39998,34 @@ void Unwind_1809036e0(undefined8 param_1,int64_t param_2,undefined8 param_3,unde
 
 
 
-void Unwind_180903700(undefined8 param_1,int64_t param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理异常处理器
+ * 
+ * 该函数用于清理和重置异常处理器，包括清理主异常处理器和
+ * 次要异常处理器的状态，确保系统在异常处理后能够恢复正常状态
+ * 
+ * @param contextHandle 上下文句柄，用于标识当前的执行上下文
+ * @param contextPointer 上下文指针，指向包含异常处理信息的上下文结构
+ * @param reservedParam1 保留参数1，当前未使用
+ * @param cleanupFlag 清理标志，用于传递清理操作的标志位
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数执行两层异常处理器的清理，确保系统的稳定性
+ * @warning 如果清理过程中检测到错误，会调用TerminateSystemE0终止系统
+ */
+void CleanupExceptionHandlers(undefined8 contextHandle, int64_t contextPointer, undefined8 reservedParam1, undefined8 cleanupFlag)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x40);
+  validationContext = *(int64_t *)(contextPointer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x450) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x450))(validationContext + 0x440,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x450))(validationContext + 0x440, 0, 0, cleanupFlag, SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x418) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x420) != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x420) = 0;
@@ -40017,7 +40033,7 @@ void Unwind_180903700(undefined8 param_1,int64_t param_2,undefined8 param_3,unde
   *(undefined8 *)(validationContext + 0x418) = &DefaultExceptionHandlerB;
   *(undefined8 *)(validationContext + 0x3f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x400) != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x400) = 0;
