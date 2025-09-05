@@ -28776,7 +28776,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemInitializationStatusFlag = 0;
   StackDoublePointerF0 = &pGlobalDataFlags;
   pGlobalDataFlags = &SystemGlobalDataReference;
-  StackVariable1a8 = 0;
+  SystemStackVariable1a8 = 0;
   LongStackVariableSecondary = 0;
   StackVariablePrimary = 0;
   StackVariableControl = 0x100;
@@ -28801,14 +28801,14 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   StackVariableTemp = 0;
   StackFlagValue1 = 0;
   StackFloatingValue2 = 0x3f800000;
-  StackVariable130 = 0;
-  StackVariable12c = 0;
+  SystemStackVariable130 = 0;
+  SystemStackVariable12c = 0;
   SystemMemoryAllocationOffset = 0;
   SystemStackVariable124 = 0;
   SystemStackVariable120 = 0x3f800000;
   SystemStackVariable11c = 0;
   UnsignedStackFlagPrimary = 0;
-  StackVariable114 = 0;
+  SystemStackVariable114 = 0;
   UnsignedStackFlagSecondary = 0;
   SystemEncryptionKeyC = 0x3f800000;
   SystemEncryptionKeyG = 0x1010101;
