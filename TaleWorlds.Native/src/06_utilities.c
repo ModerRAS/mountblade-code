@@ -111253,10 +111253,10 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SystemMemoryAlignmentMask 0xfffffff0
 #define SystemMemoryAlignmentPadding 0xf
 #define SystemInvalidResourceHandle 0xffffffff
-#define SystemMaximumUInt32Value 0xffffffff
+#define SystemMaximumUInt32Value UInt32MaximumValue
 #define SystemSecurityValidationStatus 0x10000000
-#define SystemFloatNegativeOneValue 0xbf800000
-#define SystemFloatOneValue 0x3f800000
+#define SystemFloatNegativeOneValue FloatNegativeOneValue
+#define SystemFloatOneValue FloatOneValue
 #define SystemMinimumInt64Value Int64MinimumValue
 #define SystemResourceCleanupFlag 0xfdffffff
 #define SystemResourceActiveFlag 0x4000000
