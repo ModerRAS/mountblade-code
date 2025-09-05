@@ -7810,7 +7810,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int64_t *componentPointer;
   int32_t componentCount;
   uint64_t loopIndex;
-  int32_t capacity;
+  int32_t componentCapacity;
   uint64_t searchIndex;
   int64_t *componentList;
   int64_t systemContextBuffer;
@@ -7859,18 +7859,18 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
         }
         componentCount = componentCount + 1;
         if (*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) < componentCount) {
-          capacity = (int32_t)((float)*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) * 1.5);
+          componentCapacity = (int32_t)((float)*(int32_t *)(componentData + COMPONENT_CAPACITY_OFFSET) * 1.5);
           bufferSize = componentCount;
-          if (componentCount <= capacity) {
-            bufferSize = capacity;
+          if (componentCount <= componentCapacity) {
+            bufferSize = componentCapacity;
           }
           if (bufferSize < 8) {
-            capacity = 8;
+            componentCapacity = 8;
           }
-          else if (capacity < componentCount) {
-            capacity = componentCount;
+          else if (componentCapacity < componentCount) {
+            componentCapacity = componentCount;
           }
-          bufferSize = ValidateComponentMemory(componentList,capacity);
+          bufferSize = ValidateComponentMemory(componentList,componentCapacity);
           if (bufferSize != 0) {
             return 0;
           }
@@ -11756,9 +11756,9 @@ void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
   int64_t eventHandle;
   int64_t queueInfo;
   
-  status = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventContext + 0x10),&queueInfo);
-  if (((status != 0) || (status = InitializeSystemEventA0(&eventHandle), status != 0)) ||
-     (status = ProcessSystemEventDataA0(eventHandle,systemContext,*(DataBuffer *)(queueInfo + 8)), status != 0)) {
+  eventStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventContext + 0x10),&queueInfo);
+  if (((eventStatus != 0) || (eventStatus = InitializeSystemEventA0(&eventHandle), eventStatus != 0)) ||
+     (eventStatus = ProcessSystemEventDataA0(eventHandle,systemContext,*(DataBuffer *)(queueInfo + 8)), eventStatus != 0)) {
     return;
   }
   newBuffer = 0;
@@ -50501,7 +50501,7 @@ void Unwind_180905c80(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180905c90(DataBuffer param_1,int64_t param_2)
+void CleanupExceptionHandlersDuringUnwind(DataBuffer exceptionContext, int64_t unwindContext)
 
 {
   int64_t validationContext;
@@ -50537,7 +50537,7 @@ void Unwind_180905c90(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180905ca0(DataBuffer param_1,int64_t param_2)
+void UnwindCleanupThreadLocalStorage(DataBuffer exceptionContext, int64_t threadContext)
 
 {
   int *referenceCountPointer;

@@ -1063,47 +1063,49 @@ uint32_t NetworkManagerContextPointer;                         // 网络管理�
  * 
  * 存储网络管理器的配置和状态信息
  */
-uint32_t NetworkManagerContextData;
+uint32_t NetworkManagerContextData;                           // 网络管理器上下文数据
 
 /**
  * @brief 网络连接状态标志集合
  * 
  * 存储网络连接的各种状态标志位，包括连接建立、断开、错误等状态
  */
-uint32_t NetworkConnectionStateFlags;
+uint32_t NetworkConnectionStateFlags;                          // 网络连接状态标志集合
 
 /**
  * @brief 网络连接超时时间（毫秒）
  * 
  * 定义网络连接的超时时间，单位为毫秒
  */
-uint32_t NetworkConnectionTimeoutMs;
+uint32_t NetworkConnectionTimeoutMs;                          // 网络连接超时时间（毫秒）
 
 /**
  * @brief 网络最大允许连接数
  * 
  * 系统允许同时建立的最大网络连接数量
  */
-uint32_t NetworkMaxAllowedConnections;
+uint32_t NetworkMaxAllowedConnections;                        // 网络最大允许连接数
 
 /**
  * @brief 网络连接属性标志集合
  * 
  * 存储网络连接的各种属性标志位
  */
-uint32_t NetworkConnectionAttributeFlags;
+uint32_t NetworkConnectionAttributeFlags;                      // 网络连接属性标志集合
 
 /**
  * @brief 网络当前状态标志
  * 
  * 记录网络系统当前的运行状态，包括初始化、运行、错误等状态
  */
-uint32_t NetworkCurrentStateFlags;
+uint32_t NetworkCurrentStateFlags;                             // 网络当前状态标志
 
 /**
  * @brief 网络错误报告模板
+ * 
+ * 存储网络错误报告的模板信息，用于格式化错误消息
  */
-uint32_t NetworkErrorReportTemplate;
+uint32_t NetworkErrorReportTemplate;                          // 网络错误报告模板
 
 /**
  * @brief 网络协议和地址配置
@@ -1114,14 +1116,14 @@ uint32_t NetworkErrorReportTemplate;
  * 
  * 定义网络连接使用的协议类型，如TCP、UDP等
  */
-uint32_t NetworkConnectionProtocolType;
+uint32_t NetworkConnectionProtocolType;                        // 网络连接协议类型
 
 /**
  * @brief 网络连接协议实例
  * 
  * 存储当前网络连接使用的具体协议实例
  */
-uint32_t NetworkConnectionProtocolInstance;
+uint32_t NetworkConnectionProtocolInstance;                  // 网络连接协议实例
 
 /**
  * @brief 网络连接协议版本
