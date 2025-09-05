@@ -229,7 +229,7 @@
  * 
  * @note 原始函数名：func_0x000180060150
  */
-#define InitializeDataA0 func_0x000180060150
+#define InitializeData func_0x000180060150
 
 /**
  * @brief 系统操作函数A0
@@ -238,9 +238,9 @@
  * 
  * @note 原始函数名：func_0x00018006d490
  */
-#define ExecuteSystemOperationA0 func_0x00018006d490
+#define ExecuteSystemOperation func_0x00018006d490
 
-// 全局指针设置函数宏定义 (A0-A23)
+// 全局指针设置函数宏定义
 #define SetGlobalDataPointerA0 InitializeGlobalDataPointerA0
 #define SetGlobalDataPointerA1 InitializeGlobalDataPointerA1
 #define SetGlobalDataPointerA2 InitializeGlobalDataPointerA2
@@ -269,7 +269,7 @@
 // 数据处理函数宏定义 (D系列)
 
 /**
- * @brief 更新系统状态A0
+ * @brief 更新系统状态
  * 
  * 该函数负责更新系统的状态信息，包括处理状态标志、
  * 执行状态转换和更新系统配置参数
@@ -279,7 +279,7 @@
 #define UpdateSystemStatus FUN_180893e69
 
 /**
- * @brief 带安全检查的数据块处理A0
+ * @brief 带安全检查的数据块处理
  * 
  * 该函数负责处理数据块并进行安全验证，确保数据处理的
  * 安全性和完整性
@@ -289,7 +289,7 @@
 #define ProcessDataBlockWithSecurityCheck FUN_180897d20
 
 /**
- * @brief 验证和处理数据A0
+ * @brief 验证和处理数据
  * 
  * 该函数负责验证输入数据的有效性，并执行相应的处理操作
  * 
@@ -298,7 +298,7 @@
 #define ValidateAndProcessData FUN_180899040
 
 /**
- * @brief 处理数据块A1
+ * @brief 处理数据块
  * 
  * 该函数负责处理多个数据块，支持批量数据处理操作
  * 
@@ -307,7 +307,7 @@
 #define ProcessDataBlocks FUN_180899090
 
 /**
- * @brief 验证并执行操作A1
+ * @brief 验证并执行操作
  * 
  * 该函数负责验证系统参数并执行相应的操作，确保操作的安全性
  * 
