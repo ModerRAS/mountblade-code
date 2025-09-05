@@ -13741,7 +13741,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
             }
             CommandParameters[0] = ResourceCapacityIndex + 1;
             ContextValidationStatusCode = (uint64_t)CommandParameters[0];
-            ResourceValidationFlag = CONCAT44(ResourceValidationFlag.HighPart,CommandParameters[0]);
+            ResourceValidationFlag = CombineFloatAndInteger(ResourceValidationFlag.HighPart,CommandParameters[0]);
             *(uint32_t *)(ResourceAllocationFlag + (int64_t)ResourceCapacityIndex * 4) = ResourceHashStatus;
             ResourceContextSecondary = DataHandlerContextPointer;
           }
@@ -14216,7 +14216,7 @@ ResourceProcessingHandler:
       do {
         GraphicsDataIndex = 0;
         GraphicsDataBuffer = &GraphicsProcessingTemplateQuinary;
-        GraphicsPrimaryOperationFlag = CONCAT44(GraphicsPrimaryOperationFlag.High28Bits,CleanupOption);
+        GraphicsPrimaryOperationFlag = CombineFloatAndInteger(GraphicsPrimaryOperationFlag.High28Bits,CleanupOption);
         OperationStatus = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
         if (OperationResult != 0) goto ResourceErrorHandler;
         ResourceCount = ResourceCount + 1;
@@ -14246,9 +14246,9 @@ ResourceProcessingHandler:
         if ((TableEntryIndex != 0) || (TableEntryIndex = FindResourceEntry(ResourceTablePointer,GraphicsTransformMatrix), TableEntryIndex != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          GraphicsOperationFlagSecondary = CONCAT44(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlagSecondary = CombineFloatAndInteger(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateActive;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsDataIndex = TableEntryIndex;
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
@@ -14256,7 +14256,7 @@ ResourceProcessingHandler:
         if (*(char *)(ResourceTablePointer + 0x28) != '\0') {
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
@@ -14265,7 +14265,7 @@ ResourceProcessingHandler:
         if (*(char *)(ResourceTablePointer + 0x29) != '\0') {
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateCache;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
           ResourceCount = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceCount != 0) goto ResourceErrorHandler;
@@ -14293,9 +14293,9 @@ ResourceProcessingHandler:
         if ((TableEntryIndex != 0) || (TableEntryIndex = FindResourceEntry(ResourceTablePointer,GraphicsTransformMatrix), TableEntryIndex != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          GraphicsOperationFlagSecondary = CONCAT44(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlagSecondary = CombineFloatAndInteger(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateActive;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsDataIndex = TableEntryIndex;
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
@@ -14303,7 +14303,7 @@ ResourceProcessingHandler:
         if (*(char *)(ResourceTablePointer + 0x28) != '\0') {
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
@@ -14312,7 +14312,7 @@ ResourceProcessingHandler:
         if (*(char *)(ResourceTablePointer + 0x29) != '\0') {
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateCache;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
           ResourceCount = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceCount != 0) goto ResourceErrorHandler;
@@ -14340,9 +14340,9 @@ ResourceProcessingHandler:
         if ((TableEntryIndex != 0) || (TableEntryIndex = FindResourceEntry(ResourceTablePointer,GraphicsTransformMatrix), TableEntryIndex != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          GraphicsOperationFlagSecondary = CONCAT44(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlagSecondary = CombineFloatAndInteger(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateActive;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsDataIndex = TableEntryIndex;
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
@@ -14350,7 +14350,7 @@ ResourceProcessingHandler:
         if (*(char *)(ResourceTablePointer + 0x28) != '\0') {
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
@@ -14359,7 +14359,7 @@ ResourceProcessingHandler:
         if (*(char *)(ResourceTablePointer + 0x29) != '\0') {
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateCache;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
           ResourceCount = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceCount != 0) goto ResourceErrorHandler;
@@ -14387,9 +14387,9 @@ ResourceProcessingHandler:
         if ((TableEntryIndex != 0) || (TableEntryIndex = FindResourceEntry(ResourceTablePointer,GraphicsTransformMatrix), TableEntryIndex != 0))
         goto ResourceErrorHandler;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          GraphicsOperationFlagSecondary = CONCAT44(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlagSecondary = CombineFloatAndInteger(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateActive;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsDataIndex = TableEntryIndex;
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
@@ -14397,7 +14397,7 @@ ResourceProcessingHandler:
         if (*(char *)(ResourceTablePointer + 0x28) != '\0') {
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
@@ -14406,7 +14406,7 @@ ResourceProcessingHandler:
         if (*(char *)(ResourceTablePointer + 0x29) != '\0') {
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateCache;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
           ResourceCount = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceCount != 0) goto ResourceErrorHandler;
@@ -14437,9 +14437,9 @@ ResourceProcessingHandler:
         if ((TableEntryIndex != 0) || (ResourceCount = SearchResourceTablePointer(ResourceTablePointer,GraphicsTransformMatrix,0), ResourceCount != 0)) break;
         TableEntryIndex = OperationResult;
         if (GraphicsTransformMatrix[0] != 1.0) {
-          GraphicsOperationFlagSecondary = CONCAT44(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
+          GraphicsOperationFlagSecondary = CombineFloatAndInteger(GraphicsOperationFlagSecondary.High28Bits,GraphicsTransformMatrix[0]);
           GraphicsDataPointer = &SystemDataTypeTemplateDatabase;
-          GraphicsOperationFlagPrimary = CONCAT44(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
+          GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
           GraphicsDataIndex = ResourceCount;
           ResourceCount = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceCount != 0) break;
@@ -16385,7 +16385,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           do {
             LocalContextPointer = (int64_t)(int)ValidationFloatBuffer[0] * 0x20;
             ResourceProcessingMask = UInt64MaximumValue;
-            AudioBufferPointer[0] = (int64_t *)CONCAT44(AudioBufferPointer[0].FloatValue,0xffffffff);
+            AudioBufferPointer[0] = (int64_t *)CombineFloatAndInteger(AudioBufferPointer[0].FloatValue,0xffffffff);
             PointerStackPrimary = *(int64_t **)(ResourceContextNull[2] + 0x18 + LocalContextPointer);
             AudioSampleRate = LocalContextPointer;
             SetupResourceHandlers(PointerStackPrimary,&ResourceProcessingMask,AudioBufferPointer);
@@ -18336,14 +18336,14 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
   int ResourceCount;
   int64_t ResourceTableIterator;
   
-  ResourceStatus = CONCAT44(ValidationContext[0],*ValidationContext);
+  ResourceStatus = CombineFloatAndInteger(ValidationContext[0],*ValidationContext);
   ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))(*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
   if (ProcessingStatusCode == 0) {
     ResourceStatus = *(uint8_t *)(ValidationContext + 2);
     ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))(*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,8);
     if ((ProcessingStatusCode == 0) && (ProcessingStatusCode = CheckResourceAvailability(ObjectContext,ResourceStatus + 4), ProcessingStatusCode == 0)) {
       ResourceCount = ValidationContext[10];
-      ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+      ResourceStatus = CombineFloatAndInteger(ValidationContext[0],ResourceCount);
       ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                         (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
       ValidationStatusCode = 0;
@@ -18360,7 +18360,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
           } while ((int)ProcessingStatusCode < ResourceCount);
         }
         ResourceCount = ValidationContext[0xe];
-        ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+        ResourceStatus = CombineFloatAndInteger(ValidationContext[0],ResourceCount);
         ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                           (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
         if (ProcessingStatusCode == 0) {
@@ -18377,14 +18377,14 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
             } while ((int)ProcessingStatusCode < ResourceCount);
           }
           ResourceCount = ValidationContext[0x12];
-          ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+          ResourceStatus = CombineFloatAndInteger(ValidationContext[0],ResourceCount);
           ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                             (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
           if (ProcessingStatusCode == 0) {
             LoopIncrement = ResourceHashValidationStatus;
             if (0 < ResourceCount) {
               do {
-                ResourceStatus = CONCAT44(ValidationContext[0],
+                ResourceStatus = CombineFloatAndInteger(ValidationContext[0],
                                      *(uint32_t *)(*(int64_t *)(ValidationContext + ValidationContextMethodPointerOffset) + LoopIncrement * 4));
                 ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                                   (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
@@ -18395,7 +18395,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
               } while ((int64_t)LoopIncrement < (int64_t)ResourceCount);
             }
             ResourceCount = ValidationContext[0x16];
-            ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+            ResourceStatus = CombineFloatAndInteger(ValidationContext[0],ResourceCount);
             ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                               (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
             if (ProcessingStatusCode == 0) {
@@ -18415,7 +18415,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
                   }
                   else {
                     SecurityHashValue = 4;
-                    ResourceStatus = CONCAT44(ValidationContext[0],
+                    ResourceStatus = CombineFloatAndInteger(ValidationContext[0],
                                          (ValidationStatusCode & ResourceHashMaskPreserve | ResourceHashFlagBit) * 2 | ValidationStatusCode & ResourceHashValueMask);
                   }
                   ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
@@ -18434,7 +18434,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
               ProcessingStatusCode = RetrieveResourceData(ObjectContext,ValidationContext + ValidationContextPropertyOffset3);
               if (ProcessingStatusCode == 0) {
                 ResourceCount = ValidationContext[ErrorInvalidResourceData];
-                ResourceStatus = CONCAT44(ValidationContext[0],ResourceCount);
+                ResourceStatus = CombineFloatAndInteger(ValidationContext[0],ResourceCount);
                 ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                                   (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
                 if (ProcessingStatusCode == 0) {
@@ -18447,7 +18447,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
                       if (ProcessingStatusCode != 0) {
                         return (uint8_t)ProcessingStatusCode;
                       }
-                      ResourceStatus = CONCAT44(ValidationContext[0],*(uint32_t *)(ResourceTableIterator + 4 + ResourceHashValidationStatus * 8));
+                      ResourceStatus = CombineFloatAndInteger(ValidationContext[0],*(uint32_t *)(ResourceTableIterator + 4 + ResourceHashValidationStatus * 8));
                       ProcessingStatusCode = (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                                         (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
                       if (ProcessingStatusCode != 0) {
@@ -18456,7 +18456,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
                       ValidationStatusCode = ResourceHashValidationStatus + 1;
                     } while ((int64_t)ResourceHashValidationStatus < (int64_t)ResourceCount);
                   }
-                  ResourceStatus = CONCAT44(ValidationContext[0],ValidationContext[0x20]);
+                  ResourceStatus = CombineFloatAndInteger(ValidationContext[0],ValidationContext[0x20]);
                   (**(code **)**(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset))
                             (*(uint8_t **)(ObjectContext + ObjectContextMethodTableOffset),&ResourceStatus,4);
                 }
@@ -19112,7 +19112,7 @@ uint8_t ProcessResourcePropertySet(int64_t ObjectContext, uint32_t *ValidationCo
   uint8_t LoopCondition;
   uint8_t ValidationContext;
   
-  ValidationContext = CONCAT44(ValidationContext.FloatValue,*ValidationContext);
+  ValidationContext = CombineFloatAndInteger(ValidationContext.FloatValue,*ValidationContext);
   OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
   if (OperationStatus == 0) {
     ValidationContext = *(uint8_t *)(ValidationContext + 2);
@@ -19151,7 +19151,7 @@ uint8_t ProcessResourcePropertySet(int64_t ObjectContext, uint32_t *ValidationCo
         }
         else {
           LoopIncrement = 4;
-          ValidationContext = CONCAT44(ValidationContext.FloatValue,(ResourceHash & 0xffffc000 | 0x4000) * 2 | ResourceHash & 0x7fff);
+          ValidationContext = CombineFloatAndInteger(ValidationContext.FloatValue,(ResourceHash & 0xffffc000 | 0x4000) * 2 | ResourceHash & 0x7fff);
         }
         OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
                           (*(uint8_t **)(ObjectContext + 8),&ValidationContext,LoopIncrement);
@@ -19185,7 +19185,7 @@ uint8_t ProcessResourcePropertySet(int64_t ObjectContext, uint32_t *ValidationCo
                       OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
                                         (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
                       if (OperationStatus == 0) {
-                        ValidationContext = CONCAT44(ValidationContext.FloatValue,ValidationContext[0x6f]);
+                        ValidationContext = CombineFloatAndInteger(ValidationContext.FloatValue,ValidationContext[0x6f]);
                         OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
                                           (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
                         if (OperationStatus == 0) {
@@ -19209,7 +19209,7 @@ uint8_t ProcessResourcePropertySet(int64_t ObjectContext, uint32_t *ValidationCo
                                   OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
                                                     (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
                                   if (OperationStatus == 0) {
-                                    ValidationContext = CONCAT44(ValidationContext.FloatValue,ValidationContext[0x78]);
+                                    ValidationContext = CombineFloatAndInteger(ValidationContext.FloatValue,ValidationContext[0x78]);
                                     (**(code **)**(uint8_t **)(ObjectContext + 8))
                                               (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
                                   }
@@ -19619,14 +19619,14 @@ uint8_t ProcessResourceConfigurationData(int64_t configContext, uint32_t *config
   int PackageValidationStatusCode;
   uint8_t ValidationContext;
   
-  ValidationContext = CONCAT44(ValidationContext.FloatValue,*ValidationContext);
+  ValidationContext = CombineFloatAndInteger(ValidationContext.FloatValue,*ValidationContext);
   ValidationStatusCode = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
   if ((int)ValidationStatusCode == 0) {
     ValidationContext = *(uint8_t *)(ValidationContext + 2);
     ValidationStatusCode = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),&ValidationContext,8);
     if ((int)ValidationStatusCode == 0) {
       ResourceIndex = ValidationContext[6];
-      ValidationContext = CONCAT44(ValidationContext.FloatValue,ResourceIndex);
+      ValidationContext = CombineFloatAndInteger(ValidationContext.FloatValue,ResourceIndex);
       ValidationStatusCode = (**(code **)**(uint8_t **)(ObjectContext + 8))
                         (*(uint8_t **)(ObjectContext + 8),&ValidationContext,4);
       if ((int)ValidationStatusCode == 0) {
@@ -20018,18 +20018,18 @@ void ProcessObjectContextValidation(int64_t ObjectContext,int *ValidationContext
   ContextValidationStatusCode = (uint32_t)((uint)InputParameterValue >> 8);
   SystemOperationStatus = (char)InputParameterValue + -0x57 + OverflowFlag;
   LoopCounter = CONCAT31(ResourceHashStatus,SystemOperationStatus);
-  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
+  *(uint32_t *)CombineFloatAndInteger(RegisterParameter,LoopCounter) = LoopCounter;
   *(uint *)(ObjectContext + -0x565dff77) = *(uint *)(ObjectContext + -0x565dff77) & BasePointer;
-  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
+  *(uint32_t *)CombineFloatAndInteger(RegisterParameter,LoopCounter) = LoopCounter;
   StackContextPointer = ValidationContext;
-  *(uint32_t *)CONCAT44(RegisterParameter,LoopCounter) = LoopCounter;
-  *(char *)CONCAT44(RegisterParameter,LoopCounter) =
-       *(char *)CONCAT44(RegisterParameter,LoopCounter) + SystemOperationStatus;
-  *(char *)CONCAT44(RegisterParameter,LoopCounter) =
-       *(char *)CONCAT44(RegisterParameter,LoopCounter) + SystemOperationStatus;
+  *(uint32_t *)CombineFloatAndInteger(RegisterParameter,LoopCounter) = LoopCounter;
+  *(char *)CombineFloatAndInteger(RegisterParameter,LoopCounter) =
+       *(char *)CombineFloatAndInteger(RegisterParameter,LoopCounter) + SystemOperationStatus;
+  *(char *)CombineFloatAndInteger(RegisterParameter,LoopCounter) =
+       *(char *)CombineFloatAndInteger(RegisterParameter,LoopCounter) + SystemOperationStatus;
   TableIndex = CONCAT31(ResourceHashStatus,SystemOperationStatus + '\x18');
   *ValidationContext = *ValidationContext + ResourceTablePointerIndex;
-  ContextValidationPointer = (char *)((int64_t)&PointerStackValue8 + CONCAT44(InputParameterValue,ResourceTablePointerIndex));
+  ContextValidationPointer = (char *)((int64_t)&PointerStackValue8 + CombineFloatAndInteger(InputParameterValue,ResourceTablePointerIndex));
   *ContextValidationPointer = *ContextValidationPointer + SystemOperationStatus + '\x18';
   SystemCallHandler = (code *)swi(3);
   (*SystemCallHandler)();
@@ -21248,7 +21248,7 @@ uint8_t InitializeSystemResourceCheck(int ResourceCheckFlag)
     return ErrorInvalidObjectHandle;
   }
   ResourceContext = (int64_t *)*ResourceContext;
-  RegisterStorageOctal = CONCAT44(RegisterStorageQuaternary,RegisterStorageQuinary);
+  RegisterStorageOctal = CombineFloatAndInteger(RegisterStorageQuaternary,RegisterStorageQuinary);
   if (*ResourceContext == 0) {
     ValidationStatusCode = ErrorInvalidObjectHandle;
   }
