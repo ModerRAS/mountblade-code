@@ -1047,7 +1047,7 @@ void* SystemMemoryBlockVault;
 void* SystemMemoryBlockSafe;
 void* SystemMemoryBlockLockbox;
 // 系统内存块存档主区域
-void* SystemMemoryBlockArchiveMain;
+void* SystemDataTableEntryArchiveMain;
 // 系统内存块存档次区域
 void* SystemMemoryBlockArchiveSecondary;
 // 系统内存块存档第三区域
