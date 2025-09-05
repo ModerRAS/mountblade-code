@@ -10916,53 +10916,53 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
   longlong queueInfo;
   
   processStatus = ProcessSystemEventDataA0(systemHandle,optimizationFlags,*(undefined8 *)(queueInfo + 8));
-  if (iVar1 != 0) {
+  if (validationResult != 0) {
     return;
   }
-  calculatedOffset = 0;
-  lVar4 = in_stack_00000060 + 8;
-  if (in_stack_00000060 == 0) {
-    lVar4 = calculatedOffset;
+  allocatedMemory = 0;
+  resourceContext = dataInput + 8;
+  if (dataInput == 0) {
+    resourceContext = allocatedMemory;
   }
-  iVar1 = ValidateAndProcessSystemResourceA0(lVar4,unaff_RBP + 0x18);
-  if (iVar1 != 0) {
+  validationResult = ValidateAndProcessSystemResourceA0(resourceContext,systemContext + 0x18);
+  if (validationResult != 0) {
     return;
   }
-  operationResult = (int)*(uint *)(in_stack_00000070 + 0x2c) >> 0x1f;
-  operationResult = (*(uint *)(in_stack_00000070 + 0x2c) ^ operationResult) - operationResult;
-  iVar1 = *(int *)(in_stack_00000070 + 0x28) + 1;
-  if (operationResult < iVar1) {
+  operationResult = (int)*(uint *)(dataBuffer + 0x2c) >> 0x1f;
+  operationResult = (*(uint *)(dataBuffer + 0x2c) ^ operationResult) - operationResult;
+  validationResult = *(int *)(dataBuffer + 0x28) + 1;
+  if (operationResult < validationResult) {
     operationResult = (int)((float)operationResult * 1.5);
-    if (iVar1 <= operationResult) {
-      iVar1 = operationResult;
+    if (validationResult <= operationResult) {
+      validationResult = operationResult;
     }
-    if (iVar1 < 8) {
-      iVar1 = 8;
+    if (validationResult < 8) {
+      validationResult = 8;
     }
-    if (iVar1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
-    if (iVar1 != 0) {
-      if ((0x3ffffffe < iVar1 * 8 - 1U) ||
-         (calculatedOffset = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
-                                0xf4,0), calculatedOffset == 0)) goto LAB_180891fc0;
-      if (*(int *)(in_stack_00000070 + 0x28) != 0) {
+    if (validationResult < *(int *)(dataBuffer + 0x28)) goto LAB_180891fc0;
+    if (validationResult != 0) {
+      if ((0x3ffffffe < validationResult * 8 - 1U) ||
+         (allocatedMemory = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationResult * 8,&UNK_180957f70,
+                                0xf4,0), allocatedMemory == 0)) goto LAB_180891fc0;
+      if (*(int *)(dataBuffer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(calculatedOffset,*(undefined8 *)(in_stack_00000070 + 0x20),
-               (longlong)*(int *)(in_stack_00000070 + 0x28) << 3);
+        memcpy(allocatedMemory,*(undefined8 *)(dataBuffer + 0x20),
+               (longlong)*(int *)(dataBuffer + 0x28) << 3);
       }
     }
-    if ((0 < *(int *)(in_stack_00000070 + 0x2c)) && (*(longlong *)(in_stack_00000070 + 0x20) != 0))
+    if ((0 < *(int *)(dataBuffer + 0x2c)) && (*(longlong *)(dataBuffer + 0x20) != 0))
     {
                     // WARNING: Subroutine does not return
-      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(dataBuffer + 0x20),
                     &UNK_180957f70,0x100,1);
     }
-    *(longlong *)(in_stack_00000070 + 0x20) = calculatedOffset;
-    *(int *)(in_stack_00000070 + 0x2c) = iVar1;
+    *(longlong *)(dataBuffer + 0x20) = allocatedMemory;
+    *(int *)(dataBuffer + 0x2c) = validationResult;
   }
   *(longlong *)
-   (*(longlong *)(in_stack_00000070 + 0x20) + (longlong)*(int *)(in_stack_00000070 + 0x28) * 8) =
-       in_stack_00000060;
-  *(int *)(in_stack_00000070 + 0x28) = *(int *)(in_stack_00000070 + 0x28) + 1;
+   (*(longlong *)(dataBuffer + 0x20) + (longlong)*(int *)(dataBuffer + 0x28) * 8) =
+       dataInput;
+  *(int *)(dataBuffer + 0x28) = *(int *)(dataBuffer + 0x28) + 1;
 SystemCleanupLabel:
                     // WARNING: Subroutine does not return
   CleanupSystemEventA0(*(undefined8 *)(registerR14 + 0x98));
