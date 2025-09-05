@@ -6304,25 +6304,24 @@ undefined MemoryHeapCompactionAlignment;
 // 函数: undefined UtilityValidateMemoryHeap;
 // 验证内存堆的完整性和有效性
 undefined UtilityValidateMemoryHeap;
-undefined DAT_180d497d0;
+undefined MemoryHeapValidationResult;
 
 // 函数: undefined UtilityLockMemoryHeap;
 // 锁定内存堆，防止并发访问冲突
 undefined UtilityLockMemoryHeap;
-undefined DAT_180d49990;
-undefined DAT_180d48de0;
-undefined DAT_180d48de8;
-undefined DAT_180d48df0;
-undefined DAT_180d48df8;
-undefined DAT_180d48e00;
-undefined DAT_180d48e08;
-undefined DAT_180c918d8;
-undefined DAT_180d48e10;
-undefined DAT_180d48e18;
-undefined DAT_180c918c0;
-undefined UNK_180a1b150;
-undefined UNK_180a1b118;
-undefined UNK_18033cd70;
+undefined MemoryHeapLockStatus;
+undefined MemoryHeapLockCounter;
+undefined MemoryHeapLockOwner;
+undefined MemoryHeapLockDepth;
+undefined MemoryHeapLockTimeout;
+undefined MemoryHeapLockFlags;
+undefined MemoryHeapLockHandle;
+undefined MemoryHeapLockQueue;
+undefined MemoryHeapLockEvent;
+undefined MemoryHeapLockThread;
+undefined MemoryHeapLockPriority;
+undefined MemoryHeapLockRecursion;
+undefined MemoryHeapLockStatistics;
 
 942830;
 undefined FUN_180942830;
