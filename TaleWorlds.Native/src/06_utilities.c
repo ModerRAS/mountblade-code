@@ -10382,18 +10382,34 @@ void NoOperationA(void)
 
 
 
-// 函数: void FUN_180894ce0(longlong param_1,undefined8 param_2)
-void FUN_180894ce0(longlong param_1,undefined8 param_2)
+/**
+ * 资源验证和处理函数 - 验证资源并执行相应操作
+ * 
+ * 此函数对指定资源进行多层次的验证，并在所有验证通过时执行相应操作。
+ * 函数会依次验证资源的不同属性，确保资源符合系统要求。
+ * 
+ * @param resourceHandle 资源句柄，包含资源的基本信息和状态
+ * @param contextHandle 上下文句柄，用于操作的具体上下文
+ * 
+ * 验证流程：
+ * 1. 验证资源基本属性（偏移0x10处）
+ * 2. 验证资源状态信息（偏移0x18处）
+ * 3. 验证资源扩展属性（偏移0x20处）
+ * 4. 验证资源数组数据（基于偏移0x18处的大小计算）
+ * 5. 所有验证通过后，执行资源操作（偏移0x1c处）
+ */
+void ValidateResourceAndProcess(longlong resourceHandle, undefined8 contextHandle)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee60(param_2,param_1 + 0x10);
-  if ((((iVar1 == 0) && (iVar1 = FUN_18088ee20(param_2,param_1 + 0x18), iVar1 == 0)) &&
-      (iVar1 = FUN_18088f620(param_2,param_1 + 0x20,*(undefined4 *)(param_1 + 0x18)), iVar1 == 0))
-     && (iVar1 = FUN_18088f5c0(param_2,param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 8),
-        iVar1 == 0)) {
-    FUN_18088f470(param_2,param_1 + 0x1c);
+  validationResult = FUN_18088ee60(contextHandle, resourceHandle + 0x10);
+  if ((((validationResult == 0) && 
+        (validationResult = FUN_18088ee20(contextHandle, resourceHandle + 0x18), validationResult == 0)) &&
+       (validationResult = FUN_18088f620(contextHandle, resourceHandle + 0x20, *(undefined4 *)(resourceHandle + 0x18)), validationResult == 0))
+      && (validationResult = FUN_18088f5c0(contextHandle, resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8),
+         validationResult == 0)) {
+    FUN_18088f470(contextHandle, resourceHandle + 0x1c);
   }
   return;
 }
