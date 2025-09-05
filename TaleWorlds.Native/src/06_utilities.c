@@ -4,12 +4,68 @@
 #define DefaultDataNodePointer DAT_00000018
 
 // 系统底层函数宏定义
+
+/**
+ * @brief 获取系统上下文句柄
+ * 
+ * 该函数用于获取系统的上下文句柄，包含系统状态和配置信息
+ * 
+ * @note 原始函数名：func_0x000180867680
+ */
 #define GetSystemContextHandle func_0x000180867680
+
+/**
+ * @brief 带验证的系统数据处理
+ * 
+ * 该函数用于处理系统数据并进行验证，确保数据的完整性和安全性
+ * 
+ * @note 原始函数名：func_0x00018074b800
+ */
 #define ProcessSystemDataWithValidation func_0x00018074b800
+
+/**
+ * @brief 带加密的系统数据处理
+ * 
+ * 该函数用于处理系统数据并进行加密操作，保护数据安全
+ * 
+ * @note 原始函数名：func_0x00018074b7d0
+ */
 #define ProcessSystemDataWithEncryption func_0x00018074b7d0
+
+/**
+ * @brief 验证系统配置
+ * 
+ * 该函数用于验证系统配置的有效性和正确性
+ * 
+ * @note 原始函数名：func_0x000180881f80
+ */
 #define ValidateSystemConfiguration func_0x000180881f80
+
+/**
+ * @brief 执行系统验证检查
+ * 
+ * 该函数用于执行系统的验证检查操作，确保系统状态正常
+ * 
+ * @note 原始函数名：func_0x0001808c7ed0
+ */
 #define PerformSystemValidationCheck func_0x0001808c7ed0
+
+/**
+ * @brief 计算系统数据大小
+ * 
+ * 该函数用于计算系统数据的大小，用于内存分配和缓冲区管理
+ * 
+ * @note 原始函数名：func_0x00018076b3e0
+ */
 #define CalculateSystemDataSize func_0x00018076b3e0
+
+/**
+ * @brief 获取系统数据句柄
+ * 
+ * 该函数用于获取系统数据的句柄，用于数据访问和操作
+ * 
+ * @note 原始函数名：func_0x0001808e3470
+ */
 #define AcquireSystemDataHandle func_0x0001808e3470
 
 // 全局指针设置函数宏定义 (A0-A23)
@@ -33438,34 +33494,46 @@ void ExceptionContextCleanupHandlerB15(undefined8 ExceptionContext, longlong Val
 
 
 
-void Unwind_180902570(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常上下文清理处理器B16
+ * 
+ * 该函数负责清理异常上下文的第三部分，包括：
+ * - 重置第三组异常处理器指针
+ * - 销毁互斥体
+ * - 清理系统状态数组
+ * - 验证系统完整性
+ * 
+ * @param ExceptionContext 异常上下文参数
+ * @param ContextPointer 上下文指针参数
+ */
+void ExceptionContextCleanupHandlerB16(undefined8 ExceptionContext, longlong ContextPointer)
 
 {
-  undefined8 *puVar1;
+  undefined8 *exceptionHandlerArray;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x78);
-  *puVar1 = &UNK_180a3cf50;
-  if (*(char *)((longlong)puVar1 + 0xb1) != '\0') {
+  exceptionHandlerArray = *(undefined8 **)(ContextPointer + 0x78);
+  *exceptionHandlerArray = &UNK_180a3cf50;
+  if (*(char *)((longlong)exceptionHandlerArray + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *puVar1 = &UNK_180a30778;
-  puVar1[7] = &UNK_180a3c3e0;
-  if (puVar1[8] != 0) {
+  *exceptionHandlerArray = &UNK_180a30778;
+  exceptionHandlerArray[7] = &UNK_180a3c3e0;
+  if (exceptionHandlerArray[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[8] = 0;
-  *(undefined4 *)(puVar1 + 10) = 0;
-  puVar1[7] = &DefaultExceptionHandlerB;
-  puVar1[1] = &UNK_180a3c3e0;
-  if (puVar1[2] != 0) {
+  exceptionHandlerArray[8] = 0;
+  *(undefined4 *)(exceptionHandlerArray + 10) = 0;
+  exceptionHandlerArray[7] = &DefaultExceptionHandlerB;
+  exceptionHandlerArray[1] = &UNK_180a3c3e0;
+  if (exceptionHandlerArray[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[2] = 0;
-  *(undefined4 *)(puVar1 + 4) = 0;
-  puVar1[1] = &DefaultExceptionHandlerB;
+  exceptionHandlerArray[2] = 0;
+  *(undefined4 *)(exceptionHandlerArray + 4) = 0;
+  exceptionHandlerArray[1] = &DefaultExceptionHandlerB;
   return;
 }
 
