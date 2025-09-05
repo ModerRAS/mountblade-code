@@ -37952,9 +37952,9 @@ void* * SearchAndCompareSystemResourceString(void* SystemResourceManager,void* *
 void* * FindSystemResourceDataPointer(void* SystemResourceManager,void* *ConfigurationDataPointer)
 
 {
-  char *memoryBlockPointer1;
-  char *memoryBlockPointer2;
-  char *MemoryBlockAddress;
+  char *targetMemoryPointer;
+  char *sourceMemoryPointer;
+  char *baseMemoryAddress;
   long long ResourceMemoryOffset;
   long long targetOffset;
   long long comparisonOffset;
@@ -37967,19 +37967,19 @@ void* * FindSystemResourceDataPointer(void* SystemResourceManager,void* *Configu
       }
       if ((char *)*ConfigurationDataPointer == (char *)0x0) {
         ResourceMemoryOffset = 0;
-        memoryBlockPointer2 = MemoryBlockAddress;
+        sourceMemoryPointer = baseMemoryAddress;
       }
       else {
         ResourceMemoryOffset = ConfigurationDataPointer[2];
-        memoryBlockPointer2 = (char *)*ConfigurationDataPointer;
+        sourceMemoryPointer = (char *)*ConfigurationDataPointer;
       }
     } while (ResourceMemoryOffset != targetOffset);
-    memoryBlockPointer1 = memoryBlockPointer2 + ResourceMemoryOffset;
-    if (memoryBlockPointer1 <= memoryBlockPointer2) break;
-    ResourceMemoryOffset = comparisonOffset - (long long)memoryBlockPointer2;
-    while (*memoryBlockPointer2 == memoryBlockPointer2[ResourceMemoryOffset]) {
-      memoryBlockPointer2 = memoryBlockPointer2 + 1;
-      if (memoryBlockPointer1 <= memoryBlockPointer2) {
+    targetMemoryPointer = sourceMemoryPointer + ResourceMemoryOffset;
+    if (targetMemoryPointer <= sourceMemoryPointer) break;
+    ResourceMemoryOffset = comparisonOffset - (long long)sourceMemoryPointer;
+    while (*sourceMemoryPointer == sourceMemoryPointer[ResourceMemoryOffset]) {
+      sourceMemoryPointer = sourceMemoryPointer + 1;
+      if (targetMemoryPointer <= sourceMemoryPointer) {
         return ConfigurationDataPointer;
       }
     }

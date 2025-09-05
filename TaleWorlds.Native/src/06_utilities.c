@@ -3,6 +3,27 @@
 // 全局数据定义
 #define DefaultSystemDataAddress 0x18
 
+// 系统常量定义
+#define ComponentHandleOffset 0x10
+#define SystemContextOffset 0x8
+#define DataBufferElementSize 4
+#define FloatValidationMask FloatInfinityValue
+#define IntegerMinValue -0x80000000
+#define ProcessingFlagMask ProcessingFlagMask
+#define MaxSafeBufferSize MaxSafeBufferSize
+#define FloatInfinityValue FloatInfinityValue
+#define SecurityAlignment 0xf
+#define SecurityAlignmentMask 0xfffffff0
+#define SystemCleanupFlag SystemCleanupFlag
+#define NegativeZeroFloat NegativeZeroFloat
+#define SecurityValidationMask SecurityValidationMask
+#define ThreadLocalStorageOffset 0x17c
+#define ThreadLocalStorageBase 0x180c4f450
+#define ResourceCleanupAlignment SystemCleanupFlagfffffff0
+#define DataProcessingMultiplier 0xc
+#define OperationFlagMask 0x10000000
+#define MemoryAlignmentMask 0xfbffffff
+
 /**
  * @brief 获取系统上下文句柄
  * 
@@ -3881,9 +3902,8 @@
 // 功能：分配系统数据
 #define AllocateSystemDataA0 FUN_1807703c0
 
-// 原始函数名：func_0x00018076b8a0 - 字符处理函数A0
-// 功能：处理字符转换
-#define ProcessCharacterA0 func_0x00018076b8a0
+// 原始变量名：SystemBufferConfiguration - 系统缓冲区配置常量
+#define SystemBufferConfiguration 0x180958180
 
 // 函数: void InitializeUtilityModule(void)
 // 
@@ -7011,14 +7031,14 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   StackGuardValue = ExceptionEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
   
   // 查询和检索系统数据
-  OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + 0x10), SystemContextArray);
+  OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + ComponentHandleOffset), SystemContextArray);
   
   // 验证操作结果并处理数据
   if ((OperationStatus == 0) && (*(int64_t *)(SystemContextArray[0] + 8) != 0)) {
     DataProcessingBuffer = WorkingDataBuffer;
     ProcessedItemCount = 0;
     LoopCounter = 0;
-    ProcessingFlags = 0xffffffc0;
+    ProcessingFlags = ProcessingFlagMask;
     
     // 执行核心功能
     OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + 0x90), *(int64_t *)(SystemContextArray[0] + 8),
@@ -7091,7 +7111,7 @@ void ProcessResourceCleanup(void)
     StackBuffer = (uint8_t *)&ResourceCleanupBuffer;
     CleanupCounter = 0;
     ResourceCount = 0;
-    CleanupFlags = 0xffffffc0;
+    CleanupFlags = ProcessingFlagMask;
     OperationResult = ExecuteCoreFunction(*(uint64_t *)(SystemRegistry + 0x90),*(int64_t *)(SystemContext + 8),
                           &FunctionCallBuffer);
     if (OperationResult == 0) {
@@ -7233,15 +7253,15 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int32_t capacity;
   uint64_t searchIndex;
   int64_t *componentList;
-  int64_t stackBuffer;
+  int64_t systemContextBuffer;
   int8_t processBuffer [16];
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + COMPONENT_HANDLE_OFFSET),&stackBuffer);
+  queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + COMPONENT_HANDLE_OFFSET),&systemContextBuffer);
   if ((int)queryResult != 0) {
     return queryResult;
   }
-  systemHandle = *(int64_t *)(stackBuffer + 8);
-  if ((systemHandle == 0) || (*(int64_t *)(systemHandle + SYSTEM_CONTEXT_OFFSET) != stackBuffer)) {
+  systemHandle = *(int64_t *)(systemContextBuffer + 8);
+  if ((systemHandle == 0) || (*(int64_t *)(systemHandle + SYSTEM_CONTEXT_OFFSET) != systemContextBuffer)) {
     return 0x1c;
   }
   componentData = *(int64_t *)(systemHandle + COMPONENT_DATA_OFFSET);
@@ -7587,16 +7607,16 @@ undefined8 UpdateResourceReferenceCount(longlong resourceHandle)
 {
   longlong resourcePointer;
   uint64_t validationStatus;
-  longlong stackBuffer [4];
+  longlong systemContextBuffer [4];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),stackBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),systemContextBuffer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  if (stackBuffer[0] != 0) {
-    stackBuffer[0] = stackBuffer[0] + -8;
+  if (systemContextBuffer[0] != 0) {
+    systemContextBuffer[0] = systemContextBuffer[0] + -8;
   }
-  resourcePointer = *(longlong *)(stackBuffer[0] + 0x10);
+  resourcePointer = *(longlong *)(systemContextBuffer[0] + 0x10);
   if (resourcePointer != 0) {
     *(int *)(resourcePointer + 500) = *(int *)(resourcePointer + 500) + 1;
     if ((*(char *)(resourcePointer + 0x204) != '\0') && (validationStatus = QuerySystemStatus(), (int)validationStatus != 0)) {
@@ -7617,7 +7637,7 @@ undefined8 ReleaseUtilityResource(longlong resourceHandle)
   uint64_t validationStatus;
   longlong stackPointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackPointer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),&stackPointer);
   if ((int)validationStatus == 0) {
     if (stackPointer == 0) {
       stackPointer = 0;
@@ -8016,13 +8036,13 @@ undefined8 ProcessFloatArrayResource(longlong resourceDescriptor)
   int integerConversion;
   float floatValue;
   undefined1 simdBuffer [16];
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x1c),&stackBuffer);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x1c),&systemContextBuffer);
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  validationContext = *(longlong *)(stackBuffer + 8);
+  validationContext = *(longlong *)(systemContextBuffer + 8);
   if (validationContext != 0) {
     floatValue = *(float *)(resourceDescriptor + 0x20);
     for (arrayPointer = *(undefined8 **)(validationContext + 0x48);
@@ -8084,13 +8104,13 @@ undefined8 ProcessBatchDataOperations(longlong batchDataDescriptor)
   uint loopCounter;
   ulonglong processedCount;
   longlong baseAddress;
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   
-  queryStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(batchDataDescriptor + 0x10),&stackBuffer);
+  queryStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(batchDataDescriptor + 0x10),&systemContextBuffer);
   if ((int)queryStatus == 0) {
     processedCount = 0;
-    contextPointer = stackBuffer - 8;
-    if (stackBuffer == 0) {
+    contextPointer = systemContextBuffer - 8;
+    if (systemContextBuffer == 0) {
       contextPointer = processedCount;
     }
     dataPointerArray = (undefined4 *)(batchDataDescriptor + 0x20 + (longlong)*(int *)(batchDataDescriptor + 0x18) * 4);
@@ -8284,7 +8304,7 @@ undefined8 ValidateUtilitySystemState(void)
   undefined4 *dataPointer3;
   uint counterValue;
   ulonglong adjustedValue;
-  longlong stackBuffer50;
+  longlong systemContextBuffer;
   ulonglong loopCounter;
   ulonglong addressOffset;
   ulonglong validationStatus;
@@ -8302,7 +8322,7 @@ undefined8 ValidateUtilitySystemState(void)
       if ((*poperationResult != MemoryValidationConstantA) || (poperationResult[1] != MemoryValidationConstantB)) {
         lStack0000000000000050 = 0;
         validationStatus = ValidateMemoryAddressA0(memoryAddress,(int *)(unaff_RBP + 0x20) + (longlong)(int)addressOffset * 2,
-                              &stackBuffer50);
+                              &systemContextBuffer50);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -8468,7 +8488,7 @@ undefined8 ValidateResourceAccessChain(longlong resourceHandle)
   undefined8 validationStatus;
   longlong accessChain;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&accessChain);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),&accessChain);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -8572,14 +8592,14 @@ undefined8 ValidateAndTerminateProcess(longlong contextHandle)
 {
   uint64_t validationResult;
   longlong adjustedPointer;
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x10),&stackBuffer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  adjustedPointer = stackBuffer + -8;
-  if (stackBuffer == 0) {
+  adjustedPointer = systemContextBuffer + -8;
+  if (systemContextBuffer == 0) {
     adjustedPointer = 0;
   }
   if (*(longlong *)(adjustedPointer + 0x10) == 0) {
@@ -8673,23 +8693,23 @@ undefined8 ValidateContextAndTerminate(longlong contextHandle)
 
 {
   uint64_t validationResult;
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x10),&stackBuffer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  if (stackBuffer == 0) {
-    stackBuffer = 0;
+  if (systemContextBuffer == 0) {
+    systemContextBuffer = 0;
   }
   else {
-    stackBuffer = stackBuffer + -8;
+    systemContextBuffer = systemContextBuffer + -8;
   }
-  if (*(longlong *)(stackBuffer + 0x10) == 0) {
+  if (*(longlong *)(systemContextBuffer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(stackBuffer + 0x10),1);
+  ReleaseResource(*(longlong *)(systemContextBuffer + 0x10),1);
 }
 
 
@@ -8870,7 +8890,7 @@ undefined8 ValidateResourceAndTerminate(longlong resourceHandle)
   uint64_t validationResult;
   longlong stackPointer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackPointer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),&stackPointer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -8954,7 +8974,7 @@ undefined8 ValidateResourceAndTerminateB(longlong resourceHandle)
   uint64_t validationResult;
   longlong stackPointer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackPointer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),&stackPointer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -9223,7 +9243,7 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
   undefined8 vectorRegister;
   uint maskResult;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackTempValue);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -9370,26 +9390,26 @@ ulonglong ProcessUtilityDataConversion(longlong contextHandle,uint64_t operation
   uint operationResult;
   ulonglong conversionStatus;
   longlong dataPointer;
-  undefined8 stackBuffer;
+  undefined8 systemContextBuffer;
   undefined4 operationParams [2];
   longlong contextData;
   int dataCount;
   
-  conversionStatus = InitializeConversionContext(*(undefined4 *)(contextHandle + 0x24),&stackBuffer);
+  conversionStatus = InitializeConversionContext(*(undefined4 *)(contextHandle + 0x24),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
     dataCount = *(int *)(contextHandle + 0x18);
     if ((0 < dataCount) && (*(uint *)(contextHandle + 0x1c) < 2)) {
       dataPointer = 0;
       if (*(uint *)(contextHandle + 0x1c) == 0) {
-        contextData = *(longlong *)(contextHandle + 0x10);
+        contextData = *(longlong *)(contextHandle + ComponentHandleOffset);
         operationParams[0] = 1;
         dataPointer = contextData;
       }
       else {
-        contextData = *(longlong *)(contextHandle + 0x10);
+        contextData = *(longlong *)(contextHandle + ComponentHandleOffset);
         operationParams[0] = 2;
       }
-      operationResult = ExecuteDataConversion(operationHandle,operationParams,*(undefined4 *)(contextHandle + 0x20),stackBuffer);
+      operationResult = ExecuteDataConversion(operationHandle,operationParams,*(undefined4 *)(contextHandle + 0x20),systemContextBuffer);
       conversionStatus = (ulonglong)operationResult;
       if (operationResult == 0) {
         conversionStatus = 0;
@@ -9419,17 +9439,17 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
   longlong resourcePointer;
   longlong contextPointer;
   undefined4 operationMode;
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   undefined4 parameterBuffer;
   
   resourcePointer = 0;
   if (registerValue == 0) {
-    stackBuffer = *(longlong *)(contextPointer + 0x10);
+    systemContextBuffer = *(longlong *)(contextPointer + 0x10);
     operationMode = 1;
-    resourcePointer = stackBuffer;
+    resourcePointer = systemContextBuffer;
   }
   else {
-    stackBuffer = *(longlong *)(contextPointer + 0x10);
+    systemContextBuffer = *(longlong *)(contextPointer + 0x10);
     operationMode = 2;
   }
   parameterBuffer = param_1;
@@ -9623,11 +9643,11 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
   longlong *previousNodePointer;
   longlong *nextNodePointer;
   longlong *currentNodePointer;
-  undefined8 stackBuffer[2];
+  undefined8 systemContextBuffer[2];
   
   currentNodePointer = (longlong *)0x0;
-  stackBuffer[0] = 0;
-  validationResult = AllocateSystemBufferCA0(stackBuffer);
+  systemContextBuffer[0] = 0;
+  validationResult = AllocateSystemBufferCA0(systemContextBuffer);
   if ((validationResult == 0) && (validationResult = ValidateContextA0(*(undefined8 *)(contextPointer + 0x90)), validationResult == 0)) {
     nextNodePointer = (longlong *)(*(longlong *)(contextPointer + 0x50) + -8);
     if (*(longlong *)(contextPointer + 0x50) == 0) {
@@ -9663,7 +9683,7 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
     } while ((*previousNodePointer == 0) || (validationResult = CheckSystemStateCW0(contextPointer), validationResult == 0));
   }
                     // WARNING: Subroutine does not return
-  CleanupSystemResourceCA0(stackBuffer);
+  CleanupSystemResourceCA0(systemContextBuffer);
 }
 
 
@@ -10740,7 +10760,7 @@ undefined8 CheckSystemStatusA0(longlong contextHandle,longlong eventManager)
   undefined8 queryResult;
   longlong systemContext;
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x10),&systemContext);
+  queryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + ComponentHandleOffset),&systemContext);
   if ((int)queryResult == 0) {
     if (*(int *)(systemContext + 0x34) != 0) {
       return 0x2e;
@@ -10899,7 +10919,7 @@ undefined8 ProcessSystemRequest(longlong contextHandle,longlong systemParameters
   undefined8 requestResult;
   longlong requestContext;
   
-  requestResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x10),&requestContext);
+  requestResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + ComponentHandleOffset),&requestContext);
   if ((int)requestResult != 0) {
     return requestResult;
   }
@@ -10961,7 +10981,7 @@ undefined8 ValidateDataReturnStatusA2(longlong dataContext,longlong systemContex
   undefined4 tempValue;
   
   validationData = *(uint *)(dataContext + 0x18);
-  if ((validationData & 0x7f800000) == 0x7f800000) {
+  if ((validationData & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   result = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataContext + 0x10),&validationData);
@@ -11119,11 +11139,11 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
     if (validationResult < 8) {
       validationResult = 8;
     }
-    if (validationResult < *(int *)(dataBuffer + 0x28)) goto LAB_180891fc0;
+    if (validationResult < *(int *)(dataBuffer + 0x28)) goto ErrorHandlingLabel;
     if (validationResult != 0) {
       if ((0x3ffffffe < validationResult * 8 - 1U) ||
          (allocatedMemory = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationResult * 8,&UNK_180957f70,
-                                0xf4,0), allocatedMemory == 0)) goto LAB_180891fc0;
+                                0xf4,0), allocatedMemory == 0)) goto ErrorHandlingLabel;
       if (*(int *)(dataBuffer + 0x28) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(allocatedMemory,*(undefined8 *)(dataBuffer + 0x20),
@@ -11189,12 +11209,12 @@ void ResetUtilitySystemAA0(void)
     if (validationStatus < 8) {
       validationStatus = 8;
     }
-    if (validationStatus < *(int *)(registerContext + 0x28)) goto LAB_180891fc0;
+    if (validationStatus < *(int *)(registerContext + 0x28)) goto ErrorHandlingLabel;
     if (validationStatus != 0) {
-      if (0x3ffffffe < validationStatus * 8 - 1U) goto LAB_180891fc0;
+      if (0x3ffffffe < validationStatus * 8 - 1U) goto ErrorHandlingLabel;
       stackPointer = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationStatus * 8,&UNK_180957f70,0xf4,0)
       ;
-      if (stackPointer == 0) goto LAB_180891fc0;
+      if (stackPointer == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(stackPointer,*(undefined8 *)(registerContext + 0x20),(longlong)*(int *)(registerContext + 0x28) << 3);
@@ -11246,12 +11266,12 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
     if (operationResult < 8) {
       operationResult = 8;
     }
-    if (operationResult < configId) goto LAB_180891fc0;
+    if (operationResult < configId) goto ErrorHandlingLabel;
     if (operationResult != 0) {
-      if (0x3ffffffe < operationResult * 8 - 1U) goto LAB_180891fc0;
+      if (0x3ffffffe < operationResult * 8 - 1U) goto ErrorHandlingLabel;
       systemContext = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationResult * 8,&UNK_180957f70,
                                 0xf4);
-      if (systemContext == 0) goto LAB_180891fc0;
+      if (systemContext == 0) goto ErrorHandlingLabel;
       if (*(int *)(registerContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
         memcpy(systemContext,*(undefined8 *)(registerContext + 0x20),(longlong)*(int *)(registerContext + 0x28) << 3
@@ -11430,7 +11450,7 @@ void UtilityProcessResourceRequest(longlong resourceHandle,longlong requestConte
   int operationStatus;
   undefined8 systemContext;
   
-  operationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&systemContext);
+  operationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + ComponentHandleOffset),&systemContext);
   if (operationStatus == 0) {
     operationStatus = InitializeSystemBufferA0(systemContext);
     if (operationStatus == 0) {
@@ -11452,7 +11472,7 @@ void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
   int validationResult;
   unsigned char localBuffer[8];
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + 0x10), localBuffer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), localBuffer);
   if (validationResult == 0) {
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
@@ -11471,7 +11491,7 @@ void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
   int firstValidationResult;
   unsigned long long validationData;
   
-  firstValidationResult = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + 0x10), &validationData);
+  firstValidationResult = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), &validationData);
   if (firstValidationResult == 0) {
     firstValidationResult = ValidateSystemDataIntegrityA0(validationData);
     if (firstValidationResult == 0) {
@@ -11569,17 +11589,17 @@ undefined8 ProcessResourceValidationAndExecution(longlong resourceContext, longl
   longlong listEntry;
   ulonglong adjustedStackPointer;
   ulonglong entryOffset;
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   
   if (resourceContext + 0x1c == 0) {
     return 0x1f;
   }
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceContext + 0x10), &stackBuffer);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceContext + 0x10), &systemContextBuffer);
   if ((int)operationResult == 0) {
     baseOffset = 0;
     adjustedStackPointer = baseOffset;
-    if (stackBuffer != 0) {
-      adjustedStackPointer = stackBuffer - 8;
+    if (systemContextBuffer != 0) {
+      adjustedStackPointer = systemContextBuffer - 8;
     }
     entryOffset = baseOffset;
     if (0 < *(int *)(adjustedStackPointer + 0x28)) {
@@ -11887,51 +11907,51 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
   int infFlag3;
   int infFlag4;
   longlong dataBufferPtr;
-  longlong stackBuffer [2];
+  longlong systemContextBuffer [2];
   uint uintTemp;
   float floatTemp;
   
   dataBufferPtr = 0;
   infFlag3 = 0;
   infFlag4 = infFlag3;
-  if ((*(uint *)(dataPtr + 0x20) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataPtr + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag4 = 0x1d;
   }
   infFlag1 = infFlag3;
-  if ((*(uint *)(dataPtr + 0x1c) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataPtr + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag1 = 0x1d;
   }
   infFlag2 = infFlag3;
-  if ((*(uint *)(dataPtr + 0x18) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataPtr + 0x18) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag2 = 0x1d;
   }
   if ((infFlag4 != 0 || infFlag1 != 0) || infFlag2 != 0) {
     return 0x1f;
   }
   infFlag4 = 0;
-  if ((*(uint *)(dataPtr + 0x2c) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataPtr + 0x2c) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag3 = 0x1d;
   }
   infFlag1 = infFlag4;
-  if ((*(uint *)(dataPtr + 0x28) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataPtr + 0x28) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag1 = 0x1d;
   }
   infFlag2 = infFlag4;
-  if ((*(uint *)(dataPtr + 0x24) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataPtr + 0x24) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag2 = 0x1d;
   }
   if ((infFlag3 != 0 || infFlag1 != 0) || infFlag2 != 0) {
     return 0x1f;
   }
   infFlag3 = infFlag4;
-  if ((*(uint *)(dataPtr + 0x38) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataPtr + 0x38) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag3 = 0x1d;
   }
   infFlag1 = infFlag4;
-  if ((*(uint *)(dataPtr + 0x34) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataPtr + 0x34) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag1 = 0x1d;
   }
-  if (((uint)*(float *)(dataPtr + 0x30) & 0x7f800000) == 0x7f800000) {
+  if (((uint)*(float *)(dataPtr + 0x30) & FloatInfinityValue) == FloatInfinityValue) {
     infFlag4 = 0x1d;
   }
   if ((infFlag3 != 0 || infFlag1 != 0) || infFlag4 != 0) {
@@ -11941,16 +11961,16 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
   infFlag3 = 0;
   uintComponentW = *(uint *)(dataPtr + 0x40);
   floatTemp = *(float *)(dataPtr + 0x3c);
-  stackBuffer[0] = CONCAT44(stackBuffer[0]._4_4_,floatComponentZ);
+  systemContextBuffer[0] = CONCAT44(systemContextBuffer[0]._4_4_,floatComponentZ);
   infFlag4 = infFlag3;
-  if (((uint)floatComponentZ & 0x7f800000) == 0x7f800000) {
+  if (((uint)floatComponentZ & FloatInfinityValue) == FloatInfinityValue) {
     infFlag4 = 0x1d;
   }
   infFlag1 = infFlag3;
-  if ((uintComponentW & 0x7f800000) == 0x7f800000) {
+  if ((uintComponentW & FloatInfinityValue) == FloatInfinityValue) {
     infFlag1 = 0x1d;
   }
-  if (((uint)floatTemp & 0x7f800000) == 0x7f800000) {
+  if (((uint)floatTemp & FloatInfinityValue) == FloatInfinityValue) {
     infFlag3 = 0x1d;
   }
   if ((infFlag4 == 0 && infFlag1 == 0) && infFlag3 == 0) {
@@ -11961,12 +11981,12 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
     if (((floatTemp == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
       return 0x1f;
     }
-    result = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataPtr + 0x10),stackBuffer);
+    result = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataPtr + 0x10),systemContextBuffer);
     if ((int)result != 0) {
       return result;
     }
-    if (stackBuffer[0] != 0) {
-      dataBufferPtr = stackBuffer[0] + -8;
+    if (systemContextBuffer[0] != 0) {
+      dataBufferPtr = systemContextBuffer[0] + -8;
     }
     result = *(undefined8 *)(dataPtr + 0x20);
     *(undefined8 *)(dataBufferPtr + 0x38) = *(undefined8 *)(dataPtr + 0x18);
@@ -11987,9 +12007,9 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
     *(undefined4 *)(dataBufferPtr + 100) = uintComponentZ;
     dataBufferPtr = *(longlong *)(contextPtr + 0x98);
     if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
-      stackBuffer[0] = 0;
-      InitializeSystemContextA0(stackBuffer);
-      if (stackBuffer[0] == *(longlong *)((longlong)*(int *)(dataBufferPtr + 0x17c) * 8 + 0x180c4f450)) {
+      systemContextBuffer[0] = 0;
+      InitializeSystemContextA0(systemContextBuffer);
+      if (systemContextBuffer[0] == *(longlong *)((longlong)*(int *)(dataBufferPtr + 0x17c) * 8 + 0x180c4f450)) {
         result = ProcessSystemDataEC0(dataBufferPtr,dataPtr);
         if ((int)result == 0) {
           return 0;
@@ -12072,11 +12092,11 @@ undefined8 ValidateAndProcessFloatingPointRange(longlong contextPointer, longlon
   longlong dataPointer;
   undefined8 result;
   float rangeValue;
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   longlong queryBuffer [2];
   
-  stackBuffer = CONCAT44(stackBuffer._4_4_,*(uint *)(contextPointer + 0x20));
-  if ((*(uint *)(contextPointer + 0x20) & 0x7f800000) == 0x7f800000) {
+  systemContextBuffer = CONCAT44(systemContextBuffer._4_4_,*(uint *)(contextPointer + 0x20));
+  if ((*(uint *)(contextPointer + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   result = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextPointer + 0x10),queryBuffer);
@@ -12087,13 +12107,13 @@ undefined8 ValidateAndProcessFloatingPointRange(longlong contextPointer, longlon
     else {
       queryBuffer[0] = queryBuffer[0] + -8;
     }
-    stackBuffer = 0;
-    result = ValidateSystemDataRange(queryBuffer[0],contextPointer + 0x18,&stackBuffer);
+    systemContextBuffer = 0;
+    result = ValidateSystemDataRange(queryBuffer[0],contextPointer + 0x18,&systemContextBuffer);
     if ((int)result == 0) {
-      if (stackBuffer == 0) {
+      if (systemContextBuffer == 0) {
         return 0x4a;
       }
-      dataPointer = *(longlong *)(stackBuffer + 0x10);
+      dataPointer = *(longlong *)(systemContextBuffer + 0x10);
       if (dataPointer == 0) {
         return 0x1e;
       }
@@ -12107,7 +12127,7 @@ undefined8 ValidateAndProcessFloatingPointRange(longlong contextPointer, longlon
         rangeValue = inputValue;
       }
       *(float *)(contextPointer + 0x20) = rangeValue;
-      *(float *)(stackBuffer + 4) = rangeValue;
+      *(float *)(systemContextBuffer + 4) = rangeValue;
                     // WARNING: Subroutine does not return
       UpdateSystemFloatingPointValue(*(undefined8 *)(systemDataPointer + 0x98),contextPointer);
     }
@@ -12362,20 +12382,20 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
   longlong resourceHandle;
   float floatValue2;
   uint validationBuffer [2];
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   
   validationBuffer[0] = *(uint *)(systemContext + 0x18);
-  if ((validationBuffer[0] & 0x7f800000) == 0x7f800000) {
+  if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   if (systemContext + 0x28 != 0) {
-    operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemContext + 0x10),&stackBuffer);
+    operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemContext + 0x10),&systemContextBuffer);
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    resourceHandle = stackBuffer;
-    if (stackBuffer != 0) {
-      resourceHandle = stackBuffer + -8;
+    resourceHandle = systemContextBuffer;
+    if (systemContextBuffer != 0) {
+      resourceHandle = systemContextBuffer + -8;
     }
     pointer1 = *(longlong *)(resourceHandle + 0x18);
     if (pointer1 == 0) {
@@ -12409,52 +12429,52 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
 
 
 // 浮点数验证和处理函数A2
-undefined8 ValidateAndProcessFloatingPointNumberA2(longlong param_1,longlong param_2)
+undefined8 ValidateAndProcessFloatingPointNumberA2(longlong dataParameter,longlong contextParameter)
 
 {
-  float fVar1;
+  float floatValue;
   longlong dataContext;
   longlong calculatedOffset;
   undefined8 memoryBaseAddress;
-  longlong lVar5;
-  longlong lVar6;
-  int aiStackX_8 [2];
-  longlong lStackX_18;
+  longlong arrayIndex;
+  longlong systemContext;
+  int operationResult [2];
+  longlong stackBuffer;
   
-  if (param_1 + 0x28 != 0) {
-    memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
+  if (dataParameter + 0x28 != 0) {
+    memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataParameter + 0x10),&stackBuffer);
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    lVar6 = lStackX_18;
-    if (lStackX_18 != 0) {
-      lVar6 = lStackX_18 + -8;
+    systemContext = stackBuffer;
+    if (stackBuffer != 0) {
+      systemContext = stackBuffer + -8;
     }
-    dataContext = *(longlong *)(lVar6 + 0x18);
+    dataContext = *(longlong *)(systemContext + 0x18);
     if (dataContext == 0) {
       return 0x1e;
     }
-    aiStackX_8[0] = 0;
-    memoryBaseAddress = ExecuteSystemOperationA0(param_2,lVar6,param_1 + 0x28,aiStackX_8);
+    operationResult[0] = 0;
+    memoryBaseAddress = ExecuteSystemOperationA0(contextParameter,systemContext,dataParameter + 0x28,operationResult);
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    lVar5 = (longlong)aiStackX_8[0];
-    lVar6 = *(longlong *)(lVar6 + 0x20);
-    calculatedOffset = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
+    arrayIndex = (longlong)operationResult[0];
+    systemContext = *(longlong *)(systemContext + 0x20);
+    calculatedOffset = *(longlong *)(systemContext + 0x10 + arrayIndex * 0x18);
     if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
-      memoryBaseAddress = ProcessDataValidationA0(calculatedOffset,param_1 + 0xa8,param_1 + 0x18);
+      memoryBaseAddress = ProcessDataValidationA0(calculatedOffset,dataParameter + 0xa8,dataParameter + 0x18);
       if ((int)memoryBaseAddress != 0) {
         return memoryBaseAddress;
       }
-      fVar1 = *(float *)(param_1 + 0x18);
-      if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
-         (fVar1 < *(float *)(calculatedOffset + 0x3c) || fVar1 == *(float *)(calculatedOffset + 0x3c))) {
+      floatValue = *(float *)(dataParameter + 0x18);
+      if ((*(float *)(calculatedOffset + 0x38) <= floatValue) &&
+         (floatValue < *(float *)(calculatedOffset + 0x3c) || floatValue == *(float *)(calculatedOffset + 0x3c))) {
         dataContext = *(longlong *)(dataContext + 0x90);
-        *(float *)(lVar6 + 4 + lVar5 * 0x18) = fVar1;
-        *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(dataContext + (longlong)aiStackX_8[0] * 8);
+        *(float *)(systemContext + 4 + arrayIndex * 0x18) = floatValue;
+        *(undefined8 *)(dataParameter + 0x20) = *(undefined8 *)(dataContext + (longlong)operationResult[0] * 8);
                     // WARNING: Subroutine does not return
-        CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+        CleanupSystemEventA0(*(undefined8 *)(contextParameter + 0x98),dataParameter);
       }
       return 0x1c;
     }
@@ -12478,7 +12498,7 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
   longlong lStackX_8;
   
   lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(param_1 + 0x20));
-  if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(param_1 + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
@@ -12571,7 +12591,7 @@ undefined8 ProcessFloatingPointArrayA0(longlong param_1,longlong param_2)
       operationResult = *(int *)(((param_1 + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
       if (operationResult != -1) {
         fStackX_8 = *pfVar4;
-        if (((uint)fStackX_8 & 0x7f800000) == 0x7f800000) {
+        if (((uint)fStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
           return 0x1d;
         }
         if ((operationResult < 0) || (iVar1 <= operationResult)) {
@@ -12649,7 +12669,7 @@ undefined8 GetSystemStatusA0(void)
       iVar3 = *(int *)(((registerContext + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
       if (iVar3 != -1) {
         fVar1 = *pfVar4;
-        if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
+        if (((uint)fVar1 & FloatInfinityValue) == FloatInfinityValue) {
           return 0x1d;
         }
         if ((iVar3 < 0) || (operationResult <= iVar3)) {
@@ -12752,10 +12772,10 @@ void InitializeResourceContext(longlong contextDescriptor, undefined8 initializa
     allocationSize = resourceCount * 4 + 0xf;
     resourceDataPointer = contextDescriptor + 0x20 + resourceCount * 8;
     if (allocationSize <= (ulonglong)(resourceCount * 4)) {
-      allocationSize = 0xffffffffffffff0;
+      allocationSize = SystemCleanupFlagffffff0;
     }
                     // WARNING: Subroutine does not return
-    AllocateSystemResourcesA0(resourceCount,allocationSize & 0xfffffffffffffff0);
+    AllocateSystemResourcesA0(resourceCount,allocationSize & SystemCleanupFlagfffffff0);
   }
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(securityToken ^ (ulonglong)resourceBuffer);
@@ -12799,7 +12819,7 @@ undefined8 ValidateAndProcessFloatValue(longlong valueContext,longlong operation
   
   floatValue = *(float *)(valueContext + 0x18);
   stackValue = CONCAT44(stackValue._4_4_,floatValue);
-  if (((uint)floatValue & 0x7f800000) == 0x7f800000) {
+  if (((uint)floatValue & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   if ((floatValue < 0.0) || (3.4028235e+38 <= floatValue)) {
@@ -12848,7 +12868,7 @@ undefined8 ValidateAndProcessFloatRange(longlong rangeContext,longlong validatio
   
   rangeValue = *(float *)(rangeContext + 0x1c);
   stackValue = CONCAT44(stackValue._4_4_,rangeValue);
-  if (((uint)rangeValue & 0x7f800000) == 0x7f800000) {
+  if (((uint)rangeValue & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   switch(*(undefined4 *)(rangeContext + 0x18)) {
@@ -12919,7 +12939,7 @@ undefined8 ProcessDataTransferA0(longlong param_1,longlong param_2)
     return 0x1f;
   }
   lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(param_1 + 0x1c));
-  if ((*(uint *)(param_1 + 0x1c) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(param_1 + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10));
@@ -12966,7 +12986,7 @@ undefined8 ProcessBufferA0(longlong param_1,longlong param_2)
   undefined4 uStackX_c;
   
   uStackX_8 = *(uint *)(param_1 + 0x18);
-  if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
+  if ((uStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
@@ -13060,7 +13080,7 @@ undefined8 ProcessMemoryAllocationA0(longlong param_1,longlong param_2)
   undefined4 uStackX_c;
   
   uStackX_8 = *(uint *)(param_1 + 0x14);
-  if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
+  if ((uStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
@@ -13172,7 +13192,7 @@ void ProcessContextValidationAndExecution(longlong contextHandle,longlong operat
   int validationResult;
   undefined8 validationData;
   
-  validationResult = ValidateContextData(operationHandle,contextHandle + 0x10,&validationData);
+  validationResult = ValidateContextData(operationHandle,contextHandle + ComponentHandleOffset,&validationData);
   if (validationResult == 0) {
     validationResult = ExecuteContextOperation(validationData,contextHandle + 0x20);
     if (validationResult == 0) {
@@ -13193,7 +13213,7 @@ void ProcessExtendedContextValidation(longlong contextHandle,longlong operationH
   int validationResult;
   longlong extendedContext;
   
-  validationResult = ValidateExtendedContext(operationHandle,contextHandle + 0x10,&extendedContext);
+  validationResult = ValidateExtendedContext(operationHandle,contextHandle + ComponentHandleOffset,&extendedContext);
   if (validationResult == 0) {
     validationResult = ExecuteContextOperation(*(undefined8 *)(extendedContext + 0xd0),contextHandle + 0x20);
     if (validationResult == 0) {
@@ -13213,7 +13233,7 @@ void ProcessAlternativeContextValidation(longlong contextHandle,longlong operati
   int validationResult;
   undefined8 validationData;
   
-  validationResult = ValidateAlternativeContext(operationHandle,contextHandle + 0x10,&validationData);
+  validationResult = ValidateAlternativeContext(operationHandle,contextHandle + ComponentHandleOffset,&validationData);
   if (validationResult == 0) {
     validationResult = ExecuteContextOperation(validationData,contextHandle + 0x20);
     if (validationResult == 0) {
@@ -13282,15 +13302,15 @@ int ValidateAndProcessDataOperation(longlong dataContext,undefined8 operationFla
   longlong allocatedBuffer;
   longlong contextHandle;
   longlong resourceHandle;
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   
   if ((int)operationFlags < 1) {
     validationResult = ExecuteSystemValidationA0();
     if ((validationResult == 0) &&
-       (validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x4c),&stackBuffer), validationResult == 0)
+       (validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x4c),&systemContextBuffer), validationResult == 0)
        ) {
-      if (*(int *)(stackBuffer + 0x30) == 1) {
-        *(undefined4 *)(stackBuffer + 0x30) = 2;
+      if (*(int *)(systemContextBuffer + 0x30) == 1) {
+        *(undefined4 *)(systemContextBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(undefined8 *)(resourceHandle + 0x98));
@@ -13335,9 +13355,9 @@ void ValidateContextAndUpdateState(longlong contextHandle,longlong operationHand
   int validationResult;
   longlong localBuffer;
   
-  validationResult = ExecuteSystemValidationA0(operationHandle,contextHandle + 0x10);
+  validationResult = ExecuteSystemValidationA0(operationHandle,contextHandle + ComponentHandleOffset);
   if (validationResult == 0) {
-    validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x10),&localBuffer);
+    validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + ComponentHandleOffset),&localBuffer);
     if (validationResult == 0) {
       if (*(int *)(localBuffer + 0x30) == 1) {
         *(undefined4 *)(localBuffer + 0x30) = 2;
@@ -13411,23 +13431,23 @@ int ProcessDataByCondition(undefined8 inputCondition,undefined8 dataSize)
   longlong allocatedBuffer;
   longlong contextHandle;
   longlong resourceHandle;
-  longlong stackBuffer;
+  longlong systemContextBuffer;
   
   if (eaxRegister == 0) {
     allocatedBuffer = AllocateSystemMemoryWithAlignmentA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataSize,0x20,&UNK_180957f70,0xdd);
     if (allocatedBuffer != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(allocatedBuffer,*(undefined8 *)(contextHandle + 0x10),(longlong)*(int *)(contextHandle + 0x18));
+      memcpy(allocatedBuffer,*(undefined8 *)(contextHandle + ComponentHandleOffset),(longlong)*(int *)(contextHandle + 0x18));
     }
     operationResult = 0x26;
   }
   else {
     operationResult = ExecuteSystemValidationA0();
     if ((operationResult == 0) &&
-       (operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x24),&stackBuffer), operationResult == 0)
+       (operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x24),&systemContextBuffer), operationResult == 0)
        ) {
-      if (*(int *)(stackBuffer + 0x30) == 1) {
-        *(undefined4 *)(stackBuffer + 0x30) = 2;
+      if (*(int *)(systemContextBuffer + 0x30) == 1) {
+        *(undefined4 *)(systemContextBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(undefined8 *)(resourceHandle + 0x98));
@@ -13490,15 +13510,15 @@ undefined8 ValidateAndProcessFloatValue(longlong dataContext,longlong operationC
   longlong rangeData;
   float minValue;
   float maxValue;
-  undefined4 stackBuffer [2];
+  undefined4 systemContextBuffer [2];
   
-  if ((*(uint *)(dataContext + 0x18) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataContext + 0x18) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  stackBuffer[0] = 0;
-  operationResult = ProcessSystemDataTransferA0(operationContext + 0x60,dataContext + 0x10,stackBuffer);
+  systemContextBuffer[0] = 0;
+  operationResult = ProcessSystemDataTransferA0(operationContext + 0x60,dataContext + 0x10,systemContextBuffer);
   if ((int)operationResult == 0) {
-    rangeData = GetOperationRangeDataA0(operationContext + 0x60,stackBuffer[0]);
+    rangeData = GetOperationRangeDataA0(operationContext + 0x60,systemContextBuffer[0]);
     if ((*(uint *)(rangeData + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
@@ -13510,7 +13530,7 @@ undefined8 ValidateAndProcessFloatValue(longlong dataContext,longlong operationC
       maxValue = inputValue;
     }
     *(float *)(dataContext + 0x18) = maxValue;
-    operationResult = ValidateOperationRangeA0(operationContext + 0x60,stackBuffer[0],maxValue);
+    operationResult = ValidateOperationRangeA0(operationContext + 0x60,systemContextBuffer[0],maxValue);
     if ((int)operationResult == 0) {
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(undefined8 *)(operationContext + 0x98),dataContext);
@@ -13743,7 +13763,7 @@ undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
   undefined4 auStackX_18 [2];
   
   auStackX_8[0] = *(uint *)(param_1 + 0x10);
-  if ((auStackX_8[0] & 0x7f800000) == 0x7f800000) {
+  if ((auStackX_8[0] & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   auStackX_18[0] = 0;
@@ -13994,7 +14014,7 @@ void InitializeUtilitySystemContext(longlong contextHandle, longlong systemData)
   
   securityHash = GlobalSecurityKey ^ (ulonglong)localStackData;
   contextOffset = systemData + 0x60;
-  handlePointer = contextHandle + 0x18 + (longlong)*(int *)(contextHandle + 0x10) * 8;
+  handlePointer = contextHandle + 0x18 + (longlong)*(int *)(contextHandle + ComponentHandleOffset) * 8;
   dataPointer = systemData;
                     // WARNING: Subroutine does not return
   ExecuteSystemInitialization();
@@ -14011,7 +14031,7 @@ undefined8 ValidateSystemB0(longlong validationContext,longlong systemContext)
   undefined4 uStackX_c;
   
   uStackX_8 = *(uint *)(param_1 + 0x18);
-  if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
+  if ((uStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
   uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
@@ -14234,7 +14254,7 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
       uStack_98 = uStack_50 & 0xff;
       uStack_a8 = uStack_54 & 0xffff;
                     // WARNING: Subroutine does not return
-      InitializeSystemBufferA0(auStack_40,0x27,&UNK_180958180,uStack_58);
+      InitializeSystemBufferA0(auStack_40,0x27,&SystemBufferConfiguration,uStack_58);
     }
     if (((*(byte *)(calculatedOffset + 0xc4) & 1) != 0) &&
        ((systemContext = *(longlong *)(calculatedOffset + 0x68), systemContext != 0 ||
@@ -14323,7 +14343,7 @@ void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operati
       uStack_88 = uStack_40 & 0xff;
       uStack_98 = uStack_44 & 0xffff;
                     // WARNING: Subroutine does not return
-      InitializeSystemBufferA0(auStack_38,0x27,&UNK_180958180,uStack_48);
+      InitializeSystemBufferA0(auStack_38,0x27,&SystemBufferConfiguration,uStack_48);
     }
     if ((**(int **)(calculatedOffset + 0xd0) != 0) ||
        (operationResult = ValidateSystemConfigurationA0(*(undefined4 *)(param_1 + 0x18)), operationResult == 0)) {
@@ -14353,7 +14373,7 @@ void ExecuteSecurityValidationOperation(ulonglong securityContext)
   securityContextHandle = (**(code **)(systemHandler + 0x288))();
   if (securityContextHandle == 0) {
                     // WARNING: Subroutine does not return
-    InitializeSystemBufferA0(&stack0x00000080,0x27,&UNK_180958180,contextValue & 0xffffffff,
+    InitializeSystemBufferA0(&stack0x00000080,0x27,&SystemBufferConfiguration,contextValue & SystemCleanupFlag,
                   contextValue._4_2_);
   }
   if (**(int **)(securityContextHandle + 0xd0) == 0) {
@@ -14438,7 +14458,7 @@ void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlo
       uStack_98 = uStack_50 & 0xff;
       uStack_a8 = uStack_54 & 0xffff;
                     // WARNING: Subroutine does not return
-      InitializeSystemBufferA0(auStack_40,0x27,&UNK_180958180,uStack_58);
+      InitializeSystemBufferA0(auStack_40,0x27,&SystemBufferConfiguration,uStack_58);
     }
     systemContext = *(longlong *)(calculatedOffset + 0x48);
     if ((systemContext != 0) || (operationResult = ProcessSystemContextA0(param_1,calculatedOffset,&systemContext), operationResult == 0)) {
@@ -14579,7 +14599,7 @@ void ValidateResourceAndProcess(longlong resourceHandle, undefined8 contextHandl
 {
   int validationResult;
   
-  validationResult = ValidateNetworkStatusA0(contextHandle, resourceHandle + 0x10);
+  validationResult = ValidateNetworkStatusA0(contextHandle, resourceHandle + ComponentHandleOffset);
   if ((((validationResult == 0) && 
         (validationResult = ValidateNetworkConnectionA0(contextHandle, resourceHandle + 0x18), validationResult == 0)) &&
        (validationResult = ValidateNetworkConfigurationA0(contextHandle, resourceHandle + 0x20, *(undefined4 *)(resourceHandle + 0x18)), validationResult == 0))
@@ -14656,11 +14676,11 @@ void ValidateContextAndProcess(longlong contextHandle, undefined8 validationData
 {
   int validationResult;
   
-  validationResult = ValidateNetworkConnectionA0(validationData, contextHandle + 0x10);
+  validationResult = ValidateNetworkConnectionA0(validationData, contextHandle + ComponentHandleOffset);
   if (validationResult == 0) {
-    validationResult = ValidateNetworkConfigurationA0(validationData, contextHandle + 0x18, *(undefined4 *)(contextHandle + 0x10));
+    validationResult = ValidateNetworkConfigurationA0(validationData, contextHandle + 0x18, *(undefined4 *)(contextHandle + ComponentHandleOffset));
     if (validationResult == 0) {
-      validationResult = ExecuteNetworkOperationA0(validationData, contextHandle + 0x18 + (longlong)*(int *)(contextHandle + 0x10) * 8);
+      validationResult = ExecuteNetworkOperationA0(validationData, contextHandle + 0x18 + (longlong)*(int *)(contextHandle + ComponentHandleOffset) * 8);
       if (validationResult == 0) {
         InitializeNetworkConnectionA0(validationData, contextHandle + 0x14);
       }
@@ -14866,7 +14886,7 @@ undefined8 ResetSystemStateDX0(longlong systemContext)
   operationResult = ReleaseSystemResourceDJ0(systemContext + 0x70);
   if ((operationResult == 0) && (operationResult = ValidateSystemStateDI0(systemContext + 0x80), operationResult == 0)) {
     // 设置系统状态标志
-    *(undefined4 *)(systemContext + 0x90) = 0xffffffff;
+    *(undefined4 *)(systemContext + 0x90) = SystemCleanupFlag;
     *(undefined4 *)(systemContext + 0x94) = 0;
   }
   
@@ -14880,7 +14900,7 @@ undefined8 ResetSystemStateDX0(longlong systemContext)
   operationResult = ReleaseSystemResourceDJ0(systemContext + 0x28);
   if ((operationResult == 0) && (operationResult = ConfigureSystemParameterDK0(systemContext + 0x38), operationResult == 0)) {
     // 设置系统参数标志
-    *(undefined4 *)(systemContext + 0x48) = 0xffffffff;
+    *(undefined4 *)(systemContext + 0x48) = SystemCleanupFlag;
     *(undefined4 *)(systemContext + 0x4c) = 0;
   }
   
@@ -15033,7 +15053,7 @@ uint64_t CleanupAndResetParameterContext(longlong *parameterContext)
       parameterDataPointer = (undefined4 *)((longlong)parameterCount * 0x10 + *parameterContext + 4);
       do {
         parameterDataPointer[-1] = 0;
-        *parameterDataPointer = 0xffffffff;
+        *parameterDataPointer = SystemCleanupFlag;
         *(undefined8 *)(parameterDataPointer + 1) = 0;
         parameterDataPointer = parameterDataPointer + 4;
         cleanupCounter = cleanupCounter + -1;
@@ -15091,7 +15111,7 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
     memoryBaseAddress = uVar9;
     if (0 < iVar8) {
       do {
-        *(undefined4 *)(*param_1 + memoryBaseAddress * 4) = 0xffffffff;
+        *(undefined4 *)(*param_1 + memoryBaseAddress * 4) = SystemCleanupFlag;
         memoryBaseAddress = memoryBaseAddress + 1;
       } while ((longlong)memoryBaseAddress < (longlong)iVar8);
     }
@@ -15113,7 +15133,7 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
         *piVar7 = (int)uVar9;
         uVar10 = uVar10 + 1;
         uVar9 = (ulonglong)((int)uVar9 + 1);
-        *(undefined4 *)(param_1[2] + 4 + memoryBaseAddress) = 0xffffffff;
+        *(undefined4 *)(param_1[2] + 4 + memoryBaseAddress) = SystemCleanupFlag;
         memoryBaseAddress = memoryBaseAddress + 0x10;
       } while ((longlong)uVar10 < (longlong)(int)dataContext);
     }
@@ -15160,7 +15180,7 @@ undefined8 UtilityNoOperationK(void)
     validationStatus = securityCheckResult;
     if (0 < iVar7) {
       do {
-        *(undefined4 *)(*registerContext + validationStatus * 4) = 0xffffffff;
+        *(undefined4 *)(*registerContext + validationStatus * 4) = SystemCleanupFlag;
         validationStatus = validationStatus + 1;
       } while ((longlong)validationStatus < (longlong)iVar7);
     }
@@ -15182,7 +15202,7 @@ undefined8 UtilityNoOperationK(void)
         *piVar6 = (int)securityCheckResult;
         uVar9 = uVar9 + 1;
         securityCheckResult = (ulonglong)((int)securityCheckResult + 1);
-        *(undefined4 *)(registerContext[2] + 4 + validationStatus) = 0xffffffff;
+        *(undefined4 *)(registerContext[2] + 4 + validationStatus) = SystemCleanupFlag;
         validationStatus = validationStatus + 0x10;
       } while ((longlong)uVar9 < (longlong)(int)validationContext);
     }
@@ -15253,8 +15273,8 @@ void ProcessUtilitySystemData(longlong systemContext,undefined1 *dataBuffer,int 
       if (iVar8 != -1) {
         fVar11 = *(float *)(param_1 + 0xb4);
         iVar8 = -1;
-        *(undefined4 *)(param_1 + 0xb0) = 0xffffffff;
-        *(undefined4 *)(param_1 + 0xb4) = 0xbf800000;
+        *(undefined4 *)(param_1 + 0xb0) = SystemCleanupFlag;
+        *(undefined4 *)(param_1 + 0xb4) = NegativeZeroFloat;
       }
       *(float *)(param_1 + 0xa8) = fVar10;
       lVar7 = 0;
@@ -15320,7 +15340,7 @@ MemoryCopyLabel:
     *param_2 = 0;
   }
   else {
-    *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) & 0xfdffffff;
+    *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) & SecurityValidationMask;
     *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) | 0x4000000;
     *param_2 = 0;
   }
@@ -15373,8 +15393,8 @@ void ProcessSystemDataWithValidation(longlong systemContext,undefined8 dataHandl
     if (itemCount != -1) {
       normalizedValue = *(float *)(systemContext + 0xb4);
       itemCount = -1;
-      *(undefined4 *)(systemContext + 0xb0) = 0xffffffff;
-      *(undefined4 *)(systemContext + 0xb4) = 0xbf800000;
+      *(undefined4 *)(systemContext + 0xb0) = SystemCleanupFlag;
+      *(undefined4 *)(systemContext + 0xb4) = NegativeZeroFloat;
     }
     *(float *)(systemContext + 0xa8) = floatValue;
     arrayIndex = 0;
@@ -15739,14 +15759,14 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
         }
       }
       pdataFlags = (undefined8 *)((longlong)(int)param_1[3] * 0x10 + param_1[2]);
-      *pdataFlags = CONCAT44(0xffffffff,uVar1);
+      *pdataFlags = CONCAT44(SystemCleanupFlag,uVar1);
       pdataFlags[1] = memoryBaseAddress;
       *(int *)(param_1 + 3) = (int)param_1[3] + 1;
     }
     else {
       puVar10 = (uint *)((longlong)operationResult * 0x10 + param_1[2]);
       *(uint *)(param_1 + 4) = puVar10[1];
-      puVar10[1] = 0xffffffff;
+      puVar10[1] = SystemCleanupFlag;
       *puVar10 = *param_2;
       *(undefined8 *)(puVar10 + 2) = *param_3;
     }
@@ -15821,14 +15841,14 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
       }
     }
     poperationResult = (undefined8 *)((longlong)(int)unaff_RDI[3] * 0x10 + unaff_RDI[2]);
-    *poperationResult = CONCAT44(0xffffffff,param_2);
+    *poperationResult = CONCAT44(SystemCleanupFlag,param_2);
     poperationResult[1] = uStack0000000000000028;
     *(int *)(unaff_RDI + 3) = (int)unaff_RDI[3] + 1;
   }
   else {
     psecurityCheckResult = (undefined4 *)((longlong)operationResult * 0x10 + unaff_RDI[2]);
     *(undefined4 *)(unaff_RDI + 4) = psecurityCheckResult[1];
-    psecurityCheckResult[1] = 0xffffffff;
+    psecurityCheckResult[1] = SystemCleanupFlag;
     *psecurityCheckResult = *unaff_R15;
     *(undefined8 *)(psecurityCheckResult + 2) = *registerR14;
   }
@@ -15885,14 +15905,14 @@ undefined8 ProcessAndValidateDataBlock(undefined8 param_1,undefined4 param_2)
     }
     pvalidationStatus = (undefined8 *)
              ((longlong)*(int *)(unaff_RDI + 0x18) * 0x10 + *(longlong *)(unaff_RDI + 0x10));
-    *pvalidationStatus = CONCAT44(0xffffffff,param_2);
+    *pvalidationStatus = CONCAT44(SystemCleanupFlag,param_2);
     pvalidationStatus[1] = uStack0000000000000028;
     *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
   }
   else {
     poperationResult = (undefined4 *)((longlong)iVar8 * 0x10 + *(longlong *)(unaff_RDI + 0x10));
     *(undefined4 *)(unaff_RDI + 0x20) = poperationResult[1];
-    poperationResult[1] = 0xffffffff;
+    poperationResult[1] = SystemCleanupFlag;
     *poperationResult = *unaff_R15;
     *(undefined8 *)(poperationResult + 2) = *registerR14;
   }
@@ -16004,7 +16024,7 @@ undefined8 ReallocateAndCopyDataBuffer(longlong *bufferPointer,int bufferSize)
   }
   newBuffer = (undefined8 *)0x0;
   if (bufferSize != 0) {
-    if (bufferSize * 0xc - 1U < 0x3fffffff) {
+    if (bufferSize * 0xc - 1U < MaxSafeBufferSize) {
       newBuffer = (undefined8 *)
                AllocateMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),bufferSize * 0xc,&UNK_180957f70,
                              0xf4,0,0,1);
@@ -16076,7 +16096,7 @@ CalculationLabel:
     *(int *)((longlong)registerContext + 0xc) = unaff_EDI;
     return 0;
   }
-  if (param_2 * 0xc - 1U < 0x3fffffff) {
+  if (param_2 * 0xc - 1U < MaxSafeBufferSize) {
     pvalidationStatus = (undefined8 *)
              AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4
                            ,0);
@@ -16127,7 +16147,7 @@ undefined8 ValidateParameters(longlong *param_1,int param_2)
   }
   validationContext = 0;
   if (param_2 != 0) {
-    if (param_2 * 0xc - 1U < 0x3fffffff) {
+    if (param_2 * 0xc - 1U < MaxSafeBufferSize) {
       validationContext = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,
                             0xf4,0,0,1);
       if (validationContext != 0) {
@@ -16175,7 +16195,7 @@ DataTransferLabel:
     *(int *)((longlong)registerContext + 0xc) = unaff_EDI;
     return 0;
   }
-  if (param_2 * 0xc - 1U < 0x3fffffff) {
+  if (param_2 * 0xc - 1U < MaxSafeBufferSize) {
     validationContext = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4,
                           0);
     if (validationContext != 0) {
@@ -16262,7 +16282,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
     iVar16 = 0;
     auStackX_10[0] = 0;
     uStack_110 = 0;
-    uStack_100 = 0xffffffffffffffff;
+    uStack_100 = SystemCleanupFlagffffffff;
     aiStack_f8[0] = -1;
     ProcessDataConversionDN0(plStack_108,&uStack_100,aiStack_f8);
     aiStackX_8[0] = aiStack_f8[0];
@@ -16405,7 +16425,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                     }
                   }
                 }
-                uStack_110 = uStack_110 & 0xffffffff00000000;
+                uStack_110 = uStack_110 & SystemCleanupFlag00000000;
                 if ((int)uVar9 < 0) {
                   uVar9 = -uVar9;
                 }
@@ -16455,7 +16475,7 @@ MemoryAllocationLabel:
     lVar5 = (longlong)(iVar16 + -1);
     if (-1 < iVar16 + -1) {
       do {
-        uStack_100 = uStack_100 & 0xffffffff00000000;
+        uStack_100 = uStack_100 & SystemCleanupFlag00000000;
         plStack_108 = (longlong *)&UNK_180982dc0;
         aiStack_f8[0] = *(int *)(dataFlags + lVar5 * 4);
         ResetSystemStateA1(&plStack_108,*(undefined8 *)(param_1 + 0x58));
@@ -16487,7 +16507,7 @@ MemoryAllocationLabel:
         }
       }
     }
-    uStack_110 = uStack_110 & 0xffffffff00000000;
+    uStack_110 = uStack_110 & SystemCleanupFlag00000000;
     if (iVar4 < 0) {
       iVar4 = -iVar4;
     }
@@ -16509,7 +16529,7 @@ ProcessCompleteLabel:
   }
   iVar4 = ReleaseSystemResourceDJ0(param_1 + 0x70);
   if ((iVar4 == 0) && (iVar4 = ResetSystemStatusA0(param_1 + 0x80), iVar4 == 0)) {
-    *(undefined4 *)(param_1 + 0x90) = 0xffffffff;
+    *(undefined4 *)(param_1 + 0x90) = SystemCleanupFlag;
     *(undefined4 *)(param_1 + 0x94) = 0;
   }
   *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) & 0xfbffffff;
@@ -17914,7 +17934,7 @@ ProcessDataSecurityValidation:
             fStack000000000000004c = extraout_XMM0_Da_03;
             if (iVar13 != 0) goto FUN_180897b0e;
           }
-          iVar13 = ValidateDataA3(fStack000000000000004c,&stackBuffer50,0);
+          iVar13 = ValidateDataA3(fStack000000000000004c,&systemContextBuffer50,0);
           if (iVar13 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
@@ -18161,7 +18181,7 @@ ValidateDataSecurity:
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
         if (iVar13 != 0) goto FUN_180897afe;
       }
-      iVar13 = ValidateDataA3(in_stack_00000048._4_4_,&stackBuffer50,0);
+      iVar13 = ValidateDataA3(in_stack_00000048._4_4_,&systemContextBuffer50,0);
       if (iVar13 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
@@ -18292,8 +18312,8 @@ void ProcessFloatingPointDataA0(float inputValue)
   float contextValue;
   undefined4 contextFlags;
   float stackInputValue;
-  float stackBuffer40;
-  float stackBuffer44;
+  float systemContextBuffer40;
+  float systemContextBuffer44;
   float secondaryInputValue;
   
   if (inputValue != 1.0) {
@@ -18305,7 +18325,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     inputValue = extraout_XMM0_Da;
     if (operationResult != 0) goto LAB_180897af6;
   }
-  operationResult = ValidateDataA3(inputValue,&stackBuffer50,0);
+  operationResult = ValidateDataA3(inputValue,&systemContextBuffer50,0);
   if (operationResult == 0) {
     if (secondaryInputValue != 1.0) {
       stackInputValue = secondaryInputValue;
@@ -18862,7 +18882,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
       }
       iVar6 = *(int *)(validationContext5 + 0x28);
       if (iVar6 != 1) {
-        uStack_338 = uStack_338 & 0xffffffff00000000;
+        uStack_338 = uStack_338 & SystemCleanupFlag00000000;
         plStack_340 = (longlong *)&UNK_180982378;
         aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,iVar6);
         iVar7 = ValidateDataIntegrityA0(param_1,&plStack_340);
@@ -18898,7 +18918,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
           uStack_28c = *(uint *)(validationContext5 + 0x268 + (longlong)validationContextPointer9);
           validationContext1 = validationContext1 - lStack_294;
           if (validationContext1 == 0) {
-            validationContext1 = (uVar9 & 0xffffffff) - (ulonglong)uStack_28c;
+            validationContext1 = (uVar9 & SystemCleanupFlag) - (ulonglong)uStack_28c;
           }
           validationContext5 = param_1[4];
           uStack_288 = validationContext1 == 0;
@@ -18955,7 +18975,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
                       (ulonglong)*(uint *)((longlong)param_1 + 0x1c);
               lVar4 = param_1[2];
               plStack_340 = (longlong *)&UNK_180986390;
-              uStack_338 = uStack_338 & 0xffffffff00000000;
+              uStack_338 = uStack_338 & SystemCleanupFlag00000000;
               param_1[2] = uVar9;
               aplStack_330[0] = validationContextPointer6;
               if (lVar4 != 0) {
@@ -18978,7 +18998,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
           validationContextPointer4 = (longlong *)(ulonglong)uVar17;
         } while ((int)uVar17 < iVar6);
       }
-      uStack_310 = 0xffffffffffffffff;
+      uStack_310 = SystemCleanupFlagffffffff;
       afStack_308[0] = -NAN;
       plStack_318 = (longlong *)(*(longlong *)(param_1[1] + 0x90) + 0x38);
       ProcessDataAndExecuteOperationO5(plStack_318,&uStack_310,afStack_308);
@@ -18989,8 +19009,8 @@ void ProcessFloatingPointDataA1(longlong *param_1)
         do {
           do {
             validationContext5 = (longlong)(int)afStack_348[0] * 0x20;
-            uStack_338 = 0xffffffffffffffff;
-            aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,0xffffffff);
+            uStack_338 = SystemCleanupFlagffffffff;
+            aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,SystemCleanupFlag);
             plStack_340 = *(longlong **)(validationContextPointer6[2] + 0x18 + validationContext5);
             lStack_320 = validationContext5;
             ProcessDataConversionDN0(plStack_340,&uStack_338,aplStack_330);
@@ -19657,7 +19677,7 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
       }
       unaff_R15D = unaff_R15D + operationResult;
     }
-    memoryBaseAddress = (uint)*(uint3 *)((param_2 & 0xffffffff) * 3 + registerR14[8]);
+    memoryBaseAddress = (uint)*(uint3 *)((param_2 & SystemCleanupFlag) * 3 + registerR14[8]);
     param_2 = (ulonglong)memoryBaseAddress;
   } while (memoryBaseAddress != 0xffffff);
   if (iVar7 != 0) {
@@ -19827,7 +19847,7 @@ undefined8 ProcessDataA3(longlong *DataHandle,int DataSize)
   }
   ValidationBuffer = (undefined2 *)0x0;
   if (DataSize != 0) {
-    if (DataSize * 3 - 1U < 0x3fffffff) {
+    if (DataSize * 3 - 1U < MaxSafeBufferSize) {
       ValidationBuffer = (undefined2 *)
                AllocateSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),DataSize * 3,&SystemMemoryPoolB,0xf4
                              ,0,0,1);
@@ -19899,7 +19919,7 @@ ValidationCheckpointA:
     *(int *)((longlong)registerContext + 0xc) = unaff_EDI;
     return 0;
   }
-  if (param_2 * 3 - 1U < 0x3fffffff) {
+  if (param_2 * 3 - 1U < MaxSafeBufferSize) {
     pvalidationStatus = (undefined2 *)
              AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4,0
                           );
@@ -20261,7 +20281,7 @@ undefined8 ProcessDataSequenceA0(longlong *param_1)
         goto LAB_1808992a5;
       }
     }
-    uVar1 = ValidateDataAndReturnStatusO3(*param_1,&stackBuffer50,1,4,0);
+    uVar1 = ValidateDataAndReturnStatusO3(*param_1,&systemContextBuffer50,1,4,0);
   }
 ValidationCheckpointB:
   if ((int)uVar1 == 0) {
@@ -21412,17 +21432,17 @@ void ProcessDataWithCallback(longlong systemContext, undefined4 *dataBuffer)
 
 {
   int callbackResult;
-  undefined4 stackBuffer [2];
+  undefined4 systemContextBuffer [2];
   
-  stackBuffer[0] = *dataBuffer;
-  callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,4);
+  systemContextBuffer[0] = *dataBuffer;
+  callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),systemContextBuffer,4);
   if (callbackResult == 0) {
-    stackBuffer[0].LowWord = *(undefined2 *)(dataBuffer + 1);
-    callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,2);
+    systemContextBuffer[0].LowWord = *(undefined2 *)(dataBuffer + 1);
+    callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),systemContextBuffer,2);
     if (callbackResult == 0) {
-      stackBuffer[0] = CONCAT22(stackBuffer[0].HighWord,*(undefined2 *)((longlong)dataBuffer + 6));
+      systemContextBuffer[0] = CONCAT22(systemContextBuffer[0].HighWord,*(undefined2 *)((longlong)dataBuffer + 6));
       callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))
-                        (*(undefined8 **)(systemContext + 8),stackBuffer,2);
+                        (*(undefined8 **)(systemContext + 8),systemContextBuffer,2);
       if (callbackResult == 0) {
         (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),dataBuffer + 2,8);
       }
@@ -21440,13 +21460,13 @@ void ProcessDataBufferWithValidation(longlong systemContext, undefined4 *dataBuf
 
 {
   int validationStatus;
-  undefined4 stackBuffer [2];
+  undefined4 systemContextBuffer [2];
   
-  stackBuffer[0] = *dataBuffer;
-  validationStatus = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,4);
+  systemContextBuffer[0] = *dataBuffer;
+  validationStatus = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),systemContextBuffer,4);
   if (validationStatus == 0) {
-    stackBuffer[0] = dataBuffer[1];
-    (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,4);
+    systemContextBuffer[0] = dataBuffer[1];
+    (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),systemContextBuffer,4);
   }
   return;
 }
@@ -22899,7 +22919,7 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
   undefined4 bufferValue2;
   undefined4 bufferValue3;
   undefined4 bufferValue4;
-  undefined1 tempBuffer [32];
+  undefined1 securityValidationBuffer [32];
   
   resourcePointer = (undefined4 *)FUN_180847820();
   uStack_38 = *resourcePointer;
@@ -22968,8 +22988,8 @@ ulonglong ProcessDataWithValidation(void)
   longlong contextPointer;
   uint validationFlag;
   bool carryFlag;
-  undefined1 tempBuffer1 [4];
-  undefined1 tempBuffer2 [2];
+  undefined1 dataElementBuffer [4];
+  undefined1 dataSizeBuffer [2];
   undefined1 tempBuffer3 [2];
   
   validationFlag = registerEAX + 0x1c;
@@ -22979,7 +22999,7 @@ ulonglong ProcessDataWithValidation(void)
       operationResult = ProcessDataElement(dataHandle, tempBuffer1, 4);
       if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, tempBuffer2, 2), (int)operationResult == 0)) &&
          (operationResult = ProcessDataElement(dataHandle, tempBuffer3, 2), (int)operationResult == 0)) {
-        operationResult = ProcessDataElement(dataHandle, &stackBuffer, 8);
+        operationResult = ProcessDataElement(dataHandle, &systemContextBuffer, 8);
       }
     }
     else {
@@ -23029,15 +23049,15 @@ ulonglong ProcessDataStream(void)
   undefined8 *dataBuffer;
   longlong contextPointer;
   ulonglong dataLength;
-  undefined1 tempBuffer1 [4];
-  undefined1 tempBuffer2 [2];
+  undefined1 dataElementBuffer [4];
+  undefined1 dataSizeBuffer [2];
   undefined1 tempBuffer3 [2];
   
   dataHandle = *dataBuffer;
   operationResult = ProcessDataElement(dataHandle, tempBuffer1, 4);
   if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, tempBuffer2, 2), (int)operationResult == 0)) &&
      (operationResult = ProcessDataElement(dataHandle, tempBuffer3, 2), (int)operationResult == 0)) {
-    operationResult = ProcessDataElement(dataHandle, &stackBuffer, 8);
+    operationResult = ProcessDataElement(dataHandle, &systemContextBuffer, 8);
   }
   if ((int)operationResult != 0) {
     return operationResult;
@@ -23056,7 +23076,7 @@ ulonglong ProcessDataStream(void)
       }
     }
   }
-  return dataLength & 0xffffffff;
+  return dataLength & SystemCleanupFlag;
 }
 
 
@@ -23096,7 +23116,7 @@ ulonglong ValidateAndProcessDataElement(void)
       }
     }
   }
-  return dataLength & 0xffffffff;
+  return dataLength & SystemCleanupFlag;
 }
 
 
@@ -24699,7 +24719,7 @@ void CheckSystemStatusB0(void)
     } while (iVar1 < (int)memoryBaseAddress);
   }
   in_stack_00000050 = 0;
-  operationResult = FUN_1808afe30(*registerContext,&stackBuffer50);
+  operationResult = FUN_1808afe30(*registerContext,&systemContextBuffer50);
   iVar1 = in_stack_00000050;
   if (operationResult != 0) {
     return;
@@ -24968,7 +24988,7 @@ ValidationLabelB:
           ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puStack_88,&UNK_180957f70,0x100,1);
         }
         puStack_88 = (undefined8 *)0x0;
-        uStack_80 = uStack_80 & 0xffffffff;
+        uStack_80 = uStack_80 & SystemCleanupFlag;
         uVar9 = operationResult;
       }
       if (iVar13 < 0) {
@@ -24991,7 +25011,7 @@ ValidationLabelB:
           uVar9 = uStack_80._4_4_;
         }
       }
-      uStack_80 = uStack_80 & 0xffffffff00000000;
+      uStack_80 = uStack_80 & SystemCleanupFlag00000000;
       if ((int)uVar9 < 0) {
         uVar9 = -uVar9;
       }
@@ -25008,7 +25028,7 @@ ValidationLabelB:
       dataFlags = (int)*(uint *)(param_1 + 0x54) >> 0x1f;
       puVar10 = puStack_88;
       if ((int)((*(uint *)(param_1 + 0x54) ^ dataFlags) - dataFlags) < (int)uStack_80) {
-        dataFlags = FUN_180883750(param_1 + 0x48,uStack_80 & 0xffffffff);
+        dataFlags = FUN_180883750(param_1 + 0x48,uStack_80 & SystemCleanupFlag);
         validationOutcome = (ulonglong)dataFlags;
         puVar10 = puStack_88;
         if (dataFlags != 0) goto LAB_18089c40a;
@@ -25040,7 +25060,7 @@ ValidationLabelB:
         ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puStack_88,&UNK_180957f70,0x100,1);
       }
       puStack_88 = (undefined8 *)0x0;
-      uStack_80 = uStack_80 & 0xffffffff;
+      uStack_80 = uStack_80 & SystemCleanupFlag;
       uVar9 = operationResult;
     }
     if (iVar13 < 0) {
@@ -25063,7 +25083,7 @@ ValidationLabelB:
         uVar9 = uStack_80._4_4_;
       }
     }
-    uStack_80 = uStack_80 & 0xffffffff00000000;
+    uStack_80 = uStack_80 & SystemCleanupFlag00000000;
     if ((int)uVar9 < 0) {
       uVar9 = -uVar9;
     }
@@ -26619,7 +26639,7 @@ ulonglong FUN_18089c86d(void)
   
   *(undefined4 *)(unaff_R13 + 0x30) = 10;
   if ((int)unaff_RDI != 0) {
-    return unaff_RDI & 0xffffffff;
+    return unaff_RDI & SystemCleanupFlag;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
@@ -26691,14 +26711,14 @@ ValidationContextHandler:
         }
       }
       if (memoryBaseAddress == 0) {
-        operationResult = unaff_RDI & 0xffffffff;
+        operationResult = unaff_RDI & SystemCleanupFlag;
         iVar11 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) != '\0');
         iVar10 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         operationResult = (ulonglong)memoryBaseAddress;
         if (memoryBaseAddress == 0) {
-          operationResult = unaff_RDI & 0xffffffff;
+          operationResult = unaff_RDI & SystemCleanupFlag;
         }
       }
     }
@@ -26707,7 +26727,7 @@ ValidationContextHandler:
     }
   }
   else {
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
   }
   if ((int)operationResult != 0) {
     return operationResult;
@@ -26717,7 +26737,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + 0x18) == 0) {
     operationResult = ValidateDataWithSecurityCheckA2(*registerContext,unaff_R13 + 0x48);
@@ -26730,7 +26750,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if (0x1d < (int)registerContext[8] - 0x52U) {
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
     goto LAB_18089cad8;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
@@ -26762,7 +26782,7 @@ ValidationRetryHandler:
   }
   operationResult = (ulonglong)memoryBaseAddress;
   if (memoryBaseAddress == 0) {
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
   }
 ValidationErrorHandler2:
   if ((int)operationResult != 0) {
@@ -26794,11 +26814,11 @@ ValidationErrorHandler2:
       return operationResult;
     }
     *(undefined4 *)(unaff_RBP + 0x77) = 0;
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
       do {
-        dataFlags = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
+        dataFlags = FUN_1808dde10(fVar12,unaff_RDI & SystemCleanupFlag);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -26869,7 +26889,7 @@ ulonglong FUN_18089c872(void)
   
   *(undefined4 *)(unaff_R13 + 0x30) = unaff_ESI;
   if ((int)unaff_RDI != 0) {
-    return unaff_RDI & 0xffffffff;
+    return unaff_RDI & SystemCleanupFlag;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
@@ -26941,14 +26961,14 @@ ValidationContextHandler:
         }
       }
       if (memoryBaseAddress == 0) {
-        operationResult = unaff_RDI & 0xffffffff;
+        operationResult = unaff_RDI & SystemCleanupFlag;
         iVar11 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) != '\0');
         iVar10 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         operationResult = (ulonglong)memoryBaseAddress;
         if (memoryBaseAddress == 0) {
-          operationResult = unaff_RDI & 0xffffffff;
+          operationResult = unaff_RDI & SystemCleanupFlag;
         }
       }
     }
@@ -26957,7 +26977,7 @@ ValidationContextHandler:
     }
   }
   else {
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
   }
   if ((int)operationResult != 0) {
     return operationResult;
@@ -26967,7 +26987,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + 0x18) == 0) {
     operationResult = ValidateDataWithSecurityCheckA2(*registerContext,unaff_R13 + 0x48);
@@ -26980,7 +27000,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if (0x1d < (int)registerContext[8] - 0x52U) {
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
     goto LAB_18089cad8;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
@@ -27012,7 +27032,7 @@ ValidationRetryHandler:
   }
   operationResult = (ulonglong)memoryBaseAddress;
   if (memoryBaseAddress == 0) {
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
   }
 ValidationErrorHandler2:
   if ((int)operationResult != 0) {
@@ -27044,11 +27064,11 @@ ValidationErrorHandler2:
       return operationResult;
     }
     *(undefined4 *)(unaff_RBP + 0x77) = 0;
-    operationResult = unaff_RDI & 0xffffffff;
+    operationResult = unaff_RDI & SystemCleanupFlag;
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
       do {
-        dataFlags = FUN_1808dde10(fVar12,unaff_RDI & 0xffffffff);
+        dataFlags = FUN_1808dde10(fVar12,unaff_RDI & SystemCleanupFlag);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -27144,14 +27164,14 @@ ValidationContextHandler:
         }
       }
       if (memoryBaseAddress == 0) {
-        dataFlags = unaff_RDI & 0xffffffff;
+        dataFlags = unaff_RDI & SystemCleanupFlag;
         iVar12 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) != '\0');
         iVar11 = (int)CONCAT71(validationStatus,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         dataFlags = (ulonglong)memoryBaseAddress;
         if (memoryBaseAddress == 0) {
-          dataFlags = unaff_RDI & 0xffffffff;
+          dataFlags = unaff_RDI & SystemCleanupFlag;
         }
       }
     }
@@ -27160,7 +27180,7 @@ ValidationContextHandler:
     }
   }
   else {
-    dataFlags = unaff_RDI & 0xffffffff;
+    dataFlags = unaff_RDI & SystemCleanupFlag;
   }
   if ((int)dataFlags != 0) {
     return dataFlags;
@@ -27170,7 +27190,7 @@ ValidationContextHandler:
     return dataFlags;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
-    dataFlags = unaff_RDI & 0xffffffff;
+    dataFlags = unaff_RDI & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + 0x18) == iVar9) {
     dataFlags = ValidateDataWithSecurityCheckA2(*registerContext,unaff_R13 + 0x48);
@@ -27211,7 +27231,7 @@ ValidationRetryHandler:
       }
       dataFlags = (ulonglong)memoryBaseAddress;
       if (memoryBaseAddress == 0) {
-        dataFlags = unaff_RDI & 0xffffffff;
+        dataFlags = unaff_RDI & SystemCleanupFlag;
       }
     }
     else {
@@ -27219,7 +27239,7 @@ ValidationRetryHandler:
     }
   }
   else {
-    dataFlags = unaff_RDI & 0xffffffff;
+    dataFlags = unaff_RDI & SystemCleanupFlag;
   }
   if ((int)dataFlags == 0) {
     memoryBaseAddress = *(uint *)(registerContext + 8);
@@ -27248,12 +27268,12 @@ DataProcessingHandler:
       dataFlags = FUN_1808af8b0(unaff_R13 + 0x60,memoryBaseAddress >> 1);
       if ((int)dataFlags == 0) {
         *(int *)(unaff_RBP + 0x77) = iVar9;
-        dataFlags = unaff_RDI & 0xffffffff;
+        dataFlags = unaff_RDI & SystemCleanupFlag;
         param_1 = extraout_XMM0_Da_05;
         fVar13 = extraout_XMM0_Da_05;
         if (memoryBaseAddress >> 1 != 0) {
           do {
-            operationResult = FUN_1808dde10(fVar13,unaff_RDI & 0xffffffff);
+            operationResult = FUN_1808dde10(fVar13,unaff_RDI & SystemCleanupFlag);
             if ((int)operationResult != 0) {
               return operationResult;
             }
@@ -27808,11 +27828,11 @@ ValidationCompleteHandler:
   }
   registerContext = (ulonglong)uVar2;
   if (uVar2 == 0) {
-    registerContext = unaff_R15 & 0xffffffff;
+    registerContext = unaff_R15 & SystemCleanupFlag;
   }
   if ((int)registerContext != 0) {
 ValidationErrorHandler3:
-    return registerContext & 0xffffffff;
+    return registerContext & SystemCleanupFlag;
   }
   if (uVar2 == 0 && stackDataBuffer != (char)unaff_R15) {
     *(undefined4 *)(registerR14 + 0x10) = 3;
@@ -28108,7 +28128,7 @@ ValidationErrorHandler4:
         }
         validationStatus = FUN_1808a5d60(param_2,dataContext + 0x10,0);
         if ((int)validationStatus == 0) {
-          *(undefined4 *)(dataContext + 0x44) = 0xffffffff;
+          *(undefined4 *)(dataContext + 0x44) = SystemCleanupFlag;
           goto LAB_18089d435;
         }
       }
@@ -28207,7 +28227,7 @@ ValidationErrorHandler4:
         }
         validationStatus = FUN_1808a5d60();
         if ((int)validationStatus == 0) {
-          *(undefined4 *)(dataContext + 0x44) = 0xffffffff;
+          *(undefined4 *)(dataContext + 0x44) = SystemCleanupFlag;
           goto LAB_18089d435;
         }
       }
@@ -30447,7 +30467,7 @@ LAB_18089ea2c:
   *(char *)(unaff_RBP + 0x7f) = (char)memoryBaseAddress;
   bVar8 = false;
   if (*(uint *)(unaff_RDI + 8) < 0x38) {
-    memoryBaseAddress = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     validationContextPointer = (longlong *)*unaff_RDI;
@@ -30491,7 +30511,7 @@ ValidationStateHandler2:
     return memoryBaseAddress;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x67) {
-    memoryBaseAddress = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     validationContextPointer = (longlong *)*unaff_RDI;
@@ -30524,7 +30544,7 @@ ValidationErrorHandler7:
     }
     memoryBaseAddress = (ulonglong)validationStatus;
     if (validationStatus == 0) {
-      memoryBaseAddress = param_3 & 0xffffffff;
+      memoryBaseAddress = param_3 & SystemCleanupFlag;
     }
   }
   else {
@@ -30534,7 +30554,7 @@ ValidationErrorHandler7:
     return memoryBaseAddress;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x79) {
-    memoryBaseAddress = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     validationContextPointer = (longlong *)*unaff_RDI;
@@ -30567,7 +30587,7 @@ ValidationErrorHandler8:
     }
     memoryBaseAddress = (ulonglong)validationStatus;
     if (validationStatus == 0) {
-      memoryBaseAddress = param_3 & 0xffffffff;
+      memoryBaseAddress = param_3 & SystemCleanupFlag;
     }
   }
   else {
@@ -30577,7 +30597,7 @@ ValidationErrorHandler8:
     return memoryBaseAddress;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7a) {
-    memoryBaseAddress = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     validationContextPointer = (longlong *)*unaff_RDI;
@@ -30610,7 +30630,7 @@ LAB_18089ec4c:
     }
     memoryBaseAddress = (ulonglong)validationStatus;
     if (validationStatus == 0) {
-      memoryBaseAddress = param_3 & 0xffffffff;
+      memoryBaseAddress = param_3 & SystemCleanupFlag;
     }
   }
   else {
@@ -30620,7 +30640,7 @@ LAB_18089ec4c:
     return memoryBaseAddress;
   }
   if (*(uint *)(unaff_RDI + 8) < 0x7b) {
-    memoryBaseAddress = param_3 & 0xffffffff;
+    memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     validationContextPointer = (longlong *)*unaff_RDI;
@@ -30653,7 +30673,7 @@ LAB_18089ecd4:
     }
     memoryBaseAddress = (ulonglong)validationStatus;
     if (validationStatus == 0) {
-      memoryBaseAddress = param_3 & 0xffffffff;
+      memoryBaseAddress = param_3 & SystemCleanupFlag;
     }
   }
   else {
@@ -30670,7 +30690,7 @@ LAB_18089ecd4:
   in_EAX = *(uint *)(unaff_RDI + 8);
 LAB_18089ed1b:
   if (in_EAX < 0x7f) {
-    operationResult = param_3 & 0xffffffff;
+    operationResult = param_3 & SystemCleanupFlag;
   }
   else if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
     validationStatus = OperateDataO0(*unaff_RDI,unaff_R15 + 0x38,4);
@@ -31628,7 +31648,7 @@ ulonglong FUN_18089fa3c(void)
       return validationStatus;
     }
   }
-  return registerContext & 0xffffffff;
+  return registerContext & SystemCleanupFlag;
 }
 
 
@@ -31658,7 +31678,7 @@ ulonglong FUN_18089fac2(void)
       return uVar2;
     }
   }
-  return registerContext & 0xffffffff;
+  return registerContext & SystemCleanupFlag;
 }
 
 
@@ -31684,7 +31704,7 @@ ulonglong FUN_18089fad8(void)
       return uVar2;
     }
   }
-  return registerContext & 0xffffffff;
+  return registerContext & SystemCleanupFlag;
 }
 
 
@@ -32147,7 +32167,7 @@ void ExceptionUnwindHandlerA0(undefined8 exceptionContext, longlong unwindParam)
   if (exceptionHandler == (undefined8 *)0x0) {
     return;
   }
-  memoryRegion = (ulonglong)exceptionHandler & 0xffffffffffc00000;
+  memoryRegion = (ulonglong)exceptionHandler & SystemCleanupFlagffc00000;
   if (memoryRegion != 0) {
     handlerAddress = memoryRegion + 0x80 + ((longlong)exceptionHandler - memoryRegion >> 0x10) * 0x50;
     handlerAddress = handlerAddress - (ulonglong)*(uint *)(handlerAddress + 4);
@@ -32163,7 +32183,7 @@ void ExceptionUnwindHandlerA0(undefined8 exceptionContext, longlong unwindParam)
     }
     else {
       func_0x00018064e870(memoryRegion,CONCAT71(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
-                          exceptionHandler,memoryRegion,0xfffffffffffffffe);
+                          exceptionHandler,memoryRegion,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -32183,7 +32203,7 @@ void ExceptionUnwindHandlerA2(undefined8 exceptionContext,longlong unwindParam)
   if (exceptionHandlerPointer == (undefined8 *)0x0) {
     return;
   }
-  exceptionMemoryRegion = (ulonglong)exceptionHandlerPointer & 0xffffffffffc00000;
+  exceptionMemoryRegion = (ulonglong)exceptionHandlerPointer & SystemCleanupFlagffc00000;
   if (exceptionMemoryRegion != 0) {
     exceptionHandlerData = exceptionMemoryRegion + 0x80 + ((longlong)exceptionHandlerPointer - exceptionMemoryRegion >> 0x10) * 0x50;
     exceptionHandlerData = exceptionHandlerData - (ulonglong)*(uint *)(exceptionHandlerData + 4);
@@ -32199,7 +32219,7 @@ void ExceptionUnwindHandlerA2(undefined8 exceptionContext,longlong unwindParam)
     }
     else {
       func_0x00018064e870(exceptionMemoryRegion,CONCAT71(0xff000000,*(void ***)(exceptionMemoryRegion + 0x70) == &ExceptionList),
-                          exceptionHandlerPointer,exceptionMemoryRegion,0xfffffffffffffffe);
+                          exceptionHandlerPointer,exceptionMemoryRegion,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -32261,7 +32281,7 @@ void ValidateExceptionDataPointer(undefined8 param_1,longlong param_2)
   }
   
   // 计算基地址和偏移量
-  baseAddress = (ulonglong)dataPointer & 0xffffffffffc00000;
+  baseAddress = (ulonglong)dataPointer & SystemCleanupFlagffc00000;
   if (baseAddress != 0) {
     calculatedOffset = baseAddress + 0x80 + ((longlong)dataPointer - baseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -32283,7 +32303,7 @@ void ValidateExceptionDataPointer(undefined8 param_1,longlong param_2)
     else {
       // 调用异常处理函数
       func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
-                          dataPointer,baseAddress,0xfffffffffffffffe);
+                          dataPointer,baseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -32315,7 +32335,7 @@ void ResetExceptionState(undefined8 param_1,longlong param_2)
   }
   
   // 计算基地址和偏移量
-  baseAddress = (ulonglong)dataPointer & 0xffffffffffc00000;
+  baseAddress = (ulonglong)dataPointer & SystemCleanupFlagffc00000;
   if (baseAddress != 0) {
     calculatedOffset = baseAddress + 0x80 + ((longlong)dataPointer - baseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -32337,7 +32357,7 @@ void ResetExceptionState(undefined8 param_1,longlong param_2)
     else {
       // 调用异常处理函数
       func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
-                          dataPointer,baseAddress,0xfffffffffffffffe);
+                          dataPointer,baseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -32601,7 +32621,7 @@ void ExceptionHandlerA1(undefined8 param_1,longlong param_2,undefined8 param_3,u
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xa0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xa0),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xa0),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -32636,7 +32656,7 @@ void ExceptionUnwindHandlerA21(undefined8 param_1,longlong param_2,undefined8 pa
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xa0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xa0),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xa0),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -33151,7 +33171,7 @@ void ProcessResourceCleanupChain(undefined8 exceptionContext, longlong resourceM
   undefined8 *currentResource;
   undefined8 cleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = SystemCleanupFlagfffffffe;
   resourceListEnd = *(undefined8 **)(resourceManager + 0x50);
   for (currentResource = *(undefined8 **)(resourceManager + 0x48); currentResource != resourceListEnd; currentResource = currentResource + 4) {
     (**(code **)*currentResource)(currentResource, 0, cleanupParam, callbackData, cleanupFlag);
@@ -33185,7 +33205,7 @@ void ProcessResourceCleanupChainAlt(undefined8 exceptionContext, longlong resour
   undefined8 *currentResource;
   undefined8 cleanupFlag;
   
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = SystemCleanupFlagfffffffe;
   resourceListEnd = *(undefined8 **)(resourceManager + 0x50);
   for (currentResource = *(undefined8 **)(resourceManager + 0x48); currentResource != resourceListEnd; currentResource = currentResource + 4) {
     (**(code **)*currentResource)(currentResource, 0, cleanupParam, callbackData, cleanupFlag);
@@ -33222,7 +33242,7 @@ void CleanupResourceReference(undefined8 exceptionContext, longlong resourceMana
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -33238,7 +33258,7 @@ void CleanupResourceReference(undefined8 exceptionContext, longlong resourceMana
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -33518,7 +33538,7 @@ void ExceptionRecoveryHandlerB7(undefined8 param_1,longlong param_2,undefined8 p
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x128);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x120); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -33606,7 +33626,7 @@ void ExceptionRecoveryHandlerB10(undefined8 param_1,longlong param_2,undefined8 
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x128);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x120); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -33643,7 +33663,7 @@ void ExceptionRecoveryHandlerB11(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -33659,7 +33679,7 @@ void ExceptionRecoveryHandlerB11(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -33901,7 +33921,7 @@ void ExceptionRecoveryHandlerB23(undefined8 param_1,longlong param_2,undefined8 
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -33922,7 +33942,7 @@ void HandleExceptionRecoveryA0(undefined8 context, longlong exceptionData, undef
 
 {
   FUN_180058370(*(longlong *)(exceptionData + 0x78),*(undefined8 *)(*(longlong *)(exceptionData + 0x78) + 0x10),
-                recoveryParameter, additionalData, 0xfffffffffffffffe);
+                recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -33943,7 +33963,7 @@ void HandleExceptionRecoveryB0(undefined8 context, longlong exceptionData, undef
 
 {
   FUN_180058370(*(longlong *)(exceptionData + 0x78),*(undefined8 *)(*(longlong *)(exceptionData + 0x78) + 0x10),
-                recoveryParameter, additionalData, 0xfffffffffffffffe);
+                recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34034,7 +34054,7 @@ void ExceptionUnwindHandlerA31(undefined8 exceptionContext,longlong unwindParam)
   if (exceptionTable == (undefined8 *)0x0) {
     return;
   }
-  exceptionAddress = (ulonglong)exceptionTable & 0xffffffffffc00000;
+  exceptionAddress = (ulonglong)exceptionTable & SystemCleanupFlagffc00000;
   if (exceptionAddress != 0) {
     exceptionHandler = exceptionAddress + 0x80 + ((longlong)exceptionTable - exceptionAddress >> 0x10) * 0x50;
     exceptionHandler = exceptionHandler - (ulonglong)*(uint *)(exceptionHandler + 4);
@@ -34050,7 +34070,7 @@ void ExceptionUnwindHandlerA31(undefined8 exceptionContext,longlong unwindParam)
     }
     else {
       HandleExceptionTableError(exceptionAddress,CONCAT71(0xff000000,*(void ***)(exceptionAddress + 0x70) == &ExceptionList),
-                          exceptionTable,exceptionAddress,0xfffffffffffffffe);
+                          exceptionTable,exceptionAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -34326,7 +34346,7 @@ void HandleExceptionRecoveryC0(undefined8 context, longlong exceptionData, undef
 {
   FUN_1803aeb70(*(longlong *)(exceptionData + 0x70) + 0x98,
                 *(undefined8 *)(*(longlong *)(exceptionData + 0x70) + 0xa8), recoveryParameter, additionalData,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34356,7 +34376,7 @@ void CallCleanupFunctionForOffset78(undefined8 param_1, longlong param_2, undefi
 
 {
   FUN_1803aeb70(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34377,7 +34397,7 @@ void HandleExceptionRecoveryD0(undefined8 context, longlong exceptionData, undef
 
 {
   FUN_1803aeb70(*(longlong *)(exceptionData + 0x78),*(undefined8 *)(*(longlong *)(exceptionData + 0x78) + 0x10),
-                recoveryParameter, additionalData, 0xfffffffffffffffe);
+                recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34403,7 +34423,7 @@ void HandleExceptionRecoveryE0(undefined8 context, longlong exceptionData, undef
   undefined8 memoryBaseAddress;
   
   pExceptionHandlerTable = *(longlong **)(exceptionData + 0x70);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   pExceptionHandlerEnd = (undefined8 *)pExceptionHandlerTable[1];
   for (pCurrentHandler = (undefined8 *)*pExceptionHandlerTable; pCurrentHandler != pExceptionHandlerEnd; pCurrentHandler = pCurrentHandler + 4) {
     (**(code **)*pCurrentHandler)(pCurrentHandler, 0, recoveryParameter, additionalData, memoryBaseAddress);
@@ -34435,7 +34455,7 @@ void HandleExceptionRecoveryF0(undefined8 context, longlong exceptionData, undef
   
   pExceptionHandler = *(undefined8 **)(*(longlong *)(exceptionData + 0x70) + 0x10);
   if (pExceptionHandler != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(exceptionData + 0x70), *pExceptionHandler, recoveryParameter, additionalData, 0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(exceptionData + 0x70), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(pExceptionHandler);
   }
@@ -34471,7 +34491,7 @@ void CallCleanupFunctionForOffset78WithCheck(undefined8 param_1, longlong param_
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -34498,7 +34518,7 @@ void HandleExceptionRecoveryG0(undefined8 context, longlong exceptionData, undef
   
   pExceptionHandler = *(undefined8 **)(*(longlong *)(exceptionData + 0x78) + 0x10);
   if (pExceptionHandler != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(exceptionData + 0x78), *pExceptionHandler, recoveryParameter, additionalData, 0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(exceptionData + 0x78), *pExceptionHandler, recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(pExceptionHandler);
   }
@@ -34522,7 +34542,7 @@ void HandleExceptionRecoveryH0(undefined8 context, longlong exceptionData, undef
 
 {
   FUN_180058210(*(longlong *)(exceptionData + 0x70),*(undefined8 *)(*(longlong *)(exceptionData + 0x70) + 0x10),
-                recoveryParameter, additionalData, 0xfffffffffffffffe);
+                recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34543,7 +34563,7 @@ void HandleExceptionRecoveryI0(undefined8 context, longlong exceptionData, undef
 
 {
   FUN_180058210(*(longlong *)(exceptionData + 0x78),*(undefined8 *)(*(longlong *)(exceptionData + 0x78) + 0x10),
-                recoveryParameter, additionalData, 0xfffffffffffffffe);
+                recoveryParameter, additionalData, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34553,7 +34573,7 @@ void Unwind_180902790(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058210(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34566,7 +34586,7 @@ void Unwind_1809027a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x30);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x70) + 0x20,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x70) + 0x20,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -34582,7 +34602,7 @@ void Unwind_1809027b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x60);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x70) + 0x50,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x70) + 0x50,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -34636,7 +34656,7 @@ void Unwind_1809027e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0x80);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x70) + 0x70,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x70) + 0x70,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -34653,7 +34673,7 @@ void Unwind_1809027f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -34670,7 +34690,7 @@ void Unwind_180902800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -34685,7 +34705,7 @@ void Unwind_180902810(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70) + 0x18,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x28),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34695,7 +34715,7 @@ void Unwind_180902820(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1801fef10(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34705,7 +34725,7 @@ void Unwind_180902830(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1801fef10(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34715,7 +34735,7 @@ void Unwind_180902840(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1801fef10(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34725,7 +34745,7 @@ void Unwind_180902850(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34735,7 +34755,7 @@ void Unwind_180902860(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34767,7 +34787,7 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -34783,7 +34803,7 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -34796,7 +34816,7 @@ void Unwind_180902890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800582b0(*(longlong *)(param_2 + 0x70) + 0x40,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x50),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34814,7 +34834,7 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -34830,7 +34850,7 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -34842,7 +34862,7 @@ void Unwind_1809028c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800582b0(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34852,7 +34872,7 @@ void Unwind_1809028d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800582b0(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34889,7 +34909,7 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -34905,7 +34925,7 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -34925,7 +34945,7 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -34941,7 +34961,7 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -34954,7 +34974,7 @@ void Unwind_180902920(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x70) + 0x28,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x38),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34964,7 +34984,7 @@ void Unwind_180902930(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -34974,7 +34994,7 @@ void Unwind_180902940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -35009,7 +35029,7 @@ void Unwind_180902950(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar4 + 0x18) = 0;
   if ((1 < validationOutcome) && (pvalidationStatus = *(undefined8 **)(lVar4 + 8), pvalidationStatus != (undefined8 *)0x0)) {
-    validationOutcome = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+    validationOutcome = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
       lVar5 = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
       lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -35025,7 +35045,7 @@ void Unwind_180902950(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
-                            pvalidationStatus,validationOutcome,0xfffffffffffffffe);
+                            pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -35064,7 +35084,7 @@ void Unwind_180902960(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar4 + 0x48) = 0;
   if ((1 < validationOutcome) && (pvalidationStatus = *(undefined8 **)(lVar4 + 0x38), pvalidationStatus != (undefined8 *)0x0)) {
-    validationOutcome = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+    validationOutcome = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
       lVar5 = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
       lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -35080,7 +35100,7 @@ void Unwind_180902960(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
-                            pvalidationStatus,validationOutcome,0xfffffffffffffffe);
+                            pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -35167,7 +35187,7 @@ void Unwind_180902a40(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar4 + 0x18) = 0;
   if ((1 < validationOutcome) && (pvalidationStatus = *(undefined8 **)(lVar4 + 8), pvalidationStatus != (undefined8 *)0x0)) {
-    validationOutcome = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+    validationOutcome = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
       lVar5 = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
       lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -35183,7 +35203,7 @@ void Unwind_180902a40(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
-                            pvalidationStatus,validationOutcome,0xfffffffffffffffe);
+                            pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -35222,7 +35242,7 @@ void Unwind_180902a50(undefined8 param_1,longlong param_2)
   }
   *(undefined8 *)(lVar4 + 0x18) = 0;
   if ((1 < validationOutcome) && (pvalidationStatus = *(undefined8 **)(lVar4 + 8), pvalidationStatus != (undefined8 *)0x0)) {
-    validationOutcome = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+    validationOutcome = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
       lVar5 = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
       lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -35238,7 +35258,7 @@ void Unwind_180902a50(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
-                            pvalidationStatus,validationOutcome,0xfffffffffffffffe);
+                            pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -35387,7 +35407,7 @@ void Unwind_180902aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058420(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -35405,7 +35425,7 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -35421,7 +35441,7 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -35434,7 +35454,7 @@ void Unwind_180902ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70) + 0x50,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x60),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -35444,7 +35464,7 @@ void Unwind_180902ad0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058420(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -35454,7 +35474,7 @@ void Unwind_180902ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058420(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -35508,7 +35528,7 @@ void Unwind_180902b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058210(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -35518,7 +35538,7 @@ void Unwind_180902b50(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058210(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -35669,7 +35689,7 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -35685,7 +35705,7 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -35752,7 +35772,7 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -35768,7 +35788,7 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -35788,7 +35808,7 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -35804,7 +35824,7 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -35824,7 +35844,7 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -35840,7 +35860,7 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -35869,7 +35889,7 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -35885,7 +35905,7 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -35905,7 +35925,7 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -35921,7 +35941,7 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -35954,9 +35974,9 @@ void Unwind_180902c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   puVar1 = *(undefined8 **)(param_2 + 0x38);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   *puVar1 = &UNK_180a10098;
-  cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,SystemCleanupFlagfffffffe);
   while (cVar2 != '\0') {
     cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,validationStatus);
   }
@@ -35990,7 +36010,7 @@ void Unwind_180902c70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x60) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x60),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x60),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -36004,7 +36024,7 @@ void Unwind_180902c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x60) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x60),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x60),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -36071,7 +36091,7 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -36087,7 +36107,7 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -36107,7 +36127,7 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -36123,7 +36143,7 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -36207,7 +36227,7 @@ void Unwind_180902d40(undefined8 param_1,longlong param_2)
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0x40);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
   FUN_1808fc8a8(validationContext + 0x3e0,0x20,0x20,FUN_180627b90,uVar2);
   FUN_18005d580();
@@ -36226,7 +36246,7 @@ void Unwind_180902d50(undefined8 param_1,longlong param_2)
   undefined8 validationStatus;
   
   dataContext = *(longlong *)(param_2 + 0x40);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   *(longlong *)(dataContext + 0x15d8) =
        *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(dataContext + 0x15e0) * 8) + -100000;
   FUN_180090b80((longlong *)(dataContext + 0x8b0));
@@ -36392,7 +36412,7 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -36408,7 +36428,7 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -36428,7 +36448,7 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -36444,7 +36464,7 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -36464,7 +36484,7 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -36480,7 +36500,7 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -36505,7 +36525,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    dataFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
       lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
@@ -36521,7 +36541,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                            resourcePointer,dataFlags,0xfffffffffffffffe);
+                            resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -36567,7 +36587,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pmemoryBaseAddress;
   if (resourcePointer != (undefined8 *)0x0) {
-    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    dataFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
       calculatedOffset = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -36583,7 +36603,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                            resourcePointer,dataFlags,0xfffffffffffffffe);
+                            resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -36610,7 +36630,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    dataFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
       lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
@@ -36626,7 +36646,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                            resourcePointer,dataFlags,0xfffffffffffffffe);
+                            resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -36659,7 +36679,7 @@ void Unwind_180902f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058710(*(longlong *)(param_2 + 0x40) + 0x858,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x868),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36674,7 +36694,7 @@ void Unwind_180902f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x888);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x890);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -36697,7 +36717,7 @@ void Unwind_180902f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x8a8);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8b0);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -36723,7 +36743,7 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -36739,7 +36759,7 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -36752,7 +36772,7 @@ void Unwind_180902f80(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x40) + 0x8e8,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x8f8),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36784,7 +36804,7 @@ void Unwind_180902fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x948);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x938,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x938,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -36801,7 +36821,7 @@ void Unwind_180902fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x978);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x968,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x968,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -36818,7 +36838,7 @@ void Unwind_180903000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -36835,7 +36855,7 @@ void Unwind_180903010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -36849,7 +36869,7 @@ void Unwind_180903020(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36859,7 +36879,7 @@ void Unwind_180903030(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36869,7 +36889,7 @@ void Unwind_180903040(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058710(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36879,7 +36899,7 @@ void Unwind_180903050(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058710(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36889,7 +36909,7 @@ void Unwind_180903060(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058710(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36899,7 +36919,7 @@ void Unwind_180903070(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058710(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -36912,7 +36932,7 @@ void Unwind_180903080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -36929,7 +36949,7 @@ void Unwind_180903090(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800587d0(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18005cb60(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -36946,7 +36966,7 @@ void Unwind_1809030a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x30);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x28); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -37027,7 +37047,7 @@ void CleanupSystemResources100(undefined8 param_1,longlong param_2,undefined8 pa
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0x70);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
   FUN_180058370(validationContext + 0x110,*(undefined8 *)(validationContext + 0x120),param_3,param_4,uVar2);
   FUN_180058370(validationContext + 0xe0,*(undefined8 *)(validationContext + 0xf0));
@@ -37094,7 +37114,7 @@ void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37110,7 +37130,7 @@ void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37130,7 +37150,7 @@ void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37146,7 +37166,7 @@ void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37189,7 +37209,7 @@ void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37205,7 +37225,7 @@ void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37267,7 +37287,7 @@ void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37283,7 +37303,7 @@ void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37354,7 +37374,7 @@ void Unwind_1809031e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0x40);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
   FUN_180058370(validationContext + 0x110,*(undefined8 *)(validationContext + 0x120),param_3,param_4,uVar2);
   FUN_180058370(validationContext + 0xe0,*(undefined8 *)(validationContext + 0xf0));
@@ -37379,7 +37399,7 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37395,7 +37415,7 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37415,7 +37435,7 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37431,7 +37451,7 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37464,7 +37484,7 @@ void Unwind_180903220(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800593f0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37475,7 +37495,7 @@ void Unwind_180903230(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058710(*(longlong *)(param_2 + 0x40) + 0x30,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x40),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37486,7 +37506,7 @@ void Unwind_180903240(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800593f0(*(longlong *)(param_2 + 0x40) + 0x60,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x70),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37497,7 +37517,7 @@ void Unwind_180903250(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x40) + 0x90,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0xa0),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37508,7 +37528,7 @@ void Unwind_180903270(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x40) + 0xc0,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0xd0),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37519,7 +37539,7 @@ void Unwind_180903290(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x40) + 0xf0,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x100),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37538,7 +37558,7 @@ void Unwind_1809032d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800593f0(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37548,7 +37568,7 @@ void Unwind_1809032e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800593f0(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37558,7 +37578,7 @@ void Unwind_1809032f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800593f0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37568,7 +37588,7 @@ void Unwind_180903300(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800593f0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -37586,7 +37606,7 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37602,7 +37622,7 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37637,7 +37657,7 @@ void Unwind_180903330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x30);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x80) + 0x20,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x80) + 0x20,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -37653,7 +37673,7 @@ void Unwind_180903340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x88),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x88),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -37669,7 +37689,7 @@ void Unwind_180903350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x88),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x88),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -37731,7 +37751,7 @@ void Unwind_180903430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x30);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0x20,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0x20,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -37807,7 +37827,7 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -37823,7 +37843,7 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37861,7 +37881,7 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37877,7 +37897,7 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37897,7 +37917,7 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37913,7 +37933,7 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37933,7 +37953,7 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37949,7 +37969,7 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -37969,7 +37989,7 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -37985,7 +38005,7 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -38005,7 +38025,7 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
   FUN_18005a050();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -38021,7 +38041,7 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -38043,7 +38063,7 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
   FUN_18005a050();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -38059,7 +38079,7 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -38108,7 +38128,7 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -38124,7 +38144,7 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -38144,7 +38164,7 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -38160,7 +38180,7 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -38194,7 +38214,7 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
   FUN_18005a050();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x340)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 0x338), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -38210,7 +38230,7 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -38257,7 +38277,7 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -38273,7 +38293,7 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -38320,7 +38340,7 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
   FUN_18005a050();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -38336,7 +38356,7 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -38358,7 +38378,7 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
   FUN_18005a050();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -38374,7 +38394,7 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -38410,7 +38430,7 @@ void Unwind_180903610(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1[0x19] = 0;
   *(undefined4 *)(puVar1 + 0x1b) = 0;
   puVar1[0x18] = &DefaultExceptionHandlerB;
-  FUN_18005d260(puVar1 + 0x12,puVar1[0x14],param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(puVar1 + 0x12,puVar1[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
   if (puVar1[0xd] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -38439,7 +38459,7 @@ void Unwind_180903620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x140) != (code *)0x0) {
-    (**(code **)(validationContext + 0x140))(validationContext + 0x130,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x140))(validationContext + 0x130,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x110) != 0) {
@@ -38469,7 +38489,7 @@ void Unwind_180903640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x178) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x180) != 0) {
@@ -38499,7 +38519,7 @@ void Unwind_180903660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x220) != (code *)0x0) {
-    (**(code **)(validationContext + 0x220))(validationContext + 0x210,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x220))(validationContext + 0x210,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1f0) != 0) {
@@ -38529,7 +38549,7 @@ void Unwind_180903680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x290) != (code *)0x0) {
-    (**(code **)(validationContext + 0x290))(validationContext + 0x280,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x290))(validationContext + 0x280,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 600) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x260) != 0) {
@@ -38559,7 +38579,7 @@ void Unwind_1809036a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x300) != (code *)0x0) {
-    (**(code **)(validationContext + 0x300))(validationContext + 0x2f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x300))(validationContext + 0x2f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2d0) != 0) {
@@ -38589,7 +38609,7 @@ void Unwind_1809036c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x370) != (code *)0x0) {
-    (**(code **)(validationContext + 0x370))(validationContext + 0x360,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x370))(validationContext + 0x360,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x338) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x340) != 0) {
@@ -38619,7 +38639,7 @@ void Unwind_1809036e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x3e0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3b0) != 0) {
@@ -38649,7 +38669,7 @@ void Unwind_180903700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x450) != (code *)0x0) {
-    (**(code **)(validationContext + 0x450))(validationContext + 0x440,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x450))(validationContext + 0x440,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x418) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x420) != 0) {
@@ -38679,7 +38699,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x510) != (code *)0x0) {
-    (**(code **)(validationContext + 0x510))(validationContext + 0x500,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x510))(validationContext + 0x500,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4e8) != 0) {
@@ -38733,7 +38753,7 @@ void Unwind_180903740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x580) != (code *)0x0) {
-    (**(code **)(validationContext + 0x580))(validationContext + 0x570,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x580))(validationContext + 0x570,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x550) != 0) {
@@ -38771,7 +38791,7 @@ void Unwind_180903760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1[0x19] = 0;
   *(undefined4 *)(puVar1 + 0x1b) = 0;
   puVar1[0x18] = &DefaultExceptionHandlerB;
-  FUN_18005d260(puVar1 + 0x12,puVar1[0x14],param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(puVar1 + 0x12,puVar1[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
   if (puVar1[0xd] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -38800,7 +38820,7 @@ void Unwind_180903770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x140) != (code *)0x0) {
-    (**(code **)(validationContext + 0x140))(validationContext + 0x130,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x140))(validationContext + 0x130,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x110) != 0) {
@@ -38830,7 +38850,7 @@ void Unwind_180903790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1b0))(validationContext + 0x1a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x178) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x180) != 0) {
@@ -38860,7 +38880,7 @@ void Unwind_1809037b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x220) != (code *)0x0) {
-    (**(code **)(validationContext + 0x220))(validationContext + 0x210,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x220))(validationContext + 0x210,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1f0) != 0) {
@@ -38890,7 +38910,7 @@ void Unwind_1809037d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x290) != (code *)0x0) {
-    (**(code **)(validationContext + 0x290))(validationContext + 0x280,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x290))(validationContext + 0x280,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 600) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x260) != 0) {
@@ -38920,7 +38940,7 @@ void Unwind_1809037f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x300) != (code *)0x0) {
-    (**(code **)(validationContext + 0x300))(validationContext + 0x2f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x300))(validationContext + 0x2f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2d0) != 0) {
@@ -38950,7 +38970,7 @@ void Unwind_180903810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x370) != (code *)0x0) {
-    (**(code **)(validationContext + 0x370))(validationContext + 0x360,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x370))(validationContext + 0x360,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x338) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x340) != 0) {
@@ -38980,7 +39000,7 @@ void Unwind_180903830(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x3e0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x3e0))(validationContext + 0x3d0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3b0) != 0) {
@@ -39010,7 +39030,7 @@ void Unwind_180903850(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x450) != (code *)0x0) {
-    (**(code **)(validationContext + 0x450))(validationContext + 0x440,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x450))(validationContext + 0x440,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x418) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x420) != 0) {
@@ -39040,7 +39060,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x510) != (code *)0x0) {
-    (**(code **)(validationContext + 0x510))(validationContext + 0x500,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x510))(validationContext + 0x500,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4e8) != 0) {
@@ -39094,7 +39114,7 @@ void Unwind_180903890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x580) != (code *)0x0) {
-    (**(code **)(validationContext + 0x580))(validationContext + 0x570,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x580))(validationContext + 0x570,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x550) != 0) {
@@ -39162,7 +39182,7 @@ void Unwind_1809038d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x88) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x88) + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x88) + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -39176,7 +39196,7 @@ void Unwind_1809038e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x90) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x90),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x90),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -39190,7 +39210,7 @@ void Unwind_1809038f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x4c0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x488) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x490) != 0) {
@@ -39220,7 +39240,7 @@ void Unwind_180903910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x530) != (code *)0x0) {
-    (**(code **)(validationContext + 0x530))(validationContext + 0x520,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x530))(validationContext + 0x520,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x4f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x500) != 0) {
@@ -39250,7 +39270,7 @@ void Unwind_180903930(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x5a0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x5a0))(validationContext + 0x590,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x5a0))(validationContext + 0x590,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x568) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x570) != 0) {
@@ -39280,7 +39300,7 @@ void Unwind_180903950(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x610) != (code *)0x0) {
-    (**(code **)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x5d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5e0) != 0) {
@@ -39310,7 +39330,7 @@ void Unwind_180903970(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x680) != (code *)0x0) {
-    (**(code **)(validationContext + 0x680))(validationContext + 0x670,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x680))(validationContext + 0x670,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x648) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x650) != 0) {
@@ -39340,7 +39360,7 @@ void Unwind_180903990(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x6f0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x6b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6c0) != 0) {
@@ -39378,7 +39398,7 @@ void ValidateExceptionContextA0(undefined8 exceptionContext, longlong contextPoi
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x760) != (code *)0x0) {
-    (**(code **)(validationContext + 0x760))(validationContext + 0x750,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x760))(validationContext + 0x750,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x728) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x730) != 0) {
@@ -39408,7 +39428,7 @@ void Unwind_1809039d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 2000) != (code *)0x0) {
-    (**(code **)(validationContext + 2000))(validationContext + 0x7c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 2000))(validationContext + 0x7c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x798) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7a0) != 0) {
@@ -39438,7 +39458,7 @@ void Unwind_1809039f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x840) != (code *)0x0) {
-    (**(code **)(validationContext + 0x840))(validationContext + 0x830,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x840))(validationContext + 0x830,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x808) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x810) != 0) {
@@ -39468,7 +39488,7 @@ void Unwind_180903a10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x8b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x878) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x880) != 0) {
@@ -39498,7 +39518,7 @@ void Unwind_180903a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x920) != (code *)0x0) {
-    (**(code **)(validationContext + 0x920))(validationContext + 0x910,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x920))(validationContext + 0x910,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x8e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8f0) != 0) {
@@ -39528,7 +39548,7 @@ void Unwind_180903a50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x990) != (code *)0x0) {
-    (**(code **)(validationContext + 0x990))(validationContext + 0x980,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x990))(validationContext + 0x980,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x958) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x960) != 0) {
@@ -39558,7 +39578,7 @@ void Unwind_180903a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xa08) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x9d0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9d8) != 0) {
@@ -39588,7 +39608,7 @@ void Unwind_180903a90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xa80) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa80))(validationContext + 0xa70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa80))(validationContext + 0xa70,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xa48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa50) != 0) {
@@ -39618,7 +39638,7 @@ void Unwind_180903ab0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -39670,7 +39690,7 @@ void Unwind_180903ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x58,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -39684,7 +39704,7 @@ void Unwind_180903af0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x58) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x58),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x58),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -39698,7 +39718,7 @@ void Unwind_180903b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x4c0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x4c0))(validationContext + 0x4b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x488) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x490) != 0) {
@@ -39728,7 +39748,7 @@ void Unwind_180903b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x530) != (code *)0x0) {
-    (**(code **)(validationContext + 0x530))(validationContext + 0x520,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x530))(validationContext + 0x520,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x4f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x500) != 0) {
@@ -39758,7 +39778,7 @@ void Unwind_180903b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x5a0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x5a0))(validationContext + 0x590,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x5a0))(validationContext + 0x590,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x568) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x570) != 0) {
@@ -39788,7 +39808,7 @@ void Unwind_180903b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x610) != (code *)0x0) {
-    (**(code **)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x5d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5e0) != 0) {
@@ -39818,7 +39838,7 @@ void Unwind_180903b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x680) != (code *)0x0) {
-    (**(code **)(validationContext + 0x680))(validationContext + 0x670,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x680))(validationContext + 0x670,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x648) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x650) != 0) {
@@ -39848,7 +39868,7 @@ void Unwind_180903ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x6f0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x6f0))(validationContext + 0x6e0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x6b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6c0) != 0) {
@@ -39878,7 +39898,7 @@ void Unwind_180903bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x760) != (code *)0x0) {
-    (**(code **)(validationContext + 0x760))(validationContext + 0x750,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x760))(validationContext + 0x750,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x728) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x730) != 0) {
@@ -39908,7 +39928,7 @@ void Unwind_180903be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 2000) != (code *)0x0) {
-    (**(code **)(validationContext + 2000))(validationContext + 0x7c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 2000))(validationContext + 0x7c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x798) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7a0) != 0) {
@@ -39938,7 +39958,7 @@ void Unwind_180903c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x840) != (code *)0x0) {
-    (**(code **)(validationContext + 0x840))(validationContext + 0x830,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x840))(validationContext + 0x830,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x808) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x810) != 0) {
@@ -39968,7 +39988,7 @@ void Unwind_180903c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x8b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x8b0))(validationContext + 0x8a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x878) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x880) != 0) {
@@ -39998,7 +40018,7 @@ void Unwind_180903c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x920) != (code *)0x0) {
-    (**(code **)(validationContext + 0x920))(validationContext + 0x910,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x920))(validationContext + 0x910,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x8e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8f0) != 0) {
@@ -40028,7 +40048,7 @@ void Unwind_180903c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x990) != (code *)0x0) {
-    (**(code **)(validationContext + 0x990))(validationContext + 0x980,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x990))(validationContext + 0x980,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x958) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x960) != 0) {
@@ -40058,7 +40078,7 @@ void Unwind_180903c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xa08) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa08))(validationContext + 0x9f8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x9d0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9d8) != 0) {
@@ -40088,7 +40108,7 @@ void Unwind_180903ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xa80) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa80))(validationContext + 0xa70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa80))(validationContext + 0xa70,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xa48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa50) != 0) {
@@ -40156,7 +40176,7 @@ void Unwind_180903ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x88) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x88) + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x88) + 0x58,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -40170,7 +40190,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 400) != (code *)0x0) {
-    (**(code **)(validationContext + 400))(validationContext + 0x180,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 400))(validationContext + 0x180,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x160) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x168) != 0) {
@@ -40224,7 +40244,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x250) != (code *)0x0) {
-    (**(code **)(validationContext + 0x250))(validationContext + 0x240,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x250))(validationContext + 0x240,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x220) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x228) != 0) {
@@ -40278,7 +40298,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x310) != (code *)0x0) {
-    (**(code **)(validationContext + 0x310))(validationContext + 0x300,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x310))(validationContext + 0x300,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2e8) != 0) {
@@ -40332,7 +40352,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x3d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x3a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3a8) != 0) {
@@ -40386,7 +40406,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x490) != (code *)0x0) {
-    (**(code **)(validationContext + 0x490))(validationContext + 0x480,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x490))(validationContext + 0x480,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x468) != 0) {
@@ -40440,7 +40460,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x550) != (code *)0x0) {
-    (**(code **)(validationContext + 0x550))(validationContext + 0x540,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x550))(validationContext + 0x540,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x520) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x528) != 0) {
@@ -40494,7 +40514,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x610) != (code *)0x0) {
-    (**(code **)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x5e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5e8) != 0) {
@@ -40548,7 +40568,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x6d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x6a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6a8) != 0) {
@@ -40602,7 +40622,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x790) != (code *)0x0) {
-    (**(code **)(validationContext + 0x790))(validationContext + 0x780,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x790))(validationContext + 0x780,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x760) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x768) != 0) {
@@ -40656,7 +40676,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x850) != (code *)0x0) {
-    (**(code **)(validationContext + 0x850))(validationContext + 0x840,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x850))(validationContext + 0x840,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x820) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x828) != 0) {
@@ -40710,7 +40730,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x910) != (code *)0x0) {
-    (**(code **)(validationContext + 0x910))(validationContext + 0x900,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x910))(validationContext + 0x900,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x8e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8e8) != 0) {
@@ -40764,7 +40784,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x9d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x9a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9a8) != 0) {
@@ -40818,7 +40838,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xa90) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa90))(validationContext + 0xa80,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa90))(validationContext + 0xa80,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xa60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa68) != 0) {
@@ -40872,7 +40892,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xb50) != (code *)0x0) {
-    (**(code **)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xb20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb28) != 0) {
@@ -40926,7 +40946,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xc10) != (code *)0x0) {
-    (**(code **)(validationContext + 0xc10))(validationContext + 0xc00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xc10))(validationContext + 0xc00,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xbe0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xbe8) != 0) {
@@ -40980,7 +41000,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xcd0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xca0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xca8) != 0) {
@@ -41034,7 +41054,7 @@ void Unwind_180903ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xd40) != (code *)0x0) {
-    (**(code **)(validationContext + 0xd40))(validationContext + 0xd30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xd40))(validationContext + 0xd30,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xd08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd10) != 0) {
@@ -41064,7 +41084,7 @@ void Unwind_180903f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xdb0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xd78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd80) != 0) {
@@ -41094,7 +41114,7 @@ void Unwind_180903f30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xe20) != (code *)0x0) {
-    (**(code **)(validationContext + 0xe20))(validationContext + 0xe10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xe20))(validationContext + 0xe10,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xde8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdf0) != 0) {
@@ -41124,7 +41144,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xee0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xee0))(validationContext + 0xed0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xee0))(validationContext + 0xed0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xeb0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xeb8) != 0) {
@@ -41178,7 +41198,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 4000) != (code *)0x0) {
-    (**(code **)(validationContext + 4000))(validationContext + 0xf90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 4000))(validationContext + 0xf90,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xf70) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf78) != 0) {
@@ -41232,7 +41252,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1060) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1060))(validationContext + 0x1050,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1060))(validationContext + 0x1050,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1030) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1038) != 0) {
@@ -41286,7 +41306,7 @@ void Unwind_180903fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x10d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1098) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10a0) != 0) {
@@ -41316,7 +41336,7 @@ void Unwind_180903fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1140) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1140))(validationContext + 0x1130,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1140))(validationContext + 0x1130,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1110) != 0) {
@@ -41346,7 +41366,7 @@ void Unwind_180903ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x11b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1178) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1180) != 0) {
@@ -41376,7 +41396,7 @@ void Unwind_180904010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1220) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1220))(validationContext + 0x1210,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1220))(validationContext + 0x1210,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x11e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11f0) != 0) {
@@ -41406,7 +41426,7 @@ void Unwind_180904030(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1290) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1290))(validationContext + 0x1280,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1290))(validationContext + 0x1280,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1258) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1260) != 0) {
@@ -41436,7 +41456,7 @@ void Unwind_180904050(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1300) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x12c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x12d0) != 0) {
@@ -41466,7 +41486,7 @@ void Unwind_180904070(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1370) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1370))(validationContext + 0x1360,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1370))(validationContext + 0x1360,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1338) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1340) != 0) {
@@ -41498,7 +41518,7 @@ void Unwind_180904090(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x1380);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 5000);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -41521,7 +41541,7 @@ void Unwind_1809040b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x13a0);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x13a8);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -41561,7 +41581,7 @@ void Unwind_1809040e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x20) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x20) + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x20) + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -41575,7 +41595,7 @@ void Unwind_1809040f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x28) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x28),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x28),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -41608,7 +41628,7 @@ void Unwind_180904110(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0x60);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -41717,7 +41737,7 @@ void Unwind_180904180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x20) + 0xb0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x20) + 0xa0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x20) + 0xa0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -41750,7 +41770,7 @@ void Unwind_1809041b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0xb0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0xa0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0xa0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -41764,7 +41784,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 400) != (code *)0x0) {
-    (**(code **)(validationContext + 400))(validationContext + 0x180,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 400))(validationContext + 0x180,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x160) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x168) != 0) {
@@ -41818,7 +41838,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x250) != (code *)0x0) {
-    (**(code **)(validationContext + 0x250))(validationContext + 0x240,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x250))(validationContext + 0x240,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x220) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x228) != 0) {
@@ -41872,7 +41892,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x310) != (code *)0x0) {
-    (**(code **)(validationContext + 0x310))(validationContext + 0x300,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x310))(validationContext + 0x300,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2e8) != 0) {
@@ -41926,7 +41946,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x3d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x3d0))(validationContext + 0x3c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x3a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3a8) != 0) {
@@ -41980,7 +42000,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x490) != (code *)0x0) {
-    (**(code **)(validationContext + 0x490))(validationContext + 0x480,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x490))(validationContext + 0x480,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x468) != 0) {
@@ -42034,7 +42054,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x550) != (code *)0x0) {
-    (**(code **)(validationContext + 0x550))(validationContext + 0x540,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x550))(validationContext + 0x540,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x520) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x528) != 0) {
@@ -42088,7 +42108,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x610) != (code *)0x0) {
-    (**(code **)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x610))(validationContext + 0x600,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x5e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5e8) != 0) {
@@ -42142,7 +42162,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x6d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x6d0))(validationContext + 0x6c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x6a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6a8) != 0) {
@@ -42196,7 +42216,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x790) != (code *)0x0) {
-    (**(code **)(validationContext + 0x790))(validationContext + 0x780,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x790))(validationContext + 0x780,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x760) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x768) != 0) {
@@ -42250,7 +42270,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x850) != (code *)0x0) {
-    (**(code **)(validationContext + 0x850))(validationContext + 0x840,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x850))(validationContext + 0x840,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x820) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x828) != 0) {
@@ -42304,7 +42324,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x910) != (code *)0x0) {
-    (**(code **)(validationContext + 0x910))(validationContext + 0x900,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x910))(validationContext + 0x900,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x8e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8e8) != 0) {
@@ -42358,7 +42378,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x9d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x9a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9a8) != 0) {
@@ -42412,7 +42432,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xa90) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa90))(validationContext + 0xa80,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa90))(validationContext + 0xa80,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xa60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa68) != 0) {
@@ -42466,7 +42486,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xb50) != (code *)0x0) {
-    (**(code **)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xb20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb28) != 0) {
@@ -42520,7 +42540,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xc10) != (code *)0x0) {
-    (**(code **)(validationContext + 0xc10))(validationContext + 0xc00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xc10))(validationContext + 0xc00,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xbe0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xbe8) != 0) {
@@ -42574,7 +42594,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xcd0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xcd0))(validationContext + 0xcc0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xca0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xca8) != 0) {
@@ -42628,7 +42648,7 @@ void Unwind_1809043d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xd40) != (code *)0x0) {
-    (**(code **)(validationContext + 0xd40))(validationContext + 0xd30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xd40))(validationContext + 0xd30,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xd08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd10) != 0) {
@@ -42658,7 +42678,7 @@ void Unwind_1809043f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xdb0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xdb0))(validationContext + 0xda0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xd78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd80) != 0) {
@@ -42688,7 +42708,7 @@ void Unwind_180904410(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xe20) != (code *)0x0) {
-    (**(code **)(validationContext + 0xe20))(validationContext + 0xe10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xe20))(validationContext + 0xe10,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xde8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdf0) != 0) {
@@ -42718,7 +42738,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xee0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xee0))(validationContext + 0xed0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xee0))(validationContext + 0xed0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xeb0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xeb8) != 0) {
@@ -42772,7 +42792,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 4000) != (code *)0x0) {
-    (**(code **)(validationContext + 4000))(validationContext + 0xf90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 4000))(validationContext + 0xf90,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xf70) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf78) != 0) {
@@ -42826,7 +42846,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1060) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1060))(validationContext + 0x1050,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1060))(validationContext + 0x1050,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1030) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1038) != 0) {
@@ -42880,7 +42900,7 @@ void Unwind_180904490(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x10d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x10d0))(validationContext + 0x10c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1098) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10a0) != 0) {
@@ -42910,7 +42930,7 @@ void Unwind_1809044b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1140) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1140))(validationContext + 0x1130,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1140))(validationContext + 0x1130,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1110) != 0) {
@@ -42940,7 +42960,7 @@ void Unwind_1809044d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x11b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x11b0))(validationContext + 0x11a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1178) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1180) != 0) {
@@ -42970,7 +42990,7 @@ void Unwind_1809044f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1220) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1220))(validationContext + 0x1210,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1220))(validationContext + 0x1210,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x11e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11f0) != 0) {
@@ -43000,7 +43020,7 @@ void Unwind_180904510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1290) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1290))(validationContext + 0x1280,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1290))(validationContext + 0x1280,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1258) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1260) != 0) {
@@ -43030,7 +43050,7 @@ void Unwind_180904530(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1300) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1300))(validationContext + 0x12f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x12c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x12d0) != 0) {
@@ -43060,7 +43080,7 @@ void Unwind_180904550(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1370) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1370))(validationContext + 0x1360,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1370))(validationContext + 0x1360,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1338) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1340) != 0) {
@@ -43092,7 +43112,7 @@ void Unwind_180904570(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x1380);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 5000);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -43115,7 +43135,7 @@ void Unwind_180904590(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x13a0);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x13a8);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -43138,7 +43158,7 @@ void Unwind_1809045b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x88);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = (undefined8 *)pdataContext[1];
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -43182,7 +43202,7 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -43198,7 +43218,7 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -43213,7 +43233,7 @@ void Unwind_180904650(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43227,7 +43247,7 @@ void Unwind_180904660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43241,7 +43261,7 @@ void Unwind_180904670(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x58) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x58),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x58),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43269,7 +43289,7 @@ void Unwind_180904690(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43343,7 +43363,7 @@ void Unwind_1809046e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0xc0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43357,7 +43377,7 @@ void Unwind_180904700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x68) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x68),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x68),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43371,7 +43391,7 @@ void Unwind_180904710(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x60) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x60) + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x60) + 0xc0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43385,7 +43405,7 @@ void Unwind_180904730(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x70) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x70),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x70),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43399,7 +43419,7 @@ void Unwind_180904740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x68) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x68),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x68),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43423,7 +43443,7 @@ void Unwind_180904760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x20) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x20),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x20),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43493,7 +43513,7 @@ void Unwind_1809047d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x20) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x20),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x20),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -43716,7 +43736,7 @@ void Unwind_180904900(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_18005d260(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -43726,7 +43746,7 @@ void Unwind_180904910(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_18005d260(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -43744,7 +43764,7 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -43760,7 +43780,7 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -43780,7 +43800,7 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -43796,7 +43816,7 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -43860,7 +43880,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -43876,7 +43896,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -43922,7 +43942,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -43938,7 +43958,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -43984,7 +44004,7 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -44000,7 +44020,7 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44038,7 +44058,7 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -44054,7 +44074,7 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44074,7 +44094,7 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -44090,7 +44110,7 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44110,7 +44130,7 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -44126,7 +44146,7 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44190,7 +44210,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -44206,7 +44226,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44252,7 +44272,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -44268,7 +44288,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44314,7 +44334,7 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -44330,7 +44350,7 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44359,7 +44379,7 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -44375,7 +44395,7 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44395,7 +44415,7 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -44411,7 +44431,7 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -44436,9 +44456,9 @@ void Unwind_180904ab0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   puVar1 = *(undefined8 **)(param_2 + 0x160);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   *puVar1 = &UNK_180a10098;
-  cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,SystemCleanupFlagfffffffe);
   while (cVar2 != '\0') {
     cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,validationStatus);
   }
@@ -44504,9 +44524,9 @@ void Unwind_180904af0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   puVar1 = *(undefined8 **)(param_2 + 0x50);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   *puVar1 = &UNK_180a10098;
-  cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,SystemCleanupFlagfffffffe);
   while (cVar2 != '\0') {
     cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,validationStatus);
   }
@@ -44605,7 +44625,7 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
   }
   *(ulonglong *)(param_2 + 0x20) = operationResult;
   while( true ) {
-    securityCheckResult = (operationResult & 0xffffffffffffffe0) + 0x20;
+    securityCheckResult = (operationResult & SystemCleanupFlagffffffe0) + 0x20;
     if (0x8000000000000000 < uVar1 - securityCheckResult) {
       securityCheckResult = uVar1;
     }
@@ -44652,7 +44672,7 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
   }
   *(ulonglong *)(param_2 + 0x20) = memoryBaseAddress;
   while( true ) {
-    validationOutcome = (memoryBaseAddress & 0xffffffffffffffe0) + 0x20;
+    validationOutcome = (memoryBaseAddress & SystemCleanupFlagffffffe0) + 0x20;
     if (0x8000000000000000 < securityCheckResult - validationOutcome) {
       validationOutcome = securityCheckResult;
     }
@@ -44669,7 +44689,7 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
     lVar6 = *(longlong *)(lVar6 + 0x100);
     memoryBaseAddress = operationResult;
   }
-  securityCheckResult = *(longlong *)(param_2 + 0x30) - 1U & 0xffffffffffffffe0;
+  securityCheckResult = *(longlong *)(param_2 + 0x30) - 1U & SystemCleanupFlagffffffe0;
   *(ulonglong *)(param_2 + 0x20) = securityCheckResult;
   lVar9 = dataContext;
   if (dataContext != 0) {
@@ -44679,7 +44699,7 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
       *(undefined8 *)
        (*(longlong *)
          (pcalculatedOffset[3] +
-         (((securityCheckResult + 0x20 & 0xffffffffffffffe0) - **(longlong **)(pcalculatedOffset[3] + pcalculatedOffset[1] * 8) >> 5) +
+         (((securityCheckResult + 0x20 & SystemCleanupFlagffffffe0) - **(longlong **)(pcalculatedOffset[3] + pcalculatedOffset[1] * 8) >> 5) +
           pcalculatedOffset[1] & *pcalculatedOffset - 1U) * 8) + 8) = 0;
       pcalculatedOffset = *(longlong **)(validationContext + 0x60);
       pcalculatedOffset[1] = pcalculatedOffset[1] - 1U & *pcalculatedOffset - 1U;
@@ -44852,9 +44872,9 @@ void Unwind_180904e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   puVar1 = *(undefined8 **)(param_2 + 0x30);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   *puVar1 = &UNK_180a10098;
-  cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,0xfffffffffffffffe);
+  cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,SystemCleanupFlagfffffffe);
   while (cVar2 != '\0') {
     cVar2 = FUN_18020eba0(puVar1,1,param_3,param_4,validationStatus);
   }
@@ -44888,7 +44908,7 @@ void Unwind_180904e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 200);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xc0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -44909,7 +44929,7 @@ void Unwind_180904e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 200);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xc0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -44935,7 +44955,7 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -44951,7 +44971,7 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45002,7 +45022,7 @@ void Unwind_180904f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x98);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x90); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45023,7 +45043,7 @@ void Unwind_180904f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x98);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x90); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45049,7 +45069,7 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -45065,7 +45085,7 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45130,7 +45150,7 @@ void Unwind_180904f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x28);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x20); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45151,7 +45171,7 @@ void Unwind_180904fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x28);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x20); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45177,7 +45197,7 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -45193,7 +45213,7 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45224,7 +45244,7 @@ void Unwind_180904fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xa0);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x98); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45311,7 +45331,7 @@ void Unwind_180905020(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x48);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x40); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45337,7 +45357,7 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -45353,7 +45373,7 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45368,7 +45388,7 @@ void Unwind_180905040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xa0);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x98); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45394,7 +45414,7 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -45410,7 +45430,7 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45545,7 +45565,7 @@ void Unwind_180905110(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x150);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x148); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45566,7 +45586,7 @@ void Unwind_180905120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x210);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x208); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45621,7 +45641,7 @@ void Unwind_180905160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x110);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x108); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45642,7 +45662,7 @@ void Unwind_180905170(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x230);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x228); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45725,7 +45745,7 @@ void Unwind_1809051f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x150);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x148); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45751,7 +45771,7 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -45767,7 +45787,7 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45782,7 +45802,7 @@ void Unwind_180905210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x210);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x208); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45808,7 +45828,7 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -45824,7 +45844,7 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45857,7 +45877,7 @@ void Unwind_180905250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x110);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x108); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45883,7 +45903,7 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -45899,7 +45919,7 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45914,7 +45934,7 @@ void Unwind_180905270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x230);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x228); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -45940,7 +45960,7 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -45956,7 +45976,7 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -46083,7 +46103,7 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -46099,7 +46119,7 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -46114,7 +46134,7 @@ void ExecuteExceptionHandlerAtOffsetD8(undefined8 context,longlong exceptionCont
   
   exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xd8) + 0x10);
   if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xd8),0,0,exceptionData,0xfffffffffffffffe);
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xd8),0,0,exceptionData,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46128,7 +46148,7 @@ void ExecuteExceptionHandlerAtOffsetD8Alt(undefined8 context,longlong exceptionC
   
   exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xd8) + 0x10);
   if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xd8),0,0,exceptionData,0xfffffffffffffffe);
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xd8),0,0,exceptionData,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46139,7 +46159,7 @@ void ExecuteExceptionHandlerAtOffset50(undefined8 context,longlong exceptionCont
 
 {
   if (*(code **)(exceptionContext + 0x50) != (code *)0x0) {
-    (**(code **)(exceptionContext + 0x50))(exceptionContext + 0x40,0,0,exceptionData,0xfffffffffffffffe);
+    (**(code **)(exceptionContext + 0x50))(exceptionContext + 0x40,0,0,exceptionData,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46153,7 +46173,7 @@ void ExecuteExceptionHandlerAtOffsetF0(undefined8 context,longlong exceptionCont
   
   exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xf0) + 0x10);
   if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf0),0,0,exceptionData,0xfffffffffffffffe);
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf0),0,0,exceptionData,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46175,7 +46195,7 @@ void ExecuteExceptionHandlerAtOffset50Alt(undefined8 context,longlong exceptionC
 
 {
   if (*(code **)(exceptionContext + 0x50) != (code *)0x0) {
-    (**(code **)(exceptionContext + 0x50))(exceptionContext + 0x40,0,0,exceptionData,0xfffffffffffffffe);
+    (**(code **)(exceptionContext + 0x50))(exceptionContext + 0x40,0,0,exceptionData,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46189,7 +46209,7 @@ void ExecuteExceptionHandlerAtOffsetF8(undefined8 context,longlong exceptionCont
   
   exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xf8) + 0x10);
   if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf8),0,0,exceptionData,0xfffffffffffffffe);
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf8),0,0,exceptionData,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46203,7 +46223,7 @@ void ExecuteExceptionHandlerAtOffset100(undefined8 context,longlong exceptionCon
   
   exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0x100) + 0x10);
   if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(longlong *)(exceptionContext + 0x100),0,0,exceptionData,0xfffffffffffffffe);
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0x100),0,0,exceptionData,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46217,7 +46237,7 @@ void ExecuteExceptionHandlerAtOffsetF8Alt(undefined8 context,longlong exceptionC
   
   exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xf8) + 0x10);
   if (exceptionHandler != (code *)0x0) {
-    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf8),0,0,exceptionData,0xfffffffffffffffe);
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf8),0,0,exceptionData,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46231,7 +46251,7 @@ void Unwind_180905420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xf0) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xf0),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xf0),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46245,7 +46265,7 @@ void Unwind_180905430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x100) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x100),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x100),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46259,7 +46279,7 @@ void Unwind_180905440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x108) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x108),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x108),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46273,7 +46293,7 @@ void Unwind_180905450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x100) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x100),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x100),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46287,7 +46307,7 @@ void Unwind_180905460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x108) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x108),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x108),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46301,7 +46321,7 @@ void Unwind_180905470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xa8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xa8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xa8),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46315,7 +46335,7 @@ void Unwind_180905480(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xf8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xf8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xf8),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46329,7 +46349,7 @@ void Unwind_180905490(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46450,7 +46470,7 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -46466,7 +46486,7 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -46513,7 +46533,7 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -46529,7 +46549,7 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -46549,7 +46569,7 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -46565,7 +46585,7 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -46630,7 +46650,7 @@ void Unwind_180905640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0xa8);
   if (*(code **)(validationContext + 0x198) != (code *)0x0) {
-    (**(code **)(validationContext + 0x198))(validationContext + 0x188,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x198))(validationContext + 0x188,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   if (*(code **)(validationContext + 0x178) != (code *)0x0) {
     (**(code **)(validationContext + 0x178))(validationContext + 0x168,0,0);
@@ -46648,7 +46668,7 @@ void Unwind_180905650(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x48);
   if (*(code **)(validationContext + 0x198) != (code *)0x0) {
-    (**(code **)(validationContext + 0x198))(validationContext + 0x188,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x198))(validationContext + 0x188,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   if (*(code **)(validationContext + 0x178) != (code *)0x0) {
     (**(code **)(validationContext + 0x178))(validationContext + 0x168,0,0);
@@ -46666,7 +46686,7 @@ void Unwind_180905660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x20) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x20) + 0x148,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x20) + 0x148,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46680,7 +46700,7 @@ void Unwind_180905680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x20) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x20) + 0x168,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x20) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46712,7 +46732,7 @@ void Unwind_1809056c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x148,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x148,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46726,7 +46746,7 @@ void Unwind_1809056e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x168,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46740,7 +46760,7 @@ void Unwind_180905700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x48),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x48),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -46795,7 +46815,7 @@ void Unwind_180905770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x28);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = (undefined8 *)pdataContext[1];
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 0x13) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -47053,7 +47073,7 @@ void ExecuteExceptionCallback(undefined8 exceptionContext, longlong callbackCont
   
   callbackFunction = *(code **)(*(longlong *)(callbackContext + 0x2e8) + 0x10);
   if (callbackFunction != (code *)0x0) {
-    (*callbackFunction)(*(longlong *)(callbackContext + 0x2e8),0,0,callbackParam,0xfffffffffffffffe);
+    (*callbackFunction)(*(longlong *)(callbackContext + 0x2e8),0,0,callbackParam,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -47191,7 +47211,7 @@ void ExecuteExceptionCallbackChain(undefined8 chainContext, longlong callbackCha
   undefined8 callbackFlag;
   
   callbackStartPointer = (longlong *)(*(longlong *)(callbackChain + 0x2e0) + 8);
-  callbackFlag = 0xfffffffffffffffe;
+  callbackFlag = SystemCleanupFlagfffffffe;
   callbackEndPointer = *(undefined8 **)(*(longlong *)(callbackChain + 0x2e0) + 0x10);
   for (currentCallback = (undefined8 *)*callbackStartPointer; currentCallback != callbackEndPointer; currentCallback = currentCallback + 4) {
     (**(code **)*currentCallback)(currentCallback,0,callbackParam1,callbackParam2,callbackFlag);
@@ -47214,7 +47234,7 @@ void Unwind_180905870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x2e8);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = (undefined8 *)pdataContext[1];
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -47240,7 +47260,7 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -47256,7 +47276,7 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -47301,7 +47321,7 @@ void Unwind_1809058a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 0x20);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x28);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -47324,7 +47344,7 @@ void Unwind_1809058b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 0x40);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x48);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -47426,7 +47446,7 @@ void Unwind_180905910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x48) + 8);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -47491,7 +47511,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    dataFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
       lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
@@ -47507,7 +47527,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                            resourcePointer,dataFlags,0xfffffffffffffffe);
+                            resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -47653,7 +47673,7 @@ void Unwind_180905960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x2e8) + 0x260);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e8) + 0x268);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 0x13) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -47704,7 +47724,7 @@ void Unwind_1809059a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x40);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = (undefined8 *)pdataContext[1];
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 0x13) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -47725,7 +47745,7 @@ void Unwind_1809059b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x2e8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x2e8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x2e8),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -47938,7 +47958,7 @@ void Unwind_180905b10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0xc0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48039,7 +48059,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -48055,7 +48075,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -48138,7 +48158,7 @@ void UnwindCleanupThreadLocalStorageAndExceptionHandlers(undefined8 exceptionCon
   if (exceptionHandlerPointer == (undefined8 *)0x0) {
     return;
   }
-  memoryRegion = (ulonglong)exceptionHandlerPointer & 0xffffffffffc00000;
+  memoryRegion = (ulonglong)exceptionHandlerPointer & SystemCleanupFlagffc00000;
   if (memoryRegion != 0) {
     resourceIterator = memoryRegion + 0x80 + ((longlong)exceptionHandlerPointer - memoryRegion >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
@@ -48154,7 +48174,7 @@ void UnwindCleanupThreadLocalStorageAndExceptionHandlers(undefined8 exceptionCon
     }
     else {
       ProcessExceptionCleanup(memoryRegion,CONCAT71(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
-                          exceptionHandlerPointer,memoryRegion,0xfffffffffffffffe);
+                          exceptionHandlerPointer,memoryRegion,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -48403,7 +48423,7 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -48419,7 +48439,7 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -48572,7 +48592,7 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -48588,7 +48608,7 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -48618,7 +48638,7 @@ void Unwind_180905cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x1f8) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1f8))(param_2 + 0x1e8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x1f8))(param_2 + 0x1e8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   if (*(code **)(param_2 + 0x1d8) != (code *)0x0) {
     (**(code **)(param_2 + 0x1d8))(param_2 + 0x1c8,0,0);
@@ -48633,7 +48653,7 @@ void Unwind_180905d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x1d8) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1d8))(param_2 + 0x1c8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x1d8))(param_2 + 0x1c8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48644,7 +48664,7 @@ void Unwind_180905d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x1f8) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1f8))(param_2 + 0x1e8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x1f8))(param_2 + 0x1e8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48658,7 +48678,7 @@ void Unwind_180905d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x30) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x30),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x30),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48715,7 +48735,7 @@ void Unwind_180905d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x148,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x148,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48729,7 +48749,7 @@ void Unwind_180905db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x168,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48848,7 +48868,7 @@ void Unwind_180905e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x70) + 0x158);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x70) + 0x148,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x70) + 0x148,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48862,7 +48882,7 @@ void Unwind_180905e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x70) + 0x178);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x70) + 0x168,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x70) + 0x168,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48876,7 +48896,7 @@ void Unwind_180905e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x78),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x78),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -48923,7 +48943,7 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -48939,7 +48959,7 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49026,7 +49046,7 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -49042,7 +49062,7 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49134,7 +49154,7 @@ void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(undefined8 exception
   if (exceptionHandlerPointer == (undefined8 *)0x0) {
     return;
   }
-  memoryRegion = (ulonglong)exceptionHandlerPointer & 0xffffffffffc00000;
+  memoryRegion = (ulonglong)exceptionHandlerPointer & SystemCleanupFlagffc00000;
   if (memoryRegion != 0) {
     resourceIterator = memoryRegion + 0x80 + ((longlong)exceptionHandlerPointer - memoryRegion >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
@@ -49150,7 +49170,7 @@ void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(undefined8 exception
     }
     else {
       ProcessExceptionCleanup(memoryRegion,CONCAT71(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
-                          exceptionHandlerPointer,memoryRegion,0xfffffffffffffffe);
+                          exceptionHandlerPointer,memoryRegion,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49238,7 +49258,7 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -49254,7 +49274,7 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49320,7 +49340,7 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
-  dataFlags = (ulonglong)pvalidationStatus & 0xffffffffffc00000;
+  dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
     lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
     lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
@@ -49336,7 +49356,7 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,0xfffffffffffffffe);
+                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49600,7 +49620,7 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -49616,7 +49636,7 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49636,7 +49656,7 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -49652,7 +49672,7 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49672,7 +49692,7 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -49688,7 +49708,7 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49764,7 +49784,7 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -49780,7 +49800,7 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49939,7 +49959,7 @@ void Unwind_1809063f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xe8);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xe0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -49984,7 +50004,7 @@ void Unwind_180906460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xe8);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xe0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -50010,7 +50030,7 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -50026,7 +50046,7 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -50683,7 +50703,7 @@ void Unwind_180906700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0xa0) + 0x218);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0xa0) + 0x220);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -50884,7 +50904,7 @@ void Unwind_180906890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x218);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x220);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -50948,7 +50968,7 @@ void Unwind_180906940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x58);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = (undefined8 *)pdataContext[1];
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -51284,7 +51304,7 @@ void Unwind_180906b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x78) != (code *)0x0) {
-    (**(code **)(param_2 + 0x78))(param_2 + 0x68,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x78))(param_2 + 0x68,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -51332,7 +51352,7 @@ void Unwind_180906b30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x78) != (code *)0x0) {
-    (**(code **)(param_2 + 0x78))(param_2 + 0x68,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x78))(param_2 + 0x68,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -51377,7 +51397,7 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -51393,7 +51413,7 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -51512,7 +51532,7 @@ void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cle
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -51528,7 +51548,7 @@ void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cle
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -51558,7 +51578,7 @@ void CleanupExceptionHandlingResourcesAlternative(undefined8 exceptionContext, l
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -51574,7 +51594,7 @@ void CleanupExceptionHandlingResourcesAlternative(undefined8 exceptionContext, l
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -51723,7 +51743,7 @@ void CleanupExceptionListNode(undefined8 exceptionContext, longlong cleanupConte
   if (nodePointer == (undefined8 *)0x0) {
     return;
   }
-  baseAddress = (ulonglong)nodePointer & 0xffffffffffc00000;
+  baseAddress = (ulonglong)nodePointer & SystemCleanupFlagffc00000;
   if (baseAddress != 0) {
     listOffset = baseAddress + 0x80 + ((longlong)nodePointer - baseAddress >> 0x10) * 0x50;
     listOffset = listOffset - (ulonglong)*(uint *)(listOffset + 4);
@@ -51739,7 +51759,7 @@ void CleanupExceptionListNode(undefined8 exceptionContext, longlong cleanupConte
     }
     else {
       func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
-                          nodePointer,baseAddress,0xfffffffffffffffe);
+                          nodePointer,baseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -51815,7 +51835,7 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -51831,7 +51851,7 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -51851,7 +51871,7 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -51867,7 +51887,7 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -51887,7 +51907,7 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -51903,7 +51923,7 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -51944,7 +51964,7 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -51960,7 +51980,7 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -51980,7 +52000,7 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -51996,7 +52016,7 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52037,7 +52057,7 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52053,7 +52073,7 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52073,7 +52093,7 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52089,7 +52109,7 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52109,7 +52129,7 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52125,7 +52145,7 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52166,7 +52186,7 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52182,7 +52202,7 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52202,7 +52222,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
   if (MemoryBlock == (undefined8 *)0x0) {
     return;
   }
-  MemoryAddress = (ulonglong)MemoryBlock & 0xffffffffffc00000;
+  MemoryAddress = (ulonglong)MemoryBlock & SystemCleanupFlagffc00000;
   if (MemoryAddress != 0) {
     BlockOffset = MemoryAddress + 0x80 + ((longlong)MemoryBlock - MemoryAddress >> 0x10) * 0x50;
     BlockOffset = BlockOffset - (ulonglong)*(uint *)(BlockOffset + 4);
@@ -52218,7 +52238,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
     }
     else {
       func_0x00018064e870(MemoryAddress,CONCAT71(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
-                          MemoryBlock,MemoryAddress,0xfffffffffffffffe);
+                          MemoryBlock,MemoryAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52249,7 +52269,7 @@ void ReleaseExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
     return;
   }
   
-  MemoryAddress = (ulonglong)MemoryBlock & 0xffffffffffc00000;
+  MemoryAddress = (ulonglong)MemoryBlock & SystemCleanupFlagffc00000;
   if (MemoryAddress != 0) {
     BlockOffset = MemoryAddress + 0x80 + ((longlong)MemoryBlock - MemoryAddress >> 0x10) * 0x50;
     BlockOffset = BlockOffset - (ulonglong)*(uint *)(BlockOffset + 4);
@@ -52267,7 +52287,7 @@ void ReleaseExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
     }
     else {
       func_0x00018064e870(MemoryAddress,CONCAT71(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
-                          MemoryBlock,MemoryAddress,0xfffffffffffffffe);
+                          MemoryBlock,MemoryAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52298,7 +52318,7 @@ void CleanupExceptionMemoryBlock(undefined8 ExceptionContext, longlong MemoryCon
     return;
   }
   
-  BlockAddress = (ulonglong)MemoryPointer & 0xffffffffffc00000;
+  BlockAddress = (ulonglong)MemoryPointer & SystemCleanupFlagffc00000;
   if (BlockAddress != 0) {
     MemoryOffset = BlockAddress + 0x80 + ((longlong)MemoryPointer - BlockAddress >> 0x10) * 0x50;
     MemoryOffset = MemoryOffset - (ulonglong)*(uint *)(MemoryOffset + 4);
@@ -52316,7 +52336,7 @@ void CleanupExceptionMemoryBlock(undefined8 ExceptionContext, longlong MemoryCon
     }
     else {
       func_0x00018064e870(BlockAddress,CONCAT71(0xff000000,*(void ***)(BlockAddress + 0x70) == &ExceptionList),
-                          MemoryPointer,BlockAddress,0xfffffffffffffffe);
+                          MemoryPointer,BlockAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52336,7 +52356,7 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52352,7 +52372,7 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52372,7 +52392,7 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52388,7 +52408,7 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52408,7 +52428,7 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52424,7 +52444,7 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52444,7 +52464,7 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52460,7 +52480,7 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52501,7 +52521,7 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -52517,7 +52537,7 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52641,7 +52661,7 @@ void Unwind_180906e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x170) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x170),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x170),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52772,7 +52792,7 @@ void Unwind_180906ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x170) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x170),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x170),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52972,7 +52992,7 @@ void UnwindExceptionHandlerA0(undefined8 ExceptionContext, longlong HandlerConte
 
 {
   if (*(code **)(HandlerContext + 0xe8) != (code *)0x0) {
-    (**(code **)(HandlerContext + 0xe8))(HandlerContext + 0xd8, 0, 0, ExceptionData, 0xfffffffffffffffe);
+    (**(code **)(HandlerContext + 0xe8))(HandlerContext + 0xd8, 0, 0, ExceptionData, SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -52996,7 +53016,7 @@ void UnwindExceptionHandlerA1(undefined8 ExceptionContext, longlong HandlerConte
 
 {
   if (*(code **)(HandlerContext + 0x68) != (code *)0x0) {
-    (**(code **)(HandlerContext + 0x68))(HandlerContext + 0x58, 0, 0, ExceptionData, 0xfffffffffffffffe);
+    (**(code **)(HandlerContext + 0x68))(HandlerContext + 0x58, 0, 0, ExceptionData, SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53051,7 +53071,7 @@ void UnwindExceptionHandlerB0(undefined8 ExceptionContext, longlong HandlerConte
 
 {
   if (*(code **)(HandlerContext + 0x108) != (code *)0x0) {
-    (**(code **)(HandlerContext + 0x108))(HandlerContext + 0xf8, 0, 0, ExceptionData, 0xfffffffffffffffe);
+    (**(code **)(HandlerContext + 0x108))(HandlerContext + 0xf8, 0, 0, ExceptionData, SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53156,7 +53176,7 @@ void Unwind_180907090(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0xe8) != (code *)0x0) {
-    (**(code **)(param_2 + 0xe8))(param_2 + 0xd8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0xe8))(param_2 + 0xd8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53167,7 +53187,7 @@ void Unwind_1809070a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x68) != (code *)0x0) {
-    (**(code **)(param_2 + 0x68))(param_2 + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x68))(param_2 + 0x58,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53206,7 +53226,7 @@ void Unwind_1809070d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x108) != (code *)0x0) {
-    (**(code **)(param_2 + 0x108))(param_2 + 0xf8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x108))(param_2 + 0xf8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53392,7 +53412,7 @@ void Unwind_1809071c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x48) != (code *)0x0) {
-    (**(code **)(param_2 + 0x48))(param_2 + 0x38,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x48))(param_2 + 0x38,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53403,7 +53423,7 @@ void Unwind_1809071d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x48) != (code *)0x0) {
-    (**(code **)(param_2 + 0x48))(param_2 + 0x38,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x48))(param_2 + 0x38,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -53629,7 +53649,7 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -53645,7 +53665,7 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -53665,7 +53685,7 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -53681,7 +53701,7 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -53701,7 +53721,7 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -53717,7 +53737,7 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -53959,7 +53979,7 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -53975,7 +53995,7 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -53995,7 +54015,7 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -54011,7 +54031,7 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -54031,7 +54051,7 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -54047,7 +54067,7 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -54634,7 +54654,7 @@ void Unwind_180907810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x30);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -54653,7 +54673,7 @@ void Unwind_180907820(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_18005d260(*(longlong *)(param_2 + 0x20) + 0x48,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x58),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -54664,7 +54684,7 @@ void Unwind_180907830(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_18008d810(*(longlong *)(param_2 + 0x20) + 0x78,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x88),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -54677,7 +54697,7 @@ void Unwind_180907840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0xc0);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x20) + 0xb0,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x20) + 0xb0,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -54693,7 +54713,7 @@ void Unwind_180907860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0xf0);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x20) + 0xe0,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x20) + 0xe0,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -54714,7 +54734,7 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -54730,7 +54750,7 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -54781,7 +54801,7 @@ void ProcessExceptionChainAndCleanup(undefined8 exceptionContext, longlong handl
   undefined8 cleanupFlags;
   
   handlerTablePointer = *(longlong **)(handlerTable + 0x28);
-  cleanupFlags = 0xfffffffffffffffe;
+  cleanupFlags = SystemCleanupFlagfffffffe;
   handlerPointer = (undefined8 *)handlerTablePointer[1];
   for (currentHandler = (undefined8 *)*handlerTablePointer; currentHandler != handlerPointer; currentHandler = currentHandler + 4) {
     (**(code **)*currentHandler)(currentHandler, 0, cleanupParam1, cleanupParam2, cleanupFlags);
@@ -54811,7 +54831,7 @@ void ProcessExceptionChainAndCleanup(undefined8 exceptionContext, longlong handl
 void InvokeExceptionHandlerWithParams(undefined8 exceptionContext, longlong handlerData, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
   FUN_18005d260(*(longlong *)(handlerData + 0x28), *(undefined8 *)(*(longlong *)(handlerData + 0x28) + 0x10),
-                cleanupParam1, cleanupParam2, 0xfffffffffffffffe);
+                cleanupParam1, cleanupParam2, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -54833,7 +54853,7 @@ void InvokeExceptionHandlerWithParams(undefined8 exceptionContext, longlong hand
 void InvokeExceptionHandlerWithParamsB(undefined8 exceptionContext, longlong handlerData, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
   FUN_18005d260(*(longlong *)(handlerData + 0x28), *(undefined8 *)(*(longlong *)(handlerData + 0x28) + 0x10),
-                cleanupParam1, cleanupParam2, 0xfffffffffffffffe);
+                cleanupParam1, cleanupParam2, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -54855,7 +54875,7 @@ void InvokeExceptionHandlerWithParamsB(undefined8 exceptionContext, longlong han
 void InvokeExceptionHandlerWithParamsC(undefined8 exceptionContext, longlong handlerData, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
   FUN_18008d810(*(longlong *)(handlerData + 0x28), *(undefined8 *)(*(longlong *)(handlerData + 0x28) + 0x10),
-                cleanupParam1, cleanupParam2, 0xfffffffffffffffe);
+                cleanupParam1, cleanupParam2, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -54877,7 +54897,7 @@ void InvokeExceptionHandlerWithParamsC(undefined8 exceptionContext, longlong han
 void InvokeExceptionHandlerWithParamsD(undefined8 exceptionContext, longlong handlerData, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
   FUN_18008d810(*(longlong *)(handlerData + 0x28), *(undefined8 *)(*(longlong *)(handlerData + 0x28) + 0x10),
-                cleanupParam1, cleanupParam2, 0xfffffffffffffffe);
+                cleanupParam1, cleanupParam2, SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -54890,7 +54910,7 @@ void Unwind_180907900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x28) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x28),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x28),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -54906,7 +54926,7 @@ void Unwind_180907910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x28) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x28),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x28),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -54940,7 +54960,7 @@ void Unwind_180907930(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_18008d810(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -54950,7 +54970,7 @@ void Unwind_180907940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_18008d810(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -55106,7 +55126,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
   FUN_1800ba100(calculatedOffset + 0x78);
   if ((1 < *(ulonglong *)(calculatedOffset + 0x88)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 0x80), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55122,7 +55142,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -55144,7 +55164,7 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55160,7 +55180,7 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -55198,7 +55218,7 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55214,7 +55234,7 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -55225,7 +55245,7 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
 void Unwind_180907a20(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -55235,7 +55255,7 @@ void Unwind_180907a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x200) != (code *)0x0) {
-    (**(code **)(param_2 + 0x200))(param_2 + 0x1f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x200))(param_2 + 0x1f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   if (*(code **)(param_2 + 0x1e0) != (code *)0x0) {
     (**(code **)(param_2 + 0x1e0))(param_2 + 0x1d0,0,0);
@@ -55252,7 +55272,7 @@ void Unwind_180907a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x2a0) != (code *)0x0) {
-    (**(code **)(param_2 + 0x2a0))(param_2 + 0x290,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x2a0))(param_2 + 0x290,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   if (*(code **)(param_2 + 0x280) != (code *)0x0) {
     (**(code **)(param_2 + 0x280))(param_2 + 0x270,0,0);
@@ -55277,7 +55297,7 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55293,7 +55313,7 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -55313,7 +55333,7 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55329,7 +55349,7 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -55340,7 +55360,7 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
 void Unwind_180907a70(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -55349,7 +55369,7 @@ void Unwind_180907a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907a80(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(param_2 + 0xe8,*(undefined8 *)(param_2 + 0xf8),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -55387,7 +55407,7 @@ void Unwind_180907ab0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x1c0) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1c0))(param_2 + 0x1b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x1c0))(param_2 + 0x1b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55398,7 +55418,7 @@ void Unwind_180907ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x1e0) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1e0))(param_2 + 0x1d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x1e0))(param_2 + 0x1d0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55409,7 +55429,7 @@ void Unwind_180907ad0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x200) != (code *)0x0) {
-    (**(code **)(param_2 + 0x200))(param_2 + 0x1f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x200))(param_2 + 0x1f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55429,7 +55449,7 @@ void Unwind_180907af0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x260) != (code *)0x0) {
-    (**(code **)(param_2 + 0x260))(param_2 + 0x250,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x260))(param_2 + 0x250,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55440,7 +55460,7 @@ void Unwind_180907b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x280) != (code *)0x0) {
-    (**(code **)(param_2 + 0x280))(param_2 + 0x270,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x280))(param_2 + 0x270,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55451,7 +55471,7 @@ void Unwind_180907b10(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x2a0) != (code *)0x0) {
-    (**(code **)(param_2 + 0x2a0))(param_2 + 0x290,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x2a0))(param_2 + 0x290,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55492,7 +55512,7 @@ void Unwind_180907b50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x50);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x40,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x40,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55506,7 +55526,7 @@ void Unwind_180907b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x70);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x60,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x60,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55612,7 +55632,7 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55628,7 +55648,7 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -55640,7 +55660,7 @@ void Unwind_180907c30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x210) != (code *)0x0) {
-    (**(code **)(param_2 + 0x210))(param_2 + 0x200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x210))(param_2 + 0x200,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   if (*(code **)(param_2 + 0x1f0) != (code *)0x0) {
     (**(code **)(param_2 + 0x1f0))(param_2 + 0x1e0,0,0);
@@ -55692,7 +55712,7 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55708,7 +55728,7 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -55728,7 +55748,7 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55744,7 +55764,7 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -55756,7 +55776,7 @@ void Unwind_180907c90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x1d0) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1d0))(param_2 + 0x1c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x1d0))(param_2 + 0x1c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55767,7 +55787,7 @@ void Unwind_180907ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x1f0) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1f0))(param_2 + 0x1e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x1f0))(param_2 + 0x1e0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55778,7 +55798,7 @@ void Unwind_180907cb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x210) != (code *)0x0) {
-    (**(code **)(param_2 + 0x210))(param_2 + 0x200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x210))(param_2 + 0x200,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -55792,7 +55812,7 @@ void Unwind_180907cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x170);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x168); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -55863,7 +55883,7 @@ void Unwind_180907d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x150) != (code *)0x0) {
-    (**(code **)(param_2 + 0x150))(param_2 + 0x140,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x150))(param_2 + 0x140,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   if (*(code **)(param_2 + 0x130) != (code *)0x0) {
     (**(code **)(param_2 + 0x130))(param_2 + 0x120,0,0);
@@ -55883,7 +55903,7 @@ void Unwind_180907d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x170);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x168); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -55909,7 +55929,7 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -55925,7 +55945,7 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -56030,7 +56050,7 @@ void Unwind_180907e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x110) != (code *)0x0) {
-    (**(code **)(param_2 + 0x110))(param_2 + 0x100,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x110))(param_2 + 0x100,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56041,7 +56061,7 @@ void Unwind_180907e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x130) != (code *)0x0) {
-    (**(code **)(param_2 + 0x130))(param_2 + 0x120,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x130))(param_2 + 0x120,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56052,7 +56072,7 @@ void Unwind_180907e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x150) != (code *)0x0) {
-    (**(code **)(param_2 + 0x150))(param_2 + 0x140,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x150))(param_2 + 0x140,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56066,7 +56086,7 @@ void Unwind_180907e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x30);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x28); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -56092,7 +56112,7 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -56108,7 +56128,7 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -56128,7 +56148,7 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -56144,7 +56164,7 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -56164,7 +56184,7 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -56180,7 +56200,7 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -56200,7 +56220,7 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -56216,7 +56236,7 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -56236,7 +56256,7 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -56252,7 +56272,7 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -56264,7 +56284,7 @@ void Unwind_180907ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x60) != (code *)0x0) {
-    (**(code **)(param_2 + 0x60))(param_2 + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x60))(param_2 + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56275,7 +56295,7 @@ void Unwind_180907ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x208) != (code *)0x0) {
-    (**(code **)(param_2 + 0x208))(param_2 + 0x1f8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x208))(param_2 + 0x1f8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   if (*(code **)(param_2 + 0x1e8) != (code *)0x0) {
     (**(code **)(param_2 + 0x1e8))(param_2 + 0x1d8,0,0);
@@ -56290,7 +56310,7 @@ void Unwind_180907f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x60) != (code *)0x0) {
-    (**(code **)(param_2 + 0x60))(param_2 + 0x50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x60))(param_2 + 0x50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56310,7 +56330,7 @@ void Unwind_180907f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x1e8) != (code *)0x0) {
-    (**(code **)(param_2 + 0x1e8))(param_2 + 0x1d8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x1e8))(param_2 + 0x1d8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56321,7 +56341,7 @@ void Unwind_180907f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x208) != (code *)0x0) {
-    (**(code **)(param_2 + 0x208))(param_2 + 0x1f8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x208))(param_2 + 0x1f8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56335,7 +56355,7 @@ void Unwind_180907f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 8,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -56463,7 +56483,7 @@ void Unwind_180907ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(param_2 + 0x78);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(param_2 + 0x68,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(param_2 + 0x68,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56484,7 +56504,7 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -56500,7 +56520,7 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -56525,7 +56545,7 @@ void HandleExceptionA1(undefined8 ContextParameter, longlong SystemContext, unde
   
   ExceptionHandlerPointer = *(undefined8 **)(SystemContext + 0x78);
   if (ExceptionHandlerPointer != (undefined8 *)0x0) {
-    ProcessSystemException(SystemContext + 0x68, *ExceptionHandlerPointer, ExceptionHandler, RecoveryHandler, 0xfffffffffffffffe);
+    ProcessSystemException(SystemContext + 0x68, *ExceptionHandlerPointer, ExceptionHandler, RecoveryHandler, SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     CleanupExceptionHandler(ExceptionHandlerPointer);
   }
@@ -56551,7 +56571,7 @@ void HandleExceptionA2(undefined8 ContextParameter, longlong SystemContext, unde
   
   ExceptionHandlerPointer = *(undefined8 **)(SystemContext + 0x78);
   if (ExceptionHandlerPointer != (undefined8 *)0x0) {
-    ProcessSystemException(SystemContext + 0x68, *ExceptionHandlerPointer, ExceptionHandler, RecoveryHandler, 0xfffffffffffffffe);
+    ProcessSystemException(SystemContext + 0x68, *ExceptionHandlerPointer, ExceptionHandler, RecoveryHandler, SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     CleanupExceptionHandler(ExceptionHandlerPointer);
   }
@@ -56580,7 +56600,7 @@ void HandleExceptionA3(undefined8 ContextParameter, longlong SystemContext)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -56596,7 +56616,7 @@ void HandleExceptionA3(undefined8 ContextParameter, longlong SystemContext)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -56639,7 +56659,7 @@ void Unwind_180908050(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
   longlong *validationContextPointer;
   
   validationContextPointer = _DAT_180d49200;
-  FUN_18008d1f0(&DAT_180d49200,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
+  FUN_18008d1f0(&DAT_180d49200,_DAT_180d49200[1],param_3,param_4,SystemCleanupFlagfffffffe);
   _DAT_180d49200[1] = (longlong)validationContextPointer;
   *_DAT_180d49200 = (longlong)validationContextPointer;
   _DAT_180d49200[2] = (longlong)validationContextPointer;
@@ -56696,12 +56716,12 @@ void Unwind_1809080a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   dataContext = *(longlong *)(param_2 + 0x68);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
   FUN_180058370(dataContext + 0x60,*(undefined8 *)(dataContext + 0x70),param_3,param_4,validationStatus);
   puVar1 = *(undefined8 **)(dataContext + 0x40);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(dataContext + 0x30,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(dataContext + 0x30,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56718,12 +56738,12 @@ void Unwind_1809080b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   dataContext = *(longlong *)(param_2 + 0x70);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
   FUN_180058370(dataContext + 0x40,*(undefined8 *)(dataContext + 0x50),param_3,param_4,validationStatus);
   puVar1 = *(undefined8 **)(dataContext + 0x20);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56739,7 +56759,7 @@ void Unwind_1809080c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56753,7 +56773,7 @@ void Unwind_1809080d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x78) + 0x30,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x40),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -56766,7 +56786,7 @@ void Unwind_1809080e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x70);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x78) + 0x60,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x78) + 0x60,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56779,7 +56799,7 @@ void Unwind_1809080f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x30),*(undefined8 *)(*(longlong *)(param_2 + 0x30) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -56789,7 +56809,7 @@ void Unwind_180908100(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x30),*(undefined8 *)(*(longlong *)(param_2 + 0x30) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -56802,7 +56822,7 @@ void Unwind_180908110(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56818,7 +56838,7 @@ void Unwind_180908120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56872,12 +56892,12 @@ void Unwind_180908160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   dataContext = *(longlong *)(param_2 + 0x80);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
   FUN_180058370(dataContext + 0x40,*(undefined8 *)(dataContext + 0x50),param_3,param_4,validationStatus);
   puVar1 = *(undefined8 **)(dataContext + 0x20);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56893,7 +56913,7 @@ void Unwind_180908170(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x60),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x60),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56907,7 +56927,7 @@ void Unwind_180908180(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x60) + 0x30,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x60) + 0x40),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -56920,7 +56940,7 @@ void Unwind_180908190(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x70);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x60) + 0x60,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x60) + 0x60,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56933,7 +56953,7 @@ void Unwind_1809081a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -56943,7 +56963,7 @@ void Unwind_1809081b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -56957,12 +56977,12 @@ void Unwind_1809081c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   dataContext = *(longlong *)(param_2 + 0x40);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
   FUN_180058370(dataContext + 0x40,*(undefined8 *)(dataContext + 0x50),param_3,param_4,validationStatus);
   puVar1 = *(undefined8 **)(dataContext + 0x20);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56978,7 +56998,7 @@ void Unwind_1809081d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -56992,7 +57012,7 @@ void Unwind_1809081e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x40) + 0x30,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x40),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -57005,7 +57025,7 @@ void Unwind_1809081f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x70);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0x60,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0x60,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -57021,7 +57041,7 @@ void Unwind_180908200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x58) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x58) + 8,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x58) + 8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -57035,7 +57055,7 @@ void Unwind_180908210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x50) + 0x18);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 8,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x50) + 8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -57109,7 +57129,7 @@ void Unwind_180908340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x388);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x390);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -57126,7 +57146,7 @@ void Unwind_180908340(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908360(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x80) + 0x3b0,0x20,0x20,FUN_180627b90,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x80) + 0x3b0,0x20,0x20,FUN_180627b90,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -57191,7 +57211,7 @@ void Unwind_180908460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x388);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x390);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -57208,7 +57228,7 @@ void Unwind_180908460(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908480(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x3b0,0x20,0x20,FUN_180627b90,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x3b0,0x20,0x20,FUN_180627b90,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -57353,7 +57373,7 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -57369,7 +57389,7 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -57384,7 +57404,7 @@ void Unwind_180908660(undefined8 param_1,longlong param_2)
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0x50);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
   FUN_1808fc8a8(validationContext + 0x3e0,0x20,0x20,FUN_180627b90,uVar2);
   FUN_18005d580();
@@ -57414,7 +57434,7 @@ void CleanupExceptionResourcesA2(undefined8 exceptionContext,longlong unwindInfo
   undefined8 cleanupFlag;
   
   contextBase = *(longlong *)(unwindInfo + 0x50);
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = SystemCleanupFlagfffffffe;
   *(longlong *)(contextBase + 0x15d8) =
        *(longlong *)(&ExceptionDataTable1 + (longlong)*(int *)(contextBase + 0x15e0) * 8) + -100000;
   FUN_180090b80((longlong *)(contextBase + 0x8b0));
@@ -57630,7 +57650,7 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -57646,7 +57666,7 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -57740,7 +57760,7 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -57756,7 +57776,7 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -57776,7 +57796,7 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -57792,7 +57812,7 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -57844,7 +57864,7 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -57860,7 +57880,7 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58156,7 +58176,7 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58172,7 +58192,7 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58192,7 +58212,7 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58208,7 +58228,7 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58228,7 +58248,7 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58244,7 +58264,7 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58264,7 +58284,7 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58280,7 +58300,7 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58300,7 +58320,7 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58316,7 +58336,7 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58336,7 +58356,7 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58352,7 +58372,7 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58372,7 +58392,7 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58388,7 +58408,7 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58408,7 +58428,7 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58424,7 +58444,7 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58453,7 +58473,7 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58469,7 +58489,7 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58489,7 +58509,7 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58505,7 +58525,7 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58525,7 +58545,7 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58541,7 +58561,7 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58598,7 +58618,7 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -58614,7 +58634,7 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -58941,7 +58961,7 @@ void Unwind_180908c80(undefined8 param_1,longlong param_2)
 void Unwind_180908c90(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(param_2 + 0xc0,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  FUN_1808fc8a8(param_2 + 0xc0,8,0x10,FUN_180045af0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -59101,7 +59121,7 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -59117,7 +59137,7 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -59146,7 +59166,7 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -59162,7 +59182,7 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -59182,7 +59202,7 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -59198,7 +59218,7 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -59225,7 +59245,7 @@ void Unwind_180908e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x30);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x60) + 0x20,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x60) + 0x20,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -59246,7 +59266,7 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -59262,7 +59282,7 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -59282,7 +59302,7 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -59298,7 +59318,7 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -59318,7 +59338,7 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -59334,7 +59354,7 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -59349,7 +59369,7 @@ void Unwind_180908e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0x60);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   _Mtx_destroy_in_situ();
   FUN_180058370(validationContext + 0x110,*(undefined8 *)(validationContext + 0x120),param_3,param_4,uVar2);
   FUN_180058370(validationContext + 0xe0,*(undefined8 *)(validationContext + 0xf0));
@@ -59702,7 +59722,7 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -59718,7 +59738,7 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -59793,7 +59813,7 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -59809,7 +59829,7 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -60030,7 +60050,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pmemoryBaseAddress;
   if (resourcePointer != (undefined8 *)0x0) {
-    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    dataFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
       calculatedOffset = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -60046,7 +60066,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                            resourcePointer,dataFlags,0xfffffffffffffffe);
+                            resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -60087,7 +60107,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    dataFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
       lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
@@ -60103,7 +60123,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                            resourcePointer,dataFlags,0xfffffffffffffffe);
+                            resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -60130,7 +60150,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
   }
   resourcePointer = (undefined8 *)*pvalidationStatus;
   if (resourcePointer != (undefined8 *)0x0) {
-    dataFlags = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    dataFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
       lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
       lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
@@ -60146,7 +60166,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                            resourcePointer,dataFlags,0xfffffffffffffffe);
+                            resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -60310,7 +60330,7 @@ void Unwind_180909390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x98) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x98),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x98),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -60324,7 +60344,7 @@ void Unwind_1809093a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x98) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x98),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x98),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -60467,7 +60487,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(calculatedOffset + 0x81d8,*(undefined8 *)(calculatedOffset + 0x81e8),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058370(calculatedOffset + 0x81d8,*(undefined8 *)(calculatedOffset + 0x81e8),param_3,param_4,SystemCleanupFlagfffffffe);
   FUN_180058370(calculatedOffset + 0x81a8,*(undefined8 *)(calculatedOffset + 0x81b8));
   FUN_180058370(calculatedOffset + 0x8178,*(undefined8 *)(calculatedOffset + 0x8188));
   FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
@@ -60510,7 +60530,7 @@ void Unwind_180909400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x48),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x48),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -60596,7 +60616,7 @@ void Unwind_180909470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x70) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x70),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x70),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -61006,7 +61026,7 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61022,7 +61042,7 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -61042,7 +61062,7 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61058,7 +61078,7 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -61078,7 +61098,7 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61094,7 +61114,7 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -61114,7 +61134,7 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61130,7 +61150,7 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -61150,7 +61170,7 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61166,7 +61186,7 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -61310,7 +61330,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(calculatedOffset + 0x81d8,*(undefined8 *)(calculatedOffset + 0x81e8),param_3,param_4,0xfffffffffffffffe);
+  FUN_180058370(calculatedOffset + 0x81d8,*(undefined8 *)(calculatedOffset + 0x81e8),param_3,param_4,SystemCleanupFlagfffffffe);
   FUN_180058370(calculatedOffset + 0x81a8,*(undefined8 *)(calculatedOffset + 0x81b8));
   FUN_180058370(calculatedOffset + 0x8178,*(undefined8 *)(calculatedOffset + 0x8188));
   FUN_1808fc8a8(calculatedOffset + 0x80d8,0x20,5,FUN_180046860);
@@ -61468,7 +61488,7 @@ void Unwind_180909790(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ae2c0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61478,7 +61498,7 @@ void Unwind_1809097a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ae2c0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61491,7 +61511,7 @@ void Unwind_1809097b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x20),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x20),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -61507,7 +61527,7 @@ void Unwind_1809097c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x20),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x20),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -61520,7 +61540,7 @@ void Unwind_1809097d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61531,7 +61551,7 @@ void Unwind_1809097e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800ae2c0(*(longlong *)(param_2 + 0x40) + 0x30,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x40),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61553,7 +61573,7 @@ void Unwind_180909800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 200);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0xb8,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0xb8,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -61569,7 +61589,7 @@ void Unwind_180909820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0xf8);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0xe8,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0xe8,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -61582,7 +61602,7 @@ void Unwind_180909840(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ae2c0(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61592,7 +61612,7 @@ void Unwind_180909850(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ae2c0(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61610,7 +61630,7 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61626,7 +61646,7 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -61639,7 +61659,7 @@ void Unwind_180909870(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_18005d260(*(longlong *)(param_2 + 0x40) + 0x90,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0xa0),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61649,7 +61669,7 @@ void Unwind_180909890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_18005d260(*(longlong *)(param_2 + 0x50),*(undefined8 *)(*(longlong *)(param_2 + 0x50) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61659,7 +61679,7 @@ void Unwind_1809098a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_18005d260(*(longlong *)(param_2 + 0x50),*(undefined8 *)(*(longlong *)(param_2 + 0x50) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61669,7 +61689,7 @@ void Unwind_1809098b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_18005d260(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61679,7 +61699,7 @@ void Unwind_1809098c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_18005d260(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -61817,7 +61837,7 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61833,7 +61853,7 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -61885,7 +61905,7 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61901,7 +61921,7 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -61921,7 +61941,7 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -61937,7 +61957,7 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -62183,7 +62203,7 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -62199,7 +62219,7 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -62452,7 +62472,7 @@ void Unwind_180909de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x40) + 0x740,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x750),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62555,7 +62575,7 @@ void Unwind_180909f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0xaa0);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x40) + 0xa90,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800b9210(*(longlong *)(param_2 + 0x40) + 0xa90,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -62582,7 +62602,7 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
   }
   resourcePointer = *(undefined8 **)(calculatedOffset + 0xac0);
   if (resourcePointer != (undefined8 *)0x0) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -62598,7 +62618,7 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -62622,7 +62642,7 @@ void Unwind_180909fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800b9270(*(longlong *)(param_2 + 0x40) + 0xba8,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 3000),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62633,7 +62653,7 @@ void Unwind_180909fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x40) + 0xbd8,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0xbe8),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62642,7 +62662,7 @@ void Unwind_180909fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180909fe0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0xc08,8,10,FUN_180045af0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0xc08,8,10,FUN_180045af0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62707,7 +62727,7 @@ void Unwind_18090a0b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9270(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62717,7 +62737,7 @@ void Unwind_18090a0c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9270(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62730,7 +62750,7 @@ void Unwind_18090a0d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -62747,7 +62767,7 @@ void Unwind_18090a0e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -62761,7 +62781,7 @@ void Unwind_18090a0f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62771,7 +62791,7 @@ void Unwind_18090a100(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x48),*(undefined8 *)(*(longlong *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62781,7 +62801,7 @@ void Unwind_18090a110(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62791,7 +62811,7 @@ void Unwind_18090a120(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62804,7 +62824,7 @@ void Unwind_18090a130(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800b9210(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -62821,7 +62841,7 @@ void Unwind_18090a140(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800b9210(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -62835,7 +62855,7 @@ void Unwind_18090a150(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9270(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -62845,7 +62865,7 @@ void Unwind_18090a160(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9270(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63017,7 +63037,7 @@ void Unwind_18090a2d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x60) + 0x740,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x60) + 0x750),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63120,7 +63140,7 @@ void Unwind_18090a430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xaa0);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x60) + 0xa90,*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800b9210(*(longlong *)(param_2 + 0x60) + 0xa90,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -63147,7 +63167,7 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
   }
   resourcePointer = *(undefined8 **)(calculatedOffset + 0xac0);
   if (resourcePointer != (undefined8 *)0x0) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -63163,7 +63183,7 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -63187,7 +63207,7 @@ void Unwind_18090a490(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800b9270(*(longlong *)(param_2 + 0x60) + 0xba8,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x60) + 3000),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63198,7 +63218,7 @@ void Unwind_18090a4b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x60) + 0xbd8,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x60) + 0xbe8),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63207,7 +63227,7 @@ void Unwind_18090a4b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a4d0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x60) + 0xc08,8,10,FUN_180045af0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x60) + 0xc08,8,10,FUN_180045af0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63318,7 +63338,7 @@ void Unwind_18090a580(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63328,7 +63348,7 @@ void Unwind_18090a590(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9030(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63341,7 +63361,7 @@ void Unwind_18090a5a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800b9210(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -63358,7 +63378,7 @@ void Unwind_18090a5b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
   if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,0xfffffffffffffffe);
+    FUN_1800b9210(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_1800b94f0(puVar1);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
@@ -63380,7 +63400,7 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -63396,7 +63416,7 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -63416,7 +63436,7 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -63432,7 +63452,7 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -63453,7 +63473,7 @@ void Unwind_18090a5f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9270(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63463,7 +63483,7 @@ void Unwind_18090a600(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800b9270(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -63482,7 +63502,7 @@ void Unwind_18090a640(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x38) != (code *)0x0) {
-    (**(code **)(param_2 + 0x38))(param_2 + 0x28,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x38))(param_2 + 0x28,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -63493,7 +63513,7 @@ void Unwind_18090a650(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x38) != (code *)0x0) {
-    (**(code **)(param_2 + 0x38))(param_2 + 0x28,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x38))(param_2 + 0x28,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -63624,7 +63644,7 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -63640,7 +63660,7 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -63674,7 +63694,7 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -63690,7 +63710,7 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -63853,7 +63873,7 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -63869,7 +63889,7 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -63889,7 +63909,7 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -63905,7 +63925,7 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -64113,7 +64133,7 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -64129,7 +64149,7 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -64151,7 +64171,7 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -64167,7 +64187,7 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -64189,7 +64209,7 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -64205,7 +64225,7 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -64227,7 +64247,7 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -64243,7 +64263,7 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -64265,7 +64285,7 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
   FUN_1800ba100();
   if ((1 < *(ulonglong *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(undefined8 **)(calculatedOffset + 8), resourcePointer != (undefined8 *)0x0)) {
-    memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+    memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
     if (memoryBaseAddress != 0) {
       calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
       calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -64281,7 +64301,7 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
       }
       else {
         func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                            resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                            resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -66656,7 +66676,7 @@ void Unwind_18090bd30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x58) != (code *)0x0) {
-    (**(code **)(param_2 + 0x58))(param_2 + 0x48,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x58))(param_2 + 0x48,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -66667,7 +66687,7 @@ void Unwind_18090bd40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x58) != (code *)0x0) {
-    (**(code **)(param_2 + 0x58))(param_2 + 0x48,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x58))(param_2 + 0x48,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -67008,7 +67028,7 @@ void Unwind_18090bfb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x20);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = (undefined8 *)pdataContext[1];
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -67027,7 +67047,7 @@ void Unwind_18090bfc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800c2ca0(*(longlong *)(param_2 + 0x20) + 0x20,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x30),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67038,7 +67058,7 @@ void Unwind_18090bfd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800c2ff0(*(longlong *)(param_2 + 0x20) + 0x50,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x60),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67072,7 +67092,7 @@ void Unwind_18090c000(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058370(*(longlong *)(param_2 + 0x20) + 0xa0,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0xb0),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67082,7 +67102,7 @@ void Unwind_18090c020(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800c2ca0(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67092,7 +67112,7 @@ void Unwind_18090c030(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800c2ca0(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67102,7 +67122,7 @@ void Unwind_18090c040(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800c2ff0(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67112,7 +67132,7 @@ void Unwind_18090c050(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800c2ff0(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67145,7 +67165,7 @@ void Unwind_18090c070(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800c2ca0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67155,7 +67175,7 @@ void Unwind_18090c080(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800c2ca0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67165,7 +67185,7 @@ void Unwind_18090c090(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800c2ff0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67175,7 +67195,7 @@ void Unwind_18090c0a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800c2ff0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67298,7 +67318,7 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -67314,7 +67334,7 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -67443,7 +67463,7 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -67459,7 +67479,7 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -67571,7 +67591,7 @@ void Unwind_18090c240(undefined8 param_1,longlong param_2)
 void Unwind_18090c260(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67598,7 +67618,7 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -67614,7 +67634,7 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -67625,7 +67645,7 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
 void Unwind_18090c290(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67634,7 +67654,7 @@ void Unwind_18090c290(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090c2a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(param_2 + 0x48,*(undefined8 *)(param_2 + 0x58),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -67670,7 +67690,7 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -67686,7 +67706,7 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -67706,7 +67726,7 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -67722,7 +67742,7 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -67854,7 +67874,7 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -67870,7 +67890,7 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -67913,7 +67933,7 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -67929,7 +67949,7 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -68251,7 +68271,7 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -68267,7 +68287,7 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -68672,7 +68692,7 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -68688,7 +68708,7 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -68708,7 +68728,7 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -68724,7 +68744,7 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -68904,7 +68924,7 @@ void Unwind_18090c760(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x110) != (code *)0x0) {
-    (**(code **)(param_2 + 0x110))(param_2 + 0x100,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x110))(param_2 + 0x100,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -68926,7 +68946,7 @@ void Unwind_18090c780(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x110) != (code *)0x0) {
-    (**(code **)(param_2 + 0x110))(param_2 + 0x100,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x110))(param_2 + 0x100,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -70833,7 +70853,7 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -70849,7 +70869,7 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -70869,7 +70889,7 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -70885,7 +70905,7 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -70905,7 +70925,7 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -70921,7 +70941,7 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -70941,7 +70961,7 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -70957,7 +70977,7 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -70991,7 +71011,7 @@ void CleanupExceptionAtOffset210(undefined8 ExceptionContext,longlong ExceptionO
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71007,7 +71027,7 @@ void CleanupExceptionAtOffset210(undefined8 ExceptionContext,longlong ExceptionO
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71041,7 +71061,7 @@ void CleanupExceptionAtOffset220(undefined8 ExceptionContext,longlong ExceptionO
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71057,7 +71077,7 @@ void CleanupExceptionAtOffset220(undefined8 ExceptionContext,longlong ExceptionO
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71077,7 +71097,7 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71093,7 +71113,7 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71113,7 +71133,7 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71129,7 +71149,7 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71149,7 +71169,7 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71165,7 +71185,7 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71185,7 +71205,7 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71201,7 +71221,7 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71221,7 +71241,7 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71237,7 +71257,7 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71257,7 +71277,7 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71273,7 +71293,7 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71293,7 +71313,7 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71309,7 +71329,7 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71329,7 +71349,7 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71345,7 +71365,7 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71365,7 +71385,7 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71381,7 +71401,7 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71401,7 +71421,7 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71417,7 +71437,7 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71437,7 +71457,7 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71453,7 +71473,7 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71473,7 +71493,7 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71489,7 +71509,7 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71509,7 +71529,7 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71525,7 +71545,7 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71545,7 +71565,7 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71561,7 +71581,7 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71581,7 +71601,7 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71597,7 +71617,7 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71617,7 +71637,7 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71633,7 +71653,7 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71653,7 +71673,7 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71669,7 +71689,7 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71689,7 +71709,7 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71705,7 +71725,7 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71725,7 +71745,7 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71741,7 +71761,7 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71772,7 +71792,7 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71788,7 +71808,7 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71808,7 +71828,7 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71824,7 +71844,7 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71844,7 +71864,7 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71860,7 +71880,7 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71880,7 +71900,7 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71896,7 +71916,7 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71916,7 +71936,7 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71932,7 +71952,7 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71952,7 +71972,7 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -71968,7 +71988,7 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -71988,7 +72008,7 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72004,7 +72024,7 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72024,7 +72044,7 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72040,7 +72060,7 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72060,7 +72080,7 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72076,7 +72096,7 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72096,7 +72116,7 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72112,7 +72132,7 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72132,7 +72152,7 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72148,7 +72168,7 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72168,7 +72188,7 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72184,7 +72204,7 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72204,7 +72224,7 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72220,7 +72240,7 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72240,7 +72260,7 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72256,7 +72276,7 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72276,7 +72296,7 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72292,7 +72312,7 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72312,7 +72332,7 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72328,7 +72348,7 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72348,7 +72368,7 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72364,7 +72384,7 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72384,7 +72404,7 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72400,7 +72420,7 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72420,7 +72440,7 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72436,7 +72456,7 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72456,7 +72476,7 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72472,7 +72492,7 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72492,7 +72512,7 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72508,7 +72528,7 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72528,7 +72548,7 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72544,7 +72564,7 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72564,7 +72584,7 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72580,7 +72600,7 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72600,7 +72620,7 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72616,7 +72636,7 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72631,7 +72651,7 @@ void Unwind_18090d320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xa88) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xa88),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xa88),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -72645,7 +72665,7 @@ void Unwind_18090d330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xa88) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xa88),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xa88),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -72659,7 +72679,7 @@ void Unwind_18090d340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xa80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xa80),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xa80),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -72673,7 +72693,7 @@ void Unwind_18090d350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xa80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xa80),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xa80),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -72692,7 +72712,7 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72708,7 +72728,7 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72728,7 +72748,7 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72744,7 +72764,7 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72764,7 +72784,7 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72780,7 +72800,7 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72800,7 +72820,7 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72816,7 +72836,7 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72836,7 +72856,7 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72852,7 +72872,7 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72872,7 +72892,7 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72888,7 +72908,7 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72908,7 +72928,7 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72924,7 +72944,7 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72944,7 +72964,7 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72960,7 +72980,7 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -72980,7 +73000,7 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -72996,7 +73016,7 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73016,7 +73036,7 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73032,7 +73052,7 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73052,7 +73072,7 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73068,7 +73088,7 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73088,7 +73108,7 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73104,7 +73124,7 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73124,7 +73144,7 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73140,7 +73160,7 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73160,7 +73180,7 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73176,7 +73196,7 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73196,7 +73216,7 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73212,7 +73232,7 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73232,7 +73252,7 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73248,7 +73268,7 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73268,7 +73288,7 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73284,7 +73304,7 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73304,7 +73324,7 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73320,7 +73340,7 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73340,7 +73360,7 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73356,7 +73376,7 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73376,7 +73396,7 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73392,7 +73412,7 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73412,7 +73432,7 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73428,7 +73448,7 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73448,7 +73468,7 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73464,7 +73484,7 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73484,7 +73504,7 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73500,7 +73520,7 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73520,7 +73540,7 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73536,7 +73556,7 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73556,7 +73576,7 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73572,7 +73592,7 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73592,7 +73612,7 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -73608,7 +73628,7 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -73623,7 +73643,7 @@ void Unwind_18090d500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x28) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x28),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x28),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -73637,7 +73657,7 @@ void Unwind_18090d510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xe8) + 0xd0);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xe8) + 0xc0,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xe8) + 0xc0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -73912,7 +73932,7 @@ void Unwind_18090d660(undefined8 param_1,longlong param_2)
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0x40);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   if (*(longlong **)(validationContext + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(validationContext + 0xed0) + 0x38))();
   }
@@ -73937,7 +73957,7 @@ void Unwind_18090d660(undefined8 param_1,longlong param_2)
 void Unwind_18090d680(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0xee8,0x18,2,FUN_1800e7f20,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0xee8,0x18,2,FUN_1800e7f20,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74086,7 +74106,7 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -74102,7 +74122,7 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -74275,7 +74295,7 @@ void Unwind_18090d9e0(undefined8 param_1,longlong param_2)
 void Unwind_18090da20(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x1a18,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x1a18,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74284,7 +74304,7 @@ void Unwind_18090da20(undefined8 param_1,longlong param_2)
 void Unwind_18090da40(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x2378,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x2378,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74293,7 +74313,7 @@ void Unwind_18090da40(undefined8 param_1,longlong param_2)
 void Unwind_18090da60(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x2810,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x2810,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74316,7 +74336,7 @@ void Unwind_18090da80(undefined8 param_1,longlong param_2)
 void Unwind_18090daa0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x3d38,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x3d38,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74325,7 +74345,7 @@ void Unwind_18090daa0(undefined8 param_1,longlong param_2)
 void Unwind_18090dac0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 18000,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 18000,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74334,7 +74354,7 @@ void Unwind_18090dac0(undefined8 param_1,longlong param_2)
 void Unwind_18090dae0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x5868,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x5868,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74343,7 +74363,7 @@ void Unwind_18090dae0(undefined8 param_1,longlong param_2)
 void Unwind_18090db00(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x6a80,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x6a80,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74352,7 +74372,7 @@ void Unwind_18090db00(undefined8 param_1,longlong param_2)
 void Unwind_18090db20(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x6b28,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x6b28,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74361,7 +74381,7 @@ void Unwind_18090db20(undefined8 param_1,longlong param_2)
 void Unwind_18090db40(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x7440,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x7440,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74370,7 +74390,7 @@ void Unwind_18090db40(undefined8 param_1,longlong param_2)
 void Unwind_18090db60(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x74e8,0x98,2,FUN_1800e7be0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x74e8,0x98,2,FUN_1800e7be0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74379,7 +74399,7 @@ void Unwind_18090db60(undefined8 param_1,longlong param_2)
 void Unwind_18090db80(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x7620,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0x7620,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74609,7 +74629,7 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -74625,7 +74645,7 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -74686,7 +74706,7 @@ void Unwind_18090de80(undefined8 param_1,longlong param_2)
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0xe0);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   if (*(longlong **)(validationContext + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(validationContext + 0xed0) + 0x38))();
   }
@@ -74711,7 +74731,7 @@ void Unwind_18090de80(undefined8 param_1,longlong param_2)
 void Unwind_18090dea0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0xee8,0x18,2,FUN_1800e7f20,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0xee8,0x18,2,FUN_1800e7f20,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -74860,7 +74880,7 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -74876,7 +74896,7 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -75049,7 +75069,7 @@ void Unwind_18090e200(undefined8 param_1,longlong param_2)
 void Unwind_18090e240(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x1a18,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x1a18,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75058,7 +75078,7 @@ void Unwind_18090e240(undefined8 param_1,longlong param_2)
 void Unwind_18090e260(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x2378,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x2378,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75067,7 +75087,7 @@ void Unwind_18090e260(undefined8 param_1,longlong param_2)
 void Unwind_18090e280(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x2810,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x2810,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75090,7 +75110,7 @@ void Unwind_18090e2a0(undefined8 param_1,longlong param_2)
 void Unwind_18090e2c0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x3d38,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x3d38,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75099,7 +75119,7 @@ void Unwind_18090e2c0(undefined8 param_1,longlong param_2)
 void Unwind_18090e2e0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 18000,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 18000,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75108,7 +75128,7 @@ void Unwind_18090e2e0(undefined8 param_1,longlong param_2)
 void Unwind_18090e300(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x5868,0x908,2,FUN_1800e7d00,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x5868,0x908,2,FUN_1800e7d00,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75117,7 +75137,7 @@ void Unwind_18090e300(undefined8 param_1,longlong param_2)
 void Unwind_18090e320(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x6a80,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x6a80,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75126,7 +75146,7 @@ void Unwind_18090e320(undefined8 param_1,longlong param_2)
 void Unwind_18090e340(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x6b28,0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x6b28,0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75135,7 +75155,7 @@ void Unwind_18090e340(undefined8 param_1,longlong param_2)
 void Unwind_18090e360(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x7440,0x50,2,FUN_1800e7c40,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x7440,0x50,2,FUN_1800e7c40,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75144,7 +75164,7 @@ void Unwind_18090e360(undefined8 param_1,longlong param_2)
 void Unwind_18090e380(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x74e8,0x98,2,FUN_1800e7be0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x74e8,0x98,2,FUN_1800e7be0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75153,7 +75173,7 @@ void Unwind_18090e380(undefined8 param_1,longlong param_2)
 void Unwind_18090e3a0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x7620,0x248,2,FUN_1800e7b80,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0xe0) + 0x7620,0x248,2,FUN_1800e7b80,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75171,7 +75191,7 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -75187,7 +75207,7 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -75207,7 +75227,7 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -75223,7 +75243,7 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -75275,7 +75295,7 @@ void Unwind_18090e400(undefined8 param_1,longlong param_2)
 void Unwind_18090e410(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(undefined8 *)(param_2 + 0x30),0x488,2,FUN_1800e7ca0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(undefined8 *)(param_2 + 0x30),0x488,2,FUN_1800e7ca0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75284,7 +75304,7 @@ void Unwind_18090e410(undefined8 param_1,longlong param_2)
 void Unwind_18090e420(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x30) + 0x918,0x128,2,FUN_1801b9690,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x30) + 0x918,0x128,2,FUN_1801b9690,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -75293,7 +75313,7 @@ void Unwind_18090e420(undefined8 param_1,longlong param_2)
 void Unwind_18090e440(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x30) + 0xb70,0x128,2,FUN_1801b9690,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x30) + 0xb70,0x128,2,FUN_1801b9690,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -76320,7 +76340,7 @@ void Unwind_18090e9c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x40);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x38); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -76341,7 +76361,7 @@ void Unwind_18090e9d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x40);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x38); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -76566,7 +76586,7 @@ void Unwind_18090eb60(undefined8 param_1,longlong param_2)
 void Unwind_18090eb70(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(param_2 + 0xa0,8,0x10,FUN_180045af0,0xfffffffffffffffe);
+  FUN_1808fc8a8(param_2 + 0xa0,8,0x10,FUN_180045af0,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -76816,7 +76836,7 @@ void Unwind_18090ed00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x80),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x80),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -76830,7 +76850,7 @@ void Unwind_18090ed10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x80) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x80),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x80),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -76962,7 +76982,7 @@ void Unwind_18090ed90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x178) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x178),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x178),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -76976,7 +76996,7 @@ void Unwind_18090eda0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x150) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x150),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x150),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77026,7 +77046,7 @@ void Unwind_18090ede0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x88) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x88) + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x88) + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77076,7 +77096,7 @@ void Unwind_18090ee20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x150) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x150),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x150),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77104,7 +77124,7 @@ void Unwind_18090ee40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x98) + 0x30);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x98) + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x98) + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77154,7 +77174,7 @@ void Unwind_18090ee80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0xe8) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xe8),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0xe8),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77168,7 +77188,7 @@ void Unwind_18090ee90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x178) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x178),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x178),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77205,7 +77225,7 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -77221,7 +77241,7 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -77250,7 +77270,7 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -77266,7 +77286,7 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -77300,7 +77320,7 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -77316,7 +77336,7 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -77350,7 +77370,7 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -77366,7 +77386,7 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -77386,7 +77406,7 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -77402,7 +77422,7 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -77431,7 +77451,7 @@ void Unwind_18090ef80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x78),0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x78),0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77452,7 +77472,7 @@ void Unwind_18090efc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800ee130(*(longlong *)(param_2 + 0x70) + 0x2d0,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x2e0),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77540,7 +77560,7 @@ void Unwind_18090f020(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ee130(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77550,7 +77570,7 @@ void Unwind_18090f030(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ee130(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77683,7 +77703,7 @@ void Unwind_18090f080(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ee080(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77693,7 +77713,7 @@ void Unwind_18090f090(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ee080(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77703,7 +77723,7 @@ void Unwind_18090f0a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ee130(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77713,7 +77733,7 @@ void Unwind_18090f0b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ee130(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77802,7 +77822,7 @@ void Unwind_18090f0e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   pcVar1 = *(code **)(*(longlong *)(param_2 + 0x40) + 0x68);
   if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x58,0,0,param_4,0xfffffffffffffffe);
+    (*pcVar1)(*(longlong *)(param_2 + 0x40) + 0x58,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -77813,7 +77833,7 @@ void Unwind_18090f0f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ee080(*(longlong *)(param_2 + 0x20),*(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -77823,7 +77843,7 @@ void Unwind_18090f100(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800ee080(*(longlong *)(param_2 + 0x20),*(undefined8 *)(*(longlong *)(param_2 + 0x20) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78020,7 +78040,7 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78036,7 +78056,7 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78056,7 +78076,7 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78072,7 +78092,7 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78114,7 +78134,7 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78130,7 +78150,7 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78150,7 +78170,7 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78166,7 +78186,7 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78186,7 +78206,7 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78202,7 +78222,7 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78222,7 +78242,7 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78238,7 +78258,7 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78258,7 +78278,7 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78274,7 +78294,7 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78294,7 +78314,7 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78310,7 +78330,7 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78351,7 +78371,7 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -78367,7 +78387,7 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -78461,7 +78481,7 @@ void Unwind_18090f390(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800f7260(*(longlong *)(param_2 + 0x60) + 0x2c8,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x60) + 0x2d8),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78679,7 +78699,7 @@ void Unwind_18090f590(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800f7320(*(longlong *)(param_2 + 0x60) + 0x470,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x60) + 0x480),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78732,7 +78752,7 @@ void Unwind_18090f610(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x60) + 0x40e0,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x60) + 0x40f0),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78743,7 +78763,7 @@ void Unwind_18090f630(undefined8 param_1,longlong param_2,undefined8 param_3,und
 {
   FUN_180058210(*(longlong *)(param_2 + 0x60) + 0x4110,
                 *(undefined8 *)(*(longlong *)(param_2 + 0x60) + 0x4120),param_3,param_4,
-                0xfffffffffffffffe);
+                SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78812,7 +78832,7 @@ void Unwind_18090f6a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f7260(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78822,7 +78842,7 @@ void Unwind_18090f6b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f7260(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78925,7 +78945,7 @@ void Unwind_18090f780(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f7320(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78935,7 +78955,7 @@ void Unwind_18090f790(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f7320(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78945,7 +78965,7 @@ void Unwind_18090f7a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78955,7 +78975,7 @@ void Unwind_18090f7b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78965,7 +78985,7 @@ void Unwind_18090f7c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058210(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -78975,7 +78995,7 @@ void Unwind_18090f7d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_180058210(*(longlong *)(param_2 + 0x68),*(undefined8 *)(*(longlong *)(param_2 + 0x68) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79006,7 +79026,7 @@ void Unwind_18090f7f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f7260(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79016,7 +79036,7 @@ void Unwind_18090f800(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f7260(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79035,7 +79055,7 @@ void Unwind_18090f840(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f7320(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79045,7 +79065,7 @@ void Unwind_18090f850(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f7320(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79055,7 +79075,7 @@ void Unwind_18090f860(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79065,7 +79085,7 @@ void Unwind_18090f870(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+                param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79542,7 +79562,7 @@ void Unwind_18090fb00(undefined8 param_1,longlong param_2)
 void Unwind_18090fb10(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_1800f74f0(param_2 + 0x58,*(undefined8 *)(param_2 + 0x68),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800f74f0(param_2 + 0x58,*(undefined8 *)(param_2 + 0x68),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79560,7 +79580,7 @@ void Unwind_18090fb20(undefined8 param_1,longlong param_2)
 void Unwind_18090fb30(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_1800f74f0(param_2 + 0x58,*(undefined8 *)(param_2 + 0x68),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800f74f0(param_2 + 0x58,*(undefined8 *)(param_2 + 0x68),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -79569,7 +79589,7 @@ void Unwind_18090fb30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090fb40(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  FUN_1800f74f0(param_2 + 0x58,*(undefined8 *)(param_2 + 0x68),param_3,param_4,0xfffffffffffffffe);
+  FUN_1800f74f0(param_2 + 0x58,*(undefined8 *)(param_2 + 0x68),param_3,param_4,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -80149,7 +80169,7 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -80165,7 +80185,7 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -80926,7 +80946,7 @@ void Unwind_1809102e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xf0);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xe8); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -80947,7 +80967,7 @@ void Unwind_1809102f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xd0);
   for (resourcePointer = *(undefined8 **)(param_2 + 200); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -80968,7 +80988,7 @@ void Unwind_180910300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xf0);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xe8); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -80991,7 +81011,7 @@ void Unwind_180910310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x150);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = (undefined8 *)pdataContext[1];
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -81017,7 +81037,7 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81033,7 +81053,7 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81048,7 +81068,7 @@ void Unwind_180910330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xd0);
   for (resourcePointer = *(undefined8 **)(param_2 + 200); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -81074,7 +81094,7 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81090,7 +81110,7 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81110,7 +81130,7 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81126,7 +81146,7 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81185,7 +81205,7 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81201,7 +81221,7 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81390,7 +81410,7 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81406,7 +81426,7 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81426,7 +81446,7 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81442,7 +81462,7 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81611,7 +81631,7 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81627,7 +81647,7 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81647,7 +81667,7 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81663,7 +81683,7 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81745,7 +81765,7 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81761,7 +81781,7 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81805,7 +81825,7 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81821,7 +81841,7 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81863,7 +81883,7 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81879,7 +81899,7 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81899,7 +81919,7 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81915,7 +81935,7 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81935,7 +81955,7 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -81951,7 +81971,7 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -81966,7 +81986,7 @@ void Unwind_1809107a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xa00) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x9c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9d0) != 0) {
@@ -81996,7 +82016,7 @@ void Unwind_1809107c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xa70) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa70))(validationContext + 0xa60,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa70))(validationContext + 0xa60,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xa38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa40) != 0) {
@@ -82026,7 +82046,7 @@ void Unwind_1809107e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xae0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xae0))(validationContext + 0xad0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xae0))(validationContext + 0xad0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xaa8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xab0) != 0) {
@@ -82056,7 +82076,7 @@ void Unwind_180910800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xb50) != (code *)0x0) {
-    (**(code **)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xb18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb20) != 0) {
@@ -82086,7 +82106,7 @@ void Unwind_180910820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xbc0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xb88) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb90) != 0) {
@@ -82116,7 +82136,7 @@ void Unwind_180910840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xc30) != (code *)0x0) {
-    (**(code **)(validationContext + 0xc30))(validationContext + 0xc20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xc30))(validationContext + 0xc20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xbf8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc00) != 0) {
@@ -82146,7 +82166,7 @@ void Unwind_180910860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xca0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xca0))(validationContext + 0xc90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xca0))(validationContext + 0xc90,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xc68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc70) != 0) {
@@ -82176,7 +82196,7 @@ void Unwind_180910880(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xd10) != (code *)0x0) {
-    (**(code **)(validationContext + 0xd10))(validationContext + 0xd00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xd10))(validationContext + 0xd00,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xcd8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xce0) != 0) {
@@ -82206,7 +82226,7 @@ void Unwind_1809108a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xd80) != (code *)0x0) {
-    (**(code **)(validationContext + 0xd80))(validationContext + 0xd70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xd80))(validationContext + 0xd70,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xd48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd50) != 0) {
@@ -82236,7 +82256,7 @@ void Unwind_1809108c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xdf0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xdb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdc0) != 0) {
@@ -82266,7 +82286,7 @@ void Unwind_1809108e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xe60) != (code *)0x0) {
-    (**(code **)(validationContext + 0xe60))(validationContext + 0xe50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xe60))(validationContext + 0xe50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xe28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe30) != 0) {
@@ -82296,7 +82316,7 @@ void Unwind_180910900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xed0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xed0))(validationContext + 0xec0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xed0))(validationContext + 0xec0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xe98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xea0) != 0) {
@@ -82326,7 +82346,7 @@ void Unwind_180910920(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xf40) != (code *)0x0) {
-    (**(code **)(validationContext + 0xf40))(validationContext + 0xf30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xf40))(validationContext + 0xf30,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xf08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf10) != 0) {
@@ -82356,7 +82376,7 @@ void Unwind_180910940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0xfb0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xfb0))(validationContext + 4000,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xfb0))(validationContext + 4000,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xf78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf80) != 0) {
@@ -82386,7 +82406,7 @@ void Unwind_180910960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1020) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1020))(validationContext + 0x1010,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1020))(validationContext + 0x1010,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xfe8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xff0) != 0) {
@@ -82416,7 +82436,7 @@ void Unwind_180910980(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1090) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1090))(validationContext + 0x1080,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1090))(validationContext + 0x1080,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1058) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1060) != 0) {
@@ -82446,7 +82466,7 @@ void Unwind_1809109a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1100) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x10c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10d0) != 0) {
@@ -82476,7 +82496,7 @@ void Unwind_1809109c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1170) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1170))(validationContext + 0x1160,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1170))(validationContext + 0x1160,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1138) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1140) != 0) {
@@ -82506,7 +82526,7 @@ void Unwind_1809109e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x11e0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x11a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11b0) != 0) {
@@ -82536,7 +82556,7 @@ void Unwind_180910a00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1250) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1250))(validationContext + 0x1240,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1250))(validationContext + 0x1240,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1218) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1220) != 0) {
@@ -82566,7 +82586,7 @@ void Unwind_180910a20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x12c0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1288) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1290) != 0) {
@@ -82596,7 +82616,7 @@ void Unwind_180910a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1330) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1330))(validationContext + 0x1320,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1330))(validationContext + 0x1320,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x12f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1300) != 0) {
@@ -82626,7 +82646,7 @@ void Unwind_180910a60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x13a0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1368) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1370) != 0) {
@@ -82656,7 +82676,7 @@ void Unwind_180910a80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1410) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1410))(validationContext + 0x1400,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1410))(validationContext + 0x1400,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x13d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x13e0) != 0) {
@@ -82686,7 +82706,7 @@ void Unwind_180910aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1480) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1480))(validationContext + 0x1470,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1480))(validationContext + 0x1470,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1448) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1450) != 0) {
@@ -82716,7 +82736,7 @@ void Unwind_180910ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x14f0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x14b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x14c0) != 0) {
@@ -82746,7 +82766,7 @@ void Unwind_180910ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1560) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1560))(validationContext + 0x1550,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1560))(validationContext + 0x1550,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1528) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1530) != 0) {
@@ -82776,7 +82796,7 @@ void Unwind_180910b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x15d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1598) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x15a0) != 0) {
@@ -82806,7 +82826,7 @@ void Unwind_180910b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1640) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1640))(validationContext + 0x1630,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1640))(validationContext + 0x1630,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1608) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1610) != 0) {
@@ -82836,7 +82856,7 @@ void Unwind_180910b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x16b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1678) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1680) != 0) {
@@ -82866,7 +82886,7 @@ void Unwind_180910b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1720) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1720))(validationContext + 0x1710,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1720))(validationContext + 0x1710,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x16e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x16f0) != 0) {
@@ -82896,7 +82916,7 @@ void Unwind_180910b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1790) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1790))(validationContext + 0x1780,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1790))(validationContext + 0x1780,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1758) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1760) != 0) {
@@ -82926,7 +82946,7 @@ void Unwind_180910ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1800) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x17c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x17d0) != 0) {
@@ -82956,7 +82976,7 @@ void Unwind_180910bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1870) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1870))(validationContext + 0x1860,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1870))(validationContext + 0x1860,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1838) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1840) != 0) {
@@ -82986,7 +83006,7 @@ void Unwind_180910be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x18e0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x18a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x18b0) != 0) {
@@ -83016,7 +83036,7 @@ void Unwind_180910c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1950) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1950))(validationContext + 0x1940,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1950))(validationContext + 0x1940,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1918) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1920) != 0) {
@@ -83046,7 +83066,7 @@ void Unwind_180910c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x19c0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1988) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1990) != 0) {
@@ -83076,7 +83096,7 @@ void Unwind_180910c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1a30) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x19f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a00) != 0) {
@@ -83106,7 +83126,7 @@ void Unwind_180910c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1aa0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1a68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a70) != 0) {
@@ -83136,7 +83156,7 @@ void Unwind_180910c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1b10) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1ad8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ae0) != 0) {
@@ -83166,7 +83186,7 @@ void Unwind_180910ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1b80) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1b48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1b50) != 0) {
@@ -83196,7 +83216,7 @@ void Unwind_180910cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1bf0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1bb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1bc0) != 0) {
@@ -83226,7 +83246,7 @@ void Unwind_180910ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1c60) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1c28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c30) != 0) {
@@ -83256,7 +83276,7 @@ void Unwind_180910d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1cd0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1c98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ca0) != 0) {
@@ -83286,7 +83306,7 @@ void Unwind_180910d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1d40) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1d08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d10) != 0) {
@@ -83316,7 +83336,7 @@ void Unwind_180910d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1db0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1d78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d80) != 0) {
@@ -83346,7 +83366,7 @@ void Unwind_180910d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1e20) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1de8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1df0) != 0) {
@@ -83376,7 +83396,7 @@ void Unwind_180910d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1e90) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1e58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1e60) != 0) {
@@ -83406,7 +83426,7 @@ void Unwind_180910da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1f00) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1ec8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ed0) != 0) {
@@ -83436,7 +83456,7 @@ void Unwind_180910dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1f70) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1f38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 8000) != 0) {
@@ -83466,7 +83486,7 @@ void Unwind_180910de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x1fe0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1fa8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1fb0) != 0) {
@@ -83496,7 +83516,7 @@ void Unwind_180910e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2050) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2050))(validationContext + 0x2040,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2050))(validationContext + 0x2040,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2018) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2020) != 0) {
@@ -83526,7 +83546,7 @@ void Unwind_180910e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x20c0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2088) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2090) != 0) {
@@ -83556,7 +83576,7 @@ void Unwind_180910e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2130) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2130))(validationContext + 0x2120,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2130))(validationContext + 0x2120,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x20f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2100) != 0) {
@@ -83586,7 +83606,7 @@ void Unwind_180910e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x21a0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2168) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2170) != 0) {
@@ -83616,7 +83636,7 @@ void Unwind_180910e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2210) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2210))(validationContext + 0x2200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2210))(validationContext + 0x2200,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x21d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x21e0) != 0) {
@@ -83646,7 +83666,7 @@ void Unwind_180910ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2280) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2280))(validationContext + 0x2270,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2280))(validationContext + 0x2270,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2248) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2250) != 0) {
@@ -83676,7 +83696,7 @@ void Unwind_180910ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x22f0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x22b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x22c0) != 0) {
@@ -83706,7 +83726,7 @@ void Unwind_180910ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2360) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2360))(validationContext + 0x2350,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2360))(validationContext + 0x2350,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 9000) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2330) != 0) {
@@ -83736,7 +83756,7 @@ void Unwind_180910f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x23d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2398) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x23a0) != 0) {
@@ -83766,7 +83786,7 @@ void Unwind_180910f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2440) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2440))(validationContext + 0x2430,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2440))(validationContext + 0x2430,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2408) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2410) != 0) {
@@ -83796,7 +83816,7 @@ void Unwind_180910f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x24b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2478) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2480) != 0) {
@@ -83826,7 +83846,7 @@ void Unwind_180910f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2520) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2520))(validationContext + 0x2510,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2520))(validationContext + 0x2510,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x24e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x24f0) != 0) {
@@ -83856,7 +83876,7 @@ void Unwind_180910f80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2590) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2590))(validationContext + 0x2580,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2590))(validationContext + 0x2580,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2558) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2560) != 0) {
@@ -83886,7 +83906,7 @@ void Unwind_180910fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x80);
   if (*(code **)(validationContext + 0x2600) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x25c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x25d0) != 0) {
@@ -83918,7 +83938,7 @@ void Unwind_180910fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x2610);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x2618);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -83941,7 +83961,7 @@ void Unwind_180910fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x2630);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x2638);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -83962,7 +83982,7 @@ void Unwind_180911000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xa00) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa00))(validationContext + 0x9f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x9c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9d0) != 0) {
@@ -83992,7 +84012,7 @@ void Unwind_180911020(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xa70) != (code *)0x0) {
-    (**(code **)(validationContext + 0xa70))(validationContext + 0xa60,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xa70))(validationContext + 0xa60,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xa38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa40) != 0) {
@@ -84022,7 +84042,7 @@ void Unwind_180911040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xae0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xae0))(validationContext + 0xad0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xae0))(validationContext + 0xad0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xaa8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xab0) != 0) {
@@ -84052,7 +84072,7 @@ void Unwind_180911060(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xb50) != (code *)0x0) {
-    (**(code **)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xb50))(validationContext + 0xb40,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xb18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb20) != 0) {
@@ -84082,7 +84102,7 @@ void Unwind_180911080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xbc0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xbc0))(validationContext + 0xbb0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xb88) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb90) != 0) {
@@ -84112,7 +84132,7 @@ void Unwind_1809110a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xc30) != (code *)0x0) {
-    (**(code **)(validationContext + 0xc30))(validationContext + 0xc20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xc30))(validationContext + 0xc20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xbf8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc00) != 0) {
@@ -84142,7 +84162,7 @@ void Unwind_1809110c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xca0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xca0))(validationContext + 0xc90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xca0))(validationContext + 0xc90,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xc68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc70) != 0) {
@@ -84172,7 +84192,7 @@ void Unwind_1809110e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xd10) != (code *)0x0) {
-    (**(code **)(validationContext + 0xd10))(validationContext + 0xd00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xd10))(validationContext + 0xd00,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xcd8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xce0) != 0) {
@@ -84202,7 +84222,7 @@ void Unwind_180911100(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xd80) != (code *)0x0) {
-    (**(code **)(validationContext + 0xd80))(validationContext + 0xd70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xd80))(validationContext + 0xd70,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xd48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd50) != 0) {
@@ -84232,7 +84252,7 @@ void Unwind_180911120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xdf0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xdf0))(validationContext + 0xde0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xdb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdc0) != 0) {
@@ -84262,7 +84282,7 @@ void Unwind_180911140(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xe60) != (code *)0x0) {
-    (**(code **)(validationContext + 0xe60))(validationContext + 0xe50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xe60))(validationContext + 0xe50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xe28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe30) != 0) {
@@ -84292,7 +84312,7 @@ void Unwind_180911160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xed0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xed0))(validationContext + 0xec0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xed0))(validationContext + 0xec0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xe98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xea0) != 0) {
@@ -84322,7 +84342,7 @@ void Unwind_180911180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xf40) != (code *)0x0) {
-    (**(code **)(validationContext + 0xf40))(validationContext + 0xf30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xf40))(validationContext + 0xf30,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xf08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf10) != 0) {
@@ -84352,7 +84372,7 @@ void Unwind_1809111a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0xfb0) != (code *)0x0) {
-    (**(code **)(validationContext + 0xfb0))(validationContext + 4000,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0xfb0))(validationContext + 4000,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xf78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf80) != 0) {
@@ -84382,7 +84402,7 @@ void Unwind_1809111c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1020) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1020))(validationContext + 0x1010,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1020))(validationContext + 0x1010,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0xfe8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xff0) != 0) {
@@ -84412,7 +84432,7 @@ void Unwind_1809111e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1090) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1090))(validationContext + 0x1080,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1090))(validationContext + 0x1080,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1058) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1060) != 0) {
@@ -84442,7 +84462,7 @@ void Unwind_180911200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1100) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1100))(validationContext + 0x10f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x10c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10d0) != 0) {
@@ -84472,7 +84492,7 @@ void Unwind_180911220(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1170) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1170))(validationContext + 0x1160,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1170))(validationContext + 0x1160,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1138) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1140) != 0) {
@@ -84502,7 +84522,7 @@ void Unwind_180911240(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x11e0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x11e0))(validationContext + 0x11d0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x11a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11b0) != 0) {
@@ -84532,7 +84552,7 @@ void Unwind_180911260(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1250) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1250))(validationContext + 0x1240,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1250))(validationContext + 0x1240,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1218) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1220) != 0) {
@@ -84562,7 +84582,7 @@ void Unwind_180911280(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x12c0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x12c0))(validationContext + 0x12b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1288) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1290) != 0) {
@@ -84592,7 +84612,7 @@ void Unwind_1809112a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1330) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1330))(validationContext + 0x1320,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1330))(validationContext + 0x1320,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x12f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1300) != 0) {
@@ -84622,7 +84642,7 @@ void Unwind_1809112c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x13a0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x13a0))(validationContext + 0x1390,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1368) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1370) != 0) {
@@ -84652,7 +84672,7 @@ void Unwind_1809112e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1410) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1410))(validationContext + 0x1400,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1410))(validationContext + 0x1400,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x13d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x13e0) != 0) {
@@ -84682,7 +84702,7 @@ void Unwind_180911300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1480) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1480))(validationContext + 0x1470,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1480))(validationContext + 0x1470,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1448) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1450) != 0) {
@@ -84712,7 +84732,7 @@ void Unwind_180911320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x14f0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x14f0))(validationContext + 0x14e0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x14b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x14c0) != 0) {
@@ -84742,7 +84762,7 @@ void Unwind_180911340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1560) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1560))(validationContext + 0x1550,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1560))(validationContext + 0x1550,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1528) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1530) != 0) {
@@ -84772,7 +84792,7 @@ void Unwind_180911360(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x15d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x15d0))(validationContext + 0x15c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1598) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x15a0) != 0) {
@@ -84802,7 +84822,7 @@ void Unwind_180911380(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1640) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1640))(validationContext + 0x1630,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1640))(validationContext + 0x1630,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1608) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1610) != 0) {
@@ -84832,7 +84852,7 @@ void Unwind_1809113a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x16b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x16b0))(validationContext + 0x16a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1678) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1680) != 0) {
@@ -84862,7 +84882,7 @@ void Unwind_1809113c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1720) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1720))(validationContext + 0x1710,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1720))(validationContext + 0x1710,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x16e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x16f0) != 0) {
@@ -84892,7 +84912,7 @@ void Unwind_1809113e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1790) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1790))(validationContext + 0x1780,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1790))(validationContext + 0x1780,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1758) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1760) != 0) {
@@ -84922,7 +84942,7 @@ void Unwind_180911400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1800) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1800))(validationContext + 0x17f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x17c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x17d0) != 0) {
@@ -84952,7 +84972,7 @@ void Unwind_180911420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1870) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1870))(validationContext + 0x1860,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1870))(validationContext + 0x1860,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1838) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1840) != 0) {
@@ -84982,7 +85002,7 @@ void Unwind_180911440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x18e0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x18e0))(validationContext + 0x18d0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x18a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x18b0) != 0) {
@@ -85012,7 +85032,7 @@ void Unwind_180911460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1950) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1950))(validationContext + 0x1940,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1950))(validationContext + 0x1940,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1918) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1920) != 0) {
@@ -85042,7 +85062,7 @@ void Unwind_180911480(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x19c0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x19c0))(validationContext + 0x19b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1988) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1990) != 0) {
@@ -85072,7 +85092,7 @@ void Unwind_1809114a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1a30) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1a30))(validationContext + 0x1a20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x19f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a00) != 0) {
@@ -85102,7 +85122,7 @@ void Unwind_1809114c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1aa0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1aa0))(validationContext + 0x1a90,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1a68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a70) != 0) {
@@ -85132,7 +85152,7 @@ void Unwind_1809114e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1b10) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1b10))(validationContext + 0x1b00,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1ad8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ae0) != 0) {
@@ -85162,7 +85182,7 @@ void Unwind_180911500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1b80) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1b80))(validationContext + 0x1b70,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1b48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1b50) != 0) {
@@ -85192,7 +85212,7 @@ void Unwind_180911520(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1bf0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1bf0))(validationContext + 0x1be0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1bb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1bc0) != 0) {
@@ -85222,7 +85242,7 @@ void Unwind_180911540(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1c60) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1c60))(validationContext + 0x1c50,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1c28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c30) != 0) {
@@ -85252,7 +85272,7 @@ void Unwind_180911560(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1cd0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1cd0))(validationContext + 0x1cc0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1c98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ca0) != 0) {
@@ -85282,7 +85302,7 @@ void Unwind_180911580(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1d40) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1d40))(validationContext + 0x1d30,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1d08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d10) != 0) {
@@ -85312,7 +85332,7 @@ void Unwind_1809115a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1db0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1db0))(validationContext + 0x1da0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1d78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d80) != 0) {
@@ -85342,7 +85362,7 @@ void Unwind_1809115c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1e20) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1e20))(validationContext + 0x1e10,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1de8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1df0) != 0) {
@@ -85372,7 +85392,7 @@ void Unwind_1809115e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1e90) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1e90))(validationContext + 0x1e80,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1e58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1e60) != 0) {
@@ -85402,7 +85422,7 @@ void Unwind_180911600(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1f00) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1f00))(validationContext + 0x1ef0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1ec8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ed0) != 0) {
@@ -85432,7 +85452,7 @@ void Unwind_180911620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1f70) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1f70))(validationContext + 0x1f60,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1f38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 8000) != 0) {
@@ -85462,7 +85482,7 @@ void Unwind_180911640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x1fe0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x1fe0))(validationContext + 0x1fd0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x1fa8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1fb0) != 0) {
@@ -85492,7 +85512,7 @@ void Unwind_180911660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2050) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2050))(validationContext + 0x2040,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2050))(validationContext + 0x2040,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2018) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2020) != 0) {
@@ -85522,7 +85542,7 @@ void Unwind_180911680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x20c0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x20c0))(validationContext + 0x20b0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2088) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2090) != 0) {
@@ -85552,7 +85572,7 @@ void Unwind_1809116a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2130) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2130))(validationContext + 0x2120,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2130))(validationContext + 0x2120,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x20f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2100) != 0) {
@@ -85582,7 +85602,7 @@ void Unwind_1809116c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x21a0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x21a0))(validationContext + 0x2190,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2168) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2170) != 0) {
@@ -85612,7 +85632,7 @@ void Unwind_1809116e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2210) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2210))(validationContext + 0x2200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2210))(validationContext + 0x2200,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x21d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x21e0) != 0) {
@@ -85642,7 +85662,7 @@ void Unwind_180911700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2280) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2280))(validationContext + 0x2270,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2280))(validationContext + 0x2270,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2248) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2250) != 0) {
@@ -85672,7 +85692,7 @@ void Unwind_180911720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x22f0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x22f0))(validationContext + 0x22e0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x22b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x22c0) != 0) {
@@ -85702,7 +85722,7 @@ void Unwind_180911740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2360) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2360))(validationContext + 0x2350,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2360))(validationContext + 0x2350,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 9000) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2330) != 0) {
@@ -85732,7 +85752,7 @@ void Unwind_180911760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x23d0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x23d0))(validationContext + 0x23c0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2398) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x23a0) != 0) {
@@ -85762,7 +85782,7 @@ void Unwind_180911780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2440) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2440))(validationContext + 0x2430,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2440))(validationContext + 0x2430,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2408) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2410) != 0) {
@@ -85792,7 +85812,7 @@ void Unwind_1809117a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x24b0) != (code *)0x0) {
-    (**(code **)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x24b0))(validationContext + 0x24a0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2478) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2480) != 0) {
@@ -85822,7 +85842,7 @@ void Unwind_1809117c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2520) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2520))(validationContext + 0x2510,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2520))(validationContext + 0x2510,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x24e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x24f0) != 0) {
@@ -85852,7 +85872,7 @@ void Unwind_1809117e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2590) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2590))(validationContext + 0x2580,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2590))(validationContext + 0x2580,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x2558) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2560) != 0) {
@@ -85882,7 +85902,7 @@ void Unwind_180911800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(code **)(validationContext + 0x2600) != (code *)0x0) {
-    (**(code **)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(validationContext + 0x2600))(validationContext + 0x25f0,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x25c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x25d0) != 0) {
@@ -85914,7 +85934,7 @@ void Unwind_180911820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x2610);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x2618);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -85937,7 +85957,7 @@ void Unwind_180911840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x2630);
-  memoryBaseAddress = 0xfffffffffffffffe;
+  memoryBaseAddress = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x2638);
   for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
@@ -85958,7 +85978,7 @@ void Unwind_180911860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x78);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x70); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -85979,7 +85999,7 @@ void Unwind_180911870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x118);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x110); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86000,7 +86020,7 @@ void Unwind_180911880(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xf8);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xf0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86021,7 +86041,7 @@ void Unwind_180911890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xd8);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xd0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86042,7 +86062,7 @@ void Unwind_1809118a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xb8);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xb0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86063,7 +86083,7 @@ void Unwind_1809118b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x138);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x130); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86089,7 +86109,7 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -86105,7 +86125,7 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -86129,7 +86149,7 @@ void Unwind_1809118e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x78);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x70); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86155,7 +86175,7 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -86171,7 +86191,7 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -86186,7 +86206,7 @@ void Unwind_180911900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x118);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x110); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86207,7 +86227,7 @@ void Unwind_180911910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xf8);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xf0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86228,7 +86248,7 @@ void Unwind_180911920(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xd8);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xd0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86249,7 +86269,7 @@ void Unwind_180911930(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0xb8);
   for (resourcePointer = *(undefined8 **)(param_2 + 0xb0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86270,7 +86290,7 @@ void Unwind_180911940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   puVar1 = *(undefined8 **)(param_2 + 0x138);
   for (resourcePointer = *(undefined8 **)(param_2 + 0x130); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
@@ -86296,7 +86316,7 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -86312,7 +86332,7 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -86372,7 +86392,7 @@ void Unwind_180911a20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x30) != (code *)0x0) {
-    (**(code **)(param_2 + 0x30))(param_2 + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x30))(param_2 + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86383,7 +86403,7 @@ void Unwind_180911a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x98) != (code *)0x0) {
-    (**(code **)(param_2 + 0x98))(param_2 + 0x88,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x98))(param_2 + 0x88,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86394,7 +86414,7 @@ void Unwind_180911a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0xb8) != (code *)0x0) {
-    (**(code **)(param_2 + 0xb8))(param_2 + 0xa8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0xb8))(param_2 + 0xa8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86405,7 +86425,7 @@ void Unwind_180911a50(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0xd8) != (code *)0x0) {
-    (**(code **)(param_2 + 0xd8))(param_2 + 200,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0xd8))(param_2 + 200,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86416,7 +86436,7 @@ void Unwind_180911a60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0xf8) != (code *)0x0) {
-    (**(code **)(param_2 + 0xf8))(param_2 + 0xe8,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0xf8))(param_2 + 0xe8,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86427,7 +86447,7 @@ void Unwind_180911a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x118) != (code *)0x0) {
-    (**(code **)(param_2 + 0x118))(param_2 + 0x108,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x118))(param_2 + 0x108,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86438,7 +86458,7 @@ void Unwind_180911a80(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x138) != (code *)0x0) {
-    (**(code **)(param_2 + 0x138))(param_2 + 0x128,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x138))(param_2 + 0x128,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86449,7 +86469,7 @@ void Unwind_180911a90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 {
   if (*(code **)(param_2 + 0x30) != (code *)0x0) {
-    (**(code **)(param_2 + 0x30))(param_2 + 0x20,0,0,param_4,0xfffffffffffffffe);
+    (**(code **)(param_2 + 0x30))(param_2 + 0x20,0,0,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86493,7 +86513,7 @@ void Unwind_180911b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86513,7 +86533,7 @@ void Unwind_180911b10(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86533,7 +86553,7 @@ void Unwind_180911b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86553,7 +86573,7 @@ void Unwind_180911b30(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86573,7 +86593,7 @@ void Unwind_180911b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86593,7 +86613,7 @@ void Unwind_180911b50(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86613,7 +86633,7 @@ void Unwind_180911b70(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86640,7 +86660,7 @@ void Unwind_180911b90(undefined8 param_1,longlong param_2)
 void Unwind_180911bb0(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x50) + 0xb8,0x10,2,FUN_18011d900,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x50) + 0xb8,0x10,2,FUN_18011d900,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -86677,7 +86697,7 @@ void Unwind_180911c30(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86697,7 +86717,7 @@ void Unwind_180911c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1608);
   if (validationContext != 0) {
@@ -86705,7 +86725,7 @@ void Unwind_180911c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86725,7 +86745,7 @@ void Unwind_180911c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86745,7 +86765,7 @@ void Unwind_180911c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86765,7 +86785,7 @@ void Unwind_180911ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86785,7 +86805,7 @@ void Unwind_180911cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86805,7 +86825,7 @@ void Unwind_180911ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86825,7 +86845,7 @@ void Unwind_180911d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86845,7 +86865,7 @@ void Unwind_180911d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86865,7 +86885,7 @@ void Unwind_180911d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86885,7 +86905,7 @@ void Unwind_180911d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86905,7 +86925,7 @@ void Unwind_180911d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86925,7 +86945,7 @@ void Unwind_180911da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86945,7 +86965,7 @@ void Unwind_180911dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -86979,7 +86999,7 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
           *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+        FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
       }
       dataFlags = (int)validationOutcome + 1;
       operationResult = operationResult + 0x10;
@@ -86994,7 +87014,7 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   calculatedOffset = *(longlong *)(lVar4 + 0x1e68);
   if (calculatedOffset == 0) {
@@ -87005,7 +87025,7 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
         *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+      FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
     }
     lVar4 = *(longlong *)(lVar4 + 0x1e68);
     if (lVar4 == 0) {
@@ -87015,14 +87035,14 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar4,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(lVar4,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(lVar4 + 0x1e60) = 0;
   if (_DAT_180c8a9b0 != 0) {
     *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+  FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
 }
 
 
@@ -87040,7 +87060,7 @@ void Unwind_180911e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87060,7 +87080,7 @@ void Unwind_180911e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87082,7 +87102,7 @@ void Unwind_180911e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1ec8);
   if (validationContext != 0) {
@@ -87090,7 +87110,7 @@ void Unwind_180911e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1eb8);
   if (validationContext != 0) {
@@ -87098,7 +87118,7 @@ void Unwind_180911e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87115,7 +87135,7 @@ void Unwind_180911e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   dataContext = *(longlong *)(param_2 + 0x70);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   FUN_180296b70();
   validationContext = *(longlong *)(dataContext + 0x2d68);
   if (validationContext != 0) {
@@ -87159,7 +87179,7 @@ void Unwind_180911e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87179,7 +87199,7 @@ void Unwind_180911ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87199,7 +87219,7 @@ void Unwind_180911ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87219,7 +87239,7 @@ void Unwind_180911ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87239,7 +87259,7 @@ void Unwind_180911f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87269,7 +87289,7 @@ void Unwind_180911f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87289,7 +87309,7 @@ void Unwind_180911f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87309,7 +87329,7 @@ void Unwind_180911f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87329,7 +87349,7 @@ void Unwind_180911fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87349,7 +87369,7 @@ void Unwind_180911fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87369,7 +87389,7 @@ void Unwind_180911fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87389,7 +87409,7 @@ void Unwind_180911fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87409,7 +87429,7 @@ void Unwind_180911fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87442,7 +87462,7 @@ void CleanupExceptionAtOffset48(undefined8 param_1,longlong param_2,undefined8 p
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87475,7 +87495,7 @@ void CleanupExceptionAtOffset58(undefined8 param_1,longlong param_2,undefined8 p
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87508,7 +87528,7 @@ void CleanupExceptionAtOffset68(undefined8 param_1,longlong param_2,undefined8 p
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87541,7 +87561,7 @@ void CleanupExceptionAtOffset1530(undefined8 param_1,longlong param_2,undefined8
       *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87561,7 +87581,7 @@ void Unwind_180912040(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87581,7 +87601,7 @@ void Unwind_180912060(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87601,7 +87621,7 @@ void Unwind_180912080(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87621,7 +87641,7 @@ void Unwind_180912090(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87641,7 +87661,7 @@ void Unwind_1809120a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87661,7 +87681,7 @@ void Unwind_1809120b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87681,7 +87701,7 @@ void Unwind_1809120d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87701,7 +87721,7 @@ void Unwind_1809120f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87721,7 +87741,7 @@ void Unwind_180912110(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87741,7 +87761,7 @@ void Unwind_180912130(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87761,7 +87781,7 @@ void Unwind_180912150(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87781,7 +87801,7 @@ void Unwind_180912170(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87803,7 +87823,7 @@ void Unwind_180912180(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1e0);
   if (validationContext != 0) {
@@ -87811,7 +87831,7 @@ void Unwind_180912180(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1d0);
   if (validationContext != 0) {
@@ -87819,7 +87839,7 @@ void Unwind_180912180(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1c0);
   if (validationContext != 0) {
@@ -87827,7 +87847,7 @@ void Unwind_180912180(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 400);
   if (validationContext != 0) {
@@ -87835,7 +87855,7 @@ void Unwind_180912180(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87855,7 +87875,7 @@ void Unwind_1809121a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87875,7 +87895,7 @@ void Unwind_1809121c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87895,7 +87915,7 @@ void Unwind_1809121e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -87912,7 +87932,7 @@ void Unwind_180912200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   dataContext = *(longlong *)(param_2 + 0x70);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   FUN_180291610();
   validationContext = *(longlong *)(dataContext + 0x390);
   if (validationContext != 0) {
@@ -87988,7 +88008,7 @@ void Unwind_180912220(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88008,7 +88028,7 @@ void Unwind_180912240(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88028,7 +88048,7 @@ void Unwind_180912260(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88048,7 +88068,7 @@ void Unwind_180912280(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88070,7 +88090,7 @@ void Unwind_1809122a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1e0);
   if (validationContext != 0) {
@@ -88078,7 +88098,7 @@ void Unwind_1809122a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1d0);
   if (validationContext != 0) {
@@ -88086,7 +88106,7 @@ void Unwind_1809122a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1c0);
   if (validationContext != 0) {
@@ -88094,7 +88114,7 @@ void Unwind_1809122a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 400);
   if (validationContext != 0) {
@@ -88102,7 +88122,7 @@ void Unwind_1809122a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88122,7 +88142,7 @@ void Unwind_1809122c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88142,7 +88162,7 @@ void Unwind_1809122e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88162,7 +88182,7 @@ void Unwind_180912300(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88179,7 +88199,7 @@ void Unwind_180912320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 validationStatus;
   
   dataContext = *(longlong *)(param_2 + 0x40);
-  validationStatus = 0xfffffffffffffffe;
+  validationStatus = SystemCleanupFlagfffffffe;
   FUN_180291610();
   validationContext = *(longlong *)(dataContext + 0x390);
   if (validationContext != 0) {
@@ -88255,7 +88275,7 @@ void Unwind_180912340(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88275,7 +88295,7 @@ void Unwind_180912350(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88295,7 +88315,7 @@ void Unwind_180912360(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88345,7 +88365,7 @@ void Unwind_180912400(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88365,7 +88385,7 @@ void Unwind_180912410(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88385,7 +88405,7 @@ void Unwind_180912420(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88405,7 +88425,7 @@ void Unwind_180912430(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88425,7 +88445,7 @@ void Unwind_180912440(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88445,7 +88465,7 @@ void Unwind_180912450(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88465,7 +88485,7 @@ void Unwind_180912460(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88505,7 +88525,7 @@ void Unwind_1809124d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88525,7 +88545,7 @@ void Unwind_1809124e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88541,7 +88561,7 @@ void Unwind_1809124f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0x50);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   FUN_18013ea00(*(undefined8 *)(validationContext + 0x30));
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined8 *)(validationContext + 0x18) = 0;
@@ -88572,7 +88592,7 @@ void Unwind_180912500(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88592,7 +88612,7 @@ void Unwind_180912510(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88612,7 +88632,7 @@ void Unwind_180912520(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88632,7 +88652,7 @@ void Unwind_180912530(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88652,7 +88672,7 @@ void Unwind_180912540(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88682,7 +88702,7 @@ void Unwind_180912580(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88703,7 +88723,7 @@ void Unwind_180912590(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(param_2 + 0x48);
   if (validationContext != 0) {
@@ -88712,7 +88732,7 @@ void Unwind_180912590(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined4 *)(param_2 + 0x60) = 0;
   validationContext = *(longlong *)(param_2 + 0x58);
@@ -88721,7 +88741,7 @@ void Unwind_180912590(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(param_2 + 0x48);
   if (validationContext != 0) {
@@ -88729,7 +88749,7 @@ void Unwind_180912590(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88749,7 +88769,7 @@ void Unwind_1809125a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88769,7 +88789,7 @@ void Unwind_1809125b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88789,7 +88809,7 @@ void Unwind_1809125c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88839,7 +88859,7 @@ void Unwind_180912660(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88869,7 +88889,7 @@ void Unwind_1809126a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88928,7 +88948,7 @@ void Unwind_180912770(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -88943,7 +88963,7 @@ void Unwind_180912780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   longlong validationContext;
   undefined8 uVar2;
   
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   FUN_18013ea00(*(undefined8 *)(param_2 + 0x1d0));
   *(undefined8 *)(param_2 + 0x1d0) = 0;
   *(undefined8 *)(param_2 + 0x1b8) = 0;
@@ -88969,7 +88989,7 @@ void Unwind_180912790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   longlong validationContext;
   undefined8 uVar2;
   
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   FUN_18013ea00(*(undefined8 *)(param_2 + 0xc0));
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined8 *)(param_2 + 0xa8) = 0;
@@ -88995,7 +89015,7 @@ void Unwind_1809127a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   longlong validationContext;
   undefined8 uVar2;
   
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   FUN_18013ea00(*(undefined8 *)(param_2 + 0xc0));
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined8 *)(param_2 + 0xa8) = 0;
@@ -89021,7 +89041,7 @@ void Unwind_1809127b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   longlong validationContext;
   undefined8 uVar2;
   
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   FUN_18013ea00(*(undefined8 *)(param_2 + 0x1d0));
   *(undefined8 *)(param_2 + 0x1d0) = 0;
   *(undefined8 *)(param_2 + 0x1b8) = 0;
@@ -89048,7 +89068,7 @@ void Unwind_1809127c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 uVar2;
   
   validationContext = *(longlong *)(param_2 + 0x40);
-  uVar2 = 0xfffffffffffffffe;
+  uVar2 = SystemCleanupFlagfffffffe;
   FUN_18013ea00(*(undefined8 *)(validationContext + 0x30));
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined8 *)(validationContext + 0x18) = 0;
@@ -89106,7 +89126,7 @@ void Unwind_1809127e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -89126,7 +89146,7 @@ void Unwind_1809127f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -89146,7 +89166,7 @@ void Unwind_180912800(undefined8 param_1,longlong param_2,undefined8 param_3,und
       *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   return;
 }
@@ -89173,7 +89193,7 @@ void Unwind_180912810(undefined8 param_1,longlong param_2)
 void Unwind_180912830(undefined8 param_1,longlong param_2)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0xb8,0x10,2,FUN_18011d900,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 0xb8,0x10,2,FUN_18011d900,SystemCleanupFlagfffffffe);
   return;
 }
 
@@ -89275,7 +89295,7 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
-  memoryBaseAddress = (ulonglong)resourcePointer & 0xffffffffffc00000;
+  memoryBaseAddress = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
   if (memoryBaseAddress != 0) {
     calculatedOffset = memoryBaseAddress + 0x80 + ((longlong)resourcePointer - memoryBaseAddress >> 0x10) * 0x50;
     calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
@@ -89291,7 +89311,7 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
     }
     else {
       func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
-                          resourcePointer,memoryBaseAddress,0xfffffffffffffffe);
+                          resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -89861,7 +89881,7 @@ void ProcessValidationContextA0(undefined8 param_1,undefined8 param_2,undefined8
   longlong *validationContextPointer;
   
   validationContextPointer = _DAT_180d49200;
-  FUN_18008d1f0(param_1,_DAT_180d49200[1],param_3,param_4,0xfffffffffffffffe);
+  FUN_18008d1f0(param_1,_DAT_180d49200[1],param_3,param_4,SystemCleanupFlagfffffffe);
   _DAT_180d49200[1] = (longlong)validationContextPointer;
   *_DAT_180d49200 = (longlong)validationContextPointer;
   _DAT_180d49200[2] = (longlong)validationContextPointer;
@@ -89988,7 +90008,7 @@ void ProcessSystemExceptionDataG1(void)
   if (_DAT_180d493f8 == (undefined8 *)0x0) {
     return;
   }
-  memoryMask = (ulonglong)_DAT_180d493f8 & 0xffffffffffc00000;
+  memoryMask = (ulonglong)_DAT_180d493f8 & SystemCleanupFlagffc00000;
   if (memoryMask != 0) {
     memoryOffset = memoryMask + 0x80 + ((longlong)_DAT_180d493f8 - memoryMask >> 0x10) * 0x50;
     memoryOffset = memoryOffset - (ulonglong)*(uint *)(memoryOffset + 4);
@@ -90004,7 +90024,7 @@ void ProcessSystemExceptionDataG1(void)
     }
     else {
       func_0x00018064e870(memoryMask, CONCAT71(0xff000000, *(void ***)(memoryMask + 0x70) == &ExceptionList),
-                          _DAT_180d493f8, memoryMask, 0xfffffffffffffffe);
+                          _DAT_180d493f8, memoryMask, SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -90260,7 +90280,7 @@ void ValidateAndCleanMemoryL0(void)
   ulonglong memoryBlockSize;
   
   if (MemoryValidationStartPointer != 0) {
-    memoryBlockSize = MemoryValidationEndPointer - MemoryValidationStartPointer & 0xfffffffffffffff8;
+    memoryBlockSize = MemoryValidationEndPointer - MemoryValidationStartPointer & SystemCleanupFlagfffffff8;
     memoryValidationContext = MemoryValidationStartPointer;
     if (0xfff < memoryBlockSize) {
       memoryValidationContext = *(longlong *)(MemoryValidationStartPointer + -8);
@@ -91161,7 +91181,7 @@ void CleanupSystemResourceManagerA(undefined8 param_1, undefined8 param_2, undef
   undefined8 cleanupFlag;
   
   resourceListEnd = _DAT_180bfa2f0;
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = SystemCleanupFlagfffffffe;
   currentResource = _DAT_180bfa2e8;
   if (_DAT_180bfa2e8 != _DAT_180bfa2f0) {
     do {
@@ -91207,7 +91227,7 @@ void CleanupSystemResourceManagerB(undefined8 param_1, undefined8 param_2, undef
   undefined8 cleanupFlag;
   
   resourceListEnd = _DAT_180bfa310;
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = SystemCleanupFlagfffffffe;
   currentResource = _DAT_180bfa308;
   if (_DAT_180bfa308 != _DAT_180bfa310) {
     do {
@@ -91253,7 +91273,7 @@ void CleanupSystemResourceManagerC(undefined8 param_1, undefined8 param_2, undef
   undefined8 cleanupFlag;
   
   resourceListEnd = _DAT_180bfa330;
-  cleanupFlag = 0xfffffffffffffffe;
+  cleanupFlag = SystemCleanupFlagfffffffe;
   currentResource = _DAT_180bfa328;
   if (_DAT_180bfa328 != _DAT_180bfa330) {
     do {
@@ -91499,7 +91519,7 @@ void InitializeExceptionHandlerTableA0(undefined8 param_1,undefined8 param_2,und
   undefined8 *exceptionTableEnd;
   undefined8 *exceptionTableIterator;
   
-  FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,SystemCleanupFlagfffffffe);
   exceptionTableEnd = _DAT_180bfaea8;
   for (exceptionTableIterator = _DAT_180bfaea0; exceptionTableIterator != exceptionTableEnd; exceptionTableIterator = exceptionTableIterator + 7) {
     *exceptionTableIterator = &UNK_180a3c3e0;
@@ -91996,7 +92016,7 @@ void ReleaseDataBufferResources(void)
       if (0x1f < (lRam0000000180d49d68 - DataBufferPointer) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
-                  (lRam0000000180d49d68 - DataBufferPointer,BufferSize + 0x27,DataBufferPointer,SecurityParameter,0xfffffffffffffffe);
+                  (lRam0000000180d49d68 - DataBufferPointer,BufferSize + 0x27,DataBufferPointer,SecurityParameter,SystemCleanupFlagfffffffe);
       }
     }
     free(DataBufferPointer);
@@ -92014,28 +92034,36 @@ void ReleaseDataBufferResources(void)
 
 
 
-942a20(void)
-void FUN_180942a20(void)
+/**
+ * @brief 工具内存清理函数A0
+ * 
+ * 该函数负责清理工具系统的内存资源，释放已分配的内存块
+ * 
+ * @note 原始函数名：FUN_180942a20
+ */
+#define CleanupUtilityMemoryA0 FUN_180942a20
+
+void CleanupUtilityMemoryA0(void)
 
 {
   longlong validationContext;
-  ulonglong uVar2;
+  ulonglong memorySize;
   
-  if (lRam0000000180d49d90 != 0) {
-    FUN_180477be0(lRam0000000180d49d90,uRam0000000180d49d98);
-    uVar2 = lRam0000000180d49da0 - lRam0000000180d49d90 & 0xfffffffffffffff0;
-    validationContext = lRam0000000180d49d90;
-    if (0xfff < uVar2) {
-      validationContext = *(longlong *)(lRam0000000180d49d90 + -8);
-      if (0x1f < (lRam0000000180d49d90 - validationContext) - 8U) {
+  if (MemoryPoolAddress != 0) {
+    ValidateMemoryPool(MemoryPoolAddress,MemoryPoolSize);
+    memorySize = MemoryPoolEnd - MemoryPoolAddress & 0xfffffffffffffff0;
+    validationContext = MemoryPoolAddress;
+    if (0xfff < memorySize) {
+      validationContext = *(longlong *)(MemoryPoolAddress + -8);
+      if (0x1f < (MemoryPoolAddress - validationContext) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(lRam0000000180d49d90 - validationContext,uVar2 + 0x27);
+        _invalid_parameter_noinfo_noreturn(MemoryPoolAddress - validationContext,memorySize + 0x27);
       }
     }
     free(validationContext);
-    lRam0000000180d49d90 = 0;
-    uRam0000000180d49d98 = 0;
-    lRam0000000180d49da0 = 0;
+    MemoryPoolAddress = 0;
+    MemoryPoolSize = 0;
+    MemoryPoolEnd = 0;
   }
   return;
 }
@@ -92043,13 +92071,21 @@ void FUN_180942a20(void)
 
 
 
-942a40(void)
-void FUN_180942a40(void)
+/**
+ * @brief 销毁互斥锁函数A0
+ * 
+ * 该函数负责销毁系统中的互斥锁资源
+ * 
+ * @note 原始函数名：FUN_180942a40
+ */
+#define DestroyMutexLockA0 FUN_180942a40
+
+void DestroyMutexLockA0(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180942a58. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180d49db0);
+  _Mtx_destroy_in_situ(SystemMutexAddress);
   return;
 }
 
@@ -92092,7 +92128,7 @@ void FUN_180942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   
   puVar1 = _DAT_180d49e18;
   if (_DAT_180d49e18 != (undefined8 *)0x0) {
-    FUN_1804a9b80(param_1,*_DAT_180d49e18,param_3,param_4,0xfffffffffffffffe);
+    FUN_1804a9b80(param_1,*_DAT_180d49e18,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
     FUN_18064e900(puVar1);
   }
@@ -92184,7 +92220,7 @@ void FUN_180942d30(void)
     }
     _DAT_180c96120 = 0;
     if (_DAT_180c96138 != 0) {
-      FUN_1808fc8a8(_DAT_180c96138 + 0x360,0xcc8,8,FUN_1804aa030,0xfffffffffffffffe);
+      FUN_1808fc8a8(_DAT_180c96138 + 0x360,0xcc8,8,FUN_1804aa030,SystemCleanupFlagfffffffe);
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
       FUN_1804a9f00(validationContext + 0x60);
@@ -92210,7 +92246,7 @@ void FUN_180942e70(void)
   
   validationContextPointer = _DAT_180c95f18;
   if (DAT_180c95f28 != '\0') {
-    _DAT_180c95f20 = 0xffffffff;
+    _DAT_180c95f20 = SystemCleanupFlag;
     _DAT_180c95f18 = (longlong *)0x0;
     if (validationContextPointer != (longlong *)0x0) {
       (**(code **)(*validationContextPointer + 0x38))();
@@ -92444,7 +92480,7 @@ void ProcessUtilitySystemData(undefined8 param_1,undefined8 param_2,undefined8 p
   
   systemData = _DAT_180c967a0;
   if (_DAT_180c967a0 != (SystemDataPtr *)0x0) {
-    FUN_180651560(&DAT_180c96790,*_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
+    FUN_180651560(&DAT_180c96790,*_DAT_180c967a0,param_3,param_4,SystemCleanupFlagfffffffe);
     FUN_18063cfe0(systemData + 5);
                     // WARNING: Subroutine does not return
     FUN_18064e900(systemData);
@@ -92495,7 +92531,7 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
   if (GlobalSystemResourceManagerPtr == (ResourceManagerPtr *)0x0) {
     return;
   }
-  CleanupSystemResourceE1(&SystemResourceDataTable,*GlobalSystemResourceManagerPtr,param_3,param_4,0xfffffffffffffffe);
+  CleanupSystemResourceE1(&SystemResourceDataTable,*GlobalSystemResourceManagerPtr,param_3,param_4,SystemCleanupFlagfffffffe);
   resourceManager[4] = &SystemResourceBufferA0;
   if (resourceManager[5] != 0) {
                     // WARNING: Subroutine does not return

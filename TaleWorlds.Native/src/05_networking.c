@@ -383,27 +383,27 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  * 
  * 用于HTTP服务的备用端口号8080
  */
-#define PortHttpAlternative 0x1F90                                 // 端口8080
+#define NetworkPortHttpAlternative 0x1F90                                 // 端口8080
 /**
  * @brief HTTPS备用端口
  * 
  * 用于HTTPS服务的备用端口号8091
  */
-#define PortHttpsAlternative 0x1FBB                                // 端口8091
+#define NetworkPortHttpsAlternative 0x1FBB                                // 端口8091
 /**
  * @brief 端口范围结束值
  * 
  * 网络端口范围的结束值，用于限制端口号的最大值
  */
-#define PortRangeMaximum 0x270F                                // 端口9999
+#define NetworkPortRangeMaximum 0x270F                                // 端口9999
 
 // 网络缓冲区大小常量 - 内存和缓冲区配置
-#define SocketContextSize 0x100                            // 套接字上下文大小256字节
-#define SOCKET_SIZE 0x40                                     // 套接字大小64字节
-#define SendBufferSize 0x10000                            // 发送缓冲区大小64KB
-#define ReceiveBufferSize 0x10000                          // 接收缓冲区大小64KB
-#define BufferCapacity 0x20000                              // 缓冲区容量128KB
-#define PACKET_QUEUE_SIZE 0x100                               // 数据包队列大小256
+#define NetworkSocketContextSize 0x100                            // 套接字上下文大小256字节
+#define NetworkSocketSize 0x40                                     // 套接字大小64字节
+#define NetworkSendBufferSize 0x10000                            // 发送缓冲区大小64KB
+#define NetworkReceiveBufferSize 0x10000                          // 接收缓冲区大小64KB
+#define NetworkBufferCapacity 0x20000                              // 缓冲区容量128KB
+#define NetworkPacketQueueSize 0x100                               // 数据包队列大小256
 #define NetworkBufferSize4KB 0x1000                               // 网络缓冲区大小：4KB
 #define NetworkPacketContextSize 0x100                              // 网络数据包上下文大小：256字节
 #define NetworkConnectionContextSize 0x200                           // 网络连接上下文大小：512字节
@@ -545,39 +545,39 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 // 通用重置常量
 #define NetworkDefaultResetValue 0x00                                    // 默认重置值
 #define NetworkResetValue NetworkDefaultResetValue                      // 通用重置值
-#define FLAGS_RESET NETWORK_RESET_VALUE                                       // 重置标志
-#define CONTEXT_RELEASED NETWORK_RESET_VALUE                                  // 上下文已释放
-#define SIZE_RESET NETWORK_RESET_VALUE                                        // 大小重置
-#define POOL_RELEASED NETWORK_RESET_VALUE                                     // 连接池已释放
-#define SECURITY_RESET NETWORK_RESET_VALUE                                    // 安全重置
-#define AUTH_RESET NETWORK_RESET_VALUE                                        // 认证重置
-#define ENCRYPTION_RESET NETWORK_RESET_VALUE                                  // 加密重置
-#define COMPRESSION_RESET NETWORK_RESET_VALUE                                 // 压缩重置
-#define SOCKET_RESET NETWORK_RESET_VALUE                                      // 套接字重置
+#define FlagsReset NetworkReset_VALUE                                       // 重置标志
+#define ContextReleased NetworkReset_VALUE                                  // 上下文已释放
+#define SizeReset NetworkReset_VALUE                                        // 大小重置
+#define PoolReleased NetworkReset_VALUE                                     // 连接池已释放
+#define SecurityReset NetworkReset_VALUE                                    // 安全重置
+#define AuthReset NetworkReset_VALUE                                        // 认证重置
+#define EncryptionReset NetworkReset_VALUE                                  // 加密重置
+#define CompressionReset NetworkReset_VALUE                                 // 压缩重置
+#define SocketReset NetworkReset_VALUE                                      // 套接字重置
 #define SocketDataReset NetworkResetValue                                 // 套接字数据重置
-#define EVENT_RESET NETWORK_RESET_VALUE                                       // 事件重置
-#define CALLBACK_RESET NETWORK_RESET_VALUE                                    // 回调重置
-#define QUEUE_RESET NETWORK_RESET_VALUE                                       // 队列重置
-#define HANDLER_RESET NETWORK_RESET_VALUE                                     // 处理器重置
-#define STATS_RESET NETWORK_RESET_VALUE                                       // 统计重置
-#define CONNECTION_TIME_RESET NETWORK_RESET_VALUE                             // 连接时间重置
-#define ACTIVITY_RESET NETWORK_RESET_VALUE                                    // 活动重置
+#define EventReset NetworkReset_VALUE                                       // 事件重置
+#define CallbackReset NetworkReset_VALUE                                    // 回调重置
+#define QueueReset NetworkReset_VALUE                                       // 队列重置
+#define HandlerReset NetworkReset_VALUE                                     // 处理器重置
+#define StatsReset NetworkReset_VALUE                                       // 统计重置
+#define ConnectionTimeReset NetworkResetValue                             // 连接时间重置
+#define ActivityReset NetworkReset_VALUE                                    // 活动重置
 #define ExtendedFlagsReset NetworkResetValue                              // 扩展标志重置
 
 // 网络数据传输常量
-#define NETWORK_SEQUENCE_INITIAL_VALUE 0x01                                  // 初始序列号
+#define NetworkSequenceInitialValue 0x01                                  // 初始序列号
 #define NetworkAckInitialValue 0x01                                       // 初始确认号
 #define NetworkBytesResetValue NetworkResetValue                       // 字节重置
-#define NETWORK_PACKETS_RESET_VALUE NETWORK_RESET_VALUE                     // 数据包重置
+#define NetworkPacketsResetValue NetworkReset_VALUE                     // 数据包重置
 #define NetworkRetransmitCountResetValue NetworkResetValue             // 重传计数重置
-#define NETWORK_LOSS_RATE_RESET_VALUE NETWORK_RESET_VALUE                   // 丢包率重置
+#define NetworkLossRateResetValue NetworkResetValue                   // 丢包率重置
 #define NetworkMonitorEnabled 0x01                                  // 监控器启用
-#define NETWORK_ROUND_TRIP_TIME_RESET_VALUE NETWORK_RESET_VALUE             // 往返时间重置
-// 队列启用标志在前面已定义
+#define NetworkRoundTripTimeResetValue NetworkReset_VALUE             // 往返时间重置
+// 网络系统状态常量
 #define NetworkBufferInitialized 0x01                                   // 缓冲区初始化标志
-#define NETWORK_INDEX_RESET_VALUE NETWORK_RESET_VALUE                       // 索引重置
-#define NETWORK_PACKET_INDEX_RESET_VALUE NETWORK_RESET_VALUE                // 数据包索引重置
-#define NETWORK_ERROR_RATE_RESET_VALUE NETWORK_RESET_VALUE                  // 错误率重置
+#define NetworkIndexResetValue NetworkResetValue                       // 索引重置
+#define NetworkPacketIndexResetValue NetworkReset_VALUE                // 数据包索引重置
+#define NetworkErrorRateResetValue NetworkReset_VALUE                  // 错误率重置
 #define NetworkHealthGood 0x01                                       // 健康状态良好
 #define NetworkStabilityHigh 0x01                                    // 稳定性高
 #define NetworkPerformanceGood 0x01                                  // 性能良好
@@ -1274,14 +1274,14 @@ uint32_t NetworkConnectionRoutingFallbackConfig;          // 网络连接路由�
 void InitializeNetworkSocket(void)
 {
   // 初始化套接字基本参数
-  NetworkSocketFileDescriptor = SOCKET_DESCRIPTOR_INVALID;
-  NetworkSocketContextSize = SOCKET_CONTEXT_SIZE;
+  NetworkSocketFileDescriptor = NetworkSocketDescriptorInvalid;
+  NetworkSocketContextSize = 0x1000;  // 4KB套接字上下文大小
   NetworkSocketIndex = 0;
-  NetworkSocketSize = SOCKET_SIZE;
+  NetworkSocketSize = 0x40;          // 64字节套接字大小
   
   // 初始化套接字配置
-  NetworkSocketType = TCP_SOCKET_CATEGORY;
-  NetworkSocketProtocol = TCP_PROTOCOL;
+  NetworkSocketType = NetworkTcpSocketCategory;
+  NetworkSocketProtocol = NetworkTcpProtocol;
   
   // 初始化套接字数据缓冲区
   NetworkSocketRuntimeData = 0;
@@ -1319,22 +1319,22 @@ void BindNetworkSocket(void)
 {
   // 设置网络地址和端口配置
   NetworkServerIpAddress = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
-  NetworkServerPortNumber = PORT_HTTP_ALT;                   // 设置端口为8080
-  NetworkClientIpAddress = CLIENT_IP_ANY;               // 客户端IP地址初始化为0.0.0.0
-  NetworkClientPortNumber = CLIENT_PORT_ANY;                   // 客户端端口初始化为0
+  NetworkServerPortNumber = NetworkPortHttpAlternative;          // 设置端口为8080
+  NetworkClientIpAddress = NetworkClientIpAddressAny;            // 客户端IP地址初始化为0.0.0.0
+  NetworkClientPortNumber = NetworkClientPortAny;               // 客户端端口初始化为0
   
   // 设置套接字绑定状态
-  NetworkSocketBindingStatus = SOCKET_BOUND;                   // 设置绑定标志为已绑定
+  NetworkSocketBindingStatus = NetworkSocketBound;                // 设置绑定标志为已绑定
   
   // 初始化网络协议配置
-  NetworkConnectionProtocol = NetworkSystemEnabled;               // 设置协议类型为TCP
-  NetworkConnectionProtocolVersion = NetworkSystemEnabled;            // 设置协议版本为1.0
+  NetworkConnectionProtocol = NetworkTcpProtocol;               // 设置协议类型为TCP
+  NetworkConnectionProtocolVersion = NetworkProtocolVersionOne; // 设置协议版本为1.0
   
   // 初始化缓冲区配置
-  NetworkSendBufferSize = SEND_BUFFER_SIZE;                    // 设置发送缓冲区大小为64KB
-  NetworkReceiveBufferSize = RECEIVE_BUFFER_SIZE;                 // 设置接收缓冲区大小为64KB
-  NetworkSendBufferCapacity = BUFFER_CAPACITY;                // 设置发送缓冲区容量为128KB
-  NetworkReceiveBufferCapacity = BUFFER_CAPACITY;              // 设置接收缓冲区容量为128KB
+  NetworkSendBufferSize = 0x10000;                              // 设置发送缓冲区大小为64KB
+  NetworkReceiveBufferSize = 0x10000;                           // 设置接收缓冲区大小为64KB
+  NetworkSendBufferCapacity = 0x20000;                          // 设置发送缓冲区容量为128KB
+  NetworkReceiveBufferCapacity = 0x20000;                       // 设置接收缓冲区容量为128KB
 }
 
 
@@ -1776,25 +1776,25 @@ void ReceiveNetworkPacketData(void)
   NetworkRoundTripTime = NetworkRoundTripTimeResetValue;                          // 重置往返时间
   
   // 初始化数据包队列
-  NetworkPacketQueue = NetworkQueueEnabledFlag;                            // 初始化数据包队列
-  NetworkPacketQueueSize = PACKET_QUEUE_SIZE;                       // 设置数据包队列大小为256
+  NetworkPacketQueue = NetworkQueueEnabledFlag;                // 初始化数据包队列
+  NetworkPacketQueueSize = 0x100;                               // 设置数据包队列大小为256
   
   // 初始化缓冲区管理
   NetworkBufferManager = NetworkBufferInitializationFlag;                          // 初始化缓冲区管理器
-  NetworkBufferSize = NetworkBufferSize4KB;                            // 设置缓冲区大小为4KB
+  NetworkBufferSize = 0x1000;                                    // 设置缓冲区大小为4KB
   NetworkBufferIndex = NetworkIndexResetValue;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
   NetworkPacketContext = NetworkBufferInitializationFlag;                          // 初始化数据包上下文
-  CurrentPacketContextSize = NetworkPacketContextSize;                    // 设置数据包上下文大小为256字节（标准大小）
+  CurrentPacketContextSize = 0x100;                          // 设置数据包上下文大小为256字节（标准大小）
   NetworkPacketData = NetworkBufferInitializationFlag;                             // 初始化数据包数据
   NetworkPacketIndex = NetworkPacketIndexResetValue;                            // 重置数据包索引
   
   // 初始化数据包处理
   NetworkPacketHeaderData = NetworkBufferInitializationFlag;                       // 初始化数据包包头数据
-  NetworkPacketHeaderSize = NetworkPacketHeaderSize32Bytes;                       // 设置数据包头大小为32字节
+  NetworkPacketHeaderSize = 0x20;                                // 设置数据包头大小为32字节
   NetworkPacketTrailerData = NetworkBufferInitializationFlag;                      // 初始化数据包尾数据
-  NetworkPacketTrailerSize = NetworkPacketTrailerSize16Bytes;                      // 设置数据包尾大小为16字节
+  NetworkPacketTrailerSize = 0x10;                                // 设置数据包尾大小为16字节
   
   // 初始化抖动缓冲区
   NetworkConnectionJitterBuffer = NetworkBufferInitializationFlag;                // 初始化抖动缓冲区
@@ -1939,11 +1939,11 @@ void InitializeNetworkErrorHandlingSystem(void)
   NetworkHandleStorageSize = 0x30;                      // 设置句柄存储大小为48字节
   
   // 初始化处理缓冲区
-  NetworkPacketProcessingSize = NetworkPacketProcessingSize256Bytes;                  // 设置数据包处理大小为256字节
+  NetworkPacketProcessingSize = 0x100;                         // 设置数据包处理大小为256字节
   
   // 初始化端口范围
-  NetworkPortRangeStart = PORT_HTTP_ALT;                  // 设置端口范围起始值为8080
-  NetworkPortRangeEnd = PORT_RANGE_END;                    // 设置端口范围结束值为9999
+  NetworkPortRangeStart = NetworkPortHttpAlternative;     // 设置端口范围起始值为8080
+  NetworkPortRangeEnd = NetworkPortRangeMaximum;           // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
   NetworkConnectionTimeout = NetworkTimeout30Seconds;                   // 设置连接超时时间为30秒
@@ -2831,7 +2831,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
     PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkMagicLiveConnection, NetworkMagicEventData);
     if ((int)PacketProcessingResult == 0) {
       // 验证数据包头部
-      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkPacketMagicBatchData);
+      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkMagicBinaryData);
       if ((int)PacketProcessingResult == 0) {
         // 处理连接数据
         NetworkHandle ConnectionDataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
@@ -3619,14 +3619,14 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 网络数据包解码变量
-  uint32_t PacketSecurityValidationResult;                  // 网络数据包安全验证结果
-  uint32_t PacketHeaderDecodingStatus;                      // 网络数据包头部解码状态
-  uint32_t PacketPayloadDecodingStatus;                     // 网络数据包负载解码状态
+  uint32_t NetworkPacketSecurityValidationResult;           // 网络数据包安全验证结果
+  uint32_t NetworkPacketHeaderDecodingStatus;               // 网络数据包头部解码状态
+  uint32_t NetworkPacketPayloadDecodingStatus;              // 网络数据包负载解码状态
   
   // 初始化解码状态
-  PacketSecurityValidationResult = NetworkValidationFailure;
-  PacketHeaderDecodingStatus = NetworkValidationFailure;
-  PacketPayloadDecodingStatus = NetworkValidationFailure;
+  NetworkPacketSecurityValidationResult = NetworkValidationFailure;
+  NetworkPacketHeaderDecodingStatus = NetworkValidationFailure;
+  NetworkPacketPayloadDecodingStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData && OutputBuffer) {
