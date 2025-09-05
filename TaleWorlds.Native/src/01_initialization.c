@@ -6899,7 +6899,7 @@ void InitializeSystemStorageManager(void)
   SystemPreviousStorageNode = SystemRootStorageNode;
   SystemCurrentStorageNode = (void* *)SystemRootStorageNode[1];
   while (SystemNodeTraversalFlag == '\0') {
-    IdentifierCompareResult = memcmp(SystemCurrentStorageNode + 4,&SystemDataTemplateO,0x10);
+    IdentifierCompareResult = memcmp(SystemCurrentStorageNode + 4,&SystemDataTemplateTertiarySystem,0x10);
     if (IdentifierCompareResult < 0) {
       SystemNextStorageNode = (void* *)SystemCurrentStorageNode[2];
       SystemCurrentStorageNode = SystemPreviousStorageNode;
@@ -6911,7 +6911,7 @@ void InitializeSystemStorageManager(void)
     SystemCurrentStorageNode = SystemNextStorageNode;
     SystemNodeTraversalFlag = *(char*)((long long)SystemNextStorageNode + NodeActiveFlagOffset);
   }
-  if ((SystemCurrentStorageNode == SystemRootStorageNode) || (IdentifierCompareResult = memcmp(&SystemDataTemplateO,SystemCurrentStorageNode + 4,0x10), IdentifierCompareResult < 0)) {
+  if ((SystemCurrentStorageNode == SystemRootStorageNode) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,SystemCurrentStorageNode + 4,0x10), IdentifierCompareResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTableReference);
     void** SystemAllocatedStorageNode;
     AllocateSystemMemory(SystemDataTableReference,&systemAllocatedStorageNode,SystemPreviousStorageNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
