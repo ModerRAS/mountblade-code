@@ -7129,9 +7129,18 @@ undefined SystemDataTableA1;
 // 功能：存储系统缓冲区数据表信息
 #define SystemBufferDataTableA0 DAT_180bfbf64
 undefined SystemBufferDataTableA0;
-undefined DAT_180bfbf7c;
-undefined DAT_180bfbf60;
-undefined DAT_180bf7308;
+// 系统缓冲区数据表A1
+// 功能：存储系统缓冲区数据表信息
+#define SystemBufferDataTableA1 DAT_180bfbf7c
+undefined SystemBufferDataTableA1;
+// 系统缓冲区数据表A2
+// 功能：存储系统缓冲区数据表信息
+#define SystemBufferDataTableA2 DAT_180bfbf60
+undefined SystemBufferDataTableA2;
+// 系统配置数据表A1
+// 功能：存储系统配置数据表信息
+#define SystemConfigurationDataTableA1 DAT_180bf7308
+undefined SystemConfigurationDataTableA1;
 undefined DAT_180bfbf78;
 undefined DAT_180bf72a8;
 // 系统辅助缓存状态标志
