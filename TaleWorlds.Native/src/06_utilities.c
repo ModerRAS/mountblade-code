@@ -17113,33 +17113,47 @@ void ValidateSystemDataD0(longlong SystemContext,undefined4 *DataValidationPtr)
 
 
 
-undefined8 FUN_180899180(undefined8 *param_1,longlong param_2)
+/**
+ * @brief 初始化系统组件D0
+ * 
+ * 初始化系统组件和状态，按照不同的数据大小和偏移量进行初始化。
+ * 此函数会依次尝试使用不同的数据大小和偏移量进行系统初始化。
+ * 
+ * @param SystemComponentPtr 系统组件指针，指向待初始化的系统组件
+ * @param InitializationOffset 初始化偏移量，用于指定初始化的起始位置
+ * @return undefined8 初始化结果句柄，0表示成功，非0值表示错误码
+ * 
+ * @note 此函数使用4、2、2、8字节的大小和0x10、0x14的偏移量进行初始化
+ * @warning 如果初始化失败，函数会尝试下一个数据大小和偏移量
+ * @see InitializeSystemComponentD1, InitializeSystemD0
+ */
+undefined8 InitializeSystemComponentD0(undefined8 *SystemComponentPtr,longlong InitializationOffset)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
+  undefined8 ComponentHandle;
+  undefined8 InitializationResult;
   
-  if (*(int *)(param_1[1] + 0x18) != 0) {
+  if (*(int *)(SystemComponentPtr[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = *param_1;
-  uVar2 = FUN_1808aed00(uVar1,param_2,4);
-  if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(uVar1,param_2 + 4,2);
-    if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(uVar1,param_2 + 6,2);
-      if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(uVar1,param_2 + 8,8);
-        if ((int)uVar2 == 0) {
-          uVar2 = FUN_1808995c0(uVar1,param_2 + 0x10);
-          if ((int)uVar2 == 0) {
-            uVar2 = FUN_1808995c0(uVar1,param_2 + 0x14);
+  ComponentHandle = *SystemComponentPtr;
+  InitializationResult = ProcessDataChunk(ComponentHandle,InitializationOffset,4);
+  if ((int)InitializationResult == 0) {
+    InitializationResult = ProcessDataChunk(ComponentHandle,InitializationOffset + 4,2);
+    if ((int)InitializationResult == 0) {
+      InitializationResult = ProcessDataChunk(ComponentHandle,InitializationOffset + 6,2);
+      if ((int)InitializationResult == 0) {
+        InitializationResult = ProcessDataChunk(ComponentHandle,InitializationOffset + 8,8);
+        if ((int)InitializationResult == 0) {
+          InitializationResult = ProcessSystemDataD2(ComponentHandle,InitializationOffset + 0x10);
+          if ((int)InitializationResult == 0) {
+            InitializationResult = ProcessSystemDataD2(ComponentHandle,InitializationOffset + 0x14);
           }
         }
       }
     }
   }
-  return uVar2;
+  return InitializationResult;
 }
 
 

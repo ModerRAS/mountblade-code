@@ -28863,7 +28863,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   ulong long SystemEncryptionKey;
   
   MemoryBufferPointer = 0xfffffffffffffffe;
-  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)StackArray238;
+  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemStackBufferArray;
   SystemInitializationStatusFlag = 0;
   StackDoublePointerPrimary = &pGlobalDataFlags;
   pGlobalDataFlags = &SystemGlobalDataReference;
