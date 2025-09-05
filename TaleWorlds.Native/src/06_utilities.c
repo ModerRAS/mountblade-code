@@ -1963,7 +1963,7 @@ undefined DAT_180bfa6e0;
 undefined DAT_180bfa6e8;
 undefined DAT_180bfa6f0;
 undefined DAT_180bfa6f8;
-undefined UNK_180942600;
+undefined UtilitySystemControlFlag600;
 undefined UNK_180a0f168;
 undefined UNK_180a0f178;
 undefined UNK_180a0f188;
@@ -1995,9 +1995,9 @@ undefined DAT_180bfaa78;
 undefined DAT_180bfaa80;
 undefined DAT_180bfaa88;
 undefined DAT_180bfaa90;
-undefined UNK_180942620;
-undefined UNK_180a24bd0;
-undefined UNK_180a24bf0;
+undefined UtilitySystemControlFlag620;
+undefined UtilitySystemDataPointerD0;
+undefined UtilitySystemDataPointerF0;
 undefined UNK_180a24c10;
 undefined UNK_180a24c30;
 undefined UNK_180a24d58;
@@ -2026,24 +2026,26 @@ undefined DAT_180bfae08;
 undefined DAT_180bfae10;
 undefined DAT_180bfae18;
 undefined DAT_180bfae20;
-undefined UNK_180942640;
+undefined UtilitySystemControlFlag640;
 undefined UNK_180a24da8;
 undefined UNK_180a24dc0;
 
-// 函数: undefined FUN_180942660;
-undefined FUN_180942660;
+// 函数: undefined InitializeUtilitySystemControl;
+#define InitializeUtilitySystemControl FUN_180942660
+undefined InitializeUtilitySystemControl;
 undefined DAT_180bfc150;
 undefined1 DAT_180bfc140;
 undefined DAT_180bfc160;
 undefined DAT_180bfc168;
-undefined8 UNK_180bfc158;
+undefined8 UtilitySystemControlPointer158;
 undefined DAT_180bfaec0;
 undefined DAT_180bfaec8;
 undefined DAT_180bfaed0;
 undefined DAT_180bfaed8;
 
-// 函数: undefined FUN_180942750;
-undefined FUN_180942750;
+// 函数: undefined ConfigureUtilitySystemBuffers;
+#define ConfigureUtilitySystemBuffers FUN_180942750
+undefined ConfigureUtilitySystemBuffers;
 undefined DAT_180bfaee0;
 undefined DAT_180bfaee8;
 undefined DAT_180c92050;
@@ -2051,53 +2053,62 @@ undefined DAT_180c92058;
 undefined DAT_180c92060;
 undefined DAT_180c92068;
 
-// 函数: undefined FUN_180942790;
-undefined FUN_180942790;
+// 函数: undefined SetupUtilitySystemMemory;
+#define SetupUtilitySystemMemory FUN_180942790
+undefined SetupUtilitySystemMemory;
 undefined DAT_180bfaef0;
 undefined DAT_180bfaef8;
 undefined DAT_180bfaf00;
 undefined DAT_180bfaf08;
 
-// 函数: undefined FUN_1809427d0;
-undefined FUN_1809427d0;
-undefined UNK_180a27a58;
+// 函数: undefined ProcessUtilitySystemConfiguration;
+#define ProcessUtilitySystemConfiguration FUN_1809427d0
+undefined ProcessUtilitySystemConfiguration;
+undefined UtilitySystemValidationPointer58;
 undefined DAT_180bfb310;
 undefined DAT_180bfb318;
 undefined DAT_180bfb320;
 undefined DAT_180bfb328;
-undefined UNK_180a27a6c;
+undefined UtilitySystemValidationPointer6c;
 
-// 函数: undefined FUN_1809427f0;
-undefined FUN_1809427f0;
+// 函数: undefined ValidateUtilitySystemState;
+#define ValidateUtilitySystemState FUN_1809427f0
+undefined ValidateUtilitySystemState;
 undefined DAT_180bfb730;
 undefined DAT_180bfb738;
 undefined DAT_180bfb740;
 undefined DAT_180bfb748;
-undefined UNK_180a27a70;
+undefined UtilitySystemValidationPointer70;
 
-// 函数: undefined FUN_180942810;
-undefined FUN_180942810;
+// 函数: void InitializeUtilitySystemBuffers();
+#define InitializeUtilitySystemBuffers FUN_180942810
+undefined InitializeUtilitySystemBuffers;
 undefined UtilitySystemConfigBufferA;
 undefined UtilitySystemStatusFlagA;
 
-// 函数: undefined FUN_180942890;
-undefined FUN_180942890;
+// 函数: void ConfigureUtilitySystemBufferA();
+#define ConfigureUtilitySystemBufferA FUN_180942890
+undefined ConfigureUtilitySystemBufferA;
 undefined UtilitySystemConfigBufferB;
 
-// 函数: undefined FUN_1809428e0;
-undefined FUN_1809428e0;
+// 函数: void ConfigureUtilitySystemBufferB();
+#define ConfigureUtilitySystemBufferB FUN_1809428e0
+undefined ConfigureUtilitySystemBufferB;
 undefined UtilitySystemConfigBufferC;
 
-// 函数: undefined FUN_180942930;
-undefined FUN_180942930;
+// 函数: void ConfigureUtilitySystemBufferC();
+#define ConfigureUtilitySystemBufferC FUN_180942930
+undefined ConfigureUtilitySystemBufferC;
 
-// 函数: undefined FUN_180942a20;
-undefined FUN_180942a20;
+// 函数: void ProcessUtilitySystemData();
+#define ProcessUtilitySystemData FUN_180942a20
+undefined ProcessUtilitySystemData;
 
-// 函数: undefined FUN_1809429f0;
-undefined FUN_1809429f0;
+// 函数: void ValidateUtilitySystemData();
+#define ValidateUtilitySystemData FUN_1809429f0
+undefined ValidateUtilitySystemData;
 undefined DAT_180c924ac;
-undefined UNK_180a2bf10;
+undefined UtilitySystemDataPointer10;
 undefined DAT_180c924b0;
 undefined DAT_180a2c1d0;
 undefined DAT_180c924b4;
@@ -4086,15 +4097,15 @@ undefined8 ValidateAndProcessResourceA(longlong param_1)
   longlong stackBufferB [2];
   
   operationResult = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),stackBufferB);
-  if ((int)uVar1 == 0) {
-    if (alStackX_18[0] == 0) {
-      alStackX_18[0] = 0;
+  if ((int)operationResult == 0) {
+    if (stackBufferB[0] == 0) {
+      stackBufferB[0] = 0;
     }
     else {
-      alStackX_18[0] = alStackX_18[0] + -8;
+      stackBufferB[0] = stackBufferB[0] + -8;
     }
-    alStackX_8[0] = 0;
-    uVar1 = FUN_1808681d0(alStackX_18[0],param_1 + 0x18,alStackX_8);
+    stackBufferA[0] = 0;
+    operationResult = FUN_1808681d0(stackBufferB[0],param_1 + 0x18,stackBufferA);
     if ((int)uVar1 == 0) {
       if (alStackX_8[0] != 0) {
         if (*(longlong *)(alStackX_8[0] + 8) == 0) {
@@ -4212,18 +4223,28 @@ undefined8 FUN_1808908b0(longlong param_1)
 
 
 
-undefined8 FUN_180890900(longlong param_1)
+// 函数: undefined8 ProcessBatchDataOperations(longlong param_1)
+// 
+// 批量数据处理函数
+// 处理批量数据操作，包括验证和处理多个数据项
+// 
+// 参数:
+//   param_1 - 数据处理参数指针
+// 
+// 返回值:
+//   undefined8 - 处理结果状态码
+undefined8 ProcessBatchDataOperations(longlong param_1)
 
 {
-  longlong lVar1;
-  int iVar2;
-  undefined8 uVar3;
-  undefined4 *puVar4;
-  ulonglong uVar5;
-  uint uVar6;
-  ulonglong uVar7;
-  longlong lVar8;
-  longlong lStackX_8;
+  longlong dataItemPointer;
+  int itemIndex;
+  undefined8 operationResult;
+  undefined4 *dataPointerArray;
+  ulonglong stackOffset;
+  uint loopCounter;
+  ulonglong processedCount;
+  longlong baseAddress;
+  longlong stackBuffer;
   
   uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
   if ((int)uVar3 == 0) {
