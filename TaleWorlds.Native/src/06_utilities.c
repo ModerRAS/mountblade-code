@@ -40070,10 +40070,18 @@ void ExceptionSystemInitializer370(DataBuffer systemContext, int64_t initializat
 
 
 
-void Unwind_1809033b0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常处理器注册器3B0
+ * 
+ * 注册异常处理器到系统管理器
+ * 
+ * @param processorContext 处理器上下文
+ * @param registrationData 注册数据
+ */
+void ExceptionProcessorRegistrar3B0(DataBuffer processorContext, int64_t registrationData)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(param_2 + 0x50) + 0x288,0x58,4,FUN_180044a30);
+  RegisterExceptionProcessor(*(int64_t *)(registrationData + 0x50) + 0x288, 0x58, 4, InitializeExceptionHandlers);
   return;
 }
 
