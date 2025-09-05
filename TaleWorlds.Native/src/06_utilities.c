@@ -45172,22 +45172,44 @@ void ExecuteExceptionCallback(undefined8 exceptionContext, longlong callbackCont
 
 
 
-void Unwind_180905800(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行资源清理函数
+ * 
+ * 该函数负责执行资源清理操作，通过调用资源清理函数指针
+ * 来释放和清理系统资源。
+ * 
+ * @param cleanupContext 清理上下文参数
+ * @param resourceManager 资源管理器指针，包含资源清理函数
+ * 
+ * @note 原始函数名：Unwind_180905800
+ */
+void ExecuteResourceCleanup(undefined8 cleanupContext, longlong resourceManager)
 
 {
-  if (*(longlong **)(param_2 + 0x248) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x248) + 0x38))();
+  if (*(longlong **)(resourceManager + 0x248) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(resourceManager + 0x248) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180905810(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行深层资源清理函数
+ * 
+ * 该函数负责执行深层次的资源清理操作，通过多层指针访问
+ * 来调用资源清理函数，确保资源的正确释放。
+ * 
+ * @param cleanupContext 清理上下文参数
+ * @param deepResourceManager 深层资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180905810
+ */
+void ExecuteDeepResourceCleanup(undefined8 cleanupContext, longlong deepResourceManager)
 
 {
-  if ((longlong *)**(longlong **)(param_2 + 0x2e0) != (longlong *)0x0) {
-    (**(code **)(*(longlong *)**(longlong **)(param_2 + 0x2e0) + 0x38))();
+  if ((longlong *)**(longlong **)(deepResourceManager + 0x2e0) != (longlong *)0x0) {
+    (**(code **)(*(longlong *)**(longlong **)(deepResourceManager + 0x2e0) + 0x38))();
   }
   return;
 }
