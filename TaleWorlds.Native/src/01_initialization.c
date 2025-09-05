@@ -70654,7 +70654,7 @@ void* ProcessAudioSignal(void)
   uint audioThresholdFlag14;
   uint audioThresholdFlag15;
   uint audioThresholdFlag16;
-  uint8_t audioCoefficientArray17 [16];
+  uint8_t audioCoefficientSource [16];
   float audioSignal18;
   int audioFilterCoeffA;
   float audioSignal19;
@@ -70698,11 +70698,11 @@ void* ProcessAudioSignal(void)
       audioCoefficientArray.LowPart = audioFilterCoeffB + -1;
       audioCoefficientArray._8_4_ = audioFilterCoeffC + -1;
       audioCoefficientArray._12_4_ = audioFilterCoeffD + -1;
-      audioCoefficientArray17._0_4_ = (float)audioCoefficientArray._0_4_;
-      audioCoefficientArray17.LowPart = (float)audioCoefficientArray.LowPart;
-      audioCoefficientArray17._8_4_ = (float)audioCoefficientArray._8_4_;
-      audioCoefficientArray17._12_4_ = (float)audioCoefficientArray._12_4_;
-      audioCoefficientArray = rcpps(audioCoefficientArray,audioCoefficientArray17);
+      audioCoefficientSource._0_4_ = (float)audioCoefficientArray._0_4_;
+      audioCoefficientSource.LowPart = (float)audioCoefficientArray.LowPart;
+      audioCoefficientSource._8_4_ = (float)audioCoefficientArray._8_4_;
+      audioCoefficientSource._12_4_ = (float)audioCoefficientArray._12_4_;
+      audioCoefficientArray = rcpps(audioCoefficientArray,audioCoefficientSource);
       audioSignal25 = 0.0;
       audioSignal29 = 0.0;
       audioSignal31 = 0.0;
@@ -70723,10 +70723,10 @@ void* ProcessAudioSignal(void)
       audioSignal26 = 0.0;
       audioSignal27 = 0.0;
       audioSignal28 = 0.0;
-      audioSignal19 = (audioSignal19 + audioSignal19) - audioSignal19 * audioSignal19 * audioCoefficientArray17._0_4_;
-      audioSignal21 = (audioSignal21 + audioSignal21) - audioSignal21 * audioSignal21 * audioCoefficientArray17.LowPart;
-      audioSignal22 = (audioSignal22 + audioSignal22) - audioSignal22 * audioSignal22 * audioCoefficientArray17._8_4_;
-      audioSignal23 = (audioSignal23 + audioSignal23) - audioSignal23 * audioSignal23 * audioCoefficientArray17._12_4_;
+      audioSignal19 = (audioSignal19 + audioSignal19) - audioSignal19 * audioSignal19 * audioCoefficientSource._0_4_;
+      audioSignal21 = (audioSignal21 + audioSignal21) - audioSignal21 * audioSignal21 * audioCoefficientSource.LowPart;
+      audioSignal22 = (audioSignal22 + audioSignal22) - audioSignal22 * audioSignal22 * audioCoefficientSource._8_4_;
+      audioSignal23 = (audioSignal23 + audioSignal23) - audioSignal23 * audioSignal23 * audioCoefficientSource._12_4_;
       audioDataPointer11 = audioDataIndexPtr;
       audioStatusIndex2 = audioStatusIndex0;
       do {

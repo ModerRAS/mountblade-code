@@ -18913,7 +18913,7 @@ void ValidateDataBlockA0(longlong param_1,undefined8 param_2)
   uint uVar5;
   int iVar6;
   
-  operationResult = func_0x00018076b690(param_2);
+  operationResult = ValidateSystemDataIntegrityB0(param_2);
   iVar1 = *(int *)(param_1 + 0x30);
   uVar5 = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
   iVar3 = (*(uint *)(param_1 + 0x34) ^ uVar5) - uVar5;
@@ -19045,7 +19045,7 @@ undefined8 ProcessComplexDataA2(longlong *param_1,char *param_2,undefined8 *para
       if (bVar3 == 0) {
         return 0x4a;
       }
-      cVar5 = func_0x00018076b8a0(cVar5);
+      cVar5 = ProcessCharacterDataA0(cVar5);
       puVar11 = (uint *)(*param_1 + (ulonglong)(puVar11[1] & 0xffffff) * 8);
       iVar7 = 0;
       if (bVar3 == 0) {
@@ -19063,7 +19063,7 @@ undefined8 ProcessComplexDataA2(longlong *param_1,char *param_2,undefined8 *para
       cVar5 = *param_2;
       while (cVar5 != '\0') {
         if (*pcVar9 == '\0') goto LAB_1808989b1;
-        cVar5 = func_0x00018076b8a0(cVar5);
+        cVar5 = ProcessCharacterDataA0(cVar5);
         cVar6 = func_0x00018076b8a0(*pcVar9);
         if (cVar5 != cVar6) break;
         pcVar1 = param_2 + 1;
