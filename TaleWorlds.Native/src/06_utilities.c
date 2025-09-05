@@ -34386,8 +34386,8 @@ void SetDefaultExceptionHandlerAtOffset138(DataBuffer param_1, int64_t param_2)
  * 该函数负责在偏移量0x1a0位置设置默认异常处理器B，
  * 并进行相关的安全检查和清理操作
  * 
- * @param param_1 参数1（未使用）
- * @param param_2 参数2（目标对象指针）
+ * @param unusedParameter 参数1（未使用）
+ * @param targetObjectPointer 参数2（目标对象指针）
  * @note 原始函数名：Unwind_180902180
  */
 void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t targetObjectPointer)
@@ -34411,8 +34411,8 @@ void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t ta
  * 
  * 该函数负责检查特定状态标志，如果设置了则清除标志并执行回调函数
  * 
- * @param param_1 参数1（未使用）
- * @param param_2 参数2（目标对象指针）
+ * @param unusedParameter 参数1（未使用）
+ * @param targetObjectPointer 参数2（目标对象指针）
  * @note 原始函数名：Unwind_180902190
  */
 void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetObjectPointer)
@@ -34433,8 +34433,8 @@ void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetO
  * 该函数负责在偏移量0x180位置设置默认异常处理器B，
  * 并进行相关的安全检查和清理操作
  * 
- * @param param_1 参数1（未使用）
- * @param param_2 参数2（目标对象指针）
+ * @param unusedParameter 参数1（未使用）
+ * @param targetObjectPointer 参数2（目标对象指针）
  * @note 原始函数名：Unwind_1809021c0
  */
 void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t targetObjectPointer)
@@ -34458,8 +34458,8 @@ void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t ta
  * 
  * 该函数负责在偏移量0x138位置设置默认异常处理器B
  * 
- * @param param_1 参数1（未使用）
- * @param param_2 参数2（目标对象指针）
+ * @param unusedParameter 参数1（未使用）
+ * @param targetObjectPointer 参数2（目标对象指针）
  * @note 原始函数名：Unwind_1809021d0
  */
 void SetDefaultExceptionHandlerAtOffset138Again(DataBuffer unusedParameter,int64_t targetObjectPointer)
@@ -34476,8 +34476,8 @@ void SetDefaultExceptionHandlerAtOffset138Again(DataBuffer unusedParameter,int64
  * 
  * 该函数负责检查状态标志位2，如果设置了则清除标志并执行回调函数
  * 
- * @param param_1 参数1（未使用）
- * @param param_2 参数2（目标对象指针）
+ * @param unusedParameter 参数1（未使用）
+ * @param targetObjectPointer 参数2（目标对象指针）
  * @note 原始函数名：Unwind_1809021e0
  */
 void ClearStateFlag2AndExecuteCallback(DataBuffer unusedParameter,int64_t targetObjectPointer)
