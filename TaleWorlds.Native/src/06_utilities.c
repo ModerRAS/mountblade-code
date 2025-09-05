@@ -97,10 +97,41 @@
 #define ValidateSystemContext ValidateSystemContext
 
 // 系统验证和清理函数宏定义
-#define InitializeSystemValidation FUN_18004b730
-#define ProcessSystemDataValidation FUN_180058370
-#define ValidateSystemDataBuffer FUN_18004b790
-#define CleanupSystemDataPointer FUN_18064e900
+/**
+ * @brief 系统验证初始化函数
+ * 
+ * 初始化系统验证相关的数据结构和状态，为后续的系统验证操作做准备
+ * 
+ * @note 原始函数名：FUN_18004b730
+ */
+#define InitializeSystemValidation InitializeSystemValidation
+
+/**
+ * @brief 系统数据验证处理函数
+ * 
+ * 处理系统数据的验证操作，确保数据的完整性和正确性
+ * 
+ * @note 原始函数名：FUN_180058370
+ */
+#define ProcessSystemDataValidation ProcessSystemDataValidation
+
+/**
+ * @brief 系统数据缓冲区验证函数
+ * 
+ * 验证系统数据缓冲区的有效性和安全性
+ * 
+ * @note 原始函数名：FUN_18004b790
+ */
+#define ValidateSystemDataBuffer ValidateSystemDataBuffer
+
+/**
+ * @brief 系统数据指针清理函数
+ * 
+ * 清理系统数据指针相关的资源，释放内存
+ * 
+ * @note 原始函数名：FUN_18064e900
+ */
+#define CleanupSystemDataPointer CleanupSystemDataPointer
 
 /**
  * @brief 上下文处理函数
@@ -12987,8 +13018,8 @@ DataBuffer ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t 
  * - 验证浮点数范围的有效性
  * - 更新系统状态和数据
  * 
- * @param param_1 数据参数指针，包含待处理的浮点数数据和相关信息
- * @param param_2 上下文参数指针，包含系统上下文和状态信息
+ * @param DataHandle 数据参数指针，包含待处理的浮点数数据和相关信息
+ * @param ContextHandle 上下文参数指针，包含系统上下文和状态信息
  * @return DataBuffer 处理结果状态码，0表示成功，非0值表示错误码
  * 
  * @retval 0 处理成功
@@ -14080,7 +14111,7 @@ DataBuffer ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
   validationContext = *(int64_t *)(systemContext + 0x98);
   if (*(int *)(validationContext + 0x200) != 0) {
     if (((*(int *)(validationContext + 0x180) == 0) && (*(int *)(validationContext + 0x184) == 0)) ||
-       (InitializeSystemContextA0(&stack0x00000008),
+       (InitializeSystemContextA0(&stackBufferSmall),
        *(int64_t *)((int64_t)*(int *)(validationContext + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + 0xfU & 0xfffffff0;
       operationResult = GetSystemCurrentStateA0(*(DataBuffer *)(validationContext + 0x1e0));
@@ -14505,10 +14536,10 @@ void ProcessFloatComparisonAndValidation(void)
   float rangeValue;
   DataWord stackParameter;
   
-  rangeValue = *(float *)(CONCAT44(registerParameter,registerEAX) + 0x38);
+  rangeValue = *(float *)(CONCAT44(registerHighPart,registerLowPart) + 0x38);
   inputValue = *(float *)(registerContext + 0x18);
   if ((rangeValue <= inputValue) &&
-     (rangeValue = *(float *)(CONCAT44(registerParameter,registerEAX) + 0x3c), inputValue <= rangeValue)) {
+     (rangeValue = *(float *)(CONCAT44(registerHighPart,registerLowPart) + 0x3c), inputValue <= rangeValue)) {
     rangeValue = inputValue;
   }
   *(float *)(registerContext + 0x18) = rangeValue;
@@ -14758,18 +14789,18 @@ void ProcessFloatRangeValidation(void)
 {
   float currentValue;
   DataBuffer *resultPointer;
-  DataWord in_EAX;
+  DataWord registerPartLow;
   int validationStatus;
-  DataWord in_register_00000004;
+  DataWord registerPartHigh;
   int64_t contextPointer;
   int64_t systemHandle;
   float processedValue;
   DataWord stackParameterOffset;
   
-  processedValue = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
+  processedValue = *(float *)(CONCAT44(registerPartHigh,registerPartLow) + 0x38);
   currentValue = *(float *)(contextPointer + 0x10);
   if ((processedValue <= currentValue) &&
-     (processedValue = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), currentValue <= processedValue)) {
+     (processedValue = *(float *)(CONCAT44(registerPartHigh,registerPartLow) + 0x3c), currentValue <= processedValue)) {
     processedValue = currentValue;
   }
   *(float *)(contextPointer + 0x10) = processedValue;
