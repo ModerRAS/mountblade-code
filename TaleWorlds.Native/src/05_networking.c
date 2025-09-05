@@ -1718,8 +1718,8 @@ uint32_t NetworkConnectionJitterBuffer;                   // 网络连接抖动�
 uint32_t NetworkConnectionErrorRate;                        // 网络连接错误率
 uint32_t NetworkConnectionHealth;                           // 网络连接健康状态
 uint32_t NetworkConnectionStability;                        // 网络连接稳定性
-uint32_t NetworkInitializationResult;                     // 网络初始化结果
-uint32_t PacketProcessingSize;                            // 数据包处理大小
+uint32_t NetworkInitializationStatus;                     // 网络初始化状态
+uint32_t NetworkPacketProcessingSize;                            // 网络数据包处理大小
 uint32_t NetworkSystemContext;                             // 网络系统上下文
 uint32_t NetworkConnectionSessionIdentifier;                         // 网络会话标识符
 uint32_t NetworkContextPointer;                            // 网络上下文指针
@@ -1733,10 +1733,10 @@ uint32_t NetworkConnectionSettings;                       // 网络连接设置
 uint32_t NetworkConnectionContextIdentifier;                 // 网络连接上下文标识符
 uint32_t NetworkConnectionContextData;                  // 网络连接上下文数据
 uint32_t NetworkConnectionContextConfig;                // 网络连接上下文配置
-uint32_t NetworkConnectionValidationResult;              // 连接验证结果指针
-uint32_t NetworkValidationResultData;                // 连接验证结果数据
-uint32_t NetworkValidationResultSize;                // 连接验证结果大小
-uint32_t NetworkValidationResultCode;                // 连接验证结果码
+uint32_t NetworkConnectionValidationStatus;              // 连接验证状态
+uint32_t NetworkConnectionValidationData;                // 连接验证数据
+uint32_t NetworkConnectionValidationDataSize;                // 连接验证数据大小
+uint32_t NetworkConnectionValidationCode;                // 连接验证码
 uint32_t NetworkConnectionBaseAddressPointer;                  // 连接基地址指针
 uint32_t NetworkConnectionContextDataArray;                     // 连接上下文数据数组
 uint32_t NetworkConnectionContextDataSize;                      // 连接上下文数据大小
@@ -1952,7 +1952,7 @@ NetworkHandle SetupNetworkSystem(void)
 NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkConnectionStatus *NetworkContextArray;      // 网络连接上下文数据数组
+  NetworkConnectionStatus *NetworkContextDataArray;      // 网络连接上下文数据数组
   NetworkConnectionStatus PacketProcessingStatus;      // 数据包处理状态
   NetworkConnectionStatus ConnectionValidationStatus;  // 连接验证状态
   
@@ -1962,19 +1962,19 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *ConnectionStatusBufferPtr = NULL;
+  NetworkConnectionStatus *ConnectionStatusBufferPointer = NULL;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      ConnectionStatusBufferPtr = (NetworkConnectionStatus *)
+      ConnectionStatusBufferPointer = (NetworkConnectionStatus *)
                ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
                              NetworkConnectionCompletionHandle, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (ConnectionStatusBufferPtr != NULL) {
+      if (ConnectionStatusBufferPointer != NULL) {
         int32_t ActiveConnectionsCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionProcessingCounter = (long long)ActiveConnectionsCount;
         int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址指针
