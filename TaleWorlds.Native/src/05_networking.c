@@ -744,6 +744,26 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * @warning 如果连接上下文已存在迭代器，创建新的迭代器可能会影响现有操作
  * @see ProcessNetworkConnectionData, CleanupNetworkConnectionContext
  */
+/**
+ * @brief 初始化网络迭代上下文
+ * 
+ * 初始化网络连接迭代处理的上下文数据，设置迭代控制参数
+ * 
+ * @param NetworkConnectionContext 网络连接上下文数据，包含连接的配置信息
+ * @param ValidationResultData 验证结果数据，包含连接验证的状态信息
+ * @param IterationControlFlag 迭代控制标志，用于控制迭代处理的行为
+ * @return uint32_t 初始化结果状态码，0表示初始化成功，非0值表示初始化失败的具体错误码
+ * 
+ * @retval 0 初始化成功
+ * @retval 0x1 网络连接上下文无效
+ * @retval 0x2 验证结果数据无效
+ * @retval 0x3 迭代控制标志无效
+ * @retval 0x4 内存分配失败
+ * 
+ * @note 此函数在网络连接迭代处理开始前调用
+ * @warning 如果初始化失败，后续的迭代处理将无法正常进行
+ * @see HandleNetworkProtocolStackData, VerifyNetworkConnectionHandleSecurity
+ */
 uint32_t InitializeNetworkIterationContext(int64_t NetworkConnectionContext, int64_t ValidationResultData, uint32_t IterationControlFlag);
 
 /**
