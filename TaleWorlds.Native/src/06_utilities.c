@@ -18914,7 +18914,7 @@ uint8_t ProcessResourceDataNormalization(int64_t ResourceContext, int64_t DataPo
   float SecondaryFloatValue;
   uint16_t ArrayUnionBuffer [4];
   
-  SystemArrayUnionBuffer[0] = CONCAT11(SystemArrayUnionBuffer[0].ByteValue,*(uint8_t *)(ValidationContext + ValidationContextMethodPointerOffset4));
+  SystemArrayUnionBuffer[0] = MergeBooleanWithHigh31Bits(SystemArrayUnionBuffer[0].ByteValue,*(uint8_t *)(ValidationContext + ValidationContextMethodPointerOffset4));
   ResourceHash = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),ResourceAccessStack,1);
   if ((int)ResourceHash == 0) {
     ProcessingStatusCode = 0;
@@ -19061,7 +19061,7 @@ uint8_t ProcessArrayUnionBuffer(int64_t ObjectContext, uint32_t *ValidationConte
     SystemArrayUnionBuffer[0].ShortValue = *(uint16_t *)(ValidationContext + 1);
     ResourceIndex = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),ResourceAccessStack,2);
     if (ResourceIndex == 0) {
-      SystemArrayUnionBuffer[0] = CONCAT22(SystemArrayUnionBuffer[0].ShortValue,*(uint16_t *)((int64_t)ValidationContext + 6));
+      SystemArrayUnionBuffer[0] = MergeHigh31BitsWithLow33Bits(SystemArrayUnionBuffer[0].ShortValue,*(uint16_t *)((int64_t)ValidationContext + 6));
       ResourceIndex = (**(code **)**(uint8_t **)(ObjectContext + 8))
                         (*(uint8_t **)(ObjectContext + 8),ResourceAccessStack,2);
       if (ResourceIndex == 0) {
