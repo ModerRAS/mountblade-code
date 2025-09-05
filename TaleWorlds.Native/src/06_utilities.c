@@ -7204,9 +7204,9 @@ uint8_t SystemConnectionDataFlowTable;
 uint8_t SystemConnectionDataPipelineTable;
 uint8_t SystemConnectionDataSegmentTable;
 uint8_t SystemConfigurationBufferA0;
-uint8_t UNK_180a33140;
-uint8_t UNK_180a33188;
-uint8_t UNK_180a331c0;
+uint8_t SystemConfigurationBufferB0;
+uint8_t SystemConfigurationBufferC0;
+uint8_t SystemConfigurationBufferD0;
 uint8_t UNK_180a33200;
 uint8_t UNK_180a33250;
 uint8_t UNK_180a33280;
@@ -7776,6 +7776,51 @@ uint8_t SystemManagementDataTableA0;
 // 原始函数名：Unwind_180902100 - 异常清理函数F1
 // 功能：清理异常处理状态并释放相关资源
 #define CleanupExceptionStateF1 Unwind_180902100
+
+// Unwind函数语义化宏定义（180905900系列）
+// 原始函数名：Unwind_180905900 - 异常数据清理函数G0
+// 功能：清理异常数据并重置相关状态
+#define CleanupExceptionDataG0 Unwind_180905900
+
+// 原始函数名：Unwind_180905910 - 异常处理函数G1
+// 功能：处理异常状态并执行回调操作
+#define ProcessExceptionCallbackG1 Unwind_180905910
+
+// 原始函数名：Unwind_180905920 - 异常状态重置函数G2
+// 功能：重置异常状态并清理相关资源
+#define ResetExceptionStateG2 Unwind_180905920
+
+// 原始函数名：Unwind_180905930 - 异常验证函数G3
+// 功能：验证异常状态并执行相关操作
+#define ValidateExceptionStateG3 Unwind_180905930
+
+// 原始函数名：Unwind_180905940 - 异常清理函数G4
+// 功能：清理异常处理过程中的临时数据
+#define CleanupExceptionProcessG4 Unwind_180905940
+
+// 原始函数名：Unwind_180905950 - 异常处理函数G5
+// 功能：处理异常状态并执行恢复操作
+#define ProcessExceptionRecoveryG5 Unwind_180905950
+
+// 原始函数名：Unwind_180905960 - 异常回调处理函数G6
+// 功能：处理异常回调并执行相关操作
+#define HandleExceptionCallbacksG6 Unwind_180905960
+
+// 原始函数名：Unwind_180905980 - 异常数据重置函数G7
+// 功能：重置异常数据并清理相关状态
+#define ResetExceptionDataG7 Unwind_180905980
+
+// 原始函数名：Unwind_1809059a0 - 异常处理函数G8
+// 功能：处理异常状态并执行回调操作
+#define ProcessExceptionWithCallbacksG8 Unwind_1809059a0
+
+// 原始函数名：Unwind_1809059b0 - 异常处理函数G9
+// 功能：处理异常状态并执行系统调用
+#define ProcessExceptionSystemCallG9 Unwind_1809059b0
+
+// 原始函数名：Unwind_1809059c0 - 异常状态验证函数G10
+// 功能：验证异常状态并执行相关操作
+#define ValidateExceptionStatusG10 Unwind_1809059c0
 
 /**
  * @brief 处理对象数据并执行相关操作
@@ -49765,6 +49810,18 @@ void Unwind_1809058f0(DataBuffer param_1,int64_t param_2)
 
 
 
+/**
+ * @brief 异常数据清理函数G0
+ * 
+ * 清理异常数据并重置相关状态，设置异常处理指针
+ * 
+ * @param param_1 数据缓冲区参数
+ * @param param_2 数据上下文参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180905900
+ */
 void Unwind_180905900(DataBuffer param_1,int64_t param_2)
 
 {
@@ -49774,6 +49831,20 @@ void Unwind_180905900(DataBuffer param_1,int64_t param_2)
 
 
 
+/**
+ * @brief 异常处理函数G1
+ * 
+ * 处理异常状态并执行回调操作，遍历异常数据缓冲区并执行相应的回调函数
+ * 
+ * @param param_1 数据缓冲区参数
+ * @param param_2 数据上下文参数
+ * @param param_3 异常数据参数
+ * @param param_4 内存基地址参数
+ * 
+ * @return void 无返回值
+ * 
+ * @note 原始函数名：Unwind_180905910
+ */
 void Unwind_180905910(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
@@ -49797,6 +49868,14 @@ void Unwind_180905910(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
+/**
+ * @brief 重置异常状态并调用异常处理回调
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180905920 - 异常状态重置函数G2
+ * 功能：重置异常状态并清理相关资源
+ */
 void Unwind_180905920(DataBuffer param_1,int64_t param_2)
 
 {
@@ -49814,6 +49893,14 @@ void Unwind_180905920(DataBuffer param_1,int64_t param_2)
 
 
 
+/**
+ * @brief 验证异常状态并执行异常处理回调
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180905930 - 异常验证函数G3
+ * 功能：验证异常状态并执行相应的异常处理回调
+ */
 void Unwind_180905930(DataBuffer param_1,int64_t param_2)
 
 {
