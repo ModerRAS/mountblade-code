@@ -18542,14 +18542,14 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                   if (iterationCount != 0) goto FUN_180897b16;
                 }
-                fVar13 = (float)((int)fVar13 + 1);
-                pfVar15 = pfVar15 + 1;
-              } while ((int)fVar13 < 4);
-              pfVar15 = (float *)&UNK_1809850f8;
-              fVar13 = 0.0;
+                loopCounter = (float)((int)loopCounter + 1);
+                floatArrayPointer = floatArrayPointer + 1;
+              } while ((int)loopCounter < 4);
+              floatArrayPointer = (float *)&UNK_1809850f8;
+              loopCounter = 0.0;
               do {
-                fVar1 = *(float *)(dataContext + -0x180985054 + (int64_t)pfVar15);
-                if (fVar1 != *pfVar15) {
+                floatValue = *(float *)(dataContext + -0x180985054 + (int64_t)floatArrayPointer);
+                if (floatValue != *floatArrayPointer) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
                   puStack_1c0 = &UNK_180983950;

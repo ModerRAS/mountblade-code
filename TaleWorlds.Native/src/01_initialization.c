@@ -2646,8 +2646,8 @@ void InitializeRenderingSystemConfig(void)
     SystemNodeActiveFlag = *(char*)((long long)NextNode + SystemNodeActiveFlagOffset);
   }
   if ((PreviousNode == RootNodeReference) || (IdentifierCompareResult = memcmp(&RENDERING_CONFIG_TEMPLATE_IDENTIFIER, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
-    RequiredMemorySize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedNode, PreviousNode, RequiredMemorySize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, RequiredMemorySize);
+    SystemRequiredMemorySize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable, &AllocatedNode, PreviousNode, SystemRequiredMemorySize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, SystemRequiredMemorySize);
     PreviousNode = AllocatedNode;
   }
   PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = RENDERING_CONFIG_NODE_IDENTIFIER1;
