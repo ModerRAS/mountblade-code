@@ -87034,17 +87034,45 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 原始函数名：FUN_1808552c0 - 系统状态验证函数CP0
 // 功能：验证系统状态CP0，确保系统运行正常
 #define ValidateSystemStateCP0 FUN_1808552c0
+// 原始函数名：FUN_1808c44f0 - 安全检查执行函数CQ0
+// 功能：执行安全检查CQ0，验证系统安全性
 #define ExecuteSecurityCheckCQ0 FUN_1808c44f0
+
+// 原始函数名：FUN_180894860 - 数据验证处理函数CR0
+// 功能：处理数据验证CR0，确保数据完整性
 #define ProcessDataValidationCR0 FUN_180894860
+
+// 原始函数名：FUN_1808949c0 - 系统操作执行函数CS0
+// 功能：执行系统操作CS0，处理系统级操作
 #define ExecuteSystemOperationCS0 FUN_1808949c0
+
+// 原始函数名：FUN_18073b5f0 - 上下文验证函数CT0
+// 功能：验证上下文CT0，确保上下文有效性
 #define ValidateContextCT0 FUN_18073b5f0
+
+// 原始函数名：FUN_18073b810 - 系统资源清理函数CU0
+// 功能：清理系统资源CU0，释放相关资源
 #define CleanupSystemResourcesCU0 FUN_18073b810
 
 // 数据处理和转换相关宏定义
+// 原始函数名：FUN_1808678e0 - 数据转换处理函数CV0
+// 功能：处理数据转换CV0，执行数据格式转换
 #define ProcessDataConversionCV0 FUN_1808678e0
+
+// 原始函数名：FUN_18088aca0 - 系统状态检查函数CW0
+// 功能：检查系统状态CW0，监控系统运行状态
 #define CheckSystemStateCW0 FUN_18088aca0
+
+// 原始函数名：FUN_1808bdd90 - 系统配置验证函数CX0
+// 功能：验证系统配置CX0，确保配置正确性
 #define ValidateSystemConfigCX0 FUN_1808bdd90
+
+// 原始函数名：FUN_180768b50 - 内存操作执行函数CY0
+// 功能：执行内存操作CY0，处理内存读写
 #define ExecuteMemoryOperationCY0 FUN_180768b50
+
+// 原始函数名：FUN_18084b240 - 数据验证处理函数CZ0
+// 功能：处理数据验证CZ0，确保数据有效性
 #define ProcessDataValidationCZ0 FUN_18084b240
 
 // 系统组件初始化相关宏定义
