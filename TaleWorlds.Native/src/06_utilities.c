@@ -16301,15 +16301,15 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
       dataContext = *(int64_t *)(param_1 + 0xa0);
       memoryPointer = *(int64_t *)(param_1 + 0x98);
       if (memoryPointer == 0) {
-        fVar11 = (float)*(uint *)(param_1 + 0x68) * fVar11;
+        floatCalculatedValue = (float)*(uint *)(param_1 + 0x68) * floatCalculatedValue;
         memoryPointer = 0;
-        if ((9.223372e+18 <= fVar11) && (fVar11 = fVar11 - 9.223372e+18, fVar11 < 9.223372e+18)) {
+        if ((9.223372e+18 <= floatCalculatedValue) && (floatCalculatedValue = floatCalculatedValue - 9.223372e+18, floatCalculatedValue < 9.223372e+18)) {
           memoryPointer = -0x8000000000000000;
         }
-        memoryPointer = dataContext - ((int64_t)fVar11 + memoryPointer);
+        memoryPointer = dataContext - ((int64_t)floatCalculatedValue + memoryPointer);
         *(int64_t *)(param_1 + 0x98) = memoryPointer;
       }
-      bVar1 = *(byte *)(param_1 + 0x6c);
+      byteValidationFlag = *(byte *)(param_1 + 0x6c);
       if (*(int64_t *)(param_1 + 0xc0) != 0) {
         operationResult = CleanupAndValidateDataStructure(param_1);
         arrayIndex = (**(FunctionPointer**)(param_1 + 0xc0))
@@ -16317,7 +16317,7 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
                           );
         if (arrayIndex != 0) GOTO_ValidationFailed;
       }
-      if (((((bVar1 & 2) != 0 || (int64_t)floatValue + memoryOffset < dataContext - memoryPointer) &&
+      if (((((byteValidationFlag & 2) != 0 || (int64_t)floatValue + memoryOffset < dataContext - memoryPointer) &&
            (arrayIndex = *piStack_6f0, *piStack_6f0 = arrayIndex + 1, arrayIndex < 10)) &&
           ((*(uint *)(param_1 + 0x6c) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(param_1 + 0x6c) >> 0x19 & 1) != 0 && (calculatedSize == *(int *)(param_1 + 0xb0))))) {
@@ -17245,7 +17245,7 @@ DataBuffer PerformNoOperation(void)
 uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
 
 {
-  byte *pbVar1;
+  byte *byteDataPointer;
   DataWord functionReturnValue;
   DataBuffer validationStatus;
   int arrayIndex;
