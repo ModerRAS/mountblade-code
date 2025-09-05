@@ -1776,7 +1776,7 @@ uint32_t NetworkErrorCounter;                          // 网络错误计数器�
  * 
  * 记录网络连接的尝试次数，用于连接成功率统计。
  */
-uint32_t NetworkConnectionAttemptCount;
+uint32_t NetworkConnectionAttemptCount;                  // 网络连接尝试次数，统计连接建立的尝试次数
 
 /**
  * @brief 网络连接失败次数

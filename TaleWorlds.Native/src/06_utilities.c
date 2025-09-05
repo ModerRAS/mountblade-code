@@ -87158,30 +87158,39 @@ void CleanupSystemResourceHandle(void)
 
 
 
-// 函数: void FUN_180942942(void)
-void FUN_180942942(void)
+// 函数: void ReleaseSystemResourceReferenceEx(void)
+// 
+// 释放系统资源引用扩展
+// 处理系统资源的扩展引用释放操作，包括引用计数管理和资源清理
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void ReleaseSystemResourceReferenceEx(void)
 
 {
-  longlong *pvalidationContext;
-  int *poperationResult;
-  int iVar3;
-  longlong lVar4;
-  longlong *registerRBX;
+  longlong *referenceContextPointer;
+  int *operationResultPointer;
+  int operationCount;
+  longlong referenceValue;
+  longlong *resourceHandlePointer;
   
   LOCK();
-  pvalidationContext = registerRBX + 1;
-  lVar4 = *pvalidationContext;
-  *(int *)pvalidationContext = (int)*pvalidationContext + -1;
+  referenceContextPointer = resourceHandlePointer + 1;
+  referenceValue = *referenceContextPointer;
+  *(int *)referenceContextPointer = (int)*referenceContextPointer + -1;
   UNLOCK();
-  if ((int)lVar4 == 1) {
-    (**(code **)*registerRBX)();
+  if ((int)referenceValue == 1) {
+    (**(code **)*resourceHandlePointer)();
     LOCK();
-    poperationResult = (int *)((longlong)registerRBX + 0xc);
-    iVar3 = *poperationResult;
-    *poperationResult = *poperationResult + -1;
+    operationResultPointer = (int *)((longlong)resourceHandlePointer + 0xc);
+    operationCount = *operationResultPointer;
+    *operationResultPointer = *operationResultPointer + -1;
     UNLOCK();
-    if (iVar3 == 1) {
-      (**(code **)(*registerRBX + 8))();
+    if (operationCount == 1) {
+      (**(code **)(*resourceHandlePointer + 8))();
     }
   }
   return;

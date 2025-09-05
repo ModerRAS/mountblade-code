@@ -59523,7 +59523,7 @@ void SystemNoOperationA(void)
   void* ResourceCreationFlagsPrimary;
   void* resourceCreationFlagsSecondary;
   byte isSystemActive9;
-  byte isOperationComplete0;
+  byte isOperationComplete;
   uint32_t resourceAllocationContext1;
   ulong long resourceAllocationContext2;
   long long ResourceMemoryOffset3;
@@ -59759,14 +59759,14 @@ void SystemNoOperationA(void)
   systemIndex0 = *(int *)(SystemGlobalStatusFlags + 0x224);
   if (((*(byte *)(MemoryBlockAddress + 0xfd) & 1) == 0) &&
      ((*(int *)(MemoryBlockAddress + 0x1d0) == systemIndex0 || (*(int *)(MemoryBlockAddress + 0x1d0) == systemIndex0 + -1)))) {
-    isOperationComplete0 = 0;
+    isOperationComplete = 0;
   }
   else {
-    isOperationComplete0 = 1;
+    isOperationComplete = 1;
   }
-  *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | isOperationComplete0;
+  *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | isOperationComplete;
   isSystemActive9 = isSystemActive9 & 0x20;
-  if ((isSystemActive9 != 0) && (isOperationComplete0 != 0)) {
+  if ((isSystemActive9 != 0) && (isOperationComplete != 0)) {
     *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameterSystemResource;
     *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameterMemorySize;
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
@@ -59836,7 +59836,7 @@ void CleanupGlobalSystemResources(void)
   void* ResourceCreationFlagsPrimary;
   void* resourceCreationFlagsSecondary;
   long long SystemThreadHandle9;
-  byte isOperationComplete0;
+  byte isOperationComplete;
   byte OperationCompleteFlag;
   uint32_t resourceAllocationContext2;
   long long ResourceMemoryOffset3;
@@ -59886,16 +59886,16 @@ void CleanupGlobalSystemResources(void)
   long long ConfigurationParameter90;
   
   ResourceMemoryOffset3 = *(long long *)(MemoryBlockAddress + 0x1b8);
-  isOperationComplete0 = *(byte *)(ResourceMemoryOffset3 + 0x38c);
+  isOperationComplete = *(byte *)(ResourceMemoryOffset3 + 0x38c);
   ResourceMemoryOffset5 = MemoryBlockAddress;
-  if (isOperationComplete0 == 9) {
-    isOperationComplete0 = CheckSystemStatus();
-    *(byte *)(ResourceMemoryOffset3 + 0x38c) = isOperationComplete0;
+  if (isOperationComplete == 9) {
+    isOperationComplete = CheckSystemStatus();
+    *(byte *)(ResourceMemoryOffset3 + 0x38c) = isOperationComplete;
   }
   SystemThreadHandle9 = SystemConfigurationParameter;
   ResourceMemoryOffset3 = *(long long *)(ResourceMemoryOffset5 + 0x1e0);
-  *systemDataIndexPtr = *(void* *)(ResourceMemoryOffset3 + (ulong long)isOperationComplete0 * 0x18);
-  systemDataIndexPtr[1] = *(void* *)(ResourceMemoryOffset3 + 8 + (ulong long)isOperationComplete0 * 0x18);
+  *systemDataIndexPtr = *(void* *)(ResourceMemoryOffset3 + (ulong long)isOperationComplete * 0x18);
+  systemDataIndexPtr[1] = *(void* *)(ResourceMemoryOffset3 + 8 + (ulong long)isOperationComplete * 0x18);
   *(uint32_t *)(ResourceDataPointer + 0x10) = *(uint32_t *)(*(long long *)(MemoryBlockAddress + 600) + 0x2c)
   ;
   *(uint32_t *)(ResourceDataPointer + 0x14) = *(uint32_t *)(*(long long *)(MemoryBlockAddress + 600) + 0x4c)
@@ -60025,7 +60025,7 @@ void CleanupGlobalSystemResources(void)
   InitializationFlags = InputStackParameterThreadContext;
   MemoryAllocationFlags = InputStackParameterMemorySize;
   ThreadCreationFlags = InputStackParameterSystemResource;
-  isOperationComplete0 = *(byte *)(SystemThreadHandle9 + 0x1bd8);
+  isOperationComplete = *(byte *)(SystemThreadHandle9 + 0x1bd8);
   CalculationFlags = *(int *)(SystemGlobalStatusFlags + 0x224);
   if (((*(byte *)(MemoryBlockAddress + 0xfd) & 1) == 0) &&
      ((*(int *)(MemoryBlockAddress + 0x1d0) == CalculationFlags || (*(int *)(MemoryBlockAddress + 0x1d0) == CalculationFlags + -1)))) {
@@ -60035,8 +60035,8 @@ void CleanupGlobalSystemResources(void)
     OperationCompleteFlag = 1;
   }
   *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | OperationCompleteFlag;
-  isOperationComplete0 = isOperationComplete0 & 0x20;
-  if ((isOperationComplete0 != 0) && (OperationCompleteFlag != 0)) {
+  isOperationComplete = isOperationComplete & 0x20;
+  if ((isOperationComplete != 0) && (OperationCompleteFlag != 0)) {
     *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameterSystemResource;
     *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameterMemorySize;
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
@@ -60049,7 +60049,7 @@ void CleanupGlobalSystemResources(void)
   ValidateSystemThreadHandle(SystemThreadHandle9);
   *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(MemoryBlockAddress + 0x1d0) = CalculationFlags;
-  if (isOperationComplete0 != 0) {
+  if (isOperationComplete != 0) {
     *(void* *)(MemoryBlockAddress + 0x160) = ThreadCreationFlags;
     *(void* *)(MemoryBlockAddress + 0x168) = MemoryAllocationFlags;
     *(void* *)(MemoryBlockAddress + 0x170) = InitializationFlags;
