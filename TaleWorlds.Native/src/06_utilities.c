@@ -146,6 +146,10 @@
 // 功能：加密工具系统数据A0
 #define EncryptUtilityDataA0 FUN_1809424a0
 
+// 原始函数名：FUN_1808920e0 - 验证并执行操作函数
+// 功能：验证上下文句柄并执行相应操作，如果验证失败则调用错误处理函数
+#define ValidateAndExecuteOperation FUN_1808920e0
+
 // 原始函数名：FUN_1809424c0 - 数据解密函数A0
 // 功能：解密工具系统数据A0
 #define DecryptUtilityDataA0 FUN_1809424c0
@@ -6181,7 +6185,7 @@ void ResetSystemStateA0(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180891b40(longlong param_1,longlong param_2)
+undefined8 ManageResourceState(longlong param_1,longlong param_2)
 
 {
   int iVar1;
@@ -6212,7 +6216,7 @@ undefined8 FUN_180891b40(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180891bd0(longlong param_1,longlong param_2)
+undefined8 HandlePermissionRequest(longlong param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -6231,7 +6235,7 @@ undefined8 FUN_180891bd0(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180891c40(longlong param_1,longlong param_2)
+undefined8 ProcessSystemRequest(longlong param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -6771,7 +6775,6 @@ void UtilityProcessResourceRequest(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808920e0(longlong param_1,longlong param_2)
 // 函数: void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
 // 功能：验证上下文句柄并执行相应操作，如果验证失败则调用错误处理函数
 void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
