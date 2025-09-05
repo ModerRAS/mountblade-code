@@ -12078,49 +12078,49 @@ void ValidateContextAndProcess(longlong contextHandle, undefined8 validationData
 uint32_t ProcessSystemRequestWithValidation(longlong requestContext,undefined8 requestData,uint operationFlags,longlong validationContext)
 
 {
-  longlong *pvalidationContext;
-  uint uVar2;
-  int iVar3;
-  longlong *plVar4;
-  int iVar5;
-  uint uVar6;
-  undefined8 uStackX_20;
-  undefined8 auStack_28 [2];
+  longlong *validationContextPointer;
+  uint requestFlags;
+  int operationResult;
+  longlong *contextIterator;
+  int contextCount;
+  uint processedOperationFlags;
+  undefined8 operationResultData;
+  undefined8 temporaryContext [2];
   
-  if (param_4 == 0) {
+  if (validationContext == 0) {
     return 0x1f;
   }
-  iVar5 = 0;
-  uVar2 = *(uint *)(param_1 + 0x20);
-  auStack_28[0] = 0;
-  iVar3 = FUN_18088c740(auStack_28,param_1);
-  if (iVar3 == 0) {
-    uStackX_20 = 0;
-    uVar6 = param_3 | 0x10000000;
-    if ((uVar2 & 1) == 0) {
-      uVar6 = param_3;
+  contextCount = 0;
+  requestFlags = *(uint *)(requestContext + 0x20);
+  temporaryContext[0] = 0;
+  operationResult = InitializeTemporaryContext(temporaryContext,requestContext);
+  if (operationResult == 0) {
+    operationResultData = 0;
+    processedOperationFlags = operationFlags | 0x10000000;
+    if ((requestFlags & 1) == 0) {
+      processedOperationFlags = operationFlags;
     }
-    iVar3 = ExecuteSystemOperation(param_1,param_2,uVar6,&uStackX_20);
-    if ((iVar3 == 0) && (pvalidationContext = (longlong *)(param_4 + 8), pvalidationContext != (longlong *)0x0)) {
-      plVar4 = (longlong *)*pvalidationContext;
-      if (plVar4 != pvalidationContext) {
+    operationResult = ExecuteSystemOperation(requestContext,requestData,processedOperationFlags,&operationResultData);
+    if ((operationResult == 0) && (validationContextPointer = (longlong *)(validationContext + 8), validationContextPointer != (longlong *)0x0)) {
+      contextIterator = (longlong *)*validationContextPointer;
+      if (contextIterator != validationContextPointer) {
         do {
-          plVar4 = (longlong *)*plVar4;
-          iVar5 = iVar5 + 1;
-        } while (plVar4 != pvalidationContext);
-        if (iVar5 != 0) goto LAB_180894ebf;
+          contextIterator = (longlong *)*contextIterator;
+          contextCount = contextCount + 1;
+        } while (contextIterator != validationContextPointer);
+        if (contextCount != 0) goto CleanupContextAndExit;
       }
-      *(undefined8 *)(param_4 + 0x10) = *(undefined8 *)(param_1 + 0x58);
-      *pvalidationContext = param_1 + 0x50;
-      *(longlong **)(param_1 + 0x58) = pvalidationContext;
-      **(longlong **)(param_4 + 0x10) = (longlong)pvalidationContext;
-      func_0x0001808ded80(param_4,uStackX_20);
-      FUN_180882c20(param_1,uStackX_20);
+      *(undefined8 *)(validationContext + 0x10) = *(undefined8 *)(requestContext + 0x58);
+      *validationContextPointer = requestContext + 0x50;
+      *(longlong **)(requestContext + 0x58) = validationContextPointer;
+      **(longlong **)(validationContext + 0x10) = (longlong)validationContextPointer;
+      ProcessValidationContextData(validationContext,operationResultData);
+      UpdateRequestContextState(requestContext,operationResultData);
     }
   }
-LAB_180894ebf:
+CleanupContextAndExit:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(auStack_28);
+  CleanupTemporaryContext(temporaryContext);
 }
 
 
@@ -12379,39 +12379,52 @@ undefined8 ConfigureSystemParameterDK0(longlong *parameterContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895130(longlong *param_1)
+/**
+ * @brief 清理和重置参数上下文
+ * 
+ * 该函数负责清理和重置参数上下文，包括释放资源、清理内存、重置状态等操作。
+ * 函数会检查参数的有效性，清理相关资源，并重置上下文状态。
+ * 
+ * @param parameterContext 参数上下文指针，包含参数的基本信息和状态
+ * @return uint64_t 操作结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @note 此函数会清理所有相关的参数资源和内存
+ * @warning 如果参数验证失败，函数会提前返回错误码
+ * @warning 在某些情况下，函数执行过程中不会返回，会调用资源分配函数
+ */
+uint64_t CleanupAndResetParameterContext(longlong *parameterContext)
 
 {
-  int iVar1;
-  undefined4 *puVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  uint uVar5;
+  int parameterCount;
+  undefined4 *parameterDataPointer;
+  undefined8 operationResult;
+  longlong cleanupCounter;
+  uint parameterFlags;
   
-  uVar5 = *(uint *)((longlong)param_1 + 0xc);
-  if ((int)((uVar5 ^ (int)uVar5 >> 0x1f) - ((int)uVar5 >> 0x1f)) < 0) {
-    if (0 < (int)param_1[1]) {
+  parameterFlags = *(uint *)((longlong)parameterContext + 0xc);
+  if ((int)((parameterFlags ^ (int)parameterFlags >> 0x1f) - ((int)parameterFlags >> 0x1f)) < 0) {
+    if (0 < (int)parameterContext[1]) {
       return 0x1c;
     }
-    if ((0 < (int)uVar5) && (*param_1 != 0)) {
+    if ((0 < (int)parameterFlags) && (*parameterContext != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+      AllocateSystemResource(*(undefined8 *)(GlobalResourceTable + 0x1a0),*parameterContext,&ParameterCleanupBuffer,0x100,1);
     }
-    *param_1 = 0;
-    *(undefined4 *)((longlong)param_1 + 0xc) = 0;
-    uVar5 = 0;
+    *parameterContext = 0;
+    *(undefined4 *)((longlong)parameterContext + 0xc) = 0;
+    parameterFlags = 0;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-    lVar4 = (longlong)-iVar1;
-    if (iVar1 < 0) {
-      puVar2 = (undefined4 *)((longlong)iVar1 * 0x10 + *param_1 + 4);
+  parameterCount = (int)parameterContext[1];
+  if (parameterCount < 0) {
+    cleanupCounter = (longlong)-parameterCount;
+    if (parameterCount < 0) {
+      parameterDataPointer = (undefined4 *)((longlong)parameterCount * 0x10 + *parameterContext + 4);
       do {
-        puVar2[-1] = 0;
-        *puVar2 = 0xffffffff;
-        *(undefined8 *)(puVar2 + 1) = 0;
-        puVar2 = puVar2 + 4;
-        lVar4 = lVar4 + -1;
+        parameterDataPointer[-1] = 0;
+        *parameterDataPointer = 0xffffffff;
+        *(undefined8 *)(parameterDataPointer + 1) = 0;
+        parameterDataPointer = parameterDataPointer + 4;
+        cleanupCounter = cleanupCounter + -1;
       } while (lVar4 != 0);
       uVar5 = *(uint *)((longlong)param_1 + 0xc);
     }

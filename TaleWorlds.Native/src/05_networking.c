@@ -1027,7 +1027,7 @@ uint32_t NetworkConnectionPoolPerformanceMetrics;      // 网络连接池性能�
 uint32_t NetworkConnectionPoolAllocationCounter;         // 网络连接池分配计数，连接池分配操作的计数
 uint32_t NetworkConnectionPoolDeallocationCounter;       // 网络连接池释放计数，连接池释放操作的计数
 uint32_t NetworkConnectionPoolMaximumCapacity;                 // 网络连接池容量，连接池的最大容量
-uint32_t NetworkConnectionPoolCurrentPosition;                    // 网络连接池索引，连接池的索引位置
+uint32_t NetworkConnectionPoolCurrentIndex;                    // 网络连接池索引，连接池的索引位置
 uint32_t NetworkConnectionPoolManagerHandle;                  // 网络连接池管理器，连接池的管理器句柄
 uint32_t NetworkConnectionPoolUsageStatistics;           // 网络连接池使用统计，连接池的使用统计信息
 
