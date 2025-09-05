@@ -9915,7 +9915,7 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
 
 {
   DataBuffer resultBuffer;
-  int processingStatus [2];
+  int operationStatusBuffer [2];
   int64_t dataOffset;
   
   processingStatus[0] = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataHandle + 0x10),&resultBuffer);
@@ -13036,7 +13036,7 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
   DataBuffer operationResult;
   int64_t resourceHandle;
   int64_t arrayIndex;
-  uint validationBuffer [2];
+  unsigned int validationDataBuffer [2];
   int64_t systemContextBuffer;
   
   validationBuffer[0] = *(uint *)(systemContext + 0x18);
@@ -13093,7 +13093,7 @@ DataBuffer ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t
   DataBuffer memoryBaseAddress;
   int64_t arrayIndex;
   int64_t systemContext;
-  int operationResult [2];
+  int operationResultBuffer [2];
   int64_t stackBuffer;
   
   if (dataParameter + 0x28 != 0) {
@@ -14463,7 +14463,7 @@ DataBuffer SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
   int64_t dataOffset;
   DataBuffer *memoryBaseAddress;
   float validatedValue;
-  uint validationBuffer [2];
+  unsigned int validationDataBuffer [2];
   DataWord securityBuffer [2];
   
   validationBuffer[0] = *(uint *)(configHandle + 0x10);
@@ -15065,7 +15065,7 @@ void ExecuteUtilityDataValidation(int64_t validationContext,DataWord *validation
   int64_t *validationContextPointer;
   int operationResult;
   int64_t calculatedOffset;
-  ByteFlag auStack_c8 [32];
+  ByteFlag encryptionKeyBuffer [32];
   uint colorComponentAlpha;
   uint colorComponentRedHigh;
   uint colorComponentGreenLow;
@@ -15076,35 +15076,35 @@ void ExecuteUtilityDataValidation(int64_t validationContext,DataWord *validation
   uint colorComponentBlueMidByte;
   uint colorComponentBlueHighByte;
   uint colorComponentAlphaHighByte;
-  DataWord uStack_58;
-  uint uStack_54;
-  uint uStack_50;
-  uint uStack_4c;
+  DataWord colorDataWord;
+  uint redGreenComponents;
+  uint blueAlphaComponents;
+  uint colorPackedData;
   int64_t systemContext;
-  ByteFlag auStack_40 [40];
-  uint64_t uStack_18;
+  ByteFlag systemConfigBuffer [40];
+  uint64_t securityCheckValue;
   
-  uStack_18 = ExceptionEncryptionKey ^ (uint64_t)auStack_c8;
+  securityCheckValue = ExceptionEncryptionKey ^ (uint64_t)encryptionKeyBuffer;
   validationContextPointer = *(int64_t **)(param_1 + 800);
   if (validationContextPointer != (int64_t *)0x0) {
-    uStack_58 = *param_2;
-    uStack_54 = param_2[1];
-    uStack_50 = param_2[2];
-    uStack_4c = param_2[3];
-    calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x150))(validationContextPointer,&uStack_58,1);
+    colorDataWord = *param_2;
+    redGreenComponents = param_2[1];
+    blueAlphaComponents = param_2[2];
+    colorPackedData = param_2[3];
+    calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x150))(validationContextPointer,&colorDataWord,1);
     if (calculatedOffset == 0) {
-      colorComponentRedHighByte = uStack_50 >> 0x18;
-      colorComponentAlphaHighByte = uStack_4c >> 0x18;
-      colorComponentRedHigh = uStack_54 >> 0x10;
-      colorComponentBlueHighByte = uStack_4c >> 0x10 & 0xff;
-      colorComponentBlueMidByte = uStack_4c >> 8 & 0xff;
-      colorComponentBlueLow = uStack_4c & 0xff;
-      colorComponentBlueMid = uStack_50 >> 0x10 & 0xff;
-      colorComponentGreenMid = uStack_50 >> 8 & 0xff;
-      colorComponentGreenLow = uStack_50 & 0xff;
-      colorComponentAlpha = uStack_54 & 0xffff;
+      colorComponentRedHighByte = blueAlphaComponents >> 0x18;
+      colorComponentAlphaHighByte = colorPackedData >> 0x18;
+      colorComponentRedHigh = redGreenComponents >> 0x10;
+      colorComponentBlueHighByte = colorPackedData >> 0x10 & 0xff;
+      colorComponentBlueMidByte = colorPackedData >> 8 & 0xff;
+      colorComponentBlueLow = colorPackedData & 0xff;
+      colorComponentBlueMid = blueAlphaComponents >> 0x10 & 0xff;
+      colorComponentGreenMid = blueAlphaComponents >> 8 & 0xff;
+      colorComponentGreenLow = blueAlphaComponents & 0xff;
+      colorComponentAlpha = redGreenComponents & 0xffff;
                     // WARNING: Subroutine does not return
-      InitializeSystemBufferA0(auStack_40,0x27,&SystemBufferConfiguration,uStack_58);
+      InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
     if (((*(byte *)(calculatedOffset + 0xc4) & 1) != 0) &&
        ((systemContext = *(int64_t *)(calculatedOffset + 0x68), systemContext != 0 ||
@@ -15113,7 +15113,7 @@ void ExecuteUtilityDataValidation(int64_t validationContext,DataWord *validation
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_18 ^ (uint64_t)auStack_c8);
+  ExecuteSecurityCheck(securityCheckValue ^ (uint64_t)encryptionKeyBuffer);
 }
 
 
@@ -15165,9 +15165,9 @@ void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationF
   uint colorComponentBlueHighByte;
   uint colorComponentAlphaHighByte;
   uint stackOffset58;
-  uint uStack_50;
-  DataWord uStack_48;
-  uint uStack_44;
+  uint blueAlphaComponents;
+  DataWord inputDataWord;
+  uint inputComponent1;
   uint uStack_40;
   uint uStack_3c;
   ByteFlag auStack_38 [40];
@@ -15183,9 +15183,9 @@ void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationF
     calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x288))(validationContextPointer,&uStack_48,1);
     if (calculatedOffset == 0) {
       uStack_70 = uStack_40 >> 0x18;
-      uStack_50 = uStack_3c >> 0x18;
+      blueAlphaComponents = uStack_3c >> 0x18;
       uStack_90 = uStack_44 >> 0x10;
-      uStack_58 = uStack_3c >> 0x10 & 0xff;
+      colorDataWord = uStack_3c >> 0x10 & 0xff;
       uStack_60 = uStack_3c >> 8 & 0xff;
       uStack_68 = uStack_3c & 0xff;
       uStack_78 = uStack_40 >> 0x10 & 0xff;
@@ -15269,7 +15269,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
   int64_t *validationContextPointer;
   int operationResult;
   int64_t calculatedOffset;
-  ByteFlag auStack_c8 [32];
+  ByteFlag encryptionKeyBuffer [32];
   uint uStack_a8;
   uint uStack_a0;
   uint uStack_98;
@@ -15280,35 +15280,35 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
   uint uStack_70;
   uint uStack_68;
   uint uStack_60;
-  DataWord uStack_58;
-  uint uStack_54;
-  uint uStack_50;
-  uint uStack_4c;
+  DataWord colorDataWord;
+  uint redGreenComponents;
+  uint blueAlphaComponents;
+  uint colorPackedData;
   int64_t systemContext;
-  ByteFlag auStack_40 [40];
-  uint64_t uStack_18;
+  ByteFlag systemConfigBuffer [40];
+  uint64_t securityCheckValue;
   
-  uStack_18 = ExceptionEncryptionKey ^ (uint64_t)auStack_c8;
+  securityCheckValue = ExceptionEncryptionKey ^ (uint64_t)encryptionKeyBuffer;
   validationContextPointer = *(int64_t **)(param_1 + 800);
   if (validationContextPointer != (int64_t *)0x0) {
-    uStack_58 = *param_2;
-    uStack_54 = param_2[1];
-    uStack_50 = param_2[2];
-    uStack_4c = param_2[3];
-    calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x2f8))(validationContextPointer,&uStack_58,1);
+    colorDataWord = *param_2;
+    redGreenComponents = param_2[1];
+    blueAlphaComponents = param_2[2];
+    colorPackedData = param_2[3];
+    calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x2f8))(validationContextPointer,&colorDataWord,1);
     if (calculatedOffset == 0) {
-      uStack_80 = uStack_50 >> 0x18;
-      uStack_60 = uStack_4c >> 0x18;
-      uStack_a0 = uStack_54 >> 0x10;
-      uStack_68 = uStack_4c >> 0x10 & 0xff;
-      uStack_70 = uStack_4c >> 8 & 0xff;
-      uStack_78 = uStack_4c & 0xff;
-      uStack_88 = uStack_50 >> 0x10 & 0xff;
-      uStack_90 = uStack_50 >> 8 & 0xff;
-      uStack_98 = uStack_50 & 0xff;
-      uStack_a8 = uStack_54 & 0xffff;
+      uStack_80 = blueAlphaComponents >> 0x18;
+      uStack_60 = colorPackedData >> 0x18;
+      uStack_a0 = redGreenComponents >> 0x10;
+      uStack_68 = colorPackedData >> 0x10 & 0xff;
+      uStack_70 = colorPackedData >> 8 & 0xff;
+      uStack_78 = colorPackedData & 0xff;
+      uStack_88 = blueAlphaComponents >> 0x10 & 0xff;
+      uStack_90 = blueAlphaComponents >> 8 & 0xff;
+      uStack_98 = blueAlphaComponents & 0xff;
+      uStack_a8 = redGreenComponents & 0xffff;
                     // WARNING: Subroutine does not return
-      InitializeSystemBufferA0(auStack_40,0x27,&SystemBufferConfiguration,uStack_58);
+      InitializeSystemBufferA0(systemConfigBuffer,0x27,&SystemBufferConfiguration,colorDataWord);
     }
     systemContext = *(int64_t *)(calculatedOffset + 0x48);
     if ((systemContext != 0) || (operationResult = ProcessSystemContextA0(param_1,calculatedOffset,&systemContext), operationResult == 0)) {
@@ -15316,7 +15316,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_18 ^ (uint64_t)auStack_c8);
+  ExecuteSecurityCheck(securityCheckValue ^ (uint64_t)encryptionKeyBuffer);
 }
 
 
@@ -17096,8 +17096,8 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
   int64_t validationContext5;
   int inputParameter6;
   bool bVar17;
-  int aiStackX_8 [2];
-  uint auStackX_10 [2];
+  int stackContextBuffer [2];
+  unsigned int stackParameterBuffer [2];
   DataBuffer uStackX_18;
   ByteFlag auStackX_20 [8];
   uint64_t uStack_118;
@@ -17685,9 +17685,9 @@ void ProcessComplexDataBufferA1(DataBuffer systemHandle, int64_t dataContext, ui
   uint uStack_268;
   DataWord uStack_264;
   ByteFlag auStack_260 [520];
-  uint64_t uStack_58;
+  uint64_t colorDataWord;
   
-  uStack_58 = ExceptionEncryptionKey ^ (uint64_t)auStack_328;
+  colorDataWord = ExceptionEncryptionKey ^ (uint64_t)auStack_328;
   loopIndex = 0;
   if (param_3 != 0) {
     operationStatus = *(int *)(param_2 + 0x220);
@@ -17974,7 +17974,7 @@ SecurityValidationLabel:
   }
 ExecuteSystemSecurityCheck:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_58 ^ (uint64_t)auStack_328);
+  ExecuteSecurityCheck(colorDataWord ^ (uint64_t)auStack_328);
 }
 
 
@@ -18451,9 +18451,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   ByteFlag uStack_ec;
   DataBuffer uStack_e8;
   ByteFlag auStack_e0 [136];
-  uint64_t uStack_58;
+  uint64_t colorDataWord;
   
-  uStack_58 = ExceptionEncryptionKey ^ (uint64_t)auStack_1e8;
+  colorDataWord = ExceptionEncryptionKey ^ (uint64_t)auStack_1e8;
   dataContext = *(int64_t *)(param_2 + 0x80);
   validationContext4 = 0;
   uStack_1c8 = 0;
@@ -18632,7 +18632,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   }
 ProcessDataSecurityValidation:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_58 ^ (uint64_t)auStack_1e8);
+  ExecuteSecurityCheck(colorDataWord ^ (uint64_t)auStack_1e8);
 }
 
 
@@ -18696,8 +18696,8 @@ ProcessDataSecurityValidation:
   float fStack000000000000004c;
   float in_stack_00000050;
   DataBuffer *puStack0000000000000058;
-  int64_t in_stack_00000060;
-  int64_t in_stack_00000068;
+  int64_t stackDataBuffer;
+  int64_t stackOperationContext;
   uint8_t *in_stack_00000070;
   float in_stack_00000078;
   DataWord in_stack_000001a0;
@@ -18958,7 +18958,7 @@ ValidateDataSecurity:
   float in_stack_00000050;
   DataBuffer *in_stack_00000058;
   int64_t lStack0000000000000060;
-  int64_t in_stack_00000068;
+  int64_t stackOperationContext;
   DataWord in_stack_000001a0;
   DataWord in_stack_000001a8;
   
@@ -19516,12 +19516,12 @@ DataBuffer ValidateDataStructureA0(int64_t *param_1)
   DataWord securityCheckResult;
   uint8_t *puStack_28;
   DataWord uStack_20;
-  DataWord uStack_18;
+  DataWord securityCheckValue;
   DataWord uStack_14;
   
   uStack_20 = 0;
   puStack_28 = &UNK_180986408;
-  uStack_18 = 2;
+  securityCheckValue = 2;
   uStack_14 = 0x20214;
   functionReturnValue = ValidateDataIntegrityA0(param_1,&puStack_28);
   if ((int)functionReturnValue == 0) {
@@ -20081,7 +20081,7 @@ DataBuffer ValidateDataA1(int64_t *param_1,char param_2)
   int64_t alStackX_18 [2];
   uint8_t *puStack_28;
   DataWord uStack_20;
-  uint64_t uStack_18;
+  uint64_t securityCheckValue;
   
   *(ByteFlag *)(param_1 + 4) = 1;
   functionReturnValue = InitializeDataStructureA0(*(DataBuffer *)(param_1[1] + 0x78),&uStackX_8);
@@ -20093,9 +20093,9 @@ DataBuffer ValidateDataA1(int64_t *param_1,char param_2)
     if (((param_2 != '\0') || (validationContext == 0)) || (47999 < memoryBaseAddress)) {
       param_1[2] = validationStatus;
       uStack_20 = 0;
-      uStack_18 = 0;
+      securityCheckValue = 0;
       if (validationContext != 0) {
-        uStack_18 = memoryBaseAddress;
+        securityCheckValue = memoryBaseAddress;
       }
       puStack_28 = &UNK_180986390;
       functionReturnValue = ValidateDataIntegrityA0(param_1,&puStack_28);
@@ -21115,7 +21115,7 @@ DataBuffer ValidateDataSequenceA0(int64_t *param_1,uint *param_2)
 {
   DataBuffer dataValue;
   uint auStackX_8 [2];
-  uint auStackX_18 [4];
+  unsigned int stackDataArray [4];
   
   if (*(int *)(param_1[1] + 0x18) != 0) {
     return 0x1c;
@@ -21157,7 +21157,7 @@ DataBuffer ProcessDataSequenceA0(int64_t *param_1)
   DataBuffer dataValue;
   uint *destinationIndexRegister;
   uint stackParameterOffset;
-  uint in_stack_00000050;
+  unsigned int stackValidationFlag;
   
   param_1 = (int64_t *)*param_1;
   if (*param_1 == 0) {
@@ -21258,8 +21258,8 @@ DataBuffer ExecuteDataValidationA0(DataBuffer *param_1,int64_t *param_2)
   DataBuffer dataValue;
   int64_t dataContext;
   uint *validationStatusPointer;
-  int aiStackX_8 [2];
-  uint auStackX_10 [2];
+  int stackContextBuffer [2];
+  unsigned int stackParameterBuffer [2];
   
   aiStackX_8[0] = *(int *)(param_1 + 1);
   if (*param_2 == 0) {
@@ -21347,7 +21347,7 @@ void ValidateDataWithSecurityCheck(int64_t *dataHandle,DataWord *resultBuffer)
 
 {
   int validationResult;
-  uint sizeBuffer [2];
+  unsigned int sizeDataBuffer [2];
   DataWord dataBuffer [4];
   
   if (*dataHandle == 0) {
@@ -21381,8 +21381,8 @@ DataBuffer ProcessComplexDataStructureA0(int64_t *param_1,int64_t *param_2)
 {
   DataBuffer dataValue;
   int operationResult;
-  int aiStackX_8 [2];
-  uint auStackX_10 [2];
+  int stackContextBuffer [2];
+  unsigned int stackParameterBuffer [2];
   
   operationResult = 0;
   aiStackX_8[0] = 0;
@@ -21636,7 +21636,7 @@ DataBuffer ProcessDataCollectionA0(int64_t collectionContext,int64_t *dataPointe
   DataBuffer processResult;
   int64_t itemIndex;
   int64_t currentOffset;
-  int itemBuffer [2];
+  int itemDataBuffer [2];
   
   itemCount = (int)dataPointer[1];
   itemBuffer[0] = itemCount;
@@ -22962,7 +22962,7 @@ DataBuffer ProcessDataConversionA0(int64_t param_1,DataBuffer *param_2)
 {
   DataBuffer dataValue;
   uint functionReturnValue;
-  uint auStackX_10 [2];
+  unsigned int stackParameterBuffer [2];
   
   functionReturnValue = *(int *)(param_2 + 1) - 1;
   if (*(int *)(param_2 + 1) < 1) {
@@ -23000,8 +23000,8 @@ uint64_t ExecuteDataSynchronizationA0(int64_t param_1,DataBuffer *param_2)
   int operationStatus;
   int arrayIndex;
   uint *poperationResult;
-  int aiStackX_8 [2];
-  uint auStackX_10 [2];
+  int stackContextBuffer [2];
+  unsigned int stackParameterBuffer [2];
   uint auStackX_18 [2];
   uint auStackX_20 [2];
   uint auStack_38 [6];
@@ -23085,8 +23085,8 @@ uint64_t ProcessBinaryDataA0(void)
   DataBuffer in_R9;
   DataWord extraout_XMM0_Da;
   uint uStack0000000000000068;
-  uint in_stack_00000070;
-  uint in_stack_00000078;
+  unsigned int stackOperationStatus;
+  unsigned int stackDataSize;
   
   if (0 < register_EBX) {
     do {
@@ -23322,7 +23322,7 @@ DataBuffer ProcessDataCacheA0(int64_t param_1,DataBuffer *param_2)
   
   dataValue = ValidatePortControlRequest(param_2,auStack_38,1,0x46464542);
   if (((((int)dataValue == 0) &&
-       (dataValue = ValidatePortControlRequest(param_2,auStack_58,0,0x42464542), (int)dataValue == 0)) &&
+       (dataValue = ValidatePortControlRequest(param_2,acolorDataWord,0,0x42464542), (int)dataValue == 0)) &&
       (dataValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)dataValue == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
       (dataValue = ManageSystemMemoryA0(param_2,param_1 + 0x44), (int)dataValue == 0)))) {
@@ -23340,7 +23340,7 @@ DataBuffer ProcessDataCacheA0(int64_t param_1,DataBuffer *param_2)
         }
         if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
-          CleanupSystemResourcesA0(param_2,auStack_58);
+          CleanupSystemResourcesA0(param_2,acolorDataWord);
         }
       }
     }
@@ -25578,7 +25578,7 @@ void CheckSystemStatusB0(void)
   int64_t resourceIterator;
   int register_R12D;
   int64_t register_R15;
-  uint in_stack_00000050;
+  unsigned int stackValidationFlag;
   uint uStack0000000000000068;
   
   uStack0000000000000068 = in_EAX;
@@ -28438,8 +28438,8 @@ uint64_t ProcessDataAndReturnResult(void)
   int arrayIndex;
   int64_t stackFramePointer;
   int64_t *systemContext;
-  uint in_stack_00000080;
-  uint in_stack_00000088;
+  unsigned int stackBufferPointer;
+  unsigned int stackMemorySize;
   
   functionReturnValue = 0x1c;
   if (*(int *)(inputAccumulatorRegister + 0x18) == 0) {
@@ -29117,7 +29117,7 @@ DataBuffer ValidateDataFormatA1(DataBuffer param_1,int64_t *param_2)
   uint auStackX_20 [2];
   DataWord auStack_68 [2];
   int64_t lStack_60;
-  ByteFlag auStack_58 [32];
+  ByteFlag acolorDataWord [32];
   ByteFlag auStack_38 [32];
   
   validationStatus = ExecuteSecurityValidation(param_2,auStack_38,1,0x53505250);
@@ -29135,7 +29135,7 @@ ValidationDataHandler:
     return validationStatus;
   }
   if (aiStackX_18[0] < 1) goto LAB_18089d455;
-  validationStatus = ExecuteSecurityValidation(param_2,auStack_58,0,0x504f5250);
+  validationStatus = ExecuteSecurityValidation(param_2,acolorDataWord,0,0x504f5250);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -29203,7 +29203,7 @@ ValidationErrorHandler4:
     if ((int)validationStatus == 0) {
 ValidationStateUpdate2:
                     // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0(param_2,auStack_58);
+      CleanupSystemResourcesA0(param_2,acolorDataWord);
     }
   }
   return validationStatus;
@@ -29221,7 +29221,7 @@ DataBuffer GetSystemStatusA2(void)
   DataWord in_stack_00000030;
   int64_t in_stack_00000038;
   int iStack00000000000000b0;
-  uint in_stack_000000b8;
+  unsigned int stackSystemStatus;
   
   iStack00000000000000b0 = 0;
   validationStatus = FUN_1808de650();
@@ -29492,12 +29492,12 @@ uint64_t FUN_18089dcf0(int64_t param_1,DataBuffer *param_2)
   uint64_t memoryBaseAddress;
   ByteFlag auStackX_18 [4];
   ByteFlag auStackX_1c [12];
-  ByteFlag auStack_58 [32];
+  ByteFlag acolorDataWord [32];
   ByteFlag auStack_38 [32];
   
   validationStatus = ExecuteSecurityValidation(param_2,auStack_38,1,0x54495053);
   if ((((int)validationStatus == 0) &&
-      (validationStatus = ExecuteSecurityValidation(param_2,auStack_58,0,0x42495053), (int)validationStatus == 0)) &&
+      (validationStatus = ExecuteSecurityValidation(param_2,acolorDataWord,0,0x42495053), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)validationStatus == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -29555,7 +29555,7 @@ uint64_t FUN_18089dcf0(int64_t param_1,DataBuffer *param_2)
                  ((*(uint *)(param_2 + 8) < 0x85 ||
                   (validationStatus = ValidateDataSequence(param_2,param_1 + 0x108), (int)validationStatus == 0)))) {
                     // WARNING: Subroutine does not return
-                CleanupSystemResourcesA0(param_2,auStack_58);
+                CleanupSystemResourcesA0(param_2,acolorDataWord);
               }
             }
           }
@@ -30254,8 +30254,8 @@ uint64_t FUN_18089e297(void)
   uint operationResult;
   uint dataFlags;
   uint64_t validationOutcome;
-  uint in_stack_000000b0;
-  uint in_stack_000000b8;
+  unsigned int stackSystemFlag;
+  unsigned int stackSystemStatus;
   
   if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
@@ -30357,8 +30357,8 @@ uint64_t FUN_18089e2be(void)
   uint operationResult;
   uint dataFlags;
   uint64_t validationOutcome;
-  uint in_stack_000000b0;
-  uint in_stack_000000b8;
+  unsigned int stackSystemFlag;
+  unsigned int stackSystemStatus;
   
   functionReturnValue = OperateDataO0(*registerContext,systemContext + 0x44,4);
   if ((int)functionReturnValue != 0) {
@@ -30457,7 +30457,7 @@ uint64_t FUN_18089e2e8(void)
   uint operationResult;
   uint dataFlags;
   uint64_t validationOutcome;
-  uint in_stack_000000b0;
+  unsigned int stackSystemFlag;
   uint uStack00000000000000b8;
   
   validationOutcome = 0;
@@ -30568,12 +30568,12 @@ uint64_t FUN_18089e4f0(int64_t param_1,DataBuffer *param_2)
   DataWord uStack_74;
   DataWord uStack_70;
   DataWord uStack_6c;
-  ByteFlag auStack_58 [32];
+  ByteFlag acolorDataWord [32];
   ByteFlag auStack_38 [32];
   
   memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_38,1,0x4e4c4d54);
   if ((((int)memoryBaseAddress == 0) &&
-      (memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_58,0,0x424e4c54), (int)memoryBaseAddress == 0)) &&
+      (memoryBaseAddress = ExecuteSecurityValidation(param_2,acolorDataWord,0,0x424e4c54), (int)memoryBaseAddress == 0)) &&
      (memoryBaseAddress = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)memoryBaseAddress == 0)) {
     poperationResult = (DataWord *)FUN_180847820();
     memoryBaseAddress = 0;
@@ -30646,7 +30646,7 @@ ValidationErrorHandler5:
       memoryBaseAddress = FUN_1808ad9d0(param_2,param_1 + 0x78,0);
       if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808a62d0(param_2,param_1 + 0x88,0), (int)memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0(param_2,auStack_58);
+        CleanupSystemResourcesA0(param_2,acolorDataWord);
       }
     }
   }
@@ -30891,7 +30891,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t validationContext,int6
   ByteFlag stackAllocation3 [32];
   
   dataFlags = 1;
-  memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_58,1,0x4e415254);
+  memoryBaseAddress = ExecuteSecurityValidation(param_2,acolorDataWord,1,0x4e415254);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -32468,19 +32468,19 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
   uint64_t memoryBaseAddress;
   BytePair auStackX_18 [4];
   BytePair auStackX_20 [4];
-  DataWord auStack_58 [2];
-  DataWord uStack_50;
-  DataWord uStack_4c;
-  DataWord uStack_48;
+  DataWord acolorDataWord [2];
+  DataWord blueAlphaComponents;
+  DataWord colorPackedData;
+  DataWord inputDataWord;
   DataWord uStack_44;
-  ByteFlag auStack_40 [40];
+  ByteFlag systemConfigBuffer [40];
   
   validationStatusPointer = (DataWord *)FUN_180847820();
-  uStack_50 = *validationStatusPointer;
-  uStack_4c = validationStatusPointer[1];
+  blueAlphaComponents = *validationStatusPointer;
+  colorPackedData = validationStatusPointer[1];
   uStack_48 = validationStatusPointer[2];
   uStack_44 = validationStatusPointer[3];
-  memoryBaseAddress = FUN_1808ddd30(param_2,auStack_40,0,0x4c525443,0);
+  memoryBaseAddress = FUN_1808ddd30(param_2,systemConfigBuffer,0,0x4c525443,0);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -32497,16 +32497,16 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
         memoryBaseAddress = 0x1c;
         functionReturnValue = 0;
         if ((*(uint *)(param_2 + 8) < 0x5a) && (functionReturnValue = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
-          auStack_58[0] = uStack_50;
+          acolorDataWord[0] = blueAlphaComponents;
           validationContext = *param_2;
           functionReturnValue = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
-                            (*(DataBuffer **)(validationContext + 8),auStack_58,4);
+                            (*(DataBuffer **)(validationContext + 8),acolorDataWord,4);
           if (functionReturnValue == 0) {
-            auStackX_18[0] = (BytePair)uStack_4c;
+            auStackX_18[0] = (BytePair)colorPackedData;
             functionReturnValue = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                               (*(DataBuffer **)(validationContext + 8),auStackX_18,2);
             if (functionReturnValue == 0) {
-              auStackX_20[0] = uStack_4c._2_2_;
+              auStackX_20[0] = colorPackedData._2_2_;
               functionReturnValue = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                                 (*(DataBuffer **)(validationContext + 8),auStackX_20,2);
               if (functionReturnValue == 0) {
@@ -32528,7 +32528,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
               return memoryBaseAddress;
             }
                     // WARNING: Subroutine does not return
-            FUN_1808de000(param_2,auStack_40);
+            FUN_1808de000(param_2,systemConfigBuffer);
           }
         }
       }
