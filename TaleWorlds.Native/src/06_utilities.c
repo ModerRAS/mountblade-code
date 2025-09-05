@@ -10074,7 +10074,7 @@ void TerminateSystem(void)
  * @brief 空操作函数
  * @details 执行空操作，直接返回
  */
-void UtilityNoOperationBase(void)
+void PerformNoOperation(void)
 
 {
   return;
@@ -11898,9 +11898,9 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：验证参数并执行操作
 #define ValidateAndExecuteOperationsA1 FUN_180899100
 
-// 函数: void InitializeSystemEventHandlerA0(int64_t eventHandlerConfig,int64_t callbackTable)
+// 函数: void InitializePrimarySystemEventHandler(int64_t eventHandlerConfig,int64_t callbackTable)
 //
-// 系统事件处理器初始化函数A0
+// 主系统事件处理器初始化函数
 // 
 // 功能：
 // 初始化系统事件处理器，设置事件处理回调函数。该函数负责建立事件处理机制，
@@ -11937,12 +11937,12 @@ void InitializePrimarySystemEventHandler(int64_t eventHandlerConfig,int64_t call
 
 
 
-// 函数: void InitializeSystemEventHandlerA1(int64_t eventHandlerConfig,int64_t callbackTable)
+// 函数: void InitializeSecondarySystemEventHandler(int64_t eventHandlerConfig,int64_t callbackTable)
 //
-// 系统事件处理器初始化函数A1
+// 次级系统事件处理器初始化函数
 // 
 // 功能：
-// 初始化系统事件处理器，处理条件分支逻辑。该函数是A0版本的变体，
+// 初始化系统事件处理器，处理条件分支逻辑。该函数是主版本的变体，
 // 增加了条件判断逻辑，根据不同的条件执行不同的初始化路径。
 //
 // 参数：
@@ -11957,7 +11957,7 @@ void InitializePrimarySystemEventHandler(int64_t eventHandlerConfig,int64_t call
 //   - 如果条件不满足，会调用CleanupSystemEventA0函数（该函数不返回）
 //   - 调用前确保参数有效性，避免未定义行为
 //
-void InitializeSystemEventHandlerA1(int64_t eventHandlerConfig,int64_t callbackTable)
+void InitializeSecondarySystemEventHandler(int64_t eventHandlerConfig,int64_t callbackTable)
 
 {
   int validationStatus;
@@ -11978,9 +11978,9 @@ ValidationCheckpoint:
 
 
 
-// 函数: DataBuffer CheckSystemStatusA0(int64_t contextHandle,int64_t eventManager)
-// 功能：检查系统状态并返回状态码
-DataBuffer CheckSystemStatusA0(int64_t contextHandle,int64_t eventManager)
+// 函数: DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventManager)
+// 功能：验证系统状态和上下文并返回状态码
+DataBuffer ValidateSystemStatusAndContext(int64_t contextHandle,int64_t eventManager)
 
 {
   int referenceCount;
@@ -12006,9 +12006,9 @@ DataBuffer CheckSystemStatusA0(int64_t contextHandle,int64_t eventManager)
 
 
 
-// 函数: void ResetSystemStateA0(int64_t systemConfig,int64_t cleanupContext)
+// 函数: void ResetSystemStateAndCleanup(int64_t systemConfig,int64_t cleanupContext)
 // 
-// 重置系统状态，清理事件处理器
+// 重置系统状态并清理事件处理器
 // 该函数负责重置系统状态，包括清理事件处理器和相关数据结构
 // 
 // 参数:
@@ -12018,7 +12018,7 @@ DataBuffer CheckSystemStatusA0(int64_t contextHandle,int64_t eventManager)
 // 返回值:
 //   无
 /**
- * @brief 重置系统状态A0
+ * @brief 重置系统状态并清理
  * 
  * 重置系统状态到初始状态，清理系统上下文并执行清理操作。
  * 该函数会查询系统数据，重置状态标志，然后调用系统清理函数。
@@ -12029,7 +12029,7 @@ DataBuffer CheckSystemStatusA0(int64_t contextHandle,int64_t eventManager)
  * @note 函数执行成功后会调用CleanupSystemEventA0进行清理（该函数不返回）
  * @note 如果查询系统数据失败，函数会安全返回
  */
-void ResetSystemStateA0(int64_t systemConfig,int64_t cleanupContext)
+void ResetSystemStateAndCleanup(int64_t systemConfig,int64_t cleanupContext)
 
 {
   int operationResult;

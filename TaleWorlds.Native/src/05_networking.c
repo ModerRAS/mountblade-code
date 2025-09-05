@@ -3473,25 +3473,25 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
       if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }
-      ValidationStepResult = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
-      if ((int)ValidationStepResult != 0) {
-        return ValidationStepResult;
+      NetworkValidationStepResult = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
+      if ((int)NetworkValidationStepResult != 0) {
+        return NetworkValidationStepResult;
       }
     }
     else {
-      ValidationStepResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionPrimaryIntegrityOffset);
-      if ((int)ValidationStepResult != 0) {
-        return ValidationStepResult;
+      NetworkValidationStepResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionPrimaryIntegrityOffset);
+      if ((int)NetworkValidationStepResult != 0) {
+        return NetworkValidationStepResult;
       }
-      ValidationStepResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecondaryIntegrityOffset);
-      if ((int)ValidationStepResult != 0) {
-        return ValidationStepResult;
+      NetworkValidationStepResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecondaryIntegrityOffset);
+      if ((int)NetworkValidationStepResult != 0) {
+        return NetworkValidationStepResult;
       }
     }
-    ValidationStepResult = FinalizePacketProcessing(PacketData, ConnectionContext + NetworkConnectionCompletionOffset, NetworkConnectionCompletionHandleValue);
-    return ValidationStepResult;
+    NetworkValidationStepResult = FinalizePacketProcessing(PacketData, ConnectionContext + NetworkConnectionCompletionOffset, NetworkConnectionCompletionHandleValue);
+    return NetworkValidationStepResult;
   }
-  return ValidationStepResult;
+  return NetworkValidationStepResult;
 }
 
 /**
