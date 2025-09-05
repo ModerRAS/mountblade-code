@@ -10184,7 +10184,9 @@ void FUN_180894c94(void)
 
 
 // 函数: void FUN_180894cd2(void)
-void FUN_180894cd2(void)
+// 空操作函数A
+// 不执行任何操作，直接返回
+void NoOperationA(void)
 
 {
   return;
@@ -10235,7 +10237,9 @@ void FUN_180894d04(void)
 
 
 // 函数: void FUN_180894d52(void)
-void FUN_180894d52(void)
+// 空操作函数B
+// 不执行任何操作，直接返回
+void NoOperationB(void)
 
 {
   return;
@@ -11360,7 +11364,9 @@ FUN_180895e19(int param_1,int param_2,undefined8 param_3,undefined8 param_4,unde
 
 
 // 函数: void FUN_180895e7e(void)
-void FUN_180895e7e(void)
+// 空操作函数C
+// 不执行任何操作，直接返回
+void NoOperationC(void)
 
 {
   return;
