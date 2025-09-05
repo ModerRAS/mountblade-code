@@ -468,6 +468,7 @@
 
 // 系统节点分配额外大小常量
 #define SystemNodeAllocationExtraSize     NodeAllocationExtraSize
+#define SYSTEM_NODE_ALLOCATION_EXTRA_SIZE NodeAllocationExtraSize
 
 // 系统配置节点标识符常量
 #define SystemConfigurationNodeIdentifier1 SystemConfigurationSystemIdentifier1

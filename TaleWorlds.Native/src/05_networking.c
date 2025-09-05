@@ -3095,20 +3095,19 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   NetworkStatus TimeoutStatus = 0;                          // 超时状态
   NetworkStatus SecondaryProcessingStatus = 0;              // 次级处理状态
   int64_t StatusIterator = 0;                           // 网络状态处理迭代器
-  int64_t *NetworkConnectionContextBuffer = NULL;                             // 网络连接上下文缓冲区
-  NetworkStatus *NetworkConnectionStatusPointer = NULL;                          // 网络连接状态处理指针
+  int64_t *ContextBuffer = NULL;                             // 网络连接上下文缓冲区
   int32_t ProcessingCode = 0;                              // 网络连接处理代码
   int64_t ProcessedPacketId = 0;                                    // 已处理网络数据包标识符
   int32_t PacketIndex = 0;                                           // 网络数据包索引
   int32_t MaxInt32Value = 0;                                    // 本地网络最大32位整数值
-  int64_t *ConnectionOperationBuffer = NULL;                               // 连接操作缓冲区
+  int64_t *OperationBuffer = NULL;                               // 连接操作缓冲区
   if (ProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
-    if ((0 < *(int *)CalculateConnectionParameterOffset(NetworkConnectionContextBuffer)) && (*NetworkConnectionContextBuffer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionContextBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)CalculateConnectionParameterOffset(ContextBuffer)) && (*ContextBuffer != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ContextBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionContextBuffer = (int64_t)ProcessedPacketId;
-    *(int *)CalculateConnectionParameterOffset(NetworkConnectionContextBuffer) = ProcessingCode;
+    *ContextBuffer = (int64_t)ProcessedPacketId;
+    *(int *)CalculateConnectionParameterOffset(ContextBuffer) = ProcessingCode;
     return NetworkOperationSuccess;
   }
   if (PacketIndex * ConnectionEntrySize - 1U < MaxInt32Value) {
@@ -3116,9 +3115,9 @@ PrimaryNetworkProcessingComplete:
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            NetworkConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
-      int32_t ProcessingIterationCount = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
+      int32_t ProcessingIterationCount = (int)OperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t StatusIterator = (long long)ProcessingIterationCount;
-      if ((ProcessingIterationCount != 0) && (ContextIdentifier = *ConnectionOperationBuffer, 0 < ProcessingIterationCount)) {
+      if ((ProcessingIterationCount != 0) && (ContextIdentifier = *OperationBuffer, 0 < ProcessingIterationCount)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
           NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);

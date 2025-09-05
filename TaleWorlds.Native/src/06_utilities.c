@@ -18553,8 +18553,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
                   puStack_1c0 = &UNK_180983950;
-                  fStack_1a8 = fVar13;
-                  fStack_1a4 = fVar1;
+                  fStack_1a8 = loopCounter;
+                  fStack_1a4 = floatValue;
                   iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                   if (iterationCount != 0) goto FUN_180897b16;
                 }
