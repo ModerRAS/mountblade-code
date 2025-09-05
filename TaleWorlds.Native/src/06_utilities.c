@@ -559,6 +559,23 @@
 // 功能：处理游戏内部消息
 #define ProcessGameMessage FUN_18088fb40
 
+// 系统清理函数语义化宏定义
+// 原始函数名：FUN_180651560 - 系统数据处理函数E0
+// 功能：处理系统数据并执行清理操作
+#define ProcessSystemDataE0 FUN_180651560
+
+// 原始函数名：FUN_18063cfe0 - 资源释放函数E0
+// 功能：释放系统资源
+#define ReleaseSystemResourceE0 FUN_18063cfe0
+
+// 原始函数名：FUN_18064e900 - 系统终止函数E0
+// 功能：终止系统运行，程序不会返回
+#define TerminateSystemE0 FUN_18064e900
+
+// 原始函数名：FUN_180657620 - 资源清理函数E1
+// 功能：清理系统资源
+#define CleanupSystemResourceE1 FUN_180657620
+
 // 函数: void InitializeUtilityModule(void)
 // 
 // 初始化工具模块
