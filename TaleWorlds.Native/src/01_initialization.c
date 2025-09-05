@@ -19997,6 +19997,18 @@ void FinalizeSystemInitialization(void)
  * @param ReservedParameter4 保留参数4
  * @return 返回系统指针池指针
  */
+/**
+ * @brief 初始化系统指针池
+ * 
+ * 该函数负责初始化系统的指针池，设置内存分配器引用，并根据初始化标志
+ * 执行相应的内存管理操作。这是系统内存管理的重要组成部分。
+ * 
+ * @param SystemPointerPool 系统指针池，指向需要初始化的指针池
+ * @param InitializationFlags 初始化标志，控制初始化行为
+ * @param ReservedParameter3 保留参数3，用于扩展功能
+ * @param ReservedParameter4 保留参数4，用于扩展功能
+ * @return void** 返回初始化后的系统指针池
+ */
 void** InitializeSystemPointerPool(void** SystemPointerPool, unsigned long long InitializationFlags, void* ReservedParameter3, void* ReservedParameter4)
 
 {
