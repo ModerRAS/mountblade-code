@@ -12746,9 +12746,9 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   }
   primaryInfinityFlag = tertiaryInfinityFlag;
   if ((*(uint *)(dataPtr + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag1 = 0x1d;
+    primaryInfinityFlag = 0x1d;
   }
-  InfinityFlag2 = InfinityFlag3;
+  secondaryInfinityFlag = tertiaryInfinityFlag;
   if ((*(uint *)(dataPtr + 0x18) & FloatInfinityValue) == FloatInfinityValue) {
     InfinityFlag2 = 0x1d;
   }
@@ -12761,7 +12761,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   }
   InfinityFlag1 = InfinityFlag4;
   if ((*(uint *)(dataPtr + 0x28) & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag1 = 0x1d;
+    primaryInfinityFlag = 0x1d;
   }
   InfinityFlag2 = InfinityFlag4;
   if ((*(uint *)(dataPtr + 0x24) & FloatInfinityValue) == FloatInfinityValue) {
@@ -12776,7 +12776,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   }
   InfinityFlag1 = InfinityFlag4;
   if ((*(uint *)(dataPtr + 0x34) & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag1 = 0x1d;
+    primaryInfinityFlag = 0x1d;
   }
   if (((uint)*(float *)(dataPtr + 0x30) & FloatInfinityValue) == FloatInfinityValue) {
     quaternaryInfinityFlag = 0x1d;
@@ -12795,7 +12795,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   }
   primaryInfinityFlag = tertiaryInfinityFlag;
   if ((VectorComponentW & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag1 = 0x1d;
+    primaryInfinityFlag = 0x1d;
   }
   if (((uint)TemporaryFloat & FloatInfinityValue) == FloatInfinityValue) {
     InfinityFlag3 = 0x1d;

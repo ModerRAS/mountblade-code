@@ -29146,7 +29146,7 @@ SystemCompletionCheck:
     ThreadHandle = ConcatenatedSystemValue(ThreadHandle.HighPart,ProcessId);
   }
 ThreadSizeCheck:
-    memcpy(threadBuffer + bufferOffset,memoryBufferPointer,7);
+    memcpy(ThreadBuffer + BufferOffset,MemoryBufferPointer,7);
 }
 
 
