@@ -882,7 +882,7 @@ uint32_t NetworkErrorReportTemplate;                        // 网络错误报�
 // 网络协议和地址配置
 uint32_t NetworkConnectionProtocol;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本，指定协议的版本号用于兼容性检查
-uint32_t NetworkServerIpAddr;                          // 网络服务器IP地址，存储服务器的IP地址信息
+uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址，存储服务器的IP地址信息
 uint32_t NetworkServerPort;                         // 网络服务器端口号，服务器监听的端口号
 uint32_t NetworkClientIpAddr;                          // 网络客户端IP地址，客户端的IP地址信息
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号，客户端使用的端口号
@@ -898,7 +898,7 @@ uint32_t NetworkSocketRuntimeContextData;                            // 网络�
 uint32_t NetworkSocketStructureMemorySize;                     // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
-uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
+uint32_t NetworkConnectionPriority;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
 uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文大小，连接上下文数据结构的大小
 uint32_t NetworkConnectionQualityLevel;                 // 网络连接质量，评估连接质量的质量指标
 uint32_t NetworkConnectionBandwidthValue;                // 网络连接带宽，连接可用的带宽资源
