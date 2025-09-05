@@ -39668,7 +39668,7 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
   ulong long ThreadContextIndicator;
   ulong long SystemOperationFlags;
   uint SystemOperationResult;
-  bool isByteValid2;
+  bool IsByteValidSecondary;
   char SystemStackBuffer [16];
   
   CurrentThreadIdentifier = GetCurrentThreadIdentifier();

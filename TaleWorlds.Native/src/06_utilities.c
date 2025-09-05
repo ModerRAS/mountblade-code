@@ -4273,16 +4273,40 @@ void* UtilityPrimaryDataProcessingPointer;
  */
 uint32_t UtilitySecondaryDataProcessingStatus;
 
-// 函数: uint32_t UtilityProcessData3(void);
+/**
+ * @brief 处理工具数据3
+ * 
+ * 执行第三类工具数据的处理操作
+ * 
+ * @note 原始函数名：UtilityProcessData3
+ */
 uint32_t UtilityTertiaryDataProcessingStatus;
+
+/**
+ * @brief 数据处理配置参数
+ */
 uint32_t UtilityPrimaryDataProcessingConfig;
+
+/**
+ * @brief 数据处理指针
+ */
 void* UtilitySecondaryDataProcessingPointer;
 void* UtilityTertiaryDataProcessingPointer;
 uint32_t UtilitySecondaryDataProcessingBuffer;
 void* UtilityQuaternaryDataProcessingPointer;
 
-// 函数: void* UtilityProcessData4(void);
+/**
+ * @brief 处理工具数据4
+ * 
+ * 执行第四类工具数据的处理操作
+ * 
+ * @note 原始函数名：UtilityProcessData4
+ */
 void* UtilityProcessData4;
+
+/**
+ * @brief 数据处理器实例
+ */
 void* UtilityPrimaryDataProcessorInstance;
 void* UtilitySecondaryDataProcessorInstance;
 void* UtilityQuinaryDataProcessorPointer;
@@ -4291,8 +4315,18 @@ void* UtilityTertiaryDataProcessorInstance;
 void* UtilityQuaternaryDataProcessorInstance;
 void* UtilityQuinaryDataProcessorInstance;
 
-// 函数: void UtilityProcessData5(void);
+/**
+ * @brief 处理工具数据5
+ * 
+ * 执行第五类工具数据的处理操作
+ * 
+ * @note 原始函数名：UtilityProcessData5
+ */
 void* UtilityProcessData5;
+
+/**
+ * @brief 数据缓冲区实例
+ */
 void* UtilityPrimaryDataBufferInstance;
 void* UtilitySeptenaryDataProcessorPointer;
 void* UtilitySecondaryDataBufferInstance;
@@ -4300,7 +4334,13 @@ void* UtilityTertiaryDataBufferInstance;
 void* UtilityQuaternaryDataBufferInstance;
 void* UtilityQuinaryDataBufferInstance;
 
-// 函数: void UtilityProcessData6(void);
+/**
+ * @brief 处理工具数据6
+ * 
+ * 执行第六类工具数据的处理操作
+ * 
+ * @note 原始函数名：UtilityProcessData6
+ */
 void* UtilityProcessData6;
 void* UtilityDataProcessorPointer8;
 void* UtilityDataBufferInstance6;
