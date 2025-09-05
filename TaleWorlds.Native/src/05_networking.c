@@ -2283,9 +2283,9 @@ PrimaryNetworkProcessingStageComplete:
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
-      int32_t OperationProcessingCode = (int)NetworkConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
-      int64_t StatusIterationCounter = (long long)OperationProcessingCode;
-      if ((OperationProcessingCode != 0) && (NetworkConnectionContextIdentifier = *NetworkConnectionOperationBuffer, 0 < OperationProcessingCode)) {
+      int32_t NetworkOperationProcessingCode = (int)NetworkConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
+      int64_t NetworkStatusIterationCounter = (long long)NetworkOperationProcessingCode;
+      if ((NetworkOperationProcessingCode != 0) && (NetworkConnectionContextIdentifier = *NetworkConnectionOperationBuffer, 0 < NetworkOperationProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
           NetworkStatus *ContextStatusPointer = (NetworkStatus *)CalculateStatusPointerOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
@@ -2297,9 +2297,9 @@ PrimaryNetworkProcessingStageComplete:
           ConnectionStatusIterator[NetworkStatusTimeoutIndex] = TimeoutState;
           ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryState;
           ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastStatusEntryOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
-          StatusIterationCounter = StatusIterationCounter - 1;
+          NetworkStatusIterationCounter = NetworkStatusIterationCounter - 1;
           ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextEntrySize;
-        } while (StatusIterationCounter != 0);
+        } while (NetworkStatusIterationCounter != 0);
       }
 SecondaryNetworkProcessingStageComplete:
       // 网络处理循环完成，继续后续处理
@@ -3138,12 +3138,12 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
   // 数据包完整性验证变量
   uint32_t PacketIntegrityValidationResult;           // 数据包完整性验证结果
   uint32_t PacketChecksumValidationResult;           // 数据包校验和验证结果
-  uint32_t PacketDataFormatValidationResult;         // 数据包数据格式验证结果
+  uint32_t NetworkPacketDataFormatValidationResult;         // 数据包数据格式验证结果
   
   // 初始化验证状态
   PacketIntegrityValidationResult = NetworkValidationFailure;
   PacketChecksumValidationResult = NetworkValidationFailure;
-  PacketDataFormatValidationResult = NetworkValidationFailure;
+  NetworkPacketDataFormatValidationResult = NetworkValidationFailure;
   
   // 验证数据包指针有效性
   if (PacketData && *PacketData != 0) {
@@ -3152,11 +3152,11 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
   
   // 验证完整性偏移量有效性
   if (IntegrityOffset >= 0) {
-    PacketDataFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
+    NetworkPacketDataFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
   }
   
   // 综合完整性验证结果
-  PacketIntegrityValidationResult = PacketChecksumValidationResult & PacketDataFormatValidationResult;
+  PacketIntegrityValidationResult = PacketChecksumValidationResult & NetworkPacketDataFormatValidationResult;
   
   return PacketIntegrityValidationResult;  // 返回完整性验证结果
 }
@@ -3178,38 +3178,38 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
 NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int64_t PacketContextOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
 {
   // 数据包数据处理变量
-  uint32_t PacketDataProcessingResult;             // 数据包数据处理结果
-  uint32_t PacketDataParsingResult;                // 数据包数据解析结果
-  uint32_t PacketDataValidationResult;             // 数据包数据验证结果
+  uint32_t NetworkPacketDataProcessingResult;             // 数据包数据处理结果
+  uint32_t NetworkPacketDataParsingResult;                // 数据包数据解析结果
+  uint32_t NetworkPacketDataValidationResult;             // 数据包数据验证结果
   
   // 初始化处理状态
-  PacketDataProcessingResult = NetworkValidationFailure;
-  PacketDataParsingResult = NetworkValidationFailure;
-  PacketDataValidationResult = NetworkValidationFailure;
+  NetworkPacketDataProcessingResult = NetworkValidationFailure;
+  NetworkPacketDataParsingResult = NetworkValidationFailure;
+  NetworkPacketDataValidationResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    PacketDataParsingResult = NetworkOperationSuccess;  // 数据解析成功
+    NetworkPacketDataParsingResult = NetworkOperationSuccess;  // 数据解析成功
   }
   
   // 验证句柄偏移量有效性
   if (PacketHandleOffset >= 0) {
-    PacketDataValidationResult = NetworkOperationSuccess;  // 数据验证成功
+    NetworkPacketDataValidationResult = NetworkOperationSuccess;  // 数据验证成功
   }
   
   // 根据处理模式处理数据
   if (DataProcessingMode == NetworkOperationSuccess) {
     // 基本处理模式
-    PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult;
+    NetworkPacketDataProcessingResult = NetworkPacketDataParsingResult & NetworkPacketDataValidationResult;
   } else if (DataProcessingMode == NetworkPacketStrictDecodingMode) {
     // 严格处理模式
-    PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult & NetworkOperationSuccess;
+    NetworkPacketDataProcessingResult = NetworkPacketDataParsingResult & NetworkPacketDataValidationResult & NetworkOperationSuccess;
   } else {
     // 默认处理模式
-    PacketDataProcessingResult = NetworkOperationSuccess;
+    NetworkPacketDataProcessingResult = NetworkOperationSuccess;
   }
   
-  return PacketDataProcessingResult;  // 返回数据处理结果
+  return NetworkPacketDataProcessingResult;  // 返回数据处理结果
 }
 
 /**
@@ -3457,23 +3457,23 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t NetworkHeaderValidationResult;                         // 网络头部验证结果
-  uint32_t NetworkContextProcessingStatus;                        // 网络上下文处理状态
-  uint32_t NetworkHeaderFormatCheckResult;                       // 网络头部格式检查结果
+  uint32_t NetworkPacketHeaderValidationResult;                         // 网络头部验证结果
+  uint32_t NetworkPacketContextProcessingStatus;                        // 网络上下文处理状态
+  uint32_t NetworkPacketHeaderFormatCheckResult;                       // 网络头部格式检查结果
   
   // 初始化处理状态
-  NetworkHeaderValidationResult = NetworkValidationFailure;
-  NetworkContextProcessingStatus = NetworkValidationFailure;
-  NetworkHeaderFormatCheckResult = NetworkValidationFailure;
+  NetworkPacketHeaderValidationResult = NetworkValidationFailure;
+  NetworkPacketContextProcessingStatus = NetworkValidationFailure;
+  NetworkPacketHeaderFormatCheckResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    NetworkHeaderValidationResult = NetworkValidationSuccess;
+    NetworkPacketHeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    NetworkContextProcessingStatus = NetworkValidationSuccess;
+    NetworkPacketContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
