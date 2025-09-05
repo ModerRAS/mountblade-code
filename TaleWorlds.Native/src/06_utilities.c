@@ -90023,8 +90023,8 @@ void ProcessSystemExceptionDataG1(void)
       }
     }
     else {
-      func_0x00018064e870(memoryMask, CONCAT71(0xff000000, *(void ***)(memoryMask + 0x70) == &ExceptionList),
-                          _DAT_180d493f8, memoryMask, SystemCleanupFlagfffffffe);
+      ManageMemoryA0(memoryMask, CONCAT71(0xff000000, *(void ***)(memoryMask + 0x70) == &ExceptionList),
+                          SystemDataBufferPointer, memoryMask, SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -90039,14 +90039,14 @@ void ProcessSystemExceptionDataG1(void)
 void UtilityHandleEvent1(void)
 
 {
-  _DAT_180d49638 = &UNK_180a3c3e0;
-  if (_DAT_180d49640 != 0) {
+  EventHandlerPointer = &DefaultExceptionHandlerA;
+  if (SystemShutdownFlag != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  _DAT_180d49640 = 0;
-  _DAT_180d49650 = 0;
-  _DAT_180d49638 = &DefaultExceptionHandlerB;
+  SystemShutdownFlag = 0;
+  SystemResetFlag = 0;
+  EventHandlerPointer = &DefaultExceptionHandlerB;
   return;
 }
 

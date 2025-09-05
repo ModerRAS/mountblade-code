@@ -21245,7 +21245,7 @@ void InitializeSystemCoreEngine(void)
   void* *systemErrorHandler;
   void* systemContext;
   uint32_t systemPriority;
-  void* systemSemaphore;
+  void* SystemSemaphore;
   void* *systemLock;
   long long systemThreadId;
   int systemThreadStatus;
@@ -26384,7 +26384,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   void* *SystemResourceHandle;
   long long ProcessStatus;
   uint32_t securityFlags;
-  void* systemSemaphore;
+  void* SystemSemaphore;
   void* *stackParameterB;
   uint8_t *stackParameterPointerC;
   uint32_t systemStateFlags;
@@ -26392,7 +26392,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   ulong long encryptionKey;
   
   SystemThreadHandleSecondary = SystemGlobalStatusFlags;
-  systemSemaphore = 0xfffffffffffffffe;
+  SystemSemaphore = 0xfffffffffffffffe;
   EncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)ArrayUnsigned368;
   ThreadLocalStorage = (uint8_t *)0x0;
   MemoryAllocationSize = 0;
@@ -26545,7 +26545,7 @@ uint32_t GetSystemResourceStatus(void)
   uint8_t threadLocalStorageBuffer [40];
   
   ResourceMemoryOffset = SystemGlobalStatusFlags;
-  systemSemaphore = 0xfffffffffffffffe;
+  SystemSemaphore = 0xfffffffffffffffe;
   SystemInitializationStatusArray = *(uint8_t (*) [16])
             (*(long long *)(SystemGlobalStatusFlags + 8) + 0xcc +
             (ulong long)(*(uint *)(*(long long *)(SystemGlobalStatusFlags + 8) + 0x13c) & 1) * 0x48);
