@@ -2092,8 +2092,8 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   NetworkStatus ConnectionValidationStatus;                       // 验证状态
   NetworkStatus ConnectionTimeoutStatus;                          // 超时状态
   NetworkStatus SecondaryProcessingStatus;              // 次级处理状态
-  NetworkStatus *ConnectionStatusBuffer;                          // 状态缓冲区
-  int64_t StatusIterator;                           // 处理迭代器
+  NetworkStatus *ConnectionStatusBuffer;                          // 连接状态缓冲区
+  int64_t StatusIterator;                           // 状态处理迭代器
   NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
   int64_t *ConnectionOperationBuffer;                             // 连接操作缓冲区
   int32_t ConnectionUpdateOperation;                         // 连接更新操作代码
@@ -2101,7 +2101,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t ConnectionOperationCode;                              // 连接操作代码
   int64_t ProcessedPacketId;                                    // 已处理网络数据包ID
   int32_t PacketIndex;                                           // 网络数据包索引
-  int32_t MaxIntValue;                                           // 最大整数值
+  int32_t MaxIntValue;                                           // 最大32位整数值
   if (ConnectionOperationCode == 0) {
 PrimaryNetworkProcessingCompleted:
     if ((0 < *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset)) && (*ConnectionOperationBuffer != 0)) {

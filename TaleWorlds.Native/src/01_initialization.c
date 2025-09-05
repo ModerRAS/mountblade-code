@@ -19841,6 +19841,14 @@ void ResetSystemProcessingBuffer(uint8_t *BufferPointer)
 
 
 
+/**
+ * @brief 完成系统初始化
+ * 
+ * 该函数负责完成系统的初始化过程，调用系统数据操作函数来
+ * 执行最终的初始化步骤。
+ * 
+ * @note 这是系统初始化过程的最后一步，确保所有系统组件都已正确初始化
+ */
 void FinalizeSystemInitialization(void)
 {
     SystemDataOperation();
