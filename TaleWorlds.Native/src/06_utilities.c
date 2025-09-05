@@ -95297,4 +95297,50 @@ void CleanupUtilitySystemResources(DataBuffer param_1,DataBuffer param_2,DataBuf
  */
 #define CleanupExceptionAtOffset256 Unwind_180906530
 
+// 系统核心数据处理函数宏定义补充
+/**
+ * @brief 系统数据验证函数A0
+ * 
+ * 该函数负责验证系统数据的完整性和有效性，执行多层安全检查
+ * 
+ * @note 原始函数名：FUN_18089c872
+ */
+#define ValidateSystemDataA0 FUN_18089c872
+
+/**
+ * @brief 浮点数数据处理函数A0
+ * 
+ * 该函数负责处理浮点数数据，执行验证和计算操作
+ * 
+ * @note 原始函数名：FUN_18089c94a
+ */
+#define ProcessFloatDataA0 FUN_18089c94a
+
+/**
+ * @brief 数据处理函数A0
+ * 
+ * 该函数负责处理数据块，执行验证和操作
+ * 
+ * @note 原始函数名：FUN_18089cc80
+ */
+#define ProcessDataBlockA0 FUN_18089cc80
+
+/**
+ * @brief 系统状态查询函数A0
+ * 
+ * 该函数负责查询系统状态，返回状态信息
+ * 
+ * @note 原始函数名：FUN_18089ccb9
+ */
+#define QuerySystemStatusB0 FUN_18089ccb9
+
+/**
+ * @brief 数据验证函数A0
+ * 
+ * 该函数负责验证数据的有效性和完整性
+ * 
+ * @note 原始函数名：FUN_18089ce30
+ */
+#define ValidateDataIntegrityA0 FUN_18089ce30
+
 
