@@ -3842,7 +3842,8 @@
 #define ConvertDataFormatA1 FUN_180895c60
 
 // 原始函数名：FUN_180895cf1 - 数据验证函数A3
-// 功能：验证数据完整性
+// 功能：验证数据完整性，通过校验和验证、数据范围检查和格式验证
+// 确保输入数据符合预期的结构化要求，防止数据损坏和恶意输入
 #define ValidateDataIntegrityA2 FUN_180895cf1
 
 // 原始函数名：FUN_180895d16 - 空操作函数H
