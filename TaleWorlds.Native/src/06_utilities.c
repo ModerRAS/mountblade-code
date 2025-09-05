@@ -1646,9 +1646,9 @@
 // 功能：设置紧急异常处理器
 #define SetEmergencyExceptionHandler FUN_1809427f0
 
-// 原始函数名：FUN_180942810 - 设置默认异常处理器A3
-// 功能：设置默认异常处理器A3
-#define SetDefaultExceptionHandlerA3 FUN_180942810
+// 原始函数名：FUN_180942810 - 设置系统异常处理器
+// 功能：设置系统异常处理器
+#define SetSystemExceptionHandler FUN_180942810
 
 // 原始函数名：FUN_180943020 - 销毁互斥锁A
 // 功能：销毁互斥锁A，释放相关资源
