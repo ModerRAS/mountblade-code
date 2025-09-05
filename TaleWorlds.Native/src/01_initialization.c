@@ -12019,8 +12019,8 @@ void InitializeSystemStringProcessorWorker(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorX(void)
-void InitializeSystemStringProcessorX(void)
+// 函数: void InitializeSystemStringProcessorExtended(void)
+void InitializeSystemStringProcessorExtended(void)
 
 {
   char NodeActiveFlag;
