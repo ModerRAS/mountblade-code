@@ -2777,13 +2777,13 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
     
     // 验证次魔数
     if (SecondaryMagicNumber == NetworkMagicBinaryData || SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      MagicValidationResult |= NetworkPacketSecondMagicValidMask;
+      NetworkMagicValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
   
   // 检查数据完整性
-  if (MagicValidationResult == NetworkMagicValidationMask) {
-    DataIntegrityStatus = NetworkValidationSuccess;
+  if (NetworkMagicValidationResult == NetworkMagicValidationMask) {
+    NetworkDataIntegrityStatus = NetworkValidationSuccess;
   }
   
   // 根据解码模式处理数据

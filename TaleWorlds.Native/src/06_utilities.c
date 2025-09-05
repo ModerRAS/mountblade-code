@@ -50066,20 +50066,31 @@ void UnwindExceptionHandlerA1(undefined8 ExceptionContext, longlong HandlerConte
 
 
 
-void Unwind_180907030(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常解包装函数A2
+ * 
+ * 该函数负责在异常解包过程中调用指定的验证上下文函数，
+ * 处理异常恢复相关的操作
+ * 
+ * @param ExceptionContext 异常上下文指针
+ * @param HandlerContext 处理器上下文指针
+ * 
+ * @note 原始函数名：Unwind_180907030
+ */
+void UnwindExceptionHandlerA2(undefined8 ExceptionContext, longlong HandlerContext)
 
 {
-  longlong *pvalidationContext;
-  longlong lVar2;
+  longlong *ValidationContext;
+  longlong ContextPointer;
   
-  lVar2 = *(longlong *)(param_2 + 0x160);
-  pvalidationContext = *(longlong **)(lVar2 + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  ContextPointer = *(longlong *)(HandlerContext + 0x160);
+  ValidationContext = *(longlong **)(ContextPointer + 0x18);
+  if (ValidationContext != (longlong *)0x0) {
+    (**(code **)(*ValidationContext + 0x38))();
   }
-  pvalidationContext = *(longlong **)(lVar2 + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  ValidationContext = *(longlong **)(ContextPointer + 0x10);
+  if (ValidationContext != (longlong *)0x0) {
+    (**(code **)(*ValidationContext + 0x38))();
   }
   return;
 }
