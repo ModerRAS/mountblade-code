@@ -161,6 +161,10 @@
 // 功能：验证浮点数数据的有效性，检查INF和NaN值，处理零向量情况，并执行系统数据查询和存储操作
 #define ValidateAndProcessFloatingPointData FUN_1808924f0
 
+// 原始函数名：FUN_180897859 - 浮点数据处理函数A0
+// 功能：处理输入的浮点数据，进行一系列验证和计算操作
+#define ProcessFloatingPointDataA0 FUN_180897859
+
 // 原始函数名：FUN_1809424c0 - 数据解密函数A0
 // 功能：解密工具系统数据A0
 #define DecryptUtilityDataA0 FUN_1809424c0
@@ -85512,6 +85516,13 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
                     // WARNING: Subroutine does not return
   FUN_18064e900(puVar1);
 }
+
+// 新增的函数宏定义
+#define ProcessSystemDataCD1 FUN_180867d60
+#define ManageMemoryAllocationCL1 FUN_18085ff30
+#define ExecuteSystemDataProcessing FUN_18085eef0
+#define TerminateSystemE0 FUN_18064e900
+#define CleanupSystemResourceE1 FUN_180657620
 
 
 
