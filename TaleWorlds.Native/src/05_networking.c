@@ -383,9 +383,9 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
 #define NetworkPacketBasicDecodingMode 0x01                 // 基本解码模式
 #define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
-#define NetworkMagicValidationMask03 0x03               // 魔数验证掩码
-#define NetworkPacketFirstMagicValidMask01 0x01               // 第一个魔数有效掩码
-#define NetworkPacketSecondMagicValidMask02 0x02              // 第二个魔数有效掩码
+#define NetworkMagicValidationMask 0x03               // 魔数验证掩码
+#define NetworkPacketFirstMagicValidMask 0x01               // 第一个魔数有效掩码
+#define NetworkPacketSecondMagicValidMask 0x02              // 第二个魔数有效掩码
 #define NetworkIntegrityCheckSuccess 0x01                   // 完整性检查成功
 #define NetworkDataFormatValid 0x01                        // 数据格式有效
 #define NetworkChecksumValid 0x01                           // 校验和有效
@@ -395,11 +395,11 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
 
 // 网络连接验证偏移量常量
-#define NetworkConnectionSecondaryValidationOffset84 0x54         // 第二级连接验证偏移量
-#define NetworkConnectionValidationOffsetThird120 0x78          // 第三级连接验证偏移量
-#define NetworkConnectionValidationOffsetFourth88 0x58         // 第四级连接验证偏移量
-#define NetworkConnectionIntegrityOffsetFirst112 0x70           // 第一级连接完整性偏移量
-#define NetworkConnectionIntegrityOffsetSecond116 0x74          // 第二级连接完整性偏移量
+#define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
+#define NetworkConnectionTertiaryValidationOffset 0x78          // 第三级连接验证偏移量
+#define NetworkConnectionQuaternaryValidationOffset 0x58         // 第四级连接验证偏移量
+#define NetworkConnectionPrimaryIntegrityOffset 0x70           // 第一级连接完整性偏移量
+#define NetworkConnectionSecondaryIntegrityOffset 0x74          // 第二级连接完整性偏移量
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
 // 网络缓冲区对齐和大小常量
@@ -1101,28 +1101,28 @@ uint32_t NetworkContextTemplateConfiguration;         // 网络连接上下文�
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
-uint32_t NetworkPrimaryConfiguration;           // 网络连接主要配置数据
+uint32_t NetworkConnectionPrimaryConfiguration;           // 网络连接主要配置数据
 
 /**
  * @brief 网络连接次要配置数据
  * 
  * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
  */
-uint32_t NetworkSecondaryConfiguration;         // 网络连接次要配置数据
+uint32_t NetworkConnectionSecondaryConfiguration;         // 网络连接次要配置数据
 
 /**
  * @brief 网络连接处理配置数据
  * 
  * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
  */
-uint32_t NetworkProcessingConfiguration;       // 网络连接处理配置数据
+uint32_t NetworkConnectionProcessingConfiguration;       // 网络连接处理配置数据
 
 /**
  * @brief 网络连接传输配置数据
  * 
  * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
  */
-uint32_t NetworkTransportConfiguration;        // 网络连接传输配置数据
+uint32_t NetworkConnectionTransportConfiguration;        // 网络连接传输配置数据
 
 /**
  * @brief 网络连接协议配置数据
@@ -2538,7 +2538,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
-    NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionSecondaryValidationOffset84);
+    NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionSecondaryValidationOffset);
     SecurityValidationArray[SecondaryValidationIndex] = SecondaryValidationStatus;
     NetworkPacketProcessor SecondaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
     PacketValidationResult = SecondaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
@@ -2561,7 +2561,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorCodeInvalidPacket;
   }
-  NetworkStatus QuaternaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth88);
+  NetworkStatus QuaternaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionQuaternaryValidationOffset);
   SecurityValidationArray[QuaternaryValidationIndex] = QuaternaryValidationStatus;
   NetworkPacketProcessor QuaternaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
   PacketValidationResult = QuaternaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);

@@ -65,6 +65,20 @@
 #define ThreadResourceStateOffset 0x20                    // 线程资源状态偏移量
 #define ThreadResourceTotalOffset 0x30                    // 线程资源计数偏移量
 
+// 资源类型常量
+#define ResourceTypeHandler488 0x488                    // 资源类型488处理器
+#define ResourceTypeHandler128 0x128                    // 资源类型128处理器
+#define ResourceContextTertiaryOffset 0xe8               // 资源上下文第三级偏移量
+#define ResourceOperationOffset918 0x918                 // 资源操作偏移量918
+#define ResourceOperationOffsetB70 0xb70                 // 资源操作偏移量B70
+#define ResourceOperationOffsetDc8 0xdc8                 // 资源操作偏移量Dc8
+#define ResourceOperationOffsetDd8 0xdd8                 // 资源操作偏移量Dd8
+#define ResourceOperationOffsetDe8 0xde8                 // 资源操作偏移量De8
+#define ResourceSystemExitTrigger 0xfffffffffffffffe      // 资源系统退出触发值
+#define ResourceInvalidHandleValue 0xffffffff             // 资源无效句柄值
+#define ResourceSystemStatusMask 0xffffffff00000000      // 资源系统状态掩码
+#define ResourceEncodingScaleMask 0xffffff00              // 资源编码缩放掩码
+
 // 资源管理相关常量
 #define ResourceManagementStateOffset 0x4                  // 资源管理状态偏移量
 #define ResourceManagementCleanupOffset 0x5                 // 资源管理清理偏移量
@@ -100302,7 +100316,20 @@ void ExecuteSystemResourceCleanupChain(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_180910340(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证系统资源上下文操作
+ * 
+ * 该函数负责验证系统资源上下文的有效性和完整性
+ * 通过检查资源哈希状态和引用计数来确保资源的一致性
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * 
+ * @note 该函数处理系统资源上下文的验证操作
+ * @warning 原始函数名：Unwind_180910340
+ */
+void ValidateSystemResourceContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -100338,7 +100365,20 @@ void Unwind_180910340(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910350(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理系统资源内存递减操作
+ * 
+ * 该函数负责处理系统资源内存的递减操作，管理资源引用计数
+ * 当资源引用计数降至零时，触发系统清理处理程序
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * 
+ * @note 该函数处理系统资源内存的递减和清理操作
+ * @warning 原始函数名：Unwind_180910350
+ */
+void ProcessSystemResourceMemoryDecrement(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -100558,7 +100598,19 @@ void SetSystemResourceTablePointer001Alternate(uint8_t ObjectContext, int64_t Va
 
 
 
-void Unwind_180910400(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源模板链
+ * 
+ * 该函数负责初始化系统资源模板链，设置资源哈希、分配和缓存模板
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * 
+ * @note 该函数初始化系统资源的模板链
+ * @warning 原始函数名：Unwind_180910400
+ */
+void InitializeSystemResourceTemplateChain(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
@@ -100572,7 +100624,19 @@ void Unwind_180910400(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910410(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 初始化系统资源缓存模板
+ * 
+ * 该函数负责初始化系统资源缓存模板，设置资源分配和缓存模板
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * 
+ * @note 该函数初始化系统资源的缓存模板
+ * @warning 原始函数名：Unwind_180910410
+ */
+void InitializeSystemResourceCacheTemplate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
