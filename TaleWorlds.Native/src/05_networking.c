@@ -917,15 +917,15 @@ uint32_t NetworkSocketProtocol;                       // 网络套接字协议�
 uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
 uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据
 uint32_t NetworkSocketRuntimeData;                         // 网络套接字运行时数据指针，指向套接字相关的数据存储
-uint32_t NetworkSocketRuntimeContextData;                            // 网络套接字运行时上下文，套接字的运行时上下文数据
+uint32_t NetworkSocketRuntimeContextPointer;                 // 网络套接字运行时上下文指针，指向套接字的运行时上下文数据
 uint32_t NetworkSocketStructureMemorySize;                     // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
 uint32_t NetworkConnectionPriority;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
 uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文大小，连接上下文数据结构的大小
-uint32_t NetworkConnectionQualityLevel;                 // 网络连接质量，评估连接质量的质量指标
-uint32_t NetworkConnectionBandwidthValue;                // 网络连接带宽，连接可用的带宽资源
-uint32_t NetworkConnectionLatencyValue;                   // 网络连接延迟，网络通信的延迟时间
+uint32_t NetworkConnectionQuality;                     // 网络连接质量，评估连接质量的质量指标
+uint32_t NetworkConnectionBandwidth;                    // 网络连接带宽，连接可用的带宽资源
+uint32_t NetworkConnectionLatency;                      // 网络连接延迟，网络通信的延迟时间
 uint32_t NetworkConnectionReliability;                         // 网络连接可靠性，连接的稳定性和可靠性指标
 uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别，连接的安全保护级别
 uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
@@ -1261,7 +1261,7 @@ void InitializeNetworkSocket(void)
   NetworkSocketProtocol = TCP_PROTOCOL;                 // 设置协议类型为TCP协议
   
   // 初始化套接字数据缓冲区
-  NetworkSocketRuntimeInformation = 0;                            // 重置套接字运行时数据指针为NULL
+  NetworkSocketRuntimeData = 0;                            // 重置套接字运行时数据指针为NULL
   NetworkSocketContextPointer = 0;                         // 重置网络套接字上下文为NULL
   
   // 初始化网络配置
@@ -1361,9 +1361,9 @@ void AcceptConnection(void)
   NetworkConnectionContextSize = ContextSize512Bytes;                // 设置连接上下文大小
   
   // 设置连接参数
-  NetworkConnectionQualityLevel = NetworkConnectionQualityGood;                     // 设置连接质量为良好
-  NetworkConnectionBandwidthValue = NetworkBandwidthFourKilobytes;                 // 设置连接带宽为4KB
-  NetworkConnectionLatencyValue = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
+  NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
+  NetworkConnectionBandwidth = NetworkBandwidthFourKilobytes;                 // 设置连接带宽为4KB
+  NetworkConnectionLatency = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
   NetworkConnectionReliabilityLevel = NetworkReliabilityLevelHigh;                 // 设置连接可靠性为高
   
   // 初始化安全参数
