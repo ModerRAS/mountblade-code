@@ -209,7 +209,7 @@
  * 
  * @note 原始函数名：FUN_180897d20
  */
-#define ProcessDataBlockWithSecurityCheck FUN_180897d20
+#define ProcessDataBlockWithSecurityCheck ProcessDataBlockWithSecurityCheck
 
 /**
  * @brief 验证和处理数据
@@ -4569,8 +4569,8 @@ int32_t UtilityMemoryValidate5;
 int32_t UtilityMemoryValidate6;
 int32_t UtilityMemoryValidate7;
 int32_t UtilityMemoryValidate8;
-undefined UtilityMemoryValidate9;
-undefined UtilityMemoryValidate10;
+int32_t UtilityMemoryValidate9;
+int32_t UtilityMemoryValidate10;
 undefined UtilityMemoryValidate11;
 undefined UtilityMemoryValidate12;
 undefined UtilityMemoryValidate13;
