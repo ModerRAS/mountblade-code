@@ -1506,7 +1506,7 @@ void CloseConnection(void)
  * @param ValidationResult 验证结果
  * @return int32_t 验证结果，0表示成功，其他值表示错误码
  */
-int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
+int32_t VerifyNetworkConnectionIdentifier(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
 
 /**
  * @brief 网络安全守卫检查
@@ -1534,7 +1534,7 @@ int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketDat
  * @note 此函数在网络连接建立时调用，确保连接的安全性
  * @warning 如果安全验证失败，连接将被拒绝
  */
-void ValidateNetworkSecurity(uint64_t SecurityValidationValue);
+void VerifyNetworkSecurityParameters(uint64_t SecurityValidationValue);
 
 /**
  * @brief 清理网络连接上下文
@@ -1544,7 +1544,7 @@ void ValidateNetworkSecurity(uint64_t SecurityValidationValue);
  * @param ConnectionContext 连接上下文
  * @return int32_t 清理结果，0表示成功，其他值表示错误码
  */
-int32_t CleanupNetworkConnectionContext(int64_t ConnectionContext);
+int32_t ClearNetworkConnectionContext(int64_t ConnectionContext);
 
 /**
  * @brief 验证网络缓冲区超时
@@ -2279,14 +2279,14 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
 NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t ContextId;                                  // 网络连接上下文标识符
+  int64_t NetworkContextIdentifier;                                  // 网络连接上下文标识符
   int64_t *NetworkValidationDataPointer;                        // 网络连接验证结果数据指针
   int32_t ValidationStatus;                          // 网络连接验证状态码
   NetworkHandle ResultHandle;                         // 网络连接上下文结果句柄
   
-  ContextId = 0;
+  NetworkContextIdentifier = 0;
   NetworkValidationDataPointer = NULL;  // 初始化指针变量
-  ValidationStatus = 0;  // 初始化验证状态码
+  NetworkValidationStatus = 0;  // 初始化验证状态码
   if (ValidationStatus == 0) {
     if (NetworkValidationDataPointer && (0 < *(int *)CalculateConnectionParameterOffset(NetworkValidationDataPointer)) && (*NetworkValidationDataPointer != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *NetworkValidationDataPointer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
