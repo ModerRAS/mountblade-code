@@ -1074,7 +1074,7 @@ int InitializeAudioSystem(void)
 int InitializeInputSystem(void)
 {
   int64_t CallbackRegistrationResult;
-  GlobalInputSystemData = &GlobalUnknownInputDataPointer;
+  GlobalInputSystemData = &GlobalInputDataPointer;
   GlobalInputSystemConfig = &GlobalInputSystemState;
   GlobalInputSystemFlags = 0;
   GlobalInputSystemState = 0;

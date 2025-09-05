@@ -97080,7 +97080,7 @@ void ExecuteSecondaryResourceHandlerMethodCallExtended(uint8_t ObjectContext,int
 
 
 
-void Unwind_18090f8e0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseTertiarySRWLockExclusive(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + ValidationContextTertiaryCountOffset) != '\0') {
@@ -97091,7 +97091,7 @@ void Unwind_18090f8e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f8f0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseTertiarySRWLockExclusiveSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + ValidationContextTertiaryCountOffset) != '\0') {
@@ -97102,7 +97102,7 @@ void Unwind_18090f8f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f900(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceStatusFlag1(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x24) & 1) != 0) {
@@ -97114,7 +97114,7 @@ void Unwind_18090f900(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f930(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceStatusFlag2(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x24) & 2) != 0) {
