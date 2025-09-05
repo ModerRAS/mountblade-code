@@ -1564,7 +1564,7 @@
 #define QuerySystemStatusWithValidation FUN_180898c86
 
 // 数据处理函数
-#define ProcessDataF2 FUN_180898d31
+#define ProcessDataWithOutput FUN_180898d31
 
 // 错误码返回函数
 #define ReturnErrorCode FUN_180895345
@@ -20263,7 +20263,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
 // 原始函数名：FUN_180898b65 - 数据处理函数F0
 // 功能：处理输入数据并返回32位结果
 #define ProcessDataWithValidation FUN_180898b65
-DataWord ProcessDataF0(DataBuffer param_1,int param_2,DataWord *param_3)
+DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,DataWord *outputDataBuffer)
 
 {
   DataBuffer *dataBuffer;
@@ -20390,7 +20390,7 @@ DataWord ProcessDataF0(DataBuffer param_1,int param_2,DataWord *param_3)
 // 原始函数名：FUN_180898bc0 - 数据处理函数F1
 // 功能：处理输入数据并返回32位结果
 #define ProcessDataWithIndex FUN_180898bc0
-DataWord ProcessDataF1(DataBuffer param_1,uint64_t param_2)
+DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
 
 {
   ByteFlag dataValue;
@@ -20566,7 +20566,7 @@ DataWord QuerySystemStatusF0(void)
 
 // 原始函数名：FUN_180898d31 - 数据处理函数F2
 // 功能：处理输入数据并返回32位结果
-#define ProcessDataF2 FUN_180898d31
+#define ProcessDataWithOutput FUN_180898d31
 DataWord ProcessDataF2(DataBuffer param_1,int *param_2)
 
 {
