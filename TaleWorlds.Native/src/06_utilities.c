@@ -2918,6 +2918,46 @@
 // 功能：存储系统句柄的指针
 #define SystemHandlePointer _DAT_180c91900
 
+// 原始函数名：Unwind_180906dd0 - 系统验证清理函数A0
+// 功能：清理系统验证相关的数据和资源
+#define CleanupSystemValidationDataA0 Unwind_180906dd0
+
+// 原始函数名：Unwind_180906de0 - 系统验证清理函数A1
+// 功能：清理系统验证相关的数据和资源
+#define CleanupSystemValidationDataA1 Unwind_180906de0
+
+// 原始函数名：Unwind_180906df0 - 系统资源释放函数A0
+// 功能：释放系统资源并清理相关数据
+#define ReleaseSystemResourcesA0 Unwind_180906df0
+
+// 原始函数名：Unwind_180906e00 - 回调函数执行器A0
+// 功能：执行系统回调函数A0
+#define ExecuteCallbackFunctionA0 Unwind_180906e00
+
+// 原始函数名：Unwind_180906e10 - 回调函数执行器A1
+// 功能：执行系统回调函数A1
+#define ExecuteCallbackFunctionA1 Unwind_180906e10
+
+// 原始函数名：Unwind_180906e20 - 回调函数执行器A2
+// 功能：执行系统回调函数A2
+#define ExecuteCallbackFunctionA2 Unwind_180906e20
+
+// 原始函数名：Unwind_180906e30 - 回调函数执行器A3
+// 功能：执行系统回调函数A3
+#define ExecuteCallbackFunctionA3 Unwind_180906e30
+
+// 原始函数名：Unwind_180906e40 - 系统资源初始化回调函数A0
+// 功能：初始化系统资源并执行回调函数
+#define InitializeSystemResourcesWithCallbackA0 Unwind_180906e40
+
+// 原始函数名：Unwind_180906e50 - 带参数的回调函数执行器A0
+// 功能：执行带参数的系统回调函数
+#define ExecuteCallbackFunctionWithParamsA0 Unwind_180906e50
+
+// 原始函数名：Unwind_180906e60 - 回调函数执行器A4
+// 功能：执行系统回调函数A4
+#define ExecuteCallbackFunctionA4 Unwind_180906e60
+
 // 原始变量名：0x180c91910 - 互斥锁对象指针
 // 功能：存储互斥锁对象的指针
 #define MutexObjectPointer 0x180c91910
@@ -17652,7 +17692,7 @@ MemoryAllocationLabel:
     if (-1 < inputParameter6 + -1) {
       do {
         securityCheckValueA0 = securityCheckValueA0 & SystemCleanupFlag00000000;
-        plStack_108 = (int64_t *)&UNK_180982dc0;
+        plStack_108 = (int64_t *)&SystemConfigurationDataTable;
         aiStack_f8[0] = *(int *)(dataFlags + resourceIterator * 4);
         ResetSystemStateA1(&plStack_108,*(DataBuffer *)(param_1 + 0x58));
         resourceIterator = resourceIterator + -1;
@@ -17827,7 +17867,7 @@ DataBuffer ProcessResourceData(int64_t resourceContext)
       }
     }
     dataBuffer = (int *)AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),dataSize + 0x19,
-                                  &UNK_1809868b0,0x278,0,0,1);
+                                  &SystemStatusDataTable,0x278,0,0,1);
     dataBuffer[0] = 0;
     dataBuffer[1] = 0;
     dataBuffer[2] = 0;
@@ -54940,6 +54980,21 @@ void Unwind_180906db0(DataBuffer param_1,int64_t param_2)
 
 
 
+/**
+ * @brief 系统资源清理函数A0
+ * 
+ * 该函数负责清理系统资源，包括引用计数管理和内存释放。
+ * 主要功能包括：
+ * - 检查资源指针有效性
+ * - 计算内存基地址和偏移量
+ * - 管理引用计数
+ * - 处理异常情况
+ * 
+ * @param param_1 系统数据缓冲区
+ * @param param_2 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906dc0
+ */
 void Unwind_180906dc0(DataBuffer param_1,int64_t param_2)
 
 {
@@ -54976,6 +55031,20 @@ void Unwind_180906dc0(DataBuffer param_1,int64_t param_2)
 
 
 
+/**
+ * @brief 系统验证清理函数A0
+ * 
+ * 该函数负责清理系统验证相关的数据和资源。
+ * 主要功能包括：
+ * - 验证上下文指针的有效性
+ * - 遍历数据上下文进行清理
+ * - 处理异常情况
+ * 
+ * @param param_1 系统数据缓冲区
+ * @param param_2 执行上下文
+ * 
+ * @note 原始函数名：Unwind_180906dd0
+ */
 void Unwind_180906dd0(DataBuffer param_1,int64_t param_2)
 
 {
