@@ -926,9 +926,9 @@
 // 功能：销毁互斥锁B，释放相关资源
 #define DestroyMutexB FUN_180943040
 
-// 原始函数名：FUN_180943070 - 线程本地存储初始化函数A2
-// 功能：初始化线程本地存储A2
-#define InitializeThreadLocalStorageA2 FUN_180943070
+// 原始函数名：FUN_180943070 - 销毁互斥锁C
+// 功能：销毁互斥锁C，释放相关资源
+#define DestroyMutexC FUN_180943070
 
 // 原始函数名：FUN_180943090 - 线程本地存储初始化函数A3
 // 功能：初始化线程本地存储A3
