@@ -1628,10 +1628,6 @@ void InitializeGameCoreSystem(void)
  * 
  * @return void 无返回值
  */
- * 
- * @param void 无参数
- * @return void 无返回值
- */
 void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeActive;
