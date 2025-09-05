@@ -99828,7 +99828,20 @@ void ExecuteSystemContextCallbackChainWithTertiaryOffset(uint8_t ObjectContext, 
 
 
 
-void Unwind_1809101f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源清理回调函数
+ * 
+ * 该函数从验证上下文中提取资源上下文，并执行资源清理回调函数
+ * 主要用于系统资源清理过程中的单个资源清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据和资源上下文指针
+ * @return 无返回值
+ * @note 此函数会检查资源上下文是否存在，存在时才执行回调
+ * @warning 如果资源上下文为空，则跳过回调执行
+ * @remark 原始函数名：Unwind_1809101f0
+ */
+void ExecuteResourceCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -99842,7 +99855,20 @@ void Unwind_1809101f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要资源清理回调函数
+ * 
+ * 该函数从验证上下文的次要偏移位置提取资源上下文，并执行资源清理回调函数
+ * 主要用于系统资源清理过程中的次要资源清理操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据和资源上下文指针
+ * @return 无返回值
+ * @note 此函数使用验证上下文的0x28偏移量作为次要资源上下文位置
+ * @warning 如果资源上下文为空，则跳过回调执行
+ * @remark 原始函数名：Unwind_180910210
+ */
+void ExecuteSecondaryResourceCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
