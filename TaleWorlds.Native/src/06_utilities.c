@@ -89997,7 +89997,15 @@ void SetDefaultExceptionHandler04(void)
 
 
 942160(void)
-void FUN_180942160(void)
+/**
+ * @brief 设置默认异常处理器05
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942160
+ */
+void SetDefaultExceptionHandler05(void)
 
 {
   _DAT_180bf98d0 = &DefaultExceptionHandlerB;
