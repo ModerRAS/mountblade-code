@@ -130,33 +130,33 @@
 #define DataComparisonTemplateNId2   0x399eced9bb5517ad  // 数据比较模板N标识符2
 #define DebugManagerIdentifier1   0x4140994454d56503  // 调试管理器标识符1
 #define DebugManagerIdentifier2   0x399eced9bb5517ad  // 调试管理器标识符2
-#define DataComparisonTemplateOId1   0x40db4257e97d3df8
-#define DataComparisonTemplateOId2   0x81d539e33614429f
-#define MemoryComparisonTemplateId1   0x4e33c4803e67a08f
-#define MemoryComparisonTemplateId2   0x703a29a844ce399
-#define SystemSecondaryNodeId1        0x1aa83fc0020dc1b6
-#define SystemSecondaryNodeId2        0x1aa83fc0020dc1b6
+#define DataComparisonTemplateOId1   0x40db4257e97d3df8  // 数据比较模板O标识符1
+#define DataComparisonTemplateOId2   0x81d539e33614429f  // 数据比较模板O标识符2
+#define MemoryComparisonTemplateId1   0x4e33c4803e67a08f  // 内存比较模板标识符1
+#define MemoryComparisonTemplateId2   0x703a29a844ce399  // 内存比较模板标识符2
+#define SystemSecondaryNodeId1        0x1aa83fc0020dc1b6  // 系统次级节点标识符1
+#define SystemSecondaryNodeId2        0x1aa83fc0020dc1b6  // 系统次级节点标识符2
 
 // 系统参数常量
-#define SystemMaxSemaphoreCount                    0x7fffffff
-#define SystemStringBufferCapacityValue               0x80
-#define SystemInvalidHandleValue               0xfffffffffffffffe
-#define SystemSemaphoreMaxCount                 0x7fffffff
-#define SystemEventHandlerSize                  0x20
-#define SystemEventHandlerCapacity             8
-#define InvalidHandleValue                     0xfffffffffffffffe
-#define MaxUint64Value                         0xffffffffffffffff
-#define MemoryFlagFreeEnabled                  0x1
-#define MemoryBlockSize                        0x98
-#define StringBufferCapacityValue                   0x40
+#define SystemMaxSemaphoreCount                    0x7fffffff  // 系统最大信号量计数
+#define SystemStringBufferCapacityValue               0x80  // 系统字符串缓冲区容量值
+#define SystemInvalidHandleValue               0xfffffffffffffffe  // 系统无效句柄值
+#define SystemSemaphoreMaxCount                 0x7fffffff  // 系统信号量最大计数
+#define SystemEventHandlerSize                  0x20  // 系统事件处理器大小
+#define SystemEventHandlerCapacity             8  // 系统事件处理器容量
+#define InvalidHandleValue                     0xfffffffffffffffe  // 无效句柄值
+#define MaxUint64Value                         0xffffffffffffffff  // 最大64位无符号值
+#define MemoryFlagFreeEnabled                  0x1  // 内存标志启用释放
+#define MemoryBlockSize                        0x98  // 内存块大小
+#define StringBufferCapacityValue                   0x40  // 字符串缓冲区容量值
 
 // 系统节点结构常量
-#define NodeInactiveFlag                     0
-#define NodeActiveFlagOffset                  2
-#define NodeNextPointerOffset                 5
-#define NodeHeadPointerOffset                 6
-#define NodeAllocationExtraSize               0x20
-#define IdentifierSize                        0x10
+#define NodeInactiveFlag                     0  // 节点非活动标志
+#define NodeActiveFlagOffset                  2  // 节点活动标志偏移量
+#define NodeNextPointerOffset                 5  // 节点下一指针偏移量
+#define NodeHeadPointerOffset                 6  // 节点头指针偏移量
+#define NodeAllocationExtraSize               0x20  // 节点分配额外大小
+#define IdentifierSize                        0x10  // 标识符大小
 
 // 系统控制器相关常量
 #define SystemControllerAllocationSize        0xc0
@@ -2049,7 +2049,7 @@ void InitializeSystemEventManager(void)
     CurrentNodePointer = NextNodePointer;
     IsCurrentNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == SystemRootNodeReference) || (NodeIdentifierComparisonResult = memcmp(&SystemEventIdentifier, HashTableNodePointer + 4, IdentifierSize), ComparisonResult < 0)) {
+  if ((HashTableNodePointer == SystemRootNodeReference) || (NodeIdentifierComparisonResult = memcmp(&SystemEventIdentifier, HashTableNodePointer + 4, IdentifierSize), NodeIdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
@@ -2110,7 +2110,7 @@ void InitializeSystemResourceManager(void)
     CurrentNodePointer = NextNodePointer;
     IsCurrentNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == SystemRootNodeReference) || (NodeIdentifierComparisonResult = memcmp(&SystemResourceIdentifier, HashTableNodePointer + 4, IdentifierSize), ComparisonResult < 0)) {
+  if ((HashTableNodePointer == SystemRootNodeReference) || (NodeIdentifierComparisonResult = memcmp(&SystemResourceIdentifier, HashTableNodePointer + 4, IdentifierSize), NodeIdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
@@ -2812,7 +2812,7 @@ void InitializeSystemConfigurationNode(void)
     CurrentNodePointer = NextNode;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((PreviousNode == SystemRootPointer) || (NodeIdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateJ,PreviousNode + 4,IdentifierSize), ComparisonResult < 0)) {
+  if ((PreviousNode == SystemRootPointer) || (NodeIdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateJ,PreviousNode + 4,IdentifierSize), NodeIdentifierComparisonResult < 0)) {
     CurrentThreadIdentifier = GetSystemMemorySize(SystemTablePointer);
     AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,CurrentThreadIdentifier + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadIdentifier);
     PreviousNode = AllocatedNode;
@@ -2868,7 +2868,7 @@ void InitializeSystemResourceNode(void)
     CurrentNodePointer = NextNode;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((PreviousNode == SystemRootPointer) || (NodeIdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateK,PreviousNode + 4,IdentifierSize), ComparisonResult < 0)) {
+  if ((PreviousNode == SystemRootPointer) || (NodeIdentifierComparisonResult = memcmp(&SystemDataComparisonTemplateK,PreviousNode + 4,IdentifierSize), NodeIdentifierComparisonResult < 0)) {
     CurrentThreadIdentifier = GetSystemMemorySize(SystemTablePointer);
     AllocateSystemMemory(SystemTablePointer,&AllocatedNode,PreviousNode,CurrentThreadIdentifier + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,CurrentThreadIdentifier);
     PreviousNode = AllocatedNode;
