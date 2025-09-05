@@ -47040,6 +47040,18 @@ void Unwind_180904a30(DataBuffer param_1,int64_t param_2)
 // 功能：处理异常展开过程中的资源清理和验证操作
 #define ExceptionUnwindHandlerF0 Unwind_180904a50
 
+/**
+ * @brief 异常展开处理函数F0
+ * 
+ * 该函数处理异常展开过程中的资源清理和验证操作。它会验证资源状态，
+ * 调用相应的资源清理回调，并处理引用计数。
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理所需的信息
+ * @param unwindContext 展开上下文，用于管理异常展开过程
+ * 
+ * @note 该函数会处理资源引用计数和验证状态
+ * @warning 如果系统状态无效，会调用TerminateSystemE0终止程序
+ */
 void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext)
 {
   int *referenceCountPointer;
