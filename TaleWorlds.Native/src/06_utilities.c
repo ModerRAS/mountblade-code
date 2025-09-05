@@ -13449,7 +13449,10 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
 
 
 
-undefined8 FUN_180895d62(undefined8 param_1,int param_2)
+// 原始函数名：FUN_180895d62 - 数据结构验证和处理函数
+// 功能：验证数据结构的完整性，处理数据项的插入和更新
+#define ValidateAndProcessDataStructure FUN_180895d62
+undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
 
 {
   longlong validationContext;
@@ -13526,7 +13529,10 @@ undefined8 FUN_180895d62(undefined8 param_1,int param_2)
 
 
 
-undefined8 FUN_180895d9c(undefined8 param_1,undefined4 param_2)
+// 原始函数名：FUN_180895d9c - 数据块处理和验证函数
+// 功能：处理数据块并进行验证，确保数据完整性
+#define ProcessAndValidateDataBlock FUN_180895d9c
+undefined8 ProcessAndValidateDataBlock(undefined8 param_1,undefined4 param_2)
 
 {
   int iVar1;
@@ -13724,7 +13730,10 @@ CalculationLabel:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180895f44(undefined8 param_1,int param_2)
+// 原始函数名：FUN_180895f44 - 内存分配和初始化函数
+// 功能：分配内存并进行初始化操作
+#define AllocateAndInitializeMemory FUN_180895f44
+undefined8 AllocateAndInitializeMemory(undefined8 param_1,int param_2)
 
 {
   int iVar1;
@@ -13771,7 +13780,10 @@ CalculationLabel:
 
 
 
-undefined8 FUN_180896027(void)
+// 原始函数名：FUN_180896027 - 系统状态查询函数
+// 功能：查询系统状态并返回状态信息
+#define QuerySystemStatus FUN_180896027
+undefined8 QuerySystemStatus(void)
 
 {
   return 0x26;
