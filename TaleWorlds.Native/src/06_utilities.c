@@ -50023,27 +50023,37 @@ void HandleExceptionA1(undefined8 ContextParameter, longlong SystemContext, unde
 {
   undefined8 *ExceptionHandlerPointer;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x78);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(param_2 + 0x68,*puVar1,param_3,param_4,0xfffffffffffffffe);
+  ExceptionHandlerPointer = *(undefined8 **)(SystemContext + 0x78);
+  if (ExceptionHandlerPointer != (undefined8 *)0x0) {
+    ProcessSystemException(SystemContext + 0x68, *ExceptionHandlerPointer, ExceptionHandler, RecoveryHandler, 0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    CleanupExceptionHandler(ExceptionHandlerPointer);
   }
   return;
 }
 
 
 
-void Unwind_180908020(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常处理函数A2
+ * 
+ * 处理系统异常和错误恢复操作，确保系统稳定性
+ * 
+ * @param ContextParameter 上下文参数，包含异常处理的相关信息
+ * @param SystemContext 系统上下文，包含系统状态信息
+ * @param ExceptionHandler 异常处理器，用于处理特定类型的异常
+ * @param RecoveryHandler 恢复处理器，用于系统恢复操作
+ */
+void HandleExceptionA2(undefined8 ContextParameter, longlong SystemContext, undefined8 ExceptionHandler, undefined8 RecoveryHandler)
 
 {
-  undefined8 *puVar1;
+  undefined8 *ExceptionHandlerPointer;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x78);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(param_2 + 0x68,*puVar1,param_3,param_4,0xfffffffffffffffe);
+  ExceptionHandlerPointer = *(undefined8 **)(SystemContext + 0x78);
+  if (ExceptionHandlerPointer != (undefined8 *)0x0) {
+    ProcessSystemException(SystemContext + 0x68, *ExceptionHandlerPointer, ExceptionHandler, RecoveryHandler, 0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    CleanupExceptionHandler(ExceptionHandlerPointer);
   }
   return;
 }
