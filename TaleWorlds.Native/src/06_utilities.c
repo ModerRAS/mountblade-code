@@ -49897,12 +49897,12 @@ void Unwind_180906250(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180906280(undefined8 param_1,longlong param_2)
+void CleanupExceptionAtOffset16(undefined8 exceptionContext,longlong systemState)
 
 {
-  if ((*(uint *)(param_2 + 0x44) & 2) != 0) {
-    *(uint *)(param_2 + 0x44) = *(uint *)(param_2 + 0x44) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x88);
+  if ((*(uint *)(systemState + 0x44) & 2) != 0) {
+    *(uint *)(systemState + 0x44) = *(uint *)(systemState + 0x44) & 0xfffffffd;
+    CleanupResourceHandler(systemState + 0x88);
   }
   return;
 }

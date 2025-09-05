@@ -6185,24 +6185,24 @@ SystemSecurityValidationRoutine:
     InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary,0x786);
     OutputDebugStringA(unaff_RBP + -0x70);
   }
-  MemoryAddress = *(ushort *)(unaff_RDI + 0x5c);
-  fVar5 = *(float *)(unaff_RBP + 0x200);
-  fVar4 = (float)modff((float)(int)(*(ushort *)(unaff_RDI + 0x5e) - 1) *
-                       *(float *)(unaff_RBP + 0x204),&stack0x00000038);
-  fVar5 = (float)modff((float)(int)(MemoryAddress - 1) * fVar5,&stack0x00000038);
-  fVar6 = (fStack000000000000005c - fStack0000000000000050) * fVar5 + fStack0000000000000050;
-  fStack0000000000000054 =
-       (fStack0000000000000060 - fStack0000000000000054) * fVar5 + fStack0000000000000054;
-  fVar7 = (fStack0000000000000064 - fStack0000000000000058) * fVar5 + fStack0000000000000058;
-  *unaff_RBX = (((fStack000000000000007c - fStack0000000000000070) * fVar5 + fStack0000000000000070)
-               - fVar7) * fVar4 + fVar7;
-  unaff_RBX[1] = (((fStack0000000000000078 - fStack000000000000006c) * fVar5 +
-                  fStack000000000000006c) - fStack0000000000000054) * fVar4 + fStack0000000000000054
+  SystemTransformMatrix = *(ushort *)(SystemContextPointer + 0x5c);
+  ScaleFactor = *(float *)(SystemStackFrame + 0x200);
+  NormalizedValue = (float)modff((float)(int)(*(ushort *)(SystemContextPointer + 0x5e) - 1) *
+                       *(float *)(SystemStackFrame + 0x204),&FractionalPart);
+  ScaleFactor = (float)modff((float)(int)(SystemTransformMatrix - 1) * ScaleFactor,&FractionalPart);
+  TransformX = (TransformMaxX - TransformMinX) * ScaleFactor + TransformMinX;
+  TransformY =
+       (TransformMaxY - TransformMinY) * ScaleFactor + TransformMinY;
+  TransformZ = (TransformMaxZ - TransformMinZ) * ScaleFactor + TransformMinZ;
+  *SystemResultBuffer = (((ColorMaxR - ColorMinR) * ScaleFactor + ColorMinR)
+               - TransformZ) * NormalizedValue + TransformZ;
+  SystemResultBuffer[1] = (((ColorMaxG - ColorMinG) * ScaleFactor +
+                  ColorMinG) - TransformY) * NormalizedValue + TransformY
   ;
-  unaff_RBX[2] = (((fStack0000000000000074 - fStack0000000000000068) * fVar5 +
-                  fStack0000000000000068) - fVar6) * fVar4 + fVar6;
-  unaff_RBX[3] = 1.0;
-  SystemSecurityCheck(*(ulonglong *)(unaff_RBP + 400) ^ (ulonglong)&stack0x00000000);
+  SystemResultBuffer[2] = (((ColorMaxB - ColorMinB) * ScaleFactor +
+                  ColorMinB) - TransformX) * NormalizedValue + TransformX;
+  SystemResultBuffer[3] = 1.0;
+  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 400) ^ (ulonglong)&SecurityStackPointer);
 }
   SystemInitializationFlag = 1;
   InitializeSystemModuleConfiguration(unaff_RBP + -0x70,&SystemConfigPrimary,&SystemConfigSecondary,&SystemConfigTertiary,0x786);
