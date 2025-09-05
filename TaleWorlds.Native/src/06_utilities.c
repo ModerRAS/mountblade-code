@@ -36264,7 +36264,20 @@ void ExceptionCleanupHandlerResourceRef2(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902ac0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 系统调用处理器 - 调用系统清理函数
+ * 
+ * 该函数作为系统调用的包装器，负责：
+ * - 从异常上下文中提取参数
+ * - 调用底层的系统清理函数
+ * - 传递必要的清理标志
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ */
+void SystemCallHandlerCleanupFunc5(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70) + 0x50,
@@ -36275,7 +36288,20 @@ void Unwind_180902ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902ad0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 系统调用处理器 - 调用系统清理函数
+ * 
+ * 该函数作为系统调用的包装器，负责：
+ * - 从异常上下文中提取参数
+ * - 调用底层的系统清理函数
+ * - 传递必要的清理标志
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ */
+void SystemCallHandlerCleanupFunc6(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058420(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
@@ -36285,7 +36311,20 @@ void Unwind_180902ad0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902ae0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 系统调用处理器 - 调用系统清理函数
+ * 
+ * 该函数作为系统调用的包装器，负责：
+ * - 从异常上下文中提取参数
+ * - 调用底层的系统清理函数
+ * - 传递必要的清理标志
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ */
+void SystemCallHandlerCleanupFunc7(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058420(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
@@ -36295,7 +36334,18 @@ void Unwind_180902ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902af0(undefined8 param_1,longlong param_2)
+/**
+ * 异常处理函数 - 调用验证上下文的清理函数
+ * 
+ * 该函数负责调用验证上下文的清理函数，包括：
+ * - 从异常上下文中提取验证上下文指针
+ * - 调用验证上下文的清理函数
+ * - 处理异常状态
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionHandlerValidationContext(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
