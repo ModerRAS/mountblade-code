@@ -8337,41 +8337,56 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
   int32_t integerConversionValue;
   uint64_t simdRegister;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x1c),&systemContextBuffer);
-  if ((int)operationResult != 0) {
+  // 查询系统数据并获取上下文
+  operationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(resourceDescriptor + 0x1c), &systemContextBuffer);
+  if ((int32_t)operationResult != 0) {
     return operationResult;
   }
-  validationContext = *(longlong *)(systemContextBuffer + 8);
+  
+  // 获取验证上下文
+  validationContext = *(int64_t *)(systemContextBuffer + 8);
   if (validationContext != 0) {
     inputFloatValue = *(float *)(resourceDescriptor + 0x20);
-    for (arrayPointer = *(undefined8 **)(validationContext + 0x48);
-        (*(undefined8 **)(validationContext + 0x48) <= arrayPointer &&
-        (arrayPointer < *(undefined8 **)(validationContext + 0x48) + *(int *)(validationContext + 0x50))); arrayPointer = arrayPointer + 1) {
-      operationResult = ProcessFloatingPointDataValidationA0(*arrayPointer,inputFloatValue,0);
-      if ((int)operationResult != 0) {
+    
+    // 遍历浮点数组并进行验证
+    for (arrayElementPointer = *(uint64_t **)(validationContext + 0x48);
+        (*(uint64_t **)(validationContext + 0x48) <= arrayElementPointer &&
+        (arrayElementPointer < *(uint64_t **)(validationContext + 0x48) + *(int32_t *)(validationContext + 0x50))); 
+        arrayElementPointer = arrayElementPointer + 1) {
+      operationResult = ProcessFloatingPointDataValidationA0(*arrayElementPointer, inputFloatValue, 0);
+      if ((int32_t)operationResult != 0) {
         return operationResult;
       }
     }
+    
+    // 检查验证上下文状态
     if ((*(char *)(validationContext + 0x34) == '\0') ||
-       ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      statusRegister = *(uint *)(*(longlong *)(validationContext + 0x18) + 0x34);
+       ((*(uint32_t *)(*(int64_t *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) {
+      statusRegister = *(uint32_t *)(*(int64_t *)(validationContext + 0x18) + 0x34);
       processingFlags = statusRegister >> 4;
-      if ((flagBits & 1) == 0) {
-        if ((((statusBits >> 3 & 1) != 0) && (integerConversion = (int)floatValue, integerConversion != -0x80000000)) &&
-           ((float)integerConversion != floatValue)) {
-          simdBuffer._4_4_ = floatValue;
-          simdBuffer._0_4_ = floatValue;
-          simdBuffer._8_8_ = 0;
-          statusBits = movmskps(flagBits,simdBuffer);
-          floatValue = (float)(int)(integerConversion - (statusBits & 1));
+      validationFlags = 0;
+      statusFlags = 0;
+      processedFloatValue = 0.0f;
+      
+      if ((validationFlags & 1) == 0) {
+        if ((((statusFlags >> 3 & 1) != 0) && (integerConversionValue = (int32_t)processedFloatValue, integerConversionValue != -0x80000000)) &&
+           ((float)integerConversionValue != processedFloatValue)) {
+          // 使用SIMD指令处理浮点数转换
+          simdRegister = 0;
+          *(float *)&simdRegister = processedFloatValue;
+          *(float *)((uint8_t *)&simdRegister + 4) = processedFloatValue;
+          statusFlags = movmskps(validationFlags, simdRegister);
+          processedFloatValue = (float)(int32_t)(integerConversionValue - (statusFlags & 1));
         }
-        floatValue = (float)ConvertFloatingPointDataA0(*(longlong *)(validationContext + 0x18),floatValue);
+        
+        // 转换浮点数据并更新上下文
+        processedFloatValue = (float)ConvertFloatingPointDataA0(*(int64_t *)(validationContext + 0x18), processedFloatValue);
         if (((*(char *)(validationContext + 0x34) == '\0') ||
-            ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) &&
-           (floatValue != *(float *)(validationContext + 0x20))) {
-          *(float *)(validationContext + 0x20) = floatValue;
+            ((*(uint32_t *)(*(int64_t *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) &&
+           (processedFloatValue != *(float *)(validationContext + 0x20))) {
+          *(float *)(validationContext + 0x20) = processedFloatValue;
           UpdateValidationContextA0(validationContext);
-          *(undefined1 *)(validationContext + 0x35) = 0;
+          *(uint8_t *)(validationContext + 0x35) = 0;
         }
       }
     }
@@ -10053,16 +10068,16 @@ ValidationFailed:
 void ExecuteUtilityOperation(longlong operationPointer,longlong contextPointer)
 
 {
-  int executionResult;
-  longlong operationData;
+  int systemExecutionResult;
+  longlong operationContextData;
   
   if (*(int *)(operationPointer + 0x2c) == 0) {
-    executionResult = ExecuteSystemOperation(contextPointer,operationPointer + 0x1c,&operationData);
-    if (executionResult != 0) {
+    systemExecutionResult = ExecuteSystemOperation(contextPointer,operationPointer + 0x1c,&operationContextData);
+    if (systemExecutionResult != 0) {
       return;
     }
-    executionResult = ValidateAndProcessSystemResourceA0(*(undefined8 *)(operationData + 0xd0),operationPointer + 0x2c);
-    if (executionResult != 0) {
+    systemExecutionResult = ValidateAndProcessSystemResourceA0(*(undefined8 *)(operationContextData + 0xd0),operationPointer + 0x2c);
+    if (systemExecutionResult != 0) {
       return;
     }
   }
@@ -10078,13 +10093,13 @@ void ExecuteUtilityOperation(longlong operationPointer,longlong contextPointer)
 void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 
 {
-  int processingResult;
-  longlong eventData;
+  int eventProcessingResult;
+  longlong systemEventData;
   
-  processingResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(eventPointer + 0x10),&eventData);
-  if (processingResult == 0) {
-    *(undefined4 *)(eventPointer + 0x18) = *(undefined4 *)(eventData + 0x30);
-    *(undefined4 *)(eventPointer + 0x1c) = *(undefined4 *)(eventData + 0x34);
+  eventProcessingResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(eventPointer + 0x10),&systemEventData);
+  if (eventProcessingResult == 0) {
+    *(undefined4 *)(eventPointer + 0x18) = *(undefined4 *)(systemEventData + 0x30);
+    *(undefined4 *)(eventPointer + 0x1c) = *(undefined4 *)(systemEventData + 0x34);
     ProcessSystemEventB0(*(undefined8 *)(contextPointer + 0x98),eventPointer);
   }
   return;
@@ -11028,13 +11043,13 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 void InitializeSystemEventHandlerA0(longlong eventHandlerConfig,longlong callbackTable)
 
 {
-  int operationResult;
-  undefined8 systemContextBuffer;
+  int systemOperationResult;
+  undefined8 systemContextDataBuffer;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(eventHandlerConfig + 0x10),&systemContextBuffer);
-  if (operationResult == 0) {
-    operationResult = ProcessDataOperationA0(systemContextBuffer,eventHandlerConfig + 0x18);
-    if (operationResult == 0) {
+  systemOperationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(eventHandlerConfig + 0x10),&systemContextDataBuffer);
+  if (systemOperationResult == 0) {
+    systemOperationResult = ProcessDataOperationA0(systemContextDataBuffer,eventHandlerConfig + 0x18);
+    if (systemOperationResult == 0) {
       ProcessSystemEventB0(*(undefined8 *)(callbackTable + 0x98),eventHandlerConfig);
     }
   }
@@ -21552,20 +21567,20 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
 
 // 函数: void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
 // 功能：处理系统数据指针，执行指针操作和验证
-void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
+void ProcessSystemDataPointer(undefined8 *systemDataPointer,undefined8 operationParameter)
 
 {
-  undefined8 *pdataValue;
-  int operationResult;
-  int operationStatus;
+  undefined8 *systemDataValue;
+  int pointerOperationResult;
+  int systemOperationStatus;
   longlong registerContext;
-  longlong unaff_RBP;
+  longlong registerBackupPointer;
   uint memoryBaseAddress;
-  ulonglong operationResult;
-  longlong memoryPointer;
-  ulonglong validationOutcome;
+  ulonglong systemOperationResult;
+  longlong systemMemoryPointer;
+  ulonglong validationStatus;
   longlong registerR14;
-  ulonglong securityCheckResult;
+  ulonglong securityValidationResult;
   undefined4 extraout_XMM0_Da;
   undefined4 extraout_XMM0_Da_00;
   undefined4 extraout_XMM0_Da_01;
@@ -21573,13 +21588,13 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
   undefined4 extraout_XMM0_Da_03;
   undefined4 extraout_XMM0_Da_04;
   undefined4 extraout_XMM0_Da_05;
-  undefined4 statusCounter;
+  undefined4 systemStatusCounter;
   
-  operationStatus = *(int *)(registerR14 + 0x28);
-  *(int *)(unaff_RBP + 0x20) = operationStatus;
-  operationResult = (**(code **)*param_1)(param_1,param_2,4);
-  validationOutcome = 0;
-  if (operationResult == 0) {
+  systemOperationStatus = *(int *)(registerR14 + 0x28);
+  *(int *)(registerBackupPointer + 0x20) = systemOperationStatus;
+  pointerOperationResult = (**(code **)*systemDataPointer)(systemDataPointer,operationParameter,4);
+  validationStatus = 0;
+  if (pointerOperationResult == 0) {
     operationResult = validationOutcome;
     statusCounter = extraout_XMM0_Da;
     if (0 < operationStatus) {

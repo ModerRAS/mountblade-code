@@ -117,6 +117,10 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 连接上下文配置常量
 #define ConnectionContextEntrySize 5                           // 连接上下文状态条目大小
 
+// 网络连接池大小常量
+#define NetworkConnectionPoolSize 16                           // 网络连接池大小
+#define NetworkConnectionPoolResetValue 0                      // 网络连接池重置值
+
 // 安全验证数据索引常量
 #define NetworkConnectionValidationStatusIndex 0                // 网络连接验证状态索引
 #define DataIntegrityValidationCheckIndex 1                     // 数据完整性验证检查索引
@@ -124,24 +128,25 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkValidationModeDataIndex 3                        // 网络验证模式数据索引
 #define DataIntegrityValidationResultIndex 1                    // 数据完整性验证结果索引
 #define SecurityComplianceValidationResultIndex 2               // 安全合规性验证结果索引
+#define ValidationModeDataIndex 3                              // 验证模式数据索引
 
 /**
- * @brief 计算连接参数偏移量
+ * @brief 计算连接参数地址
  * 
- * 计算连接上下文中参数的偏移量，用于访问连接参数
+ * 计算连接上下文中参数的地址偏移量，用于访问连接参数
  * 
  * @param ConnectionContext 连接上下文指针
  * @return int64_t 计算出的参数地址
  */
-static int64_t CalculateConnectionParameterAddress(int64_t *ConnectionContext)
+static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
 {
     return (int64_t)ConnectionContext + ConnectionParameterOffset;
 }
 
 /**
- * @brief 计算连接数据偏移量
+ * @brief 计算连接数据地址
  * 
- * 计算连接上下文数据的偏移量，用于访问上下文数据
+ * 计算连接上下文数据的地址偏移量，用于访问上下文数据
  * 
  * @param ContextAddress 上下文地址
  * @param ConnectionContextBuffer 连接上下文缓冲区指针
@@ -154,31 +159,18 @@ static int64_t CalculateConnectionDataAddress(int64_t ContextAddress, void *Conn
 }
 
 /**
- * @brief 计算最后一个连接条目偏移量
+ * @brief 计算最后一个连接条目地址
  * 
- * 计算连接上下文中最后一个条目的偏移量
+ * 计算连接上下文中最后一个条目的地址偏移量
  * 
  * @param ContextAddress 上下文地址
  * @param ConnectionContextBuffer 连接上下文缓冲区指针
  * @param ConnectionStatusPointer 网络连接状态指针
- * @return int64_t 计算出的最后一个条目偏移量地址
+ * @return int64_t 计算出的最后一个条目地址
  */
 static int64_t CalculateLastConnectionEntryAddress(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
     return CalculateConnectionDataAddress(ContextAddress, ConnectionContextBuffer, ConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)ConnectionStatusPointer + ConnectionContextEntrySize);
-}
-
-/**
- * @brief 计算连接参数偏移量
- * 
- * 计算连接上下文中参数的偏移量，用于访问连接参数
- * 
- * @param ConnectionContext 连接上下文指针
- * @return int64_t 计算出的参数偏移量地址
- */
-static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
-{
-    return (int64_t)ConnectionContext + ConnectionParameterOffset;
 }
 
 /**
@@ -371,7 +363,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 
 // 网络状态常量 - 系统状态和限制值
 #define NetworkStatusActive 0x01                               // 网络状态：活跃
-#define NetworkMaximumInt32Value 0x7fffffff                        // 最大32位有符号整数值
+#define NetworkMaximumSignedInt32Value 0x7fffffff                        // 最大32位有符号整数值
 #define NetworkExtendedPacketSizeLimit 0x53                // 扩展数据包大小限制（83字节）
 #define NetworkStandardPacketSizeLimit 0x31                       // 标准数据包大小限制（49字节）
 #define NetworkStatusInactive 0x00                          // 网络状态：非活跃
@@ -2315,7 +2307,7 @@ void InitializeNetworkDataTransmission(void)
   // 初始化数据包缓冲区
   NetworkPacketBufferPointer = NetworkBufferInitializationFlag;                     // 初始化数据包缓冲区指针
   NetworkPacketHeaderPointer = NetworkBufferInitializationFlag;                     // 初始化数据包头指针
-  NetworkPacketPayloadSize = NetworkPacketPayloadSize1KB;                      // 设置数据包负载大小为1KB
+  NetworkPacketPayloadSize = Network1KBPacketPayloadSize;                      // 设置数据包负载大小为1KB
   NetworkMaximumPacketSize = NetworkMaximumPacketSize2KB;                         // 设置最大数据包大小为2KB
   
   // 初始化传输统计
@@ -2870,7 +2862,7 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
   ConnectionValidationData = NULL;  // 初始化验证数据指针
   ConnectionValidationStatus = 0;  // 初始化验证状态码
   if (ConnectionValidationStatus == 0) {
-    if (ConnectionValidationData && (0 < *(int *)CalculateConnectionParameterAddress(ConnectionValidationData)) && (*ConnectionValidationData != 0)) {
+    if (ConnectionValidationData && (0 < *(int *)CalculateConnectionParameterOffset(ConnectionValidationData)) && (*ConnectionValidationData != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationData, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     if (ConnectionValidationData) {
@@ -3014,13 +3006,13 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
     return NetworkErrorConnectionFailed;
   }
   // 验证连接安全性
-  if ((0 < *(int *)CalculateConnectionParameterAddress(ConnectionContext)) && (*ConnectionContext != 0)) {
+  if ((0 < *(int *)CalculateConnectionParameterOffset(ConnectionContext)) && (*ConnectionContext != 0)) {
       AuthenticateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
   }
   
   // 更新连接上下文和参数
   *ConnectionContext = (int64_t)NetworkProcessedPacketIdentifier;
-  *(int *)CalculateConnectionParameterAddress(ConnectionContext) = PacketData;
+  *(int *)CalculateConnectionParameterOffset(ConnectionContext) = PacketData;
   
   return NetworkOperationSuccess;  // 处理成功
 }
@@ -3081,18 +3073,18 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t NetworkConnectionProcessingCode = 0;                              // 网络连接处理代码
   int64_t NetworkProcessedPacketIdentifier = 0;                                    // 已处理网络数据包标识符
   int32_t NetworkPacketIndex = 0;                                           // 网络数据包索引
-  int32_t NetworkMaximumInt32Value = 0;                                    // 网络最大32位整数值
+  int32_t NetworkMaximumSignedInt32Value = 0;                                    // 网络最大32位整数值
   int64_t *ConnectionOperationBuffer = NULL;                               // 连接操作缓冲区
   if (NetworkConnectionProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
-    if ((0 < *(int *)CalculateConnectionParameterAddress(NetworkConnectionContextBuffer)) && (*NetworkConnectionContextBuffer != 0)) {
+    if ((0 < *(int *)CalculateConnectionParameterOffset(NetworkConnectionContextBuffer)) && (*NetworkConnectionContextBuffer != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionContextBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     *NetworkConnectionContextBuffer = (int64_t)NetworkProcessedPacketIdentifier;
-    *(int *)CalculateConnectionParameterAddress(NetworkConnectionContextBuffer) = NetworkConnectionProcessingCode;
+    *(int *)CalculateConnectionParameterOffset(NetworkConnectionContextBuffer) = NetworkConnectionProcessingCode;
     return NetworkOperationSuccess;
   }
-  if (NetworkPacketIndex * ConnectionEntrySize - 1U < NetworkMaximumInt32Value) {
+  if (NetworkPacketIndex * ConnectionEntrySize - 1U < NetworkMaximumSignedInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            NetworkConnectionCompletionHandle, 0);
@@ -3605,8 +3597,12 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
  * @param SecurityMode 安全模式，指定验证的安全级别
  * @return void 验证结果通过参数返回
  * 
- * @note 这是简化实现，实际应用中需要实现完整的安全验证逻辑
- * @warning 简化实现仅执行基本的参数检查，不提供实际的安全性验证
+ * @note 这是简化实现，仅执行基本的参数检查和内存初始化
+ * @warning 实际实现应该包括完整的安全验证逻辑：
+ *   - 验证连接表的完整性和有效性
+ *   - 检查连接上下文的安全状态
+ *   - 执行加密和身份验证
+ *   - 验证安全协议的合规性
  */
 void AuthenticateConnectionSecurity(NetworkHandle ConnectionTable, int64_t ConnectionContext, void* SecurityValidationData, 
                                uint32_t ValidationBufferSize, uint32_t SecurityMode)
