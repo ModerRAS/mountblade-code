@@ -4974,50 +4974,50 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
         pcontextData = presourceInfo + 3;
       }
       while( true ) {
-        if (plVar8 == pvalidationContext) {
-          *(longlong **)(lStackX_8 + 0x80) = plVar9;
-          func_0x00018085eef0(lStackX_8,plVar9);
-          plVar9[2] = lStackX_8;
-          uVar6 = InitializeSystemComponent(lStackX_8);
-          if ((int)uVar6 == 0) {
+        if (pcontextData == pvalidationContext) {
+          *(longlong **)(stackContext8 + 0x80) = pmoduleData;
+          func_0x00018085eef0(stackContext8,pmoduleData);
+          pmoduleData[2] = stackContext8;
+          operationResult = InitializeSystemComponent(stackContext8);
+          if ((int)operationResult == 0) {
             return 0;
           }
-          return uVar6;
+          return operationResult;
         }
-        if ((int)plVar9[5] <= (int)plVar3) {
+        if ((int)pmoduleData[5] <= (int)pcomponentInfo) {
           return 0x1c;
         }
-        plVar7 = plVar8 + 4;
-        if (plVar8 == (longlong *)0x0) {
-          plVar7 = (longlong *)0x38;
+        presourceInfo = pcontextData + 4;
+        if (pcontextData == (longlong *)0x0) {
+          presourceInfo = (longlong *)0x38;
         }
-        *(longlong *)(plVar9[4] + 8 + (longlong)plVar2) = *plVar7;
-        if (plVar8 == pvalidationContext) break;
-        plVar7 = (longlong *)(*plVar8 + -0x18);
-        if (*plVar8 == 0) {
-          plVar7 = pvalidationContext0;
+        *(longlong *)(pmoduleData[4] + 8 + (longlong)pcomponentData) = *presourceInfo;
+        if (pcontextData == pvalidationContext) break;
+        presourceInfo = (longlong *)(*pcontextData + -0x18);
+        if (*pcontextData == 0) {
+          presourceInfo = pvalidationContext0;
         }
-        plVar8 = pvalidationContext0;
-        if (plVar7 != (longlong *)0x0) {
-          plVar8 = plVar7 + 3;
+        pcontextData = pvalidationContext0;
+        if (presourceInfo != (longlong *)0x0) {
+          pcontextData = presourceInfo + 3;
         }
-        plVar2 = plVar2 + 3;
-        plVar3 = (longlong *)(ulonglong)((int)plVar3 + 1);
+        pcomponentData = pcomponentData + 3;
+        pcomponentInfo = (longlong *)(ulonglong)((int)pcomponentInfo + 1);
       }
       return 0x1c;
     }
   }
-  if (iVar4 == 0x1e) {
+  if (resultStatus == 0x1e) {
     return 0;
   }
-  return uVar6;
+  return operationResult;
 }
 
 
 
-// 函数: undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
+// 函数: undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceData)
 // 功能：处理资源分配，更新资源计数器并在条件满足时执行资源释放操作
-undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
+undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceData)
 
 {
   longlong resourcePointer;
@@ -5025,7 +5025,7 @@ undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
   undefined8 validationStatus;
   longlong stackBuffer [2];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),stackBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceConfig + 0x10),stackBuffer);
   resourcePointer = stackBuffer[0];
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -5036,8 +5036,8 @@ undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
     stackBuffer[0] = 0;
     operationResult = ValidateResourceHandle(stackBuffer);
     if (operationResult == 0) {
-      operationResult = ExecuteResourceOperation(resourcePointer,*(undefined8 *)(resourcePointer + 8),*(undefined8 *)(param_2 + 0x90),
-                            *(undefined8 *)(param_2 + 800));
+      operationResult = ExecuteResourceOperation(resourcePointer,*(undefined8 *)(resourcePointer + 8),*(undefined8 *)(resourceData + 0x90),
+                            *(undefined8 *)(resourceData + 800));
       if (operationResult == 0) {
                     // WARNING: Subroutine does not return
         ReleaseSystemResources(stackBuffer);
@@ -5051,9 +5051,9 @@ undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
 
 
 
-// 函数: undefined8 ProcessMemoryFlagUpdate(longlong param_1)
+// 函数: undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
 // 功能：处理内存标志更新，遍历内存区域并更新特定标志位
-undefined8 ProcessMemoryFlagUpdate(longlong param_1)
+undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
 
 {
   uint *flagPointer;
@@ -5062,7 +5062,7 @@ undefined8 ProcessMemoryFlagUpdate(longlong param_1)
   longlong *iterator;
   longlong stackBuffer [4];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),stackBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(memoryConfig + 0x10),stackBuffer);
   if ((int)validationStatus == 0) {
     iterator = *(longlong **)(stackBuffer[0] + 0x20);
     while ((*(longlong **)(stackBuffer[0] + 0x20) <= iterator &&
@@ -5123,16 +5123,16 @@ undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 d
 
 
 
-// 函数: undefined8 UpdateResourceReferenceCount(longlong param_1)
+// 函数: undefined8 UpdateResourceReferenceCount(longlong resourceHandle)
 // 功能：更新资源引用计数，增加指定资源的引用计数并进行状态检查
-undefined8 UpdateResourceReferenceCount(longlong param_1)
+undefined8 UpdateResourceReferenceCount(longlong resourceHandle)
 
 {
   longlong resourcePointer;
   undefined8 validationStatus;
   longlong stackBuffer [4];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),stackBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),stackBuffer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -5152,15 +5152,15 @@ undefined8 UpdateResourceReferenceCount(longlong param_1)
 
 
 
-// 函数: undefined8 ReleaseUtilityResource(longlong param_1)
+// 函数: undefined8 ReleaseUtilityResource(longlong resourceHandle)
 // 功能：释放工具资源，验证资源有效性并调用资源释放函数
-undefined8 ReleaseUtilityResource(longlong param_1)
+undefined8 ReleaseUtilityResource(longlong resourceHandle)
 
 {
   undefined8 validationStatus;
   longlong stackPointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&stackPointer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackPointer);
   if ((int)validationStatus == 0) {
     if (stackPointer == 0) {
       stackPointer = 0;
@@ -86988,21 +86988,51 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
   TerminateSystemE0(puVar1);
 }
 
-// 新增的函数宏定义
+// 系统数据处理相关宏定义
+// 原始函数名：FUN_180867d60 - 系统数据处理函数CD1
+// 功能：处理系统数据CD1，执行数据验证和转换操作
 #define ProcessSystemDataCD1 FUN_180867d60
+
+// 原始函数名：FUN_18085ff30 - 内存分配管理函数CL1
+// 功能：管理内存分配CL1，处理内存块的分配和释放
 #define ManageMemoryAllocationCL1 FUN_18085ff30
+
+// 原始函数名：FUN_18085eef0 - 系统数据处理执行函数
+// 功能：执行系统数据处理，包括数据解析和验证
 #define ExecuteSystemDataProcessing FUN_18085eef0
+
+// 原始函数名：FUN_18064e900 - 系统终止函数E0
+// 功能：终止系统运行，清理系统资源
 #define TerminateSystemE0 FUN_18064e900
+
+// 原始函数名：FUN_180657620 - 系统资源清理函数E1
+// 功能：清理系统资源E1，释放内存和句柄
 #define CleanupSystemResourceE1 FUN_180657620
 
 // 系统缓冲区操作相关宏定义
+// 原始函数名：FUN_18088c740 - 系统缓冲区分配函数CA0
+// 功能：分配系统缓冲区CA0，初始化内存空间
 #define AllocateSystemBufferCA0 FUN_18088c740
+
+// 原始函数名：FUN_1808c7b30 - 资源操作执行函数CM0
+// 功能：执行资源操作CM0，处理资源访问和管理
 #define ExecuteResourceOperationCM0 FUN_1808c7b30
+
+// 原始函数名：FUN_18088c790 - 系统资源清理函数CA0
+// 功能：清理系统资源CA0，释放缓冲区内存
 #define CleanupSystemResourceCA0 FUN_18088c790
+
+// 原始函数名：FUN_1808c7dc0 - 系统调用执行函数CN0
+// 功能：执行系统调用CN0，处理底层系统操作
 #define ExecuteSystemCallCN0 FUN_1808c7dc0
+
+// 原始函数名：FUN_18088ac50 - 系统状态检查函数CO0
+// 功能：检查系统状态CO0，验证系统运行状态
 #define CheckSystemStatusCO0 FUN_18088ac50
 
 // 系统验证和状态检查相关宏定义
+// 原始函数名：FUN_1808552c0 - 系统状态验证函数CP0
+// 功能：验证系统状态CP0，确保系统运行正常
 #define ValidateSystemStateCP0 FUN_1808552c0
 #define ExecuteSecurityCheckCQ0 FUN_1808c44f0
 #define ProcessDataValidationCR0 FUN_180894860
