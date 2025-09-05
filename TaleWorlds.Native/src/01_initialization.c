@@ -2600,7 +2600,7 @@ void InitializeSystemMemoryAllocator(void)
   PreviousNode[NodeIdentifier1Index] = MEMORY_ALLOCATOR_NODE_IDENTIFIER1;
   PreviousNode[NodeIdentifier2Index] = MEMORY_ALLOCATOR_NODE_IDENTIFIER2;
   PreviousNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
-  PreviousNode[NodeActiveFlagIndex] = 3;
+  PreviousNode[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
   PreviousNode[NodeHandlerIndex] = MemoryAllocatorCallback;
   return;
 }
@@ -3705,7 +3705,7 @@ void InitializeSystemNodeTree(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -3756,7 +3756,7 @@ void InitializeMemoryAllocator(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -3818,7 +3818,7 @@ void InitializeResourcePool(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -3869,7 +3869,7 @@ void InitializeConfigurationManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -4142,7 +4142,7 @@ void InitializeSystemNodeTree(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -4199,7 +4199,7 @@ void InitializeSystemDataTable(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -4254,7 +4254,7 @@ void InitializeSystemEventHandler(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -4309,7 +4309,7 @@ void InitializeSystemNetworkManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -4531,7 +4531,7 @@ void InitializeSystemMemoryAllocator(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -4588,7 +4588,7 @@ void InitializeSystemResourcePool(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -4645,7 +4645,7 @@ void InitializeSystemConfigurationManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -4702,7 +4702,7 @@ void InitializeSystemResourceManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -5044,7 +5044,7 @@ void InitializeSystemDataTableStructureA(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -5101,7 +5101,7 @@ void InitializeSystemResourceManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -5408,7 +5408,7 @@ void InitializeSystemNetworkManager(void)
   PreviousNode[NodeIdentifier1Index] = DataComparisonTemplateGId1;
   PreviousNode[NodeIdentifier2Index] = DataComparisonTemplateGId2;
   PreviousNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
-  PreviousNode[NodeActiveFlagIndex] = 3;
+  PreviousNode[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
   PreviousNode[NodeHandlerIndex] = NetworkCallbackPointer;
   return;
 }
@@ -5526,7 +5526,7 @@ void InitializeSystemResourceManager(void)
   PreviousNode[NodeIdentifier1Index] = DataComparisonTemplateGId1;
   PreviousNode[NodeIdentifier2Index] = DataComparisonTemplateGId2;
   PreviousNode[NodeDataPointerIndex] = &ResourceManagerNodeData;
-  PreviousNode[NodeActiveFlagIndex] = 3;
+  PreviousNode[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
   PreviousNode[10] = ResourceManagerInitializationFunction;
   return;
 }
@@ -5735,7 +5735,7 @@ void InitializeSystemNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -5793,7 +5793,7 @@ void InitializeSystemDataNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -5851,7 +5851,7 @@ void InitializeSystemResourceNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -5909,7 +5909,7 @@ void InitializeSystemMemoryNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -6281,7 +6281,7 @@ void InitializeRenderingSystem(void)
   RenderingHashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    RenderingIdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    RenderingIdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (RenderingIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = RenderingHashTableNodePointer;
@@ -6338,7 +6338,7 @@ void InitializeSystemConfigurationManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -6884,7 +6884,7 @@ void InitializeSystemNodeTreeProcessor(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -6942,7 +6942,7 @@ void InitializeSystemMemoryPoolManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -7000,7 +7000,7 @@ void InitializeSystemServiceManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -7058,7 +7058,7 @@ void InitializeSystemResourceManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -7290,7 +7290,7 @@ void InitializeSystemCommunicationManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -7348,7 +7348,7 @@ void InitializeSystemMemoryManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -7406,7 +7406,7 @@ void InitializeSystemThreadManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -7463,7 +7463,7 @@ void InitializeSystemResourceInitializer(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -8001,7 +8001,7 @@ void InitializeSystemEventDispatcher(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -8059,7 +8059,7 @@ void InitializeSystemSecurityManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -8117,7 +8117,7 @@ void InitializeSystemConfigurationManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -8175,7 +8175,7 @@ void InitializeSystemNetworkManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -8506,7 +8506,7 @@ void InitializeSystemMemoryManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -8557,7 +8557,7 @@ void InitializeSystemLogManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -8608,7 +8608,7 @@ void InitializeSystemPerformanceMonitor(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -8659,7 +8659,7 @@ void InitializeSystemSecurityMonitor(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -9118,7 +9118,7 @@ void InitializeSystemDriverManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -9176,7 +9176,7 @@ void InitializeSystemModuleManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -9238,7 +9238,7 @@ void InitializeSystemComponentManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -9289,7 +9289,7 @@ void InitializeSystemPluginManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -9604,7 +9604,7 @@ void InitializeSystemMemoryNode(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -9658,7 +9658,7 @@ void InitializeSystemDataTableNode(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -9712,7 +9712,7 @@ void InitializeSystemConfigurationNode(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -9762,7 +9762,7 @@ void InitializeSystemEventNode(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -10945,7 +10945,7 @@ void InitializeSystemStringProcessorH(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -10995,7 +10995,7 @@ void InitializeSystemStringProcessorI(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -11045,7 +11045,7 @@ void InitializeSystemStringProcessorJ(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -11095,7 +11095,7 @@ void InitializeSystemStringProcessorK(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -11433,7 +11433,7 @@ void InitializeSystemStringProcessorQ(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -11483,7 +11483,7 @@ void InitializeSystemStringProcessorR(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -11683,7 +11683,7 @@ void InitializeSystemStringProcessorV(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -11733,7 +11733,7 @@ void InitializeSystemStringProcessorW(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -11783,7 +11783,7 @@ void InitializeSystemStringProcessorX(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -11833,7 +11833,7 @@ void InitializeSystemStringProcessorY(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -12041,7 +12041,7 @@ void InitializeSystemMemoryManagerC(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -12091,7 +12091,7 @@ void InitializeSystemMemoryManagerD(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -12141,7 +12141,7 @@ void InitializeSystemMemoryManagerE(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -12191,7 +12191,7 @@ void InitializeSystemMemoryManagerF(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -13657,7 +13657,7 @@ void InitializeSystemDataNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -13714,7 +13714,7 @@ void InitializeSystemStringDataNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -13771,7 +13771,7 @@ void InitializeSystemMemoryDataNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -13828,7 +13828,7 @@ void InitializeSystemDeviceDataNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -14131,7 +14131,7 @@ void InitializeSystemSecurityNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -14188,7 +14188,7 @@ void InitializeSystemNetworkNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -14245,7 +14245,7 @@ void InitializeSystemThreadNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -14302,7 +14302,7 @@ void InitializeSystemProcessNodeManager(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -14528,7 +14528,7 @@ void InitializeSystemEventManagerJ(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -14580,7 +14580,7 @@ void InitializeSystemEventManagerK(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -14632,7 +14632,7 @@ void InitializeSystemEventManagerL(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -14684,7 +14684,7 @@ void InitializeSystemEventManagerM(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -16592,7 +16592,7 @@ void InitializeSystemSubcomponentB(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateK,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -16644,7 +16644,7 @@ void InitializeSystemSubcomponentC(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateL,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -16696,7 +16696,7 @@ void InitializeSystemSubcomponentD(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -16748,7 +16748,7 @@ void InitializeSystemSubcomponentE(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -17792,7 +17792,7 @@ void SystemDataNodeInitializerM(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateM,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -17848,7 +17848,7 @@ void InitializeSystemResourceInitializationNode(void)
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,0x10);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + 4,&SystemDataComparisonTemplateN,SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[2];
       CurrentNodePointer = HashTableNodePointer;
@@ -29104,7 +29104,7 @@ void SystemResourceEnumerator(void)
   SystemHandle38 = 0xfffffffffffffffe;
   StackEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)LocalBufferArray;
   SystemStatusFlagsPointer = SystemGlobalStatusFlags;
-  ResourceDataLocation = *(long long *)(*SystemGlobalStatusFlags + 0x890) - *(long long *)(*SystemGlobalStatusFlags + 0x888) >> 5;
+  ResourceDataLocation = *(long long *)(*SystemGlobalStatusFlags + SystemNodeResourceOffset) - *(long long *)(*SystemGlobalStatusFlags + SystemNodeCalculationOffset) >> 5;
   SystemResourceIndex = 0;
   SystemResourceCount = ResourceDataLocation;
   if (0 < (int)ResourceDataLocation) {
@@ -46027,11 +46027,11 @@ void ProcessSystemResourceMemoryAllocation(long long* SystemResourceManager)
     }
   }
   LOCK();
-  resourcePoolPointer = (long long *)(*(long long *)(*SystemResourceManager + 8) + 0x3f0);
+  resourcePoolPointer = (long long *)(*(long long *)(*SystemResourceManager + SystemNodeDataPointerOffset) + SystemNodeMemoryPoolOffset);
   *resourcePoolPointer = *resourcePoolPointer - (long long)pSystemMemoryPointer;
   UNLOCK();
   LOCK();
-  SystemIntegerPointer = (int *)(*(long long *)(*SystemResourceManager + 8) + 0x3f8);
+  SystemIntegerPointer = (int *)(*(long long *)(*SystemResourceManager + SystemNodeDataPointerOffset) + SystemNodeIntegerOffset);
   *SystemIntegerPointer = *SystemIntegerPointer + -1;
   UNLOCK();
   SystemProcessBufferPtr = *SystemResourceManager;
@@ -50022,7 +50022,7 @@ MemoryAllocationComplete:
       resourcePoolPointer[1] = ResourceAddress;
     }
     else {
-      charFlag = GetSystemResourceStatus(SystemResourceManager);
+      characterProcessingFlag = GetSystemResourceStatus(SystemResourceManager);
       if (characterProcessingFlag == '\0') {
         return 0;
       }
@@ -58479,8 +58479,8 @@ void* SystemResourceStatusValidator(long long SystemResourceManager)
     if ((isOperationComplete & 0x20) == 0) {
       SystemResourceManager = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
     }
-    if ((*(long long *)(SystemResourceManager + 0x1e0) == 0) ||
-       (*(byte *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)isByteValid * 0x18) < 2)) {
+    if ((*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) == 0) ||
+       (*(byte *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 0x15 + (ulong long)isByteValid * 0x18) < 2)) {
       return 0;
     }
   }
@@ -58787,7 +58787,7 @@ void DestroySystemResourceManager(long long* SystemResourceManager)
   
   ThreadContextIndicator = 0xfffffffffffffffe;
   SystemMaxOperationCount = SystemEncryptionKeyTemplate ^ (ulong long)SystemStackBuffer;
-  SystemInitializationStatus = *(void* *)(SystemResourceManager[0x37] + 0x1e0);
+  SystemInitializationStatus = *(void* *)(SystemResourceManager[0x37] + SystemNodeFunctionOffset);
   memoryAllocationBuffer = &SystemMemoryTemplateQuinary;
   memoryAllocationEnd = SystemStackBuffer40;
   SystemStackBuffer40[0] = SystemStackBuffer40[0] & SystemMemoryStatusAlignmentMask;
@@ -63528,19 +63528,19 @@ void ManageSystemResourceLockState(long long SystemResourceManager)
   int SystemOperationResult;
   long long ResourceMemoryOffset;
   
-  if (((*(byte *)(SystemResourceManager + 0xfd) & 0x20) != 0) && (*(long long *)(SystemResourceManager + 0x1e0) != 0)) {
+  if (((*(byte *)(SystemResourceManager + 0xfd) & 0x20) != 0) && (*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) != 0)) {
     SystemOperationResult = 0;
     ResourceMemoryOffset = 0;
     do {
-      while ((*(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + ResourceMemoryOffset) == '\x02' ||
-             (*(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + ResourceMemoryOffset) == '\x01'))) {
+      while ((*(char *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 0x15 + ResourceMemoryOffset) == '\x02' ||
+             (*(char *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 0x15 + ResourceMemoryOffset) == '\x01'))) {
         Sleep(0);
       }
       resourceDataIndex = (long long)SystemOperationResult;
       ResourceMemoryOffset = ResourceMemoryOffset + 0x18;
       SystemOperationResult = SystemOperationResult + 1;
       LOCK();
-      *(uint8_t *)(*(long long *)(SystemResourceManager + 0x1e0) + resourceDataIndex * 0x18 + 0x15) = 0;
+      *(uint8_t *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + resourceDataIndex * 0x18 + 0x15) = 0;
       UNLOCK();
     } while (SystemOperationResult < 0x10);
   }
@@ -65527,7 +65527,7 @@ void InitializeSystemMemoryOperationStatus(long long SystemResourceManager)
 {
   void* SystemInitializationStatus;
   
-  if (*(long long *)(SystemResourceManager + 0x1e0) == 0) {
+  if (*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) == 0) {
     SystemInitializationStatus = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x180,8,0x1c);
       memset(SystemInitializationStatus,0,0x180);
   }
@@ -66262,21 +66262,21 @@ void SystemThreadStatusManager(long long systemContext,byte ThreadStatus,long lo
   systemIndex = _Thrd_id();
   if (systemIndex == systemCounter) {
     resourceDataIndex = (ulong long)ConfigurationDataPointer * 0x18;
-    CurrentThreadIdentifier = *(void* *)(*(long long *)(SystemResourceManager + 0x1e0) + resourceDataIndex);
+    CurrentThreadIdentifier = *(void* *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + resourceDataIndex);
     PointerToPointerStackA0 = &pLocalStackVariableA8;
     pLocalStackVariableA8 = (long long *)*AdditionalParameter;
     if (pLocalStackVariableA8 != (long long *)0x0) {
       (**(code **)(*pLocalStackVariableA8 + 0x28))();
     }
     ProcessThreadIdData(CurrentThreadIdentifier,&pLocalStackVariableA8);
-    CurrentThreadIdentifier = *(void* *)(*(long long *)(SystemResourceManager + 0x1e0) + 8 + resourceDataIndex);
+    CurrentThreadIdentifier = *(void* *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 8 + resourceDataIndex);
     PointerToPointerStackA0 = &PointerStackVariableB8;
     PointerStackVariableB8 = (long long *)*ConfigurationFlag;
     if (PointerStackVariableB8 != (long long *)0x0) {
       (**(code **)(*PointerStackVariableB8 + 0x28))();
     }
     ProcessThreadHandleData(CurrentThreadIdentifier,&PointerStackVariableB8);
-    pSystemOperationResult = (char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + resourceDataIndex);
+    pSystemOperationResult = (char *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 0x15 + resourceDataIndex);
     LOCK();
     if (*pSystemOperationResult == '\x01') {
       *pSystemOperationResult = '\x03';
@@ -66332,7 +66332,7 @@ void SystemThreadStatusManager(long long systemContext,byte ThreadStatus,long lo
       (**(code **)(*SystemThreadFlagsPointer + 0x28))(SystemThreadFlagsPointer);
     }
     SetupMemoryAllocationContext(SystemAllocationTemplate,&PrimarySystemStackPointer);
-    pSystemOperationResult = (char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)ConfigurationDataPointer * 0x18);
+    pSystemOperationResult = (char *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 0x15 + (ulong long)ConfigurationDataPointer * 0x18);
     LOCK();
     if (*pSystemOperationResult == '\x01') {
       *pSystemOperationResult = '\x02';
@@ -67594,7 +67594,7 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
   if ((*(byte *)(SystemResourceManager + 0xfd) & 0x20) != 0) {
     CleanupSystemResources();
     do {
-      *(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x14 + SystemThreadHandle) = ConfigurationDataPointer;
+      *(char *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 0x14 + SystemThreadHandle) = ConfigurationDataPointer;
       SystemThreadHandle = SystemThreadHandle + 0x18;
     } while (SystemThreadHandle < 0x180);
   }
@@ -67614,8 +67614,8 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
       *(byte *)(SystemThreadHandle + 0x38c) = isByteValid;
     }
     SystemResourceOffsetPointer = pLocalMemoryPointer;
-    if ((*(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)isByteValid * 0x18) != '\x03') &&
-       (*(char *)(*(long long *)(SystemResourceManager + 0x1e0) + 0x15 + (ulong long)isByteValid * 0x18) != '\x02'))
+    if ((*(char *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 0x15 + (ulong long)isByteValid * 0x18) != '\x03') &&
+       (*(char *)(*(long long *)(SystemResourceManager + SystemNodeFunctionOffset) + 0x15 + (ulong long)isByteValid * 0x18) != '\x02'))
     goto MemoryPointerValidation;
   }
   pLocalMemoryPointer = (long long *)0x0;

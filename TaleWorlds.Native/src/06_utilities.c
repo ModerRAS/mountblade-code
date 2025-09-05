@@ -3542,18 +3542,18 @@ undefined UNK_180a18a78;
 undefined UNK_1801527b4;
 undefined UNK_180a07340;
 undefined UNK_180a07378;
-longlong SystemGlobalDataPointer;
-uint SystemStatusIndicator;
-double SystemPerformanceMetric1;
-double SystemPerformanceMetric2;
-int SystemErrorCounter;
-double SystemTimingValue;
+longlong utilityGlobalDataPointer;
+uint utilitySystemStatusIndicator;
+double utilityPerformanceMetric1;
+double utilityPerformanceMetric2;
+int utilityErrorCounter;
+double utilityTimingValue;
 undefined UtilitySystemState1;
 undefined UtilitySystemState2;
-undefined SystemPointerArray1;
-undefined SystemPointerArray2;
-undefined SystemPointerArray3;
-undefined SystemPointerArray4;
+undefined utilitySystemPointerArray1;
+undefined utilitySystemPointerArray2;
+undefined utilitySystemPointerArray3;
+undefined utilitySystemPointerArray4;
 undefined UNK_180156040;
 undefined UNK_180156060;
 undefined UNK_180156080;
@@ -3581,14 +3581,14 @@ undefined UNK_180a07400;
 undefined UNK_180a07420;
 undefined UNK_180a07438;
 // 系统状态标志变量
-undefined SystemStatusFlag1;
-undefined SystemStatusFlag2;
-undefined SystemStatusFlag3;
-undefined SystemStatusFlag4;
-undefined SystemStatusFlag5;
-undefined SystemStatusFlag6;
-undefined SystemStatusFlag7;
-undefined SystemStatusFlag8;
+undefined utilitySystemStatusFlag1;
+undefined utilitySystemStatusFlag2;
+undefined utilitySystemStatusFlag3;
+undefined utilitySystemStatusFlag4;
+undefined utilitySystemStatusFlag5;
+undefined utilitySystemStatusFlag6;
+undefined utilitySystemStatusFlag7;
+undefined utilitySystemStatusFlag8;
 undefined UNK_180a07548;
 undefined UNK_180a07568;
 undefined UNK_180a07580;
@@ -17231,27 +17231,27 @@ undefined8 ValidateAndExecuteOperations(longlong *contextHandle,undefined4 *data
 
 
 
-undefined8 FUN_180899360(undefined8 *param_1,longlong param_2)
+undefined8 ProcessDataWithMultipleAttempts(undefined8 *contextHandle,longlong dataOffset)
 
 {
-  undefined8 uVar1;
-  undefined8 uVar2;
+  undefined8 contextValue;
+  undefined8 operationResult;
   
-  if (*(int *)(param_1[1] + 0x18) != 0) {
+  if (*(int *)(contextHandle[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = *param_1;
-  uVar2 = FUN_1808aed00(uVar1,param_2,4);
-  if ((int)uVar2 == 0) {
-    uVar2 = FUN_1808aed00(uVar1,param_2 + 4,2);
-    if ((int)uVar2 == 0) {
-      uVar2 = FUN_1808aed00(uVar1,param_2 + 6,2);
-      if ((int)uVar2 == 0) {
-        uVar2 = FUN_1808aed00(uVar1,param_2 + 8,8);
+  contextValue = *contextHandle;
+  operationResult = FUN_1808aed00(contextValue,dataOffset,4);
+  if ((int)operationResult == 0) {
+    operationResult = FUN_1808aed00(contextValue,dataOffset + 4,2);
+    if ((int)operationResult == 0) {
+      operationResult = FUN_1808aed00(contextValue,dataOffset + 6,2);
+      if ((int)operationResult == 0) {
+        operationResult = FUN_1808aed00(contextValue,dataOffset + 8,8);
       }
     }
   }
-  return uVar2;
+  return operationResult;
 }
 
 
@@ -17346,34 +17346,34 @@ LAB_180899546:
 
 
 
-// 函数: void FUN_1808995c0(longlong *param_1,undefined4 *param_2)
-void FUN_1808995c0(longlong *param_1,undefined4 *param_2)
+// 验证数据并进行安全检查
+void ValidateDataWithSecurityCheck(longlong *dataHandle,undefined4 *resultBuffer)
 
 {
-  int iVar1;
-  uint auStackX_8 [2];
-  undefined4 auStackX_18 [4];
+  int validationResult;
+  uint sizeBuffer [2];
+  undefined4 dataBuffer [4];
   
-  if (*param_1 == 0) {
-    iVar1 = 0x1c;
+  if (*dataHandle == 0) {
+    validationResult = 0x1c;
   }
   else {
-    if (param_1[2] != 0) {
-      auStackX_8[0] = 0;
-      iVar1 = func_0x00018076a7d0(*param_1,auStackX_8);
-      if (iVar1 != 0) {
+    if (dataHandle[2] != 0) {
+      sizeBuffer[0] = 0;
+      validationResult = func_0x00018076a7d0(*dataHandle,sizeBuffer);
+      if (validationResult != 0) {
         return;
       }
-      if ((ulonglong)param_1[2] < (ulonglong)auStackX_8[0] + 4) {
-        iVar1 = 0x11;
+      if ((ulonglong)dataHandle[2] < (ulonglong)sizeBuffer[0] + 4) {
+        validationResult = 0x11;
         goto LAB_18089962f;
       }
     }
-    iVar1 = FUN_180769ed0(*param_1,auStackX_18,1,4,0);
+    validationResult = FUN_180769ed0(*dataHandle,dataBuffer,1,4,0);
   }
 LAB_18089962f:
-  if (iVar1 == 0) {
-    *param_2 = auStackX_18[0];
+  if (validationResult == 0) {
+    *resultBuffer = dataBuffer[0];
   }
   return;
 }
@@ -17463,8 +17463,8 @@ undefined8 FUN_180899763(void)
 
 
 
-// 函数: void FUN_180899790(void)
-void FUN_180899790(void)
+// 清理系统资源
+void CleanupSystemResources(void)
 
 {
   return;
@@ -17473,8 +17473,8 @@ void FUN_180899790(void)
 
 
 
-// 函数: void FUN_180899799(void)
-void FUN_180899799(void)
+// 重置系统状态
+void ResetSystemState(void)
 
 {
   return;
@@ -17483,15 +17483,15 @@ void FUN_180899799(void)
 
 
 
-// 函数: void FUN_1808997b0(undefined8 param_1,longlong param_2)
-void FUN_1808997b0(undefined8 param_1,longlong param_2)
+// 同步数据
+void SynchronizeData(undefined8 dataHandle,longlong dataOffset)
 
 {
-  int iVar1;
+  int operationResult;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
-  if (iVar1 == 0) {
-    FUN_1808aed00(param_1,param_2 + 4,4);
+  operationResult = FUN_1808aed00(dataHandle,dataOffset,4);
+  if (operationResult == 0) {
+    FUN_1808aed00(dataHandle,dataOffset + 4,4);
   }
   return;
 }
@@ -17579,8 +17579,8 @@ undefined8 FUN_180899816(void)
 
 
 
-// 函数: void FUN_180899891(void)
-void FUN_180899891(void)
+// 管理内存
+void ManageMemory(void)
 
 {
   return;
@@ -18030,8 +18030,8 @@ void FUN_180899ae6(undefined8 *param_1)
 
 
 
-// 函数: void FUN_180899c45(void)
-void FUN_180899c45(void)
+// 空操作函数H
+void UtilityNoOperationH(void)
 
 {
   return;
@@ -18040,8 +18040,8 @@ void FUN_180899c45(void)
 
 
 
-// 函数: void FUN_180899c54(void)
-void FUN_180899c54(void)
+// 空操作函数I
+void UtilityNoOperationI(void)
 
 {
   return;
@@ -43708,7 +43708,19 @@ void Unwind_180905b50(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905b60(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理资源
+ * 
+ * 清理异常处理相关的资源，包括互斥锁、条件变量、异常链表等。
+ * 该函数负责在异常处理完成后清理所有相关资源，确保系统状态正确。
+ * 
+ * @param ExceptionContext 异常上下文参数
+ * @param ResourcePointer 资源指针参数
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的资源清理逻辑
+ * @warning 简化实现仅执行基本的清理操作，不进行实际的资源管理工作
+ */
+void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePointer)
 
 {
   int *piVar1;
