@@ -1654,6 +1654,14 @@ void* GetSystemInitializationFunction;
  * 
  * @return void 无返回值
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 初始化游戏核心系统，包括系统节点的创建、内存分配和配置。
+ * 用于游戏核心系统的启动和准备工作。
+ * 
+ * @return 无返回值
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;

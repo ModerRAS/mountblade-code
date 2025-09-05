@@ -5654,9 +5654,12 @@ undefined8 ConditionalResourceRelease(char shouldRelease)
 
 
 /**
- * @brief 空操作函数
+ * @brief 空操作函数1
  * 
- * 不执行任何操作，仅作为占位符或桩函数使用
+ * 不执行任何操作的空函数，用于系统初始化或占位符。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
  */
 void UtilityNoOperation1(void)
 
@@ -16945,25 +16948,25 @@ undefined4 ProcessDataItem(longlong *dataContext,int itemIndex,undefined4 *outpu
 undefined4 FUN_180898b65(undefined8 param_1,int param_2,undefined4 *param_3)
 
 {
-  undefined4 *puVar1;
-  undefined1 uVar2;
-  uint uVar3;
-  uint3 uVar4;
-  undefined4 uVar5;
-  undefined4 uVar6;
-  uint uVar7;
-  int iVar8;
-  int iVar9;
-  undefined1 *puVar10;
-  undefined1 *puVar11;
-  uint uVar12;
-  int iVar13;
+  DataBuffer *dataBuffer;
+  undefined1 statusFlag;
+  uint dataLength;
+  uint3 dataChunk;
+  undefined4 operationResult;
+  undefined4 validationCode;
+  uint processIndex;
+  int resultStatus;
+  int errorCode;
+  DataBuffer *bufferPointer1;
+  DataBuffer *bufferPointer2;
+  uint bufferOffset;
+  int bufferIndex;
   longlong unaff_RBP;
   undefined1 *unaff_RSI;
   longlong validationContext4;
-  undefined1 *puVar15;
-  int iVar16;
-  undefined4 uVar17;
+  DataBuffer *bufferPointer3;
+  int operationCount;
+  undefined4 finalResult;
   longlong *registerR14;
   int iVar18;
   int *in_stack_00000078;
@@ -20823,19 +20826,19 @@ LAB_1808a2e6d:
 
 
 89b5fc(void)
-void FUN_18089b5fc(void)
+void ValidateContextStatus(void)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContext;
   int operationResult;
-  longlong *registerRBX;
-  longlong unaff_RDI;
-  char in_stack_00000030;
-  undefined8 uStack0000000000000038;
-  uint uStack0000000000000040;
+  longlong *contextRegister;
+  longlong destinationRegister;
+  char stackValidationFlag;
+  undefined8 tempStackValue;
+  uint bufferSize;
   
-  pvalidationContext = (longlong *)*registerRBX;
-  uStack0000000000000038 = _uStack0000000000000040;
+  validationContext = (longlong *)*contextRegister;
+  tempStackValue = _bufferSize;
   if (*pvalidationContext == 0) {
     operationResult = 0x1c;
   }
@@ -87975,14 +87978,14 @@ void CleanupThreadMutex(void)
 void ProcessUtilitySystemData(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  SystemDataPtr *systemData;
   
-  puVar1 = _DAT_180c967a0;
-  if (_DAT_180c967a0 != (undefined8 *)0x0) {
+  systemData = _DAT_180c967a0;
+  if (_DAT_180c967a0 != (SystemDataPtr *)0x0) {
     FUN_180651560(&DAT_180c96790,*_DAT_180c967a0,param_3,param_4,0xfffffffffffffffe);
-    FUN_18063cfe0(puVar1 + 5);
+    FUN_18063cfe0(systemData + 5);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(systemData);
   }
   return;
 }
@@ -87998,17 +88001,17 @@ void ProcessUtilitySystemData(undefined8 param_1,undefined8 param_2,undefined8 p
 void ResetThreadLocalStorage(void)
 
 {
-  longlong validationContext;
+  longlong threadContext;
   
-  validationContext = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
-  *(undefined8 *)(validationContext + 0x18) = &UNK_180a3c3e0;
-  if (*(longlong *)(validationContext + 0x20) != 0) {
+  threadContext = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  *(undefined8 *)(threadContext + 0x18) = &UNK_180a3c3e0;
+  if (*(longlong *)(threadContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(validationContext + 0x20) = 0;
-  *(undefined4 *)(validationContext + 0x30) = 0;
-  *(undefined8 *)(validationContext + 0x18) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(threadContext + 0x20) = 0;
+  *(undefined4 *)(threadContext + 0x30) = 0;
+  *(undefined8 *)(threadContext + 0x18) = &DefaultExceptionHandlerB;
   return;
 }
 
