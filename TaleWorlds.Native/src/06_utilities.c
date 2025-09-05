@@ -1676,9 +1676,9 @@
 // 功能：执行系统回调函数
 #define ExecuteCallbackA0 FUN_180875fc0
 
-// 原始函数名：FUN_180742250 - 资源分配函数A0
+// 原始函数名：ReleaseSystemMemoryA0 - 资源分配函数A0
 // 功能：分配系统资源
-#define AllocateResourceA0 FUN_180742250
+#define AllocateResourceA0 ReleaseSystemMemoryA0
 
 // 原始函数名：FUN_180894dd0 - 请求处理函数A0
 // 功能：处理系统请求
@@ -1716,9 +1716,9 @@
 // 功能：验证系统参数
 #define ValidateParametersA0 FUN_180894860
 
-// 原始函数名：FUN_18088d720 - 错误处理函数A0
+// 原始函数名：CleanupSystemEventA0 - 错误处理函数A0
 // 功能：处理系统错误
-#define HandleErrorA0 FUN_18088d720
+#define HandleErrorA0 CleanupSystemEventA0
 
 // 原始函数名：FUN_18088c790 - 资源释放函数A1
 // 功能：释放系统资源
@@ -1931,9 +1931,9 @@
 // 功能：执行系统操作
 #define ExecuteSystemOperationB0 FUN_1808949c0
 
-// 原始函数名：FUN_18088d7c0 - 事件处理函数A0
+// 原始函数名：ProcessSystemEventB0 - 事件处理函数A0
 // 功能：处理系统事件
-#define ProcessSystemEventB0 FUN_18088d7c0
+#define ProcessSystemEventB0 ProcessSystemEventB0
 
 // 原始函数名：FUN_1808deb90 - 数据处理函数A0
 // 功能：处理数据操作
@@ -1943,33 +1943,33 @@
 // 功能：查询系统数据
 #define QuerySystemDataA0 FUN_180894b00
 
-// 原始函数名：FUN_18088d720 - 事件清理函数A0
+// 原始函数名：CleanupSystemEventA0 - 事件清理函数A0
 // 功能：清理系统事件
-#define CleanupSystemEventA0 FUN_18088d720
+#define CleanupSystemEventA0 CleanupSystemEventA0
 
-// 原始函数名：FUN_180867bc0 - 事件初始化函数A0
+// 原始函数名：InitializeSystemEventA0 - 事件初始化函数A0
 // 功能：初始化系统事件
-#define InitializeSystemEventA0 FUN_180867bc0
+#define InitializeSystemEventA0 InitializeSystemEventA0
 
-// 原始函数名：FUN_180868490 - 事件处理函数A1
+// 原始函数名：ProcessSystemEventDataA0 - 事件处理函数A1
 // 功能：处理系统事件
-#define ProcessSystemEventA1 FUN_180868490
+#define ProcessSystemEventA1 ProcessSystemEventDataA0
 
 // 原始函数名：FUN_1808c7f30 - 数据验证函数A1
 // 功能：验证数据有效性
 #define ValidateDataIntegrityA0 FUN_1808c7f30
 
-// 原始函数名：FUN_18088dd60 - 系统数据处理函数A0
+// 原始函数名：ProcessSystemDataEC0 - 系统数据处理函数A0
 // 功能：处理系统数据
-#define ProcessSystemDataA0 FUN_18088dd60
+#define ProcessSystemDataA0 ProcessSystemDataEC0
 
-// 原始函数名：FUN_18084b240 - 缓冲区处理函数A0
+// 原始函数名：ValidateSystemDataA0 - 缓冲区处理函数A0
 // 功能：处理缓冲区操作
-#define ProcessBufferOperationA0 FUN_18084b240
+#define ProcessBufferOperationA0 ValidateSystemDataA0
 
-// 原始函数名：FUN_18084de40 - 上下文创建函数A0
+// 原始函数名：ProcessDataValidationA0 - 上下文创建函数A0
 // 功能：创建操作上下文
-#define CreateOperationContextA0 FUN_18084de40
+#define CreateOperationContextA0 ProcessDataValidationA0
 
 // 原始函数名：FUN_180840950 - 资源处理函数A0
 // 功能：处理系统资源
@@ -8206,13 +8206,13 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：清理系统资源并释放内存
 #define CleanupSystemResourceCA0 FUN_18088c790
 
-// 原始函数名：FUN_18088d720 - 资源操作函数CB0
+// 原始函数名：CleanupSystemEventA0 - 资源操作函数CB0
 // 功能：执行系统资源操作
-#define ExecuteSystemResourceOperationCB0 FUN_18088d720
+#define ExecuteSystemResourceOperationCB0 CleanupSystemEventA0
 
-// 原始函数名：FUN_18088d7c0 - 资源管理函数CC0
+// 原始函数名：ProcessSystemEventB0 - 资源管理函数CC0
 // 功能：管理系统资源状态
-#define ManageSystemResourceCC0 FUN_18088d7c0
+#define ManageSystemResourceCC0 ProcessSystemEventB0
 
 // 原始函数名：FUN_180867d60 - 数据处理函数CD0
 // 功能：处理系统数据并执行转换
@@ -8226,9 +8226,9 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：执行系统回调函数
 #define ExecuteSystemCallbackCF0 FUN_180875fc0
 
-// 原始函数名：FUN_180742250 - 资源分配函数CG0
+// 原始函数名：ReleaseSystemMemoryA0 - 资源分配函数CG0
 // 功能：分配系统资源并初始化
-#define AllocateSystemResourceCG0 FUN_180742250
+#define AllocateSystemResourceCG0 ReleaseSystemMemoryA0
 
 // 原始函数名：FUN_180894dd0 - 数据处理函数CH0
 // 功能：处理数据并执行验证
@@ -8298,13 +8298,13 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：验证系统配置
 #define ValidateSystemConfigCX0 FUN_1808bdd90
 
-// 原始函数名：FUN_180768b50 - 内存操作函数CY0
+// 原始函数名：InitializeSystemContextA0 - 内存操作函数CY0
 // 功能：执行内存操作
-#define ExecuteMemoryOperationCY0 FUN_180768b50
+#define ExecuteMemoryOperationCY0 InitializeSystemContextA0
 
-// 原始函数名：FUN_18084b240 - 数据处理函数CZ0
+// 原始函数名：ValidateSystemDataA0 - 数据处理函数CZ0
 // 功能：处理数据并验证
-#define ProcessDataValidationCZ0 FUN_18084b240
+#define ProcessDataValidationCZ0 ValidateSystemDataA0
 
 // 原始函数名：FUN_1808fd200 - 系统初始化函数DA0
 // 功能：初始化系统组件
@@ -8354,9 +8354,9 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：初始化系统组件
 #define InitializeSystemComponentDL0 FUN_180894ef0
 
-// 原始函数名：FUN_180741e10 - 资源分配函数DM0
+// 原始函数名：AllocateSystemMemoryA0 - 资源分配函数DM0
 // 功能：分配系统资源
-#define AllocateSystemResourceDM0 FUN_180741e10
+#define AllocateSystemResourceDM0 AllocateSystemMemoryA0
 
 // 原始函数名：FUN_1807d1650 - 数据处理函数DN0
 // 功能：处理数据并转换
@@ -8578,7 +8578,7 @@ void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
 // 注意事项：
 //   - 函数内部包含条件分支逻辑，根据param_1 + 0x2c位置的值决定执行路径
-//   - 如果条件不满足，会调用FUN_18088d720函数（该函数不返回）
+//   - 如果条件不满足，会调用CleanupSystemEventA0函数（该函数不返回）
 //   - 调用前确保参数有效性，避免未定义行为
 //
 void InitializeSystemEventHandlerA1(longlong param_1,longlong param_2)
@@ -8620,7 +8620,7 @@ undefined8 CheckSystemStatusA0(longlong param_1,longlong param_2)
     *(int *)(lStackX_8 + 0x28) = iVar1 + 1;
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
     uVar2 = 0;
   }
@@ -8651,7 +8651,7 @@ void ResetSystemStateA0(longlong param_1,longlong param_2)
   if (operationResult == 0) {
     *(undefined4 *)(systemContext + 0x30) = 0;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
   }
   return;
 }
@@ -8695,7 +8695,7 @@ undefined8 ManageResourceState(longlong param_1,longlong param_2)
     *(int *)(resourceContext + 0x28) = resourceCounter + -1;
     if (resourceCounter == 1) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
     operationResult = 0;
   }
@@ -8729,7 +8729,7 @@ undefined8 HandlePermissionRequest(longlong param_1,longlong param_2)
       return 0x4c;
     }
     *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(*(longlong *)(permissionContext + 8) + 0x78);
-    permissionResult = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+    permissionResult = ProcessSystemEventB0(*(undefined8 *)(param_2 + 0x98),param_1);
   }
   return permissionResult;
 }
@@ -8764,7 +8764,7 @@ undefined8 ProcessSystemRequest(longlong param_1,longlong param_2)
   }
   *(undefined1 *)(requestContext + 0x2c) = 1;
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
 }
 
 
@@ -8782,7 +8782,7 @@ void ProcessDataSetFlagA0(longlong dataContext,longlong systemContext)
   if (status == 0) {
     *(undefined1 *)(dataPointer + 0x29) = *(undefined1 *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(systemContext + 0x98),dataContext);
+    CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98),dataContext);
   }
   return;
 }
@@ -8802,7 +8802,7 @@ void ProcessDataSetFlagA1(longlong dataContext,longlong systemContext)
   if (status == 0) {
     *(undefined1 *)(dataPointer + 0x28) = *(undefined1 *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(systemContext + 0x98),dataContext);
+    CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98),dataContext);
   }
   return;
 }
@@ -8824,7 +8824,7 @@ undefined8 ValidateDataReturnStatusA2(longlong dataContext,longlong systemContex
   if ((int)result == 0) {
     *(undefined4 *)(CONCAT44(tempValue,dataValue) + 0x24) = *(undefined4 *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(systemContext + 0x98),dataContext);
+    CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98),dataContext);
   }
   return result;
 }
@@ -8879,8 +8879,8 @@ void ProcessSystemEventA3(longlong eventContext,longlong systemContext)
   longlong queueInfo;
   
   status = QueryAndRetrieveSystemDataA0(*(undefined4 *)(eventContext + 0x10),&queueInfo);
-  if (((status != 0) || (status = FUN_180867bc0(&eventHandle), status != 0)) ||
-     (status = FUN_180868490(eventHandle,systemContext,*(undefined8 *)(queueInfo + 8)), status != 0)) {
+  if (((status != 0) || (status = InitializeSystemEventA0(&eventHandle), status != 0)) ||
+     (status = ProcessSystemEventDataA0(eventHandle,systemContext,*(undefined8 *)(queueInfo + 8)), status != 0)) {
     return;
   }
   newBuffer = 0;
@@ -8906,7 +8906,7 @@ void ProcessSystemEventA3(longlong eventContext,longlong systemContext)
     if (status < *(int *)(queueInfo + 0x28)) goto ExitHandler;
     if (status != 0) {
       if ((0x3ffffffe < status * 8 - 1U) ||
-         (newBuffer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),status * 8,&UNK_180957f70,
+         (newBuffer = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),status * 8,&UNK_180957f70,
                                 0xf4,0,0,1), newBuffer == 0)) goto ExitHandler;
       if (*(int *)(queueInfo + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -8926,7 +8926,7 @@ void ProcessSystemEventA3(longlong eventContext,longlong systemContext)
   *(int *)(queueInfo + 0x28) = *(int *)(queueInfo + 0x28) + 1;
 ExitHandler:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(systemContext + 0x98),eventContext);
+  CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98),eventContext);
 }
 
 
@@ -8952,7 +8952,7 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
   longlong in_stack_00000060;
   longlong in_stack_00000070;
   
-  iVar1 = FUN_180868490(param_1,param_2,*(undefined8 *)(in_stack_00000070 + 8));
+  iVar1 = ProcessSystemEventDataA0(param_1,param_2,*(undefined8 *)(in_stack_00000070 + 8));
   if (iVar1 != 0) {
     return;
   }
@@ -8979,7 +8979,7 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
     if (iVar1 < *(int *)(in_stack_00000070 + 0x28)) goto LAB_180891fc0;
     if (iVar1 != 0) {
       if ((0x3ffffffe < iVar1 * 8 - 1U) ||
-         (lVar3 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
+         (lVar3 = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
                                 0xf4,0), lVar3 == 0)) goto LAB_180891fc0;
       if (*(int *)(in_stack_00000070 + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -8990,7 +8990,7 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
     if ((0 < *(int *)(in_stack_00000070 + 0x2c)) && (*(longlong *)(in_stack_00000070 + 0x20) != 0))
     {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(in_stack_00000070 + 0x20),
                     &UNK_180957f70,0x100,1);
     }
     *(longlong *)(in_stack_00000070 + 0x20) = lVar3;
@@ -9002,7 +9002,7 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
   *(int *)(in_stack_00000070 + 0x28) = *(int *)(in_stack_00000070 + 0x28) + 1;
 SystemCleanupLabel:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
+  CleanupSystemEventA0(*(undefined8 *)(registerR14 + 0x98));
 }
 
 
@@ -9049,7 +9049,7 @@ void ResetUtilitySystemAA0(void)
     if (validationStatus < *(int *)(registerRBX + 0x28)) goto LAB_180891fc0;
     if (validationStatus != 0) {
       if (0x3ffffffe < validationStatus * 8 - 1U) goto LAB_180891fc0;
-      stackPointer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationStatus * 8,&UNK_180957f70,0xf4,0)
+      stackPointer = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationStatus * 8,&UNK_180957f70,0xf4,0)
       ;
       if (stackPointer == 0) goto LAB_180891fc0;
       if (*(int *)(registerRBX + 0x28) != 0) {
@@ -9059,7 +9059,7 @@ void ResetUtilitySystemAA0(void)
     }
     if ((0 < *(int *)(registerRBX + 0x2c)) && (*(longlong *)(registerRBX + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(registerRBX + 0x20),
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(registerRBX + 0x20),
                     &UNK_180957f70,0x100,1);
     }
     *(longlong *)(registerRBX + 0x20) = lVar3;
@@ -9070,7 +9070,7 @@ void ResetUtilitySystemAA0(void)
   *(int *)(registerRBX + 0x28) = *(int *)(registerRBX + 0x28) + 1;
 SystemCleanupLabel:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
+  CleanupSystemEventA0(*(undefined8 *)(registerR14 + 0x98));
 }
 
 
@@ -9106,7 +9106,7 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
     if (operationResult < param_1) goto LAB_180891fc0;
     if (operationResult != 0) {
       if (0x3ffffffe < operationResult * 8 - 1U) goto LAB_180891fc0;
-      unaff_RSI = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationResult * 8,&UNK_180957f70,
+      unaff_RSI = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationResult * 8,&UNK_180957f70,
                                 0xf4);
       if (unaff_RSI == 0) goto LAB_180891fc0;
       if (*(int *)(registerRBX + 0x28) != 0) {
@@ -9117,7 +9117,7 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
     }
     if ((0 < *(int *)(registerRBX + 0x2c)) && (*(longlong *)(registerRBX + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(registerRBX + 0x20),
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(registerRBX + 0x20),
                     &UNK_180957f70,0x100,1);
     }
     *(longlong *)(registerRBX + 0x20) = unaff_RSI;
@@ -9128,7 +9128,7 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
   *(int *)(registerRBX + 0x28) = *(int *)(registerRBX + 0x28) + 1;
 SystemCleanupLabel:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
+  CleanupSystemEventA0(*(undefined8 *)(registerR14 + 0x98));
 }
 
 
@@ -9200,7 +9200,7 @@ void ManageUtilitySystemConnectionsAF0(longlong connectionManager,longlong conne
         }
       }
     }
-    FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+    ProcessSystemEventB0(*(undefined8 *)(param_2 + 0x98),param_1);
   }
   return;
 }
@@ -9243,7 +9243,7 @@ void UtilityValidateSystemState(void)
       }
     }
   }
-  FUN_18088d7c0(*(undefined8 *)(unaff_RBP + 0x98));
+  ProcessSystemEventB0(*(undefined8 *)(unaff_RBP + 0x98));
   return;
 }
 
@@ -9291,7 +9291,7 @@ void UtilityProcessResourceRequest(longlong param_1,longlong param_2)
     iVar1 = InitializeSystemBufferA0(uStackX_8);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
   }
   return;
@@ -9311,7 +9311,7 @@ void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
   validationResult = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + 0x10), localBuffer);
   if (validationResult == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
+    CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
   }
   return;
 }
@@ -9332,7 +9332,7 @@ void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
     firstValidationResult = ValidateSystemDataIntegrityA0(validationData);
     if (firstValidationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
+      CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
     }
   }
   return;
@@ -9363,7 +9363,7 @@ undefined8 ConfigureUtilityDataA0(longlong configPointer,longlong dataPointer)
     }
     *(undefined8 *)(configPointer + 0x18) =
          *(undefined8 *)(*(longlong *)(*(longlong *)(stackPointer + 0x10) + 0x2b0) + 0x78);
-    configurationResult = FUN_18088d7c0(*(undefined8 *)(dataPointer + 0x98),configPointer);
+    configurationResult = ProcessSystemEventB0(*(undefined8 *)(dataPointer + 0x98),configPointer);
   }
   return configurationResult;
 }
@@ -9394,7 +9394,7 @@ undefined8 ConfigureUtilityDataA1(longlong configPointer,longlong dataPointer)
     configurationResult = ValidateAndProcessSystemResourceA0(*(undefined8 *)(*(longlong *)(stackPointer + 0x18) + 0xd0),
                                 configPointer + 0x18);
     if ((int)configurationResult == 0) {
-      configurationResult = FUN_18088d7c0(*(undefined8 *)(dataPointer + 0x98),configPointer);
+      configurationResult = ProcessSystemEventB0(*(undefined8 *)(dataPointer + 0x98),configPointer);
     }
   }
   return configurationResult;
@@ -9457,7 +9457,7 @@ undefined8 ProcessResourceValidationAndExecution(longlong resourceContext, longl
           if ((int)operationResult != 0) {
             return operationResult;
           }
-          operationResult = FUN_18088d7c0(*(undefined8 *)(executionContext + 0x98), resourceContext);
+          operationResult = ProcessSystemEventB0(*(undefined8 *)(executionContext + 0x98), resourceContext);
           return operationResult;
         }
         iterationCounter = (int)baseOffset + 1;
@@ -9523,7 +9523,7 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
         if ((int)uVar3 != 0) {
           return uVar3;
         }
-        uVar3 = FUN_18088d7c0(*(undefined8 *)(unaff_R13 + 0x98));
+        uVar3 = ProcessSystemEventB0(*(undefined8 *)(unaff_R13 + 0x98));
         return uVar3;
       }
       uVar5 = (int)uVar6 + 1;
@@ -9557,7 +9557,7 @@ void CheckSystemConditionAndExecute(void)
   
   iVar1 = ValidateAndProcessSystemResourceA0();
   if (iVar1 == 0) {
-    FUN_18088d7c0(*(undefined8 *)(unaff_R13 + 0x98));
+    ProcessSystemEventB0(*(undefined8 *)(unaff_R13 + 0x98));
   }
   return;
 }
@@ -9599,9 +9599,9 @@ undefined8 ValidateSystemDataIndexAndProcessResource(longlong systemContext,long
   }
   if ((*(int *)(systemDataPointer + 0x180) != 0) || (*(int *)(systemDataPointer + 0x184) != 0)) {
     dataBufferPointer = 0;
-    FUN_180768b50(&dataBufferPointer);
+    InitializeSystemContextA0(&dataBufferPointer);
     if (dataBufferPointer == *(longlong *)((longlong)*(int *)(systemDataPointer + 0x17c) * 8 + 0x180c4f450)) {
-      operationResult = FUN_18088dd60(systemDataPointer,systemContext);
+      operationResult = ProcessSystemDataEC0(systemDataPointer,systemContext);
       goto OperationComplete;
     }
   }
@@ -9654,12 +9654,12 @@ void ExecuteSecurityValidation(longlong param_1, longlong param_2)
                         (*(longlong **)(param_2 + 800),validationContext,1);
       if (lVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18084b240(validationContext,auStack_40);
+        ValidateSystemDataA0(validationContext,auStack_40);
       }
       plVar4 = (longlong *)(lVar3 + 0x58);
       if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(lVar3 + 0x60) != plVar4)) {
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+        CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
       }
     }
   }
@@ -9692,7 +9692,7 @@ void ProcessResourcePointer(longlong *param_1, longlong param_2)
   validationContext = (**(code **)(*param_1 + 0x2f0))(param_1,param_2 + 0x30);
   if (validationContext == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18084b240(param_2 + 0x30,&stack0x00000028);
+    ValidateSystemDataA0(param_2 + 0x30,&stack0x00000028);
   }
   plVar2 = (longlong *)(validationContext + 0x58);
   if (((longlong *)*plVar2 == plVar2) && (*(longlong **)(validationContext + 0x60) == plVar2)) {
@@ -9700,7 +9700,7 @@ void ProcessResourcePointer(longlong *param_1, longlong param_2)
     ExecuteSecurityCheck(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(unaff_RDI + 0x98));
+  CleanupSystemEventA0(*(undefined8 *)(unaff_RDI + 0x98));
 }
 
 
@@ -9843,9 +9843,9 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
     dataBufferPtr = *(longlong *)(contextPtr + 0x98);
     if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
       stackBuffer[0] = 0;
-      FUN_180768b50(stackBuffer);
+      InitializeSystemContextA0(stackBuffer);
       if (stackBuffer[0] == *(longlong *)((longlong)*(int *)(dataBufferPtr + 0x17c) * 8 + 0x180c4f450)) {
-        result = FUN_18088dd60(dataBufferPtr,dataPtr);
+        result = ProcessSystemDataEC0(dataBufferPtr,dataPtr);
         if ((int)result == 0) {
           return 0;
         }
@@ -10075,7 +10075,7 @@ undefined8 QuerySystemStatusE0(void)
   if ((*(byte *)(lVar2 + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(lVar2,unaff_RDI + 0x25,unaff_RDI + 0x20);
+  uVar3 = ProcessDataValidationA0(lVar2,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)uVar3 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x20);
     if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
@@ -10083,7 +10083,7 @@ undefined8 QuerySystemStatusE0(void)
       uVar3 = *(undefined8 *)(unaff_RBP + 0x98);
       *(float *)(stackParameter40 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar3);
+      CleanupSystemEventA0(uVar3);
     }
     uVar3 = 0x1c;
   }
@@ -10110,7 +10110,7 @@ undefined8 InitializeSystemE0(void)
   if ((*(byte *)(lVar2 + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(lVar2,unaff_RDI + 0x25,unaff_RDI + 0x20);
+  uVar3 = ProcessDataValidationA0(lVar2,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)uVar3 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x20);
     if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
@@ -10118,7 +10118,7 @@ undefined8 InitializeSystemE0(void)
       uVar3 = *(undefined8 *)(unaff_RBP + 0x98);
       *(float *)(stackParameter40 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar3);
+      CleanupSystemEventA0(uVar3);
     }
     uVar3 = 0x1c;
   }
@@ -10140,7 +10140,7 @@ undefined8 ValidateParametersE0(undefined4 parameterFlags)
   if ((*(byte *)(contextHandle + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  validationResult = FUN_18084de40(parameterFlags,dataPointer + 0x25,dataPointer + 0x20);
+  validationResult = ProcessDataValidationA0(parameterFlags,dataPointer + 0x25,dataPointer + 0x20);
   if ((int)validationResult == 0) {
     floatValue = *(float *)(dataPointer + 0x20);
     if ((*(float *)(contextHandle + 0x38) <= floatValue) &&
@@ -10148,7 +10148,7 @@ undefined8 ValidateParametersE0(undefined4 parameterFlags)
       validationResult = *(undefined8 *)(basePointer + 0x98);
       *(float *)(stackPointer + 4) = floatValue;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(validationResult);
+      CleanupSystemEventA0(validationResult);
     }
     validationResult = 0x1c;
   }
@@ -10167,7 +10167,7 @@ undefined8 ValidateParametersE1(undefined4 validationFlags)
   longlong unaff_RDI;
   longlong stackParameter40;
   
-  uVar2 = FUN_18084de40(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
+  uVar2 = ProcessDataValidationA0(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)uVar2 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x20);
     if ((*(float *)(registerRBX + 0x38) <= fVar1) &&
@@ -10175,7 +10175,7 @@ undefined8 ValidateParametersE1(undefined4 validationFlags)
       uVar2 = *(undefined8 *)(unaff_RBP + 0x98);
       *(float *)(stackParameter40 + 4) = fVar1;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar2);
+      CleanupSystemEventA0(uVar2);
     }
     uVar2 = 0x1c;
   }
@@ -10255,7 +10255,7 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
       *(float *)(lVar5 + 4 + (longlong)(int)auStackX_8[0] * 0x18) = fVar6;
       *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(lVar2 + (longlong)(int)auStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
   }
   return 0x1f;
@@ -10298,7 +10298,7 @@ undefined8 ValidateAndProcessFloatingPointNumberA2(longlong param_1,longlong par
     lVar6 = *(longlong *)(lVar6 + 0x20);
     lVar3 = *(longlong *)(lVar6 + 0x10 + lVar5 * 0x18);
     if ((*(byte *)(lVar3 + 0x34) & 0x11) == 0) {
-      uVar4 = FUN_18084de40(lVar3,param_1 + 0xa8,param_1 + 0x18);
+      uVar4 = ProcessDataValidationA0(lVar3,param_1 + 0xa8,param_1 + 0x18);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -10309,7 +10309,7 @@ undefined8 ValidateAndProcessFloatingPointNumberA2(longlong param_1,longlong par
         *(float *)(lVar6 + 4 + lVar5 * 0x18) = fVar1;
         *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(lVar2 + (longlong)aiStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+        CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
       }
       return 0x1c;
     }
@@ -10369,9 +10369,9 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
     lVar5 = *(longlong *)(param_2 + 0x98);
     if ((*(int *)(lVar5 + 0x180) != 0) || (*(int *)(lVar5 + 0x184) != 0)) {
       lStackX_8 = 0;
-      FUN_180768b50(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
+      InitializeSystemContextA0(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
       if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
-        uVar4 = FUN_18088dd60(lVar5,param_1);
+        uVar4 = ProcessSystemDataEC0(lVar5,param_1);
         if ((int)uVar4 == 0) {
           return 0;
         }
@@ -10468,7 +10468,7 @@ undefined8 ProcessFloatingPointArrayA0(longlong param_1,longlong param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
 }
 
 
@@ -10544,7 +10544,7 @@ undefined8 GetSystemStatusA0(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(unaff_R15 + 0x98));
+  CleanupSystemEventA0(*(undefined8 *)(unaff_R15 + 0x98));
 }
 
 
@@ -10674,9 +10674,9 @@ undefined8 ValidateAndProcessFloatValue(longlong valueContext,longlong operation
   resultPointer = *(longlong *)(operationContext + 0x98);
   if ((*(int *)(resultPointer + 0x180) != 0) || (*(int *)(resultPointer + 0x184) != 0)) {
     stackValue = 0;
-    FUN_180768b50(&stackValue,valueContext,param_3,param_4,unaff_RDI);
+    InitializeSystemContextA0(&stackValue,valueContext,param_3,param_4,unaff_RDI);
     if (stackValue == *(longlong *)((longlong)*(int *)(resultPointer + 0x17c) * 8 + 0x180c4f450)) {
-      operationResult = FUN_18088dd60(resultPointer,valueContext);
+      operationResult = ProcessSystemDataEC0(resultPointer,valueContext);
       if ((int)operationResult == 0) {
         return 0;
       }
@@ -10743,9 +10743,9 @@ code_r0x00018089322c:
   lVar3 = *(longlong *)(param_2 + 0x98);
   if ((*(int *)(lVar3 + 0x180) != 0) || (*(int *)(lVar3 + 0x184) != 0)) {
     lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
+    InitializeSystemContextA0(&lStackX_8);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar3 + 0x17c) * 8 + 0x180c4f450)) {
-      uVar2 = FUN_18088dd60(lVar3,param_1);
+      uVar2 = ProcessSystemDataEC0(lVar3,param_1);
       if ((int)uVar2 == 0) {
         return 0;
       }
@@ -10792,9 +10792,9 @@ undefined8 ProcessDataTransferA0(longlong param_1,longlong param_2)
   lVar2 = *(longlong *)(param_2 + 0x98);
   if ((*(int *)(lVar2 + 0x180) != 0) || (*(int *)(lVar2 + 0x184) != 0)) {
     lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8);
+    InitializeSystemContextA0(&lStackX_8);
     if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar2 + 0x17c) * 8 + 0x180c4f450)) {
-      uVar1 = FUN_18088dd60(lVar2,param_1);
+      uVar1 = ProcessSystemDataEC0(lVar2,param_1);
       if ((int)uVar1 == 0) {
         return 0;
       }
@@ -10834,7 +10834,7 @@ undefined8 ProcessBufferA0(longlong param_1,longlong param_2)
     }
     *(undefined4 *)(lVar2 + 0x8c) = *(undefined4 *)(param_1 + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
   }
   return uVar1;
 }
@@ -10869,7 +10869,7 @@ void ActivateUtilitySystemState(longlong systemHandle,longlong operationContext)
     *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
     *(undefined1 *)(statePointer + 0xbd) = 1;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(operationContext + 0x98),systemHandle);
+    CleanupSystemEventA0(*(undefined8 *)(operationContext + 0x98),systemHandle);
   }
   return;
 }
@@ -10901,7 +10901,7 @@ void DeactivateUtilitySystemState(longlong systemHandle,longlong operationContex
     *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
     *(undefined1 *)(statePointer + 0xbd) = 0;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(operationContext + 0x98),systemHandle);
+    CleanupSystemEventA0(*(undefined8 *)(operationContext + 0x98),systemHandle);
   }
   return;
 }
@@ -10943,7 +10943,7 @@ undefined8 ProcessMemoryAllocationA0(longlong param_1,longlong param_2)
   *(float *)(param_1 + 0x14) = fVar4;
   *(float *)(CONCAT44(uStackX_c,uStackX_8) + 4) = fVar4;
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
 }
 
 
@@ -10971,7 +10971,7 @@ undefined8 ProcessMemoryReleaseA0(longlong memoryDescriptor,longlong systemConte
   else {
     operationResult = ValidateAndProcessSystemResourceA0(*(longlong *)(validationContext + 0x2e8),memoryDescriptor + 0x20);
     if ((int)operationResult == 0) {
-      operationResult = FUN_18088d7c0(*(undefined8 *)(systemContext + 0x98),memoryDescriptor);
+      operationResult = ProcessSystemEventB0(*(undefined8 *)(systemContext + 0x98),memoryDescriptor);
       return operationResult;
     }
   }
@@ -11007,13 +11007,13 @@ undefined8 ProcessMemoryCopyA0(longlong memoryDescriptor,longlong systemContext)
   validationContext = *(longlong *)(systemContext + 0x98);
   if (*(int *)(validationContext + 0x200) != 0) {
     if (((*(int *)(validationContext + 0x180) == 0) && (*(int *)(validationContext + 0x184) == 0)) ||
-       (FUN_180768b50(&stack0x00000008),
+       (InitializeSystemContextA0(&stack0x00000008),
        *(longlong *)((longlong)*(int *)(validationContext + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + 0xfU & 0xfffffff0;
       operationResult = GetSystemCurrentStateA0(*(undefined8 *)(validationContext + 0x1e0));
     }
     else {
-      operationResult = FUN_18088dd60(validationContext,memoryDescriptor);
+      operationResult = ProcessSystemDataEC0(validationContext,memoryDescriptor);
     }
     if ((int)operationResult != 0) {
       return operationResult;
@@ -11153,14 +11153,14 @@ int ValidateAndProcessDataOperation(longlong dataContext,undefined8 operationFla
         *(undefined4 *)(stackBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(resourceHandle + 0x98));
+      CleanupSystemEventA0(*(undefined8 *)(resourceHandle + 0x98));
     }
   }
   else if (*(longlong *)(dataContext + 0x18) == 0) {
     validationResult = 0x1f;
   }
   else {
-    allocatedBuffer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationFlags,&UNK_1809862d0,0x315,0);
+    allocatedBuffer = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationFlags,&UNK_1809862d0,0x315,0);
     if (allocatedBuffer != 0) {
                     // WARNING: Subroutine does not return
       memcpy(allocatedBuffer,*(undefined8 *)(contextHandle + 0x18),(longlong)*(int *)(contextHandle + 0x20));
@@ -11203,7 +11203,7 @@ void ValidateContextAndUpdateState(longlong contextHandle,longlong operationHand
         *(undefined4 *)(localBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(operationHandle + 0x98),contextHandle);
+      CleanupSystemEventA0(*(undefined8 *)(operationHandle + 0x98),contextHandle);
     }
   }
   return;
@@ -11246,7 +11246,7 @@ int ValidateDataStateAndProcess(longlong dataContext,longlong operationContext)
           *(undefined4 *)(localStackBuffer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(operationContext + 0x98),dataContext);
+        CleanupSystemEventA0(*(undefined8 *)(operationContext + 0x98),dataContext);
       }
     }
     return processResult;
@@ -11290,7 +11290,7 @@ int ProcessDataByCondition(undefined8 inputCondition,undefined8 dataSize)
         *(undefined4 *)(stackBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(resourceHandle + 0x98));
+      CleanupSystemEventA0(*(undefined8 *)(resourceHandle + 0x98));
     }
   }
   return operationResult;
@@ -11373,7 +11373,7 @@ undefined8 ValidateAndProcessFloatValue(longlong dataContext,longlong operationC
     operationResult = ValidateOperationRangeA0(operationContext + 0x60,stackBuffer[0],maxValue);
     if ((int)operationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(operationContext + 0x98),dataContext);
+      CleanupSystemEventA0(*(undefined8 *)(operationContext + 0x98),dataContext);
     }
   }
   return operationResult;
@@ -11410,7 +11410,7 @@ undefined8 ProcessDataSynchronizationA0(undefined8 param_1,undefined8 param_2)
     uVar2 = ValidateOperationRangeA0(unaff_RSI + 0x60,uStack0000000000000040,fVar4);
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(unaff_RSI + 0x98));
+      CleanupSystemEventA0(*(undefined8 *)(unaff_RSI + 0x98));
     }
   }
   return uVar2;
@@ -11442,7 +11442,7 @@ void ProcessFloatComparisonAndValidation(void)
   operationResult = ValidateOperationRangeA0(unaff_RSI + 0x60,stackParameter40,fVar3);
   if (operationResult == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(unaff_RSI + 0x98));
+    CleanupSystemEventA0(*(undefined8 *)(unaff_RSI + 0x98));
   }
   return;
 }
@@ -11465,7 +11465,7 @@ undefined8 ProcessEventA0(longlong param_1,longlong param_2)
     if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    uVar2 = FUN_18084de40(lVar3,param_1 + 0x1d,param_1 + 0x18);
+    uVar2 = ProcessDataValidationA0(lVar3,param_1 + 0x1d,param_1 + 0x18);
     if ((int)uVar2 == 0) {
       fVar1 = *(float *)(param_1 + 0x18);
       if ((fVar1 < *(float *)(lVar3 + 0x38)) ||
@@ -11476,7 +11476,7 @@ undefined8 ProcessEventA0(longlong param_1,longlong param_2)
         uVar2 = ValidateOperationRangeA0(param_2 + 0x60,auStackX_10[0]);
         if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
-          FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+          CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
         }
       }
     }
@@ -11625,7 +11625,7 @@ undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
       puVar4 = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
       *(undefined8 *)(param_1 + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
   }
   return uVar2;
@@ -11662,7 +11662,7 @@ undefined8 ValidateSystemConfigurationA0(void)
     puVar4 = (undefined8 *)ProcessSystemDataA0(unaff_RDI + 0x60,&stack0x00000030,stackParameter40);
     *(undefined8 *)(registerRBX + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(unaff_RDI + 0x98));
+    CleanupSystemEventA0(*(undefined8 *)(unaff_RDI + 0x98));
   }
   return uVar3;
 }
@@ -11731,7 +11731,7 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
     if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    uVar2 = FUN_18084de40(lVar3,param_1 + 0xa0,param_1 + 0x10);
+    uVar2 = ProcessDataValidationA0(lVar3,param_1 + 0xa0,param_1 + 0x10);
     if ((int)uVar2 == 0) {
       fVar1 = *(float *)(param_1 + 0x10);
       if ((fVar1 < *(float *)(lVar3 + 0x38)) ||
@@ -11744,7 +11744,7 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
           puVar4 = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
           *(undefined8 *)(param_1 + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
-          FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+          CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
         }
       }
     }
@@ -11770,7 +11770,7 @@ undefined8 CleanupSystemB0(void)
   if ((*(uint *)(lVar2 + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(lVar2,unaff_RDI + 0xa0,unaff_RDI + 0x10);
+  uVar3 = ProcessDataValidationA0(lVar2,unaff_RDI + 0xa0,unaff_RDI + 0x10);
   if ((int)uVar3 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x10);
     if ((fVar1 < *(float *)(lVar2 + 0x38)) ||
@@ -11784,7 +11784,7 @@ undefined8 CleanupSystemB0(void)
                  ProcessSystemDataA0(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
         *(undefined8 *)(unaff_RDI + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
+        CleanupSystemEventA0(*(undefined8 *)(registerR14 + 0x98));
       }
     }
   }
@@ -11805,7 +11805,7 @@ undefined8 ResetSystemB0(void)
   longlong registerR14;
   undefined4 in_stack_00000050;
   
-  uVar2 = FUN_18084de40();
+  uVar2 = ProcessDataValidationA0();
   if ((int)uVar2 == 0) {
     fVar1 = *(float *)(unaff_RDI + 0x10);
     if ((fVar1 < *(float *)(registerRBX + 0x38)) ||
@@ -11819,7 +11819,7 @@ undefined8 ResetSystemB0(void)
                  ProcessSystemDataA0(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
         *(undefined8 *)(unaff_RDI + 0x18) = *puVar3;
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
+        CleanupSystemEventA0(*(undefined8 *)(registerR14 + 0x98));
       }
     }
   }
@@ -11878,7 +11878,7 @@ undefined8 ValidateSystemB0(longlong validationContext,longlong systemContext)
   if ((int)uVar1 == 0) {
     *(undefined4 *)(CONCAT44(uStackX_c,uStackX_8) + 0x18) = *(undefined4 *)(param_1 + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
   }
   return uVar1;
 }
@@ -12654,7 +12654,7 @@ uint InitializeSystemComponentDL0(longlong *componentContext)
     }
     if ((0 < (int)dataCounter) && (*componentContext != 0)) {
       // 调用安全清理函数
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*componentContext,&UNK_180957f70,0x100,1);
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*componentContext,&UNK_180957f70,0x100,1);
     }
     // 重置组件状态
     *componentContext = 0;
@@ -12686,7 +12686,7 @@ uint InitializeSystemComponentDL0(longlong *componentContext)
   // 最终安全检查和清理
   if ((0 < *(int *)((longlong)componentContext + 0xc)) && (*componentContext != 0)) {
     // 调用安全清理函数
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*componentContext,&UNK_180957f70,0x100,1);
+    ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*componentContext,&UNK_180957f70,0x100,1);
   }
   
   // 完成组件初始化
@@ -12764,7 +12764,7 @@ undefined8 ResetSystemStateDX0(longlong systemContext)
     }
     if ((0 < (int)validationCounter) && (*validationContext != 0)) {
       // 调用安全清理函数
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*validationContext,&UNK_180957f70,0x100,1);
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*validationContext,&UNK_180957f70,0x100,1);
     }
     // 重置验证上下文
     *validationContext = 0;
@@ -12820,7 +12820,7 @@ undefined8 ConfigureSystemParameterDK0(longlong *parameterContext)
     }
     if ((0 < (int)validationCounter) && (*parameterContext != 0)) {
       // 调用安全清理函数
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*parameterContext,&UNK_180957f70,0x100,1);
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*parameterContext,&UNK_180957f70,0x100,1);
     }
     // 重置参数上下文
     *parameterContext = 0;
@@ -13919,7 +13919,7 @@ undefined8 AllocateAndInitializeMemory(undefined8 param_1,int param_2)
 CalculationLabel:
     if ((0 < *(int *)((longlong)registerRBX + 0xc)) && (*registerRBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
     }
     *registerRBX = (longlong)puVar3;
     *(int *)((longlong)registerRBX + 0xc) = unaff_EDI;
@@ -13927,7 +13927,7 @@ CalculationLabel:
   }
   if (param_2 * 0xc - 1U < 0x3fffffff) {
     puVar3 = (undefined8 *)
-             FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4
+             AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4
                            ,0);
     if (puVar3 != (undefined8 *)0x0) {
       iVar1 = (int)registerRBX[1];
@@ -13977,7 +13977,7 @@ undefined8 ValidateParameters(longlong *param_1,int param_2)
   validationContext = 0;
   if (param_2 != 0) {
     if (param_2 * 0xc - 1U < 0x3fffffff) {
-      validationContext = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,
+      validationContext = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,
                             0xf4,0,0,1);
       if (validationContext != 0) {
         if ((int)param_1[1] != 0) {
@@ -13992,7 +13992,7 @@ undefined8 ValidateParameters(longlong *param_1,int param_2)
 DataTransferLabel:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
   }
   *param_1 = validationContext;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -14018,14 +14018,14 @@ undefined8 ProcessInputData(undefined8 param_1,int param_2)
 DataTransferLabel:
     if ((0 < *(int *)((longlong)registerRBX + 0xc)) && (*registerRBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
     }
     *registerRBX = validationContext;
     *(int *)((longlong)registerRBX + 0xc) = unaff_EDI;
     return 0;
   }
   if (param_2 * 0xc - 1U < 0x3fffffff) {
-    validationContext = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4,
+    validationContext = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 0xc,&UNK_180957f70,0xf4,
                           0);
     if (validationContext != 0) {
       if ((int)registerRBX[1] != 0) {
@@ -14237,7 +14237,7 @@ ulonglong FUN_180896140(longlong param_1)
                   }
                   if ((0 < (int)uStack_110._4_4_) && (uStack_118 != 0)) {
                     // WARNING: Subroutine does not return
-                    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uStack_118,&UNK_180957f70,
+                    ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uStack_118,&UNK_180957f70,
                                   0x100,1);
                   }
                   uStack_118 = 0;
@@ -14319,7 +14319,7 @@ MemoryAllocationLabel:
       if (0 < iVar16) goto LAB_18089638e;
       if ((0 < iVar4) && (uVar6 != 0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uVar6,&UNK_180957f70,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),uVar6,&UNK_180957f70,0x100,1);
       }
       uStack_118 = 0;
       uStack_110 = 0;
@@ -14479,7 +14479,7 @@ undefined8 ProcessResourceData(longlong resourceContext)
         dataSize = ((int)adjustedSize - (int)dataSource) + 1;
       }
     }
-    dataBuffer = (int *)FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataSize + 0x19,
+    dataBuffer = (int *)AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataSize + 0x19,
                                   &UNK_1809868b0,0x278,0,0,1);
     dataBuffer[0] = 0;
     dataBuffer[1] = 0;
@@ -17677,7 +17677,7 @@ undefined8 ProcessDataA3(longlong *param_1,int param_2)
   if (param_2 != 0) {
     if (param_2 * 3 - 1U < 0x3fffffff) {
       puVar3 = (undefined2 *)
-               FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4
+               AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4
                              ,0,0,1);
       if (puVar3 != (undefined2 *)0x0) {
         iVar1 = (int)param_1[1];
@@ -17700,7 +17700,7 @@ undefined8 ProcessDataA3(longlong *param_1,int param_2)
 ValidationCheckpointA:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
   }
   *param_1 = (longlong)puVar3;
   *(int *)((longlong)param_1 + 0xc) = param_2;
@@ -17742,7 +17742,7 @@ undefined8 FUN_180898d84(undefined8 param_1,int param_2)
 ValidationCheckpointA:
     if ((0 < *(int *)((longlong)registerRBX + 0xc)) && (*registerRBX != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
+      ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
     }
     *registerRBX = (longlong)puVar3;
     *(int *)((longlong)registerRBX + 0xc) = unaff_EDI;
@@ -17750,7 +17750,7 @@ ValidationCheckpointA:
   }
   if (param_2 * 3 - 1U < 0x3fffffff) {
     puVar3 = (undefined2 *)
-             FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4,0
+             AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4,0
                           );
     if (puVar3 != (undefined2 *)0x0) {
       iVar1 = (int)registerRBX[1];
@@ -20328,10 +20328,10 @@ undefined8 FUN_18089ace4(void)
           if (puVar3 != (undefined8 *)0x0) {
             (**(code **)*puVar3)(puVar3,0);
                     // WARNING: Subroutine does not return
-            FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar3,&UNK_1809869a0,0x130,1);
+            ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar3,&UNK_1809869a0,0x130,1);
           }
           puVar3 = (undefined8 *)
-                   FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x119);
+                   AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x20,&UNK_1809869a0,0x119);
           if (puVar3 == (undefined8 *)0x0) {
             return 0x26;
           }
@@ -22660,7 +22660,7 @@ ValidationLabelB:
         }
         if ((0 < (int)uStack_80._4_4_) && (puStack_88 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puStack_88,&UNK_180957f70,0x100,1);
+          ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puStack_88,&UNK_180957f70,0x100,1);
         }
         puStack_88 = (undefined8 *)0x0;
         uStack_80 = uStack_80 & 0xffffffff;
@@ -22732,7 +22732,7 @@ ValidationLabelB:
       if (0 < iVar13) goto LAB_18089c586;
       if ((0 < (int)uStack_80._4_4_) && (puStack_88 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puStack_88,&UNK_180957f70,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puStack_88,&UNK_180957f70,0x100,1);
       }
       puStack_88 = (undefined8 *)0x0;
       uStack_80 = uStack_80 & 0xffffffff;
@@ -22901,7 +22901,7 @@ ValidationLabelB:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+          ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
                         &UNK_180957f70,0x100,1);
         }
         *(undefined8 *)(unaff_RBP + -0x29) = 0;
@@ -22983,7 +22983,7 @@ ValidationLabelB:
       if (0 < iVar19) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (puVar13 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar13,&UNK_180957f70,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar13,&UNK_180957f70,0x100,1);
       }
       *(undefined8 *)(unaff_RBP + -0x29) = 0;
       *(undefined4 *)(unaff_RBP + -0x1d) = 0;
@@ -23148,7 +23148,7 @@ ValidationLabelB:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+          ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
                         &UNK_180957f70,0x100,1);
         }
         *(undefined8 *)(unaff_RBP + -0x29) = 0;
@@ -23230,7 +23230,7 @@ ValidationLabelB:
       if (0 < iVar19) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (puVar12 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar12,&UNK_180957f70,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar12,&UNK_180957f70,0x100,1);
       }
       *(undefined8 *)(unaff_RBP + -0x29) = 0;
       *(undefined4 *)(unaff_RBP + -0x1d) = 0;
@@ -23359,7 +23359,7 @@ ValidationLabelB:
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
+          ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(unaff_RBP + -0x29),
                         &UNK_180957f70,0x100,1);
         }
         *(undefined8 **)(unaff_RBP + -0x29) = unaff_R12;
@@ -23442,7 +23442,7 @@ ValidationLabelB:
       if (0 < iVar18) goto LAB_18089c586;
       if ((0 < (int)uVar9) && (puVar14 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
-        FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar14,&UNK_180957f70,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),puVar14,&UNK_180957f70,0x100,1);
       }
       *(undefined8 **)(unaff_RBP + -0x29) = unaff_R12;
       *(uint *)(unaff_RBP + -0x1d) = uVar8;
@@ -27232,7 +27232,7 @@ LAB_18089e70b:
         if ((int)uStack_80 != 0) {
           for (; (puStack_88 <= puVar5 && (puVar5 < puStack_88 + (int)uStack_80));
               puVar5 = puVar5 + 1) {
-            lVar6 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
+            lVar6 = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,
                                   0,0,1);
             if (lVar6 == 0) {
               uVar4 = 0x26;
@@ -27345,7 +27345,7 @@ LAB_18089e70b:
         puVar7 = *(undefined4 **)(unaff_RBP + -0x29);
         for (puVar10 = puVar7; (puVar7 <= puVar10 && (puVar10 < puVar7 + iVar6));
             puVar10 = puVar10 + 1) {
-          lVar9 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
+          lVar9 = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
           ;
           if (lVar9 == 0) {
             uVar8 = 0x26;
@@ -27416,7 +27416,7 @@ LAB_18089e70b:
     if (iVar3 != 0) {
       puVar6 = *(undefined4 **)(unaff_RBP + -0x29);
       for (puVar7 = puVar6; (puVar6 <= puVar7 && (puVar7 < puVar6 + iVar3)); puVar7 = puVar7 + 1) {
-        lVar5 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c);
+        lVar5 = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),0x28,&UNK_180986e70,0xc1c);
         if (lVar5 == 0) {
           uVar4 = 0x26;
           goto LAB_18089e70b;
@@ -88687,13 +88687,13 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 功能：验证系统配置CX0，确保配置正确性
 #define ValidateSystemConfigCX0 FUN_1808bdd90
 
-// 原始函数名：FUN_180768b50 - 内存操作执行函数CY0
+// 原始函数名：InitializeSystemContextA0 - 内存操作执行函数CY0
 // 功能：执行内存操作CY0，处理内存读写
-#define ExecuteMemoryOperationCY0 FUN_180768b50
+#define ExecuteMemoryOperationCY0 InitializeSystemContextA0
 
-// 原始函数名：FUN_18084b240 - 数据验证处理函数CZ0
+// 原始函数名：ValidateSystemDataA0 - 数据验证处理函数CZ0
 // 功能：处理数据验证CZ0，确保数据有效性
-#define ProcessDataValidationCZ0 FUN_18084b240
+#define ProcessDataValidationCZ0 ValidateSystemDataA0
 
 // 系统组件初始化相关宏定义
 // 原始函数名：FUN_1808fd200 - 系统组件初始化函数DA0
@@ -88745,9 +88745,9 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 功能：初始化系统组件DL0，设置组件状态，验证数据完整性
 #define InitializeSystemComponentDL0 FUN_180894ef0
 
-// 原始函数名：FUN_180741e10 - 系统资源分配函数DM0
+// 原始函数名：AllocateSystemMemoryA0 - 系统资源分配函数DM0
 // 功能：分配系统资源DM0，申请资源空间
-#define AllocateSystemResourceDM0 FUN_180741e10
+#define AllocateSystemResourceDM0 AllocateSystemMemoryA0
 
 // 原始函数名：FUN_1807d1650 - 数据转换处理函数DN0
 // 功能：处理数据转换DN0，执行数据转换操作
@@ -88811,17 +88811,17 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ProcessComplexDataStructureA0 FUN_180896c60
 #define CheckSystemStatusAndExecuteA0 FUN_180896e11
 
-// 原始函数名：FUN_18088d720 - 错误处理函数EA0
+// 原始函数名：CleanupSystemEventA0 - 错误处理函数EA0
 // 功能：处理系统错误EA0，执行错误恢复操作
-#define HandleSystemErrorEA0 FUN_18088d720
+#define HandleSystemErrorEA0 CleanupSystemEventA0
 
-// 原始函数名：FUN_18088d7c0 - 事件处理函数EB0
+// 原始函数名：ProcessSystemEventB0 - 事件处理函数EB0
 // 功能：处理系统事件EB0，响应系统事件
-#define HandleSystemEventEB0 FUN_18088d7c0
+#define HandleSystemEventEB0 ProcessSystemEventB0
 
-// 原始函数名：FUN_18088dd60 - 数据处理函数EC0
+// 原始函数名：ProcessSystemDataEC0 - 数据处理函数EC0
 // 功能：处理系统数据EC0，执行数据操作
-#define ProcessSystemDataEC0 FUN_18088dd60
+#define ProcessSystemDataEC0 ProcessSystemDataEC0
 
 // 原始函数名：FUN_18088ed70 - 数据编码函数ED0
 // 功能：编码数据ED0，进行数据编码操作
@@ -88915,17 +88915,17 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 功能：验证数据EZ0，确保数据完整性
 #define ValidateDataEZ0 FUN_180840af0
 
-// 原始函数名：FUN_18084de40 - 上下文创建函数FA0
+// 原始函数名：ProcessDataValidationA0 - 上下文创建函数FA0
 // 功能：创建上下文FA0，初始化上下文数据
-#define CreateContextFA0 FUN_18084de40
+#define CreateContextFA0 ProcessDataValidationA0
 
 // 原始函数名：FUN_180840950 - 资源处理函数FB0
 // 功能：处理资源FB0，执行资源管理操作
 #define ProcessResourceFB0 FUN_180840950
 
-// 原始函数名：FUN_18084b240 - 缓冲区处理函数FC0
+// 原始函数名：ValidateSystemDataA0 - 缓冲区处理函数FC0
 // 功能：处理缓冲区FC0，管理缓冲区数据
-#define ProcessBufferFC0 FUN_18084b240
+#define ProcessBufferFC0 ValidateSystemDataA0
 
 // 原始函数名：FUN_180849030 - 系统验证函数FD0
 // 功能：验证系统FD0，确保系统正确性
@@ -88959,9 +88959,9 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 功能：获取资源FK0，返回资源指针
 #define GetResourceFK0 FUN_180867660
 
-// 原始函数名：FUN_18088d720 - 系统终止函数FL0
+// 原始函数名：CleanupSystemEventA0 - 系统终止函数FL0
 // 功能：终止系统FL0，停止系统运行
-#define TerminateSystemFL0 FUN_18088d720
+#define TerminateSystemFL0 CleanupSystemEventA0
 
 // 原始函数名：FUN_18089b400 - 验证并处理端口控制请求
 // 功能：验证端口控制请求的有效性，并在验证通过时执行相应的控制操作
