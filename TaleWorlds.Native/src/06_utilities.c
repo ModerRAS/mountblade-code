@@ -49918,6 +49918,14 @@ void Unwind_180905930(DataBuffer param_1,int64_t param_2)
 
 
 
+/**
+ * @brief 清理异常处理进程并重置资源状态
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180905940 - 异常清理函数G4
+ * 功能：清理异常处理进程并重置相关资源状态
+ */
 void Unwind_180905940(DataBuffer param_1,int64_t param_2)
 
 {
@@ -49963,6 +49971,14 @@ void Unwind_180905940(DataBuffer param_1,int64_t param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 处理异常恢复流程并清理系统资源
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180905950 - 异常处理函数G5
+ * 功能：处理异常恢复流程并清理系统资源
+ */
 void Unwind_180905950(DataBuffer param_1,int64_t param_2)
 
 {
@@ -50088,6 +50104,16 @@ ProcessCheckpointValidationData3:
 
 
 
+/**
+ * @brief 处理异常回调并管理系统状态
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @param param_3 附加数据参数1
+ * @param param_4 附加数据参数2
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180905960 - 异常回调处理函数G6
+ * 功能：处理异常回调并管理系统状态
+ */
 void Unwind_180905960(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
@@ -50111,6 +50137,14 @@ void Unwind_180905960(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
+/**
+ * @brief 重置异常数据并清理相关状态
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @return 无返回值
+ * @note 原始函数名：Unwind_180905980 - 异常数据重置函数G7
+ * 功能：重置异常数据并清理相关状态
+ */
 void Unwind_180905980(DataBuffer param_1,int64_t param_2)
 
 {
@@ -50139,6 +50173,16 @@ void Unwind_180905980(DataBuffer param_1,int64_t param_2)
 
 
 
+/**
+ * @brief 处理异常并执行回调操作
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @param param_3 附加数据参数1
+ * @param param_4 附加数据参数2
+ * @return 无返回值
+ * @note 原始函数名：Unwind_1809059a0 - 异常处理函数G8
+ * 功能：处理异常并执行回调操作
+ */
 void Unwind_1809059a0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
