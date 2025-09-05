@@ -8987,44 +8987,52 @@ int ValidateAndProcessSystemOperation(longlong systemContext,longlong operationC
 // WARNING: Removing unreachable block (ram,0x000180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_18089379d(longlong param_1,undefined8 param_2)
+// 原始函数名：FUN_18089379d - 数据验证和处理函数
+// 功能：验证参数有效性并根据条件执行相应的数据处理操作
+#define ValidateAndProcessDataOperation FUN_18089379d
+
+int ValidateAndProcessDataOperation(longlong dataContext,undefined8 operationFlags)
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong unaff_RDI;
-  longlong unaff_R15;
-  longlong in_stack_00000060;
+  int validationResult;
+  longlong allocatedBuffer;
+  longlong contextHandle;
+  longlong resourceHandle;
+  longlong stackBuffer;
   
-  if ((int)param_2 < 1) {
-    iVar1 = FUN_1808de900();
-    if ((iVar1 == 0) &&
-       (iVar1 = func_0x00018088c530(*(undefined4 *)(unaff_RDI + 0x4c),&stack0x00000060), iVar1 == 0)
+  if ((int)operationFlags < 1) {
+    validationResult = FUN_1808de900();
+    if ((validationResult == 0) &&
+       (validationResult = func_0x00018088c530(*(undefined4 *)(contextHandle + 0x4c),&stackBuffer), validationResult == 0)
        ) {
-      if (*(int *)(in_stack_00000060 + 0x30) == 1) {
-        *(undefined4 *)(in_stack_00000060 + 0x30) = 2;
+      if (*(int *)(stackBuffer + 0x30) == 1) {
+        *(undefined4 *)(stackBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(unaff_R15 + 0x98));
+      FUN_18088d720(*(undefined8 *)(resourceHandle + 0x98));
     }
   }
-  else if (*(longlong *)(param_1 + 0x18) == 0) {
-    iVar1 = 0x1f;
+  else if (*(longlong *)(dataContext + 0x18) == 0) {
+    validationResult = 0x1f;
   }
   else {
-    lVar2 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2,&UNK_1809862d0,0x315,0);
-    if (lVar2 != 0) {
+    allocatedBuffer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationFlags,&UNK_1809862d0,0x315,0);
+    if (allocatedBuffer != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(lVar2,*(undefined8 *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + 0x20));
+      memcpy(allocatedBuffer,*(undefined8 *)(contextHandle + 0x18),(longlong)*(int *)(contextHandle + 0x20));
     }
-    iVar1 = 0x26;
+    validationResult = 0x26;
   }
-  return iVar1;
+  return validationResult;
 }
 
 
 
-undefined8 FUN_1808938ab(void)
+// 原始函数名：FUN_1808938ab - 返回固定错误码函数
+// 功能：返回固定错误码0x1f
+#define ReturnFixedErrorCode FUN_1808938ab
+
+undefined8 ReturnFixedErrorCode(void)
 
 {
   return 0x1f;
@@ -9033,22 +9041,25 @@ undefined8 FUN_1808938ab(void)
 
 
 
-// 函数: void FUN_1808938c0(longlong param_1,longlong param_2)
-void FUN_1808938c0(longlong param_1,longlong param_2)
+// 原始函数名：FUN_1808938c0 - 上下文验证和状态更新函数
+// 功能：验证上下文有效性并更新状态，然后执行相应操作
+#define ValidateContextAndUpdateState FUN_1808938c0
+
+void ValidateContextAndUpdateState(longlong contextHandle,longlong operationHandle)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validationResult;
+  longlong localBuffer;
   
-  iVar1 = FUN_1808de900(param_2,param_1 + 0x10);
-  if (iVar1 == 0) {
-    iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-    if (iVar1 == 0) {
-      if (*(int *)(lStackX_8 + 0x30) == 1) {
-        *(undefined4 *)(lStackX_8 + 0x30) = 2;
+  validationResult = FUN_1808de900(operationHandle,contextHandle + 0x10);
+  if (validationResult == 0) {
+    validationResult = func_0x00018088c530(*(undefined4 *)(contextHandle + 0x10),&localBuffer);
+    if (validationResult == 0) {
+      if (*(int *)(localBuffer + 0x30) == 1) {
+        *(undefined4 *)(localBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      FUN_18088d720(*(undefined8 *)(operationHandle + 0x98),contextHandle);
     }
   }
   return;
@@ -26711,7 +26722,18 @@ void ExceptionUnwindHandlerA1(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f30(undefined8 param_1,longlong param_2)
+// 函数: void SetExceptionHandlerPointer(undefined8 param_1,longlong param_2)
+// 
+// 异常处理指针设置函数
+// 设置异常处理表的指针到指定位置，用于异常展开时的资源清理
+// 
+// 参数:
+//   param_1 - 异常处理上下文
+//   param_2 - 异常展开参数，包含需要设置的指针位置
+// 
+// 返回值:
+//   无
+void SetExceptionHandlerPointer(undefined8 param_1,longlong param_2)
 
 {
   **(undefined8 **)(param_2 + 0x48) = &UNK_180a21690;
