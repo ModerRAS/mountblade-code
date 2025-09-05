@@ -37373,7 +37373,7 @@ void Unwind_CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t Resourc
 void Unwind_ResetDefaultHandler(DataBuffer ExceptionContext,int64_t HandlerAddress)
 
 {
-  **(DataBuffer **)(param_2 + 0xa0) = &DefaultExceptionHandlerB;
+  **(DataBuffer **)(HandlerAddress + 0xa0) = &DefaultExceptionHandlerB;
   return;
 }
 

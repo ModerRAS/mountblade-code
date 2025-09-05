@@ -2779,7 +2779,7 @@ void InitializeNetworkConnectionState(void)
     // 初始化连接上下文
     NetworkInitializationResult = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextPointer + NetworkContextSystemOffset));
     if (NetworkInitializationResult == 0) {
-      *NetworkStateDataPointer = (uint64_t)*(uint *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateDataOffset);
+      *NetworkStateDataPointer = (uint64_t)*(uint32_t *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateDataOffset);
     }
     ResetConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
@@ -2808,7 +2808,7 @@ void ResetNetworkConnectionPointer(void)
   ResetStateBuffer = (uint8_t *)(CreateConnectionStateUniqueId(ResetStateFlags, ResetConnectionId) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
-  *ResetDataBuffer = (uint64_t)*(uint *)(ResetContextData + NetworkConnectionStateDataOffset);
+  *ResetDataBuffer = (uint64_t)*(uint32_t *)(ResetContextData + NetworkConnectionStateDataOffset);
   
   // 清理连接堆栈
   ResetConnectionStack(&PrimaryNetworkConnectionBuffer);
