@@ -14644,7 +14644,7 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
        (uVar3 = CheckSystemDataA0(param_1 + 2,iVar8), (int)uVar3 != 0)) {
       return uVar3;
     }
-    uVar3 = FUN_1807703c0(param_1,iVar8);
+    uVar3 = AllocateSystemDataA0(param_1,iVar8);
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -14713,7 +14713,7 @@ undefined8 UtilityNoOperationK(void)
        (uVar2 = CheckSystemDataA0(registerRBX + 2,iVar7), (int)uVar2 != 0)) {
       return uVar2;
     }
-    uVar2 = FUN_1807703c0();
+    uVar2 = AllocateSystemDataA0();
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -15825,7 +15825,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
     uStack_110 = 0;
     uStack_100 = 0xffffffffffffffff;
     aiStack_f8[0] = -1;
-    FUN_1807d1650(plStack_108,&uStack_100,aiStack_f8);
+    ProcessDataConversionDN0(plStack_108,&uStack_100,aiStack_f8);
     aiStackX_8[0] = aiStack_f8[0];
     if (aiStack_f8[0] != -1) {
       pvalidationContext3 = plStack_108;
@@ -15933,7 +15933,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
               else if (iVar16 < iVar7) {
                 iVar16 = iVar7;
               }
-              uVar8 = FUN_18084c470(&uStack_118,iVar16);
+              uVar8 = CleanupSystemResourceDW0(&uStack_118,iVar16);
               uVar6 = (ulonglong)uVar8;
               iVar4 = (int)uStack_110;
               if (uVar8 != 0) {
@@ -15973,7 +15973,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                 if (uVar9 == 0) {
                   return uVar6;
                 }
-                FUN_18084c470(&uStack_118,0);
+                CleanupSystemResourceDW0(&uStack_118,0);
                 return uVar6;
               }
               uVar10 = (ulonglong)uStack_110._4_4_;
@@ -16053,7 +16053,7 @@ MemoryAllocationLabel:
       iVar4 = -iVar4;
     }
     if (iVar4 != 0) {
-      FUN_18084c470(&uStack_118,0);
+      CleanupSystemResourceDW0(&uStack_118,0);
     }
   }
 ProcessCompleteLabel:
@@ -16068,7 +16068,7 @@ ProcessCompleteLabel:
       uVar10 = (ulonglong)uVar8;
     } while ((int)uVar8 < *(int *)(param_1 + 0x20));
   }
-  iVar4 = FUN_180744cc0(param_1 + 0x70);
+  iVar4 = ReleaseSystemResourceDJ0(param_1 + 0x70);
   if ((iVar4 == 0) && (iVar4 = ResetSystemStatusA0(param_1 + 0x80), iVar4 == 0)) {
     *(undefined4 *)(param_1 + 0x90) = 0xffffffff;
     *(undefined4 *)(param_1 + 0x94) = 0;
@@ -16078,7 +16078,7 @@ ProcessCompleteLabel:
 ResourceCleanupLabel:
   if ((uVar8 >> 0x19 & 1) != 0) {
     lVar5 = *(longlong *)(param_1 + 0xa0);
-    uVar6 = FUN_18073c4c0(*(undefined8 *)(param_1 + 0x60),param_1 + 0xa0,0);
+    uVar6 = ProcessDataBufferA0(*(undefined8 *)(param_1 + 0x60),param_1 + 0xa0,0);
     if ((int)uVar6 != 0) {
       return uVar6;
     }
@@ -16456,7 +16456,7 @@ SecurityValidationLabel:
         uStack_298 = param_3;
         iStack_290 = iVar5;
         iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
+        if ((iVar5 != 0) || (iVar5 = SynchronizeDataEQ0(lVar2,afStack_304), iVar5 != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
@@ -16503,7 +16503,7 @@ SecurityValidationLabel:
         uStack_298 = param_3;
         iStack_290 = iVar5;
         iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
+        if ((iVar5 != 0) || (iVar5 = SynchronizeDataEQ0(lVar2,afStack_304), iVar5 != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
@@ -16550,7 +16550,7 @@ SecurityValidationLabel:
         uStack_298 = param_3;
         iStack_290 = iVar5;
         iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
+        if ((iVar5 != 0) || (iVar5 = SynchronizeDataEQ0(lVar2,afStack_304), iVar5 != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
@@ -16597,7 +16597,7 @@ SecurityValidationLabel:
         uStack_298 = param_3;
         iStack_290 = iVar5;
         iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = FUN_18088c970(lVar2,afStack_304), iVar5 != 0))
+        if ((iVar5 != 0) || (iVar5 = SynchronizeDataEQ0(lVar2,afStack_304), iVar5 != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
@@ -16730,7 +16730,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar8 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
+        if ((iVar8 != 0) || (iVar8 = SynchronizeDataEQ0(lVar2,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
@@ -16783,7 +16783,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar8 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
+        if ((iVar8 != 0) || (iVar8 = SynchronizeDataEQ0(lVar2,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
@@ -16836,7 +16836,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar8 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
+        if ((iVar8 != 0) || (iVar8 = SynchronizeDataEQ0(lVar2,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
@@ -16889,7 +16889,7 @@ void ProcessFloatingPointDataA0(void)
         *(undefined4 *)(unaff_RBP + -0x5c) = uVar5;
         *(undefined4 *)(unaff_RBP + -0x58) = uVar6;
         iVar8 = ValidateDataIntegrityA0(uVar3,unaff_RBP + -0x80);
-        if ((iVar8 != 0) || (iVar8 = FUN_18088c970(lVar2,&fStackX_24), iVar8 != 0))
+        if ((iVar8 != 0) || (iVar8 = SynchronizeDataEQ0(lVar2,&fStackX_24), iVar8 != 0))
         goto LAB_1808974ec;
         fVar10 = fStackX_24;
         if (fStackX_24 != 1.0) {
@@ -32828,7 +32828,19 @@ void ExceptionRecoveryHandlerB0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902450(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B1
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 在异常上下文的0x78偏移处设置默认异常处理器B的指针
+ * 并清理相关的异常状态标志
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180902450
+ */
+void ExceptionRecoveryHandlerB1(undefined8 param_1,longlong param_2)
 
 {
   *(undefined8 *)(param_2 + 0x78) = &UNK_180a3c3e0;
@@ -32844,7 +32856,18 @@ void Unwind_180902450(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902460(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B2
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0x148偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180902460
+ */
+void ExceptionRecoveryHandlerB2(undefined8 param_1,longlong param_2)
 
 {
   **(undefined8 **)(param_2 + 0x148) = &DefaultExceptionHandlerB;
@@ -32853,7 +32876,18 @@ void Unwind_180902460(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902470(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B3
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0xd0偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180902470
+ */
+void ExceptionRecoveryHandlerB3(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0xd0) = &DefaultExceptionHandlerB;
@@ -32862,7 +32896,18 @@ void Unwind_180902470(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902480(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B4
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 检查并清理异常状态标志，调用相关的资源清理函数
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180902480
+ */
+void ExceptionRecoveryHandlerB4(undefined8 param_1,longlong param_2)
 
 {
   if ((*(uint *)(param_2 + 0x50) & 1) != 0) {
@@ -32874,7 +32919,18 @@ void Unwind_180902480(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809024b0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B5
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0x58偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_1809024b0
+ */
+void ExceptionRecoveryHandlerB5(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0xa8) = &DefaultExceptionHandlerB;
@@ -32883,7 +32939,18 @@ void Unwind_1809024b0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809024c0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B6
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0x98偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_1809024c0
+ */
+void ExceptionRecoveryHandlerB6(undefined8 param_1,longlong param_2)
 
 {
   **(undefined8 **)(param_2 + 200) = &DefaultExceptionHandlerB;
@@ -32892,7 +32959,20 @@ void Unwind_1809024c0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809024d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复函数B7
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 接受4个参数，进行复杂的异常状态处理和资源清理
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * @param param_3 扩展参数1
+ * @param param_4 扩展参数2
+ * 
+ * @note 原始函数名：Unwind_1809024d0
+ */
+void ExceptionRecoveryHandlerB7(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -32913,7 +32993,18 @@ void Unwind_1809024d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_1809024e0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B8
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0x148偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_1809024e0
+ */
+void ExceptionRecoveryHandlerB8(undefined8 param_1,longlong param_2)
 
 {
   *(undefined8 *)(param_2 + 0x100) = &UNK_180a3c3e0;
@@ -32929,7 +33020,18 @@ void Unwind_1809024e0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809024f0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B9
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0x128偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_1809024f0
+ */
+void ExceptionRecoveryHandlerB9(undefined8 param_1,longlong param_2)
 
 {
   *(undefined8 *)(param_2 + 0x88) = &UNK_180a3c3e0;
@@ -32945,7 +33047,20 @@ void Unwind_1809024f0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902500(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复函数B10
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 接受4个参数，进行复杂的异常状态处理和资源清理
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * @param param_3 扩展参数1
+ * @param param_4 扩展参数2
+ * 
+ * @note 原始函数名：Unwind_180902500
+ */
+void ExceptionRecoveryHandlerB10(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -32966,7 +33081,18 @@ void Unwind_180902500(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902510(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B11
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0x168偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180902510
+ */
+void ExceptionRecoveryHandlerB11(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -33002,7 +33128,18 @@ void Unwind_180902510(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902520(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B12
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0x188偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180902520
+ */
+void ExceptionRecoveryHandlerB12(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x88) = &DefaultExceptionHandlerB;
@@ -33011,7 +33148,18 @@ void Unwind_180902520(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902530(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B13
+ * 
+ * 该函数负责执行异常恢复操作，设置默认异常处理器B到指定位置
+ * 在异常上下文的0x1a8偏移处设置默认异常处理器B的指针
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180902530
+ */
+void ExceptionRecoveryHandlerB13(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x100) = &DefaultExceptionHandlerB;
