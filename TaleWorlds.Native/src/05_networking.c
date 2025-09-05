@@ -449,9 +449,9 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkDefaultSessionEncryptionKey 0x12345678          // 默认会话加密密钥
 
 // 网络连接常量
-#define NetworkConnectionModeClient 0x01            // 客户端连接模式
+#define NetworkConnectionModeClient 0x01            // 网络客户端连接模式
 #define NetworkConnectionPriorityMedium 0x05        // 中等连接优先级
-#define NetworkProtocolVersionOne 0x01                // 协议版本1.0
+#define NetworkProtocolVersionOne 0x01                // 网络协议版本1.0
 #define NetworkConnectionPoolSize 256             // 连接池大小256
 #define NetworkConnectionSize256Bytes 256             // 连接大小256字节
 #define NetworkEventSize64Bytes 64                    // 事件大小64字节
@@ -523,7 +523,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 // 网络连接配置常量
 #define NetworkConnectionPoolCapacity 1000                       // 网络连接池容量
 #define NetworkHealthStatusNormal 0x01                             // 网络健康状态：正常
-#define NetworkManagerHandleInvalid 0xFFFFFFFF                     // 网络管理器句柄：无效
+#define NetworkManagerHandleInvalid 0xFFFFFFFF                     // 无效网络管理器句柄
 #define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF                  // 无效套接字描述符
 #define INVALID_SOCKET_HANDLE SOCKET_DESCRIPTOR_INVALID       // 无效套接字句柄别名
 #define CLIENT_IP_ANY 0x00000000                            // 任意客户端IP地址
@@ -921,15 +921,15 @@ uint32_t NetworkClientIpAddress;                        // 网络客户端IP地�
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号
 
 // 网络套接字和缓冲区配置
-uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符，操作系统分配的套接字标识符
-uint32_t NetworkSocketCategory;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
-uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
-uint32_t NetworkSocketType;                               // 网络套接字类型，套接字的类型配置
-uint32_t NetworkSocketProtocol;                           // 网络套接字协议，套接字使用的协议配置
-uint32_t NetworkConnectionPriority;                        // 网络连接优先级，连接的优先级配置
-uint32_t NetworkSocketSize;                                // 网络套接字大小，套接字结构的大小
-uint32_t NetworkSocketContextSize;                         // 网络套接字上下文大小，套接字上下文的大小
-uint32_t NetworkSocketContext;                             // 网络套接字上下文，套接字的运行时上下文数据
+uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符
+uint32_t NetworkSocketCategory;                           // 网络套接字类别
+uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型
+uint32_t NetworkSocketType;                               // 网络套接字类型
+uint32_t NetworkSocketProtocol;                           // 网络套接字协议
+uint32_t NetworkConnectionPriority;                        // 网络连接优先级
+uint32_t NetworkSocketSize;                                // 网络套接字大小
+uint32_t NetworkSocketContextSize;                         // 网络套接字上下文大小
+uint32_t NetworkSocketContext;                             // 网络套接字上下文
 uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
 uint32_t NetworkSocketIndex;                            // 网络套接字索引，套接字的索引位置
 uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据
