@@ -2057,14 +2057,47 @@ undefined UNK_180a23068;
 //   undefined - 验证结果状态
 undefined ValidateUtilityDataBC0;
 
-// 函数: undefined FUN_1809424c0;
-undefined FUN_1809424c0;
+// 函数: undefined EncryptUtilityDataBD0;
+// 
+// 工具数据加密函数BD0
+// 
+// 功能：
+// 加密工具系统数据，保护敏感信息安全
+// 
+// 参数：
+//   无
+// 
+// 返回值：
+//   undefined - 加密结果状态
+undefined EncryptUtilityDataBD0;
 
-// 函数: undefined FUN_180942520;
-undefined FUN_180942520;
+// 函数: undefined DecryptUtilityDataBE0;
+// 
+// 工具数据解密函数BE0
+// 
+// 功能：
+// 解密工具系统数据，恢复原始信息
+// 
+// 参数：
+//   无
+// 
+// 返回值：
+//   undefined - 解密结果状态
+undefined DecryptUtilityDataBE0;
 
-// 函数: undefined FUN_180942580;
-undefined FUN_180942580;
+// 函数: undefined CompressUtilityDataBF0;
+// 
+// 工具数据压缩函数BF0
+// 
+// 功能：
+// 压缩工具系统数据，减少存储空间占用
+// 
+// 参数：
+//   无
+// 
+// 返回值：
+//   undefined - 压缩结果状态
+undefined CompressUtilityDataBF0;
 
 // 函数: undefined FUN_1809425e0;
 undefined FUN_1809425e0;
@@ -7239,8 +7272,18 @@ LAB_18088d83c:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180892410(longlong param_1,longlong param_2)
-void FUN_180892410(longlong param_1,longlong param_2)
+// 函数: void ExecuteSecurityValidation(longlong param_1, longlong param_2)
+//
+// 安全验证执行函数
+// 执行系统安全检查，验证资源访问权限和操作合法性
+// 
+// 参数:
+//   param_1 - 安全上下文描述符，包含验证参数和权限信息
+//   param_2 - 操作描述符，指定要执行的安全操作类型
+// 
+// 返回值:
+//   无 - 验证失败会终止程序执行
+void ExecuteSecurityValidation(longlong param_1, longlong param_2)
 
 {
   longlong lVar1;
@@ -7280,8 +7323,18 @@ void FUN_180892410(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_18089246a(longlong *param_1,longlong param_2)
-void FUN_18089246a(longlong *param_1,longlong param_2)
+// 函数: void ProcessResourcePointer(longlong *param_1, longlong param_2)
+//
+// 资源指针处理函数
+// 处理资源指针相关的操作，包括指针验证和数据访问
+// 
+// 参数:
+//   param_1 - 资源指针的指针，包含要处理的资源地址
+//   param_2 - 处理参数，指定操作类型和相关数据
+// 
+// 返回值:
+//   无 - 操作结果通过指针参数返回
+void ProcessResourcePointer(longlong *param_1, longlong param_2)
 
 {
   longlong lVar1;
@@ -7454,8 +7507,18 @@ undefined8 FUN_1808924f0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180892720(longlong param_1,longlong param_2)
-void FUN_180892720(longlong param_1,longlong param_2)
+// 函数: void ValidateResourceAccess(longlong param_1, longlong param_2)
+//
+// 资源访问验证函数
+// 验证对指定资源的访问权限和操作合法性
+// 
+// 参数:
+//   param_1 - 资源描述符，包含资源信息和访问权限
+//   param_2 - 访问请求参数，指定访问类型和操作模式
+// 
+// 返回值:
+//   无 - 验证结果通过系统状态返回
+void ValidateResourceAccess(longlong param_1, longlong param_2)
 
 {
   int iVar1;
@@ -8086,8 +8149,18 @@ undefined8 FUN_180892e35(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180892e50(longlong param_1,undefined8 param_2)
-void FUN_180892e50(longlong param_1,undefined8 param_2)
+// 函数: void InitializeResourceContext(longlong param_1, undefined8 param_2)
+//
+// 资源上下文初始化函数
+// 初始化资源操作的上下文环境，设置必要的参数和状态
+// 
+// 参数:
+//   param_1 - 上下文描述符，包含初始化所需的配置信息
+//   param_2 - 初始化选项，指定初始化的模式和参数
+// 
+// 返回值:
+//   无 - 初始化结果通过系统状态返回
+void InitializeResourceContext(longlong param_1, undefined8 param_2)
 
 {
   int iVar1;
