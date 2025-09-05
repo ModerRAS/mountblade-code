@@ -139,7 +139,7 @@ static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
  * 
  * @param ContextAddress 上下文地址
  * @param ConnectionContextBuffer 连接上下文缓冲区指针
- * @param NetworkConnectionStatusPointer 网络连接状态指针
+ * @param ConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的偏移量地址
  */
 static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
@@ -154,12 +154,12 @@ static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *Conne
  * 
  * @param ContextAddress 上下文地址
  * @param ConnectionContextBuffer 连接上下文缓冲区指针
- * @param NetworkConnectionStatusPointer 网络连接状态指针
+ * @param ConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的最后一个条目偏移量地址
  */
-static int64_t CalculateLastConnectionEntryOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *NetworkConnectionStatusPointer)
+static int64_t CalculateLastConnectionEntryOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
-    return CalculateConnectionDataOffset(ContextAddress, ConnectionContextBuffer, NetworkConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)NetworkConnectionStatusPointer + ConnectionContextEntrySize);
+    return CalculateConnectionDataOffset(ContextAddress, ConnectionContextBuffer, ConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)ConnectionStatusPointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -168,13 +168,13 @@ static int64_t CalculateLastConnectionEntryOffset(int64_t ContextAddress, void *
  * 计算网络状态指针的偏移量
  * 
  * @param ContextIdentifier 上下文标识符
- * @param NetworkConnectionStatusBasePointer 网络连接状态基础指针
- * @param NetworkConnectionStatusIteratorPointer 网络连接状态迭代器指针
+ * @param StatusBasePointer 网络连接状态基础指针
+ * @param StatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的状态指针偏移量地址
  */
-static int64_t CalculateConnectionStatusPointerOffset(int64_t ContextIdentifier, void *NetworkConnectionStatusBasePointer, void *NetworkConnectionStatusIteratorPointer)
+static int64_t CalculateConnectionStatusPointerOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
 {
-    return (ContextIdentifier - (int64_t)NetworkConnectionStatusBasePointer) + (int64_t)NetworkConnectionStatusIteratorPointer;
+    return (ContextIdentifier - (int64_t)StatusBasePointer) + (int64_t)StatusIteratorPointer;
 }
 
 /**

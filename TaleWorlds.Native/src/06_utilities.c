@@ -8663,7 +8663,7 @@ void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
 undefined8 ValidateDataIntegrity(longlong dataStructure,longlong validationContext)
 
 {
-  undefined8 uVar1;
+  undefined8 tempResult;
   int *poperationResult;
   undefined4 *puVar3;
   int iVar4;
@@ -8674,14 +8674,14 @@ undefined8 ValidateDataIntegrity(longlong dataStructure,longlong validationConte
   if (0 < *(int *)(param_1 + 0x10)) {
     do {
       if (((*poperationResult != _DAT_180c4eaa0) || (poperationResult[1] != _DAT_180c4eaa4)) &&
-         (uVar1 = ProcessDataIndexA0(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)iVar4 * 2,*puVar3
+         (uVar1 = ProcessDataIndexA0(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)loopCounter * 2,*puVar3
                                 ,*(undefined1 *)(param_1 + 0x14)), (int)uVar1 != 0)) {
         return uVar1;
       }
-      iVar4 = iVar4 + 1;
+      loopCounter = loopCounter + 1;
       puVar3 = puVar3 + 1;
       poperationResult = poperationResult + 2;
-    } while (iVar4 < *(int *)(param_1 + 0x10));
+    } while (loopCounter < *(int *)(param_1 + 0x10));
   }
   return 0;
 }
