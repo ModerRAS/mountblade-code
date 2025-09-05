@@ -138,27 +138,29 @@
 #define SystemMemorySystemIdentifier2    0x6666666666666666  // 系统内存系统标识符2
 #define SystemAllocatorSystemIdentifier1 0x7777777777777777  // 系统分配器系统标识符1
 #define SystemAllocatorSystemIdentifier2 0x8888888888888888  // 系统分配器系统标识符2
-#define SystemDataTemplateAlphaId1   0x421c3cedd07d816d  // 系统数据模板Alpha标识符1
-#define SystemDataTemplateAlphaId2   0xbec25de793b7afa6  // 系统数据模板Alpha标识符2
-#define SystemDataTemplateBetaId1   0x4c22bb0c326587ce  // 系统数据模板Beta标识符1
-#define SystemDataTemplateBetaId2   0x5e3cf00ce2978287  // 系统数据模板Beta标识符2
-#define SystemDataTemplateKappaId1   0x4b2d79e470ee4e2c  // 系统数据模板Kappa标识符1
-#define SystemDataTemplateKappaId2   0x9c552acd3ed5548d  // 系统数据模板Kappa标识符2
-#define SystemDataTemplateLambdaId1   0x49086ba08ab981a7  // 系统数据模板Lambda标识符1
-#define SystemDataTemplateLambdaId2   0xa9191d34ad910696  // 系统数据模板Lambda标识符2
+// 系统核心模块模板标识符
+#define SystemCoreModuleTemplateId1   0x421c3cedd07d816d  // 系统核心模块模板标识符1
+#define SystemCoreModuleTemplateId2   0xbec25de793b7afa6  // 系统核心模块模板标识符2
+#define SystemMemoryModuleTemplateId1   0x4c22bb0c326587ce  // 系统内存模块模板标识符1
+#define SystemMemoryModuleTemplateId2   0x5e3cf00ce2978287  // 系统内存模块模板标识符2
+#define SystemResourceModuleTemplateId1   0x4b2d79e470ee4e2c  // 系统资源模块模板标识符1
+#define SystemResourceModuleTemplateId2   0x9c552acd3ed5548d  // 系统资源模块模板标识符2
+#define SystemEventModuleTemplateId1   0x49086ba08ab981a7  // 系统事件模块模板标识符1
+#define SystemEventModuleTemplateId2   0xa9191d34ad910696  // 系统事件模块模板标识符2
 
 // 系统数据模板标识符
 #define SystemMemoryManagerTemplateId1   0x406be72011d07d37  // 系统内存管理器模板标识符1
 #define SystemMemoryManagerTemplateId2   0x71876af946c867ab  // 系统内存管理器模板标识符2
-#define SystemDataTemplateEId1   0x449bafe9b77ddd3c  // 系统数据模板E标识符1
-#define SystemDataTemplateEId2   0xc160408bde99e59f  // 系统数据模板E标识符2
-#define SystemDataTemplateFId1   0x45425dc186a5d575  // 系统数据模板F标识符1
-#define SystemDataTemplateFId2   0xfab48faa65382fa5  // 系统数据模板F标识符2
-#define SystemDataTemplateGId1   0x40afa5469b6ac06d  // 系统数据模板G标识符1
-#define SystemDataTemplateGId2   0x2f4bab01d34055a5  // 系统数据模板G标识符2
-#define SystemDataTemplateHId1   0x43330a43fcdb3653  // 系统数据模板H标识符1
-#define SystemDataTemplateHId2   0xdcfdc333a769ec93  // 系统数据模板H标识符2
-#define SystemDataTemplateScriptingId1   0x431d7c8d7c475be2  // 系统数据模板Scripting标识符1
+// 系统功能模块模板标识符
+#define SystemRenderingModuleTemplateId1   0x449bafe9b77ddd3c  // 系统渲染模块模板标识符1
+#define SystemRenderingModuleTemplateId2   0xc160408bde99e59f  // 系统渲染模块模板标识符2
+#define SystemAudioModuleTemplateId1   0x45425dc186a5d575  // 系统音频模块模板标识符1
+#define SystemAudioModuleTemplateId2   0xfab48faa65382fa5  // 系统音频模块模板标识符2
+#define SystemInputModuleTemplateId1   0x40afa5469b6ac06d  // 系统输入模块模板标识符1
+#define SystemInputModuleTemplateId2   0x2f4bab01d34055a5  // 系统输入模块模板标识符2
+#define SystemPhysicsModuleTemplateId1   0x43330a43fcdb3653  // 系统物理模块模板标识符1
+#define SystemPhysicsModuleTemplateId2   0xdcfdc333a769ec93  // 系统物理模块模板标识符2
+#define SystemScriptingModuleTemplateId1   0x431d7c8d7c475be2  // 系统脚本模块模板标识符1
 
 // 资源数据偏移量常量
 #define ResourceDataTransformXOffset        0x130  // 资源数据变换X偏移量
@@ -509,15 +511,6 @@ void RefreshSystemData(void* dataPtr);
  * @param MemoryContext 内存上下文指针
  * @return 验证结果状态码，返回0表示成功，非0表示失败
  */
-/**
- * @brief 验证系统内存分配
- * 
- * 验证系统内存分配的有效性和完整性。
- * 用于系统内存分配的验证和检查。
- * 
- * @param MemoryContext 内存上下文，包含内存分配的相关信息
- * @return 验证结果，成功返回非零值，失败返回0
- */
 char VerifySystemMemoryAllocation(void* memoryCtx);
 
 /**
@@ -555,15 +548,6 @@ void ConfigureSystemDataBuffer(void* bufferCtx, void* configTemplate, void* data
  */
 void ReleaseSystemMemoryAllocation(void* memoryCtx);
 
-/**
- * @brief 系统内存状态检查函数
- * 
- * 该函数负责检查系统内存状态，监控内存使用情况
- * 用于系统内存状态的管理和监控
- * 
- * @param MemoryContext 内存上下文指针
- * @return 检查结果状态码
- */
 /**
  * @brief 检查系统内存状态
  * 
@@ -12834,7 +12818,7 @@ int InitializeSystemServiceManager(void)
 
 {
   long long SystemServiceStatus;
-  void* systemServiceConfig;
+  void* SystemServiceConfig;
   
   SystemServiceManagerPrimary = &SystemServiceManagerConfig;
   SystemServiceManagerSecondary = &SystemServiceManagerStatus;
