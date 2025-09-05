@@ -402,7 +402,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define PACKET_QUEUE_SIZE 0x100                               // 数据包队列大小256
 #define BufferSize4KB 0x1000                               // 4KB缓冲区大小
 #define ContextSize256Bytes 0x100                              // 256字节上下文大小
-#define ContextSize512Bytes 0x200                           // 512字节上下文大小
+#define NetworkConnectionContextSize 0x200                           // 网络连接上下文大小：512字节
 
 // 网络超时常量
 #define NetworkTimeoutOneSecond 1000                             // 1秒超时
@@ -3295,14 +3295,14 @@ NetworkHandle FinalizePacketProcessingWithCompletion(NetworkHandle *PacketData, 
     PacketStatusUpdateResult = NetworkOperationSuccess;  // 状态更新成功
   }
   
-  // 验证完成偏移量有效性
-  if (ProcessingCompletionOffset >= 0) {
+  // 验证处理数据偏移量有效性
+  if (ProcessingDataOffset >= 0) {
     PacketResourceCleanupResult = NetworkOperationSuccess;  // 资源清理成功
   }
   
-  // 验证完成值有效性
-  if (ProcessingCompletionValue != 0) {
-    PacketStatusUpdateResult &= 0x01;  // 完成值验证通过
+  // 验证处理完成标志有效性
+  if (ProcessingCompletionFlag != 0) {
+    PacketStatusUpdateResult &= 0x01;  // 完成标志验证通过
   }
   
   // 综合完成处理结果

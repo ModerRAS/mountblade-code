@@ -34997,64 +34997,72 @@ void ProcessSystemResourceWithEncryption(long long SystemResourceManager,long lo
   uint8_t asecondarySystemDataBuffer [32];
   void* SystemUnsignedFlagSecondary;
   void* *SystemProcessFlagsPointer;
-  uint8_t *pSystemEncryptionStatus;
-  uint32_t SystemThreadContext;
-  uint8_t SystemEncryptionStatusBuffer [16];
-  ulong long SystemEncryptionKey;
+  uint8_t *systemEncryptionStatusPointer;
+  uint32_t systemThreadContext;
+  uint8_t systemEncryptionStatusBuffer [16];
+  ulong long systemEncryptionKey;
   
   SystemUnsignedFlagSecondary = 0xfffffffffffffffe;
-  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)asecondarySystemDataBuffer;
+  systemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)asecondarySystemDataBuffer;
   SystemProcessFlagsPointer = &SystemResourceTemplateSecondary;
-  pSystemEncryptionStatus = SystemEncryptionStatusBuffer;
-  SystemThreadContext = 0;
-  SystemEncryptionStatusBuffer[0] = 0;
+  systemEncryptionStatusPointer = systemEncryptionStatusBuffer;
+  systemThreadContext = 0;
+  systemEncryptionStatusBuffer[0] = 0;
   resourceDataIndex = strstr(*(void* *)(SystemResourceManager + 8));
   if (resourceDataIndex != 0) {
-    SystemThreadHandle = -1;
+    systemThreadHandle = -1;
     ResourceMemoryOffset = -1;
     do {
       ResourceMemoryOffset = ResourceMemoryOffset + 1;
     } while (*(char *)(ConfigurationDataPointer + ResourceMemoryOffset) != '\0');
     do {
-      SystemThreadHandle = SystemThreadHandle + 1;
-    } while (*(char *)(SystemThreadHandle + AdditionalParameter) != '\0');
-      memcpy(pSystemEncryptionStatus,*(long long *)(SystemResourceManager + 8),resourceDataIndex - *(long long *)(SystemResourceManager + 8));
+      systemThreadHandle = systemThreadHandle + 1;
+    } while (*(char *)(systemThreadHandle + AdditionalParameter) != '\0');
+      memcpy(systemEncryptionStatusPointer,*(long long *)(SystemResourceManager + 8),resourceDataIndex - *(long long *)(SystemResourceManager + 8));
   }
   SystemProcessFlagsPointer = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)asecondarySystemDataBuffer);
+    ValidateSystemChecksum(systemEncryptionKey ^ (ulong long)asecondarySystemDataBuffer);
 }
 
 
 
 
-// 函数: void AllocateSystemResource(void* *SystemResourceManager)
-void AllocateSystemResource(void* *SystemResourceManager)
+/**
+ * @brief 分配系统资源
+ * 
+ * 该函数负责分配系统资源，包括内存分配和资源句柄管理
+ * 
+ * @param resourceManagerPointer 资源管理器指针的指针
+ * 
+ * @note 这是系统资源管理的核心函数，确保资源的正确分配和释放
+ */
+void AllocateSystemResource(void* *resourceManagerPointer)
 
 {
-  int* SystemIntegerPointer;
-  long long SystemThreadHandle;
-  ulong long resourceAllocationContext;
+  int* referenceCountPointer;
+  long long systemThreadHandle;
+  ulong long pageAlignedAddress;
   
-  if (SystemResourceManager == (void* *)0x0) {
+  if (resourceManagerPointer == (void* *)0x0) {
     return;
   }
-  resourceAllocationContext = (ulong long)SystemResourceManager & SystemMemoryPageAlignmentMask;
-  if (resourceAllocationContext != 0) {
-    SystemThreadHandle = resourceAllocationContext + 0x80 + ((long long)SystemResourceManager - resourceAllocationContext >> 0x10) * 0x50;
-    SystemThreadHandle = SystemThreadHandle - (ulong long)*(uint *)(SystemThreadHandle + 4);
-    if ((*(void ***)(resourceAllocationContext + 0x70) == &ExceptionList) && (*(char *)(SystemThreadHandle + 0xe) == '\0')) {
-      *SystemResourceManager = *(void* *)(SystemThreadHandle + 0x20);
-      *(void* **)(SystemThreadHandle + 0x20) = SystemResourceManager;
-      SystemIntegerPointer = (int *)(SystemThreadHandle + 0x18);
-      *SystemIntegerPointer = *SystemIntegerPointer + -1;
-      if (*SystemIntegerPointer == 0) {
+  pageAlignedAddress = (ulong long)resourceManagerPointer & SystemMemoryPageAlignmentMask;
+  if (pageAlignedAddress != 0) {
+    systemThreadHandle = pageAlignedAddress + 0x80 + ((long long)resourceManagerPointer - pageAlignedAddress >> 0x10) * 0x50;
+    systemThreadHandle = systemThreadHandle - (ulong long)*(uint *)(systemThreadHandle + 4);
+    if ((*(void ***)(pageAlignedAddress + 0x70) == &ExceptionList) && (*(char *)(systemThreadHandle + 0xe) == '\0')) {
+      *resourceManagerPointer = *(void* *)(systemThreadHandle + 0x20);
+      *(void* **)(systemThreadHandle + 0x20) = resourceManagerPointer;
+      referenceCountPointer = (int *)(systemThreadHandle + 0x18);
+      *referenceCountPointer = *referenceCountPointer + -1;
+      if (*referenceCountPointer == 0) {
         ReleaseSystemResource();
         return;
       }
     }
     else {
-      SystemExceptionCheck(resourceAllocationContext,CombineMemoryFlags(0xff000000,*(void ***)(resourceAllocationContext + 0x70) == &ExceptionList),
-                          SystemResourceManager,resourceAllocationContext,InvalidHandleValue);
+      SystemExceptionCheck(pageAlignedAddress,CombineMemoryFlags(0xff000000,*(void ***)(pageAlignedAddress + 0x70) == &ExceptionList),
+                          resourceManagerPointer,pageAlignedAddress,InvalidHandleValue);
     }
   }
   return;
@@ -35064,7 +35072,6 @@ void AllocateSystemResource(void* *SystemResourceManager)
 
 
 
-// 函数: void InitializeSystemThreadStructure(void)
 /**
  * @brief 初始化系统线程结构
  * 
@@ -35076,27 +35083,27 @@ void AllocateSystemResource(void* *SystemResourceManager)
 void InitializeSystemThreadStructure(void)
 
 {
-  long long resourceDataIndex;
+  long long threadObjectHandle;
   
-  resourceDataIndex = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x1ae8,10);
-  if (resourceDataIndex == 0) {
+  threadObjectHandle = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x1ae8,10);
+  if (threadObjectHandle == 0) {
     return;
   }
-  *(void* *)(resourceDataIndex + 0x100) = 0;
-  *(void* *)(resourceDataIndex + 0x108) = 0;
-  *(uint32_t *)(resourceDataIndex + 0x130) = 0;
-  *(void* *)(resourceDataIndex + 0x138) = 0;
-  *(void*2 *)(resourceDataIndex + 0x140) = 0x100;
-  *(void* *)(resourceDataIndex + 0x248) = 0;
-  *(void* *)(resourceDataIndex + 0x250) = 0;
-  *(uint32_t *)(resourceDataIndex + 0x278) = 0;
-  *(void* *)(resourceDataIndex + 0x280) = 0;
-  *(void*2 *)(resourceDataIndex + 0x288) = 0x100;
-  *(void* *)(resourceDataIndex + 0x390) = 0;
-  *(void* *)(resourceDataIndex + 0x398) = 0;
-  *(uint32_t *)(resourceDataIndex + 0x3c0) = 0;
-  *(void* *)(resourceDataIndex + 0x3c8) = 0;
-  *(void*2 *)(resourceDataIndex + 0x3d0) = 0x100;
+  *(void* *)(threadObjectHandle + 0x100) = 0;
+  *(void* *)(threadObjectHandle + 0x108) = 0;
+  *(uint32_t *)(threadObjectHandle + 0x130) = 0;
+  *(void* *)(threadObjectHandle + 0x138) = 0;
+  *(void*2 *)(threadObjectHandle + 0x140) = 0x100;
+  *(void* *)(threadObjectHandle + 0x248) = 0;
+  *(void* *)(threadObjectHandle + 0x250) = 0;
+  *(uint32_t *)(threadObjectHandle + 0x278) = 0;
+  *(void* *)(threadObjectHandle + 0x280) = 0;
+  *(void*2 *)(threadObjectHandle + 0x288) = 0x100;
+  *(void* *)(threadObjectHandle + 0x390) = 0;
+  *(void* *)(threadObjectHandle + 0x398) = 0;
+  *(uint32_t *)(threadObjectHandle + 0x3c0) = 0;
+  *(void* *)(threadObjectHandle + 0x3c8) = 0;
+  *(void*2 *)(threadObjectHandle + 0x3d0) = 0x100;
   *(void* *)(resourceDataIndex + 0x4d8) = 0;
   *(void* *)(resourceDataIndex + 0x4e0) = 0;
   *(uint32_t *)(resourceDataIndex + 0x508) = 0;
