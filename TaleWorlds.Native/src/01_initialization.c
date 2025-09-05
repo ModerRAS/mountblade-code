@@ -64420,8 +64420,8 @@ ResourceInitializationLoop:
                 if (paresourceAllocationContext7 < *(uint8_t (**) [16])(piStack_218 + ResourceAddressPrimary * 8 + 4)) {
                   *(uint8_t **)(piStack_218 + ResourceAddressPrimary * 8 + 2) = paresourceAllocationContext7[1] + 4;
                   aSystemOperationCode.LowPart = uStack_1bc;
-                  aSystemOperationCode._0_4_ = SystemContextPointer;
-                  aSystemOperationCode._8_4_ = (uint32_t)SystemOperationFlag1b8;
+                  aSystemOperationCode.HighWord = SystemContextPointer;
+                  aSystemOperationCode.MidWord = (uint32_t)SystemOperationFlag1b8;
                   aSystemOperationCode._12_4_ = SystemOperationFlag1b8.LowPart;
                   *paresourceAllocationContext7 = aSystemOperationCode;
                   *(uint32_t *)paresourceAllocationContext7[1] = 0x7f7fffff;
