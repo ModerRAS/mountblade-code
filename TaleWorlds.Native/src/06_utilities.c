@@ -5416,7 +5416,9 @@ undefined8 GetUtilityStatusSuccess(void)
 
 
 
-undefined8 FUN_1808914ac(void)
+// 函数: undefined8 GetUtilityStatusError(void)
+// 功能：获取工具状态错误标识，返回0x1f表示操作失败
+undefined8 GetUtilityStatusError(void)
 
 {
   return 0x1f;
@@ -5573,21 +5575,23 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
 
 
 
-undefined8 FUN_180891820(longlong param_1)
+// 函数: undefined8 ProcessUtilitySystemRequest(longlong requestPointer)
+// 功能：处理工具系统请求，根据请求参数执行相应的系统操作
+undefined8 ProcessUtilitySystemRequest(longlong requestPointer)
 
 {
-  undefined8 uVar1;
-  longlong alStackX_8 [4];
+  undefined8 operationResult;
+  longlong contextBuffer[4];
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  if ((int)uVar1 == 0) {
-    *(undefined4 *)(*(longlong *)(alStackX_8[0] + 0x10) + 0x50) = *(undefined4 *)(param_1 + 0x18);
-    if ((*(longlong *)(alStackX_8[0] + 8) != 0) && (uVar1 = FUN_1808c44f0(), (int)uVar1 != 0)) {
-      return uVar1;
+  operationResult = func_0x00018088c530(*(undefined4 *)(requestPointer + 0x10),contextBuffer);
+  if ((int)operationResult == 0) {
+    *(undefined4 *)(*(longlong *)(contextBuffer[0] + 0x10) + 0x50) = *(undefined4 *)(requestPointer + 0x18);
+    if ((*(longlong *)(contextBuffer[0] + 8) != 0) && (operationResult = FUN_1808c44f0(), (int)operationResult != 0)) {
+      return operationResult;
     }
-    uVar1 = 0;
+    operationResult = 0;
   }
-  return uVar1;
+  return operationResult;
 }
 
 
