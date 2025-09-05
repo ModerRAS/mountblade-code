@@ -3502,7 +3502,7 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
     return 0x1f;
   }
   if (*(int *)(lVar2 + 0xe4) == -1) {
-    uVar4 = FUN_180853000(lVar2,acStackX_18);
+    uVar4 = ProcessInputData(lVar2,acStackX_18);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
