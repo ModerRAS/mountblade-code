@@ -5904,14 +5904,14 @@ undefined8 ValidateMemoryStructureA0(longlong param_1)
 undefined4 CheckMemoryStructureA0(void)
 
 {
-  longlong in_RAX;
-  longlong validationContext;
+  longlong inputRegisterRAX;
+  longlong stackPointer;
   
-  if (in_RAX == 0) {
-    validationContext = 0;
+  if (inputRegisterRAX == 0) {
+    stackPointer = 0;
   }
   else {
-    validationContext = in_RAX + -8;
+    stackPointer = inputRegisterRAX + -8;
   }
   if (*(longlong *)(validationContext + 0x10) == 0) {
     return 0x1c;
@@ -6739,7 +6739,7 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
   }
   dataContextPointer = *(longlong *)(stackTempValue + 8);
   if (dataContextPointer != 0) {
-    floatDataValue = *(float *)(param_1 + 0x14);
+    floatDataValue = *(float *)(resourceHandle + 0x14);
     for (dataArrayPointer = *(undefined8 **)(dataContextPointer + 0x48);
         (*(undefined8 **)(dataContextPointer + 0x48) <= dataIterator &&
         (dataIterator < *(undefined8 **)(dataContextPointer + 0x48) + *(int *)(dataContextPointer + 0x50))); dataIterator = dataIterator + 1) {
@@ -86591,11 +86591,14 @@ void FUN_180942810(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942830(void)
-void FUN_180942830(void)
+/**
+ * @brief 配置异常处理器B
+ * @details 设置默认异常处理器B到全局变量中
+ */
+void ConfigureExceptionHandlerB(void)
 
 {
-  _DAT_180d499d0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerB = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -86604,11 +86607,14 @@ void FUN_180942830(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942850(void)
-void FUN_180942850(void)
+/**
+ * @brief 配置异常处理器C
+ * @details 设置默认异常处理器B到全局变量中
+ */
+void ConfigureExceptionHandlerC(void)
 
 {
-  _DAT_180d49bf0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerC = &DefaultExceptionHandlerB;
   return;
 }
 
