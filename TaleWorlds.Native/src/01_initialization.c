@@ -21698,33 +21698,33 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
         SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyHeightTemplate,SystemScaleFactor);
       }
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x30 + SystemOperationFlags);
-      scaleFactorValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationSizeTemplate,
-                    (double)(float)(scaleFactorValue * 9.5367431640625e-07));
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x38 + SystemOperationFlags);
-      scaleFactorValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationWidthTemplate,
-                    (double)(float)(scaleFactorValue * 9.5367431640625e-07));
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + SystemResourceDataOffset + SystemOperationFlags);
-      scaleFactorValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationHeightTemplate,
-                    (double)(float)(scaleFactorValue * 9.5367431640625e-07));
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x48 + SystemOperationFlags);
-      scaleFactorValue = (double)SystemResourceDataIndex;
+      SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationDepthTemplate,
-                    (double)(float)(scaleFactorValue * 9.5367431640625e-07));
+                    (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x50 + SystemOperationFlags);
       formatValue = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
