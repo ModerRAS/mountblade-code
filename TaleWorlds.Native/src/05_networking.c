@@ -1043,37 +1043,37 @@ uint32_t NetworkConnectionManagerContext;                    // 网络连接管�
 /**
  * @brief 网络连接池管理器
  */
-uint32_t NetworkConnectionPoolManager;
+uint32_t ConnectionPoolManager;
 
 /**
  * @brief 网络管理器上下文指针
  */
-uint32_t NetworkManagerContextPointer;
+uint32_t ManagerContextPtr;
 
 /**
  * @brief 网络管理器上下文数据
  */
-uint32_t NetworkManagerContextData;
+uint32_t ManagerContextData;
 
 /**
  * @brief 网络连接状态标志
  */
-uint32_t NetworkConnectionStateFlags;
+uint32_t ConnectionStateFlags;
 
 /**
  * @brief 网络连接超时时间（毫秒）
  */
-uint32_t NetworkConnectionTimeoutMs;
+uint32_t ConnectionTimeoutMs;
 
 /**
  * @brief 网络最大连接数限制
  */
-uint32_t NetworkMaxConnectionsAllowed;
+uint32_t MaxConnectionsAllowed;
 
 /**
  * @brief 网络连接属性标志
  */
-uint32_t NetworkConnectionAttributeFlags;
+uint32_t ConnectionAttributeFlags;
 
 /**
  * @brief 网络当前状态标志
@@ -1705,6 +1705,15 @@ uint32_t NetworkSocketBindingStatus;
  * @return void 无返回值
  * 
  * @see InitializeNetworkConnection, SetupNetworkConnection
+ */
+/**
+ * @brief 初始化网络连接池
+ * 
+ * 初始化网络连接池的配置参数和管理器，包括连接池容量、分配计数、
+ * 健康状态等。此函数负责设置连接池的初始状态，为后续的连接管理做准备。
+ * 
+ * @note 此函数在系统启动时调用，确保连接池处于正确的初始状态
+ * @warning 调用此函数会重置所有连接池相关的计数器和状态
  */
 void InitializeNetworkConnectionPool(void)
 {

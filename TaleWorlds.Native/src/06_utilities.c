@@ -5045,9 +5045,9 @@ uint8_t UtilityProcessDataPrimaryConfig;
 uint8_t UtilityProcessDataPrimaryStatus;
 uint8_t UtilityProcessDataPrimaryPointer;
 
-// 函数: uint8_t UtilityProcessData1(void)
+// 函数: uint8_t UtilityProcessDataFirst(void)
 // 
-// 处理工具数据1
+// 处理工具数据First
 // 执行第一组工具数据的处理操作
 // 
 // 参数:
@@ -5063,9 +5063,9 @@ uint8_t UtilityProcessData1Buffer;
 uint8_t UtilityProcessData1Result;
 uint8_t UtilitySystemData1;
 
-// 函数: uint8_t UtilityProcessData2(void)
+// 函数: uint8_t UtilityProcessDataSecond(void)
 // 
-// 处理工具数据2
+// 处理工具数据Second
 // 执行第二组工具数据的处理操作
 // 
 // 参数:
@@ -5075,9 +5075,9 @@ uint8_t UtilitySystemData1;
 //   uint8_t - 处理结果状态
 uint8_t UtilityProcessData2;
 
-// 函数: uint8_t UtilityProcessData3(void)
+// 函数: uint8_t UtilityProcessDataThird(void)
 // 
-// 处理工具数据3
+// 处理工具数据Third
 // 执行第三组工具数据的处理操作
 // 
 // 参数:
@@ -92200,7 +92200,7 @@ void ProcessSystemExceptionDataG1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void UtilityHandleEvent1(void)
+// 函数: void UtilityHandleEventFirst(void)
 void UtilityHandleEvent1(void)
 
 {
