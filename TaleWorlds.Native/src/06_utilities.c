@@ -2147,6 +2147,30 @@
 // 功能：调用异常处理函数并传递参数
 #define InvokeExceptionHandlerWithParamsD Unwind_1809078f0
 
+// 原始函数名：FUN_180941a30 - 初始化异常处理系统G0
+// 功能：初始化系统的异常处理机制，设置默认异常处理器
+#define InitializeExceptionHandlerSystemG0 FUN_180941a30
+
+// 原始函数名：FUN_180941bf0 - 系统清理函数H0
+// 功能：清理系统状态和资源
+#define CleanupSystemStateAndResourcesH0 FUN_180941bf0
+
+// 原始函数名：FUN_180941d00 - 异常处理器初始化函数I0
+// 功能：初始化异常处理器指针
+#define InitializeExceptionHandlerPointerI0 FUN_180941d00
+
+// 原始函数名：FUN_180941d20 - 异常处理器初始化函数J0
+// 功能：初始化异常处理器指针
+#define InitializeExceptionHandlerPointerJ0 FUN_180941d20
+
+// 原始函数名：FUN_180941e00 - 异常处理系统初始化函数K0
+// 功能：初始化异常处理系统并设置处理器
+#define InitializeExceptionSystemK0 FUN_180941e00
+
+// 原始函数名：FUN_180941e90 - 内存验证和清理函数L0
+// 功能：验证内存状态并执行清理操作
+#define ValidateAndCleanMemoryL0 FUN_180941e90
+
 // 原始函数名：Unwind_180907900 - 异常处理函数B5
 // 功能：调用异常处理函数并传递参数
 #define InvokeExceptionHandlerWithParamsE Unwind_180907900
@@ -29142,7 +29166,7 @@ void CheckSystemStateAndReturnC0(void)
 
 
 
-undefined8 FUN_18089ede0(longlong param_1,undefined8 *param_2)
+undefined8 ProcessDataCollectionA1(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -29175,7 +29199,7 @@ undefined8 FUN_18089ede0(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089ee64(void)
+undefined8 ReturnFixedStatusCodeA2(void)
 
 {
   undefined8 uVar1;
@@ -29258,7 +29282,7 @@ void CleanupSystemStateC1(void)
 
 
 
-undefined8 FUN_18089ef40(longlong param_1,longlong *param_2)
+undefined8 ExecuteDataValidationA2(longlong param_1,longlong *param_2)
 
 {
   undefined8 uVar1;
@@ -29307,7 +29331,7 @@ undefined8 FUN_18089ef40(longlong param_1,longlong *param_2)
 
 
 
-undefined8 FUN_18089f0b0(longlong param_1,longlong *param_2)
+undefined8 ProcessComplexDataStructureA1(longlong param_1,longlong *param_2)
 
 {
   undefined8 uVar1;
@@ -29458,7 +29482,7 @@ undefined8 FUN_18089f0b0(longlong param_1,longlong *param_2)
 
 
 
-undefined8 FUN_18089f112(void)
+undefined8 ReturnFixedStatusCodeA3(void)
 
 {
   longlong in_RAX;
@@ -29763,7 +29787,7 @@ void ValidateSystemStateC2(void)
 
 
 
-undefined8 FUN_18089f830(longlong param_1,longlong *param_2)
+undefined8 ProcessDataConversionA1(longlong param_1,longlong *param_2)
 
 {
   undefined8 uVar1;
@@ -30189,7 +30213,7 @@ void ProcessPortControlRequestB(longlong portContext, undefined8 controlRequest)
 
 
 
-undefined8 FUN_18089fba0(longlong param_1,undefined8 *param_2)
+undefined8 ValidateDataSynchronizationA1(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -30218,7 +30242,7 @@ undefined8 FUN_18089fba0(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089fc50(longlong param_1,undefined8 *param_2)
+undefined8 ExecuteDataCleanupA1(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -30248,7 +30272,7 @@ undefined8 FUN_18089fc50(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089fd30(longlong param_1,longlong *param_2)
+undefined8 InitializeDataProcessorA1(longlong param_1,longlong *param_2)
 
 {
   undefined8 uVar1;
@@ -30328,7 +30352,7 @@ undefined8 FUN_18089fd30(longlong param_1,longlong *param_2)
 
 
 
-undefined8 FUN_18089fed0(longlong param_1,undefined8 *param_2)
+undefined8 ProcessDataCacheA1(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -30359,7 +30383,7 @@ undefined8 FUN_18089fed0(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089ffe0(undefined8 param_1,longlong param_2)
+undefined8 CleanupDataCacheA1(undefined8 param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -87493,7 +87517,7 @@ void TerminateAndResetSystemA0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void FUN_180941a30(void)
+void InitializeExceptionHandlerSystemG0(void)
 /**
  * @brief 初始化异常处理系统G0
  * 
@@ -87505,14 +87529,14 @@ void FUN_180941a30(void)
 void InitializeExceptionHandlerSystemG0(void)
 
 {
-  _DAT_180d49240 = &UNK_180a3c3e0;
-  if (_DAT_180d49248 != 0) {
+  ExceptionHandlerTablePointer = &TemporaryExceptionHandler;
+  if (SystemExceptionHandlerState != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  _DAT_180d49248 = 0;
-  _DAT_180d49258 = 0;
-  _DAT_180d49240 = &DefaultExceptionHandlerB;
+  SystemExceptionHandlerState = 0;
+  SystemExceptionCleanupFlag = 0;
+  ExceptionHandlerTablePointer = &DefaultExceptionHandlerB;
   return;
 }
 
