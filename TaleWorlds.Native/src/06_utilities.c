@@ -91680,7 +91680,7 @@ void RegisterExtendedResourceHandler2(uint8_t ObjectContext, int64_t ValidationC
 void RegisterResourceOperationHandler1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xdc8,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + ResourceOperationOffsetDc8,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -91699,7 +91699,7 @@ void RegisterResourceOperationHandler1(uint8_t ObjectContext, int64_t Validation
 void RegisterResourceOperationHandler2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xdd8,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + ResourceOperationOffsetDd8,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -91718,7 +91718,7 @@ void RegisterResourceOperationHandler2(uint8_t ObjectContext, int64_t Validation
 void RegisterResourceOperationHandler3(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xde8,8,2,ProcessResourceOperation);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + ResourceOperationOffsetDe8,8,2,ProcessResourceOperation);
   return;
 }
 
@@ -100649,7 +100649,19 @@ void InitializeSystemResourceCacheTemplate(uint8_t ObjectContext,int64_t Validat
 
 
 
-void Unwind_180910420(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源第三级哈希表
+ * 
+ * 该函数负责设置系统资源的第三级哈希表
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * 
+ * @note 该函数设置系统资源的第三级哈希表
+ * @warning 原始函数名：Unwind_180910420
+ */
+void SetSystemResourceTertiaryHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + ValidationContextDataProcessingOffset) = &TertiaryResourceHashTable;

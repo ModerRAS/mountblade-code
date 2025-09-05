@@ -1094,7 +1094,7 @@ void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutin
  * 
  * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
  */
-uint32_t NetworkContextTemplateConfiguration;         // 网络连接上下文模板配置数据
+uint32_t NetworkConnectionContextTemplateConfiguration;         // 网络连接上下文模板配置数据
 
 /**
  * @brief 网络连接主要配置数据
@@ -1150,21 +1150,21 @@ uint32_t NetworkConnectionRoutingPrimaryConfiguration;    // 网络连接路由�
  * 
  * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
  */
-uint32_t NetworkRoutingSecondaryConfiguration;  // 网络连接路由次要配置数据
+uint32_t NetworkConnectionRoutingSecondaryConfiguration;  // 网络连接路由次要配置数据
 
 /**
  * @brief 网络连接路由第三配置数据
  * 
  * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
  */
-uint32_t NetworkRoutingTertiaryConfiguration;   // 网络连接路由第三配置数据
+uint32_t NetworkConnectionRoutingTertiaryConfiguration;   // 网络连接路由第三配置数据
 
 /**
  * @brief 网络连接路由第四配置数据
  * 
  * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
  */
-uint32_t NetworkRoutingQuaternaryConfiguration;  // 网络连接路由第四配置数据
+uint32_t NetworkConnectionRoutingQuaternaryConfiguration;  // 网络连接路由第四配置数据
 
 /**
  * @brief 网络连接主要配置数据
@@ -2007,7 +2007,7 @@ uint32_t NetworkConnectionIdentifier;                     // 网络连接标识�
 uint32_t NetworkConnectionState;                           // 网络连接状态
 uint32_t NetworkConnectionParameters;                     // 网络连接参数
 uint32_t NetworkConnectionOptions;                        // 网络连接选项
-uint32_t NetworkConnectionConfig;                         // 网络连接配置
+uint32_t NetworkConnectionConfiguration;                         // 网络连接配置
 uint32_t NetworkConnectionSettings;                       // 网络连接设置
 uint32_t NetworkConnectionContextIdentifier;                 // 网络连接上下文标识符
 uint32_t NetworkConnectionContextData;                  // 网络连接上下文数据
