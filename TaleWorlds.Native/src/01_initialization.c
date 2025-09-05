@@ -33822,20 +33822,20 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       strcpy_s(SystemMemoryAllocationOffsetBuffer,0x10,&SystemResourceString1);
       ProcessSystemResourceQueue(&ResourceDataPointer,&DataBufferPointer,&pSystemProcessFlags);
       pSystemProcessFlags = &SystemMemoryAllocatorReference;
-      SystemIterationIndex374 = 0;
-      SystemLoopCounter2c8 = 0;
+      SystemIterationIndex = 0;
+      SystemLoopCounter = 0;
       SystemDataBufferCount = (long long)VerticalResolutionPointer - (long long)DataBufferPointer >> 5;
       ResourceHashEntryPointer = DataBufferPointer;
       SystemHashNodeData = DataBufferPointer;
       ResourceAddressPointer = VerticalResolutionPointer;
-      if (SystemDataCount2c0 != 0) {
+      if (SystemDataBufferCount != 0) {
         do {
-          SystemAllocationFlags = SystemLoopCounter2c8;
+          SystemAllocationFlags = SystemLoopCounter;
           ResourceHashEntryPointer = DataBufferPointer;
-          SystemCode = SystemIterationIndex374;
+          SystemCode = SystemIterationIndex;
           SystemStringTemplatePointer = &SystemStringTemplate;
-          if ((void* *)DataBufferPointer[SystemLoopCounter2c8 * 4 + 1] != (void* *)0x0) {
-            SystemStringTemplatePointer = (void* *)DataBufferPointer[SystemLoopCounter2c8 * 4 + 1];
+          if ((void* *)DataBufferPointer[SystemLoopCounter * 4 + 1] != (void* *)0x0) {
+            SystemStringTemplatePointer = (void* *)DataBufferPointer[SystemLoopCounter * 4 + 1];
           }
           ResourceDataPosition = strrchr(SystemStringTemplatePointer,0x2f);
           if (ResourceDataPosition == 0) {
@@ -33990,7 +33990,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           ResourceAddressPointer = VerticalResolutionPointer;
           SystemCode = SystemIterationIndex370;
           ResourceDataPosition = SystemLoopCounter368;
-        } while ((ulong long)(long long)SystemIterationIndex374 < SystemDataCount2c0);
+        } while ((ulong long)(long long)SystemIterationIndex374 < SystemDataBufferCount);
       }
       for (; resourceEntryPointer = VerticalResolutionPointer, SystemThreadContext = DataBufferPointer, ResourceHashEntryPointer != VerticalResolutionPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 4)
       {
@@ -43541,7 +43541,7 @@ void CleanupAndValidateSystemResources(void)
   pSystemAllocationFlag = (void* *)0x0;
   pSystemResourceHandle = (void* *)0x0;
   SystemOperationFlag = 0;
-  SystemDataCount2c0 = 3;
+  SystemDataBufferCount = 3;
   pSystemMemoryPoolSize = (void* *)0x0;
   SecondaryMemoryPointer = (void* *)0x0;
   SystemOperationContext = 0;
@@ -46273,7 +46273,7 @@ void CreateSystemIoCompletionPort(long long SystemResourceManager,long long Conf
   }
   ResourceHash = 0;
   SystemDataCount = 0;
-  SystemDataCount2c0 = 0x60000001;
+  SystemDataBufferCount = 0x60000001;
   SystemOperationFlag = ConcatenatedSystemValue(SystemOperationFlag.LowPart,3);
   SystemThreadHandle = CreateFileA(ResourceAddressPointer,0x80000000,1,0);
   if (SystemThreadHandle == -1) {
