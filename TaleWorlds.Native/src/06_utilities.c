@@ -197,9 +197,10 @@
 // 功能：处理异常情况的回调函数，在系统异常时被调用
 #define ExceptionHandlerCallbackA9 Unwind_1809020c0
 
-// 原始函数名：Unwind_1809020f0 - 异常清理函数A0
-// 功能：清理异常状态和资源
-#define ExceptionCleanupA0 Unwind_1809020f0
+// 异常清理函数A0
+// 功能：清理异常处理相关的资源
+// 原始函数名：Unwind_1809020f0
+#define CleanupExceptionResourcesA0 Unwind_1809020f0
 
 // 原始函数名：Unwind_180902100 - 异常清理函数A1
 // 功能：清理异常状态和资源
