@@ -6084,22 +6084,30 @@ undefined DAT_180c82854;
 undefined UNK_18098bc48;
 // 系统状态标志变量B
 char SystemStatusFlagB;
-undefined UNK_18098bc00;
+// 系统异常处理状态表A3
+undefined SystemExceptionHandlerStatusA3;
 undefined DAT_180c86920;
 // 异常处理列表
 void *ExceptionHandlerList;
-undefined UNK_180046dd0;
-undefined UNK_1809fcb00;
+// 系统内存管理表A0
+undefined SystemMemoryManagementTableA0;
+// 系统资源管理表A0
+undefined SystemResourceManagerTableA0;
 undefined DAT_180c86960;
 undefined DAT_180bf52b8;
 undefined DAT_180bf52bc;
 undefined DAT_180bf5248;
 undefined DAT_180c8ed60;
-undefined UNK_180047d20;
-undefined UNK_1800adc10;
-undefined UNK_1809fc790;
-undefined UNK_1809fc7a0;
-undefined UNK_1809fc7b8;
+// 系统内存管理表A1
+undefined SystemMemoryManagementTableA1;
+// 系统资源管理表A1
+undefined SystemResourceManagerTableA1;
+// 系统配置管理表A0
+undefined SystemConfigurationManagementTableA0;
+// 系统状态管理表A0
+undefined SystemStatusManagementTableA0;
+// 系统数据管理表A0
+undefined SystemDataManagementTableA0;
 undefined DAT_1809fc7ec;
 undefined DAT_180bf5240;
 
@@ -8243,13 +8251,13 @@ undefined8 ProcessFloatArrayResource(longlong resourceDescriptor)
 
 {
   longlong resourcePointer;
-  uint flagBits;
-  uint statusBits;
+  uint processingFlags;
+  uint statusRegister;
   uint64_t operationResult;
   undefined8 *arrayPointer;
-  int integerConversion;
+  int integerConversionValue;
   float floatValue;
-  undefined1 simdBuffer [16];
+  undefined1 simdProcessingBuffer [16];
   longlong systemContextBuffer;
   
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x1c),&systemContextBuffer);
@@ -8258,11 +8266,11 @@ undefined8 ProcessFloatArrayResource(longlong resourceDescriptor)
   }
   validationContext = *(longlong *)(systemContextBuffer + 8);
   if (validationContext != 0) {
-    floatValue = *(float *)(resourceDescriptor + 0x20);
+    inputFloatValue = *(float *)(resourceDescriptor + 0x20);
     for (arrayPointer = *(undefined8 **)(validationContext + 0x48);
         (*(undefined8 **)(validationContext + 0x48) <= arrayPointer &&
         (arrayPointer < *(undefined8 **)(validationContext + 0x48) + *(int *)(validationContext + 0x50))); arrayPointer = arrayPointer + 1) {
-      operationResult = ProcessFloatingPointDataValidationA0(*arrayPointer,floatValue,0);
+      operationResult = ProcessFloatingPointDataValidationA0(*arrayPointer,inputFloatValue,0);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -11707,7 +11715,7 @@ void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
   unsigned char systemContextBuffer[8];
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), systemContextBuffer);
-  if (validationResult == 0) {
+  if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
   }
@@ -11722,13 +11730,13 @@ void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
 void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
 
 {
-  int firstValidationResult;
-  unsigned long long validationData;
+  int primaryValidationStatus;
+  unsigned long long systemValidationData;
   
-  firstValidationResult = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), &validationData);
-  if (firstValidationResult == 0) {
-    firstValidationResult = ValidateSystemDataIntegrityA0(validationData);
-    if (firstValidationResult == 0) {
+  primaryValidationStatus = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + ComponentHandleOffset), &systemValidationData);
+  if (primaryValidationStatus == 0) {
+    primaryValidationStatus = ValidateSystemDataIntegrityA0(systemValidationData);
+    if (primaryValidationStatus == 0) {
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
     }
@@ -11748,22 +11756,22 @@ void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
 undefined8 ConfigureUtilityDataA0(longlong configPointer,longlong dataPointer)
 
 {
-  undefined8 configurationResult;
-  longlong stackPointer;
+  undefined8 configurationStatus;
+  longlong systemStackPointer;
   
-  configurationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(configPointer + 0x10),&stackPointer);
-  if ((int)configurationResult == 0) {
-    if (stackPointer != 0) {
-      stackPointer = stackPointer + -8;
+  configurationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(configPointer + 0x10),&systemStackPointer);
+  if ((int)configurationStatus == 0) {
+    if (systemStackPointer != 0) {
+      systemStackPointer = systemStackPointer + -8;
     }
-    if (*(longlong *)(stackPointer + 0x10) == 0) {
+    if (*(longlong *)(systemStackPointer + 0x10) == 0) {
       return 0x4c;
     }
     *(undefined8 *)(configPointer + 0x18) =
-         *(undefined8 *)(*(longlong *)(*(longlong *)(stackPointer + 0x10) + 0x2b0) + 0x78);
-    configurationResult = ProcessSystemEventB0(*(undefined8 *)(dataPointer + 0x98),configPointer);
+         *(undefined8 *)(*(longlong *)(*(longlong *)(systemStackPointer + 0x10) + 0x2b0) + 0x78);
+    configurationStatus = ProcessSystemEventB0(*(undefined8 *)(dataPointer + 0x98),configPointer);
   }
-  return configurationResult;
+  return configurationStatus;
 }
 
 
@@ -11778,24 +11786,24 @@ undefined8 ConfigureUtilityDataA0(longlong configPointer,longlong dataPointer)
 undefined8 ConfigureUtilityDataA1(longlong configPointer,longlong dataPointer)
 
 {
-  undefined8 configurationResult;
-  longlong stackPointer;
+  undefined8 configurationStatus;
+  longlong systemStackPointer;
   
-  configurationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(configPointer + 0x10),&stackPointer);
-  if ((int)configurationResult == 0) {
-    if (stackPointer != 0) {
-      stackPointer = stackPointer + -8;
+  configurationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(configPointer + 0x10),&systemStackPointer);
+  if ((int)configurationStatus == 0) {
+    if (systemStackPointer != 0) {
+      systemStackPointer = systemStackPointer + -8;
     }
-    if (*(longlong *)(stackPointer + 0x18) == 0) {
+    if (*(longlong *)(systemStackPointer + 0x18) == 0) {
       return 0x1e;
     }
-    configurationResult = ValidateAndProcessSystemResourceA0(*(undefined8 *)(*(longlong *)(stackPointer + 0x18) + 0xd0),
+    configurationStatus = ValidateAndProcessSystemResourceA0(*(undefined8 *)(*(longlong *)(systemStackPointer + 0x18) + 0xd0),
                                 configPointer + 0x18);
-    if ((int)configurationResult == 0) {
-      configurationResult = ProcessSystemEventB0(*(undefined8 *)(dataPointer + 0x98),configPointer);
+    if ((int)configurationStatus == 0) {
+      configurationStatus = ProcessSystemEventB0(*(undefined8 *)(dataPointer + 0x98),configPointer);
     }
   }
-  return configurationResult;
+  return configurationStatus;
 }
 
 
@@ -36401,148 +36409,97 @@ void ExceptionHandlerValidationContext(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902b00(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理系统资源并处理异常状态
+ * 
+ * 该函数用于清理系统资源，处理异常状态，并在异常展开时执行必要的清理操作
+ * 
+ * @param exceptionContext 异常上下文
+ * @param threadContext 线程上下文
+ * 
+ * @note 原始函数名：Unwind_180902b00
+ */
+#define CleanupSystemResourcesWithExceptionHandling Unwind_180902b00
 
-{
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x70) + 0x18,0x28,0x10,FUN_180055ed0);
-  return;
-}
+/**
+ * @brief 验证并清理数据上下文
+ * 
+ * 该函数用于验证数据上下文的有效性，并清理相关的资源
+ * 
+ * @param exceptionContext 异常上下文
+ * @param threadContext 线程上下文
+ * 
+ * @note 原始函数名：Unwind_180902b30
+ */
+#define ValidateAndCleanupDataContext Unwind_180902b30
 
-
-
-void Unwind_180902b30(undefined8 param_1,longlong param_2)
-
-{
-  longlong validationContext;
-  longlong *pdataContext;
-  longlong calculatedOffset;
-  
-  pdataContext = *(longlong **)(param_2 + 0x40);
-  validationContext = pdataContext[1];
-  for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x48) {
-    FUN_180058c20(calculatedOffset);
-  }
-  if (*pdataContext == 0) {
-    return;
-  }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
-}
-
-
-
-void Unwind_180902b40(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  FUN_180058210(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
-  return;
-}
-
-
-
-void Unwind_180902b50(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
-{
-  FUN_180058210(*(longlong *)(param_2 + 0x40),*(undefined8 *)(*(longlong *)(param_2 + 0x40) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
-  return;
-}
+/**
+ * @brief 清理内存资源处理器A
+ * 
+ * 该函数用于清理内存资源，处理异常状态，并在异常展开时执行内存清理操作
+ * 
+ * @param exceptionContext 异常上下文
+ * @param threadContext 线程上下文
+ * @param param3 参数3
+ * @param param4 参数4
+ * 
+ * @note 原始函数名：Unwind_180902b40
+ */
+#define CleanupMemoryResourceHandlerA Unwind_180902b40
 
 
 
-void Unwind_180902b60(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理内存资源处理器B
+ * 
+ * 该函数用于清理内存资源，处理异常状态，并在异常展开时执行内存清理操作
+ * 
+ * @param exceptionContext 异常上下文
+ * @param threadContext 线程上下文
+ * @param param3 参数3
+ * @param param4 参数4
+ * 
+ * @note 原始函数名：Unwind_180902b50
+ */
+#define CleanupMemoryResourceHandlerB Unwind_180902b50
 
-{
-  longlong validationContext;
-  longlong dataContext;
-  longlong calculatedOffset;
-  ulonglong memoryBaseAddress;
-  ulonglong operationResult;
-  
-  calculatedOffset = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
-  validationContext = *(longlong *)(calculatedOffset + 8);
-  operationResult = 0;
-  if (memoryBaseAddress != 0) {
-    do {
-      dataContext = *(longlong *)(validationContext + operationResult * 8);
-      if (dataContext != 0) {
-        if (*(longlong **)(dataContext + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataContext + 0x10) + 0x38))();
-        }
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
-      }
-      *(undefined8 *)(validationContext + operationResult * 8) = 0;
-      operationResult = operationResult + 1;
-    } while (operationResult < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
-  }
-  *(undefined8 *)(calculatedOffset + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
-  }
-  return;
-}
+/**
+ * @brief 清理验证上下文数据
+ * 
+ * 该函数用于清理验证上下文数据，处理异常状态，并在异常展开时执行数据清理操作
+ * 
+ * @param exceptionContext 异常上下文
+ * @param threadContext 线程上下文
+ * 
+ * @note 原始函数名：Unwind_180902b60
+ */
+#define CleanupValidationContextData Unwind_180902b60
 
 
 
-void Unwind_180902b70(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理验证上下文资源A
+ * 
+ * 该函数用于清理验证上下文资源，处理异常状态，并在异常展开时执行资源清理操作
+ * 
+ * @param exceptionContext 异常上下文
+ * @param threadContext 线程上下文
+ * 
+ * @note 原始函数名：Unwind_180902b70
+ */
+#define CleanupValidationContextResourceA Unwind_180902b70
 
-{
-  longlong validationContext;
-  longlong dataContext;
-  longlong calculatedOffset;
-  ulonglong memoryBaseAddress;
-  ulonglong operationResult;
-  
-  calculatedOffset = *(longlong *)(param_2 + 0x40);
-  memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
-  validationContext = *(longlong *)(calculatedOffset + 8);
-  operationResult = 0;
-  if (memoryBaseAddress != 0) {
-    do {
-      dataContext = *(longlong *)(validationContext + operationResult * 8);
-      if (dataContext != 0) {
-        if (*(longlong **)(dataContext + 0x10) != (longlong *)0x0) {
-          (**(code **)(**(longlong **)(dataContext + 0x10) + 0x38))();
-        }
-                    // WARNING: Subroutine does not return
-        FUN_18064e900(dataContext);
-      }
-      *(undefined8 *)(validationContext + operationResult * 8) = 0;
-      operationResult = operationResult + 1;
-    } while (operationResult < memoryBaseAddress);
-    memoryBaseAddress = *(ulonglong *)(calculatedOffset + 0x10);
-  }
-  *(undefined8 *)(calculatedOffset + 0x18) = 0;
-  if ((1 < memoryBaseAddress) && (*(longlong *)(calculatedOffset + 8) != 0)) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
-  }
-  return;
-}
-
-
-
-void Unwind_180902b80(undefined8 param_1,longlong param_2)
-
-{
-  longlong validationContext;
-  
-  validationContext = *(longlong *)(param_2 + 0x20);
-  *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
-  if (*(longlong *)(validationContext + 0x10) != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
-  }
-  *(undefined8 *)(validationContext + 0x10) = 0;
-  *(undefined4 *)(validationContext + 0x20) = 0;
-  *(undefined8 *)(validationContext + 8) = &DefaultExceptionHandlerB;
-  return;
-}
+/**
+ * @brief 重置异常处理器B
+ * 
+ * 该函数用于重置异常处理器B，设置默认的异常处理程序
+ * 
+ * @param exceptionContext 异常上下文
+ * @param threadContext 线程上下文
+ * 
+ * @note 原始函数名：Unwind_180902b80
+ */
+#define ResetExceptionHandlerB Unwind_180902b80
 
 
 
