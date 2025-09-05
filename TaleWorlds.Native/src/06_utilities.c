@@ -10,7 +10,7 @@
 #define SetGlobalDataPointerA6 InitializeGlobalDataPointerA6
 #define SetGlobalDataPointerA7 InitializeGlobalDataPointerA7
 #define SetGlobalDataPointerA8 InitializeGlobalDataPointerA8
-#define SetGlobalDataPointerA9 FUN_1809420a0
+#define SetGlobalDataPointerA9 InitializeGlobalDataPointerA9
 #define SetGlobalDataPointerA10 FUN_1809420c0
 #define SetGlobalDataPointerA11 FUN_1809420e0
 #define SetGlobalDataPointerA12 FUN_180942100
@@ -22990,8 +22990,17 @@ LAB_18089c300:
 
 
 
-89c606(void)
-void FUN_18089c606(void)
+// 函数: void UtilityNoOperationM(void)
+// 
+// 空操作函数M
+// 不执行任何操作，仅作为占位符或桩函数使用
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void UtilityNoOperationM(void)
 
 {
   return;
