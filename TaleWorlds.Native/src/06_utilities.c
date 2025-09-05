@@ -17475,7 +17475,10 @@ undefined4 ProcessDataF2(undefined8 param_1,int *param_2)
 // 原始函数名：FUN_180898d4d - 返回固定值函数S0
 // 功能：返回固定值0x1f
 #define ReturnFixedValueS0 FUN_180898d4d
-undefined8 FUN_180898d4d(void)
+// 原始函数名：FUN_180898d4d - 系统初始化函数
+// 功能：执行系统初始化操作
+#define InitializeSystemOperation FUN_180898d4d
+undefined8 InitializeSystemOperation(void)
 
 {
   return 0x1f;
@@ -17485,7 +17488,10 @@ undefined8 FUN_180898d4d(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180898d60(longlong *param_1,int param_2)
+// 原始函数名：FUN_180898d60 - 数据处理函数A3
+// 功能：处理输入数据并执行相应操作
+#define ProcessDataA3 FUN_180898d60
+undefined8 ProcessDataA3(longlong *param_1,int param_2)
 
 {
   int iVar1;

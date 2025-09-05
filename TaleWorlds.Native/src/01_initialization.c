@@ -22736,7 +22736,7 @@ void DestroySystemMutexAndConditionVariable(void* conditionVariable)
  * @note 这是系统同步机制的重要组成部分，确保多线程环境下的正确同步
  */
 void* *
-InitializeSystemSyncObject(void* *SyncObject, void* SyncContextParameter, void* SyncConfigurationParameter, void* SyncSecurityParameter)
+InitializeSystemSyncObject(void** SyncObject, void* SyncContextParameter, void* SyncConfigurationParameter, void* SyncSecurityParameter)
 {
   void* SystemErrorFlag;
   
@@ -22774,7 +22774,7 @@ InitializeSystemSyncObject(void* *SyncObject, void* SyncContextParameter, void* 
  * @note 这是内存管理的重要函数，确保内存正确释放和分配器设置
  */
 void* *
-ReleaseMemoryAndConfigureAllocator(void* *MemoryBlock, unsigned long long MemoryFlags, void* SyncContextParameter, void* SyncConfigurationParameter)
+ReleaseMemoryAndConfigureAllocator(void** MemoryBlock, unsigned long long MemoryFlags, void* SyncContextParameter, void* SyncConfigurationParameter)
 
 {
   *MemoryBlock = &SystemMemoryAllocatorReference;
@@ -30748,7 +30748,7 @@ void SystemResourceListInitializer(void)
  * @note 这是系统内存管理的重要函数，用于初始化和配置内存分配器
  */
 void* *
-ConfigureSystemMemoryAllocator(void* *SystemResourceManager, long long ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
+ConfigureSystemMemoryAllocator(void** SystemResourceManager, long long ConfigurationDataPointer, void* AdditionalParameter, void* ConfigurationFlag)
 
 {
   long long stringLength;
