@@ -12396,15 +12396,15 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
 
 {
   float floatComponentZ;
-  uint uintComponentX;
-  uint uintComponentY;
-  uint uintComponentZ;
-  uint uintComponentW;
+  uint VectorComponentX;
+  uint VectorComponentY;
+  uint VectorComponentZ;
+  uint VectorComponentW;
   DataBuffer result;
-  int infFlag1;
-  int infFlag2;
-  int infFlag3;
-  int infFlag4;
+  int InfinityFlag1;
+  int InfinityFlag2;
+  int InfinityFlag3;
+  int InfinityFlag4;
   int64_t dataBufferPtr;
   int64_t systemContextBuffer [2];
   uint uintTemp;
@@ -12490,20 +12490,20 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     result = *(DataBuffer *)(dataPtr + 0x20);
     *(DataBuffer *)(dataBufferPtr + 0x38) = *(DataBuffer *)(dataPtr + 0x18);
     *(DataBuffer *)(dataBufferPtr + 0x40) = result;
-    uintComponentX = *(DataWord *)(dataPtr + 0x2c);
-    uintComponentY = *(DataWord *)(dataPtr + 0x30);
-    uintComponentZ = *(DataWord *)(dataPtr + 0x34);
+    VectorComponentX = *(DataWord *)(dataPtr + 0x2c);
+    VectorComponentY = *(DataWord *)(dataPtr + 0x30);
+    VectorComponentZ = *(DataWord *)(dataPtr + 0x34);
     *(DataWord *)(dataBufferPtr + 0x48) = *(DataWord *)(dataPtr + 0x28);
-    *(DataWord *)(dataBufferPtr + 0x4c) = uintComponentX;
-    *(DataWord *)(dataBufferPtr + 0x50) = uintComponentY;
-    *(DataWord *)(dataBufferPtr + 0x54) = uintComponentZ;
-    uintComponentX = *(DataWord *)(dataPtr + 0x3c);
-    uintComponentY = *(DataWord *)(dataPtr + 0x40);
-    uintComponentZ = *(DataWord *)(dataPtr + 0x44);
+    *(DataWord *)(dataBufferPtr + 0x4c) = VectorComponentX;
+    *(DataWord *)(dataBufferPtr + 0x50) = VectorComponentY;
+    *(DataWord *)(dataBufferPtr + 0x54) = VectorComponentZ;
+    VectorComponentX = *(DataWord *)(dataPtr + 0x3c);
+    VectorComponentY = *(DataWord *)(dataPtr + 0x40);
+    VectorComponentZ = *(DataWord *)(dataPtr + 0x44);
     *(DataWord *)(dataBufferPtr + 0x58) = *(DataWord *)(dataPtr + 0x38);
-    *(DataWord *)(dataBufferPtr + 0x5c) = uintComponentX;
-    *(DataWord *)(dataBufferPtr + 0x60) = uintComponentY;
-    *(DataWord *)(dataBufferPtr + 100) = uintComponentZ;
+    *(DataWord *)(dataBufferPtr + 0x5c) = VectorComponentX;
+    *(DataWord *)(dataBufferPtr + 0x60) = VectorComponentY;
+    *(DataWord *)(dataBufferPtr + 100) = VectorComponentZ;
     dataBufferPtr = *(int64_t *)(contextPtr + 0x98);
     if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
       systemContextBuffer[0] = 0;
@@ -27703,10 +27703,10 @@ ValidationErrorHandler2:
  * @return 处理结果状态码
  * @note 原始函数名：FUN_18089c872
  */
-uint64_t FUN_18089c872(void)
+uint64_t ValidateSystemDataIntegrity(void)
 
 {
-  int64_t *validationContextPointer;
+  int64_t *validationContext;
   int64_t dataContext;
   DataChunk validationStatus;
   uint memoryBaseAddress;
@@ -27958,11 +27958,11 @@ ValidationErrorHandler2:
  * 
  * 该函数用于处理浮点数据，执行验证和安全性检查操作
  * 
- * @param param_1 输入的浮点参数
+ * @param inputValue 输入的浮点参数
  * @return 处理结果状态码
  * @note 原始函数名：FUN_18089c94a
  */
-uint64_t FUN_18089c94a(float param_1)
+uint64_t ProcessFloatDataValidation(float inputValue)
 
 {
   int64_t *validationContextPointer;
