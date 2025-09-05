@@ -4417,13 +4417,13 @@ uint32_t UtilitySecondaryDataProcessingBuffer;
 void* UtilityQuaternaryDataProcessingPointer;
 
 /**
- * @brief 处理工具数据4
+ * @brief 处理工具数据Quaternary
  * 
  * 执行第四类工具数据的处理操作
  * 
  * @note 原始函数名：UtilityProcessData4
  */
-void* UtilityProcessData4;
+void* UtilityProcessDataQuaternary;
 
 /**
  * @brief 数据处理器实例
@@ -4437,13 +4437,13 @@ void* UtilityQuaternaryDataProcessorInstance;
 void* UtilityQuinaryDataProcessorInstance;
 
 /**
- * @brief 处理工具数据5
+ * @brief 处理工具数据Quinary
  * 
  * 执行第五类工具数据的处理操作
  * 
  * @note 原始函数名：UtilityProcessData5
  */
-void* UtilityProcessData5;
+void* UtilityProcessDataQuinary;
 
 /**
  * @brief 数据缓冲区实例
@@ -4462,29 +4462,29 @@ void* UtilityQuinaryDataBufferInstance;
  * 
  * @note 原始函数名：UtilityProcessData6
  */
-void* UtilityProcessData6;
-void* UtilityDataProcessorPointer8;
-void* UtilityDataBufferInstance6;
-void* UtilityDataBufferInstance7;
-void* UtilityDataBufferInstance8;
-void* UtilityDataBufferInstance9;
+void* UtilityProcessDataSenary;
+void* UtilityDataProcessorPointerOctonary;
+void* UtilityDataBufferInstanceSenary;
+void* UtilityDataBufferInstanceSeptenary;
+void* UtilityDataBufferInstanceOctonary;
+void* UtilityDataBufferInstanceNonary;
 
 // 函数: int32_t UtilityCompareObject(void);
 int32_t UtilityCompareObject;
-void* UtilityCompareObjectPointer1;
+void* UtilityCompareObjectPointerPrimary;
 int32_t UtilityPrimaryCompareData;
 int32_t UtilitySecondaryCompareData;
 int32_t UtilityTertiaryCompareData;
 int32_t UtilityQuaternaryCompareData;
 
 // 函数: void* UtilityProcessData8(void);
-void* UtilityProcessData8;
-void* UtilityDataProcessorPointer9;
-void* UtilityProcessDataInstance1;
-void* UtilityProcessDataInstance2;
-void* UtilityProcessDataInstance3;
-void* UtilityProcessDataInstance4;
-void* UtilityDataProcessorPointer10;
+void* UtilityProcessDataOctonary;
+void* UtilityDataProcessorPointerNonary;
+void* UtilityProcessDataInstancePrimary;
+void* UtilityProcessDataInstanceSecondary;
+void* UtilityProcessDataInstanceTertiary;
+void* UtilityProcessDataInstanceQuaternary;
+void* UtilityDataProcessorPointerDenary;
 
 // 函数: void* UtilityProcessData9(void);
 void* UtilityProcessData9;
@@ -5039,11 +5039,11 @@ uint8_t UtilityFreePoolConfigUndenary;
 uint8_t UtilityFreePoolPointerNonary;
 uint8_t UtilityFreePoolConfigDuodenary;
 // 工具系统处理数据
-uint8_t UtilityProcessData1Input;
-uint8_t UtilityProcessData1Output;
-uint8_t UtilityProcessData1Config;
-uint8_t UtilityProcessData1Status;
-uint8_t UtilityProcessData1Pointer;
+uint8_t UtilityProcessDataPrimaryInput;
+uint8_t UtilityProcessDataPrimaryOutput;
+uint8_t UtilityProcessDataPrimaryConfig;
+uint8_t UtilityProcessDataPrimaryStatus;
+uint8_t UtilityProcessDataPrimaryPointer;
 
 // 函数: uint8_t UtilityProcessData1(void)
 // 
@@ -28893,7 +28893,17 @@ void ExecuteConditionallyAfterValidation(int64_t systemContext, DataBuffer opera
 
 
 
-uint64_t FUN_18089d0f0(int64_t param_1,DataBuffer *param_2)
+/**
+ * @brief 系统数据查询函数D
+ * 
+ * 该函数用于查询系统数据并返回结果
+ * 
+ * @param param_1 系统上下文参数
+ * @param param_2 数据缓冲区指针
+ * @return 查询结果状态码
+ * @note 原始函数名：FUN_18089d0f0
+ */
+uint64_t QuerySystemDataD(int64_t param_1,DataBuffer *param_2)
 
 {
   uint dataValue;
