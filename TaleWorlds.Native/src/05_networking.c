@@ -3484,11 +3484,11 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     return NetworkErrorCodeInvalidPacket;
   }
   NetworkStatus QuaternaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionQuaternaryValidationOffset);
-  NetworkSecurityValidationArray[QuaternaryValidationStateIndex] = QuaternaryValidationStatus;
+  SecurityValidationArray[QuaternaryValidationStateIndex] = QuaternaryValidationStatus;
   NetworkPacketProcessor QuaternaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-  NetworkPacketValidationStatus = QuaternaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), NetworkSecurityValidationArray, 4);
-  if ((int)NetworkPacketValidationResult != 0) {
-    return NetworkPacketValidationResult;
+  PacketValidationResult = QuaternaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
+  if ((int)PacketValidationResult != 0) {
+    return PacketValidationResult;
   }
   if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorCodeInvalidPacket;
@@ -3496,8 +3496,8 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataPrimaryOffset);
   DataProcessingArray[PrimaryDataProcessingIndex] = PrimaryDataStatus;
   NetworkPacketProcessor DataPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-  NetworkPacketValidationResult = DataPacketProcessor(*(NetworkHandle **)(*PacketData + 8), DataProcessingArray, 4);
-  if ((int)NetworkPacketValidationResult == 0) {
+  PacketValidationResult = DataPacketProcessor(*(NetworkHandle **)(*PacketData + 8), DataProcessingArray, 4);
+  if ((int)PacketValidationResult == 0) {
     if (*(uint32_t *)(PacketData + PacketDataSizeIndex) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
