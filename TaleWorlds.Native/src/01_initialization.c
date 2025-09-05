@@ -35655,7 +35655,7 @@ void CreateAndInitializeSystemThread(void* systemResourceManager,void* configura
   *(uint8_t *)systemHashEntryPointer = 0;
   systemEncryptionKey = systemHashEntryPointer;
   SystemOperationStatus = StartSystemThread(systemHashEntryPointer);
-  SystemContextValue = ConcatenatedSystemValue(SystemContextValue._4_4_,SystemOperationStatus);
+  SystemContextValue = ConcatenatedSystemValue(SystemContextValue.LowPart,SystemOperationStatus);
   *systemHashEntryPointer = 0x6320726f74696445;
   *(uint32_t *)(systemHashEntryPointer + 1) = 0x69666e6f;
   *(void*2 *)((long long)systemHashEntryPointer + 0xc) = 0x67;
@@ -35875,7 +35875,7 @@ void InitializeSystemResourceB(void* SystemResourceManager,void* ConfigurationDa
   *(uint8_t *)ResourceHashEntryPointer = 0;
   pSystemEncryptionKey = ResourceHashEntryPointer;
   SystemInitializationStatus = StartSystemThread(ResourceHashEntryPointer);
-  SystemContextValue = ConcatenatedSystemValue(SystemContextValue._4_4_,SystemInitializationStatus);
+  SystemContextValue = ConcatenatedSystemValue(SystemContextValue.LowPart,SystemInitializationStatus);
   *ResourceHashEntryPointer = 0x65766544;
   ResourceHashEntryPointer[1] = 0x6d706f6c;
   ResourceHashEntryPointer[2] = 0x20746e65;
