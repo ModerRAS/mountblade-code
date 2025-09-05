@@ -1,5 +1,8 @@
 #include "TaleWorlds.Native.Split.h"
 
+// Mount & Blade: Native 工具模块
+// 系统常量和宏定义
+
 // 系统常量定义
 #define DefaultSystemDataAddress 0x18
 #define ComponentHandleOffset 0x10

@@ -33839,7 +33839,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   ulong long SystemDataPrimary;
   ulong long SystemDataSecondary;
   ulong long SystemDataTertiary;
-  ulong long systemData4;
+  ulong long SystemDataQuaternary;
   bool isOperationComplete;
   uint8_t systemStackBufferPrimary [32];
   void* *stackContextPointer;
