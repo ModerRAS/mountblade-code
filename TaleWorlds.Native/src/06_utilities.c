@@ -1,18 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities.c - 工具系统模块
-// 
-// 本文件包含TaleWorlds引擎的工具系统实现，提供以下功能：
-// - 全局数据指针管理
-// - 工具系统回调执行
-// - 数据验证、压缩、加密等处理
-// - 线程本地存储管理
-// - 内存管理器初始化
-// - 异常处理和清理
-// - 系统状态重置和配置
-// 
-// 总计473个函数，涵盖了引擎核心工具功能的各个方面
-
 // FUN_函数语义化宏定义
 // 原始函数名：FUN_180941f80 - 全局指针设置函数A0
 // 功能：设置全局数据指针A0到指定地址
@@ -2269,8 +2256,8 @@ undefined UtilitySystemStorageData4;
 undefined UtilitySystemStorageData5;
 undefined UtilitySystemStorageData6;
 undefined UtilitySystemStorageData7;
-undefined UNK_180a3def0;
-undefined UNK_18098bcb0;
+undefined UtilitySystemStorageStatus1;
+undefined UtilitySystemStorageStatus2;
 
 // 函数: undefined FUN_1809431a0;
 undefined FUN_1809431a0;
@@ -50110,6 +50097,17 @@ void Unwind_180908660(undefined8 param_1,longlong param_2)
 
 
 
+// 函数: void CleanupExceptionResourcesA2(undefined8 exceptionContext,longlong unwindInfo)
+// 
+// 异常资源清理函数A2
+// 清理异常处理过程中的资源，包括内存释放、句柄清理等操作
+// 
+// 参数:
+//   exceptionContext - 异常上下文信息
+//   unwindInfo - 展开信息结构体
+// 
+// 返回值:
+//   void - 无返回值
 void CleanupExceptionResourcesA2(undefined8 exceptionContext,longlong unwindInfo)
 
 {
@@ -50142,6 +50140,17 @@ void CleanupExceptionResourcesA2(undefined8 exceptionContext,longlong unwindInfo
 
 
 
+// 函数: void CleanupExceptionPointer(undefined8 exceptionContext,longlong unwindInfo)
+// 
+// 异常指针清理函数
+// 清理异常处理过程中的指针资源，防止内存泄漏
+// 
+// 参数:
+//   exceptionContext - 异常上下文信息
+//   unwindInfo - 展开信息结构体
+// 
+// 返回值:
+//   void - 无返回值
 void CleanupExceptionPointer(undefined8 exceptionContext,longlong unwindInfo)
 
 {
