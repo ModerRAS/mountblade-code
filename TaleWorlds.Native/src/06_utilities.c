@@ -7431,8 +7431,20 @@ void UtilityNoOperation1(void)
 
 
 
-// 函数: undefined8 ForceResourceRelease(longlong resourceDescriptor)
-// 功能：强制资源释放，验证资源有效性后无条件执行资源释放操作
+/**
+ * @brief 强制资源释放
+ * 
+ * 该函数负责强制释放指定的资源，无论资源的当前状态如何。在执行释放操作前，
+ * 函数会验证资源的有效性，确保不会释放无效的资源句柄。
+ * 
+ * @param resourceDescriptor 资源描述符，标识要释放的资源
+ * @return undefined8 释放操作结果状态码：
+ *         - 0: 资源释放成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 此函数会无条件执行资源释放，确保资源被正确清理
+ * @warning 确保传入的资源描述符有效，否则可能导致未定义行为
+ */
 undefined8 ForceResourceRelease(longlong resourceDescriptor)
 
 {
