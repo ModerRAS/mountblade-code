@@ -799,12 +799,12 @@ void* DataProcessingPointer1;
 uint32_t DataProcessingStatus2;
 
 // 函数: undefined UtilityProcessData3;
-undefined UtilityProcessData3;
-undefined UtilityProcessConfig1;
-undefined UtilityProcessPointer2;
-undefined UtilityProcessPointer3;
-undefined UtilityProcessBuffer2;
-undefined UtilityProcessPointer4;
+uint32_t DataProcessingStatus3;
+uint32_t DataProcessingConfig1;
+void* DataProcessingPointer2;
+void* DataProcessingPointer3;
+uint32_t DataProcessingBuffer2;
+void* DataProcessingPointer4;
 
 // 函数: undefined UtilityProcessData4;
 undefined UtilityProcessData4;
