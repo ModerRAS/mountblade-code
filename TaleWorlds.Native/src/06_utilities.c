@@ -5597,47 +5597,49 @@ undefined8 ProcessUtilitySystemRequest(longlong requestPointer)
 
 
 
-// 函数: void FUN_180891890(longlong param_1,longlong param_2)
-void FUN_180891890(longlong param_1,longlong param_2)
+// 函数: void ValidateUtilityOperation(longlong operationPointer,longlong contextPointer)
+// 功能：验证工具系统操作的有效性，根据验证结果执行相应的操作流程
+void ValidateUtilityOperation(longlong operationPointer,longlong contextPointer)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationResult;
+  undefined8 validationToken;
   
-  if (*(int *)(param_1 + 0x2c) == 0) {
-    iVar1 = FUN_180894860(param_2,param_1 + 0x1c,&uStackX_8);
-    if (iVar1 == 0) {
-      iVar1 = func_0x00018088c500(uStackX_8,param_1 + 0x2c);
-      if (iVar1 == 0) goto LAB_1808918d2;
+  if (*(int *)(operationPointer + 0x2c) == 0) {
+    validationResult = FUN_180894860(contextPointer,operationPointer + 0x1c,&validationToken);
+    if (validationResult == 0) {
+      validationResult = func_0x00018088c500(validationToken,operationPointer + 0x2c);
+      if (validationResult == 0) goto ValidationFailed;
     }
     return;
   }
-LAB_1808918d2:
+ValidationFailed:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  FUN_18088d720(*(undefined8 *)(contextPointer + 0x98),operationPointer);
 }
 
 
 
 
-// 函数: void FUN_180891900(longlong param_1,longlong param_2)
-void FUN_180891900(longlong param_1,longlong param_2)
+// 函数: void ExecuteUtilityOperation(longlong operationPointer,longlong contextPointer)
+// 功能：执行工具系统操作，根据操作参数执行相应的系统功能
+void ExecuteUtilityOperation(longlong operationPointer,longlong contextPointer)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int executionResult;
+  longlong operationData;
   
-  if (*(int *)(param_1 + 0x2c) == 0) {
-    iVar1 = FUN_1808949c0(param_2,param_1 + 0x1c,&lStackX_8);
-    if (iVar1 != 0) {
+  if (*(int *)(operationPointer + 0x2c) == 0) {
+    executionResult = FUN_1808949c0(contextPointer,operationPointer + 0x1c,&operationData);
+    if (executionResult != 0) {
       return;
     }
-    iVar1 = func_0x00018088c500(*(undefined8 *)(lStackX_8 + 0xd0),param_1 + 0x2c);
-    if (iVar1 != 0) {
+    executionResult = func_0x00018088c500(*(undefined8 *)(operationData + 0xd0),operationPointer + 0x2c);
+    if (executionResult != 0) {
       return;
     }
   }
-  FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+  FUN_18088d7c0(*(undefined8 *)(contextPointer + 0x98),operationPointer);
   return;
 }
 
