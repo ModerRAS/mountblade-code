@@ -29101,7 +29101,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   strcpy_s(SystemDataBufferWorkArray,0x80,SystemThreadContext);
   InitializeSystemData(&SystemDataPointer,&SystemResourceHandleTableOffset);
   SystemResourceHandleTableOffset = &SystemMemoryAllocatorReference;
-  pGlobalDataFlags2 = &SystemGlobalDataReference;
+  SecondaryGlobalDataFlagsPtr = &SystemGlobalDataReference;
   SystemDataProcessingFlag = 0;
   SystemLongStackVariableSecondary = 0;
   SystemStackVariableMain = 0;
@@ -29162,7 +29162,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   RefreshSystemData(SystemCalculatedBufferPointer);
   (**(code **)(*(long long *)SystemResourceManager[0x56] + 0x140))((long long *)SystemResourceManager[0x56],SystemCalculatedBufferPointer);
   Sleep(1000);
-  pGlobalDataFlags2 = &SystemGlobalDataReference;
+  SecondaryGlobalDataFlagsPtr = &SystemGlobalDataReference;
   if (SystemMemoryPoolHandle != 0) {
       SystemCleanupFunction();
   }
@@ -44499,7 +44499,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
     punsignedValue348 = SystemGlobalDataReferencePtr;
   }
   ConfigureSystemDataBuffer(&MemoryContextPointer,&SystemDataBufferConfigTemplate,&SystemGlobalDataReference,&SystemDataArrayTemplate2);
-  pGlobalDataFlags2 = &SystemGlobalDataReference;
+  SecondaryGlobalDataFlagsPtr = &SystemGlobalDataReference;
   if (SystemGlobalDataReferencePtr != (void* *)0x0) {
       SystemCleanupFunction();
   }

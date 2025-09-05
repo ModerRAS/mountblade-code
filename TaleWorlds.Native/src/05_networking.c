@@ -925,6 +925,7 @@ uint32_t NetworkSocketProtocol;                           // 网络套接字协�
 uint32_t NetworkConnectionPriority;                        // 网络连接优先级，连接的优先级配置
 uint32_t NetworkSocketSize;                                // 网络套接字大小，套接字结构的大小
 uint32_t NetworkSocketContextSize;                         // 网络套接字上下文大小，套接字上下文的大小
+uint32_t NetworkSocketContext;                             // 网络套接字上下文，套接字的运行时上下文数据
 uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
 uint32_t NetworkSocketIndex;                            // 网络套接字索引，套接字的索引位置
 uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据
@@ -936,15 +937,19 @@ uint32_t NetworkConnectionMode;                               // 网络连接模
 uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
 uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文大小，连接上下文数据结构的大小
 uint32_t NetworkConnectionQualityLevel;                     // 网络连接质量，评估连接质量的质量指标
+uint32_t NetworkConnectionQuality;                         // 网络连接质量，连接的质量等级
 uint32_t NetworkConnectionBandwidth;                    // 网络连接带宽，连接可用的带宽资源
-uint32_t NetworkConnectionLatencyMs;                      // 网络连接延迟，网络通信的延迟时间
+uint32_t NetworkConnectionLatency;                       // 网络连接延迟，网络通信的延迟时间
+uint32_t NetworkConnectionLatencyMs;                      // 网络连接延迟（毫秒），网络通信的延迟时间
 uint32_t NetworkConnectionReliabilityLevel;                         // 网络连接可靠性，连接的稳定性和可靠性指标
 uint32_t NetworkSecurityLevel;                       // 网络安全级别，连接的安全保护级别
 uint32_t NetworkAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
 uint32_t NetworkSystemAuthenticationType;                          // 网络系统认证类型，系统使用的认证机制类型
 uint32_t NetworkEncryptionAlgorithmType;                // 网络加密算法，数据传输使用的加密算法
+uint32_t NetworkEncryptionAlgorithm;                   // 网络加密算法，数据传输使用的加密算法配置
 uint32_t NetworkSystemEncryptionAlgorithm;                          // 网络系统加密算法，系统使用的加密算法类型
 uint32_t NetworkCompressionMethodType;                  // 网络压缩方法，数据压缩使用的算法方法
+uint32_t NetworkCompressionMethod;                     // 网络压缩方法，数据压缩使用的算法方法配置
 uint32_t NetworkSystemCompressionMethod;                            // 网络系统压缩方法，系统使用的压缩算法类型
 uint32_t NetworkSessionTimeoutMs;             // 网络会话超时持续时间，会话无活动的超时时间
 uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区，指向数据包缓冲区的内存地址
@@ -960,6 +965,7 @@ uint32_t NetworkMaximumPacketSize;                            // 网络最大数
 uint32_t NetworkEncryptionKey;                            // 网络加密密钥，用于数据加密的密钥值
 uint32_t NetworkCompressionLevel;                         // 网络压缩级别，数据压缩的压缩级别设置
 uint32_t NetworkSessionEncryptionKey;                     // 网络会话加密密钥，用于会话数据加密的密钥值
+uint32_t NetworkSessionTimeoutDuration;                  // 网络会话超时持续时间，会话无活动的超时时间
 uint32_t NetworkHandshakeTimeoutMs;                          // 网络握手超时时间，握手过程的最大等待时间
 uint32_t NetworkAuthenticationTimeoutMs;                     // 网络认证超时时间，认证过程的最大等待时间
 uint32_t NetworkEncryptionTimeoutMs;                         // 网络加密超时时间，加密过程的最大等待时间
@@ -1017,6 +1023,8 @@ uint32_t NetworkPacketFilterBuffer;                        // 网络数据包过
 
 // 网络安全相关变量
 uint32_t NetworkSecurityContextPrimary;                // 网络安全上下文主要数据，存储主要的安全上下文信息
+uint32_t NetworkSecurityContext;                        // 网络安全上下文，安全相关的上下文信息
+uint32_t NetworkAuthenticationContext;                 // 网络认证上下文，认证相关的上下文信息
 uint32_t NetworkSecurityValidationBuffer;                  // 网络安全验证缓冲区，用于存储安全验证过程中的临时数据
 uint32_t NetworkSecurityEncryptionInfo;                    // 网络安全加密信息，用于安全加密的相关数据
 uint32_t NetworkSecurityAuthenticationInfo;                 // 网络安全认证信息，用于身份认证的相关数据
@@ -1325,7 +1333,7 @@ void AcceptConnection(void)
   // 设置连接参数
   NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
   NetworkConnectionBandwidth = NetworkBandwidthFourKilobytes;                 // 设置连接带宽为4KB
-  NetworkConnectionLatency = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
+  NetworkConnectionLatencyMs = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
   NetworkConnectionReliabilityLevel = NetworkReliabilityLevelHigh;                 // 设置连接可靠性为高
   
   // 初始化安全参数
@@ -1383,7 +1391,7 @@ void CloseConnection(void)
   
   // 重置统计信息
   NetworkCurrentActiveConnectionsCount = 0;                   // 重置活跃连接计数
-  NetworkAverageConnectionTime = 0;                           // 重置连接时间
+  NetworkCurrentAverageConnectionTime = 0;                           // 重置连接时间
   NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间
 }
 
