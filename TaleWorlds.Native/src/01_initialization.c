@@ -2721,16 +2721,16 @@ void InitializeSystemThreadManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNode + 4, &SystemDataTemplateH, SystemIdentifierSize);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &SystemDataTemplateH, SystemIdentifierSize);
     if (IdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNodePointer[2];
+      NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
     }
     else {
-      NextNode = (void**)*CurrentNodePointer;
+      NextNodePointer = (void**)*CurrentNodePointer;
     }
     HashTablePointer = CurrentNodePointer;
-    CurrentNodePointer = NextNode;
+    CurrentNodePointer = NextNodePointer;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH, HashTablePointer + NodeIdentifierOffset, 0x10), IdentifierCompareResult < 0)) {
@@ -33725,7 +33725,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   void* *memoryBlock;
   void* *allocationUnit;
   void** rootSystemNode;
-  uint32_t SystemInitializationStatusFlags;
+  uint32_t systemInitializationStatus;
   int operationCode;
   void* allocatedMemory;
   long long SystemAllocationFlags;
@@ -33745,65 +33745,52 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   ulong long systemData3;
   ulong long systemData4;
   bool isOperationComplete;
-  uint8_t SystemStackBuffer1 [32];
-  void* *StackPointer1;
-  uint8_t *StackPointer2;
-  uint32_t stackValue1;
-  ulong long stackValue2;
-  uint stackValue3;
-  int stackValue4;
-  int stackValue5;
-  long long stackValue6;
-  void* ******stackManagement1;
-  void* ******stackManagement2;
-  void* ******stackManagement3;
-  void* StackPointerTertiary;
-  void* StackPointerQuaternary;
-  uint32_t stackValue7;
-  void* *StackPointer5;
-  void* *StackPointer6;
-  uint32_t stackValue8;
-  ulong long stackValue9;
-  long long stackValue10;
-  void* *StackPointer7;
-  void* *StackPointer8;
-  void* StackPointerNinth;
-  uint32_t stackValue11;
-  void* *StackPointer10;
-  long long stackValue12;
-  uint32_t stackValue13;
-  long long stackValue14;
-  ulong long stackValue15;
-  long long stackValue16;
-  void* *StackPointer11;
-  void* *StackPointer12;
-  void* *StackPointer13;
-  void* StackPointerFourteenth;
-  void* *StackPointer15;
-  uint8_t *StackPointer16;
-  uint32_t stackValue17;
-  uint8_t SystemStackBuffer2 [16];
-  void* StackPointerSeventeenth;
-  void* StackPointerEighteenth;
-  uint32_t stackValue18;
-  uint32_t stackValue19;
-  ulong long stackValue20;
-  void* StackPointerTwentyFirst;
+  uint8_t systemStackBufferPrimary [32];
+  void* *stackPointerPrimary;
+  uint8_t *stackPointerSecondary;
+  uint32_t stackValuePrimary;
+  ulong long stackValueSecondary;
+  uint stackValueTertiary;
+  int stackValueQuaternary;
+  int stackValueQuinary;
+  long long stackValueSenary;
+  void* ******stackManagementPrimary;
+  void* ******stackManagementSecondary;
+  void* ******stackManagementTertiary;
+  void* stackPointerTertiary;
+  void* stackPointerQuaternary;
+  uint32_t stackValueSeptenary;
+  void* *stackPointerQuinary;
+  void* *stackPointerSenary;
+  uint32_t stackValueOctal;
+  ulong long stackValueNonary;
+  long long stackValueDenary;
+  void* *stackPointerSeptenary;
+  void* *stackPointerOctal;
+  void* stackPointerNovenary;
+  uint32_t stackValueUndenary;
+  void* *stackPointerDuodenary;
+  long long stackValueTerdenary;
+  uint32_t stackValueQuaterdenary;
+  long long stackValueQuindenary;
+  ulong long stackValueSexdenary;
+  long long stackValueSeptendenary;
+  void* *stackPointerOctodenary;
+  void* *stackPointerNovemdenary;
+  void* *stackPointerVigintenary;
+  void* stackPointerUnvigintenary;
+  void* *stackPointerDuovigintenary;
+  uint8_t *stackPointerTrevigintenary;
+  uint32_t stackValueQuattuorvigintenary;
+  uint8_t systemStackBufferSecondary [16];
+  void* stackPointerQuinvigintenary;
+  void* stackPointerSexvigintenary;
+  uint32_t stackValueSeptenvigintenary;
+  uint32_t stackValueOctovigintenary;
+  ulong long stackValueNovemvigintenary;
+  void* stackPointerTrigintenary;
   
-  StackPointer21 = 0x180059023;
-  allocatedMemory = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x270,8,3);
-  StackPointer21 = 0x18005902b;
-  SystemAllocationFlags = InitializeMemoryAllocationFlags(allocatedMemory);
-  SystemInitializationStatusFlags = *(uint32_t *)(SystemNodeManagerPointer + 0x1dc0);
-  SystemAllocationFlags = SystemAllocationFlags;
-  *(uint32_t *)(SystemAllocationFlags + 0x1e0) = *(uint32_t *)(SystemNodeManagerPointer + 0x1d50);
-  *(uint32_t *)(SystemAllocationFlags + 0x1e4) = SystemInitializationStatusFlags;
-  StackPointer21 = 0x180059066;
-  (**(code **)(**(long long **)(*resourcePointer + 0x2b0) + 0xf8))();
-  StackPointer14 = 0xfffffffffffffffe;
-  stackValue20 = SystemEncryptionKeyTemplate ^ (ulong long)SystemStackBuffer1;
-  stackValue3 = 0;
-  stackValue10 = SystemAllocationFlags;
+  SystemContextValue8 = 0;
   *(void* *)(SystemAllocationFlags + 0xf0) = 0;
   systemStateFlags = 3;
   stackBasePointer = &stackBasePointer;
@@ -33849,10 +33836,10 @@ void InitializeSystemResourceManager(long long *resourcePointer)
         }
       }
       SystemContextValue8 = 0;
-      InitializeSystemGlobalData(&SystemGlobalDataReference,&ResourceDataPointer,&MemoryAllocatorPointer398);
+      InitializeSystemGlobalData(&SystemGlobalDataReference,&ResourceDataPointer,&memoryAllocatorPointer);
       ThreadLocalStoragePointerSecondary = (uint8_t *)0x0;
       SystemContextValueSecondary = SystemContextValueSecondary & SystemMemoryAlignmentMask;
-      MemoryAllocatorPointer398 = &SystemMemoryAllocatorReference;
+      memoryAllocatorPointer = &SystemMemoryAllocatorReference;
       DataBufferPointer = (void* *)0x0;
       VerticalResolutionPointer = (void* *)0x0;
       SystemResourceValue = 0;
@@ -33901,7 +33888,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
               memcpy(&SystemDataBufferProcessing,SystemStringTemplatePointer,(long long)SystemDataConfigurationPointer - (long long)SystemStringTemplatePointer);
           }
                               SystemDataBufferProcessing.BufferFlags = 0;
-          SystemInitializationStatusFlags = 0;
+          systemInitializationStatus = 0;
           ThreadContextIndicator = 0;
           MemoryContextPointer = &SystemGlobalDataReference;
           SystemMemoryBufferPointer = 0;
@@ -33923,30 +33910,30 @@ void InitializeSystemResourceManager(long long *resourcePointer)
             MemoryAllocationFlags = (ulong long)SystemThreadObjectSecondary & SystemMemoryPageAlignmentMask;
             if (MemoryAllocationFlags != 0) {
               SystemAllocationFlags = ((long long)SystemThreadObjectSecondary - MemoryAllocationFlags >> 0x10) * 0x50 + 0x80 + MemoryAllocationFlags;
-              ResourceHashEntryPointer1 = (uint *)(SystemAllocationFlags - (ulong long)*(uint *)(SystemAllocationFlags + 4));
-              if ((*(byte *)((long long)ResourceHashEntryPointer1 + 0xe) & 2) == 0) {
-                SystemInitializationStatusFlags = ResourceHashEntryPointer1[7];
-                if (0x3ffffff < SystemInitializationStatusFlags) {
-                  SystemInitializationStatusFlags = *ResourceHashEntryPointer1 << 0x10;
+              resourceHashEntryPointerSecondary = (uint *)(SystemAllocationFlags - (ulong long)*(uint *)(SystemAllocationFlags + 4));
+              if ((*(byte *)((long long)resourceHashEntryPointerSecondary + 0xe) & 2) == 0) {
+                systemInitializationStatus = resourceHashEntryPointerSecondary[7];
+                if (0x3ffffff < systemInitializationStatus) {
+                  systemInitializationStatus = *resourceHashEntryPointerSecondary << 0x10;
                 }
               }
               else {
-                SystemInitializationStatusFlags = ResourceHashEntryPointer1[7];
-                if (SystemInitializationStatusFlags < 0x4000000) {
-                  InitializationFlags = (ulong long)SystemInitializationStatusFlags;
+                systemInitializationStatus = resourceHashEntryPointerSecondary[7];
+                if (systemInitializationStatus < 0x4000000) {
+                  initializationFlags = (ulong long)systemInitializationStatus;
                 }
                 else {
-                  InitializationFlags = (ulong long)*ResourceHashEntryPointer1 << 0x10;
+                  initializationFlags = (ulong long)*resourceHashEntryPointerSecondary << 0x10;
                 }
-                if (0x3ffffff < SystemInitializationStatusFlags) {
-                  SystemInitializationStatusFlags = *ResourceHashEntryPointer1 << 0x10;
+                if (0x3ffffff < systemInitializationStatus) {
+                  systemInitializationStatus = *resourceHashEntryPointerSecondary << 0x10;
                 }
-                SystemInitializationStatusFlags = SystemInitializationStatusFlags - (int)(((long long)SystemThreadObjectSecondary -
-                                        (((long long)((long long)ResourceHashEntryPointer1 + (-0x80 - MemoryAllocationFlags)) / 0x50) *
-                                         0x10000 + MemoryAllocationFlags)) % InitializationFlags);
+                systemInitializationStatus = systemInitializationStatus - (int)(((long long)SystemThreadObjectSecondary -
+                                        (((long long)((long long)resourceHashEntryPointerSecondary + (-0x80 - MemoryAllocationFlags)) / 0x50) *
+                                         0x10000 + MemoryAllocationFlags)) % initializationFlags);
               }
             }
-            SystemMemoryBufferPointer = ConcatenatedSystemValue(SystemMemoryBufferPointer.LowPart,SystemInitializationStatusFlags);
+            SystemMemoryBufferPointer = ConcatenatedSystemValue(SystemMemoryBufferPointer.LowPart,systemInitializationStatus);
               memcpy(SystemThreadObjectSecondary,&SystemDataBufferProcessing,SystemTemporaryOperationResult);
           }
           SystemMemoryBufferCapacityValue = 0;
@@ -34084,7 +34071,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
         if (*(long long *)(ResourceDataPosition + 200) - ResourceDataIndex >> 3 != 0) {
           do {
             SystemAllocationFlags = *(long long *)(ResourceDataIndex + InitializationFlags);
-            MemoryAllocatorPointer398 = &SystemGlobalDataReference;
+            memoryAllocatorPointer = &SystemGlobalDataReference;
             SystemContextValueSecondary = 0;
             ThreadLocalStoragePointerSecondary = (uint8_t *)0x0;
             SystemContextValue8 = 0;
@@ -34137,13 +34124,13 @@ void InitializeSystemResourceManager(long long *resourcePointer)
               SystemContextValueSecondary = SystemContextValueSecondary & SystemMaximumUnsigned32BitValue;
             }
             SystemOperationFlag378 = SystemOperationFlag378 & 0xfffffffd;
-            MemoryAllocatorPointer398 = &SystemGlobalDataReference;
+            memoryAllocatorPointer = &SystemGlobalDataReference;
             if (ThreadLocalStoragePointerSecondary != (uint8_t *)0x0) {
                 SystemCleanupFunction(ThreadLocalStoragePointerSecondary);
             }
             ThreadLocalStoragePointerSecondary = (uint8_t *)0x0;
             SystemContextValueSecondary = SystemContextValueSecondary & SystemMemoryAlignmentMask;
-            MemoryAllocatorPointer398 = &SystemMemoryAllocatorReference;
+            memoryAllocatorPointer = &SystemMemoryAllocatorReference;
             ResourceDataPosition = SystemMemoryAllocationOffset310;
             SystemAllocationFlags = SystemLoopCounter368;
             if (*(int *)(threadLocalStoragePointer + 6) == 0) {
