@@ -1583,7 +1583,7 @@ void ReceiveNetworkPacketData(void)
  * 
  * @return void 无返回值
  */
-void ValidatePacketSecurity(void)
+void ValidateNetworkPacketSecurity(void)
 {
   // 初始化验证参数
   NetworkPacketHashAlgorithm = NetworkHashAlgorithmSHA256;                         // 设置哈希算法为SHA-256
@@ -2008,15 +2008,15 @@ void ResetNetworkConnectionPointer(void)
  * @security 该函数是网络安全的第一道防线，确保只有合法的连接参数能够通过验证
  * @see NetworkErrorInvalidHandle, NetworkErrorConnectionFailed
  */
-uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer)
+uint32_t ValidateNetworkConnectionParameters(int64_t *NetworkConnectionParameters)
 {
   // 检查参数指针是否有效
-  if (ConnectionParameterPointer == NULL) {
+  if (NetworkConnectionParameters == NULL) {
     return NetworkErrorInvalidHandle;
   }
   
   // 检查连接参数的基本结构
-  if (*ConnectionParameterPointer == 0) {
+  if (*NetworkConnectionParameters == 0) {
     return NetworkErrorConnectionFailed;
   }
   
@@ -2043,27 +2043,27 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
 {
   // 网络连接请求处理变量
   int64_t NetworkConnectionContextIdentifier;      // 网络连接上下文标识符
-  int64_t *ConnectionValidationDataPointer;        // 网络连接验证结果数据指针
-  int32_t ConnectionValidationStatusCode;          // 网络连接验证状态码
-  NetworkHandle ConnectionContextHandle;           // 网络连接上下文句柄
+  int64_t *NetworkValidationDataPointer;           // 网络连接验证结果数据指针
+  int32_t NetworkValidationStatusCode;             // 网络连接验证状态码
+  NetworkHandle NetworkConnectionHandle;           // 网络连接上下文句柄
   
   NetworkConnectionContextIdentifier = 0;
-  ConnectionValidationStatusCode = 0;  // 初始化验证状态码
-  if (ConnectionValidationStatusCode == 0) {
-    if ((0 < *(int *)CalculateContextParameterOffset(ConnectionValidationDataPointer)) && (*ConnectionValidationDataPointer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationDataPointer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+  NetworkValidationStatusCode = 0;  // 初始化验证状态码
+  if (NetworkValidationStatusCode == 0) {
+    if ((0 < *(int *)CalculateContextParameterOffset(NetworkValidationDataPointer)) && (*NetworkValidationDataPointer != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkValidationDataPointer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *ConnectionValidationDataPointer = NetworkConnectionContextIdentifier;
-    *(int *)CalculateContextParameterOffset(ConnectionValidationDataPointer) = ConnectionValidationStatusCode;
+    *NetworkValidationDataPointer = NetworkConnectionContextIdentifier;
+    *(int *)CalculateContextParameterOffset(NetworkValidationDataPointer) = NetworkValidationStatusCode;
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxSignedInt32Value) {
-    ConnectionContextHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
-    if (ConnectionContextHandle != 0) {
-      if ((int)ConnectionValidationDataPointer[ConnectionDataSizeIndex] != 0) {
-          memcpy((void *)ConnectionContextHandle, *ConnectionValidationDataPointer, (int64_t)(int)ConnectionValidationDataPointer[ConnectionDataSizeIndex]);
+    NetworkConnectionHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
+    if (NetworkConnectionHandle != 0) {
+      if ((int)NetworkValidationDataPointer[ConnectionDataSizeIndex] != 0) {
+          memcpy((void *)NetworkConnectionHandle, *NetworkValidationDataPointer, (int64_t)(int)NetworkValidationDataPointer[ConnectionDataSizeIndex]);
       }
-      return ConnectionContextHandle;
+      return NetworkConnectionHandle;
     }
   }
   return NetworkErrorConnectionFailed;
@@ -2120,8 +2120,8 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
 {
   // 数据包处理变量
   NetworkConnectionStatus *NetworkContextDataArray;      // 网络连接上下文数据数组
-  NetworkConnectionStatus PacketProcessingStatus;      // 数据包处理状态
-  NetworkConnectionStatus ConnectionValidationStatus;  // 连接验证状态
+  NetworkConnectionStatus NetworkPacketProcessingStatus; // 数据包处理状态
+  NetworkConnectionStatus NetworkConnectionValidationStatus; // 连接验证状态
   
   /**
    * @brief 处理网络连接数据包的核心逻辑
@@ -2145,45 +2145,45 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *ConnectionStatusBuffer = NULL;
+  NetworkConnectionStatus *NetworkConnectionStatusBuffer = NULL;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxSignedInt32Value) {
       // 处理连接请求并获取状态缓冲区
-      ConnectionStatusBuffer = (NetworkConnectionStatus *)
+      NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
                ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
                              NetworkConnectionCompletionHandleValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (ConnectionStatusBuffer != NULL) {
+      if (NetworkConnectionStatusBuffer != NULL) {
         int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
-        int64_t ConnectionIterationCounter = (long long)ActiveConnectionCount;
-        int64_t ConnectionContextAddress = 0;  // 连接上下文基地址
-        NetworkConnectionStatus *ConnectionStatusBufferPointer = ConnectionStatusBuffer;
+        int64_t NetworkConnectionIterationCounter = (long long)ActiveConnectionCount;
+        int64_t NetworkConnectionContextAddress = 0;  // 连接上下文基地址
+        NetworkConnectionStatus *NetworkConnectionStatusBufferPointer = NetworkConnectionStatusBuffer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ConnectionContextDataPointer = (NetworkConnectionStatus *)CalculateContextDataOffset(ConnectionContextAddress, ConnectionStatusBuffer, ConnectionStatusBufferPointer);
+            NetworkConnectionStatus *NetworkConnectionContextDataPointer = (NetworkConnectionStatus *)CalculateContextDataOffset(NetworkConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusBufferPointer);
             
             // 提取连接状态信息
-            NetworkConnectionStatus PacketStatus = ConnectionContextDataPointer[ConnectionContextPacketStatusIndex];
-            NetworkConnectionStatus DataStatus = ConnectionContextDataPointer[ConnectionContextDataStatusIndex];
-            NetworkConnectionStatus ValidationStatus = ConnectionContextDataPointer[ConnectionContextValidationStatusIndex];
+            NetworkConnectionStatus NetworkPacketStatus = NetworkConnectionContextDataPointer[ConnectionContextPacketStatusIndex];
+            NetworkConnectionStatus NetworkDataStatus = NetworkConnectionContextDataPointer[ConnectionContextDataStatusIndex];
+            NetworkConnectionStatus NetworkValidationStatus = NetworkConnectionContextDataPointer[ConnectionContextValidationStatusIndex];
             
             // 更新数据包缓冲区状态
-            *ConnectionStatusBufferPointer = *ConnectionContextDataPointer;
-            ConnectionStatusBufferPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
-            ConnectionStatusBufferPointer[ConnectionContextDataStatusIndex] = DataStatus;
-            ConnectionStatusBufferPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            ConnectionStatusBufferPointer[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastContextEntryOffset(ConnectionContextAddress, ConnectionStatusBuffer, ConnectionStatusBufferPointer);
+            *NetworkConnectionStatusBufferPointer = *NetworkConnectionContextDataPointer;
+            NetworkConnectionStatusBufferPointer[ConnectionContextPacketStatusIndex] = NetworkPacketStatus;
+            NetworkConnectionStatusBufferPointer[ConnectionContextDataStatusIndex] = NetworkDataStatus;
+            NetworkConnectionStatusBufferPointer[ConnectionContextValidationStatusIndex] = NetworkValidationStatus;
+            NetworkConnectionStatusBufferPointer[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastContextEntryOffset(NetworkConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusBufferPointer);
             
             // 更新计数器
-            ConnectionIterationCounter = ConnectionIterationCounter - 1;
-            ConnectionStatusBufferPointer = ConnectionStatusBufferPointer + ConnectionContextEntrySize;
-          } while (ConnectionIterationCounter != 0);
+            NetworkConnectionIterationCounter = NetworkConnectionIterationCounter - 1;
+            NetworkConnectionStatusBufferPointer = NetworkConnectionStatusBufferPointer + ConnectionContextEntrySize;
+          } while (NetworkConnectionIterationCounter != 0);
         }
         return NetworkOperationSuccess;
       }
@@ -2208,12 +2208,27 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
  * 处理网络连接状态的变化，包括连接建立、断开、重连等状态转换。
  * 此函数会根据数据包内容更新连接状态，并触发相应的状态转换操作。
  * 
+ * @details 该函数执行以下关键操作：
+ * - 验证连接上下文的有效性
+ * - 解析数据包中的状态更新信息
+ * - 更新连接状态和标志位
+ * - 处理连接超时和重连逻辑
+ * - 管理连接的生命周期
+ * - 触发相应的回调事件
+ * 
  * @param ConnectionContext 连接上下文句柄，包含当前连接的状态信息
  * @param PacketData 数据包数据，包含状态更新的相关信息
+ * 
  * @return NetworkHandle 处理结果句柄，0表示成功，其他值表示错误码
+ * 
+ * @retval NetworkOperationSuccess 状态更新成功
+ * @retval NetworkErrorInvalidHandle 连接上下文无效
+ * @retval NetworkErrorConnectionFailed 连接处理失败
+ * @retval NetworkErrorTimeout 连接超时
  * 
  * @note 此函数使用状态机模式处理连接状态转换
  * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
+ * @see InitializeNetworkConnectionHandler, ProcessNetworkConnectionPacketData
  */
 NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
