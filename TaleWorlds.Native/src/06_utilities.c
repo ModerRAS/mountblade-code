@@ -13287,6 +13287,9 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
   int64_t arrayIndex;
   unsigned int validationDataBuffer [2];
   int64_t systemContextBuffer;
+  int64_t resourceDataPointer;
+  int64_t resourceIterator;
+  int64_t calculatedOffset;
   
   validationBuffer[0] = *(uint *)(systemContext + 0x18);
   if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
@@ -13301,8 +13304,8 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     if (systemContextBuffer != 0) {
       resourceHandle = systemContextBuffer + -8;
     }
-    pointer1 = *(int64_t *)(resourceHandle + 0x18);
-    if (pointer1 == 0) {
+    resourceDataPointer = *(int64_t *)(resourceHandle + 0x18);
+    if (resourceDataPointer == 0) {
       return 0x1e;
     }
     validationBuffer[0] = 0;
