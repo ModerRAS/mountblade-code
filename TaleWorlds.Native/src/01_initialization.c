@@ -66400,43 +66400,43 @@ void SystemThreadStatusManager(long long systemContext,byte ThreadStatus,long lo
   }
   else {
     CurrentThreadIdentifier = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x40,8,0x20);
-    PointerToPointerStackA0 = aplStack_58;
-    PrimarySystemStackPointer = &LocalStackVariable98;
-    pSystemConfigurationData = (long long *)*AdditionalParameter;
-    LocalStackVariable98 = SystemResourceManager;
-    bStack_90 = ConfigurationDataPointer;
-    if (pSystemConfigurationData != (long long *)0x0) {
-      (**(code **)(*pSystemConfigurationData + 0x28))();
+    PointerToPointerArray = ArrayPointerStack;
+    PrimarySystemStackPointer = &LocalSystemResourcePointer;
+    SystemConfigurationPointer = (long long *)*AdditionalParameter;
+    LocalSystemResourcePointer = SystemResourceManager;
+    ConfigurationDataStack = ConfigurationDataPointer;
+    if (SystemConfigurationPointer != (long long *)0x0) {
+      (**(code **)(*SystemConfigurationPointer + 0x28))();
     }
-    plStack_80 = (long long *)*ConfigurationFlag;
-    if (plStack_80 != (long long *)0x0) {
-      (**(code **)(*plStack_80 + 0x28))();
+    ConfigurationFlagStack = (long long *)*ConfigurationFlag;
+    if (ConfigurationFlagStack != (long long *)0x0) {
+      (**(code **)(*ConfigurationFlagStack + 0x28))();
     }
-    PrimarySystemStackPointer = &LocalStackVariable98;
-    LocalStackVariable78 = LocalStackVariable98;
-    bStack_70 = bStack_90;
-    pLocalSystemStatus = pSystemConfigurationData;
-    pSystemConfigurationData = (long long *)0x0;
-    psystemMemoryOffset = plStack_80;
-    plStack_80 = (long long *)0x0;
-    PointerStackVariableB8 = &LocalStackVariable78;
-    SystemThreadCallback48 = SystemThreadPrimaryCallback;
-    SystemThreadCallback40 = SystemThreadSecondaryCallback;
-    pLocalStackVariableA8 = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
-    *pLocalStackVariableA8 = LocalStackVariable78;
-    *(byte *)(pLocalStackVariableA8 + 1) = bStack_70;
-    pLocalStackVariableA8[2] = (long long)pLocalSystemStatus;
-    pLocalStackVariableA8[3] = (long long)psystemMemoryOffset;
-    psystemMemoryOffset = (long long *)0x0;
-    pLocalSystemStatus = (long long *)0x0;
-    aplStack_58[0] = pLocalStackVariableA8;
-    if (plStack_80 != (long long *)0x0) {
-      (**(code **)(*plStack_80 + 0x38))();
+    PrimarySystemStackPointer = &LocalSystemResourcePointer;
+    LocalSystemResourceBackup = LocalSystemResourcePointer;
+    ConfigurationDataBackup = ConfigurationDataStack;
+    LocalSystemStatusPointer = SystemConfigurationPointer;
+    SystemConfigurationPointer = (long long *)0x0;
+    SystemMemoryOffset = ConfigurationFlagStack;
+    ConfigurationFlagStack = (long long *)0x0;
+    PointerStackVariableB8 = &LocalSystemResourceBackup;
+    SystemThreadPrimaryCallback = SystemThreadPrimaryCallback;
+    SystemThreadSecondaryCallback = SystemThreadSecondaryCallback;
+    LocalStackVariablePointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,SystemMemoryAllocationTag);
+    *LocalStackVariablePointer = LocalSystemResourceBackup;
+    *(byte *)(LocalStackVariablePointer + 1) = ConfigurationDataBackup;
+    LocalStackVariablePointer[2] = (long long)LocalSystemStatusPointer;
+    LocalStackVariablePointer[3] = (long long)SystemMemoryOffset;
+    SystemMemoryOffset = (long long *)0x0;
+    LocalSystemStatusPointer = (long long *)0x0;
+    ArrayPointerStack[0] = LocalStackVariablePointer;
+    if (ConfigurationFlagStack != (long long *)0x0) {
+      (**(code **)(*ConfigurationFlagStack + 0x38))();
     }
-    if (pSystemConfigurationData != (long long *)0x0) {
-      (**(code **)(*pSystemConfigurationData + 0x38))();
+    if (SystemConfigurationPointer != (long long *)0x0) {
+      (**(code **)(*SystemConfigurationPointer + 0x38))();
     }
-    SystemThreadFlagsPointer = (long long *)CreateMemoryAllocationHandle(CurrentThreadIdentifier,aplStack_58);
+    SystemThreadFlagsPointer = (long long *)CreateMemoryAllocationHandle(CurrentThreadIdentifier,ArrayPointerStack);
     pLocalSystemValue = SystemThreadFlagsPointer;
     if (SystemThreadFlagsPointer != (long long *)0x0) {
       (**(code **)(*SystemThreadFlagsPointer + 0x28))(SystemThreadFlagsPointer);
