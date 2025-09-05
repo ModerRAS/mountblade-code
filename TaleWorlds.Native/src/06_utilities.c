@@ -20082,7 +20082,7 @@ OperationFailedLabel:
       resourceData4 = *(DataWord *)(resourceEntry + 0x1c);
       statusFlags = 0;
       validationResult = processCount + 1;
-      callbackPointer = &UNK_180982f38;
+      callbackPointer = &SystemCallbackHandlerTable;
       validationFlags = validationBuffer[0];
       operationParam = operationFlags;
       stackIndex = processCount;
@@ -20095,7 +20095,7 @@ OperationFailedLabel:
         do {
           uStack_278 = 0;
           dataContext = param_1[4];
-          puStack_280 = &UNK_1809834f8;
+          puStack_280 = &SystemProcessingBuffer;
           uStack_270 = auStack_288[0];
           if (((char)dataContext == '\0') && (operationStatus = ValidateSystemDataA0(param_1,1), operationStatus != 0))
           goto ProcessCheckpointResourceValidation;
@@ -34195,14 +34195,18 @@ void SetExceptionContextAndUnlock(DataBuffer exceptionContext, int64_t contextDa
 
 /**
  * @brief 验证异常数据指针并处理相关操作
- * @details 验证异常数据指针的有效性，如果指针有效则执行相应的异常处理操作
  * 
- * @param param_1 异常处理上下文（未使用）
- * @param param_2 包含异常数据指针的上下文结构
+ * 该函数用于验证异常数据指针的有效性，如果指针有效则执行相应的异常处理操作
+ * 主要用于异常处理过程中的数据验证和资源管理
  * 
- * @return 无返回值
+ * @param exceptionContext 异常处理上下文（当前未使用）
+ * @param contextData 包含异常数据指针的上下文结构
+ * 
+ * @note 该函数从上下文数据中提取异常数据指针并进行验证
+ * @note 如果数据指针无效，函数会直接返回
+ * @note 验证通过后会更新指针链表并管理引用计数
  */
-void ValidateExceptionDataPointer(DataBuffer param_1,int64_t param_2)
+void ValidateExceptionDataPointer(DataBuffer exceptionContext, int64_t contextData)
 
 {
   int *referenceCount;
@@ -34211,7 +34215,7 @@ void ValidateExceptionDataPointer(DataBuffer param_1,int64_t param_2)
   uint64_t baseAddress;
   
   // 获取异常数据指针
-  dataPointer = *(DataBuffer **)(*(int64_t *)(param_2 + 0x20) + 0x218);
+  dataPointer = *(DataBuffer **)(*(int64_t *)(contextData + 0x20) + 0x218);
   if (dataPointer == (DataBuffer *)0x0) {
     return;
   }
