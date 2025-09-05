@@ -1228,8 +1228,8 @@ void InitializeNetworkSocket(void)
   NetworkSocketSize = SOCKET_SIZE;                         // 设置套接字大小为64字节
   
   // 初始化套接字配置
-  NetworkSocketCategory = TCP_SOCKET_CATEGORY;                     // 设置套接字类别为TCP
-  NetworkSocketProtocolType = TCP_PROTOCOL;                 // 设置协议类型为TCP协议
+  NetworkSocketType = TCP_SOCKET_CATEGORY;                     // 设置套接字类别为TCP
+  NetworkSocketProtocol = TCP_PROTOCOL;                 // 设置协议类型为TCP协议
   
   // 初始化套接字数据缓冲区
   NetworkSocketRuntimeData = 0;                            // 重置套接字运行时数据指针为NULL
