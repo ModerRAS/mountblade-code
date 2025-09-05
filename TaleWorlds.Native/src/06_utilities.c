@@ -3187,8 +3187,11 @@ undefined DecryptUtilityDataBE0;
 //   undefined - 压缩结果状态
 undefined CompressUtilityDataBF0;
 
-// 函数: undefined FUN_1809425e0;
-undefined FUN_1809425e0;
+// 原始函数名：FUN_1809425e0 - 内存管理初始化函数D0
+#define InitializeMemoryManagerD0 FUN_1809425e0
+
+// 函数: undefined InitializeMemoryManagerD0;
+undefined InitializeMemoryManagerD0;
 undefined UtilitySystemMemoryData5;
 undefined UtilitySystemMemoryStatus1;
 undefined UtilitySystemMemoryData6;
@@ -3440,8 +3443,11 @@ undefined UtilitySystemStorageData7;
 undefined UtilitySystemStorageStatus1;
 undefined UtilitySystemStorageStatus2;
 
-// 函数: undefined FUN_1809431a0;
-undefined FUN_1809431a0;
+// 原始函数名：FUN_1809431a0 - 线程本地存储初始化函数A8
+#define InitializeThreadLocalStorageA8 FUN_1809431a0
+
+// 函数: undefined InitializeThreadLocalStorageA8;
+undefined InitializeThreadLocalStorageA8;
 undefined _tls_index;
 void *ThreadLocalStoragePointer;
 undefined DAT_180c967d4;
@@ -4922,17 +4928,17 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
 
 {
   longlong *pvalidationContext;
-  longlong *plVar2;
-  longlong *plVar3;
-  int iVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  longlong *plVar7;
-  longlong *plVar8;
-  longlong *plVar9;
+  longlong *pcomponentData;
+  longlong *pcomponentInfo;
+  int resultStatus;
+  uint messageResult;
+  ulonglong operationResult;
+  longlong *presourceInfo;
+  longlong *pcontextData;
+  longlong *pmoduleData;
   longlong *pvalidationContext0;
-  longlong lStackX_8;
-  longlong lStackX_18;
+  longlong stackContext8;
+  longlong stackContext18;
   
   uVar6 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x18),&lStackX_18);
   iVar4 = (int)uVar6;
