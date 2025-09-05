@@ -49025,13 +49025,13 @@ void Unwind_180907f70(undefined8 exceptionContext, longlong handleContext)
 {
   longlong *handlePointer;
   
-  plVar1 = (longlong *)(param_2 + 0x38);
-  if (*plVar1 != -1) {
+  handlePointer = (longlong *)(handleContext + 0x38);
+  if (*handlePointer != -1) {
     LOCK();
     _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
     UNLOCK();
-    CloseHandle(*plVar1);
-    *plVar1 = -1;
+    CloseHandle(*handlePointer);
+    *handlePointer = -1;
   }
   return;
 }
