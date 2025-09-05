@@ -1707,6 +1707,43 @@
 // 功能：验证系统状态和配置
 #define ValidateSystemConfigurationA0 FUN_1808bdd90
 
+// 系统操作函数语义化宏定义
+// 原始函数名：func_0x000180861a30 - 系统操作验证函数A0
+// 功能：验证系统操作上下文
+#define ValidateSystemOperationContextA0 func_0x000180861a30
+
+// 原始函数名：func_0x0001808c8710 - 缓冲区处理函数A0
+// 功能：处理系统缓冲区数据
+#define ProcessSystemBufferA0 func_0x0001808c8710
+
+// 原始函数名：func_0x0001808c8700 - 缓冲区处理函数A1
+// 功能：处理系统缓冲区数据的替代版本
+#define ProcessSystemBufferA1 func_0x0001808c8700
+
+// 原始函数名：func_0x0001808c8470 - 缓冲区初始化函数A0
+// 功能：初始化系统缓冲区
+#define InitializeSystemBufferA0 func_0x0001808c8470
+
+// 原始函数名：func_0x0001808c7d30 - 数据验证函数A0
+// 功能：验证系统数据有效性
+#define ValidateSystemDataIntegrityA0 func_0x0001808c7d30
+
+// 原始函数名：func_0x00018076b630 - 资源数据验证函数A0
+// 功能：验证资源数据完整性
+#define ValidateResourceDataIntegrityA0 func_0x00018076b630
+
+// 原始函数名：func_0x0001808e64d0 - 系统状态获取函数A0
+// 功能：获取系统当前状态
+#define GetSystemCurrentStateA0 func_0x0001808e64d0
+
+// 原始函数名：func_0x000180867680 - 范围数据获取函数A0
+// 功能：获取系统操作范围数据
+#define GetOperationRangeDataA0 func_0x000180867680
+
+// 原始函数名：func_0x000180867960 - 范围验证函数A0
+// 功能：验证系统操作范围
+#define ValidateOperationRangeA0 func_0x000180867960
+
 // 原始函数名：FUN_1808c44f0 - 系统操作函数A0
 // 功能：执行系统操作和状态检查
 #define ExecuteSystemOperationA0 FUN_1808c44f0
@@ -5355,7 +5392,7 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
         return (ulonglong)messageProcessingResult;
       }
       if (((*(uint *)(*(longlong *)(tempStackContext + 8) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemOperationResult = func_0x000180861a30(localStackContext), (int)systemOperationResult != 0)) {
+         (systemOperationResult = ValidateSystemOperationContextA0(localStackContext), (int)systemOperationResult != 0)) {
         return systemOperationResult;
       }
       validationContextPtr = (longlong *)(localStackContext + MODULE_CONTEXT_OFFSET);
@@ -8851,7 +8888,7 @@ void ManageUtilitySystemConnectionsAF0(longlong connectionManager,longlong conne
   
   iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if (iVar1 == 0) {
-    iVar1 = func_0x0001808c8710(uStackX_8);
+    iVar1 = ProcessSystemBufferA0(uStackX_8);
     if (iVar1 < 1) {
       iVar1 = func_0x0001808c8700(uStackX_8);
       *(uint *)(param_1 + 0x18) = (uint)(iVar1 < 1);
@@ -13639,7 +13676,7 @@ undefined8 FUN_180896040(longlong *param_1,int param_2)
     }
     return 0x26;
   }
-LAB_1808960d4:
+DataTransferLabel:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
     FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
@@ -13662,7 +13699,7 @@ undefined8 FUN_180896064(undefined8 param_1,int param_2)
   
   validationContext = 0;
   if (unaff_EDI == 0) {
-LAB_1808960d4:
+DataTransferLabel:
     if ((0 < *(int *)((longlong)registerRBX + 0xc)) && (*registerRBX != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
@@ -13940,7 +13977,7 @@ ulonglong FUN_180896140(longlong param_1)
         }
         aiStackX_8[0] = -1;
         iVar11 = aiStackX_8[0];
-LAB_1808962af:
+MemoryAllocationLabel:
       } while (aiStackX_8[0] != -1);
       aiStackX_8[0] = -1;
       uVar6 = uStack_118;
@@ -13988,7 +14025,7 @@ LAB_1808962af:
       FUN_18084c470(&uStack_118,0);
     }
   }
-LAB_18089638e:
+ProcessCompleteLabel:
   uVar6 = 0;
   uVar10 = uVar6;
   if (0 < *(int *)(param_1 + 0x20)) {
@@ -14007,7 +14044,7 @@ LAB_18089638e:
   }
   *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) & 0xfbffffff;
   uVar8 = *(uint *)(param_1 + 0x6c);
-LAB_1808963ec:
+ResourceCleanupLabel:
   if ((uVar8 >> 0x19 & 1) != 0) {
     lVar5 = *(longlong *)(param_1 + 0xa0);
     uVar6 = FUN_18073c4c0(*(undefined8 *)(param_1 + 0x60),param_1 + 0xa0,0);
