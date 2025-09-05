@@ -3604,7 +3604,7 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
     iVar4 = (int)uVar6;
     if (iVar4 == 0) {
       lStackX_8 = 0;
-      uVar5 = FUN_18088fb40(*(undefined8 *)(param_2 + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
+      uVar5 = ProcessGameMessage(*(undefined8 *)(param_2 + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
                             &lStackX_8);
       if (uVar5 != 0) {
         FUN_180867d60(plVar9);
@@ -5762,6 +5762,63 @@ void FUN_180891970(longlong param_1,longlong param_2)
 // 原始函数名：FUN_180891ff0 - 工具连接管理函数AF0
 // 功能：管理工具系统连接
 #define ManageUtilityConnectionAF0 FUN_180891ff0
+
+// 工具系统180942系列函数语义化宏定义
+// 原始函数名：FUN_180942810 - 工具系统初始化函数AG0
+// 功能：初始化工具系统核心组件
+#define InitializeUtilityCoreAG0 FUN_180942810
+
+// 原始函数名：FUN_180942830 - 工具系统配置函数AH0
+// 功能：配置工具系统参数
+#define ConfigureUtilitySystemAH0 FUN_180942830
+
+// 原始函数名：FUN_180942850 - 工具系统验证函数AI0
+// 功能：验证工具系统完整性
+#define ValidateUtilitySystemAI0 FUN_180942850
+
+// 原始函数名：FUN_180942890 - 工具系统启动函数AJ0
+// 功能：启动工具系统服务
+#define StartUtilitySystemAJ0 FUN_180942890
+
+// 原始函数名：FUN_1809428a2 - 工具系统状态检查函数AK0
+// 功能：检查工具系统运行状态
+#define CheckUtilitySystemStatusAK0 FUN_1809428a2
+
+// 原始函数名：FUN_1809428d8 - 工具系统清理函数AL0
+// 功能：清理工具系统临时数据
+#define CleanupUtilitySystemAL0 FUN_1809428d8
+
+// 原始函数名：FUN_1809428e0 - 工具系统重置函数AM0
+// 功能：重置工具系统到初始状态
+#define ResetUtilitySystemAM0 FUN_1809428e0
+
+// 原始函数名：FUN_1809428f2 - 工具系统暂停函数AN0
+// 功能：暂停工具系统运行
+#define PauseUtilitySystemAN0 FUN_1809428f2
+
+// 原始函数名：FUN_180942928 - 工具系统恢复函数AO0
+// 功能：恢复工具系统运行
+#define ResumeUtilitySystemAO0 FUN_180942928
+
+// 原始函数名：FUN_180942930 - 工具系统监控函数AP0
+// 功能：监控工具系统性能
+#define MonitorUtilityPerformanceAP0 FUN_180942930
+
+// 原始函数名：FUN_180942942 - 工具系统优化函数AQ0
+// 功能：优化工具系统性能
+#define OptimizeUtilityPerformanceAQ0 FUN_180942942
+
+// 原始函数名：FUN_180942978 - 工具系统诊断函数AR0
+// 功能：诊断工具系统问题
+#define DiagnoseUtilitySystemAR0 FUN_180942978
+
+// 原始函数名：FUN_180942980 - 工具系统修复函数AS0
+// 功能：修复工具系统问题
+#define RepairUtilitySystemAS0 FUN_180942980
+
+// 原始函数名：FUN_1809429f0 - 工具系统检查函数AT0
+// 功能：检查工具系统健康状态
+#define CheckUtilityHealthAT0 FUN_1809429f0
 
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 // 功能：初始化系统事件处理器，设置事件处理回调
