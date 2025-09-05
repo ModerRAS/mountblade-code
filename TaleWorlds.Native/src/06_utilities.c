@@ -21712,19 +21712,19 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
 
 
 
-ulonglong FUN_18089b307(void)
+ulonglong ProcessDataWithValidation(void)
 
 {
-  undefined8 uVar1;
-  int in_EAX;
-  ulonglong uVar2;
-  undefined8 *registerRBX;
-  longlong unaff_RBP;
-  uint uVar3;
-  bool in_CF;
-  undefined1 auStackX_20 [4];
-  undefined1 auStackX_24 [2];
-  undefined1 auStackX_26 [2];
+  undefined8 dataHandle;
+  int registerEAX;
+  ulonglong operationResult;
+  undefined8 *dataBuffer;
+  longlong contextPointer;
+  uint validationFlag;
+  bool carryFlag;
+  undefined1 tempBuffer1 [4];
+  undefined1 tempBuffer2 [2];
+  undefined1 tempBuffer3 [2];
   
   uVar3 = in_EAX + 0x1c;
   if (in_CF) {

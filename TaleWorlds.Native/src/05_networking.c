@@ -1002,7 +1002,7 @@ void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationCon
 void *NetworkConnectionRoutingMainConfigPointer = &NetworkConnectionRoutingMainConfig;       // 网络连接路由主配置指针，指向路由主配置数据
 void *NetworkConnectionRoutingBackupConfigPointer = &NetworkConnectionRoutingBackupConfig;     // 网络连接路由备用配置指针，指向路由备用配置数据
 void *NetworkConnectionRoutingAlternativeConfigPointer = &NetworkConnectionRoutingAlternativeConfig; // 网络连接路由替代配置指针，指向路由替代配置数据
-void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig; // 网络连接路由第四配置指针，指向路由第四配置数据
+void *NetworkConnectionRoutingFallbackConfigPointer = &NetworkConnectionRoutingFallbackConfig; // 网络连接路由回退配置指针，指向路由回退配置数据
 
 /**
  * @brief 网络连接上下文模板数据
@@ -1033,14 +1033,14 @@ uint32_t NetworkConnectionProtocolConfig;                   // 网络连接协�
 // 网络连接验证配置数据
 uint32_t NetworkConnectionValidationConfig;                 // 网络连接验证配置数据，连接验证的配置参数
 
-// 网络连接路由主要配置数据
-uint32_t NetworkConnectionRoutingPrimaryConfig;            // 网络连接路由主要配置数据，路由的主要配置参数
+// 网络连接路由主配置数据
+uint32_t NetworkConnectionRoutingMainConfig;            // 网络连接路由主配置数据，路由的主要配置参数
 
-// 网络连接路由次要配置数据
-uint32_t NetworkConnectionRoutingSecondaryConfig;          // 网络连接路由次要配置数据，路由的次要配置参数
+// 网络连接路由备用配置数据
+uint32_t NetworkConnectionRoutingBackupConfig;          // 网络连接路由备用配置数据，路由的备用配置参数
 
-// 网络连接路由第三配置数据
-uint32_t NetworkConnectionRoutingTertiaryConfig;           // 网络连接路由第三配置数据，路由的第三级配置参数
+// 网络连接路由替代配置数据
+uint32_t NetworkConnectionRoutingAlternativeConfig;           // 网络连接路由替代配置数据，路由的替代配置参数
 
 // 网络连接路由第四配置数据
 uint32_t NetworkConnectionRoutingQuaternaryConfig;          // 网络连接路由第四配置数据，路由的第四级配置参数
@@ -3351,8 +3351,8 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
     if (PacketValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
-      OutputBuffer[PrimaryMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
-      OutputBuffer[SecondaryMagicNumberIndex] = (NetworkByte)SecondaryMagicNumber;
+      OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
+      OutputBuffer[SecondaryNetworkMagicNumberIndex] = (NetworkByte)SecondaryMagicNumber;
     }
   }
   
