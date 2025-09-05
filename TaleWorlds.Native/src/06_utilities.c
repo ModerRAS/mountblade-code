@@ -25761,7 +25761,7 @@ void CheckSystemStatusB0(void)
   validationStatus = (int)*(uint *)(register_R15 + 0x1c) >> 0x1f;
   memoryBaseAddress = uStack0000000000000068 >> 1;
   if (((int)((*(uint *)(register_R15 + 0x1c) ^ validationStatus) - validationStatus) < (int)memoryBaseAddress) &&
-     (inputParameter = FUN_180748010(register_R15 + 0x10,memoryBaseAddress), inputParameter != 0)) {
+     (inputParameter = QuerySystemInformationA0(register_R15 + 0x10,memoryBaseAddress), inputParameter != 0)) {
     return;
   }
   inputParameter = *(int *)(register_R15 + 0x18);
@@ -25927,7 +25927,7 @@ uint64_t ValidateAndAllocateMemory(int64_t MemoryContext, DataBuffer *Allocation
     }
   }
 ValidationLabelA:
-  allocatedAddress = FUN_1808ad600(AllocationParams,MemoryContext + 0x18);
+  allocatedAddress = AllocateMemoryA0(AllocationParams,MemoryContext + 0x18);
   if ((int)allocatedAddress == 0) {
     if (*(uint *)(AllocationParams + 8) < 0x7c) {
       memoryValidationStatus = 0;
@@ -26038,7 +26038,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
     return validationOutcome;
   }
   if (0x81 < *(uint *)(param_2 + 8)) {
-    validationOutcome = FUN_1808a79f0(param_2,param_1 + 0x58);
+    validationOutcome = ValidateDataSecurityA0(param_2,param_1 + 0x58);
     if ((int)validationOutcome != 0) {
       return validationOutcome;
     }
