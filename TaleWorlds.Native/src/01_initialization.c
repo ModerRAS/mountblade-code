@@ -1736,10 +1736,10 @@ void InitializeGameCoreSystem(void)
   }
   
   if ((PreviousNodePointer == RootNodeReference) || 
-      (GameCoreIdentifierMatchResult = memcmp(&GameCoreSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), GameCoreIdentifierMatchResult < 0)) {
+      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
     RequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
-    AllocateSystemMemory(MainSystemTablePointer, &NewNodePointer, PreviousNodePointer, RequiredMemorySize + NodeAllocationExtraSize, RequiredMemorySize);
-    PreviousNodePointer = NewNodePointer;
+    AllocateSystemMemory(MainSystemTablePointer, &AllocatedNodePointer, PreviousNodePointer, RequiredMemorySize + NodeAllocationExtraSize, RequiredMemorySize);
+    PreviousNodePointer = AllocatedNodePointer;
   }
   
   PreviousNodePointer[NodeIdentifier1Index] = GameCoreSystemIdentifier1;
