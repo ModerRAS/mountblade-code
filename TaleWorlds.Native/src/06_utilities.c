@@ -13879,7 +13879,7 @@ uint64_t InitializeResourceTablePointerStructure(int64_t ObjectContext)
               EncodingDataPointer = &EncodingTemplate;
               EncodingResourceValue = *(uint32_t *)(ResourceTableIterator + 0xc + ResourceIndexOffset * 0x10);
               EncodingFlags = 0;
-              EncodingScaleFactor = EncodingScaleFactor & 0xffffff00;
+              EncodingScaleFactor = EncodingScaleFactor & ResourceEncodingScaleMask;
               EncodeData(&EncodingDataPointer,*(uint8_t *)(ObjectContext + ObjectContextQuinaryHandleOffset));
               DecodingDataPointer = &DecodingTemplate;
               DecodingResourceValue = *(uint32_t *)(ResourceTableIterator + 0xc + LocalContextAddress * 0x10);
