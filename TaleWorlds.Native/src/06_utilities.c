@@ -10970,7 +10970,8 @@ void UtilityNoOperationD(void)
 
 
 
-undefined8 FUN_180894000(longlong param_1,longlong param_2)
+// 系统初始化函数B0 - 验证系统参数并执行初始化操作
+undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
 
 {
   float fVar1;
@@ -11010,7 +11011,8 @@ undefined8 FUN_180894000(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180894037(void)
+// 系统清理函数B0 - 清理系统资源并释放内存
+undefined8 CleanupSystemB0(void)
 
 {
   float fVar1;
@@ -11048,7 +11050,8 @@ undefined8 FUN_180894037(void)
 
 
 
-undefined8 FUN_18089406b(void)
+// 系统重置函数B0 - 重置系统状态到初始值
+undefined8 ResetSystemB0(void)
 
 {
   float fVar1;
@@ -11116,7 +11119,8 @@ void InitializeUtilitySystemContext(longlong contextHandle, longlong systemData)
 
 
 
-undefined8 FUN_180894300(longlong param_1,longlong param_2)
+// 系统验证函数B0 - 验证系统参数并执行相应操作
+undefined8 ValidateSystemB0(longlong validationContext,longlong systemContext)
 
 {
   undefined8 uVar1;
