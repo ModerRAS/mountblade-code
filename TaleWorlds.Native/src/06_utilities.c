@@ -98954,7 +98954,18 @@ void ExecuteSystemResourceTableBulkCleanupOffset158(uint8_t ObjectContext, int64
 
 
 
-void Unwind_18090ff90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源哈希状态和内存地址计算
+ * 
+ * 该函数处理资源哈希状态地址，进行内存地址计算和资源索引管理。
+ * 它会计算内存地址增量，验证资源索引，并在需要时调用系统清理处理器。
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090ff90
+ */
+void ProcessResourceHashStatusAndMemoryAddress(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
