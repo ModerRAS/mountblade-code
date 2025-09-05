@@ -91108,7 +91108,6 @@ void SetDefaultExceptionHandler17(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942480(void)
 /**
  * @brief 设置默认异常处理器18
  * 
@@ -91120,7 +91119,7 @@ void SetDefaultExceptionHandler17(void)
 void SetDefaultExceptionHandler18(void)
 
 {
-  _DAT_180bfa230 = &DefaultExceptionHandlerB;
+  ExceptionHandlerTablePointer18 = &DefaultExceptionHandlerB;
   return;
 }
 
