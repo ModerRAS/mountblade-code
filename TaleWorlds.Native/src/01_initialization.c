@@ -329,7 +329,7 @@
  * 
  * @return 无返回值
  */
-void HandleSystemMemoryPage(long long SystemMemoryPagePointer);
+void HandleSystemMemoryPage(long long MemoryPagePointer);
 
 /**
  * @brief 释放系统资源
@@ -352,7 +352,7 @@ void ReleaseSystemResources(void);
  * @param DataSource 源数据，用于初始化缓冲区的数据源
  * @return 无返回值
  */
-void InitializeSystemMemoryBuffer(void* SystemMemoryTemplate, long long SystemBufferCapacity, void* SystemDataSource);
+void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferCapacity, void* DataSource);
 
 /**
  * @brief 写入数据到缓冲区
@@ -365,7 +365,7 @@ void InitializeSystemMemoryBuffer(void* SystemMemoryTemplate, long long SystemBu
  * @param ... 可变参数，表示要写入的数据
  * @return 无返回值
  */
-void StoreDataInBuffer(void* SystemBuffer, long long SystemDataSize, ...);
+void StoreDataInBuffer(void* Buffer, long long DataSize, ...);
 
 /**
  * @brief 初始化系统数据表
@@ -397,7 +397,7 @@ void InitializeSystemMemoryManager(void);
  * @param bufferContext 缓冲区上下文，包含缓冲区的相关信息
  * @return 分配器指针，返回初始化后的内存分配器指针
  */
-void* InitializeSystemMemoryAllocator(long long SystemMemoryHandle, void* SystemBufferContext);
+void* InitializeSystemMemoryAllocator(long long MemoryHandle, void* BufferContext);
 
 /**
  * @brief 初始化系统数据
@@ -409,7 +409,7 @@ void* InitializeSystemMemoryAllocator(long long SystemMemoryHandle, void* System
  * @param TemplateContext 模板上下文，包含数据模板的相关信息
  * @return 无返回值
  */
-void InitializeSystemData(void* SystemDataContext, void* SystemTemplateContext);
+void InitializeSystemData(void* DataContext, void* TemplateContext);
 
 /**
  * @brief 验证系统配置
@@ -421,7 +421,7 @@ void InitializeSystemData(void* SystemDataContext, void* SystemTemplateContext);
  * @param ConfigurationContext 配置上下文，包含配置的相关信息
  * @return 验证结果，返回0表示成功，非0表示失败
  */
-int VerifySystemConfiguration(long long SystemConfigurationFlags, void* SystemConfigurationContext);
+int VerifySystemConfiguration(long long ConfigurationFlags, void* ConfigurationContext);
 
 /**
  * @brief 获取系统状态标志
@@ -33764,12 +33764,12 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   stackValue10 = SystemAllocationFlags;
   *(void* *)(SystemAllocationFlags + 0xf0) = 0;
   systemStateFlags = 3;
-  stackManagement1 = &stackManagement1;
-  stackManagement2 = &stackManagement1;
-  stackManagement3 = (void* *******)0x0;
-  StackPointer3 = 0;
-  StackPointer4 = 0;
-  stackValue16 = *SystemGlobalStatusFlags;
+  stackBasePointer = &stackBasePointer;
+  stackFramePointer = &stackBasePointer;
+  stackTopPointer = (void* *******)0x0;
+  localStackPointer3 = 0;
+  localStackPointer4 = 0;
+  globalStatusFlags = *SystemGlobalStatusFlags;
   stackValue5 = 0;
   SystemAllocationFlags = *(long long *)(stackValue16 + 0x8a8);
   if (*(long long *)(stackValue16 + 0x8b0) - SystemAllocationFlags >> 5 != 0) {
@@ -34026,7 +34026,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   }
   SystemEncryptionKey = 0x3f8000003f800000;
   SystemOperationCounter = 0x3f000000;
-  SystemFlag3c = 0;
+  SystemInitializationFlag = 0;
   if ((void* *******)SystemDataStructurePointer358 != &pppppDataBufferPtr360) {
     SystemAllocationFlags = SystemMemoryAllocationOffset310 + 0x150;
     threadLocalStoragePointer = (void* *******)SystemDataStructurePointer358;
@@ -48946,7 +48946,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   int StackVariable48;
   uint32_t StackUnsignedValue44;
   int StackInteger40;
-  uint32_t SystemFlag3c;
+  uint32_t SystemInitializationFlag;
   ulong long SystemContextValue;
   ulong long SystemContextReference;
   
@@ -48993,7 +48993,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         StackInteger210 = (int)ResourceDataIndex4 + StackInteger48 * -1000000000;
         SystemAllocationFlags.LowPart = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
         SystemFlagComponent = SystemAllocationFlags.LowPart;
-        SystemFlag3c = SystemMaxOperationCountc;
+        SystemInitializationFlag = SystemMaxOperationCountc;
         SystemAllocationFlags = SystemAllocationFlags;
         StackInteger40 = StackInteger210;
         SystemInitializationStatusPrimary = _Mtx_current_owns(ResourceDataIndex3);
