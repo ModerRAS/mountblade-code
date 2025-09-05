@@ -337,9 +337,9 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 /**
  * @brief 批处理数据魔数
  * 
- * 表示批处理数据的魔数值，ASCII码为"HCTB"，用于批处理数据包识别
+ * 表示批处理数据的魔数值，ASCII码为"BTCH"，用于批处理数据包识别
  */
-#define NetworkMagicBatchData 0x42544348                 // "HCTB" - 表示批处理数据魔数
+#define NetworkMagicBatchData 0x42544348                 // "BTCH" - 表示批处理数据魔数
 /**
  * @brief 无效数据包魔数
  * 
