@@ -1608,6 +1608,14 @@
 // 功能：加密工具系统数据
 #define EncryptUtilityData FUN_1809424a0
 
+// 原始函数名：FUN_18089de72 - 系统数据验证和状态查询函数
+// 功能：验证系统数据的有效性，返回状态信息
+#define ValidateSystemDataAndReturnStatus FUN_18089de72
+
+// 原始函数名：FUN_18089df40 - 系统安全检查和验证函数
+// 功能：执行系统的安全检查和验证操作
+#define ExecuteSystemSecurityCheck FUN_18089df40
+
 // 原始函数名：FUN_1808920e0 - 验证并执行操作函数
 // 功能：验证上下文句柄并执行相应操作，如果验证失败则调用错误处理函数
 #define ValidateAndExecuteOperation FUN_1808920e0
@@ -30001,41 +30009,68 @@ uint64_t FUN_18089de39(void)
 
 
 
-uint64_t FUN_18089de72(void)
+/**
+ * @brief 系统数据验证和状态查询函数
+ * 
+ * 该函数负责验证系统数据的有效性，并根据验证结果返回相应的状态信息。
+ * 函数会检查多个系统状态标志，执行安全验证，并在必要时清理系统资源。
+ * 
+ * @details 函数执行以下操作：
+ * 1. 检查系统寄存器状态是否满足最低要求
+ * 2. 验证系统数据的安全性和完整性
+ * 3. 执行数据序列验证
+ * 4. 在验证失败时清理系统资源
+ * 5. 返回验证结果或状态码
+ * 
+ * @note 该函数在系统状态检查和数据验证流程中被调用
+ * @note 函数使用多个安全检查点确保系统稳定性
+ * 
+ * @return uint64_t 返回验证结果或系统状态码
+ * @retval 0 验证失败或系统状态异常
+ * @retval 非0 验证成功或特定状态码
+ */
+uint64_t ValidateSystemDataAndReturnStatus(void)
 
 {
-  uint64_t dataValue;
-  DataBuffer *registerContext;
-  int64_t systemContext;
-  uint register_EDI;
+  uint64_t validationStatus;                           // 验证状态返回值
+  DataBuffer *registerContext;                        // 寄存器上下文指针
+  int64_t systemContext;                              // 系统上下文
+  uint validationRegister;                             // 验证寄存器值
   
+  // 检查系统状态是否满足最低要求
   if (*(uint *)(registerContext + 8) < 0x39) {
-    dataValue = 0;
+    validationStatus = 0;
   }
+  // 检查系统错误状态并执行操作
   else if (*(int *)(registerContext[1] + 0x18) == 0) {
-    dataValue = OperateDataO0(*registerContext,systemContext + 0xf4,4);
+    validationStatus = OperateDataO0(*registerContext,systemContext + 0xf4,4);
   }
+  // 使用寄存器值作为状态
   else {
-    dataValue = (uint64_t)register_EDI;
+    validationStatus = (uint64_t)validationRegister;
   }
-  if ((int)dataValue == 0) {
+  
+  // 如果初始验证失败，执行额外的验证流程
+  if ((int)validationStatus == 0) {
     if (*(uint *)(registerContext + 8) < 0x5e) {
-      register_EDI = 0;
+      validationRegister = 0;
     }
+    // 执行安全验证检查
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      register_EDI = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
+      validationRegister = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
     }
-    if (register_EDI == 0) {
-      if ((*(uint *)(registerContext + 8) < 0x85) || (dataValue = ValidateDataSequence(), (int)dataValue == 0)) {
-                    // WARNING: Subroutine does not return
+    // 如果验证失败，执行系统资源清理
+    if (validationRegister == 0) {
+      if ((*(uint *)(registerContext + 8) < 0x85) || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0)) {
+        // WARNING: Subroutine does not return
         CleanupSystemResourcesA0();
       }
     }
     else {
-      dataValue = (uint64_t)register_EDI;
+      validationStatus = (uint64_t)validationRegister;
     }
   }
-  return dataValue;
+  return validationStatus;
 }
 
 
@@ -30050,52 +30085,74 @@ void ResetSystemComponentsC0(void)
 
 
 
-DataBuffer ExecuteSystemCheckA1(int64_t param_1,DataBuffer *param_2)
+/**
+ * @brief 系统安全检查和验证函数
+ * 
+ * 该函数执行系统的安全检查和验证操作，包括端口控制请求验证、上下文数据获取等。
+ * 函数使用多层安全验证机制确保系统操作的安全性。
+ * 
+ * @details 函数执行以下操作：
+ * 1. 执行安全验证操作，验证系统上下文
+ * 2. 验证端口控制请求的有效性
+ * 3. 获取上下文数据并进行验证
+ * 4. 根据验证结果返回相应的状态
+ * 
+ * @param param_1 系统参数上下文
+ * @param param_2 数据缓冲区指针
+ * 
+ * @note 该函数在系统安全检查流程中被调用
+ * @note 函数使用多重验证机制确保安全性
+ * 
+ * @return DataBuffer 返回验证结果或错误状态
+ * @retval 0x1c 验证失败或系统错误状态
+ * @retval 其他值 验证成功或特定状态码
+ */
+DataBuffer ExecuteSystemSecurityCheck(int64_t systemParameter,DataBuffer *dataBuffer)
 
 {
-  DataBuffer dataValue;
-  DataBuffer functionReturnValue;
-  ByteFlag ainputDataWord [32];
-  ByteFlag auStack_28 [32];
+  DataBuffer validationData;                            // 验证数据缓冲区
+  DataBuffer validationStatus;                          // 验证状态返回值
+  ByteFlag inputDataBuffer [32];                        // 输入数据缓冲区
+  ByteFlag stackBuffer [32];                            // 栈缓冲区
   
-  functionReturnValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x46464553);
-  if (((((int)functionReturnValue == 0) &&
-       (functionReturnValue = ExecuteSecurityValidation(param_2,ainputDataWord,0,0x42464553), (int)functionReturnValue == 0)) &&
-      (functionReturnValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)functionReturnValue == 0)) &&
-     ((0x5a < *(uint *)(param_2 + 8) ||
-      (functionReturnValue = GetContextData(param_2,param_1 + 0x44), (int)functionReturnValue == 0)))) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
+  validationStatus = ExecuteSecurityValidation(dataBuffer,stackBuffer,1,0x46464553);
+  if (((((int)validationStatus == 0) &&
+       (validationStatus = ExecuteSecurityValidation(dataBuffer,inputDataBuffer,0,0x42464553), (int)validationStatus == 0)) &&
+      (validationStatus = ValidatePortControlRequest(dataBuffer,systemParameter + 0x10), (int)validationStatus == 0)) &&
+     ((0x5a < *(uint *)(dataBuffer + 8) ||
+      (validationStatus = GetContextData(dataBuffer,systemParameter + 0x44), (int)validationStatus == 0)))) {
+    if (*(int *)(dataBuffer[1] + 0x18) != 0) {
       return 0x1c;
     }
-    dataValue = *param_2;
-    functionReturnValue = OperateDataO0(dataValue,param_1 + 0x4c,4);
-    if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(dataValue,param_1 + 0x50,2), (int)functionReturnValue == 0)) &&
-       (functionReturnValue = OperateDataO0(dataValue,param_1 + 0x52,2), (int)functionReturnValue == 0)) {
-      functionReturnValue = OperateDataO0(dataValue,param_1 + 0x54,8);
+    validationData = *dataBuffer;
+    validationStatus = OperateDataO0(validationData,systemParameter + 0x4c,4);
+    if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(validationData,systemParameter + 0x50,2), (int)validationStatus == 0)) &&
+       (validationStatus = OperateDataO0(validationData,systemParameter + 0x52,2), (int)validationStatus == 0)) {
+      validationStatus = OperateDataO0(validationData,systemParameter + 0x54,8);
     }
-    if ((int)functionReturnValue == 0) {
-      if (*(int *)(param_2[1] + 0x18) != 0) {
+    if ((int)validationStatus == 0) {
+      if (*(int *)(dataBuffer[1] + 0x18) != 0) {
         return 0x1c;
       }
-      functionReturnValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x48);
-      if ((int)functionReturnValue == 0) {
-        if (*(uint *)(param_2 + 8) < 0x3d) {
-          functionReturnValue = 0;
+      validationStatus = ValidateDataWithSecurityCheckA2(*dataBuffer,systemParameter + 0x48);
+      if ((int)validationStatus == 0) {
+        if (*(uint *)(dataBuffer + 8) < 0x3d) {
+          validationStatus = 0;
         }
-        else if (*(int *)(param_2[1] + 0x18) == 0) {
-          functionReturnValue = GetMemoryAddressA0(*param_2,param_1 + 0x40);
+        else if (*(int *)(dataBuffer[1] + 0x18) == 0) {
+          validationStatus = GetMemoryAddressA0(*dataBuffer,systemParameter + 0x40);
         }
         else {
-          functionReturnValue = 0x1c;
+          validationStatus = 0x1c;
         }
-        if ((int)functionReturnValue == 0) {
-                    // WARNING: Subroutine does not return
-          ExecutePortControlOperation(param_2,ainputDataWord);
+        if ((int)validationStatus == 0) {
+          // WARNING: Subroutine does not return
+          ExecutePortControlOperation(dataBuffer,inputDataBuffer);
         }
       }
     }
   }
-  return functionReturnValue;
+  return validationStatus;
 }
 
 
