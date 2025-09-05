@@ -1470,7 +1470,7 @@ int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketDat
  * @note 此函数在网络连接建立时调用，确保连接的安全性
  * @warning 如果安全验证失败，连接将被拒绝
  */
-void ValidateNetworkSecurity(uint64_t SecurityValue);
+void ValidateNetworkSecurity(uint64_t SecurityValidationValue);
 
 /**
  * @brief 清理网络连接上下文
@@ -3059,7 +3059,7 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
  * @warning 实际应用中需要实现完整的头部验证逻辑
  * @see NetworkMagicLiveConnection, NetworkMagicValidation
  */
-NetworkHandle ValidatePacketHeaderSecurity(int64_t ConnectionContext, int64_t PacketData, uint32_t MagicNumber)
+NetworkHandle ValidatePacketHeaderSecurity(int64_t ConnectionContext, int64_t PacketData, uint32_t HeaderMagicNumber)
 {
   // 简化实现：直接返回成功状态
   // 实际实现应该包括：
@@ -3175,7 +3175,7 @@ NetworkHandle HandleConnectionPacketData(int64_t ConnectionContext, int64_t Pack
  * @note 此函数会检查上下文数据的完整性和安全性
  * @warning 如果上下文验证失败，连接将被视为不安全并终止
  */
-NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t ContextOffset)
+NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t ContextValidationOffset)
 {
   // 连接上下文验证变量
   uint32_t ContextValidationResult;              // 上下文验证结果
@@ -3257,7 +3257,7 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
  * @note 此函数会根据处理模式选择不同的数据处理策略
  * @warning 如果数据处理失败，系统会记录错误日志并尝试恢复
  */
-NetworkHandle ProcessNetworkPacketDataWithOffset(NetworkHandle *PacketData, int64_t HandleOffset, uint32_t ProcessingMode, int64_t ConnectionContext)
+NetworkHandle ProcessNetworkPacketDataWithOffset(NetworkHandle *PacketData, int64_t PacketHandleOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
 {
   // 数据包数据处理变量
   uint32_t PacketDataProcessingResult;             // 数据包数据处理结果
@@ -3275,15 +3275,15 @@ NetworkHandle ProcessNetworkPacketDataWithOffset(NetworkHandle *PacketData, int6
   }
   
   // 验证句柄偏移量有效性
-  if (HandleOffset >= 0) {
+  if (PacketHandleOffset >= 0) {
     PacketDataValidationResult = NetworkOperationSuccess;  // 数据验证成功
   }
   
   // 根据处理模式处理数据
-  if (ProcessingMode == NetworkOperationSuccess) {
+  if (DataProcessingMode == NetworkOperationSuccess) {
     // 基本处理模式
     PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult;
-  } else if (ProcessingMode == NetworkPacketStrictDecodingMode) {
+  } else if (DataProcessingMode == NetworkPacketStrictDecodingMode) {
     // 严格处理模式
     PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult & NetworkOperationSuccess;
   } else {
@@ -3307,7 +3307,7 @@ NetworkHandle ProcessNetworkPacketDataWithOffset(NetworkHandle *PacketData, int6
  * @note 此函数会更新数据包状态并清理临时资源
  * @warning 如果完成处理失败，可能会导致资源泄漏或状态不一致
  */
-NetworkHandle FinalizePacketProcessingWithOffset(NetworkHandle *PacketData, int64_t FinalizeOffset, uint32_t FinalizeValue)
+NetworkHandle FinalizePacketProcessingWithOffset(NetworkHandle *PacketData, int64_t ProcessingFinalizeOffset, uint32_t ProcessingFinalizeValue)
 {
   // 数据包完成处理变量
   uint32_t PacketFinalizationResult;              // 数据包完成处理结果
@@ -3325,12 +3325,12 @@ NetworkHandle FinalizePacketProcessingWithOffset(NetworkHandle *PacketData, int6
   }
   
   // 验证完成偏移量有效性
-  if (FinalizeOffset >= 0) {
+  if (ProcessingFinalizeOffset >= 0) {
     PacketResourceCleanupResult = NetworkOperationSuccess;  // 资源清理成功
   }
   
   // 验证完成值有效性
-  if (FinalizeValue != 0) {
+  if (ProcessingFinalizeValue != 0) {
     PacketStatusUpdateResult &= 0x01;  // 完成值验证通过
   }
   
