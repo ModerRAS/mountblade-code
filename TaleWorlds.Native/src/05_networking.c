@@ -138,13 +138,13 @@ static int64_t CalculateContextParameterOffset(int64_t *Context)
  * 计算连接上下文数据的偏移量，用于访问上下文数据
  * 
  * @param ContextAddress 上下文地址
- * @param Buffer 缓冲区指针
- * @param Pointer 状态指针
+ * @param ContextBuffer 上下文缓冲区指针
+ * @param StatusPointer 状态指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *Buffer, void *Pointer)
+static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *ContextBuffer, void *StatusPointer)
 {
-    return (ContextAddress - (int64_t)Buffer) + (int64_t)Pointer;
+    return (ContextAddress - (int64_t)ContextBuffer) + (int64_t)StatusPointer;
 }
 
 /**
@@ -153,13 +153,13 @@ static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *Buffer, 
  * 计算连接上下文中最后一个条目的偏移量
  * 
  * @param ContextAddress 上下文地址
- * @param Buffer 缓冲区指针
- * @param Pointer 状态指针
+ * @param ContextBuffer 上下文缓冲区指针
+ * @param StatusPointer 状态指针
  * @return int64_t 计算出的最后一个条目偏移量地址
  */
-static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *Buffer, void *Pointer)
+static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *ContextBuffer, void *StatusPointer)
 {
-    return CalculateContextDataOffset(ContextAddress, Buffer, Pointer) - 4 + (int64_t)((NetworkConnectionStatus *)Pointer + ConnectionContextEntrySize);
+    return CalculateContextDataOffset(ContextAddress, ContextBuffer, StatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)StatusPointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -168,13 +168,13 @@ static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *Buf
  * 计算网络状态指针的偏移量
  * 
  * @param ContextIdentifier 上下文标识符
- * @param StatusPointer 状态指针
- * @param StatusIterator 状态迭代器
+ * @param StatusBasePointer 状态基础指针
+ * @param StatusIteratorPointer 状态迭代器指针
  * @return int64_t 计算出的状态指针偏移量地址
  */
-static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *StatusPointer, void *StatusIterator)
+static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
 {
-    return (ContextIdentifier - (int64_t)StatusPointer) + (int64_t)StatusIterator;
+    return (ContextIdentifier - (int64_t)StatusBasePointer) + (int64_t)StatusIteratorPointer;
 }
 
 /**
@@ -183,13 +183,13 @@ static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *Sta
  * 计算网络状态中最后一个条目的偏移量
  * 
  * @param ContextIdentifier 上下文标识符
- * @param StatusPointer 状态指针
- * @param StatusIterator 状态迭代器
+ * @param StatusBasePointer 状态基础指针
+ * @param StatusIteratorPointer 状态迭代器指针
  * @return int64_t 计算出的最后一个状态条目偏移量地址
  */
-static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *StatusPointer, void *StatusIterator)
+static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
 {
-    return CalculateStatusPointerOffset(ContextIdentifier, StatusPointer, StatusIterator) - 4 + (int64_t)((NetworkStatus *)StatusIterator + ConnectionContextEntrySize);
+    return CalculateStatusPointerOffset(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
 }
 
 // 网络连接相关偏移量 - 连接上下文和状态管理
@@ -2111,25 +2111,25 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
 {
   // 网络连接请求处理变量
   int64_t NetworkConnectionContextIdentifier;      // 网络连接上下文标识符
-  int64_t *ConnectionValidationData;                // 网络连接验证结果数据指针
-  int32_t ConnectionValidationResultCode;           // 网络连接验证结果码
+  int64_t *ConnectionValidationDataPointer;        // 网络连接验证结果数据指针
+  int32_t ConnectionValidationStatusCode;          // 网络连接验证状态码
   NetworkHandle ConnectionContextHandle;           // 网络连接上下文句柄
   
   NetworkConnectionContextIdentifier = 0;
-  ConnectionValidationResultCode = 0;  // 初始化验证结果码
-  if (ConnectionValidationResultCode == 0) {
-    if ((0 < *(int *)CalculateContextParameterOffset(ConnectionValidationData)) && (*ConnectionValidationData != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationData, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+  ConnectionValidationStatusCode = 0;  // 初始化验证状态码
+  if (ConnectionValidationStatusCode == 0) {
+    if ((0 < *(int *)CalculateContextParameterOffset(ConnectionValidationDataPointer)) && (*ConnectionValidationDataPointer != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationDataPointer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *ConnectionValidationData = NetworkConnectionContextIdentifier;
-    *(int *)CalculateContextParameterOffset(ConnectionValidationData) = ConnectionValidationResultCode;
+    *ConnectionValidationDataPointer = NetworkConnectionContextIdentifier;
+    *(int *)CalculateContextParameterOffset(ConnectionValidationDataPointer) = ConnectionValidationStatusCode;
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxSignedInt32Value) {
     ConnectionContextHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
     if (ConnectionContextHandle != 0) {
-      if ((int)ConnectionValidationData[ConnectionDataSizeIndex] != 0) {
-          memcpy((void *)ConnectionContextHandle, *ConnectionValidationData, (int64_t)(int)ConnectionValidationData[ConnectionDataSizeIndex]);
+      if ((int)ConnectionValidationDataPointer[ConnectionDataSizeIndex] != 0) {
+          memcpy((void *)ConnectionContextHandle, *ConnectionValidationDataPointer, (int64_t)(int)ConnectionValidationDataPointer[ConnectionDataSizeIndex]);
       }
       return ConnectionContextHandle;
     }
@@ -2590,7 +2590,7 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
       }
       PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
       if ((((int)PacketValidationStatusCode == 0) && (PacketValidationStatusCode = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)PacketValidationStatusCode == 0)) &&
-         (PacketValidationStatusCode = ProcessNetworkPacketDataWithOffset(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)PacketValidationStatusCode == 0)) {
+         (PacketValidationStatusCode = ProcessNetworkPacketDataWithHandleOffset(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)PacketValidationStatusCode == 0)) {
           FinalizePacketProcessing(PacketData, ConnectionSecurityBuffer);
       }
     }
@@ -3201,7 +3201,7 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
  * @note 此函数会根据处理模式选择不同的数据处理策略
  * @warning 如果数据处理失败，系统会记录错误日志并尝试恢复
  */
-NetworkHandle ProcessNetworkPacketDataWithOffset(NetworkHandle *PacketData, int64_t PacketHandleOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
+NetworkHandle ProcessNetworkPacketDataWithHandleOffset(NetworkHandle *PacketData, int64_t PacketHandleOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
 {
   // 数据包数据处理变量
   uint32_t PacketDataProcessingResult;             // 数据包数据处理结果
@@ -3251,7 +3251,7 @@ NetworkHandle ProcessNetworkPacketDataWithOffset(NetworkHandle *PacketData, int6
  * @note 此函数会更新数据包状态并清理临时资源
  * @warning 如果完成处理失败，可能会导致资源泄漏或状态不一致
  */
-NetworkHandle FinalizePacketProcessingWithOffset(NetworkHandle *PacketData, int64_t ProcessingFinalizeOffset, uint32_t ProcessingFinalizeValue)
+NetworkHandle FinalizePacketProcessingWithFinalizeOffset(NetworkHandle *PacketData, int64_t ProcessingFinalizeOffset, uint32_t ProcessingFinalizeValue)
 {
   // 数据包完成处理变量
   uint32_t PacketFinalizationResult;              // 数据包完成处理结果
