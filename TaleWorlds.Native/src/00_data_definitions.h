@@ -1271,7 +1271,7 @@ int InitializeBasicStringProcessor(void)
   StringProcessorA_Base = &SystemStringDataTemplate;
   StringProcessorA_BufferPtr = &StringProcessorA_Buffer;
   StringProcessorA_Buffer = 0;
-  StringProcessorA_Length = 0xd;
+  StringProcessorAlpha_Length = 0xd;
   strcpy_s(&StringProcessorA_Buffer,16,&StringProcessorATemplate,StringProcessorAFlags,SystemMutexFlags);
   CallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorA_Callback);
   return (CallbackRegistrationResult != 0) - 1;
@@ -1289,7 +1289,7 @@ int InitializeAdvancedStringProcessor(void)
   StringProcessorB_Base = &SystemStringDataTemplate;
   StringProcessorB_BufferPtr = &StringProcessorB_Buffer;
   StringProcessorB_Buffer = 0;
-  StringProcessorB_Length = 0xf;
+  StringProcessorBeta_Length = 0xf;
   strcpy_s(&StringProcessorB_Buffer,16,&StringProcessorBTemplate,StringProcessorBFlags,SystemMutexFlags);
   SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorB_Callback);
   return (SystemCallbackRegistrationResult != 0) - 1;
@@ -1307,7 +1307,7 @@ int InitializeEnhancedStringProcessor(void)
   GlobalStringProcessorC_Base = &StringProcessorDataTemplate;
   GlobalStringProcessorC_BufferPtr = &GlobalStringProcessorC_Buffer;
   GlobalStringProcessorC_Buffer = 0;
-  GlobalStringProcessorC_Length = 0xf;
+  GlobalStringProcessorGamma_Length = 0xf;
   strcpy_s(&GlobalStringProcessorC_Buffer,16,&StringProcessorCTemplate,StringProcessorCFlags,SystemMutexFlags);
   SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorC_Callback);
   return (SystemCallbackRegistrationResult != 0) - 1;
@@ -1325,7 +1325,7 @@ int InitializeOptimizedStringProcessor(void)
   GlobalStringProcessorD_Base = &StringProcessorDataBaseD;
   GlobalStringProcessorD_BufferPtr = &GlobalStringProcessorD_Buffer;
   GlobalStringProcessorD_Buffer = 0;
-  GlobalStringProcessorD_Length = 0xd;
+  GlobalStringProcessorDelta_Length = 0xd;
   strcpy_s(&GlobalStringProcessorD_Buffer,16,&StringProcessorDataTemplateD,StringProcessorDFlags,SystemMutexFlags);
   SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorD_Callback);
   return (SystemCallbackRegistrationResult != 0) - 1;
