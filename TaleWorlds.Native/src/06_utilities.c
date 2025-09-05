@@ -14143,9 +14143,9 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
   undefined4 auStackX_18 [2];
   
   auStackX_18[0] = 0;
-  uVar2 = ExecuteSystemDataProcessingA0(param_2,param_1 + 0x20,auStackX_18);
-  if ((int)uVar2 == 0) {
-    calculatedOffset = GetOperationRangeDataA0(param_2 + 0x60,auStackX_18[0]);
+  operationResult = ExecuteSystemDataProcessingA0(operationContext,systemContext + 0x20,operationBuffer);
+  if ((int)operationResult == 0) {
+    calculatedOffset = GetOperationRangeDataA0(operationContext + 0x60,operationBuffer[0]);
     if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
@@ -22691,9 +22691,9 @@ undefined8 ProcessDataCacheA0(longlong param_1,undefined8 *param_2)
        (uVar1 = ValidatePortControlRequest(param_2,auStack_58,0,0x42464542), (int)uVar1 == 0)) &&
       (uVar1 = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
-      (uVar1 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
+      (uVar1 = ManageSystemMemoryA0(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = FUN_1808a2890(*param_2,param_1 + 0x60,0x25);
+      uVar1 = QuerySystemStatusA0(*param_2,param_1 + 0x60,0x25);
       if ((int)uVar1 == 0) {
         if (*(uint *)(param_2 + 8) < 0x3d) {
           uVar1 = 0;
