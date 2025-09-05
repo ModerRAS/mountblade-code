@@ -18013,7 +18013,7 @@ void ProcessFloatingPointDataA0(void)
   DataWord uStackX_20;
   float fStackX_24;
   uint8_t *in_stack_00000030;
-  int in_stack_00000038;
+  int stackContextParameter;
   DataWord stackParameterOffset;
   float in_stack_00000048;
   
@@ -18336,7 +18336,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   char register_SIL;
   int64_t *destinationIndexRegister;
   ByteFlag auStackX_20 [8];
-  uint64_t in_stack_00000220;
+  uint64_t stackMemoryAddress;
   
   inputParameter = (**(FunctionPointer**)(inputAccumulatorRegister + 0x10))();
   ProcessData(auStackX_20 + inputParameter,0x200 - inputParameter,10);
@@ -18360,7 +18360,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   int inputParameter;
   char register_SIL;
   int64_t *destinationIndexRegister;
-  uint64_t in_stack_00000220;
+  uint64_t stackMemoryAddress;
   
   if ((register_SIL == '\0') && (inputParameter = (**(FunctionPointer**)(*destinationIndexRegister + 0x18))(), inputParameter == 0)) {
     *(ByteFlag *)(destinationIndexRegister + 4) = 0;
