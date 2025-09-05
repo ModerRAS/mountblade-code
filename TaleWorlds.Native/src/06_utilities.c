@@ -13850,22 +13850,22 @@ undefined8 ProcessEventA0(longlong eventContext,longlong systemContext)
   longlong dataRangeOffset;
   undefined4 eventDataBuffer [2];
   
-  auStackX_10[0] = 0;
-  uVar2 = ProcessSystemDataTransferA0(param_2 + 0x60,param_1 + 0x10,auStackX_10);
-  if ((int)uVar2 == 0) {
-    calculatedOffset = GetOperationRangeDataA0(param_2 + 0x60,auStackX_10[0]);
-    if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
+  eventDataBuffer[0] = 0;
+  operationResult = ProcessSystemDataTransferA0(systemContext + 0x60,eventContext + 0x10,eventDataBuffer);
+  if ((int)operationResult == 0) {
+    dataRangeOffset = GetOperationRangeDataA0(systemContext + 0x60,eventDataBuffer[0]);
+    if ((*(uint *)(dataRangeOffset + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    uVar2 = ProcessDataValidationA0(calculatedOffset,param_1 + 0x1d,param_1 + 0x18);
-    if ((int)uVar2 == 0) {
-      fVar1 = *(float *)(param_1 + 0x18);
-      if ((fVar1 < *(float *)(calculatedOffset + 0x38)) ||
-         (*(float *)(calculatedOffset + 0x3c) <= fVar1 && fVar1 != *(float *)(calculatedOffset + 0x3c))) {
-        uVar2 = 0x1c;
+    operationResult = ProcessDataValidationA0(dataRangeOffset,eventContext + 0x1d,eventContext + 0x18);
+    if ((int)operationResult == 0) {
+      eventDataValue = *(float *)(eventContext + 0x18);
+      if ((eventDataValue < *(float *)(dataRangeOffset + 0x38)) ||
+         (*(float *)(dataRangeOffset + 0x3c) <= eventDataValue && eventDataValue != *(float *)(dataRangeOffset + 0x3c))) {
+        operationResult = 0x1c;
       }
       else {
-        uVar2 = ValidateOperationRangeA0(param_2 + 0x60,auStackX_10[0]);
+        operationResult = ValidateOperationRangeA0(systemContext + 0x60,eventDataBuffer[0]);
         if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
           CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -22660,9 +22660,9 @@ undefined8 ProcessDataCacheA0(longlong param_1,undefined8 *param_2)
   undefined1 dataBufferA [32];
   undefined1 dataBufferB [48];
   
-  uVar1 = FUN_1808ddc20(param_2,auStack_38,1,0x46464542);
+  uVar1 = ValidatePortControlRequest(param_2,auStack_38,1,0x46464542);
   if (((((int)uVar1 == 0) &&
-       (uVar1 = FUN_1808ddc20(param_2,auStack_58,0,0x42464542), (int)uVar1 == 0)) &&
+       (uVar1 = ValidatePortControlRequest(param_2,auStack_58,0,0x42464542), (int)uVar1 == 0)) &&
       (uVar1 = FUN_180899360(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
       (uVar1 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
@@ -22877,8 +22877,8 @@ void ExecuteSystemDataProcessing(longlong dataContext, undefined8 operationHandl
   undefined1 dataBuffer1 [64];
   undefined1 dataBuffer2 [32];
   
-  processResult = FUN_1808ddc20(operationHandle,dataBuffer2,1,operationFlags);
-  if (((processResult == 0) && (processResult = FUN_1808ddc20(operationHandle,dataBuffer1,0,dataSize), processResult == 0)) &&
+  processResult = ValidatePortControlRequest(operationHandle,dataBuffer2,1,operationFlags);
+  if (((processResult == 0) && (processResult = ValidatePortControlRequest(operationHandle,dataBuffer1,0,dataSize), processResult == 0)) &&
      (processResult = FUN_180899360(operationHandle,dataContext + 0x10), processResult == 0)) {
     if ((dataType != '\0') && (processResult = FUN_18089d490(dataContext + 0x48,operationHandle), processResult != 0)) {
       return;
