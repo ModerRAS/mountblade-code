@@ -14184,14 +14184,14 @@ undefined8 SaveSystemConfigurationA0(longlong configHandle,longlong systemContex
 undefined8 ValidateSystemConfigurationA0(void)
 
 {
-  float fVar1;
+  float firstFloatValue;
   longlong dataContext;
   undefined8 validationStatus;
   undefined8 *pmemoryBaseAddress;
   longlong registerContext;
-  longlong unaff_RDI;
-  float fVar5;
-  undefined4 stackParameter40;
+  longlong systemContext;
+  float secondFloatValue;
+  undefined4 operationParameter;
   
   dataContext = GetSystemContextHandle();
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
