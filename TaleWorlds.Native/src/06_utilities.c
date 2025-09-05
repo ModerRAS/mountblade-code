@@ -129,6 +129,271 @@
  */
 #define ManageMemoryA0 FUN_180899891
 
+// 高级数据处理函数宏定义 (F系列)
+
+/**
+ * @brief 初始化数据块指针A0
+ * 
+ * 该函数负责初始化数据块指针，设置指针指向特定的内存地址
+ * 并根据需要释放内存
+ * 
+ * @note 原始函数名：FUN_180896800
+ */
+#define InitializeDataBlockPointerA0 FUN_180896800
+
+/**
+ * @brief 初始化数据块指针A1
+ * 
+ * 该函数负责初始化数据块指针，设置指针指向特定的内存地址
+ * 执行清理操作并根据需要释放内存
+ * 
+ * @note 原始函数名：FUN_180896830
+ */
+#define InitializeDataBlockPointerA1 FUN_180896830
+
+/**
+ * @brief 处理数据缓冲区A0
+ * 
+ * 该函数负责处理数据缓冲区，包括数据复制、验证和内存分配
+ * 
+ * @note 原始函数名：FUN_180898d84
+ */
+#define ProcessDataBufferA0 FUN_180898d84
+
+/**
+ * @brief 返回固定状态码A0
+ * 
+ * 该函数返回固定的状态码，用于状态检查
+ * 
+ * @note 原始函数名：FUN_180898e56
+ */
+#define ReturnFixedStatusCodeA0 FUN_180898e56
+
+/**
+ * @brief 验证数据块状态A0
+ * 
+ * 该函数负责验证数据块的状态，确保数据块的完整性
+ * 
+ * @note 原始函数名：FUN_180898e70
+ */
+#define ValidateDataBlockStatusA0 FUN_180898e70
+
+/**
+ * @brief 验证数据块状态A1
+ * 
+ * 该函数负责验证数据块的状态，确保数据块的完整性
+ * 
+ * @note 原始函数名：FUN_180898eb0
+ */
+#define ValidateDataBlockStatusA1 FUN_180898eb0
+
+/**
+ * @brief 处理数据块操作A0
+ * 
+ * 该函数负责处理数据块的各种操作，包括读取和写入
+ * 
+ * @note 原始函数名：FUN_180898ef0
+ */
+#define ProcessDataBlockOperationA0 FUN_180898ef0
+
+/**
+ * @brief 处理数据块操作A1
+ * 
+ * 该函数负责处理数据块的各种操作，包括读取和写入
+ * 
+ * @note 原始函数名：FUN_180898f40
+ */
+#define ProcessDataBlockOperationA1 FUN_180898f40
+
+/**
+ * @brief 验证数据序列A0
+ * 
+ * 该函数负责验证数据序列的有效性和完整性
+ * 
+ * @note 原始函数名：FUN_180899220
+ */
+#define ValidateDataSequenceA0 FUN_180899220
+
+/**
+ * @brief 处理数据序列A0
+ * 
+ * 该函数负责处理数据序列，包括序列验证和转换
+ * 
+ * @note 原始函数名：FUN_18089923e
+ */
+#define ProcessDataSequenceA0 FUN_18089923e
+
+/**
+ * @brief 执行数据验证A0
+ * 
+ * 该函数负责执行数据的验证操作，确保数据的有效性
+ * 
+ * @note 原始函数名：FUN_1808993e0
+ */
+#define ExecuteDataValidationA0 FUN_1808993e0
+
+/**
+ * @brief 处理复杂数据结构A0
+ * 
+ * 该函数负责处理复杂的数据结构，包括结构体和数组
+ * 
+ * @note 原始函数名：FUN_180899650
+ */
+#define ProcessComplexDataStructureA0 FUN_180899650
+
+/**
+ * @brief 验证数据格式A0
+ * 
+ * 该函数负责验证数据的格式，确保数据符合预期的格式要求
+ * 
+ * @note 原始函数名：FUN_180899740
+ */
+#define ValidateDataFormatA0 FUN_180899740
+
+/**
+ * @brief 获取系统状态A1
+ * 
+ * 该函数负责获取系统的当前状态信息
+ * 
+ * @note 原始函数名：FUN_180899763
+ */
+#define GetSystemStatusA1 FUN_180899763
+
+/**
+ * @brief 初始化数据处理器A0
+ * 
+ * 该函数负责初始化数据处理器，设置处理器的初始状态
+ * 
+ * @note 原始函数名：FUN_1808997f0
+ */
+#define InitializeDataProcessorA0 FUN_1808997f0
+
+/**
+ * @brief 清理数据处理器A0
+ * 
+ * 该函数负责清理数据处理器，释放占用的资源
+ * 
+ * @note 原始函数名：FUN_180899816
+ */
+#define CleanupDataProcessorA0 FUN_180899816
+
+/**
+ * @brief 处理数据集合A0
+ * 
+ * 该函数负责处理数据集合，包括数据的验证、转换和存储
+ * 
+ * @note 原始函数名：FUN_1808998a0
+ */
+#define ProcessDataCollectionA0 FUN_1808998a0
+
+/**
+ * @brief 验证数据完整性A0
+ * 
+ * 该函数负责验证数据的完整性，确保数据没有被损坏或篡改
+ * 
+ * @note 原始函数名：FUN_1808999d90
+ */
+#define ValidateDataIntegrityA0 FUN_1808999d90
+
+/**
+ * @brief 执行系统检查A0
+ * 
+ * 该函数负责执行系统检查，验证系统的各个组件是否正常工作
+ * 
+ * @note 原始函数名：FUN_180899dc7
+ */
+#define ExecuteSystemCheckA0 FUN_180899dc7
+
+/**
+ * @brief 处理高级数据操作A0
+ * 
+ * 该函数负责处理高级数据操作，包括复杂的数据验证和转换
+ * 
+ * @note 原始函数名：FUN_18089a370
+ */
+#define ProcessAdvancedDataOperationA0 FUN_18089a370
+
+/**
+ * @brief 执行数据清理A0
+ * 
+ * 该函数负责执行数据清理操作，清除无效或过期的数据
+ * 
+ * @note 原始函数名：FUN_18089a51d
+ */
+#define ExecuteDataCleanupA0 FUN_18089a51d
+
+/**
+ * @brief 处理数据流A0
+ * 
+ * 该函数负责处理数据流，包括数据的读取、验证和传输
+ * 
+ * @note 原始函数名：FUN_18089a690
+ */
+#define ProcessDataStreamA0 FUN_18089a690
+
+/**
+ * @brief 验证数据流A0
+ * 
+ * 该函数负责验证数据流的有效性和完整性
+ * 
+ * @note 原始函数名：FUN_18089a6e8
+ */
+#define ValidateDataStreamA0 FUN_18089a6e8
+
+/**
+ * @brief 处理数据转换A0
+ * 
+ * 该函数负责处理数据转换，将数据从一种格式转换为另一种格式
+ * 
+ * @note 原始函数名：FUN_18089a7e0
+ */
+#define ProcessDataConversionA0 FUN_18089a7e0
+
+/**
+ * @brief 执行数据同步A0
+ * 
+ * 该函数负责执行数据同步操作，确保数据的一致性
+ * 
+ * @note 原始函数名：FUN_18089a880
+ */
+#define ExecuteDataSynchronizationA0 FUN_18089a880
+
+/**
+ * @brief 验证数据同步A0
+ * 
+ * 该函数负责验证数据同步的有效性，确保同步操作成功完成
+ * 
+ * @note 原始函数名：FUN_18089a9dd
+ */
+#define ValidateDataSynchronizationA0 FUN_18089a9dd
+
+/**
+ * @brief 处理数据缓存A0
+ * 
+ * 该函数负责处理数据缓存，包括缓存的读取、写入和验证
+ * 
+ * @note 原始函数名：FUN_18089abe0
+ */
+#define ProcessDataCacheA0 FUN_18089abe0
+
+/**
+ * @brief 清理数据缓存A0
+ * 
+ * 该函数负责清理数据缓存，释放缓存占用的内存
+ * 
+ * @note 原始函数名：FUN_18089ac64
+ */
+#define CleanupDataCacheA0 FUN_18089ac64
+
+/**
+ * @brief 重置数据缓存A0
+ * 
+ * 该函数负责重置数据缓存，将缓存恢复到初始状态
+ * 
+ * @note 原始函数名：FUN_18089ace4
+ */
+#define ResetDataCacheA0 FUN_18089ace4
+
 // 系统处理函数宏定义 (E系列)
 
 /**
@@ -14306,7 +14571,7 @@ undefined8 PerformNoOperation(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_180896140(longlong param_1)
+ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
 
 {
   byte *pbVar1;
@@ -14652,7 +14917,7 @@ ResourceCleanupLabel:
 
 
 
-undefined8 * FUN_180896800(undefined8 *param_1,ulonglong param_2)
+undefined8 * InitializeDataBlockPointerA0(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_180986350;
@@ -14664,7 +14929,7 @@ undefined8 * FUN_180896800(undefined8 *param_1,ulonglong param_2)
 
 
 
-undefined8 * FUN_180896830(undefined8 *param_1,ulonglong param_2)
+undefined8 * InitializeDataBlockPointerA1(undefined8 *param_1,ulonglong param_2)
 
 {
   *param_1 = &UNK_180986370;
@@ -17976,8 +18241,7 @@ ValidationCheckpointA:
  * 
  * @note 原始函数名：FUN_180898d84
  */
-#define ValidateAndProcessDataBlockConversionD84 FUN_180898d84
-undefined8 FUN_180898d84(undefined8 param_1,int param_2)
+undefined8 ProcessDataBufferA0(undefined8 param_1,int param_2)
 
 {
   // 局部变量定义
@@ -18026,10 +18290,7 @@ ValidationCheckpointA:
 
 
 
-// 原始函数名：FUN_180898e56 - 返回固定值函数T0
-// 功能：返回固定值0x26
-#define ReturnFixedValueT0 FUN_180898e56
-undefined8 FUN_180898e56(void)
+undefined8 ReturnFixedStatusCodeA0(void)
 
 {
   return 0x26;
@@ -18037,7 +18298,7 @@ undefined8 FUN_180898e56(void)
 
 
 
-undefined8 FUN_180898e70(longlong *param_1,undefined4 *param_2)
+undefined8 ValidateDataBlockStatusA0(longlong *param_1,undefined4 *param_2)
 
 {
   undefined8 uVar1;
@@ -18053,7 +18314,7 @@ undefined8 FUN_180898e70(longlong *param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_180898eb0(longlong *param_1,undefined4 *param_2)
+undefined8 ValidateDataBlockStatusA1(longlong *param_1,undefined4 *param_2)
 
 {
   undefined8 uVar1;
@@ -18069,7 +18330,7 @@ undefined8 FUN_180898eb0(longlong *param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_180898ef0(undefined8 *param_1,longlong param_2)
+undefined8 ProcessDataBlockOperationA0(undefined8 *param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -18088,7 +18349,7 @@ undefined8 FUN_180898ef0(undefined8 *param_1,longlong param_2)
 
 
 
-undefined8 FUN_180898f40(longlong *param_1,undefined4 *param_2)
+undefined8 ProcessDataBlockOperationA1(longlong *param_1,undefined4 *param_2)
 
 {
   longlong validationContext;
@@ -18301,7 +18562,7 @@ undefined8 InitializeSystemComponentD0(undefined8 *SystemComponentPtr,longlong I
 
 
 
-undefined8 FUN_180899220(longlong *param_1,uint *param_2)
+undefined8 ValidateDataSequenceA0(longlong *param_1,uint *param_2)
 
 {
   undefined8 uVar1;
@@ -18342,7 +18603,7 @@ ValidationCheckpointB:
 
 
 
-undefined8 FUN_18089923e(longlong *param_1)
+undefined8 ProcessDataSequenceA0(longlong *param_1)
 
 {
   undefined8 uVar1;
@@ -18443,7 +18704,7 @@ undefined8 ProcessDataWithMultipleAttempts(undefined8 *contextHandle,longlong da
 
 
 
-undefined8 FUN_1808993e0(undefined8 *param_1,longlong *param_2)
+undefined8 ExecuteDataValidationA0(undefined8 *param_1,longlong *param_2)
 
 {
   undefined8 uVar1;
@@ -18567,7 +18828,7 @@ ProcessCheckpointA:
 
 
 
-undefined8 FUN_180899650(longlong *param_1,longlong *param_2)
+undefined8 ProcessComplexDataStructureA0(longlong *param_1,longlong *param_2)
 
 {
   undefined8 uVar1;
@@ -18618,7 +18879,7 @@ ProcessCheckpointB:
 
 
 
-undefined8 FUN_180899740(undefined8 param_1,undefined4 *param_2)
+undefined8 ValidateDataFormatA0(undefined8 param_1,undefined4 *param_2)
 
 {
   undefined8 uVar1;
@@ -18633,7 +18894,7 @@ undefined8 FUN_180899740(undefined8 param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_180899763(void)
+undefined8 GetSystemStatusA1(void)
 
 {
   undefined8 uVar1;
@@ -18685,7 +18946,7 @@ void SynchronizeData(undefined8 dataHandle,longlong dataOffset)
 
 
 
-undefined8 FUN_1808997f0(undefined8 param_1,longlong *param_2)
+undefined8 InitializeDataProcessorA0(undefined8 param_1,longlong *param_2)
 
 {
   int iVar1;
@@ -18728,7 +18989,7 @@ undefined8 FUN_1808997f0(undefined8 param_1,longlong *param_2)
 
 
 
-undefined8 FUN_180899816(void)
+undefined8 CleanupDataProcessorA0(void)
 
 {
   int iVar1;
@@ -18775,7 +19036,7 @@ void ManageMemory(void)
 
 
 
-undefined8 FUN_1808998a0(longlong param_1,longlong *param_2)
+undefined8 ProcessDataCollectionA0(longlong param_1,longlong *param_2)
 
 {
   int iVar1;
@@ -19401,7 +19662,7 @@ undefined8 FUN_180899d90(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180899dc7(void)
+undefined8 ExecuteSystemCheckA0(void)
 
 {
   undefined8 uVar1;
