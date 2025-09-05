@@ -98256,7 +98256,7 @@ void SetSystemDataStructureToContextOffsetE0(uint8_t ObjectContext,int64_t Valid
 
 
 
-void Unwind_18090fce0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseResourceTableLock(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + ValidationContextResourceTableOffset) != '\0') {

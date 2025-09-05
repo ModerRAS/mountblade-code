@@ -28496,12 +28496,12 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   SystemThreadPrimaryParameter = 0xfffffffffffffffe;
   encryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)encryptionBuffer;
   threadBuffer = (uint8_t *)0x0;
-  operationFlags1 = 0;
-  dataBuffer2 = ThreadConfig;
+  primaryOperationFlags = 0;
+  secondaryDataBuffer = ThreadConfig;
   SystemThreadSecondaryParameter = ThreadConfig;
   processId = GetCurrentProcessId();
   configPointer = &SystemGlobalDataReference;
-  dataBuffer1 = 0;
+  primaryDataBuffer = 0;
   configValue = 0;
   configFlags = 0;
   ExecuteSystemCommand(&configPointer,6);
