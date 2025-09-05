@@ -17054,7 +17054,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
   int64_t memoryOffset;
   DataWord *psecurityCheckResult;
   uint statusCounter;
-  int inputParameter0;
+  int primaryInputParameter;
   int *referenceCountPointer1;
   int64_t *destinationIndexRegister;
   DataBuffer *systemContext;
@@ -17083,7 +17083,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
     statusCounter = (int)*(uint *)((int64_t)destinationIndexRegister + 0x1c) >> 0x1f;
     operationStatus = (*(uint *)((int64_t)destinationIndexRegister + 0x1c) ^ statusCounter) - statusCounter;
     if (operationStatus < iterationCount) {
-      inputParameter0 = (int)((float)operationStatus * 1.5);
+      primaryInputParameter = (int)((float)operationStatus * 1.5);
       operationStatus = iterationCount;
       if (iterationCount <= inputParameter0) {
         operationStatus = inputParameter0;
@@ -20532,7 +20532,7 @@ DataBuffer ProcessComplexDataA2(int64_t *param_1,char *param_2,DataBuffer *param
   int calculatedValue;
   uint securityCheckResult;
   char *pcVar9;
-  int inputParameter0;
+  int primaryInputParameter;
   uint *exceptionDataBuffer1;
   
   exceptionDataBuffer1 = (uint *)*param_1;
@@ -20941,7 +20941,7 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
   ByteFlag *systemContext;
   int64_t bufferPointer;
   ByteFlag *pstatusCounter;
-  int inputParameter0;
+  int primaryInputParameter;
   DataWord register_R13D;
   int64_t *systemContext;
   int register_R15D;
@@ -28257,7 +28257,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   uint securityCheckResult;
   uint statusCounter;
   uint64_t destinationIndexRegister;
-  int inputParameter0;
+  int primaryInputParameter;
   int64_t register_R13;
   int systemContextD;
   int inputParameter1;
@@ -33708,32 +33708,37 @@ void ExceptionUnwindHandlerA1(DataBuffer exceptionContext, int64_t unwindParam)
 // 
 // 返回值:
 //   无
-void SetExceptionHandlerPointer(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 设置异常处理器指针
+ * 
+ * 设置系统异常处理器的指针，用于异常处理
+ * 
+ * @param exceptionContext 异常上下文
+ * @param handlerPointer 处理器指针
+ */
+void SetExceptionHandlerPointer(DataBuffer exceptionContext, int64_t handlerPointer)
 
 {
-  **(DataBuffer **)(param_2 + 0x48) = &UNK_180a21690;
+  **(DataBuffer **)(handlerPointer + 0x48) = &UNK_180a21690;
   return;
 }
 
 
 
-// 函数: void ExceptionUnwindHandlerA3(DataBuffer param_1,int64_t param_2)
-// 
-// 异常展开处理函数A3
-// 解锁互斥体并处理异常，确保资源正确释放
-// 
-// 参数:
-//   param_1 - 异常处理上下文
-//   param_2 - 异常展开参数
-// 
-// 返回值:
-//   无
-void ExceptionUnwindHandlerA3(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常展开处理函数A3
+ * 
+ * 解锁互斥体并处理异常，确保资源正确释放
+ * 
+ * @param exceptionContext 异常处理上下文
+ * @param unwindParameter 异常展开参数
+ */
+void ExceptionUnwindHandlerA3(DataBuffer exceptionContext, int64_t unwindParameter)
 
 {
   int mutexUnlockResult;
   
-  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(param_2 + 0x60));
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(unwindParameter + 0x60));
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
@@ -39736,29 +39741,54 @@ void ExecuteSystemCleanupD(DataBuffer dataBuffer, int64_t executionContext, Data
 
 
 
-void Unwind_180903270(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+/**
+ * @brief 系统清理处理函数E
+ * 
+ * 执行系统资源的清理处理操作
+ * 
+ * @param dataBuffer 数据缓冲区
+ * @param executionContext 执行上下文
+ * @param cleanupParam 清理参数A
+ * @param cleanupParamB 清理参数B
+ */
+void ExecuteSystemCleanupE(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_180058370(*(int64_t *)(param_2 + 0x40) + 0xc0,
-                *(DataBuffer *)(*(int64_t *)(param_2 + 0x40) + 0xd0),param_3,param_4,
+  FUN_180058370(*(int64_t *)(executionContext + 0x40) + 0xc0,
+                *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0xd0),cleanupParam,cleanupParamB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_180903290(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+/**
+ * @brief 系统清理处理函数F
+ * 
+ * 执行系统资源的清理处理操作
+ * 
+ * @param dataBuffer 数据缓冲区
+ * @param executionContext 执行上下文
+ * @param cleanupParam 清理参数A
+ * @param cleanupParamB 清理参数B
+ */
+void ExecuteSystemCleanupF(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_180058370(*(int64_t *)(param_2 + 0x40) + 0xf0,
-                *(DataBuffer *)(*(int64_t *)(param_2 + 0x40) + 0x100),param_3,param_4,
+  FUN_180058370(*(int64_t *)(executionContext + 0x40) + 0xf0,
+                *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0x100),cleanupParam,cleanupParamB,
                 SystemCleanupFlagfffffffe);
   return;
 }
 
 
 
-void Unwind_1809032b0(void)
+/**
+ * @brief 销毁互斥锁资源B
+ * 
+ * 销毁系统中的互斥锁资源，确保资源正确释放
+ */
+void DestroyMutexResourceB(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -39767,11 +39797,21 @@ void Unwind_1809032b0(void)
 
 
 
-void Unwind_1809032d0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+/**
+ * @brief 系统清理处理函数G
+ * 
+ * 执行系统资源的清理处理操作
+ * 
+ * @param dataBuffer 数据缓冲区
+ * @param executionContext 执行上下文
+ * @param cleanupParam 清理参数A
+ * @param cleanupParamB 清理参数B
+ */
+void ExecuteSystemCleanupG(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_1800593f0(*(int64_t *)(param_2 + 0x48),*(DataBuffer *)(*(int64_t *)(param_2 + 0x48) + 0x10),
-                param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_1800593f0(*(int64_t *)(executionContext + 0x48),*(DataBuffer *)(*(int64_t *)(executionContext + 0x48) + 0x10),
+                cleanupParam,cleanupParamB,SystemCleanupFlagfffffffe);
   return;
 }
 
