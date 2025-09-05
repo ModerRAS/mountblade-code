@@ -59596,7 +59596,7 @@ void SystemNoOperationA(void)
   int systemIndex0;
   ulong long ResourceAddressPrimary;
   uint *ResourceAddressPointer2;
-  bool in_ZF;
+  bool isZeroFlagSet;
   bool isResourceAvailable3;
   uint32_t ResourceHashValue;
   ulong long ResourceAllocationContext;
@@ -59618,7 +59618,7 @@ void SystemNoOperationA(void)
   void* ThreadParameter;
   long long SystemMemoryAllocationOffset;
   
-  if (!in_ZF) {
+  if (!isZeroFlagSet) {
     InitializeSystemEnvironment();
   }
   SystemMemoryOffset = SystemDataMemoryContext + 0x5868;
