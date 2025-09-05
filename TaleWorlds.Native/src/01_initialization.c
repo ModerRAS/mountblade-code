@@ -28826,12 +28826,12 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   if (SystemCalculatedBufferPointer != (long long *)0x0) {
     (**(code **)(*SystemCalculatedBufferPointer + 0x28))(SystemCalculatedBufferPointer);
   }
-  StackFloatingValue1 = 0x3f800000;
-  StackPaddingValue1 = 0;
-  StackPaddingValue2 = 0;
+  StackFloatingValuePrimary = 0x3f800000;
+  StackPaddingValuePrimary = 0;
+  StackPaddingValueSecondary = 0;
   SystemStackVariableTemp = 0;
-  StackFlagValue1 = 0;
-  StackFloatingValue2 = 0x3f800000;
+  StackFlagValuePrimary = 0;
+  StackFloatingValueSecondary = 0x3f800000;
   SystemStackVariable130 = 0;
   SystemStackVariable12c = 0;
   SystemMemoryAllocationOffset = 0;
@@ -32775,8 +32775,8 @@ void SystemResourceArrayManager(long long* SystemResourceManager,long long Confi
         ConfigurationDataPointer = ConfigurationDataPointer + 0x20;
       } while (ConfigurationDataPointer != AdditionalParameter);
     }
-    resourcePointer1 = (void* *)SystemResourceManager[1];
-    resourcePointer4 = (void* *)*SystemResourceManager;
+    primaryResourcePointer = (void* *)SystemResourceManager[1];
+    quaternaryResourcePointer = (void* *)*SystemResourceManager;
     if (resourcePointer4 != resourcePointer1) {
       do {
         (**(code **)*resourcePointer4)(resourcePointer4,0);
