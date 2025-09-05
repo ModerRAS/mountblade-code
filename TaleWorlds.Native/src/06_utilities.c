@@ -3775,25 +3775,27 @@ undefined8 ProcessUtilityResourceDecrement(longlong param_1,undefined8 param_2)
 
 
 
-undefined8 FUN_180890540(longlong param_1)
+// 函数: undefined8 UpdateResourceReferenceCount(longlong param_1)
+// 功能：更新资源引用计数，增加指定资源的引用计数并进行状态检查
+undefined8 UpdateResourceReferenceCount(longlong param_1)
 
 {
-  longlong lVar1;
-  undefined8 uVar2;
-  longlong alStackX_8 [4];
+  longlong resourcePointer;
+  undefined8 validationStatus;
+  longlong stackBuffer [4];
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),stackBuffer);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  if (alStackX_8[0] != 0) {
-    alStackX_8[0] = alStackX_8[0] + -8;
+  if (stackBuffer[0] != 0) {
+    stackBuffer[0] = stackBuffer[0] + -8;
   }
-  lVar1 = *(longlong *)(alStackX_8[0] + 0x10);
-  if (lVar1 != 0) {
-    *(int *)(lVar1 + 500) = *(int *)(lVar1 + 500) + 1;
-    if ((*(char *)(lVar1 + 0x204) != '\0') && (uVar2 = FUN_1808552c0(), (int)uVar2 != 0)) {
-      return uVar2;
+  resourcePointer = *(longlong *)(stackBuffer[0] + 0x10);
+  if (resourcePointer != 0) {
+    *(int *)(resourcePointer + 500) = *(int *)(resourcePointer + 500) + 1;
+    if ((*(char *)(resourcePointer + 0x204) != '\0') && (validationStatus = FUN_1808552c0(), (int)validationStatus != 0)) {
+      return validationStatus;
     }
     return 0;
   }
