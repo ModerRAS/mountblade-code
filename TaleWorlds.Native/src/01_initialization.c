@@ -138,6 +138,14 @@
 #define MemoryBlockSize                        0x98
 #define StringBufferCapacityValue                   0x40
 
+// 系统节点结构常量
+#define NodeInactiveFlag                     0
+#define NodeActiveFlagOffset                  2
+#define NodeNextPointerOffset                 5
+#define NodeHeadPointerOffset                 6
+#define NodeAllocationExtraSize               0x20
+#define IdentifierSize                        0x10
+
 // 系统控制器相关常量
 #define SystemControllerAllocationSize        0xc0
 #define SystemMemoryAlignment                 8
