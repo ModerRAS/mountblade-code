@@ -2328,30 +2328,30 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
 {
   // 网络连接请求处理变量
   int64_t ConnectionContextId;                                  // 网络连接上下文标识符
-  int64_t *ConnectionValidationDataPointer;                        // 网络连接验证数据指针
+  int64_t *ConnectionValidationData;                        // 网络连接验证数据指针
   int32_t ConnectionValidationStatus;                          // 网络连接验证状态码
-  NetworkHandle ConnectionRequestResultHandle;                         // 网络连接请求结果句柄
+  NetworkHandle ConnectionRequestResult;                         // 网络连接请求结果句柄
   
   ConnectionContextId = 0;
-  ConnectionValidationDataPointer = NULL;  // 初始化验证数据指针
+  ConnectionValidationData = NULL;  // 初始化验证数据指针
   ConnectionValidationStatus = 0;  // 初始化验证状态码
   if (ConnectionValidationStatus == 0) {
-    if (ConnectionValidationDataPointer && (0 < *(int *)CalculateConnectionParameterAddress(ConnectionValidationDataPointer)) && (*ConnectionValidationDataPointer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationDataPointer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
+    if (ConnectionValidationData && (0 < *(int *)CalculateConnectionParameterAddress(ConnectionValidationData)) && (*ConnectionValidationData != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationData, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    if (ConnectionValidationDataPointer) {
-        *ConnectionValidationDataPointer = ConnectionContextId;
-        *(int *)CalculateConnectionParameterAddress(ConnectionValidationDataPointer) = NetworkValidationStatus;
+    if (ConnectionValidationData) {
+        *ConnectionValidationData = ConnectionContextId;
+        *(int *)CalculateConnectionParameterAddress(ConnectionValidationData) = NetworkValidationStatus;
     }
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxInt32Value) {
-    ConnectionRequestResultHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &SecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
-    if (ConnectionRequestResultHandle != 0) {
-      if (ConnectionValidationDataPointer && (int)ConnectionValidationDataPointer[ConnectionDataSizeIndex] != 0) {
-          memcpy((void *)ConnectionRequestResultHandle, *ConnectionValidationDataPointer, (int64_t)(int)ConnectionValidationDataPointer[ConnectionDataSizeIndex]);
+    ConnectionRequestResult = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &SecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
+    if (ConnectionRequestResult != 0) {
+      if (ConnectionValidationData && (int)ConnectionValidationData[ConnectionDataSizeIndex] != 0) {
+          memcpy((void *)ConnectionRequestResult, *ConnectionValidationData, (int64_t)(int)ConnectionValidationData[ConnectionDataSizeIndex]);
       }
-      return ConnectionRequestResultHandle;
+      return ConnectionRequestResult;
     }
   }
   return NetworkErrorConnectionFailed;
@@ -2966,35 +2966,35 @@ void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
 {
   // 连接请求处理变量
-  static uint32_t RequestContextData[16];                              // 连接上下文数据
-  uint32_t RequestActiveState;                                        // 连接状态
-  uint32_t RequestConnectionId;                                      // 连接标识符
-  uint32_t RequestSecurityStatus;                                    // 安全验证状态
+  static uint32_t ConnectionContextData[16];                              // 连接上下文数据
+  uint32_t ConnectionActiveState;                                        // 连接状态
+  uint32_t ConnectionIdentifier;                                      // 连接标识符
+  uint32_t ConnectionSecurityStatus;                                    // 安全验证状态
   
   // 初始化连接上下文数据
-  memset(RequestContextData, 0, sizeof(RequestContextData));
+  memset(ConnectionContextData, 0, sizeof(ConnectionContextData));
   
   // 设置连接基本信息
-  RequestActiveState = NetworkStatusActive;                             // 设置连接状态为活跃
-  RequestConnectionId = (uint32_t)(RequestData & NetworkConnectionIdMaskValue);  // 从请求数据提取连接标识符
+  ConnectionActiveState = NetworkStatusActive;                             // 设置连接状态为活跃
+  ConnectionIdentifier = (uint32_t)(RequestData & NetworkConnectionIdMaskValue);  // 从请求数据提取连接标识符
   
   // 验证连接安全性
-  RequestSecurityStatus = NetworkValidationFailure;
+  ConnectionSecurityStatus = NetworkValidationFailure;
   if (SecurityValidationData) {
     memset(SecurityValidationData, 0, SecurityValidationBufferSize);
-    RequestSecurityStatus = NetworkValidationSuccess;                   // 验证成功
+    ConnectionSecurityStatus = NetworkValidationSuccess;                   // 验证成功
   }
   
   // 设置连接上下文数据
-  RequestContextData[ConnectionStateIndex] = RequestActiveState;
-  RequestContextData[ConnectionIdentifierIndex] = RequestConnectionId;
-  RequestContextData[SecurityValidationResultIndex] = RequestSecurityStatus;
-  RequestContextData[FinalizationValueIndex] = FinalizeValue;
-  RequestContextData[ProcessingStateFlagsIndex] = ProcessingFlags;
-  RequestContextData[ValidationStateFlagsIndex] = ValidationFlags;
-  RequestContextData[DataProcessingModeIndex] = ProcessingMode;
+  ConnectionContextData[ConnectionStateIndex] = ConnectionActiveState;
+  ConnectionContextData[ConnectionIdentifierIndex] = ConnectionIdentifier;
+  ConnectionContextData[SecurityValidationResultIndex] = ConnectionSecurityStatus;
+  ConnectionContextData[FinalizationValueIndex] = FinalizeValue;
+  ConnectionContextData[ProcessingStateFlagsIndex] = ProcessingFlags;
+  ConnectionContextData[ValidationStateFlagsIndex] = ValidationFlags;
+  ConnectionContextData[DataProcessingModeIndex] = ProcessingMode;
   
-  return RequestContextData;
+  return ConnectionContextData;
 }
 
 /**
