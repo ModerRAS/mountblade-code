@@ -29998,35 +29998,35 @@ void Unwind_1809025e0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902600(undefined8 param_1,longlong param_2)
+void ExceptionUnwindHandlerA31(undefined8 exceptionContext,longlong unwindParam)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *refCount;
+  undefined8 *exceptionTable;
+  longlong exceptionHandler;
+  ulonglong exceptionAddress;
   
-  puVar2 = *(undefined8 **)(*(longlong *)(param_2 + 0x70) + 0xc0);
-  if (puVar2 == (undefined8 *)0x0) {
+  exceptionTable = *(undefined8 **)(*(longlong *)(unwindParam + 0x70) + 0xc0);
+  if (exceptionTable == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  exceptionAddress = (ulonglong)exceptionTable & 0xffffffffffc00000;
+  if (exceptionAddress != 0) {
+    exceptionHandler = exceptionAddress + 0x80 + ((longlong)exceptionTable - exceptionAddress >> 0x10) * 0x50;
+    exceptionHandler = exceptionHandler - (ulonglong)*(uint *)(exceptionHandler + 4);
+    if ((*(void ***)(exceptionAddress + 0x70) == &ExceptionList) && (*(char *)(exceptionHandler + 0xe) == '\0')) {
+      *exceptionTable = *(undefined8 *)(exceptionHandler + 0x20);
+      *(undefined8 **)(exceptionHandler + 0x20) = exceptionTable;
+      refCount = (int *)(exceptionHandler + 0x18);
+      *refCount = *refCount + -1;
+      if (*refCount == 0) {
+        CleanupExceptionHandlers();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      HandleExceptionTableError(exceptionAddress,CONCAT71(0xff000000,*(void ***)(exceptionAddress + 0x70) == &ExceptionList),
+                          exceptionTable,exceptionAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -30034,7 +30034,7 @@ void Unwind_180902600(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902620(void)
+void DestroyMutexInPlace(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -30043,7 +30043,7 @@ void Unwind_180902620(void)
 
 
 
-void Unwind_180902630(undefined8 param_1,longlong param_2)
+void DestroyMutexAtOffset(undefined8 param_1,longlong param_2)
 
 {
   _Mtx_destroy_in_situ(*(undefined8 *)(param_2 + 0x78));
@@ -30052,92 +30052,92 @@ void Unwind_180902630(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902640(undefined8 param_1,longlong param_2)
+void ValidateAndCleanupContext(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
-  longlong lVar2;
+  longlong *validationContext;
+  longlong contextEntry;
   
-  pvalidationContext = *(longlong **)(param_2 + 0x78);
-  for (lVar2 = *pvalidationContext; lVar2 != pvalidationContext[1]; lVar2 = lVar2 + 0x28) {
-    if (*(longlong *)(lVar2 + 8) != 0) {
+  validationContext = *(longlong **)(param_2 + 0x78);
+  for (contextEntry = *validationContext; contextEntry != validationContext[1]; contextEntry = contextEntry + 0x28) {
+    if (*(longlong *)(contextEntry + 8) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateOnError();
     }
   }
-  if (*pvalidationContext == 0) {
+  if (*validationContext == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateOnError();
 }
 
 
 
-void Unwind_180902650(undefined8 param_1,longlong param_2)
+void ProcessAndValidateHandlers(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  longlong *plVar2;
-  longlong lVar3;
+  longlong *handlerList;
+  longlong handlerEntry;
   
-  plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x50);
+  handlerList = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x50);
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x58);
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x48) {
-    FUN_180058c20(lVar3);
+  for (handlerEntry = *handlerList; handlerEntry != validationContext; handlerEntry = handlerEntry + 0x48) {
+    CleanupHandlerEntry(handlerEntry);
   }
-  if (*plVar2 == 0) {
+  if (*handlerList == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateOnError();
 }
 
 
 
-void Unwind_180902660(undefined8 param_1,longlong param_2)
+void CleanupValidationContext(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
-  longlong *plVar2;
-  longlong lVar3;
+  longlong *contextList;
+  longlong contextEntry;
   
-  plVar2 = *(longlong **)(param_2 + 0x78);
-  validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x48) {
-    FUN_180058c20(lVar3);
+  contextList = *(longlong **)(param_2 + 0x78);
+  validationContext = contextList[1];
+  for (contextEntry = *contextList; contextEntry != validationContext; contextEntry = contextEntry + 0x48) {
+    CleanupHandlerEntry(contextEntry);
   }
-  if (*plVar2 == 0) {
+  if (*contextList == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateOnError();
 }
 
 
 
-void Unwind_180902670(undefined8 param_1,longlong param_2)
+void ExecuteCleanupCallbacks(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
-  longlong *plVar2;
-  longlong *plVar3;
+  longlong *validationContext;
+  longlong *callbackList;
+  longlong *callbackEntry;
   
-  plVar2 = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x50);
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x58);
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 3) {
-    if ((longlong *)plVar3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[1] + 0x38))();
+  callbackList = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x50);
+  validationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x58);
+  for (callbackEntry = (longlong *)*callbackList; callbackEntry != validationContext; callbackEntry = callbackEntry + 3) {
+    if ((longlong *)callbackEntry[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)callbackEntry[1] + 0x38))();
     }
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+    if ((longlong *)*callbackEntry != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*callbackEntry + 0x38))();
     }
   }
-  if (*plVar2 == 0) {
+  if (*callbackList == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateOnError();
 }
 
 
