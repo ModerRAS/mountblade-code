@@ -3814,9 +3814,12 @@ undefined DAT_180c2bca0;
 undefined DAT_180c31148;
 // 系统配置表A2
 undefined SystemConfigurationTableA2;
-undefined UNK_18097e888;
-undefined DAT_180c4ea58;
-undefined DAT_180c4ea60;
+// 系统状态表A0
+undefined SystemStatusTableA0;
+// 系统数据缓冲区A0
+undefined SystemDataBufferA0;
+// 系统数据缓冲区A1
+undefined SystemDataBufferA1;
 // 系统配置表A3
 undefined SystemConfigurationTableA3;
 // 系统配置表A4
@@ -4276,7 +4279,8 @@ undefined UNK_180a30ec8;
 undefined UNK_180a30ed8;
 undefined UNK_180a30f00;
 undefined DAT_180d49128;
-undefined UNK_180943060;
+// 系统配置表A5
+undefined SystemConfigurationTableA5;
 undefined UNK_1809fa490;
 undefined UNK_180a30280;
 undefined UNK_180a302c0;
@@ -7208,7 +7212,7 @@ int ProcessResourceCopyOperation(longlong param_1)
   }
   if (resourcePointer != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_18095b500,0xb8,1);
+    AllocateResourceA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_18095b500,0xb8,1);
   }
   return operationResult;
 }
@@ -7326,12 +7330,12 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
     operationMode = 2;
   }
   parameterBuffer = param_1;
-  operationResult = FUN_180894dd0();
+  operationResult = ProcessDataRequest();
   if (operationResult == 0) {
     operationResult = 0;
   }
   else if (resourcePointer != 0) {
-    FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_180957f70,0xe9,operationMode);
+    InitializeContextA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_180957f70,0xe9,operationMode);
     return operationResult;
   }
   return operationResult;
@@ -7592,7 +7596,7 @@ void ValidateUtilityOperation(longlong operationPointer,longlong contextPointer)
   undefined8 validationToken;
   
   if (*(int *)(operationPointer + 0x2c) == 0) {
-    validationResult = FUN_180894860(contextPointer,operationPointer + 0x1c,&validationToken);
+    validationResult = ValidateOperationContext(contextPointer,operationPointer + 0x1c,&validationToken);
     if (validationResult == 0) {
       validationResult = ValidateAndProcessSystemResourceA0(validationToken,operationPointer + 0x2c);
       if (validationResult == 0) goto ValidationFailed;
@@ -20749,7 +20753,8 @@ LAB_1808a2e6d:
 
 
 89b599(void)
-void FUN_18089b599(void)
+// 空操作函数A - 不执行任何操作
+void UtilityNoOperationA(void)
 
 {
   return;
