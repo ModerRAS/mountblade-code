@@ -4308,24 +4308,25 @@ undefined8 ValidateMemoryAccess(longlong param_1)
 
 
 // 函数: undefined4 GetSystemStatus(void)
-// 功能：获取系统状态
+// 功能：获取系统状态，检查系统资源状态并返回相应状态码
+// 返回值：系统状态码，0x1c表示系统资源未初始化
 undefined4 GetSystemStatus(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong systemContext;
+  longlong resourcePointer;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (systemContext == 0) {
+    resourcePointer = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    resourcePointer = systemContext + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(longlong *)(resourcePointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(resourcePointer + 0x10),1);
 }
 
 
@@ -4343,10 +4344,9 @@ void EmergencyShutdown(void)
 
 
 
-// 函数: void FUN_18089079f(void)
-// 
-// 空操作函数
-// 执行空操作，用于系统初始化或占位
+// 函数: void PerformNoOperation(void)
+// 功能：执行空操作，用于系统初始化或占位
+// 说明：此函数不执行任何实际操作，主要用于系统初始化过程中的占位
 // 
 // 参数:
 //   无
@@ -4354,15 +4354,10 @@ void EmergencyShutdown(void)
 // 返回值:
 //   无
 // 函数: void InitializeEmptyFunction(void)
-// 
-// 空初始化函数
-// 不执行任何操作的初始化函数
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+// 功能：空初始化函数，不执行任何操作的初始化函数
+// 说明：此函数为空函数，主要用于系统初始化时的占位符
+// 参数：无
+// 返回值：无
 void InitializeEmptyFunction(void)
 
 {
@@ -4381,23 +4376,23 @@ void InitializeEmptyFunction(void)
 // 
 // 返回值:
 //   成功返回0，失败返回错误代码(如0x1c)
-undefined8 ValidateAndProcessResourceA(longlong param_1)
+undefined8 ValidateAndProcessResourceA(longlong resourceDescriptor)
 
 {
-  undefined8 operationResult;
-  longlong stackBufferA [2];
-  longlong stackBufferB [2];
+  undefined8 validationResult;
+  longlong contextBuffer [2];
+  longlong resourceBuffer [2];
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),stackBufferB);
-  if ((int)operationResult == 0) {
-    if (stackBufferB[0] == 0) {
-      stackBufferB[0] = 0;
+  validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x10),resourceBuffer);
+  if ((int)validationResult == 0) {
+    if (resourceBuffer[0] == 0) {
+      resourceBuffer[0] = 0;
     }
     else {
-      stackBufferB[0] = stackBufferB[0] + -8;
+      resourceBuffer[0] = resourceBuffer[0] + -8;
     }
-    stackBufferA[0] = 0;
-    operationResult = FUN_1808681d0(stackBufferB[0],param_1 + 0x18,stackBufferA);
+    contextBuffer[0] = 0;
+    validationResult = FUN_1808681d0(resourceBuffer[0],resourceDescriptor + 0x18,contextBuffer);
     if ((int)uVar1 == 0) {
       if (alStackX_8[0] != 0) {
         if (*(longlong *)(alStackX_8[0] + 8) == 0) {
