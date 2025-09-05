@@ -717,12 +717,19 @@ uint32_t HandleNetworkProtocolStackData(int64_t *NetworkStackBuffer, int64_t Net
 uint32_t ValidateNetworkConnectionResultHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketData);
 
 /**
- * @brief 获取网络连接句柄
+ * @brief 获取网络连接结果句柄
  * 
- * 获取网络连接的句柄，用于后续的网络操作
+ * 获取网络连接的句柄，用于后续的网络操作和连接管理
  * 
- * @param NetworkConnectionContext 网络连接上下文指针
- * @return NetworkHandle 连接句柄
+ * @param NetworkConnectionContext 网络连接上下文指针，包含连接的配置和状态信息
+ * @return NetworkHandle 连接句柄，返回有效的网络连接句柄，如果失败则返回无效句柄值
+ * 
+ * @retval NetworkHandle 获取成功，返回有效的网络连接句柄
+ * @retval NetworkErrorInvalidHandle 获取失败，返回无效句柄值
+ * 
+ * @note 此函数会从连接上下文中提取句柄信息，调用者需要确保上下文有效
+ * @warning 如果连接上下文无效，返回的句柄可能无法正常使用
+ * @see InitializeNetworkConnection, ValidateNetworkConnectionResultHandleSecurity
  */
 NetworkHandle GetNetworkConnectionResultHandle(int64_t *NetworkConnectionContext);
 
