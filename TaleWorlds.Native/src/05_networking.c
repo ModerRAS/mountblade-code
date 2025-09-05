@@ -2532,23 +2532,23 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
 NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
-  NetworkStatus *NetworkContextDataPointer;                           // 网络上下文数据指针
-  int32_t NetworkPacketProcessingStatus;                       // 网络数据包处理状态
-  int64_t ContextIdentifier;                               // 网络连接上下文标识符
-  NetworkStatus ValidationStatus;                       // 验证状态
-  NetworkStatus TimeoutStatus;                          // 超时状态
-  NetworkStatus SecondaryProcessingStatus;              // 次级处理状态
-  NetworkStatus *NetworkConnectionStatusDataBuffer;                          // 网络连接状态数据缓冲区
-  int64_t NetworkStatusIterationCounter;                           // 网络状态处理迭代器
-  NetworkStatus *NetworkPacketFlagsBuffer;                     // 网络数据包标志缓冲区
-  int64_t *NetworkConnectionContextBuffer;                             // 网络连接上下文缓冲区
-  int32_t NetworkConnectionUpdateOperation;                         // 网络连接更新操作代码
-  NetworkStatus *NetworkConnectionStatusPointer;                          // 网络连接状态处理指针
-  int32_t NetworkConnectionProcessingCode;                              // 网络连接处理代码
-  int64_t NetworkProcessedPacketIdentifier;                                    // 已处理网络数据包标识符
-  int32_t NetworkPacketIndex;                                           // 网络数据包索引
-  int32_t NetworkMaximumInt32Value;                                    // 网络最大32位整数值
-  int64_t *ConnectionOperationBuffer;                               // 连接操作缓冲区
+  NetworkStatus *NetworkContextDataPointer = NULL;                           // 网络上下文数据指针
+  int32_t NetworkPacketProcessingStatus = 0;                       // 网络数据包处理状态
+  int64_t ContextIdentifier = 0;                               // 网络连接上下文标识符
+  NetworkStatus ValidationStatus = 0;                       // 验证状态
+  NetworkStatus TimeoutStatus = 0;                          // 超时状态
+  NetworkStatus SecondaryProcessingStatus = 0;              // 次级处理状态
+  NetworkStatus *NetworkConnectionStatusDataBuffer = NULL;                          // 网络连接状态数据缓冲区
+  int64_t NetworkStatusIterationCounter = 0;                           // 网络状态处理迭代器
+  NetworkStatus *NetworkPacketFlagsBuffer = NULL;                     // 网络数据包标志缓冲区
+  int64_t *NetworkConnectionContextBuffer = NULL;                             // 网络连接上下文缓冲区
+  int32_t NetworkConnectionUpdateOperation = 0;                         // 网络连接更新操作代码
+  NetworkStatus *NetworkConnectionStatusPointer = NULL;                          // 网络连接状态处理指针
+  int32_t NetworkConnectionProcessingCode = 0;                              // 网络连接处理代码
+  int64_t NetworkProcessedPacketIdentifier = 0;                                    // 已处理网络数据包标识符
+  int32_t NetworkPacketIndex = 0;                                           // 网络数据包索引
+  int32_t NetworkMaximumInt32Value = 0;                                    // 网络最大32位整数值
+  int64_t *ConnectionOperationBuffer = NULL;                               // 连接操作缓冲区
   if (NetworkConnectionProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)CalculateConnectionParameterAddress(NetworkConnectionContextBuffer)) && (*NetworkConnectionContextBuffer != 0)) {
@@ -2622,8 +2622,8 @@ void CleanupNetworkConnectionResources(NetworkHandle ConnectionContext)
   int32_t NetworkConnectionStatusCode;                         // 网络连接状态码
   int32_t NetworkPacketProcessingResult;                       // 网络数据处理结果
   NetworkByte CleanupBuffer[48];                     // 清理缓冲区
-  int64_t HandleStorage [2];                           // 句柄存储
-  NetworkHandle *HandleBuffer [34];                   // 句柄缓冲区
+  int64_t HandleStorage[2];                           // 句柄存储
+  NetworkHandle *HandleBuffer[34];                   // 句柄缓冲区
   uint64_t NetworkValidationKey;                              // 验证密钥
   
   // 清理连接状态和数据
@@ -2673,8 +2673,8 @@ void CleanupNetworkConnectionResources(NetworkHandle ConnectionContext)
 NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t ConnectionContext)
 {
   // 安全验证缓冲区
-  NetworkByte PacketValidationBuffer [32];                    // 数据包验证缓冲区，用于存储验证过程中的临时数据
-  NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
+  NetworkByte PacketValidationBuffer[32];                    // 数据包验证缓冲区，用于存储验证过程中的临时数据
+  NetworkByte PacketEncryptionBuffer[32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
   NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
@@ -2715,9 +2715,9 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
 {
   // 数据包处理状态变量
   NetworkHandle NetworkPacketValidationResult;                        // 数据包验证结果，存储整个处理流程的最终状态
-  NetworkStatus ConnectionStateArray [6];                      // 连接状态数组，存储连接的各级状态信息
-  NetworkStatus SecurityValidationArray [4];                 // 安全验证状态数组，存储验证过程中的状态信息
-  NetworkStatus DataProcessingArray [4];                     // 数据处理状态数组，存储处理过程中的状态信息
+  NetworkStatus ConnectionStateArray[6];                      // 连接状态数组，存储连接的各级状态信息
+  NetworkStatus SecurityValidationArray[4];                 // 安全验证状态数组，存储验证过程中的状态信息
+  NetworkStatus DataProcessingArray[4];                     // 数据处理状态数组，存储处理过程中的状态信息
   NetworkHandle ValidationStepResult;                    // 中间处理结果，用于存储各个验证步骤的结果
   
   // 初始化处理结果
@@ -2820,8 +2820,8 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
 {
   // 连接包验证状态变量
   NetworkHandle PacketValidationResult;                     // 数据包验证状态码，存储验证过程的最终结果
-  NetworkByte ConnectionSecurityBuffer [32];            // 连接安全验证缓冲区，用于存储安全验证过程中的临时数据
-  NetworkByte ConnectionEncryptionBuffer [32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
+  NetworkByte ConnectionSecurityBuffer[32];            // 连接安全验证缓冲区，用于存储安全验证过程中的临时数据
+  NetworkByte ConnectionEncryptionBuffer[32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
   PacketValidationResult = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
@@ -2862,7 +2862,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
 {
   // 数据包处理变量
   NetworkHandle PacketProcessingResult;                          // 数据包处理结果，存储处理流程的最终状态
-  NetworkByte DecodedDataStreamBuffer [32];               // 已解码数据流缓冲区，用于存储解码后的数据流信息
+  NetworkByte DecodedDataStreamBuffer[32];               // 已解码数据流缓冲区，用于存储解码后的数据流信息
   uint32_t PacketProcessingStatus;                        // 数据包处理状态值，用于确定处理策略
   
   // 获取处理状态值
