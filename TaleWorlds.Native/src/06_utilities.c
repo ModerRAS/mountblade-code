@@ -20889,7 +20889,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
                   if (operationResult != 0) {
                     return;
                   }
-                  operationResult = FUN_1808affb0(param_1,lVar5 + 0x14);
+                  operationResult = CheckSystemStatusAndReturnO0(param_1,lVar5 + 0x14);
                   if (operationResult != 0) {
                     return;
                   }
