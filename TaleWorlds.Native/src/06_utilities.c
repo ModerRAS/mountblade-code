@@ -1419,8 +1419,32 @@
 #define ProcessFloatingPointArrayA0 FUN_180892cc0
 
 // 请求和数据处理函数宏定义 (F系列)
+
+/**
+ * @brief 处理请求数据F0
+ * 
+ * 该函数负责处理系统请求数据，包括数据验证、格式化和响应生成
+ * 
+ * @note 原始函数名：FUN_180894dd0
+ */
 #define ProcessRequestF0 FUN_180894dd0
+
+/**
+ * @brief 验证数据F0
+ * 
+ * 该函数负责验证输入数据的有效性和完整性
+ * 
+ * @note 原始函数名：FUN_180895ef0
+ */
 #define ValidateDataF0 FUN_180895ef0
+
+/**
+ * @brief 处理数据F0
+ * 
+ * 该函数负责处理系统数据，执行数据转换和格式化操作
+ * 
+ * @note 原始函数名：FUN_180898b65
+ */
 #define ProcessDataF0 FUN_180898b65
 #define ProcessDataF1 FUN_180898bc0
 // 系统状态查询函数
@@ -20310,6 +20334,13 @@ undefined8 ValidateDataFormatA0(undefined8 systemContext,undefined4 *dataBuffer)
 
 
 
+/**
+ * @brief 获取系统状态A1
+ * 
+ * 该函数用于获取当前系统的运行状态信息
+ * 
+ * @return 系统状态码，成功返回0，失败返回错误码
+ */
 undefined8 GetSystemStatusA1(void)
 
 {
