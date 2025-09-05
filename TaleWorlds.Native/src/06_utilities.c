@@ -34277,8 +34277,8 @@ void ValidateExceptionDataPointer(DataBuffer exceptionContext, int64_t contextDa
  * @brief 重置异常处理状态并清理相关资源
  * @details 重置异常处理状态，清理异常数据指针和相关资源
  * 
- * @param param_1 异常处理上下文（未使用）
- * @param param_2 包含异常数据指针的上下文结构
+ * @param ExceptionContext 异常处理上下文（未使用）
+ * @param ExceptionDataContext 包含异常数据指针的上下文结构
  * 
  * @return 无返回值
  */
