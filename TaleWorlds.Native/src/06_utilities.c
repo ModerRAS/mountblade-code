@@ -4165,7 +4165,17 @@ undefined8 FUN_180890830(longlong param_1)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-undefined8 FUN_1808908b0(longlong param_1)
+// 函数: undefined8 ProcessFloatArrayResource(longlong param_1)
+// 
+// 浮点数组资源处理函数
+// 处理包含浮点数数组的资源，进行数据验证和转换
+// 
+// 参数:
+//   param_1 - 资源描述符指针，包含浮点数据和数组信息
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码
+undefined8 ProcessFloatArrayResource(longlong param_1)
 
 {
   longlong lVar1;
@@ -5059,7 +5069,11 @@ undefined8 ValidateResourceAndTerminateB(longlong resourceHandle)
 
 
 
-undefined4 FUN_180890fae(void)
+/**
+ * @brief 空操作函数C
+ * @details 执行空操作，直接返回
+ */
+undefined4 NoOperationC(void)
 
 {
   longlong in_stack_00000040;
@@ -5135,7 +5149,13 @@ void UtilityNoOperationD(void)
 
 
 
-undefined8 FUN_180891090(longlong param_1)
+/**
+ * @brief 资源验证和释放函数A
+ * @details 验证指定资源的有效性，如果无效则释放资源
+ * @param resourceParam 资源参数指针
+ * @return 验证结果或错误码
+ */
+undefined8 ValidateResourceAndReleaseA(longlong resourceParam)
 
 {
   undefined8 uVar1;
@@ -5157,7 +5177,11 @@ undefined8 FUN_180891090(longlong param_1)
 
 
 
-undefined4 FUN_1808910b3(void)
+/**
+ * @brief 空操作函数H
+ * @details 执行空操作，直接返回
+ */
+undefined4 NoOperationH(void)
 
 {
   longlong in_stack_00000040;
