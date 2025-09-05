@@ -7203,7 +7203,7 @@ uint8_t SystemConnectionDataStreamTable;
 uint8_t SystemConnectionDataFlowTable;
 uint8_t SystemConnectionDataPipelineTable;
 uint8_t SystemConnectionDataSegmentTable;
-uint8_t UNK_180a330f0;
+uint8_t SystemConfigurationBufferA0;
 uint8_t UNK_180a33140;
 uint8_t UNK_180a33188;
 uint8_t UNK_180a331c0;
