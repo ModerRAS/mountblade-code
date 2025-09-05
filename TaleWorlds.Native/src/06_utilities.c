@@ -98617,7 +98617,18 @@ void ReleaseSystemMemoryAtOffset2A0Alternate(uint8_t ObjectContext,int64_t Valid
 
 
 
-void Unwind_18090ff00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置资源哈希指针
+ * 
+ * 该函数获取验证上下文中的资源哈希指针，并依次设置为资源分配模板和资源缓存模板
+ * 用于资源哈希表的初始化和配置
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090ff00
+ */
+void SetResourceHashPointers(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
@@ -98747,7 +98758,18 @@ void Unwind_18090ff90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ffa0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构指针
+ * 
+ * 该函数在验证上下文偏移168处设置系统数据结构指针
+ * 用于系统数据结构的初始化和配置
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090ffa0
+ */
+void SetSystemDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + 0x168) = &SystemDataStructure;
@@ -98756,7 +98778,18 @@ void Unwind_18090ffa0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090ffb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源标志并释放数据偏移处的系统资源
+ * 
+ * 该函数检查资源数据偏移30处的标志位，如果第2位为1，
+ * 则重置该标志位并释放验证上下文数据偏移处的系统资源
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090ffb0
+ */
+void ResetResourceFlagAndReleaseDataOffsetResource(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 4) != 0) {
