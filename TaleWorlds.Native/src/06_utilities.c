@@ -35514,7 +35514,18 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902900(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理资源引用计数和异常状态
+ * 
+ * 该函数负责在异常发生时清理资源，包括：
+ * - 管理资源指针的引用计数
+ * - 处理异常列表和内存管理
+ * - 在引用计数为0时调用异常处理
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerResourceRef(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -35550,7 +35561,20 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902920(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 系统调用处理器 - 调用系统清理函数
+ * 
+ * 该函数作为系统调用的包装器，负责：
+ * - 从异常上下文中提取参数
+ * - 调用底层的系统清理函数
+ * - 传递必要的清理标志
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ */
+void SystemCallHandlerCleanupFunc1(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x70) + 0x28,
@@ -35561,7 +35585,20 @@ void Unwind_180902920(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902930(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 系统调用处理器 - 调用系统清理函数
+ * 
+ * 该函数作为系统调用的包装器，负责：
+ * - 从异常上下文中提取参数
+ * - 调用底层的系统清理函数
+ * - 传递必要的清理标志
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ */
+void SystemCallHandlerCleanupFunc2(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800f74f0(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
