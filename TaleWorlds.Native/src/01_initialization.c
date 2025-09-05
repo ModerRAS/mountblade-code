@@ -3005,7 +3005,7 @@ void InitializeSystemMemoryNode(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureA(void)
+void InitializeSystemDataTableSecondaryRoot(void)
 
 {
   char NodeActiveFlag;
@@ -3061,7 +3061,7 @@ void InitializeSystemDataTableStructureA(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureB(void)
+void InitializeSystemDataTableQuaternaryRoot(void)
 
 {
   char NodeActiveFlag;
@@ -3117,7 +3117,7 @@ void InitializeSystemDataTableStructureB(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureC(void)
+void InitializeSystemDataTableQuinaryRoot(void)
 
 {
   char NodeActiveFlag;
@@ -3173,7 +3173,7 @@ void InitializeSystemDataTableStructureC(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureD(void)
+void InitializeSystemDataTableSenaryRoot(void)
 
 {
   char NodeActiveFlag;
@@ -3229,7 +3229,7 @@ void InitializeSystemDataTableStructureD(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureE(void)
+void InitializeSystemDataTableSeptenaryRoot(void)
 
 {
   char NodeActiveFlag;
@@ -3285,7 +3285,7 @@ void InitializeSystemDataTableStructureE(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureF(void)
+void InitializeSystemDataTableOctonaryRoot(void)
 
 {
   char NodeActiveFlag;
@@ -3341,7 +3341,7 @@ void InitializeSystemDataTableStructureF(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureG(void)
+void InitializeSystemDataTableNonaryRoot(void)
 
 {
   char NodeActiveFlag;
@@ -3397,7 +3397,7 @@ void InitializeSystemDataTableStructureG(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureH(void)
+void InitializeSystemDataTableDenaryRoot(void)
 
 {
   bool IsCurrentNodeActive;
@@ -3453,7 +3453,7 @@ void InitializeSystemDataTableStructureH(void)
  * 和访问模式，为系统提供高效的数据表访问支持。
  * 函数通过遍历和比较数据表项来设置特定的标识符和指针。
  */
-void InitializeSystemDataTableStructureI(void)
+void InitializeSystemDataTableDuodenaryRoot(void)
 
 {
   char NodeActiveFlag;
@@ -5059,7 +5059,7 @@ void InitializeSystemSecurityManager(void)
  * 
  * @note 该函数在系统启动时被调用，是系统初始化过程的重要组成部分。
  */
-void InitializeSystemDataTableStructureA(void)
+void InitializeSystemDataTablePrimaryRoot(void)
 
 {
   char NodeActiveFlag;                     // 节点活动标志
@@ -37255,8 +37255,8 @@ long long ResetSystemResourceDataStructure(long long SystemResourceManager)
 void ConfigureSystemResourceAllocation(void* **ResourceHandle,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  byte comparisonByte1;
-  uint comparisonValue2;
+  byte currentDataByte;
+  uint referenceDataByte;
   long long dataManagerOffset;
   void* **allocatedResourceHandle;
   byte *resourceDataPointer;
@@ -37295,13 +37295,13 @@ void ConfigureSystemResourceAllocation(void* **ResourceHandle,void* Configuratio
     }
     resourceReference = &additionalParameterObject;
     additionalParameterObject = &SystemGlobalDataReference;
-    if (stackOffset40 == 0) {
-      stackOffset40 = 0;
-      stackOffset30 = 0;
+    if (resourceConfigurationStatus == 0) {
+      resourceConfigurationStatus = 0;
+      systemInitStatus = 0;
       additionalParameterObject = &SystemMemoryAllocatorReference;
       resourceReference = &configurationDataObject;
       configurationDataObject = &SystemGlobalDataReference;
-      if (stackOffset60 == 0) {
+      if (memoryAllocationStatus == 0) {
         return;
       }
         SystemCleanupFunction();
@@ -37314,12 +37314,12 @@ void ConfigureSystemResourceAllocation(void* **ResourceHandle,void* Configuratio
     resourceDataPointer = allocatedResourceHandle[5];
     dataOffset = *(long long *)(dataManagerOffset + 0x28) - (long long)resourceDataPointer;
     do {
-      comparisonByte1 = *resourceDataPointer;
-      comparisonValue2 = (uint)resourceDataPointer[dataOffset];
-      if (comparisonByte1 != comparisonValue2) break;
+      currentDataByte = *resourceDataPointer;
+      referenceDataByte = (uint)resourceDataPointer[dataOffset];
+      if (currentDataByte != referenceDataByte) break;
       resourceDataPointer = resourceDataPointer + 1;
-    } while (comparisonValue2 != 0);
-    if (0 < (int)(comparisonByte1 - comparisonValue2)) goto DataManagerCheck;
+    } while (referenceDataByte != 0);
+    if (0 < (int)(currentDataByte - referenceDataByte)) goto DataManagerCheck;
   }
   allocationResult = 1;
 DataManagerCheck:
@@ -37805,11 +37805,12 @@ void FormatSystemResourceOutput(void* SystemResourceManager,void* ConfigurationD
   void* standardOutputHandle;
   void** globalDataBuffer;
   void* formatDataPointer;
+  void* formatAdditionalParameter;
   uint64_t SystemInitializationStatusFlag;
   void* formatConfigurationFlag;
   
   formatDataPointer = ConfigurationDataPointer;
-  formatParameter2 = AdditionalParameter;
+  formatAdditionalParameter = AdditionalParameter;
   formatConfigurationFlag = ConfigurationFlag;
   standardOutputHandle = __acrt_iob_func(1);
   globalDataBuffer = (void* *)SystemGlobalDataAllocate();
