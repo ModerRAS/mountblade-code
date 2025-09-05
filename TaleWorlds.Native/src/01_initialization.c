@@ -148,12 +148,12 @@
 #define SystemDataTemplateLId2   0xd4c2151109de93a0  // 系统数据模板L标识符2
 #define SystemDataTemplateMId1   0x4384dcc4b6d3f417  // 系统数据模板M标识符1
 #define SystemDataTemplateMId2   0x92a15d52fe2679bd  // 系统数据模板M标识符2
-#define PerformanceMonitorIdentifier1   0x4384dcc4b6d3f417  // 性能监控器标识符1
-#define PerformanceMonitorIdentifier2   0x92a15d52fe2679bd  // 性能监控器标识符2
+#define PerformanceMonitorSystemId1   0x4384dcc4b6d3f417  // 性能监控器标识符1
+#define PerformanceMonitorSystemId2   0x92a15d52fe2679bd  // 性能监控器标识符2
 #define SystemDataTemplateNId1   0x4140994454d56503  // 系统数据模板N标识符1
 #define SystemDataTemplateNId2   0x399eced9bb5517ad  // 系统数据模板N标识符2
-#define DebugManagerIdentifier1   0x4140994454d56503  // 调试管理器标识符1
-#define DebugManagerIdentifier2   0x399eced9bb5517ad  // 调试管理器标识符2
+#define DebugManagerSystemId1   0x4140994454d56503  // 调试管理器标识符1
+#define DebugManagerSystemId2   0x399eced9bb5517ad  // 调试管理器标识符2
 #define SystemDataTemplateOId1   0x40db4257e97d3df8  // 系统数据模板O标识符1
 #define SystemDataTemplateOId2   0x81d539e33614429f  // 系统数据模板O标识符2
 #define SystemMemoryTemplateId1   0x4e33c4803e67a08f  // 内存比较模板标识符1
@@ -3855,8 +3855,8 @@ void InitializeResourcePool(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -3906,8 +3906,8 @@ void InitializeConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -4291,8 +4291,8 @@ void InitializeSystemEventHandler(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -4346,8 +4346,8 @@ void InitializeSystemNetworkManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -4684,8 +4684,8 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -4741,8 +4741,8 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -5201,8 +5201,8 @@ void InitializeSystemPerformanceMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = PerformanceMonitorCallback;
@@ -5260,8 +5260,8 @@ void InitializeSystemDebugManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -5890,8 +5890,8 @@ void InitializeSystemResourceNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -5948,8 +5948,8 @@ void InitializeSystemMemoryNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -6320,8 +6320,8 @@ void InitializeRenderingSystem(void)
     AllocateSystemMemory(RenderingSystemDataTable,&AllocatedMemoryNode,RenderingHashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     RenderingHashTablePointer = AllocatedMemoryNode;
   }
-  RenderingHashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  RenderingHashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  RenderingHashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  RenderingHashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   RenderingHashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   RenderingHashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   RenderingHashTablePointer[10] = SystemStackPointer;
@@ -6377,8 +6377,8 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -7039,8 +7039,8 @@ void InitializeSystemServiceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -7097,8 +7097,8 @@ void InitializeSystemResourceManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -7445,8 +7445,8 @@ void InitializeSystemThreadManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -7503,8 +7503,8 @@ void InitializeSystemResourceInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -8156,8 +8156,8 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -8214,8 +8214,8 @@ void InitializeSystemNetworkManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -8647,8 +8647,8 @@ void InitializeSystemPerformanceMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -8698,8 +8698,8 @@ void InitializeSystemSecurityMonitor(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -9277,8 +9277,8 @@ void InitializeSystemComponentManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -9328,8 +9328,8 @@ void InitializeSystemPluginManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -9751,8 +9751,8 @@ void InitializeSystemConfigurationNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = systemConfigurationData;
@@ -9801,8 +9801,8 @@ void InitializeSystemEventNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -11084,8 +11084,8 @@ void InitializeSystemStringProcessorJ(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -11134,8 +11134,8 @@ void InitializeSystemStringProcessorK(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -11472,8 +11472,8 @@ void InitializeSystemStringProcessorQ(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -11522,8 +11522,8 @@ void InitializeSystemStringProcessorR(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -11822,8 +11822,8 @@ void InitializeSystemStringProcessorX(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -11872,8 +11872,8 @@ void InitializeSystemStringProcessorY(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -12180,8 +12180,8 @@ void InitializeSystemMemoryManagerE(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -12230,8 +12230,8 @@ void InitializeSystemMemoryManagerF(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -13810,8 +13810,8 @@ void InitializeSystemMemoryDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -13867,8 +13867,8 @@ void InitializeSystemDeviceDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -14284,8 +14284,8 @@ void InitializeSystemThreadNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -14341,8 +14341,8 @@ void InitializeSystemProcessNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -14671,8 +14671,8 @@ void InitializeSystemEventManagerL(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -14723,8 +14723,8 @@ void InitializeSystemEventManagerM(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -16735,8 +16735,8 @@ void InitializeSystemSubcomponentD(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -16787,8 +16787,8 @@ void InitializeSystemSubcomponentE(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;
@@ -17017,7 +17017,7 @@ void InitializeSystemSubcomponentI(void)
 {
   char PerformanceMonitorNodeActiveFlag;
   void** PerformanceMonitorSystemDataTable;
-  int PerformanceMonitorIdentifierCompareResult;
+  int PerformanceMonitorSystemIdCompareResult;
   long long* PerformanceMonitorMemorySystemDataPointer;
   long long PerformanceMonitorSystemTimestamp;
   void** PerformanceMonitorRootNodeReference;
@@ -17033,8 +17033,8 @@ void InitializeSystemSubcomponentI(void)
   PerformanceMonitorHashTablePointer = PerformanceMonitorRootNodeReference;
   PerformanceMonitorCurrentNodePointer = (void**)PerformanceMonitorRootNodeReference[1];
   while (PerformanceMonitorNodeActiveFlag == '\0') {
-    PerformanceMonitorIdentifierCompareResult = memcmp(PerformanceMonitorCurrentNodePointer + 4,&SystemDataTemplateS,0x10);
-    if (PerformanceMonitorIdentifierCompareResult < 0) {
+    PerformanceMonitorSystemIdCompareResult = memcmp(PerformanceMonitorCurrentNodePointer + 4,&SystemDataTemplateS,0x10);
+    if (PerformanceMonitorSystemIdCompareResult < 0) {
       PerformanceMonitorNextNodePointer = (void**)PerformanceMonitorCurrentNodePointer[2];
       PerformanceMonitorCurrentNodePointer = PerformanceMonitorHashTablePointer;
     }
@@ -17045,7 +17045,7 @@ void InitializeSystemSubcomponentI(void)
     PerformanceMonitorCurrentNodePointer = PerformanceMonitorNextNodePointer;
     PerformanceMonitorNodeActiveFlag = *(char*)((long long)PerformanceMonitorNextNodePointer + NodeActiveFlagOffset);
   }
-  if ((PerformanceMonitorHashTablePointer == PerformanceMonitorRootNodeReference) || (PerformanceMonitorIdentifierCompareResult = memcmp(&SystemDataTemplateS,PerformanceMonitorHashTablePointer + 4,0x10), PerformanceMonitorIdentifierCompareResult < 0)) {
+  if ((PerformanceMonitorHashTablePointer == PerformanceMonitorRootNodeReference) || (PerformanceMonitorSystemIdCompareResult = memcmp(&SystemDataTemplateS,PerformanceMonitorHashTablePointer + 4,0x10), PerformanceMonitorSystemIdCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(PerformanceMonitorSystemDataTable);
     AllocateSystemMemory(PerformanceMonitorSystemDataTable,&AllocatedMemoryNode,PerformanceMonitorHashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     PerformanceMonitorHashTablePointer = AllocatedMemoryNode;
@@ -17831,8 +17831,8 @@ void SystemDataNodeInitializerM(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = SystemStackPointer;
@@ -17887,8 +17887,8 @@ void InitializeSystemResourceInitializationNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = DebugManagerIdentifier1;
-  HashTablePointer[NodeIdentifier2Index] = DebugManagerIdentifier2;
+  HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
+  HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
   HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = ResourceInitializationCallback;

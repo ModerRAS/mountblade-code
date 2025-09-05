@@ -20706,7 +20706,7 @@ undefined8 ValidateSystemStatus(longlong SystemContext, undefined8 *ParameterArr
 
 
 
-undefined8 FUN_18089abe0(longlong param_1,undefined8 *param_2)
+undefined8 ProcessDataCacheA0(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -20746,7 +20746,7 @@ undefined8 FUN_18089abe0(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089ac64(void)
+undefined8 CleanupDataCacheA0(void)
 
 {
   longlong in_RAX;
@@ -20812,7 +20812,7 @@ void ExecuteSystemStatusCheck(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_18089ace4(void)
+undefined8 ResetDataCacheA0(void)
 
 {
   float fVar1;
