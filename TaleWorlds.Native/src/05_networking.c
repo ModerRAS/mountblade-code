@@ -447,6 +447,19 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
  * @param TargetTimestamp 目标时间戳指针，用于比较的目标时间戳
  * @return uint32_t 比较结果：0表示相等，正数表示源时间戳大于目标时间戳，负数表示源时间戳小于目标时间戳
  */
+/**
+ * @brief 比较网络连接时间戳
+ * 
+ * 比较两个网络连接的时间戳，确定连接的新旧顺序。
+ * 此函数用于连接管理和超时处理，确保连接的时间顺序正确。
+ * 
+ * @param SourceTimestamp 源时间戳指针，包含第一个连接的时间信息
+ * @param TargetTimestamp 目标时间戳指针，包含第二个连接的时间信息
+ * @return uint32_t 比较结果，0表示相等，正值表示源时间戳更新，负值表示目标时间戳更新
+ * 
+ * @note 此函数使用64位时间戳进行比较，支持长时间运行的连接
+ * @warning 时间戳指针不能为NULL，否则会导致未定义行为
+ */
 uint32_t CompareNetworkConnectionTimestamps(int64_t *SourceTimestamp, int64_t *TargetTimestamp);
 
 /**
@@ -924,17 +937,17 @@ void InitializeNetworkConnectionPool(void)
 {
   // 初始化连接池配置参数
   NetworkConnectionPoolCapacity = CONNECTION_POOL_CAPACITY;           // 设置连接池最大容量
-  NetworkConnectionPoolAllocationCount = 0;        // 重置分配计数器为0
-  NetworkConnectionPoolDeallocationCount = 0;      // 重置释放计数器为0
+  NetworkConnectionPoolAllocationCount = 0;        // 重置连接池分配计数器为0
+  NetworkConnectionPoolDeallocationCount = 0;      // 重置连接池释放计数器为0
   NetworkConnectionPoolHealthStatus = HEALTH_STATUS_NORMAL;         // 设置健康状态为正常
   
   // 初始化连接池管理器
   NetworkConnectionPoolManager = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
-  NetworkConnectionPoolCurrentIndex = 0;                  // 重置索引为0
+  NetworkConnectionPoolCurrentIndex = 0;           // 重置连接池当前索引为0
   
   // 初始化性能监控
-  NetworkConnectionPoolMetrics = 0;    // 重置性能指标为0
-  NetworkConnectionPoolStats = 0;            // 重置统计信息为0
+  NetworkConnectionPoolMetrics = 0;                // 重置连接池性能指标为0
+  NetworkConnectionPoolStatistics = 0;             // 重置连接池统计信息为0
 }
 
 /**
@@ -1058,7 +1071,7 @@ void InitializeNetworkSocket(void)
   // 初始化套接字基本参数
   NetworkSocketDescriptor = SOCKET_DESCRIPTOR_INVALID;        // 初始化文件描述符为无效值
   NetworkSocketContextSize = SOCKET_CONTEXT_SIZE;                // 设置套接字上下文大小为256字节
-  NetworkSocketIndex = 0;                           // 重置套接字索引为0
+  NetworkSocketIndex = 0;                           // 重置网络套接字索引为0
   NetworkSocketSize = SOCKET_SIZE;                         // 设置套接字大小为64字节
   
   // 初始化套接字配置
@@ -1067,7 +1080,7 @@ void InitializeNetworkSocket(void)
   
   // 初始化套接字数据缓冲区
   NetworkSocketRuntimeData = 0;                            // 重置套接字运行时数据指针为NULL
-  NetworkSocketContext = 0;                         // 重置套接字上下文为NULL
+  NetworkSocketContext = 0;                         // 重置网络套接字上下文为NULL
   
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;                    // 设置协议版本为1.0
@@ -1126,11 +1139,11 @@ void StartListeningForConnections(void)
 {
   // 设置监听队列参数
   NetworkConnectionRequestQueue = NetworkQueueEnabled;                // 初始化连接请求队列
-  NetworkPendingRequestCount = 0;                     // 重置待处理请求数量为0
+  NetworkPendingRequestCount = 0;                     // 重置网络待处理请求数量为0
   
   // 设置连接限制参数
   NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;                // 设置最大连接数为100
-  NetworkActiveConnectionsCount = 0;                   // 重置活跃连接计数为0
+  NetworkActiveConnectionsCount = 0;                   // 重置网络活跃连接计数为0
   
   // 初始化连接状态管理器
   NetworkConnectionStateManager = NetworkConnectionStateEnabled;               // 设置状态管理器为启用状态
@@ -1141,7 +1154,7 @@ void StartListeningForConnections(void)
   NetworkTimeoutProcessor = NetworkInvalidTimeoutProcessor;                // 初始化超时处理器
   
   // 初始化连接统计信息
-  NetworkTotalConnectionAttempts = 0;                       // 重置连接尝试次数为0
+  NetworkTotalConnectionAttempts = 0;                       // 重置网络连接尝试总次数为0
   NetworkFailedConnectionAttempts = 0;                       // 重置连接失败次数为0
   NetworkAverageConnectionTime = 0;                           // 重置连接时间为0
   NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间为0
@@ -2037,21 +2050,21 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkConnectionStatus *ConnectionContextDataPointer = (NetworkConnectionStatus *)((ConnectionContextAddress - (long long)NetworkConnectionStatusBuffer) + (long long)ConnectionStatusBufferPointer);
             
             // 提取连接状态信息
-            NetworkConnectionStatus PacketStatus = NetworkContextDataPointer[ConnectionContextPacketStatusIndex];
-            NetworkConnectionStatus DataStatus = NetworkContextDataPointer[ConnectionContextDataStatusIndex];
-            NetworkConnectionStatus ValidationStatus = NetworkContextDataPointer[ConnectionContextValidationStatusIndex];
+            NetworkConnectionStatus PacketStatus = ConnectionContextDataPointer[ConnectionContextPacketStatusIndex];
+            NetworkConnectionStatus DataStatus = ConnectionContextDataPointer[ConnectionContextDataStatusIndex];
+            NetworkConnectionStatus ValidationStatus = ConnectionContextDataPointer[ConnectionContextValidationStatusIndex];
             
             // 更新数据包缓冲区状态
-            *NetworkConnectionStatusPointer = *NetworkContextDataPointer;
-            NetworkConnectionStatusPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
-            NetworkConnectionStatusPointer[ConnectionContextDataStatusIndex] = DataStatus;
-            NetworkConnectionStatusPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            NetworkConnectionStatusPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)NetworkConnectionStatusBuffer) + -4 + (long long)(NetworkConnectionStatusPointer + ConnectionContextStatusEntrySize));
+            *ConnectionStatusBufferPointer = *ConnectionContextDataPointer;
+            ConnectionStatusBufferPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
+            ConnectionStatusBufferPointer[ConnectionContextDataStatusIndex] = DataStatus;
+            ConnectionStatusBufferPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
+            ConnectionStatusBufferPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextAddress - (long long)NetworkConnectionStatusBuffer) + -4 + (long long)(ConnectionStatusBufferPointer + ConnectionContextStatusEntrySize));
             
             // 更新计数器
-            ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
-            NetworkConnectionStatusPointer = NetworkConnectionStatusPointer + ConnectionContextStatusEntrySize;
-          } while (ConnectionProcessingCounter != 0);
+            ConnectionIterationCounter = ConnectionIterationCounter - 1;
+            ConnectionStatusBufferPointer = ConnectionStatusBufferPointer + ConnectionContextStatusEntrySize;
+          } while (ConnectionIterationCounter != 0);
         }
         return NetworkOperationSuccessCode;
       }
