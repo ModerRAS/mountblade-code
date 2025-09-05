@@ -102,7 +102,7 @@
  * 
  * @note 原始函数名：FUN_180893e69
  */
-#define UpdateSystemStatusA0 FUN_180893e69
+#define UpdateSystemStatus FUN_180893e69
 
 /**
  * @brief 带安全检查的数据块处理A0
@@ -112,7 +112,7 @@
  * 
  * @note 原始函数名：FUN_180897d20
  */
-#define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
+#define ProcessDataBlockWithSecurityCheck FUN_180897d20
 
 /**
  * @brief 验证和处理数据A0
