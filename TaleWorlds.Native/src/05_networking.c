@@ -641,11 +641,11 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkFilterEnabled 0x01                         // 过滤器启用
 #define NetworkBandwidthResetValue NetworkResetValue        // 带宽重置
 #define NetworkLatencyResetValue NetworkResetValue          // 延迟重置
-#define NETWORK_PACKET_LOSS_RESET_VALUE NETWORK_RESET_VALUE      // 数据包丢失重置
+#define NetworkPacketLossResetValue NetworkResetValue      // 数据包丢失重置
 
 // 网络错误处理常量
 #define NetworkErrorProcessorEnabledFlag 0x01                 // 错误处理器启用
-#define NetworkErrorCountResetValue NETWORK_RESET_VALUE        // 错误计数重置
+#define NetworkErrorCountResetValue NetworkResetValue        // 错误计数重置
 #define NetworkReportSizeSmallBytes 0x0B                           // 小型报告大小（11字节）
 #define NetworkReportSizeMediumBytes 0x0D                          // 中型报告大小（13字节）
 #define NetworkReportSizeLargeBytes 0x0F                           // 大型报告大小（15字节）
@@ -663,7 +663,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkTcpSocketCategory 0x01                        // TCP套接字类别
 #define NetworkClientIpAddressAny 0x00000000                 // 任意客户端IP地址
 #define NetworkClientPortAny 0x0000                          // 任意客户端端口
-#define ExtendedFlagsReset NetworkReset_VALUE                  // 扩展标志重置
 #define NetworkSocketSize 0x100                               // 套接字结构大小（256字节）
 #define NetworkTcpProtocol 0x06                               // TCP协议号
 #define NetworkConnectionPriorityMedium 0x02                  // 中等连接优先级
