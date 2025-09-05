@@ -3642,43 +3642,43 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
                           uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 数据包解码变量
-  uint32_t DecodingStatus;                                // 数据包解码状态
-  uint32_t MagicValidationResult;                        // 网络数据包魔数验证结果
-  uint32_t IntegrityValidationStatus;                    // 网络数据包完整性状态
+  uint32_t PacketDecodingStatus;                          // 数据包解码状态
+  uint32_t MagicNumberValidationResult;                 // 网络数据包魔数验证结果
+  uint32_t DataIntegrityValidationStatus;               // 网络数据包完整性状态
   
   // 初始化解码状态
-  DecodingStatus = NetworkValidationFailure;
-  MagicValidationResult = NetworkValidationFailure;
-  IntegrityValidationStatus = NetworkValidationFailure;
+  PacketDecodingStatus = NetworkValidationFailure;
+  MagicNumberValidationResult = NetworkValidationFailure;
+  DataIntegrityValidationStatus = NetworkValidationFailure;
   
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证主魔数
     if (PrimaryMagicNumber == NetworkLiveConnectionMagic || PrimaryMagicNumber == NetworkValidationMagic) {
-      MagicValidationResult |= NetworkPacketFirstMagicValidMask;
+      MagicNumberValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证次魔数
     if (SecondaryMagicNumber == NetworkBinaryDataMagic || SecondaryMagicNumber == NetworkMemoryValidationMagic) {
-      MagicValidationResult |= NetworkPacketSecondMagicValidMask;
+      MagicNumberValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
   
   // 检查数据完整性
-  if (MagicValidationResult == NetworkValidationMagicMask) {
-    IntegrityValidationStatus = NetworkValidationSuccess;
+  if (MagicNumberValidationResult == NetworkValidationMagicMask) {
+    DataIntegrityValidationStatus = NetworkValidationSuccess;
   }
   
   // 根据解码模式处理数据
   if (DecodingMode == NetworkPacketBasicDecodingMode) {
     // 基本解码模式
-    DecodingStatus = MagicValidationResult & NetworkValidationMagicMask;
+    PacketDecodingStatus = MagicNumberValidationResult & NetworkValidationMagicMask;
   } else if (DecodingMode == NetworkPacketStrictDecodingMode) {
     // 严格解码模式
-    DecodingStatus = IntegrityValidationStatus & NetworkValidationSuccess;
+    PacketDecodingStatus = DataIntegrityValidationStatus & NetworkValidationSuccess;
   } else {
     // 默认解码模式
-    DecodingStatus = NetworkValidationSuccess;
+    PacketDecodingStatus = NetworkValidationSuccess;
   }
   
   // 设置输出缓冲区
