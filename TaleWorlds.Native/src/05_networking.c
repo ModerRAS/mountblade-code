@@ -4398,9 +4398,9 @@ void CopyNetworkConnectionBuffer(void* SourceBuffer)
 NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t HeaderIntegrityValidationResult;                     // 数据包头部完整性验证结果
-  uint32_t ContextProcessingStatus;                 // 头部上下文处理状态
-  uint32_t FormatValidationResult;                   // 数据包格式验证结果
+  uint32_t HeaderIntegrityValidationResult;                     // 头部完整性验证结果
+  uint32_t ContextProcessingStatus;                             // 上下文处理状态
+  uint32_t FormatValidationResult;                              // 格式验证结果
   
   // 初始化处理状态
   HeaderIntegrityValidationResult = NetworkValidationFailure;
