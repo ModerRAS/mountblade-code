@@ -29334,20 +29334,20 @@ PathSeparatorFound:
                 SystemInitializationStatusPrimary = ConfigureSystemResource(resourcePoolPointer,&stackParameterB);
                 if (SystemGlobalStateStorage != 0) {
                   ProcessSystemDataOperation(SystemInitializationStatusPrimary,&SystemUnsignedFlagPointer);
-                  StackPointerF0 = &SystemGlobalDataReference;
-                  SystemMemoryAllocatorStatus = 0;
-                  pointerUnsignedE8 = (uint8_t *)0x0;
-                  StackValidationFlagE0 = 0;
-                  ExecuteSystemCommand(&StackPointerF0,StackCommandSizeC0);
+                  GlobalDataPointer = &SystemGlobalDataReference;
+                  MemoryAllocationStatus = 0;
+                  TempBufferPointer = (uint8_t *)0x0;
+                  StackValidationResult = 0;
+                  ExecuteSystemCommand(&GlobalDataPointer,StackCommandSizeC0);
                   if (StackCommandSizeC0 != 0) {
-                      memcpy(pointerUnsignedE8,SystemStackBufferC8,StackCommandSizeC0 + 1);
+                      memcpy(TempBufferPointer,SystemStackBufferC8,StackCommandSizeC0 + 1);
                   }
                   if (SystemStackBufferC8 != 0) {
-                    StackValidationFlagE0 = 0;
-                    if (pointerUnsignedE8 != (uint8_t *)0x0) {
-                      *pointerUnsignedE8 = 0;
+                    StackValidationResult = 0;
+                    if (TempBufferPointer != (uint8_t *)0x0) {
+                      *TempBufferPointer = 0;
                     }
-                    SystemMemoryAllocatorStatus = SystemMemoryAllocatorStatus & SystemMaximumUnsigned32BitValue;
+                    MemoryAllocationStatus = MemoryAllocationStatus & SystemMaximumUnsigned32BitValue;
                   }
                   SystemResourceStringPointer = &SystemStringTemplate;
                   if (stackParameterPointerC != (void* *)0x0) {
@@ -29357,28 +29357,28 @@ PathSeparatorFound:
                   ProcessSystemDataTransfer(&SystemResourceHandlePrimary,&SystemUnsignedFlagPointer);
                   SystemGlobalStateStorage = 0;
                   SystemResourceHandlePrimary = &SystemGlobalDataReference;
-                  if (pointerUnsignedE8 != (uint8_t *)0x0) {
+                  if (TempBufferPointer != (uint8_t *)0x0) {
                       SystemCleanupFunction();
                   }
-                  pointerUnsignedE8 = (uint8_t *)0x0;
-                  SystemMemoryAllocatorStatus = SystemMemoryAllocatorStatus & SystemMemoryAlignmentMask;
+                  TempBufferPointer = (uint8_t *)0x0;
+                  MemoryAllocationStatus = MemoryAllocationStatus & SystemMemoryAlignmentMask;
                   SystemResourceHandlePrimary = &SystemMemoryAllocatorReference;
                   SystemUnsignedFlagPointer = &SystemGlobalDataReference;
-                  if (SystemMemoryAllocationOffset70 != 0) {
+                  if (MemoryAllocationOffset != 0) {
                       SystemCleanupFunction();
                   }
-                  SystemMemoryAllocationOffset70 = 0;
+                  MemoryAllocationOffset = 0;
                   SystemThreadContext = 0;
                   SystemUnsignedFlagPointer = &SystemMemoryAllocatorReference;
                 }
-                stackParameterB = &SystemGlobalDataReference;
-                if (pStackParameterC != (void* *)0x0) {
+                SystemParameterB = &SystemGlobalDataReference;
+                if (StackParameterC != (void* *)0x0) {
                     SystemCleanupFunction();
                 }
-                pSystemConfigurationValue = (void* *)0x0;
+                SystemConfigurationValue = (void* *)0x0;
                 SystemFlagTertiary = 0;
-                stackParameterB = &SystemMemoryAllocatorReference;
-                pSystemConfigurationPointer = &SystemGlobalDataReference;
+                SystemParameterB = &SystemMemoryAllocatorReference;
+                SystemConfigurationPointer = &SystemGlobalDataReference;
                 if (pSystemResourceSize != (uint8_t *)0x0) {
                     SystemCleanupFunction();
                 }
