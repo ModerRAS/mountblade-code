@@ -100,6 +100,12 @@
 #define SystemNodeNextPointerIndex           5  // 系统节点下一指针索引
 #define SystemNodeHeadPointerIndex           6  // 系统节点头指针索引
 
+// 系统资源管理器偏移量常量
+#define SystemResourceManagerOperationCodeOffset    0x10  // 系统资源管理器操作码偏移量
+#define SystemResourceManagerMaxOperationOffset     0x18  // 系统资源管理器最大操作偏移量
+#define SystemResourceManagerMemoryPageOffset       0x8   // 系统资源管理器内存页偏移量
+#define SystemResourceManagerThreadConfigOffset     0x20  // 系统资源管理器线程配置偏移量
+
 // 根节点引用索引常量
 #define RootNodeCurrentNodeIndex            1  // 根节点当前节点索引
 
@@ -19910,8 +19916,7 @@ void ProcessSystemStringCopy(long long TargetBuffer, long long SourceString)
   } while (*(char *)(SourceString + StringLength) != '\0');
   if ((int)StringLength < 0x1000) {
     *(int *)(TargetBuffer + STRING_LENGTH_OFFSET) = (int)StringLength;
-                    000180045b59. Too many branches
-                        strcpy_s(*(void* *)(SystemResourceManager + 8),0x1000);
+    strcpy_s(*(void* *)(TargetBuffer + STRING_DATA_OFFSET), (int)StringLength + 1, (const char *)(SourceString));
     return;
   }
   ProcessSystemStringAllocation(&SystemMemoryTemplateSeptenary,0x1000,ConfigurationDataPointer);
@@ -20910,14 +20915,14 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
   SystemResourceCounterFreed = 0;
   SystemResourceCounterCached = 0;
   SystemSecondaryProcessFlags = 0;
-  SystemOperationCode = *(ulong long *)(SystemResourceManager + 0x10);
-  if (SystemOperationCode < *(ulong long *)(SystemResourceManager + 0x18)) {
-    *(ulong long *)(SystemResourceManager + 0x10) = SystemOperationCode + 0x100;
+  SystemOperationCode = *(ulong long *)(SystemResourceManager + SystemResourceManagerOperationCodeOffset);
+  if (SystemOperationCode < *(ulong long *)(SystemResourceManager + SystemResourceManagerMaxOperationOffset)) {
+    *(ulong long *)(SystemResourceManager + SystemResourceManagerOperationCodeOffset) = SystemOperationCode + 0x100;
     ProcessSystemData(SystemOperationCode,&SystemMemoryContextPointer);
-    SystemResourceTablePointer = *(void* *****)(SystemResourceManager + 0x10);
+    SystemResourceTablePointer = *(void* *****)(SystemResourceManager + SystemResourceManagerOperationCodeOffset);
     goto MemoryAllocationComplete;
   }
-  SystemMemoryPageBase = *(long long *)(SystemResourceManager + 8);
+  SystemMemoryPageBase = *(long long *)(SystemResourceManager + SystemResourceManagerMemoryPageOffset);
   SystemMemoryAllocationOffset = (long long)(SystemOperationCode - SystemMemoryPageBase) >> 8;
   if (SystemMemoryAllocationOffset == 0) {
     SystemMemoryAllocationOffset = 1;
@@ -20985,11 +20990,11 @@ void InitializeSystemDataBlock(void* *SystemResourceManager,void* DataSourcePoin
 ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long ComparisonDataPointer)
 
 {
-  byte *dataBlockComparisonBytePointer;
-  int dataBlockComparisonResult;
-  long long dataBlockResourceMemoryOffset;
-  byte *dataBlockSourceBytePointer;
-  int dataBlockByteDifference;
+  byte *DataBlockComparisonBytePointer;
+  int DataBlockComparisonResult;
+  long long DataBlockResourceMemoryOffset;
+  byte *DataBlockSourceBytePointer;
+  int DataBlockByteDifference;
   int dataBlockCalculationFlags;
   ulong long dataBlockSizeLimit;
   long long dataBlockMemoryOffset;
