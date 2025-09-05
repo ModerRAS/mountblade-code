@@ -1956,6 +1956,22 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   NetworkConnectionStatus PacketProcessingStatus;      // 数据包处理状态
   NetworkConnectionStatus ConnectionValidationStatus;  // 连接验证状态
   
+  /**
+   * @brief 处理网络连接数据包的核心逻辑
+   * 
+   * 此函数负责处理网络连接中的数据包，包括：
+   * 1. 验证数据包参数的有效性
+   * 2. 检查数据包大小范围
+   * 3. 处理连接请求并获取状态缓冲区
+   * 4. 循环处理所有连接数据
+   * 5. 提取和更新连接状态信息
+   * 6. 验证连接安全性
+   * 7. 更新连接上下文和参数
+   * 
+   * @note 这是网络数据包处理的核心函数，确保数据包的安全性和完整性
+   * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
+   */
+  
   // 验证数据包参数的有效性
   if (PacketData < (int)ConnectionContext[ConnectionContextActiveCountIndex]) {
     return NetworkConnectionNotFound;
@@ -2050,7 +2066,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int64_t *ConnectionOperationBuffer;                             // 操作缓冲区
   int32_t ConnectionUpdateOperation;                         // 更新操作代码
   
-  ConnectionStatusPtr = (NetworkStatus *)0x0;
+  ConnectionStatusPointer = (NetworkStatus *)0x0;
   if (ConnectionOperationCode == 0) {
 PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset)) && (*ConnectionOperationBuffer != 0)) {
@@ -2061,24 +2077,24 @@ PrimaryNetworkProcessingComplete:
     return NetworkOperationSuccess;
   }
   if (PacketIndex * ConnectionEntrySize - 1U < MaxIntValue) {
-    ConnectionStatusPtr = (NetworkStatus *)
+    ConnectionStatusPointer = (NetworkStatus *)
              ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
-    if (ConnectionStatusPtr != NULL) {
+    if (ConnectionStatusPointer != NULL) {
       int32_t OperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t StatusIterator = (long long)OperationProcessingCode;
       if ((OperationProcessingCode != 0) && (NetworkContextIdentifier = *ConnectionOperationBuffer, 0 < OperationProcessingCode)) {
-        NetworkStatus *ConnectionStatusBuffer = ConnectionStatusPtr;
+        NetworkStatus *ConnectionStatusBuffer = ConnectionStatusPointer;
         do {
-          NetworkStatus *ContextStatusPtr = (NetworkStatus *)((NetworkContextIdentifier - (long long)ConnectionStatusPtr) + (long long)ConnectionStatusBuffer);
-          NetworkStatus ValidationState = ContextStatusPtr[NetworkStatusValidationIndex];
-          NetworkStatus TimeoutState = ContextStatusPtr[NetworkStatusTimeoutIndex];
-          NetworkStatus SecondaryState = ContextStatusPtr[NetworkStatusSecondaryIndex];
-          *ConnectionStatusBuffer = *ContextStatusPtr;
+          NetworkStatus *ContextStatusPointer = (NetworkStatus *)((NetworkContextIdentifier - (long long)ConnectionStatusPointer) + (long long)ConnectionStatusBuffer);
+          NetworkStatus ValidationState = ContextStatusPointer[NetworkStatusValidationIndex];
+          NetworkStatus TimeoutState = ContextStatusPointer[NetworkStatusTimeoutIndex];
+          NetworkStatus SecondaryState = ContextStatusPointer[NetworkStatusSecondaryIndex];
+          *ConnectionStatusBuffer = *ContextStatusPointer;
           ConnectionStatusBuffer[NetworkStatusValidationIndex] = ValidationState;
           ConnectionStatusBuffer[NetworkStatusTimeoutIndex] = TimeoutState;
           ConnectionStatusBuffer[NetworkStatusSecondaryIndex] = SecondaryState;
-          ConnectionStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((NetworkContextIdentifier - (long long)ConnectionStatusPtr) + -4 + (long long)(ConnectionStatusBuffer + ConnectionContextStatusEntrySize));
+          ConnectionStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((NetworkContextIdentifier - (long long)ConnectionStatusPointer) + -4 + (long long)(ConnectionStatusBuffer + ConnectionContextStatusEntrySize));
           StatusIterator = StatusIterator - 1;
           ConnectionStatusBuffer = ConnectionStatusBuffer + ConnectionContextStatusEntrySize;
         } while (StatusIterator != 0);
