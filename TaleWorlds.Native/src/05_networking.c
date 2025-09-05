@@ -3410,24 +3410,24 @@ void CleanupNetworkConnectionStack(void* ConnectionBuffer)
 void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
 {
   // 连接缓冲区复制变量
-  uint32_t BufferCopyStatus;                     // 复制操作状态
-  uint32_t BufferDataValidationResult;                    // 数据验证结果
-  uint32_t BufferSecurityCheckResult;                // 安全验证结果
+  uint32_t BufferCopyStatus;                          // 复制操作状态
+  uint32_t DataValidationResult;                       // 数据验证结果
+  uint32_t SecurityCheckResult;                        // 安全验证结果
   
   // 初始化复制状态
   BufferCopyStatus = NetworkValidationFailure;
-  BufferDataValidationResult = NetworkValidationFailure;
-  BufferSecurityCheckResult = NetworkValidationFailure;
+  DataValidationResult = NetworkValidationFailure;
+  SecurityCheckResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
   if (SourceBuffer) {
-    BufferDataValidationResult = NetworkValidationSuccess;  // 数据验证通过
-    BufferSecurityCheckResult = NetworkValidationSuccess;  // 安全验证通过
+    DataValidationResult = NetworkValidationSuccess;     // 数据验证通过
+    SecurityCheckResult = NetworkValidationSuccess;     // 安全验证通过
     
     // 在实际实现中，这里应该实现实际的缓冲区复制逻辑
     // 包括：数据验证、加密复制、完整性检查等
     // 由于这是简化实现，暂时不执行具体操作
-    BufferCopyStatus = BufferDataValidationResult & BufferSecurityCheckResult;
+    BufferCopyStatus = DataValidationResult & SecurityCheckResult;
   }
   
   // 如果复制成功，更新系统状态
@@ -3457,33 +3457,33 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 网络数据包解码变量
-  uint32_t PacketSecurityValidationResult;               // 网络数据包验证结果
-  uint32_t PacketHeaderDecodingStatus;                    // 网络头部解码状态
-  uint32_t PacketPayloadDecodingStatus;                   // 网络负载解码状态
+  uint32_t SecurityValidationResult;                     // 网络数据包验证结果
+  uint32_t HeaderDecodingStatus;                         // 网络头部解码状态
+  uint32_t PayloadDecodingStatus;                        // 网络负载解码状态
   
   // 初始化解码状态
-  PacketSecurityValidationResult = NetworkValidationFailure;
-  PacketHeaderDecodingStatus = NetworkValidationFailure;
-  PacketPayloadDecodingStatus = NetworkValidationFailure;
+  SecurityValidationResult = NetworkValidationFailure;
+  HeaderDecodingStatus = NetworkValidationFailure;
+  PayloadDecodingStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData && OutputBuffer) {
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      PacketHeaderDecodingStatus = NetworkValidationSuccess;
+      HeaderDecodingStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      PacketPayloadDecodingStatus = NetworkValidationSuccess;
+      PayloadDecodingStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    PacketSecurityValidationResult = PacketHeaderDecodingStatus & PacketPayloadDecodingStatus;
+    SecurityValidationResult = HeaderDecodingStatus & PayloadDecodingStatus;
     
     // 初始化输出缓冲区
-    if (PacketSecurityValidationResult == NetworkValidationSuccess) {
+    if (SecurityValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
       OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
@@ -3491,7 +3491,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
   }
   
-  return PacketSecurityValidationResult;
+  return SecurityValidationResult;
 }
 
 /**

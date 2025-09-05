@@ -30030,16 +30030,16 @@ void HandleSystemNodeResourceProcessing(long long SystemResourceManager)
           SystemResourceCounter = *(int *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 0x10);
           if (ResourceCalculationFlags == SystemResourceCounter) {
             if (ResourceCalculationFlags == 0) {
-SystemCounterCheck:
-              if (SystemResourceCounter != 0) goto SystemCounterContinue;
+SystemResourceCounterCheck:
+              if (SystemResourceCounter != 0) goto SystemResourceCounterContinue;
               IsConfigurationInitialized = true;
             }
             else {
               ResourceStringPointer = *(char **)(*(long long *)(ResourceDataLocation + ResourceDataPosition) + 8);
-              ResourceDataIndex = *(long long *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 8) - (long long)ResourceStringPointer;
+              ResourceDataIndexSecondary = *(long long *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 8) - (long long)ResourceStringPointer;
               do {
                 SystemInitializationStatusFlag = *ResourceStringPointer;
-                ResourceValidationStatus = ResourceStringPointer[ResourceDataIndex];
+                ResourceValidationStatus = ResourceStringPointer[ResourceDataIndexSecondary];
                 if (SystemInitializationStatusFlag != ResourceValidationStatus) break;
                 ResourceStringPointer = ResourceStringPointer + 1;
               } while (ResourceValidationStatus != '\0');
@@ -30047,26 +30047,26 @@ SystemCounterCheck:
             }
           }
           else {
-            if (CalculationFlags == 0) goto SystemCounterCheck;
-SystemCounterContinue:
-            isConfigurationInitialized = false;
+            if (ResourceCalculationFlags == 0) goto SystemResourceCounterCheck;
+SystemResourceCounterContinue:
+            IsConfigurationInitialized = false;
           }
-          CalculationFlags = SystemInitializationStatus;
-          if (!isConfigurationInitialized) {
-            CalculationFlags = ResourceValidationResult;
+          ResourceCalculationFlags = SystemInitializationStatus;
+          if (!IsConfigurationInitialized) {
+            ResourceCalculationFlags = ResourceValidationResult;
           }
           SystemInitializationStatus = SystemInitializationStatus + 1;
           ResourceDataLocation = ResourceDataLocation + 8;
-          ResourceValidationResult = CalculationFlags;
-        } while ((ulong long)(long long)SystemInitializationStatus < (ulong long)(resourceCounter - ResourceDataPosition >> 3));
+          ResourceValidationResult = ResourceCalculationFlags;
+        } while ((ulong long)(long long)SystemInitializationStatus < (ulong long)(ResourceCount - ResourceDataPosition >> 3));
       }
-      if (CalculationFlags != -1) {
-        ResourceDataLocation = (long long)CalculationFlags;
-        resourceCounter = *(long long *)(ResourceDataPosition + ResourceDataLocation * 8);
+      if (ResourceCalculationFlags != -1) {
+        ResourceDataLocation = (long long)ResourceCalculationFlags;
+        ResourceCount = *(long long *)(ResourceDataPosition + ResourceDataLocation * 8);
         *(double *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 0x40) =
-             *(double *)(resourceCounter + 0x40) + *(double *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 0x40);
-        pSystemMemoryPointer = *(long long **)(resourceCounter + 0x48);
-        if (pSystemMemoryPointer != *(long long **)(resourceCounter + 0x50)) {
+             *(double *)(ResourceCount + 0x40) + *(double *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 0x40);
+        SystemMemoryPointer = *(long long **)(ResourceCount + 0x48);
+        if (SystemMemoryPointer != *(long long **)(ResourceCount + 0x50)) {
           ResourceDataPosition = *(long long *)(SystemResourceManager + 0x48);
           do {
             *(void* *)(*pSystemMemoryPointer + 0x68) = *(void* *)(SystemOperationResult + ResourceDataPosition);

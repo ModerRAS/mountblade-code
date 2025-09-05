@@ -18769,7 +18769,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
             validationContext1 = param_1[4];
             if ((char)validationContext1 == '\0') {
               *(undefined1 *)(param_1 + 4) = 1;
-              iVar7 = FUN_18073a200(*(undefined8 *)(param_1[1] + 0x78),auStack_2e8);
+              iVar7 = InitializeDataStructureA0(*(undefined8 *)(param_1[1] + 0x78),auStack_2e8);
               if (((iVar7 != 0) || (iVar7 = ProcessDataBufferA0(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
                   ) || (iVar7 = (**(code **)(*param_1 + 0x10))(param_1), iVar7 != 0))
               goto LAB_18089866f;
@@ -18803,7 +18803,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
       uStack_310 = 0xffffffffffffffff;
       afStack_308[0] = -NAN;
       plStack_318 = (longlong *)(*(longlong *)(param_1[1] + 0x90) + 0x38);
-      FUN_1808741f0(plStack_318,&uStack_310,afStack_308);
+      ProcessDataAndExecuteOperationO5(plStack_318,&uStack_310,afStack_308);
       afStack_348[0] = afStack_308[0];
       if (afStack_308[0] != -NAN) {
         pvalidationContext6 = plStack_318;
@@ -18885,7 +18885,7 @@ CalculationCheckpoint:
   }
 MemoryCheckpoint:
                     // WARNING: Subroutine does not return
-  FUN_18088c790(alStack_300 + 1);
+  ReleaseResourceA1(alStack_300 + 1);
 }
 
 
@@ -18992,7 +18992,7 @@ undefined8 ValidateDataA1(longlong *param_1,char param_2)
   ulonglong uStack_18;
   
   *(undefined1 *)(param_1 + 4) = 1;
-  uVar2 = FUN_18073a200(*(undefined8 *)(param_1[1] + 0x78),&uStackX_8);
+  uVar2 = InitializeDataStructureA0(*(undefined8 *)(param_1[1] + 0x78),&uStackX_8);
   if ((((int)uVar2 == 0) && (uVar2 = ProcessDataBufferA0(uStackX_8,alStackX_18,0), (int)uVar2 == 0)) &&
      (uVar2 = (**(code **)(*param_1 + 0x10))(param_1), (int)uVar2 == 0)) {
     uVar3 = (ulonglong)(alStackX_18[0] * 48000) / (ulonglong)*(uint *)((longlong)param_1 + 0x1c);
@@ -19849,13 +19849,13 @@ void ProcessMultiSegmentDataA0(undefined8 param_1,longlong param_2)
 {
   int iVar1;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
+  iVar1 = OperateDataO0(param_1,param_2,4);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808aed00(param_1,param_2 + 4,2);
+    iVar1 = OperateDataO0(param_1,param_2 + 4,2);
     if (iVar1 == 0) {
-      iVar1 = FUN_1808aed00(param_1,param_2 + 6,2);
+      iVar1 = OperateDataO0(param_1,param_2 + 6,2);
       if (iVar1 == 0) {
-        iVar1 = FUN_1808aed00(param_1,param_2 + 8,8);
+        iVar1 = OperateDataO0(param_1,param_2 + 8,8);
         if (iVar1 == 0) {
           FUN_1808aed00(param_1,param_2 + 0x10,4);
         }
