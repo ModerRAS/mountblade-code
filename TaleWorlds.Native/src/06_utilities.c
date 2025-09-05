@@ -1090,6 +1090,22 @@
 // 功能：存储系统数据配置信息
 #define DataConfigurationTableA4 UNK_1809865f0
 
+// 原始变量名：UNK_1809866c0 - 数据配置表A5
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA5 UNK_1809866c0
+
+// 原始变量名：UNK_180986730 - 数据配置表A6
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA6 UNK_180986730
+
+// 原始变量名：UNK_1809867b0 - 数据配置表A7
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA7 UNK_1809867b0
+
+// 原始变量名：UNK_180986850 - 数据配置表A8
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA8 UNK_180986850
+
 // FUN_1809414xx函数语义化宏定义
 // 原始函数名：FUN_180941445 - 数据结构初始化函数A0
 // 功能：初始化数据结构并设置指针，包含验证逻辑
