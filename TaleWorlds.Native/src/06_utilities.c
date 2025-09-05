@@ -27142,7 +27142,7 @@ ValidationLabelB:
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
       if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter8) {
-        statusCounter = FUN_180883750(systemContext + 0x48,inputParameter8);
+        statusCounter = ValidateSystemParametersA0(systemContext + 0x48,inputParameter8);
         dataValue1 = (uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter8 = *(int *)(stackFramePointer + -0x21);
@@ -27213,7 +27213,7 @@ ValidationLabelB:
     }
   }
   else {
-    dataValue1 = FUN_1808a5780(param_1,systemContext + 0x48);
+    dataValue1 = CreateExceptionDataBuffer(param_1,systemContext + 0x48);
     fVar20 = floatResultA_01;
     if ((int)dataValue1 != 0) {
       return dataValue1;
@@ -27224,7 +27224,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= dataValue1 &&
       (dataValue1 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       dataValue1 = dataValue1 + 0x1c) {
-    fVar20 = (float)FUN_1807d3e20(systemContext + 0x58);
+    fVar20 = (float)GetSystemContextValue(systemContext + 0x58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(destinationIndexRegister + 8)) &&
@@ -27475,7 +27475,7 @@ OperationLabelD:
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = FUN_1808a2740(*param_2,param_1 + 0x50);
+  validationStatus = ProcessSystemDataA0(*param_2,param_1 + 0x50);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -27630,7 +27630,7 @@ DataProcessingHandler:
     if ((int)validationStatus == 0) {
       securityCheckResult = stackByteBuffer[0] & 1;
       statusCounter = stackByteBuffer[0] >> 1;
-      validationStatus = FUN_1808af8b0(param_1 + 0x60,statusCounter);
+      validationStatus = ValidateSystemStatusA0(param_1 + 0x60,statusCounter);
       if ((int)validationStatus == 0) {
         auStackX_18[0] = 0;
         validationStatus = dataFlags;
