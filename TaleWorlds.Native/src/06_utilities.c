@@ -4841,7 +4841,7 @@ void ValidateSystemObjectCollection(void)
     ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeData + SystemContextSecondaryDataProcessingOffset), *(int64_t *)(SystemContextPointer + ObjectHandleSecondaryOffset),
                           &ObjectDataBuffer);
     if (ValidationStatusCode == 0) {
-      RetrievedObjectCount = *(int *)(ProcessingWorkspaceBuffer + ObjectDataArraySizeOffset);
+      RetrievedObjectCount = *(int *)(ObjectDataBuffer + ObjectDataArraySizeOffset);
       if (0 < RetrievedObjectCount) {
         BufferPosition = PointerSizeBytes;
         do {
@@ -4854,14 +4854,14 @@ void ValidateSystemObjectCollection(void)
           BufferPosition += 8;
         } while (ValidatedObjectCount < RetrievedObjectCount);
       }
-      ReleaseSystemObjectCollection(&ProcessingWorkspaceBuffer);
+      ReleaseSystemObjectCollection(&ObjectDataBuffer);
     }
     else {
-      ReleaseSystemObjectCollection(&ProcessingWorkspaceBuffer);
+      ReleaseSystemObjectCollection(&ObjectDataBuffer);
     }
   }
   // 执行安全验证
-  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)ProcessingWorkspaceBuffer);
+  PerformSecurityValidation(SecurityValidationToken ^ (uint64_t)ObjectDataBuffer);
 }
 
 
@@ -5551,9 +5551,25 @@ void RaiseSystemException(void) {
  * @return void 无返回值
  * @note 此函数通常在系统关闭或资源回收时调用
  */
+/**
+ * @brief 清理系统资源
+ * 
+ * 该函数负责清理系统运行时占用的各种资源。
+ * 包括内存、文件句柄、网络连接、线程等系统资源的释放和回收。
+ * 
+ * @note 当前为预留函数，实际实现可能需要根据系统资源管理策略进行扩展
+ * @warning 在系统关闭或资源不再使用时调用此函数
+ * @see InitializeSystemResources, ReleaseSystemResource, FreeObjectListMemory
+ */
 void CleanupSystemResources(void)
 {
   // 预留系统资源清理逻辑
+  // 实际实现中应该包含：
+  // 1. 释放内存资源
+  // 2. 关闭文件句柄
+  // 3. 断开网络连接
+  // 4. 终止线程
+  // 5. 回收其他系统资源
   return;
 }
 
