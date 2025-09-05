@@ -2537,12 +2537,12 @@ double SystemPerformanceMetric1;
 double SystemPerformanceMetric2;
 int SystemErrorCounter;
 double SystemTimingValue;
-undefined UNK_180a073d8;
-undefined UNK_180a073b8;
-undefined UNK_180155fc0;
-undefined UNK_180155fe0;
-undefined UNK_180156000;
-undefined UNK_180156020;
+undefined UtilitySystemState1;
+undefined UtilitySystemState2;
+undefined SystemPointerArray1;
+undefined SystemPointerArray2;
+undefined SystemPointerArray3;
+undefined SystemPointerArray4;
 undefined UNK_180156040;
 undefined UNK_180156060;
 undefined UNK_180156080;
@@ -9816,7 +9816,7 @@ int ProcessUtilityDataWithCallback(longlong *callbackContext,longlong dataBuffer
 
 
 
-int FUN_180894700(longlong *param_1,longlong param_2,int param_3)
+int ProcessUtilityDataWithEncryptionB(longlong *encryptionContext,longlong dataBuffer,int dataSize)
 
 {
   int iVar1;
