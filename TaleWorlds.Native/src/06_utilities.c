@@ -501,6 +501,22 @@
 // 功能：清理内存块和重置内存状态
 #define CleanupMemory FUN_18085dbf0
 
+// 原始函数名：FUN_180896880 - 资源状态重置函数
+// 功能：重置指定资源句柄的状态
+#define ResetResourceState FUN_180896880
+
+// 原始函数名：FUN_1808968a0 - 资源数据处理函数
+// 功能：处理指定资源上下文中的数据
+#define ProcessResourceData FUN_1808968a0
+
+// 原始函数名：FUN_180896a30 - 字符串数据处理函数
+// 功能：处理字符串数据，包括解析和转换操作
+#define ProcessStringData FUN_180896a30
+
+// 原始函数名：FUN_180896aa0 - 编码数据处理函数
+// 功能：处理编码数据，包括解码和转换操作
+#define ProcessEncodedData FUN_180896aa0
+
 // 原始函数名：FUN_1808605e0 - 处理工具操作
 // 功能：处理系统工具操作
 #define ProcessUtilityOperation FUN_1808605e0
@@ -3498,18 +3514,18 @@ undefined UNK_180a3d970;
 undefined UNK_180a3db60;
 undefined DAT_180bfbd80;
 
-// 函数: void UtilityProcessObjectData(longlong param_1,longlong param_2)
+// 函数: void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
 // 
 // 处理对象数据
 // 对指定的对象数据进行处理和操作，包括验证、清理等
 // 
 // 参数:
-//   param_1 - 对象句柄或指针
-//   param_2 - 数据上下文或配置信息
+//   objectHandle - 对象句柄或指针
+//   dataContext - 数据上下文或配置信息
 // 
 // 返回值:
 //   无
-void UtilityProcessObjectData(longlong param_1,longlong param_2)
+void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
 
 {
   undefined8 uVar1;
@@ -11700,25 +11716,37 @@ int ProcessEncodedData(longlong encodingContext, longlong dataBuffer, int buffer
 
 
 
-int FUN_180896b20(longlong param_1,longlong param_2,int param_3)
+// 函数: int ProcessComplexData(longlong complexContext, longlong dataBuffer, int bufferSize)
+//
+// 复杂数据处理函数
+// 处理复杂的数据结构，包括多层解析和转换操作
+// 
+// 参数:
+//   complexContext - 复杂数据上下文指针，包含数据处理的相关信息
+//   dataBuffer - 数据缓冲区指针，指向要处理的复杂数据
+//   bufferSize - 缓冲区大小，指定要处理的数据长度
+// 
+// 返回值:
+//   int - 返回处理后的总字节数
+int ProcessComplexData(longlong complexContext, longlong dataBuffer, int bufferSize)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
-  int iVar3;
-  int iVar4;
+  undefined4 formatFlag1;
+  undefined4 formatFlag2;
+  int processedBytes1;
+  int processedBytes2;
   
-  uVar1 = *(undefined4 *)(param_1 + 0x14);
-  uVar2 = *(undefined4 *)(param_1 + 0x10);
-  iVar3 = FUN_18074b880(param_2,param_3,&UNK_180986470);
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b7d0(iVar3 + param_2,param_3 - iVar3,uVar2);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = FUN_18074b880(iVar3 + param_2,param_3 - iVar3,&DAT_180a06434);
-  iVar3 = iVar3 + iVar4;
-  iVar4 = func_0x00018074b800(iVar3 + param_2,param_3 - iVar3,uVar1);
-  return iVar4 + iVar3;
+  formatFlag1 = *(undefined4 *)(complexContext + 0x14);
+  formatFlag2 = *(undefined4 *)(complexContext + 0x10);
+  processedBytes1 = FUN_18074b880(dataBuffer,bufferSize,&UNK_180986470);
+  processedBytes2 = FUN_18074b880(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&DAT_180a06434);
+  processedBytes1 = processedBytes1 + processedBytes2;
+  processedBytes2 = func_0x00018074b7d0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag2);
+  processedBytes1 = processedBytes1 + processedBytes2;
+  processedBytes2 = FUN_18074b880(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&DAT_180a06434);
+  processedBytes1 = processedBytes1 + processedBytes2;
+  processedBytes2 = func_0x00018074b800(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag1);
+  return processedBytes2 + processedBytes1;
 }
 
 
