@@ -16805,7 +16805,10 @@ void ValidateDataBlockA0(longlong param_1,undefined8 param_2)
 
 
 
-undefined8 FUN_180898790(longlong *param_1,int param_2)
+// 原始函数名：FUN_180898790 - 数据处理函数A0
+// 功能：处理输入数据并执行相应操作
+#define ProcessDataA0 FUN_180898790
+undefined8 ProcessDataA0(longlong *param_1,int param_2)
 
 {
   int iVar1;
@@ -16828,7 +16831,10 @@ undefined8 FUN_180898790(longlong *param_1,int param_2)
 
 
 
-undefined8 FUN_1808987e0(longlong *param_1,char param_2)
+// 原始函数名：FUN_1808987e0 - 数据验证函数A1
+// 功能：验证数据的有效性并返回验证结果
+#define ValidateDataA1 FUN_1808987e0
+undefined8 ValidateDataA1(longlong *param_1,char param_2)
 
 {
   longlong validationContext;
