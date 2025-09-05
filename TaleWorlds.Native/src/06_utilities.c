@@ -6410,31 +6410,41 @@ void ExecuteSystemNullOperation(void) {
 
 
  /**
- * @brief 处理资源操作
+ * @brief 验证资源句柄并执行系统退出操作
  * 
- * 该函数用于处理系统资源的相关操作
- * 包含资源验证、内存地址获取和操作处理
+ * 该函数用于验证资源句柄的有效性，并在验证通过后执行系统退出操作。
+ * 包含资源验证、内存地址调整和系统退出操作。
  * 
- * @param ResourceHandle 资源句柄，用于标识要处理的资源
- * @return 操作结果或资源数据，0表示成功，非0表示错误码
+ * @param ResourceHandle 资源句柄，包含要验证的资源信息
+ * @return uint64_t 操作结果状态码，0表示成功，非0表示错误
+ * @note 如果验证失败，返回相应的错误码
+ * @warning 成功验证后会执行系统退出操作，此操作不可逆
  */
-uint64_t ProcessResourceHandleValidation(int64_t ResourceHandle) {
+uint64_t ValidateResourceHandleAndExecuteSystemExit(int64_t ResourceHandle) {
   uint8_t ResourceValidationStatus;
   int64_t AdjustedResourceMemoryPointer;
   int64_t ValidatedResourceMemoryAddress;
   
-  ResourceValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextOffset),&ValidatedResourceMemoryAddress);
+  // 验证资源对象上下文
+  ResourceValidationStatus = ValidateObjectContext(*(uint32_t *)(ResourceHandle + ObjectContextOffset), &ValidatedResourceMemoryAddress);
   if ((int)ResourceValidationStatus != 0) {
     return ResourceValidationStatus;
   }
+  
+  // 调整资源内存指针
   AdjustedResourceMemoryPointer = ValidatedResourceMemoryAddress - 8;
   if (ValidatedResourceMemoryAddress == 0) {
     AdjustedResourceMemoryPointer = 0;
   }
+  
+  // 检查对象上下文是否有效
   if (*(int64_t *)(AdjustedResourceMemoryPointer + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
-        ExecuteSystemExitOperation(*(int64_t *)(AdjustedResourceMemoryPointer + ObjectContextOffset),1);
+  
+  // 执行系统退出操作
+  ExecuteSystemExitOperation(*(int64_t *)(AdjustedResourceMemoryPointer + ObjectContextOffset), 1);
+  return OperationSuccessCode;
 }
 
 
@@ -98142,7 +98152,15 @@ void ReleaseValidationContextSecondaryExclusiveLock(uint8_t ObjectContext, int64
 
 
 
-void Unwind_18090fc90(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源独占锁
+ * 
+ * 该函数负责在验证上下文中释放资源的独占锁，用于线程同步和资源管理。
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void ReleaseResourceExclusiveLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0x90) != '\0') {
@@ -98153,7 +98171,15 @@ void Unwind_18090fc90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fca0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源表锁
+ * 
+ * 该函数负责在验证上下文中释放资源表的独占锁，用于线程同步和资源管理。
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void ReleaseResourceTableLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + ValidationContextResourceTableOffset) != '\0') {
@@ -98164,7 +98190,15 @@ void Unwind_18090fca0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fcb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放上下文锁
+ * 
+ * 该函数负责在验证上下文中释放上下文锁，用于线程同步和资源管理。
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void ReleaseContextLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x1c0) = &SystemDataStructure;
