@@ -5546,7 +5546,8 @@ undefined DAT_180c8ed08;
 undefined DAT_180c8ed68;
 undefined DAT_180c8ed00;
 undefined DAT_180c8ed50;
-char DAT_180bf0102;
+// 系统状态标志变量A
+char SystemStatusFlagA;
 undefined DAT_180c8ed58;
 undefined DAT_180c8ed48;
 undefined DAT_180c8ed40;
@@ -5559,7 +5560,8 @@ undefined UNK_1809ff2f8;
 undefined UNK_1809ff3f8;
 undefined DAT_180c82854;
 undefined UNK_18098bc48;
-char DAT_180c82860;
+// 系统状态标志变量B
+char SystemStatusFlagB;
 undefined UNK_18098bc00;
 undefined DAT_180c86920;
 void *ExceptionList;
@@ -10063,6 +10065,74 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 原始函数名：FUN_1808af2e0 - 数据处理函数O0
 // 功能：处理数据并执行相应操作
 #define ProcessDataOperationO0 FUN_1808af2e0
+
+// 原始函数名：FUN_1808479d0 - 数据处理函数O1
+// 功能：处理数据并返回结果
+#define ProcessDataAndReturnO1 FUN_1808479d0
+
+// 原始函数名：FUN_1808682e0 - 数据处理函数O2
+// 功能：处理数据并验证结果
+#define ProcessDataAndValidateO2 FUN_1808682e0
+
+// 原始函数名：FUN_180868270 - 数据处理函数O3
+// 功能：处理数据并执行操作
+#define ProcessDataAndExecuteO3 FUN_180868270
+
+// 原始函数名：FUN_18088cbb0 - 数据验证函数O0
+// 功能：验证数据并返回结果
+#define ValidateDataAndReturnO0 FUN_18088cbb0
+
+// 原始函数名：FUN_18088c740 - 数据处理函数O4
+// 功能：处理数据并返回结果
+#define ProcessDataAndReturnResultO4 FUN_18088c740
+
+// 原始函数名：FUN_1808741f0 - 数据处理函数O5
+// 功能：处理数据并执行操作
+#define ProcessDataAndExecuteOperationO5 FUN_1808741f0
+
+// 原始函数名：FUN_18088c790 - 系统清理函数O0
+// 功能：清理系统资源和状态
+#define CleanupSystemResourcesO0 FUN_18088c790
+
+// 原始函数名：FUN_1808ac8a0 - 数据处理函数O6
+// 功能：处理数据并返回结果
+#define ProcessDataAndReturnStatusO6 FUN_1808ac8a0
+
+// 原始函数名：FUN_1808affb0 - 系统状态检查函数O0
+// 功能：检查系统状态并返回结果
+#define CheckSystemStatusAndReturnO0 FUN_1808affb0
+
+// 原始函数名：FUN_1808aff40 - 数据验证函数O1
+// 功能：验证数据并返回结果
+#define ValidateDataAndReturnResultO1 FUN_1808aff40
+
+// 原始函数名：FUN_180899d90 - 数据验证函数O2
+// 功能：验证数据并返回结果
+#define ValidateDataAndReturnCodeO2 FUN_180899d90
+
+// 原始函数名：FUN_18089a370 - 数据处理函数O7
+// 功能：处理数据并返回结果
+#define ProcessDataAndReturnValueO7 FUN_18089a370
+
+// 原始函数名：FUN_18089cc80 - 数据处理函数O8
+// 功能：处理数据并返回结果
+#define ProcessDataAndReturnDataO8 FUN_18089cc80
+
+// 原始函数名：FUN_1808ddf80 - 系统清理函数O1
+// 功能：清理系统资源和状态
+#define CleanupSystemStateO1 FUN_1808ddf80
+
+// 原始函数名：FUN_1808b0010 - 系统状态检查函数O1
+// 功能：检查系统状态并返回结果
+#define CheckSystemStateAndReturnCodeO1 FUN_1808b0010
+
+// 原始函数名：FUN_180769ed0 - 数据验证函数O3
+// 功能：验证数据并返回结果
+#define ValidateDataAndReturnStatusO3 FUN_180769ed0
+
+// 原始函数名：FUN_18076a7d0 - 数据处理函数O9
+// 功能：处理数据并返回结果
+#define ProcessDataAndReturnResultO9 FUN_18076a7d0
 
 // 原始函数名：FUN_18089eef2 - 系统处理函数C0
 // 功能：处理系统操作和状态
@@ -89870,7 +89940,15 @@ void SetDefaultExceptionHandlerC3(void)
 
 
 942140(void)
-void FUN_180942140(void)
+/**
+ * @brief 设置默认异常处理器04
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942140
+ */
+void SetDefaultExceptionHandler04(void)
 
 {
   _DAT_180bf9870 = &DefaultExceptionHandlerB;
