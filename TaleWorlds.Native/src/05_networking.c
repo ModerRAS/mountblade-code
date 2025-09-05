@@ -384,6 +384,9 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkMagicValidation NetworkValidationMagic             // 验证魔数别名
 #define NetworkMagicBinaryData NetworkBinaryDataMagic             // 二进制数据魔数别名
 #define NetworkMagicMemoryValidation NetworkMemoryValidationMagic   // 内存验证魔数别名
+#define NetworkMagicEventData NetworkEventDataMagic                 // 事件数据魔数别名
+#define NetworkMagicBatchData NetworkPacketMagicBatchData         // 批处理数据魔数别名
+#define NetworkMagicInvalid NetworkPacketMagicInvalid             // 无效数据包魔数别名
 /**
  * @brief 调试验证魔数
  * 
@@ -4186,29 +4189,29 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
 {
   // 网络数据包解码变量
   uint32_t SecurityValidationResult;           // 网络数据包安全验证结果
-  uint32_t HeaderDecodingStatus;               // 网络数据包头部解码状态
-  uint32_t PayloadDecodingStatus;              // 网络数据包负载解码状态
+  uint32_t HeaderValidationStatus;              // 网络数据包头部验证状态
+  uint32_t PayloadValidationStatus;             // 网络数据包负载验证状态
   
   // 初始化解码状态
   SecurityValidationResult = NetworkValidationFailure;
-  HeaderDecodingStatus = NetworkValidationFailure;
-  PayloadDecodingStatus = NetworkValidationFailure;
+  HeaderValidationStatus = NetworkValidationFailure;
+  PayloadValidationStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData && OutputBuffer) {
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      HeaderDecodingStatus = NetworkValidationSuccess;
+      HeaderValidationStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      PayloadDecodingStatus = NetworkValidationSuccess;
+      PayloadValidationStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    SecurityValidationResult = HeaderDecodingStatus & PayloadDecodingStatus;
+    SecurityValidationResult = HeaderValidationStatus & PayloadValidationStatus;
     
     // 初始化输出缓冲区
     if (SecurityValidationResult == NetworkValidationSuccess) {
@@ -4238,18 +4241,18 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
 NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t HeaderValidationResult;                  // 网络头部验证结果
+  uint32_t HeaderIntegrityCheck;                     // 网络头部完整性检查结果
   uint32_t ContextProcessingStatus;                 // 网络上下文处理状态
   uint32_t FormatValidationResult;                   // 网络头部格式检查结果
   
   // 初始化处理状态
-  HeaderValidationResult = NetworkValidationFailure;
+  HeaderIntegrityCheck = NetworkValidationFailure;
   ContextProcessingStatus = NetworkValidationFailure;
   FormatValidationResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    HeaderValidationResult = NetworkValidationSuccess;
+    HeaderIntegrityCheck = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
@@ -4258,7 +4261,7 @@ NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t Heade
   }
   
   // 检查头部格式
-  if (HeaderValidationResult == NetworkValidationSuccess && 
+  if (HeaderIntegrityCheck == NetworkValidationSuccess && 
       ContextProcessingStatus == NetworkValidationSuccess) {
     FormatValidationResult = NetworkValidationSuccess;
   }
