@@ -33799,6 +33799,29 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   ulong long stackSystemTimestamp;
   void* stackSystemContext;
   
+  long long systemContextValue;
+  uint32_t systemStateFlags;
+  void* stackBasePointer;
+  void* stackFramePointer;
+  void* *******stackTopPointer;
+  void* localStackPointerSecondary;
+  void* localStackPointerTertiary;
+  uint32_t globalStatusFlags;
+  uint32_t stackIterationCount;
+  long long stackValue16;
+  uint32_t stackOperationIndex;
+  void* ******StackPointer1;
+  uint64_t SystemContextValueSecondary;
+  uint8_t *ThreadLocalStoragePointerSecondary;
+  void* *SystemDataConfigurationPointer;
+  uint32_t ResourceDataIndex;
+  uint32_t SystemTemporaryOperationResult;
+  uint32_t SystemCode;
+  uint8_t *ThreadLocalStorage;
+  uint32_t ThreadContextIndicator;
+  void* *ResourceDataPointer;
+  void* *memoryAllocatorPointer;
+  
   systemContextValue = 0;
   *(void* *)(SystemAllocationFlags + 0xf0) = 0;
   systemStateFlags = 3;
@@ -33808,14 +33831,14 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   localStackPointerSecondary = 0;
   localStackPointerTertiary = 0;
   globalStatusFlags = *SystemGlobalStatusFlags;
-  stackValuePrimary = 0;
+  stackIterationCount = 0;
   SystemAllocationFlags = *(long long *)(stackValue16 + 0x8a8);
   if (*(long long *)(stackValue16 + 0x8b0) - SystemAllocationFlags >> 5 != 0) {
-    stackValueSecondary = 0;
+    stackOperationIndex = 0;
     do {
-      memoryPointer = stackValueSecondary;
-      operationCode = stackValuePrimary;
-      resultPointer = *(void* **)(stackValueSecondary * 0x20 + 8 + SystemAllocationFlags);
+      memoryPointer = stackOperationIndex;
+      operationCode = stackIterationCount;
+      resultPointer = *(void* **)(stackOperationIndex * 0x20 + 8 + SystemAllocationFlags);
       systemHandle = &SystemStringTemplate;
       if (resultPointer != (void* *)0x0) {
         systemHandle = resultPointer;
