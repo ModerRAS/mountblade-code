@@ -1,212 +1,69 @@
 #include "TaleWorlds.Native.Split.h"
 
-// FUN_函数语义化宏定义
-// 原始函数名：FUN_180941f80 - 全局指针设置函数A0
-// 功能：设置全局数据指针A0到指定地址
+// 全局指针设置函数宏定义 (A0-A23)
 #define SetGlobalDataPointerA0 FUN_180941f80
-
-// 原始函数名：FUN_180941fa0 - 全局指针设置函数A1
-// 功能：设置全局数据指针A1到指定地址
 #define SetGlobalDataPointerA1 FUN_180941fa0
-
-// 原始函数名：FUN_180941fc0 - 全局指针设置函数A2
-// 功能：设置全局数据指针A2到指定地址
 #define SetGlobalDataPointerA2 FUN_180941fc0
-
-// 原始函数名：FUN_180941fe0 - 全局指针设置函数A3
-// 功能：设置全局数据指针A3到指定地址
 #define SetGlobalDataPointerA3 FUN_180941fe0
-
-// 原始函数名：FUN_180942000 - 全局指针设置函数A4
-// 功能：设置全局数据指针A4到指定地址
 #define SetGlobalDataPointerA4 FUN_180942000
-
-// 原始函数名：FUN_180942020 - 全局指针设置函数A5
-// 功能：设置全局数据指针A5到指定地址
 #define SetGlobalDataPointerA5 FUN_180942020
-
-// 原始函数名：FUN_180942040 - 全局指针设置函数A6
-// 功能：设置全局数据指针A6到指定地址
 #define SetGlobalDataPointerA6 FUN_180942040
-
-// 原始函数名：FUN_180942060 - 全局指针设置函数A7
-// 功能：设置全局数据指针A7到指定地址
 #define SetGlobalDataPointerA7 FUN_180942060
-
-// 原始函数名：FUN_180942080 - 全局指针设置函数A8
-// 功能：设置全局数据指针A8到指定地址
 #define SetGlobalDataPointerA8 FUN_180942080
-
-// 原始函数名：FUN_1809420a0 - 全局指针设置函数A9
-// 功能：设置全局数据指针A9到指定地址
 #define SetGlobalDataPointerA9 FUN_1809420a0
-
-// 原始函数名：FUN_1809420c0 - 全局指针设置函数A10
-// 功能：设置全局数据指针A10到指定地址
 #define SetGlobalDataPointerA10 FUN_1809420c0
-
-// 原始函数名：FUN_1809420e0 - 全局指针设置函数A11
-// 功能：设置全局数据指针A11到指定地址
 #define SetGlobalDataPointerA11 FUN_1809420e0
-
-// 原始函数名：FUN_180942100 - 全局指针设置函数A12
-// 功能：设置全局数据指针A12到指定地址
 #define SetGlobalDataPointerA12 FUN_180942100
-
-// 原始函数名：FUN_180942120 - 全局指针设置函数A13
-// 功能：设置全局数据指针A13到指定地址
 #define SetGlobalDataPointerA13 FUN_180942120
-
-// 原始函数名：FUN_180942140 - 全局指针设置函数A14
-// 功能：设置全局数据指针A14到指定地址
 #define SetGlobalDataPointerA14 FUN_180942140
-
-// 原始函数名：FUN_180942160 - 全局指针设置函数A15
-// 功能：设置全局数据指针A15到指定地址
 #define SetGlobalDataPointerA15 FUN_180942160
-
-// 原始函数名：FUN_180942180 - 全局指针设置函数A16
-// 功能：设置全局数据指针A16到指定地址
 #define SetGlobalDataPointerA16 FUN_180942180
-
-// 原始函数名：FUN_1809421a0 - 全局指针设置函数A17
-// 功能：设置全局数据指针A17到指定地址
 #define SetGlobalDataPointerA17 FUN_1809421a0
-
-// 原始函数名：FUN_1809421c0 - 全局指针设置函数A18
-// 功能：设置全局数据指针A18到指定地址
 #define SetGlobalDataPointerA18 FUN_1809421c0
-
-// 原始函数名：FUN_1809421e0 - 全局指针设置函数A19
-// 功能：设置全局数据指针A19到指定地址
 #define SetGlobalDataPointerA19 FUN_1809421e0
-
-// 原始函数名：FUN_180942200 - 全局指针设置函数A20
-// 功能：设置全局数据指针A20到指定地址
 #define SetGlobalDataPointerA20 FUN_180942200
-
-// 原始函数名：FUN_180942220 - 全局指针设置函数A21
-// 功能：设置全局数据指针A21到指定地址
 #define SetGlobalDataPointerA21 FUN_180942220
-
-// 原始函数名：FUN_180942240 - 全局指针设置函数A22
-// 功能：设置全局数据指针A22到指定地址
 #define SetGlobalDataPointerA22 FUN_180942240
-
-// 原始函数名：FUN_180942260 - 全局指针设置函数A23
-// 功能：设置全局数据指针A23到指定地址
 #define SetGlobalDataPointerA23 FUN_180942260
 
-// 原始函数名：FUN_180893e69 - 浮点数据处理函数D0
-// 功能：处理浮点数据，进行范围检查和验证
+// 数据处理函数宏定义 (D系列)
 #define ProcessFloatingPointDataD0 FUN_180893e69
-
-// 原始函数名：FUN_180897d20 - 数据验证和处理函数D0
-// 功能：验证数据有效性并执行相应的处理操作
 #define ValidateAndProcessDataD0 FUN_180897d20
-
-// 原始函数名：FUN_180899040 - 数据处理函数D0
-// 功能：处理系统数据并执行相关操作
 #define ProcessSystemDataD0 FUN_180899040
-
-// 原始函数名：FUN_180899090 - 数据处理函数D1
-// 功能：处理系统数据并执行相关操作
 #define ProcessSystemDataD1 FUN_180899090
-
-// 原始函数名：FUN_180899100 - 数据验证函数D0
-// 功能：验证系统数据的有效性
 #define ValidateSystemDataD0 FUN_180899100
-
-// 原始函数名：FUN_1808992c4 - 系统初始化函数D0
-// 功能：初始化系统组件和状态
 #define InitializeSystemComponentD0 FUN_1808992c4
-
-// 原始函数名：FUN_1808995c0 - 数据处理函数D2
-// 功能：处理系统数据并执行相关操作
 #define ProcessSystemDataD2 FUN_1808995c0
-
-// 原始函数名：FUN_180899790 - 系统清理函数D0
-// 功能：清理系统资源和状态
 #define CleanupSystemD0 FUN_180899790
-
-// 原始函数名：FUN_180899799 - 系统重置函数D0
-// 功能：重置系统状态
 #define ResetSystemD0 FUN_180899799
-
-// 原始函数名：FUN_1808997b0 - 数据验证函数D1
-// 功能：验证系统数据的有效性
 #define ValidateSystemDataD1 FUN_1808997b0
-
-// 原始函数名：FUN_180899891 - 系统状态检查函数D0
-// 功能：检查系统状态
 #define CheckSystemStatusD0 FUN_180899891
 
-// 原始函数名：FUN_180892880 - 数据处理函数E0
-// 功能：处理系统数据并返回结果
+// 系统处理函数宏定义 (E系列)
 #define ProcessSystemDataE0 FUN_180892880
-
-// 原始函数名：FUN_1808928d3 - 系统状态查询函数E0
-// 功能：查询系统状态并返回结果
 #define QuerySystemStatusE0 FUN_1808928d3
-
-// 原始函数名：FUN_1808928f1 - 系统初始化函数E0
-// 功能：初始化系统组件
 #define InitializeSystemE0 FUN_1808928f1
-
-// 原始函数名：FUN_180892909 - 参数验证函数E0
-// 功能：验证系统参数
 #define ValidateParametersE0 FUN_180892909
-
-// 原始函数名：FUN_180892920 - 参数验证函数E1
-// 功能：验证系统参数
 #define ValidateParametersE1 FUN_180892920
-
-// 原始函数名：FUN_180892974 - 系统清理函数E0
-// 功能：清理系统资源
 #define CleanupSystemE0 FUN_180892974
-
-// 原始函数名：FUN_180892990 - 数据处理函数E1
-// 功能：处理系统数据并返回结果
 #define ProcessSystemDataE1 FUN_180892990
-
-// 原始函数名：FUN_180892ac0 - 数据处理函数E2
-// 功能：处理系统数据并返回结果
 #define ProcessSystemDataE2 FUN_180892ac0
-
-// 原始函数名：FUN_180892bd0 - 数据处理函数E3
-// 功能：处理系统数据并返回结果
 #define ProcessSystemDataE3 FUN_180892bd0
-
-// 原始函数名：FUN_180892cc0 - 数据处理函数E4
-// 功能：处理系统数据并返回结果
 #define ProcessSystemDataE4 FUN_180892cc0
 
-// 原始函数名：FUN_180894dd0 - 请求处理函数F0
-// 功能：处理系统请求并返回结果
+// 请求和数据处理函数宏定义 (F系列)
 #define ProcessRequestF0 FUN_180894dd0
-
-// 原始函数名：FUN_180895ef0 - 数据验证函数F0
-// 功能：验证系统数据并返回结果
 #define ValidateDataF0 FUN_180895ef0
-
-// 原始函数名：FUN_180898b65 - 数据处理函数F0
-// 功能：处理系统数据并返回结果
 #define ProcessDataF0 FUN_180898b65
-
-// 原始函数名：FUN_180898bc0 - 数据处理函数F1
-// 功能：处理系统数据并返回结果
 #define ProcessDataF1 FUN_180898bc0
-
-// 原始函数名：FUN_180898c86 - 系统状态查询函数F0
-// 功能：查询系统状态并返回结果
+// 系统状态查询函数
 #define QuerySystemStatusF0 FUN_180898c86
 
-// 原始函数名：FUN_180898d31 - 数据处理函数F2
-// 功能：处理系统数据并返回结果
+// 数据处理函数
 #define ProcessDataF2 FUN_180898d31
 
-// 原始函数名：FUN_180895345 - 错误码返回函数
-// 功能：返回固定错误码0x1c
+// 错误码返回函数
+#define ReturnErrorCode FUN_180895345
 #define ReturnErrorCode FUN_180895345
 
 // 原始函数名：FUN_1808947b0 - 数据缓冲区处理函数
@@ -5111,8 +4968,22 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
 
 
 
-// 函数: undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceData)
-// 功能：处理资源分配，更新资源计数器并在条件满足时执行资源释放操作
+/**
+ * @brief 处理资源分配和计数器管理
+ * 
+ * 该函数负责管理系统资源的分配状态，维护资源计数器，并在特定条件满足时
+ * 触发资源释放操作。函数会更新资源的引用计数，当计数器达到特定阈值时，
+ * 会执行资源验证和清理操作。
+ * 
+ * @param resourceConfig 资源配置指针，包含资源配置信息和参数
+ * @param resourceData 资源数据指针，包含资源运行时数据
+ * @return undefined8 操作结果状态码：
+ *         - 0: 操作成功完成
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会修改资源计数器状态，并在特定条件下触发资源释放
+ * @warning 资源释放操作是不可逆的，调用前需确保资源可以安全释放
+ */
 undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceData)
 
 {
@@ -5147,8 +5018,20 @@ undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceD
 
 
 
-// 函数: undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
-// 功能：处理内存标志更新，遍历内存区域并更新特定标志位
+/**
+ * @brief 处理内存标志位更新操作
+ * 
+ * 该函数遍历指定的内存区域，查找符合条件的内存块，并更新其标志位。
+ * 主要用于内存管理和状态跟踪，通过设置特定的标志位来标记内存块的状态。
+ * 
+ * @param memoryConfig 内存配置指针，包含内存管理的配置参数
+ * @return undefined8 操作结果状态码：
+ *         - 0: 内存标志更新成功
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会遍历内存块并在符合条件的块上设置标志位
+ * @warning 内存标志位的修改可能影响系统的内存管理行为
+ */
 undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
 
 {
@@ -5178,8 +5061,22 @@ undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
 
 
 
-// 函数: undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 decrementValue)
-// 功能：处理工具资源递减操作，减少资源计数器并在满足条件时执行资源清理
+/**
+ * @brief 处理工具资源递减和清理操作
+ * 
+ * 该函数负责减少工具资源的引用计数，并在计数器达到特定条件时执行资源清理。
+ * 这是一个重要的资源管理函数，确保资源在不再使用时能够被正确释放。
+ * 
+ * @param resourceContext 资源上下文指针，包含要管理的资源信息
+ * @param decrementValue 递减值，用于控制资源计数的减少量
+ * @return undefined8 操作结果状态码：
+ *         - 0: 资源递减操作成功
+ *         - 0x1c: 资源计数器不足，无法执行递减操作
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会修改资源计数器，并在条件满足时触发资源释放
+ * @warning 资源清理操作是不可逆的，确保在调用前资源可以安全释放
+ */
 undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 decrementValue)
 
 {
