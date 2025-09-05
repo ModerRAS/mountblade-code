@@ -1042,17 +1042,17 @@ void InitializeNetworkConnectionPool(void)
  */
 
 // 网络连接配置数据结构指针
-void *NetworkContextTemplatePointer = &NetworkConnectionContextTemplateData;
-void *NetworkPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;
-void *NetworkSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;
-void *NetworkProcessingConfigPointer = &NetworkConnectionProcessingConfig;
-void *NetworkTransportConfigPointer = &NetworkConnectionTransportConfig;
-void *NetworkProtocolConfigPointer = &NetworkConnectionProtocolConfig;
-void *NetworkValidationConfigPointer = &NetworkConnectionValidationConfig;
-void *NetworkRoutingPrimaryConfigPointer = &NetworkConnectionRoutingPrimaryConfig;
-void *NetworkRoutingSecondaryConfigPointer = &NetworkConnectionRoutingSecondaryConfig;
-void *NetworkRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig;
-void *NetworkRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig;
+void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
+void *NetworkConnectionPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;
+void *NetworkConnectionSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;
+void *NetworkConnectionProcessingConfigPointer = &NetworkConnectionProcessingConfig;
+void *NetworkConnectionTransportConfigPointer = &NetworkConnectionTransportConfig;
+void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;
+void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;
+void *NetworkConnectionRoutingPrimaryConfigPointer = &NetworkConnectionRoutingPrimaryConfig;
+void *NetworkConnectionRoutingSecondaryConfigPointer = &NetworkConnectionRoutingSecondaryConfig;
+void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig;
+void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig;
 
 // 网络连接配置数据定义
 
