@@ -1127,30 +1127,38 @@ uint32_t NetworkConnectionProtocolInstance;                  // 网络连接协�
 
 /**
  * @brief 网络连接协议版本
+ * 
+ * 存储网络连接使用的协议版本信息
  */
-uint32_t NetworkConnectionProtocolVersion;
+uint32_t NetworkConnectionProtocolVersion;                     // 网络连接协议版本
 
 /**
  * @brief 网络服务器IP地址
  * 
  * 存储网络服务器的IP地址信息
  */
-uint32_t NetworkServerIpAddress;
+uint32_t NetworkServerIpAddress;                              // 网络服务器IP地址
 
 /**
  * @brief 网络服务器端口号
+ * 
+ * 存储网络服务器的端口号信息
  */
-uint32_t NetworkServerPort;
+uint32_t NetworkServerPort;                                   // 网络服务器端口号
 
 /**
  * @brief 网络客户端IP地址
+ * 
+ * 存储网络客户端的IP地址信息
  */
-uint32_t NetworkClientIpAddress;
+uint32_t NetworkClientIpAddress;                              // 网络客户端IP地址
 
 /**
  * @brief 网络客户端端口号
+ * 
+ * 存储网络客户端的端口号信息
  */
-uint32_t NetworkClientPort;
+uint32_t NetworkClientPort;                                    // 网络客户端端口号
 
 /**
  * @brief 网络套接字和缓冲区配置
@@ -1161,12 +1169,14 @@ uint32_t NetworkClientPort;
  * 
  * 存储网络套接字的文件描述符，用于套接字操作
  */
-uint32_t NetworkSocketFileDescriptor;
+uint32_t NetworkSocketFileDescriptor;                         // 网络套接字文件描述符
 
 /**
  * @brief 网络套接字类别
+ * 
+ * 存储网络套接字的类别信息，如TCP、UDP等
  */
-uint32_t NetworkSocketCategory;
+uint32_t NetworkSocketCategory;                                // 网络套接字类别
 
 /**
  * @brief 网络套接字协议类型

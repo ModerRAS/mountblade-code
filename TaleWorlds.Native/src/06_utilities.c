@@ -7811,7 +7811,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   int32_t componentCount;
   uint64_t loopIndex;
   int32_t componentCapacity;
-  uint64_t searchIndex;
+  uint64_t componentSearchIndex;
   int64_t *componentList;
   int64_t systemContextBuffer;
   int8_t dataValidationBuffer [16];
@@ -7840,11 +7840,11 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
     if ((int8_t)queryResult == (int8_t)processResult) {
       if (dataValidationBuffer[0] == (int8_t)processResult) {
         componentList = (int64_t *)(componentData + COMPONENT_LIST_OFFSET);
-        searchIndex = 0;
+        componentSearchIndex = 0;
         componentCount = *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET);
         if (0 < componentCount) {
           componentPointer = (int64_t *)*componentList;
-          loopIndex = searchIndex;
+          loopIndex = componentSearchIndex;
           do {
             if (*componentPointer == dataValidationBuffer) {
               if (-1 < (int32_t)loopIndex) {
@@ -51030,15 +51030,15 @@ void Unwind_180905ea0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180905ec0(DataBuffer param_1,int64_t param_2)
+void UnwindProcessDataValidation(DataBuffer exceptionContext, int64_t validationContext)
 
 {
-  int64_t validationContext;
+  int64_t contextIterator;
   int64_t *pdataContext;
   int64_t calculatedOffset;
   
-  pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x50) + 0x3c8);
-  validationContext = *(int64_t *)(*(int64_t *)(param_2 + 0x50) + 0x3d0);
+  pdataContext = (int64_t *)(*(int64_t *)(validationContext + 0x50) + 0x3c8);
+  contextIterator = *(int64_t *)(*(int64_t *)(validationContext + 0x50) + 0x3d0);
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
     FUN_180069530(calculatedOffset);
   }
