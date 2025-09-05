@@ -9543,14 +9543,14 @@ void UtilityNoOperationE(void)
 
 
 
-// 函数: void ProcessUtilityOperation(int64_t param_1,DataBuffer param_2)
+// 函数: void ProcessUtilityOperation(int64_t operationParams,DataBuffer systemContext)
 // 
 // 工具系统操作处理函数
 // 处理工具系统的各种操作请求，包括参数验证和函数调用
 // 
 // 参数:
-//   param_1 - 操作参数结构体指针
-//   param_2 - 系统上下文指针
+//   operationParams - 操作参数结构体指针
+//   systemContext - 系统上下文指针
 // 
 // 返回值:
 //   无
@@ -37093,7 +37093,17 @@ void ResetValidationContextCleanup(DataBuffer validationBuffer,int64_t contextOf
 
 
 
-void Unwind_CleanupResourceReference(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 清理资源引用
+ * 
+ * 该函数负责清理资源引用，管理引用计数和内存释放
+ * 
+ * @param resourceBuffer 资源缓冲区
+ * @param contextOffset 上下文偏移量
+ * 
+ * @note 原始函数名：Unwind_CleanupResourceReference
+ */
+void CleanupResourceReference(DataBuffer resourceBuffer,int64_t contextOffset)
 
 {
   int *referenceCountPointer;
@@ -37101,7 +37111,7 @@ void Unwind_CleanupResourceReference(DataBuffer param_1,int64_t param_2)
   int64_t calculatedOffset;
   uint64_t memoryBaseAddress;
   
-  resourcePointer = *(DataBuffer **)(*(int64_t *)(param_2 + 0x90) + 0x48);
+  resourcePointer = *(DataBuffer **)(*(int64_t *)(contextOffset + 0x90) + 0x48);
   if (resourcePointer == (DataBuffer *)0x0) {
     return;
   }
