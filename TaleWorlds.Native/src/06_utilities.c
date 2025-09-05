@@ -4000,11 +4000,11 @@ uint32_t UtilitySystemConfigFlags;                     // 工具系统配置标�
 uint32_t UtilitySystemConfigBufferSize;                 // 工具系统配置缓冲区大小
 uint32_t UtilitySystemConfigTimeout;                   // 工具系统配置超时时间
 uint32_t UtilitySystemConfigRetryCount;                // 工具系统配置重试次数
-undefined UtilityConfigData6;
-undefined UtilityConfigData7;
-undefined UtilityConfigData8;
-undefined UtilityConfigData9;
-undefined UtilityConfigData10;
+uint32_t UtilitySystemConfigDebugLevel;                 // 工具系统配置调试级别
+uint32_t UtilitySystemConfigLogLevel;                  // 工具系统配置日志级别
+uint32_t UtilitySystemConfigSecurityLevel;              // 工具系统配置安全级别
+uint32_t UtilitySystemConfigPerformanceMode;            // 工具系统配置性能模式
+uint32_t UtilitySystemConfigMemoryLimit;                // 工具系统配置内存限制
 undefined UtilityConfigData11;
 undefined UtilityConfigData12;
 undefined UtilityConfigData13;

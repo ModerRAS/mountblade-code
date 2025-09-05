@@ -33786,17 +33786,17 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   stackBasePointer = &stackBasePointer;
   stackFramePointer = &stackBasePointer;
   stackTopPointer = (void* *******)0x0;
-  localStackPointer3 = 0;
-  localStackPointer4 = 0;
+  localStackPointerSecondary = 0;
+  localStackPointerTertiary = 0;
   globalStatusFlags = *SystemGlobalStatusFlags;
-  stackValue5 = 0;
+  stackValuePrimary = 0;
   SystemAllocationFlags = *(long long *)(stackValue16 + 0x8a8);
   if (*(long long *)(stackValue16 + 0x8b0) - SystemAllocationFlags >> 5 != 0) {
-    stackValue6 = 0;
+    stackValueSecondary = 0;
     do {
-      memoryPointer = stackValue6;
-      operationCode = stackValue5;
-      resultPointer = *(void* **)(stackValue6 * 0x20 + 8 + SystemAllocationFlags);
+      memoryPointer = stackValueSecondary;
+      operationCode = stackValuePrimary;
+      resultPointer = *(void* **)(stackValueSecondary * 0x20 + 8 + SystemAllocationFlags);
       systemHandle = &SystemStringTemplate;
       if (resultPointer != (void* *)0x0) {
         systemHandle = resultPointer;
