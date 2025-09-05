@@ -405,8 +405,8 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkConnectionContextSize 0x200                           // 网络连接上下文大小：512字节
 
 // 网络超时常量
-#define NetworkTimeoutOneSecond 1000                             // 1秒超时
-#define NetworkTimeoutFiveSeconds 5000                           // 5秒超时
+#define NetworkTimeout1Second 1000                             // 网络超时：1秒
+#define NetworkTimeout5Seconds 5000                           // 网络超时：5秒
 #define NetworkTimeoutThirtySeconds 30000                          // 30秒超时
 #define NetworkTimeoutFiveMinutes 300000                          // 5分钟超时
 #define NetworkHeartbeatThirtySeconds 30                          // 30秒心跳
@@ -1648,7 +1648,7 @@ void ReceiveNetworkPacketData(void)
   
   // 初始化数据包上下文
   NetworkPacketContext = NetworkBufferInitializationFlag;                          // 初始化数据包上下文
-  NetworkPacketContextSize = ContextSize256Bytes;                    // 设置数据包上下文大小为256字节（标准大小）
+  CurrentPacketContextSize = NetworkPacketContextSize;                    // 设置数据包上下文大小为256字节（标准大小）
   NetworkPacketData = NetworkBufferInitializationFlag;                             // 初始化数据包数据
   NetworkPacketIndex = NetworkPacketIndexResetValue;                            // 重置数据包索引
   
@@ -1899,7 +1899,7 @@ uint32_t NetworkBufferManager;                         // 网络缓冲区管理�
 uint32_t NetworkBufferSize;                             // 网络缓冲区大小
 uint32_t NetworkBufferIndex;                            // 网络缓冲区索引
 uint32_t NetworkPacketContext;                           // 网络数据包上下文
-uint32_t NetworkPacketContextSize;                       // 网络数据包上下文大小
+uint32_t CurrentPacketContextSize;                       // 当前网络数据包上下文大小
 uint32_t NetworkPacketData;                              // 网络数据包数据
 uint32_t NetworkPacketIndex;                             // 网络数据包索引
 uint32_t NetworkPacketHeaderData;                        // 网络数据包头数据
