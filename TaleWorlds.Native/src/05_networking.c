@@ -608,16 +608,16 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkSequenceInitialValue 0x01                                  // 初始序列号
 #define NetworkAckInitialValue 0x01                                       // 初始确认号
 #define NetworkBytesResetValue NetworkResetValue                       // 字节重置
-#define NetworkPacketsResetValue NetworkReset_VALUE                     // 数据包重置
+#define NetworkPacketsResetValue NetworkResetValue                     // 数据包重置
 #define NetworkRetransmitCountResetValue NetworkResetValue             // 重传计数重置
 #define NetworkLossRateResetValue NetworkResetValue                   // 丢包率重置
 #define NetworkMonitorEnabled 0x01                                  // 监控器启用
-#define NetworkRoundTripTimeResetValue NetworkReset_VALUE             // 往返时间重置
+#define NetworkRoundTripTimeResetValue NetworkResetValue             // 往返时间重置
 // 网络系统状态常量
 #define NetworkBufferInitialized 0x01                                   // 缓冲区初始化标志
 #define NetworkIndexResetValue NetworkResetValue                       // 索引重置
-#define NetworkPacketIndexResetValue NetworkReset_VALUE                // 数据包索引重置
-#define NetworkErrorRateResetValue NetworkReset_VALUE                  // 错误率重置
+#define NetworkPacketIndexResetValue NetworkResetValue                // 数据包索引重置
+#define NetworkErrorRateResetValue NetworkResetValue                  // 错误率重置
 #define NetworkHealthGood 0x01                                       // 健康状态良好
 #define NetworkStabilityHigh 0x01                                    // 稳定性高
 #define NetworkPerformanceGood 0x01                                  // 性能良好
