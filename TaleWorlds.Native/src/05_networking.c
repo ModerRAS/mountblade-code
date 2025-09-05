@@ -179,7 +179,7 @@ static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *Sta
  */
 static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *StatusPointer, void *StatusIterator)
 {
-    return CalculateStatusPointerOffset(ContextIdentifier, StatusPointer, StatusIterator) - 4 + (int64_t)((NetworkStatus *)StatusIterator + ConnectionContextStatusEntrySize);
+    return CalculateStatusPointerOffset(ContextIdentifier, StatusPointer, StatusIterator) - 4 + (int64_t)((NetworkStatus *)StatusIterator + ConnectionContextEntrySize);
 }
 
 // 网络连接相关偏移量 - 连接上下文和状态管理
@@ -2264,11 +2264,11 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             ConnectionStatusBufferPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
             ConnectionStatusBufferPointer[ConnectionContextDataStatusIndex] = DataStatus;
             ConnectionStatusBufferPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            ConnectionStatusBufferPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastContextEntryOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, ConnectionStatusBufferPointer);
+            ConnectionStatusBufferPointer[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastContextEntryOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, ConnectionStatusBufferPointer);
             
             // 更新计数器
             ConnectionIterationCounter = ConnectionIterationCounter - 1;
-            ConnectionStatusBufferPointer = ConnectionStatusBufferPointer + ConnectionContextStatusEntrySize;
+            ConnectionStatusBufferPointer = ConnectionStatusBufferPointer + ConnectionContextEntrySize;
           } while (ConnectionIterationCounter != 0);
         }
         return NetworkOperationSuccess;

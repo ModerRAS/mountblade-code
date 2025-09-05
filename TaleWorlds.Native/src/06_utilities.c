@@ -98116,7 +98116,16 @@ void ProcessResourceDataSecondaryFlagAndOperation(uint8_t ObjectContext, int64_t
 
 
 
-void Unwind_18090fc80(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文的次要独占锁
+ * 
+ * 该函数负责在验证上下文中释放次要独占锁资源
+ * 用于线程同步和资源管理
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void ReleaseValidationContextSecondaryExclusiveLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0x90) != '\0') {
