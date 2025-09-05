@@ -48926,8 +48926,8 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   uint8_t SystemMemoryAlignment;
   void* StackPointerTwoHundredEighteenth;
   int StackVariable210;
-  uint32_t SystemMaxOperationCountc;
-  void* SystemMaxOperationCountSecondary;
+  uint32_t SystemMaxOperationCountSecondary;
+  void* SystemMaxOperationCountTertiary;
   void* *SystemGlobalDataReferencePtr2;
   byte *ByteBuffer1F0;
   int IntegerStack1E8;
@@ -48998,7 +48998,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         StackInteger210 = (int)ResourceDataIndex4 + StackInteger48 * -1000000000;
         SystemAllocationFlags.LowPart = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
         SystemFlagComponent = SystemAllocationFlags.LowPart;
-        SystemInitializationFlag = SystemMaxOperationCountc;
+        SystemInitializationFlag = SystemMaxOperationCountSecondary;
         SystemAllocationFlags = SystemAllocationFlags;
         StackInteger40 = StackInteger210;
         SystemInitializationStatusPrimary = _Mtx_current_owns(resourceDataIndexPrimary);
