@@ -24448,7 +24448,7 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
   void* SystemEncryptionKey;
   long long SystemValidationResult;
   void* *GlobalDataReferencePointer;
-  void* *pEncryptionKeyValue;
+  void* *EncryptionKeyValuePointer;
   uint StringOffsetValue;
   
   if (SystemResourceManager == '\0') {
@@ -24470,7 +24470,7 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
   SetupSystemConfiguration(&GlobalDataReferencePointer);
   systemValue = SystemMaxOperationCount + 0x11;
   ExecuteSystemCommand(&GlobalDataReferencePointer,systemValue);
-  SystemHashNodeData = (uint32_t *)(pEncryptionKeyValue + SystemMaxOperationCount);
+  SystemHashNodeData = (uint32_t *)(EncryptionKeyValuePointer + SystemMaxOperationCount);
   *SystemHashNodeData = SystemStringIdentifierTemplate1;
   SystemHashNodeData[1] = SystemStringIdentifierTemplate2;
   SystemHashNodeData[2] = SystemStringIdentifierTemplate3;
@@ -24479,8 +24479,8 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
   SystemEncryptionKey = 0;
   SystemOperationValue = 0;
   ResourceAddressPointer = &SystemStringTemplate;
-  if (pEncryptionKeyValue != (void* *)0x0) {
-    ResourceAddressPointer = pEncryptionKeyValue;
+  if (EncryptionKeyValuePointer != (void* *)0x0) {
+    ResourceAddressPointer = EncryptionKeyValuePointer;
   }
   SystemMaxOperationCount = systemValue;
   ProcessSystemResourceData(&SystemEncryptionKey,ResourceAddressPointer,&SystemConfigurationDataTemplate);
@@ -24511,7 +24511,7 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
     UNLOCK();
   }
   GlobalDataReferencePointer = &SystemGlobalDataReference;
-  if (pEncryptionKeyValue == (void* *)0x0) {
+  if (EncryptionKeyValuePointer == (void* *)0x0) {
     return ResourceHash;
   }
     SystemCleanupFunction();
@@ -52457,7 +52457,7 @@ ulong long InitializeSystemResourceManagerA(void* SystemResourceManager,void* Co
   uint32_t SystemOperationCounter;
   void* SystemContextValue;
   uint8_t SystemResourceStatusFlagCompact [8];
-  void* *pEncryptionKeyValue;
+  void* *EncryptionKeyValuePointer;
   
   ResourceMemoryOffset = SystemAllocationTemplate;
   ThreadContext = GetConfigurationDataStatus(ConfigurationDataPointer);
@@ -52493,8 +52493,8 @@ ulong long InitializeSystemResourceManagerA(void* SystemResourceManager,void* Co
   }
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemStringTemplateBuffer,SystemThreadStorage);
   SystemThreadStorage = &SystemStringTemplate;
-  if (pEncryptionKeyValue != (void* *)0x0) {
-    SystemThreadStorage = pEncryptionKeyValue;
+  if (EncryptionKeyValuePointer != (void* *)0x0) {
+    SystemThreadStorage = EncryptionKeyValuePointer;
   }
   SystemManagerSetFlags(SystemContextManagerPointer,5,0xffffffff00000000,3,SystemThreadStorage);
   InitializeSystemManager();
