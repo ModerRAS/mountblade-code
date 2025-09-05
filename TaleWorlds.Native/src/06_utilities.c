@@ -5369,35 +5369,37 @@ ulonglong FUN_1808913c0(longlong param_1,undefined8 param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_1808913ff(undefined4 param_1)
+// 函数: int CheckUtilityPermissionG0(undefined4 param_1)
+// 功能：工具权限检查函数G0，检查工具的权限并根据参数执行相应的权限验证操作
+int CheckUtilityPermissionG0(undefined4 param_1)
 
 {
-  int in_EAX;
-  int iVar1;
-  longlong lVar2;
-  longlong unaff_RDI;
-  undefined4 uVar3;
-  longlong lStack0000000000000028;
-  undefined4 uStack0000000000000030;
+  int registerValue;
+  int operationResult;
+  longlong resourcePointer;
+  longlong contextPointer;
+  undefined4 operationMode;
+  longlong stackBuffer;
+  undefined4 parameterBuffer;
   
-  lVar2 = 0;
-  if (in_EAX == 0) {
-    lStack0000000000000028 = *(longlong *)(unaff_RDI + 0x10);
-    uVar3 = 1;
-    lVar2 = lStack0000000000000028;
+  resourcePointer = 0;
+  if (registerValue == 0) {
+    stackBuffer = *(longlong *)(contextPointer + 0x10);
+    operationMode = 1;
+    resourcePointer = stackBuffer;
   }
   else {
-    lStack0000000000000028 = *(longlong *)(unaff_RDI + 0x10);
-    uVar3 = 2;
+    stackBuffer = *(longlong *)(contextPointer + 0x10);
+    operationMode = 2;
   }
-  uStack0000000000000030 = param_1;
-  iVar1 = FUN_180894dd0();
-  if (iVar1 == 0) {
-    iVar1 = 0;
+  parameterBuffer = param_1;
+  operationResult = FUN_180894dd0();
+  if (operationResult == 0) {
+    operationResult = 0;
   }
-  else if (lVar2 != 0) {
-    FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar2,&UNK_180957f70,0xe9,uVar3);
-    return iVar1;
+  else if (resourcePointer != 0) {
+    FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_180957f70,0xe9,operationMode);
+    return operationResult;
   }
   return iVar1;
 }
