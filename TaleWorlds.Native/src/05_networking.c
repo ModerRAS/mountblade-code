@@ -635,6 +635,20 @@ uint32_t ExecuteSecureNetworkDataTransfer(int64_t SourceBuffer, uint32_t Transfe
 uint32_t HandlePriorityNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag);
 
 /**
+ * @brief 验证连接数据
+ * 
+ * 验证网络连接数据的完整性和安全性
+ * 
+ * @param ConnectionTable 连接表
+ * @param ConnectionData 连接数据
+ * @param SecurityValidationData 安全验证数据
+ * @param BufferSize 缓冲区大小
+ * @param ValidationMode 验证模式
+ * @return void
+ */
+void AuthenticateConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionData, void* SecurityValidationData, uint32_t BufferSize, uint32_t ValidationMode);
+
+/**
  * @brief 创建网络迭代上下文
  * 
  * 创建用于网络连接处理的迭代上下文，支持批量处理和状态管理。
