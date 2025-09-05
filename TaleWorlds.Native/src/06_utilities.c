@@ -18460,7 +18460,7 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
   uVar2 = ValidateDataIntegrityA0(param_1,&puStack_28);
   if ((int)uVar2 == 0) {
     validationContext = *(longlong *)(param_1[1] + 0x78);
-    calculatedOffset = func_0x000180879a40();
+    calculatedOffset = GetSystemCalculatedOffsetA0();
     if (calculatedOffset == 0) {
       uVar2 = 0x1c;
     }
@@ -18531,7 +18531,7 @@ undefined8 GetSystemState(void)
   undefined8 uVar2;
   longlong *registerRBX;
   
-  validationContext = func_0x000180879a40();
+  validationContext = GetSystemCalculatedOffsetA0();
   if (validationContext == 0) {
     uVar2 = 0x1c;
   }
