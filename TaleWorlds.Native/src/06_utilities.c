@@ -50206,6 +50206,16 @@ void Unwind_1809059a0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
+/**
+ * @brief 处理异常系统调用并执行相关操作
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @param param_3 附加数据参数1
+ * @param param_4 附加数据参数2
+ * @return 无返回值
+ * @note 原始函数名：Unwind_1809059b0 - 异常处理函数G9
+ * 功能：处理异常系统调用并执行相关操作
+ */
 void Unwind_1809059b0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
