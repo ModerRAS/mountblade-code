@@ -71227,7 +71227,7 @@ void ProcessSystemDataHandler(uint64_t SystemContextPointer,uint64_t Utf8BufferS
 {
   long long *SystemContextPointer;
   double *pDoubleVariable2;
-  double DoubleVariable3;
+  double CalculatedDifference;
   long long *EngineContext;
   long long MemoryAllocationSize;
   long long *pMemoryBoundaryEnd;
@@ -71273,13 +71273,13 @@ void ProcessSystemDataHandler(uint64_t SystemContextPointer,uint64_t Utf8BufferS
         MemoryAllocationSize = *SystemContextPointer8;
         SystemContextPointer1 = SystemContextPointer8;
         if (SystemContextPointer8 != SystemContextPointer2) {
-          DoubleVariable3 = *(double *)(MemoryAllocationSize + 0x40);
+          CalculatedDifference = *(double *)(MemoryAllocationSize + 0x40);
           MemoryBlockSizePointer = SystemContextPointer8;
           do {
             pMemoryBoundaryEnd = MemoryBlockSizePointer + -1;
             MemoryBlockSizePointer = MemoryBlockSizePointer + -1;
             pDoubleVariable2 = (double *)(*pMemoryBoundaryEnd + 0x40);
-            if (DoubleVariable3 < *pDoubleVariable2 || DoubleVariable3 == *pDoubleVariable2) break;
+            if (CalculatedDifference < *pDoubleVariable2 || CalculatedDifference == *pDoubleVariable2) break;
             *SystemContextPointer1 = *pMemoryBoundaryEnd;
             SystemContextPointer1 = SystemContextPointer1 + -1;
           } while (MemoryBlockSizePointer != SystemContextPointer2);
@@ -71295,13 +71295,13 @@ void ProcessSystemDataHandler(uint64_t SystemContextPointer,uint64_t Utf8BufferS
           MemoryAllocationSize = *SystemContextPointer1;
           MemoryBlockSizePointer = SystemContextPointer1;
           if (SystemContextPointer1 != SystemContextPointer2) {
-            DoubleVariable3 = *(double *)(MemoryAllocationSize + 0x40);
+            CalculatedDifference = *(double *)(MemoryAllocationSize + 0x40);
             pMemoryBoundaryEnd = SystemContextPointer1;
             do {
               SystemContextPointer = pMemoryBoundaryEnd + -1;
               pMemoryBoundaryEnd = pMemoryBoundaryEnd + -1;
               pDoubleVariable2 = (double *)(*SystemContextPointer + 0x40);
-              if (DoubleVariable3 < *pDoubleVariable2 || DoubleVariable3 == *pDoubleVariable2) break;
+              if (CalculatedDifference < *pDoubleVariable2 || CalculatedDifference == *pDoubleVariable2) break;
               *MemoryBlockSizePointer = *SystemContextPointer;
               MemoryBlockSizePointer = MemoryBlockSizePointer + -1;
             } while (pMemoryBoundaryEnd != SystemContextPointer2);
@@ -71312,18 +71312,18 @@ void ProcessSystemDataHandler(uint64_t SystemContextPointer,uint64_t Utf8BufferS
       for (; SystemContextPointer8 != SystemContextPtr; SystemContextPointer8 = SystemContextPointer8 + 1) {
         MemoryAllocationSize = *SystemContextPointer8;
         LoopCounter6 = SystemContextPointer8[-1];
-        DoubleVariable3 = *(double *)(MemoryAllocationSize + 0x40);
+        CalculatedDifference = *(double *)(MemoryAllocationSize + 0x40);
         SystemContextPointer2 = SystemContextPointer8 + -1;
         SystemContextPointer1 = SystemContextPointer8;
         MemoryBlockSizePointer = SystemContextPointer8;
-        if (*(double *)(LoopCounter6 + 0x40) <= DoubleVariable3 && DoubleVariable3 != *(double *)(LoopCounter6 + 0x40)) {
+        if (*(double *)(LoopCounter6 + 0x40) <= CalculatedDifference && CalculatedDifference != *(double *)(LoopCounter6 + 0x40)) {
           do {
             SystemContextPointer1 = SystemContextPointer2;
             *MemoryBlockSizePointer = LoopCounter6;
             LoopCounter6 = SystemContextPointer1[-1];
             SystemContextPointer2 = SystemContextPointer1 + -1;
             MemoryBlockSizePointer = SystemContextPointer1;
-          } while (*(double *)(LoopCounter6 + 0x40) <= DoubleVariable3 && DoubleVariable3 != *(double *)(LoopCounter6 + 0x40));
+          } while (*(double *)(LoopCounter6 + 0x40) <= CalculatedDifference && CalculatedDifference != *(double *)(LoopCounter6 + 0x40));
         }
         *SystemContextPointer1 = MemoryAllocationSize;
       }
@@ -76254,7 +76254,7 @@ void ProcessSystemDataStructureTransferAndSort(long long *SystemContextPointer,l
 {
   long long *SystemContextPointer;
   double DoubleVariable2;
-  double DoubleVariable3;
+  double CalculatedDifference;
   double DoubleValue1;
   double DoubleValue2;
   unsigned long long DataSize;
@@ -76273,35 +76273,35 @@ void ProcessSystemDataStructureTransferAndSort(long long *SystemContextPointer,l
     MemoryBlockSize = *SystemContextPointer;
     DoubleVariable2 = *(double *)(MemoryBlockSize + 0x40);
     SystemDataTablePointer = SystemContextPointer[SystemDataTablePointer >> 1];
-    DoubleVariable3 = *(double *)(SystemDataTablePointer + 0x40);
+    CalculatedDifference = *(double *)(SystemDataTablePointer + 0x40);
     DoubleValue1 = *(double *)(Utf8BufferSize[-1] + 0x40);
     SystemStringIndex = MemoryBlockSize;
-    DoubleValue2 = DoubleVariable3;
-    if (DoubleVariable3 < DoubleVariable2) {
+    DoubleValue2 = CalculatedDifference;
+    if (CalculatedDifference < DoubleVariable2) {
       SystemStringIndex = SystemDataTablePointer;
       SystemDataTablePointer = MemoryBlockSize;
       DoubleValue2 = DoubleVariable2;
-      DoubleVariable2 = DoubleVariable3;
+      DoubleVariable2 = CalculatedDifference;
     }
     if ((DoubleVariable2 <= DoubleValue1) && (SystemStringIndex = SystemDataTablePointer, DoubleValue1 < DoubleValue2)) {
       SystemStringIndex = Utf8BufferSize[-1];
     }
-    DoubleVariable3 = *(double *)(SystemStringIndex + 0x40);
+    CalculatedDifference = *(double *)(SystemStringIndex + 0x40);
     pCurrentMemoryBlockAddress = Utf8BufferSize;
     SystemContextPointer0 = SystemContextPointer;
     while( true ) {
-      while (DoubleVariable3 < *(double *)(MemoryBlockSize + 0x40)) {
+      while (CalculatedDifference < *(double *)(MemoryBlockSize + 0x40)) {
         SystemContextPointer = SystemContextPointer0 + 1;
         SystemContextPointer0 = SystemContextPointer0 + 1;
         MemoryBlockSize = *SystemContextPointer;
       }
       SystemContextPointer = pCurrentMemoryBlockAddress + -1;
       pCurrentMemoryBlockAddress = pCurrentMemoryBlockAddress + -1;
-      if (*(double *)(*SystemContextPointer + 0x40) <= DoubleVariable3 && DoubleVariable3 != *(double *)(*SystemContextPointer + 0x40)) {
+      if (*(double *)(*SystemContextPointer + 0x40) <= CalculatedDifference && CalculatedDifference != *(double *)(*SystemContextPointer + 0x40)) {
         do {
           SystemContextPointer = pCurrentMemoryBlockAddress + -1;
           pCurrentMemoryBlockAddress = pCurrentMemoryBlockAddress + -1;
-        } while (*(double *)(*SystemContextPointer + 0x40) <= DoubleVariable3 && DoubleVariable3 != *(double *)(*SystemContextPointer + 0x40));
+        } while (*(double *)(*SystemContextPointer + 0x40) <= CalculatedDifference && CalculatedDifference != *(double *)(*SystemContextPointer + 0x40));
       }
       if (pCurrentMemoryBlockAddress <= SystemContextPointer0) break;
       SystemDataTablePointer = *SystemContextPointer0;
@@ -76328,7 +76328,7 @@ void ProcessSystemDataStructureTransfer(long long *SystemContextPointer,long lon
 {
   long long *SystemContextPointer;
   double DoubleVariable2;
-  double DoubleVariable3;
+  double CalculatedDifference;
   double DoubleValue1;
   double DoubleValue2;
   long long in_RAX;
@@ -76348,35 +76348,35 @@ void ProcessSystemDataStructureTransfer(long long *SystemContextPointer,long lon
     MemoryBlockSize = *SystemContextPointer;
     DoubleVariable2 = *(double *)(MemoryBlockSize + 0x40);
     SystemDataTablePointer = SystemContextPointer[SystemDataTablePointer >> 1];
-    DoubleVariable3 = *(double *)(SystemDataTablePointer + 0x40);
+    CalculatedDifference = *(double *)(SystemDataTablePointer + 0x40);
     DoubleValue1 = *(double *)(Utf8BufferSize[-1] + 0x40);
     SystemStringIndex = MemoryBlockSize;
-    DoubleValue2 = DoubleVariable3;
-    if (DoubleVariable3 < DoubleVariable2) {
+    DoubleValue2 = CalculatedDifference;
+    if (CalculatedDifference < DoubleVariable2) {
       SystemStringIndex = SystemDataTablePointer;
       SystemDataTablePointer = MemoryBlockSize;
       DoubleValue2 = DoubleVariable2;
-      DoubleVariable2 = DoubleVariable3;
+      DoubleVariable2 = CalculatedDifference;
     }
     if ((DoubleVariable2 <= DoubleValue1) && (SystemStringIndex = SystemDataTablePointer, DoubleValue1 < DoubleValue2)) {
       SystemStringIndex = Utf8BufferSize[-1];
     }
-    DoubleVariable3 = *(double *)(SystemStringIndex + 0x40);
+    CalculatedDifference = *(double *)(SystemStringIndex + 0x40);
     pCurrentMemoryBlockAddress = Utf8BufferSize;
     SystemContextPointer0 = SystemContextPointer;
     while( true ) {
-      while (DoubleVariable3 < *(double *)(MemoryBlockSize + 0x40)) {
+      while (CalculatedDifference < *(double *)(MemoryBlockSize + 0x40)) {
         SystemContextPointer = SystemContextPointer0 + 1;
         SystemContextPointer0 = SystemContextPointer0 + 1;
         MemoryBlockSize = *SystemContextPointer;
       }
       SystemContextPointer = pCurrentMemoryBlockAddress + -1;
       pCurrentMemoryBlockAddress = pCurrentMemoryBlockAddress + -1;
-      if (*(double *)(*SystemContextPointer + 0x40) <= DoubleVariable3 && DoubleVariable3 != *(double *)(*SystemContextPointer + 0x40)) {
+      if (*(double *)(*SystemContextPointer + 0x40) <= CalculatedDifference && CalculatedDifference != *(double *)(*SystemContextPointer + 0x40)) {
         do {
           SystemContextPointer = pCurrentMemoryBlockAddress + -1;
           pCurrentMemoryBlockAddress = pCurrentMemoryBlockAddress + -1;
-        } while (*(double *)(*SystemContextPointer + 0x40) <= DoubleVariable3 && DoubleVariable3 != *(double *)(*SystemContextPointer + 0x40));
+        } while (*(double *)(*SystemContextPointer + 0x40) <= CalculatedDifference && CalculatedDifference != *(double *)(*SystemContextPointer + 0x40));
       }
       if (pCurrentMemoryBlockAddress <= SystemContextPointer0) break;
       SystemDataTablePointer = *SystemContextPointer0;
@@ -76403,7 +76403,7 @@ void ReleaseSystemDataStructure(uint64_t SystemContextPointer
 {
   long long *SystemContextPointer;
   double DoubleVariable2;
-  double DoubleVariable3;
+  double CalculatedDifference;
   double DoubleValue1;
   double DoubleValue2;
   long long MemoryBoundaryEnd;
@@ -76426,35 +76426,35 @@ void ReleaseSystemDataStructure(uint64_t SystemContextPointer
     MemoryBoundaryEnd = *RegisterSourceIndex;
     DoubleVariable2 = *(double *)(MemoryBoundaryEnd + 0x40);
     MemoryBlockSize = RegisterSourceIndex[MemoryBlockSize >> 1];
-    DoubleVariable3 = *(double *)(MemoryBlockSize + 0x40);
+    CalculatedDifference = *(double *)(MemoryBlockSize + 0x40);
     DoubleValue1 = *(double *)(in_R10[-1] + 0x40);
     SystemOffsetValue = MemoryBoundaryEnd;
-    DoubleValue2 = DoubleVariable3;
-    if (DoubleVariable3 < DoubleVariable2) {
+    DoubleValue2 = CalculatedDifference;
+    if (CalculatedDifference < DoubleVariable2) {
       SystemOffsetValue = MemoryBlockSize;
       MemoryBlockSize = MemoryBoundaryEnd;
       DoubleValue2 = DoubleVariable2;
-      DoubleVariable2 = DoubleVariable3;
+      DoubleVariable2 = CalculatedDifference;
     }
     if ((DoubleVariable2 <= DoubleValue1) && (SystemOffsetValue = MemoryBlockSize, DoubleValue1 < DoubleValue2)) {
       SystemOffsetValue = in_R10[-1];
     }
-    DoubleVariable3 = *(double *)(SystemOffsetValue + 0x40);
+    CalculatedDifference = *(double *)(SystemOffsetValue + 0x40);
     pSystemDataTablePointer = in_R10;
     pCurrentMemoryBlockAddress = RegisterSourceIndex;
     while( true ) {
-      while (DoubleVariable3 < *(double *)(MemoryBoundaryEnd + 0x40)) {
+      while (CalculatedDifference < *(double *)(MemoryBoundaryEnd + 0x40)) {
         SystemContextPointer = pCurrentMemoryBlockAddress + 1;
         pCurrentMemoryBlockAddress = pCurrentMemoryBlockAddress + 1;
         MemoryBoundaryEnd = *SystemContextPointer;
       }
       SystemContextPointer = pSystemDataTablePointer + -1;
       pSystemDataTablePointer = pSystemDataTablePointer + -1;
-      if (*(double *)(*SystemContextPointer + 0x40) <= DoubleVariable3 && DoubleVariable3 != *(double *)(*SystemContextPointer + 0x40)) {
+      if (*(double *)(*SystemContextPointer + 0x40) <= CalculatedDifference && CalculatedDifference != *(double *)(*SystemContextPointer + 0x40)) {
         do {
           SystemContextPointer = pSystemDataTablePointer + -1;
           pSystemDataTablePointer = pSystemDataTablePointer + -1;
-        } while (*(double *)(*SystemContextPointer + 0x40) <= DoubleVariable3 && DoubleVariable3 != *(double *)(*SystemContextPointer + 0x40));
+        } while (*(double *)(*SystemContextPointer + 0x40) <= CalculatedDifference && CalculatedDifference != *(double *)(*SystemContextPointer + 0x40));
       }
       if (pSystemDataTablePointer <= pCurrentMemoryBlockAddress) break;
       MemoryBlockSize = *pCurrentMemoryBlockAddress;
@@ -225871,8 +225871,8 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
   long long MemoryBlockIndex0;
   void *pSystemStatusValue;
   int ValidationCode2;
-  double DoubleVariable33;
-  double DoubleVariable34;
+  double CalculatedDifference3;
+  double CalculatedDifference4;
   float FloatValue35;
   uint8_t aSystemUintBuffer238 [32];
   uint8_t uStack_218;
@@ -226008,8 +226008,8 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
     SystemStringIndex = SUB168(ZEXT816(0x47ae147ae147ae15) * aMemoryAllocationIndex,8);
     MutexLockResult = (int)((MemoryAllocationIndex0 - SystemStringIndex >> 1) + SystemStringIndex >> 6);
     SystemStringIndex = (long long)MutexLockResult;
-    DoubleVariable34 = 0.0;
-    DoubleVariable33 = 0.0;
+    CalculatedDifference4 = 0.0;
+    CalculatedDifference3 = 0.0;
     MemoryAllocationIndex0 = Utf16Char4;
     if (3 < SystemStringIndex) {
       FloatValue35 = 1.0 / (float)MutexLockResult;
@@ -226017,22 +226017,22 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
       bufferAllocationStatus7 = (SystemStringIndex - 4U >> 2) + 1;
       MemoryAllocationIndex0 = bufferAllocationStatus7 * 4;
       do {
-        DoubleVariable33 = (double)(FloatValue35 * pFloatVariable22[-2]) + DoubleVariable33;
-        *(double *)(MemoryAllocationSize + 0xa8) = DoubleVariable33;
-        DoubleVariable33 = (double)(FloatValue35 * pFloatVariable22[-1]) + DoubleVariable33;
-        *(double *)(MemoryAllocationSize + 0xa8) = DoubleVariable33;
-        DoubleVariable33 = (double)(FloatValue35 * *pFloatVariable22) + DoubleVariable33;
-        *(double *)(MemoryAllocationSize + 0xa8) = DoubleVariable33;
-        DoubleVariable33 = DoubleVariable33 + (double)(FloatValue35 * pFloatVariable22[1]);
-        *(double *)(MemoryAllocationSize + 0xa8) = DoubleVariable33;
+        CalculatedDifference3 = (double)(FloatValue35 * pFloatVariable22[-2]) + CalculatedDifference3;
+        *(double *)(MemoryAllocationSize + 0xa8) = CalculatedDifference3;
+        CalculatedDifference3 = (double)(FloatValue35 * pFloatVariable22[-1]) + CalculatedDifference3;
+        *(double *)(MemoryAllocationSize + 0xa8) = CalculatedDifference3;
+        CalculatedDifference3 = (double)(FloatValue35 * *pFloatVariable22) + CalculatedDifference3;
+        *(double *)(MemoryAllocationSize + 0xa8) = CalculatedDifference3;
+        CalculatedDifference3 = CalculatedDifference3 + (double)(FloatValue35 * pFloatVariable22[1]);
+        *(double *)(MemoryAllocationSize + 0xa8) = CalculatedDifference3;
         pFloatVariable22 = pFloatVariable22 + 4;
         bufferAllocationStatus7 = bufferAllocationStatus7 + -1;
       } while (bufferAllocationStatus7 != 0);
     }
     if ((long long)MemoryAllocationIndex0 < SystemStringIndex) {
       do {
-        DoubleVariable33 = DoubleVariable33 + (double)((1.0 / (float)MutexLockResult) * pfStack_1e0[MemoryAllocationIndex0]);
-        *(double *)(MemoryAllocationSize + 0xa8) = DoubleVariable33;
+        CalculatedDifference3 = CalculatedDifference3 + (double)((1.0 / (float)MutexLockResult) * pfStack_1e0[MemoryAllocationIndex0]);
+        *(double *)(MemoryAllocationSize + 0xa8) = CalculatedDifference3;
         MemoryAllocationIndex0 = MemoryAllocationIndex0 + 1;
       } while ((long long)MemoryAllocationIndex0 < SystemStringIndex);
     }
@@ -226112,24 +226112,24 @@ void FUN_18019fc10(long long SystemContextPointer,float *Utf8BufferSize,float *U
       pFloatVariable22 = pfStack_1e0 + 2;
       bufferAllocationStatus7 = (SystemStringIndex - 4U >> 2) + 1;
       Utf16Char4 = bufferAllocationStatus7 * 4;
-      DoubleVariable34 = 0.0;
+      CalculatedDifference4 = 0.0;
       do {
-        DoubleVariable34 = (double)(FloatValue35 * pFloatVariable22[-2]) + DoubleVariable34;
-        *(double *)(MemoryAllocationSize + 0xb0) = DoubleVariable34;
-        DoubleVariable34 = (double)(FloatValue35 * pFloatVariable22[-1]) + DoubleVariable34;
-        *(double *)(MemoryAllocationSize + 0xb0) = DoubleVariable34;
-        DoubleVariable34 = (double)(FloatValue35 * *pFloatVariable22) + DoubleVariable34;
-        *(double *)(MemoryAllocationSize + 0xb0) = DoubleVariable34;
-        DoubleVariable34 = DoubleVariable34 + (double)(FloatValue35 * pFloatVariable22[1]);
-        *(double *)(MemoryAllocationSize + 0xb0) = DoubleVariable34;
+        CalculatedDifference4 = (double)(FloatValue35 * pFloatVariable22[-2]) + CalculatedDifference4;
+        *(double *)(MemoryAllocationSize + 0xb0) = CalculatedDifference4;
+        CalculatedDifference4 = (double)(FloatValue35 * pFloatVariable22[-1]) + CalculatedDifference4;
+        *(double *)(MemoryAllocationSize + 0xb0) = CalculatedDifference4;
+        CalculatedDifference4 = (double)(FloatValue35 * *pFloatVariable22) + CalculatedDifference4;
+        *(double *)(MemoryAllocationSize + 0xb0) = CalculatedDifference4;
+        CalculatedDifference4 = CalculatedDifference4 + (double)(FloatValue35 * pFloatVariable22[1]);
+        *(double *)(MemoryAllocationSize + 0xb0) = CalculatedDifference4;
         pFloatVariable22 = pFloatVariable22 + 4;
         bufferAllocationStatus7 = bufferAllocationStatus7 + -1;
       } while (bufferAllocationStatus7 != 0);
     }
     if ((long long)Utf16Char4 < SystemStringIndex) {
       do {
-        DoubleVariable34 = DoubleVariable34 + (double)((1.0 / (float)MutexLockResult) * pfStack_1e0[Utf16Char4]);
-        *(double *)(MemoryAllocationSize + 0xb0) = DoubleVariable34;
+        CalculatedDifference4 = CalculatedDifference4 + (double)((1.0 / (float)MutexLockResult) * pfStack_1e0[Utf16Char4]);
+        *(double *)(MemoryAllocationSize + 0xb0) = CalculatedDifference4;
         Utf16Char4 = Utf16Char4 + 1;
       } while ((long long)Utf16Char4 < SystemStringIndex);
     }
@@ -227179,10 +227179,10 @@ LAB_180201f5b:
   double DoubleVariable27;
   double DoubleVariable28;
   double DoubleVariable29;
-  double DoubleVariable30;
-  double DoubleVariable31;
-  double DoubleVariable32;
-  double DoubleVariable33;
+  double CalculatedDifference0;
+  double CalculatedDifference1;
+  double CalculatedDifference2;
+  double CalculatedDifference3;
   
   pFloatVariable24 = *(float **)(SystemContextPointer + 0x70);
   Utf16Char8 = 0;
@@ -227247,12 +227247,12 @@ LAB_180201f5b:
   }
   pFloatVariable24 = *(float **)(SystemContextPointer + 0x68);
   DoubleVariable28 = 0.0;
-  DoubleVariable32 = 0.0;
+  CalculatedDifference2 = 0.0;
   DoubleVariable27 = 0.0;
   MemoryAllocationIndex6 = *(long long *)(SystemContextPointer + 0x70) - (long long)pFloatVariable24 >> 2;
   DoubleVariable29 = 0.0;
   DoubleVariable12 = 0.0;
-  DoubleVariable31 = 0.0;
+  CalculatedDifference1 = 0.0;
   DoubleVariable14 = 0.0;
   if (MemoryAllocationIndex6 != 0) {
     aCalculatedCodePoint.High64Part = 0;
@@ -227266,13 +227266,13 @@ LAB_180201f5b:
     MemoryBufferC = SUB168(ZEXT816(0x47ae147ae147ae15) * aSystemByteValue,8);
     Utf16Char7 = Utf16Char8;
     MemoryAllocationIndex5 = Utf16Char8;
-    DoubleVariable32 = 0.0;
+    CalculatedDifference2 = 0.0;
     DoubleVariable12 = 0.0;
     DoubleVariable14 = 0.0;
     do {
       if ((long long)Utf16Char7 < (long long)(int)((MemoryAllocationIndex6 - LoopCounter6 >> 1) + LoopCounter6 >> 6)) {
         DoubleVariable27 = DoubleVariable27 + 1.0;
-        DoubleVariable32 = DoubleVariable32 + (double)*pFloatVariable24;
+        CalculatedDifference2 = CalculatedDifference2 + (double)*pFloatVariable24;
       }
       if ((long long)Utf16Char7 < (long long)(int)((MemoryAllocationIndex6 * 0xf - bufferAllocationStatus3 >> 1) + bufferAllocationStatus3 >> 6)) {
         DoubleVariable12 = DoubleVariable12 + 1.0;
@@ -227280,7 +227280,7 @@ LAB_180201f5b:
       }
       if ((long long)Utf16Char7 < (long long)(int)((MemoryAllocationIndex6 * 0x1e - MemoryBufferC >> 1) + MemoryBufferC >> 6)) {
         DoubleVariable14 = DoubleVariable14 + 1.0;
-        DoubleVariable31 = DoubleVariable31 + (double)*pFloatVariable24;
+        CalculatedDifference1 = CalculatedDifference1 + (double)*pFloatVariable24;
       }
       MemoryAllocationIndex0 = (int)MemoryAllocationIndex5 + 1;
       MemoryAllocationIndex5 = (unsigned long long)MemoryAllocationIndex0;
@@ -227292,13 +227292,13 @@ LAB_180201f5b:
   DoubleVariable13 = 0.0;
   DoubleVariable15 = 1.0 / (double)ValidationCode;
   DoubleVariable11 = 0.0;
-  DoubleVariable33 = (double)(ValidationCode + -1);
-  DoubleVariable30 = 0.0;
+  CalculatedDifference3 = (double)(ValidationCode + -1);
+  CalculatedDifference0 = 0.0;
   *(double *)(SystemContextPointer + 0xf0) =
-       ((1.0 / DoubleVariable27) * DoubleVariable32 + DoubleVariable33 * *(double *)(SystemContextPointer + 0xf0)) * DoubleVariable15;
-  DoubleVariable32 = 0.0;
-  *(double *)(SystemContextPointer + 0xf8) = (DoubleVariable33 * *(double *)(SystemContextPointer + 0xf8) + DoubleVariable29 / DoubleVariable12) * DoubleVariable15;
-  *(double *)(SystemContextPointer + 0x100) = (DoubleVariable33 * *(double *)(SystemContextPointer + 0x100) + DoubleVariable31 / DoubleVariable14) * DoubleVariable15;
+       ((1.0 / DoubleVariable27) * CalculatedDifference2 + CalculatedDifference3 * *(double *)(SystemContextPointer + 0xf0)) * DoubleVariable15;
+  CalculatedDifference2 = 0.0;
+  *(double *)(SystemContextPointer + 0xf8) = (CalculatedDifference3 * *(double *)(SystemContextPointer + 0xf8) + DoubleVariable29 / DoubleVariable12) * DoubleVariable15;
+  *(double *)(SystemContextPointer + 0x100) = (CalculatedDifference3 * *(double *)(SystemContextPointer + 0x100) + CalculatedDifference1 / DoubleVariable14) * DoubleVariable15;
   pFloatVariable24 = *(float **)(SystemContextPointer + 0x88);
   MemoryAllocationIndex6 = *(long long *)(SystemContextPointer + 0x90) - (long long)pFloatVariable24 >> 2;
   if (MemoryAllocationIndex6 != 0) {
@@ -227320,11 +227320,11 @@ LAB_180201f5b:
       }
       if ((long long)Utf16Char8 < (long long)(int)((MemoryAllocationIndex6 * 0xf - bufferAllocationStatus3 >> 1) + bufferAllocationStatus3 >> 6)) {
         DoubleVariable11 = DoubleVariable11 + 1.0;
-        DoubleVariable30 = DoubleVariable30 + (double)*pFloatVariable24;
+        CalculatedDifference0 = CalculatedDifference0 + (double)*pFloatVariable24;
       }
       if ((long long)Utf16Char8 < (long long)(int)((MemoryAllocationIndex6 * 0x1e - MemoryBufferC >> 1) + MemoryBufferC >> 6)) {
         DoubleVariable13 = DoubleVariable13 + 1.0;
-        DoubleVariable32 = DoubleVariable32 + (double)*pFloatVariable24;
+        CalculatedDifference2 = CalculatedDifference2 + (double)*pFloatVariable24;
       }
       MemoryAllocationIndex0 = (int)Utf16Char7 + 1;
       Utf16Char7 = (unsigned long long)MemoryAllocationIndex0;
@@ -227334,13 +227334,13 @@ LAB_180201f5b:
   }
   *(int *)(SystemContextPointer + 0xdc) = ValidationCode + 1;
   *(double *)(SystemContextPointer + 0x108) =
-       (DoubleVariable33 * *(double *)(SystemContextPointer + 0x108) + (1.0 / DoubleVariable27) * DoubleVariable28) * DoubleVariable15;
-  *(double *)(SystemContextPointer + 0x110) = (DoubleVariable33 * *(double *)(SystemContextPointer + 0x110) + DoubleVariable30 / DoubleVariable11) * DoubleVariable15;
-  *(double *)(SystemContextPointer + 0x118) = (DoubleVariable33 * *(double *)(SystemContextPointer + 0x118) + DoubleVariable32 / DoubleVariable13) * DoubleVariable15;
+       (CalculatedDifference3 * *(double *)(SystemContextPointer + 0x108) + (1.0 / DoubleVariable27) * DoubleVariable28) * DoubleVariable15;
+  *(double *)(SystemContextPointer + 0x110) = (CalculatedDifference3 * *(double *)(SystemContextPointer + 0x110) + CalculatedDifference0 / DoubleVariable11) * DoubleVariable15;
+  *(double *)(SystemContextPointer + 0x118) = (CalculatedDifference3 * *(double *)(SystemContextPointer + 0x118) + CalculatedDifference2 / DoubleVariable13) * DoubleVariable15;
   *(double *)(SystemContextPointer + 0xe0) =
-       (DoubleVariable33 * *(double *)(SystemContextPointer + 0xe0) + *(double *)(SystemContextPointer + 0xc0)) * DoubleVariable15;
+       (CalculatedDifference3 * *(double *)(SystemContextPointer + 0xe0) + *(double *)(SystemContextPointer + 0xc0)) * DoubleVariable15;
   *(double *)(SystemContextPointer + 0xe8) =
-       (DoubleVariable33 * *(double *)(SystemContextPointer + 0xe8) + *(double *)(SystemContextPointer + 0xb8)) * DoubleVariable15;
+       (CalculatedDifference3 * *(double *)(SystemContextPointer + 0xe8) + *(double *)(SystemContextPointer + 0xb8)) * DoubleVariable15;
   return;
 }
 
@@ -227388,8 +227388,8 @@ LAB_180201f5b:
   uint32_t XMMRegister8_Db;
   uint32_t unaff_XMM8_Dc;
   uint32_t unaff_XMM8_Dd;
-  double DoubleVariable30;
-  double DoubleVariable31;
+  double CalculatedDifference0;
+  double CalculatedDifference1;
   
   *(void *)(in_RAX + 8) = RegisterFramePointer;
   *(uint32_t *)(in_RAX + -0x38) = FloatRegisterX8;
@@ -227493,17 +227493,17 @@ LAB_180201f5b:
   }
   ValidationCode = *(int *)(RegisterGeneral14 + 0xdc);
   DoubleVariable29 = 0.0;
-  DoubleVariable31 = 1.0 / (double)ValidationCode;
+  CalculatedDifference1 = 1.0 / (double)ValidationCode;
   DoubleVariable27 = 0.0;
-  DoubleVariable30 = (double)(ValidationCode + -1);
+  CalculatedDifference0 = (double)(ValidationCode + -1);
   DoubleVariable24 = 0.0;
   *(double *)(RegisterGeneral14 + 0xf0) =
-       ((1.0 / DoubleVariable21) * DoubleVariable26 + DoubleVariable30 * *(double *)(RegisterGeneral14 + 0xf0)) * DoubleVariable31;
+       ((1.0 / DoubleVariable21) * DoubleVariable26 + CalculatedDifference0 * *(double *)(RegisterGeneral14 + 0xf0)) * CalculatedDifference1;
   DoubleVariable26 = 0.0;
   *(double *)(RegisterGeneral14 + 0xf8) =
-       (DoubleVariable30 * *(double *)(RegisterGeneral14 + 0xf8) + DoubleVariable23 / DoubleVariable28) * DoubleVariable31;
+       (CalculatedDifference0 * *(double *)(RegisterGeneral14 + 0xf8) + DoubleVariable23 / DoubleVariable28) * CalculatedDifference1;
   *(double *)(RegisterGeneral14 + 0x100) =
-       (DoubleVariable30 * *(double *)(RegisterGeneral14 + 0x100) + DoubleVariable25 / DoubleVariable11) * DoubleVariable31;
+       (CalculatedDifference0 * *(double *)(RegisterGeneral14 + 0x100) + DoubleVariable25 / DoubleVariable11) * CalculatedDifference1;
   pSystemFloatValue = *(float **)(RegisterGeneral14 + 0x88);
   Utf16Char9 = *(long long *)(RegisterGeneral14 + 0x90) - (long long)pSystemFloatValue >> 2;
   if (Utf16Char9 != 0) {
@@ -227537,15 +227537,15 @@ LAB_180201f5b:
   }
   *(int *)(RegisterGeneral14 + 0xdc) = ValidationCode + 1;
   *(double *)(RegisterGeneral14 + 0x108) =
-       (DoubleVariable30 * *(double *)(RegisterGeneral14 + 0x108) + (1.0 / DoubleVariable21) * DoubleVariable22) * DoubleVariable31;
+       (CalculatedDifference0 * *(double *)(RegisterGeneral14 + 0x108) + (1.0 / DoubleVariable21) * DoubleVariable22) * CalculatedDifference1;
   *(double *)(RegisterGeneral14 + 0x110) =
-       (DoubleVariable30 * *(double *)(RegisterGeneral14 + 0x110) + DoubleVariable24 / DoubleVariable27) * DoubleVariable31;
+       (CalculatedDifference0 * *(double *)(RegisterGeneral14 + 0x110) + DoubleVariable24 / DoubleVariable27) * CalculatedDifference1;
   *(double *)(RegisterGeneral14 + 0x118) =
-       (DoubleVariable30 * *(double *)(RegisterGeneral14 + 0x118) + DoubleVariable26 / DoubleVariable29) * DoubleVariable31;
+       (CalculatedDifference0 * *(double *)(RegisterGeneral14 + 0x118) + DoubleVariable26 / DoubleVariable29) * CalculatedDifference1;
   *(double *)(RegisterGeneral14 + 0xe0) =
-       (DoubleVariable30 * *(double *)(RegisterGeneral14 + 0xe0) + *(double *)(RegisterGeneral14 + 0xc0)) * DoubleVariable31;
+       (CalculatedDifference0 * *(double *)(RegisterGeneral14 + 0xe0) + *(double *)(RegisterGeneral14 + 0xc0)) * CalculatedDifference1;
   *(double *)(RegisterGeneral14 + 0xe8) =
-       (DoubleVariable30 * *(double *)(RegisterGeneral14 + 0xe8) + *(double *)(RegisterGeneral14 + 0xb8)) * DoubleVariable31;
+       (CalculatedDifference0 * *(double *)(RegisterGeneral14 + 0xe8) + *(double *)(RegisterGeneral14 + 0xb8)) * CalculatedDifference1;
   return;
 }
 
