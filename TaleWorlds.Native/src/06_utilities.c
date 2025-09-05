@@ -31180,7 +31180,7 @@ void ExceptionHandlerA0(void)
 
 
 
-void Unwind_180902110(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExceptionHandlerA1(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   code *pcVar1;
