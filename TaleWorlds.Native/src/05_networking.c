@@ -833,7 +833,7 @@ uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t Conn
  * @param ConnectionHandle 连接句柄
  * @return uint32_t 初始化结果，0表示成功，其他值表示错误码
  */
-uint32_t InitializeConnectionContext(NetworkHandle ConnectionHandle);
+uint32_t SetupConnectionContext(NetworkHandle ConnectionHandle);
 
 /**
  * @brief 清理连接堆栈
@@ -843,7 +843,7 @@ uint32_t InitializeConnectionContext(NetworkHandle ConnectionHandle);
  * @param ConnectionStackPointer 连接堆栈指针
  * @return void 无返回值
  */
-void CleanupConnectionStack(uint32_t *ConnectionStackPointer);
+void ClearConnectionStack(uint32_t *ConnectionStackPointer);
 
 /**
  * @brief 复制连接缓冲区
@@ -853,7 +853,7 @@ void CleanupConnectionStack(uint32_t *ConnectionStackPointer);
  * @param ConnectionBufferPointer 连接缓冲区指针
  * @return void 无返回值
  */
-void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
+void DuplicateConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络系统全局变量
 
@@ -1982,7 +1982,7 @@ uint32_t NetworkConnectionContextDataIndex;                     // 连接上下�
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
  */
-uint32_t PrimaryNetworkConnectionBuffer;                   // 主网络连接缓冲区
+uint32_t MainNetworkConnectionBuffer;                   // 主网络连接缓冲区
 
 /**
  * @brief 初始化网络连接状态
@@ -2017,23 +2017,23 @@ void InitializeNetworkConnectionState(void)
   int64_t NetworkConnectionContextPointer;             // 网络连接上下文指针
   
   // 计算连接状态缓冲区位置
-  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
   if (*(int *)(*(int64_t *)(NetworkSystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkConnectionSessionId) {
     *NetworkConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + 8) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + 8) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
-    NetworkConnectionInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkConnectionContextPointer + NetworkContextSystemOffset));
+    NetworkConnectionInitializationStatus = SetupConnectionContext(*(NetworkHandle *)(NetworkConnectionContextPointer + NetworkContextSystemOffset));
     if (NetworkConnectionInitializationStatus == 0) {
-      *NetworkConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateDataOffset);
+      *NetworkConnectionStateData = (uint64_t)*(uint *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateDataOffset);
     }
-    CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
+    ClearConnectionStack(&MainNetworkConnectionBuffer);
   }
-  CopyConnectionBuffer(NetworkConnectionStateBuffer);
+  DuplicateConnectionBuffer(NetworkConnectionStateBuffer);
 }
 
 /**
@@ -2055,13 +2055,13 @@ void ResetNetworkConnectionPointer(void)
   int32_t NetworkConnectionIdentifier;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndHandle(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + NetworkConnectionStateDataOffset);
   
   // 清理连接堆栈
-  CleanupConnectionStack(&PrimaryNetworkConnectionBuffer);
+  ClearConnectionStack(&MainNetworkConnectionBuffer);
 }
 
 /**
@@ -2121,15 +2121,15 @@ NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHand
   NetworkConnectionContextId = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
   if (NetworkValidationStatusCode == 0) {
-    if ((0 < *(int *)CalculateContextParameterOffset(NetworkConnectionValidationData)) && (*NetworkConnectionValidationData != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationData, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)ComputeContextParameterOffset(NetworkConnectionValidationData)) && (*NetworkConnectionValidationData != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationData, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     *NetworkConnectionValidationData = NetworkConnectionContextId;
-    *(int *)CalculateContextParameterOffset(NetworkConnectionValidationData) = NetworkValidationStatusCode;
+    *(int *)ComputeContextParameterOffset(NetworkConnectionValidationData) = NetworkValidationStatusCode;
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
-    ConnectionContextHandle = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
+    ConnectionContextHandle = HandleConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
     if (ConnectionContextHandle != 0) {
       if ((int)NetworkConnectionValidationData[1] != 0) {
           memcpy(ConnectionContextHandle, *NetworkConnectionValidationData, (int64_t)(int)NetworkConnectionValidationData[1]);
@@ -2224,7 +2224,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
       NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
-               ProcessConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
+               HandleConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
                              NetworkConnectionCompletionHandle, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
@@ -2266,7 +2266,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   // 验证连接安全性
   if ((0 < *(int *)CalculateContextParameterOffset(ConnectionContext)) && (*ConnectionContext != 0)) {
-      ValidateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+      AuthenticateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
   }
   
   // 更新连接上下文和参数
@@ -2311,7 +2311,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   if (ConnectionOperationCode == 0) {
 PrimaryNetworkProcessingCompleted:
     if ((0 < *(int *)CalculateContextParameterOffset(ConnectionOperationBuffer)) && (*ConnectionOperationBuffer != 0)) {
-        ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     *ConnectionOperationBuffer = (int64_t)ProcessedPacketIdentifier;
     *(int *)CalculateContextParameterOffset(ConnectionOperationBuffer) = ConnectionOperationCode;
@@ -2319,7 +2319,7 @@ PrimaryNetworkProcessingCompleted:
   }
   if (PacketIndex * ConnectionEntrySize - 1U < MaxIntValue) {
     ConnectionStatusPointer = (NetworkStatus *)
-             ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
+             HandleConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
       int32_t OperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
@@ -2756,7 +2756,7 @@ void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int
  * 
  * @note 此函数会执行数据完整性检查和安全合规性检查
  * @warning 调用者需要确保SecurityValidationData有足够的空间存储验证结果
- * @see ValidateConnectionSecurity, ProcessNetworkConnectionRequest
+ * @see AuthenticateConnectionSecurity, ProcessNetworkConnectionRequest
  */
 void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionData, void* SecurityValidationData, 
                            uint32_t ValidationBufferSize, uint32_t ValidationMode)
@@ -2818,7 +2818,7 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
  * @note 这是简化实现，实际应用中需要实现完整的安全验证逻辑
  * @warning 简化实现仅执行基本的参数检查，不提供实际的安全性验证
  */
-void ValidateConnectionSecurity(NetworkHandle ConnectionTable, int64_t ConnectionContext, void* SecurityValidationData, 
+void AuthenticateConnectionSecurity(NetworkHandle ConnectionTable, int64_t ConnectionContext, void* SecurityValidationData, 
                                uint32_t ValidationBufferSize, uint32_t SecurityMode)
 {
   // 简化实现：仅执行基本的参数检查和内存初始化
