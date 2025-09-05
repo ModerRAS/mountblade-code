@@ -13064,8 +13064,9 @@ void FUN_180897520(longlong *param_1,longlong *param_2)
 
 
 
-// 函数: void FUN_180897560(void)
-void FUN_180897560(void)
+// 原始函数名：FUN_180897560 - 系统初始化和验证函数
+// 功能：执行系统初始化操作并进行安全验证
+#define InitializeAndValidateSystem FUN_180897560
 
 {
   int iVar1;
@@ -13089,8 +13090,9 @@ void FUN_180897560(void)
 
 
 
-// 函数: void FUN_1808975a6(void)
-void FUN_1808975a6(void)
+// 原始函数名：FUN_1808975a6 - 系统状态检查函数
+// 功能：检查系统状态并在满足条件时重置标志位
+#define CheckSystemStatusAndReset FUN_1808975a6
 
 {
   int iVar1;
@@ -13355,8 +13357,9 @@ FUN_180897b16:
 
 
 
-// 函数: void FUN_180897644(void)
-void FUN_180897644(void)
+// 原始函数名：FUN_180897644 - 数据处理函数A0
+// 功能：处理浮点数据和长整型数据
+#define ProcessDataTypesA0 FUN_180897644
 
 {
   float fVar1;
