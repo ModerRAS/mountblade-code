@@ -319,7 +319,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define RECEIVE_BUFFER_SIZE 0x10000                          // 接收缓冲区大小64KB
 #define BUFFER_CAPACITY 0x20000                              // 缓冲区容量128KB
 #define PACKET_QUEUE_SIZE 0x100                               // 数据包队列大小256
-#define BufferSize4Kilobytes 0x1000                               // 4KB缓冲区大小
+#define BufferSize4KB 0x1000                               // 4KB缓冲区大小
 #define ContextSize256Bytes 0x100                              // 256字节上下文大小
 #define ContextSize512Bytes 0x200                           // 512字节上下文大小
 
