@@ -20883,52 +20883,52 @@ void* * InitializeSystemMemoryAllocatorReference(void* *memoryAllocatorPointer)
  * @param param2 第二个参数
  * @param param3 第三个参数
  */
-void ProcessSystemThreeParameterData(long long sourceStringPointer,long long targetStringPointer,long long searchStringLength)
+void ProcessSystemThreeParameterData(long long sourceStringPointer, long long targetStringPointer, long long searchStringLength)
 
 {
-  long long StringSearchResult;
-  long long SourceStringLength;
-  long long TargetStringLength;
-  uint8_t StackSecurityBuffer [32];
-  void* SecurityFlags;
-  void* *MemoryReference;
-  uint8_t *DataBuffer;
-  uint32_t BufferLength;
-  uint8_t TempDataBuffer [32];
-  ulong long ChecksumValue;
+  long long stringSearchResult;
+  long long sourceStringLength;
+  long long targetStringLength;
+  uint8_t stackSecurityBuffer [32];
+  void* securityFlags;
+  void* *memoryReference;
+  uint8_t *dataBuffer;
+  uint32_t bufferLength;
+  uint8_t tempDataBuffer [32];
+  ulong long checksumValue;
   
-  SecurityFlags = SystemInvalidHandleTemplate;
-  ChecksumValue = SystemEncryptionKeyTemplate ^ (ulong long)StackSecurityBuffer;
-  MemoryReference = &SystemMemoryTemplateQuinary;
-  DataBuffer = TempDataBuffer;
-  BufferLength = 0;
-  TempDataBuffer[0] = 0;
-  StringSearchResult = strstr(*(void* *)(sourceStringPointer + 8));
-  if (StringSearchResult != 0) {
-    SourceStringLength = -1;
-    TargetStringLength = -1;
+  securityFlags = SystemInvalidHandleTemplate;
+  checksumValue = SystemEncryptionKeyTemplate ^ (ulong long)stackSecurityBuffer;
+  memoryReference = &SystemMemoryTemplateQuinary;
+  dataBuffer = tempDataBuffer;
+  bufferLength = 0;
+  tempDataBuffer[0] = 0;
+  stringSearchResult = strstr(*(void* *)(sourceStringPointer + 8));
+  if (stringSearchResult != 0) {
+    sourceStringLength = -1;
+    targetStringLength = -1;
     do {
-      TargetStringLength = TargetStringLength + 1;
-    } while (*(char *)(targetStringPointer + TargetStringLength) != '\0');
+      targetStringLength = targetStringLength + 1;
+    } while (*(char *)(targetStringPointer + targetStringLength) != '\0');
     do {
-      SourceStringLength = SourceStringLength + 1;
-    } while (*(char *)(SourceStringLength + searchStringLength) != '\0');
-      memcpy(DataBuffer,*(long long *)(sourceStringPointer + 8),StringSearchResult - *(long long *)(sourceStringPointer + 8));
+      sourceStringLength = sourceStringLength + 1;
+    } while (*(char *)(sourceStringLength + searchStringLength) != '\0');
+      memcpy(dataBuffer,*(long long *)(sourceStringPointer + 8),stringSearchResult - *(long long *)(sourceStringPointer + 8));
   }
-  MemoryReference = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(ChecksumValue ^ (ulong long)StackSecurityBuffer);
+  memoryReference = &SystemMemoryAllocatorReference;
+    ValidateSystemChecksum(checksumValue ^ (ulong long)stackSecurityBuffer);
 }
 
 
 
-void* * GetSystemMemoryAllocatorReference(void* *MemoryAllocatorPointer,ulong long MemoryAllocationFlags)
+void* * GetSystemMemoryAllocatorReference(void* *memoryAllocatorPointer, ulong long memoryAllocationFlags)
 
 {
-  *MemoryAllocatorPointer = &SystemMemoryAllocatorReference;
-  if ((MemoryAllocationFlags & 1) != 0) {
-    free(MemoryAllocatorPointer,0x18);
+  *memoryAllocatorPointer = &SystemMemoryAllocatorReference;
+  if ((memoryAllocationFlags & 1) != 0) {
+    free(memoryAllocatorPointer, 0x18);
   }
-  return MemoryAllocatorPointer;
+  return memoryAllocatorPointer;
 }
 
 

@@ -16872,7 +16872,7 @@ ValidationCompleteLabel:
 
 
 
-DataBuffer ValidateDataIntegrityA2(int64_t param_1,DataBuffer param_2,int64_t param_3)
+DataBuffer ValidateDataIntegrityA2(int64_t DataDescriptor,DataBuffer ValidationContext,int64_t ResourceIndex)
 
 {
   DataBuffer dataValue;
@@ -17440,7 +17440,7 @@ DataBuffer PerformNoOperation(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
+uint64_t ProcessDataValidationAndSecurityCheck(int64_t SecurityContext)
 
 {
   byte *byteDataPointer;
@@ -19867,7 +19867,7 @@ void ProcessSecureDataA0(int64_t *ContextPointer, DataBuffer DataSource, DataBuf
 // 原始函数名：FUN_180897d90 - 数据验证函数A0
 // 功能：验证数据结构A0的有效性
 #define ValidateDataStructureA0 FUN_180897d90
-DataBuffer ValidateDataStructureA0(int64_t *param_1)
+DataBuffer ValidateDataStructureA0(int64_t *DataStructurePointer)
 
 {
   int64_t validationContext;
@@ -39023,7 +39023,7 @@ void ExceptionDataProcessorA3(DataBuffer param_1,int64_t param_2,DataBuffer para
 
 
 
-void Unwind_180903060(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionDataBufferA(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   FUN_180058710(*(int64_t *)(param_2 + 0x40),*(DataBuffer *)(*(int64_t *)(param_2 + 0x40) + 0x10),
@@ -39033,7 +39033,7 @@ void Unwind_180903060(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180903070(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionDataBufferB(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   FUN_180058710(*(int64_t *)(param_2 + 0x40),*(DataBuffer *)(*(int64_t *)(param_2 + 0x40) + 0x10),
@@ -39043,7 +39043,7 @@ void Unwind_180903070(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180903080(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionDataBufferWithValidation(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -39071,7 +39071,7 @@ void Unwind_180903080(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
  * @param param_3 异常处理参数3
  * @param param_4 异常处理参数4
  */
-void Unwind_180903090(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataValuePointer(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   DataBuffer *DataValuePointer;
@@ -50084,49 +50084,73 @@ void ResetExceptionHandlerA(DataBuffer SystemContext, int64_t ExecutionContext)
 
 
 
-void Unwind_180905a90(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 重置异常处理器B
+ * 
+ * 重置第二个异常处理器，先设置为临时处理器，然后恢复默认处理器
+ * 
+ * @param SystemContext 系统上下文
+ * @param ExecutionContext 执行上下文
+ */
+void ResetExceptionHandlerB(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  *(DataBuffer *)(param_2 + 0x98) = &UNK_180a3c3e0;
-  if (*(int64_t *)(param_2 + 0xa0) != 0) {
+  *(DataBuffer *)(ExecutionContext + 0x98) = &UNK_180a3c3e0;
+  if (*(int64_t *)(ExecutionContext + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(param_2 + 0xa0) = 0;
-  *(DataWord *)(param_2 + 0xb0) = 0;
-  *(DataBuffer *)(param_2 + 0x98) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(ExecutionContext + 0xa0) = 0;
+  *(DataWord *)(ExecutionContext + 0xb0) = 0;
+  *(DataBuffer *)(ExecutionContext + 0x98) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180905aa0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 重置异常处理器C
+ * 
+ * 重置第三个异常处理器，先设置为临时处理器，然后恢复默认处理器
+ * 
+ * @param SystemContext 系统上下文
+ * @param ExecutionContext 执行上下文
+ */
+void ResetExceptionHandlerC(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  *(DataBuffer *)(param_2 + 0xb8) = &UNK_180a3c3e0;
-  if (*(int64_t *)(param_2 + 0xc0) != 0) {
+  *(DataBuffer *)(ExecutionContext + 0xb8) = &UNK_180a3c3e0;
+  if (*(int64_t *)(ExecutionContext + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(param_2 + 0xc0) = 0;
-  *(DataWord *)(param_2 + 0xd0) = 0;
-  *(DataBuffer *)(param_2 + 0xb8) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(ExecutionContext + 0xc0) = 0;
+  *(DataWord *)(ExecutionContext + 0xd0) = 0;
+  *(DataBuffer *)(ExecutionContext + 0xb8) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180905ab0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 重置异常处理器D
+ * 
+ * 重置第四个异常处理器，先设置为临时处理器，然后恢复默认处理器
+ * 
+ * @param SystemContext 系统上下文
+ * @param ExecutionContext 执行上下文
+ */
+void ResetExceptionHandlerD(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
-  *(DataBuffer *)(param_2 + 0xe0) = &UNK_180a3c3e0;
-  if (*(int64_t *)(param_2 + 0xe8) != 0) {
+  *(DataBuffer *)(ExecutionContext + 0xe0) = &UNK_180a3c3e0;
+  if (*(int64_t *)(ExecutionContext + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(param_2 + 0xe8) = 0;
-  *(DataWord *)(param_2 + 0xf8) = 0;
-  *(DataBuffer *)(param_2 + 0xe0) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(ExecutionContext + 0xe8) = 0;
+  *(DataWord *)(ExecutionContext + 0xf8) = 0;
+  *(DataBuffer *)(ExecutionContext + 0xe0) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -50197,12 +50221,20 @@ void DestroySystemMutex(void)
 
 
 
-void Unwind_180905b40(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 重置验证上下文异常处理器
+ * 
+ * 重置验证上下文中的异常处理器，先设置为临时处理器，然后恢复默认处理器
+ * 
+ * @param SystemContext 系统上下文
+ * @param ExecutionContext 执行上下文
+ */
+void ResetValidationContextExceptionHandler(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x40);
+  validationContext = *(int64_t *)(ExecutionContext + 0x40);
   *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
@@ -50216,12 +50248,20 @@ void Unwind_180905b40(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180905b50(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 执行验证上下文回调函数
+ * 
+ * 检查并执行验证上下文中的回调函数
+ * 
+ * @param SystemContext 系统上下文
+ * @param ExecutionContext 执行上下文
+ */
+void ExecuteValidationContextCallback(DataBuffer SystemContext, int64_t ExecutionContext)
 
 {
   int64_t *validationContextPointer;
   
-  validationContextPointer = *(int64_t **)(*(int64_t *)(param_2 + 0x58) + 8);
+  validationContextPointer = *(int64_t **)(*(int64_t *)(ExecutionContext + 0x58) + 8);
   if (validationContextPointer != (int64_t *)0x0) {
     (**(FunctionPointer**)(*validationContextPointer + 0x38))();
   }
