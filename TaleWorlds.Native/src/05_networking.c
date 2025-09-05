@@ -557,7 +557,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
 #define NetworkConnectionTimeout 30000                       // 连接超时时间（30秒）
-#define NetworkStandardBufferSize 256                         // 标准缓冲区大小（256字节）
+#define NetworkStandardBufferSize 256                           // 标准缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
 // 网络连接配置常量
@@ -1000,8 +1000,8 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄
 uint32_t NetworkConnectionManager;                         // 网络连接管理器
-uint32_t NetworkConnectionManagerContextPointer;     // 网络连接管理器上下文指针
-uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据
+uint32_t NetworkManagerContextPointer;     // 网络连接管理器上下文指针
+uint32_t NetworkManagerContextData;             // 网络连接管理器上下文数据
 uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志
 uint32_t NetworkConnectionTimeoutMs;                    // 网络连接超时时间（毫秒）
 uint32_t NetworkMaxConnectionsAllowed;                  // 网络最大连接数限制
@@ -3391,29 +3391,29 @@ NetworkHandle ValidateConnectionContext(NetworkHandle PacketData, int64_t Contex
 NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t IntegrityOffset)
 {
   // 数据包完整性验证变量
-  uint32_t PacketIntegrityValidationResult;           // 数据包完整性验证结果
-  uint32_t PacketChecksumValidationResult;           // 数据包校验和验证结果
-  uint32_t NetworkPacketDataFormatValidationResult;         // 数据包数据格式验证结果
+  uint32_t IntegrityValidationResult;           // 数据包完整性验证结果
+  uint32_t ChecksumValidationResult;           // 数据包校验和验证结果
+  uint32_t DataFormatValidationResult;         // 数据包数据格式验证结果
   
   // 初始化验证状态
-  PacketIntegrityValidationResult = NetworkValidationFailure;
-  PacketChecksumValidationResult = NetworkValidationFailure;
-  NetworkPacketDataFormatValidationResult = NetworkValidationFailure;
+  IntegrityValidationResult = NetworkValidationFailure;
+  ChecksumValidationResult = NetworkValidationFailure;
+  DataFormatValidationResult = NetworkValidationFailure;
   
   // 验证数据包指针有效性
   if (PacketData && *PacketData != 0) {
-    PacketChecksumValidationResult = NetworkChecksumValid;  // 校验和验证通过
+    ChecksumValidationResult = NetworkChecksumValid;  // 校验和验证通过
   }
   
   // 验证完整性偏移量有效性
   if (IntegrityOffset >= 0) {
-    NetworkPacketDataFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
+    DataFormatValidationResult = NetworkDataFormatValid;  // 数据格式验证通过
   }
   
   // 综合完整性验证结果
-  NetworkPacketIntegrityValidationResult = NetworkPacketChecksumValidationResult & NetworkPacketDataFormatValidationResult;
+  IntegrityValidationResult = ChecksumValidationResult & DataFormatValidationResult;
   
-  return NetworkPacketIntegrityValidationResult;  // 返回完整性验证结果
+  return IntegrityValidationResult;  // 返回完整性验证结果
 }
 
 /**
@@ -3673,19 +3673,19 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      NetworkPacketHeaderDecodingStatus = NetworkValidationSuccess;
+      HeaderDecodingStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      NetworkPacketPayloadDecodingStatus = NetworkValidationSuccess;
+      PayloadDecodingStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    NetworkPacketSecurityValidationResult = NetworkPacketHeaderDecodingStatus & NetworkPacketPayloadDecodingStatus;
+    SecurityValidationResult = HeaderDecodingStatus & PayloadDecodingStatus;
     
     // 初始化输出缓冲区
-    if (NetworkPacketSecurityValidationResult == NetworkValidationSuccess) {
+    if (SecurityValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
       OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
@@ -3693,7 +3693,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
   }
   
-  return NetworkPacketSecurityValidationResult;
+  return SecurityValidationResult;
 }
 
 /**
@@ -3712,30 +3712,30 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t NetworkHeaderValidationResult;                  // 网络头部验证结果
-  uint32_t NetworkContextProcessingStatus;                 // 网络上下文处理状态
-  uint32_t NetworkFormatValidationResult;                   // 网络头部格式检查结果
+  uint32_t HeaderValidationResult;                  // 网络头部验证结果
+  uint32_t ContextProcessingStatus;                 // 网络上下文处理状态
+  uint32_t FormatValidationResult;                   // 网络头部格式检查结果
   
   // 初始化处理状态
-  NetworkHeaderValidationResult = NetworkValidationFailure;
-  NetworkContextProcessingStatus = NetworkValidationFailure;
-  NetworkFormatValidationResult = NetworkValidationFailure;
+  HeaderValidationResult = NetworkValidationFailure;
+  ContextProcessingStatus = NetworkValidationFailure;
+  FormatValidationResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    NetworkHeaderValidationResult = NetworkValidationSuccess;
+    HeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    NetworkContextProcessingStatus = NetworkValidationSuccess;
+    ContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
-      NetworkContextProcessingStatus == NetworkValidationSuccess) {
-    NetworkFormatValidationResult = NetworkValidationSuccess;
+  if (HeaderValidationResult == NetworkValidationSuccess && 
+      ContextProcessingStatus == NetworkValidationSuccess) {
+    FormatValidationResult = NetworkValidationSuccess;
   }
   
-  return NetworkFormatValidationResult;
+  return FormatValidationResult;
 }

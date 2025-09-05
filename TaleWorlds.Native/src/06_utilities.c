@@ -24062,7 +24062,7 @@ DataProcessLabelA:
     dataFlags = ValidateDataWithSecurityCheckA2(dataContext,param_1 + 0x80);
     if (((((int)dataFlags == 0) &&
          ((dataFlags = ValidateDataWithSecurityCheckA2(dataContext,param_1 + 0x84), (int)dataFlags == 0 &&
-          (dataFlags = FUN_180899220(param_2,param_1 + 0x88), (int)dataFlags == 0)))) &&
+          (dataFlags = ValidateDataSequence(param_2,param_1 + 0x88), (int)dataFlags == 0)))) &&
         (dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)) &&
        ((((dataFlags = ProcessDataBlocksA1(*param_2,param_1 + 0x70), (int)dataFlags == 0 &&
           (dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0)) &&
@@ -24226,7 +24226,7 @@ DataProcessLabelA:
     operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x80);
     if (((((int)operationResult == 0) &&
          ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
-          (operationResult = FUN_180899220(), (int)operationResult == 0)))) &&
+          (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0)) &&
        ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + 0x70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0)) &&
@@ -24380,7 +24380,7 @@ DataProcessSectionA:
     operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x80);
     if (((((int)operationResult == 0) &&
          ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
-          (operationResult = FUN_180899220(), (int)operationResult == 0)))) &&
+          (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0)) &&
        ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + 0x70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0)) &&
@@ -24530,7 +24530,7 @@ DataProcessLabelA:
     operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x80);
     if (((((int)operationResult == 0) &&
          ((operationResult = ValidateDataWithSecurityCheckA2(dataContext,systemContext + 0x84), (int)operationResult == 0 &&
-          (operationResult = FUN_180899220(), (int)operationResult == 0)))) &&
+          (operationResult = ValidateDataSequence(), (int)operationResult == 0)))) &&
         (operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0)) &&
        ((((operationResult = ProcessDataBlocksA1(*registerContext,systemContext + 0x70), (int)operationResult == 0 &&
           (operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0)) &&
@@ -28856,7 +28856,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
               }
               if (((int)validationStatus == 0) &&
                  ((*(uint *)(param_2 + 8) < 0x85 ||
-                  (validationStatus = FUN_180899220(param_2,param_1 + 0x108), (int)validationStatus == 0)))) {
+                  (validationStatus = ValidateDataSequence(param_2,param_1 + 0x108), (int)validationStatus == 0)))) {
                     // WARNING: Subroutine does not return
                 FUN_1808ddf80(param_2,auStack_58);
               }
@@ -30245,7 +30245,7 @@ ulonglong ProcessSystemDataValidationAndAllocation(longlong validationContext,lo
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  memoryBaseAddress = FUN_180899220(param_2,param_1 + 0x50);
+  memoryBaseAddress = ValidateDataSequence(param_2,param_1 + 0x50);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
