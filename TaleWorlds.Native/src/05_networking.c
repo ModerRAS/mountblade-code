@@ -592,10 +592,10 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define SecurityReset NetworkResetValue                                    // 安全重置
 #define AuthReset NetworkResetValue                                        // 认证重置
 #define EncryptionReset NetworkResetValue                                  // 加密重置
-#define CompressionReset NetworkReset_VALUE                                 // 压缩重置
-#define SocketReset NetworkReset_VALUE                                      // 套接字重置
+#define CompressionReset NetworkResetValue                                 // 压缩重置
+#define SocketReset NetworkResetValue                                      // 套接字重置
 #define SocketDataReset NetworkResetValue                                 // 套接字数据重置
-#define EventReset NetworkReset_VALUE                                       // 事件重置
+#define EventReset NetworkResetValue                                       // 事件重置
 #define CallbackReset NetworkReset_VALUE                                    // 回调重置
 #define QueueReset NetworkReset_VALUE                                       // 队列重置
 #define HandlerReset NetworkReset_VALUE                                     // 处理器重置
@@ -2163,7 +2163,7 @@ uint32_t NetworkConnectionOptions;                        // 网络连接选项
 uint32_t NetworkConnectionConfiguration;                         // 网络连接配置
 uint32_t NetworkConnectionGeneralSettings;                       // 网络连接设置
 uint32_t NetworkConnectionContextIdentifier;                 // 网络连接上下文标识符
-uint32_t NetworkConnectionContextData;                  // 网络连接上下文数据
+uint32_t NetworkConnectionContextDataPointer;                  // 网络连接上下文数据指针
 uint32_t NetworkConnectionContextConfiguration;                // 网络连接上下文配置
 uint32_t NetworkConnectionValidationStatus;              // 连接验证状态
 uint32_t NetworkConnectionValidationData;                // 连接验证数据
@@ -2171,7 +2171,7 @@ uint32_t NetworkConnectionValidationDataSize;                // 连接验证数�
 uint32_t NetworkConnectionValidationCode;                // 连接验证码
 uint32_t NetworkConnectionBaseAddress;                  // 连接基地址
 uint32_t NetworkConnectionContextDataArray;                     // 连接上下文数据数组
-uint32_t NetworkConnectionContextDataSize;                      // 连接上下文数据大小
+uint32_t NetworkConnectionContextDataArraySize;                 // 连接上下文数据数组大小
 uint32_t NetworkConnectionContextDataIndex;                     // 连接上下文数据索引
 uint32_t NetworkConnectionCompletionHandle;                        // 连接完成句柄
 
