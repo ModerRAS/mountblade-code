@@ -35854,7 +35854,7 @@ void SystemCallHandlerMemoryCleanup(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809029c0(undefined8 param_1,longlong param_2)
+void SystemCallHandlerMemoryCleanup2(undefined8 param_1,longlong param_2)
 
 {
   FUN_1808fc8a8(*(longlong *)(param_2 + 0x70) + 0x2a0,0x20,0x10,FUN_18004c030);
@@ -35863,7 +35863,18 @@ void Unwind_1809029c0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902a00(undefined8 param_1,longlong param_2)
+/**
+ * 系统调用处理器 - 调用内存清理函数
+ * 
+ * 该函数负责调用系统内存清理函数，包括：
+ * - 从异常上下文中提取内存地址
+ * - 调用底层的内存清理函数
+ * - 传递必要的清理参数
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void SystemCallHandlerMemoryCleanup3(undefined8 param_1,longlong param_2)
 
 {
   FUN_1808fc8a8(*(longlong *)(param_2 + 0x70) + 0x4a0,0x20,0x10,FUN_18004c090);
@@ -35872,7 +35883,18 @@ void Unwind_180902a00(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902a40(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理数据上下文和验证状态
+ * 
+ * 该函数负责清理数据上下文，包括：
+ * - 遍历和清理数据上下文数组
+ * - 处理验证状态和引用计数
+ * - 在引用计数为0时调用异常处理
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerDataContext3(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
