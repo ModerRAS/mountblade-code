@@ -5131,11 +5131,13 @@ void* GlobalDataPointerA38_5;
 // 返回值:
 //   void* - 数据处理结果
 void* UtilityProcessDataA0;
-undefined DAT_180bfa230;
-undefined DAT_180bfa238;
-undefined DAT_180bfa240;
-undefined DAT_180bfa248;
-undefined DAT_180a22fa8;
+// 全局数据指针A38存储区
+void* GlobalDataPointerA38Storage;    // DAT_180bfa230
+void* GlobalDataPointerA38Status;     // DAT_180bfa238
+void* GlobalDataPointerA38Config;     // DAT_180bfa240
+void* GlobalDataPointerA38Cache;      // DAT_180bfa248
+// 全局数据指针A38验证缓冲区
+void* GlobalDataPointerA38ValidationBuffer;  // DAT_180a22fa8
 
 // 函数: undefined ProcessUtilityDataBB0;
 // 
@@ -5564,7 +5566,8 @@ undefined UNK_18098bc48;
 char SystemStatusFlagB;
 undefined UNK_18098bc00;
 undefined DAT_180c86920;
-void *ExceptionList;
+// 异常处理列表
+void *ExceptionHandlerList;
 undefined UNK_180046dd0;
 undefined UNK_1809fcb00;
 undefined DAT_180c86960;
