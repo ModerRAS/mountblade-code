@@ -438,6 +438,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
  * 网络端口范围的结束值，用于限制端口号的最大值
  */
 #define NetworkMaximumPort 0x270F                                // 端口9999
+#define NetworkMaximumPortNumber NetworkMaximumPort              // 端口最大值别名
 
 /**
  * @brief 网络缓冲区大小常量
@@ -2955,7 +2956,7 @@ void InitializeNetworkConnectionState(void)
     if (NetworkInitializationResult == 0) {
       *NetworkStateDataPointer = (uint64_t)*(uint32_t *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateDataOffset);
     }
-    ResetConnectionStack(&NetworkPrimaryConnectionBuffer);
+    ResetConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
   CopyConnectionBuffer(ConnectionStateBuffer);
 }
@@ -2985,7 +2986,7 @@ void ResetNetworkConnectionPointer(void)
   *NetworkDataResetBuffer = (uint64_t)*(uint32_t *)(NetworkContextResetData + NetworkConnectionStateDataOffset);
   
   // 清理连接堆栈
-  ResetConnectionStack(&NetworkPrimaryConnectionBuffer);
+  ResetConnectionStack(&PrimaryNetworkConnectionBuffer);
 }
 
 /**
