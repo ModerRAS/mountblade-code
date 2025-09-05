@@ -90706,8 +90706,13 @@ void RegisterSystemResourceReleaseHandlerAtOffsetF20(uint8_t ObjectContext, int6
 
 
 /**
- * 销毁互斥锁资源
- * 用于在异常处理过程中销毁互斥锁资源
+ * @brief 销毁互斥锁资源
+ * 
+ * 该函数负责在异常处理过程中销毁互斥锁资源。
+ * 调用底层的互斥锁销毁函数来释放资源。
+ * 
+ * @return 无返回值
+ * @note 此函数在系统异常处理过程中被调用
  */
 void DestroyMutexResourceInPlace(void)
 
@@ -90719,11 +90724,15 @@ void DestroyMutexResourceInPlace(void)
 
 
 /**
- * 处理资源上下文清理操作
- * 用于在异常处理过程中清理特定偏移量的资源上下文
+ * @brief 处理资源上下文清理操作
  * 
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
+ * 该函数负责在异常处理过程中清理特定偏移量的资源上下文。
+ * 从验证上下文中获取资源上下文，并执行相应的清理回调。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统异常处理过程中被调用
  */
 void ProcessResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
@@ -90740,11 +90749,15 @@ void ProcessResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationCont
 
 
 /**
- * 处理次要资源上下文清理操作
- * 用于在异常处理过程中清理次要偏移量的资源上下文
+ * @brief 处理次要资源上下文清理操作
  * 
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
+ * 该函数负责在异常处理过程中清理次要偏移量的资源上下文。
+ * 从验证上下文中获取次要资源上下文，并执行相应的清理回调。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统异常处理过程中被调用
  */
 void ProcessSecondaryResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
@@ -90762,9 +90775,14 @@ void ProcessSecondaryResourceContextCleanup(uint8_t ObjectContext, int64_t Valid
 
 /**
  * @brief 执行系统资源回调处理（偏移量0x13e8）
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
- * @remark 原始函数名：Unwind_18090df60
+ * 
+ * 该函数负责在系统资源的指定偏移量处执行回调处理。
+ * 从验证上下文中获取资源上下文，并执行相应的资源处理回调。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源处理过程中被调用
  */
 void ExecuteSystemResourceCallbackAtOffset13E8(uint8_t ObjectContext, int64_t ValidationContext)
 
@@ -90782,9 +90800,14 @@ void ExecuteSystemResourceCallbackAtOffset13E8(uint8_t ObjectContext, int64_t Va
 
 /**
  * @brief 执行系统资源回调处理（偏移量0x1400）
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
- * @remark 原始函数名：Unwind_18090df80
+ * 
+ * 该函数负责在系统资源的指定偏移量处执行回调处理。
+ * 从验证上下文中获取资源上下文，并执行相应的资源处理回调。
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源处理过程中被调用
  */
 void ExecuteSystemResourceCallbackAtOffset1400(uint8_t ObjectContext, int64_t ValidationContext)
 
