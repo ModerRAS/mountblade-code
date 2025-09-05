@@ -1944,7 +1944,7 @@ undefined UtilityChecksumBufferB;
 undefined UtilityChecksumBufferC;
 undefined UtilityChecksumBufferD;
 undefined UtilityChecksumStatusA;
-undefined DAT_180bf9ed0;
+undefined UtilityChecksumResult;
 
 // 原始函数名：FUN_180942360 - 数据转换函数A0
 // 功能：转换工具数据的格式
