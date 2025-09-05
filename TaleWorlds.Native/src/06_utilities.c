@@ -591,8 +591,8 @@
 #define ByteMask8Bits 0xff
 
 // 系统临时变量常量
-#define SystemTemporaryVariableInitialValue -0x8000000000000000
-#define SystemTemporarySecondaryVariableInitialValue -0x80000000
+#define SystemTemporaryVariableInitialValue Int64MinimumValue
+#define SystemTemporarySecondaryVariableInitialValue Int32MinimumValue
 
 // 内存布局偏移常量
 #define MemoryPoolIndexOffset 0x8088
@@ -736,8 +736,8 @@
 // CONCAT71 -> MergeHigh57BitsWithLow7Bits: 合并57位高位和7位低位
 
 
-#define SystemTemporaryVariableInitialValue -0x8000000000000000
-#define SystemTemporarySecondaryVariableInitialValue -0x80000000
+#define SystemTemporaryVariableInitialValue Int64MinimumValue
+#define SystemTemporarySecondaryVariableInitialValue Int32MinimumValue
 #define FileResourceLockOffset 0x858
 #define FileResourceStatusOffset 0x868
 #define FileResourceTableOffset 0x888
@@ -111257,12 +111257,12 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define SystemSecurityValidationStatus 0x10000000
 #define SystemFloatNegativeOneValue 0xbf800000
 #define SystemFloatOneValue 0x3f800000
-#define SystemMinimumInt64Value -0x8000000000000000
+#define SystemMinimumInt64Value Int64MinimumValue
 #define SystemResourceCleanupFlag 0xfdffffff
 #define SystemResourceActiveFlag 0x4000000
 #define SystemResourceInactiveFlag 0xfbffffff
 #define SystemByteAlignmentMask 0xffffff00
-#define SystemMaximumUInt64Value 0xffffffffffffffff
+#define SystemMaximumUInt64Value UInt64MaximumValue
 
 // 系统上下文相关偏移量常量
 #define SystemContextPrimaryDataProcessingOffset 0x20
