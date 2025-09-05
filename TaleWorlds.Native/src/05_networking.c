@@ -1925,6 +1925,7 @@ uint32_t NetworkPacketSecurityPolicyData;                       // 数据包安�
 uint32_t NetworkPacketSecurityPolicyInfo;                       // 数据包安全策略信息
 uint32_t NetworkPacketSecurityCertificateData;                  // 数据包安全证书数据
 uint32_t NetworkPacketSecurityCertificateInfo;                  // 数据包安全证书信息
+uint32_t NetworkPacketDataCompressionLevel;                  // 网络数据包数据压缩级别
 uint32_t NetworkPacketCompressionDataLevel;                  // 网络数据包压缩数据级别
 uint32_t NetworkPacketCompressionLevel;                       // 网络数据包压缩级别
 uint32_t NetworkPacketCompressionAlgorithmType;               // 网络数据包压缩算法类型
@@ -2151,19 +2152,19 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
   ValidationStatus = 0;  // 初始化验证状态码
   if (ValidationStatus == 0) {
     if (NetworkValidationDataPointer && (0 < *(int *)CalculateContextParameterOffset(NetworkValidationDataPointer)) && (*NetworkValidationDataPointer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *ValidationDataPtr, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *NetworkValidationDataPointer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    if (ValidationDataPtr) {
-        *ValidationDataPtr = ContextId;
-        *(int *)CalculateContextParameterOffset(ValidationDataPtr) = ValidationStatus;
+    if (NetworkValidationDataPointer) {
+        *NetworkValidationDataPointer = ContextId;
+        *(int *)CalculateContextParameterOffset(NetworkValidationDataPointer) = ValidationStatus;
     }
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxInt32Value) {
     ResultHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
     if (ResultHandle != 0) {
-      if (ValidationDataPtr && (int)ValidationDataPtr[ConnectionDataSizeIndex] != 0) {
-          memcpy((void *)ResultHandle, *ValidationDataPtr, (int64_t)(int)ValidationDataPtr[ConnectionDataSizeIndex]);
+      if (NetworkValidationDataPointer && (int)NetworkValidationDataPointer[ConnectionDataSizeIndex] != 0) {
+          memcpy((void *)ResultHandle, *NetworkValidationDataPointer, (int64_t)(int)NetworkValidationDataPointer[ConnectionDataSizeIndex]);
       }
       return ResultHandle;
     }
