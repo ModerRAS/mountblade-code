@@ -2927,6 +2927,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @warning 调用者需要确保参数的有效性，避免生成重复的标识符
  * @see NetworkConnectionStateFlags, NetworkConnectionIdentifier
  */
+
 /**
  * @brief 生成连接状态标识符
  * 
@@ -2937,8 +2938,13 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @param ConnectionIdentifier 连接标识符，唯一标识一个连接
  * @return uint64_t 生成的连接状态标识符，用于后续的连接管理操作
  * 
- * @note 此函数生成的标识符是连接状态管理的关键
- * @warning 生成的标识符必须是系统内唯一的
+ * @details 该函数通过位操作将32位的状态标志和32位的连接标识符合并为64位唯一标识符。
+ *          高32位存储状态标志，低32位存储连接标识符，确保标识符的唯一性。
+ *          这种设计允许同时存储状态信息和身份信息，便于快速访问和管理。
+ * 
+ * @note 此函数生成的标识符是连接状态管理的关键，用于快速定位和访问连接状态
+ * @warning 生成的标识符必须是系统内唯一的，否则会导致连接状态混乱
+ * @see NetworkConnectionStateFlags, NetworkConnectionId, NetworkConnectionStateBufferOffset
  */
 uint64_t CreateConnectionStateUniqueId(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
 {

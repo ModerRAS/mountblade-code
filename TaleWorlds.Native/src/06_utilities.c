@@ -26403,7 +26403,7 @@ OperationLabelB:
   else {
     if (validationContextPointer[2] != 0) {
       validationBuffer1[0] = 0;
-      validationStatus = AllocateMemory(*validationContextPointer,auStackX_18);
+      validationStatus = AllocateMemory(*validationContextPointer,validationBuffer1);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
