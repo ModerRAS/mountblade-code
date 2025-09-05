@@ -247,7 +247,7 @@
 
 // 系统事件相关常量
 #define SystemEventBroadcastOffset            0x20
-#define SystemSystemStatusFlagOffset          0x1ed
+#define SystemStatusFlagOffset          0x1ed
 #define SystemSecondaryAllocationSize         0x28
 #define SystemControllerAddress               0x180c91060
 
@@ -1641,11 +1641,11 @@ void InitializeGameCoreSystem(void)
   void* GameCoreInitializationHandler;
   
   SystemMainTablePointer = (long long*)GetSystemRootPointer();
-  SystemSystemRootNodeReference = (void**)*SystemMainTablePointer;
-  IsGameCoreNodeActive = *(bool*)((long long)SystemSystemRootNodeReference[1] + NodeActiveFlagOffset);
+  SystemRootNodeReference = (void**)*SystemMainTablePointer;
+  IsGameCoreNodeActive = *(bool*)((long long)SystemRootNodeReference[1] + NodeActiveFlagOffset);
   GameCoreInitializationHandler = GetGameCoreSystemInitializationFunction;
-  SystemPreviousNodePointer = SystemSystemRootNodeReference;
-  SystemCurrentNodePointer = (void**)SystemSystemRootNodeReference[1];
+  SystemPreviousNodePointer = SystemRootNodeReference;
+  SystemCurrentNodePointer = (void**)SystemRootNodeReference[1];
   
   while (!IsGameCoreNodeActive) {
     GameCoreSystemIdComparisonResult = memcmp(SystemCurrentNodePointer + 4, &GameCoreSystemId, IdentifierSize);
@@ -1661,7 +1661,7 @@ void InitializeGameCoreSystem(void)
     IsGameCoreNodeActive = *(bool*)((long long)SystemNextNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((SystemPreviousNodePointer == SystemSystemRootNodeReference) || 
+  if ((SystemPreviousNodePointer == SystemRootNodeReference) || 
       (GameCoreSystemIdComparisonResult = memcmp(&GameCoreSystemId, SystemPreviousNodePointer + 4, IdentifierSize), GameCoreSystemIdComparisonResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &SystemAllocatedNodePointer, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
@@ -1711,11 +1711,11 @@ void InitializeSystemDataTableBaseAllocator(void)
   void* BaseAllocatorInitializationHandler;
   
   SystemMainTablePointer = (long long*)GetSystemRootPointer();
-  SystemSystemRootNodeReference = (void**)*SystemMainTablePointer;
-  IsBaseAllocatorNodeActive = *(bool*)((long long)SystemSystemRootNodeReference[1] + NodeActiveFlagOffset);
+  SystemRootNodeReference = (void**)*SystemMainTablePointer;
+  IsBaseAllocatorNodeActive = *(bool*)((long long)SystemRootNodeReference[1] + NodeActiveFlagOffset);
   BaseAllocatorInitializationHandler = GetBaseAllocatorSystemInitializationFunction;
-  SystemPreviousNodePointer = SystemSystemRootNodeReference;
-  SystemCurrentNodePointer = (void**)SystemSystemRootNodeReference[1];
+  SystemPreviousNodePointer = SystemRootNodeReference;
+  SystemCurrentNodePointer = (void**)SystemRootNodeReference[1];
   
   while (!IsBaseAllocatorNodeActive) {
     BaseAllocatorSystemIdComparisonResult = memcmp(SystemCurrentNodePointer + 4, &BaseAllocatorSystemIdentifier1, IdentifierSize);
@@ -1731,7 +1731,7 @@ void InitializeSystemDataTableBaseAllocator(void)
     IsBaseAllocatorNodeActive = *(bool*)((long long)SystemNextNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((SystemPreviousNodePointer == SystemSystemRootNodeReference) || 
+  if ((SystemPreviousNodePointer == SystemRootNodeReference) || 
       (BaseAllocatorSystemIdComparisonResult = memcmp(&BaseAllocatorSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), BaseAllocatorSystemIdComparisonResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &SystemNewBaseAllocatorNodePointer, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
@@ -1782,11 +1782,11 @@ void InitializeSystemDataTableAllocator(void)
   void* DataTableInitializationHandler;
   
   SystemMainTablePointer = (long long*)GetSystemRootPointer();
-  SystemSystemRootNodeReference = (void**)*SystemMainTablePointer;
-  IsDataTableNodeActive = *(bool*)((long long)SystemSystemRootNodeReference[1] + NodeActiveFlagOffset);
+  SystemRootNodeReference = (void**)*SystemMainTablePointer;
+  IsDataTableNodeActive = *(bool*)((long long)SystemRootNodeReference[1] + NodeActiveFlagOffset);
   DataTableInitializationHandler = GetDataTableSystemInitializationFunction;
-  SystemPreviousNodePointer = SystemSystemRootNodeReference;
-  SystemCurrentNodePointer = (void**)SystemSystemRootNodeReference[1];
+  SystemPreviousNodePointer = SystemRootNodeReference;
+  SystemCurrentNodePointer = (void**)SystemRootNodeReference[1];
   
   while (!IsDataTableNodeActive) {
     DataTableIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &SystemDataTableSystemIdentifier1, IdentifierSize);
@@ -1802,7 +1802,7 @@ void InitializeSystemDataTableAllocator(void)
     IsDataTableNodeActive = *(bool*)((long long)SystemNextNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((SystemPreviousNodePointer == SystemSystemRootNodeReference) || 
+  if ((SystemPreviousNodePointer == SystemRootNodeReference) || 
       (DataTableIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), DataTableIdentifierComparisonResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &SystemNewDataTableNodePointer, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
@@ -1932,11 +1932,11 @@ void InitializeSystemMemoryPool(void)
   void* MemoryPoolInitializationHandler;
   
   SystemMainTablePointer = (long long*)GetSystemRootPointer();
-  SystemSystemRootNodeReference = (void**)*SystemMainTablePointer;
-  IsMemoryPoolNodeActive = *(bool*)((long long)SystemSystemRootNodeReference[1] + NodeActiveFlagOffset);
+  SystemRootNodeReference = (void**)*SystemMainTablePointer;
+  IsMemoryPoolNodeActive = *(bool*)((long long)SystemRootNodeReference[1] + NodeActiveFlagOffset);
   MemoryPoolInitializationHandler = GetSystemAllocatorSystemInitializationFunction;
-  SystemPreviousNodePointer = SystemSystemRootNodeReference;
-  SystemCurrentNodePointer = (void**)SystemSystemRootNodeReference[1];
+  SystemPreviousNodePointer = SystemRootNodeReference;
+  SystemCurrentNodePointer = (void**)SystemRootNodeReference[1];
   
   while (!IsMemoryPoolNodeActive) {
     MemoryPoolIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &SystemAllocatorSystemIdentifier1, IdentifierSize);
@@ -1952,7 +1952,7 @@ void InitializeSystemMemoryPool(void)
     IsMemoryPoolNodeActive = *(bool*)((long long)SystemNextNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((SystemPreviousNodePointer == SystemSystemRootNodeReference) || 
+  if ((SystemPreviousNodePointer == SystemRootNodeReference) || 
       (MemoryPoolIdentifierComparisonResult = memcmp(&SystemAllocatorSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), MemoryPoolIdentifierComparisonResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &SystemAllocatedMemoryPoolNode, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
@@ -3436,7 +3436,7 @@ void InitializeSystemDataTableStructureI(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)SystemRootNodeReference[1] + NodeActiveFlagOffset);
-  SystemCallbackPointer = SystemSystemEventCallback;
+  SystemCallbackPointer = SystemEventCallback;
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
@@ -8287,7 +8287,7 @@ void InitializeSystemProcessManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)SystemRootNodeReference[1] + NodeActiveFlagOffset);
-  SystemCallbackPointer = SystemSystemEventCallback;
+  SystemCallbackPointer = SystemEventCallback;
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
@@ -8859,7 +8859,7 @@ void InitializeSystemConfigurationManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   SystemRootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)SystemRootNodeReference[1] + NodeActiveFlagOffset);
-  SystemCallbackPointer = SystemSystemEventCallback;
+  SystemCallbackPointer = SystemEventCallback;
   HashTableNodePointer = SystemRootNodeReference;
   CurrentNodePointer = (void**)SystemRootNodeReference[1];
   while (NodeActiveFlag == '\0') {
@@ -12795,12 +12795,12 @@ void InitializeSystemStringProcessor(void)
 {
   void* SystemRegisterValue;
   void* *SystemStackPointerPrimary;
-  uint8_t *SystemSystemStackBufferPointer;
+  uint8_t *SystemStackBufferPointer;
   uint32_t SystemConfigurationFlag;
   uint8_t SystemStringProcessingBuffer [136];
   
   SystemStackPointerPrimary = &SystemGlobalDataTertiary;
-  SystemSystemStackBufferPointer = SystemStringProcessingBuffer;
+  SystemStackBufferPointer = SystemStringProcessingBuffer;
   SystemStringProcessingBuffer[0] = 0;
   SystemConfigurationFlag = 0x16;
   strcpy_s(SystemStringProcessingBuffer,0x80,&SystemSecurityStringTemplate,SystemRegisterValue,InvalidHandleValue);
@@ -19128,7 +19128,7 @@ void InitializeMainSystemController(long long SystemParameter)
   }
 SkipControllerInitialization:
   SystemThreadSyncBroadcast((void* )(SystemResourceManager + SystemEventBroadcastOffset));
-  if ((char )(SystemGlobalStatusFlags + SystemSystemStatusFlagOffset) != '\0') {
+  if ((char )(SystemGlobalStatusFlags + SystemStatusFlagOffset) != '\0') {
     ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,SystemSecondaryAllocationSize,SystemMemoryAlignment,SystemAllocationPriority);
     ControllerPointer = (long long)&SystemMemoryTemplatePrimary;
     ControllerPointer = (long long)&SystemMemoryTemplateSecondary;
@@ -20773,7 +20773,7 @@ int InitializeSystemCoreComponents(long long SystemResourceManager,long long Ini
 {
   void*** SystemResourceHandle;           // 系统资源指针
   long long SystemHandle;                  // 系统句柄
-  void** SystemSystemHashNodeData;            // 系统哈希节点指针
+  void** SystemHashNodeData;            // 系统哈希节点指针
   long long MemoryBufferBase;              // 内存缓冲区基地址
   int SystemResultValue;                    // 系统结果值
   long long LocalSystemFlags;               // 本地系统标志
@@ -21143,7 +21143,7 @@ void InitializeSystemCoreEngine(void)
   if (*(int *)(SystemGlobalStatusFlags + 0x224) - SystemMemoryAllocationCounter < 0xfb) {
       ValidateSystemChecksum(SystemEncryptionValue ^ (ulong long)EncryptionBuffer698);
   }
-  *(uint8_t *)(SystemSystemResourceManager + 0x39) = 1;
+  *(uint8_t *)(SystemResourceManager + 0x39) = 1;
   SystemDataTable = (long long ***)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,200,8,3);
   SystemDataTableManager = SystemDataTable;
   InitializeSystemDataTableManager(SystemDataTable);
@@ -21176,14 +21176,14 @@ void InitializeSystemCoreEngine(void)
   SystemDataBufferPrimary[0] = 0;
   SystemConfigurationBufferSize = 0x18;
   strcpy_s(SystemDataBufferPrimary,0x40,&SystemDataBufferTemplateDenary);
-  InitializeResourceManager(SystemSystemResourceManager,&SystemDataBufferPointer,&LocalStackConfigurationPointer);
+  InitializeResourceManager(SystemResourceManager,&SystemDataBufferPointer,&LocalStackConfigurationPointer);
   SystemDataBufferPointer = &SystemMemoryAllocatorReference;
   SystemEncryptionKeyPointer = &SystemDataBufferTemplateSecondary;
   SystemDataBufferPointer = SystemDataBufferArray;
   SystemDataBufferArray[0] = 0;
   SystemConfigurationFlags = 0xb;
   strcpy_s(SystemDataBufferArray,0x40,&SystemDataBufferTemplateUndenary);
-  InitializeResourceManager(SystemSystemResourceManager,&SystemEncryptionKeyPointer,&LocalStackConfigurationPointer);
+  InitializeResourceManager(SystemResourceManager,&SystemEncryptionKeyPointer,&LocalStackConfigurationPointer);
   SystemEncryptionKeyPointer = &SystemMemoryAllocatorReference;
   SystemScaleFactorBuffer = &SystemDataBufferTemplateSecondary;
   DataBufferPointerSecondary = SystemScaleFactorXBuffer;
@@ -21546,7 +21546,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   }
   SystemDataPointer = &SystemGlobalDataReference;
   SystemStackFlagPrimary = 0;
-  SystemSystemStackBuffer = (void* *)0x0;
+  SystemStackBuffer = (void* *)0x0;
   SystemDataBuffer = 0;
   SystemInitializationStatusFlags = *(uint *)(SystemGlobalStatusFlags + 0x180);
   SystemOperationFlags = (ulong long)SystemInitializationStatusFlags;
@@ -21554,19 +21554,19 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
     StoreDataInBuffer(&SystemDataPointer,SystemOperationFlags,AdditionalParameter,ConfigurationFlag,1,InvalidHandleValue);
   }
   if (SystemInitializationStatusFlags != 0) {
-      memcpy(SystemSystemStackBuffer,*(void* *)(SystemResourceDataIndex + 0x178),SystemOperationFlags);
+      memcpy(SystemStackBuffer,*(void* *)(SystemResourceDataIndex + 0x178),SystemOperationFlags);
   }
-  if (SystemSystemStackBuffer != (void* *)0x0) {
-    SystemSystemStackBuffer[SystemOperationFlags] = 0;
+  if (SystemStackBuffer != (void* *)0x0) {
+    SystemStackBuffer[SystemOperationFlags] = 0;
   }
   SystemStackFlagPrimary = ConcatenatedSystemValue(*(uint32_t *)(SystemResourceDataIndex + 0x18c),(uint32_t)SystemStackFlagPrimary);
   SystemDataBuffer = SystemInitializationStatusFlags;
   InitializeSystemDataBuffer(&SystemDataPointer,5);
-  *(uint32_t *)(SystemSystemStackBuffer + SystemDataBuffer) = 0x73676f6c;
-  *(void*2 *)((long long)(SystemSystemStackBuffer + SystemDataBuffer) + 4) = 0x2f;
+  *(uint32_t *)(SystemStackBuffer + SystemDataBuffer) = 0x73676f6c;
+  *(void*2 *)((long long)(SystemStackBuffer + SystemDataBuffer) + 4) = 0x2f;
   SystemDataBuffer = 5;
   InitializeSystemDataBuffer(&SystemDataPointer,0x18);
-  SystemThreadStorage = (uint32_t *)(SystemSystemStackBuffer + SystemDataBuffer);
+  SystemThreadStorage = (uint32_t *)(SystemStackBuffer + SystemDataBuffer);
   *SystemThreadStorage = 0x66726570;
   SystemThreadStorage[1] = 0x616d726f;
   SystemThreadStorage[2] = 0x5f65636e;
@@ -25256,7 +25256,7 @@ void SystemResourceAllocate(long long SystemResourceManager)
 
 {
   void** SystemDataPointer;
-  uint8_t SystemSystemStackBuffer [8];
+  uint8_t SystemStackBuffer [8];
   void** SystemDataPointer;
   uint secondarySystemDataBuffer;
   void* SystemConfigurationFlag;
@@ -26588,7 +26588,7 @@ void SystemCleanupHandler(void)
   long long SystemResourcePoolPointer;
   void* *SystemResourceArray [10];
   void* SystemThreadFlag;
-  uint8_t SystemSystemStackBuffer [8];
+  uint8_t SystemStackBuffer [8];
   void* *SystemResourceHandle;
   uint8_t *SystemResourceBuffer;
   uint32_t SystemConfigurationId;
@@ -26629,7 +26629,7 @@ void SystemCleanupHandler(void)
   RatioValue = 1.0;
   if (*(int *)(SystemThreadHandle + 0x1ea0) == 1) {
     SystemInitializationStatus = *(int *)(SystemThreadHandle + 0x1d50);
-    SystemResourceHandle = (int *)GetSystemResourceManager(*(void* *)(SystemGlobalStatusFlags + 8),SystemSystemStackBuffer);
+    SystemResourceHandle = (int *)GetSystemResourceManager(*(void* *)(SystemGlobalStatusFlags + 8),SystemStackBuffer);
     RatioValue = (float)SystemInitializationStatus / (float)*SystemResourceHandle;
     ScalingFactor = RatioValue * *(float *)(ResourceMemoryOffset + 0x234);
     RatioValue = RatioValue * *(float *)(ResourceMemoryOffset + 0x238);
@@ -26892,8 +26892,8 @@ void SystemDataInitializer(void)
     OperationStatusFlag = (**(code **)(*presourceCounter + 0x20))(presourceCounter,1);
   } while (OperationStatusFlag != '\0');
   InitializeMemoryAllocationFlags(SystemAllocationTemplate);
-  SystemDataPointer = SystemSystemResourceManager;
-  if (*(char *)(SystemSystemResourceManager + 7) != '\0') {
+  SystemDataPointer = SystemResourceManager;
+  if (*(char *)(SystemResourceManager + 7) != '\0') {
     SystemModuleContextPointerA = (long long *)0x180c91970;
     CalculationFlags = _Mtx_lock(0x180c91970);
     if (CalculationFlags != 0) {
@@ -28325,7 +28325,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   void* *pSystemStackFlag;
   void* SystemResourceHandlePrimary;
   int SystemOperationMaximum;
-  uint8_t SystemSystemStackBufferE8 [16];
+  uint8_t SystemStackBufferE8 [16];
   void* *systemDataPointer;
   void* SystemResourceHandleSecondary;
   int IntegerStackC8;
@@ -28333,7 +28333,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   
   CalculationFlagsExtended = 0xfffffffffffffffe;
   ConcatenatedSystemValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemThreadStackSize;
-  CopySystemDataStructure(SystemSystemStackBufferE8,
+  CopySystemDataStructure(SystemStackBufferE8,
                 (long long)*(int *)(SystemTextureManagerPointer + 0x1d40) * 0xd0 +
                 *(long long *)(SystemTextureManagerPointer + 0x1d20));
   SetupSystemProcessingBuffer(&pSystemStackFlag);
@@ -29772,7 +29772,7 @@ void InitializeSystemDataManager(void)
   systemConfigPointer = SystemConfigurationDataPointer;
   systemConfigParameter = 0xfffffffffffffffe;
   if (*SystemConfigurationDataPointer != '\0') {
-    resourceManagerPointer = (void**)*SystemSystemResourceManager;
+    resourceManagerPointer = (void**)*SystemResourceManager;
     mutexLockResult = _Mtx_lock(0x180c91970);
     if (mutexLockResult != 0) {
       ThrowSystemError(mutexLockResult);
@@ -42308,7 +42308,7 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
   uint8_t *SystemCalculationFlags;
   uint32_t SystemStackFlag;
   uint8_t SystemPathBuffer [88];
-  uint8_t SystemSystemStackBuffer [256];
+  uint8_t SystemStackBuffer [256];
   ulong long SystemContextValue;
   
   SystemThreadHandle = SystemContextManagerPointer;
@@ -42339,7 +42339,7 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
   }
   InitializeSystemMemoryPool(aSystemMaxOperationCountSecondary,SystemConfigBuffer);
   ConfigureSystemMemoryPool(aSystemMaxOperationCountSecondary,1);
-    memset(SystemSystemStackBuffer,0,0x100);
+    memset(SystemStackBuffer,0,0x100);
 }
 
 
@@ -54009,7 +54009,7 @@ ResourceHashValidation:
           *ResourceDataBufferPointer = 0;
         }
         else {
-          if (SystemOperationCode <= (uint)SystemThreadContextIndicators) goto LabelSystemSystemOperationCodeValidation;
+          if (SystemOperationCode <= (uint)SystemThreadContextIndicators) goto LabelSystemOperationCodeValidation;
           pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,SystemOperationCode,0x10);
         }
@@ -69909,7 +69909,7 @@ void InitializeSystemThreadLocalStorage(void)
  * @note 此函数用于哈希表数据的管理和维护
  * @warning 函数涉及指针操作，需要确保内存访问的安全性
  */
-void ProcessSystemSystemHashNodeData(void)
+void ProcessSystemHashNodeData(void)
 
 {
   uint32_t SystemInitializationStatus;
