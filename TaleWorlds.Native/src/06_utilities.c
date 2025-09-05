@@ -6736,16 +6736,16 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
   if (dataContextPointer != 0) {
     floatDataValue = *(float *)(param_1 + 0x14);
     for (dataArrayPointer = *(undefined8 **)(dataContextPointer + 0x48);
-        (*(undefined8 **)(validationContext + 0x48) <= puVar5 &&
-        (puVar5 < *(undefined8 **)(validationContext + 0x48) + *(int *)(validationContext + 0x50))); puVar5 = puVar5 + 1) {
-      uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+        (*(undefined8 **)(dataContextPointer + 0x48) <= dataIterator &&
+        (dataIterator < *(undefined8 **)(dataContextPointer + 0x48) + *(int *)(dataContextPointer + 0x50))); dataIterator = dataIterator + 1) {
+      operationResult = FUN_1808d73b0(*dataIterator,floatDataValue,0);
+      if ((int)operationResult != 0) {
+        return operationResult;
       }
     }
-    if ((*(char *)(validationContext + 0x34) == '\0') ||
-       ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      uVar3 = *(uint *)(*(longlong *)(validationContext + 0x18) + 0x34);
+    if ((*(char *)(dataContextPointer + 0x34) == '\0') ||
+       ((*(uint *)(*(longlong *)(dataContextPointer + 0x18) + 0x34) >> 1 & 1) == 0)) {
+      processingFlags = *(uint *)(*(longlong *)(dataContextPointer + 0x18) + 0x34);
       uVar2 = uVar3 >> 4;
       if ((uVar2 & 1) == 0) {
         if ((((uVar3 >> 3 & 1) != 0) && (iVar6 = (int)fVar7, iVar6 != -0x80000000)) &&
