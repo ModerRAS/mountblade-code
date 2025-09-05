@@ -2133,18 +2133,18 @@ uint32_t NetworkCallbackSize;                              // 网络回调数据
 uint32_t NetworkCallbackIndex;                             // 网络回调索引位置
 uint32_t NetworkPortRangeStart;                            // 网络端口范围起始值
 uint32_t NetworkPortRangeEnd;                              // 网络端口范围结束值
-uint32_t NetworkConnectionTimeoutDuration;                 // 网络连接超时持续时间，用于管理连接的生命周期
-uint32_t NetworkMaxConnectionLimit;                   // 网络最大连接数限制，控制同时连接的数量
-uint32_t NetworkConnectionStatusFlags;                     // 网络连接状态标志，记录连接的各种状态信息
-uint32_t NetworkSecurityConfigurationFlags;          // 网络安全配置标志
-uint32_t NetworkAuthenticationSecurityLevel;       // 网络认证安全级别
-uint32_t NetworkEncryptionAlgorithmType;            // 网络加密算法类型
-uint32_t NetworkCompressionAlgorithmType;           // 网络压缩算法类型
-uint32_t NetworkConnectionStatistics;               // 网络连接统计信息
-uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
-uint32_t NetworkConnectionTableSize;                 // 网络连接表大小
-uint32_t NetworkPacketQueue;                        // 网络数据包队列
-uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大小
+uint32_t NetworkConnectionTimeoutDuration;                       // 网络连接超时持续时间，用于管理连接的生命周期
+uint32_t NetworkMaxConnectionLimit;                             // 网络最大连接数限制，控制同时连接的数量
+uint32_t NetworkConnectionStatusFlags;                           // 网络连接状态标志，记录连接的各种状态信息
+uint32_t NetworkSecurityConfigurationFlags;                      // 网络安全配置标志
+uint32_t NetworkAuthenticationSecurityLevel;                     // 网络认证安全级别
+uint32_t NetworkEncryptionAlgorithmType;                        // 网络加密算法类型
+uint32_t NetworkCompressionAlgorithmType;                       // 网络压缩算法类型
+uint32_t NetworkConnectionStatistics;                           // 网络连接统计信息
+uint32_t NetworkConnectionTableIndex;                           // 网络连接表索引
+uint32_t NetworkConnectionTableSize;                             // 网络连接表大小
+uint32_t NetworkPacketQueue;                                    // 网络数据包队列
+uint32_t NetworkPacketQueueSize;                               // 网络数据包队列大小
 
 /**
  * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据
@@ -2927,25 +2927,6 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @warning 调用者需要确保参数的有效性，避免生成重复的标识符
  * @see NetworkConnectionStateFlags, NetworkConnectionIdentifier
  */
-
-/**
- * @brief 生成连接状态标识符
- * 
- * 根据连接状态标志和连接标识符生成唯一的连接状态标识符。
- * 这个标识符用于在网络系统中唯一标识和跟踪连接状态。
- * 
- * @param ConnectionStateFlags 连接状态标志，表示连接的当前状态
- * @param ConnectionIdentifier 连接标识符，唯一标识一个连接
- * @return uint64_t 生成的连接状态标识符，用于后续的连接管理操作
- * 
- * @details 该函数通过位操作将32位的状态标志和32位的连接标识符合并为64位唯一标识符。
- *          高32位存储状态标志，低32位存储连接标识符，确保标识符的唯一性。
- *          这种设计允许同时存储状态信息和身份信息，便于快速访问和管理。
- * 
- * @note 此函数生成的标识符是连接状态管理的关键，用于快速定位和访问连接状态
- * @warning 生成的标识符必须是系统内唯一的，否则会导致连接状态混乱
- * @see NetworkConnectionStateFlags, NetworkConnectionId, NetworkConnectionStateBufferOffset
- */
 uint64_t CreateConnectionStateUniqueId(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
 {
   return ((uint64_t)ConnectionStateFlags << 32) | ConnectionIdentifier;
@@ -2955,22 +2936,30 @@ uint64_t CreateConnectionStateUniqueId(uint32_t ConnectionStateFlags, uint32_t C
  * @brief 处理网络连接请求
  * 
  * 处理网络连接请求，验证连接参数并建立连接。此函数负责初始化连接上下文，
- * 设置连接状态，并执行安全验证。
+ * 设置连接状态，并执行安全验证。这是网络连接建立的核心处理函数。
  * 
  * @param ConnectionTable 连接表句柄，用于管理所有网络连接
- * @param RequestData 请求数据，包含连接请求的详细信息
- * @param SecurityValidationData 安全验证数据指针，用于存储验证结果
- * @param FinalizeValue 完成值，用于标识连接处理的最终状态
- * @param ProcessingFlags 处理标志，控制连接处理的各个阶段
- * @param ValidationFlags 验证标志，指定需要执行的验证类型
- * @param ProcessingMode 处理模式，定义连接处理的行为模式
- * @return void* 连接上下文数据指针，包含处理后的连接信息
+ * @param RequestData 请求数据，包含连接请求的详细信息（IP地址、端口、协议等）
+ * @param SecurityValidationData 安全验证数据指针，用于存储验证结果和状态信息
+ * @param FinalizeValue 完成值，用于标识连接处理的最终状态和结果
+ * @param ProcessingFlags 处理标志，控制连接处理的各个阶段和流程
+ * @param ValidationFlags 验证标志，指定需要执行的验证类型（身份验证、数据验证等）
+ * @param ProcessingMode 处理模式，定义连接处理的行为模式（快速模式、安全模式等）
+ * @return void* 连接上下文数据指针，包含处理后的连接信息和状态数据
  * 
- * @retval 非NULL 连接上下文数据指针
- * @retval NULL 处理失败
+ * @retval 非NULL 连接上下文数据指针，表示连接请求处理成功
+ * @retval NULL 处理失败，表示连接请求无法完成或验证失败
  * 
- * @note 此函数会初始化连接上下文数据并设置连接状态
- * @warning 调用者需要确保SecurityValidationData有足够的空间存储验证结果
+ * @details 该函数执行以下关键步骤：
+ *          1. 初始化连接上下文数据和缓冲区
+ *          2. 解析请求数据中的连接标识符和基本信息
+ *          3. 执行安全验证和身份认证
+ *          4. 设置连接状态和处理标志
+ *          5. 返回连接上下文数据供后续使用
+ * 
+ * @note 此函数会初始化连接上下文数据并设置连接状态，使用静态数组存储上下文数据
+ * @warning 调用者需要确保SecurityValidationData有足够的空间存储验证结果，至少SecurityValidationBufferSize字节
+ * @see NetworkConnectionIdMaskValue, NetworkStatusActive, NetworkValidationSuccess
  */
 void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int64_t RequestData, void* SecurityValidationData, 
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
