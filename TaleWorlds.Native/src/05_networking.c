@@ -2137,22 +2137,22 @@ PrimaryNetworkProcessingCompleted:
                            ConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
       int32_t OperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
-      int64_t StatusIterator = (long long)OperationProcessingCode;
+      int64_t StatusIterationCounter = (long long)OperationProcessingCode;
       if ((OperationProcessingCode != 0) && (ConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < OperationProcessingCode)) {
-        NetworkStatus *ConnectionStatusBuffer = ConnectionStatusPointer;
+        NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
-          NetworkStatus *ContextStatusPointer = (NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusPointer) + (long long)ConnectionStatusBuffer);
+          NetworkStatus *ContextStatusPointer = (NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusPointer) + (long long)ConnectionStatusIterator);
           NetworkStatus ValidationState = ContextStatusPointer[NetworkStatusValidationIndex];
           NetworkStatus TimeoutState = ContextStatusPointer[NetworkStatusTimeoutIndex];
           NetworkStatus SecondaryState = ContextStatusPointer[NetworkStatusSecondaryIndex];
-          *ConnectionStatusBuffer = *ContextStatusPointer;
-          ConnectionStatusBuffer[NetworkStatusValidationIndex] = ValidationState;
-          ConnectionStatusBuffer[NetworkStatusTimeoutIndex] = TimeoutState;
-          ConnectionStatusBuffer[NetworkStatusSecondaryIndex] = SecondaryState;
-          ConnectionStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusPointer) + -4 + (long long)(ConnectionStatusBuffer + ConnectionContextStatusEntrySize));
-          StatusIterator = StatusIterator - 1;
-          ConnectionStatusBuffer = ConnectionStatusBuffer + ConnectionContextStatusEntrySize;
-        } while (StatusIterator != 0);
+          *ConnectionStatusIterator = *ContextStatusPointer;
+          ConnectionStatusIterator[NetworkStatusValidationIndex] = ValidationState;
+          ConnectionStatusIterator[NetworkStatusTimeoutIndex] = TimeoutState;
+          ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryState;
+          ConnectionStatusIterator[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusPointer) + -4 + (long long)(ConnectionStatusIterator + ConnectionContextStatusEntrySize));
+          StatusIterationCounter = StatusIterationCounter - 1;
+          ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextStatusEntrySize;
+        } while (StatusIterationCounter != 0);
       }
 SecondaryNetworkProcessingCompleted:
       // 网络处理循环完成，继续后续处理
