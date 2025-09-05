@@ -8030,44 +8030,12 @@ undefined8 ConditionalResourceRelease(char shouldRelease)
 
 
 /**
- * @brief 空操作函数1
+ * @brief 系统空操作函数
  * 
  * 不执行任何操作的空函数，用于系统初始化或占位符。
  * 
  * @param void 无参数
  * @return void 无返回值
- */
-// 函数: void SystemNoOperationPrimary(void)
-// 功能：空操作函数，不执行任何操作，直接返回
-// 
-// 这是一个标准的空操作函数，用于占位或作为默认的处理函数。
-// 在某些情况下，它被用作回调函数或默认的操作处理器。
-//
-// 参数:
-//   无
-//
-// 返回值:
-//   无
-//
-// 注意事项:
-//   - 此函数不执行任何操作
-//   - 直接返回，不产生任何副作用
-/**
- * @brief 工具系统空操作函数1
- * 
- * 该函数执行空操作，主要用于系统初始化或作为占位符函数。
- * 在某些情况下，空操作函数用于保持函数指针表的完整性。
- * 
- * @param void 无参数
- * @return void 无返回值
- */
-/**
- * @brief 空操作函数1
- * 
- * 该函数是一个空操作函数，不执行任何实际操作。
- * 通常用于占位或作为默认的回调函数。
- * 
- * @note 该函数直接返回，不产生任何副作用
  */
 void SystemNoOperationPrimary(void)
 
@@ -8095,23 +8063,23 @@ undefined8 ForceResourceRelease(longlong resourceDescriptor)
 
 {
   uint64_t resourceValidationStatus;
-  longlong memoryStackPointer;
+  longlong systemContextPointer;
   
-  resourceValidationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x10),&memoryStackPointer);
+  resourceValidationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + ComponentHandleOffset),&systemContextPointer);
   if ((int)resourceValidationStatus != 0) {
     return resourceValidationStatus;
   }
-  if (memoryStackPointer == 0) {
-    memoryStackPointer = 0;
+  if (systemContextPointer == 0) {
+    systemContextPointer = 0;
   }
   else {
-    memoryStackPointer = memoryStackPointer + -8;
+    systemContextPointer = systemContextPointer + -8;
   }
-  if (*(longlong *)(memoryStackPointer + 0x10) == 0) {
-    return 0x1c;
+  if (*(longlong *)(systemContextPointer + ResourceDataOffset) == 0) {
+    return ResourceInvalidErrorCode;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(memoryStackPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(systemContextPointer + ResourceDataOffset),1);
 }
 
 
