@@ -89059,8 +89059,8 @@ void SetDefaultExceptionHandlerA0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9427d0(void)
-void FUN_1809427d0(void)
+// 设置默认异常处理器A1
+void SetDefaultExceptionHandlerA1(void)
 
 {
   _DAT_180bfaef0 = &DefaultExceptionHandlerB;
@@ -89072,8 +89072,8 @@ void FUN_1809427d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9427f0(void)
-void FUN_1809427f0(void)
+// 设置默认异常处理器A2
+void SetDefaultExceptionHandlerA2(void)
 
 {
   _DAT_180bfb310 = &DefaultExceptionHandlerB;
@@ -89085,8 +89085,8 @@ void FUN_1809427f0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942810(void)
-void FUN_180942810(void)
+// 设置默认异常处理器A3
+void SetDefaultExceptionHandlerA3(void)
 
 {
   _DAT_180bfb730 = &DefaultExceptionHandlerB;
