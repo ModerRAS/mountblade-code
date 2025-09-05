@@ -1694,10 +1694,10 @@ void InitializeNetworkPacketProcessingSystem(void)
   NetworkConnectionBackoffTime = NetworkBackoffTimeTwoSeconds;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
-  NetworkEventSize = NetworkEventSize64Bytes;                              // 设置事件大小为64字节
-  NetworkEventIndex = NetworkIndexResetValue;                            // 重置事件索引为0
-  NetworkCallbackSize = NetworkCallbackSize64Bytes;                           // 设置回调大小为64字节
-  NetworkCallbackIndex = NetworkIndexResetValue;                          // 重置回调索引为0
+  NetworkEventSize = NetworkEventSize64Bytes;                              // 设置网络事件大小为64字节
+  NetworkEventIndex = NetworkIndexResetValue;                            // 重置网络事件索引为0
+  NetworkCallbackSize = NetworkCallbackSize64Bytes;                           // 设置网络回调大小为64字节
+  NetworkCallbackIndex = NetworkIndexResetValue;                          // 重置网络回调索引为0
 }
 
 /**
@@ -3502,30 +3502,30 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t HeaderValidationResult;                                     // 头部验证结果
-  uint32_t ContextProcessingStatus;                                    // 上下文处理状态
-  uint32_t HeaderFormatCheckResult;                                    // 头部格式检查结果
+  uint32_t NetworkHeaderValidationResult;                              // 网络头部验证结果
+  uint32_t NetworkContextProcessingStatus;                             // 网络上下文处理状态
+  uint32_t NetworkHeaderFormatCheckResult;                             // 网络头部格式检查结果
   
   // 初始化处理状态
-  HeaderValidationResult = NetworkValidationFailure;
-  ContextProcessingStatus = NetworkValidationFailure;
-  HeaderFormatCheckResult = NetworkValidationFailure;
+  NetworkHeaderValidationResult = NetworkValidationFailure;
+  NetworkContextProcessingStatus = NetworkValidationFailure;
+  NetworkHeaderFormatCheckResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    HeaderValidationResult = NetworkValidationSuccess;
+    NetworkHeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    ContextProcessingStatus = NetworkValidationSuccess;
+    NetworkContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (HeaderValidationResult == NetworkValidationSuccess && 
-      ContextProcessingStatus == NetworkValidationSuccess) {
-    HeaderFormatCheckResult = NetworkValidationSuccess;
+  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
+      NetworkContextProcessingStatus == NetworkValidationSuccess) {
+    NetworkHeaderFormatCheckResult = NetworkValidationSuccess;
   }
   
-  return HeaderFormatCheckResult;
+  return NetworkHeaderFormatCheckResult;
 }
