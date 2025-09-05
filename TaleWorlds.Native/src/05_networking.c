@@ -2379,8 +2379,8 @@ NetworkHandle InitializeConnectionProcessor(void)
   NetworkConnectionStatusFlags = NetworkStatusActiveFlag;
   
   // 设置连接超时时间
-  NetworkConnectionTimeout = NetworkConnectionTimeoutDefault;  // 30秒
-  NetworkConnectionTimeoutDuration = NetworkConnectionTimeout;        // 统一超时设置
+  NetworkConnectionTimeoutMs = NetworkConnectionTimeoutDefault;  // 30秒
+  NetworkConnectionTimeoutDuration = NetworkConnectionTimeoutMs;        // 统一超时设置
   
   // 初始化最大连接数
   NetworkMaxConnectionLimit = NetworkDefaultMaxConnections;
@@ -2441,7 +2441,7 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxInt32Value) {
       // 处理连接请求并获取状态缓冲区
       NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
-               ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationBuffer,
+               ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationBuffer,
                              NetworkConnectionCompletionHandleValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
@@ -2481,11 +2481,11 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
   }
   // 验证连接安全性
   if ((0 < *(int *)CalculateConnectionParameterAddress(ConnectionContext)) && (*ConnectionContext != 0)) {
-      AuthenticateConnectionSecurity(*(NetworkResourceHandle *)(NetworkManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
+      AuthenticateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
   }
   
   // 更新连接上下文和参数
-  *ConnectionContext = (int64_t)ProcessedPacketIdentifier;
+  *ConnectionContext = (int64_t)NetworkProcessedPacketIdentifier;
   *(int *)CalculateConnectionParameterAddress(ConnectionContext) = PacketData;
   
   return NetworkOperationSuccess;  // 处理成功
@@ -2554,14 +2554,14 @@ PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)CalculateConnectionParameterAddress(NetworkConnectionContextBuffer)) && (*NetworkConnectionContextBuffer != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionContextBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionContextBuffer = (int64_t)ProcessedPacketIdentifier;
+    *NetworkConnectionContextBuffer = (int64_t)NetworkProcessedPacketIdentifier;
     *(int *)CalculateConnectionParameterAddress(NetworkConnectionContextBuffer) = NetworkConnectionProcessingCode;
     return NetworkOperationSuccess;
   }
   if (NetworkPacketIndex * ConnectionEntrySize - 1U < NetworkMaximumInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
-                           ConnectionCompletionHandle, 0);
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
+                           NetworkConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
       int32_t ProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t NetworkStatusIterationCounter = (long long)ProcessingCode;
@@ -2586,7 +2586,7 @@ SecondaryNetworkProcessingStageComplete:
       return NetworkOperationSuccess;
     }
   }
-  return ConnectionCompletionHandle;
+  return NetworkConnectionCompletionHandle;
 }
 
 /**
@@ -2602,7 +2602,7 @@ SecondaryNetworkProcessingStageComplete:
  */
 NetworkHandle FinalizeNetworkSystem(void)
 {
-  return ConnectionCompletionHandle;
+  return NetworkConnectionCompletionHandle;
 }
 
 /**
