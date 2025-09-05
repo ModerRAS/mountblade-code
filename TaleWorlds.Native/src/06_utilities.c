@@ -11566,15 +11566,24 @@ undefined8 * FUN_180896830(undefined8 *param_1,ulonglong param_2)
 
 
 
-// 函数: void FUN_180896880(longlong *param_1)
-void FUN_180896880(longlong *param_1)
+// 函数: void ResetResourceState(longlong *resourceHandle)
+//
+// 资源状态重置函数
+// 重置指定资源句柄的状态，调用资源的重置函数并更新状态标志
+// 
+// 参数:
+//   resourceHandle - 资源句柄指针，指向要重置的资源对象
+// 
+// 返回值:
+//   无 - 直接修改资源句柄的状态
+void ResetResourceState(longlong *resourceHandle)
 
 {
-  int iVar1;
+  int resetResult;
   
-  iVar1 = (**(code **)(*param_1 + 0x18))();
-  if (iVar1 == 0) {
-    *(undefined1 *)(param_1 + 4) = 0;
+  resetResult = (**(code **)(*resourceHandle + 0x18))();
+  if (resetResult == 0) {
+    *(undefined1 *)(resourceHandle + 4) = 0;
   }
   return;
 }
