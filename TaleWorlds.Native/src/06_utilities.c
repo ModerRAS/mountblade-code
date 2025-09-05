@@ -1861,10 +1861,10 @@ undefined UNK_180a22df8;
 //   undefined - 克隆结果状态
 undefined UtilityCloneData;
 undefined CloneDataBuffer;
-undefined DAT_180bf9c38;
-undefined DAT_180bf9c40;
-undefined DAT_180bf9c48;
-undefined UNK_180a22dd0;
+undefined CloneDataSize;
+undefined CloneDataFlags;
+undefined CloneDataChecksum;
+undefined CloneDataHandle;
 
 // 原始函数名：FUN_180942280 - 数据验证函数A0
 // 功能：验证工具数据的完整性和有效性
