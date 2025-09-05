@@ -34,40 +34,48 @@
 #define GetSystemContextHandle GetSystemContextHandle
 
 /**
- * @brief 带验证的系统数据处理
+ * @brief 处理带验证的系统数据
  * 
  * 该函数用于处理系统数据并进行验证，确保数据的完整性和安全性
  * 
- * @note 原始函数名：func_0x00018074b800
+ * @param dataContext 数据上下文指针
+ * @param validationFlag 验证标志
+ * @return 处理结果状态码
  */
-#define ProcessSystemDataWithValidation func_0x00018074b800
+#define ProcessSystemDataWithValidation ProcessSystemDataWithValidation
 
 /**
- * @brief 带加密的系统数据处理
+ * @brief 处理带加密的系统数据
  * 
  * 该函数用于处理系统数据并进行加密操作，保护数据安全
  * 
- * @note 原始函数名：EncryptSystemData
+ * @param dataPointer 数据指针
+ * @param encryptionKey 加密密钥
+ * @return 处理结果状态码
  */
-#define ProcessSystemDataWithEncryption EncryptSystemData
+#define ProcessSystemDataWithEncryption ProcessSystemDataWithEncryption
 
 /**
  * @brief 验证系统配置
  * 
  * 该函数用于验证系统配置的有效性和正确性
  * 
- * @note 原始函数名：func_0x000180881f80
+ * @param configPointer 配置指针
+ * @param validationMode 验证模式
+ * @return 验证结果状态码
  */
-#define ValidateSystemConfiguration func_0x000180881f80
+#define ValidateSystemConfiguration ValidateSystemConfiguration
 
 /**
  * @brief 执行系统验证检查
  * 
  * 该函数用于执行系统的验证检查操作，确保系统状态正常
  * 
- * @note 原始函数名：func_0x0001808c7ed0
+ * @param checkContext 检查上下文
+ * @param checkFlags 检查标志
+ * @return 检查结果状态码
  */
-#define PerformSystemValidationCheck func_0x0001808c7ed0
+#define PerformSystemValidationCheck PerformSystemValidationCheck
 
 /**
  * @brief 计算系统数据大小
@@ -3605,9 +3613,16 @@
 #define ValidateSystemConfigurationA0 FUN_1808bdd90
 
 // 系统操作函数语义化宏定义
-// 原始函数名：func_0x000180861a30 - 系统操作验证函数
-// 功能：验证系统操作上下文
-#define ValidateSystemOperationContext func_0x000180861a30
+/**
+ * @brief 验证系统操作上下文
+ * 
+ * 该函数用于验证系统操作的上下文，确保操作的安全性和有效性
+ * 
+ * @param operationContext 操作上下文指针
+ * @param validationFlags 验证标志
+ * @return 验证结果状态码
+ */
+#define ValidateSystemOperationContext ValidateSystemOperationContext
 
 // 原始函数名：func_0x0001808c8710 - 缓冲区处理函数
 // 功能：处理系统缓冲区数据
@@ -35270,7 +35285,16 @@ void ResourceReferenceManager880(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902890(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常清理处理器 - 系统资源释放
+ * @param param_1 异常上下文指针
+ * @param param_2 异常处理状态数据
+ * @param param_3 清理标志位
+ * @param param_4 系统保留参数
+ * @note 原始函数名：Unwind_180902890
+ * @note 简化实现：直接调用系统清理函数处理特定偏移的资源
+ */
+void ExceptionCleanupHandler_SystemResourceRelease(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800582b0(*(longlong *)(param_2 + 0x70) + 0x40,
@@ -35281,7 +35305,14 @@ void Unwind_180902890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_1809028a0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 资源管理器 - 引用计数清理
+ * @param param_1 异常上下文指针
+ * @param param_2 异常处理状态数据
+ * @note 原始函数名：Unwind_1809028a0
+ * @note 简化实现：管理资源引用计数，在引用计数归零时触发异常处理
+ */
+void ResourceManager_ReferenceCountCleanup(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -35317,7 +35348,16 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809028c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 系统调用处理器 - 上下文清理
+ * @param param_1 异常上下文指针
+ * @param param_2 异常处理状态数据
+ * @param param_3 清理标志位
+ * @param param_4 系统保留参数
+ * @note 原始函数名：Unwind_1809028c0
+ * @note 简化实现：调用系统清理函数处理特定偏移的上下文数据
+ */
+void SystemCallHandler_ContextCleanup(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800582b0(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
