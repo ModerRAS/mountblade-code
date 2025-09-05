@@ -12411,68 +12411,68 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   float floatTemp;
   
   dataBufferPtr = 0;
-  infFlag3 = 0;
-  infFlag4 = infFlag3;
+  InfinityFlag3 = 0;
+  InfinityFlag4 = InfinityFlag3;
   if ((*(uint *)(dataPtr + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag4 = 0x1d;
+    InfinityFlag4 = 0x1d;
   }
-  infFlag1 = infFlag3;
+  InfinityFlag1 = InfinityFlag3;
   if ((*(uint *)(dataPtr + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag1 = 0x1d;
+    InfinityFlag1 = 0x1d;
   }
-  infFlag2 = infFlag3;
+  InfinityFlag2 = InfinityFlag3;
   if ((*(uint *)(dataPtr + 0x18) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag2 = 0x1d;
+    InfinityFlag2 = 0x1d;
   }
-  if ((infFlag4 != 0 || infFlag1 != 0) || infFlag2 != 0) {
+  if ((InfinityFlag4 != 0 || InfinityFlag1 != 0) || InfinityFlag2 != 0) {
     return 0x1f;
   }
-  infFlag4 = 0;
+  InfinityFlag4 = 0;
   if ((*(uint *)(dataPtr + 0x2c) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag3 = 0x1d;
+    InfinityFlag3 = 0x1d;
   }
-  infFlag1 = infFlag4;
+  InfinityFlag1 = InfinityFlag4;
   if ((*(uint *)(dataPtr + 0x28) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag1 = 0x1d;
+    InfinityFlag1 = 0x1d;
   }
-  infFlag2 = infFlag4;
+  InfinityFlag2 = InfinityFlag4;
   if ((*(uint *)(dataPtr + 0x24) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag2 = 0x1d;
+    InfinityFlag2 = 0x1d;
   }
-  if ((infFlag3 != 0 || infFlag1 != 0) || infFlag2 != 0) {
+  if ((InfinityFlag3 != 0 || InfinityFlag1 != 0) || InfinityFlag2 != 0) {
     return 0x1f;
   }
-  infFlag3 = infFlag4;
+  InfinityFlag3 = InfinityFlag4;
   if ((*(uint *)(dataPtr + 0x38) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag3 = 0x1d;
+    InfinityFlag3 = 0x1d;
   }
-  infFlag1 = infFlag4;
+  InfinityFlag1 = InfinityFlag4;
   if ((*(uint *)(dataPtr + 0x34) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag1 = 0x1d;
+    InfinityFlag1 = 0x1d;
   }
   if (((uint)*(float *)(dataPtr + 0x30) & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag4 = 0x1d;
+    InfinityFlag4 = 0x1d;
   }
-  if ((infFlag3 != 0 || infFlag1 != 0) || infFlag4 != 0) {
+  if ((InfinityFlag3 != 0 || InfinityFlag1 != 0) || InfinityFlag4 != 0) {
     return 0x1f;
   }
   floatComponentZ = *(float *)(dataPtr + 0x44);
-  infFlag3 = 0;
-  uintComponentW = *(uint *)(dataPtr + 0x40);
+  InfinityFlag3 = 0;
+  VectorComponentW = *(uint *)(dataPtr + 0x40);
   floatTemp = *(float *)(dataPtr + 0x3c);
   systemContextBuffer[0] = CONCAT44(systemContextBuffer[0]._4_4_,floatComponentZ);
-  infFlag4 = infFlag3;
+  InfinityFlag4 = InfinityFlag3;
   if (((uint)floatComponentZ & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag4 = 0x1d;
+    InfinityFlag4 = 0x1d;
   }
-  infFlag1 = infFlag3;
-  if ((uintComponentW & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag1 = 0x1d;
+  InfinityFlag1 = InfinityFlag3;
+  if ((VectorComponentW & FloatInfinityValue) == FloatInfinityValue) {
+    InfinityFlag1 = 0x1d;
   }
   if (((uint)floatTemp & FloatInfinityValue) == FloatInfinityValue) {
-    infFlag3 = 0x1d;
+    InfinityFlag3 = 0x1d;
   }
-  if ((infFlag4 == 0 && infFlag1 == 0) && infFlag3 == 0) {
+  if ((InfinityFlag4 == 0 && InfinityFlag1 == 0) && InfinityFlag3 == 0) {
     if (((*(float *)(dataPtr + 0x30) == 0.0) && (*(float *)(dataPtr + 0x34) == 0.0)) &&
        (*(float *)(dataPtr + 0x38) == 0.0)) {
       return 0x1f;
@@ -28210,7 +28210,7 @@ void UtilityNoOperationR(void)
  * @return 处理结果状态码
  * @note 原始函数名：FUN_18089cc80
  */
-uint64_t FUN_18089cc80(int64_t param_1,int64_t *param_2)
+uint64_t ProcessDataWithValidation(int64_t inputData,int64_t *dataPointer)
 
 {
   int64_t *validationContextPointer;
