@@ -9649,14 +9649,14 @@ void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 void InitializeSystemEventHandlerA1(longlong param_1,longlong param_2)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationStatus;
+  undefined8 systemDataBuffer;
   
   if (*(int *)(param_1 + 0x2c) == 0) {
-    iVar1 = QuerySystemDataA0(param_2,param_1 + 0x1c,&uStackX_8);
-    if (iVar1 == 0) {
-      iVar1 = ValidateAndProcessSystemResourceA0(uStackX_8,param_1 + 0x2c);
-      if (iVar1 == 0) goto ValidationCheckpoint;
+    validationStatus = QuerySystemDataA0(param_2,param_1 + 0x1c,&systemDataBuffer);
+    if (validationStatus == 0) {
+      validationStatus = ValidateAndProcessSystemResourceA0(systemDataBuffer,param_1 + 0x2c);
+      if (validationStatus == 0) goto ValidationCheckpoint;
     }
     return;
   }
@@ -9672,24 +9672,24 @@ ValidationCheckpoint:
 undefined8 CheckSystemStatusA0(longlong param_1,longlong param_2)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong lStackX_8;
+  int referenceCount;
+  undefined8 queryResult;
+  longlong systemContext;
   
-  uVar2 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar2 == 0) {
-    if (*(int *)(lStackX_8 + 0x34) != 0) {
+  queryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContext);
+  if ((int)queryResult == 0) {
+    if (*(int *)(systemContext + 0x34) != 0) {
       return 0x2e;
     }
-    iVar1 = *(int *)(lStackX_8 + 0x28);
-    *(int *)(lStackX_8 + 0x28) = iVar1 + 1;
-    if (iVar1 == 0) {
+    referenceCount = *(int *)(systemContext + 0x28);
+    *(int *)(systemContext + 0x28) = referenceCount + 1;
+    if (referenceCount == 0) {
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
-    uVar2 = 0;
+    queryResult = 0;
   }
-  return uVar2;
+  return queryResult;
 }
 
 
