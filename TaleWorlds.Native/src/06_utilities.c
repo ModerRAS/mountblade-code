@@ -96855,7 +96855,7 @@ void ReleaseExclusiveSRWLockSecondary(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_18090f8d0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSecondaryResourceHandlerMethodCallExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

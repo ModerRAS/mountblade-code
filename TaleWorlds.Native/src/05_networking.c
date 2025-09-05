@@ -1876,17 +1876,17 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
 NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t NetworkConnectionContextId;              // 网络连接上下文标识符
+  int64_t NetworkConnectionIdentifier;              // 网络连接上下文标识符
   int64_t *NetworkConnectionValidationResult;          // 网络连接验证结果指针
   int32_t NetworkValidationStatusCode;               // 网络连接验证结果码
   
-  NetworkConnectionContextId = 0;
+  NetworkConnectionIdentifier = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
   if (NetworkValidationStatusCode == 0) {
     if ((0 < *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset)) && (*NetworkConnectionValidationResult != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationResult, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionValidationResult = NetworkConnectionContextId;
+    *NetworkConnectionValidationResult = NetworkConnectionIdentifier;
     *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset) = NetworkValidationStatusCode;
     return NetworkOperationSuccess;
   }
