@@ -6740,49 +6740,40 @@ uint8_t SystemConnectionDataStreamTable;
 uint8_t SystemConnectionDataFlowTable;
 uint8_t SystemConnectionDataPipelineTable;
 uint8_t SystemConnectionDataSegmentTable;
-uint8_t UNK_180a330f0;
-uint8_t UNK_180a33140;
-uint8_t UNK_180a33188;
-uint8_t UNK_180a331c0;
-uint8_t UNK_180a33200;
-uint8_t UNK_180a33250;
-uint8_t UNK_180a33280;
-uint8_t UNK_180a332c8;
-uint8_t UNK_180a332f8;
-uint8_t UNK_180a33330;
-uint8_t UNK_180a33370;
-uint8_t UNK_180a333c0;
-uint8_t UNK_180a33400;
-uint8_t UNK_180a33450;
-uint8_t UNK_180a334a0;
-uint8_t UNK_180a334f0;
-uint8_t UNK_180a33540;
-uint8_t UNK_180a33590;
-uint8_t UNK_180a335d8;
-uint8_t UNK_180a33610;
-uint8_t UNK_180a33660;
-uint8_t UNK_180a336b0;
-uint8_t UNK_180a336f0;
-uint8_t UNK_180a33740;
-uint8_t UNK_180a33780;
-uint8_t UNK_180a337d0;
-uint8_t UNK_180a33820;
-uint8_t UNK_180a33870;
-uint8_t UNK_180a338e0;
-uint8_t UNK_180a33930;
-uint8_t UNK_180a2c968;
-uint8_t UNK_180a33988;
-uint8_t UNK_180a339b0;
-uint8_t UNK_180a339c0;
-uint8_t UNK_180a339e0;
-uint8_t UNK_180a339e8;
-uint8_t UNK_180a33a60;
-uint8_t UNK_180a33c10;
-uint8_t UNK_180a33c90;
-uint8_t UNK_18053f010;
-uint8_t UNK_18053f040;
-uint8_t UNK_18053f080;
-uint8_t UNK_18053f090;
+uint8_t SystemExceptionDataTable[1024];    // UNK_180a330f0 - 系统异常数据表
+uint8_t SystemResourceCacheA[256];         // UNK_180a33140 - 系统资源缓存A
+uint8_t SystemResourceCacheB[256];         // UNK_180a33188 - 系统资源缓存B
+uint8_t SystemResourceCacheC[256];         // UNK_180a331c0 - 系统资源缓存C
+uint8_t SystemMemoryBufferA[256];           // UNK_180a33200 - 系统内存缓冲区A
+uint8_t SystemMemoryBufferB[256];           // UNK_180a33250 - 系统内存缓冲区B
+uint8_t SystemMemoryBufferC[256];           // UNK_180a33280 - 系统内存缓冲区C
+uint8_t SystemMemoryBufferD[256];           // UNK_180a332c8 - 系统内存缓冲区D
+uint8_t SystemMemoryBufferE[256];           // UNK_180a332f8 - 系统内存缓冲区E
+uint8_t SystemMemoryBufferF[256];           // UNK_180a33330 - 系统内存缓冲区F
+uint8_t SystemMemoryBufferG[256];           // UNK_180a33370 - 系统内存缓冲区G
+uint8_t SystemMemoryBufferH[256];           // UNK_180a333c0 - 系统内存缓冲区H
+uint8_t SystemMemoryBufferI[256];           // UNK_180a33400 - 系统内存缓冲区I
+uint8_t SystemMemoryBufferJ[256];           // UNK_180a33450 - 系统内存缓冲区J
+uint8_t SystemMemoryBufferK[256];           // UNK_180a334a0 - 系统内存缓冲区K
+uint8_t SystemMemoryBufferL[256];           // UNK_180a334f0 - 系统内存缓冲区L
+uint8_t SystemMemoryBufferM[256];           // UNK_180a33540 - 系统内存缓冲区M
+uint8_t SystemMemoryBufferN[256];           // UNK_180a33590 - 系统内存缓冲区N
+uint8_t SystemMemoryBufferO[256];           // UNK_180a335d8 - 系统内存缓冲区O
+uint8_t SystemMemoryBufferP[256];           // UNK_180a33610 - 系统内存缓冲区P
+uint8_t SystemMemoryBufferQ[256];           // UNK_180a33660 - 系统内存缓冲区Q
+uint8_t SystemMemoryBufferR[256];           // UNK_180a336b0 - 系统内存缓冲区R
+uint8_t SystemMemoryBufferS[256];           // UNK_180a336f0 - 系统内存缓冲区S
+uint8_t SystemMemoryBufferT[256];           // UNK_180a33740 - 系统内存缓冲区T
+uint8_t SystemMemoryBufferU[256];           // UNK_180a33780 - 系统内存缓冲区U
+uint8_t SystemMemoryBufferV[256];           // UNK_180a337d0 - 系统内存缓冲区V
+uint8_t SystemMemoryBufferW[256];           // UNK_180a33820 - 系统内存缓冲区W
+uint8_t SystemMemoryBufferX[256];           // UNK_180a33870 - 系统内存缓冲区X
+uint8_t SystemMemoryBufferY[256];           // UNK_180a338e0 - 系统内存缓冲区Y
+uint8_t SystemMemoryBufferZ[256];           // UNK_180a33930 - 系统内存缓冲区Z
+uint8_t SystemHardwareInfoBuffer[64];     // UNK_18053f010 - 系统硬件信息缓冲区
+uint8_t SystemHardwareConfigBuffer[64];   // UNK_18053f040 - 系统硬件配置缓冲区
+uint8_t SystemHardwareStatusBuffer[64];   // UNK_18053f080 - 系统硬件状态缓冲区
+uint8_t SystemHardwareControlBuffer[64];  // UNK_18053f090 - 系统硬件控制缓冲区
 byte DAT_180c91d14;
 // 系统清理处理器数据存储
 uint8_t SystemCleanupHandlerDataStore;
@@ -58265,10 +58256,17 @@ void HandleExceptionA3(uint8_t8 ContextParameter, int64_t SystemContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180908040(void)
+/**
+ * @brief 系统异常状态重置函数
+ * 
+ * 重置系统异常状态标志并处理异常事件
+ * 
+ * @note 原始函数名：Unwind_180908040
+ */
+void ResetSystemExceptionStatus(void)
 
 {
-  byte bVar1;
+  byte statusFlag;
   
   EnterCriticalSection(0x180c82210);
   ExceptionStatusFlagA3 = 0;
