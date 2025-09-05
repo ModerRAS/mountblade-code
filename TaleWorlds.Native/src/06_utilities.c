@@ -97952,7 +97952,7 @@ void Unwind_18090fb80(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fb90(uint8_t ObjectContext,int64_t ValidationContext)
+void SetPrimaryValidationContextDataStructure(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   **(uint8_t **)(ValidationContext + ValidationContextPrimaryOffset) = &SystemDataStructure;
@@ -97961,11 +97961,11 @@ void Unwind_18090fb90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fba0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSystemLockIfActive(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  if (*(char *)(ValidationContext + 0xb8) != '\0') {
-    ReleaseSRWLockExclusive(*(uint8_t *)(ValidationContext + 0xb0));
+  if (*(char *)(ValidationContext + SystemLockStatusOffset) != '\0') {
+    ReleaseSRWLockExclusive(*(uint8_t *)(ValidationContext + SystemLockHandleOffset));
   }
   return;
 }
