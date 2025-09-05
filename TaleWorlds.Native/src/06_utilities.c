@@ -34162,13 +34162,25 @@ void ExceptionUnwindHandlerA2(DataBuffer exceptionContext,int64_t unwindParam)
  * 
  * @return 无返回值
  */
-void SetExceptionContextAndUnlock(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 设置异常上下文并解锁互斥锁
+ * 
+ * 该函数用于设置全局异常上下文指针，并解锁系统互斥锁
+ * 主要用于异常处理过程中的资源管理和状态同步
+ * 
+ * @param exceptionContext 异常处理上下文（当前未使用）
+ * @param contextData 包含异常上下文指针的数据结构
+ * 
+ * @note 该函数从上下文数据中提取异常上下文指针并设置到全局变量
+ * @warning 如果互斥锁解锁失败，会抛出C标准错误
+ */
+void SetExceptionContextAndUnlock(DataBuffer exceptionContext, int64_t contextData)
 
 {
   int unlockResult;
   
   // 设置异常上下文指针
-  ExceptionContext = *(DataBuffer *)(param_2 + 0x88);
+  ExceptionContext = *(DataBuffer *)(contextData + 0x88);
   
   // 解锁互斥锁
   unlockResult = _Mtx_unlock(0x180c91970);
