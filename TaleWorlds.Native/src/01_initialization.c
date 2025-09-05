@@ -21565,13 +21565,13 @@ SystemNodeDataValidation:
 void InitializeSystemConfigurationData(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
 
 {
-  double scaleFactorValue;
-  char validationStatusFlag;
-  double numericValue;
+  double SystemScaleFactor;
+  char SystemValidationFlag;
+  double SystemNumericValue;
   uint SystemGlobalStateFlag;
   void* SystemThreadContext;
-  long long SystemThreadFlags;
-  long long localDataIndex;
+  long long SystemThreadIndex;
+  long long SystemLocalDataIndex;
   uint32_t *SystemThreadStorage;
   void* *SystemValuePointer;
   ulong long SystemOperationFlags;
@@ -21673,29 +21673,29 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
         SystemFunctionPointer = CharacterPointer;
       }
       SetSystemPropertyStringValue(SystemThreadContext,&SystemPropertyNameTemplate,SystemFunctionPointer);
-      scaleFactorValue = *(double *)(ResourceDataOffset + 0xa0 + SystemOperationFlags);
-      numericValue = (double)*(uint *)(ResourceDataOffset + 0xb0 + SystemOperationFlags);
-      if (numericValue != 0.0) {
-        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyNumericTemplate,numericValue);
+      SystemScaleFactor = *(double *)(ResourceDataOffset + 0xa0 + SystemOperationFlags);
+      SystemNumericValue = (double)*(uint *)(ResourceDataOffset + 0xb0 + SystemOperationFlags);
+      if (SystemNumericValue != 0.0) {
+        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyNumericTemplate,SystemNumericValue);
       }
-      if (scaleFactorValue != 0.0) {
-        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyScaleFactorTemplate,scaleFactorValue);
+      if (SystemScaleFactor != 0.0) {
+        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyScaleFactorTemplate,SystemScaleFactor);
       }
-      scaleFactorValue = *(double *)(ResourceDataOffset + 0xb8 + SystemOperationFlags);
-      numericValue = (double)*(uint *)(ResourceDataOffset + 200 + SystemOperationFlags);
-      if (numericValue != 0.0) {
-        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyVerticalScaleTemplate,numericValue);
+      SystemScaleFactor = *(double *)(ResourceDataOffset + 0xb8 + SystemOperationFlags);
+      SystemNumericValue = (double)*(uint *)(ResourceDataOffset + 200 + SystemOperationFlags);
+      if (SystemNumericValue != 0.0) {
+        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyVerticalScaleTemplate,SystemNumericValue);
       }
-      if (scaleFactorValue != 0.0) {
-        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyAspectRatioTemplate,scaleFactorValue);
+      if (SystemScaleFactor != 0.0) {
+        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyAspectRatioTemplate,SystemScaleFactor);
       }
-      scaleFactorValue = *(double *)(ResourceDataOffset + 0x20 + SystemOperationFlags);
-      if (scaleFactorValue != 0.0) {
-        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyWidthTemplate,scaleFactorValue);
+      SystemScaleFactor = *(double *)(ResourceDataOffset + 0x20 + SystemOperationFlags);
+      if (SystemScaleFactor != 0.0) {
+        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyWidthTemplate,SystemScaleFactor);
       }
-      scaleFactorValue = *(double *)(ResourceDataOffset + 0x28 + SystemOperationFlags);
-      if (scaleFactorValue != 0.0) {
-        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyHeightTemplate,scaleFactorValue);
+      SystemScaleFactor = *(double *)(ResourceDataOffset + 0x28 + SystemOperationFlags);
+      if (SystemScaleFactor != 0.0) {
+        SetSystemPropertyNumericValue(SystemThreadContext,&SystemPropertyTemplate,&SystemPropertyHeightTemplate,SystemScaleFactor);
       }
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x30 + SystemOperationFlags);
       scaleFactorValue = (double)SystemResourceDataIndex;

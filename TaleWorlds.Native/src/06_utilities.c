@@ -24712,7 +24712,7 @@ ValidationContextHandler:
     }
   }
   else {
-LAB_18089c9ee:
+ValidationErrorHandler:
     uVar7 = 1;
     uVar9 = uVar8;
   }
@@ -24742,7 +24742,7 @@ LAB_18089c9ee:
         uVar2 = 0x1c;
       }
       else if (pvalidationContext[2] == 0) {
-LAB_18089ca9c:
+ValidationRetryHandler:
         uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_18,1,1,0);
       }
       else {
@@ -24781,7 +24781,7 @@ LAB_18089ca9c:
       uVar2 = *(uint *)(param_2 + 8);
     }
     if (uVar2 < 0x8b) {
-LAB_18089cbf6:
+DataProcessingHandler:
                     // WARNING: Subroutine does not return
       FUN_1808ddf80(param_2,auStack_80);
     }
@@ -25102,7 +25102,7 @@ ValidationContextHandler:
     uVar3 = 0x1c;
   }
   else if (pvalidationContext[2] == 0) {
-LAB_18089ca9c:
+ValidationRetryHandler:
     uVar3 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D,0);
     fVar9 = extraout_XMM0_Da_05;
   }
@@ -25124,7 +25124,7 @@ LAB_18089ca9c:
   if (uVar3 == 0) {
     uVar4 = uVar7;
   }
-LAB_18089cad8:
+ValidationErrorHandler2:
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -25352,7 +25352,7 @@ ValidationContextHandler:
     uVar4 = 0x1c;
   }
   else if (pvalidationContext[2] == unaff_RDI) {
-LAB_18089ca9c:
+ValidationRetryHandler:
     uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
@@ -25373,7 +25373,7 @@ LAB_18089ca9c:
   if (uVar4 == 0) {
     uVar5 = unaff_RDI & 0xffffffff;
   }
-LAB_18089cad8:
+ValidationErrorHandler2:
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -25602,7 +25602,7 @@ ValidationContextHandler:
     uVar4 = 0x1c;
   }
   else if (pvalidationContext[2] == unaff_RDI) {
-LAB_18089ca9c:
+ValidationRetryHandler:
     uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
@@ -25623,7 +25623,7 @@ LAB_18089ca9c:
   if (uVar4 == 0) {
     uVar5 = unaff_RDI & 0xffffffff;
   }
-LAB_18089cad8:
+ValidationErrorHandler2:
   if ((int)uVar5 != 0) {
     return uVar5;
   }
@@ -25800,7 +25800,7 @@ ValidationContextHandler:
         uVar4 = 0x1c;
       }
       else if (pvalidationContext[2] == unaff_RDI) {
-LAB_18089ca9c:
+ValidationRetryHandler:
         uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_04;
       }
@@ -25845,7 +25845,7 @@ LAB_18089ca9c:
       uVar4 = *(uint *)(registerRBX + 8);
     }
     if (uVar4 < 0x8b) {
-LAB_18089cbf6:
+DataProcessingHandler:
                     // WARNING: Subroutine does not return
       FUN_1808ddf80(param_1,unaff_RBP + -0x21);
     }
@@ -25966,7 +25966,7 @@ ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
       }
       uVar3 = FUN_180769ed0(*pvalidationContext,auStackX_18,1,4,0);
     }
-LAB_18089cd46:
+ValidationContextHandler2:
     if ((int)uVar3 != 0) {
       return uVar3;
     }
@@ -26041,7 +26041,7 @@ ulonglong FUN_18089ccb9(void)
       }
       uVar3 = FUN_180769ed0(*pvalidationContext,&stack0x00000080,1,4,0);
     }
-LAB_18089cd46:
+ValidationContextHandler2:
     if ((int)uVar3 != 0) {
       return uVar3;
     }
