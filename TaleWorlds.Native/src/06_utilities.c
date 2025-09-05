@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 全局数据定义
-#define DefaultDataNodePointer DAT_00000018
+#define DefaultSystemDataAddress 0x18
 
 /**
  * @brief 获取系统上下文句柄

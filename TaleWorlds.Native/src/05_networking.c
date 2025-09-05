@@ -2802,35 +2802,35 @@ void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
 {
   // 连接请求处理变量
-  static uint32_t ConnectionContextData[16];                       // 连接上下文数据
-  uint32_t ActiveConnectionState;                                 // 连接状态
-  uint32_t ConnectionIdentifier;                                 // 连接标识符
-  uint32_t SecurityValidationStatus;                             // 安全验证状态
+  static uint32_t ContextData[16];                              // 连接上下文数据
+  uint32_t ActiveState;                                        // 连接状态
+  uint32_t ConnectionId;                                      // 连接标识符
+  uint32_t SecurityStatus;                                    // 安全验证状态
   
   // 初始化连接上下文数据
-  memset(ConnectionContextData, 0, sizeof(ConnectionContextData));
+  memset(ContextData, 0, sizeof(ContextData));
   
   // 设置连接基本信息
-  ActiveConnectionState = NetworkStatusActive;                   // 设置连接状态为活跃
-  ConnectionIdentifier = (uint32_t)(RequestData & NetworkConnectionIdMaskValue);        // 从请求数据提取连接标识符
+  ActiveState = NetworkStatusActive;                             // 设置连接状态为活跃
+  ConnectionId = (uint32_t)(RequestData & NetworkConnectionIdMaskValue);  // 从请求数据提取连接标识符
   
   // 验证连接安全性
-  SecurityValidationStatus = NetworkValidationFailure;
+  SecurityStatus = NetworkValidationFailure;
   if (SecurityValidationData) {
     memset(SecurityValidationData, 0, SecurityValidationBufferSize);
-    SecurityValidationStatus = NetworkValidationSuccess;         // 验证成功
+    SecurityStatus = NetworkValidationSuccess;                   // 验证成功
   }
   
   // 设置连接上下文数据
-  ConnectionContextData[ConnectionStateIndex] = ActiveConnectionState;
-  ConnectionContextData[ConnectionIdentifierIndex] = ConnectionIdentifier;
-  ConnectionContextData[SecurityValidationResultIndex] = SecurityValidationStatus;
-  ConnectionContextData[FinalizationValueIndex] = FinalizeValue;
-  ConnectionContextData[ProcessingStateFlagsIndex] = ProcessingFlags;
-  ConnectionContextData[ValidationStateFlagsIndex] = ValidationFlags;
-  ConnectionContextData[DataProcessingModeIndex] = ProcessingMode;
+  ContextData[ConnectionStateIndex] = ActiveState;
+  ContextData[ConnectionIdentifierIndex] = ConnectionId;
+  ContextData[SecurityValidationResultIndex] = SecurityStatus;
+  ContextData[FinalizationValueIndex] = FinalizeValue;
+  ContextData[ProcessingStateFlagsIndex] = ProcessingFlags;
+  ContextData[ValidationStateFlagsIndex] = ValidationFlags;
+  ContextData[DataProcessingModeIndex] = ProcessingMode;
   
-  return ConnectionContextData;
+  return ContextData;
 }
 
 /**
