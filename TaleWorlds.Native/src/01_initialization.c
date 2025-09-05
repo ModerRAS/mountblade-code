@@ -10773,8 +10773,8 @@ void InitializeSystemStringProcessorQuaternary(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorB(void)
-void InitializeSystemStringProcessorB(void)
+// 函数: void InitializeSystemStringProcessorQuinary(void)
+void InitializeSystemStringProcessorQuinary(void)
 
 {
   void* SystemRegisterValue;
