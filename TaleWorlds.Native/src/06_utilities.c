@@ -19250,28 +19250,38 @@ void UtilityNoOperationL(void)
 
 
 
-89a750(longlong param_1,uint *param_2)
-void FUN_18089a750(longlong param_1,uint *param_2)
+// 函数: void ProcessUtilityDataOperation(longlong operationHandle, uint *operationData)
+// 
+// 处理工具数据操作
+// 根据操作数据的值进行不同的处理，包括数据验证和转换
+// 
+// 参数:
+//   operationHandle - 操作句柄，指向操作相关的数据结构
+//   operationData - 操作数据指针，包含需要处理的数据
+// 
+// 返回值:
+//   无
+void ProcessUtilityDataOperation(longlong operationHandle, uint *operationData)
 
 {
-  uint uVar1;
+  uint dataValue;
   int operationResult;
-  undefined8 uVar3;
-  undefined4 uStackX_10;
+  undefined8 processingMode;
+  undefined4 processedData;
   
-  uVar1 = *param_2;
-  if (uVar1 + 0x4000 < 0x8000) {
-    uStackX_10 = CONCAT22(uStackX_10._2_2_,(short)uVar1) & 0xffff7fff;
-    uVar3 = 2;
+  dataValue = *operationData;
+  if (dataValue + 0x4000 < 0x8000) {
+    processedData = CONCAT22(processedData._2_2_,(short)dataValue) & 0xffff7fff;
+    processingMode = 2;
   }
   else {
-    uStackX_10 = (uVar1 & 0xffffc000 | 0x4000) * 2 | uVar1 & 0x7fff;
-    uVar3 = 4;
+    processedData = (dataValue & 0xffffc000 | 0x4000) * 2 | dataValue & 0x7fff;
+    processingMode = 4;
   }
-  operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
-                    (*(undefined8 **)(param_1 + 8),&uStackX_10,uVar3);
+  operationResult = (**(code **)**(undefined8 **)(operationHandle + 8))
+                    (*(undefined8 **)(operationHandle + 8),&processedData,processingMode);
   if (operationResult == 0) {
-    FUN_1808aff40(param_1,param_2 + 1);
+    FUN_1808aff40(operationHandle,operationData + 1);
   }
   return;
 }
