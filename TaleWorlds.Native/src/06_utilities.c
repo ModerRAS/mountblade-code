@@ -98348,7 +98348,18 @@ void Unwind_18090fd90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fdc0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源操作并重置标志
+ * 
+ * 该函数处理资源操作，并在操作完成后重置相应的状态标志
+ * 用于资源管理中的状态控制和清理工作
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090fdc0
+ */
+void ProcessResourceOperationWithFlagReset(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 0x10) != 0) {
@@ -98360,7 +98371,18 @@ void Unwind_18090fdc0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fdf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文偏移200处的资源表独占锁
+ * 
+ * 该函数检查验证上下文偏移200处的字符值，如果不为零，
+ * 则释放资源表偏移处的SRW独占锁
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090fdf0
+ */
+void ReleaseResourceTableExclusiveLock(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 200) != '\0') {
@@ -98512,7 +98534,18 @@ void Unwind_18090fe90(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fea0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文偏移2A0处的系统内存
+ * 
+ * 该函数释放验证上下文偏移2A0处的系统内存
+ * 用于资源清理和内存管理
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090fea0
+ */
+void ReleaseSystemMemoryAtOffset2A0(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x2a0);
@@ -98521,7 +98554,18 @@ void Unwind_18090fea0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090feb0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源标志并释放系统资源
+ * 
+ * 该函数检查资源数据偏移30处的标志位，如果第0位为1，
+ * 则重置该标志位并释放验证上下文偏移40处的系统资源
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090feb0
+ */
+void ResetResourceFlagAndReleaseSystemResource(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x30) & 1) != 0) {
@@ -98533,7 +98577,18 @@ void Unwind_18090feb0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fee0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文偏移2A0处的系统内存（副本）
+ * 
+ * 该函数释放验证上下文偏移2A0处的系统内存
+ * 用于资源清理和内存管理，与ReleaseSystemMemoryAtOffset2A0功能相同
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090fee0
+ */
+void ReleaseSystemMemoryAtOffset2A0Duplicate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x2a0);
@@ -98542,7 +98597,18 @@ void Unwind_18090fee0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fef0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文偏移2A0处的系统内存（替代版本）
+ * 
+ * 该函数释放验证上下文偏移2A0处的系统内存
+ * 用于资源清理和内存管理，与前面两个函数功能相同
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090fef0
+ */
+void ReleaseSystemMemoryAtOffset2A0Alternate(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   ReleaseSystemMemory(ValidationContext + 0x2a0);
@@ -100005,11 +100071,21 @@ void Unwind_180910440(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910450(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源清理和流销毁操作
+ * 
+ * 该函数负责清理系统资源并销毁相关的输入输出流。它通过验证上下文来获取资源索引，
+ * 然后执行系统资源验证、销毁基本输入流和基本IO系统操作。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源验证和处理所需的数据
+ * 
+ * @note 原始函数名：Unwind_180910450
+ * @warning 函数包含复杂的间接跳转，可能存在异常处理逻辑
+ */
+void ExecuteSystemResourceCleanupAndStreamDestruction(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
-  int ProcessingStatusCode;
   int64_t ResourceIndex;
   
   ResourceIndex = *(int64_t *)(ValidationContext + ValidationContextDataProcessingOffset);
@@ -100020,19 +100096,26 @@ void Unwind_180910450(uint8_t ObjectContext,int64_t ValidationContext)
   *(int *)((int64_t)OperationResult + -0xb4 + SystemContextPointer) = OperationResult + -0xb0;
   ValidateSystemResource(ResourceIndex + 0x138);
   DestroyBasicIStream(ResourceIndex + 0x140);
-                    // WARNING: Could not recover jumptable at 0x0001800fd4a2. Too many branches
-                    // WARNING: Treating indirect jump as call
   DestroyBasicIOS(SystemContextPointer);
   return;
 }
 
 
 
-void Unwind_180910470(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文处理函数调用
+ * 
+ * 该函数从验证上下文中获取资源上下文指针，并调用资源上下文中的特定处理函数。
+ * 这是一个通用的资源处理接口，用于执行资源相关的回调操作。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理所需的上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910470
+ */
+void ExecuteResourceContextHandlerCall(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *ResourceProcessingPointer;
-  
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + ValidationContextDataProcessingOffset) + 0x238);
   if (ResourceContext != (int64_t *)0x0) {
     (**(code **)(*ResourceContext + 0x38))();
@@ -100042,11 +100125,20 @@ void Unwind_180910470(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910490(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理器的回调函数调用
+ * 
+ * 该函数从验证上下文中获取资源处理器指针，并调用其中的回调函数。
+ * 用于处理资源相关的异步操作或事件响应。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源处理器所需的上下文信息
+ * 
+ * @note 原始函数名：Unwind_180910490
+ */
+void ExecuteResourceProcessorCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *ResourceProcessingPointer;
-  
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + ValidationContextDataProcessingOffset) + 600);
   if (ResourceContext != (int64_t *)0x0) {
     (**(code **)(*ResourceContext + 0x38))();
@@ -100056,11 +100148,20 @@ void Unwind_180910490(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809104b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行次要资源处理器的回调函数调用
+ * 
+ * 该函数从验证上下文中获取次要资源处理器指针，并调用其中的回调函数。
+ * 用于处理次要资源相关的操作或事件响应。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含次要资源处理器所需的上下文信息
+ * 
+ * @note 原始函数名：Unwind_1809104b0
+ */
+void ExecuteSecondaryResourceProcessorCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  int64_t *ResourceProcessingPointer;
-  
   ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + ValidationContextDataProcessingOffset) + 0x260);
   if (ResourceContext != (int64_t *)0x0) {
     (**(code **)(*ResourceContext + 0x38))();
