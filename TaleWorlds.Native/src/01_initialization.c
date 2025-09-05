@@ -1407,28 +1407,28 @@ void* SystemLogger;                  // 系统日志记录器
 void* SystemPerformanceMonitor;     // 系统性能监控器
 void* SystemResourceCleaner;        // 系统资源清理器
 // 系统数据缓冲区 - 核心功能组件使用
-void* SystemDataBufferCorePrimary;
-void* SystemDataBufferCoreSecondary;
-void* SystemDataBufferCoreTertiary;
-void* SystemDataBufferCoreQuaternary;
-void* SystemDataBufferCoreQuinary;
-void* SystemDataBufferCoreSenary;
-void* SystemDataBufferCoreSeptenary;
-void* SystemDataBufferCoreOctonary;
-void* SystemDataBufferCoreNonary;
-void* SystemDataBufferCoreDenary;
-void* SystemDataBufferCoreUndenary;
-void* SystemDataBufferCoreDuodenary;
-void* SystemDataBufferCoreTredecenary;
-void* SystemDataBufferCoreQuattuordecenary;
-void* SystemDataBufferCoreQuindecenary;
-void* SystemDataBufferCoreSexdecenary;
-void* SystemDataBufferCoreSeptendecenary;
-void* SystemDataBufferCoreOctodecenary;
-void* SystemDataBufferCoreNovemdecenary;
-void* SystemDataBufferCoreVigesimal;
-void* SystemDataBufferCoreUnvigesimal;
-void* SystemDataBufferCoreDuovigesimal;
+void* SystemDataBufferCorePrimary;          // 核心主数据缓冲区
+void* SystemDataBufferCoreSecondary;       // 核心次级数据缓冲区
+void* SystemDataBufferCoreTertiary;        // 核心第三数据缓冲区
+void* SystemDataBufferCoreQuaternary;      // 核心第四数据缓冲区
+void* SystemDataBufferCoreQuinary;         // 核心第五数据缓冲区
+void* SystemDataBufferCoreSenary;          // 核心第六数据缓冲区
+void* SystemDataBufferCoreSeptenary;       // 核心第七数据缓冲区
+void* SystemDataBufferCoreOctonary;        // 核心第八数据缓冲区
+void* SystemDataBufferCoreNonary;          // 核心第九数据缓冲区
+void* SystemDataBufferCoreDenary;          // 核心第十数据缓冲区
+void* SystemDataBufferCoreUndenary;         // 核心第十一数据缓冲区
+void* SystemDataBufferCoreDuodenary;       // 核心第十二数据缓冲区
+void* SystemDataBufferCoreTredecenary;      // 核心第十三数据缓冲区
+void* SystemDataBufferCoreQuattuordecenary; // 核心第十四数据缓冲区
+void* SystemDataBufferCoreQuindecenary;     // 核心第十五数据缓冲区
+void* SystemDataBufferCoreSexdecenary;      // 核心第十六数据缓冲区
+void* SystemDataBufferCoreSeptendecenary;   // 核心第十七数据缓冲区
+void* SystemDataBufferCoreOctodecenary;     // 核心第十八数据缓冲区
+void* SystemDataBufferCoreNovemdecenary;    // 核心第十九数据缓冲区
+void* SystemDataBufferCoreVigesimal;        // 核心第二十数据缓冲区
+void* SystemDataBufferCoreUnvigesimal;      // 核心第二十一数据缓冲区
+void* SystemDataBufferCoreDuovigesimal;     // 核心第二十二数据缓冲区
 
 // 系统状态管理器
 void* SystemStateManager;

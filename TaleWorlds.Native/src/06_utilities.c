@@ -6132,10 +6132,10 @@ int UtilitySystemErrorCount;
 double systemTimingValue;
 undefined SystemStatePrimary;
 undefined SystemStateSecondary;
-undefined utilitySystemPointerArray1;
-undefined utilitySystemPointerArray2;
-undefined utilitySystemPointerArray3;
-undefined utilitySystemPointerArray4;
+undefined SystemPointerArrayPrimary;
+undefined SystemPointerArraySecondary;
+undefined SystemPointerArrayTertiary;
+undefined SystemPointerArrayQuaternary;
 // 系统线程管理数据块
 undefined SystemThreadManagementBlock1;
 undefined SystemThreadManagementBlock2;
