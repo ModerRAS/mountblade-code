@@ -1622,29 +1622,29 @@
 // 功能：解密工具系统数据
 #define DecryptUtilityData FUN_1809424c0
 
-// 原始函数名：FUN_180942520 - 系统状态重置函数C0
-// 功能：重置工具系统状态C0
-#define ResetUtilitySystemStateC0 FUN_180942520
+// 原始函数名：FUN_180942520 - 系统状态重置函数
+// 功能：重置工具系统状态
+#define ResetUtilitySystemState FUN_180942520
 
-// 原始函数名：FUN_180942580 - 系统状态重置函数C1
-// 功能：重置工具系统状态C1
-#define ResetUtilitySystemStateC1 FUN_180942580
+// 原始函数名：FUN_180942580 - 系统状态重置函数
+// 功能：重置工具系统状态
+#define ResetUtilitySystemStateSecondary FUN_180942580
 
-// 原始函数名：FUN_180942750 - 初始化异常处理器表A0
+// 原始函数名：FUN_180942750 - 初始化异常处理器表
 // 功能：初始化异常处理器表，设置默认异常处理器
-#define InitializeExceptionHandlerTableA0 FUN_180942750
+#define InitializeExceptionHandlerTable FUN_180942750
 
-// 原始函数名：FUN_180942790 - 设置默认异常处理器A0
-// 功能：设置默认异常处理器A0
-#define SetDefaultExceptionHandlerA0 FUN_180942790
+// 原始函数名：FUN_180942790 - 设置默认异常处理器
+// 功能：设置默认异常处理器
+#define SetDefaultExceptionHandler FUN_180942790
 
-// 原始函数名：FUN_1809427d0 - 设置默认异常处理器A1
-// 功能：设置默认异常处理器A1
-#define SetDefaultExceptionHandlerA1 FUN_1809427d0
+// 原始函数名：FUN_1809427d0 - 设置备用异常处理器
+// 功能：设置备用异常处理器
+#define SetAlternateExceptionHandler FUN_1809427d0
 
-// 原始函数名：FUN_1809427f0 - 设置默认异常处理器A2
-// 功能：设置默认异常处理器A2
-#define SetDefaultExceptionHandlerA2 FUN_1809427f0
+// 原始函数名：FUN_1809427f0 - 设置紧急异常处理器
+// 功能：设置紧急异常处理器
+#define SetEmergencyExceptionHandler FUN_1809427f0
 
 // 原始函数名：FUN_180942810 - 设置默认异常处理器A3
 // 功能：设置默认异常处理器A3
