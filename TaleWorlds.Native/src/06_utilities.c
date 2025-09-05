@@ -92658,6 +92658,8 @@ void CleanupSystemResourceA7(void)
   if (SystemResourceCleanupFlagA7 != '\0') {
     ExecuteThreadCleanupA0();
     ExecuteThreadCleanupA1(&SystemResourceDataBufferA0);
+  }
+}
 
 /**
  * @brief 执行系统验证和清理操作
