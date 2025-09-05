@@ -34444,15 +34444,15 @@ void UnwindExceptionResourceValidator(uint8_t ObjectContext,int64_t ValidationCo
     return;
   }
   MemoryAddressMask = (uint64_t)ResourceHashStatusAddress & 0xffffffffffc00000;
-  if (memoryAddressMask != 0) {
-    ResourceIndex = memoryAddressMask + 0x80 + ((int64_t)ResourceHashStatusAddress - memoryAddressMask >> 0x10) * 0x50;
+  if (MemoryAddressMask != 0) {
+    ResourceIndex = MemoryAddressMask + 0x80 + ((int64_t)ResourceHashStatusAddress - MemoryAddressMask >> 0x10) * 0x50;
     ResourceIndex = ResourceIndex - (uint64_t)*(uint *)(ResourceIndex + 4);
-    if ((*(void ***)(memoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
+    if ((*(void ***)(MemoryAddressMask + 0x70) == &ExceptionList) && (*(char *)(ResourceIndex + 0xe) == '\0')) {
       *ResourceHashStatusAddress = *(uint8_t *)(ResourceIndex + 0x20);
       *(uint8_t **)(ResourceIndex + 0x20) = ResourceHashStatusAddress;
-      presourceReferenceCount = (int *)(ResourceIndex + 0x18);
-      *presourceReferenceCount = *presourceReferenceCount + -1;
-      if (*presourceReferenceCount == 0) {
+      ResourceReferenceCount = (int *)(ResourceIndex + 0x18);
+      *ResourceReferenceCount = *ResourceReferenceCount + -1;
+      if (*ResourceReferenceCount == 0) {
         SystemCleanupHandler();
         return;
       }

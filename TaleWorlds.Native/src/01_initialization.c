@@ -18504,7 +18504,7 @@ int InitializeSystemThreadPool(void)
 void SystemNetworkManagerInitializer(void)
 
 {
-  void* RegisterR9;
+  void* RegisterR9Value;
   void** StackPointer;
   uint8_t *SystemStackBufferPointer;
   uint32_t SystemMemoryBufferSize;

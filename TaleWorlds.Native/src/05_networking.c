@@ -2235,24 +2235,24 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
       // 处理连接请求并获取状态缓冲区
-      NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
+      ConnectionStatusBuffer = (NetworkConnectionStatus *)
                HandleConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
                              NetworkConnectionCompletionHandle, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
-      if (NetworkConnectionStatusBuffer != NULL) {
+      if (ConnectionStatusBuffer != NULL) {
         int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionIterationCounter = (long long)ActiveConnectionCount;
         int64_t ConnectionContextAddress = 0;  // 连接上下文基地址指针
         
         // 如果有活跃连接，处理连接数据
         if ((ActiveConnectionCount != 0) && (ConnectionContextAddress = *ConnectionContext, 0 < ActiveConnectionCount)) {
-          NetworkConnectionStatus *ConnectionStatusBufferPointer = NetworkConnectionStatusBuffer;
+          NetworkConnectionStatus *ConnectionStatusBufferPointer = ConnectionStatusBuffer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ConnectionContextDataPointer = (NetworkConnectionStatus *)CalculateContextDataOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, ConnectionStatusBufferPointer);
+            NetworkConnectionStatus *ConnectionContextDataPointer = (NetworkConnectionStatus *)CalculateContextDataOffset(ConnectionContextAddress, ConnectionStatusBuffer, ConnectionStatusBufferPointer);
             
             // 提取连接状态信息
             NetworkConnectionStatus PacketStatus = ConnectionContextDataPointer[ConnectionContextPacketStatusIndex];
