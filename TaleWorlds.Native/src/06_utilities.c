@@ -8328,16 +8328,16 @@ undefined8 ValidateUtilitySystemState(void)
   if (0 < *(int *)(unaff_RBP + 0x18)) {
     do {
       if ((*poperationResult != MemoryValidationConstantA) || (poperationResult[1] != MemoryValidationConstantB)) {
-        lStack0000000000000050 = 0;
+        LocalValidationContext = 0;
         validationStatus = ValidateMemoryAddressA0(memoryAddress,(int *)(unaff_RBP + 0x20) + (longlong)(int)addressOffset * 2,
                               &systemContextBuffer50);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        if (*(longlong *)(lStack0000000000000050 + 8) == 0) {
+        if (*(longlong *)(LocalValidationContext + 8) == 0) {
           return 0x1c;
         }
-        validationStatus = ProcessFloatingPointDataValidationA0(*(longlong *)(lStack0000000000000050 + 8),*pvalidationStatus,
+        validationStatus = ProcessFloatingPointDataValidationA0(*(longlong *)(LocalValidationContext + 8),*pvalidationStatus,
                               *(undefined1 *)(unaff_RBP + 0x1c));
         if ((int)validationStatus != 0) {
           return validationStatus;
