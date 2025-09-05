@@ -63645,7 +63645,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   float ScaleZ;
   float ScaleY;
   float VertexCoordinateZ;
-  uint32_t StackUnsignedValue9C;
+  uint32_t TextureCoordinateV;
   float *SystemFloatPointer;
   uint32_t SystemConfigValue;
   long long SystemConfigurationData;
@@ -63717,13 +63717,13 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
     if (*(int *)(SystemConfigurationData + 0x10) != 0) {
       do {
         pfloatValue7 = (float *)((long long)(int)SystemOperationCode * 0x10 + *(long long *)(SystemConfigurationData + 0x18));
-        fStack_a8 = *pfloatValue7;
-        if (*SystemPrimaryFloatPointer < fStack_a8) {
-          fStack_a8 = *SystemPrimaryFloatPointer;
+        VertexScaleY = *pfloatValue7;
+        if (*SystemPrimaryFloatPointer < VertexScaleY) {
+          VertexScaleY = *SystemPrimaryFloatPointer;
         }
-        fStack_a4 = pfloatValue7[1];
-        if (SystemResourceManager[0x9e] < fStack_a4) {
-          fStack_a4 = SystemResourceManager[0x9e];
+        VertexScaleX = pfloatValue7[1];
+        if (SystemResourceManager[0x9e] < VertexScaleX) {
+          VertexScaleX = SystemResourceManager[0x9e];
         }
         fStack_a0 = pfloatValue7[2];
         if (SystemResourceManager[0x9f] < fStack_a0) {
