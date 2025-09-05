@@ -20945,14 +20945,14 @@ void* * GetSystemMemoryAllocatorReference(void* *memoryAllocatorPointer, ulong l
  * @note 这是系统线程同步的简化版本，确保互斥锁的正确解锁
  * @note 如果解锁失败会抛出C标准错误
  */
-void UnlockSystemMutex(void* *MutexHandle)
+void UnlockSystemMutex(void* *mutexHandle)
 
 {
-  int UnLockOperationResult;
+  int unlockOperationResult;
   
-  UnLockOperationResult = _Mtx_unlock(*MutexHandle);
-  if (UnLockOperationResult != 0) {
-    ThrowSystemError(UnLockOperationResult);
+  unlockOperationResult = _Mtx_unlock(*mutexHandle);
+  if (unlockOperationResult != 0) {
+    ThrowSystemError(unlockOperationResult);
   }
   return;
 }
@@ -20973,23 +20973,23 @@ void UnlockSystemMutex(void* *MutexHandle)
  * 
  * @return void 无返回值
  */
-void LockSystemMutexAndBroadcast(long long SystemContextReference)
+void LockSystemMutexAndBroadcast(long long systemContextReference)
 
 {
-  int LockResult;
+  int lockResult;
   
-  LockResult = _Mtx_lock(SystemContextReference + 0x48);
-  if (LockResult != 0) {
-    ThrowSystemError(LockResult);
+  lockResult = _Mtx_lock(systemContextReference + 0x48);
+  if (lockResult != 0) {
+    ThrowSystemError(lockResult);
   }
-  *(uint8_t *)(SystemContextReference + 0x98) = 1;
-  LockResult = _Cnd_broadcast(SystemContextReference);
-  if (LockResult != 0) {
-    ThrowSystemError(LockResult);
+  *(uint8_t *)(systemContextReference + 0x98) = 1;
+  lockResult = _Cnd_broadcast(systemContextReference);
+  if (lockResult != 0) {
+    ThrowSystemError(lockResult);
   }
-  LockResult = _Mtx_unlock(SystemContextReference + 0x48);
-  if (LockResult != 0) {
-    ThrowSystemError(LockResult);
+  lockResult = _Mtx_unlock(systemContextReference + 0x48);
+  if (lockResult != 0) {
+    ThrowSystemError(lockResult);
   }
   return;
 }
