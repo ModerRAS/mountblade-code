@@ -7432,16 +7432,25 @@ undefined8 CheckSystemStatusA0(longlong param_1,longlong param_2)
 
 
 // 函数: void ResetSystemStateA0(longlong param_1,longlong param_2)
-// 功能：重置系统状态，清理事件处理器
+// 
+// 重置系统状态，清理事件处理器
+// 该函数负责重置系统状态，包括清理事件处理器和相关数据结构
+// 
+// 参数:
+//   param_1 - 系统上下文句柄
+//   param_2 - 系统参数块
+// 
+// 返回值:
+//   无
 void ResetSystemStateA0(longlong param_1,longlong param_2)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int operationResult;
+  longlong systemContext;
   
-  iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    *(undefined4 *)(lStackX_8 + 0x30) = 0;
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContext);
+  if (operationResult == 0) {
+    *(undefined4 *)(systemContext + 0x30) = 0;
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
   }
