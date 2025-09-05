@@ -842,6 +842,222 @@
  */
 #define SetDefaultExceptionHandlerA10 FUN_1809421a0
 
+/**
+ * @brief 设置默认异常处理器A11
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809421c0
+ */
+#define SetDefaultExceptionHandlerA11 FUN_1809421c0
+
+/**
+ * @brief 设置默认异常处理器A12
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809421e0
+ */
+#define SetDefaultExceptionHandlerA12 FUN_1809421e0
+
+/**
+ * @brief 设置默认异常处理器A13
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942200
+ */
+#define SetDefaultExceptionHandlerA13 FUN_180942200
+
+/**
+ * @brief 设置默认异常处理器A14
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942220
+ */
+#define SetDefaultExceptionHandlerA14 FUN_180942220
+
+/**
+ * @brief 设置默认异常处理器A15
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942240
+ */
+#define SetDefaultExceptionHandlerA15 FUN_180942240
+
+/**
+ * @brief 设置默认异常处理器A16
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942260
+ */
+#define SetDefaultExceptionHandlerA16 FUN_180942260
+
+/**
+ * @brief 设置默认异常处理器A17
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942280
+ */
+#define SetDefaultExceptionHandlerA17 FUN_180942280
+
+/**
+ * @brief 设置默认异常处理器A18
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809422a0
+ */
+#define SetDefaultExceptionHandlerA18 FUN_1809422a0
+
+/**
+ * @brief 设置默认异常处理器A19
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809422c0
+ */
+#define SetDefaultExceptionHandlerA19 FUN_1809422c0
+
+/**
+ * @brief 设置默认异常处理器A20
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809422e0
+ */
+#define SetDefaultExceptionHandlerA20 FUN_1809422e0
+
+/**
+ * @brief 设置默认异常处理器A21
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942300
+ */
+#define SetDefaultExceptionHandlerA21 FUN_180942300
+
+/**
+ * @brief 设置默认异常处理器A22
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942320
+ */
+#define SetDefaultExceptionHandlerA22 FUN_180942320
+
+/**
+ * @brief 设置默认异常处理器A23
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942340
+ */
+#define SetDefaultExceptionHandlerA23 FUN_180942340
+
+/**
+ * @brief 设置默认异常处理器A24
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942360
+ */
+#define SetDefaultExceptionHandlerA24 FUN_180942360
+
+/**
+ * @brief 设置默认异常处理器A25
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942380
+ */
+#define SetDefaultExceptionHandlerA25 FUN_180942380
+
+/**
+ * @brief 设置默认异常处理器A26
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809423a0
+ */
+#define SetDefaultExceptionHandlerA26 FUN_1809423a0
+
+/**
+ * @brief 设置默认异常处理器A27
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809423c0
+ */
+#define SetDefaultExceptionHandlerA27 FUN_1809423c0
+
+/**
+ * @brief 设置默认异常处理器A28
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809423e0
+ */
+#define SetDefaultExceptionHandlerA28 FUN_1809423e0
+
+/**
+ * @brief 设置默认异常处理器A29
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942400
+ */
+#define SetDefaultExceptionHandlerA29 FUN_180942400
+
+/**
+ * @brief 设置默认异常处理器A30
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942420
+ */
+#define SetDefaultExceptionHandlerA30 FUN_180942420
+
+/**
+ * @brief 设置默认异常处理器A31
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942440
+ */
+#define SetDefaultExceptionHandlerA31 FUN_180942440
+
+/**
+ * @brief 设置默认异常处理器A32
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942460
+ */
+#define SetDefaultExceptionHandlerA32 FUN_180942460
+
+/**
+ * @brief 设置默认异常处理器A33
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942480
+ */
+#define SetDefaultExceptionHandlerA33 FUN_180942480
+
+/**
+ * @brief 设置默认异常处理器A34
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809424a0
+ */
+#define SetDefaultExceptionHandlerA34 FUN_1809424a0
+
 // 系统处理函数宏定义 (E系列)
 
 /**
@@ -31631,31 +31847,64 @@ void ClearStateFlag2AndExecuteCallback(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902210(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数负责设置默认的异常处理器B，将指定的异常处理器
+ * 指针赋值给系统中的异常处理器指针位置。
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param handlerPosition 处理器位置指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_180902210
+ */
+void SetDefaultExceptionHandlerB(undefined8 exceptionContext, longlong handlerPosition)
 
 {
-  *(undefined **)(param_2 + 0x78) = &DefaultExceptionHandlerB;
+  *(undefined **)(handlerPosition + 0x78) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180902220(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常状态标志
+ * 
+ * 该函数负责清理异常状态标志，当检测到特定的状态标志时，
+ * 清除该标志并调用相应的清理函数。
+ * 
+ * @param cleanupContext 清理上下文参数
+ * @param statePointer 状态指针，包含需要清理的状态标志
+ * 
+ * @note 原始函数名：Unwind_180902220
+ */
+void CleanupExceptionStateFlags(undefined8 cleanupContext, longlong statePointer)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 4) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x118);
+  if ((*(uint *)(statePointer + 0x30) & 4) != 0) {
+    *(uint *)(statePointer + 0x30) = *(uint *)(statePointer + 0x30) & 0xfffffffb;
+    ExecuteStateCleanup(statePointer + 0x118);
   }
   return;
 }
 
 
 
-void Unwind_180902250(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置默认异常处理器到指定位置
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的位置，
+ * 确保异常处理的正确性。
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param targetPosition 目标位置指针，用于设置异常处理器
+ * 
+ * @note 原始函数名：Unwind_180902250
+ */
+void SetDefaultExceptionHandlerToPosition(undefined8 exceptionContext, longlong targetPosition)
 
 {
-  *(undefined **)(param_2 + 0x118) = &DefaultExceptionHandlerB;
+  *(undefined **)(targetPosition + 0x118) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -49775,10 +50024,17 @@ void Unwind_180906bc0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180906bd0(undefined8 param_1,longlong param_2)
-
+/**
+ * @brief 清理异常处理资源
+ * 
+ * 该函数负责清理异常处理相关的资源，包括释放内存和重置状态
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param cleanupContext 清理上下文指针
+ */
+void CleanupExceptionResources(undefined8 exceptionContext, longlong cleanupContext)
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x40) + 8,8,7,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(cleanupContext + 0x40) + 8, 8, 7, FUN_180045af0);
   return;
 }
 
