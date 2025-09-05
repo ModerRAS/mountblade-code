@@ -372,11 +372,11 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkBackoffTimeTwoSeconds 2000          // 退避时间2秒
 
 // 网络数据包常量
-#define NetworkPacketHeaderSize32 0x20                        // 数据包头大小32字节
-#define NetworkPacketTrailerSize16 0x10                       // 数据包尾大小16字节
+#define NetworkPacketHeaderSize32Bytes 0x20                        // 数据包头大小32字节
+#define NetworkPacketTrailerSize16Bytes 0x10                       // 数据包尾大小16字节
 #define NetworkPacketPayloadSize1KB 0x400                      // 数据包负载大小1KB
 #define NetworkMaximumPacketSize2KB 0x800                     // 最大数据包大小2KB
-#define NetworkPacketProcessingSize256 0x100                 // 数据包处理大小256字节
+#define NetworkPacketProcessingSize256Bytes 0x100                 // 数据包处理大小256字节
 #define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
 #define NetworkConnectionCompletionHandleValue 0x7d                   // 连接完成状态句柄值 (125)
@@ -385,7 +385,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
 #define NetworkPacketBasicDecodingMode 0x01                 // 基本解码模式
 #define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
-#define NetworkMagicValidationMask 0x03               // 魔数验证掩码
+#define NetworkMagicValidationMask 0x03                     // 魔数验证掩码
 #define NetworkPacketFirstMagicValidMask 0x01               // 第一个魔数有效掩码
 #define NetworkPacketSecondMagicValidMask 0x02              // 第二个魔数有效掩码
 #define NetworkIntegrityCheckSuccess 0x01                   // 完整性检查成功
