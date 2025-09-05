@@ -888,22 +888,22 @@
 // 异常处理函数宏定义 (U系列 - Unwind函数)
 
 /**
- * @brief 异常处理函数A0
+ * @brief 系统异常处理器A0
  * 
- * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 该函数负责处理系统异常情况，提供异常恢复和清理机制
  * 
  * @note 原始函数名：Unwind_180902100
  */
-#define ExceptionHandlerA0 Unwind_180902100
+#define SystemExceptionHandlerA0 Unwind_180902100
 
 /**
- * @brief 异常处理函数A1
+ * @brief 系统异常处理器A1
  * 
- * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 该函数负责处理系统异常情况，提供异常恢复和清理机制
  * 
  * @note 原始函数名：Unwind_180902110
  */
-#define ExceptionHandlerA1 Unwind_180902110
+#define SystemExceptionHandlerA1 Unwind_180902110
 
 /**
  * @brief 异常处理函数A2
