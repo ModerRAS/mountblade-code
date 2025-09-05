@@ -19120,7 +19120,7 @@ void InitializeMainSystemController(long long SystemParameter)
   long long *MemoryBlock;
   long long **VirtualTableReference;
   long long *GlobalDataReference;
-  long long* InitCounter;
+  long long* InitializationCounter;
   long long *SystemController;
   void* AllocationFlags;
   
@@ -26294,7 +26294,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint SystemInitializationStatus;
   uint32_t SystemProcessFlags;
   uint32_t EncryptionKeyValuec;
-  void* *pEncryptionKeyValue8;
+  void* *EncryptionKeyDataPointer;
   uint32_t *EncryptionKeyPointer;
   uint32_t SystemMemoryAllocationOffset;
   void* MemorySystemDataPointer;
@@ -29168,7 +29168,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   }
   SystemMemoryPoolHandle = 0;
   SystemThreadStackSize = (ulong long)SystemThreadStackSize.SecondaryField << 0x20;
-  pGlobalDataFlags2 = &SystemMemoryAllocatorReference;
+  SecondaryGlobalDataFlagsPtr = &SystemMemoryAllocatorReference;
   SystemDataPointer = &SystemGlobalDataReference;
   if (SystemResourcePoolPointer != 0) {
       SystemCleanupFunction();
@@ -33887,9 +33887,9 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       SystemResourceValue = 0;
       SystemDataIndexCounter = 3;
       pSystemProcessFlags = &SystemResourceTemplateSecondary;
-      pEncryptionKeyValue8 = SystemMemoryAllocationOffsetBuffer;
+      EncryptionKeyDataPointer = SystemMemoryAllocationOffsetBuffer;
       SystemMemoryAllocationOffsetBuffer[0] = 0;
-      EncryptionKeyValue0 = 4;
+      PrimaryEncryptionKeyValue = 4;
       strcpy_s(SystemMemoryAllocationOffsetBuffer,0x10,&SystemResourceString1);
       ProcessSystemResourceQueue(&ResourceDataPointer,&DataBufferPointer,&pSystemProcessFlags);
       pSystemProcessFlags = &SystemMemoryAllocatorReference;
@@ -44394,7 +44394,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* *pStackAllocationSize;
   void* *SystemSecondaryGlobalDataReferencePtr;
   uint32_t StackMemoryOffset;
-  void* *pGlobalDataFlags2;
+  void* *SecondaryGlobalDataFlagsPtr;
   void* *SystemGlobalDataReferencePtr;
   uint32_t SystemThreadStackSize;
   void* *pGlobalDataFlags;
@@ -44505,7 +44505,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   }
   SystemGlobalDataReferencePtr = (void* *)0x0;
   SystemDataProcessingFlag = 0;
-  pGlobalDataFlags2 = &SystemMemoryAllocatorReference;
+  SecondaryGlobalDataFlagsPtr = &SystemMemoryAllocatorReference;
   pGlobalDataFlags = &SystemGlobalDataReference;
   if (pointerUnsigned1b8 != (void* *)0x0) {
       SystemCleanupFunction();
