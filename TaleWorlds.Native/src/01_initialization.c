@@ -43005,7 +43005,7 @@ void DispatchSystemResourcesAndCreateThreads(long long SystemResourceManager)
       if (-1 < SystemCode) {
         SystemThreadFlags = (long long)SystemCode;
         do {
-          if (*(char *)(SystemThreadFlags + *(long long *)(SystemResourceManager + 0x38)) == '_') goto code_r0x0001800630e9;
+          if (*(char *)(SystemThreadFlags + *(long long *)(SystemResourceManager + 0x38)) == '_') goto ThreadValidationComplete;
           SystemCode = SystemCode + -1;
           SystemThreadFlags = SystemThreadFlags + -1;
         } while (-1 < SystemThreadFlags);
@@ -66919,7 +66919,7 @@ SystemResourceFinalize:
     }
     break;
   case 9:
-    if (*(int *)(ConfigurationDataPointer + 200) < 1) goto code_r0x00018007db1b;
+    if (*(int *)(ConfigurationDataPointer + 200) < 1) goto ConfigurationValidationFailed;
     if (0 < SystemOperationResult) {
       do {
         SystemThreadHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
