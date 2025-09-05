@@ -100069,7 +100069,16 @@ void ClearResourceFlagAndCleanupMemory(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_1809102b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 清除次要资源标志并释放系统资源
+ * 
+ * 该函数用于清除次要资源标志并释放系统资源
+ * 确保系统资源被正确释放和回收
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ClearSecondaryResourceFlagAndRelease(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x40) & 1) != 0) {
