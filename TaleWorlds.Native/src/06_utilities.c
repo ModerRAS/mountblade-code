@@ -66,6 +66,159 @@
  */
 #define AcquireSystemDataHandle func_0x0001808e3470
 
+/**
+ * @brief 数据加密处理函数A0
+ * 
+ * 该函数用于处理数据加密操作，保护数据安全性
+ * 
+ * @note 原始函数名：func_0x00018074be80
+ */
+#define EncryptDataA0 func_0x00018074be80
+
+/**
+ * @brief 数据验证处理函数A0
+ * 
+ * 该函数用于验证数据的有效性和完整性
+ * 
+ * @note 原始函数名：func_0x0001808de610
+ */
+#define ValidateDataA0 func_0x0001808de610
+
+/**
+ * @brief 内存分配处理函数A0
+ * 
+ * 该函数用于处理内存分配操作
+ * 
+ * @note 原始函数名：func_0x00018076a7d0
+ */
+#define AllocateMemoryA0 func_0x00018076a7d0
+
+/**
+ * @brief 内存初始化函数A0
+ * 
+ * 该函数用于初始化内存区域
+ * 
+ * @note 原始函数名：func_0x00018076b450
+ */
+#define InitializeMemoryA0 func_0x00018076b450
+
+/**
+ * @brief 数据处理函数A0
+ * 
+ * 该函数用于处理数据操作
+ * 
+ * @note 原始函数名：func_0x00018074b7b0
+ */
+#define ProcessDataA0 func_0x00018074b7b0
+
+/**
+ * @brief 系统状态检查函数A0
+ * 
+ * 该函数用于检查系统状态
+ * 
+ * @note 原始函数名：func_0x000180894c50
+ */
+#define CheckSystemStatusA0 func_0x000180894c50
+
+/**
+ * @brief 系统初始化函数A0
+ * 
+ * 该函数用于初始化系统组件
+ * 
+ * @note 原始函数名：func_0x00018085fa80
+ */
+#define InitializeSystemA0 func_0x00018085fa80
+
+/**
+ * @brief 参数验证函数A0
+ * 
+ * 该函数用于验证参数的有效性
+ * 
+ * @note 原始函数名：func_0x000180855b70
+ */
+#define ValidateParametersA0 func_0x000180855b70
+
+/**
+ * @brief 上下文验证函数A0
+ * 
+ * 该函数用于验证上下文信息
+ * 
+ * @note 原始函数名：func_0x0001808675f0
+ */
+#define ValidateContextA0 func_0x0001808675f0
+
+/**
+ * @brief 上下文处理函数A0
+ * 
+ * 该函数用于处理上下文操作
+ * 
+ * @note 原始函数名：func_0x0001808676a0
+ */
+#define ProcessContextA0 func_0x0001808676a0
+
+/**
+ * @brief 数据转换函数A0
+ * 
+ * 该函数用于数据转换操作
+ * 
+ * @note 原始函数名：func_0x0001808aec10
+ */
+#define ConvertDataA0 func_0x0001808aec10
+
+/**
+ * @brief 内存管理函数A0
+ * 
+ * 该函数用于内存管理操作
+ * 
+ * @note 原始函数名：func_0x00018064e870
+ */
+#define ManageMemoryA0 func_0x00018064e870
+
+/**
+ * @brief 系统清理函数A0
+ * 
+ * 该函数用于清理系统资源
+ * 
+ * @note 原始函数名：func_0x00018005f320
+ */
+#define CleanupSystemA0 func_0x00018005f320
+
+/**
+ * @brief 系统配置函数A0
+ * 
+ * 该函数用于配置系统参数
+ * 
+ * @note 原始函数名：func_0x000180060c00
+ */
+#define ConfigureSystemA0 func_0x000180060c00
+
+/**
+ * @brief 系统处理函数A0
+ * 
+ * 该函数用于处理系统操作
+ * 
+ * @note 原始函数名：func_0x000180060c10
+ */
+#define ProcessSystemA0 func_0x000180060c10
+
+/**
+ * @brief 数据初始化函数A0
+ * 
+ * 该函数用于初始化数据
+ * 
+ * @note 原始函数名：func_0x000180060150
+ */
+#define InitializeDataA0 func_0x000180060150
+
+/**
+ * @brief 系统操作函数A0
+ * 
+ * 该函数用于执行系统操作
+ * 
+ * @note 原始函数名：func_0x00018006d490
+ */
+#define ExecuteSystemOperationA0 func_0x00018006d490
+
 // 全局指针设置函数宏定义 (A0-A23)
 #define SetGlobalDataPointerA0 InitializeGlobalDataPointerA0
 #define SetGlobalDataPointerA1 InitializeGlobalDataPointerA1
@@ -24590,140 +24743,164 @@ void InitializeSystemComponentsB0(void)
 
 
 
-ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 验证并分配内存
+ * 
+ * 该函数负责验证内存参数并分配所需的内存空间。它会检查内存边界、
+ * 验证分配参数，并执行实际的内存分配操作。
+ * 
+ * @param MemoryContext 内存上下文参数
+ * @param AllocationParams 分配参数数组
+ * @return ulonglong 分配结果或错误代码
+ * 
+ * @note 原始函数名：FUN_18089c030
+ */
+ulonglong ValidateAndAllocateMemory(longlong MemoryContext, undefined8 *AllocationParams)
 
 {
-  int iVar1;
-  int operationResult;
-  uint validationStatus;
-  ulonglong memoryBaseAddress;
-  uint operationResult;
-  undefined8 *pdataFlags;
-  longlong lVar7;
-  int aiStackX_10 [2];
+  int validationCheck;
+  int allocationResult;
+  uint memoryValidationStatus;
+  ulonglong allocatedAddress;
+  uint operationOutcome;
+  undefined8 *dataFlagPointer;
+  longlong allocationSize;
+  int stackValidationArray [2];
   
-  if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(int *)(AllocationParams[1] + 0x18) != 0) {
     return 0x1c;
   }
-  memoryBaseAddress = FUN_1808aed00(*param_2,param_1,4);
-  if ((int)memoryBaseAddress != 0) {
-    return memoryBaseAddress;
+  allocatedAddress = FUN_1808aed00(*AllocationParams,MemoryContext,4);
+  if ((int)allocatedAddress != 0) {
+    return allocatedAddress;
   }
-  aiStackX_10[0] = 0;
-  memoryBaseAddress = FUN_1808afe30(*param_2,aiStackX_10);
-  operationResult = aiStackX_10[0];
-  validationStatus = 0x1c;
-  if ((int)memoryBaseAddress != 0) {
-    return memoryBaseAddress;
+  stackValidationArray[0] = 0;
+  allocatedAddress = FUN_1808afe30(*AllocationParams,stackValidationArray);
+  allocationResult = stackValidationArray[0];
+  memoryValidationStatus = 0x1c;
+  if ((int)allocatedAddress != 0) {
+    return allocatedAddress;
   }
-  lVar7 = (longlong)aiStackX_10[0];
-  operationResult = (int)*(uint *)(param_1 + 0x14) >> 0x1f;
-  if (((int)((*(uint *)(param_1 + 0x14) ^ operationResult) - operationResult) < aiStackX_10[0]) &&
-     (memoryBaseAddress = FUN_180882f00(param_1 + 8,aiStackX_10[0]), (int)memoryBaseAddress != 0)) {
-    return memoryBaseAddress;
+  allocationSize = (longlong)stackValidationArray[0];
+  operationOutcome = (int)*(uint *)(MemoryContext + 0x14) >> 0x1f;
+  if (((int)((*(uint *)(MemoryContext + 0x14) ^ operationOutcome) - operationOutcome) < stackValidationArray[0]) &&
+     (allocatedAddress = FUN_180882f00(MemoryContext + 8,stackValidationArray[0]), (int)allocatedAddress != 0)) {
+    return allocatedAddress;
   }
-  iVar1 = *(int *)(param_1 + 0x10);
-  if (iVar1 < operationResult) {
-    pdataFlags = (undefined8 *)(*(longlong *)(param_1 + 8) + (longlong)iVar1 * 8);
-    if (0 < operationResult - iVar1) {
-      memoryBaseAddress = (ulonglong)(uint)(operationResult - iVar1);
+  validationCheck = *(int *)(MemoryContext + 0x10);
+  if (validationCheck < operationOutcome) {
+    dataFlagPointer = (undefined8 *)(*(longlong *)(MemoryContext + 8) + (longlong)validationCheck * 8);
+    if (0 < operationOutcome - validationCheck) {
+      allocatedAddress = (ulonglong)(uint)(operationOutcome - validationCheck);
       do {
-        if (pdataFlags != (undefined8 *)0x0) {
-          *pdataFlags = 0;
+        if (dataFlagPointer != (undefined8 *)0x0) {
+          *dataFlagPointer = 0;
         }
-        pdataFlags = pdataFlags + 1;
-        memoryBaseAddress = memoryBaseAddress - 1;
-      } while (memoryBaseAddress != 0);
+        dataFlagPointer = dataFlagPointer + 1;
+        allocatedAddress = allocatedAddress - 1;
+      } while (allocatedAddress != 0);
     }
   }
-  *(int *)(param_1 + 0x10) = operationResult;
-  if (operationResult != 0) {
-    if (*(int *)(param_2[1] + 0x18) == 0) {
-      memoryBaseAddress = FUN_1808aed00(*param_2,*(undefined8 *)(param_1 + 8),lVar7 << 3);
-      if ((int)memoryBaseAddress == 0) goto LAB_18089c131;
+  *(int *)(MemoryContext + 0x10) = operationOutcome;
+  if (operationOutcome != 0) {
+    if (*(int *)(AllocationParams[1] + 0x18) == 0) {
+      allocatedAddress = FUN_1808aed00(*AllocationParams,*(undefined8 *)(MemoryContext + 8),allocationSize << 3);
+      if ((int)allocatedAddress == 0) goto LAB_18089c131;
     }
     else {
-      memoryBaseAddress = 0x1c;
+      allocatedAddress = 0x1c;
     }
-    if ((int)memoryBaseAddress != 0) {
-      return memoryBaseAddress;
+    if ((int)allocatedAddress != 0) {
+      return allocatedAddress;
     }
   }
 ValidationLabelA:
-  memoryBaseAddress = FUN_1808ad600(param_2,param_1 + 0x18);
-  if ((int)memoryBaseAddress == 0) {
-    if (*(uint *)(param_2 + 8) < 0x7c) {
-      validationStatus = 0;
+  allocatedAddress = FUN_1808ad600(AllocationParams,MemoryContext + 0x18);
+  if ((int)allocatedAddress == 0) {
+    if (*(uint *)(AllocationParams + 8) < 0x7c) {
+      memoryValidationStatus = 0;
     }
-    else if (*(int *)(param_2[1] + 0x18) == 0) {
-      validationStatus = FUN_1808aed00(*param_2,param_1 + 4,4);
+    else if (*(int *)(AllocationParams[1] + 0x18) == 0) {
+      memoryValidationStatus = FUN_1808aed00(*AllocationParams,MemoryContext + 4,4);
     }
-    if (validationStatus == 0) {
-      memoryBaseAddress = func_0x000180069ee0(param_1);
+    if (memoryValidationStatus == 0) {
+      allocatedAddress = func_0x000180069ee0(MemoryContext);
     }
     else {
-      memoryBaseAddress = (ulonglong)validationStatus;
+      allocatedAddress = (ulonglong)memoryValidationStatus;
     }
   }
-  return memoryBaseAddress;
+  return allocatedAddress;
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089c190(longlong param_1,undefined8 *param_2)
+/**
+ * @brief 验证内存状态
+ * 
+ * 该函数负责验证内存状态和安全性。它会检查内存完整性、
+ * 验证访问权限，并执行必要的安全检查操作。
+ * 
+ * @param ValidationContext 验证上下文参数
+ * @param SecurityParams 安全参数数组
+ * @return ulonglong 验证结果或状态代码
+ * 
+ * @note 原始函数名：FUN_18089c190
+ */
+ulonglong ValidateMemoryStatus(longlong ValidationContext, undefined8 *SecurityParams)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined4 validationStatus;
-  undefined4 memoryBaseAddress;
-  uint operationResult;
-  uint dataFlags;
-  ulonglong validationOutcome;
-  undefined4 *psecurityCheckResult;
-  uint uVar9;
-  undefined8 *puVar10;
-  longlong validationContext1;
-  longlong validationContext2;
-  int iVar13;
-  undefined8 *puStackX_18;
-  undefined8 *puStack_88;
-  undefined8 uStack_80;
-  undefined4 uStack_78;
-  undefined4 uStack_74;
-  undefined4 uStack_70;
-  undefined4 uStack_6c;
-  undefined1 auStack_68 [32];
-  undefined1 auStack_48 [32];
+  undefined8 tempValue1;
+  undefined4 tempValue2;
+  undefined4 securityStatus;
+  undefined4 memoryAddress;
+  uint processResult;
+  uint dataAccessFlags;
+  ulonglong validationResult;
+  undefined4 *securityCheckPointer;
+  uint validationFlag;
+  undefined8 *contextPointer;
+  longlong primaryContext;
+  longlong secondaryContext;
+  int indexCounter;
+  undefined8 *stackPointer1;
+  undefined8 *stackPointer2;
+  undefined8 stackValue1;
+  undefined4 securityValue1;
+  undefined4 securityValue2;
+  undefined4 securityValue3;
+  undefined4 securityValue4;
+  undefined1 securityBuffer1 [32];
+  undefined1 securityBuffer2 [32];
   
-  validationOutcome = FUN_1808ddc20(param_2,auStack_48,1,0x4f4c4d50);
-  if ((int)validationOutcome != 0) {
-    return validationOutcome;
+  validationResult = FUN_1808ddc20(SecurityParams,securityBuffer2,1,0x4f4c4d50);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  validationOutcome = FUN_1808ddc20(param_2,auStack_68,0,0x424c4d50);
-  if ((int)validationOutcome != 0) {
-    return validationOutcome;
+  validationResult = FUN_1808ddc20(SecurityParams,securityBuffer1,0,0x424c4d50);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  validationOutcome = FUN_180899360(param_2,param_1 + 0x10);
-  if ((int)validationOutcome != 0) {
-    return validationOutcome;
+  validationResult = FUN_180899360(SecurityParams,ValidationContext + 0x10);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(int *)(SecurityParams[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationOutcome = ProcessDataBlocksA1(*param_2,param_1 + 0x38);
-  if ((int)validationOutcome != 0) {
-    return validationOutcome;
+  validationResult = ProcessDataBlocksA1(*SecurityParams,ValidationContext + 0x38);
+  if ((int)validationResult != 0) {
+    return validationResult;
   }
-  psecurityCheckResult = (undefined4 *)FUN_180847820();
-  validationOutcome = 0;
-  uStack_78 = *psecurityCheckResult;
-  uStack_74 = psecurityCheckResult[1];
-  uStack_70 = psecurityCheckResult[2];
-  uStack_6c = psecurityCheckResult[3];
-  operationResult = 0;
+  securityCheckPointer = (undefined4 *)FUN_180847820();
+  validationResult = 0;
+  securityValue1 = *securityCheckPointer;
+  securityValue2 = securityCheckPointer[1];
+  securityValue3 = securityCheckPointer[2];
+  securityValue4 = securityCheckPointer[3];
+  processResult = 0;
   if (*(uint *)(param_2 + 8) < 0x6d) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       uVar1 = *param_2;
