@@ -28562,7 +28562,7 @@ SystemCompletionCheck:
     threadBuffer[bufferOffset] = 0;
   }
   secondaryOperationFlags = *(uint32_t *)(ThreadParams + 0x1c);
-  threadHandle = ConcatenatedSystemValue(operationFlags2,(uint32_t)threadHandle);
+  threadHandle = ConcatenatedSystemValue(secondaryOperationFlags,(uint32_t)threadHandle);
   threadStatus = dataLength;
   if (dataLength != 0xfffffffa) {
     dataLength = dataLength + 7;
@@ -28632,12 +28632,12 @@ void* SystemResourceManagerNodeHandler(void* SystemResourceManager,void* Configu
   uint32_t StackAllocationFlags;
   ulong long ProcessedCount;
   
-  ResourceHandle1 = (void* *)0x0;
-  ResourceHandle2 = (void* *)0x0;
+  PrimaryResourceHandle = (void* *)0x0;
+  SecondaryResourceHandle = (void* *)0x0;
   AllocationSize = 0;
   SystemAllocationContext = 0;
   StackAllocationFlags = 3;
-  InitializeSystemResourceManager(SystemGlobalStatusFlags,&ResourceHandle1,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
+  InitializeSystemResourceManager(SystemGlobalStatusFlags,&PrimaryResourceHandle,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
   ResourceEndPointer = ResourceHandle2;
   ResourceStartPointer = ResourceHandle1;
   ResourceCount = (long long)ResourceHandle2 - (long long)ResourceHandle1 >> 5;
