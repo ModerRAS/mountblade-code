@@ -377,6 +377,26 @@
 // 功能：执行工具回调函数，处理参数传递
 #define ExecuteUtilityCallbackB2 FUN_180942580
 
+// 原始函数名：FUN_180894000 - 系统初始化函数B0
+// 功能：执行系统初始化操作
+#define InitializeSystemB0 FUN_180894000
+
+// 原始函数名：FUN_180894037 - 系统清理函数B0
+// 功能：执行系统清理操作
+#define CleanupSystemB0 FUN_180894037
+
+// 原始函数名：FUN_18089406b - 系统重置函数B0
+// 功能：重置系统状态
+#define ResetSystemB0 FUN_18089406b
+
+// 原始函数名：FUN_180894300 - 系统验证函数B0
+// 功能：验证系统状态
+#define ValidateSystemB0 FUN_180894300
+
+// 原始函数名：FUN_180894fb0 - 资源处理函数B0
+// 功能：处理资源操作
+#define ProcessResourceB0 FUN_180894fb0
+
 // 原始函数名：FUN_1809425e0 - 工具状态重置函数C0
 // 功能：重置工具系统状态，清理临时数据
 #define ResetUtilitySystemStateC0 FUN_1809425e0
