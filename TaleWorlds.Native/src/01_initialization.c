@@ -43091,12 +43091,12 @@ void DispatchSystemResourcesAndCreateThreads(long long SystemResourceManager)
   if (SystemInitializationStatus < 9) {
     switch(SystemInitializationStatus) {
     case 1:
-      SystemStackBuffer1[0] = SystemStackBuffer1[0] & 0xffffff00;
+      systemProcessingBuffer[0] = systemProcessingBuffer[0] & 0xffffff00;
       SystemOperationCounterPointer = &SystemStringTemplate;
       if (*(void* **)(SystemResourceManager + 0x38) != (void* *)0x0) {
         SystemOperationCounterPointer = *(void* **)(SystemResourceManager + 0x38);
       }
-      ProcessSystemMemoryOperation(*(long long *)(SystemResourceManager + 0x20) + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,SystemOperationCounterPointer,SystemStackBuffer1);
+      ProcessSystemMemoryOperation(*(long long *)(SystemResourceManager + 0x20) + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,SystemOperationCounterPointer,systemProcessingBuffer);
       plocalDataIndex = (long long *)(*(long long *)(SystemResourceManager + 0x20) + 0x20);
       (**(code **)(*plocalDataIndex + 0x108))(plocalDataIndex,1);
       plocalDataIndex = (long long *)(*(long long *)(SystemResourceManager + 0x20) + 0x20);
@@ -43210,8 +43210,8 @@ SystemThreadFlagCheck:
       break;
     case 8:
       if ((ConsoleHandle != 0) && (ConsoleHandlePointer != 0)) {
-        SystemStackBuffer1[0] = *(uint *)(SystemResourceManager + 0x68);
-        SetConsoleScreenBufferCapacityValue(ConsoleHandle,SystemStackBuffer1[0]);
+        systemProcessingBuffer[0] = *(uint *)(SystemResourceManager + 0x68);
+        SetConsoleScreenBufferCapacityValue(ConsoleHandle,systemProcessingBuffer[0]);
       }
     }
   }
@@ -45969,7 +45969,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
   void* ResourceAddress;
   void* CurrentThreadIdentifier;
   long long *SystemThreadFlagsPointer;
-  uint SystemStackBuffer1 [2];
+  uint systemConsoleBuffer [2];
   long long LocalCounterValue;
   long long LocalSystemFlags;
   long long *pStackResourcePointer;
@@ -45986,13 +45986,13 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
   
   ResourceAddress = GetCurrentThread();
   SetThreadPriority(ResourceAddress,0);
-  SystemStackBuffer1[0] = 0;
+  systemProcessingBuffer[0] = 0;
   LocalSystemFlags = 0;
   LocalCounterValue = 0;
   while( true ) {
     while( true ) {
       systemCounter = GetQueuedCompletionStatus
-                        (*(void* *)(SystemResourceManager + 0x28),SystemStackBuffer1,&LocalSystemFlags,&LocalCounterValue,
+                        (*(void* *)(SystemResourceManager + 0x28),systemConsoleBuffer,&LocalSystemFlags,&LocalCounterValue,
                          0xffffffff);
       SystemThreadHandle = LocalCounterValue;
       if (systemCounter == 0) break;
@@ -46000,7 +46000,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
         return;
       }
       *(long long *)(LocalCounterValue + 0x1c8) =
-           *(long long *)(LocalCounterValue + 0x1c8) - (ulong long)SystemStackBuffer1[0];
+           *(long long *)(LocalCounterValue + 0x1c8) - (ulong long)systemProcessingBuffer[0];
       ResourceAddress = SystemManagerPointerStorage;
       if (*(long long *)(LocalCounterValue + 0x1c8) < 1) {
         resourceDataIndex = *(long long *)(SystemResourceManager + 0x20);
@@ -59291,7 +59291,7 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   ulong long AllocationContext;
   uint *HashNodeData2;
   bool IsOperationComplete;
-  uint32_t SystemStackBuffer1 [2];
+  uint32_t systemHashBuffer [2];
   uint *StackPointer1;
   float *FloatPointer1;
   long long StackValue1;
@@ -59549,8 +59549,8 @@ SystemResourceProcessingComplete:
               HashNodeData2 = StackPointer1;
             }
             else {
-              SystemStackBuffer1[0] = 0xffffffff;
-              HashEntryPointer2 = SystemStackBuffer1;
+              systemProcessingBuffer[0] = 0xffffffff;
+              HashEntryPointer2 = systemHashBuffer;
               HashNodeData2 = *(uint **)(StackPointer1 + 10);
             }
             ProcessSystemMemoryAllocation(HashNodeData2 + 0xce2,HashEntryPointer2,MemoryOffsetArray);
