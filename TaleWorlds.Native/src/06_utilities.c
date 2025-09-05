@@ -45017,60 +45017,62 @@ void Unwind_180905b70(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905b90(undefined8 param_1,longlong param_2)
+// 异常处理：清理线程本地存储和异常处理器
+// 在异常展开时清理线程本地存储和相关资源
+void UnwindCleanupThreadLocalStorageAndExceptionHandlers(undefined8 exceptionContext, longlong threadContext)
 
 {
-  int *piVar1;
-  char *pcVar2;
-  undefined8 *puVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  int *exceptionHandlerCount;
+  char *validationFlag;
+  undefined8 *exceptionHandlerPointer;
+  longlong *threadLocalStorage;
+  longlong resourceIterator;
+  ulonglong memoryRegion;
   
-  plVar4 = *(longlong **)(param_2 + 0x38);
-  puVar3 = (undefined8 *)*plVar4;
-  if (puVar3 != (undefined8 *)0x0) {
-    if ((undefined8 *)puVar3[3] != (undefined8 *)0x0) {
-      *(undefined8 *)puVar3[3] = 0;
+  threadLocalStorage = *(longlong **)(threadContext + 0x38);
+  exceptionHandlerPointer = (undefined8 *)*threadLocalStorage;
+  if (exceptionHandlerPointer != (undefined8 *)0x0) {
+    if ((undefined8 *)exceptionHandlerPointer[3] != (undefined8 *)0x0) {
+      *(undefined8 *)exceptionHandlerPointer[3] = 0;
     }
-    (**(code **)*puVar3)(puVar3,0);
+    (**(code **)*exceptionHandlerPointer)(exceptionHandlerPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar3);
+    CleanupExceptionResources(exceptionHandlerPointer);
   }
-  if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
+  if ((threadLocalStorage[6] != 0) && (*(longlong *)(threadLocalStorage[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    TerminateSystemE0();
+    TerminateSystemOnError();
   }
-  lVar5 = plVar4[5];
-  while (lVar5 != 0) {
-    pcVar2 = (char *)(lVar5 + 0x141);
-    lVar5 = *(longlong *)(lVar5 + 0x138);
-    if (*pcVar2 != '\0') {
+  resourceIterator = threadLocalStorage[5];
+  while (resourceIterator != 0) {
+    validationFlag = (char *)(resourceIterator + 0x141);
+    resourceIterator = *(longlong *)(resourceIterator + 0x138);
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
-      TerminateSystemE0();
+      TerminateSystemOnError();
     }
   }
-  puVar3 = (undefined8 *)plVar4[3];
-  if (puVar3 == (undefined8 *)0x0) {
+  exceptionHandlerPointer = (undefined8 *)threadLocalStorage[3];
+  if (exceptionHandlerPointer == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)puVar3 & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)puVar3 - uVar6 >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *puVar3 = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  memoryRegion = (ulonglong)exceptionHandlerPointer & 0xffffffffffc00000;
+  if (memoryRegion != 0) {
+    resourceIterator = memoryRegion + 0x80 + ((longlong)exceptionHandlerPointer - memoryRegion >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *exceptionHandlerPointer = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = exceptionHandlerPointer;
+      exceptionHandlerCount = (int *)(resourceIterator + 0x18);
+      *exceptionHandlerCount = *exceptionHandlerCount - 1;
+      if (*exceptionHandlerCount == 0) {
+        FreeExceptionMemory();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          puVar3,uVar6,0xfffffffffffffffe);
+      ProcessExceptionCleanup(memoryRegion,CONCAT71(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
+                          exceptionHandlerPointer,memoryRegion,0xfffffffffffffffe);
     }
   }
   return;
@@ -46011,60 +46013,62 @@ void Unwind_180905f60(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905f70(undefined8 param_1,longlong param_2)
+// 异常处理：清理线程特定存储和异常处理器
+// 在异常展开时清理线程特定存储和相关资源
+void UnwindCleanupThreadSpecificStorageAndExceptionHandlers(undefined8 exceptionContext, longlong threadContext)
 
 {
-  int *piVar1;
-  char *pcVar2;
-  undefined8 *puVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  ulonglong uVar6;
+  int *exceptionHandlerCount;
+  char *validationFlag;
+  undefined8 *exceptionHandlerPointer;
+  longlong *threadSpecificStorage;
+  longlong resourceIterator;
+  ulonglong memoryRegion;
   
-  plVar4 = *(longlong **)(param_2 + 0x40);
-  puVar3 = (undefined8 *)*plVar4;
-  if (puVar3 != (undefined8 *)0x0) {
-    if ((undefined8 *)puVar3[3] != (undefined8 *)0x0) {
-      *(undefined8 *)puVar3[3] = 0;
+  threadSpecificStorage = *(longlong **)(threadContext + 0x40);
+  exceptionHandlerPointer = (undefined8 *)*threadSpecificStorage;
+  if (exceptionHandlerPointer != (undefined8 *)0x0) {
+    if ((undefined8 *)exceptionHandlerPointer[3] != (undefined8 *)0x0) {
+      *(undefined8 *)exceptionHandlerPointer[3] = 0;
     }
-    (**(code **)*puVar3)(puVar3,0);
+    (**(code **)*exceptionHandlerPointer)(exceptionHandlerPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar3);
+    CleanupExceptionResources(exceptionHandlerPointer);
   }
-  if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
+  if ((threadSpecificStorage[6] != 0) && (*(longlong *)(threadSpecificStorage[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    TerminateSystemE0();
+    TerminateSystemOnError();
   }
-  lVar5 = plVar4[5];
-  while (lVar5 != 0) {
-    pcVar2 = (char *)(lVar5 + 0x3541);
-    lVar5 = *(longlong *)(lVar5 + 0x3538);
-    if (*pcVar2 != '\0') {
+  resourceIterator = threadSpecificStorage[5];
+  while (resourceIterator != 0) {
+    validationFlag = (char *)(resourceIterator + 0x3541);
+    resourceIterator = *(longlong *)(resourceIterator + 0x3538);
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
-      TerminateSystemE0();
+      TerminateSystemOnError();
     }
   }
-  puVar3 = (undefined8 *)plVar4[3];
-  if (puVar3 == (undefined8 *)0x0) {
+  exceptionHandlerPointer = (undefined8 *)threadSpecificStorage[3];
+  if (exceptionHandlerPointer == (undefined8 *)0x0) {
     return;
   }
-  uVar6 = (ulonglong)puVar3 & 0xffffffffffc00000;
-  if (uVar6 != 0) {
-    lVar5 = uVar6 + 0x80 + ((longlong)puVar3 - uVar6 >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(uVar6 + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *puVar3 = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = puVar3;
-      piVar1 = (int *)(lVar5 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
-        FUN_18064d630();
+  memoryRegion = (ulonglong)exceptionHandlerPointer & 0xffffffffffc00000;
+  if (memoryRegion != 0) {
+    resourceIterator = memoryRegion + 0x80 + ((longlong)exceptionHandlerPointer - memoryRegion >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(memoryRegion + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *exceptionHandlerPointer = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = exceptionHandlerPointer;
+      exceptionHandlerCount = (int *)(resourceIterator + 0x18);
+      *exceptionHandlerCount = *exceptionHandlerCount - 1;
+      if (*exceptionHandlerCount == 0) {
+        FreeExceptionMemory();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar6,CONCAT71(0xff000000,*(void ***)(uVar6 + 0x70) == &ExceptionList),
-                          puVar3,uVar6,0xfffffffffffffffe);
+      ProcessExceptionCleanup(memoryRegion,CONCAT71(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
+                          exceptionHandlerPointer,memoryRegion,0xfffffffffffffffe);
     }
   }
   return;
@@ -46072,23 +46076,25 @@ void Unwind_180905f70(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905f80(undefined8 param_1,longlong param_2)
+// 异常处理：清理线程资源队列
+// 在异常展开时清理线程资源队列中的所有资源
+void UnwindCleanupThreadResourceQueue(undefined8 exceptionContext, longlong threadContext)
 
 {
-  longlong validationContext;
-  longlong *plVar2;
-  longlong lVar3;
+  longlong queueEndPointer;
+  longlong *resourceQueue;
+  longlong resourceIterator;
   
-  plVar2 = *(longlong **)(param_2 + 0x40);
-  validationContext = plVar2[1];
-  for (lVar3 = *plVar2; lVar3 != validationContext; lVar3 = lVar3 + 0x1a8) {
-    FUN_180069530(lVar3);
+  resourceQueue = *(longlong **)(threadContext + 0x40);
+  queueEndPointer = resourceQueue[1];
+  for (resourceIterator = *resourceQueue; resourceIterator != queueEndPointer; resourceIterator = resourceIterator + 0x1a8) {
+    ReleaseResourceFromQueue(resourceIterator);
   }
-  if (*plVar2 == 0) {
+  if (*resourceQueue == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  TerminateSystemE0();
+  TerminateSystemOnError();
 }
 
 
