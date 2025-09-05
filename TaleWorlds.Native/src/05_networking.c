@@ -1625,7 +1625,7 @@ uint32_t NetworkConnectionPoolMetadata;
 /**
  * @brief 网络连接池统计信息
  */
-uint32_t NetworkConnectionPoolStatisticsData;
+uint32_t NetworkConnectionPoolStatisticsCount;
 
 /**
  * @brief 网络连接池配置
@@ -1640,7 +1640,7 @@ uint32_t NetworkConnectionPoolHealthStatus;
 /**
  * @brief 网络连接池性能指标
  */
-uint32_t NetworkConnectionPoolPerformanceMetrics;
+uint32_t NetworkConnectionPoolPerformanceIndicator;
 
 /**
  * @brief 网络连接池分配计数
@@ -1712,7 +1712,7 @@ void InitializeNetworkConnectionPool(void)
   NetworkConnectionPoolMaximumCapacity = NetworkConnectionPoolCapacity;
   NetworkConnectionPoolAllocationCount = 0;
   NetworkConnectionPoolDeallocationCount = 0;
-  NetworkConnectionPoolHealthIndicator = NetworkHealthStatusNormal;
+  NetworkConnectionPoolHealthStatus = NetworkHealthStatusNormal;
   
   // 初始化连接池管理器
   NetworkConnectionPoolManagerHandle = NetworkManagerHandleInvalid;
@@ -3097,21 +3097,21 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int64_t StatusIterator = 0;                           // 网络状态处理迭代器
   int64_t *NetworkConnectionContextBuffer = NULL;                             // 网络连接上下文缓冲区
   NetworkStatus *NetworkConnectionStatusPointer = NULL;                          // 网络连接状态处理指针
-  int32_t NetworkConnectionProcessingCode = 0;                              // 网络连接处理代码
-  int64_t NetworkProcessedPacketIdentifier = 0;                                    // 已处理网络数据包标识符
-  int32_t NetworkPacketIndex = 0;                                           // 网络数据包索引
+  int32_t ProcessingCode = 0;                              // 网络连接处理代码
+  int64_t ProcessedPacketId = 0;                                    // 已处理网络数据包标识符
+  int32_t PacketIndex = 0;                                           // 网络数据包索引
   int32_t MaxInt32Value = 0;                                    // 本地网络最大32位整数值
   int64_t *ConnectionOperationBuffer = NULL;                               // 连接操作缓冲区
-  if (NetworkConnectionProcessingCode == 0) {
+  if (ProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)CalculateConnectionParameterOffset(NetworkConnectionContextBuffer)) && (*NetworkConnectionContextBuffer != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionContextBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionContextBuffer = (int64_t)NetworkProcessedPacketIdentifier;
-    *(int *)CalculateConnectionParameterOffset(NetworkConnectionContextBuffer) = NetworkConnectionProcessingCode;
+    *NetworkConnectionContextBuffer = (int64_t)ProcessedPacketId;
+    *(int *)CalculateConnectionParameterOffset(NetworkConnectionContextBuffer) = ProcessingCode;
     return NetworkOperationSuccess;
   }
-  if (NetworkPacketIndex * ConnectionEntrySize - 1U < MaxInt32Value) {
+  if (PacketIndex * ConnectionEntrySize - 1U < MaxInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            NetworkConnectionCompletionHandle, 0);
