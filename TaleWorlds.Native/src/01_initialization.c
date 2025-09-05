@@ -1108,8 +1108,8 @@ void* SystemDataNodeMemoryManager;         // 系统数据节点内存管理器
 void* SystemDataNodeRenderingManager;          // 系统数据节点渲染管理器
 void* SystemDataNodeNetworkManager;        // 系统数据节点网络管理器
 void* SystemDataNodeAudioManager;           // 系统数据节点音频管理器
-void* SystemDataNodeSenary;            // 系统数据节点第六节点
-void* SystemDataNodeSeptenary;         // 系统数据节点第七节点
+void* SystemDataNodeInputManager;            // 系统数据节点输入管理器
+void* SystemDataNodePhysicsManager;         // 系统数据节点物理管理器
 void* SystemDataNodeOctonary;          // 系统数据节点第八节点
 void* SystemDataNodeNonary;            // 系统数据节点第九节点
 void* SystemDataNodeDenary;            // 系统数据节点第十节点
