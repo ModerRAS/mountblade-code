@@ -4822,11 +4822,11 @@ int32_t UtilityConfigureStatus1;
 //   无
 void SetupUtilityMemory(void);
 // 工具系统设置内存数据变量
-undefined UtilitySetupMemoryData1;
-undefined UtilitySetupMemoryData2;
-undefined UtilitySetupMemoryData3;
-undefined UtilitySetupMemoryData4;
-undefined UtilitySetupMemoryStatus1;
+void* UtilitySetupMemoryData1;
+void* UtilitySetupMemoryData2;
+void* UtilitySetupMemoryData3;
+void* UtilitySetupMemoryData4;
+int32_t UtilitySetupMemoryStatus1;
 
 // 函数: void AllocateUtilityBuffers(void)
 // 
@@ -7602,25 +7602,37 @@ undefined8 ForceResourceRelease(longlong resourceDescriptor)
 
 
 
-// 函数: undefined4 ReleaseStackResource(void)
-// 功能：释放栈资源，从寄存器获取资源指针并执行资源释放操作
+/**
+ * @brief 释放栈资源
+ * 
+ * 该函数负责释放栈中的资源，通过寄存器值获取资源指针并执行资源释放操作。
+ * 函数会验证资源指针的有效性，确保不会释放无效的资源。
+ * 
+ * @param void 无参数
+ * @return undefined4 释放操作结果状态码：
+ *         - 0x1c: 资源无效或释放失败
+ *         - 其他值: 操作结果状态
+ * 
+ * @note 此函数会无条件执行资源释放，确保栈资源被正确清理
+ * @warning 确保寄存器值有效，否则可能导致未定义行为
+ */
 undefined4 ReleaseStackResource(void)
 
 {
-  longlong registerValue;
-  longlong resourcePointer;
+  longlong cpuRegisterValue;
+  longlong stackResourcePointer;
   
-  if (registerValue == 0) {
-    resourcePointer = 0;
+  if (cpuRegisterValue == 0) {
+    stackResourcePointer = 0;
   }
   else {
-    resourcePointer = registerValue + -8;
+    stackResourcePointer = cpuRegisterValue + -8;
   }
-  if (*(longlong *)(resourcePointer + 0x10) == 0) {
+  if (*(longlong *)(stackResourcePointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(resourcePointer + 0x10),1);
+  ReleaseResource(*(longlong *)(stackResourcePointer + 0x10),1);
 }
 
 

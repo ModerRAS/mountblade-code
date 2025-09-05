@@ -19841,15 +19841,6 @@ uint32_t FinalSystemInitialization(void)
  * @param SystemResourceManager 系统资源管理器指针，用于管理系统资源
  * @note 这是系统启动时调用的第一个主要函数
  */
-/**
- * @brief 初始化游戏主系统
- * 
- * 该函数是游戏系统的主入口点，负责初始化游戏的核心系统组件。
- * 函数会创建系统堆栈缓冲区，设置系统事件表大小，并调用后续的初始化函数。
- * 
- * @param SystemResourceManager 系统资源管理器指针，用于管理系统资源
- * @note 这是系统启动时调用的第一个主要函数
- */
 void InitializeGameMainSystem(void* SystemResourceManager)
 
 {
@@ -19891,7 +19882,7 @@ void ExecuteSystemCallback(long long *CallbackParameter)
 void ProcessSystemStringCopy(long long DestinationBuffer, long long SourceString)
 
 {
-  long long CalculatedStringLength;
+  long long StringLengthCounter;
   
   if (SourceString == 0) {
     *(uint32_t *)(DestinationBuffer + STRING_LENGTH_OFFSET) = 0;
