@@ -10412,38 +10412,38 @@ undefined8 ValidateSystemConfigurationA0(void)
 // 
 // 返回值:
 //   无 - 初始化结果通过系统状态返回
-void InitializeResourceContext(longlong param_1, undefined8 param_2)
+void InitializeResourceContext(longlong contextDescriptor, undefined8 initializationOptions)
 
 {
-  int iVar1;
-  longlong lVar2;
-  ulonglong uVar3;
-  bool bVar4;
-  longlong alStack_58 [3];
-  longlong lStack_40;
-  undefined8 uStack_38;
-  ulonglong uStack_30;
+  int initializationStatus;
+  longlong resourceCount;
+  ulonglong allocationSize;
+  bool isNullPointer;
+  longlong resourceBuffer [3];
+  longlong resourceDataPointer;
+  undefined8 optionsCopy;
+  ulonglong securityToken;
   
-  uStack_30 = _DAT_180bf00a8 ^ (ulonglong)alStack_58;
-  uStack_38 = param_2;
-  iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),alStack_58);
-  if (iVar1 == 0) {
-    bVar4 = alStack_58[0] == 0;
-    alStack_58[0] = alStack_58[0] + -8;
-    if (bVar4) {
-      alStack_58[0] = 0;
+  securityToken = _DAT_180bf00a8 ^ (ulonglong)resourceBuffer;
+  optionsCopy = initializationOptions;
+  initializationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextDescriptor + 0x10),resourceBuffer);
+  if (initializationStatus == 0) {
+    isNullPointer = resourceBuffer[0] == 0;
+    resourceBuffer[0] = resourceBuffer[0] + -8;
+    if (isNullPointer) {
+      resourceBuffer[0] = 0;
     }
-    lVar2 = (longlong)*(int *)(param_1 + 0x18);
-    uVar3 = lVar2 * 4 + 0xf;
-    lStack_40 = param_1 + 0x20 + lVar2 * 8;
-    if (uVar3 <= (ulonglong)(lVar2 * 4)) {
-      uVar3 = 0xffffffffffffff0;
+    resourceCount = (longlong)*(int *)(contextDescriptor + 0x18);
+    allocationSize = resourceCount * 4 + 0xf;
+    resourceDataPointer = contextDescriptor + 0x20 + resourceCount * 8;
+    if (allocationSize <= (ulonglong)(resourceCount * 4)) {
+      allocationSize = 0xffffffffffffff0;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fd200(lVar2,uVar3 & 0xfffffffffffffff0);
+    FUN_1808fd200(resourceCount,allocationSize & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_30 ^ (ulonglong)alStack_58);
+  ExecuteSecurityCheck(securityToken ^ (ulonglong)resourceBuffer);
 }
 
 
@@ -10452,19 +10452,19 @@ void InitializeResourceContext(longlong param_1, undefined8 param_2)
 void ProcessUtilitySystemRequest(longlong systemHandle,longlong requestContext)
 
 {
-  int statusCheck;
-  longlong memoryPointer;
-  undefined8 stackVariable;
+  int systemStatus;
+  longlong systemContext;
+  undefined8 contextVariable;
   
-  statusCheck = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemHandle + 0x10));
-  if (statusCheck == 0) {
-    if (stackVariable == 0) {
-      memoryPointer = 0;
+  systemStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemHandle + 0x10));
+  if (systemStatus == 0) {
+    if (contextVariable == 0) {
+      systemContext = 0;
     }
     else {
-      memoryPointer = stackVariable + -8;
+      systemContext = contextVariable + -8;
     }
-    *(undefined1 *)(memoryPointer + 0xbc) = *(undefined1 *)(systemHandle + 0x18);
+    *(undefined1 *)(systemContext + 0xbc) = *(undefined1 *)(systemHandle + 0x18);
                     // WARNING: Subroutine does not return
     ExecuteSystemResourceOperationCB0(*(undefined8 *)(requestContext + 0x98),systemHandle);
   }
