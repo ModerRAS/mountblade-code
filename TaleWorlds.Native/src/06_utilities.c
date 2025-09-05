@@ -1744,6 +1744,10 @@
 // 功能：验证系统操作范围
 #define ValidateOperationRangeA0 func_0x000180867960
 
+// 原始函数名：func_0x000180867660 - 数据处理函数A0
+// 功能：处理系统数据
+#define ProcessSystemDataA0 func_0x000180867660
+
 // 原始函数名：FUN_1808c44f0 - 系统操作函数A0
 // 功能：执行系统操作和状态检查
 #define ExecuteSystemOperationA0 FUN_1808c44f0
@@ -11112,7 +11116,7 @@ undefined8 ProcessDataSynchronizationA0(undefined8 param_1,undefined8 param_2)
       fVar4 = fVar1;
     }
     *(float *)(registerRBX + 0x18) = fVar4;
-    uVar2 = func_0x000180867960(unaff_RSI + 0x60,uStack0000000000000040,fVar4);
+    uVar2 = ValidateOperationRangeA0(unaff_RSI + 0x60,uStack0000000000000040,fVar4);
     if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(undefined8 *)(unaff_RSI + 0x98));
@@ -11144,7 +11148,7 @@ void ProcessFloatComparisonAndValidation(void)
     fVar3 = fVar1;
   }
   *(float *)(registerRBX + 0x18) = fVar3;
-  operationResult = func_0x000180867960(unaff_RSI + 0x60,stackParameter40,fVar3);
+  operationResult = ValidateOperationRangeA0(unaff_RSI + 0x60,stackParameter40,fVar3);
   if (operationResult == 0) {
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(undefined8 *)(unaff_RSI + 0x98));
@@ -11178,7 +11182,7 @@ undefined8 ProcessEventA0(longlong param_1,longlong param_2)
         uVar2 = 0x1c;
       }
       else {
-        uVar2 = func_0x000180867960(param_2 + 0x60,auStackX_10[0]);
+        uVar2 = ValidateOperationRangeA0(param_2 + 0x60,auStackX_10[0]);
         if ((int)uVar2 == 0) {
                     // WARNING: Subroutine does not return
           FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -11325,9 +11329,9 @@ undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
       fVar5 = fVar1;
     }
     *(float *)(param_1 + 0x10) = fVar5;
-    uVar2 = func_0x000180867960(param_2 + 0x60,auStackX_18[0],fVar5);
+    uVar2 = ValidateOperationRangeA0(param_2 + 0x60,auStackX_18[0],fVar5);
     if ((int)uVar2 == 0) {
-      puVar4 = (undefined8 *)func_0x000180867660(param_2 + 0x60,auStackX_8,auStackX_18[0]);
+      puVar4 = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
       *(undefined8 *)(param_1 + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -11362,9 +11366,9 @@ undefined8 ValidateSystemConfigurationA0(void)
     fVar5 = fVar1;
   }
   *(float *)(registerRBX + 0x10) = fVar5;
-  uVar3 = func_0x000180867960(unaff_RDI + 0x60,stackParameter40,fVar5);
+  uVar3 = ValidateOperationRangeA0(unaff_RDI + 0x60,stackParameter40,fVar5);
   if ((int)uVar3 == 0) {
-    puVar4 = (undefined8 *)func_0x000180867660(unaff_RDI + 0x60,&stack0x00000030,stackParameter40);
+    puVar4 = (undefined8 *)ProcessSystemDataA0(unaff_RDI + 0x60,&stack0x00000030,stackParameter40);
     *(undefined8 *)(registerRBX + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
     FUN_18088d720(*(undefined8 *)(unaff_RDI + 0x98));
@@ -11444,9 +11448,9 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
         uVar2 = 0x1c;
       }
       else {
-        uVar2 = func_0x000180867960(param_2 + 0x60,auStackX_18[0]);
+        uVar2 = ValidateOperationRangeA0(param_2 + 0x60,auStackX_18[0]);
         if ((int)uVar2 == 0) {
-          puVar4 = (undefined8 *)func_0x000180867660(param_2 + 0x60,auStackX_8,auStackX_18[0]);
+          puVar4 = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
           *(undefined8 *)(param_1 + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
           FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -11483,10 +11487,10 @@ undefined8 CleanupSystemB0(void)
       uVar3 = 0x1c;
     }
     else {
-      uVar3 = func_0x000180867960(registerR14 + 0x60,in_stack_00000050);
+      uVar3 = ValidateOperationRangeA0(registerR14 + 0x60,in_stack_00000050);
       if ((int)uVar3 == 0) {
         puVar4 = (undefined8 *)
-                 func_0x000180867660(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
+                 ProcessSystemDataA0(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
         *(undefined8 *)(unaff_RDI + 0x18) = *puVar4;
                     // WARNING: Subroutine does not return
         FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
@@ -11518,10 +11522,10 @@ undefined8 ResetSystemB0(void)
       uVar2 = 0x1c;
     }
     else {
-      uVar2 = func_0x000180867960(registerR14 + 0x60,in_stack_00000050);
+      uVar2 = ValidateOperationRangeA0(registerR14 + 0x60,in_stack_00000050);
       if ((int)uVar2 == 0) {
         puVar3 = (undefined8 *)
-                 func_0x000180867660(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
+                 ProcessSystemDataA0(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
         *(undefined8 *)(unaff_RDI + 0x18) = *puVar3;
                     // WARNING: Subroutine does not return
         FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
@@ -16025,7 +16029,7 @@ void ProcessSystemResourceBatch(longlong *contextHandle,longlong resourceManager
       validationBuffer[0] = 0;
       validationResult = ValidateAndProcessSystemResourceA0(*(int **)(resourceEntry + 0xd0),validationBuffer);
       if (validationResult != 0) {
-LAB_180897ce8:
+OperationFailedLabel:
                     // WARNING: Subroutine does not return
         ExecuteSecurityCheck(securityToken ^ (ulonglong)securityBuffer);
       }
@@ -16446,7 +16450,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
       pvalidationContext4 = pvalidationContext6;
       if (0 < iVar6) {
         do {
-          func_0x000180867660(validationContext5,auStack_2f0,pvalidationContext4);
+          ProcessSystemDataA0(validationContext5,auStack_2f0,pvalidationContext4);
           func_0x0001808676a0(validationContext5,pvalidationContext4,afStack_348,alStack_300);
           validationContext1 = func_0x000180867680(validationContext5,pvalidationContext4);
           cVar5 = func_0x000180894c50(validationContext1,0);
@@ -16544,7 +16548,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
                 }
                 iVar6 = -1;
                 iVar7 = iVar6;
-LAB_1808985be:
+DataProcessingCheckpoint:
                 validationContext5 = lStack_320;
                 pvalidationContext6 = plStack_318;
               } while (iVar6 != -1);
@@ -16571,7 +16575,7 @@ LAB_1808985be:
           }
           afStack_348[0] = -NAN;
           fVar18 = afStack_348[0];
-LAB_180898629:
+CalculationCheckpoint:
         } while (afStack_348[0] != -NAN);
       }
       (**(code **)(*param_1 + 8))(param_1,&UNK_1809864b0);
@@ -16581,7 +16585,7 @@ LAB_180898629:
       }
     }
   }
-LAB_18089866f:
+MemoryCheckpoint:
                     // WARNING: Subroutine does not return
   FUN_18088c790(alStack_300 + 1);
 }
@@ -16763,7 +16767,7 @@ undefined8 FUN_1808988b0(longlong *param_1,char *param_2,undefined8 *param_3)
       if (*pcVar9 != '\0') {
         return 0x4a;
       }
-LAB_1808989b1:
+SystemCheckpointA:
       cVar5 = *param_2;
     }
     bVar3 = *(byte *)((longlong)puVar11 + 7);
@@ -16778,7 +16782,7 @@ LAB_1808989b1:
       }
       return 0x4a;
     }
-LAB_1808989f7:
+SystemCheckpointB:
     uVar8 = puVar11[1] & 0xffffff;
     if (((char)(puVar11[1] >> 0x18) == '\0') && ((int)uVar8 < (int)param_1[3])) {
       puVar2 = (undefined8 *)(param_1[2] + (ulonglong)uVar8 * 0x10);
@@ -17342,7 +17346,7 @@ undefined8 FUN_180898d60(longlong *param_1,int param_2)
     }
     return 0x26;
   }
-LAB_180898e0b:
+ValidationCheckpointA:
   if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
     FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
@@ -17369,7 +17373,7 @@ undefined8 FUN_180898d84(undefined8 param_1,int param_2)
   
   puVar3 = (undefined2 *)0x0;
   if (unaff_EDI == 0) {
-LAB_180898e0b:
+ValidationCheckpointA:
     if ((0 < *(int *)((longlong)registerRBX + 0xc)) && (*registerRBX != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
@@ -17706,7 +17710,7 @@ undefined8 FUN_180899220(longlong *param_1,uint *param_2)
     }
     uVar1 = FUN_180769ed0(*param_1,auStackX_18,1,4,0);
   }
-LAB_1808992a5:
+ValidationCheckpointB:
   if ((int)uVar1 == 0) {
     *param_2 = auStackX_18[0];
     if (2 < auStackX_18[0]) {
@@ -17745,7 +17749,7 @@ undefined8 FUN_18089923e(longlong *param_1)
     }
     uVar1 = FUN_180769ed0(*param_1,&stackBuffer50,1,4,0);
   }
-LAB_1808992a5:
+ValidationCheckpointB:
   if ((int)uVar1 == 0) {
     *unaff_RDI = in_stack_00000050;
     if (2 < in_stack_00000050) {
@@ -17847,7 +17851,7 @@ undefined8 FUN_1808993e0(undefined8 *param_1,longlong *param_2)
     }
     uVar1 = FUN_180769ed0(*param_2,aiStackX_8,1,4,0);
   }
-LAB_180899456:
+SecurityCheckpointA:
   if ((int)uVar1 == 0) {
     FUN_1808b0fb0(param_1,aiStackX_8[0]);
     puVar3 = (uint *)*param_1;
@@ -17899,7 +17903,7 @@ LAB_180899456:
       puVar3 = (uint *)((longlong)puVar3 + lVar2);
     }
     if (aiStackX_8[0] != 0) {
-LAB_180899546:
+SecurityCheckpointB:
       return 0x1c;
     }
     uVar1 = 0;
@@ -21964,7 +21968,7 @@ void FUN_18089be10(longlong param_1,undefined8 *param_2,int param_3)
       return;
     }
   }
-LAB_18089bfc7:
+DataProcessLabelC:
   if (param_3 == 0) {
     operationResult = FUN_1808a84c0(param_1,param_2);
   }
@@ -22073,7 +22077,7 @@ void FUN_18089be41(void)
       return;
     }
   }
-LAB_18089bfc7:
+DataProcessLabelC:
   if (unaff_R12D == 0) {
     iVar1 = FUN_1808a84c0();
   }
@@ -22161,7 +22165,7 @@ ulonglong FUN_18089c030(longlong param_1,undefined8 *param_2)
       return uVar4;
     }
   }
-LAB_18089c131:
+ValidationLabelA:
   uVar4 = FUN_1808ad600(param_2,param_1 + 0x18);
   if ((int)uVar4 == 0) {
     if (*(uint *)(param_2 + 8) < 0x7c) {
@@ -22273,7 +22277,7 @@ ulonglong FUN_18089c190(longlong param_1,undefined8 *param_2)
     uVar6 = FUN_1808a54c0(param_2,&puStack_88,0);
     uVar7 = (ulonglong)uVar6;
     if (uVar6 != 0) {
-LAB_18089c40a:
+ValidationLabelB:
       uVar6 = uStack_80._4_4_;
       if ((longlong)uStack_80 < 0) {
         uVar6 = -uStack_80._4_4_;
@@ -22398,7 +22402,7 @@ LAB_18089c40a:
       return uVar7;
     }
   }
-LAB_18089c586:
+ValidationLabelC:
   for (uVar7 = *(ulonglong *)(param_1 + 0x48);
       (*(ulonglong *)(param_1 + 0x48) <= uVar7 &&
       (uVar7 < (longlong)*(int *)(param_1 + 0x50) * 0x1c + *(ulonglong *)(param_1 + 0x48)));
@@ -22514,7 +22518,7 @@ undefined8 * FUN_18089c1fb(void)
     uVar9 = FUN_1808a54c0(uVar20,unaff_RBP + -0x29,0);
     puVar13 = (undefined8 *)(ulonglong)uVar9;
     if (uVar9 != 0) {
-LAB_18089c40a:
+ValidationLabelB:
       uVar9 = *(uint *)(unaff_RBP + -0x1d);
       uVar10 = uVar9;
       if ((int)uVar9 < 0) {
@@ -22652,7 +22656,7 @@ LAB_18089c40a:
       return puVar11;
     }
   }
-LAB_18089c586:
+ValidationLabelC:
   for (uVar15 = *(ulonglong *)(unaff_RSI + 0x48);
       (*(ulonglong *)(unaff_RSI + 0x48) <= uVar15 &&
       (uVar15 < (longlong)*(int *)(unaff_RSI + 0x50) * 0x1c + *(ulonglong *)(unaff_RSI + 0x48)));
@@ -22761,7 +22765,7 @@ undefined8 * FUN_18089c22e(void)
     uVar9 = FUN_1808a54c0(uVar20,unaff_RBP + -0x29,0);
     puVar12 = (undefined8 *)(ulonglong)uVar9;
     if (uVar9 != 0) {
-LAB_18089c40a:
+ValidationLabelB:
       uVar9 = *(uint *)(unaff_RBP + -0x1d);
       uVar10 = uVar9;
       if ((int)uVar9 < 0) {
@@ -22899,7 +22903,7 @@ LAB_18089c40a:
       return puVar13;
     }
   }
-LAB_18089c586:
+ValidationLabelC:
   for (uVar15 = *(ulonglong *)(unaff_RSI + 0x48);
       (*(ulonglong *)(unaff_RSI + 0x48) <= uVar15 &&
       (uVar15 < (longlong)*(int *)(unaff_RSI + 0x50) * 0x1c + *(ulonglong *)(unaff_RSI + 0x48)));
@@ -22972,7 +22976,7 @@ ulonglong FUN_18089c2d8(undefined8 param_1)
     uVar9 = FUN_1808a54c0(param_1,unaff_RBP + -0x29,0);
     uVar11 = (ulonglong)uVar9;
     if (uVar9 != 0) {
-LAB_18089c40a:
+ValidationLabelB:
       uVar9 = *(uint *)(unaff_RBP + -0x1d);
       uVar10 = uVar9;
       if ((int)uVar9 < 0) {
@@ -23111,7 +23115,7 @@ LAB_18089c40a:
       return uVar11;
     }
   }
-LAB_18089c586:
+ValidationLabelC:
   for (uVar11 = *(ulonglong *)(unaff_RSI + 0x48);
       (*(ulonglong *)(unaff_RSI + 0x48) <= uVar11 &&
       (uVar11 < (longlong)*(int *)(unaff_RSI + 0x50) * 0x1c + *(ulonglong *)(unaff_RSI + 0x48)));
