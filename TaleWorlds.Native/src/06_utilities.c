@@ -2105,6 +2105,34 @@
 // 功能：设置全局数据指针B30到指定地址
 #define SetGlobalDataPointerB30 InitializeGlobalDataPointerA3
 
+// 原始函数名：FUN_1808a5630 - 数据验证初始化函数
+// 功能：初始化数据验证过程并返回验证状态
+#define InitializeDataValidation FUN_1808a5630
+
+// 原始函数名：FUN_1808afe30 - 数据处理执行函数
+// 功能：执行数据处理操作并返回处理结果
+#define ExecuteDataProcessing FUN_1808afe30
+
+// 原始函数名：FUN_180748010 - 系统内存验证函数
+// 功能：验证系统内存分配和访问权限
+#define ValidateSystemMemoryAccess FUN_180748010
+
+// 原始函数名：FUN_1808dde10 - 操作状态检查函数
+// 功能：检查当前操作状态并返回状态码
+#define CheckOperationStatus FUN_1808dde10
+
+// 原始函数名：FUN_1808de0e0 - 数据处理完成函数
+// 功能：完成数据处理操作并清理资源
+#define FinalizeDataProcessing FUN_1808de0e0
+
+// 原始函数名：FUN_1808a6150 - 数据安全验证函数
+// 功能：验证数据安全性和完整性
+#define ValidateDataSecurity FUN_1808a6150
+
+// 原始函数名：FUN_180882f00 - 内存分配函数
+// 功能：分配内存并返回分配的地址
+#define AllocateMemoryWithContext FUN_180882f00
+
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
 // 功能：执行工具回调函数，处理参数传递
 #define ExecuteUtilityCallbackB0 FUN_1809424c0
@@ -25197,9 +25225,9 @@ undefined8 ProcessDataSequenceA1(longlong param_1,undefined8 *param_2)
         return 0x1c;
       }
       dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x34);
-      if (((int)dataValue == 0) && (dataValue = FUN_1808de0e0(param_2,0), (int)dataValue == 0)) {
+      if (((int)dataValue == 0) && (dataValue = FinalizeDataProcessing(param_2,0), (int)dataValue == 0)) {
         if ((0x6b < *(uint *)(param_2 + 8)) &&
-           (dataValue = FUN_1808a6150(param_2,param_1 + 0x38,0), (int)dataValue != 0)) {
+           (dataValue = ValidateDataSecurity(param_2,param_1 + 0x38,0), (int)dataValue != 0)) {
           return dataValue;
         }
         dataValue = 0;
@@ -25226,11 +25254,11 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
   uint validationBuffer[2];
   uint processDataBuffer[2];
   
-  auStackX_20[0] = FUN_1808a5630(param_2,param_1,0);
+  auStackX_20[0] = InitializeDataValidation(param_2,param_1,0);
   if (auStackX_20[0] != 0) {
     return;
   }
-  operationResult = FUN_1808afe30(*param_2,auStackX_20);
+  operationResult = ExecuteDataProcessing(*param_2,auStackX_20);
   dataValue = auStackX_20[0];
   if (operationResult != 0) {
     return;
@@ -25239,7 +25267,7 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
   memoryBaseAddress = (int)*(uint *)(param_1 + 0x1c) >> 0x1f;
   operationResult = auStackX_20[0] >> 1;
   if (((int)((*(uint *)(param_1 + 0x1c) ^ memoryBaseAddress) - memoryBaseAddress) < (int)operationResult) &&
-     (operationResult = FUN_180748010(param_1 + 0x10,operationResult), operationResult != 0)) {
+     (operationResult = ValidateSystemMemoryAccess(param_1 + 0x10,operationResult), operationResult != 0)) {
     return;
   }
   operationResult = *(int *)(param_1 + 0x18);
@@ -25253,7 +25281,7 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
   operationResult = 0;
   if (dataValue >> 1 != 0) {
     do {
-      operationStatus = FUN_1808dde10(param_2,auStackX_8[0]);
+      operationStatus = CheckOperationStatus(param_2,auStackX_8[0]);
       if (operationStatus != 0) {
         return;
       }
@@ -25266,7 +25294,7 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
       if (operationStatus != 0) {
         return;
       }
-      operationStatus = FUN_1808de0e0(param_2,auStackX_8);
+      operationStatus = FinalizeDataProcessing(param_2,auStackX_8);
       if (operationStatus != 0) {
         return;
       }
@@ -25483,7 +25511,7 @@ ulonglong ValidateAndAllocateMemory(longlong MemoryContext, undefined8 *Allocati
   allocationSize = (longlong)stackValidationArray[0];
   operationOutcome = (int)*(uint *)(MemoryContext + 0x14) >> 0x1f;
   if (((int)((*(uint *)(MemoryContext + 0x14) ^ operationOutcome) - operationOutcome) < stackValidationArray[0]) &&
-     (allocatedAddress = FUN_180882f00(MemoryContext + 8,stackValidationArray[0]), (int)allocatedAddress != 0)) {
+     (allocatedAddress = AllocateMemoryWithContext(MemoryContext + 8,stackValidationArray[0]), (int)allocatedAddress != 0)) {
     return allocatedAddress;
   }
   validationCheck = *(int *)(MemoryContext + 0x10);
