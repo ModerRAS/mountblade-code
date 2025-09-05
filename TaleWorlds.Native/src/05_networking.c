@@ -568,7 +568,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextI
 #define NetworkPacketReportSize 0xc                         // 网络数据包报告大小（12字节）
 
 // 网络连接默认配置
-#define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
 #define NetworkStandardSmallBufferSize 256                          // 标准小缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
