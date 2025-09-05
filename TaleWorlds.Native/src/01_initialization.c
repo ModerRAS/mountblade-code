@@ -19428,31 +19428,31 @@ SymbolInitializationCleanup:
   SystemDataProcessingCounter = 0;
   SecondarySystemProcessingBuffer = (void* *)0x0;
   SystemGlobalDataPointer = &SystemMemoryAllocatorReference;
-  int MutexUnlockResult = _Mtx_unlock(ThreadMutexPointer);
-  if (MutexUnlockResult != 0) {
-    ThrowSystemError(MutexUnlockResult);
+  int SystemMutexUnlockResult = _Mtx_unlock(ThreadMutexPointer);
+  if (SystemMutexUnlockResult != 0) {
+    ThrowSystemError(SystemMutexUnlockResult);
   }
 SkipLibraryHandleInitialization:
-  void* AllocatedMemoryBlockPrimary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
-  *AllocatedMemoryBlockPrimary = 0;
-  void* AllocatedMemoryBlockSecondary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
-  *AllocatedMemoryBlockPrimary = &SystemDebugDataBufferA;
-  *AllocatedMemoryBlockSecondary = &SystemDebugDataBufferB;
-  void* AllocatedMemoryBlockTertiary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
-  uint8_t* AllocatedMemoryBlockQuaternary = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
-  *AllocatedMemoryBlockQuaternary = 0;
-  AllocatedMemoryBlockTertiary[2] = AllocatedMemoryBlockQuaternary;
-  SystemMemoryBlockStorage = AllocatedMemoryBlockTertiary;
-  *AllocatedMemoryBlockTertiary = AllocatedMemoryBlock2;
-  AllocatedMemoryBlockTertiary[1] = AllocatedMemoryBlockPrimary;
-  AllocatedMemoryBlockTertiary[3] = timerMemoryBlock;
+  void* SystemDebugMemoryBlockPrimary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
+  *SystemDebugMemoryBlockPrimary = 0;
+  void* SystemDebugMemoryBlockSecondary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
+  *SystemDebugMemoryBlockPrimary = &SystemDebugDataBufferA;
+  *SystemDebugMemoryBlockSecondary = &SystemDebugDataBufferB;
+  void* SystemDebugMemoryBlockTertiary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
+  uint8_t* SystemDebugMemoryBlockQuaternary = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
+  *SystemDebugMemoryBlockQuaternary = 0;
+  SystemDebugMemoryBlockTertiary[2] = SystemDebugMemoryBlockQuaternary;
+  SystemMemoryBlockStorage = SystemDebugMemoryBlockTertiary;
+  *SystemDebugMemoryBlockTertiary = AllocatedMemoryBlock2;
+  SystemDebugMemoryBlockTertiary[1] = SystemDebugMemoryBlockPrimary;
+  SystemDebugMemoryBlockTertiary[3] = timerMemoryBlock;
   timerMemoryBlock = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x198,8,3);
   SystemTimerStoragePointer = CreateSystemTimer(timerMemoryBlock);
   counterMemoryBlock = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xa8,8,3);
   SystemCounterStoragePointer = CreateSystemCounter(counterMemoryBlock);
   SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
-  int PerformanceQueryResult = QueryPerformanceFrequency(&PerformanceFrequencyData);
-  if (PerformanceQueryResult == 0) {
+  int SystemPerformanceFrequencyQueryResult = QueryPerformanceFrequency(&PerformanceFrequencyData);
+  if (SystemPerformanceFrequencyQueryResult == 0) {
     InitializeSystemSemaphores(&SystemSemaphoreTemplate);
   }
   SystemPerformanceFrequencyStorage = 1.0 / (double)(long long)PerformanceFrequencyData;
@@ -22984,10 +22984,10 @@ void InitializeSystemMemoryCopyOperation(void)
 void ResetSystemByteFlag(uint8_t *byteFlagPointer)
 
 {
-  long long SystemContextPointer = 0;
+  long long SystemByteFlagResetContext = 0;
   
   *byteFlagPointer = 0;
-  *(uint32_t *)(SystemContextPointer + 0x10) = 0;
+  *(uint32_t *)(SystemByteFlagResetContext + 0x10) = 0;
   return;
 }
 
