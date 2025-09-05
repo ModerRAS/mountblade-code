@@ -4844,23 +4844,33 @@ undefined8 ValidateResourceAccessChain(longlong resourceHandle)
 
 
 
-undefined4 FUN_180890b8f(void)
+// 函数: undefined4 ValidateResourceHandleAndRelease(void)
+// 
+// 资源句柄验证和释放函数
+// 验证资源句柄的有效性，并在验证通过后释放相关资源
+// 
+// 参数:
+//   无 (通过RAX寄存器传递资源句柄)
+// 
+// 返回值:
+//   成功返回0x1c，失败时调用资源释放函数
+undefined4 ValidateResourceHandleAndRelease(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong resourceHandle;
+  longlong resourcePointer;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (resourceHandle == 0) {
+    resourcePointer = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    resourcePointer = resourceHandle + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(longlong *)(resourcePointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(resourcePointer + 0x10),1);
 }
 
 
@@ -5146,23 +5156,34 @@ undefined8 ProcessResourceDescriptorValidation(longlong resourceDescriptor)
 
 
 
-undefined4 FUN_180890e33(void)
+// 函数: undefined4 ValidateResourceHandleAndReleaseAlternate(void)
+// 
+// 资源句柄验证和释放函数(替代版本)
+// 验证资源句柄的有效性，并在验证通过后释放相关资源
+// 这是ValidateResourceHandleAndRelease的替代实现
+// 
+// 参数:
+//   无 (通过RAX寄存器传递资源句柄)
+// 
+// 返回值:
+//   成功返回0x1c，失败时调用资源释放函数
+undefined4 ValidateResourceHandleAndReleaseAlternate(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong resourceHandle;
+  longlong resourcePointer;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (resourceHandle == 0) {
+    resourcePointer = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    resourcePointer = resourceHandle + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(longlong *)(resourcePointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(resourcePointer + 0x10),1);
 }
 
 
@@ -9070,38 +9091,42 @@ void ValidateContextAndUpdateState(longlong contextHandle,longlong operationHand
 // WARNING: Removing unreachable block (ram,0x000180893a22)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893930(longlong param_1,longlong param_2)
+// 原始函数名：FUN_180893930 - 数据状态验证和处理函数
+// 功能：验证数据状态并根据不同状态执行相应的数据处理操作
+#define ValidateDataStateAndProcess FUN_180893930
+
+int ValidateDataStateAndProcess(longlong dataContext,longlong operationContext)
 
 {
-  uint uVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lStackX_8;
+  uint dataState;
+  int processResult;
+  longlong allocatedBuffer;
+  longlong localStackBuffer;
   
-  uVar1 = *(uint *)(param_1 + 0x1c);
-  if ((((uVar1 != 1) || ((*(byte *)(param_1 + 0x10) & 0x1f) == 0)) && (0 < *(int *)(param_1 + 0x18))
-      ) && (uVar1 < 2)) {
-    if (uVar1 == 0) {
-      lVar3 = FUN_180741d10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(int *)(param_1 + 0x18),0x20,
+  dataState = *(uint *)(dataContext + 0x1c);
+  if ((((dataState != 1) || ((*(byte *)(dataContext + 0x10) & 0x1f) == 0)) && (0 < *(int *)(dataContext + 0x18))
+      ) && (dataState < 2)) {
+    if (dataState == 0) {
+      allocatedBuffer = FUN_180741d10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(int *)(dataContext + 0x18),0x20,
                             &UNK_180957f70,0xdd,0,0);
-      if (lVar3 != 0) {
+      if (allocatedBuffer != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar3,*(undefined8 *)(param_1 + 0x10),(longlong)*(int *)(param_1 + 0x18));
+        memcpy(allocatedBuffer,*(undefined8 *)(dataContext + 0x10),(longlong)*(int *)(dataContext + 0x18));
       }
-      iVar2 = 0x26;
+      processResult = 0x26;
     }
     else {
-      iVar2 = FUN_1808de900(param_2,param_1 + 0x24);
-      if ((iVar2 == 0) &&
-         (iVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x24),&lStackX_8), iVar2 == 0)) {
-        if (*(int *)(lStackX_8 + 0x30) == 1) {
-          *(undefined4 *)(lStackX_8 + 0x30) = 2;
+      processResult = FUN_1808de900(operationContext,dataContext + 0x24);
+      if ((processResult == 0) &&
+         (processResult = func_0x00018088c530(*(undefined4 *)(dataContext + 0x24),&localStackBuffer), processResult == 0)) {
+        if (*(int *)(localStackBuffer + 0x30) == 1) {
+          *(undefined4 *)(localStackBuffer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+        FUN_18088d720(*(undefined8 *)(operationContext + 0x98),dataContext);
       }
     }
-    return iVar2;
+    return processResult;
   }
   return 0x1f;
 }
