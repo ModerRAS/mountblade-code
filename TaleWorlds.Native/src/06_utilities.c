@@ -29138,7 +29138,7 @@ ulonglong FUN_18089de39(void)
         unaff_EDI = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
       }
       if (unaff_EDI == 0) {
-        if ((0x84 < *(uint *)(registerContext + 8)) && (uVar2 = FUN_180899220(), (int)uVar2 != 0)) {
+        if ((0x84 < *(uint *)(registerContext + 8)) && (uVar2 = ValidateDataSequence(), (int)uVar2 != 0)) {
           return uVar2;
         }
                     // WARNING: Subroutine does not return
@@ -29177,7 +29177,7 @@ ulonglong FUN_18089de72(void)
       unaff_EDI = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
     }
     if (unaff_EDI == 0) {
-      if ((*(uint *)(registerContext + 8) < 0x85) || (uVar1 = FUN_180899220(), (int)uVar1 == 0)) {
+      if ((*(uint *)(registerContext + 8) < 0x85) || (uVar1 = ValidateDataSequence(), (int)uVar1 == 0)) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80();
       }
