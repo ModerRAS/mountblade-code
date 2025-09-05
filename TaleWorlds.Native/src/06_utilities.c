@@ -5813,7 +5813,7 @@ void ProcessUtilityOperation(longlong operationParams,undefined8 systemContext)
   ContextPointer = *(undefined8 *)(param_1 + 0x10);
   ParamValue = *(undefined4 *)(param_1 + 0x18);
   OperationParams[0] = 2;
-  OperationResult = func_0x0001808757f0(param_2,OperationParams,*(undefined4 *)(param_1 + 0x1c),CallbackData);
+  OperationResult = ExecuteSystemOperation(param_2,OperationParams,*(undefined4 *)(param_1 + 0x1c),CallbackData);
   if (OperationResult == 0) {
     FUN_180875fc0(param_2,CallbackData[0]);
   }
@@ -6092,16 +6092,16 @@ void ValidateAndProcessUtilityData(longlong dataContext,longlong systemContext)
   validationResult = FUN_18073b5f0(*(undefined8 *)(systemContext + 0x78),*(undefined4 *)(dataContext + 0x10),
                         dataContext + 0x14,dataContext + 0x20,dataContext + 0x2c,dataContext + 0x38);
   if ((validationResult == 0) &&
-     (validationResult = func_0x0001808d2620((longlong)*(int *)(dataContext + 0x10) * 0x44 +
+     (validationResult = ValidateDataAndReturnA0((longlong)*(int *)(dataContext + 0x10) * 0x44 +
                                   *(longlong *)(systemContext + 0x90) + 0x554,dataContext + 0x14), validationResult == 0)
      ) {
     if ((*(char *)(dataContext + 0x50) != '\0') &&
-       (validationResult = func_0x0001808d2660((longlong)*(int *)(dataContext + 0x10) * 0x44 +
+       (validationResult = ValidateDataAndReturnA1((longlong)*(int *)(dataContext + 0x10) * 0x44 +
                                     *(longlong *)(systemContext + 0x90) + 0x554,dataContext + 0x44),
        validationResult != 0)) {
       return;
     }
-    func_0x0001808d2830((longlong)*(int *)(dataContext + 0x10) * 0x44 +
+    ProcessDataAndExecute((longlong)*(int *)(dataContext + 0x10) * 0x44 +
                         *(longlong *)(systemContext + 0x90) + 0x554,*(undefined1 *)(dataContext + 0x50));
   }
   return;
@@ -6128,7 +6128,7 @@ void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
   
   cleanupStatus = FUN_18073b810(*(undefined8 *)(cleanupContext + 0x78),*(undefined4 *)(systemHandle + 0x10));
   if (cleanupStatus == 0) {
-    func_0x0001808c2130(*(undefined8 *)(cleanupContext + 0x90),*(undefined4 *)(systemHandle + 0x10));
+    ExecuteCleanupOperation(*(undefined8 *)(cleanupContext + 0x90),*(undefined4 *)(systemHandle + 0x10));
   }
   return;
 }
@@ -10722,7 +10722,7 @@ undefined4 FUN_180894dd0(longlong param_1,undefined8 param_2,uint param_3,longlo
     if ((uVar2 & 1) == 0) {
       uVar6 = param_3;
     }
-    iVar3 = func_0x0001808757f0(param_1,param_2,uVar6,&uStackX_20);
+    iVar3 = ExecuteSystemOperation(param_1,param_2,uVar6,&uStackX_20);
     if ((iVar3 == 0) && (plVar1 = (longlong *)(param_4 + 8), plVar1 != (longlong *)0x0)) {
       plVar4 = (longlong *)*plVar1;
       if (plVar4 != plVar1) {
