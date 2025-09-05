@@ -4174,12 +4174,12 @@ void InitializeUtilityModule(void);
 /**
  * @brief 工具模块配置参数
  */
-uint32_t UtilityModulePrimaryConfiguration;
-uint32_t UtilityModuleSecondaryConfiguration;
-uint32_t UtilityModuleTertiaryConfiguration;
-uint32_t UtilityModuleQuaternaryConfiguration;
-uint32_t UtilityModuleQuinaryConfiguration;
-uint32_t UtilityModuleSenaryConfiguration;
+uint32_t PrimaryModuleConfiguration;
+uint32_t SecondaryModuleConfiguration;
+uint32_t TertiaryModuleConfiguration;
+uint32_t QuaternaryModuleConfiguration;
+uint32_t QuinaryModuleConfiguration;
+uint32_t SenaryModuleConfiguration;
 
 /**
  * @brief 工具模块激活状态
@@ -4230,10 +4230,10 @@ void ResetUtilityPointers2(void);
 /**
  * @brief 工具重置指针值
  */
-uint32_t UtilityResetPrimaryPointerValue;
-uint32_t UtilityResetSecondaryPointerValue;
-uint32_t UtilityResetTertiaryPointerValue;
-uint32_t UtilityResetQuaternaryPointerValue;
+uint32_t ResetPrimaryPointerValue;
+uint32_t ResetSecondaryPointerValue;
+uint32_t ResetTertiaryPointerValue;
+uint32_t ResetQuaternaryPointerValue;
 
 /**
  * @brief 工具系统状态指示器
@@ -4327,11 +4327,11 @@ void ResetUtilityPointers3(void);
 /**
  * @brief 工具清理指针
  */
-uint32_t UtilityPrimaryCleanupPointer;
-uint32_t UtilitySecondaryCleanupPointer;
-uint32_t UtilityTertiaryCleanupPointer;
-uint32_t UtilityQuaternaryCleanupPointer;
-uint32_t UtilityCleanupStatusIndicator;
+uint32_t PrimaryCleanupPointer;
+uint32_t SecondaryCleanupPointer;
+uint32_t TertiaryCleanupPointer;
+uint32_t QuaternaryCleanupPointer;
+uint32_t CleanupStatusIndicator;
 
 /**
  * @brief 重置工具模块指针组4
@@ -4345,10 +4345,10 @@ void ResetUtilityPointers4(void);
 /**
  * @brief 工具释放指针
  */
-uint32_t UtilityPrimaryFreePointer;
-uint32_t UtilitySecondaryFreePointer;
-uint32_t UtilityTertiaryFreePointer;
-uint32_t UtilityQuaternaryFreePointer;
+uint32_t PrimaryFreePointer;
+uint32_t SecondaryFreePointer;
+uint32_t TertiaryFreePointer;
+uint32_t QuaternaryFreePointer;
 
 /**
  * @brief 初始化工具系统
@@ -4762,12 +4762,12 @@ uint32_t UtilityEventDataTertiary;
 // 函数: void UtilityHandleEventSecond(void);
 void UtilityHandleEventSecond(void);
 // 工具系统事件处理相关变量
-uint32_t UtilityEventStatus;
-void* UtilitySystemPointerSecondary;
-void* UtilityEventContext;
-void* UtilityEventData;
-int32_t UtilityEventResult;
-int32_t UtilityEventError;
+uint32_t EventStatus;
+void* SystemPointerSecondary;
+void* EventContext;
+void* EventData;
+int32_t EventResult;
+int32_t EventError;
 
 // 函数: void UtilityProcessMemoryBlock(void);
 // 
@@ -4781,11 +4781,11 @@ int32_t UtilityEventError;
 //   void - 无返回值
 void UtilityProcessMemoryBlock(void);
 // 工具系统内存处理相关变量
-void* UtilityMemoryPointerPrimary;
-uint32_t UtilityMemoryDataPrimary;
-uint32_t UtilityMemoryDataSecondary;
-uint32_t UtilityMemoryDataTertiary;
-uint32_t UtilityMemoryDataQuaternary;
+void* MemoryPointerPrimary;
+uint32_t MemoryDataPrimary;
+uint32_t MemoryDataSecondary;
+uint32_t MemoryDataTertiary;
+uint32_t MemoryDataQuaternary;
 
 // 函数: bool UtilityValidateMemoryAccess(void);
 // 
@@ -19996,7 +19996,7 @@ MemoryCheckpoint:
  * 返回值:
  *   无 - 验证结果通过内部机制处理
  */
-void ValidateDataBlockA0(int64_t param_1,DataBuffer param_2)
+void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
 
 {
   int inputParameter;
@@ -20006,10 +20006,10 @@ void ValidateDataBlockA0(int64_t param_1,DataBuffer param_2)
   uint operationResult;
   int iterationCount;
   
-  operationResult = ValidateSystemDataIntegrityB0(param_2);
-  inputParameter = *(int *)(param_1 + 0x30);
-  operationResult = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
-  operationStatus = (*(uint *)(param_1 + 0x34) ^ operationResult) - operationResult;
+  operationResult = ValidateSystemDataIntegrityB0(ValidationBuffer);
+  inputParameter = *(int *)(DataBlockContext + 0x30);
+  operationResult = (int)*(uint *)(DataBlockContext + 0x34) >> 0x1f;
+  operationStatus = (*(uint *)(DataBlockContext + 0x34) ^ operationResult) - operationResult;
   iterationCount = inputParameter + operationResult;
   if (operationStatus < iterationCount) {
     arrayIndex = (int)((float)operationStatus * 1.5);
@@ -20020,7 +20020,7 @@ void ValidateDataBlockA0(int64_t param_1,DataBuffer param_2)
     if (operationStatus < 0x40) {
       operationStatus = 0x40;
     }
-    operationStatus = ValidateSystemMemoryA0(param_1 + 0x28,operationStatus);
+    operationStatus = ValidateSystemMemoryA0(DataBlockContext + 0x28,operationStatus);
     if (operationStatus != 0) {
       return;
     }
@@ -22004,9 +22004,9 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
 
 
 
-// 函数: void InitializeSystemDataStructure(DataBuffer *param_1)
+// 函数: void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
 // 功能：初始化系统数据结构，设置初始值和状态
-void InitializeSystemDataStructure(DataBuffer *param_1)
+void InitializeSystemDataStructure(DataBuffer *SystemDataPointer)
 
 {
   uint dataValue;
@@ -22026,7 +22026,7 @@ void InitializeSystemDataStructure(DataBuffer *param_1)
   DataWord extraout_XMM0_Da_01;
   DataWord securityCheckResult;
   
-  operationStatus = (**(FunctionPointer**)*param_1)();
+  operationStatus = (**(FunctionPointer**)*SystemDataPointer)();
   if (operationStatus == 0) {
     memoryPointer = destinationIndexRegister;
     memoryOffset = destinationIndexRegister;
@@ -22118,39 +22118,39 @@ void UtilityNoOperationI(void)
 
 
 
-// 函数: void ProcessSystemDataItem(int64_t param_1,DataWord *param_2)
+// 函数: void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
 // 功能：处理系统数据项，执行单个数据项的操作和验证
-void ProcessSystemDataItem(int64_t param_1,DataWord *param_2)
+void ProcessSystemDataItem(int64_t SystemContext, DataWord *DataItemPointer)
 
 {
   int inputParameter;
   DataWord auStackX_8 [2];
   
-  auStackX_8[0] = *param_2;
-  inputParameter = (**(FunctionPointer**)**(DataBuffer **)(param_1 + 8))(*(DataBuffer **)(param_1 + 8),auStackX_8,4);
-  if (((((inputParameter == 0) && (inputParameter = CheckSystemStatusAndReturnO0(param_1,param_2 + 1), inputParameter == 0)) &&
-       (((*(byte *)(param_2 + 1) & 0x20) == 0 ||
-        (inputParameter = ValidateAndProcessDataA0(param_1,param_2 + 2), inputParameter == 0)))) &&
-      (((inputParameter = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0xe), inputParameter == 0 &&
-        (inputParameter = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0xf), inputParameter == 0)) &&
-       (inputParameter = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0x10), inputParameter == 0)))) &&
-     (inputParameter = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0x11), inputParameter == 0)) {
-    if ((param_2[1] & 0x100) != 0) {
-      auStackX_8[0] = param_2[0x12];
-      inputParameter = (**(FunctionPointer**)**(DataBuffer **)(param_1 + 8))
-                        (*(DataBuffer **)(param_1 + 8),auStackX_8,4);
+  auStackX_8[0] = *DataItemPointer;
+  inputParameter = (**(FunctionPointer**)**(DataBuffer **)(SystemContext + 8))(*(DataBuffer **)(SystemContext + 8),auStackX_8,4);
+  if (((((inputParameter == 0) && (inputParameter = CheckSystemStatusAndReturnO0(SystemContext,DataItemPointer + 1), inputParameter == 0)) &&
+       (((*(byte *)(DataItemPointer + 1) & 0x20) == 0 ||
+        (inputParameter = ValidateAndProcessDataA0(SystemContext,DataItemPointer + 2), inputParameter == 0)))) &&
+      (((inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0xe), inputParameter == 0 &&
+        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0xf), inputParameter == 0)) &&
+       (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x10), inputParameter == 0)))) &&
+     (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x11), inputParameter == 0)) {
+    if ((DataItemPointer[1] & 0x100) != 0) {
+      auStackX_8[0] = DataItemPointer[0x12];
+      inputParameter = (**(FunctionPointer**)**(DataBuffer **)(SystemContext + 8))
+                        (*(DataBuffer **)(SystemContext + 8),auStackX_8,4);
       if (inputParameter != 0) {
         return;
       }
-      inputParameter = ProcessDataPointerA0(param_1,param_2 + 0x13);
+      inputParameter = ProcessDataPointerA0(SystemContext,DataItemPointer + 0x13);
       if (inputParameter != 0) {
         return;
       }
     }
-    if (((param_2[1] & 0x800) == 0) ||
-       ((inputParameter = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0x18), inputParameter == 0 &&
-        (inputParameter = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0x17), inputParameter == 0)))) {
-      ProcessDataAndExecuteOperationO10(param_1,param_2 + 0x19);
+    if (((DataItemPointer[1] & 0x800) == 0) ||
+       ((inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x18), inputParameter == 0 &&
+        (inputParameter = CheckSystemStateAndReturnCodeO1(SystemContext,DataItemPointer + 0x17), inputParameter == 0)))) {
+      ProcessDataAndExecuteOperationO10(SystemContext,DataItemPointer + 0x19);
     }
   }
   return;
@@ -22527,9 +22527,9 @@ void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
  * 
  * 执行系统组件的验证和初始化操作，检查多个系统状态并执行相应的初始化流程
  * 
- * @param param_1 验证参数，包含系统初始化所需的配置信息
+ * @param SystemValidationParameter 验证参数，包含系统初始化所需的配置信息
  */
-void ValidateAndInitializeSystem(DataWord param_1)
+void ValidateAndInitializeSystem(DataWord SystemValidationParameter)
 
 {
   uint dataValue;
@@ -29376,33 +29376,45 @@ DataBuffer ValidateDataIntegrityA1(int64_t param_1,DataBuffer *param_2)
 
 
 
-89d520(int64_t param_1,DataBuffer *param_2)
-void ValidateDataParametersC0(int64_t param_1,DataBuffer *param_2)
+/**
+ * @brief 验证数据参数C0
+ * 
+ * 该函数负责验证数据参数的有效性，执行安全检查和端口控制请求验证
+ * 
+ * @param DataContext 数据上下文，包含待验证的数据参数信息
+ * @param SecurityBuffer 安全缓冲区，用于安全验证操作
+ * 
+ * @return void 无返回值，验证结果通过内部状态返回
+ * 
+ * @note 此函数包含多层安全验证机制
+ * @warning 验证失败会导致相关操作被拒绝
+ */
+void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
 
 {
   int inputParameter;
   ByteFlag ainputDataWord [32];
   ByteFlag auStack_28 [32];
   
-  inputParameter = ExecuteSecurityValidation(param_2,auStack_28,1,0x4a4f5250);
-  if (((inputParameter == 0) && (inputParameter = ExecuteSecurityValidation(param_2,ainputDataWord,0,0x494b4e42), inputParameter == 0)) &&
-     (inputParameter = ValidatePortControlRequest(param_2,param_1 + 0x10), inputParameter == 0)) {
-    if (*(uint *)(param_2 + 8) < 0x37) {
+  inputParameter = ExecuteSecurityValidation(SecurityBuffer,auStack_28,1,0x4a4f5250);
+  if (((inputParameter == 0) && (inputParameter = ExecuteSecurityValidation(SecurityBuffer,ainputDataWord,0,0x494b4e42), inputParameter == 0)) &&
+     (inputParameter = ValidatePortControlRequest(SecurityBuffer,DataContext + 0x10), inputParameter == 0)) {
+    if (*(uint *)(SecurityBuffer + 8) < 0x37) {
       inputParameter = 0;
     }
-    else if (*(int *)(param_2[1] + 0x18) == 0) {
-      inputParameter = OperateDataO0(*param_2,param_1 + 0x210,8);
+    else if (*(int *)(SecurityBuffer[1] + 0x18) == 0) {
+      inputParameter = OperateDataO0(*SecurityBuffer,DataContext + 0x210,8);
     }
     else {
       inputParameter = 0x1c;
     }
     if (inputParameter == 0) {
-      *(DataWord *)(param_1 + 0x218) = *(DataWord *)(param_2 + 8);
-      if (*(uint *)(param_2 + 8) < 0x41) {
+      *(DataWord *)(DataContext + 0x218) = *(DataWord *)(SecurityBuffer + 8);
+      if (*(uint *)(SecurityBuffer + 8) < 0x41) {
         inputParameter = 0;
       }
-      else if (*(int *)(param_2[1] + 0x18) == 0) {
-        inputParameter = OperateDataO0(*param_2,param_1 + 0x2f4,4);
+      else if (*(int *)(SecurityBuffer[1] + 0x18) == 0) {
+        inputParameter = OperateDataO0(*SecurityBuffer,DataContext + 0x2f4,4);
       }
       else {
         inputParameter = 0x1c;
@@ -29418,12 +29430,12 @@ void ValidateDataParametersC0(int64_t param_1,DataBuffer *param_2)
           inputParameter = 0x1c;
         }
         if (inputParameter == 0) {
-          *(DataWord *)(param_1 + 0x200) = *(DataWord *)(param_1 + 0x10);
-          *(DataWord *)(param_1 + 0x204) = *(DataWord *)(param_1 + 0x14);
-          *(DataWord *)(param_1 + 0x208) = *(DataWord *)(param_1 + 0x18);
-          *(DataWord *)(param_1 + 0x20c) = *(DataWord *)(resourceDescriptor + 0x1c);
+          *(DataWord *)(DataContext + 0x200) = *(DataWord *)(DataContext + 0x10);
+          *(DataWord *)(DataContext + 0x204) = *(DataWord *)(DataContext + 0x14);
+          *(DataWord *)(DataContext + 0x208) = *(DataWord *)(DataContext + 0x18);
+          *(DataWord *)(DataContext + 0x20c) = *(DataWord *)(resourceDescriptor + 0x1c);
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,ainputDataWord);
+          FUN_1808ddf80(SecurityBuffer,ainputDataWord);
         }
       }
     }
@@ -29434,8 +29446,19 @@ void ValidateDataParametersC0(int64_t param_1,DataBuffer *param_2)
 
 
 
-89d557(DataWord param_1)
-void CheckSystemStateC0(DataWord param_1)
+/**
+ * @brief 检查系统状态C0
+ * 
+ * 该函数负责检查系统的当前状态，执行安全验证和状态监控
+ * 
+ * @param SystemStateParameter 系统状态参数，包含待检查的状态信息
+ * 
+ * @return void 无返回值，检查结果通过内部状态返回
+ * 
+ * @note 此函数包含安全验证机制
+ * @warning 状态检查失败会影响系统正常运行
+ */
+void CheckSystemStateC0(DataWord SystemStateParameter)
 
 {
   int inputParameter;

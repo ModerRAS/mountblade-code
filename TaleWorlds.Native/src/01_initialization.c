@@ -2096,8 +2096,8 @@ void InitializeSystemDataTableAllocator(void)
   CurrentSystemNodePointer = (void**)SystemRootNodeReference[RootNodeCurrentNodeIndex];
   
   while (!IsDataTableNodeActive) {
-    DataTableIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + NodeIdentifierOffset, &SystemDataTableSystemIdentifier1, IdentifierSize);
-    if (DataTableIdentifierComparisonResult < 0) {
+    DataTableSystemIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + NodeIdentifierOffset, &SystemDataTableSystemIdentifier1, IdentifierSize);
+    if (DataTableSystemIdentifierComparisonResult < 0) {
       NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeNextPointerOffset];
       CurrentSystemNodePointer = PreviousSystemNodePointer;
     }
@@ -2110,7 +2110,7 @@ void InitializeSystemDataTableAllocator(void)
   }
   
   if ((PreviousSystemNodePointer == SystemRootNodeReference) || 
-      (DataTableIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, PreviousSystemNodePointer + NodeIdentifierOffset, IdentifierSize), DataTableIdentifierComparisonResult < 0)) {
+      (DataTableSystemIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, PreviousSystemNodePointer + NodeIdentifierOffset, IdentifierSize), DataTableSystemIdentifierComparisonResult < 0)) {
     DataTableRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &NewDataTableNodePointer, PreviousSystemNodePointer, DataTableRequiredMemorySize + NodeAllocationExtraSize, DataTableRequiredMemorySize);
     PreviousSystemNodePointer = NewDataTableNodePointer;
@@ -38921,12 +38921,12 @@ void ResumeSystemThreadsB(void)
   
   SystemThreadHandle = 0;
   do {
-    resourceDataIndex = *(long long *)(*(long long *)(*(long long *)(StringIterator + 8) + SystemThreadHandle * 8) + 0x40);
-    if ((resourceDataIndex != 0) && (resourceDataIndex != SystemStackFrameOffset)) {
+    ResourceDataIndex = *(long long *)(*(long long *)(*(long long *)(StringIterator + 8) + SystemThreadHandle * 8) + 0x40);
+    if ((ResourceDataIndex != 0) && (ResourceDataIndex != SystemStackFrameOffset)) {
       ResumeThread();
     }
     SystemThreadHandle = SystemThreadHandle + 1;
-  } while (SystemThreadHandle < systemDataIndexPtr);
+  } while (SystemThreadHandle < SystemDataIndexPointer);
   return;
 }
 
@@ -39953,12 +39953,12 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
           if (*(int *)(HashTablePointer[1] + SystemOperationFlags * 0x10) == 0) {
             ResourceHashEntryPointer = (uint *)(HashTablePointer[1] + SystemOperationFlags * 0x10);
             LOCK();
-            isByteValid2 = *ResourceHashEntryPointer == 0;
-            if (isByteValid2) {
+            IsResourceEntryValid = *ResourceHashEntryPointer == 0;
+            if (IsResourceEntryValid) {
               *ResourceHashEntryPointer = CurrentThreadIdentifier;
             }
             UNLOCK();
-            if (isByteValid2) {
+            if (IsResourceEntryValid) {
               *(long long *)(HashTablePointer[1] + 8 + SystemOperationFlags * 0x10) = SystemMemoryPointer;
               return SystemMemoryPointer;
             }
@@ -40032,12 +40032,12 @@ long long FindThreadLocalStorageResource(long long SystemResourceManager)
         if (*(int *)(HashTablePointer[1] + SystemOperationFlags * 0x10) == 0) {
           ResourceHashEntryPointer = (uint *)(HashTablePointer[1] + SystemOperationFlags * 0x10);
           LOCK();
-          isByteValid2 = *ResourceHashEntryPointer == 0;
-          if (isByteValid2) {
+          IsResourceEntryValid = *ResourceHashEntryPointer == 0;
+          if (IsResourceEntryValid) {
             *ResourceHashEntryPointer = CurrentThreadIdentifier;
           }
           UNLOCK();
-          if (isByteValid2) {
+          if (IsResourceEntryValid) {
             *(long long *)(HashTablePointer[1] + 8 + SystemOperationFlags * 0x10) = SystemMemoryPointer;
             return SystemMemoryPointer;
           }
@@ -40141,11 +40141,11 @@ long long AllocateSystemResourceId(void)
   do {
     ThreadContext = StringIterator & *systemDataIndexPtr - 1;
     if (*(int *)(systemDataIndexPtr[1] + ThreadContext * 0x10) == 0) {
-      pointerToInteger3 = (int *)(systemDataIndexPtr[1] + ThreadContext * 0x10);
+      ThreadResourcePointer = (int *)(systemDataIndexPtr[1] + ThreadContext * 0x10);
       LOCK();
-      IsResourceAvailable = *pointerToInteger3 == 0;
+      IsResourceAvailable = *ThreadResourcePointer == 0;
       if (IsResourceAvailable) {
-        *pointerToInteger3 = SystemResourceHandle;
+        *ThreadResourcePointer = SystemResourceHandle;
       }
       UNLOCK();
       if (IsResourceAvailable) {
@@ -40260,14 +40260,14 @@ long long ManageSystemResourceAllocationPool(void)
             do {
               ThreadContext = StringIterator & *systemDataIndexPtr - 1;
               if (*(int *)(systemDataIndexPtr[1] + ThreadContext * 0x10) == 0) {
-                pointerToInteger2 = (int *)(systemDataIndexPtr[1] + ThreadContext * 0x10);
+                SystemThreadResourcePointer = (int *)(systemDataIndexPtr[1] + ThreadContext * 0x10);
                 LOCK();
-                isSystemBusy = *pointerToInteger2 == 0;
-                if (isSystemBusy) {
-                  *pointerToInteger2 = SystemResourceHandle;
+                IsSystemResourceAvailable = *SystemThreadResourcePointer == 0;
+                if (IsSystemResourceAvailable) {
+                  *SystemThreadResourcePointer = SystemResourceHandle;
                 }
                 UNLOCK();
-                if (isSystemBusy) {
+                if (IsSystemResourceAvailable) {
                   *(long long *)(systemDataIndexPtr[1] + 8 + ThreadContext * 0x10) = SystemThreadFlags;
                   return SystemThreadFlags;
                 }
@@ -40769,7 +40769,7 @@ void* ExpandSystemResourceAllocatorB(void)
   long long SystemStackFrameOffset;
   long long StringIterator;
   long long *systemDataIndexPtr;
-  void* *ResourceRegister9;
+  void* *ResourceRegisterArray;
   void* SystemThreadContext;
   void** RootNodeReference;
   
@@ -40797,12 +40797,12 @@ void* ExpandSystemResourceAllocatorB(void)
       MemoryBlockAddress = MemoryBlockAddress + -1;
     } while (MemoryBlockAddress != 0);
   }
-  ResourceRegister9[4] = systemDataIndexPtr;
-  ResourceRegister9[2] = resourceEntryPointer;
-  ResourceRegister9[3] = SystemThreadContext;
-  *ResourceRegister9 = *(void* *)(StringIterator + 0x58);
-  ResourceRegister9[1] = *(long long *)(StringIterator + 0x58) - 1U & SystemStackFrameOffset - 1U;
-  *(void* **)(StringIterator + 0x60) = ResourceRegister9;
+  ResourceRegisterArray[4] = systemDataIndexPtr;
+  ResourceRegisterArray[2] = resourceEntryPointer;
+  ResourceRegisterArray[3] = SystemThreadContext;
+  *ResourceRegisterArray = *(void* *)(StringIterator + 0x58);
+  ResourceRegisterArray[1] = *(long long *)(StringIterator + 0x58) - 1U & SystemStackFrameOffset - 1U;
+  *(void* **)(StringIterator + 0x60) = ResourceRegisterArray;
   *(long long *)(StringIterator + 0x58) = *(long long *)(StringIterator + 0x58) << 1;
   return CombineMemoryFlags((int7)(SystemStackFrameOffset - 1U >> 8),1);
 }
