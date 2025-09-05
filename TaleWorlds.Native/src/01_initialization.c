@@ -64422,7 +64422,7 @@ ResourceInitializationLoop:
                   aSystemOperationCode.LowPart = uStack_1bc;
                   aSystemOperationCode.HighWord = SystemContextPointer;
                   aSystemOperationCode.MidWord = (uint32_t)SystemOperationFlag1b8;
-                  aSystemOperationCode._12_4_ = SystemOperationFlag1b8.LowPart;
+                  aSystemOperationCode.HighWord2 = SystemOperationFlag1b8.LowPart;
                   *paresourceAllocationContext7 = aSystemOperationCode;
                   *(uint32_t *)paresourceAllocationContext7[1] = 0x7f7fffff;
                 }
@@ -64448,10 +64448,10 @@ SystemConfigurationAllocation:
                   }
                   aResourceAddress7.LowPart = uStack_1bc;
                   aResourceAddress7.HighWord = GlobalDataFlags;
-                  aResourceAddress7._8_4_ = (uint32_t)SystemOperationFlag1b8;
-                  aResourceAddress7._12_4_ = SystemOperationFlag1b8.LowPart;
+                  aResourceAddress7.MidWord = (uint32_t)SystemOperationFlag1b8;
+                  aResourceAddress7.HighWord2 = SystemOperationFlag1b8.LowPart;
                   *paResourceAddress2 = aResourceAddress7;
-                  *(uint32_t *)paResourceAddress2[1] = piStack_1b0._0_4_;
+                  *(uint32_t *)paResourceAddress2[1] = piStack_1b0.HighWord;
                   if (*(long long *)(SystemIntegerPointer + ResourceAddressPrimary * 8) != 0) {
                       SystemCleanupFunction();
                   }
@@ -65931,7 +65931,7 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
   if (LocalResourceOffset != (long long *)0x0) {
     (**(code **)(*LocalResourceOffset + 0x28))(LocalResourceOffset);
   }
-  SystemConfigurationFlag1 = CONCAT31(SystemConfigurationFlag1._1_3_,ConfigurationDataPointer);
+  SystemConfigurationFlag1 = CONCAT31(SystemConfigurationFlag1.Byte3,ConfigurationDataPointer);
   SystemResourceManager1 = SystemResourceManager;
   if ((void* *)*SystemResourceManager == &SystemResourceDataTableC) {
     LOCK();
@@ -70216,22 +70216,22 @@ void* NormalizeAudioData(void)
         if ((int)audioShiftRegister < 0) {
           audioShiftRegister = (audioShiftRegister - 1 | 0xfffffff8) + 1;
         }
-        audioInverseCoeffArray._0_4_ = audioWindowOffset1 + -1;
+        audioInverseCoeffArray.HighWord = audioWindowOffset1 + -1;
         audioInverseCoeffArray.LowPart = audioWindowOffset2 + -1;
-        audioInverseCoeffArray._8_4_ = audioWindowOffset3 + -1;
+        audioInverseCoeffArray.MidWord = audioWindowOffset3 + -1;
         audioInverseCoeffArray._12_4_ = audioWindowOffset4 + -1;
-        audioCoefficientArray._0_4_ = (float)audioInverseCoeffArray._0_4_;
+        audioCoefficientArray._0_4_ = (float)audioInverseCoeffArray.HighWord;
         audioCoefficientArray.LowPart = (float)audioInverseCoeffArray.LowPart;
-        audioCoefficientArray._8_4_ = (float)audioInverseCoeffArray._8_4_;
+        audioCoefficientArray._8_4_ = (float)audioInverseCoeffArray.MidWord;
         audioCoefficientArray._12_4_ = (float)audioInverseCoeffArray._12_4_;
         audioInverseCoeffArray = rcpps(audioInverseCoeffArray,audioCoefficientArray);
         audioNormalizedValue = 0.0;
         audioWeightedSum2 = 0.0;
         audioWeightedSum3 = 0.0;
         audioIntermediateResult = 0.0;
-        audioFilterCoeff1 = audioInverseCoeffArray._0_4_;
+        audioFilterCoeff1 = audioInverseCoeffArray.HighWord;
         audioFilterCoeff2 = audioInverseCoeffArray.LowPart;
-        audioFilterCoeff3 = audioInverseCoeffArray._8_4_;
+        audioFilterCoeff3 = audioInverseCoeffArray.MidWord;
         audioFilterCoeff4 = audioInverseCoeffArray._12_4_;
         audioWeightedSum1 = 0.0;
         audioWeightedSum4 = 0.0;
