@@ -3723,14 +3723,14 @@ NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t Heade
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    NetworkContextProcessingStatus = NetworkValidationSuccess;
+    ContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
-      NetworkContextProcessingStatus == NetworkValidationSuccess) {
-    NetworkFormatValidationResult = NetworkValidationSuccess;
+  if (HeaderValidationResult == NetworkValidationSuccess && 
+      ContextProcessingStatus == NetworkValidationSuccess) {
+    FormatValidationResult = NetworkValidationSuccess;
   }
   
-  return NetworkFormatValidationResult;
+  return FormatValidationResult;
 }
