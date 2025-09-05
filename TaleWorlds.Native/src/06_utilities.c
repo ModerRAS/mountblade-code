@@ -4053,37 +4053,37 @@ void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
 void ProcessResourceCleanup(void)
 
 {
-  undefined8 uVar1;
-  int iVar2;
-  longlong in_RAX;
-  longlong unaff_RBX;
-  longlong lVar3;
-  int iVar4;
-  undefined1 *in_stack_00000030;
-  int iStack0000000000000038;
-  undefined4 uStack000000000000003c;
-  ulonglong in_stack_00000240;
+  undefined8 resourceHandle;
+  int operationResult;
+  longlong systemContext;
+  longlong systemRegistry;
+  longlong resourceOffset;
+  int cleanupCounter;
+  undefined1 *stackBuffer;
+  int resourceCount;
+  undefined4 cleanupFlags;
+  ulonglong securityParameter;
   
-  if (*(longlong *)(in_RAX + 8) != 0) {
-    in_stack_00000030 = &stack0x00000040;
-    iVar4 = 0;
-    iStack0000000000000038 = 0;
-    uStack000000000000003c = 0xffffffc0;
-    iVar2 = ExecuteCoreFunction(*(undefined8 *)(unaff_RBX + 0x90),*(longlong *)(in_RAX + 8),
+  if (*(longlong *)(systemContext + 8) != 0) {
+    stackBuffer = &stack0x00000040;
+    cleanupCounter = 0;
+    resourceCount = 0;
+    cleanupFlags = 0xffffffc0;
+    operationResult = ExecuteCoreFunction(*(undefined8 *)(systemRegistry + 0x90),*(longlong *)(systemContext + 8),
                           &stack0x00000030);
-    if (iVar2 == 0) {
-      if (0 < iStack0000000000000038) {
-        lVar3 = 0;
+    if (operationResult == 0) {
+      if (0 < resourceCount) {
+        resourceOffset = 0;
         do {
-          uVar1 = *(undefined8 *)(in_stack_00000030 + lVar3);
-          iVar2 = ProcessUtilityOperation(uVar1);
-          if (iVar2 != 2) {
+          resourceHandle = *(undefined8 *)(stackBuffer + resourceOffset);
+          operationResult = ProcessUtilityOperation(resourceHandle);
+          if (operationResult != 2) {
                     // WARNING: Subroutine does not return
-            ReleaseResource(uVar1,1);
+            ReleaseResource(resourceHandle,1);
           }
-          iVar4 = iVar4 + 1;
-          lVar3 = lVar3 + 8;
-        } while (iVar4 < iStack0000000000000038);
+          cleanupCounter = cleanupCounter + 1;
+          resourceOffset = resourceOffset + 8;
+        } while (cleanupCounter < resourceCount);
       }
       CleanupMemory(&stack0x00000030);
     }
@@ -4092,7 +4092,7 @@ void ProcessResourceCleanup(void)
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -5033,50 +5033,50 @@ undefined8 ReturnErrorStatus(void)
 undefined8 ValidateDataArray(longlong arrayDescriptor)
 
 {
-  undefined8 uVar1;
-  int *piVar2;
-  undefined4 *puVar3;
-  uint uVar4;
-  ulonglong uVar6;
-  longlong lStackX_8;
-  ulonglong uVar5;
+  undefined8 validationStatus;
+  int *dataComparisonPointer;
+  undefined4 *validationDataPointer;
+  uint entryCounter;
+  ulonglong adjustedAddress;
+  longlong stackBuffer;
+  ulonglong loopIndex;
   
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 == 0) {
-    uVar5 = 0;
-    uVar6 = lStackX_8 - 8;
-    if (lStackX_8 == 0) {
-      uVar6 = uVar5;
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(arrayDescriptor + 0x10),&stackBuffer);
+  if ((int)validationStatus == 0) {
+    loopIndex = 0;
+    adjustedAddress = stackBuffer - 8;
+    if (stackBuffer == 0) {
+      adjustedAddress = loopIndex;
     }
-    puVar3 = (undefined4 *)(param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 8);
-    piVar2 = (int *)(param_1 + 0x20);
-    if (0 < *(int *)(param_1 + 0x18)) {
+    validationDataPointer = (undefined4 *)(arrayDescriptor + 0x20 + (longlong)*(int *)(arrayDescriptor + 0x18) * 8);
+    dataComparisonPointer = (int *)(arrayDescriptor + 0x20);
+    if (0 < *(int *)(arrayDescriptor + 0x18)) {
       do {
-        if ((*piVar2 != _DAT_180c4eaa0) || (piVar2[1] != _DAT_180c4eaa4)) {
-          lStackX_8 = 0;
-          uVar1 = FUN_1808681d0(uVar6,(int *)(param_1 + 0x20) + (longlong)(int)uVar5 * 2,&lStackX_8)
+        if ((*dataComparisonPointer != _DAT_180c4eaa0) || (dataComparisonPointer[1] != _DAT_180c4eaa4)) {
+          stackBuffer = 0;
+          validationStatus = FUN_1808681d0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (longlong)(int)loopIndex * 2,&stackBuffer)
           ;
-          if ((int)uVar1 != 0) {
-            return uVar1;
+          if ((int)validationStatus != 0) {
+            return validationStatus;
           }
-          if (*(longlong *)(lStackX_8 + 8) == 0) {
+          if (*(longlong *)(stackBuffer + 8) == 0) {
             return 0x1c;
           }
-          uVar1 = FUN_1808d73b0(*(longlong *)(lStackX_8 + 8),*puVar3,*(undefined1 *)(param_1 + 0x1c)
+          validationStatus = FUN_1808d73b0(*(longlong *)(stackBuffer + 8),*validationDataPointer,*(undefined1 *)(arrayDescriptor + 0x1c)
                                );
-          if ((int)uVar1 != 0) {
-            return uVar1;
+          if ((int)validationStatus != 0) {
+            return validationStatus;
           }
         }
-        uVar4 = (int)uVar5 + 1;
-        uVar5 = (ulonglong)uVar4;
-        puVar3 = puVar3 + 1;
-        piVar2 = piVar2 + 2;
-      } while ((int)uVar4 < *(int *)(param_1 + 0x18));
+        entryCounter = (int)loopIndex + 1;
+        loopIndex = (ulonglong)entryCounter;
+        validationDataPointer = validationDataPointer + 1;
+        dataComparisonPointer = dataComparisonPointer + 2;
+      } while ((int)entryCounter < *(int *)(arrayDescriptor + 0x18));
     }
-    uVar1 = 0;
+    validationStatus = 0;
   }
-  return uVar1;
+  return validationStatus;
 }
 
 
