@@ -29466,7 +29466,7 @@ void CheckSystemStateC0(DataWord SystemStateParameter)
   int64_t destinationIndexRegister;
   DataWord extraout_XMM0_Da;
   
-  inputParameter = ExecuteSecurityValidation(param_1,&stack0x00000030,0);
+  inputParameter = ExecuteSecurityValidation(SystemStateParameter,&stack0x00000030,0);
   if (inputParameter == 0) {
     inputParameter = ValidatePortControlRequest(extraout_XMM0_Da,destinationIndexRegister + 0x10);
     if (inputParameter == 0) {
