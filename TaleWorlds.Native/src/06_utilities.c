@@ -34415,12 +34415,12 @@ void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t ta
  * @param param_2 参数2（目标对象指针）
  * @note 原始函数名：Unwind_180902190
  */
-void ClearStateFlagAndExecuteCallback(DataBuffer param_1,int64_t param_2)
+void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 1) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffe;
-    CleanupResourceHandler(*(DataBuffer *)(param_2 + 0x1c8));
+  if ((*(uint *)(targetObjectPointer + 0x30) & 1) != 0) {
+    *(uint *)(targetObjectPointer + 0x30) = *(uint *)(targetObjectPointer + 0x30) & 0xfffffffe;
+    CleanupResourceHandler(*(DataBuffer *)(targetObjectPointer + 0x1c8));
   }
   return;
 }
