@@ -2564,7 +2564,7 @@ PrimaryNetworkProcessingComplete:
     if (ConnectionStatusPointer != NULL) {
       int32_t ProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t NetworkStatusIterationCounter = (long long)ProcessingCode;
-      if ((NetworkOperationProcessingCode != 0) && (NetworkConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < NetworkOperationProcessingCode)) {
+      if ((ProcessingCode != 0) && (NetworkConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < ProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
           NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
