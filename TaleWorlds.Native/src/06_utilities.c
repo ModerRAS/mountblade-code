@@ -7163,9 +7163,18 @@ undefined SystemControlPointerA0;
 // 功能：指向系统处理数据
 #define SystemProcessingPointerA0 UNK_180a3c908
 undefined SystemProcessingPointerA0;
-undefined UNK_180a3d970;
-undefined UNK_180a3db60;
-undefined DAT_180bfbd80;
+// 系统接口指针A0
+// 功能：指向系统接口数据
+#define SystemInterfacePointerA0 UNK_180a3d970
+undefined SystemInterfacePointerA0;
+// 系统服务指针A0
+// 功能：指向系统服务数据
+#define SystemServicePointerA0 UNK_180a3db60
+undefined SystemServicePointerA0;
+// 系统管理数据表A0
+// 功能：存储系统管理数据表信息
+#define SystemManagementDataTableA0 DAT_180bfbd80
+undefined SystemManagementDataTableA0;
 
 // Unwind函数语义化宏定义（180901f90系列）
 // 原始函数名：Unwind_180901f90 - 异常上下文设置函数D0
