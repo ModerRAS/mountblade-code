@@ -1997,10 +1997,25 @@ undefined UtilityFilterBufferD;
 // 功能：设置全局数据指针A35到指定地址
 #define SetGlobalDataPointerA35 FUN_1809423e0
 undefined UNK_180a22f60;
-undefined DAT_180bfa0b0;
-undefined DAT_180bfa0b8;
-undefined DAT_180bfa0c0;
-undefined DAT_180bfa0c8;
+// 原始变量名：DAT_180bfa0b0 - 全局数据指针A35存储区
+// 功能：存储全局数据指针A35的相关信息
+#define GlobalDataPointerA35Storage DAT_180bfa0b0
+undefined GlobalDataPointerA35Storage;
+
+// 原始变量名：DAT_180bfa0b8 - 全局数据指针A35状态区
+// 功能：存储全局数据指针A35的状态信息
+#define GlobalDataPointerA35Status DAT_180bfa0b8
+undefined GlobalDataPointerA35Status;
+
+// 原始变量名：DAT_180bfa0c0 - 全局数据指针A35配置区
+// 功能：存储全局数据指针A35的配置信息
+#define GlobalDataPointerA35Config DAT_180bfa0c0
+undefined GlobalDataPointerA35Config;
+
+// 原始变量名：DAT_180bfa0c8 - 全局数据指针A35缓存区
+// 功能：存储全局数据指针A35的缓存数据
+#define GlobalDataPointerA35Cache DAT_180bfa0c8
+undefined GlobalDataPointerA35Cache;
 
 // 原始函数名：FUN_180942400 - 全局指针设置函数A36
 // 功能：设置全局数据指针A36到指定地址
