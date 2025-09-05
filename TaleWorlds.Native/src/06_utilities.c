@@ -18700,7 +18700,7 @@ void ProcessFloatingPointDataA0(void)
   uint8_t *in_stack_00000030;
   int stackContextParameter;
   DataWord stackParameterOffset;
-  float in_stack_00000048;
+  float InputParam48;
   
   if (((register_R15B != '\0') || (*(int *)(*(int64_t *)(register_R13 + 0x2e8) + 0x34) == register_R12D)) &&
      (calculatedValue = ConfigureSystemParametersA0(), calculatedValue == 0)) {
@@ -19373,7 +19373,7 @@ ProcessDataSecurityValidation:
   DataWord uStackX_20;
   char acStackX_24 [4];
   uint8_t *in_stack_00000028;
-  float in_stack_00000030;
+  float InputParam30;
   DataWord InputParam38;
   float fStack0000000000000040;
   float fStack0000000000000044;
@@ -19635,7 +19635,7 @@ ValidateDataSecurity:
   DataWord uStackX_20;
   char acStackX_24 [4];
   uint8_t *in_stack_00000028;
-  float in_stack_00000030;
+  float InputParam30;
   DataWord InputParam38;
   float fStack0000000000000040;
   float fStack0000000000000044;
