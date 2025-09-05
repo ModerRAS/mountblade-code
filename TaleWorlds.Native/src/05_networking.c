@@ -2051,11 +2051,11 @@ NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHand
   NetworkConnectionContextId = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
   if (NetworkValidationStatusCode == 0) {
-    if ((0 < *(int *)((long long)NetworkConnectionValidationData + ConnectionParameterOffset)) && (*NetworkConnectionValidationData != 0)) {
+    if ((0 < *(int *)CalculateContextParameterOffset(NetworkConnectionValidationData)) && (*NetworkConnectionValidationData != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationData, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     *NetworkConnectionValidationData = NetworkConnectionContextId;
-    *(int *)((long long)NetworkConnectionValidationData + ConnectionParameterOffset) = NetworkValidationStatusCode;
+    *(int *)CalculateContextParameterOffset(NetworkConnectionValidationData) = NetworkValidationStatusCode;
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
