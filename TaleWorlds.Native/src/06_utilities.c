@@ -8666,17 +8666,17 @@ undefined8 ValidateDataIntegrity(longlong dataStructure,longlong validationConte
   undefined8 tempResult;
   int *poperationResult;
   undefined4 *puVar3;
-  int iVar4;
+  int loopCounter;
   
-  iVar4 = 0;
+  loopCounter = 0;
   puVar3 = (undefined4 *)(param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
   poperationResult = (int *)(param_1 + 0x18);
   if (0 < *(int *)(param_1 + 0x10)) {
     do {
       if (((*poperationResult != _DAT_180c4eaa0) || (poperationResult[1] != _DAT_180c4eaa4)) &&
-         (uVar1 = ProcessDataIndexA0(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)loopCounter * 2,*puVar3
-                                ,*(undefined1 *)(param_1 + 0x14)), (int)uVar1 != 0)) {
-        return uVar1;
+         (tempResult = ProcessDataIndexA0(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)loopCounter * 2,*puVar3
+                                ,*(undefined1 *)(param_1 + 0x14)), (int)tempResult != 0)) {
+        return tempResult;
       }
       loopCounter = loopCounter + 1;
       puVar3 = puVar3 + 1;
@@ -45085,62 +45085,87 @@ void CleanupExceptionResourcesA(undefined8 exceptionContext, longlong unwindPara
 
 
 
-void Unwind_1809057e0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 初始化异常处理器指针
+ * 
+ * 该函数负责初始化多个异常处理器的指针，确保系统在异常发生时
+ * 能够正确地处理异常。函数会检查每个处理器的状态，如果发现
+ * 非零状态则会终止系统。
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param handlerContext 处理器上下文，包含多个异常处理器的指针
+ * 
+ * @note 原始函数名：Unwind_1809057e0
+ */
+void InitializeExceptionHandlerPointers(undefined8 exceptionContext, longlong handlerContext)
 
 {
-  *(undefined8 *)(param_2 + 0x100) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0x108) != 0) {
+  *(undefined8 *)(handlerContext + 0x100) = &DefaultExceptionHandlerA;
+  if (*(longlong *)(handlerContext + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0x108) = 0;
-  *(undefined4 *)(param_2 + 0x118) = 0;
-  *(undefined8 *)(param_2 + 0x100) = &DefaultExceptionHandlerB;
-  *(undefined8 *)(param_2 + 0xe0) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0xe8) != 0) {
+  *(undefined8 *)(handlerContext + 0x108) = 0;
+  *(undefined4 *)(handlerContext + 0x118) = 0;
+  *(undefined8 *)(handlerContext + 0x100) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(handlerContext + 0xe0) = &DefaultExceptionHandlerA;
+  if (*(longlong *)(handlerContext + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0xe8) = 0;
-  *(undefined4 *)(param_2 + 0xf8) = 0;
-  *(undefined8 *)(param_2 + 0xe0) = &DefaultExceptionHandlerB;
-  *(undefined8 *)(param_2 + 0xb8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0xc0) != 0) {
+  *(undefined8 *)(handlerContext + 0xe8) = 0;
+  *(undefined4 *)(handlerContext + 0xf8) = 0;
+  *(undefined8 *)(handlerContext + 0xe0) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(handlerContext + 0xb8) = &DefaultExceptionHandlerA;
+  if (*(longlong *)(handlerContext + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0xc0) = 0;
-  *(undefined4 *)(param_2 + 0xd0) = 0;
-  *(undefined8 *)(param_2 + 0xb8) = &DefaultExceptionHandlerB;
-  *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0xa0) != 0) {
+  *(undefined8 *)(handlerContext + 0xc0) = 0;
+  *(undefined4 *)(handlerContext + 0xd0) = 0;
+  *(undefined8 *)(handlerContext + 0xb8) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(handlerContext + 0x98) = &DefaultExceptionHandlerA;
+  if (*(longlong *)(handlerContext + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0xa0) = 0;
-  *(undefined4 *)(param_2 + 0xb0) = 0;
-  *(undefined8 *)(param_2 + 0x98) = &DefaultExceptionHandlerB;
-  *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0x70) != 0) {
+  *(undefined8 *)(handlerContext + 0xa0) = 0;
+  *(undefined4 *)(handlerContext + 0xb0) = 0;
+  *(undefined8 *)(handlerContext + 0x98) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(handlerContext + 0x68) = &DefaultExceptionHandlerA;
+  if (*(longlong *)(handlerContext + 0x70) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0x70) = 0;
-  *(undefined4 *)(param_2 + 0x80) = 0;
-  *(undefined8 *)(param_2 + 0x68) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(handlerContext + 0x70) = 0;
+  *(undefined4 *)(handlerContext + 0x80) = 0;
+  *(undefined8 *)(handlerContext + 0x68) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809057f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 执行异常处理回调函数
+ * 
+ * 该函数负责调用异常处理回调函数，通过获取回调函数指针并执行，
+ * 传递必要的参数来处理异常情况。
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param callbackContext 回调函数上下文，包含回调函数指针
+ * @param unusedParam 未使用的参数
+ * @param callbackParam 回调函数参数
+ * 
+ * @note 原始函数名：Unwind_1809057f0
+ */
+void ExecuteExceptionCallback(undefined8 exceptionContext, longlong callbackContext, undefined8 unusedParam, undefined8 callbackParam)
 
 {
-  code *pcVar1;
+  code *callbackFunction;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0x2e8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x2e8),0,0,param_4,0xfffffffffffffffe);
+  callbackFunction = *(code **)(*(longlong *)(callbackContext + 0x2e8) + 0x10);
+  if (callbackFunction != (code *)0x0) {
+    (*callbackFunction)(*(longlong *)(callbackContext + 0x2e8),0,0,callbackParam,0xfffffffffffffffe);
   }
   return;
 }
