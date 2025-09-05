@@ -184,8 +184,8 @@
  * @note 原始函数名：FUN_180892974
  */
 #define CheckSystemInitializationStatusA0 FUN_180892974
-#define ProcessSystemDataE1 FUN_180892990
-#define ProcessSystemDataE2 FUN_180892ac0
+#define ProcessSystemDataA0 FUN_180892990
+#define ValidateAndProcessFloatingPointNumberA2 FUN_180892ac0
 #define ProcessSystemDataE3 FUN_180892bd0
 #define ProcessSystemDataE4 FUN_180892cc0
 
