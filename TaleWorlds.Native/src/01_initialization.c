@@ -29976,7 +29976,7 @@ void InitializeSystemDataManager(void)
 
 
 /**
- * @brief 系统节点资源处理函数
+ * @brief 处理系统节点资源
  * 
  * 该函数负责处理系统节点资源，包括节点比较、内存管理和资源分配。
  * 函数会遍历系统资源指针，比较节点数据，并根据比较结果进行相应的处理。
@@ -29984,64 +29984,64 @@ void InitializeSystemDataManager(void)
  * @param SystemResourceManager 系统资源指针
  * @note 该函数在系统资源管理中起到关键作用
  */
-void ProcessSystemNodeResource(long long SystemResourceManager)
+void HandleSystemNodeResourceProcessing(long long SystemResourceManager)
 
 {
-  char NodeActiveFlag;
-  char validationStatusFlag;
-  int IdentifierCompareResult;
+  char IsNodeActive;
+  char ResourceValidationStatus;
+  int NodeIdentifierComparisonResult;
   void* *ResourceAddressPointer;
   ulong long CurrentThreadIdentifier;
-  int CalculationFlags;
-  char *resourceStringPointer;
-  long long *pSystemMemoryPointer;
-  long long resourceCounter;
+  int ResourceCalculationFlags;
+  char *ResourceStringPointer;
+  long long *SystemMemoryPointer;
+  long long ResourceCount;
   ulong long SystemOperationFlags;
-  long long SystemResourceDataIndex;
+  long long ResourceDataIndex;
   long long ResourceDataPosition;
   int SystemInitializationStatus;
   long long ResourceDataLocation;
   int ResourceValidationResult;
-  long long ResourceDataIndex;
+  long long ResourceDataIndexSecondary;
   int SystemInitializationStatusPrimary;
   ulong long SystemOperationResult;
   int SystemContextReference;
   bool IsConfigurationInitialized;
   
   SystemOperationFlags = 0;
-  resourceCounter = *(long long *)(SystemResourceManager + 0x50);
+  ResourceCount = *(long long *)(SystemResourceManager + 0x50);
   ResourceDataPosition = *(long long *)(SystemResourceManager + 0x48);
-  if (resourceCounter - ResourceDataPosition >> 3 != 0) {
+  if (ResourceCount - ResourceDataPosition >> 3 != 0) {
     SystemContextReference = 1;
     ResourceDataIndex = 8;
     SystemOperationResult = SystemOperationFlags;
     do {
       SystemInitializationStatusPrimary = (int)SystemOperationFlags;
-      CalculationFlags = -1;
-      if ((ulong long)(long long)SystemContextReference < (ulong long)(resourceCounter - ResourceDataPosition >> 3)) {
-        resourceCounter = *(long long *)(SystemResourceManager + 0x50);
+      ResourceCalculationFlags = -1;
+      if ((ulong long)(long long)SystemContextReference < (ulong long)(ResourceCount - ResourceDataPosition >> 3)) {
+        ResourceCount = *(long long *)(SystemResourceManager + 0x50);
         ResourceDataLocation = ResourceDataIndex;
         SystemInitializationStatus = SystemContextReference;
         ResourceValidationResult = -1;
         do {
-          CalculationFlags = *(int *)(*(long long *)(ResourceDataLocation + ResourceDataPosition) + 0x10);
-          systemCounter = *(int *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 0x10);
-          if (CalculationFlags == systemCounter) {
-            if (CalculationFlags == 0) {
+          ResourceCalculationFlags = *(int *)(*(long long *)(ResourceDataLocation + ResourceDataPosition) + 0x10);
+          SystemResourceCounter = *(int *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 0x10);
+          if (ResourceCalculationFlags == SystemResourceCounter) {
+            if (ResourceCalculationFlags == 0) {
 SystemCounterCheck:
-              if (systemCounter != 0) goto SystemCounterContinue;
-              isConfigurationInitialized = true;
+              if (SystemResourceCounter != 0) goto SystemCounterContinue;
+              IsConfigurationInitialized = true;
             }
             else {
-              resourceStringPointer = *(char **)(*(long long *)(ResourceDataLocation + ResourceDataPosition) + 8);
-              SystemResourceDataIndex = *(long long *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 8) - (long long)resourceStringPointer;
+              ResourceStringPointer = *(char **)(*(long long *)(ResourceDataLocation + ResourceDataPosition) + 8);
+              ResourceDataIndex = *(long long *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 8) - (long long)ResourceStringPointer;
               do {
-                initializationStatusFlag = *resourceStringPointer;
-                validationStatusFlag = resourceStringPointer[SystemResourceDataIndex];
-                if (initializationStatusFlag != validationStatusFlag) break;
-                resourceStringPointer = resourceStringPointer + 1;
-              } while (validationStatusFlag != '\0');
-              isConfigurationInitialized = initializationStatusFlag == validationStatusFlag;
+                SystemInitializationStatusFlag = *ResourceStringPointer;
+                ResourceValidationStatus = ResourceStringPointer[ResourceDataIndex];
+                if (SystemInitializationStatusFlag != ResourceValidationStatus) break;
+                ResourceStringPointer = ResourceStringPointer + 1;
+              } while (ResourceValidationStatus != '\0');
+              IsConfigurationInitialized = SystemInitializationStatusFlag == ResourceValidationStatus;
             }
           }
           else {

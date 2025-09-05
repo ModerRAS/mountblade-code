@@ -17478,7 +17478,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
               iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
               if (iVar6 != 0) goto FUN_180897b16;
             }
-            iVar6 = FUN_180868270(lVar2,afStack_198,0);
+            iVar6 = ValidateDataA3(lVar2,afStack_198,0);
             if (iVar6 == 0) {
               if (afStack_198[0] != 1.0) {
                 fStack_1a8 = afStack_198[0];
@@ -17688,7 +17688,7 @@ ProcessDataSecurityValidation:
       }
       uVar17 = *(undefined8 *)(*(longlong *)(unaff_RSI + 8) + 800);
       uVar16 = (**(code **)*resourcePointer2)(resourcePointer2);
-      iVar13 = FUN_1808479d0(uVar16,uVar17,acStackX_24);
+      iVar13 = ProcessDataOperationA7(uVar16,uVar17,acStackX_24);
       if (iVar13 == 0) {
         uVar24 = extraout_XMM0_Da_00;
         if (acStackX_24[0] != '\0') {
@@ -17737,7 +17737,7 @@ ProcessDataSecurityValidation:
             fStack000000000000004c = extraout_XMM0_Da_03;
             if (iVar13 != 0) goto FUN_180897b0e;
           }
-          iVar13 = FUN_180868270(fStack000000000000004c,&stackBuffer50,0);
+          iVar13 = ValidateDataA3(fStack000000000000004c,&stackBuffer50,0);
           if (iVar13 == 0) {
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
@@ -17935,7 +17935,7 @@ ValidateDataSecurity:
   }
   uVar17 = *(undefined8 *)(*(longlong *)(unaff_RSI + 8) + 800);
   uVar16 = (**(code **)*unaff_R12)(unaff_R12);
-  iVar13 = FUN_1808479d0(uVar16,uVar17,acStackX_24);
+  iVar13 = ProcessDataOperationA7(uVar16,uVar17,acStackX_24);
   if (iVar13 == 0) {
     uVar23 = extraout_XMM0_Da;
     if (acStackX_24[0] != '\0') {
@@ -17971,7 +17971,7 @@ ValidateDataSecurity:
         if (iVar13 != 0) goto FUN_180897afe;
       }
     }
-    iVar13 = FUN_1808682e0(uVar23,(longlong)&stack0x00000048 + 4,0);
+    iVar13 = ConvertDataFormatA2(uVar23,(longlong)&stack0x00000048 + 4,0);
     if (iVar13 == 0) {
       in_stack_000001a0 = unaff_XMM6_Da;
       in_stack_000001a8 = unaff_XMM6_Dc;
@@ -17984,7 +17984,7 @@ ValidateDataSecurity:
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
         if (iVar13 != 0) goto FUN_180897afe;
       }
-      iVar13 = FUN_180868270(in_stack_00000048._4_4_,&stackBuffer50,0);
+      iVar13 = ValidateDataA3(in_stack_00000048._4_4_,&stackBuffer50,0);
       if (iVar13 == 0) {
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
@@ -18127,7 +18127,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     param_1 = extraout_XMM0_Da;
     if (operationResult != 0) goto LAB_180897af6;
   }
-  operationResult = FUN_180868270(param_1,&stackBuffer50,0);
+  operationResult = ValidateDataA3(param_1,&stackBuffer50,0);
   if (operationResult == 0) {
     if (in_stack_00000050 != 1.0) {
       fStack0000000000000040 = in_stack_00000050;
@@ -18642,7 +18642,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_368;
   pvalidationContext6 = (longlong *)0x0;
   alStack_300[1] = 0;
-  iVar6 = FUN_18088c740(alStack_300 + 1,param_1[1]);
+  iVar6 = InitializeBufferA0(alStack_300 + 1,param_1[1]);
   if ((iVar6 == 0) && (iVar6 = ValidateSystemDataA0(param_1,1), iVar6 == 0)) {
     (**(code **)(*param_1 + 8))(param_1,&UNK_180986488);
     if (((*(uint *)(param_1 + 3) & 0x1000000) == 0) ||
