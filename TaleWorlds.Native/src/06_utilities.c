@@ -1796,9 +1796,6 @@
 // 功能：验证数据并返回验证结果
 #define ValidateDataA3 FUN_180899d90
 
-// 原始函数名：FUN_180899dc7 - 系统清理函数A1
-// 功能：清理系统资源并返回状态码
-#define CleanupSystemResourcesA1 FUN_180899dc7
 
 // 原始函数名：FUN_180894b00 - 数据验证函数B0
 // 功能：验证数据并返回验证结果
@@ -20059,7 +20056,7 @@ void UtilityNoOperationJ(void)
 
 
 
-undefined8 FUN_18089a370(longlong param_1,longlong param_2)
+undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
 
 {
   short sVar1;
@@ -20179,7 +20176,7 @@ undefined8 FUN_18089a370(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_18089a51d(void)
+undefined8 ExecuteDataCleanupA0(void)
 
 {
   short sVar1;
@@ -20246,7 +20243,7 @@ void UtilityNoOperationK(void)
 
 
 
-undefined8 FUN_18089a690(longlong param_1,undefined4 *param_2)
+undefined8 ProcessDataStreamA0(longlong param_1,undefined4 *param_2)
 
 {
   int iVar1;
@@ -20284,7 +20281,7 @@ undefined8 FUN_18089a690(longlong param_1,undefined4 *param_2)
 
 
 
-undefined8 FUN_18089a6e8(undefined8 *param_1,undefined8 param_2)
+undefined8 ValidateDataStreamA0(undefined8 *param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -20365,7 +20362,7 @@ void ProcessUtilityDataOperation(longlong operationHandle, uint *operationData)
 
 
 
-undefined8 FUN_18089a7e0(longlong param_1,undefined8 *param_2)
+undefined8 ProcessDataConversionA0(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
@@ -20400,7 +20397,7 @@ undefined8 FUN_18089a7e0(longlong param_1,undefined8 *param_2)
 
 
 
-ulonglong FUN_18089a880(longlong param_1,undefined8 *param_2)
+ulonglong ExecuteDataSynchronizationA0(longlong param_1,undefined8 *param_2)
 
 {
   ulonglong uVar1;
@@ -20573,7 +20570,7 @@ void UtilitySystemNoOperation(void)
 // 原始函数名：FUN_18089a9dd - 返回固定值函数R0
 // 功能：返回固定值0x1c
 #define ReturnFixedValueR0 FUN_18089a9dd
-undefined8 FUN_18089a9dd(void)
+undefined8 ValidateDataSynchronizationA0(void)
 
 {
   return 0x1c;
