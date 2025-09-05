@@ -2438,7 +2438,7 @@ void InitializeSystemCoreData(void)
 {
   char NodeActiveFlag;
   void** RootNodeReference;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long *SystemDataTable;
   long long SystemRequiredMemorySize;
   void** CurrentNodePointer;
@@ -2650,7 +2650,7 @@ void InitializeRenderingSystemConfig(void)
 {
   char SystemNodeActiveFlag;
   void** RootNodeReference;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long *SystemDataTable;
   long long SystemRequiredMemorySize;
   void** CurrentNode;
@@ -2850,7 +2850,7 @@ void InitializeSystemMemoryAllocator(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long MemorySystemOperationTimestamp;
   void** RootNodeReference;
@@ -2983,7 +2983,7 @@ void InitializeSystemThreadManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long MemorySystemOperationTimestamp;
   void** RootNodeReference;
@@ -3038,7 +3038,7 @@ void InitializeSystemEventManager(void)
 {
   char IsNodeActive;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -3262,7 +3262,7 @@ void InitializeSystemDataTableSecondaryRoot(void)
 {
   char NodeActiveFlag;
   void** DataTablePointer;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long *SystemRootPointer;
   long long SystemSystemMemoryAllocationSize;
   void** CurrentNodePointer;
@@ -3318,7 +3318,7 @@ void InitializeSystemDataTableQuaternaryRoot(void)
 {
   char NodeActiveFlag;
   void** DataTablePointer;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* SystemRootPointer;
   long long SystemSystemMemoryAllocationSize;
   void** CurrentNodePointer;
@@ -3374,7 +3374,7 @@ void InitializeSystemDataTableQuinaryRoot(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemSystemMemoryAllocationSize;
   void** RootNodeReference;
@@ -3430,7 +3430,7 @@ void InitializeSystemDataTableSenaryRoot(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -3486,7 +3486,7 @@ void InitializeSystemDataTableSeptenaryRoot(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -3542,7 +3542,7 @@ void InitializeSystemDataTableOctonaryRoot(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -3598,7 +3598,7 @@ void InitializeSystemDataTableNonaryRoot(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -3710,7 +3710,7 @@ void InitializeSystemDataTableDuodenaryRoot(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -3816,7 +3816,7 @@ void InitializeSystemMemoryManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -3924,7 +3924,7 @@ void InitializeSystemDataTable(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -3975,7 +3975,7 @@ void InitializeSystemNodeTree(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4026,7 +4026,7 @@ void InitializeMemoryAllocator(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4088,7 +4088,7 @@ void InitializeResourcePool(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4139,7 +4139,7 @@ void InitializeConfigurationManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4155,7 +4155,7 @@ void InitializeConfigurationManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -4190,7 +4190,7 @@ void InitializeEventSystem(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4245,7 +4245,7 @@ void InitializeSystemMemoryManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4300,7 +4300,7 @@ void InitializeSystemThreadPoolManager(void)
 {
   char NodeActiveFlag;                     // 节点活动标志
   void** SystemDataTable;                 // 系统数据表指针
-  int SystemSystemIdentifierCompareResult;            // 标识符比较结果
+  int SystemIdentifierCompareResult;            // 标识符比较结果
   long long* MemorySystemDataPointer;     // 内存系统数据指针
   long long SystemCurrentOperationTimestamp;     // 系统操作时间戳
   void** RootNodeReference;               // 根节点引用
@@ -4355,7 +4355,7 @@ void InitializeSystemResourceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4412,7 +4412,7 @@ void InitializeSystemNodeTree(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4469,7 +4469,7 @@ void InitializeSystemDataTable(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4524,7 +4524,7 @@ void InitializeSystemEventHandler(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4579,7 +4579,7 @@ void InitializeSystemNetworkManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4595,7 +4595,7 @@ void InitializeSystemNetworkManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -4634,7 +4634,7 @@ void InitializeSystemSecurityManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4689,7 +4689,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4744,7 +4744,7 @@ void InitializeSystemDebugManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4801,7 +4801,7 @@ void InitializeSystemMemoryAllocator(void)
 {
   char NodeActiveFlag;                     // 节点活动标志
   void** SystemDataTable;                 // 系统数据表指针
-  int SystemSystemIdentifierCompareResult;            // 标识符比较结果
+  int SystemIdentifierCompareResult;            // 标识符比较结果
   long long* MemorySystemDataPointer;     // 内存系统数据指针
   long long SystemCurrentOperationTimestamp;     // 系统操作时间戳
   void** RootNodeReference;               // 根节点引用
@@ -4860,7 +4860,7 @@ void InitializeSystemResourcePool(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4917,7 +4917,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4974,7 +4974,7 @@ void InitializeSystemResourceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -4990,7 +4990,7 @@ void InitializeSystemResourceManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -5031,7 +5031,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -5088,7 +5088,7 @@ void InitializeSystemDebugManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -5145,7 +5145,7 @@ void InitializeSystemEventHandler(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -5202,7 +5202,7 @@ void InitializeSystemNetworkManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -5259,7 +5259,7 @@ void InitializeSystemSecurityManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -5316,7 +5316,7 @@ void InitializeSystemDataTablePrimaryRoot(void)
 {
   char NodeActiveFlag;                     // 节点活动标志
   void** SystemDataTable;                 // 系统数据表指针
-  int SystemSystemIdentifierCompareResult;            // 标识符比较结果
+  int SystemIdentifierCompareResult;            // 标识符比较结果
   long long* MemorySystemDataPointer;     // 内存系统数据指针
   long long SystemCurrentOperationTimestamp;     // 系统操作时间戳
   void** RootNodeReference;               // 根节点引用
@@ -5373,7 +5373,7 @@ void InitializeSystemResourceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -5599,7 +5599,7 @@ void InitializeSystemEventManager(void)
 {
   char NodeActiveFlag;
   void** DataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemoryPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNode;
@@ -5657,7 +5657,7 @@ void InitializeSystemNetworkManager(void)
 {
   bool IsNetworkNodeActive;
   void** SystemRootTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* SystemMemoryPointer;
   long long SystemRequiredMemorySize;
   void** NetworkRootNode;
@@ -5674,8 +5674,8 @@ void InitializeSystemNetworkManager(void)
   CurrentNetworkNode = (void**)NetworkRootNode[SystemRootNodeCurrentIndex];
   
   while (!IsNetworkNodeActive) {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNetworkNode + SystemNodeIdentifierOffset, &SystemNetworkTemplateIdentifier, SystemIdentifierSize);
-    if (SystemSystemIdentifierCompareResult < 0) {
+    SystemIdentifierCompareResult = memcmp(CurrentNetworkNode + SystemNodeIdentifierOffset, &SystemNetworkTemplateIdentifier, SystemIdentifierSize);
+    if (SystemIdentifierCompareResult < 0) {
       NextNetworkNode = (void**)CurrentNetworkNode[NodeNextPointerOffset];
       CurrentNetworkNode = PreviousNetworkNode;
     }
@@ -5688,7 +5688,7 @@ void InitializeSystemNetworkManager(void)
   }
   
   if ((PreviousNetworkNode == NetworkRootNode) || 
-      (SystemSystemIdentifierCompareResult = memcmp(&SystemNetworkTemplateIdentifier, PreviousNetworkNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemSystemIdentifierCompareResult < 0)) {
+      (SystemIdentifierCompareResult = memcmp(&SystemNetworkTemplateIdentifier, PreviousNetworkNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
     void** AllocatedNetworkNode;
     SystemRequiredMemorySize = GetSystemMemorySize(SystemRootTable);
     AllocateSystemMemory(SystemRootTable, &AllocatedNetworkNode, PreviousNetworkNode, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
@@ -5718,7 +5718,7 @@ void InitializeSystemConfigurationManager(void)
 {
   bool IsConfigurationNodeActive;
   void** SystemRootTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* SystemMemoryDataPointer;
   long long SystemOperationTimestamp;
   void** ConfigurationRootNode;
@@ -5735,8 +5735,8 @@ void InitializeSystemConfigurationManager(void)
   CurrentConfigurationNode = (void**)ConfigurationRootNode[SystemRootNodeCurrentIndex];
   
   while (!IsConfigurationNodeActive) {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentConfigurationNode + SystemNodeIdentifierOffset, &SystemConfigurationManagerIdentifier, SystemIdentifierSize);
-    if (SystemSystemIdentifierCompareResult < 0) {
+    SystemIdentifierCompareResult = memcmp(CurrentConfigurationNode + SystemNodeIdentifierOffset, &SystemConfigurationManagerIdentifier, SystemIdentifierSize);
+    if (SystemIdentifierCompareResult < 0) {
       NextConfigurationNode = (void**)CurrentConfigurationNode[NodeNextPointerOffset];
       CurrentConfigurationNode = PreviousConfigurationNode;
     }
@@ -5749,7 +5749,7 @@ void InitializeSystemConfigurationManager(void)
   }
   
   if ((PreviousConfigurationNode == ConfigurationRootNode) || 
-      (SystemSystemIdentifierCompareResult = memcmp(&SystemConfigurationManagerIdentifier, PreviousConfigurationNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemSystemIdentifierCompareResult < 0)) {
+      (SystemIdentifierCompareResult = memcmp(&SystemConfigurationManagerIdentifier, PreviousConfigurationNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
     void** AllocatedConfigurationNode;
     long long RequiredMemorySize;
     RequiredMemorySize = GetSystemMemorySize(SystemRootTable);
@@ -5780,7 +5780,7 @@ void InitializeSystemResourceManager(void)
 {
   bool IsResourceNodeActive;
   void** SystemRootTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* SystemMemoryDataPointer;
   long long SystemOperationTimestamp;
   void** ResourceRootNode;
@@ -5797,8 +5797,8 @@ void InitializeSystemResourceManager(void)
   CurrentResourceNode = (void**)ResourceRootNode[SystemRootNodeCurrentIndex];
   
   while (!IsResourceNodeActive) {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentResourceNode + SystemNodeIdentifierOffset, &SystemResourceManagerIdentifier, SystemIdentifierSize);
-    if (SystemSystemIdentifierCompareResult < 0) {
+    SystemIdentifierCompareResult = memcmp(CurrentResourceNode + SystemNodeIdentifierOffset, &SystemResourceManagerIdentifier, SystemIdentifierSize);
+    if (SystemIdentifierCompareResult < 0) {
       NextResourceNode = (void**)CurrentResourceNode[NodeNextPointerOffset];
       CurrentResourceNode = PreviousResourceNode;
     }
@@ -5811,7 +5811,7 @@ void InitializeSystemResourceManager(void)
   }
   
   if ((PreviousResourceNode == ResourceRootNode) || 
-      (SystemSystemIdentifierCompareResult = memcmp(&SystemResourceManagerIdentifier, PreviousResourceNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemSystemIdentifierCompareResult < 0)) {
+      (SystemIdentifierCompareResult = memcmp(&SystemResourceManagerIdentifier, PreviousResourceNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
     void** AllocatedResourceNode;
     long long RequiredMemorySize;
     RequiredMemorySize = GetSystemMemorySize(SystemRootTable);
@@ -5842,7 +5842,7 @@ void InitializeSystemEventManager(void)
 {
   bool IsEventNodeActive;
   void** SystemRootTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* SystemMemoryDataPointer;
   long long SystemOperationTimestamp;
   void** EventRootNode;
@@ -5859,8 +5859,8 @@ void InitializeSystemEventManager(void)
   CurrentEventNode = (void**)EventRootNode[SystemRootNodeCurrentIndex];
   
   while (!IsEventNodeActive) {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentEventNode + SystemNodeIdentifierOffset, &SystemEventManagerIdentifier, SystemIdentifierSize);
-    if (SystemSystemIdentifierCompareResult < 0) {
+    SystemIdentifierCompareResult = memcmp(CurrentEventNode + SystemNodeIdentifierOffset, &SystemEventManagerIdentifier, SystemIdentifierSize);
+    if (SystemIdentifierCompareResult < 0) {
       NextEventNode = (void**)CurrentEventNode[NodeNextPointerOffset];
       CurrentEventNode = PreviousEventNode;
     }
@@ -5873,7 +5873,7 @@ void InitializeSystemEventManager(void)
   }
   
   if ((PreviousEventNode == EventRootNode) || 
-      (SystemSystemIdentifierCompareResult = memcmp(&SystemEventManagerIdentifier, PreviousEventNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemSystemIdentifierCompareResult < 0)) {
+      (SystemIdentifierCompareResult = memcmp(&SystemEventManagerIdentifier, PreviousEventNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
     void** AllocatedEventNode;
     long long RequiredMemorySize;
     RequiredMemorySize = GetSystemMemorySize(SystemRootTable);
@@ -5904,7 +5904,7 @@ void InitializeSystemDataManager(void)
 {
   bool IsDataNodeActive;
   void** SystemRootTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* SystemMemoryDataPointer;
   long long SystemOperationTimestamp;
   void** DataRootNode;
@@ -5921,8 +5921,8 @@ void InitializeSystemDataManager(void)
   CurrentDataNode = (void**)DataRootNode[SystemRootNodeCurrentIndex];
   
   while (!IsDataNodeActive) {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentDataNode + SystemNodeIdentifierOffset, &SystemDataManagerIdentifier, SystemIdentifierSize);
-    if (SystemSystemIdentifierCompareResult < 0) {
+    SystemIdentifierCompareResult = memcmp(CurrentDataNode + SystemNodeIdentifierOffset, &SystemDataManagerIdentifier, SystemIdentifierSize);
+    if (SystemIdentifierCompareResult < 0) {
       NextDataNode = (void**)CurrentDataNode[NodeNextPointerOffset];
       CurrentDataNode = PreviousDataNode;
     }
@@ -5935,7 +5935,7 @@ void InitializeSystemDataManager(void)
   }
   
   if ((PreviousDataNode == DataRootNode) || 
-      (SystemSystemIdentifierCompareResult = memcmp(&SystemDataManagerIdentifier, PreviousDataNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemSystemIdentifierCompareResult < 0)) {
+      (SystemIdentifierCompareResult = memcmp(&SystemDataManagerIdentifier, PreviousDataNode + SystemNodeIdentifierOffset, SystemIdentifierSize), SystemIdentifierCompareResult < 0)) {
     void** AllocatedDataNode;
     long long RequiredMemorySize;
     RequiredMemorySize = GetSystemMemorySize(SystemRootTable);
@@ -5967,7 +5967,7 @@ void InitializeSystemResourceNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -6025,7 +6025,7 @@ void InitializeSystemNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -6083,7 +6083,7 @@ void InitializeSystemDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -6141,7 +6141,7 @@ void InitializeSystemResourceNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -6199,7 +6199,7 @@ void InitializeSystemMemoryNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -6215,7 +6215,7 @@ void InitializeSystemMemoryNodeManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -6287,7 +6287,7 @@ void InitializeSystemConfigurationNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -6344,7 +6344,7 @@ void InitializeSystemEventNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -6628,7 +6628,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -6644,7 +6644,7 @@ void InitializeSystemConfigurationManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -6882,7 +6882,7 @@ void InitializeSystemStorageManager(void)
 {
   char SystemNodeTraversalFlag;
   void** SystemDataTableReference;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long *SystemMemoryAllocationPointer;
   long long SystemCurrentOperationTimestamp;
   void** SystemRootStorageNode;
@@ -6941,7 +6941,7 @@ void InitializeSystemMemoryManagerNode(void)
 {
   char SystemNodeTraversalFlag;
   void** SystemDataTableReference;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long *SystemMemoryAllocationPointer;
   long long SystemCurrentOperationTimestamp;
   void** SystemRootMemoryNode;
@@ -7000,7 +7000,7 @@ void InitializeSystemDataTableNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7058,7 +7058,7 @@ void InitializeSystemConfigurationNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7116,7 +7116,7 @@ void InitializeSystemEventNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7174,7 +7174,7 @@ void InitializeSystemNodeTreeProcessor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7232,7 +7232,7 @@ void InitializeSystemMemoryPoolManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7290,7 +7290,7 @@ void InitializeSystemServiceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7348,7 +7348,7 @@ void InitializeSystemResourceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7364,7 +7364,7 @@ void InitializeSystemResourceManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -7406,7 +7406,7 @@ void InitializeSystemEventHandler(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7464,7 +7464,7 @@ void InitializeSystemTaskManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7522,7 +7522,7 @@ void InitializeSystemDataProcessor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7580,7 +7580,7 @@ void InitializeSystemCommunicationManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7638,7 +7638,7 @@ void InitializeSystemMemoryManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7696,7 +7696,7 @@ void InitializeSystemThreadManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7753,7 +7753,7 @@ void InitializeSystemResourceInitializer(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7769,7 +7769,7 @@ void InitializeSystemResourceInitializer(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -7884,7 +7884,7 @@ void InitializeSystemEventManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -7943,7 +7943,7 @@ void InitializeSystemSearchManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8001,7 +8001,7 @@ void InitializeSystemIndexManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8059,7 +8059,7 @@ void InitializeSystemCacheManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8117,7 +8117,7 @@ void InitializeSystemLogManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8175,7 +8175,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8233,7 +8233,7 @@ void InitializeSystemResourceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8291,7 +8291,7 @@ void InitializeSystemEventDispatcher(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8349,7 +8349,7 @@ void InitializeSystemSecurityManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8407,7 +8407,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8465,7 +8465,7 @@ void InitializeSystemNetworkManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8481,7 +8481,7 @@ void InitializeSystemNetworkManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -8523,7 +8523,7 @@ void InitializeSystemStorageManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8581,7 +8581,7 @@ void InitializeSystemProcessManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8639,7 +8639,7 @@ void InitializeSystemThreadManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8691,7 +8691,7 @@ void InitializeSystemEventProcessor(void)
 {
   char EventNodeFlag;
   void** EventSystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* EventMemoryPointer;
   long long EventSystemTimeValue;
   void** EventRootNode;
@@ -8745,7 +8745,7 @@ void InitializeSystemResourceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8796,7 +8796,7 @@ void InitializeSystemMemoryManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8847,7 +8847,7 @@ void InitializeSystemLogManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8898,7 +8898,7 @@ void InitializeSystemPerformanceMonitor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8949,7 +8949,7 @@ void InitializeSystemSecurityMonitor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -8965,7 +8965,7 @@ void InitializeSystemSecurityMonitor(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -9000,7 +9000,7 @@ void InitializeSystemNetworkManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9051,7 +9051,7 @@ void InitializeSystemStorageManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9102,7 +9102,7 @@ void InitializeSystemMemoryManagerNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9153,7 +9153,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9204,7 +9204,7 @@ void InitializeSystemThreadManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9255,7 +9255,7 @@ void InitializeSystemProcessManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9306,7 +9306,7 @@ void InitializeSystemDeviceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9357,7 +9357,7 @@ void InitializeSystemServiceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9408,7 +9408,7 @@ void InitializeSystemDriverManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9466,7 +9466,7 @@ void InitializeSystemModuleManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9528,7 +9528,7 @@ void InitializeSystemComponentManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9579,7 +9579,7 @@ void InitializeSystemPluginManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9595,7 +9595,7 @@ void InitializeSystemPluginManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -9725,7 +9725,7 @@ void InitializeSystemFrameworkManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9779,7 +9779,7 @@ void InitializeSystemSearchManagerAdvanced(void)
 {
   char SystemNodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9840,7 +9840,7 @@ void InitializeSystemResourceNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9894,7 +9894,7 @@ void InitializeSystemMemoryNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -9948,7 +9948,7 @@ void InitializeSystemDataTableNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10002,7 +10002,7 @@ void InitializeSystemConfigurationNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10052,7 +10052,7 @@ void InitializeSystemEventNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10068,7 +10068,7 @@ void InitializeSystemEventNode(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -10102,7 +10102,7 @@ void InitializeSystemThreadNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10175,7 +10175,7 @@ void InitializeSystemSecurityNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10225,7 +10225,7 @@ void InitializeSystemNetworkNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10349,7 +10349,7 @@ void InitializeSystemInputNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10411,7 +10411,7 @@ void InitializeSystemPhysicsNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10473,7 +10473,7 @@ void InitializeSystemFileSystemNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10535,7 +10535,7 @@ void InitializeSystemDatabaseNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10594,7 +10594,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10656,7 +10656,7 @@ void InitializeSystemConfigurationManager(void)
 {
   char SystemNodeActiveFlag;
   void** SystemDataTablePointer;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* SystemMemoryManagerPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10672,8 +10672,8 @@ void InitializeSystemConfigurationManager(void)
   SystemHashTablePointerPointer = RootNodeReference;
   CurrentNodeReference = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (SystemNodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodeReference + SystemNodeIdentifierOffset,&SystemDataTemplateA,0x10);
-    if (SystemSystemIdentifierCompareResult < 0) {
+    SystemIdentifierCompareResult = memcmp(CurrentNodeReference + SystemNodeIdentifierOffset,&SystemDataTemplateA,0x10);
+    if (SystemIdentifierCompareResult < 0) {
       NextNodeReference = (void**)CurrentNodeReference[2];
       CurrentNodeReference = SystemHashTablePointerPointer;
     }
@@ -10684,7 +10684,7 @@ void InitializeSystemConfigurationManager(void)
     CurrentNodeReference = NextNodeReference;
     SystemNodeActiveFlag = *(char*)((long long)NextNodeReference + NodeActiveFlagOffset);
   }
-  if ((SystemHashTablePointerPointer == RootNodeReference) || (SystemSystemIdentifierCompareResult = memcmp(&SystemDataTemplateR,SystemHashTablePointerPointer + 4,0x10), SystemSystemIdentifierCompareResult < 0)) {
+  if ((SystemHashTablePointerPointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateR,SystemHashTablePointerPointer + 4,0x10), SystemIdentifierCompareResult < 0)) {
     SystemSystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
     AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedSystemNode,SystemHashTablePointerPointer,SystemSystemMemoryAllocationSize + NodeAllocationExtraSize,SystemSystemMemoryAllocationSize);
     SystemHashTablePointerPointer = SystemAllocatedSystemNode;
@@ -10715,7 +10715,7 @@ void InitializeSystemNetworkConfigurationManager(void)
 {
   char SystemNodeActiveFlag;
   void** SystemDataTablePointer;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* SystemMemoryManagerPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -10731,8 +10731,8 @@ void InitializeSystemNetworkConfigurationManager(void)
   SystemHashTablePointerPointer = RootNodeReference;
   CurrentNodeReference = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (SystemNodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodeReference + SystemNodeIdentifierOffset,&SystemDataTemplateSecondarySystem,0x10);
-    if (SystemSystemIdentifierCompareResult < 0) {
+    SystemIdentifierCompareResult = memcmp(CurrentNodeReference + SystemNodeIdentifierOffset,&SystemDataTemplateSecondarySystem,0x10);
+    if (SystemIdentifierCompareResult < 0) {
       NextNodeReference = (void**)CurrentNodeReference[2];
       CurrentNodeReference = SystemHashTablePointerPointer;
     }
@@ -10743,7 +10743,7 @@ void InitializeSystemNetworkConfigurationManager(void)
     CurrentNodeReference = NextNodeReference;
     SystemNodeActiveFlag = *(char*)((long long)NextNodeReference + NodeActiveFlagOffset);
   }
-  if ((SystemHashTablePointerPointer == RootNodeReference) || (SystemSystemIdentifierCompareResult = memcmp(&SystemDataTemplateSecondarySystem,SystemHashTablePointerPointer + 4,0x10), SystemSystemIdentifierCompareResult < 0)) {
+  if ((SystemHashTablePointerPointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateSecondarySystem,SystemHashTablePointerPointer + 4,0x10), SystemIdentifierCompareResult < 0)) {
     SystemSystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
     AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedSystemNode,SystemHashTablePointerPointer,SystemSystemMemoryAllocationSize + NodeAllocationExtraSize,SystemSystemMemoryAllocationSize);
     SystemHashTablePointerPointer = SystemAllocatedSystemNode;
@@ -10774,7 +10774,7 @@ void InitializeSystemSearchConfigurationManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11085,7 +11085,7 @@ void InitializeSystemInputControllerStringProcessor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11135,7 +11135,7 @@ void InitializeSystemAudioProcessorStringProcessor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11185,7 +11185,7 @@ void InitializeSystemDebugManagerStringProcessor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11235,7 +11235,7 @@ void InitializeSystemStringProcessorExtended(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11285,7 +11285,7 @@ void InitializeSystemStringProcessorIndexed(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11335,7 +11335,7 @@ void InitializeSystemStringProcessorJobQueue(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11385,7 +11385,7 @@ void InitializeSystemStringProcessorKernel(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11401,7 +11401,7 @@ void InitializeSystemStringProcessorKernel(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -11435,7 +11435,7 @@ void InitializeSystemStringProcessorSpecialized(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11485,7 +11485,7 @@ void InitializeSystemStringProcessorConfigurable(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11535,7 +11535,7 @@ void InitializeSystemStringProcessorDynamic(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11598,7 +11598,7 @@ void InitializeSystemStringProcessorOptimized(void)
 {
   char SystemNodeActiveFlag;
   void** SystemDataTablePointer;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemManagerPointer;
   long long SystemTimestampValue;
   void** RootNodeReference;
@@ -11661,7 +11661,7 @@ void InitializeSystemStringProcessorParallel(void)
 {
   char SystemNodeActiveFlag;
   void** SystemDataTablePointer;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemManagerPointer;
   long long SystemTimestampValue;
   void** RootNodeReference;
@@ -11724,7 +11724,7 @@ void InitializeSystemStringProcessorQueued(void)
 {
   char SystemNodeActiveFlag;
   void** SystemDataTablePointer;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemManagerPointer;
   long long SystemTimestampValue;
   void** RootNodeReference;
@@ -11774,7 +11774,7 @@ void InitializeSystemStringProcessorResponsive(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11790,7 +11790,7 @@ void InitializeSystemStringProcessorResponsive(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -11824,7 +11824,7 @@ void InitializeSystemStringProcessorScalable(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11874,7 +11874,7 @@ void InitializeSystemStringProcessorThreaded(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11924,7 +11924,7 @@ void InitializeSystemStringProcessorUnified(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -11974,7 +11974,7 @@ void InitializeSystemStringProcessorVirtual(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12024,7 +12024,7 @@ void InitializeSystemStringProcessorWorker(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12074,7 +12074,7 @@ void InitializeSystemStringProcessorExtended(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12124,7 +12124,7 @@ void InitializeSystemStringProcessorOptimized(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12140,7 +12140,7 @@ void InitializeSystemStringProcessorOptimized(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -12183,7 +12183,7 @@ void InitializeSystemStringProcessorZeroCopy(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12250,7 +12250,7 @@ void InitializeSystemMemoryAllocator(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12300,7 +12300,7 @@ void InitializeSystemMemoryManagerSecondary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12350,7 +12350,7 @@ void InitializeSystemMemoryManagerTertiary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12400,7 +12400,7 @@ void InitializeSystemMemoryManagerSecondary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12450,7 +12450,7 @@ void InitializeSystemMemoryManagerTertiary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12500,7 +12500,7 @@ void InitializeSystemMemoryManagerQuaternary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12516,7 +12516,7 @@ void InitializeSystemMemoryManagerQuaternary(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -12555,7 +12555,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12610,7 +12610,7 @@ void InitializeSystemDataTableConfigurator(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12672,7 +12672,7 @@ void InitializeSystemMemoryManagerGamma(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12722,7 +12722,7 @@ void InitializeSystemMemoryManagerAdvanced(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12772,7 +12772,7 @@ void InitializeSystemMemoryManagerIota(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12830,7 +12830,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12888,7 +12888,7 @@ void InitializeSystemEventDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -12946,7 +12946,7 @@ void InitializeSystemResourceNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13004,7 +13004,7 @@ void InitializeSystemMemoryNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13062,7 +13062,7 @@ void InitializeSystemDeviceNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13167,7 +13167,7 @@ void InitializeSystemMemoryNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13224,7 +13224,7 @@ void InitializeSystemDeviceNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13281,7 +13281,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13338,7 +13338,7 @@ void InitializeSystemEventDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13395,7 +13395,7 @@ void InitializeSystemMemoryAllocatorNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13452,7 +13452,7 @@ void InitializeSystemConfigurationNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13509,7 +13509,7 @@ void InitializeSystemEventNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13566,7 +13566,7 @@ void InitializeSystemResourceNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13623,7 +13623,7 @@ void InitializeSystemDataNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13680,7 +13680,7 @@ void InitializeSystemStringProcessor(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13795,7 +13795,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13852,7 +13852,7 @@ void InitializeSystemEventDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13909,7 +13909,7 @@ void InitializeSystemResourceDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -13966,7 +13966,7 @@ void InitializeSystemDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14023,7 +14023,7 @@ void InitializeSystemStringDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14080,7 +14080,7 @@ void InitializeSystemMemoryDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14137,7 +14137,7 @@ void InitializeSystemDeviceDataNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14153,7 +14153,7 @@ void InitializeSystemDeviceDataNodeManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -14212,7 +14212,7 @@ void InitializeSystemSearchNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14269,7 +14269,7 @@ void InitializeSystemDebugNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14326,7 +14326,7 @@ void InitializeSystemLoggingNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14383,7 +14383,7 @@ void InitializeSystemPerformanceNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14440,7 +14440,7 @@ void InitializeSystemSecurityNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14497,7 +14497,7 @@ void InitializeSystemNetworkNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14554,7 +14554,7 @@ void InitializeSystemThreadNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14611,7 +14611,7 @@ void InitializeSystemProcessNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14627,7 +14627,7 @@ void InitializeSystemProcessNodeManager(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -14669,7 +14669,7 @@ void InitializeSystemEventManagerGamma(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14727,7 +14727,7 @@ void InitializeSystemEventManagerHotel(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14785,7 +14785,7 @@ void InitializeSystemEventManagerIndia(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14837,7 +14837,7 @@ void InitializeSystemEventManagerJuliett(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14889,7 +14889,7 @@ void InitializeSystemEventManagerKilo(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14941,7 +14941,7 @@ void InitializeSystemEventManagerL(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -14993,7 +14993,7 @@ void InitializeSystemEventManagerM(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15009,7 +15009,7 @@ void InitializeSystemEventManagerM(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -15151,7 +15151,7 @@ void InitializeSystemResourceManagerA(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15203,7 +15203,7 @@ void InitializeSystemResourceManagerB(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15255,7 +15255,7 @@ void InitializeSystemResourceManagerC(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15307,7 +15307,7 @@ void InitializeSystemResourceManagerD(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15368,7 +15368,7 @@ void InitializeSystemResourceManagerE(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15430,7 +15430,7 @@ void InitializeSystemResourceManagerF(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15483,7 +15483,7 @@ void InitializeSystemResourceManagerG(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15536,7 +15536,7 @@ void InitializeSystemResourceManagerH(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15589,7 +15589,7 @@ void InitializeSystemResourceManagerI(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15651,7 +15651,7 @@ void InitializeSystemResourceManagerJ(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15817,7 +15817,7 @@ void InitializeSystemDebugManagerPrimary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15870,7 +15870,7 @@ void InitializeSystemDebugManagerSecondary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15923,7 +15923,7 @@ void InitializeSystemDebugManagerTertiary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -15981,7 +15981,7 @@ void InitializeSystemResourceAllocator(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16039,7 +16039,7 @@ void InitializeSystemDataTableAllocator(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16090,7 +16090,7 @@ void InitializeSystemResourceComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16141,7 +16141,7 @@ void InitializeSystemAllocatorComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16192,7 +16192,7 @@ void InitializeSystemConfigurationComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16243,7 +16243,7 @@ void InitializeSystemCoreComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16294,7 +16294,7 @@ void InitializeSystemMemoryComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16345,7 +16345,7 @@ void InitializeSystemThreadComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16396,7 +16396,7 @@ void InitializeSystemEventComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16447,7 +16447,7 @@ void InitializeSystemSecurityComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16498,7 +16498,7 @@ void InitializeSystemNetworkComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16549,7 +16549,7 @@ void InitializeSystemDatabaseComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16600,7 +16600,7 @@ void InitializeSystemLoggingComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16662,7 +16662,7 @@ void InitializeSystemPerformanceComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16713,7 +16713,7 @@ void InitializeSystemDiagnosticComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16764,7 +16764,7 @@ void InitializeSystemDebugComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16815,7 +16815,7 @@ void InitializeSystemPluginComponent(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16867,7 +16867,7 @@ void InitializeSystemSubcomponentA(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16919,7 +16919,7 @@ void InitializeSystemSubcomponentB(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -16971,7 +16971,7 @@ void InitializeSystemSubcomponentC(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17023,7 +17023,7 @@ void InitializeSystemSubcomponentD(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17075,7 +17075,7 @@ void InitializeSystemSubcomponentE(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17091,7 +17091,7 @@ void InitializeSystemSubcomponentE(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -17127,7 +17127,7 @@ void InitializeSystemSubcomponentF(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17179,7 +17179,7 @@ void InitializeSystemSubcomponentG(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17231,7 +17231,7 @@ void InitializeSystemSubcomponentH(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17460,7 +17460,7 @@ void InitializeSystemSubcomponentK(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17512,7 +17512,7 @@ void InitializeSystemSubcomponentL(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17613,7 +17613,7 @@ void InitializeSystemSubcomponentN(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17669,7 +17669,7 @@ void InitializeSystemNodeManagerPrimary(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17725,7 +17725,7 @@ void InitializeSystemSearchManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17782,7 +17782,7 @@ void InitializeSystemNodeManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17841,7 +17841,7 @@ void InitializeSystemSearchManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17899,7 +17899,7 @@ void InitializeSystemEventManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -17957,7 +17957,7 @@ void InitializeSystemResourceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18015,7 +18015,7 @@ void InitializeSystemDeviceManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18073,7 +18073,7 @@ void InitializeSystemMemoryManager(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18137,7 +18137,7 @@ void SystemDataNodeInitializerM(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18193,7 +18193,7 @@ void InitializeSystemResourceInitializationNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18209,7 +18209,7 @@ void InitializeSystemResourceInitializationNode(void)
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[SystemRootNodeCurrentIndex];
   while (NodeActiveFlag == '\0') {
-    SystemSystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + SystemNodeIdentifierOffset,&SystemDataTemplateNetworkManager,SystemIdentifierSize);
     if (SystemIdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -18249,7 +18249,7 @@ void InitializeGameCoreSystemNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18305,7 +18305,7 @@ void InitializeBaseAllocatorNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18361,7 +18361,7 @@ void InitializeSystemDataTableNode(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18417,7 +18417,7 @@ void ResourceInitializationCallbackSetter(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18473,7 +18473,7 @@ void SystemAllocatorNodeInitializer(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18529,7 +18529,7 @@ void SystemConfigurationNodeInitializer(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18585,7 +18585,7 @@ void SystemEventNodeInitializer(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18641,7 +18641,7 @@ void SystemMemoryManagementNodeInitializer(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18697,7 +18697,7 @@ void SystemThreadManagerInitializer(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -18753,7 +18753,7 @@ void SystemResourceTrackerInitializer(void)
 {
   char NodeActiveFlag;
   void** SystemDataTable;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   long long SystemCurrentOperationTimestamp;
   void** RootNodeReference;
@@ -20411,14 +20411,14 @@ void HandleSystemStringCopy(long long destinationBuffer, long long sourceString)
   }
   
   // 计算源字符串长度
-  stringLength = -1;
+  StringLength = -1;
   do {
-    stringLength = stringLength + 1;
-  } while (*(char *)(sourceString + stringLength) != '\0');
+    StringLength = StringLength + 1;
+  } while (*(char *)(sourceString + StringLength) != '\0');
   
   // 检查字符串长度是否在允许范围内
-  if ((int)stringLength < SystemStringBufferCapacityValue) {
-    *(int *)(destinationBuffer + SystemStringLengthOffset) = (int)stringLength;
+  if ((int)StringLength < SystemStringBufferCapacityValue) {
+    *(int *)(destinationBuffer + SystemStringLengthOffset) = (int)StringLength;
     // 简化实现：原本实现应该包含完整的字符串复制逻辑
     strcpy_s(*(void* *)(destinationBuffer + SystemStringBufferOffset), SystemStringBufferCapacityValue);
     return;
@@ -21496,7 +21496,7 @@ void InitializeSystemCoreEngine(void)
 {
   void* SystemInitializationStatusFlag;
   char InitializationStatus;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long ***SystemMemoryManager;
   ulong long SystemConfigurationValue;
   long long SystemCurrentOperationTimestamp;
@@ -21837,7 +21837,7 @@ void SystemDataSearchAndMatch(void* searchContext,void* searchData,long long mat
 {
   byte FirstByteValue;
   bool IsMatchFound;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   void* *CurrentSearchNode;
   uint ComparisonValue;
   byte *StringComparePointer;
@@ -26324,7 +26324,7 @@ void CalculateRenderQualitySettings(long long SystemResourceManager)
 {
   long long ResourceDataIndex;
   int SystemOperationResult;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   float renderQualityMultiplier;
   float baseRenderScale;
   float textureScaleFactor;
@@ -26742,7 +26742,7 @@ void UpdateSystemRenderManager(long long SystemResourceManager)
 {
   int* SystemIntegerPointer;
   uint32_t resourceCreationFlags;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   bool IsTextureUpdateRequired;
   void* CurrentThreadIdentifier;
   bool IsSystemInitialized;
@@ -28289,7 +28289,7 @@ void SystemMemoryAllocator(long long resourceManagerPointer, long long allocatio
 {
   long long* PrimaryResourceHandle;
   uint32_t resourceCreationFlags;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   void** ResourceAddressPointer;
   unsigned long long CurrentThreadIdentifier;
   long long SystemThreadFlags;
@@ -28379,7 +28379,7 @@ void* SystemResourceAllocator(void* SystemResourceManager,void* ConfigurationDat
 {
   long long ResourceDataIndex;
   uint32_t resourceCreationFlags;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   void* *ResourceAddressPointer;
   void* *SystemTertiaryStackPointer;
   void* *SystemStatusFlagPointer;
@@ -28797,7 +28797,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
 {
   uint32_t *SystemDataPointer;
   int SystemOperationResult;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   uint8_t SystemThreadStackSize [32];
   void* **SystemResourceManagerA;
   void* CalculationFlagsPrimary;
@@ -37222,7 +37222,7 @@ void ProcessSystemResourceData(long long* SystemResourceManager)
 {
   int SystemInitializationStatus;
   long long SystemThreadHandle;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   void* ResourceAddress;
   long long *SystemLocalContextPointer;
   code *configurationStringPointer;
@@ -37760,7 +37760,7 @@ int CheckSystemInputManagerStatus(void)
 {
   long long ResourceDataIndex;
   long long SystemThreadHandle;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   int SystemIndex;
   int systemValue;
   int CalculationFlags;
@@ -38862,7 +38862,7 @@ void ResumeSystemThreads(long long SystemResourceManager)
 {
   long long ResourceDataIndex;
   long long SystemThreadHandle;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long SystemProcessBufferPointer;
   
   SystemThreadHandle = GetCurrentThread();
@@ -41535,7 +41535,7 @@ void CleanupSystemResources(void* *SystemResourceManager)
 {
   long long *PrimaryResourceHandle;
   int *ResourceCounterPointer;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   uint ResourceIndex;
   ulong long ResourceHashValue;
   long long SystemThreadFlags;
@@ -41927,7 +41927,7 @@ void InitializeSystemResource(long long* SystemResourceManager)
 {
   long long *PrimaryResourceHandle;
   char validationStatusFlag;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   void* SystemContextValue;
   long long* SystemResourceManager20;
   char SystemLockAcquiredFlag;
@@ -45684,7 +45684,7 @@ void ConfigureSystemDataProcessing(void* ResourceManager, void* ConfigurationDat
 {
   long long ResourceDataIndex;
   char ValidationStatusFlag;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   uint32_t ResourceAddress;
   void* SystemThreadContext;
   int CalculationFlags;
@@ -46290,7 +46290,7 @@ void ProcessSystemResourceQueueAndCompletion(long long SystemResourceManager)
 {
   long long ResourceDataIndex;
   long long SystemThreadHandle;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   void* ResourceAddress;
   void* CurrentThreadIdentifier;
   long long *SystemThreadFlagsPointer;
@@ -46752,7 +46752,7 @@ void* AllocateSystemMemoryWithMutex(long long SystemResourceManager,long long Co
 {
   ulong long SystemInitializationStatus;
   char validationStatusFlag;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   void* ResourceAddress;
   ulong long CurrentThreadIdentifier;
   void** RootNodeReference;
@@ -50877,7 +50877,7 @@ void CleanupSystemResourceDataB(long long* SystemResourceManager)
 {
   long long *PrimaryResourceHandle;
   int *pointerToInteger2;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long SystemProcessBufferPointer;
   long long SystemCurrentOperationTimestamp;
   long long SystemThreadFlags;
@@ -51867,7 +51867,7 @@ void ManageSystemInitializationState(void)
 {
   long long ResourceDataIndex;
   char validationStatusFlag;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long* MemorySystemDataPointer;
   
   ResourceDataIndex = SystemInitializationFlag;
@@ -51927,7 +51927,7 @@ void FinalizeSystemMemorySetup(void* SystemResourceManager,void* ConfigurationDa
 {
   long long *PrimaryResourceHandle;
   long long SystemThreadHandle;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   
   SystemThreadHandle = SystemInitializationFlag;
   ProcessSystemTextureManagerLock(SystemAllocationTemplate,ConfigurationDataPointer,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
@@ -54113,7 +54113,7 @@ void ProcessSystemResourceOperation(void* SystemResourceManager,long long Config
 {
   code *systemFunctionPointer;
   char validationStatusFlag;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   uint ResourceAddress;
   int systemValue;
   uint ResourceHash;
@@ -54723,7 +54723,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
 {
   uint32_t SystemInitializationStatus;
   int SystemOperationResult;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   long long SystemProcessBufferPointer;
   void* SystemThreadContext;
   void** RootNodeReference;
@@ -65680,7 +65680,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
 {
   byte *pisByteValid;
   char validationStatusFlag;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   int SystemIndex;
   byte isMemoryReady;
   long long SystemThreadFlags;
@@ -67706,7 +67706,7 @@ void ProcessSystemTextureManagerConfiguration(long long SystemResourceManager,ul
 {
   long long ResourceDataIndex;
   int *pointerToInteger2;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   int SystemIndex;
   long long SystemCurrentOperationTimestamp;
   int CalculationFlags;
@@ -68407,7 +68407,7 @@ void ProcessSystemResourceManagerExtended(long long SystemResourceManager,int Co
 {
   uint SystemInitializationStatus;
   void* resourceCreationFlags;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   uint ResourceAddress;
   uint CurrentThreadIdentifier;
   int CalculationFlags;
@@ -69160,7 +69160,7 @@ void InitializeSystemThreadSynchronizer(long long* SystemResourceManager)
 {
   long long ResourceDataIndex;
   char validationStatusFlag;
-  int SystemSystemIdentifierCompareResult;
+  int SystemIdentifierCompareResult;
   bool isResourceAvailable;
   
   ResourceDataIndex = *SystemResourceManager;
