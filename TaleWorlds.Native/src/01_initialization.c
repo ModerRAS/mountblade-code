@@ -197,6 +197,14 @@
 #define MatrixQuaternaryOffset              0x20  // 矩阵第四偏移量
 #define MatrixQuinaryOffset                 0x2c  // 矩阵第五偏移量
 #define MatrixSenaryOffset                  0x30  // 矩阵第六偏移量
+
+// 本地存储相关偏移量
+#define LocalStorageDataOffset              0x18  // 本地存储数据偏移量
+#define LocalStorageSecondaryOffset          0x20  // 本地存储次要偏移量
+#define LocalStorageTertiaryOffset          0x28  // 本地存储第三偏移量
+#define LocalStorageQuaternaryOffset        0x30  // 本地存储第四偏移量
+#define LocalStorageQuinaryOffset           0x50  // 本地存储第五偏移量
+#define LocalStorageSenaryOffset            0x60  // 本地存储第六偏移量
 #define MatrixSeptenaryOffset               0x34  // 矩阵第七偏移量
 #define MatrixOctonaryOffset                0x40  // 矩阵第八偏移量
 #define MatrixNonaryOffset                 0x44  // 矩阵第九偏移量
@@ -18874,7 +18882,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
   int *CallbackTable;
   
   LocalStoragePointer = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  *(uint64_t *)(LocalStoragePointer + 0x18) = &SystemMemoryAllocatorReference;
+  *(uint64_t *)(LocalStoragePointer + LocalStorageDataOffset) = &SystemMemoryAllocatorReference;
   *(uint64_t *)(LocalStoragePointer + 0x20) = 0;
   *(uint32_t *)(LocalStoragePointer + 0x28) = 0;
   *(uint64_t *)(LocalStoragePointer + 0x18) = &SystemGlobalDataReference;
@@ -53825,25 +53833,25 @@ ThreadAllocationContext:
       if (SystemInitializationStatus != -0x13) {
         SystemSecondaryOperationStatus = SystemInitializationStatus + 0x14;
         if (threadObjectPointer == (uint8_t *)0x0) {
-          if ((int)SystemOperationStatus2 < 0x10) {
-            SystemOperationStatus2 = 0x10;
+          if ((int)SystemSecondaryOperationStatus < 0x10) {
+            SystemSecondaryOperationStatus = 0x10;
           }
           stackParameterOffset = threadCreationFlags;
-          threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemOperationStatus2,0x13);
+          threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemSecondaryOperationStatus,0x13);
           *threadObjectPointer = 0;
         }
         else {
-          SystemOperationStatus1 = stackParameterOffset;
-          if (SystemOperationStatus2 <= (uint)threadHandleValue) goto SystemThreadValidation;
+          SystemPrimaryOperationStatus = stackParameterOffset;
+          if (SystemSecondaryOperationStatus <= (uint)threadHandleValue) goto SystemThreadValidation;
           stackParameterOffset = threadCreationFlags;
-          threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemOperationStatus2,0x10,0x13);
+          threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemSecondaryOperationStatus,0x10,0x13);
         }
         memoryAllocationContext = StartSystemThread(threadObjectPointer);
         threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
-        SystemOperationStatus1 = stackParameterOffset;
+        SystemPrimaryOperationStatus = stackParameterOffset;
       }
 SystemThreadValidation:
-      stackParameterOffset = SystemOperationStatus1;
+      stackParameterOffset = SystemPrimaryOperationStatus;
         memcpy(threadObjectPointer + stackParameterOffset,ConfigurationDataPointer,(long long)((int)memoryAllocationFlags + 2));
     }
   }
@@ -53864,39 +53872,39 @@ SystemThreadOperation:
   stackParameterOffset = 0x14;
   ProcessSystemData(&stackParameterPointer,AdditionalParameter);
   threadCreationFlags = stackParameterOffset;
-  SystemOperationStatus1 = stackParameterOffset + 1;
-  if (SystemOperationStatus1 != 0) {
-    SystemOperationStatus2 = stackParameterOffset + 2;
+  SystemPrimaryOperationStatus = stackParameterOffset + 1;
+  if (SystemPrimaryOperationStatus != 0) {
+    SystemSecondaryOperationStatus = stackParameterOffset + 2;
     if (threadObjectPointer == (uint8_t *)0x0) {
-      if ((int)SystemOperationStatus2 < 0x10) {
-        SystemOperationStatus2 = 0x10;
+      if ((int)SystemSecondaryOperationStatus < 0x10) {
+        SystemSecondaryOperationStatus = 0x10;
       }
-      threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemOperationStatus2,0x13);
+      threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemSecondaryOperationStatus,0x13);
       *threadObjectPointer = 0;
     }
     else {
-      if (SystemOperationStatus2 <= (uint)threadHandleValue) goto SystemThreadConfiguration;
-      threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemOperationStatus2,0x10,0x13);
+      if (SystemSecondaryOperationStatus <= (uint)threadHandleValue) goto SystemThreadConfiguration;
+      threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemSecondaryOperationStatus,0x10,0x13);
     }
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
   }
 SystemThreadConfiguration:
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
-  SystemOperationStatus2 = threadCreationFlags + 0xd;
-  stackParameterOffset = SystemOperationStatus1;
-  if (SystemOperationStatus2 != 0) {
-    SystemOperationStatus1 = threadCreationFlags + 0xe;
+  SystemSecondaryOperationStatus = threadCreationFlags + 0xd;
+  stackParameterOffset = SystemPrimaryOperationStatus;
+  if (SystemSecondaryOperationStatus != 0) {
+    SystemPrimaryOperationStatus = threadCreationFlags + 0xe;
     if (threadObjectPointer == (uint8_t *)0x0) {
-      if ((int)SystemOperationStatus1 < 0x10) {
-        SystemOperationStatus1 = 0x10;
+      if ((int)SystemPrimaryOperationStatus < 0x10) {
+        SystemPrimaryOperationStatus = 0x10;
       }
-      threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemOperationStatus1,0x13);
+      threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)SystemPrimaryOperationStatus,0x13);
       *threadObjectPointer = 0;
     }
     else {
-      if (SystemOperationStatus1 <= (uint)threadHandleValue) goto SystemThreadSetup;
-      threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemOperationStatus1,0x10,0x13);
+      if (SystemPrimaryOperationStatus <= (uint)threadHandleValue) goto SystemThreadSetup;
+      threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemPrimaryOperationStatus,0x10,0x13);
     }
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
