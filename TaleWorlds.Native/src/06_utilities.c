@@ -10777,14 +10777,14 @@ undefined8 ValidateDataReturnStatusA2(longlong dataContext,longlong systemContex
 
 {
   undefined8 result;
-  uint dataValue;
+  uint validationData;
   undefined4 tempValue;
   
-  dataValue = *(uint *)(dataContext + 0x18);
-  if ((dataValue & 0x7f800000) == 0x7f800000) {
+  validationData = *(uint *)(dataContext + 0x18);
+  if ((validationData & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  result = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataContext + 0x10),&dataValue);
+  result = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataContext + 0x10),&validationData);
   if ((int)result == 0) {
     *(undefined4 *)(CONCAT44(tempValue,dataValue) + 0x24) = *(undefined4 *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
