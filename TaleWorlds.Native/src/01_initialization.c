@@ -33824,7 +33824,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
       pSystemProcessFlags = &SystemMemoryAllocatorReference;
       SystemIterationIndex374 = 0;
       SystemLoopCounter2c8 = 0;
-      SystemDataCount2c0 = (long long)VerticalResolutionPointer - (long long)DataBufferPointer >> 5;
+      SystemDataBufferCount = (long long)VerticalResolutionPointer - (long long)DataBufferPointer >> 5;
       ResourceHashEntryPointer = DataBufferPointer;
       SystemHashNodeData = DataBufferPointer;
       ResourceAddressPointer = VerticalResolutionPointer;
@@ -46254,7 +46254,7 @@ void CreateSystemIoCompletionPort(long long SystemResourceManager,long long Conf
   uint SystemLoopCounter;
   uint8_t EncryptionValidationBuffer2E8 [32];
   ulong long SystemOperationFlag;
-  uint32_t SystemDataCount2c0;
+  uint32_t SystemDataBufferCount;
   void* SystemDataCount;
   long long SystemMutexAddress;
   void* SystemOperationContext;
