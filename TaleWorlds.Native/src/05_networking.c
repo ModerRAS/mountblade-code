@@ -223,6 +223,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define ArraySizeIndex 4                                       // 数组大小参数索引
 #define ConnectionDataSizeIndex 1                              // 连接数据大小索引
 #define ConnectionStateDataIndex 1                             // 连接状态数据索引
+#define MergedConnectionDataOffset 8                           // 合并连接数据偏移量
 
 // 网络验证结果常量 - 验证处理状态定义
 #define NetworkValidationSuccess 0x00                          // 验证结果：成功
@@ -2031,7 +2032,7 @@ void InitializeNetworkConnectionState(void)
     *NetworkConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + 8) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + MergedConnectionDataOffset) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
     NetworkConnectionInitializationStatus = SetupConnectionContext(*(NetworkHandle *)(NetworkConnectionContextPointer + NetworkContextSystemOffset));
