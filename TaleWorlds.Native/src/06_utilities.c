@@ -12407,8 +12407,8 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   int InfinityFlag4;
   int64_t dataBufferPtr;
   int64_t systemContextBuffer [2];
-  uint uintTemp;
-  float floatTemp;
+  uint TemporaryUint;
+  float TemporaryFloat;
   
   dataBufferPtr = 0;
   InfinityFlag3 = 0;
@@ -12459,7 +12459,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   floatComponentZ = *(float *)(dataPtr + 0x44);
   InfinityFlag3 = 0;
   VectorComponentW = *(uint *)(dataPtr + 0x40);
-  floatTemp = *(float *)(dataPtr + 0x3c);
+  TemporaryFloat = *(float *)(dataPtr + 0x3c);
   systemContextBuffer[0] = CONCAT44(systemContextBuffer[0]._4_4_,floatComponentZ);
   InfinityFlag4 = InfinityFlag3;
   if (((uint)floatComponentZ & FloatInfinityValue) == FloatInfinityValue) {
@@ -12469,7 +12469,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   if ((VectorComponentW & FloatInfinityValue) == FloatInfinityValue) {
     InfinityFlag1 = 0x1d;
   }
-  if (((uint)floatTemp & FloatInfinityValue) == FloatInfinityValue) {
+  if (((uint)TemporaryFloat & FloatInfinityValue) == FloatInfinityValue) {
     InfinityFlag3 = 0x1d;
   }
   if ((InfinityFlag4 == 0 && InfinityFlag1 == 0) && InfinityFlag3 == 0) {
@@ -12477,7 +12477,7 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
        (*(float *)(dataPtr + 0x38) == 0.0)) {
       return 0x1f;
     }
-    if (((floatTemp == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
+    if (((TemporaryFloat == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
       return 0x1f;
     }
     result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataPtr + 0x10),systemContextBuffer);
@@ -15023,7 +15023,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationF
   int64_t *validationContextPointer;
   int operationResult;
   int64_t calculatedOffset;
-  ByteFlag auStack_b8 [32];
+  ByteFlag securityValidationBuffer [32];
   uint colorComponentGreenLow;
   uint colorComponentGreenMid;
   uint colorComponentBlueMid;
@@ -15032,7 +15032,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationF
   uint colorComponentBlueMidByte;
   uint colorComponentBlueHighByte;
   uint colorComponentAlphaHighByte;
-  uint uStack_58;
+  uint stackOffset58;
   uint uStack_50;
   DataWord uStack_48;
   uint uStack_44;
@@ -28296,7 +28296,7 @@ ValidationStateHandler:
  * @return 处理结果状态码
  * @note 原始函数名：FUN_18089ccb9
  */
-uint64_t FUN_18089ccb9(void)
+uint64_t ProcessDataAndReturnResult(void)
 
 {
   int64_t *validationContextPointer;
@@ -33028,14 +33028,20 @@ void ExceptionUnwindHandlerA0(DataBuffer exceptionContext, int64_t unwindParam)
 // 
 // 返回值:
 //   无
-void ExceptionUnwindHandlerA1(DataBuffer param_1,int64_t param_2)
+void ExceptionUnwindHandlerA1(DataBuffer exceptionContext, int64_t unwindParam)
 
 {
-  DataBuffer *exceptionChainPtr;
+  DataBuffer** exceptionChainPointer;
+  DataBuffer* currentTablePointer;
   
-  exceptionChainPtr = *(DataBuffer **)(param_2 + 0x48);
-  *exceptionChainPtr = &ExceptionDataTable3;
-  *exceptionChainPtr = &ExceptionDataTable2;
+  // 获取异常链指针的地址
+  exceptionChainPointer = (DataBuffer**)(unwindParam + 0x48);
+  currentTablePointer = *exceptionChainPointer;
+  
+  // 设置异常数据表指针链
+  *currentTablePointer = &ExceptionDataTable3;
+  *currentTablePointer = &ExceptionDataTable2;
+  
   return;
 }
 
