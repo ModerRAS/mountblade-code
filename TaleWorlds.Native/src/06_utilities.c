@@ -20378,7 +20378,14 @@ void ResetSystemState(void)
 
 
 
-// 同步数据
+/**
+ * @brief 同步数据
+ * 
+ * 该函数用于同步系统数据，确保数据的一致性和完整性
+ * 
+ * @param dataHandle 数据句柄
+ * @param dataOffset 数据偏移量
+ */
 void SynchronizeData(undefined8 dataHandle,longlong dataOffset)
 
 {
@@ -20393,6 +20400,15 @@ void SynchronizeData(undefined8 dataHandle,longlong dataOffset)
 
 
 
+/**
+ * @brief 初始化数据处理器A0
+ * 
+ * 该函数用于初始化系统数据处理器，分配必要的内存资源
+ * 
+ * @param processorContext 处理器上下文
+ * @param dataPointer 数据指针
+ * @return 初始化结果，成功返回0，失败返回错误码
+ */
 undefined8 InitializeDataProcessorA0(undefined8 processorContext,longlong *dataPointer)
 
 {
@@ -20436,6 +20452,13 @@ undefined8 InitializeDataProcessorA0(undefined8 processorContext,longlong *dataP
 
 
 
+/**
+ * @brief 清理数据处理器A0
+ * 
+ * 该函数用于清理数据处理器资源，释放分配的内存
+ * 
+ * @return 清理结果，成功返回0，失败返回错误码
+ */
 undefined8 CleanupDataProcessorA0(void)
 
 {
@@ -20474,7 +20497,11 @@ undefined8 CleanupDataProcessorA0(void)
 
 
 
-// 管理内存
+/**
+ * @brief 管理内存
+ * 
+ * 该函数用于管理系统内存资源，执行内存优化操作
+ */
 void ManageMemory(void)
 
 {
@@ -20483,6 +20510,15 @@ void ManageMemory(void)
 
 
 
+/**
+ * @brief 处理数据集合A0
+ * 
+ * 该函数用于处理系统数据集合，执行批量数据处理操作
+ * 
+ * @param collectionContext 集合上下文
+ * @param dataPointer 数据指针
+ * @return 处理结果，成功返回0，失败返回错误码
+ */
 undefined8 ProcessDataCollectionA0(longlong collectionContext,longlong *dataPointer)
 
 {
@@ -90259,7 +90295,15 @@ void SetExceptionHandlerBToGlobalC(void)
 
 
 942200(void)
-void FUN_180942200(void)
+/**
+ * @brief 设置默认异常处理器07
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942200
+ */
+void SetDefaultExceptionHandler07(void)
 
 {
   _DAT_180bf9ab0 = &DefaultExceptionHandlerB;
