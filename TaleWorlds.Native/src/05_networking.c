@@ -1086,7 +1086,7 @@ void *NetworkConnectionContextTemplatePointer;          // 网络连接上下文
 void *NetworkConnectionPrimaryConfigPointer;                // 网络连接主要配置指针，指向主要配置数据
 void *NetworkConnectionSecondaryConfigPointer;            // 网络连接次要配置指针，指向次要配置数据
 void *NetworkConnectionProcessingConfigPointer;           // 网络连接处理配置指针，指向处理配置数据
-void *NetworkConnectionTransportConfigPointer = &NetworkConnectionTransportConfig;             // 网络连接传输配置指针，指向传输配置数据
+void *NetworkConnectionTransportConfigPointer;             // 网络连接传输配置指针，指向传输配置数据
 void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;               // 网络连接协议配置指针，指向协议配置数据
 void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;           // 网络连接验证配置指针，指向验证配置数据
 void *NetworkConnectionRoutingMainConfigPointer = &NetworkConnectionRoutingMainConfig;       // 网络连接路由主配置指针，指向路由主配置数据
