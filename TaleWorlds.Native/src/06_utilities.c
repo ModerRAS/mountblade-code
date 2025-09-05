@@ -11891,8 +11891,14 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
 
 // 函数: void UtilityNoOperationF(void)
 // 功能：空操作函数，不执行任何操作
-void UtilityNoOperationF(void)
-
+/**
+ * @brief 空操作函数F
+ * 
+ * 该函数不执行任何操作，直接返回
+ * 
+ * @note 原始函数名：UtilityNoOperationF
+ */
+void UtilityNoOperationFunction(void)
 {
   return;
 }
@@ -11900,70 +11906,96 @@ void UtilityNoOperationF(void)
 
 
 
-// 函数: void CheckSystemConditionAndExecute(void)
+/**
+ * @brief 检查系统条件并执行相应操作
+ * 
+ * 该函数验证系统资源状态，并根据验证结果执行相应的系统事件处理
+ * 
+ * @note 原始函数名：CheckSystemConditionAndExecute
+ */
 void CheckSystemConditionAndExecute(void)
-
 {
-  int operationResult;
-  longlong stackFramePointer;
+  int validationStatus;
+  longlong contextPointer;
   
-  operationResult = ValidateAndProcessSystemResourceA0();
-  if (operationResult == 0) {
-    ProcessSystemEventB0(*(undefined8 *)(stackFramePointer + 0x98));
+  // 验证系统资源状态
+  validationStatus = ValidateAndProcessSystemResourceA0();
+  if (validationStatus == 0) {
+    // 如果验证成功，处理系统事件
+    ProcessSystemEventB0(*(undefined8 *)(contextPointer + 0x98));
   }
   return;
 }
 
 
 
-// 原始函数名：FUN_180892370 - 系统数据索引验证和处理函数
-// 功能：验证系统数据索引并处理相应的系统资源，返回操作状态码
-undefined8 ValidateSystemDataIndexAndProcessResource(longlong systemContext,longlong resourceContext)
-
+/**
+ * @brief 验证系统数据索引并处理相应资源
+ * 
+ * 该函数验证系统数据索引的有效性，并根据索引处理相应的系统资源
+ * 
+ * @param systemContext 系统上下文指针
+ * @param resourceContext 资源上下文指针
+ * @return 操作状态码，0表示成功，非0表示错误
+ * 
+ * @note 原始函数名：FUN_180892370
+ */
+uint64_t ValidateSystemDataIndexAndProcessResource(longlong systemContext, longlong resourceContext)
 {
-  int dataEntryIndex;
-  uint64_t operationResult;
-  longlong systemDataPointer;
-  longlong dataBufferPointer;
+  int dataIndex;
+  uint64_t operationStatus;
+  longlong systemDataPtr;
+  longlong bufferPtr;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemContext + 0x10),&dataBufferPointer);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  // 查询并检索系统数据
+  operationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemContext + 0x10), &bufferPtr);
+  if ((int)operationStatus != 0) {
+    return operationStatus;
   }
-  systemDataPointer = dataBufferPointer;
-  if (dataBufferPointer != 0) {
-    systemDataPointer = dataBufferPointer + -8;
+  
+  systemDataPtr = bufferPtr;
+  if (bufferPtr != 0) {
+    systemDataPtr = bufferPtr + -8;
   }
-  dataEntryIndex = *(int *)(systemContext + 0x18);
-  if ((dataEntryIndex < 0) || (*(int *)(systemDataPointer + 0x28) <= dataEntryIndex)) {
-    return 0x1f;
+  
+  dataIndex = *(int *)(systemContext + 0x18);
+  if ((dataIndex < 0) || (*(int *)(systemDataPtr + 0x28) <= dataIndex)) {
+    return 0x1f;  // 索引越界错误
   }
-  if (*(longlong *)(*(longlong *)(systemDataPointer + 0x20) + 0x10 + (longlong)dataEntryIndex * 0x18) == 0) {
-    return 0x1e;
+  
+  if (*(longlong *)(*(longlong *)(systemDataPtr + 0x20) + 0x10 + (longlong)dataIndex * 0x18) == 0) {
+    return 0x1e;  // 资源不存在错误
   }
-  operationResult = ValidateAndProcessSystemResourceA0(*(longlong *)(systemDataPointer + 0x20) + (longlong)dataEntryIndex * 0x18,systemContext + 0x1c);
-  if ((int)operationResult != 0) {
-    return operationResult;
+  
+  // 验证并处理系统资源
+  operationStatus = ValidateAndProcessSystemResourceA0(*(longlong *)(systemDataPtr + 0x20) + (longlong)dataIndex * 0x18, systemContext + 0x1c);
+  if ((int)operationStatus != 0) {
+    return operationStatus;
   }
-  systemDataPointer = *(longlong *)(resourceContext + 0x98);
-  if (*(int *)(systemDataPointer + 0x200) == 0) {
-    return 0;
+  
+  systemDataPtr = *(longlong *)(resourceContext + 0x98);
+  if (*(int *)(systemDataPtr + 0x200) == 0) {
+    return 0;  // 操作成功完成
   }
-  if ((*(int *)(systemDataPointer + 0x180) != 0) || (*(int *)(systemDataPointer + 0x184) != 0)) {
-    dataBufferPointer = 0;
-    InitializeSystemContextA0(&dataBufferPointer);
-    if (dataBufferPointer == *(longlong *)((longlong)*(int *)(systemDataPointer + 0x17c) * 8 + 0x180c4f450)) {
-      operationResult = ProcessSystemDataEC0(systemDataPointer,systemContext);
+  
+  // 检查系统状态标志
+  if ((*(int *)(systemDataPtr + 0x180) != 0) || (*(int *)(systemDataPtr + 0x184) != 0)) {
+    bufferPtr = 0;
+    InitializeSystemContextA0(&bufferPtr);
+    if (bufferPtr == *(longlong *)((longlong)*(int *)(systemDataPtr + 0x17c) * 8 + 0x180c4f450)) {
+      operationStatus = ProcessSystemDataEC0(systemDataPtr, systemContext);
       goto OperationComplete;
     }
   }
+  // 更新系统上下文状态
   *(uint *)(systemContext + 8) = *(int *)(systemContext + 8) + 0xfU & 0xfffffff0;
-  operationResult = GetSystemCurrentStateA0(*(undefined8 *)(systemDataPointer + 0x1e0));
+  operationStatus = GetSystemCurrentStateA0(*(undefined8 *)(systemDataPtr + 0x1e0));
+  
 OperationComplete:
-  if ((int)operationResult == 0) {
-    return 0;
+  if ((int)operationStatus == 0) {
+    return 0;  // 操作成功
   }
-  return operationResult;
+  return operationStatus;
 }
 
 
@@ -11971,51 +12003,58 @@ OperationComplete:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ExecuteSecurityValidation(longlong param_1, longlong param_2)
-//
-// 安全验证执行函数
-// 执行系统安全检查，验证资源访问权限和操作合法性
-// 
-// 参数:
-//   param_1 - 安全上下文描述符，包含验证参数和权限信息
-//   param_2 - 操作描述符，指定要执行的安全操作类型
-// 
-// 返回值:
-//   无 - 验证失败会终止程序执行
+/**
+ * @brief 执行安全验证操作
+ * 
+ * 该函数执行系统安全检查，验证资源访问权限和操作合法性
+ * 
+ * @param securityContext 安全上下文描述符，包含验证参数和权限信息
+ * @param operationDescriptor 操作描述符，指定要执行的安全操作类型
+ * 
+ * @note 原始函数名：ExecuteSecurityValidation
+ * @note 验证失败会终止程序执行
+ */
 void ExecuteSecurityValidation(longlong securityContext, longlong operationDescriptor)
-
 {
-  longlong validationContext;
-  int operationResult;
+  longlong validationCtx;
+  int queryStatus;
   longlong securityHandle;
-  longlong *permissionPointer;
-  undefined1 securityValidationBuffer [32];
-  longlong systemContext;
-  undefined1 authorizationData [40];
+  longlong *permissionPtr;
+  undefined1 securityValidationBuffer[32];
+  longlong systemCtx;
+  undefined1 authorizationData[40];
   ulonglong stackGuardValue;
   
+  // 初始化栈保护值
   stackGuardValue = ExceptionEncryptionKey ^ (ulonglong)securityValidationBuffer;
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(securityContext + 0x10),&systemContext);
-  if (operationResult == 0) {
-    if (systemContext != 0) {
-      systemContext = systemContext + -8;
+  
+  // 查询并检索系统数据
+  queryStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(securityContext + 0x10), &systemCtx);
+  if (queryStatus == 0) {
+    if (systemCtx != 0) {
+      systemCtx = systemCtx + -8;
     }
-    if (*(longlong *)(systemContext + 0x18) != 0) {
-      validationContext = *(longlong *)(systemContext + 0x18) + 0x30;
-      validationResult = (**(code **)(**(longlong **)(operationDescriptor + 800) + 0x2f0))
-                        (*(longlong **)(operationDescriptor + 800),validationContext,1);
+    
+    // 检查系统上下文是否有效
+    if (*(longlong *)(systemCtx + 0x18) != 0) {
+      validationCtx = *(longlong *)(systemCtx + 0x18) + 0x30;
+      longlong validationResult = (**(code **)(**(longlong **)(operationDescriptor + 800) + 0x2f0))
+                               (*(longlong **)(operationDescriptor + 800), validationCtx, 1);
+      
+      // 验证系统数据
       if (validationResult == 0) {
-                    // WARNING: Subroutine does not return
-        ValidateSystemDataA0(validationContext,authorizationData);
+        ValidateSystemDataA0(validationCtx, authorizationData);
       }
-      permissionPointer = (longlong *)(validationResult + 0x58);
-      if (((longlong *)*permissionPointer != permissionPointer) || (*(longlong **)(validationResult + 0x60) != permissionPointer)) {
-                    // WARNING: Subroutine does not return
-        CleanupSystemEventA0(*(undefined8 *)(operationDescriptor + 0x98),securityContext);
+      
+      // 验证权限指针
+      permissionPtr = (longlong *)(validationResult + 0x58);
+      if (((longlong *)*permissionPtr != permissionPtr) || (*(longlong **)(validationResult + 0x60) != permissionPtr)) {
+        CleanupSystemEventA0(*(undefined8 *)(operationDescriptor + 0x98), securityContext);
       }
     }
   }
-                    // WARNING: Subroutine does not return
+  
+  // 执行安全检查
   ExecuteSecurityCheck(stackGuardValue ^ (ulonglong)securityValidationBuffer);
 }
 

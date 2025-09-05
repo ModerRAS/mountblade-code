@@ -2850,7 +2850,7 @@ void InitializeSystemEventManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRendereremoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -3018,7 +3018,7 @@ void InitializeSystemMemoryNode(void)
   }
   PreviousNode[NodeIdentifier1Index] = SystemDataTemplateLId1;
   PreviousNode[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeDatabaseManageretworkManager;
   PreviousNode[NodeActiveFlagIndex] = NodeInactiveFlag;
   PreviousNode[SystemNodeCallbackIndex] = InitializationFlag;
   return;
@@ -3242,7 +3242,7 @@ void InitializeSystemDataTableSenaryRoot(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeM;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRenderer;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -3466,7 +3466,7 @@ void InitializeSystemDataTableDenaryRoot(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateOId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeN;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeDatabaseManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -3522,7 +3522,7 @@ void InitializeSystemDataTableDuodenaryRoot(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryTemplateId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeO;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeCacheController;
   HashTablePointer[NodeActiveFlagIndex] = 3;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -4002,7 +4002,7 @@ void InitializeEventSystem(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeM;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRenderer;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventSystemCallback;
   return;
@@ -4900,7 +4900,7 @@ void InitializeSystemDebugManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeM;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRenderer;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -6677,7 +6677,7 @@ void InitializeSystemStorageManager(void)
   }
   SystemCurrentStorageNode[6] = SystemDataTemplateOId1;
   SystemCurrentStorageNode[7] = SystemDataTemplateOId2;
-  SystemCurrentStorageNode[8] = &SystemDataNodeN;
+  SystemCurrentStorageNode[8] = &SystemDataNodeDatabaseManager;
   SystemCurrentStorageNode[9] = 4;
   SystemPreviousStorageNode[SystemNodeCallbackIndex] = SystemStorageManagerCallbackFunction;
   return;
@@ -6736,7 +6736,7 @@ void InitializeSystemMemoryManagerNode(void)
   }
   SystemCurrentMemoryNode[6] = SystemMemoryTemplateId1;
   SystemCurrentMemoryNode[7] = SystemMemoryTemplateId2;
-  SystemCurrentMemoryNode[8] = &SystemDataNodeO;
+  SystemCurrentMemoryNode[8] = &SystemDataNodeCacheController;
   SystemCurrentMemoryNode[9] = 3;
   SystemPreviousMemoryNode[SystemNodeCallbackIndex] = MemoryManagerCallbackFunction;
   return;
@@ -7679,7 +7679,7 @@ void InitializeSystemEventManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeM;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRenderer;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8317,7 +8317,7 @@ void InitializeSystemStorageManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateOId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeN;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeDatabaseManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8375,7 +8375,7 @@ void InitializeSystemProcessManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryTemplateId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeO;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeCacheController;
   HashTablePointer[NodeActiveFlagIndex] = 3;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8845,7 +8845,7 @@ void InitializeSystemStorageManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeM;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRenderer;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8896,7 +8896,7 @@ void InitializeSystemMemoryManagerNode(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateOId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeN;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeDatabaseManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8947,7 +8947,7 @@ void InitializeSystemConfigurationManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryTemplateId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeO;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeCacheController;
   HashTablePointer[NodeActiveFlagIndex] = 3;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -10568,7 +10568,7 @@ void InitializeSystemSearchConfigurationManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeM;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRenderer;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -13987,7 +13987,7 @@ void InitializeSystemSearchNodeManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeM;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRenderer;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -16324,7 +16324,7 @@ void InitializeSystemDatabaseComponent(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeM;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeRenderer;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -20054,18 +20054,6 @@ void FinalizeSystemInitialization(void)
 /**
  * @brief 初始化系统指针池
  * 
- * 该函数负责初始化系统指针池，设置默认的指针地址，
- * 并根据清理标志决定是否释放相关内存资源
- * 
- * @param systemPointerPool 系统指针池指针
- * @param InitializationFlags 初始化标志，用于控制内存清理行为
- * @param ReservedParameter3 保留参数3
- * @param ReservedParameter4 保留参数4
- * @return 返回系统指针池指针
- */
-/**
- * @brief 初始化系统指针池
- * 
  * 该函数负责初始化系统的指针池，设置内存分配器引用，并根据初始化标志
  * 执行相应的内存管理操作。这是系统内存管理的重要组成部分。
  * 
@@ -20080,7 +20068,7 @@ void** InitializeSystemPointerPool(void** SystemPointerPool, unsigned long long 
 {
   *SystemPointerPool = &SystemMemoryAllocatorReference;
   if ((InitializationFlags & 1) != 0) {
-    free(SystemPointerPool, 0x1018, ReservedParam3, ReservedParam4, InvalidHandleValue);
+    free(SystemPointerPool, 0x1018, ReservedParameter3, ReservedParameter4, InvalidHandleValue);
   }
   return SystemPointerPool;
 }

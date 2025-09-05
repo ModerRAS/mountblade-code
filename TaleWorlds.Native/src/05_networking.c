@@ -1000,39 +1000,39 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄
 uint32_t NetworkConnectionPoolManager;                      // 网络连接池管理器
-uint32_t NetworkManagerContextPointer;                      // 网络连接管理器上下文指针
-uint32_t NetworkManagerContextData;                         // 网络连接管理器上下文数据
+uint32_t NetworkManagerContextPointer;                      // 网络管理器上下文指针
+uint32_t NetworkManagerContextData;                         // 网络管理器上下文数据
 uint32_t NetworkConnectionStateFlags;                       // 网络连接状态标志
-uint32_t NetworkConnectionTimeoutMs;                         // 网络连接超时时间（毫秒）
+uint32_t NetworkConnectionTimeoutMs;                        // 网络连接超时时间（毫秒）
 uint32_t NetworkMaxConnectionsAllowed;                      // 网络最大连接数限制
-uint32_t NetworkConnectionAttributeFlags;                    // 网络连接属性标志
-uint32_t NetworkCurrentStateFlags;                           // 网络当前状态标志
-uint32_t NetworkErrorReportTemplate;                         // 网络错误报告模板
+uint32_t NetworkConnectionAttributeFlags;                   // 网络连接属性标志
+uint32_t NetworkCurrentStateFlags;                          // 网络当前状态标志
+uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板
 
 // 网络协议和地址配置
 uint32_t NetworkConnectionProtocolType;                     // 网络连接协议类型
 uint32_t NetworkConnectionProtocol;                         // 网络连接协议
 uint32_t NetworkConnectionProtocolVersion;                  // 网络连接协议版本
-uint32_t NetworkServerIpAddress;                             // 网络服务器IP地址
-uint32_t NetworkServerPortNumber;                            // 网络服务器端口号
+uint32_t NetworkServerIpAddress;                            // 网络服务器IP地址
+uint32_t NetworkServerPortNumber;                           // 网络服务器端口号
 uint32_t NetworkClientIpAddress;                            // 网络客户端IP地址
 uint32_t NetworkClientPortNumber;                           // 网络客户端端口号
 
 // 网络套接字和缓冲区配置
 uint32_t NetworkSocketFileDescriptor;                        // 网络套接字文件描述符
-uint32_t NetworkSocketCategory;                              // 网络套接字类别
-uint32_t NetworkSocketProtocolType;                          // 网络套接字协议类型
-uint32_t NetworkSocketType;                                  // 网络套接字类型
-uint32_t NetworkSocketProtocol;                              // 网络套接字协议
-uint32_t NetworkConnectionPriority;                          // 网络连接优先级
-uint32_t NetworkSocketStructureSize;                         // 网络套接字结构体大小
-uint32_t NetworkSocketContextSize;                           // 网络套接字上下文大小
-uint32_t NetworkSocketContext;                               // 网络套接字上下文
-uint32_t NetworkSocketTablePosition;                         // 网络套接字表位置
-uint32_t NetworkSocketIndex;                                 // 网络套接字索引位置
-uint32_t NetworkSocketContextPointer;                        // 网络套接字上下文指针
-uint32_t NetworkSocketRuntimeData;                           // 网络套接字运行时数据
-uint32_t NetworkSocketRuntimeContextPointer;                 // 网络套接字运行时上下文指针
+uint32_t NetworkSocketCategory;                             // 网络套接字类别
+uint32_t NetworkSocketProtocolType;                         // 网络套接字协议类型
+uint32_t NetworkSocketType;                                 // 网络套接字类型
+uint32_t NetworkSocketProtocol;                             // 网络套接字协议
+uint32_t NetworkConnectionPriority;                         // 网络连接优先级
+uint32_t NetworkSocketStructureSize;                        // 网络套接字结构体大小
+uint32_t NetworkSocketContextSize;                          // 网络套接字上下文大小
+uint32_t NetworkSocketContext;                              // 网络套接字上下文
+uint32_t NetworkSocketTablePosition;                        // 网络套接字表位置
+uint32_t NetworkSocketIndex;                                // 网络套接字索引位置
+uint32_t NetworkSocketContextPointer;                       // 网络套接字上下文指针
+uint32_t NetworkSocketRuntimeData;                          // 网络套接字运行时数据
+uint32_t NetworkSocketRuntimeContextPointer;                // 网络套接字运行时上下文指针
 uint32_t NetworkProtocolVersion;                              // 网络协议版本
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
 uint32_t NetworkConnectionPriorityLevel;                      // 网络连接优先级级别，定义连接在资源竞争中的优先级别
@@ -3654,33 +3654,33 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 网络数据包解码变量
-  uint32_t NetworkPacketSecurityValidationResult;           // 网络数据包安全验证结果
-  uint32_t NetworkPacketHeaderDecodingStatus;               // 网络数据包头部解码状态
-  uint32_t NetworkPacketPayloadDecodingStatus;              // 网络数据包负载解码状态
+  uint32_t SecurityValidationResult;           // 网络数据包安全验证结果
+  uint32_t HeaderDecodingStatus;               // 网络数据包头部解码状态
+  uint32_t PayloadDecodingStatus;              // 网络数据包负载解码状态
   
   // 初始化解码状态
-  NetworkPacketSecurityValidationResult = NetworkValidationFailure;
-  NetworkPacketHeaderDecodingStatus = NetworkValidationFailure;
-  NetworkPacketPayloadDecodingStatus = NetworkValidationFailure;
+  SecurityValidationResult = NetworkValidationFailure;
+  HeaderDecodingStatus = NetworkValidationFailure;
+  PayloadDecodingStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData && OutputBuffer) {
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      NetworkPacketHeaderDecodingStatus = NetworkValidationSuccess;
+      HeaderDecodingStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      NetworkPacketPayloadDecodingStatus = NetworkValidationSuccess;
+      PayloadDecodingStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    NetworkPacketSecurityValidationResult = NetworkPacketHeaderDecodingStatus & NetworkPacketPayloadDecodingStatus;
+    SecurityValidationResult = HeaderDecodingStatus & PayloadDecodingStatus;
     
     // 初始化输出缓冲区
-    if (NetworkPacketSecurityValidationResult == NetworkValidationSuccess) {
+    if (SecurityValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
       OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
@@ -3688,7 +3688,7 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
     }
   }
   
-  return NetworkPacketSecurityValidationResult;
+  return SecurityValidationResult;
 }
 
 /**
