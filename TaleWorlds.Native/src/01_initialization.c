@@ -44265,7 +44265,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   ThreadContextIndicator = SystemProcessFlags;
   SystemInitializationStatus = SystemEncryptionStatus;
   UnsignedStackFlagQuaternary = SystemEncryptionStatus;
-  StackUnsignedValueA4 = StackUnsignedValue64;
+  StackUnsignedValueSecondary = StackUnsignedValue64;
   UnsignedStackFlagSecondary = SystemThreadContext;
   StackUnsignedValue9C = StackUnsignedValue5C;
   SystemConfigurationValue = ThreadContextIndicator;
@@ -44277,7 +44277,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   if (ThreadContextIndicator == 0) goto SystemValueCheckComplete;
   SystemAllocationFlags = 0;
   pEncryptionOffset = &SystemGlobalDataReference;
-  StackPointerF0 = 0;
+  StackPointerTemporary = 0;
   pEncryptionOffsetSecondary = (uint8_t *)0x0;
   MemoryBufferPointer = 0;
   systemConfigurationValue._0_4_ = (int)ThreadContextIndicator;
@@ -44311,7 +44311,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
     *(uint32_t *)(ResourceAddressPointer + 3) = (uint32_t)UnsignedStackOffsetF0;
     MemoryBufferPointer = 0;
     pEncryptionOffsetSecondary = (uint8_t *)0x0;
-    StackPointerF0 = 0;
+    StackPointerTemporary = 0;
     dataBufferPointer = ResourceAddressPointer;
   }
   else {
@@ -44342,7 +44342,7 @@ ResourceDataIndexCheckLoop:
     *(uint32_t *)(dataBufferContext + 3) = (uint32_t)SystemResourceDataIndex;
     MemoryBufferPointer = 0;
     pEncryptionOffsetSecondary = (uint8_t *)0x0;
-    StackPointerF0 = 0;
+    StackPointerTemporary = 0;
     SystemThreadLocalStoragePointer = dataBufferContext + 4;
     SystemHashNodeData = (void* *)SystemResourceManager[1];
     ResourceAddressPointer = (void* *)*SystemResourceManager;
@@ -44367,7 +44367,7 @@ ResourceDataIndexCheckLoop:
       SystemCleanupFunction();
   }
   pEncryptionOffsetSecondary = (uint8_t *)0x0;
-  UnsignedStackOffsetF0 = UnsignedStackOffsetF0 & SystemMemoryAlignmentMask;
+  UnsignedStackOffsetTemporary = UnsignedStackOffsetTemporary & SystemMemoryAlignmentMask;
   pEncryptionOffset = &SystemMemoryAllocatorReference;
 SystemValueCheckComplete:
   ResourceAddressPointer = (void* *)(ResourceDataPosition + (long long)SystemHashNodeData);
@@ -58160,7 +58160,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
           MemoryBufferPointer = 0;
           SystemMemoryAllocatorStatus = 0;
           SystemInitializationStatus = 0;
-          StackPointerF0 = 0;
+          StackPointerTemporary = 0;
           InitializeSystemEncryptionContext(&EncryptionOffsetSecondary,SystemResourceManager,0);
           (**(code **)(*SystemResourceManager + 0x38))(SystemResourceManager);
           ProcessSystemEncryptionCalculation(&EncryptionOffsetSecondary,resourcePoolPointer,systemValue,CalculationFlags,CalculationResult8);

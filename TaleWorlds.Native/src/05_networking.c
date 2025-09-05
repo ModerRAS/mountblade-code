@@ -1035,30 +1035,30 @@ uint32_t NetworkSocketRuntimeData;                           // 网络套接字�
 uint32_t NetworkSocketRuntimeContextPointer;                 // 网络套接字运行时上下文指针
 uint32_t NetworkProtocolVersion;                              // 网络协议版本
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
-uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级级别，定义连接在资源竞争中的优先级别
-uint32_t NetworkConnectionContextSize;              // 网络连接上下文数据大小，连接上下文数据结构的大小
-uint32_t NetworkConnectionQualityLevel;                     // 网络连接质量级别，评估连接质量的质量指标
-uint32_t NetworkConnectionQuality;                         // 网络连接质量，连接的质量等级
-uint32_t NetworkConnectionBandwidth;                    // 网络连接带宽，连接可用的带宽资源
-uint32_t NetworkConnectionLatency;                       // 网络连接延迟，网络通信的延迟时间
-uint32_t NetworkConnectionLatencyMs;                      // 网络连接延迟（毫秒），网络通信的延迟时间
-uint32_t NetworkConnectionReliabilityLevel;                         // 网络连接可靠性，连接的稳定性和可靠性指标
-uint32_t NetworkSecurityLevel;                       // 网络安全级别，连接的安全保护级别
-uint32_t NetworkAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
-uint32_t NetworkSystemAuthenticationType;                          // 网络系统认证类型，系统使用的认证机制类型
-uint32_t NetworkEncryptionAlgorithmType;                // 网络加密算法，数据传输使用的加密算法
-uint32_t NetworkEncryptionAlgorithm;                   // 网络加密算法，数据传输使用的加密算法配置
-uint32_t NetworkSystemEncryptionAlgorithm;                          // 网络系统加密算法，系统使用的加密算法类型
-uint32_t NetworkCompressionMethodType;                  // 网络压缩方法，数据压缩使用的算法方法
-uint32_t NetworkCompressionMethod;                     // 网络压缩方法，数据压缩使用的算法方法配置
-uint32_t NetworkSystemCompressionMethod;                            // 网络系统压缩方法，系统使用的压缩算法类型
-uint32_t NetworkSessionTimeoutMs;             // 网络会话超时持续时间，会话无活动的超时时间
-uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区，指向数据包缓冲区的内存地址
-uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头，指向数据包头部信息的内存地址
-uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小，发送缓冲区的当前大小
-uint32_t NetworkReceiveBufferSize;                        // 网络接收缓冲区大小，接收缓冲区的当前大小
-uint32_t NetworkSendBufferCapacity;                       // 网络发送缓冲区容量，发送缓冲区的最大容量
-uint32_t NetworkReceiveBufferCapacity;                    // 网络接收缓冲区容量，接收缓冲区的最大容量
+uint32_t NetworkConnectionPriorityLevel;                      // 网络连接优先级级别，定义连接在资源竞争中的优先级别
+uint32_t NetworkConnectionContextSize;                        // 网络连接上下文数据大小，连接上下文数据结构的大小
+uint32_t NetworkConnectionQualityLevel;                       // 网络连接质量级别，评估连接质量的质量指标
+uint32_t NetworkConnectionQuality;                            // 网络连接质量，连接的质量等级
+uint32_t NetworkConnectionBandwidth;                          // 网络连接带宽，连接可用的带宽资源
+uint32_t NetworkConnectionLatency;                            // 网络连接延迟，网络通信的延迟时间
+uint32_t NetworkConnectionLatencyMs;                          // 网络连接延迟（毫秒），网络通信的延迟时间
+uint32_t NetworkConnectionReliabilityLevel;                   // 网络连接可靠性，连接的稳定性和可靠性指标
+uint32_t NetworkSecurityLevel;                                // 网络安全级别，连接的安全保护级别
+uint32_t NetworkAuthenticationType;                           // 网络认证类型，连接使用的认证机制类型
+uint32_t NetworkSystemAuthenticationType;                     // 网络系统认证类型，系统使用的认证机制类型
+uint32_t NetworkEncryptionAlgorithmType;                        // 网络加密算法，数据传输使用的加密算法
+uint32_t NetworkEncryptionAlgorithm;                           // 网络加密算法，数据传输使用的加密算法配置
+uint32_t NetworkSystemEncryptionAlgorithm;                     // 网络系统加密算法，系统使用的加密算法类型
+uint32_t NetworkCompressionMethodType;                        // 网络压缩方法，数据压缩使用的算法方法
+uint32_t NetworkCompressionMethod;                           // 网络压缩方法，数据压缩使用的算法方法配置
+uint32_t NetworkSystemCompressionMethod;                      // 网络系统压缩方法，系统使用的压缩算法类型
+uint32_t NetworkSessionTimeoutMs;                             // 网络会话超时持续时间，会话无活动的超时时间
+uint32_t NetworkPacketBufferPointer;                          // 网络数据包缓冲区，指向数据包缓冲区的内存地址
+uint32_t NetworkPacketHeaderPointer;                          // 网络数据包头，指向数据包头部信息的内存地址
+uint32_t NetworkSendBufferSize;                               // 网络发送缓冲区大小，发送缓冲区的当前大小
+uint32_t NetworkReceiveBufferSize;                            // 网络接收缓冲区大小，接收缓冲区的当前大小
+uint32_t NetworkSendBufferCapacity;                          // 网络发送缓冲区容量，发送缓冲区的最大容量
+uint32_t NetworkReceiveBufferCapacity;                       // 网络接收缓冲区容量，接收缓冲区的最大容量
 
 // 网络数据包和安全配置
 uint32_t NetworkPacketPayloadSize;                        // 网络数据包负载大小，数据包中有效数据的大小

@@ -19188,23 +19188,23 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
   undefined1 workingBuffer238 [512];
   ulonglong securityStack38;
   
-  uStack_38 = ExceptionEncryptionKey ^ (ulonglong)auStack_368;
-  validationContextPointer6 = (longlong *)0x0;
-  alStack_300[1] = 0;
-  iVar6 = InitializeBufferA0(alStack_300 + 1,param_1[1]);
-  if ((iVar6 == 0) && (iVar6 = ValidateSystemDataA0(param_1,1), iVar6 == 0)) {
-    (**(code **)(*param_1 + 8))(param_1,&UNK_180986488);
-    if (((*(uint *)(param_1 + 3) & 0x1000000) == 0) ||
-       (iVar6 = ValidateResourceA0(param_1,*(undefined8 *)(param_1[1] + 0xc0),0,1), iVar6 == 0)) {
-      validationContext5 = param_1[1];
-      validationContextPointer4 = (longlong *)(validationContext5 + 0x50);
-      validationContextPointer0 = (longlong *)(*(longlong *)(validationContext5 + 0x50) + -8);
-      if (*(longlong *)(validationContext5 + 0x50) == 0) {
-        validationContextPointer0 = validationContextPointer6;
+  securityStack38 = ExceptionEncryptionKey ^ (ulonglong)securityBuffer;
+  nullPointer = (longlong *)0x0;
+  contextArray300[1] = 0;
+  operationResult = InitializeBufferA0(contextArray300 + 1,dataContext[1]);
+  if ((operationResult == 0) && (operationResult = ValidateSystemDataA0(dataContext,1), operationResult == 0)) {
+    (**(code **)(*dataContext + 8))(dataContext,&UNK_180986488);
+    if (((*(uint *)(dataContext + 3) & 0x1000000) == 0) ||
+       (operationResult = ValidateResourceA0(dataContext,*(undefined8 *)(dataContext[1] + 0xc0),0,1), operationResult == 0)) {
+      currentResource = dataContext[1];
+      resourceList = (longlong *)(currentResource + 0x50);
+      contextPointer = (longlong *)(*(longlong *)(currentResource + 0x50) + -8);
+      if (*(longlong *)(currentResource + 0x50) == 0) {
+        contextPointer = nullPointer;
       }
-      validationContextPointer3 = validationContextPointer6;
-      if (validationContextPointer0 != (longlong *)0x0) {
-        validationContextPointer3 = validationContextPointer0 + 1;
+      resourceIterator = nullPointer;
+      if (contextPointer != (longlong *)0x0) {
+        resourceIterator = contextPointer + 1;
       }
       if (validationContextPointer3 != validationContextPointer4) {
         do {
@@ -36610,12 +36610,23 @@ void InitializeExceptionHandlerContext(undefined8 exceptionContext, longlong thr
 
 
 
-void Unwind_180902ba0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置二级异常处理器
+ * 
+ * 该函数用于设置二级异常处理器的上下文信息，为系统提供额外的异常处理层
+ * 确保在主异常处理器失效时能够正确处理异常情况
+ * 
+ * @param exceptionContext 异常上下文句柄
+ * @param threadContext 线程上下文指针
+ * 
+ * @note 原始函数名：Unwind_180902ba0
+ */
+void SetupSecondaryExceptionHandler(undefined8 exceptionContext, longlong threadContext)
 
 {
   longlong validationContext;
   
-  validationContext = *(longlong *)(param_2 + 0x80);
+  validationContext = *(longlong *)(threadContext + 0x80);
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
