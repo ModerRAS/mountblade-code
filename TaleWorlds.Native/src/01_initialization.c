@@ -23174,6 +23174,20 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
 
 
 
+/**
+ * @brief 创建带备份的字符串缓冲区
+ * 
+ * 该函数创建一个带有备份功能的字符串缓冲区，支持字符串的存储和管理。
+ * 它会初始化主缓冲区和备份缓冲区，确保数据的安全性。
+ * 
+ * @param StringBuffer 字符串缓冲区指针，用于存储创建的缓冲区
+ * @param StringLength 字符串长度，指定缓冲区的大小
+ * @param UnusedParameter3 未使用的参数3
+ * @param UnusedParameter4 未使用的参数4
+ * @return void** 返回创建的字符串缓冲区指针
+ * 
+ * @note 这是字符串管理系统的重要函数，用于创建安全的字符串存储缓冲区
+ */
 void* *
 CreateStringBufferWithBackup(void** StringBuffer, long long StringLength, void* UnusedParameter3, void* UnusedParameter4)
 
@@ -23609,6 +23623,20 @@ void StartAndManageSystemThread(long long SystemResourceManager,long long Config
 
 
 
+/**
+ * @brief 设置数据缓冲区模板
+ * 
+ * 该函数设置系统数据缓冲区的模板，初始化缓冲区的基本结构和参数。
+ * 它会配置输入和输出模板，确保数据缓冲区的正确初始化。
+ * 
+ * @param DataBufferReference 数据缓冲区引用，用于存储设置的缓冲区
+ * @param InitializationFlags 初始化标志，控制缓冲区的初始化行为
+ * @param UnusedParameter3 未使用的参数3
+ * @param UnusedParameter4 未使用的参数4
+ * @return void** 返回设置后的数据缓冲区引用
+ * 
+ * @note 这是数据缓冲区管理系统的重要函数，用于初始化数据缓冲区模板
+ */
 void* *
 SetupDataBufferTemplates(void** DataBufferReference, unsigned long long InitializationFlags, void* UnusedParameter3, void* UnusedParameter4)
 
