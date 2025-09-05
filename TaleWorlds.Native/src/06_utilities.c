@@ -5290,18 +5290,28 @@ int FUN_180891280(longlong param_1)
 
 
 
-// 函数: void FUN_180891360(longlong param_1,undefined8 param_2)
-void FUN_180891360(longlong param_1,undefined8 param_2)
+// 函数: void ProcessUtilityDataRequest(longlong dataHandle,undefined8 requestInfo)
+// 
+// 处理工具数据请求
+// 根据传入的数据句柄和请求信息，处理相应的工具数据请求
+// 
+// 参数:
+//   dataHandle - 数据句柄，包含请求的相关信息
+//   requestInfo - 请求信息，包含请求的详细参数
+// 
+// 返回值:
+//   void - 无返回值
+void ProcessUtilityDataRequest(longlong dataHandle,undefined8 requestInfo)
 
 {
-  undefined8 uStackX_8;
-  int aiStack_58 [2];
-  longlong lStack_50;
+  undefined8 resultBuffer;
+  int processingStatus [2];
+  longlong dataOffset;
   
-  aiStack_58[0] = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if (aiStack_58[0] == 0) {
-    lStack_50 = param_1 + 0x18;
-    FUN_180894dd0(param_2,aiStack_58,*(undefined4 *)(param_1 + 0x14),uStackX_8);
+  processingStatus[0] = func_0x00018088c530(*(undefined4 *)(dataHandle + 0x10),&resultBuffer);
+  if (processingStatus[0] == 0) {
+    dataOffset = dataHandle + 0x18;
+    FUN_180894dd0(requestInfo,processingStatus,*(undefined4 *)(dataHandle + 0x14),resultBuffer);
   }
   return;
 }
