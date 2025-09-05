@@ -2307,14 +2307,16 @@ undefined UtilitySystemProcessData3;
 undefined UtilitySystemProcessData4;
 
 // 函数: undefined FUN_180942a60;
-undefined FUN_180942a60;
+#define ConfigureUtilitySystemCallbacks FUN_180942a60
+undefined ConfigureUtilitySystemCallbacks;
 undefined UtilitySystemCallbackData1;
 undefined UtilitySystemCallbackData2;
 undefined UtilitySystemCallbackData3;
 undefined UtilitySystemCallbackData4;
 
 // 函数: undefined FUN_180942a80;
-undefined FUN_180942a80;
+#define SetupUtilitySystemConfiguration FUN_180942a80
+undefined SetupUtilitySystemConfiguration;
 undefined UtilitySystemConfigData1;
 undefined UtilitySystemConfigStatus1;
 undefined UtilitySystemConfigData2;
@@ -2324,7 +2326,8 @@ undefined UtilitySystemThreadData2;
 undefined UtilitySystemThreadData3;
 
 // 函数: undefined FUN_180942fa0;
-undefined FUN_180942fa0;
+#define ProcessUtilitySystemFlags FUN_180942fa0
+undefined ProcessUtilitySystemFlags;
 undefined UtilitySystemFlagData1;
 undefined UtilitySystemFlagData2;
 undefined UtilitySystemFlagData3;
