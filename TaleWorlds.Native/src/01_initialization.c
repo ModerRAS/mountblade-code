@@ -53726,8 +53726,8 @@ void InitializeSystemResourceManager(void* SystemResourceManager,long long Confi
   uint8_t *threadLocalStorage;
   void* *systemValuePointer;
   long long memoryAllocationFlags;
-  uint SystemOperationStatus1;
-  uint SystemOperationStatus2;
+  uint SystemPrimaryOperationStatus;
+  uint SystemSecondaryOperationStatus;
   void* *stackParameterPointer;
   uint8_t *threadObjectPointer;
   uint stackParameterOffset;
