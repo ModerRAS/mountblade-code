@@ -27551,7 +27551,7 @@ SystemValidationCheck:
     } while (SystemHashBucket != (void* *)0x0);
     if (SystemDataBufferPointer != SystemDataPointer) {
       if (*(int *)(SystemDataBufferPointer + 6) == 0) goto SystemValueValidation;
-      if (SystemInteger20 != 0) {
+      if (SystemReservedInteger20 != 0) {
         stringPointer = (byte *)SystemDataBufferPointer[5];
         localDataIndex = (long long)SystemStringBufferPrimary - (long long)stringPointer;
         do {
@@ -28034,8 +28034,8 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
   float scaleFactor1;
   float scaleFactor2;
   long long *ConfigurationParameter;
-  long long *StackParameter2;
-  long long **StackParameter3;
+  long long *SystemStackParameter2;
+  long long **SystemStackParameter3;
   long long systemDataBufferA [2];
   void* *systemDataBufferB;
   void* *systemDataBufferC;
@@ -28084,7 +28084,7 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
     systemDataBufferE = &SystemProcessingBuffer3;
     systemDataBufferF = &SystemProcessingBuffer4;
     SystemResourceHandle = (long long *)CreateMemoryAllocationHandle(memoryAllocationHandle,systemDataBufferD);
-    StackParameter2 = SystemResourceHandle;
+    SystemStackParameter2 = SystemResourceHandle;
     if (SystemResourceHandle != (long long *)0x0) {
       (**(code **)(*SystemResourceHandle + 0x28))(SystemResourceHandle);
     }
@@ -28117,7 +28117,7 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
   secondaryScaleFactor = 1.0;
   if (*(int *)(renderManagerOffset + 0x1ea0) == 1) {
     SystemInitializationStatusValue = *(int *)(renderManagerOffset + 0x1d50);
-    resourceCountPointer = (int *)GetSystemResourceManager(*(void* *)(SystemGlobalStatusFlags + 8),&StackParameter2);
+    resourceCountPointer = (int *)GetSystemResourceManager(*(void* *)(SystemGlobalStatusFlags + 8),&SystemStackParameter2);
     secondaryScaleFactor = (float)SystemInitializationStatusValue / (float)*resourceCountPointer;
     primaryScaleFactor = secondaryScaleFactor * *(float *)(systemHandle + 0x234);
     secondaryScaleFactor = secondaryScaleFactor * *(float *)(systemHandle + 0x238);

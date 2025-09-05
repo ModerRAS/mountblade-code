@@ -96274,8 +96274,18 @@ void ExecuteResourceProcessingCallbackSeptenary(uint8_t ObjectContext, int64_t V
 
 
 
-void Unwind_18090f6c0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源处理回调第八级
+ * 
+ * 该函数负责执行资源处理的第八级回调函数
+ * 通过注册资源处理器来执行相应的操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f6c0，现已重命名为ExecuteResourceProcessingCallbackOctonary
+ */
+void ExecuteResourceProcessingCallbackOctonary(uint8_t ObjectContext, int64_t ValidationContext)
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + ValidationContextTertiaryCountOffset),8,0xd,ProcessResourceOperation);
   return;

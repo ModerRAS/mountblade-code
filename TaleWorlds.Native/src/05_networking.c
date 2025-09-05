@@ -1689,6 +1689,7 @@ uint32_t NetworkAuthenticationContext;               // 网络认证上下文
 uint32_t NetworkSecurityContext;                     // 网络安全上下文
 uint32_t NetworkEventContext;                        // 网络事件上下文
 uint32_t NetworkCallbackContext;                      // 网络回调上下文
+uint32_t NetworkSocketSize;                              // 网络套接字大小
 uint32_t NetworkSocketContextSize;                     // 网络套接字上下文大小
 uint32_t NetworkConnectionStateManager;               // 网络连接状态管理器
 uint32_t NetworkEventQueue;                            // 网络事件队列
@@ -1713,7 +1714,7 @@ uint32_t NetworkConnectionLoopCounter;                     // 网络连接循环
 uint32_t NetworkConnectionExtendedFlags;                       // 网络连接扩展标志
 uint32_t NetworkConnectionProcessingResults;               // 网络连接处理结果
 uint32_t NetworkConnectionProcessedCounts;                  // 网络连接已处理数量
-uint32_t NetworkConnectionJitterBuffer;                     // 网络连接抖动缓冲区
+uint32_t NetworkConnectionJitterBuffer;                   // 网络连接抖动缓冲区
 uint32_t NetworkConnectionErrorRate;                        // 网络连接错误率
 uint32_t NetworkConnectionHealth;                           // 网络连接健康状态
 uint32_t NetworkConnectionStability;                        // 网络连接稳定性
