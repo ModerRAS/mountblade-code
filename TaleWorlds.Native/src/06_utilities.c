@@ -12579,7 +12579,7 @@ uint64_t CleanupAndResetParameterContext(longlong *parameterContext)
 
 
 
-undefined8 FUN_180895210(longlong *param_1)
+undefined8 InitializeSystemDataStructure(longlong *param_1)
 
 {
   int iVar1;
@@ -12821,7 +12821,7 @@ MemoryCopyLabel:
     else {
       if (cVar3 == '\x06') {
         cVar3 = func_0x000180881f80(*(undefined8 *)(param_1 + 0x58));
-        if (cVar3 == '\0') goto LAB_18089555d;
+        if (cVar3 == '\0') goto MemoryCopyLabel;
         *param_2 = 0;
         goto FUN_180895b89;
       }
@@ -12833,16 +12833,16 @@ MemoryCopyLabel:
             *param_2 = 0;
             goto FUN_180895b89;
           }
-          goto LAB_18089555d;
+          goto MemoryCopyLabel;
         }
       }
       else {
-        if ((cVar3 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto LAB_18089555d;
+        if ((cVar3 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
         uStack_6f4 = *(undefined4 *)(lVar9 + 0x20);
         iVar4 = FUN_180895c60(param_1,iVar4,&uStack_6f4);
         if (iVar4 != 0) goto FUN_180895b89;
         iVar4 = QueryAndRetrieveSystemDataA0(uStack_6f4,alStack_6b0);
-        if ((iVar4 != 0) || (*(int *)(alStack_6b0[0] + 0x30) != 2)) goto LAB_18089555d;
+        if ((iVar4 != 0) || (*(int *)(alStack_6b0[0] + 0x30) != 2)) goto MemoryCopyLabel;
       }
     }
     *param_2 = 0;
@@ -12945,7 +12945,7 @@ MemoryCopyLabel:
   else {
     if (cVar2 == '\x06') {
       cVar2 = func_0x000180881f80(*(undefined8 *)(param_1 + 0x58));
-      if (cVar2 == '\0') goto LAB_18089555d;
+      if (cVar2 == '\0') goto MemoryCopyLabel;
       *unaff_R13 = 0;
       goto LAB_180895b69;
     }
@@ -12957,17 +12957,17 @@ MemoryCopyLabel:
           *unaff_R13 = 0;
           goto LAB_180895b69;
         }
-        goto LAB_18089555d;
+        goto MemoryCopyLabel;
       }
     }
     else {
-      if ((cVar2 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto LAB_18089555d;
+      if ((cVar2 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
       stackParameter40._4_4_ = *(undefined4 *)(lVar8 + 0x20);
       iVar4 = FUN_180895c60(param_1,unaff_EBX,(longlong)&stack0x00000040 + 4);
       if (iVar4 != 0) goto LAB_180895b69;
       iVar4 = QueryAndRetrieveSystemDataA0(stackParameter40._4_4_,unaff_RBP + -0x78);
       if ((iVar4 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
-      goto LAB_18089555d;
+      goto MemoryCopyLabel;
     }
   }
   *unaff_R13 = 0;
@@ -13104,7 +13104,7 @@ undefined8 ValidateAndProcessDataFlags(longlong dataContext,int operationIndex,u
         } while (hashIndex != -1);
       }
       resultValue = 0;
-LAB_180895ccb:
+ValidationCompleteLabel:
       functionPointer = (undefined8 *)
                ((longlong)*(int *)(*(longlong *)(dataContext + 0x18) + (longlong)operationIndex * 0xc) +
                *(longlong *)(dataContext + 8));
@@ -13151,7 +13151,7 @@ undefined8 FUN_180895c8b(longlong dataContext,undefined8 systemContext,longlong 
     } while (iVar4 != -1);
   }
   iStack0000000000000044 = 0;
-LAB_180895ccb:
+ValidationCompleteLabel:
   puVar3 = (undefined8 *)
            ((longlong)*(int *)(*(longlong *)(in_R10 + 0x18) + param_3 * 0xc) +
            *(longlong *)(in_R10 + 8));
@@ -19662,7 +19662,7 @@ undefined8 FUN_18089a9dd(void)
 
 
 89a9f0(longlong param_1,int *param_2)
-void FUN_18089a9f0(longlong param_1,int *param_2)
+void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray)
 
 {
   char *pcVar1;
@@ -21652,7 +21652,7 @@ void UtilityNoOperationN(void)
 
 
 89bc10(longlong param_1,undefined8 *param_2)
-void FUN_18089bc10(longlong param_1,undefined8 *param_2)
+void ValidateAndProcessSystemData(longlong SystemContext, undefined8 *DataArray)
 
 {
   longlong validationContext;
