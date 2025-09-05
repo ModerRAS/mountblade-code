@@ -5686,45 +5686,56 @@ void ProcessUtilityDataRequest(longlong dataHandle,undefined8 requestInfo)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_1808913c0(longlong param_1,undefined8 param_2)
+// 函数: ulonglong ProcessUtilityDataConversion(longlong contextHandle,undefined8 operationHandle)
+// 
+// 工具数据转换函数
+// 处理工具数据的转换操作，根据上下文句柄和操作句柄执行相应的数据转换
+// 
+// 参数:
+//   contextHandle - 上下文句柄，包含数据转换的上下文信息
+//   operationHandle - 操作句柄，指定要执行的转换操作
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码
+ulonglong ProcessUtilityDataConversion(longlong contextHandle,undefined8 operationHandle)
 
 {
-  uint uVar1;
-  ulonglong uVar2;
-  longlong lVar3;
-  undefined8 uStackX_8;
-  undefined4 auStack_58 [2];
-  longlong lStack_50;
-  int iStack_48;
+  uint operationResult;
+  ulonglong conversionStatus;
+  longlong dataPointer;
+  undefined8 stackBuffer;
+  undefined4 operationParams [2];
+  longlong contextData;
+  int dataCount;
   
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x24),&uStackX_8);
-  if ((int)uVar2 == 0) {
-    iStack_48 = *(int *)(param_1 + 0x18);
-    if ((0 < iStack_48) && (*(uint *)(param_1 + 0x1c) < 2)) {
-      lVar3 = 0;
-      if (*(uint *)(param_1 + 0x1c) == 0) {
-        lStack_50 = *(longlong *)(param_1 + 0x10);
-        auStack_58[0] = 1;
-        lVar3 = lStack_50;
+  conversionStatus = InitializeConversionContext(*(undefined4 *)(contextHandle + 0x24),&stackBuffer);
+  if ((int)conversionStatus == 0) {
+    dataCount = *(int *)(contextHandle + 0x18);
+    if ((0 < dataCount) && (*(uint *)(contextHandle + 0x1c) < 2)) {
+      dataPointer = 0;
+      if (*(uint *)(contextHandle + 0x1c) == 0) {
+        contextData = *(longlong *)(contextHandle + 0x10);
+        operationParams[0] = 1;
+        dataPointer = contextData;
       }
       else {
-        lStack_50 = *(longlong *)(param_1 + 0x10);
-        auStack_58[0] = 2;
+        contextData = *(longlong *)(contextHandle + 0x10);
+        operationParams[0] = 2;
       }
-      uVar1 = FUN_180894dd0(param_2,auStack_58,*(undefined4 *)(param_1 + 0x20),uStackX_8);
-      uVar2 = (ulonglong)uVar1;
-      if (uVar1 == 0) {
-        uVar2 = 0;
+      operationResult = ExecuteDataConversion(operationHandle,operationParams,*(undefined4 *)(contextHandle + 0x20),stackBuffer);
+      conversionStatus = (ulonglong)operationResult;
+      if (operationResult == 0) {
+        conversionStatus = 0;
       }
-      else if (lVar3 != 0) {
-        FUN_180741df0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),lVar3,&UNK_180957f70,0xe9);
-        return uVar2;
+      else if (dataPointer != 0) {
+        CleanupConversionResources(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataPointer,&UNK_180957f70,0xe9);
+        return conversionStatus;
       }
-      return uVar2;
+      return conversionStatus;
     }
-    uVar2 = 0x1f;
+    conversionStatus = 0x1f;
   }
-  return uVar2;
+  return conversionStatus;
 }
 
 
