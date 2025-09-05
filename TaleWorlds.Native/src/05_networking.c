@@ -391,7 +391,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *N
 #define NetworkIntegrityCheckSuccess 0x01                   // 完整性检查成功
 #define NetworkDataFormatValid 0x01                        // 数据格式有效
 #define NetworkChecksumValid 0x01                           // 校验和有效
-#define NetworkPacketSizeLimit85Bytes 0x55                          // 数据包大小限制（85字节）
+#define NetworkPacketSizeLimit 0x55                          // 数据包大小限制（85字节）
 
 // 网络连接验证偏移量常量
 #define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
@@ -401,7 +401,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *N
 
 // 网络缓冲区对齐和大小常量
 #define NetworkBufferAlignmentMask 0xfffffffc              // 网络缓冲区对齐掩码（4字节对齐）
-#define NetworkBitShift31Value 0x1f                        // 31位偏移值
+#define NetworkBitShift31Bits 0x1f                        // 31位偏移值
 #define NetworkByteMaskValue 0xff                           // 字节掩码值
 #define NetworkConnectionAlignmentSize 4                    // 网络连接对齐大小（4字节）
 #define NetworkContextTableOffset 0xb0                      // 网络上下文表偏移量
@@ -510,10 +510,10 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *N
 // 网络错误处理常量
 #define NetworkErrorProcessorEnabledFlag 0x01                 // 错误处理器启用
 #define NetworkErrorCountResetValue NETWORK_RESET_VALUE        // 错误计数重置
-#define NetworkReportSizeSmall 0x0B                           // 小型报告大小（11字节）
-#define NetworkReportSizeMedium 0x0D                          // 中型报告大小（13字节）
-#define NetworkReportSizeLarge 0x0F                           // 大型报告大小（15字节）
-#define NetworkReportSizeStandard 0x0C                        // 标准报告大小（12字节）
+#define NetworkReportSizeSmallBytes 0x0B                           // 小型报告大小（11字节）
+#define NetworkReportSizeMediumBytes 0x0D                          // 中型报告大小（13字节）
+#define NetworkReportSizeLargeBytes 0x0F                           // 大型报告大小（15字节）
+#define NetworkReportSizeStandardBytes 0x0C                        // 标准报告大小（12字节）
 
 // 网络连接状态常量
 #define NetworkProcessingStatusActiveFlag 0x01                // 处理状态活跃
@@ -2008,10 +2008,10 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *NetworkConnectionParameter
 NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t ConnectionContextId;      // 连接上下文标识符
-  int64_t *ConnectionValidationDataPtr;           // 连接验证结果数据指针
-  int32_t ConnectionValidationStatus;             // 连接验证状态码
-  NetworkHandle ConnectionResultHandle;           // 连接上下文结果句柄
+  int64_t NetworkConnectionContextId;      // 网络连接上下文标识符
+  int64_t *NetworkConnectionValidationDataPtr;           // 网络连接验证结果数据指针
+  int32_t NetworkConnectionValidationStatus;             // 网络连接验证状态码
+  NetworkHandle NetworkConnectionResultHandle;           // 网络连接上下文结果句柄
   
   ConnectionContextId = 0;
   ConnectionValidationDataPtr = NULL;  // 初始化指针变量
