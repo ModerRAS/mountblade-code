@@ -4017,6 +4017,11 @@ uint32_t UtilitySystemStatus1;
 #define SystemResourcePointerA5 _DAT_180c960a0          // 系统资源指针A5
 #define SystemResourceDataBufferA0 DAT_180c960c0         // 系统资源数据缓冲区A0
 
+// 系统验证相关变量宏定义
+#define SystemValidationContextPointerA0 _DAT_180c95f18   // 系统验证上下文指针A0
+#define SystemValidationCleanupFlagA0 DAT_180c95f28       // 系统验证清理标志A0
+#define SystemValidationContextCleanupA0 _DAT_180c95f20   // 系统验证上下文清理A0
+
 // 异常处理器指针变量宏定义
 #define ExceptionHandlerPointerA _DAT_180bf90b0         // 异常处理器指针A
 
@@ -92671,7 +92676,6 @@ void CleanupSystemResourceA7(void)
 #define ExecuteSystemValidationAndCleanup FUN_180942d30
 
 void ExecuteSystemValidationAndCleanup(void)
-
 {
   longlong systemValidationContext;
   
@@ -92692,6 +92696,8 @@ void ExecuteSystemValidationAndCleanup(void)
       TerminateValidationContext(systemValidationContext);
     }
     SystemValidationContextPointer = 0;
+  }
+}
 
 /**
  * @brief 执行系统数据清理操作
@@ -92703,29 +92709,37 @@ void ExecuteSystemValidationAndCleanup(void)
 #define ExecuteSystemDataCleanup FUN_180942e20
 
 void ExecuteSystemDataCleanup(void)
-
 {
   if (SystemDataCleanupFlag != '\0') {
     CleanupDataBuffer(&SystemDataBufferPointer);
     ValidateDataBuffer(&SystemDataBufferPointer);
+  }
+}
 
-942e70(void)
-void FUN_180942e70(void)
+/**
+ * @brief 清理验证上下文A0
+ * 
+ * 该函数负责清理验证上下文，释放相关资源
+ * 
+ * @note 原始函数名：FUN_180942e70
+ */
+#define CleanupValidationContextA0 FUN_180942e70
 
+void CleanupValidationContextA0(void)
 {
   longlong *validationContextPointer;
   
-  validationContextPointer = _DAT_180c95f18;
-  if (DAT_180c95f28 != '\0') {
-    _DAT_180c95f20 = SystemCleanupFlag;
-    _DAT_180c95f18 = (longlong *)0x0;
+  validationContextPointer = SystemValidationContextPointerA0;
+  if (SystemValidationCleanupFlagA0 != '\0') {
+    SystemValidationContextCleanupA0 = SystemCleanupFlag;
+    SystemValidationContextPointerA0 = (longlong *)0x0;
     if (validationContextPointer != (longlong *)0x0) {
       (**(code **)(*validationContextPointer + 0x38))();
     }
-    if (_DAT_180c95f18 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c95f18 + 0x38))();
+    if (SystemValidationContextPointerA0 != (longlong *)0x0) {
+      (**(code **)(*SystemValidationContextPointerA0 + 0x38))();
     }
-    if (_DAT_180c95ef8 != 0) {
+    if (SystemValidationTerminationFlagA0 != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
