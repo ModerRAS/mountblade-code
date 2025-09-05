@@ -30521,7 +30521,7 @@ void InitializeSystemResource(void* SystemResourceManager,void* *ConfigurationDa
   void* *systemHashPointer;
   uint8_t *systemHashFlags;
   uint32_t MemoryBufferPointer;
-  uint8_t StackMemoryBufferF0 [128];
+  uint8_t SystemMemoryWorkBuffer [128];
   uint32_t SystemSecondaryProcessFlags;
   void* SystemProcessFlags;
   uint32_t ConcatenatedSystemValue;
