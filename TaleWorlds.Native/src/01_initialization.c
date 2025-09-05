@@ -44307,8 +44307,8 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
     *(uint32_t *)(ResourceAddressPointer + 2) = 0;
     *(uint32_t *)(ResourceAddressPointer + 2) = 0;
     ResourceAddressPointer[1] = pEncryptionOffsetSecondary;
-    *(uint32_t *)((long long)ResourceAddressPointer + 0x1c) = UNION_LOW_PART(UnsignedStackOffsetF0);
-    *(uint32_t *)(ResourceAddressPointer + 3) = (uint32_t)UnsignedStackOffsetF0;
+    *(uint32_t *)((long long)ResourceAddressPointer + 0x1c) = UNION_LOW_PART(UnsignedStackOffsetTemporary);
+    *(uint32_t *)(ResourceAddressPointer + 3) = (uint32_t)UnsignedStackOffsetTemporary;
     MemoryBufferPointer = 0;
     pEncryptionOffsetSecondary = (uint8_t *)0x0;
     StackPointerTemporary = 0;

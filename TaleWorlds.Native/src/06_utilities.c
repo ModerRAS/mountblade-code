@@ -19206,38 +19206,38 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
       if (contextPointer != (longlong *)0x0) {
         resourceIterator = contextPointer + 1;
       }
-      if (validationContextPointer3 != validationContextPointer4) {
+      if (resourceIterator != resourceList) {
         do {
-          validationContextPointer0 = validationContextPointer3 + -1;
-          if (validationContextPointer3 == (longlong *)0x0) {
-            validationContextPointer0 = validationContextPointer6;
+          contextPointer = resourceIterator + -1;
+          if (resourceIterator == (longlong *)0x0) {
+            contextPointer = nullPointer;
           }
-          validationContext5 = validationContextPointer0[3];
-          if (validationContext5 != 0) {
-            afStack_348[0] = 0.0;
-            iVar6 = ValidateAndProcessSystemResourceA0(validationContextPointer0,afStack_348);
-            if ((iVar6 != 0) || (iVar6 = ValidateResourceA0(param_1,validationContext5,afStack_348[0],0), iVar6 != 0)
+          currentResource = contextPointer[3];
+          if (currentResource != 0) {
+            valueBuffer[0] = 0.0;
+            operationResult = ValidateAndProcessSystemResourceA0(contextPointer,valueBuffer);
+            if ((operationResult != 0) || (operationResult = ValidateResourceA0(dataContext,currentResource,valueBuffer[0],0), operationResult != 0)
                ) goto LAB_18089866f;
           }
-          if (validationContextPointer3 == validationContextPointer4) break;
-          validationContextPointer0 = (longlong *)(*validationContextPointer3 + -8);
-          if (*validationContextPointer3 == 0) {
-            validationContextPointer0 = validationContextPointer6;
+          if (resourceIterator == resourceList) break;
+          contextPointer = (longlong *)(*resourceIterator + -8);
+          if (*resourceIterator == 0) {
+            contextPointer = nullPointer;
           }
-          validationContextPointer3 = validationContextPointer6;
-          if (validationContextPointer0 != (longlong *)0x0) {
-            validationContextPointer3 = validationContextPointer0 + 1;
+          resourceIterator = nullPointer;
+          if (contextPointer != (longlong *)0x0) {
+            resourceIterator = contextPointer + 1;
           }
-        } while (validationContextPointer3 != validationContextPointer4);
-        validationContext5 = param_1[1];
+        } while (resourceIterator != resourceList);
+        currentResource = dataContext[1];
       }
-      iVar6 = *(int *)(validationContext5 + 0x28);
-      if (iVar6 != 1) {
-        uStack_338 = uStack_338 & SystemCleanupFlag00000000;
-        plStack_340 = (longlong *)&UNK_180982378;
-        aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,iVar6);
-        iVar7 = ValidateDataIntegrityA0(param_1,&plStack_340);
-        if (iVar7 != 0) goto LAB_18089866f;
+      operationResult = *(int *)(currentResource + 0x28);
+      if (operationResult != 1) {
+        stackGuard = stackGuard & SystemCleanupFlag00000000;
+        bufferPointer = (longlong *)&UNK_180982378;
+        contextArray[0] = (longlong *)CONCAT44(contextArray[0]._4_4_,operationResult);
+        bufferIndex = ValidateDataIntegrityA0(dataContext,&bufferPointer);
+        if (bufferIndex != 0) goto LAB_18089866f;
       }
       validationContextPointer4 = validationContextPointer6;
       validationContextPointer0 = validationContextPointer6;

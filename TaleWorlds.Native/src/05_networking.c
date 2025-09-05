@@ -1061,15 +1061,15 @@ uint32_t NetworkSendBufferCapacity;                          // 网络发送缓�
 uint32_t NetworkReceiveBufferCapacity;                       // 网络接收缓冲区容量，接收缓冲区的最大容量
 
 // 网络数据包和安全配置
-uint32_t NetworkPacketPayloadSize;                        // 网络数据包负载大小，数据包中有效数据的大小
+uint32_t NetworkPacketPayloadSize;                            // 网络数据包负载大小，数据包中有效数据的大小
 uint32_t NetworkMaximumPacketSize;                            // 网络最大数据包大小，系统允许的最大数据包大小
-uint32_t NetworkEncryptionKey;                            // 网络加密密钥，用于数据加密的密钥值
-uint32_t NetworkCompressionLevel;                         // 网络压缩级别，数据压缩的压缩级别设置
-uint32_t NetworkSessionEncryptionKey;                     // 网络会话加密密钥，用于会话数据加密的密钥值
-uint32_t NetworkSessionTimeoutDuration;                  // 网络会话超时持续时间，会话无活动的超时时间
-uint32_t NetworkHandshakeTimeoutMs;                          // 网络握手超时时间，握手过程的最大等待时间
-uint32_t NetworkAuthenticationTimeoutMs;                     // 网络认证超时时间，认证过程的最大等待时间
-uint32_t NetworkEncryptionTimeoutMs;                         // 网络加密超时时间，加密过程的最大等待时间
+uint32_t NetworkEncryptionKey;                                // 网络加密密钥，用于数据加密的密钥值
+uint32_t NetworkCompressionLevel;                             // 网络压缩级别，数据压缩的压缩级别设置
+uint32_t NetworkSessionEncryptionKey;                         // 网络会话加密密钥，用于会话数据加密的密钥值
+uint32_t NetworkSessionTimeoutDuration;                       // 网络会话超时持续时间，会话无活动的超时时间
+uint32_t NetworkHandshakeTimeoutMs;                           // 网络握手超时时间，握手过程的最大等待时间
+uint32_t NetworkAuthenticationTimeoutMs;                      // 网络认证超时时间，认证过程的最大等待时间
+uint32_t NetworkEncryptionTimeoutMs;                          // 网络加密超时时间，加密过程的最大等待时间
 
 // 网络连接配置数据指针
 void *NetworkConnectionInitializationConfig;    // 网络连接初始化配置数据，连接初始化时使用的配置信息
