@@ -3066,7 +3066,7 @@ void InitializeSystemDataTableStructureC(void)
   void** SystemDataTable;
   int IdentifierCompareResult;
   long long* MemorySystemPointer;
-  long long SystemOperationTimestamp;
+  long long MemoryAllocationSize;
   void** RootNodePointer;
   void** CurrentNodePointer;
   void** NextNodePointer;
