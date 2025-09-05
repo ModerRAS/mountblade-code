@@ -286,7 +286,7 @@
 #define SystemResourceTemplatePrimaryOffset 0x4f8            // 系统资源模板主偏移量
 #define SystemResourceStatusPrimaryOffset 0x500               // 系统资源状态主偏移量
 #define SystemResourceControlPrimaryOffset 0x510              // 系统资源控制主偏移量
-#define SystemDataStructurePrimaryOffset 0x4d8               // 系统数据结构主偏移量
+#define EngineDataStructurePrimaryOffset 0x4d8               // 引擎数据结构主偏移量
 #define SystemResourceSecondaryOffset 0x4e0                  // 系统资源次偏移量
 #define SystemResourceControlSecondaryOffset 0x4f0            // 系统资源控制次偏移量
 #define SystemResourceHandlerSecondaryOffset 0x5a0           // 系统资源处理器次偏移量
@@ -294,7 +294,7 @@
 #define SystemResourceTemplateSecondaryOffset 0x568          // 系统资源模板次偏移量
 #define SystemResourceStatusSecondaryOffset 0x570             // 系统资源状态次偏移量
 #define SystemResourceControlSecondary2Offset 0x580           // 系统资源控制次2偏移量
-#define SystemDataStructureSecondaryOffset 0x548              // 系统数据结构次偏移量
+#define EngineDataStructureSecondaryOffset 0x548              // 引擎数据结构次偏移量
 #define SystemResourceTertiaryOffset 0x550                   // 系统资源第三偏移量
 #define SystemResourceControlTertiaryOffset 0x560             // 系统资源控制第三偏移量
 #define SystemResourceHandlerTertiaryOffset 0x610             // 系统资源处理器第三偏移量
@@ -302,19 +302,19 @@
 #define SystemResourceTemplateTertiaryOffset 0x5d8             // 系统资源模板第三偏移量
 #define SystemResourceStatusTertiaryOffset 0x5e0               // 系统资源状态第三偏移量
 #define SystemResourceControlTertiary2Offset 0x5f8            // 系统资源控制第三2偏移量
-#define SystemDataStructureTertiaryOffset 0x5c0               // 系统数据结构第三偏移量
+#define EngineDataStructureTertiaryOffset 0x5c0               // 引擎数据结构第三偏移量
 #define SystemResourceQuaternaryOffset 0x5c8                 // 系统资源第四偏移量
 #define SystemResourceControlQuaternaryOffset 0x5d8           // 系统资源控制第四偏移量
-#define SystemDataStructureQuaternaryOffset 0x5a0             // 系统数据结构第四偏移量
+#define EngineDataStructureQuaternaryOffset 0x5a0             // 引擎数据结构第四偏移量
 #define SystemResourceQuinaryOffset 0x5a8                    // 系统资源第五偏移量
 #define SystemResourceControlQuinaryOffset 0x5b8             // 系统资源控制第五偏移量
-#define SystemDataStructureQuinaryOffset 0x580              // 系统数据结构第五偏移量
+#define EngineDataStructureQuinaryOffset 0x580              // 引擎数据结构第五偏移量
 #define SystemResourceSenaryOffset 0x588                     // 系统资源第六偏移量
 #define SystemResourceControlSenaryOffset 0x598              // 系统资源控制第六偏移量
-#define SystemDataStructureSenaryOffset 0x560                // 系统数据结构第六偏移量
+#define EngineDataStructureSenaryOffset 0x560                // 引擎数据结构第六偏移量
 #define SystemResourceSeptenaryOffset 0x568                  // 系统资源第七偏移量
 #define SystemResourceControlSeptenaryOffset 0x578           // 系统资源控制第七偏移量
-#define SystemDataStructureSeptenaryOffset 0x560             // 系统数据结构第七偏移量
+#define EngineDataStructureSeptenaryOffset 0x560             // 引擎数据结构第七偏移量
 #define SystemCleanupStatusOffset 0x880
 #define SystemCleanupCounterOffset 0x890
 #define SystemSecondaryResourceOffset 0x858
