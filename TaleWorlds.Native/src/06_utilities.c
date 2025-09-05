@@ -58313,7 +58313,14 @@ void Unwind_180908050(DataBuffer param_1,DataBuffer param_2,DataBuffer param_3,D
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180908060(void)
+/**
+ * @brief 验证上下文清理函数
+ * 
+ * 清理验证上下文指针数组并释放内存
+ * 
+ * @note 原始函数名：Unwind_180908060
+ */
+void CleanupValidationContext(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
@@ -58349,32 +58356,56 @@ void SystemExceptionHandlerA0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_1809080a0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+/**
+ * @brief 数据处理函数A0
+ * 
+ * 处理数据缓冲区并执行验证操作
+ * 
+ * @param contextParameter 上下文参数
+ * @param systemContext 系统上下文
+ * @param dataParameter 数据参数
+ * @param validationParameter 验证参数
+ * 
+ * @note 原始函数名：Unwind_1809080a0
+ */
+void ProcessDataBufferA0(DataBuffer contextParameter, int64_t systemContext, DataBuffer dataParameter, DataBuffer validationParameter)
 
 {
-  DataBuffer *pdataValue;
+  DataBuffer *dataValuePointer;
   int64_t dataContext;
   DataBuffer validationStatus;
   
-  dataContext = *(int64_t *)(param_2 + 0x68);
+  dataContext = *(int64_t *)(systemContext + 0x68);
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
-  FUN_180058370(dataContext + 0x60,*(DataBuffer *)(dataContext + 0x70),param_3,param_4,validationStatus);
-  pdataValue = *(DataBuffer **)(dataContext + 0x40);
-  if (pdataValue != (DataBuffer *)0x0) {
-    FUN_18004b790(dataContext + 0x30,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+  FUN_180058370(dataContext + 0x60,*(DataBuffer *)(dataContext + 0x70),dataParameter,validationParameter,validationStatus);
+  dataValuePointer = *(DataBuffer **)(dataContext + 0x40);
+  if (dataValuePointer != (DataBuffer *)0x0) {
+    FUN_18004b790(dataContext + 0x30,*dataValuePointer,dataParameter,validationParameter,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pdataValue);
+    FUN_18064e900(dataValuePointer);
   }
   return;
 }
 
 
 
-void Unwind_1809080b0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+/**
+ * @brief 数据处理函数A1
+ * 
+ * 处理数据缓冲区并执行验证操作
+ * 
+ * @param contextParameter 上下文参数
+ * @param systemContext 系统上下文
+ * @param dataParameter 数据参数
+ * @param validationParameter 验证参数
+ * 
+ * @note 原始函数名：Unwind_1809080b0
+ */
+void ProcessDataBufferA1(DataBuffer contextParameter, int64_t systemContext, DataBuffer dataParameter, DataBuffer validationParameter)
 
 {
-  DataBuffer *pdataValue;
+  DataBuffer *dataValuePointer;
   int64_t dataContext;
   DataBuffer validationStatus;
   

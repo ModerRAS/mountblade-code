@@ -5505,13 +5505,13 @@ uint64_t* InitializeSystemBufferTemplate(uint64_t *BufferTemplate, longlong Data
   if (0 < (int)SystemDataPointer) {
     do {
       if (StringIndex1 < 0) {
-Label_1801d58d5:
+      SystemBufferSizeCheckLabel:
         ModuleInitializationResult9 = SystemBufferSizeCheck();
       }
       else {
         ModuleInitializationResult9 = *(longlong *)(*pModuleInitializationResult3 + 0x888);
         if ((ulonglong)(*(longlong *)(*pModuleInitializationResult3 + 0x890) - ModuleInitializationResult9 >> 5) <=
-            (ulonglong)(longlong)StringIndex1) goto Label_1801d58d5;
+            (ulonglong)(longlong)StringIndex1) goto SystemBufferSizeCheckLabel;
         ModuleInitializationResult9 = (longlong)StringIndex1 * 0x20 + ModuleInitializationResult9;
       }
       puStack_1a8 = &SystemNullPointer;
@@ -5631,14 +5631,14 @@ Label_1801d58d5:
               *(uint8_t *)((longlong)pMemoryAddress4 + 0x12) = 0;
               uStack_1b8 = 0x12;
               BooleanFlag = ValidateSystemMemoryPool(&pStackValidationLimit2);
-              if (BooleanFlag != '\0') goto Label_1801d5c43;
+              if (BooleanFlag != '\0') goto SystemMemoryPoolValidationSuccessLabel;
               pStackValidationLimit2 = &SystemNullPointer;
               if (pStackProcessCounter != (uint8_t *)0x0) {
                 CleanupSystemResources();
               }
             }
             else {
-Label_1801d5c43:
+SystemMemoryPoolValidationSuccessLabel:
               ppppppPointerValue = &pppppppStackCounter58;
               pppppppUnsignedSize = ppppppStackBufferPointer11;
               while (pppppppUnsignedSize != (uint64_t *******)0x0) {
@@ -5943,13 +5943,13 @@ Label_1801d5c43:
       LongOffset = (longlong)pSystemStateValue - (longlong)SystemStateDataTable >> 4;
       if (LongOffset == 0) {
         LongOffset = 1;
-Label_180203fb6:
+SystemMemoryAllocationLabel:
         pSystemStateValue = (longlong *)MemoryAllocateEx(SystemMemoryAllocator,LongOffset << 4,SystemMemoryPoolPointer);
       }
       else {
         LongOffset = LongOffset * 2;
         pSystemStateValue = pLongAddress;
-        if (LongOffset != 0) goto Label_180203fb6;
+        if (LongOffset != 0) goto SystemMemoryAllocationLabel;
       }
       if (SystemStateDataTable != SystemStateDataEndPointer) {
         memmove(pSystemStateValue,SystemStateDataTable,(longlong)SystemStateDataEndPointer - (longlong)SystemStateDataTable);
@@ -6255,7 +6255,7 @@ SystemSecurityValidationRoutine:
       puStack_260 = (void *)0x0;
     }
     StackMemoryPointer = &SystemDefaultFilePointer;
-    if (puStack_260 == (void *)0x0) goto Label_1802a83bc;
+    if (puStack_260 == (void *)0x0) goto SystemFilePointerCleanupLabel;
     pUnsignedValue = puStack_260;
     if (LongData != 0) {
       lStack_278 = LongData;
@@ -6264,7 +6264,7 @@ SystemSecurityValidationRoutine:
     }
   }
   fclose(pUnsignedValue);
-Label_1802a83bc:
+SystemFilePointerCleanupLabel:
   SystemSecurityCheck(SecurityKey38 ^ (ulonglong)aStackStringLength);
 }
         SystemStatusFlag3 = '\x01';
