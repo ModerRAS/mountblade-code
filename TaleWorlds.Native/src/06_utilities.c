@@ -14267,7 +14267,7 @@ ResourceProcessingHandler:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
           GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
-          GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
+          GraphicsOperationFlagSecondary = MergeHigh57BitsWithLow7Bits(GraphicsOperationFlagSecondary.High57Bits,1);
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
         }
@@ -14276,7 +14276,7 @@ ResourceProcessingHandler:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateCache;
           GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
-          GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
+          GraphicsOperationFlagSecondary = MergeHigh57BitsWithLow7Bits(GraphicsOperationFlagSecondary.High57Bits,1);
           ResourceTotal = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceTotal != 0) goto ResourceErrorHandler;
         }
@@ -14314,7 +14314,7 @@ ResourceProcessingHandler:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
           GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
-          GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
+          GraphicsOperationFlagSecondary = MergeHigh57BitsWithLow7Bits(GraphicsOperationFlagSecondary.High57Bits,1);
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
         }
@@ -14323,7 +14323,7 @@ ResourceProcessingHandler:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateCache;
           GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
-          GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
+          GraphicsOperationFlagSecondary = MergeHigh57BitsWithLow7Bits(GraphicsOperationFlagSecondary.High57Bits,1);
           ResourceTotal = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceTotal != 0) goto ResourceErrorHandler;
         }
@@ -14361,7 +14361,7 @@ ResourceProcessingHandler:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
           GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
-          GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
+          GraphicsOperationFlagSecondary = MergeHigh57BitsWithLow7Bits(GraphicsOperationFlagSecondary.High57Bits,1);
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
         }
@@ -14370,7 +14370,7 @@ ResourceProcessingHandler:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateCache;
           GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
-          GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
+          GraphicsOperationFlagSecondary = MergeHigh57BitsWithLow7Bits(GraphicsOperationFlagSecondary.High57Bits,1);
           ResourceTotal = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceTotal != 0) goto ResourceErrorHandler;
         }
@@ -14408,7 +14408,7 @@ ResourceProcessingHandler:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateBuffer;
           GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
-          GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
+          GraphicsOperationFlagSecondary = MergeHigh57BitsWithLow7Bits(GraphicsOperationFlagSecondary.High57Bits,1);
           TableEntryIndex = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (TableEntryIndex != 0) goto ResourceErrorHandler;
         }
@@ -14417,7 +14417,7 @@ ResourceProcessingHandler:
           GraphicsDataIndex = 0;
           GraphicsDataPointer = &SystemDataTypeTemplateCache;
           GraphicsOperationFlagPrimary = CombineFloatAndInteger(GraphicsOperationFlagPrimary.High28Bits,GraphicsDataFlag);
-          GraphicsOperationFlagSecondary = CONCAT71(GraphicsOperationFlagSecondary.High57Bits,1);
+          GraphicsOperationFlagSecondary = MergeHigh57BitsWithLow7Bits(GraphicsOperationFlagSecondary.High57Bits,1);
           ResourceTotal = GetAndValidateResourceData(ObjectContext,&GraphicsDataPointer);
           if (ResourceTotal != 0) goto ResourceErrorHandler;
         }
@@ -14558,7 +14558,7 @@ void ProcessComplexResourceWithRegisters(void)
           ValidationErrorCode = 0;
           DataTypeTemplate = &SystemDataTypeTemplateBuffer;
           ExtendedValidationStatuss = SystemContextFlags;
-          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)MergeHigh31BitsWithLow33Bits(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
           FinalResultFloat = CalculatedSecondaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
@@ -14567,7 +14567,7 @@ void ProcessComplexResourceWithRegisters(void)
           ValidationErrorCode = 0;
           DataTypeTemplate = &SystemDataTypeTemplateCache;
           ExtendedValidationStatuss = SystemContextFlags;
-          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)MergeHigh31BitsWithLow33Bits(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
@@ -14611,7 +14611,7 @@ void ProcessComplexResourceWithRegisters(void)
           ValidationErrorCode = 0;
           DataTypeTemplate = &SystemDataTypeTemplateBuffer;
           ExtendedValidationStatuss = SystemContextFlags;
-          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)MergeHigh31BitsWithLow33Bits(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
           FinalResultFloat = CalculatedQuaternaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
@@ -14620,7 +14620,7 @@ void ProcessComplexResourceWithRegisters(void)
           ValidationErrorCode = 0;
           DataTypeTemplate = &SystemDataTypeTemplateCache;
           ExtendedValidationStatuss = SystemContextFlags;
-          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)MergeHigh31BitsWithLow33Bits(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
@@ -14664,7 +14664,7 @@ void ProcessComplexResourceWithRegisters(void)
           ValidationErrorCode = 0;
           DataTypeTemplate = &SystemDataTypeTemplateBuffer;
           ExtendedValidationStatuss = SystemContextFlags;
-          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)MergeHigh31BitsWithLow33Bits(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
           finalResultFloat = CalculatedSenaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
@@ -14673,7 +14673,7 @@ void ProcessComplexResourceWithRegisters(void)
           ValidationErrorCode = 0;
           DataTypeTemplate = &SystemDataTypeTemplateCache;
           ExtendedValidationStatuss = SystemContextFlags;
-          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)MergeHigh31BitsWithLow33Bits(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
@@ -14717,7 +14717,7 @@ void ProcessComplexResourceWithRegisters(void)
           ValidationErrorCode = 0;
           DataTypeTemplate = &SystemDataTypeTemplateBuffer;
           ExtendedValidationStatuss = SystemContextFlags;
-          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)MergeHigh31BitsWithLow33Bits(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
           ResultFloatValue = CalculatedSeptenaryResult;
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
@@ -14726,7 +14726,7 @@ void ProcessComplexResourceWithRegisters(void)
           ValidationErrorCode = 0;
           DataTypeTemplate = &SystemDataTypeTemplateCache;
           ExtendedValidationStatuss = SystemContextFlags;
-          TemporaryResourceValue = (float)CONCAT31(TemporaryResourceValue.High31Bits,1);
+          TemporaryResourceValue = (float)MergeHigh31BitsWithLow33Bits(TemporaryResourceValue.High31Bits,1);
           ValidationErrorCode = GetAndValidateResourceData(ResultFloatValue,&ObjectResourceBuffer);
           if (ValidationErrorCode != 0) goto ValidationErrorHandler;
         }
@@ -15102,7 +15102,7 @@ int SystemResourceProcessorSecondary(int64_t ObjectContext,int64_t ValidationCon
                 ResourceContextFlags = 0;
                 ResourceStackPointer = &SystemResourceTemplateKernel;
                 ResourceContextSize = BufferContextSize;
-                FloatStackValue = (float)CONCAT31(FloatStackValue.High31Bits,1);
+                FloatStackValue = (float)MergeHigh31BitsWithLow33Bits(FloatStackValue.High31Bits,1);
                 OperationStatus = GetAndValidateResourceData(ObjectContext,&ResourceStackPointer);
                 if (OperationStatus != 0) goto HandleMemoryCleanup;
               }
@@ -15377,7 +15377,7 @@ void SystemInitializerPrimary(void)
             if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
               ResourceTemplatePointer = &SystemResourceTemplateKernel;
               ContextBufferPointer = StackContextBuffer;
-              FloatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
+              FloatResourceValue = (float)MergeHigh31BitsWithLow33Bits(KernelResourceFloatValue.High31Bits,1);
               FloatRegisterValue = FloatRegisterValue;
               ResourceIndexTertiary = GetAndValidateResourceData(ResourceHashValidationQuaternary,&PrimaryObjectResourceBuffer);
               if (ResourceIndexTertiary != 0) goto ProcessMemoryRelease;
@@ -15645,7 +15645,7 @@ void CalculateFloatValueAndValidateResources(void)
         if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
           ResourceTemplatePointer = &SystemResourceTemplateKernel;
           ContextBufferPointer = StackContextBuffer;
-          FloatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
+          FloatResourceValue = (float)MergeHigh31BitsWithLow33Bits(KernelResourceFloatValue.High31Bits,1);
           FloatRegisterValue = FloatRegisterValue;
           ResourceIndexTertiary = GetAndValidateResourceData(ResourceHashValidationTertiary,&PrimaryObjectResourceBuffer);
           if (ResourceIndexTertiary != 0) goto ExecuteMemoryDeallocation;
@@ -15802,7 +15802,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
     if ((*(uint *)(ResourceRegisterPointer + 0x2d8) >> 1 & 1) != 0) {
       resourceTemplatePointer = &SystemResourceTemplateKernel;
       contextBufferPointer = StackContextBuffer;
-      floatResourceValue = (float)CONCAT31(KernelResourceFloatValue.High31Bits,1);
+      floatResourceValue = (float)MergeHigh31BitsWithLow33Bits(KernelResourceFloatValue.High31Bits,1);
       floatRegisterValue = FloatRegisterValue;
       OperationStatus = GetAndValidateResourceData(ResourceHashValidationStatus,&PrimaryObjectResourceBuffer);
       if (OperationResult != 0) goto OperationResultHandler;
@@ -16309,7 +16309,7 @@ void ProcessResourceDataValidation(int64_t *ObjectContext)
           GraphicsOperationStatus = LocalContextHandle == 0;
           FloatProcessingStatusCode = SourceFloatValue;
           if (((char)LocalContextAddress == '\0') &&
-             (OperationStatus = CheckSystemStatus(ObjectContext,CONCAT71((uint7)(uint3)(ResourceDataSize >> 8),1)), OperationStatus != 0
+             (OperationStatus = CheckSystemStatus(ObjectContext,MergeHigh57BitsWithLow7Bits((uint7)(uint3)(ResourceDataSize >> 8),1)), OperationStatus != 0
              )) goto ResourceProcessingComplete;
           OperationStatus = (**(code **)(MemoryOperationTemplate + 0x10))(&MemoryOperationTemplate,MemoryOperationBuffer,0x200);
           ProcessDataBuffer(ResourceBuffer + OperationStatus,0x200 - OperationStatus,10);
@@ -18420,7 +18420,7 @@ uint8_t ProcessResourceValidationContext(int64_t ObjectContext, uint32_t *Valida
                   }
                   ValidationStatusCode = *(uint *)(ResourceTableIterator + ValidationContextCleanupFunctionOffset);
                   if (ValidationStatusCode < ResourceHashThreshold) {
-                    ResourceStatus = CONCAT62(ValidationContext[0],(short)ValidationStatusCode);
+                    ResourceStatus = MergeHigh62BitsWithLow2Bits(ValidationContext[0],(short)ValidationStatusCode);
                     SecurityHashValue = 2;
                   }
                   else {
@@ -19128,7 +19128,7 @@ uint8_t ProcessResourcePropertySet(int64_t ObjectContext, uint32_t *ValidationCo
     ValidationContext = *(uint8_t *)(ValidationContext + 2);
     OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))(*(uint8_t **)(ObjectContext + 8),&ValidationContext,8);
     if (OperationStatus == 0) {
-      ValidationContext = CONCAT71(ValidationContext.ByteValue,*(uint8_t *)(ValidationContext + ValidationContextTertiaryCountOffset));
+      ValidationContext = MergeHigh57BitsWithLow7Bits(ValidationContext.ByteValue,*(uint8_t *)(ValidationContext + ValidationContextTertiaryCountOffset));
       OperationStatus = (**(code **)**(uint8_t **)(ObjectContext + 8))
                         (*(uint8_t **)(ObjectContext + 8),&ValidationContext,1);
       if (OperationStatus == 0) {
@@ -19156,7 +19156,7 @@ uint8_t ProcessResourcePropertySet(int64_t ObjectContext, uint32_t *ValidationCo
         }
         ResourceHash = ValidationContext[100];
         if (ResourceHash < 0x8000) {
-          ValidationContext = CONCAT62(ValidationContext.ShortValue,(short)ResourceHash);
+          ValidationContext = MergeHigh62BitsWithLow2Bits(ValidationContext.ShortValue,(short)ResourceHash);
           LoopIncrement = 2;
         }
         else {
@@ -19495,7 +19495,7 @@ uint8_t ValidateResourceStatusFlags(int64_t ResourceContext, int64_t statusPoint
                 if ((int)LoopCondition != 0) {
                   return LoopCondition;
                 }
-                ResourceTotalArray[0] = CONCAT31(ResourceTotalArray[0].ByteValue,ResourceStatus != 0);
+                ResourceTotalArray[0] = MergeBooleanWithHigh31Bits(ResourceTotalArray[0].ByteValue,ResourceStatus != 0);
                 LoopIncrement = (**(code **)**(uint8_t **)(ObjectContext + 8))
                                   (*(uint8_t **)(ObjectContext + 8),ResourceTotalArray,1);
                 if ((int)LoopCondition != 0) {
@@ -20027,7 +20027,7 @@ void ProcessObjectContextValidation(int64_t ObjectContext,int *ValidationContext
   
   ContextValidationStatusCode = (uint32_t)((uint)InputParameterValue >> 8);
   SystemOperationStatus = (char)InputParameterValue + -0x57 + OverflowFlag;
-  LoopCounter = CONCAT31(ResourceHashStatus,SystemOperationStatus);
+  LoopCounter = MergeBooleanWithHigh31Bits(ResourceHashStatus,SystemOperationStatus);
   *(uint32_t *)CombineFloatAndInteger(RegisterParameter,LoopCounter) = LoopCounter;
   *(uint *)(ObjectContext + -0x565dff77) = *(uint *)(ObjectContext + -0x565dff77) & BasePointer;
   *(uint32_t *)CombineFloatAndInteger(RegisterParameter,LoopCounter) = LoopCounter;
@@ -20037,7 +20037,7 @@ void ProcessObjectContextValidation(int64_t ObjectContext,int *ValidationContext
        *(char *)CombineFloatAndInteger(RegisterParameter,LoopCounter) + SystemOperationStatus;
   *(char *)CombineFloatAndInteger(RegisterParameter,LoopCounter) =
        *(char *)CombineFloatAndInteger(RegisterParameter,LoopCounter) + SystemOperationStatus;
-  TableIndex = CONCAT31(ResourceHashStatus,SystemOperationStatus + '\x18');
+  TableIndex = MergeBooleanWithHigh31Bits(ResourceHashStatus,SystemOperationStatus + '\x18');
   *ValidationContext = *ValidationContext + ResourceTablePointerIndex;
   ContextValidationPointer = (char *)((int64_t)&PointerStackValue8 + CombineFloatAndInteger(InputParameterValue,ResourceTablePointerIndex));
   *ContextValidationPointer = *ContextValidationPointer + SystemOperationStatus + '\x18';
@@ -24598,8 +24598,8 @@ ResourceStackProcessing:
       }
       if (LoopIncrement == 0) {
         ResourceContextOffset = SystemRegisterContext & 0xffffffff;
-        ResourceIterationIndex = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
-        PrimaryResourceIndex = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
+        ResourceIterationIndex = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
+        PrimaryResourceIndex = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
       }
       else {
         ResourceContextOffset = (uint64_t)LoopIncrement;
@@ -24663,8 +24663,8 @@ ResourceContextValidation:
     }
   }
   if (LoopIncrement == 0) {
-    ResourceTotal = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
-    ResourceRegisterPointerD = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
+    ResourceTotal = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
+    ResourceRegisterPointerD = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
   }
   ResourceContextOffset = (uint64_t)LoopIncrement;
   if (LoopIncrement == 0) {
@@ -24855,8 +24855,8 @@ ResourceStackProcessing:
       }
       if (LoopIncrement == 0) {
         ResourceContextOffset = SystemRegisterContext & 0xffffffff;
-        ResourceIterationIndex = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
-        PrimaryResourceIndex = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
+        ResourceIterationIndex = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
+        PrimaryResourceIndex = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
       }
       else {
         ResourceContextOffset = (uint64_t)LoopIncrement;
@@ -24920,8 +24920,8 @@ ResourceContextValidation:
     }
   }
   if (LoopIncrement == 0) {
-    ResourceTotal = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
-    ResourceRegisterPointerD = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
+    ResourceTotal = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
+    ResourceRegisterPointerD = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
   }
   ResourceContextOffset = (uint64_t)LoopIncrement;
   if (LoopIncrement == 0) {
@@ -25066,8 +25066,8 @@ ResourceStackProcessing:
       }
       if (LoopIncrement == 0) {
         ContextValidationStatusCode = SystemRegisterContext & 0xffffffff;
-        ResourceAccessCounter = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
-        ResourceIterationIndex = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
+        ResourceAccessCounter = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
+        ResourceIterationIndex = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
       }
       else {
         ContextValidationStatusCode = (uint64_t)LoopIncrement;
@@ -25127,8 +25127,8 @@ ResourceContextValidation:
         }
       }
       if (LoopIncrement == 0) {
-        ResourceTotal = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
-        ResourceRegisterPointerD = (int)CONCAT71(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
+        ResourceTotal = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) != '\0');
+        ResourceRegisterPointerD = (int)MergeHigh57BitsWithLow7Bits(ResourceHashStatus,*(char *)(SystemExecutionPointer + 0x77) == '\0');
       }
       ContextValidationStatusCode = (uint64_t)LoopIncrement;
       if (LoopIncrement == 0) {
@@ -28210,7 +28210,7 @@ EncryptedDataValidation:
   }
   MemorySizeCheck = *(uint *)(ResourceData + 8) < 0x34;
   ValidationStatus = (char)LoopIncrement;
-  ResourceValidationBuffer[0] = CONCAT31(ResourceValidationBuffer[0].ByteValue,ValidationStatus);
+  ResourceValidationBuffer[0] = MergeBooleanWithHigh31Bits(ResourceValidationBuffer[0].ByteValue,ValidationStatus);
   OperationCompleted = false;
   if (0x37 < *(uint *)(ResourceData + 8)) {
     if (*(int *)(ResourceData[1] + 0x18) == 0) {
@@ -28272,7 +28272,7 @@ ResourceHashCalculationLoop:
         }
       }
       if (ValidationStatusCode == 0) {
-        ResourceValidationBuffer[0] = CONCAT31(ResourceValidationBuffer[0].ByteValue,ResourceChecksumData[0] != '\0');
+        ResourceValidationBuffer[0] = MergeBooleanWithHigh31Bits(ResourceValidationBuffer[0].ByteValue,ResourceChecksumData[0] != '\0');
       }
       LoopIncrement = (uint64_t)ResourceHashStatus;
       if (ValidationStatusCode == 0) {
@@ -29627,7 +29627,7 @@ void SystemResourceValidationHandler(void)
       SavedContextPointer = 0;
     }
     else if (*(int *)(ResourceContextPointer[1] + 0x18) == 0) {
-      ResourceOperationBuffer = CONCAT31(ResourceOperationBuffer.ByteValue,*(uint8_t *)(SystemContextHandle + 0x5c));
+      ResourceOperationBuffer = MergeBooleanWithHigh31Bits(ResourceOperationBuffer.ByteValue,*(uint8_t *)(SystemContextHandle + 0x5c));
       SavedContextPointer = (**(code **)**(uint8_t **)(*ResourceContextPointer + 8))
                             (*(uint8_t **)(*ResourceContextPointer + 8),&ResourceOperationBuffer,1);
     }
@@ -30747,7 +30747,7 @@ void CleanupResourceHashValidationResources(uint8_t ExceptionHandlerType, int64_
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                           ResourceHashStatusPointer,MemoryAddressIncrement,MemoryCleanupTriggerValue);
     }
   }
@@ -30827,7 +30827,7 @@ void CleanupNestedResourceHashStatusResources(uint8_t ExceptionHandlerType, int6
       }
     }
     else {
-      ValidateMemoryAccess(resourceBase,CONCAT71(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(resourceBase,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(resourceBase + 0x70) == &ExceptionList),
                           ResourceHashStatus,resourceBase,MemoryCleanupTriggerValue);
     }
   }
@@ -30872,7 +30872,7 @@ void HandleExceptionResourceCleanup(uint8_t ExceptionCode, int64_t ExceptionCont
       }
     }
     else {
-      ValidateMemoryAccess(memoryMask,CONCAT71(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(memoryMask,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(memoryMask + 0x70) == &ExceptionList),
                           resourcePointer,memoryMask,MemoryCleanupTriggerValue);
     }
   }
@@ -31735,7 +31735,7 @@ void ReleaseValidationResourceAndUpdateReferenceCount(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressOffset,CONCAT71(0xff000000,*(void ***)(MemoryAddressOffset + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressOffset,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressOffset + 0x70) == &ExceptionList),
                           ValidationStatusCodeDataPointer,MemoryAddressOffset,MemoryCleanupTriggerValue);
     }
   }
@@ -32108,7 +32108,7 @@ void ReleaseResourceHandleOnException(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -32483,7 +32483,7 @@ void ExceptionResourceCleanupHandler(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -33385,7 +33385,7 @@ void UnwindMemoryManagerBase(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(memoryAddress,CONCAT71(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(memoryAddress,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
                           ResourceHashStatus,memoryAddress,0xfffffffffffffffe);
     }
   }
@@ -33444,7 +33444,7 @@ void UnwindProcessControllerBase(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -33542,7 +33542,7 @@ void UnwindStackFrameBase(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -33590,7 +33590,7 @@ void MutexUnlockHandler(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -33712,7 +33712,7 @@ void ReleaseResourceHandlesBatch(uint8_t ObjectContext,int64_t ValidationContext
         }
       }
       else {
-        ValidateMemoryAccess(SecurityHashValue,CONCAT71(0xff000000,*(void ***)(SecurityHashValue + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(SecurityHashValue,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(SecurityHashValue + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,SecurityHashValue,0xfffffffffffffffe);
       }
     }
@@ -33777,7 +33777,7 @@ void CleanupResourceTablePointerAndReleaseHandles(uint8_t ObjectContext,int64_t 
         }
       }
       else {
-        ValidateMemoryAccess(SecurityHashValue,CONCAT71(0xff000000,*(void ***)(SecurityHashValue + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(SecurityHashValue,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(SecurityHashValue + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,SecurityHashValue,0xfffffffffffffffe);
       }
     }
@@ -33933,7 +33933,7 @@ void ReleaseResourceHandleTable(uint8_t ObjectContext,int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(SecurityHashValue,CONCAT71(0xff000000,*(void ***)(SecurityHashValue + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(SecurityHashValue,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(SecurityHashValue + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,SecurityHashValue,0xfffffffffffffffe);
       }
     }
@@ -33998,7 +33998,7 @@ void ValidateMemoryAccessPermissions(uint8_t ObjectContext,int64_t ValidationCon
         }
       }
       else {
-        ValidateMemoryAccess(SecurityHashValue,CONCAT71(0xff000000,*(void ***)(SecurityHashValue + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(SecurityHashValue,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(SecurityHashValue + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,SecurityHashValue,0xfffffffffffffffe);
       }
     }
@@ -34251,7 +34251,7 @@ void UnwindExceptionResourceValidator(uint8_t ObjectContext,int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(memoryAddressMask,CONCAT71(0xff000000,*(void ***)(memoryAddressMask + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(memoryAddressMask,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(memoryAddressMask + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,memoryAddressMask,0xfffffffffffffffe);
     }
   }
@@ -34616,7 +34616,7 @@ void CleanupSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(MemoryPageBase,CONCAT71(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryPageBase,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
                           ResourceHashStatusPointer,MemoryPageBase,0xfffffffffffffffe);
     }
   }
@@ -34741,7 +34741,7 @@ void MemoryValidationCleanupHandler(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -34777,7 +34777,7 @@ void ExceptionHandlerCleanup(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -34813,7 +34813,7 @@ void ResourceIndexCleanupHandler(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -34858,7 +34858,7 @@ void SystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -34894,7 +34894,7 @@ void ExceptionListManager(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -35057,7 +35057,7 @@ void MemoryAllocator(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -35093,7 +35093,7 @@ void ResourcePoolManager(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -35477,7 +35477,7 @@ void UnwindSystemContextInitializer(uint8_t SystemContextObject, int64_t SystemV
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAlignmentOffset, CONCAT71(0xff000000, *(void ***)(MemoryAlignmentOffset + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAlignmentOffset, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAlignmentOffset + 0x70) == &ExceptionList),
                           ResourceValidationAddress, MemoryAlignmentOffset, 0xfffffffffffffffe);
     }
   }
@@ -35523,7 +35523,7 @@ void ValidateAndProcessResourceIndex(uint8_t ObjectContext, int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -35569,7 +35569,7 @@ void ExecuteSystemResourceRelease(uint8_t ObjectContext, int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -35610,7 +35610,7 @@ void UnwindResourceTablePointerSetup(uint8_t ObjectContext,int64_t ValidationCon
         }
       }
       else {
-        ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
       }
     }
@@ -35671,7 +35671,7 @@ void UnwindProcessControllerSetup(uint8_t ObjectContext,int64_t ValidationContex
         }
       }
       else {
-        ValidateMemoryAccess(MemoryPageBase,CONCAT71(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryPageBase,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
                             ResourceHashStatusPointer,MemoryPageBase,0xfffffffffffffffe);
       }
     }
@@ -35714,7 +35714,7 @@ void SetupExceptionHandler(uint8_t ObjectContext,int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
       }
     }
@@ -35928,7 +35928,7 @@ void CleanupResourceHandler(uint8_t ResourceContext, int64_t ValidationContext) 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
@@ -36414,7 +36414,7 @@ void UnwindErrorHandler(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryBaseAddress,CONCAT71(0xff000000,*(void ***)(MemoryBaseAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryBaseAddress,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryBaseAddress + 0x70) == &ExceptionList),
                           StatusFlagAddress,MemoryBaseAddress,0xfffffffffffffffe);
     }
   }
@@ -36450,7 +36450,7 @@ void UnwindStateSynchronizer(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -36507,7 +36507,7 @@ void UnwindBufferManager(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -36593,7 +36593,7 @@ void UnwindCriticalSectionHandler(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -36715,7 +36715,7 @@ void UnwindIoCompletionHandler(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -36761,7 +36761,7 @@ void ProcessResourceValidation(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -37072,7 +37072,7 @@ void ProcessResourceValidationUnwindPrimary(uint8_t ObjectContext, int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -37387,7 +37387,7 @@ void ReleaseResourceHandlerReference(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -37453,7 +37453,7 @@ void ValidateResourceCleanup(uint8_t ObjectContext, int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -37501,7 +37501,7 @@ void ValidateResourceCleanupSecondary(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -37549,7 +37549,7 @@ void ValidateResourceCleanupTertiary(uint8_t ObjectContext, int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -37597,7 +37597,7 @@ void ValidateResourceCleanupQuaternary(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -37645,7 +37645,7 @@ void ValidateResourceCleanupQuinary(uint8_t ObjectContext, int64_t ValidationCon
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -37695,7 +37695,7 @@ void ValidateResourceIndex(uint8_t ObjectContext, int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -37769,7 +37769,7 @@ void CleanupResourceHandlesAndReleaseMemory(uint8_t ObjectContext, int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -37817,7 +37817,7 @@ void DestroyMutexAndConditionVariables(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -37891,7 +37891,7 @@ void CleanupThreadLocalStorage(uint8_t ObjectContext, int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -37963,7 +37963,7 @@ void ResetSystemContextAndHandlers(uint8_t ObjectContext, int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -38070,7 +38070,7 @@ void ExecuteSystemCleanupQuaternary(uint8_t ObjectContext, int64_t ValidationCon
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -38120,7 +38120,7 @@ void ExecuteSystemCleanupQuinary(uint8_t ObjectContext, int64_t ValidationContex
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -44574,7 +44574,7 @@ void ValidateAndProcessResourceIndex(uint8_t ObjectContext, int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(LoopControlValue, CONCAT71(0xff000000, *(void ***)(LoopControlValue + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(LoopControlValue, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(LoopControlValue + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress, LoopControlValue, 0xfffffffffffffffe);
     }
   }
@@ -45667,7 +45667,7 @@ void ReleaseSystemResourceIndexExtended(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAlignmentMask,CONCAT71(0xff000000,*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAlignmentMask,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAlignmentMask,0xfffffffffffffffe);
     }
   }
@@ -45784,7 +45784,7 @@ void ReleaseSystemResourceIndex(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -45858,7 +45858,7 @@ void ReleaseSystemResourceIndexExtended(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(contextResourceHashStatus,CONCAT71(0xff000000,*(void ***)(contextResourceHashStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(contextResourceHashStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(contextResourceHashStatus + 0x70) == &ExceptionList),
                           ValidationStatusCodeAddress,contextResourceHashStatus,0xfffffffffffffffe);
     }
   }
@@ -45929,7 +45929,7 @@ void ReleaseValidationContextResourceHandle(uint8_t ObjectContext,int64_t Valida
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -46019,7 +46019,7 @@ void ProcessResourceIndexValidationAndCleanup(uint8_t ObjectContext,int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -46067,7 +46067,7 @@ void ProcessExtendedResourceIndexValidationAndCleanup(uint8_t ObjectContext,int6
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -46115,7 +46115,7 @@ void ReleaseResourceHandleAtRegistrationDataProcessingOffset(uint8_t ObjectConte
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -46228,7 +46228,7 @@ void ReleaseResourceHandleAtResourceManagerOffset(uint8_t ObjectContext,int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -46299,7 +46299,7 @@ void ReleaseResourceHandleAtExtendedResourceManagerOffset(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -46370,7 +46370,7 @@ void ReleaseResourceHandleAtTertiaryResourceManagerOffset(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -46439,7 +46439,7 @@ void ReleaseDoublePointerResourceHandle(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -46487,7 +46487,7 @@ void ValidateResourceAccessAndHandleException(uint8_t ObjectContext,int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAlignmentMask,CONCAT71(0xff000000,*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAlignmentMask,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAlignmentMask + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAlignmentMask,0xfffffffffffffffe);
     }
   }
@@ -47298,7 +47298,7 @@ void ValidateResourceIndexAndHash(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -47490,7 +47490,7 @@ void ValidateResourceHashAndMemoryAccess(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -47684,7 +47684,7 @@ void ValidateResourceIndexAndHandleMemoryAccess(uint8_t ObjectContext,int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -47898,7 +47898,7 @@ void ValidateSystemResourceContext(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -47954,7 +47954,7 @@ void CleanupResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -48564,7 +48564,7 @@ void ProcessResourceHashValidationAndUpdateIndex(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(AlignedMemoryAddress, CONCAT71(0xff000000,*(void ***)(AlignedMemoryAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(AlignedMemoryAddress, MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(AlignedMemoryAddress + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress, AlignedMemoryAddress, 0xfffffffffffffffe);
     }
   }
@@ -48640,7 +48640,7 @@ void ValidateResourceContextAndProcessHash(uint8_t ObjectContext,int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -48764,7 +48764,7 @@ void CleanupNetworkManagerResources(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -48846,7 +48846,7 @@ void CleanupAudioManagerResources(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -49128,7 +49128,7 @@ void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -49839,7 +49839,7 @@ void ValidateResourceIndexAndExecuteCleanup(uint8_t ObjectContext, int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -49939,7 +49939,7 @@ void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -49989,7 +49989,7 @@ void ExecuteAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -50936,7 +50936,7 @@ void CleanupResourceHashValidationStatus(uint8_t ObjectContext, int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -51325,7 +51325,7 @@ void ProcessResourceValidationAndCleanup(uint8_t ObjectContext,int64_t Validatio
         }
       }
       else {
-        ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
       }
     }
@@ -52134,7 +52134,7 @@ void CleanupExceptionUnwindResources(uint8_t ObjectContext, int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(ResourceAddress,CONCAT71(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceAddress,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceAddress + 0x70) == &ExceptionList),
                           ResourcePointer,ResourceAddress,0xfffffffffffffffe);
     }
   }
@@ -52235,7 +52235,7 @@ void UnwindSystemContextCleanup(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -52570,7 +52570,7 @@ void CleanupResourceTablePointerAndValidationContext(uint8_t ObjectContext,int64
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -52781,7 +52781,7 @@ void ExecuteSystemResourceCleanupAndValidation(uint8_t ObjectContext, int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(SystemResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(SystemResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(SystemResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(SystemResourceHashValidationStatus + 0x70) == &ExceptionList),
                           SystemResourceHashStatusAddress,SystemResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -53378,7 +53378,7 @@ void ValidateResourceTablePointerStatus(uint8_t ObjectContext, int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -53512,7 +53512,7 @@ void ReleaseResourceHandleAndValidateStatus(uint8_t ObjectContext, int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -53652,7 +53652,7 @@ void ValidateResourceContextAndCleanup(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -53788,7 +53788,7 @@ void DestroyResourceTablePointerSyncObjectsAndValidateStatus(uint8_t ObjectConte
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -53893,7 +53893,7 @@ void ValidateResourceTablePointerOffsetStatus(uint8_t ObjectContext, int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
     }
   }
@@ -54324,7 +54324,7 @@ void UnwindResourceValidationAtContextOffset(uint8_t ObjectContext,int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -54373,7 +54373,7 @@ void ProcessResourceHashValidationAndMemoryAddress(uint8_t ObjectContext, int64_
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -54422,7 +54422,7 @@ void ProcessResourceHashValidationAndMemoryAddressVariant(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -54550,7 +54550,7 @@ void ProcessResourceHashTableValidation(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -54946,7 +54946,7 @@ void ReleaseSystemResourceAtExtendedOffset(uint8_t ObjectContext,int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -56998,7 +56998,7 @@ void ValidateResourceHashAtIndex(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57184,7 +57184,7 @@ void ValidateResourceHashAtSecondaryIndex(uint8_t ObjectContext,int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57220,7 +57220,7 @@ void ValidateObjectContextBasic(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57365,7 +57365,7 @@ void ProcessResourceHashValidationAndCleanup(uint8_t ObjectContext, int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57475,7 +57475,7 @@ void ProcessSecondaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57523,7 +57523,7 @@ void ProcessExtendedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57571,7 +57571,7 @@ void ProcessCompleteResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57651,7 +57651,7 @@ void ValidateAndCleanupResourceContext(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57699,7 +57699,7 @@ void ExecuteResourceValidationAndCleanup(uint8_t ObjectContext, int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57754,7 +57754,7 @@ void ProcessResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57790,7 +57790,7 @@ void HandleResourceValidationWithEmergencyExit(uint8_t ObjectContext,int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57838,7 +57838,7 @@ void ProcessResourceCleanupBasic(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57917,7 +57917,7 @@ void ProcessResourceCleanupWithFlags(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -57965,7 +57965,7 @@ void ProcessResourceCleanupWithValidation(uint8_t ObjectContext,int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -58013,7 +58013,7 @@ void ProcessResourceCleanupWithResources(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -58061,7 +58061,7 @@ void ValidateCompleteResourceContextIntegrity(uint8_t ObjectContext, int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -58109,7 +58109,7 @@ void ProcessAdvancedResourceHashValidationAndCleanup(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -58158,7 +58158,7 @@ void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -58207,7 +58207,7 @@ void ValidateResourceContextIntegrity(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -58256,7 +58256,7 @@ void ValidateSecondaryResourceContextIntegrity(uint8_t ObjectContext, int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -58337,7 +58337,7 @@ void ProcessPrimaryResourceHashValidationAndCleanup(uint8_t ObjectContext, int64
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -60205,7 +60205,7 @@ void CleanupResourceHashStatus(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -60250,7 +60250,7 @@ void ResourceHashValidationHandler(uint8_t ObjectContext, int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -60307,7 +60307,7 @@ void ResourceIntegrityValidationHandler(uint8_t ObjectContext, int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -60667,7 +60667,7 @@ void ProcessResourceIndexAndMemoryValidation(uint8_t ObjectContext,int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -60716,7 +60716,7 @@ void ValidateResourceHashAndReleaseIndex(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -60765,7 +60765,7 @@ void ProcessResourceIndexAndMemoryValidationExtended(uint8_t ObjectContext,int64
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -61993,7 +61993,7 @@ void ValidateResourceHashResult(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -62505,7 +62505,7 @@ void UnwindSystemResourceHandlerSecondary(uint8_t ObjectContext,int64_t Validati
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -62543,7 +62543,7 @@ void ProcessResourceCleanup(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(memoryAddress,CONCAT71(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(memoryAddress,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(memoryAddress + 0x70) == &ExceptionList),
                           ResourceHashStatus,memoryAddress,0xfffffffffffffffe);
     }
   }
@@ -62596,7 +62596,7 @@ void ProcessResourceValidationCleanup(uint8_t ObjectContext,int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -62725,7 +62725,7 @@ void ProcessResourceIndexValidation(uint8_t ObjectContext, int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -62772,7 +62772,7 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext, int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -63206,7 +63206,7 @@ void SystemUnwindValidationHandler(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(AddressMask,CONCAT71(0xff000000,*(void ***)(AddressMask + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(AddressMask,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(AddressMask + 0x70) == &ExceptionList),
                           ResourceHashStatus,AddressMask,0xfffffffffffffffe);
     }
   }
@@ -63339,7 +63339,7 @@ void UnwindResourceValidationAndCleanup(uint8_t ExceptionContext, int64_t System
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -63387,7 +63387,7 @@ void ProcessResourceIndexValidation(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -63699,7 +63699,7 @@ void ValidateResourceHashAndExecuteCleanup(uint8_t ObjectContext,int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -64051,7 +64051,7 @@ void ValidateResourceIndexAndHandleExceptions(uint8_t ObjectContext,int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -64093,7 +64093,7 @@ void ValidateResourceHashAndHandleReferenceCount(uint8_t ObjectContext,int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -64135,7 +64135,7 @@ void ValidateResourceHashAndHandleReferenceCountExtended(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -64177,7 +64177,7 @@ void ValidateResourceHashAndHandleReferenceCountSecondary(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -64223,7 +64223,7 @@ void ValidateResourceHashAndHandleReferenceCount(uint8_t ObjectContext,int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -64610,7 +64610,7 @@ void ValidateResourceHashAndCleanupReferenceCountAtOffset48(uint8_t ObjectContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -64710,7 +64710,7 @@ void ValidateResourceHashAndHandleReferenceCountExtended(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -65894,7 +65894,7 @@ void ResetResourcePointers(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -66200,7 +66200,7 @@ void ReleaseSystemMemory(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -66383,7 +66383,7 @@ void ProcessResourceHashValidationAtA0(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -66430,7 +66430,7 @@ void ProcessResourceValidationAtF0(uint8_t ObjectContext, int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -66497,7 +66497,7 @@ void UnwindMemoryAccessValidatorTypeThree(uint8_t ObjectContext, int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -66901,7 +66901,7 @@ void UnwindMutexLockD(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -66948,7 +66948,7 @@ void CleanupResourceHashStatusAddress(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -66995,7 +66995,7 @@ void CleanupSecondaryResourceHashStatus(uint8_t ObjectContext, int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67031,7 +67031,7 @@ void ExecuteSystemMemoryAccessValidationCallback(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67085,7 +67085,7 @@ void ExecuteResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67139,7 +67139,7 @@ void ExecuteResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67193,7 +67193,7 @@ void ExecuteResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67247,7 +67247,7 @@ void ExecuteResourceHashCleanupHandler4(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67328,7 +67328,7 @@ void ExecuteResourceHashCleanupHandler5(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67375,7 +67375,7 @@ void ExecuteResourceHashValidationHandler(uint8_t ObjectContext,int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67422,7 +67422,7 @@ void InitializeResourceHashProcessor(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -67538,7 +67538,7 @@ void ResetResourceTablePointerState(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -68394,7 +68394,7 @@ void ProcessResourceHashValidation(uint8_t ObjectContext, int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryPageBase, CONCAT71(0xff000000, *(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryPageBase, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
                           ResourceHashValidationPointer, MemoryPageBase, 0xfffffffffffffffe);
     }
   }
@@ -68449,7 +68449,7 @@ void ProcessExtendedResourceHashValidation(uint8_t ObjectContext, int64_t Valida
       }
     }
     else {
-      ValidateMemoryAccess(MemoryPageBase, CONCAT71(0xff000000, *(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryPageBase, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryPageBase + 0x70) == &ExceptionList),
                           ResourceHashValidationPointer, MemoryPageBase, 0xfffffffffffffffe);
     }
   }
@@ -68498,7 +68498,7 @@ void ProcessResourceHashValidationReset(uint8_t ObjectContext, int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -68600,7 +68600,7 @@ void ExecuteResourceHashCleanupComplete(uint8_t ObjectContext, int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
@@ -68649,7 +68649,7 @@ void ProcessResourceHashValidationBasic(uint8_t ObjectContext, int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
@@ -68698,7 +68698,7 @@ void ExecuteResourceHashValidationAndMemoryAccessControl(uint8_t ObjectContext, 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -69304,7 +69304,7 @@ void ExecuteResourceHashValidationAndIndexManagement(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -69395,7 +69395,7 @@ void ProcessSystemResourceCleanupPhase2(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -69680,7 +69680,7 @@ void ProcessSystemResourceCleanupPhase8(uint8_t ObjectContext,int64_t Validation
         }
       }
       else {
-        ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
       }
     }
@@ -69749,7 +69749,7 @@ void ProcessSystemResourceCleanupPhase10(uint8_t ObjectContext,int64_t Validatio
         }
       }
       else {
-        ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
       }
     }
@@ -69804,7 +69804,7 @@ void CleanupResourceHashStatusAddressOffset10(uint8_t ObjectContext,int64_t Vali
         }
       }
       else {
-        ValidateMemoryAccess(ResourceHashValidationStatus,CONCAT71(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(ResourceHashValidationStatus,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceHashValidationStatus + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,ResourceHashValidationStatus,0xfffffffffffffffe);
       }
     }
@@ -71149,7 +71149,7 @@ void UnwindSystemResourceProcessingA(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -71197,7 +71197,7 @@ void UnwindSystemResourceProcessingB(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -71245,7 +71245,7 @@ void UnwindSystemResourceProcessingC(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -71293,7 +71293,7 @@ void UnwindSystemResourceProcessingD(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -71341,7 +71341,7 @@ void UnwindSystemResourceProcessingE(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -71835,7 +71835,7 @@ void ValidateResourceHashMemory(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -72200,7 +72200,7 @@ void ValidateResourceHashAddress(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -72310,7 +72310,7 @@ void CleanupPrimaryResourceHashStatus(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -72346,7 +72346,7 @@ void CleanupSecondaryResourceHashStatus(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -72660,7 +72660,7 @@ void ValidateResourceHashAndIndex(uint8_t ObjectContext,int64_t ValidationContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -73188,7 +73188,7 @@ void FinalizeResourceRegistrationHandler(uint8_t ObjectContext,int64_t Validatio
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -74086,7 +74086,7 @@ void FinalizeResourceRegistrationAndExecuteCleanup(uint8_t ObjectContext,int64_t
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -74433,7 +74433,7 @@ void ValidateAndCleanupResourceHashResult(uint8_t ObjectContext, int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
@@ -74480,7 +74480,7 @@ void ValidateAndCleanupResourceHashResultExtended(uint8_t ObjectContext, int64_t
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress, MemoryAddressIncrement, 0xfffffffffffffffe);
     }
   }
@@ -74847,7 +74847,7 @@ void ValidateResourceHashAndCleanup(uint8_t ObjectContext, int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -74939,7 +74939,7 @@ void CleanupResourceHashStatus(uint8_t ObjectContext, int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(ResourceBaseAddress,CONCAT71(0xff000000,*(void ***)(ResourceBaseAddress + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(ResourceBaseAddress,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(ResourceBaseAddress + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,ResourceBaseAddress,0xfffffffffffffffe);
     }
   }
@@ -75250,7 +75250,7 @@ void ValidateResourceHashStatusCode(uint8_t ObjectContext, int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -75314,7 +75314,7 @@ void ExecuteResourceDeallocationHandler(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -75637,7 +75637,7 @@ void ProcessResourceHashStatus(uint8_t ObjectContext, int64_t ValidationContext)
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -75687,7 +75687,7 @@ void ProcessResourceHashStatusExtended(uint8_t ObjectContext, int64_t Validation
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -75736,7 +75736,7 @@ void ExecuteResourceIndexValidationAndMemoryManagement(uint8_t ObjectContext, in
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressBase,CONCAT71(0xff000000,*(void ***)(MemoryAddressBase + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressBase,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressBase + 0x70) == &ExceptionList),
                             ValidationStatusCodeAddress,MemoryAddressBase,0xfffffffffffffffe);
       }
     }
@@ -75785,7 +75785,7 @@ void ExecuteResourceIndexValidationAndMemoryManagementExtended(uint8_t ObjectCon
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -75834,7 +75834,7 @@ void ExecuteResourceIndexValidationAndMemoryManagementThird(uint8_t ObjectContex
         }
       }
       else {
-        ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+        ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                             ResourceHashStatusAddress,MemoryAddressIncrement,0xfffffffffffffffe);
       }
     }
@@ -80344,7 +80344,7 @@ void SetResourceHashStatusWithValidation(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -80500,7 +80500,7 @@ void ProcessResourceHashStatusUpdate(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -80705,7 +80705,7 @@ void ProcessResourceHashStatusValidation(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -80786,7 +80786,7 @@ void ExecuteResourceHashStatusValidation(uint8_t ObjectContext, int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -80831,7 +80831,7 @@ void ExecuteResourceHashStatusValidationExtended(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -81069,7 +81069,7 @@ void ProcessResourceHashStatusRelease(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -81163,7 +81163,7 @@ void ProcessExtendedResourceHashStatusRelease(uint8_t ObjectContext, int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -81639,7 +81639,7 @@ void ValidateAndCleanupResourceHashStatus(uint8_t ObjectContext, int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment, CONCAT71(0xff000000, *(void ***)(MemoryAddressAlignment + MemoryResourceTablePointerOffset) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAddressAlignment + MemoryResourceTablePointerOffset) == &ExceptionList),
                           ResourceHashStatusPointer, MemoryAddressAlignment, MemoryCleanupTriggerValue);
     }
   }
@@ -82201,7 +82201,7 @@ void ReleaseResourceHashStatusAndCleanup(uint8_t ObjectContext, int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -82243,7 +82243,7 @@ void ReleaseResourceHashStatusAndCleanupExtended(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85416,7 +85416,7 @@ void CleanupResourceHashStatusAddressOffsetB0(uint8_t ObjectContext,int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85464,7 +85464,7 @@ void CleanupResourceHashStatusAddressOffsetD0(uint8_t ObjectContext,int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85512,7 +85512,7 @@ void CleanupResourceHashStatusAddressOffsetF0(uint8_t ObjectContext,int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85560,7 +85560,7 @@ void CleanupResourceHashStatusAddressOffset110(uint8_t ObjectContext,int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85602,7 +85602,7 @@ void ExecuteResourceHashStatusValidationAndCleanup(uint8_t ObjectContext,int64_t
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85643,7 +85643,7 @@ void ProcessResourceHashStatusCleanupExtended(uint8_t ObjectContext, int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85684,7 +85684,7 @@ void ProcessResourceHashStatusCleanupSecondary(uint8_t ObjectContext, int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85725,7 +85725,7 @@ void ProcessResourceHashStatusCleanupTertiary(uint8_t ObjectContext, int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85773,7 +85773,7 @@ void ValidateResourceHashMemoryAddress(uint8_t ObjectContext,int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85821,7 +85821,7 @@ void ValidateErrorResourceHashMemoryAddress(uint8_t ObjectContext,int64_t Valida
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85869,7 +85869,7 @@ void ValidateSystemResourceHashMemoryAddress(uint8_t ObjectContext,int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85917,7 +85917,7 @@ void ValidateExtendedResourceHashMemoryAddress(uint8_t ObjectContext,int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -85959,7 +85959,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset390(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86001,7 +86001,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset3b0(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86043,7 +86043,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset490(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86085,7 +86085,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset2f0(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86133,7 +86133,7 @@ void CleanupSystemResourceHashStatus(uint8_t ObjectContext,int64_t ValidationCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86181,7 +86181,7 @@ void CleanupSecondaryResourceHashStatus(uint8_t ObjectContext,int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86229,7 +86229,7 @@ void CleanupTertiaryResourceHashStatus(uint8_t ObjectContext,int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86265,7 +86265,7 @@ void CleanupExtendedResourceHashStatus(uint8_t ObjectContext,int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86313,7 +86313,7 @@ void CleanupQuaternaryResourceHashStatus(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86355,7 +86355,7 @@ void ExecuteResourceHashStatusValidationAndCleanupOffset270(uint8_t ObjectContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86397,7 +86397,7 @@ void ExecuteResourceHashStatusValidationAndCleanupOffset278(uint8_t ObjectContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86439,7 +86439,7 @@ void ExecuteResourceHashStatusValidationAndCleanupOffset280(uint8_t ObjectContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86481,7 +86481,7 @@ void ExecuteResourceHashStatusValidationAndCleanupOffset288(uint8_t ObjectContex
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86540,7 +86540,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetb0(uint8_t ObjectContext, int6
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86586,7 +86586,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetb0v2(uint8_t ObjectContext,int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86632,7 +86632,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetb0v3(uint8_t ObjectContext,int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86678,7 +86678,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetb0v4(uint8_t ObjectContext,int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86724,7 +86724,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetf0v5(uint8_t ObjectContext,int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86766,7 +86766,7 @@ void ProcessResourceHashStatusAndSetStatusCodeAddress(uint8_t ObjectContext, int
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86808,7 +86808,7 @@ void ProcessResourceHashStatusAndSetAlternateStatusCodeAddress(uint8_t ObjectCon
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86857,7 +86857,7 @@ void ProcessResourceHashStatusUpdate(uint8_t ObjectContext, int64_t ValidationCo
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement, CONCAT71(0xff000000, *(void ***)(MemoryAddressIncrement + SystemExceptionListOffset) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAddressIncrement + SystemExceptionListOffset) == &ExceptionList),
                           ResourceHashStatusAddress, MemoryAddressIncrement, SystemMemoryValidationMask);
     }
   }
@@ -86905,7 +86905,7 @@ void CleanupResourceHashValidationResultPointerOffset120(uint8_t ObjectContext, 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86951,7 +86951,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetSecurityv10(uint8_t ObjectCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -86997,7 +86997,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset170v11(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87045,7 +87045,7 @@ void CleanupResourceHashStatusAddressOffset170(uint8_t ObjectContext,int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87093,7 +87093,7 @@ void CleanupResourceHashStatusAddressOffset400(uint8_t ObjectContext,int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87141,7 +87141,7 @@ void CleanupResourceHashStatusAddressOffset1A0(uint8_t ObjectContext,int64_t Val
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87187,7 +87187,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset190v12(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87233,7 +87233,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset190v13(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87279,7 +87279,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset190v14(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87325,7 +87325,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset1D0v14(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87371,7 +87371,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetResourceValidationError0v15(ui
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87417,7 +87417,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffsetResourceValidationError0v16(ui
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87463,7 +87463,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset210v17(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87509,7 +87509,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset210v18(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87551,7 +87551,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset250(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87593,7 +87593,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset270(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87723,7 +87723,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset390(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87765,7 +87765,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset390Variant(uint8_t ObjectC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87807,7 +87807,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset3b0(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87849,7 +87849,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset3d0(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87891,7 +87891,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset490(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87933,7 +87933,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset490Variant(uint8_t ObjectC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -87975,7 +87975,7 @@ void ReleaseResourceReferenceAndHandleHashStatusOffset4b0(uint8_t ObjectContext,
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88021,7 +88021,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset2F0v19(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88067,7 +88067,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset310v20(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88113,7 +88113,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset310v21(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88159,7 +88159,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset330v22(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88205,7 +88205,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset330v21(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88251,7 +88251,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset350v22(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88297,7 +88297,7 @@ void ExecuteResourceHashStatusCleanupHandlerOffset370v23(uint8_t ObjectContext,i
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88338,7 +88338,7 @@ void ClearResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88379,7 +88379,7 @@ void ClearSecondaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88427,7 +88427,7 @@ void ProcessResourceHashStatusCleanup(uint8_t ObjectContext, int64_t ValidationC
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88468,7 +88468,7 @@ void ClearTertiaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88509,7 +88509,7 @@ void ClearQuaternaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88550,7 +88550,7 @@ void ClearTertiaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88591,7 +88591,7 @@ void ClearQuaternaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88632,7 +88632,7 @@ void ClearSenaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88673,7 +88673,7 @@ void ClearSeptenaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88714,7 +88714,7 @@ void ClearSeptenaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88755,7 +88755,7 @@ void ClearOctonaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t Va
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -88796,7 +88796,7 @@ void ClearNonaryResourceHashStatusAndRelease(uint8_t ObjectContext, int64_t Vali
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -89519,7 +89519,7 @@ void ExecuteResourceContextCallbackAt1448(uint8_t ObjectContext, int64_t Validat
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -90298,7 +90298,7 @@ void ProcessResourceHashStatusAndMemoryValidation(uint8_t ObjectContext, int64_t
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -90652,7 +90652,7 @@ void ExecuteResourceHashStatusResetAndMemoryCleanup(uint8_t ObjectContext, int64
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -91119,7 +91119,7 @@ void ExecuteResourceHashStatusValidationAndCleanup(uint8_t ObjectContext, int64_
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment, CONCAT71(0xff000000, *(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment, MergeHigh57BitsWithLow7Bits(0xff000000, *(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress, MemoryAddressAlignment, 0xfffffffffffffffe);
     }
   }
@@ -91155,7 +91155,7 @@ void UnwindResourceHashValidator(uint8_t ObjectContext,int64_t ValidationContext
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -94116,7 +94116,7 @@ void ValidateResourceHashStatus(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -94173,7 +94173,7 @@ void UnwindSystemResourceValidation(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -94235,7 +94235,7 @@ void ValidateSystemResourceHash(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -94307,7 +94307,7 @@ void ExecuteResourceHashValidation(uint8_t ObjectContext,int64_t ValidationConte
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -94353,7 +94353,7 @@ void ExecuteResourceHashStatusValidationVariant2(uint8_t ObjectContext,int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95126,7 +95126,7 @@ void ExecuteResourceHashStatusValidation(uint8_t ObjectContext, int64_t Validati
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95172,7 +95172,7 @@ void ExecuteResourceHashStatusValidationVariant1(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95257,7 +95257,7 @@ void ExecuteResourceHashStatusValidationVariant2(uint8_t ObjectContext, int64_t 
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95303,7 +95303,7 @@ void ExecuteResourceHashStatusValidationVariant3(uint8_t ObjectContext,int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95349,7 +95349,7 @@ void ExecuteResourceHashStatusValidationVariant4(uint8_t ObjectContext,int64_t V
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95396,7 +95396,7 @@ void ExecuteResourceHashStatusReset(uint8_t ObjectContext,int64_t ValidationCont
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95443,7 +95443,7 @@ void ExecuteResourceHashStatusValidation(uint8_t ObjectContext,int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95493,7 +95493,7 @@ void ExecuteResourceHashCleanupCallback(uint8_t ObjectContext, int64_t Validatio
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -95563,7 +95563,7 @@ void ExecuteResourceHashValidationAndCleanup(uint8_t ObjectContext,int64_t Valid
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -96752,7 +96752,22 @@ void ExecuteSystemResourceOptimization(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_18090f850(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统上下文资源优化处理
+ * 
+ * 该函数负责对系统上下文中的资源执行优化处理操作。
+ * 从验证上下文中提取系统资源，并调用资源优化处理函数。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用HandleResourceOptimization函数进行资源优化
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f850
+ */
+void ExecuteSystemContextResourceOptimization(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
@@ -97893,7 +97908,7 @@ void Unwind_18090ff90(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -98887,7 +98902,7 @@ void Unwind_180910320(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -98943,7 +98958,7 @@ void Unwind_180910340(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -98979,7 +98994,7 @@ void Unwind_180910350(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99107,7 +99122,7 @@ void ProcessResourceIndexValidationAndHash(uint8_t ObjectContext, int64_t Valida
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99340,7 +99355,7 @@ void Unwind_1809104f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99376,7 +99391,7 @@ void Unwind_180910510(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99558,7 +99573,7 @@ void Unwind_180910640(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99594,7 +99609,7 @@ void Unwind_180910660(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99690,7 +99705,7 @@ void Unwind_1809106e0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99750,7 +99765,7 @@ void Unwind_180910750(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99806,7 +99821,7 @@ void Unwind_180910770(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99842,7 +99857,7 @@ void Unwind_180910780(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -99878,7 +99893,7 @@ void Unwind_180910790(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -103998,7 +104013,7 @@ void Unwind_1809118c0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -104063,7 +104078,7 @@ void Unwind_1809118f0(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -104199,7 +104214,7 @@ void Unwind_180911950(uint8_t ObjectContext,int64_t ValidationContext)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -107228,7 +107243,7 @@ void ValidateAndCleanupSystemResources(uint8_t ObjectContext, int64_t Validation
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressAlignment,CONCAT71(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressAlignment,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressAlignment + 0x70) == &ExceptionList),
                           ResourceHashStatusAddress,MemoryAddressAlignment,0xfffffffffffffffe);
     }
   }
@@ -108069,7 +108084,7 @@ void InitializeSystemDataStructureValidationManager(void)
       }
     }
     else {
-      ValidateMemoryAccess(MemoryAddressIncrement,CONCAT71(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
+      ValidateMemoryAccess(MemoryAddressIncrement,MergeHigh57BitsWithLow7Bits(0xff000000,*(void ***)(MemoryAddressIncrement + 0x70) == &ExceptionList),
                           ResourceValidator,LoopIncrement,0xfffffffffffffffe);
     }
   }
@@ -109455,7 +109470,7 @@ void InitializeSystemDataStructureCB(void)
   
   SystemResourceCleanupHandler(&SystemResourceCleanupData);
   if (0xf < SystemResourceTotal) {
-    SystemContextPointer = CONCAT71(SystemResourceHighPointer,SystemResourceLowPointer);
+    SystemContextPointer = MergeHigh57BitsWithLow7Bits(SystemResourceHighPointer,SystemResourceLowPointer);
     ResourceTablePointer = SystemContextPointer;
     if (0xfff < SystemResourceTotal + 1) {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + -8);
@@ -109501,7 +109516,7 @@ void InitializeSystemDataStructureCC(void)
   int64_t ResourceTablePointer;
   
   if (0xf < SystemResourcePrimaryCounter) {
-    SystemContextPointer = CONCAT71(SystemDataStructureHighPointer,SystemDataStructureLowPointer);
+    SystemContextPointer = MergeHigh57BitsWithLow7Bits(SystemDataStructureHighPointer,SystemDataStructureLowPointer);
     ResourceTablePointer = SystemContextPointer;
     if (0xfff < SystemResourcePrimaryCounter + 1) {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + -8);
@@ -109530,7 +109545,7 @@ void InitializeSystemDataStructureCD(void)
   int64_t ResourceTablePointer;
   
   if (0xf < ResourcePoolCounter) {
-    SystemContextPointer = CONCAT71(ResourcePoolHighPointer,ResourcePoolLowPointer);
+    SystemContextPointer = MergeHigh57BitsWithLow7Bits(ResourcePoolHighPointer,ResourcePoolLowPointer);
     ResourceTablePointer = SystemContextPointer;
     if (0xfff < ResourcePoolCounter + 1) {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + -8);
@@ -109565,7 +109580,7 @@ void InitializeSystemDataStructureCE(void)
   int64_t ResourceTablePointer;
   
   if (0xf < MemoryPoolCounter) {
-    SystemContextPointer = CONCAT71(MemoryPoolHighPointer,MemoryPoolLowPointer);
+    SystemContextPointer = MergeHigh57BitsWithLow7Bits(MemoryPoolHighPointer,MemoryPoolLowPointer);
     ResourceTablePointer = SystemContextPointer;
     if (0xfff < MemoryPoolCounter + 1) {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + -8);
@@ -110063,7 +110078,7 @@ void InitializeResourceCleanupHandler(void)
   int64_t ResourceTablePointer;
   
   if (0xf < SystemResourceSecondaryCounter) {
-    LocalContextAddress = CONCAT71(SystemMemoryContextHighPointer,SystemDataTablePointer);
+    LocalContextAddress = MergeHigh57BitsWithLow7Bits(SystemMemoryContextHighPointer,SystemDataTablePointer);
     ResourceTablePointer = SystemContextPointer;
     if (0xfff < SystemResourceSecondaryCounter + 1) {
       ResourceTablePointer = *(int64_t *)(SystemContextPointer + -8);

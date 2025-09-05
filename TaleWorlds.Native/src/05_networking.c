@@ -919,10 +919,10 @@ void InitializeNetworkConnectionPool(void)
  */
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
-void *NetworkConnectionConfigPrimary = &NetworkConnectionPrimaryConfig;
-void *NetworkConnectionConfigSecondary = &NetworkConnectionSecondaryConfig;
-void *NetworkConnectionConfigProcessing = &NetworkConnectionProcessingConfig;
+void *NetworkConnectionContextTemplate = &NetworkConnectionContextTemplateData;
+void *NetworkConnectionPrimaryConfig = &NetworkConnectionPrimaryConfig;
+void *NetworkConnectionSecondaryConfig = &NetworkConnectionSecondaryConfig;
+void *NetworkConnectionProcessingConfig = &NetworkConnectionProcessingConfig;
 void *NetworkConnectionConfigTransport = &NetworkConnectionTransportConfig;
 void *NetworkConnectionConfigProtocol = &NetworkConnectionProtocolConfig;
 void *NetworkConnectionConfigValidation = &NetworkConnectionValidationConfig;
