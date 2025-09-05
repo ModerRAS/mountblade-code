@@ -10621,6 +10621,18 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：执行数据操作，包括读取、写入和验证
 #define OperateDataO0 FUN_1808aed00
 
+// 原始函数名：FUN_1808a5a90 - 系统验证函数A0
+// 功能：执行系统验证操作，检查数据完整性
+#define ValidateSystemOperationA0 FUN_1808a5a90
+
+// 原始函数名：FUN_1808a4a20 - 系统初始化函数A0
+// 功能：初始化系统组件和配置
+#define InitializeSystemComponentA0 FUN_1808a4a20
+
+// 原始函数名：FUN_18084c150 - 系统清理函数A0
+// 功能：清理系统资源和内存
+#define CleanupSystemResourcesA0 FUN_18084c150
+
 // 原始函数名：FUN_180847820 - 获取资源指针函数O0
 // 功能：获取系统资源指针，用于访问和管理资源
 #define GetResourcePointerO0 FUN_180847820
@@ -25908,60 +25920,64 @@ ValidationLabelD:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
- * @brief 系统数据处理函数C
+ * @brief 执行系统验证和数据处理操作
  * 
- * 该函数用于处理系统数据，执行验证和安全性检查操作
+ * 该函数负责执行系统级的验证和数据处理操作，包括安全检查、内存管理、
+ * 数据验证和系统资源清理等功能。函数根据不同的输入参数执行相应的
+ * 处理路径，确保系统操作的安全性和稳定性。
  * 
- * @param param_1 输入参数，包含系统上下文信息
- * @note 原始函数名：FUN_18089c2d8
+ * @param SystemContext 系统上下文指针，包含系统状态和配置信息
+ * @return ulonglong 返回操作状态码，0表示成功，非0表示错误码
+ * 
+ * @note 原始函数名: FUN_18089c2d8
  */
-ulonglong FUN_18089c2d8(undefined8 param_1)
+ulonglong ValidateAndProcessSystemOperations(undefined8 SystemContext)
 
 {
-  undefined4 uVar1;
-  undefined4 uVar2;
+  undefined4 validationData1;
+  undefined4 validationData2;
   undefined4 validationStatus;
-  float fVar4;
-  float fVar5;
-  float fVar6;
+  float floatValue1;
+  float floatValue2;
+  float floatValue3;
   undefined8 validationOutcome;
-  uint in_EAX;
+  uint inputParameter;
   uint securityCheckResult;
-  uint uVar9;
-  uint uVar10;
-  ulonglong uVar11;
-  undefined4 *puVar12;
-  float *pfVar13;
-  undefined8 *puVar14;
-  undefined8 *puVar15;
-  longlong validationContext6;
-  longlong unaff_RBP;
-  longlong systemContext;
-  undefined8 *unaff_RDI;
-  longlong validationContext7;
-  int iVar18;
-  undefined8 *unaff_R12;
-  uint unaff_R15D;
-  bool bVar19;
-  float extraout_XMM0_Da;
-  float extraout_XMM0_Da_00;
-  float extraout_XMM0_Da_01;
-  float extraout_XMM0_Da_02;
-  float extraout_XMM0_Da_03;
-  float fVar20;
+  uint processingFlag;
+  uint absoluteValue;
+  ulonglong operationResult;
+  undefined4 *validationDataPtr;
+  float *floatDataPtr;
+  undefined8 *dataBufferPtr;
+  undefined8 *tempDataPtr;
+  longlong validationLoopCounter;
+  longlong stackFramePtr;
+  longlong systemContextData;
+  undefined8 *contextDataPtr;
+  longlong arraySizeCounter;
+  int bufferSize;
+  undefined8 *resourcePtr;
+  uint resourceFlag;
+  bool validationComplete;
+  float resultFloatValue;
+  float extraFloatValue1;
+  float extraFloatValue2;
+  float extraFloatValue3;
+  float extraFloatValue4;
+  float computedFloatValue;
   
-  securityCheckResult = (uint)unaff_R12;
-  if (0x81 < in_EAX) {
-    uVar11 = FUN_1808a79f0(param_1,systemContext + 0x58);
-    fVar20 = extraout_XMM0_Da;
-    if ((int)uVar11 != 0) {
-      return uVar11;
+  securityCheckResult = (uint)resourcePtr;
+  if (0x81 < inputParameter) {
+    operationResult = FUN_1808a79f0(SystemContext,systemContextData + 0x58);
+    computedFloatValue = resultFloatValue;
+    if ((int)operationResult != 0) {
+      return operationResult;
     }
     goto LAB_18089c300;
   }
-  if (in_EAX < 0x6a) {
-    *(undefined8 **)(unaff_RBP + -0x29) = unaff_R12;
-    *(undefined8 **)(unaff_RBP + -0x21) = unaff_R12;
+  if (inputParameter < 0x6a) {
+    *(undefined8 **)(stackFramePtr + -0x29) = resourcePtr;
+    *(undefined8 **)(stackFramePtr + -0x21) = resourcePtr;
     uVar9 = FUN_1808a54c0(param_1,unaff_RBP + -0x29,0);
     uVar11 = (ulonglong)uVar9;
     if (uVar9 != 0) {
@@ -29922,16 +29938,16 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
         memoryBaseAddress = 0x1c;
       }
     }
-    if ((((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808a5a90(param_2,param_1 + 0x38,0), (int)memoryBaseAddress == 0)) &&
-       (memoryBaseAddress = FUN_1808a5a90(param_2,param_1 + 0x48,0), (int)memoryBaseAddress == 0)) {
+    if ((((int)memoryBaseAddress == 0) && (memoryBaseAddress = ValidateSystemOperationA0(param_2,param_1 + 0x38,0), (int)memoryBaseAddress == 0)) &&
+       (memoryBaseAddress = ValidateSystemOperationA0(param_2,param_1 + 0x48,0), (int)memoryBaseAddress == 0)) {
       if (*(uint *)(param_2 + 8) < 0x84) {
         puStack_88 = (undefined4 *)0x0;
         uStack_80 = 0;
-        validationStatus = FUN_1808a4a20(param_2,&puStack_88,0);
+        validationStatus = InitializeSystemComponentA0(param_2,&puStack_88,0);
         memoryBaseAddress = (ulonglong)validationStatus;
         if (validationStatus != 0) {
 ValidationErrorHandler5:
-          FUN_18084c150(&puStack_88);
+          CleanupSystemResourcesA0(&puStack_88);
           return memoryBaseAddress;
         }
         poperationResult = puStack_88;
@@ -30034,16 +30050,16 @@ ulonglong FUN_18089e558(void)
       securityCheckResult = 0x1c;
     }
   }
-  if ((((int)securityCheckResult == 0) && (securityCheckResult = FUN_1808a5a90(uVar11,unaff_R15 + 0x38,0), (int)securityCheckResult == 0)) &&
-     (securityCheckResult = FUN_1808a5a90(extraout_XMM0_Da_00,unaff_R15 + 0x48,0), (int)securityCheckResult == 0)) {
+  if ((((int)securityCheckResult == 0) && (securityCheckResult = ValidateSystemOperationA0(uVar11,unaff_R15 + 0x38,0), (int)securityCheckResult == 0)) &&
+     (securityCheckResult = ValidateSystemOperationA0(extraout_XMM0_Da_00,unaff_R15 + 0x48,0), (int)securityCheckResult == 0)) {
     if (*(uint *)(unaff_RDI + 8) < 0x84) {
       *(undefined8 *)(unaff_RBP + -0x29) = 0;
       *(undefined8 *)(unaff_RBP + -0x21) = 0;
-      operationResult = FUN_1808a4a20(extraout_XMM0_Da_01,unaff_RBP + -0x29,0);
+      operationResult = InitializeSystemComponentA0(extraout_XMM0_Da_01,unaff_RBP + -0x29,0);
       securityCheckResult = (ulonglong)operationResult;
       if (operationResult != 0) {
 ValidationErrorHandler5:
-        FUN_18084c150(unaff_RBP + -0x29);
+        CleanupSystemResourcesA0(unaff_RBP + -0x29);
         return securityCheckResult;
       }
       iVar6 = *(int *)(unaff_RBP + -0x21);
