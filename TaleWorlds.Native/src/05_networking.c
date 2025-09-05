@@ -571,7 +571,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 // 网络连接默认配置
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
-#define NetworkStandardBufferSize 256                           // 标准缓冲区大小（256字节）
+#define NetworkStandardSmallBufferSize 256                          // 标准小缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
 // 网络连接配置常量
@@ -3012,7 +3012,7 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
       // 如果状态缓冲区有效，处理连接数据
       if (NetworkConnectionStatusBuffer != NULL) {
         int32_t ConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
-        int64_t ConnectionIterationCounter = (long long)ConnectionCount;
+        int64_t ConnectionIterationCounter = (int64_t)ConnectionCount;
         int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址
         NetworkConnectionStatus *NetworkConnectionStatusIterator = NetworkConnectionStatusBuffer;
         int64_t ConnectionContextAddress = ConnectionContextBaseAddress;  // 连接上下文地址
@@ -3103,7 +3103,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t ProcessingCode = 0;                              // 网络连接处理代码
   int64_t ProcessedPacketId = 0;                                    // 已处理网络数据包标识符
   int32_t PacketIndex = 0;                                           // 网络数据包索引
-  int32_t MaxInt32Value = 0;                                    // 本地网络最大32位整数值
+  int32_t NetworkMaximumInt32Value = 0;                              // 网络最大32位整数值
   int64_t *OperationBuffer = NULL;                               // 连接操作缓冲区
   if (ProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
@@ -3114,13 +3114,13 @@ PrimaryNetworkProcessingComplete:
     *(int *)CalculateConnectionParameterOffset(ContextBuffer) = ProcessingCode;
     return NetworkOperationSuccess;
   }
-  if (PacketIndex * ConnectionEntrySize - 1U < MaxInt32Value) {
+  if (PacketIndex * ConnectionEntrySize - 1U < NetworkMaximumInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            NetworkConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
       int32_t ProcessingIterationCount = (int)OperationBuffer[NetworkOperationBufferSizeIndex];
-      int64_t StatusIterator = (long long)ProcessingIterationCount;
+      int64_t StatusIterator = (int64_t)ProcessingIterationCount;
       if ((ProcessingIterationCount != 0) && (ContextIdentifier = *OperationBuffer, 0 < ProcessingIterationCount)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
@@ -3714,7 +3714,7 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   
   // 设置输出缓冲区
   if (OutputBuffer) {
-    memset(OutputBuffer, 0, NetworkStandardBufferSize);
+    memset(OutputBuffer, 0, NetworkStandardSmallBufferSize);
     OutputBuffer[PacketDecodingStatusIndex] = (NetworkByte)PacketDecodingStatus;
     OutputBuffer[MagicNumberValidationIndex] = (NetworkByte)MagicNumberValidationResult;
     OutputBuffer[DataIntegrityCheckIndex] = (NetworkByte)DataIntegrityValidationStatus;
@@ -3758,7 +3758,7 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
   
   // 清理处理缓冲区
   if (ProcessingBuffer) {
-    memset(ProcessingBuffer, 0, NetworkStandardBufferSize);
+    memset(ProcessingBuffer, 0, NetworkStandardSmallBufferSize);
     BufferCleanupStatus = NetworkValidationSuccess;  // 缓冲区清理成功
   }
   
@@ -3854,7 +3854,7 @@ NetworkHandle DecodeNetworkPacketStream(int64_t PacketData, NetworkByte *OutputB
   // 8. 填充输出缓冲区
   
   if (OutputBuffer) {
-    memset(OutputBuffer, 0, NetworkStandardBufferSize);
+    memset(OutputBuffer, 0, NetworkStandardSmallBufferSize);
     // 在实际实现中，这里应该填充解码后的数据
     // 包括：有效负载数据、元数据、状态信息等
   }
