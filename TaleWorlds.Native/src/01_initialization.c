@@ -33763,7 +33763,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   stackValue3 = 0;
   stackValue10 = SystemAllocationFlags;
   *(void* *)(SystemAllocationFlags + 0xf0) = 0;
-  stackValue7 = 3;
+  systemStateFlags = 3;
   stackManagement1 = &stackManagement1;
   stackManagement2 = &stackManagement1;
   stackManagement3 = (void* *******)0x0;
