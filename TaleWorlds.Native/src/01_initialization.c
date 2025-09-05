@@ -19889,13 +19889,13 @@ void ProcessSystemStringCopy(long long DestinationBuffer, long long SourceString
     **(uint8_t **)(DestinationBuffer + STRING_DATA_OFFSET) = 0;
     return;
   }
-  CalculatedStringLength = -1;
+  StringLengthCounter = -1;
   do {
-    CalculatedStringLength = CalculatedStringLength + 1;
-  } while (*(char *)(SourceString + CalculatedStringLength) != '\0');
-  if ((int)CalculatedStringLength < 0x1000) {
-    *(int *)(DestinationBuffer + STRING_LENGTH_OFFSET) = (int)CalculatedStringLength;
-    strcpy_s(*(void* *)(DestinationBuffer + STRING_DATA_OFFSET), (int)CalculatedStringLength + 1, (const char *)(SourceString));
+    StringLengthCounter = StringLengthCounter + 1;
+  } while (*(char *)(SourceString + StringLengthCounter) != '\0');
+  if ((int)StringLengthCounter < 0x1000) {
+    *(int *)(DestinationBuffer + STRING_LENGTH_OFFSET) = (int)StringLengthCounter;
+    strcpy_s(*(void* *)(DestinationBuffer + STRING_DATA_OFFSET), (int)StringLengthCounter + 1, (const char *)(SourceString));
     return;
   }
   ProcessSystemStringAllocation(&SystemMemoryTemplateSeptenary,0x1000,ConfigurationDataPointer);
