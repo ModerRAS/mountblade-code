@@ -2453,7 +2453,7 @@ void InitializeNetworkPacketProcessingSystem(void)
   // 初始化连接管理
   NetworkConnectionManager = NetworkConnectionEstablished;             // 初始化连接管理器
   NetworkConnectionData = NetworkConnectionEstablished;                 // 初始化连接数据
-  NetworkConnectionSize = Network256ByteConnectionSize;                // 设置连接大小为256字节
+  NetworkConnectionSize = NetworkConnectionStandardSize;                // 设置连接大小为256字节
   NetworkConnectionIndex = NetworkIndexResetValue;               // 重置连接索引
   
   // 初始化路由和过滤缓冲区
@@ -2471,7 +2471,7 @@ void InitializeNetworkPacketProcessingSystem(void)
   NetworkRetryInterval = Network1SecondTimeout;                        // 设置重试间隔为1秒
   NetworkTimeoutInterval = Network5SecondsTimeout;                     // 设置超时间隔为5秒
   NetworkConnectionRetryCount = NetworkMaximumRetryCount;             // 设置连接重试次数为3次
-  NetworkConnectionBackoffTime = Network2SecondBackoffTime;           // 设置连接退避时间为2秒
+  NetworkConnectionBackoffTime = NetworkBackoffTimeout;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
   NetworkEventSize = Network64ByteEventSize;                              // 设置网络事件大小为64字节
@@ -3407,10 +3407,10 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
   }
   else {
     // 处理状态限制外的数据包，需要解码处理
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkLiveConnectionMagic, NetworkEventDataMagic);
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkMagicLiveConnection, NetworkMagicEventData);
     if ((int)PacketProcessingResult == 0) {
       // 验证数据包头部
-      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkBinaryDataMagic);
+      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkMagicBinaryData);
       if ((int)PacketProcessingResult == 0) {
         // 处理连接数据
         NetworkHandle ConnectionDataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
@@ -3658,12 +3658,12 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证主魔数
-    if (PrimaryMagicNumber == NetworkLiveConnectionMagic || PrimaryMagicNumber == NetworkValidationMagic) {
+    if (PrimaryMagicNumber == NetworkMagicLiveConnection || PrimaryMagicNumber == NetworkMagicValidation) {
       MagicNumberValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证次魔数
-    if (SecondaryMagicNumber == NetworkBinaryDataMagic || SecondaryMagicNumber == NetworkMemoryValidationMagic) {
+    if (SecondaryMagicNumber == NetworkMagicBinaryData || SecondaryMagicNumber == NetworkMemoryValidationMagic) {
       MagicNumberValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
@@ -3674,7 +3674,7 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   }
   
   // 根据解码模式处理数据
-  if (DecodingMode == NetworkPacketBasicDecodingMode) {
+  if (DecodingMode == NetworkBasicDecodingMode) {
     // 基本解码模式
     PacketDecodingStatus = MagicNumberValidationResult & NetworkValidationMagicMask;
   } else if (DecodingMode == NetworkPacketStrictDecodingMode) {
@@ -3808,7 +3808,7 @@ NetworkHandle ValidatePacketHeaderSecurity(int64_t ConnectionContext, int64_t Pa
  * 
  * @note 这是简化实现，实际应用中需要实现完整的数据流解码逻辑
  * @warning 简化实现仅执行基本的缓冲区初始化，不进行实际的解码工作
- * @see NetworkPacketBasicDecodingMode, NetworkPacketStrictDecodingMode
+ * @see NetworkBasicDecodingMode, NetworkPacketStrictDecodingMode
  * 
  * @security 该函数处理敏感数据流，需要确保解码过程的安全性和数据的机密性
  */
