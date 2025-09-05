@@ -407,8 +407,8 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 // 网络超时常量
 #define NetworkTimeout1Second 1000                             // 网络超时：1秒
 #define NetworkTimeout5Seconds 5000                           // 网络超时：5秒
-#define NetworkTimeoutThirtySeconds 30000                          // 30秒超时
-#define NetworkTimeoutFiveMinutes 300000                          // 5分钟超时
+#define NetworkTimeout30Seconds 30000                          // 网络超时：30秒
+#define NetworkTimeout5Minutes 300000                          // 网络超时：5分钟
 #define NetworkHeartbeatThirtySeconds 30                          // 30秒心跳
 #define NetworkHeartbeatSixtySeconds 60                          // 60秒心跳
 
@@ -1335,7 +1335,7 @@ void AcceptConnection(void)
   NetworkSessionTimeoutDuration = NetworkTimeoutFiveMinutes;              // 设置会话超时时间为300秒
   NetworkHandshakeTimeout = NetworkTimeout5Seconds;                     // 设置握手超时时间为5秒
   NetworkAuthenticationTimeout = NetworkTimeout5Seconds;               // 设置认证超时时间为5秒
-  NetworkEncryptionTimeout = NetworkTimeoutFiveSeconds;                   // 设置加密超时时间为5秒
+  NetworkEncryptionTimeout = NetworkTimeout5Seconds;                   // 设置加密超时时间为5秒
   
   // 更新连接统计
   NetworkCurrentActiveConnectionsCount++;                     // 增加活跃连接计数
@@ -1595,7 +1595,7 @@ void SendNetworkData(void)
   NetworkPacketSequence = NetworkSequenceInitialValue;                         // 初始化数据包序列号
   NetworkAcknowledgeNumber = NetworkAckInitialValue;                      // 初始化确认号
   NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
-  NetworkRetransmitTimer = NetworkTimeoutFiveSeconds;                       // 设置重传计时器为5秒
+  NetworkRetransmitTimer = NetworkTimeout5Seconds;                       // 设置重传计时器为5秒
   NetworkKeepAliveTime = NetworkHeartbeatThirtySeconds;                          // 设置保持连接时间为30秒
   NetworkHeartbeatTimeout = NetworkHeartbeatSixtySeconds;                      // 设置心跳超时时间为60秒
   
@@ -1753,8 +1753,8 @@ void InitializeNetworkPacketProcessingSystem(void)
   NetworkPacketLoss = NetworkPacketsResetValue;                             // 重置数据包丢失率
   
   // 初始化重试机制
-  NetworkRetryInterval = NetworkTimeoutOneSecond;                        // 设置重试间隔为1秒
-  NetworkTimeoutInterval = NetworkTimeoutFiveSeconds;                     // 设置超时间隔为5秒
+  NetworkRetryInterval = NetworkTimeout1Second;                        // 设置重试间隔为1秒
+  NetworkTimeoutInterval = NetworkTimeout5Seconds;                     // 设置超时间隔为5秒
   NetworkConnectionRetryCount = NetworkRetryCountMaximum;             // 设置连接重试次数为3次
   NetworkConnectionBackoffTime = NetworkBackoffTimeTwoSeconds;           // 设置连接退避时间为2秒
   
