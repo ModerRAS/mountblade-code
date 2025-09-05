@@ -90122,12 +90122,18 @@ void ResetUtilityPointers1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ResetUtilityPointers2(void)
-// 重置工具指针组2，将其指向默认内存位置
+/**
+ * @brief 重置工具指针组2
+ * 
+ * 该函数负责重置工具系统的第二组指针，将其指向默认的异常处理器。
+ * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
+ * 
+ * @note 原始函数名：ResetUtilityPointers2
+ */
 void ResetUtilityPointers2(void)
 
 {
-  _DAT_180bf5770 = &DefaultExceptionHandlerB;
+  UtilitySystemPointer2 = &DefaultExceptionHandler;
   return;
 }
 
@@ -90136,12 +90142,18 @@ void ResetUtilityPointers2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ResetUtilityPointers3(void)
-// 重置工具指针组3，将其指向默认内存位置
+/**
+ * @brief 重置工具指针组3
+ * 
+ * 该函数负责重置工具系统的第三组指针，将其指向默认的异常处理器。
+ * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
+ * 
+ * @note 原始函数名：ResetUtilityPointers3
+ */
 void ResetUtilityPointers3(void)
 
 {
-  _DAT_180bf5208 = &DefaultExceptionHandlerB;
+  UtilitySystemPointer3 = &DefaultExceptionHandler;
   return;
 }
 
@@ -90150,12 +90162,18 @@ void ResetUtilityPointers3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ResetUtilityPointerE0(void)
-// 功能：重置工具系统指针E0到默认位置
+/**
+ * @brief 重置工具指针E0
+ * 
+ * 该函数负责重置工具系统的E0指针，将其指向默认的异常处理器。
+ * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
+ * 
+ * @note 原始函数名：ResetUtilityPointerE0
+ */
 void ResetUtilityPointerE0(void)
 
 {
-  _DAT_180bf5bc0 = &DefaultExceptionHandlerB;
+  UtilitySystemPointerE0 = &DefaultExceptionHandler;
   return;
 }
 
