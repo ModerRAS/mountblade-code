@@ -18135,7 +18135,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
             dataPointer = *(longlong *)(dataContext + 0x20);
             calculatedOffset = *(longlong *)(validationContext4 + 0x10 + dataPointer);
             calculatedIndex = *(longlong *)(validationContext4 + 8 + dataPointer);
-            cVar5 = CheckSystemStatus(calculatedOffset,1);
+            statusFlag = CheckSystemStatus(calculatedOffset,1);
             pdataValue6 = puStack_190;
             if ((cVar5 == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
               uStack_f0 = *(undefined4 *)(validationContext4 + 4 + dataPointer);
