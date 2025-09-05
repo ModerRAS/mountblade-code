@@ -27996,7 +27996,7 @@ ValidationErrorHandler2:
       return memoryBaseAddress;
     }
     operationResult = *(uint *)(stackFramePointer + 0x7f);
-    memoryBaseAddress = FUN_1808af8b0(register_R13 + 0x60,operationResult >> 1);
+    memoryBaseAddress = ValidateSystemStatusA0(register_R13 + 0x60,operationResult >> 1);
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
@@ -28089,7 +28089,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  operationResult = FUN_1808a2740(*registerContext,register_R13 + 0x50);
+  operationResult = ProcessSystemDataA0(*registerContext,register_R13 + 0x50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -28347,7 +28347,7 @@ uint64_t ValidateSystemDataIntegrity(void)
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  operationResult = FUN_1808a2740(*registerContext,register_R13 + 0x50);
+  operationResult = ProcessSystemDataA0(*registerContext,register_R13 + 0x50);
   if ((int)operationResult != 0) {
     return operationResult;
   }
