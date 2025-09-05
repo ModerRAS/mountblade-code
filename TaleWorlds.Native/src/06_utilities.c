@@ -8259,11 +8259,11 @@ void InitializeSystemEventHandlerA1(longlong param_1,longlong param_2)
     iVar1 = FUN_180894b00(param_2,param_1 + 0x1c,&uStackX_8);
     if (iVar1 == 0) {
       iVar1 = ValidateAndProcessSystemResourceA0(uStackX_8,param_1 + 0x2c);
-      if (iVar1 == 0) goto LAB_180891a52;
+      if (iVar1 == 0) goto ValidationCheckpoint;
     }
     return;
   }
-LAB_180891a52:
+ValidationCheckpoint:
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
 }
@@ -8668,7 +8668,7 @@ void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlag
    (*(longlong *)(in_stack_00000070 + 0x20) + (longlong)*(int *)(in_stack_00000070 + 0x28) * 8) =
        in_stack_00000060;
   *(int *)(in_stack_00000070 + 0x28) = *(int *)(in_stack_00000070 + 0x28) + 1;
-LAB_180891fc0:
+SystemCleanupLabel:
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
 }
@@ -8736,7 +8736,7 @@ void ResetUtilitySystemAA0(void)
   *(undefined8 *)(*(longlong *)(registerRBX + 0x20) + (longlong)*(int *)(registerRBX + 0x28) * 8) =
        in_stack_00000060;
   *(int *)(registerRBX + 0x28) = *(int *)(registerRBX + 0x28) + 1;
-LAB_180891fc0:
+SystemCleanupLabel:
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
 }
@@ -8794,7 +8794,7 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
   *(undefined8 *)(*(longlong *)(registerRBX + 0x20) + (longlong)*(int *)(registerRBX + 0x28) * 8) =
        in_stack_00000060;
   *(int *)(registerRBX + 0x28) = *(int *)(registerRBX + 0x28) + 1;
-LAB_180891fc0:
+SystemCleanupLabel:
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(undefined8 *)(registerR14 + 0x98));
 }
@@ -11889,10 +11889,10 @@ void ExecuteSecurityValidationOperation(ulonglong securityContext)
   }
   if (**(int **)(securityContextHandle + 0xd0) == 0) {
     validationResult = FUN_18088c060(*(undefined4 *)(systemData + 0x18));
-    if (validationResult != 0) goto LAB_180894aca;
+    if (validationResult != 0) goto DataProcessingLabel;
   }
   *resultPointer = securityContextHandle;
-LAB_180894aca:
+DataProcessingLabel:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(stackGuard ^ (ulonglong)&stack0x00000000);
 }
@@ -12813,7 +12813,7 @@ void ProcessUtilitySystemData(longlong systemContext,undefined1 *dataBuffer,int 
            (iVar4 = *piStack_6f0, *piStack_6f0 = iVar4 + 1, iVar4 < 10)) &&
           ((*(uint *)(param_1 + 0x6c) >> 0x18 & 1) == 0)) &&
          (((*(uint *)(param_1 + 0x6c) >> 0x19 & 1) != 0 && (iVar8 == *(int *)(param_1 + 0xb0))))) {
-LAB_18089555d:
+MemoryCopyLabel:
                     // WARNING: Subroutine does not return
         memcpy(auStack_648,lVar9,(longlong)*(int *)(lVar9 + 8));
       }
@@ -12937,7 +12937,7 @@ void ProcessSystemDataWithValidation(longlong systemContext,undefined8 dataHandl
         ((*(uint *)(unaff_RDI + 0x6c) >> 0x18 & 1) == 0)) &&
        (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && (iVar4 == *(int *)(unaff_RDI + 0xb0)))))
     {
-LAB_18089555d:
+MemoryCopyLabel:
                     // WARNING: Subroutine does not return
       memcpy(unaff_RBP + -0x10,lVar8,(longlong)*(int *)(lVar8 + 8));
     }
@@ -12971,7 +12971,7 @@ LAB_18089555d:
     }
   }
   *unaff_R13 = 0;
-LAB_180895b69:
+DataValidationLabel:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
@@ -86335,31 +86335,47 @@ void FUN_180941d20(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941d50(void)
-void FUN_180941d50(void)
+/**
+ * @brief 初始化异常处理系统
+ * 
+ * 初始化系统的异常处理机制，设置初始的异常处理器并清理相关状态。
+ * 如果系统已经处于活动状态，则终止系统以确保安全。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 如果系统已经初始化，调用此函数会导致系统终止
+ */
+void InitializeExceptionHandlingSystem(void)
 
 {
-  _DAT_180d48db8 = &UNK_180a3c3e0;
-  if (_DAT_180d48dc0 != 0) {
+  ExceptionHandlerTable = &UnknownExceptionHandlerA0;
+  if (SystemInitializationFlag != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  _DAT_180d48dc0 = 0;
-  _DAT_180d48dd0 = 0;
-  _DAT_180d48db8 = &DefaultExceptionHandlerB;
+  SystemInitializationFlag = 0;
+  SystemExceptionCount = 0;
+  ExceptionHandlerTable = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
 
-941da0(void)
-void FUN_180941da0(void)
+/**
+ * @brief 销毁互斥锁资源
+ * 
+ * 销毁指定的互斥锁资源，释放相关的系统资源。
+ * 此函数通常在系统关闭或资源清理时调用。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 此函数包含复杂的跳转表，可能影响代码的可读性
+ */
+void DestroyMutexResource(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x000180941db8. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180d49680);
+  _Mtx_destroy_in_situ(MutexResourceAddress);
   return;
 }
 
@@ -86368,11 +86384,19 @@ void FUN_180941da0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941dd0(void)
-void FUN_180941dd0(void)
+/**
+ * @brief 设置第三异常处理器B
+ * 
+ * 将系统的第三异常处理器设置为预定义的异常处理函数B。
+ * 这个函数为系统提供额外的异常处理层次，通常用于特殊的异常情况。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 调用此函数会覆盖当前的第三异常处理器设置
+ */
+void SetThirdExceptionHandlerB(void)
 
 {
-  _DAT_180d49730 = &DefaultExceptionHandlerB;
+  ThirdExceptionHandlerPointer = &DefaultExceptionHandlerB;
   return;
 }
 
