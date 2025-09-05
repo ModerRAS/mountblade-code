@@ -29,9 +29,9 @@
  * 
  * 该函数用于获取系统的上下文句柄，包含系统状态和配置信息
  * 
- * @note 原始函数名：func_0x000180867680
+ * @note 原始函数名：GetSystemContextHandle
  */
-#define GetSystemContextHandle func_0x000180867680
+#define GetSystemContextHandle GetSystemContextHandle
 
 /**
  * @brief 带验证的系统数据处理
@@ -47,7 +47,7 @@
  * 
  * 该函数用于处理系统数据并进行加密操作，保护数据安全
  * 
- * @note 原始函数名：func_0x00018074b7d0
+ * @note 原始函数名：EncryptSystemData
  */
 #define ProcessSystemDataWithEncryption EncryptSystemData
 
@@ -101,18 +101,18 @@
  * 
  * 该函数用于验证数据的有效性和完整性
  * 
- * @note 原始函数名：func_0x0001808de610
+ * @note 原始函数名：ValidateData
  */
-#define ValidateData func_0x0001808de610
+#define ValidateData ValidateData
 
 /**
  * @brief 内存分配处理函数A0
  * 
  * 该函数用于处理内存分配操作
  * 
- * @note 原始函数名：func_0x00018076a7d0
+ * @note 原始函数名：AllocateMemory
  */
-#define AllocateMemory func_0x00018076a7d0
+#define AllocateMemory AllocateMemory
 
 /**
  * @brief 内存初始化函数A0
@@ -128,90 +128,90 @@
  * 
  * 该函数用于处理数据操作
  * 
- * @note 原始函数名：func_0x00018074b7b0
+ * @note 原始函数名：ProcessData
  */
-#define ProcessData func_0x00018074b7b0
+#define ProcessData ProcessData
 
 /**
  * @brief 系统状态检查函数A0
  * 
  * 该函数用于检查系统状态
  * 
- * @note 原始函数名：func_0x000180894c50
+ * @note 原始函数名：CheckSystemStatus
  */
-#define CheckSystemStatus func_0x000180894c50
+#define CheckSystemStatus CheckSystemStatus
 
 /**
  * @brief 系统初始化函数A0
  * 
  * 该函数用于初始化系统组件
  * 
- * @note 原始函数名：func_0x00018085fa80
+ * @note 原始函数名：InitializeSystem
  */
-#define InitializeSystem func_0x00018085fa80
+#define InitializeSystem InitializeSystem
 
 /**
  * @brief 参数验证函数A0
  * 
  * 该函数用于验证参数的有效性
  * 
- * @note 原始函数名：func_0x000180855b70
+ * @note 原始函数名：ValidateParameters
  */
-#define ValidateParameters func_0x000180855b70
+#define ValidateParameters ValidateParameters
 
 /**
  * @brief 上下文验证函数A0
  * 
  * 该函数用于验证上下文信息
  * 
- * @note 原始函数名：func_0x0001808675f0
+ * @note 原始函数名：ValidateContext
  */
-#define ValidateContext func_0x0001808675f0
+#define ValidateContext ValidateContext
 
 /**
  * @brief 上下文处理函数A0
  * 
  * 该函数用于处理上下文操作
  * 
- * @note 原始函数名：func_0x0001808676a0
+ * @note 原始函数名：ProcessContext
  */
-#define ProcessContext func_0x0001808676a0
+#define ProcessContext ProcessContext
 
 /**
  * @brief 数据转换函数A0
  * 
  * 该函数用于数据转换操作
  * 
- * @note 原始函数名：func_0x0001808aec10
+ * @note 原始函数名：ConvertData
  */
-#define ConvertData func_0x0001808aec10
+#define ConvertData ConvertData
 
 /**
  * @brief 内存管理函数A0
  * 
  * 该函数用于内存管理操作
  * 
- * @note 原始函数名：func_0x00018064e870
+ * @note 原始函数名：ManageMemory
  */
-#define ManageMemory func_0x00018064e870
+#define ManageMemory ManageMemory
 
 /**
  * @brief 系统清理函数A0
  * 
  * 该函数用于清理系统资源
  * 
- * @note 原始函数名：func_0x00018005f320
+ * @note 原始函数名：CleanupSystem
  */
-#define CleanupSystem func_0x00018005f320
+#define CleanupSystem CleanupSystem
 
 /**
  * @brief 系统配置函数A0
  * 
  * 该函数用于配置系统参数
  * 
- * @note 原始函数名：func_0x000180060c00
+ * @note 原始函数名：ConfigureSystemA0
  */
-#define ConfigureSystemA0 func_0x000180060c00
+#define ConfigureSystemA0 ConfigureSystemA0
 
 /**
  * @brief 系统处理函数A0
@@ -3617,9 +3617,9 @@
 // 功能：获取系统当前状态
 #define GetSystemCurrentState func_0x0001808e64d0
 
-// 原始函数名：func_0x000180867680 - 范围数据获取函数
+// 原始函数名：GetSystemContextHandle - 范围数据获取函数
 // 功能：获取系统操作范围数据
-#define GetOperationRangeData func_0x000180867680
+#define GetOperationRangeData GetSystemContextHandle
 
 // 原始函数名：func_0x000180867960 - 范围验证函数A0
 // 功能：验证系统操作范围
@@ -14262,7 +14262,7 @@ int ProcessDataBufferWithValidation(longlong *bufferContext,longlong dataBuffer,
   processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&UNK_180982240);
   processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&DAT_180a06434);
   processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = func_0x00018074b7d0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,((int)bufferContext[2] + 2) * 0xc);
+  processedBytes2 = EncryptSystemData(processedBytes1 + dataBuffer,bufferSize - processedBytes1,((int)bufferContext[2] + 2) * 0xc);
   processedBytes1 = processedBytes1 + processedBytes2;
   processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&DAT_180a06434);
   processedBytes1 = processedBytes1 + processedBytes2;
@@ -16760,7 +16760,7 @@ int ProcessStringData(longlong stringContext, longlong dataBuffer, int bufferSiz
   int processedBytes2;
   
   formatFlag = *(undefined4 *)(stringContext + 0x14);
-  processedBytes1 = func_0x00018074b7d0(dataBuffer,bufferSize,*(undefined4 *)(stringContext + 0x10));
+  processedBytes1 = EncryptSystemData(dataBuffer,bufferSize,*(undefined4 *)(stringContext + 0x10));
   processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&DAT_180a06434);
   processedBytes1 = processedBytes1 + processedBytes2;
   processedBytes2 = ProcessSystemDataWithValidation(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag);
@@ -16823,7 +16823,7 @@ int ProcessComplexData(longlong complexContext, longlong dataBuffer, int bufferS
   processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&UNK_180986470);
   processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&DAT_180a06434);
   processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = func_0x00018074b7d0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag2);
+  processedBytes2 = EncryptSystemData(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag2);
   processedBytes1 = processedBytes1 + processedBytes2;
   processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&DAT_180a06434);
   processedBytes1 = processedBytes1 + processedBytes2;
@@ -17554,7 +17554,7 @@ void ProcessDataPointerOperationsA0(longlong *dataPointer, longlong *resultPoint
   ulonglong in_stack_00000220;
   
   iVar1 = (**(code **)(in_RAX + 0x10))();
-  func_0x00018074b7b0(auStackX_20 + iVar1,0x200 - iVar1,10);
+  ProcessData(auStackX_20 + iVar1,0x200 - iVar1,10);
   iVar1 = (**(code **)(*unaff_RDI + 8))();
   if (((iVar1 == 0) && (unaff_SIL == '\0')) &&
      (iVar1 = (**(code **)(*unaff_RDI + 0x18))(), iVar1 == 0)) {
@@ -17682,7 +17682,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
             lVar9 = *(longlong *)(dataContext + 0x20);
             calculatedOffset = *(longlong *)(validationContext4 + 0x10 + lVar9);
             lVar4 = *(longlong *)(validationContext4 + 8 + lVar9);
-            cVar5 = func_0x000180894c50(calculatedOffset,1);
+            cVar5 = CheckSystemStatus(calculatedOffset,1);
             puVar16 = puStack_190;
             if ((cVar5 == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(lVar4 + 0x28))) {
               uStack_f0 = *(undefined4 *)(validationContext4 + 4 + lVar9);
@@ -17712,7 +17712,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
         iVar6 = ProcessDataOperationA7(uVar10,uVar11,acStack_1c4);
         if (iVar6 == 0) {
           if (acStack_1c4[0] != '\0') {
-            uVar11 = func_0x00018085fa80();
+            uVar11 = InitializeSystem();
             iVar6 = memcmp(dataContext + 0x38,uVar11,0x30);
             if (iVar6 != 0) {
               uStack_140 = *(undefined8 *)(dataContext + 0x38);
@@ -17783,7 +17783,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
               } while ((int)fVar13 < 6);
-              validationOutcome = func_0x000180855b70(param_2 + 200);
+              validationOutcome = ValidateParameters(param_2 + 200);
               if ((float)(validationOutcome / 0x30) != 0.0) {
                 puStack_1c0 = &UNK_180983be8;
                 uStack_1b0 = uStack_1c8;
@@ -17922,7 +17922,7 @@ ProcessDataSecurityValidation:
           validationContext5 = *(longlong *)(unaff_R15 + 0x20);
           dataContext = *(longlong *)(uVar20 + 0x10 + validationContext5);
           calculatedOffset = *(longlong *)(uVar20 + 8 + validationContext5);
-          cVar12 = func_0x000180894c50(dataContext,1);
+          cVar12 = CheckSystemStatus(dataContext,1);
           resourcePointer2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
             uVar24 = *(undefined4 *)(uVar20 + 4 + validationContext5);
@@ -17956,7 +17956,7 @@ ProcessDataSecurityValidation:
       if (iVar13 == 0) {
         uVar24 = extraout_XMM0_Da_00;
         if (acStackX_24[0] != '\0') {
-          uVar17 = func_0x00018085fa80();
+          uVar17 = InitializeSystem();
           iVar13 = memcmp(unaff_R15 + 0x38,uVar17,0x30);
           uVar24 = extraout_XMM0_Da_01;
           if (iVar13 != 0) {
@@ -18043,7 +18043,7 @@ ProcessDataSecurityValidation:
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
             } while ((int)fVar19 < 6);
-            uVar14 = func_0x000180855b70(registerR14 + 200);
+            uVar14 = ValidateParameters(registerR14 + 200);
             uVar24 = extraout_XMM0_Da_04;
             if ((float)(uVar14 / 0x30) != 0.0) {
               in_stack_00000028 = &UNK_180983be8;
@@ -18169,7 +18169,7 @@ ValidateDataSecurity:
       validationContext5 = *(longlong *)(unaff_R15 + 0x20);
       dataContext = *(longlong *)(uVar20 + 0x10 + validationContext5);
       calculatedOffset = *(longlong *)(uVar20 + 8 + validationContext5);
-      cVar12 = func_0x000180894c50(dataContext,1);
+      cVar12 = CheckSystemStatus(dataContext,1);
       unaff_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
         uVar23 = *(undefined4 *)(uVar20 + 4 + validationContext5);
@@ -18203,7 +18203,7 @@ ValidateDataSecurity:
   if (iVar13 == 0) {
     uVar23 = extraout_XMM0_Da;
     if (acStackX_24[0] != '\0') {
-      uVar17 = func_0x00018085fa80();
+      uVar17 = InitializeSystem();
       iVar13 = memcmp(unaff_R15 + 0x38,uVar17,0x30);
       uVar23 = extraout_XMM0_Da_00;
       if (iVar13 != 0) {
@@ -18290,7 +18290,7 @@ ValidateDataSecurity:
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 6);
-        uVar14 = func_0x000180855b70(registerR14 + 200);
+        uVar14 = ValidateParameters(registerR14 + 200);
         uVar23 = extraout_XMM0_Da_03;
         if ((float)(uVar14 / 0x30) != 0.0) {
           in_stack_00000028 = &UNK_180983be8;
@@ -18434,7 +18434,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
     } while ((int)fVar4 < 6);
-    validationStatus = func_0x000180855b70(registerR14 + 200);
+    validationStatus = ValidateParameters(registerR14 + 200);
     dataFlags = extraout_XMM0_Da_00;
     if ((float)(validationStatus / 0x30) != 0.0) {
       in_stack_00000028 = &UNK_180983be8;
@@ -18614,7 +18614,7 @@ OperationFailedLabel:
           if (((char)dataContext == '\0') && (iVar3 = ValidateSystemDataA0(param_1,1), iVar3 != 0))
           goto LAB_180897ce8;
           iVar3 = (**(code **)(puStack_280 + 0x10))(&puStack_280,auStack_238,0x200);
-          func_0x00018074b7b0((longlong)auStack_238 + (longlong)iVar3,0x200 - iVar3,10);
+          ProcessData((longlong)auStack_238 + (longlong)iVar3,0x200 - iVar3,10);
           iVar3 = (**(code **)(*param_1 + 8))(param_1,auStack_238);
           if (iVar3 != 0) goto LAB_180897ce8;
           if ((char)dataContext == '\0') {
@@ -18994,7 +18994,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
              (iVar6 = ValidateSystemDataA0(param_1,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), iVar6 != 0
              )) goto LAB_18089866f;
           iVar6 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
-          func_0x00018074b7b0(auStack_238 + iVar6,0x200 - iVar6,10);
+          ProcessData(auStack_238 + iVar6,0x200 - iVar6,10);
           iVar6 = (**(code **)(*param_1 + 8))(param_1,auStack_238);
           if (iVar6 != 0) goto LAB_18089866f;
           if ((char)validationContext5 == '\0') {
@@ -19009,14 +19009,14 @@ void ProcessFloatingPointDataA1(longlong *param_1)
         } while ((longlong)validationContextPointer4 < alStack_300[0]);
       }
       validationContext5 = param_1[1] + 0x60;
-      iVar6 = func_0x0001808675f0(validationContext5);
+      iVar6 = ValidateContext(validationContext5);
       validationContextPointer4 = validationContextPointer6;
       if (0 < iVar6) {
         do {
           ProcessSystemDataA0(validationContext5,auStack_2f0,validationContextPointer4);
-          func_0x0001808676a0(validationContext5,validationContextPointer4,afStack_348,alStack_300);
-          validationContext1 = func_0x000180867680(validationContext5,validationContextPointer4);
-          cVar5 = func_0x000180894c50(validationContext1,0);
+          ProcessContext(validationContext5,validationContextPointer4,afStack_348,alStack_300);
+          validationContext1 = GetSystemContextHandle(validationContext5,validationContextPointer4);
+          cVar5 = CheckSystemStatus(validationContext1,0);
           if ((cVar5 == '\0') && (afStack_348[0] != *(float *)(validationContext1 + 0x4c))) {
             uStack_2c0 = auStack_2f0._0_4_;
             uStack_2bc = auStack_2f0._4_4_;
@@ -19052,7 +19052,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
               if (iVar7 != 0) goto LAB_18089866f;
             }
             iVar7 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
-            func_0x00018074b7b0(auStack_238 + iVar7,0x200 - iVar7,10);
+            ProcessData(auStack_238 + iVar7,0x200 - iVar7,10);
             iVar7 = (**(code **)(*param_1 + 8))(param_1,auStack_238);
             if (iVar7 != 0) goto LAB_18089866f;
             if ((char)validationContext1 == '\0') {
@@ -20339,7 +20339,7 @@ undefined8 ProcessDataSequenceA0(longlong *param_1)
   else {
     if (param_1[2] != 0) {
       stackParameter40 = 0;
-      uVar1 = func_0x00018076a7d0(*param_1,&stack0x00000040);
+      uVar1 = AllocateMemory(*param_1,&stack0x00000040);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -20441,7 +20441,7 @@ undefined8 ExecuteDataValidationA0(undefined8 *param_1,longlong *param_2)
   else {
     if (param_2[2] != 0) {
       auStackX_10[0] = 0;
-      uVar1 = func_0x00018076a7d0(*param_2,auStackX_10);
+      uVar1 = AllocateMemory(*param_2,auStackX_10);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -20529,7 +20529,7 @@ void ValidateDataWithSecurityCheck(longlong *dataHandle,undefined4 *resultBuffer
   else {
     if (dataHandle[2] != 0) {
       sizeBuffer[0] = 0;
-      validationResult = func_0x00018076a7d0(*dataHandle,sizeBuffer);
+      validationResult = AllocateMemory(*dataHandle,sizeBuffer);
       if (validationResult != 0) {
         return;
       }
@@ -20565,7 +20565,7 @@ undefined8 ProcessComplexDataStructureA0(longlong *param_1,longlong *param_2)
   else {
     if (param_1[2] != 0) {
       auStackX_10[0] = 0;
-      uVar1 = func_0x00018076a7d0(*param_1,auStackX_10);
+      uVar1 = AllocateMemory(*param_1,auStackX_10);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -22751,7 +22751,7 @@ DataCheckpointB:
       }
       else {
         uStack0000000000000034 = 0;
-        validationStatus = func_0x00018076a7d0(*validationContextPointer,(longlong)&stack0x00000030 + 4);
+        validationStatus = AllocateMemory(*validationContextPointer,(longlong)&stack0x00000030 + 4);
         if (validationStatus == 0) {
           if ((ulonglong)uStack0000000000000034 + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089af81;
           validationStatus = 0x11;
@@ -22854,7 +22854,7 @@ MemoryCheckpointA:
       }
       else {
         uStack0000000000000034 = 0;
-        unaff_EDI = func_0x00018076a7d0(*validationContextPointer,(longlong)&stack0x00000030 + 4);
+        unaff_EDI = AllocateMemory(*validationContextPointer,(longlong)&stack0x00000030 + 4);
         if (unaff_EDI == 0) {
           if ((ulonglong)uStack0000000000000034 + 4 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b1ab;
           unaff_EDI = 0x11;
@@ -23347,7 +23347,7 @@ undefined8 ExecuteAdvancedDataValidationA0(longlong param_1,longlong *param_2)
   }
   else {
     if (param_2[2] != 0) {
-      uVar2 = func_0x00018076a7d0(*param_2,&stack0x00000018);
+      uVar2 = AllocateMemory(*param_2,&stack0x00000018);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -23425,7 +23425,7 @@ undefined8 CleanupDataResourcesA0(void)
   else {
     if (pdataContext[2] != 0) {
       stackParameter40 = 0;
-      validationStatus = func_0x00018076a7d0(*pdataContext,&stack0x00000040);
+      validationStatus = AllocateMemory(*pdataContext,&stack0x00000040);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -23478,7 +23478,7 @@ undefined8 ResetDataProcessorA1(void)
   else {
     if (pdataContext[2] != 0) {
       stackParameter40 = 0;
-      validationStatus = func_0x00018076a7d0(*pdataContext,&stack0x00000040);
+      validationStatus = AllocateMemory(*pdataContext,&stack0x00000040);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -23552,7 +23552,7 @@ undefined8 ValidateSystemDataIntegrity(int validationFlag)
   else {
     if (validationContextPointer[2] != 0) {
       uStack0000000000000040 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x00000040);
+      uVar2 = AllocateMemory(*validationContextPointer,&stack0x00000040);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -23593,7 +23593,7 @@ void ValidateContextStatus(void)
   else {
     if (validationContextPointer[2] != 0) {
       uStack0000000000000040 = 0;
-      operationResult = func_0x00018076a7d0(*validationContextPointer,&stack0x00000040);
+      operationResult = AllocateMemory(*validationContextPointer,&stack0x00000040);
       if (operationResult != 0) {
         return;
       }
@@ -23838,7 +23838,7 @@ DataProcessLabelA:
     }
     else {
       auStackX_20[0] = 0;
-      memoryBaseAddress = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
+      memoryBaseAddress = AllocateMemory(*validationContextPointer,auStackX_20);
       if (memoryBaseAddress == 0) {
         if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b91c;
         memoryBaseAddress = 0x11;
@@ -24002,7 +24002,7 @@ DataProcessLabelA:
     }
     else {
       stackDataSize = 0;
-      memoryBaseAddress = func_0x00018076a7d0(*validationContextPointer,&stackDataSize);
+      memoryBaseAddress = AllocateMemory(*validationContextPointer,&stackDataSize);
       if (memoryBaseAddress == 0) {
         if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b91c;
         memoryBaseAddress = 0x11;
@@ -24306,7 +24306,7 @@ DataProcessLabelA:
     }
     else {
       stackDataSize = 0;
-      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stackDataSize);
+      validationStatus = AllocateMemory(*validationContextPointer,&stackDataSize);
       if (validationStatus == 0) {
         if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089b91c;
         validationStatus = 0x11;
@@ -24718,7 +24718,7 @@ DataProcessLabelC:
     operationResult = FUN_1808ad600(param_2,param_1 + 0x40);
   }
   if (operationResult == 0) {
-    func_0x000180069ee0(param_1);
+    InitializeMemory(param_1);
   }
   return;
 }
@@ -24827,7 +24827,7 @@ DataProcessLabelC:
     iVar1 = FUN_1808ad600();
   }
   if (iVar1 == 0) {
-    func_0x000180069ee0();
+    InitializeMemory();
   }
   return;
 }
@@ -24925,7 +24925,7 @@ ValidationLabelA:
       memoryValidationStatus = OperateDataO0(*AllocationParams,MemoryContext + 4,4);
     }
     if (memoryValidationStatus == 0) {
-      allocatedAddress = func_0x000180069ee0(MemoryContext);
+      allocatedAddress = InitializeMemory(MemoryContext);
     }
     else {
       allocatedAddress = (ulonglong)memoryValidationStatus;
@@ -26051,7 +26051,7 @@ OperationLabelA:
     }
     else {
       auStackX_20[0] = 0;
-      uVar9 = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
+      uVar9 = AllocateMemory(*validationContextPointer,auStackX_20);
       if (uVar9 == 0) {
         if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089c743;
         uVar9 = 0x11;
@@ -26088,7 +26088,7 @@ OperationLabelB:
   else {
     if (validationContextPointer[2] != 0) {
       auStackX_18[0] = 0;
-      validationStatus = func_0x00018076a7d0(*validationContextPointer,auStackX_18);
+      validationStatus = AllocateMemory(*validationContextPointer,auStackX_18);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -26201,7 +26201,7 @@ ValidationContextHandler:
     }
     else {
       uStack_84 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&uStack_84);
+      uVar2 = AllocateMemory(*validationContextPointer,&uStack_84);
       if (uVar2 == 0) {
         if ((ulonglong)uStack_84 + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089c9a8;
         uVar2 = 0x11;
@@ -26229,7 +26229,7 @@ ValidationErrorHandler:
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  if ((*(uint *)(param_2 + 8) < 0x60) && (validationStatus = func_0x0001808de610(param_2), (int)validationStatus != 0)) {
+  if ((*(uint *)(param_2 + 8) < 0x60) && (validationStatus = ValidateData(param_2), (int)validationStatus != 0)) {
     return validationStatus;
   }
   validationStatus = dataFlags;
@@ -26257,7 +26257,7 @@ ValidationRetryHandler:
       }
       else {
         uStack_84 = 0;
-        uVar2 = func_0x00018076a7d0(*validationContextPointer,&uStack_84);
+        uVar2 = AllocateMemory(*validationContextPointer,&uStack_84);
         if (uVar2 == 0) {
           if ((ulonglong)uStack_84 + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089ca9c;
           uVar2 = 0x11;
@@ -26410,7 +26410,7 @@ OperationLabelA:
     }
     else {
       *(undefined4 *)(unaff_RBP + 0x7f) = 0;
-      securityCheckResult = func_0x00018076a7d0(dataContext,unaff_RBP + 0x7f);
+      securityCheckResult = AllocateMemory(dataContext,unaff_RBP + 0x7f);
       if (securityCheckResult == 0) {
         if ((ulonglong)*(uint *)(unaff_RBP + 0x7f) + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089c743;
         securityCheckResult = 0x11;
@@ -26448,7 +26448,7 @@ OperationLabelB:
   else {
     if (validationContextPointer[2] != 0) {
       *(undefined4 *)(unaff_RBP + 0x77) = 0;
-      memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + 0x77);
+      memoryBaseAddress = AllocateMemory(dataContext,unaff_RBP + 0x77);
       if ((int)memoryBaseAddress != 0) {
         return memoryBaseAddress;
       }
@@ -26563,7 +26563,7 @@ ValidationContextHandler:
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x25) = 0;
-        validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
+        validationStatus = AllocateMemory(dataContext,unaff_RBP + -0x25);
         fVar9 = extraout_XMM0_Da_00;
         if (validationStatus == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
@@ -26592,7 +26592,7 @@ ValidationContextHandler:
     return memoryBaseAddress;
   }
   if ((*(uint *)(registerContext + 8) < 0x60) &&
-     (memoryBaseAddress = func_0x0001808de610(), fVar9 = extraout_XMM0_Da_02, (int)memoryBaseAddress != 0)) {
+     (memoryBaseAddress = ValidateData(), fVar9 = extraout_XMM0_Da_02, (int)memoryBaseAddress != 0)) {
     return memoryBaseAddress;
   }
   memoryBaseAddress = validationOutcome;
@@ -26626,7 +26626,7 @@ ValidationRetryHandler:
   }
   else {
     *(undefined4 *)(unaff_RBP + -0x25) = 0;
-    validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
+    validationStatus = AllocateMemory(dataContext,unaff_RBP + -0x25);
     fVar9 = extraout_XMM0_Da_04;
     if (validationStatus == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089ca9c;
@@ -26817,7 +26817,7 @@ ValidationContextHandler:
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x25) = 0;
-        memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
+        memoryBaseAddress = AllocateMemory(dataContext,unaff_RBP + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (memoryBaseAddress == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
@@ -26848,7 +26848,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if ((*(uint *)(registerContext + 8) < 0x60) &&
-     (operationResult = func_0x0001808de610(), fVar12 = extraout_XMM0_Da_02, (int)operationResult != 0)) {
+     (operationResult = ValidateData(), fVar12 = extraout_XMM0_Da_02, (int)operationResult != 0)) {
     return operationResult;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
@@ -26884,7 +26884,7 @@ ValidationRetryHandler:
   }
   else {
     *(undefined4 *)(unaff_RBP + -0x25) = 0;
-    memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
+    memoryBaseAddress = AllocateMemory(dataContext,unaff_RBP + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (memoryBaseAddress == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089ca9c;
@@ -27075,7 +27075,7 @@ ValidationContextHandler:
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x25) = 0;
-        memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
+        memoryBaseAddress = AllocateMemory(dataContext,unaff_RBP + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (memoryBaseAddress == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
@@ -27106,7 +27106,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if ((*(uint *)(registerContext + 8) < 0x60) &&
-     (operationResult = func_0x0001808de610(), fVar12 = extraout_XMM0_Da_02, (int)operationResult != 0)) {
+     (operationResult = ValidateData(), fVar12 = extraout_XMM0_Da_02, (int)operationResult != 0)) {
     return operationResult;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
@@ -27142,7 +27142,7 @@ ValidationRetryHandler:
   }
   else {
     *(undefined4 *)(unaff_RBP + -0x25) = 0;
-    memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
+    memoryBaseAddress = AllocateMemory(dataContext,unaff_RBP + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (memoryBaseAddress == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089ca9c;
@@ -27287,7 +27287,7 @@ ValidationContextHandler:
       }
       else {
         *(int *)(unaff_RBP + -0x25) = iVar9;
-        memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
+        memoryBaseAddress = AllocateMemory(dataContext,unaff_RBP + -0x25);
         param_1 = extraout_XMM0_Da;
         if (memoryBaseAddress == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
@@ -27318,7 +27318,7 @@ ValidationContextHandler:
     return dataFlags;
   }
   if ((*(uint *)(registerContext + 8) < 0x60) &&
-     (dataFlags = func_0x0001808de610(), param_1 = extraout_XMM0_Da_01, (int)dataFlags != 0)) {
+     (dataFlags = ValidateData(), param_1 = extraout_XMM0_Da_01, (int)dataFlags != 0)) {
     return dataFlags;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
@@ -27349,7 +27349,7 @@ ValidationRetryHandler:
       }
       else {
         *(int *)(unaff_RBP + -0x25) = iVar9;
-        memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + -0x25);
+        memoryBaseAddress = AllocateMemory(dataContext,unaff_RBP + -0x25);
         param_1 = extraout_XMM0_Da_03;
         if (memoryBaseAddress == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x25) + 1 <= (ulonglong)validationContextPointer[2])
@@ -27508,7 +27508,7 @@ ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
     else {
       if (validationContextPointer[2] != 0) {
         auStackX_20[0] = 0;
-        validationStatus = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
+        validationStatus = AllocateMemory(*validationContextPointer,auStackX_20);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -27591,7 +27591,7 @@ ulonglong FUN_18089ccb9(void)
     else {
       if (validationContextPointer[2] != 0) {
         in_stack_00000088 = 0;
-        validationStatus = func_0x00018076a7d0(*validationContextPointer,&stack0x00000088);
+        validationStatus = AllocateMemory(*validationContextPointer,&stack0x00000088);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -27739,7 +27739,7 @@ ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
   else {
     if (validationContextPointer[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,auStackX_18);
+      uVar2 = AllocateMemory(*validationContextPointer,auStackX_18);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -27772,7 +27772,7 @@ ValidationContextCleanup:
   else {
     if (validationContextPointer[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,auStackX_18);
+      uVar2 = AllocateMemory(*validationContextPointer,auStackX_18);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -27810,7 +27810,7 @@ ValidationCompleteHandler:
     }
     else {
       auStackX_20[0] = 0;
-      validationStatus = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
+      validationStatus = AllocateMemory(*validationContextPointer,auStackX_20);
       if (validationStatus == 0) {
         if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089d034;
         validationStatus = 0x11;
@@ -27867,7 +27867,7 @@ ulonglong FUN_18089ce60(void)
   else {
     if (validationContextPointer[2] != 0) {
       _cStack0000000000000090 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stackDataBuffer);
+      uVar2 = AllocateMemory(*validationContextPointer,&stackDataBuffer);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -27900,7 +27900,7 @@ ValidationContextCleanup:
   else {
     if (validationContextPointer[2] != 0) {
       _cStack0000000000000090 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stackDataBuffer);
+      uVar2 = AllocateMemory(*validationContextPointer,&stackDataBuffer);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -27938,7 +27938,7 @@ ValidationCompleteHandler:
     }
     else {
       stackDataSize = 0;
-      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stackDataSize);
+      validationStatus = AllocateMemory(*validationContextPointer,&stackDataSize);
       if (validationStatus == 0) {
         if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089d034;
         validationStatus = 0x11;
@@ -27995,7 +27995,7 @@ ValidationCompleteHandler:
     }
     else {
       stackDataSize = (uint)unaff_R15;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stackDataSize);
+      uVar2 = AllocateMemory(*validationContextPointer,&stackDataSize);
       if (uVar2 == 0) {
         if ((ulonglong)stackDataSize + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089d034;
         uVar2 = 0x11;
@@ -28265,7 +28265,7 @@ ValidationDataHandler:
   else {
     if (validationContextPointer[2] != 0) {
       auStackX_20[0] = 0;
-      validationStatus = func_0x00018076a7d0(*validationContextPointer,auStackX_20);
+      validationStatus = AllocateMemory(*validationContextPointer,auStackX_20);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -28364,7 +28364,7 @@ ValidationDataHandler:
   else {
     if (validationContextPointer[2] != 0) {
       in_stack_000000b8 = 0;
-      validationStatus = func_0x00018076a7d0(*validationContextPointer,&stack0x000000b8);
+      validationStatus = AllocateMemory(*validationContextPointer,&stack0x000000b8);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -29321,7 +29321,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   else {
     if (validationContextPointer[2] != 0) {
       auStackX_18[0] = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,auStackX_18);
+      uVar2 = AllocateMemory(*validationContextPointer,auStackX_18);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -29425,7 +29425,7 @@ ulonglong FUN_18089e297(void)
   else {
     if (validationContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x000000b0);
+      uVar2 = AllocateMemory(*validationContextPointer,&stack0x000000b0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -29525,7 +29525,7 @@ ulonglong FUN_18089e2be(void)
   else {
     if (validationContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x000000b0);
+      uVar2 = AllocateMemory(*validationContextPointer,&stack0x000000b0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -29621,7 +29621,7 @@ ulonglong FUN_18089e2e8(void)
   else {
     if (validationContextPointer[2] != 0) {
       in_stack_000000b0 = 0;
-      uVar2 = func_0x00018076a7d0(*validationContextPointer,&stack0x000000b0);
+      uVar2 = AllocateMemory(*validationContextPointer,&stack0x000000b0);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
@@ -29745,7 +29745,7 @@ ValidationErrorHandler5:
             *(undefined4 *)(lVar6 + 0x10) = uVar1;
             *(undefined8 *)(lVar6 + 0x18) = 0;
             *(undefined4 *)(lVar6 + 0x20) = 0;
-            validationStatus = func_0x0001808aec10(param_1 + 0x58,lVar6);
+            validationStatus = ConvertData(param_1 + 0x58,lVar6);
             memoryBaseAddress = (ulonglong)validationStatus;
             if (validationStatus != 0) goto LAB_18089e70b;
           }
@@ -29858,7 +29858,7 @@ ValidationErrorHandler5:
           *(undefined4 *)(lVar9 + 0x10) = uVar11;
           *(undefined8 *)(lVar9 + 0x18) = 0;
           *(undefined4 *)(lVar9 + 0x20) = 0;
-          operationResult = func_0x0001808aec10(unaff_R15 + 0x58,lVar9);
+          operationResult = ConvertData(unaff_R15 + 0x58,lVar9);
           securityCheckResult = (ulonglong)operationResult;
           if (operationResult != 0) goto LAB_18089e70b;
           iVar6 = *(int *)(unaff_RBP + -0x21);
@@ -29928,7 +29928,7 @@ ValidationErrorHandler5:
         *(undefined4 *)(lVar5 + 0x10) = uVar1;
         *(undefined8 *)(lVar5 + 0x18) = registerContext;
         *(int *)(lVar5 + 0x20) = (int)registerContext;
-        uVar2 = func_0x0001808aec10(unaff_R15 + 0x58,lVar5);
+        uVar2 = ConvertData(unaff_R15 + 0x58,lVar5);
         memoryBaseAddress = (ulonglong)uVar2;
         if (uVar2 != 0) goto LAB_18089e70b;
         iVar3 = *(int *)(unaff_RBP + -0x21);
@@ -30071,7 +30071,7 @@ ValidationStartHandler:
   }
   else {
     auStackX_18[0] = 0;
-    memoryBaseAddress = func_0x00018076a7d0(*pdataContext,auStackX_18);
+    memoryBaseAddress = AllocateMemory(*pdataContext,auStackX_18);
     if ((int)memoryBaseAddress == 0) {
       if ((ulonglong)auStackX_18[0] + 4 <= (ulonglong)pdataContext[2]) goto LAB_18089ea0f;
       memoryBaseAddress = 0x11;
@@ -30104,7 +30104,7 @@ ValidationStateHandler2:
           goto LAB_18089eaae;
         }
         uStack_a4 = 0;
-        validationStatus = func_0x00018076a7d0(*pdataContext,&uStack_a4);
+        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
         bVar8 = validationStatus == 0;
         if (bVar8) {
           if ((ulonglong)pdataContext[2] < (ulonglong)uStack_a4 + 1) {
@@ -30139,7 +30139,7 @@ ValidationDataHandler2:
       }
       else {
         uStack_a4 = 0;
-        validationStatus = func_0x00018076a7d0(*pdataContext,&uStack_a4);
+        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
         if (validationStatus == 0) {
           if ((ulonglong)uStack_a4 + 1 <= (ulonglong)pdataContext[2]) goto LAB_18089eb22;
           validationStatus = 0x11;
@@ -30173,7 +30173,7 @@ ValidationStateHandler3:
       }
       else {
         uStack_a4 = 0;
-        validationStatus = func_0x00018076a7d0(*pdataContext,&uStack_a4);
+        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
         if (validationStatus == 0) {
           if ((ulonglong)uStack_a4 + 1 <= (ulonglong)pdataContext[2]) goto LAB_18089ebaa;
           validationStatus = 0x11;
@@ -30207,7 +30207,7 @@ LAB_18089ec32:
       }
       else {
         uStack_a4 = 0;
-        validationStatus = func_0x00018076a7d0(*pdataContext,&uStack_a4);
+        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
         if (validationStatus == 0) {
           if ((ulonglong)uStack_a4 + 1 <= (ulonglong)pdataContext[2]) goto LAB_18089ec32;
           validationStatus = 0x11;
@@ -30239,7 +30239,7 @@ LAB_18089ecba:
       }
       else {
         uStack_a4 = 0;
-        validationStatus = func_0x00018076a7d0(*pdataContext,&uStack_a4);
+        validationStatus = AllocateMemory(*pdataContext,&uStack_a4);
         if (validationStatus == 0) {
           if ((ulonglong)uStack_a4 + 1 <= (ulonglong)pdataContext[2]) goto LAB_18089ecba;
           validationStatus = 0x11;
@@ -30367,7 +30367,7 @@ ValidationStartHandler:
   }
   else {
     *(undefined4 *)(unaff_RBP + 0x77) = 0;
-    memoryBaseAddress = func_0x00018076a7d0(validationContext,unaff_RBP + 0x77);
+    memoryBaseAddress = AllocateMemory(validationContext,unaff_RBP + 0x77);
     if ((int)memoryBaseAddress == 0) {
       if ((ulonglong)*(uint *)(unaff_RBP + 0x77) + 4 <= (ulonglong)pdataContext[2]) goto LAB_18089ea0f;
       memoryBaseAddress = 0x11;
@@ -30401,7 +30401,7 @@ ValidationStateHandler2:
           goto LAB_18089eaae;
         }
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
-        validationStatus = func_0x00018076a7d0(validationContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(validationContext,unaff_RBP + -0x45);
         bVar7 = validationStatus == 0;
         if (bVar7) {
           if ((ulonglong)pdataContext[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -30437,7 +30437,7 @@ ValidationDataHandler2:
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
-        validationStatus = func_0x00018076a7d0(validationContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(validationContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x45) + 1 <= (ulonglong)pdataContext[2])
           goto LAB_18089eb22;
@@ -30473,7 +30473,7 @@ ValidationStateHandler3:
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
-        validationStatus = func_0x00018076a7d0(validationContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(validationContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x45) + 1 <= (ulonglong)pdataContext[2])
           goto LAB_18089ebaa;
@@ -30509,7 +30509,7 @@ LAB_18089ec32:
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
-        validationStatus = func_0x00018076a7d0(validationContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(validationContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x45) + 1 <= (ulonglong)pdataContext[2])
           goto LAB_18089ec32;
@@ -30545,7 +30545,7 @@ LAB_18089ecba:
       }
       else {
         *(undefined4 *)(unaff_RBP + -0x45) = 0;
-        validationStatus = func_0x00018076a7d0(validationContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(validationContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           if ((ulonglong)*(uint *)(unaff_RBP + -0x45) + 1 <= (ulonglong)pdataContext[2])
           goto LAB_18089ecba;
@@ -30622,7 +30622,7 @@ ValidationStartHandler:
     }
     else {
       *(int *)(unaff_RBP + 0x77) = (int)param_3;
-      memoryBaseAddress = func_0x00018076a7d0(dataContext,unaff_RBP + 0x77);
+      memoryBaseAddress = AllocateMemory(dataContext,unaff_RBP + 0x77);
       if ((int)memoryBaseAddress == 0) {
         param_3 = 0;
         if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + 0x77) + 4) {
@@ -30664,7 +30664,7 @@ ValidationStateHandler2:
         goto LAB_18089eaae;
       }
       *(int *)(unaff_RBP + -0x45) = (int)param_3;
-      validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
+      validationStatus = AllocateMemory(dataContext,unaff_RBP + -0x45);
       bVar7 = validationStatus == 0;
       if (bVar7) {
         if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -30702,7 +30702,7 @@ ValidationDataHandler2:
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
-        validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(dataContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
           if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -30745,7 +30745,7 @@ ValidationStateHandler3:
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
-        validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(dataContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
           if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -30788,7 +30788,7 @@ LAB_18089ec32:
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
-        validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(dataContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
           if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -30831,7 +30831,7 @@ LAB_18089ecba:
       }
       else {
         *(int *)(unaff_RBP + -0x45) = (int)param_3;
-        validationStatus = func_0x00018076a7d0(dataContext,unaff_RBP + -0x45);
+        validationStatus = AllocateMemory(dataContext,unaff_RBP + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
           if ((ulonglong)validationContextPointer[2] < (ulonglong)*(uint *)(unaff_RBP + -0x45) + 1) {
@@ -32416,7 +32416,7 @@ void ExceptionUnwindHandlerA0(undefined8 exceptionContext, longlong unwindParam)
       }
     }
     else {
-      func_0x00018064e870(memoryRegion,CONCAT71(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
+      ManageMemory(memoryRegion,CONCAT71(0xff000000,*(void ***)(memoryRegion + 0x70) == &ExceptionList),
                           exceptionHandler,memoryRegion,SystemCleanupFlagfffffffe);
     }
   }
@@ -32452,7 +32452,7 @@ void ExceptionUnwindHandlerA2(undefined8 exceptionContext,longlong unwindParam)
       }
     }
     else {
-      func_0x00018064e870(exceptionMemoryRegion,CONCAT71(0xff000000,*(void ***)(exceptionMemoryRegion + 0x70) == &ExceptionList),
+      ManageMemory(exceptionMemoryRegion,CONCAT71(0xff000000,*(void ***)(exceptionMemoryRegion + 0x70) == &ExceptionList),
                           exceptionHandlerPointer,exceptionMemoryRegion,SystemCleanupFlagfffffffe);
     }
   }
@@ -32536,7 +32536,7 @@ void ValidateExceptionDataPointer(undefined8 param_1,longlong param_2)
     }
     else {
       // 调用异常处理函数
-      func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
+      ManageMemory(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
                           dataPointer,baseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -32590,7 +32590,7 @@ void ResetExceptionState(undefined8 param_1,longlong param_2)
     }
     else {
       // 调用异常处理函数
-      func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
+      ManageMemory(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
                           dataPointer,baseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -33491,7 +33491,7 @@ void CleanupResourceReference(undefined8 exceptionContext, longlong resourceMana
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -33912,7 +33912,7 @@ void ExceptionRecoveryHandlerB11(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -35082,7 +35082,7 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -35129,7 +35129,7 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -35204,7 +35204,7 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -35240,7 +35240,7 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -35324,7 +35324,7 @@ void Unwind_180902950(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
+        ManageMemory(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
                             pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
@@ -35379,7 +35379,7 @@ void Unwind_180902960(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
+        ManageMemory(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
                             pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
@@ -35482,7 +35482,7 @@ void Unwind_180902a40(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
+        ManageMemory(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
                             pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
@@ -35537,7 +35537,7 @@ void Unwind_180902a50(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
+        ManageMemory(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
                             pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
@@ -35720,7 +35720,7 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -35984,7 +35984,7 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36067,7 +36067,7 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36103,7 +36103,7 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36139,7 +36139,7 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36184,7 +36184,7 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36220,7 +36220,7 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36386,7 +36386,7 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36422,7 +36422,7 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36707,7 +36707,7 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36743,7 +36743,7 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36779,7 +36779,7 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -36820,7 +36820,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
@@ -36882,7 +36882,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
@@ -36925,7 +36925,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
@@ -37038,7 +37038,7 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -37409,7 +37409,7 @@ void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -37445,7 +37445,7 @@ void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -37504,7 +37504,7 @@ void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -37582,7 +37582,7 @@ void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -37694,7 +37694,7 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -37730,7 +37730,7 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -37901,7 +37901,7 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -38122,7 +38122,7 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -38176,7 +38176,7 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -38212,7 +38212,7 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -38248,7 +38248,7 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -38284,7 +38284,7 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -38320,7 +38320,7 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -38358,7 +38358,7 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -38423,7 +38423,7 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -38459,7 +38459,7 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -38509,7 +38509,7 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -38572,7 +38572,7 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -38635,7 +38635,7 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -38673,7 +38673,7 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -43497,7 +43497,7 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -44059,7 +44059,7 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -44095,7 +44095,7 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -44175,7 +44175,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -44237,7 +44237,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -44299,7 +44299,7 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -44353,7 +44353,7 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -44389,7 +44389,7 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -44425,7 +44425,7 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -44505,7 +44505,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -44567,7 +44567,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -44629,7 +44629,7 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -44674,7 +44674,7 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -44710,7 +44710,7 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -44867,8 +44867,8 @@ void Catch_180904b50(undefined8 param_1,longlong param_2)
   longlong validationContext;
   
   validationContext = *(longlong *)(param_2 + 0x50);
-  func_0x00018005f320(validationContext);
-  func_0x000180060c00(*(longlong *)(param_2 + 0x60) + 8,0);
+  CleanupSystem(validationContext);
+  ConfigureSystemA0(*(longlong *)(param_2 + 0x60) + 8,0);
   func_0x000180060c10(*(undefined8 *)(validationContext + 0x50),*(undefined8 *)(param_2 + 0x68));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
@@ -45250,7 +45250,7 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -45364,7 +45364,7 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -45492,7 +45492,7 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -45652,7 +45652,7 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -45709,7 +45709,7 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -46066,7 +46066,7 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -46123,7 +46123,7 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -46198,7 +46198,7 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -46255,7 +46255,7 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -46398,7 +46398,7 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -46765,7 +46765,7 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -46828,7 +46828,7 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -46864,7 +46864,7 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -47555,7 +47555,7 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -47806,7 +47806,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
@@ -48354,7 +48354,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -48718,7 +48718,7 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -48887,7 +48887,7 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -49072,8 +49072,8 @@ void Catch_180905e00(undefined8 param_1,longlong param_2)
   longlong validationContext;
   
   validationContext = *(longlong *)(param_2 + 0x60);
-  func_0x00018005f320(validationContext);
-  func_0x000180060c00(*(longlong *)(param_2 + 0x70) + 8,0);
+  CleanupSystem(validationContext);
+  ConfigureSystemA0(*(longlong *)(param_2 + 0x70) + 8,0);
   func_0x00018006d490(*(undefined8 *)(validationContext + 0x50),*(undefined8 *)(param_2 + 0x78));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
@@ -49238,7 +49238,7 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -49341,7 +49341,7 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -49553,7 +49553,7 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -49635,7 +49635,7 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                           pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
@@ -49915,7 +49915,7 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -49951,7 +49951,7 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -49987,7 +49987,7 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -50079,7 +50079,7 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -50414,7 +50414,7 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -51781,7 +51781,7 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -51916,7 +51916,7 @@ void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cle
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -51962,7 +51962,7 @@ void CleanupExceptionHandlingResourcesAlternative(undefined8 exceptionContext, l
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52127,7 +52127,7 @@ void CleanupExceptionListNode(undefined8 exceptionContext, longlong cleanupConte
       }
     }
     else {
-      func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
+      ManageMemory(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
                           nodePointer,baseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52219,7 +52219,7 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52255,7 +52255,7 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52291,7 +52291,7 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52348,7 +52348,7 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52384,7 +52384,7 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52441,7 +52441,7 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52477,7 +52477,7 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52513,7 +52513,7 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52570,7 +52570,7 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52606,7 +52606,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
       }
     }
     else {
-      func_0x00018064e870(MemoryAddress,CONCAT71(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
+      ManageMemory(MemoryAddress,CONCAT71(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
                           MemoryBlock,MemoryAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52655,7 +52655,7 @@ void ReleaseExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
       }
     }
     else {
-      func_0x00018064e870(MemoryAddress,CONCAT71(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
+      ManageMemory(MemoryAddress,CONCAT71(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
                           MemoryBlock,MemoryAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52704,7 +52704,7 @@ void CleanupExceptionMemoryBlock(undefined8 ExceptionContext, longlong MemoryCon
       }
     }
     else {
-      func_0x00018064e870(BlockAddress,CONCAT71(0xff000000,*(void ***)(BlockAddress + 0x70) == &ExceptionList),
+      ManageMemory(BlockAddress,CONCAT71(0xff000000,*(void ***)(BlockAddress + 0x70) == &ExceptionList),
                           MemoryPointer,BlockAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52740,7 +52740,7 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52776,7 +52776,7 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52812,7 +52812,7 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52848,7 +52848,7 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -52905,7 +52905,7 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -54033,7 +54033,7 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -54069,7 +54069,7 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -54105,7 +54105,7 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -54363,7 +54363,7 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -54399,7 +54399,7 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -54435,7 +54435,7 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -54910,7 +54910,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _DAT_180bf6530 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA1 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -54921,7 +54921,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _DAT_180bf6590 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA2 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -54932,7 +54932,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _DAT_180bf65c0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA3 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -54943,7 +54943,7 @@ void Unwind_1809077a0(void)
 void Unwind_1809077b0(void)
 
 {
-  _DAT_180bf65f0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA4 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -54954,7 +54954,7 @@ void Unwind_1809077b0(void)
 void Unwind_1809077c0(void)
 
 {
-  _DAT_180bf6620 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA5 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -54965,7 +54965,7 @@ void Unwind_1809077c0(void)
 void Unwind_1809077d0(void)
 
 {
-  _DAT_180bf6650 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA6 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -55118,7 +55118,7 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -55510,7 +55510,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -55548,7 +55548,7 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -55602,7 +55602,7 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -55681,7 +55681,7 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -55717,7 +55717,7 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56016,7 +56016,7 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56096,7 +56096,7 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56132,7 +56132,7 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56313,7 +56313,7 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56496,7 +56496,7 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56532,7 +56532,7 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56568,7 +56568,7 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56604,7 +56604,7 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56640,7 +56640,7 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56888,7 +56888,7 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -56984,7 +56984,7 @@ void HandleExceptionA3(undefined8 ContextParameter, longlong SystemContext)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -57757,7 +57757,7 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58034,7 +58034,7 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58144,7 +58144,7 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58180,7 +58180,7 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58248,7 +58248,7 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58560,7 +58560,7 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58596,7 +58596,7 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58632,7 +58632,7 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58668,7 +58668,7 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58704,7 +58704,7 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58740,7 +58740,7 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58776,7 +58776,7 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58812,7 +58812,7 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58857,7 +58857,7 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58893,7 +58893,7 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -58929,7 +58929,7 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -59002,7 +59002,7 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -59505,7 +59505,7 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -59550,7 +59550,7 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -59586,7 +59586,7 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -59650,7 +59650,7 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -59686,7 +59686,7 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -59722,7 +59722,7 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -60106,7 +60106,7 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -60197,7 +60197,7 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -60434,7 +60434,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
@@ -60491,7 +60491,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
@@ -60534,7 +60534,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
+        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
                             resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
       }
     }
@@ -61410,7 +61410,7 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -61446,7 +61446,7 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -61482,7 +61482,7 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -61518,7 +61518,7 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -61554,7 +61554,7 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -62014,7 +62014,7 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -62221,7 +62221,7 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -62289,7 +62289,7 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -62325,7 +62325,7 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -62587,7 +62587,7 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -62986,7 +62986,7 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -63551,7 +63551,7 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -63784,7 +63784,7 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -63820,7 +63820,7 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -64028,7 +64028,7 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -64078,7 +64078,7 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -64257,7 +64257,7 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -64293,7 +64293,7 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -64517,7 +64517,7 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -64555,7 +64555,7 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -64593,7 +64593,7 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -64631,7 +64631,7 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -64669,7 +64669,7 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+        ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                             resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
       }
     }
@@ -67702,7 +67702,7 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -67847,7 +67847,7 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -68002,7 +68002,7 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -68074,7 +68074,7 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -68110,7 +68110,7 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -68258,7 +68258,7 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -68317,7 +68317,7 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -68655,7 +68655,7 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -69076,7 +69076,7 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -69112,7 +69112,7 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71237,7 +71237,7 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71273,7 +71273,7 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71309,7 +71309,7 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71345,7 +71345,7 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71395,7 +71395,7 @@ void CleanupExceptionAtOffset210(undefined8 ExceptionContext,longlong ExceptionO
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71445,7 +71445,7 @@ void CleanupExceptionAtOffset220(undefined8 ExceptionContext,longlong ExceptionO
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71481,7 +71481,7 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71517,7 +71517,7 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71553,7 +71553,7 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71589,7 +71589,7 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71625,7 +71625,7 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71661,7 +71661,7 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71697,7 +71697,7 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71733,7 +71733,7 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71769,7 +71769,7 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71805,7 +71805,7 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71841,7 +71841,7 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71877,7 +71877,7 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71913,7 +71913,7 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71949,7 +71949,7 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -71985,7 +71985,7 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72021,7 +72021,7 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72057,7 +72057,7 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72093,7 +72093,7 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72129,7 +72129,7 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72176,7 +72176,7 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72212,7 +72212,7 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72248,7 +72248,7 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72284,7 +72284,7 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72320,7 +72320,7 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72356,7 +72356,7 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72392,7 +72392,7 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72428,7 +72428,7 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72464,7 +72464,7 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72500,7 +72500,7 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72536,7 +72536,7 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72572,7 +72572,7 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72608,7 +72608,7 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72644,7 +72644,7 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72680,7 +72680,7 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72716,7 +72716,7 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72752,7 +72752,7 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72788,7 +72788,7 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72824,7 +72824,7 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72860,7 +72860,7 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72896,7 +72896,7 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72932,7 +72932,7 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -72968,7 +72968,7 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73004,7 +73004,7 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73096,7 +73096,7 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73132,7 +73132,7 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73168,7 +73168,7 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73204,7 +73204,7 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73240,7 +73240,7 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73276,7 +73276,7 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73312,7 +73312,7 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73348,7 +73348,7 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73384,7 +73384,7 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73420,7 +73420,7 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73456,7 +73456,7 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73492,7 +73492,7 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73528,7 +73528,7 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73564,7 +73564,7 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73600,7 +73600,7 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73636,7 +73636,7 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73672,7 +73672,7 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73708,7 +73708,7 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73744,7 +73744,7 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73780,7 +73780,7 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73816,7 +73816,7 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73852,7 +73852,7 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73888,7 +73888,7 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73924,7 +73924,7 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73960,7 +73960,7 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -73996,7 +73996,7 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -74490,7 +74490,7 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -75013,7 +75013,7 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -75264,7 +75264,7 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -75575,7 +75575,7 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -75611,7 +75611,7 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -77609,7 +77609,7 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -77654,7 +77654,7 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -77704,7 +77704,7 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -77754,7 +77754,7 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -77790,7 +77790,7 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78424,7 +78424,7 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78460,7 +78460,7 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78518,7 +78518,7 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78554,7 +78554,7 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78590,7 +78590,7 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78626,7 +78626,7 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78662,7 +78662,7 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78698,7 +78698,7 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -78755,7 +78755,7 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -80553,7 +80553,7 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -81421,7 +81421,7 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -81478,7 +81478,7 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -81514,7 +81514,7 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -81589,7 +81589,7 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -81794,7 +81794,7 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -81830,7 +81830,7 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -82015,7 +82015,7 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -82051,7 +82051,7 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -82149,7 +82149,7 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -82209,7 +82209,7 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -82267,7 +82267,7 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -82303,7 +82303,7 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -82339,7 +82339,7 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -86493,7 +86493,7 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -86559,7 +86559,7 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -86700,7 +86700,7 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -89679,7 +89679,7 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
       }
     }
     else {
-      func_0x00018064e870(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
+      ManageMemory(memoryBaseAddress,CONCAT71(0xff000000,*(void ***)(memoryBaseAddress + 0x70) == &ExceptionList),
                           resourcePointer,memoryBaseAddress,SystemCleanupFlagfffffffe);
     }
   }
@@ -90134,7 +90134,7 @@ void SetGlobalDataPointerB0(void)
 void SetGlobalDataPointerB1(void)
 
 {
-  _DAT_180bf6530 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA1 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90150,7 +90150,7 @@ void SetGlobalDataPointerB1(void)
 void SetGlobalDataPointerB2(void)
 
 {
-  _DAT_180bf6590 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA2 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90166,7 +90166,7 @@ void SetGlobalDataPointerB2(void)
 void SetGlobalDataPointerB3(void)
 
 {
-  _DAT_180bf65c0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA3 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90179,7 +90179,7 @@ void SetGlobalDataPointerB3(void)
 void SetGlobalDataPointerB4(void)
 
 {
-  _DAT_180bf65f0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA4 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90192,7 +90192,7 @@ void SetGlobalDataPointerB4(void)
 void SetGlobalDataPointerB5(void)
 
 {
-  _DAT_180bf6620 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA5 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90205,7 +90205,7 @@ void SetGlobalDataPointerB5(void)
 void SetGlobalDataPointerB6(void)
 
 {
-  _DAT_180bf6650 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA6 = &DefaultExceptionHandlerB;
   return;
 }
 

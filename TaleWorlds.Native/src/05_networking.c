@@ -585,12 +585,12 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 // 通用重置常量
 #define NetworkDefaultResetValue 0x00                                    // 默认重置值
 #define NetworkResetValue NetworkDefaultResetValue                      // 通用重置值
-#define FlagsReset NetworkReset_VALUE                                       // 重置标志
-#define ContextReleased NetworkReset_VALUE                                  // 上下文已释放
-#define SizeReset NetworkReset_VALUE                                        // 大小重置
-#define PoolReleased NetworkReset_VALUE                                     // 连接池已释放
-#define SecurityReset NetworkReset_VALUE                                    // 安全重置
-#define AuthReset NetworkReset_VALUE                                        // 认证重置
+#define FlagsReset NetworkResetValue                                       // 重置标志
+#define ContextReleased NetworkResetValue                                  // 上下文已释放
+#define SizeReset NetworkResetValue                                        // 大小重置
+#define PoolReleased NetworkResetValue                                     // 连接池已释放
+#define SecurityReset NetworkResetValue                                    // 安全重置
+#define AuthReset NetworkResetValue                                        // 认证重置
 #define EncryptionReset NetworkReset_VALUE                                  // 加密重置
 #define CompressionReset NetworkReset_VALUE                                 // 压缩重置
 #define SocketReset NetworkReset_VALUE                                      // 套接字重置
@@ -3156,15 +3156,6 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
 }
 
 
-/**
- * @brief 完成数据包处理
- * 
- * 完成网络数据包的处理工作，清理临时数据并更新状态
- * 
- * @param PacketData 数据包数据指针数组
- * @param ProcessingBuffer 处理缓冲区
- * @return void 无返回值
- */
 /**
  * @brief 完成数据包处理
  * 
