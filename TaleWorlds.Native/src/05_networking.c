@@ -1845,30 +1845,30 @@ uint32_t NetworkConnectionFailureCount;
  * 
  * 统计通过网络发送的总字节数，用于流量监控。
  */
-uint32_t NetworkBytesSent;
+uint32_t NetworkTotalBytesSent;
 
 /**
  * @brief 网络接收字节数
  * 
  * 统计从网络接收的总字节数，用于流量监控。
  */
-uint32_t NetworkBytesReceived;
+uint32_t NetworkTotalBytesReceived;
 
 /**
  * @brief 网络发送数据包数量
  * 
  * 统计发送的网络数据包数量，用于数据包传输统计。
  */
-uint32_t NetworkPacketsSent;
+uint32_t NetworkTotalPacketsSent;
 
 /**
  * @brief 网络接收数据包数量
  * 
  * 统计接收的网络数据包数量，用于数据包传输统计。
  */
-uint32_t NetworkPacketsReceived;
-uint32_t NetworkConnectionTime;                    // 网络连接时间
-uint32_t NetworkLastActivity;                      // 网络最后活动时间
+uint32_t NetworkTotalPacketsReceived;
+uint32_t NetworkCurrentConnectionTime;                    // 网络当前连接时间
+uint32_t NetworkLastActivityTime;                      // 网络最后活动时间
 uint32_t NetworkBandwidthUsage;                     // 网络带宽使用量
 uint32_t NetworkLatency;                            // 网络延迟
 uint32_t NetworkPacketLoss;                         // 网络数据包丢失率
