@@ -64923,15 +64923,29 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090d040(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理状态，偏移量0x210处的资源
+ * 
+ * 该函数负责清理特定偏移量处的异常处理资源。它会检查指针有效性，
+ * 然后根据异常处理状态执行相应的清理操作。这是异常处理系统
+ * 的重要组成部分，确保在异常发生时能够正确清理资源。
+ * 
+ * @param ExceptionContext 异常上下文参数，包含异常处理的相关信息
+ * @param ExceptionOffset 异常偏移量参数，指定要清理的资源位置
+ * @return void 无返回值
+ * 
+ * @note 这是异常处理系统的关键函数，用于维护系统的稳定性
+ * @warning 错误的清理操作可能导致系统不稳定
+ */
+void CleanupExceptionAtOffset210(undefined8 ExceptionContext,longlong ExceptionOffset)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ResourceReferenceCount;
+  undefined8 **ExceptionPointerArray;
+  longlong ExceptionFrameAddress;
+  ulonglong ExceptionMemoryMask;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x150);
+  ExceptionPointerArray = *(undefined8 ***)(ExceptionOffset + 0x150);
   if (puVar2 == (undefined8 *)0x0) {
     return;
   }
