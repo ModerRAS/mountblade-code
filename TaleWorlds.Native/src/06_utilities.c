@@ -89337,11 +89337,14 @@ void SetDefaultExceptionHandlerA7(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-9420c0(void)
-void FUN_1809420c0(void)
+/**
+ * @brief 设置默认异常处理器C0
+ * 
+ * 该函数负责设置默认的异常处理器B到全局变量_DAT_180bf96f0中
+ * 
+ * @note 原始函数名：FUN_1809420c0
+ */
+void SetDefaultExceptionHandlerC0(void)
 
 {
   _DAT_180bf96f0 = &DefaultExceptionHandlerB;
@@ -89350,11 +89353,14 @@ void FUN_1809420c0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-9420e0(void)
-void FUN_1809420e0(void)
+/**
+ * @brief 设置默认异常处理器C1
+ * 
+ * 该函数负责设置默认的异常处理器B到全局变量_DAT_180bf9750中
+ * 
+ * @note 原始函数名：FUN_1809420e0
+ */
+void SetDefaultExceptionHandlerC1(void)
 
 {
   _DAT_180bf9750 = &DefaultExceptionHandlerB;
@@ -89363,11 +89369,14 @@ void FUN_1809420e0(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-942100(void)
-void FUN_180942100(void)
+/**
+ * @brief 设置默认异常处理器C2
+ * 
+ * 该函数负责设置默认的异常处理器B到全局变量_DAT_180bf97b0中
+ * 
+ * @note 原始函数名：FUN_180942100
+ */
+void SetDefaultExceptionHandlerC2(void)
 
 {
   _DAT_180bf97b0 = &DefaultExceptionHandlerB;
@@ -89376,11 +89385,14 @@ void FUN_180942100(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
-
-942120(void)
-void FUN_180942120(void)
+/**
+ * @brief 设置默认异常处理器C3
+ * 
+ * 该函数负责设置默认的异常处理器B到全局变量_DAT_180bf9810中
+ * 
+ * @note 原始函数名：FUN_180942120
+ */
+void SetDefaultExceptionHandlerC3(void)
 
 {
   _DAT_180bf9810 = &DefaultExceptionHandlerB;
