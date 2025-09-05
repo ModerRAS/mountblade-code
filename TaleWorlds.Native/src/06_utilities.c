@@ -3044,6 +3044,11 @@
 // 功能：存储系统数据配置信息
 #define DataConfigurationTableA8 UNK_180986850
 
+// 缺失的变量定义
+// 原始变量名：UNK_180986e70 - 内存分配配置表
+// 功能：存储内存分配相关的配置信息
+#define MemoryAllocationConfigurationTable UNK_180986e70
+
 // FUN_1809414xx函数语义化宏定义
 // 原始函数名：FUN_180941445 - 数据结构初始化函数A0
 // 功能：初始化数据结构并设置指针，包含验证逻辑
@@ -39497,7 +39502,7 @@ void CleanupValidationContext(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_1809031e0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupSystemMemoryWithFunctionCall(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   int64_t validationContext;
@@ -39517,7 +39522,7 @@ void Unwind_1809031e0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_1809031f0(DataBuffer param_1,int64_t param_2)
+void CleanupSystemMemoryResource(DataBuffer param_1,int64_t param_2)
 
 {
   int *referenceCountPointer;
@@ -39553,7 +39558,7 @@ void Unwind_1809031f0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180903200(DataBuffer param_1,int64_t param_2)
+void CleanupSystemMemoryDataBuffer(DataBuffer param_1,int64_t param_2)
 
 {
   int *referenceCountPointer;
@@ -39589,7 +39594,7 @@ void Unwind_180903200(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180903210(DataBuffer param_1,int64_t param_2)
+void CleanupSystemMemoryDataResource(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t validationContext;

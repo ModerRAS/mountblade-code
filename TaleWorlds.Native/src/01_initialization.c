@@ -20998,12 +20998,12 @@ void LockSystemMutexAndBroadcast(long long systemContextReference)
 
 
 // 函数: void InitializeSystemReferencePointers(void* *SystemResourceManager)
-void InitializeSystemReferencePointers(void* *SystemReferencePointer)
+void InitializeSystemReferencePointers(void* *systemReferencePointer)
 
 {
-  *SystemReferencePointer = &SystemMemoryTemplateTertiary;
-  *SystemReferencePointer = &SystemMemoryTemplateSecondary;
-  *SystemReferencePointer = &SystemMemoryTemplatePrimary;
+  *systemReferencePointer = &SystemMemoryTemplateTertiary;
+  *systemReferencePointer = &SystemMemoryTemplateSecondary;
+  *systemReferencePointer = &SystemMemoryTemplatePrimary;
   return;
 }
 
@@ -21046,17 +21046,17 @@ void* InitializeSystemReferencePointersWithCleanup(void** systemReferencePointer
  * 
  * 该函数是系统内存管理的重要组成部分，确保所有内存页面都被正确处理。
  */
-void ProcessSystemMemoryRange(long long *MemoryRangePointer)
+void ProcessSystemMemoryRange(long long *memoryRangePointer)
 
 {
-  long long MemoryRangeEnd;
-  long long CurrentMemoryPointer;
+  long long memoryRangeEnd;
+  long long currentMemoryPointer;
   
-  MemoryRangeEnd = MemoryRangePointer[1];
-  for (CurrentMemoryPointer = *MemoryRangePointer; CurrentMemoryPointer != MemoryRangeEnd; CurrentMemoryPointer = CurrentMemoryPointer + MemoryAllocationGranularity) {
-    HandleSystemMemoryPage(CurrentMemoryPointer);
+  memoryRangeEnd = memoryRangePointer[1];
+  for (currentMemoryPointer = *memoryRangePointer; currentMemoryPointer != memoryRangeEnd; currentMemoryPointer = currentMemoryPointer + MemoryAllocationGranularity) {
+    HandleSystemMemoryPage(currentMemoryPointer);
   }
-  if (*MemoryRangePointer == 0) {
+  if (*memoryRangePointer == 0) {
     return;
   }
     SystemCleanupFunction();
@@ -21075,23 +21075,23 @@ void ProcessSystemMemoryRange(long long *MemoryRangePointer)
  * @note 此函数在系统初始化过程中被调用，确保数据指针的正确设置
  * @note 函数会调用SystemCleanupFunction()清理旧的资源数据
  */
-void InitializeSystemDataPointers(long long* SystemResourceManager)
+void InitializeSystemDataPointers(long long* systemResourceManager)
 
 {
-  void** DataEndPointer;
-  void** SystemDataTable;
+  void** dataEndPointer;
+  void** systemDataTable;
   
-  DataEndPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
-  for (void** ResourceEntryIterator = (void* *)*SystemResourceManager; ResourceEntryIterator != DataEndPointer; ResourceEntryIterator = ResourceEntryIterator + 5) {
-    *ResourceEntryIterator = &SystemGlobalDataReference;
-    if (ResourceEntryIterator[1] != 0) {
+  dataEndPointer = (void* *)systemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
+  for (void** resourceEntryIterator = (void* *)*systemResourceManager; resourceEntryIterator != dataEndPointer; resourceEntryIterator = resourceEntryIterator + 5) {
+    *resourceEntryIterator = &SystemGlobalDataReference;
+    if (resourceEntryIterator[1] != 0) {
         SystemCleanupFunction();
     }
-    ResourceEntryIterator[1] = 0;
-    *(uint32_t *)(ResourceEntryIterator + 3) = 0;
-    *ResourceEntryIterator = &SystemMemoryAllocatorReference;
+    resourceEntryIterator[1] = 0;
+    *(uint32_t *)(resourceEntryIterator + 3) = 0;
+    *resourceEntryIterator = &SystemMemoryAllocatorReference;
   }
-  if (*SystemResourceManager != 0) {
+  if (*systemResourceManager != 0) {
       SystemCleanupFunction();
   }
   return;
