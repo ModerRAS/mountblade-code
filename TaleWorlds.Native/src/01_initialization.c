@@ -5654,50 +5654,52 @@ void InitializeSystemEventManager(void)
  * @note 这是系统初始化过程中的重要组成部分，确保网络管理系统的正常运行
  */
 void InitializeSystemNetworkManager(void)
-
 {
-  char NodeActiveFlag;
-  void* *DataTable;
+  bool IsNetworkNodeActive;
+  void** SystemRootTable;
   int SystemIdentifierCompareResult;
-  long long *MemoryPointer;
-  long long TimeValue;
-  void* *RootNode;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** PreviousNodePointer;
-  code *NetworkCallbackPointer;
+  long long* SystemMemoryPointer;
+  long long SystemRequiredMemorySize;
+  void** NetworkRootNode;
+  void** CurrentNetworkNode;
+  void** NextNetworkNode;
+  void** PreviousNetworkNode;
+  void* NetworkInitializationCallback;
   
-  DataTable = (long long*)GetSystemRootTable();
-  RootNode = (void* *)*DataTable;
-  NodeActiveFlag = *(char*)((long long)RootNode[1] + NodeActiveFlagOffset);
-  NetworkCallbackPointer = SystemNetworkCallback;
-  PreviousNode = RootNode;
-  CurrentNode = (void* *)RootNode[1];
-  while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNode + 4,&SystemDataTemplateG,0x10);
-    if (IdentifierCompareResult < 0) {
-      NextNode = (void* *)CurrentNode[2];
-      CurrentNode = PreviousNode;
+  SystemRootTable = (void**)GetSystemRootTable();
+  NetworkRootNode = (void**)*SystemRootTable;
+  IsNetworkNodeActive = *(bool*)((long long)NetworkRootNode[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
+  NetworkInitializationCallback = SystemNetworkCallback;
+  PreviousNetworkNode = NetworkRootNode;
+  CurrentNetworkNode = (void**)NetworkRootNode[RootNodeCurrentNodeIndex];
+  
+  while (!IsNetworkNodeActive) {
+    SystemIdentifierCompareResult = memcmp(CurrentNetworkNode + NodeIdentifierOffset, &SystemNetworkTemplateIdentifier, IdentifierSize);
+    if (SystemIdentifierCompareResult < 0) {
+      NextNetworkNode = (void**)CurrentNetworkNode[NodeNextPointerOffset];
+      CurrentNetworkNode = PreviousNetworkNode;
     }
     else {
-      NextNode = (void* *)*CurrentNode;
+      NextNetworkNode = (void**)CurrentNetworkNode[NodeHeadPointerOffset];
     }
-    PreviousNode = CurrentNode;
-    CurrentNodePointer = NextNode;
-    NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    PreviousNetworkNode = CurrentNetworkNode;
+    CurrentNetworkNode = NextNetworkNode;
+    IsNetworkNodeActive = *(bool*)((long long)NextNetworkNode + NodeActiveFlagOffset);
   }
-  if ((PreviousNode == RootNode) || (IdentifierCompareResult = memcmp(&SystemDataTemplateG,PreviousNode + 4,0x10), IdentifierCompareResult < 0)) {
-    long long SystemMemoryAllocationSize;
-    void** AllocatedNode;
-    MemoryAllocationSize = GetSystemMemorySize(DataTable);
-    AllocateSystemMemory(DataTable,&AllocatedNode,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    PreviousNode = AllocatedNode;
+  
+  if ((PreviousNetworkNode == NetworkRootNode) || 
+      (SystemIdentifierCompareResult = memcmp(&SystemNetworkTemplateIdentifier, PreviousNetworkNode + NodeIdentifierOffset, IdentifierSize), SystemIdentifierCompareResult < 0)) {
+    void** AllocatedNetworkNode;
+    SystemRequiredMemorySize = GetSystemMemorySize(SystemRootTable);
+    AllocateSystemMemory(SystemRootTable, &AllocatedNetworkNode, PreviousNetworkNode, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
+    PreviousNetworkNode = AllocatedNetworkNode;
   }
-  PreviousNode[NodeIdentifier1Index] = SystemDataTemplateGId1;
-  PreviousNode[NodeIdentifier2Index] = SystemDataTemplateGId2;
-  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeQuaternaryRoot;
-  PreviousNode[NodeActiveFlagIndex] = SystemNodeInactiveFlag;
-  PreviousNode[NodeHandlerIndex] = NetworkCallbackPointer;
+  
+  PreviousNetworkNode[NodeIdentifier1Index] = SystemNetworkIdentifier1;
+  PreviousNetworkNode[NodeIdentifier2Index] = SystemNetworkIdentifier2;
+  PreviousNetworkNode[NodeDataPointerIndex] = &SystemNetworkDataRoot;
+  PreviousNetworkNode[NodeActiveFlagIndex] = NodeInactiveFlag;
+  PreviousNetworkNode[NodeHandlerIndex] = NetworkInitializationCallback;
   return;
 }
 
@@ -19530,22 +19532,6 @@ void* CleanupSystemMemoryManager(void** memoryManager, unsigned long long cleanu
 
 
 
-/**
- * @brief 系统终止函数
- * 
- * 该函数负责终止系统的运行，执行必要的清理工作。
- * 它会调用系统数据操作函数来完成系统终止过程。
- * 
- * @note 这是系统关闭时调用的最后一个主要函数
- */
-/**
- * @brief 终止系统运行
- * 
- * 该函数负责终止系统的运行，包括清理系统资源、保存系统状态
- * 和执行必要的关闭操作。这是系统关闭过程中的核心函数。
- * 
- * @note 该函数应该在系统关闭时调用，确保所有资源都被正确释放
- */
 /**
  * @brief 终止系统运行
  * 
