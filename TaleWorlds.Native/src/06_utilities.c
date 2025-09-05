@@ -49992,15 +49992,15 @@ void Unwind_180905ee0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905ef0(undefined8 param_1,longlong param_2)
+void CleanupSystemResources(undefined8 systemContext,longlong contextHandle)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
-  undefined8 *pvalidationStatus;
-  longlong *plVar4;
-  longlong lVar5;
-  ulonglong dataFlags;
+  char *validationFlag;
+  undefined8 *validationStatus;
+  longlong *contextPointer;
+  longlong resourceIterator;
+  ulonglong cleanupFlags;
   
   plVar4 = *(longlong **)(param_2 + 0x60);
   pvalidationStatus = (undefined8 *)*plVar4;
