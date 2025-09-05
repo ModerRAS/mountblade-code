@@ -1641,7 +1641,7 @@ void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeActive;
   void** SystemRootNodePointer;
-  int BaseAllocatorIdentifierComparisonResult;
+  int BaseAllocatorSystemIdentifierComparisonResult;
   long long* SystemMainTablePointer;
   long long SystemRequiredMemorySize;
   void** SystemCurrentNodePointer;
@@ -44356,7 +44356,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   pointerUnsignedE8 = EncryptionBufferD8;
   EncryptionBufferD8[0] = 0;
   SystemOperationTypeE0 = 9;
-  strcpy_s(EncryptionBufferD8,0x10,&SystemStringTemplate1);
+  strcpy_s(EncryptionBufferD8,0x10,&SystemStringTemplateFirst);
   ProcessSystemResourceTemplate(&SystemResourceHandle160,&pStackAllocationSize,&SystemResourceHandleF0);
   SystemDataBufferPointer = pSystemConfigurationId;
   SystemDataResourcePointer = SystemResourceHandle160;
