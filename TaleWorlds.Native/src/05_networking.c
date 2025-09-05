@@ -632,15 +632,15 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkCertificateEnabled 0x01                    // 证书启用
 
 // 网络连接管理常量
-#define NETWORK_TABLE_INDEX_RESET_VALUE NETWORK_RESET_VALUE      // 表索引重置
+#define NetworkTableIndexResetValue NetworkResetValue      // 表索引重置
 #define NetworkConnectionManagerEnabled 0x01              // 连接管理器启用
 #define NetworkConnectionDataEnabled 0x01                // 连接数据启用
 #define NetworkRoutingEnabled 0x01                        // 路由启用
 #define NetworkQueueBufferEnabled 0x01                   // 队列缓冲区启用
 #define NetworkCacheEnabled 0x01                          // 缓存启用
 #define NetworkFilterEnabled 0x01                         // 过滤器启用
-#define NETWORK_BANDWIDTH_RESET_VALUE NETWORK_RESET_VALUE        // 带宽重置
-#define NETWORK_LATENCY_RESET_VALUE NETWORK_RESET_VALUE          // 延迟重置
+#define NetworkBandwidthResetValue NetworkResetValue        // 带宽重置
+#define NetworkLatencyResetValue NetworkResetValue          // 延迟重置
 #define NETWORK_PACKET_LOSS_RESET_VALUE NETWORK_RESET_VALUE      // 数据包丢失重置
 
 // 网络错误处理常量
