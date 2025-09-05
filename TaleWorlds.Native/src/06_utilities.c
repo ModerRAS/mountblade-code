@@ -2220,55 +2220,55 @@ undefined UtilitySystemProcessData4;
 
 // 函数: undefined FUN_180942a60;
 undefined FUN_180942a60;
-undefined DAT_180bf6498;
-undefined DAT_180bf64a0;
-undefined DAT_180bf64a8;
-undefined DAT_180bf64b0;
+undefined UtilitySystemCallbackData1;
+undefined UtilitySystemCallbackData2;
+undefined UtilitySystemCallbackData3;
+undefined UtilitySystemCallbackData4;
 
 // 函数: undefined FUN_180942a80;
 undefined FUN_180942a80;
-undefined DAT_180a2d660;
-undefined UNK_180a2ca90;
-undefined DAT_180a2d590;
-undefined UNK_180a2cab0;
-undefined DAT_180c96310;
-undefined DAT_180c96320;
-undefined DAT_180c96328;
+undefined UtilitySystemConfigData1;
+undefined UtilitySystemConfigStatus1;
+undefined UtilitySystemConfigData2;
+undefined UtilitySystemConfigStatus2;
+undefined UtilitySystemThreadData1;
+undefined UtilitySystemThreadData2;
+undefined UtilitySystemThreadData3;
 
 // 函数: undefined FUN_180942fa0;
 undefined FUN_180942fa0;
-undefined DAT_180bf6558;
-undefined DAT_180bf6560;
-undefined DAT_180bf6568;
-undefined DAT_180bf6570;
+undefined UtilitySystemFlagData1;
+undefined UtilitySystemFlagData2;
+undefined UtilitySystemFlagData3;
+undefined UtilitySystemFlagData4;
 
 // 函数: undefined FUN_180942fc0;
 undefined FUN_180942fc0;
-undefined DAT_180c95ecc;
-undefined UNK_180a33fb0;
+undefined UtilitySystemCleanupData1;
+undefined UtilitySystemCleanupStatus1;
 
 // 函数: undefined FUN_180943070;
 undefined FUN_180943070;
-undefined DAT_180c9606c;
-undefined UNK_180a3c028;
-undefined DAT_180c96218;
-undefined UNK_180943130;
+undefined UtilitySystemLocalData1;
+undefined UtilitySystemLocalStatus1;
+undefined UtilitySystemLocalData2;
+undefined UtilitySystemLocalStatus2;
 
 // 函数: undefined FUN_180943140;
 undefined FUN_180943140;
 
 // 函数: undefined FUN_180943160;
 undefined FUN_180943160;
-undefined DAT_180c96790;
-undefined DAT_180c96798;
+undefined UtilitySystemStorageData1;
+undefined UtilitySystemStorageData2;
 
 // 函数: undefined FUN_180943180;
 undefined FUN_180943180;
-undefined DAT_180c967a0;
-undefined DAT_180c967a8;
-undefined DAT_180c967b0;
-undefined DAT_180c967b8;
-undefined DAT_180c967d0;
+undefined UtilitySystemStorageData3;
+undefined UtilitySystemStorageData4;
+undefined UtilitySystemStorageData5;
+undefined UtilitySystemStorageData6;
+undefined UtilitySystemStorageData7;
 undefined UNK_180a3def0;
 undefined UNK_18098bcb0;
 
@@ -50142,14 +50142,14 @@ void CleanupExceptionResourcesA2(undefined8 exceptionContext,longlong unwindInfo
 
 
 
-void Unwind_180908690(undefined8 param_1,longlong param_2)
+void CleanupExceptionPointer(undefined8 exceptionContext,longlong unwindInfo)
 
 {
-  longlong *plVar1;
+  longlong *pointerCleanup;
   
-  plVar1 = *(longlong **)(*(longlong *)(param_2 + 0x50) + 0x1600);
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  pointerCleanup = *(longlong **)(*(longlong *)(unwindInfo + 0x50) + 0x1600);
+  if (pointerCleanup != (longlong *)0x0) {
+    (**(code **)(*pointerCleanup + 0x38))();
   }
   return;
 }
