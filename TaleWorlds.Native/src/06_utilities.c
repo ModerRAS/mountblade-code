@@ -5779,15 +5779,15 @@ undefined8 ValidateDataArray(longlong arrayDescriptor)
 undefined8 ValidateUtilitySystemState(void)
 
 {
-  longlong in_RAX;
-  undefined8 uVar1;
-  int *poperationResult;
-  longlong unaff_RBP;
-  undefined4 *puVar3;
-  uint uVar4;
-  ulonglong uVar6;
-  longlong lStack0000000000000050;
-  ulonglong uVar5;
+  longlong inputRegisterRAX;
+  undefined8 operationResult;
+  int *operationPointer;
+  longlong registerRBP;
+  undefined4 *dataPointer3;
+  uint counterValue;
+  ulonglong adjustedValue;
+  longlong stackBuffer50;
+  ulonglong loopCounter;
   
   uVar5 = 0;
   uVar6 = in_RAX - 8;
@@ -29005,7 +29005,7 @@ void ProcessExceptionState(undefined8 param_1,longlong param_2)
   // 检查是否有待处理的异常
   if (*(longlong *)(param_2 + 0x70) != 0) {
     // 调用异常处理函数（不返回）
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   
   // 清理异常状态
@@ -29227,7 +29227,7 @@ void Unwind_180902170(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x138) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x140) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x140) = 0;
   *(undefined4 *)(param_2 + 0x150) = 0;
@@ -29243,7 +29243,7 @@ void Unwind_180902180(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x1a0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x1a8) = 0;
   *(undefined4 *)(param_2 + 0x1b8) = 0;
@@ -29271,7 +29271,7 @@ void Unwind_1809021c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x180) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x188) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x188) = 0;
   *(undefined4 *)(param_2 + 0x198) = 0;
@@ -29465,7 +29465,7 @@ void Unwind_1809023d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -29486,7 +29486,7 @@ void Unwind_1809023e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -29533,7 +29533,7 @@ void Unwind_180902400(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x78) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x80) = 0;
   *(undefined4 *)(param_2 + 0x90) = 0;
@@ -29569,7 +29569,7 @@ void Unwind_180902430(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xa8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xb0) = 0;
   *(undefined4 *)(param_2 + 0xc0) = 0;
@@ -29585,7 +29585,7 @@ void Unwind_180902440(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xd0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xd8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xd8) = 0;
   *(undefined4 *)(param_2 + 0xe8) = 0;
@@ -29601,7 +29601,7 @@ void Unwind_180902450(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x78) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x80) = 0;
   *(undefined4 *)(param_2 + 0x90) = 0;
@@ -29675,7 +29675,7 @@ void Unwind_1809024d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -29686,7 +29686,7 @@ void Unwind_1809024e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x100) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x108) = 0;
   *(undefined4 *)(param_2 + 0x118) = 0;
@@ -29702,7 +29702,7 @@ void Unwind_1809024f0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x88) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x90) = 0;
   *(undefined4 *)(param_2 + 0xa0) = 0;
@@ -29728,7 +29728,7 @@ void Unwind_180902500(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -29802,7 +29802,7 @@ void Unwind_180902540(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x60) = 0;
   *(undefined4 *)(validationContext + 0x70) = 0;
@@ -29810,7 +29810,7 @@ void Unwind_180902540(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -29835,7 +29835,7 @@ void Unwind_180902550(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x110) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x118) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x118) = 0;
   *(undefined4 *)(validationContext + 0x128) = 0;
@@ -29843,7 +29843,7 @@ void Unwind_180902550(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe8) = 0;
   *(undefined4 *)(validationContext + 0xf8) = 0;
@@ -29868,7 +29868,7 @@ void Unwind_180902570(undefined8 param_1,longlong param_2)
   puVar1[7] = &UNK_180a3c3e0;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[8] = 0;
   *(undefined4 *)(puVar1 + 10) = 0;
@@ -29876,7 +29876,7 @@ void Unwind_180902570(undefined8 param_1,longlong param_2)
   puVar1[1] = &UNK_180a3c3e0;
   if (puVar1[2] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[2] = 0;
   *(undefined4 *)(puVar1 + 4) = 0;
@@ -29897,7 +29897,7 @@ void Unwind_180902580(undefined8 param_1,longlong param_2)
   puVar1[7] = &UNK_180a3c3e0;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[8] = 0;
   *(undefined4 *)(puVar1 + 10) = 0;
@@ -29905,7 +29905,7 @@ void Unwind_180902580(undefined8 param_1,longlong param_2)
   puVar1[1] = &UNK_180a3c3e0;
   if (puVar1[2] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[2] = 0;
   *(undefined4 *)(puVar1 + 4) = 0;
@@ -29974,14 +29974,14 @@ void Unwind_1809025e0(undefined8 param_1,longlong param_2)
       lVar2 = lVar2 + 0x28) {
     if (*(longlong *)(lVar2 + 8) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*pvalidationContext == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -30321,7 +30321,7 @@ void Unwind_180902720(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -30454,7 +30454,7 @@ void Unwind_1809027c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -30473,7 +30473,7 @@ void Unwind_1809027d0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x50) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x58) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x58) = 0;
   *(undefined4 *)(validationContext + 0x68) = 0;
@@ -30721,7 +30721,7 @@ void Unwind_1809028e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x40) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x48) = 0;
   *(undefined4 *)(validationContext + 0x58) = 0;
@@ -30960,7 +30960,7 @@ void Unwind_180902970(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -31118,7 +31118,7 @@ void Unwind_180902a60(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -31154,7 +31154,7 @@ void Unwind_180902a70(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -31192,7 +31192,7 @@ void Unwind_180902a80(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -31230,7 +31230,7 @@ void Unwind_180902a90(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -31353,7 +31353,7 @@ void Unwind_180902b30(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -31409,7 +31409,7 @@ void Unwind_180902b60(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -31447,7 +31447,7 @@ void Unwind_180902b70(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -31463,7 +31463,7 @@ void Unwind_180902b80(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10) = 0;
   *(undefined4 *)(validationContext + 0x20) = 0;
@@ -31482,7 +31482,7 @@ void Unwind_180902b90(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10) = 0;
   *(undefined4 *)(validationContext + 0x20) = 0;
@@ -31501,7 +31501,7 @@ void Unwind_180902ba0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -31565,7 +31565,7 @@ void Unwind_180902bd0(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -31584,7 +31584,7 @@ void Unwind_180902be0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -31829,7 +31829,7 @@ void Unwind_180902c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   if (*(int *)(puVar1[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
                     // WARNING: Subroutine does not return
   terminate();
@@ -31874,7 +31874,7 @@ void Unwind_180902c90(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -32003,7 +32003,7 @@ void Unwind_180902cf0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -32187,7 +32187,7 @@ void Unwind_180902e10(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -32210,7 +32210,7 @@ void Unwind_180902e30(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -32224,7 +32224,7 @@ void Unwind_180902e40(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -32394,7 +32394,7 @@ void Unwind_180902e90(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x148) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x150) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x150) = 0;
   *(undefined4 *)(validationContext + 0x160) = 0;
@@ -32537,7 +32537,7 @@ void Unwind_180902f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -32560,7 +32560,7 @@ void Unwind_180902f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -32621,7 +32621,7 @@ void Unwind_180902fa0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x918) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x920) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x920) = 0;
   *(undefined4 *)(validationContext + 0x930) = 0;
@@ -32809,7 +32809,7 @@ void Unwind_1809030a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -32864,7 +32864,7 @@ void CleanupMemoryResourcesF0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -32903,7 +32903,7 @@ void ResetMemoryState110(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -32921,12 +32921,12 @@ void CleanupThreadResources120(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x78);
   if (*(longlong *)(validationContext + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -33016,12 +33016,12 @@ void CleanupThreadMemory150(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x78);
   if (*(longlong *)(validationContext + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -33075,12 +33075,12 @@ void CleanupResourceState170(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x48);
   if (*(longlong *)(validationContext + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -33099,7 +33099,7 @@ void ResetResourcePointer180(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -33161,7 +33161,7 @@ void CleanupMemoryPool1a0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -33182,7 +33182,7 @@ void Unwind_1809031b0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -33309,7 +33309,7 @@ void Unwind_180903210(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -33474,7 +33474,7 @@ void Unwind_180903320(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -33541,7 +33541,7 @@ void Unwind_180903360(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x40) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x48) = 0;
   *(undefined4 *)(validationContext + 0x58) = 0;
@@ -33610,7 +33610,7 @@ void Unwind_180903440(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -33646,7 +33646,7 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar5 = plVar4[5];
   while (lVar5 != 0) {
@@ -33654,7 +33654,7 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
     lVar5 = *(longlong *)(lVar5 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = (undefined8 *)plVar4[3];
@@ -33947,7 +33947,7 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar5 = plVar4[5];
   while (lVar5 != 0) {
@@ -33955,7 +33955,7 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
     lVar5 = *(longlong *)(lVar5 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = (undefined8 *)plVar4[3];
@@ -34096,7 +34096,7 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar5 = plVar4[5];
   while (lVar5 != 0) {
@@ -34104,7 +34104,7 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
     lVar5 = *(longlong *)(lVar5 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = (undefined8 *)plVar4[3];
@@ -34259,7 +34259,7 @@ void Unwind_180903610(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1[0x18] = &UNK_180a3c3e0;
   if (puVar1[0x19] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[0x19] = 0;
   *(undefined4 *)(puVar1 + 0x1b) = 0;
@@ -34267,19 +34267,19 @@ void Unwind_180903610(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_18005d260(puVar1 + 0x12,puVar1[0x14],param_3,param_4,0xfffffffffffffffe);
   if (puVar1[0xd] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if (puVar1[9] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if (puVar1[5] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -34298,7 +34298,7 @@ void Unwind_180903620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x110) = 0;
   *(undefined4 *)(validationContext + 0x120) = 0;
@@ -34306,7 +34306,7 @@ void Unwind_180903620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf0) = 0;
   *(undefined4 *)(validationContext + 0x100) = 0;
@@ -34328,7 +34328,7 @@ void Unwind_180903640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x178) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x180) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x180) = 0;
   *(undefined4 *)(validationContext + 400) = 0;
@@ -34336,7 +34336,7 @@ void Unwind_180903640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x158) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x160) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x160) = 0;
   *(undefined4 *)(validationContext + 0x170) = 0;
@@ -34358,7 +34358,7 @@ void Unwind_180903660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1f0) = 0;
   *(undefined4 *)(validationContext + 0x200) = 0;
@@ -34366,7 +34366,7 @@ void Unwind_180903660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1d0) = 0;
   *(undefined4 *)(validationContext + 0x1e0) = 0;
@@ -34388,7 +34388,7 @@ void Unwind_180903680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 600) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x260) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x260) = 0;
   *(undefined4 *)(validationContext + 0x270) = 0;
@@ -34396,7 +34396,7 @@ void Unwind_180903680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x238) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x240) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x240) = 0;
   *(undefined4 *)(validationContext + 0x250) = 0;
@@ -34418,7 +34418,7 @@ void Unwind_1809036a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2d0) = 0;
   *(undefined4 *)(validationContext + 0x2e0) = 0;
@@ -34426,7 +34426,7 @@ void Unwind_1809036a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2b0) = 0;
   *(undefined4 *)(validationContext + 0x2c0) = 0;
@@ -34448,7 +34448,7 @@ void Unwind_1809036c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x338) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x340) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x340) = 0;
   *(undefined4 *)(validationContext + 0x350) = 0;
@@ -34456,7 +34456,7 @@ void Unwind_1809036c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x318) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 800) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 800) = 0;
   *(undefined4 *)(validationContext + 0x330) = 0;
@@ -34478,7 +34478,7 @@ void Unwind_1809036e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x3b0) = 0;
   *(undefined4 *)(validationContext + 0x3c0) = 0;
@@ -34486,7 +34486,7 @@ void Unwind_1809036e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x388) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x390) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x390) = 0;
   *(undefined4 *)(validationContext + 0x3a0) = 0;
@@ -34508,7 +34508,7 @@ void Unwind_180903700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x418) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x420) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x420) = 0;
   *(undefined4 *)(validationContext + 0x430) = 0;
@@ -34516,7 +34516,7 @@ void Unwind_180903700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x3f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x400) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x400) = 0;
   *(undefined4 *)(validationContext + 0x410) = 0;
@@ -34538,7 +34538,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4e8) = 0;
   *(undefined4 *)(validationContext + 0x4f8) = 0;
@@ -34546,7 +34546,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4c8) = 0;
   *(undefined4 *)(validationContext + 0x4d8) = 0;
@@ -34554,7 +34554,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4a8) = 0;
   *(undefined4 *)(validationContext + 0x4b8) = 0;
@@ -34562,7 +34562,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x480) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x488) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x488) = 0;
   *(undefined4 *)(validationContext + 0x498) = 0;
@@ -34570,7 +34570,7 @@ void Unwind_180903720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x468) = 0;
   *(undefined4 *)(validationContext + 0x478) = 0;
@@ -34592,7 +34592,7 @@ void Unwind_180903740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x550) = 0;
   *(undefined4 *)(validationContext + 0x560) = 0;
@@ -34600,7 +34600,7 @@ void Unwind_180903740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x528) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x530) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x530) = 0;
   *(undefined4 *)(validationContext + 0x540) = 0;
@@ -34620,7 +34620,7 @@ void Unwind_180903760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   puVar1[0x18] = &UNK_180a3c3e0;
   if (puVar1[0x19] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[0x19] = 0;
   *(undefined4 *)(puVar1 + 0x1b) = 0;
@@ -34628,19 +34628,19 @@ void Unwind_180903760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_18005d260(puVar1 + 0x12,puVar1[0x14],param_3,param_4,0xfffffffffffffffe);
   if (puVar1[0xd] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if (puVar1[9] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if (puVar1[5] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -34659,7 +34659,7 @@ void Unwind_180903770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x110) = 0;
   *(undefined4 *)(validationContext + 0x120) = 0;
@@ -34667,7 +34667,7 @@ void Unwind_180903770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf0) = 0;
   *(undefined4 *)(validationContext + 0x100) = 0;
@@ -34689,7 +34689,7 @@ void Unwind_180903790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x178) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x180) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x180) = 0;
   *(undefined4 *)(validationContext + 400) = 0;
@@ -34697,7 +34697,7 @@ void Unwind_180903790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x158) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x160) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x160) = 0;
   *(undefined4 *)(validationContext + 0x170) = 0;
@@ -34719,7 +34719,7 @@ void Unwind_1809037b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1f0) = 0;
   *(undefined4 *)(validationContext + 0x200) = 0;
@@ -34727,7 +34727,7 @@ void Unwind_1809037b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1d0) = 0;
   *(undefined4 *)(validationContext + 0x1e0) = 0;
@@ -34749,7 +34749,7 @@ void Unwind_1809037d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 600) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x260) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x260) = 0;
   *(undefined4 *)(validationContext + 0x270) = 0;
@@ -34757,7 +34757,7 @@ void Unwind_1809037d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x238) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x240) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x240) = 0;
   *(undefined4 *)(validationContext + 0x250) = 0;
@@ -34779,7 +34779,7 @@ void Unwind_1809037f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2d0) = 0;
   *(undefined4 *)(validationContext + 0x2e0) = 0;
@@ -34787,7 +34787,7 @@ void Unwind_1809037f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2b0) = 0;
   *(undefined4 *)(validationContext + 0x2c0) = 0;
@@ -34809,7 +34809,7 @@ void Unwind_180903810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x338) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x340) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x340) = 0;
   *(undefined4 *)(validationContext + 0x350) = 0;
@@ -34817,7 +34817,7 @@ void Unwind_180903810(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x318) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 800) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 800) = 0;
   *(undefined4 *)(validationContext + 0x330) = 0;
@@ -34839,7 +34839,7 @@ void Unwind_180903830(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x3b0) = 0;
   *(undefined4 *)(validationContext + 0x3c0) = 0;
@@ -34847,7 +34847,7 @@ void Unwind_180903830(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x388) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x390) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x390) = 0;
   *(undefined4 *)(validationContext + 0x3a0) = 0;
@@ -34869,7 +34869,7 @@ void Unwind_180903850(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x418) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x420) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x420) = 0;
   *(undefined4 *)(validationContext + 0x430) = 0;
@@ -34877,7 +34877,7 @@ void Unwind_180903850(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x3f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x400) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x400) = 0;
   *(undefined4 *)(validationContext + 0x410) = 0;
@@ -34899,7 +34899,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4e8) = 0;
   *(undefined4 *)(validationContext + 0x4f8) = 0;
@@ -34907,7 +34907,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4c8) = 0;
   *(undefined4 *)(validationContext + 0x4d8) = 0;
@@ -34915,7 +34915,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4a8) = 0;
   *(undefined4 *)(validationContext + 0x4b8) = 0;
@@ -34923,7 +34923,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x480) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x488) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x488) = 0;
   *(undefined4 *)(validationContext + 0x498) = 0;
@@ -34931,7 +34931,7 @@ void Unwind_180903870(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x468) = 0;
   *(undefined4 *)(validationContext + 0x478) = 0;
@@ -34953,7 +34953,7 @@ void Unwind_180903890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x550) = 0;
   *(undefined4 *)(validationContext + 0x560) = 0;
@@ -34961,7 +34961,7 @@ void Unwind_180903890(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x528) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x530) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x530) = 0;
   *(undefined4 *)(validationContext + 0x540) = 0;
@@ -34980,7 +34980,7 @@ void Unwind_1809038b0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10) = 0;
   *(undefined4 *)(validationContext + 0x20) = 0;
@@ -34999,7 +34999,7 @@ void Unwind_1809038c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -35049,7 +35049,7 @@ void Unwind_1809038f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x488) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x490) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x490) = 0;
   *(undefined4 *)(validationContext + 0x4a0) = 0;
@@ -35057,7 +35057,7 @@ void Unwind_1809038f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x468) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x470) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x470) = 0;
   *(undefined4 *)(validationContext + 0x480) = 0;
@@ -35079,7 +35079,7 @@ void Unwind_180903910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x500) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x500) = 0;
   *(undefined4 *)(validationContext + 0x510) = 0;
@@ -35087,7 +35087,7 @@ void Unwind_180903910(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4e0) = 0;
   *(undefined4 *)(validationContext + 0x4f0) = 0;
@@ -35109,7 +35109,7 @@ void Unwind_180903930(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x568) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x570) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x570) = 0;
   *(undefined4 *)(validationContext + 0x580) = 0;
@@ -35117,7 +35117,7 @@ void Unwind_180903930(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x550) = 0;
   *(undefined4 *)(validationContext + 0x560) = 0;
@@ -35139,7 +35139,7 @@ void Unwind_180903950(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5e0) = 0;
   *(undefined4 *)(validationContext + 0x5f0) = 0;
@@ -35147,7 +35147,7 @@ void Unwind_180903950(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5c0) = 0;
   *(undefined4 *)(validationContext + 0x5d0) = 0;
@@ -35169,7 +35169,7 @@ void Unwind_180903970(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x648) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x650) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x650) = 0;
   *(undefined4 *)(validationContext + 0x660) = 0;
@@ -35177,7 +35177,7 @@ void Unwind_180903970(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x628) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x630) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x630) = 0;
   *(undefined4 *)(validationContext + 0x640) = 0;
@@ -35199,7 +35199,7 @@ void Unwind_180903990(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x6b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x6c0) = 0;
   *(undefined4 *)(validationContext + 0x6d0) = 0;
@@ -35207,7 +35207,7 @@ void Unwind_180903990(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x698) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x6a0) = 0;
   *(undefined4 *)(validationContext + 0x6b0) = 0;
@@ -35229,7 +35229,7 @@ void Unwind_1809039b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x728) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x730) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x730) = 0;
   *(undefined4 *)(validationContext + 0x740) = 0;
@@ -35237,7 +35237,7 @@ void Unwind_1809039b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x708) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x710) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x710) = 0;
   *(undefined4 *)(validationContext + 0x720) = 0;
@@ -35259,7 +35259,7 @@ void Unwind_1809039d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x798) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7a0) = 0;
   *(undefined4 *)(validationContext + 0x7b0) = 0;
@@ -35267,7 +35267,7 @@ void Unwind_1809039d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x778) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x780) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x780) = 0;
   *(undefined4 *)(validationContext + 0x790) = 0;
@@ -35289,7 +35289,7 @@ void Unwind_1809039f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x808) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x810) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x810) = 0;
   *(undefined4 *)(validationContext + 0x820) = 0;
@@ -35297,7 +35297,7 @@ void Unwind_1809039f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x7e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7f0) = 0;
   *(undefined4 *)(validationContext + 0x800) = 0;
@@ -35319,7 +35319,7 @@ void Unwind_180903a10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x878) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x880) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x880) = 0;
   *(undefined4 *)(validationContext + 0x890) = 0;
@@ -35327,7 +35327,7 @@ void Unwind_180903a10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x858) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x860) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x860) = 0;
   *(undefined4 *)(validationContext + 0x870) = 0;
@@ -35349,7 +35349,7 @@ void Unwind_180903a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8f0) = 0;
   *(undefined4 *)(validationContext + 0x900) = 0;
@@ -35357,7 +35357,7 @@ void Unwind_180903a30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8d0) = 0;
   *(undefined4 *)(validationContext + 0x8e0) = 0;
@@ -35379,7 +35379,7 @@ void Unwind_180903a50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x958) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x960) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x960) = 0;
   *(undefined4 *)(validationContext + 0x970) = 0;
@@ -35387,7 +35387,7 @@ void Unwind_180903a50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x938) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x940) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x940) = 0;
   *(undefined4 *)(validationContext + 0x950) = 0;
@@ -35409,7 +35409,7 @@ void Unwind_180903a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9d0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9d8) = 0;
   *(undefined4 *)(validationContext + 0x9e8) = 0;
@@ -35417,7 +35417,7 @@ void Unwind_180903a70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9b0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9b8) = 0;
   *(undefined4 *)(validationContext + 0x9c8) = 0;
@@ -35439,7 +35439,7 @@ void Unwind_180903a90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa50) = 0;
   *(undefined4 *)(validationContext + 0xa60) = 0;
@@ -35447,7 +35447,7 @@ void Unwind_180903a90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa30) = 0;
   *(undefined4 *)(validationContext + 0xa40) = 0;
@@ -35480,7 +35480,7 @@ void Unwind_180903ac0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x10) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x18) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x18) = 0;
   *(undefined4 *)(validationContext + 0x28) = 0;
@@ -35499,7 +35499,7 @@ void Unwind_180903ad0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x30) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x38) = 0;
   *(undefined4 *)(validationContext + 0x48) = 0;
@@ -35549,7 +35549,7 @@ void Unwind_180903b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x488) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x490) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x490) = 0;
   *(undefined4 *)(validationContext + 0x4a0) = 0;
@@ -35557,7 +35557,7 @@ void Unwind_180903b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x468) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x470) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x470) = 0;
   *(undefined4 *)(validationContext + 0x480) = 0;
@@ -35579,7 +35579,7 @@ void Unwind_180903b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x500) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x500) = 0;
   *(undefined4 *)(validationContext + 0x510) = 0;
@@ -35587,7 +35587,7 @@ void Unwind_180903b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4e0) = 0;
   *(undefined4 *)(validationContext + 0x4f0) = 0;
@@ -35609,7 +35609,7 @@ void Unwind_180903b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x568) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x570) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x570) = 0;
   *(undefined4 *)(validationContext + 0x580) = 0;
@@ -35617,7 +35617,7 @@ void Unwind_180903b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x550) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x550) = 0;
   *(undefined4 *)(validationContext + 0x560) = 0;
@@ -35639,7 +35639,7 @@ void Unwind_180903b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5e0) = 0;
   *(undefined4 *)(validationContext + 0x5f0) = 0;
@@ -35647,7 +35647,7 @@ void Unwind_180903b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5c0) = 0;
   *(undefined4 *)(validationContext + 0x5d0) = 0;
@@ -35669,7 +35669,7 @@ void Unwind_180903b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x648) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x650) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x650) = 0;
   *(undefined4 *)(validationContext + 0x660) = 0;
@@ -35677,7 +35677,7 @@ void Unwind_180903b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x628) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x630) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x630) = 0;
   *(undefined4 *)(validationContext + 0x640) = 0;
@@ -35699,7 +35699,7 @@ void Unwind_180903ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x6b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x6c0) = 0;
   *(undefined4 *)(validationContext + 0x6d0) = 0;
@@ -35707,7 +35707,7 @@ void Unwind_180903ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x698) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x6a0) = 0;
   *(undefined4 *)(validationContext + 0x6b0) = 0;
@@ -35729,7 +35729,7 @@ void Unwind_180903bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x728) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x730) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x730) = 0;
   *(undefined4 *)(validationContext + 0x740) = 0;
@@ -35737,7 +35737,7 @@ void Unwind_180903bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x708) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x710) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x710) = 0;
   *(undefined4 *)(validationContext + 0x720) = 0;
@@ -35759,7 +35759,7 @@ void Unwind_180903be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x798) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7a0) = 0;
   *(undefined4 *)(validationContext + 0x7b0) = 0;
@@ -35767,7 +35767,7 @@ void Unwind_180903be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x778) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x780) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x780) = 0;
   *(undefined4 *)(validationContext + 0x790) = 0;
@@ -35789,7 +35789,7 @@ void Unwind_180903c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x808) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x810) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x810) = 0;
   *(undefined4 *)(validationContext + 0x820) = 0;
@@ -35797,7 +35797,7 @@ void Unwind_180903c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x7e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7f0) = 0;
   *(undefined4 *)(validationContext + 0x800) = 0;
@@ -35819,7 +35819,7 @@ void Unwind_180903c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x878) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x880) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x880) = 0;
   *(undefined4 *)(validationContext + 0x890) = 0;
@@ -35827,7 +35827,7 @@ void Unwind_180903c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x858) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x860) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x860) = 0;
   *(undefined4 *)(validationContext + 0x870) = 0;
@@ -35849,7 +35849,7 @@ void Unwind_180903c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8f0) = 0;
   *(undefined4 *)(validationContext + 0x900) = 0;
@@ -35857,7 +35857,7 @@ void Unwind_180903c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8d0) = 0;
   *(undefined4 *)(validationContext + 0x8e0) = 0;
@@ -35879,7 +35879,7 @@ void Unwind_180903c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x958) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x960) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x960) = 0;
   *(undefined4 *)(validationContext + 0x970) = 0;
@@ -35887,7 +35887,7 @@ void Unwind_180903c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x938) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x940) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x940) = 0;
   *(undefined4 *)(validationContext + 0x950) = 0;
@@ -35909,7 +35909,7 @@ void Unwind_180903c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9d0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9d8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9d8) = 0;
   *(undefined4 *)(validationContext + 0x9e8) = 0;
@@ -35917,7 +35917,7 @@ void Unwind_180903c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9b0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9b8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9b8) = 0;
   *(undefined4 *)(validationContext + 0x9c8) = 0;
@@ -35939,7 +35939,7 @@ void Unwind_180903ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa50) = 0;
   *(undefined4 *)(validationContext + 0xa60) = 0;
@@ -35947,7 +35947,7 @@ void Unwind_180903ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa30) = 0;
   *(undefined4 *)(validationContext + 0xa40) = 0;
@@ -35966,7 +35966,7 @@ void Unwind_180903cc0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x10) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x18) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x18) = 0;
   *(undefined4 *)(validationContext + 0x28) = 0;
@@ -35985,7 +35985,7 @@ void Unwind_180903cd0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x30) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x38) = 0;
   *(undefined4 *)(validationContext + 0x48) = 0;
@@ -36021,7 +36021,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x160) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x168) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x168) = 0;
   *(undefined4 *)(validationContext + 0x178) = 0;
@@ -36029,7 +36029,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x140) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x148) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x148) = 0;
   *(undefined4 *)(validationContext + 0x158) = 0;
@@ -36037,7 +36037,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x120) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x128) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x128) = 0;
   *(undefined4 *)(validationContext + 0x138) = 0;
@@ -36045,7 +36045,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x100) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x108) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x108) = 0;
   *(undefined4 *)(validationContext + 0x118) = 0;
@@ -36053,7 +36053,7 @@ void Unwind_180903cf0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe8) = 0;
   *(undefined4 *)(validationContext + 0xf8) = 0;
@@ -36075,7 +36075,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x220) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x228) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x228) = 0;
   *(undefined4 *)(validationContext + 0x238) = 0;
@@ -36083,7 +36083,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x200) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x208) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x208) = 0;
   *(undefined4 *)(validationContext + 0x218) = 0;
@@ -36091,7 +36091,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1e8) = 0;
   *(undefined4 *)(validationContext + 0x1f8) = 0;
@@ -36099,7 +36099,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1c8) = 0;
   *(undefined4 *)(validationContext + 0x1d8) = 0;
@@ -36107,7 +36107,7 @@ void Unwind_180903d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a8) = 0;
   *(undefined4 *)(validationContext + 0x1b8) = 0;
@@ -36129,7 +36129,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2e8) = 0;
   *(undefined4 *)(validationContext + 0x2f8) = 0;
@@ -36137,7 +36137,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2c8) = 0;
   *(undefined4 *)(validationContext + 0x2d8) = 0;
@@ -36145,7 +36145,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2a8) = 0;
   *(undefined4 *)(validationContext + 0x2b8) = 0;
@@ -36153,7 +36153,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x280) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x288) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x288) = 0;
   *(undefined4 *)(validationContext + 0x298) = 0;
@@ -36161,7 +36161,7 @@ void Unwind_180903d30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x260) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x268) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x268) = 0;
   *(undefined4 *)(validationContext + 0x278) = 0;
@@ -36183,7 +36183,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x3a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x3a8) = 0;
   *(undefined4 *)(validationContext + 0x3b8) = 0;
@@ -36191,7 +36191,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x380) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x388) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x388) = 0;
   *(undefined4 *)(validationContext + 0x398) = 0;
@@ -36199,7 +36199,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x360) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x368) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x368) = 0;
   *(undefined4 *)(validationContext + 0x378) = 0;
@@ -36207,7 +36207,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x340) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x348) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x348) = 0;
   *(undefined4 *)(validationContext + 0x358) = 0;
@@ -36215,7 +36215,7 @@ void Unwind_180903d50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 800) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x328) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x328) = 0;
   *(undefined4 *)(validationContext + 0x338) = 0;
@@ -36237,7 +36237,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x468) = 0;
   *(undefined4 *)(validationContext + 0x478) = 0;
@@ -36245,7 +36245,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x440) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x448) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x448) = 0;
   *(undefined4 *)(validationContext + 0x458) = 0;
@@ -36253,7 +36253,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x420) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x428) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x428) = 0;
   *(undefined4 *)(validationContext + 0x438) = 0;
@@ -36261,7 +36261,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x400) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x408) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x408) = 0;
   *(undefined4 *)(validationContext + 0x418) = 0;
@@ -36269,7 +36269,7 @@ void Unwind_180903d70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x3e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 1000) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 1000) = 0;
   *(undefined4 *)(validationContext + 0x3f8) = 0;
@@ -36291,7 +36291,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x520) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x528) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x528) = 0;
   *(undefined4 *)(validationContext + 0x538) = 0;
@@ -36299,7 +36299,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x500) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x508) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x508) = 0;
   *(undefined4 *)(validationContext + 0x518) = 0;
@@ -36307,7 +36307,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4e8) = 0;
   *(undefined4 *)(validationContext + 0x4f8) = 0;
@@ -36315,7 +36315,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4c8) = 0;
   *(undefined4 *)(validationContext + 0x4d8) = 0;
@@ -36323,7 +36323,7 @@ void Unwind_180903d90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4a8) = 0;
   *(undefined4 *)(validationContext + 0x4b8) = 0;
@@ -36345,7 +36345,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5e8) = 0;
   *(undefined4 *)(validationContext + 0x5f8) = 0;
@@ -36353,7 +36353,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5c8) = 0;
   *(undefined4 *)(validationContext + 0x5d8) = 0;
@@ -36361,7 +36361,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5a8) = 0;
   *(undefined4 *)(validationContext + 0x5b8) = 0;
@@ -36369,7 +36369,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x580) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x588) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x588) = 0;
   *(undefined4 *)(validationContext + 0x598) = 0;
@@ -36377,7 +36377,7 @@ void Unwind_180903db0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x560) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x568) = 0;
   *(undefined4 *)(validationContext + 0x578) = 0;
@@ -36399,7 +36399,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x6a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x6a8) = 0;
   *(undefined4 *)(validationContext + 0x6b8) = 0;
@@ -36407,7 +36407,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x680) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x688) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x688) = 0;
   *(undefined4 *)(validationContext + 0x698) = 0;
@@ -36415,7 +36415,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x660) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x668) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x668) = 0;
   *(undefined4 *)(validationContext + 0x678) = 0;
@@ -36423,7 +36423,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x640) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x648) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x648) = 0;
   *(undefined4 *)(validationContext + 0x658) = 0;
@@ -36431,7 +36431,7 @@ void Unwind_180903dd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x620) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x628) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x628) = 0;
   *(undefined4 *)(validationContext + 0x638) = 0;
@@ -36453,7 +36453,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x760) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x768) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x768) = 0;
   *(undefined4 *)(validationContext + 0x778) = 0;
@@ -36461,7 +36461,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x740) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x748) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x748) = 0;
   *(undefined4 *)(validationContext + 0x758) = 0;
@@ -36469,7 +36469,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x720) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x728) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x728) = 0;
   *(undefined4 *)(validationContext + 0x738) = 0;
@@ -36477,7 +36477,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x700) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x708) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x708) = 0;
   *(undefined4 *)(validationContext + 0x718) = 0;
@@ -36485,7 +36485,7 @@ void Unwind_180903df0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x6e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x6e8) = 0;
   *(undefined4 *)(validationContext + 0x6f8) = 0;
@@ -36507,7 +36507,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x820) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x828) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x828) = 0;
   *(undefined4 *)(validationContext + 0x838) = 0;
@@ -36515,7 +36515,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x800) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x808) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x808) = 0;
   *(undefined4 *)(validationContext + 0x818) = 0;
@@ -36523,7 +36523,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x7e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7e8) = 0;
   *(undefined4 *)(validationContext + 0x7f8) = 0;
@@ -36531,7 +36531,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x7c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7c8) = 0;
   *(undefined4 *)(validationContext + 0x7d8) = 0;
@@ -36539,7 +36539,7 @@ void Unwind_180903e10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x7a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7a8) = 0;
   *(undefined4 *)(validationContext + 0x7b8) = 0;
@@ -36561,7 +36561,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8e8) = 0;
   *(undefined4 *)(validationContext + 0x8f8) = 0;
@@ -36569,7 +36569,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8c8) = 0;
   *(undefined4 *)(validationContext + 0x8d8) = 0;
@@ -36577,7 +36577,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8a8) = 0;
   *(undefined4 *)(validationContext + 0x8b8) = 0;
@@ -36585,7 +36585,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x880) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x888) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x888) = 0;
   *(undefined4 *)(validationContext + 0x898) = 0;
@@ -36593,7 +36593,7 @@ void Unwind_180903e30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x860) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x868) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x868) = 0;
   *(undefined4 *)(validationContext + 0x878) = 0;
@@ -36615,7 +36615,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9a8) = 0;
   *(undefined4 *)(validationContext + 0x9b8) = 0;
@@ -36623,7 +36623,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x980) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x988) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x988) = 0;
   *(undefined4 *)(validationContext + 0x998) = 0;
@@ -36631,7 +36631,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x960) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x968) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x968) = 0;
   *(undefined4 *)(validationContext + 0x978) = 0;
@@ -36639,7 +36639,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x940) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x948) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x948) = 0;
   *(undefined4 *)(validationContext + 0x958) = 0;
@@ -36647,7 +36647,7 @@ void Unwind_180903e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x920) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x928) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x928) = 0;
   *(undefined4 *)(validationContext + 0x938) = 0;
@@ -36669,7 +36669,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa68) = 0;
   *(undefined4 *)(validationContext + 0xa78) = 0;
@@ -36677,7 +36677,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa40) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa48) = 0;
   *(undefined4 *)(validationContext + 0xa58) = 0;
@@ -36685,7 +36685,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa28) = 0;
   *(undefined4 *)(validationContext + 0xa38) = 0;
@@ -36693,7 +36693,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa00) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa08) = 0;
   *(undefined4 *)(validationContext + 0xa18) = 0;
@@ -36701,7 +36701,7 @@ void Unwind_180903e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9e8) = 0;
   *(undefined4 *)(validationContext + 0x9f8) = 0;
@@ -36723,7 +36723,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb28) = 0;
   *(undefined4 *)(validationContext + 0xb38) = 0;
@@ -36731,7 +36731,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb00) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb08) = 0;
   *(undefined4 *)(validationContext + 0xb18) = 0;
@@ -36739,7 +36739,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xae0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xae8) = 0;
   *(undefined4 *)(validationContext + 0xaf8) = 0;
@@ -36747,7 +36747,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xac0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xac8) = 0;
   *(undefined4 *)(validationContext + 0xad8) = 0;
@@ -36755,7 +36755,7 @@ void Unwind_180903e90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xaa0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xaa8) = 0;
   *(undefined4 *)(validationContext + 0xab8) = 0;
@@ -36777,7 +36777,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xbe0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xbe8) = 0;
   *(undefined4 *)(validationContext + 0xbf8) = 0;
@@ -36785,7 +36785,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xbc0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xbc8) = 0;
   *(undefined4 *)(validationContext + 0xbd8) = 0;
@@ -36793,7 +36793,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xba0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xba8) = 0;
   *(undefined4 *)(validationContext + 3000) = 0;
@@ -36801,7 +36801,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb80) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb88) = 0;
   *(undefined4 *)(validationContext + 0xb98) = 0;
@@ -36809,7 +36809,7 @@ void Unwind_180903eb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb68) = 0;
   *(undefined4 *)(validationContext + 0xb78) = 0;
@@ -36831,7 +36831,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xca0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xca8) = 0;
   *(undefined4 *)(validationContext + 0xcb8) = 0;
@@ -36839,7 +36839,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc80) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc88) = 0;
   *(undefined4 *)(validationContext + 0xc98) = 0;
@@ -36847,7 +36847,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc68) = 0;
   *(undefined4 *)(validationContext + 0xc78) = 0;
@@ -36855,7 +36855,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc40) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc48) = 0;
   *(undefined4 *)(validationContext + 0xc58) = 0;
@@ -36863,7 +36863,7 @@ void Unwind_180903ed0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc28) = 0;
   *(undefined4 *)(validationContext + 0xc38) = 0;
@@ -36885,7 +36885,7 @@ void Unwind_180903ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd10) = 0;
   *(undefined4 *)(validationContext + 0xd20) = 0;
@@ -36893,7 +36893,7 @@ void Unwind_180903ef0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xce8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xcf0) = 0;
   *(undefined4 *)(validationContext + 0xd00) = 0;
@@ -36915,7 +36915,7 @@ void Unwind_180903f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd80) = 0;
   *(undefined4 *)(validationContext + 0xd90) = 0;
@@ -36923,7 +36923,7 @@ void Unwind_180903f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd60) = 0;
   *(undefined4 *)(validationContext + 0xd70) = 0;
@@ -36945,7 +36945,7 @@ void Unwind_180903f30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xde8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xdf0) = 0;
   *(undefined4 *)(validationContext + 0xe00) = 0;
@@ -36953,7 +36953,7 @@ void Unwind_180903f30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xdc8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xdd0) = 0;
   *(undefined4 *)(validationContext + 0xde0) = 0;
@@ -36975,7 +36975,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xeb0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xeb8) = 0;
   *(undefined4 *)(validationContext + 0xec8) = 0;
@@ -36983,7 +36983,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe90) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe98) = 0;
   *(undefined4 *)(validationContext + 0xea8) = 0;
@@ -36991,7 +36991,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe70) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe78) = 0;
   *(undefined4 *)(validationContext + 0xe88) = 0;
@@ -36999,7 +36999,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe50) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe58) = 0;
   *(undefined4 *)(validationContext + 0xe68) = 0;
@@ -37007,7 +37007,7 @@ void Unwind_180903f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe30) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe38) = 0;
   *(undefined4 *)(validationContext + 0xe48) = 0;
@@ -37029,7 +37029,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf70) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf78) = 0;
   *(undefined4 *)(validationContext + 0xf88) = 0;
@@ -37037,7 +37037,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf50) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf58) = 0;
   *(undefined4 *)(validationContext + 0xf68) = 0;
@@ -37045,7 +37045,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf30) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf38) = 0;
   *(undefined4 *)(validationContext + 0xf48) = 0;
@@ -37053,7 +37053,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf10) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf18) = 0;
   *(undefined4 *)(validationContext + 0xf28) = 0;
@@ -37061,7 +37061,7 @@ void Unwind_180903f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xef0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xef8) = 0;
   *(undefined4 *)(validationContext + 0xf08) = 0;
@@ -37083,7 +37083,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1030) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1038) = 0;
   *(undefined4 *)(validationContext + 0x1048) = 0;
@@ -37091,7 +37091,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1010) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1018) = 0;
   *(undefined4 *)(validationContext + 0x1028) = 0;
@@ -37099,7 +37099,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xff0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xff8) = 0;
   *(undefined4 *)(validationContext + 0x1008) = 0;
@@ -37107,7 +37107,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xfd0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xfd8) = 0;
   *(undefined4 *)(validationContext + 0xfe8) = 0;
@@ -37115,7 +37115,7 @@ void Unwind_180903f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xfb0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xfb8) = 0;
   *(undefined4 *)(validationContext + 0xfc8) = 0;
@@ -37137,7 +37137,7 @@ void Unwind_180903fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1098) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10a0) = 0;
   *(undefined4 *)(validationContext + 0x10b0) = 0;
@@ -37145,7 +37145,7 @@ void Unwind_180903fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1078) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1080) = 0;
   *(undefined4 *)(validationContext + 0x1090) = 0;
@@ -37167,7 +37167,7 @@ void Unwind_180903fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1110) = 0;
   *(undefined4 *)(validationContext + 0x1120) = 0;
@@ -37175,7 +37175,7 @@ void Unwind_180903fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x10e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10f0) = 0;
   *(undefined4 *)(validationContext + 0x1100) = 0;
@@ -37197,7 +37197,7 @@ void Unwind_180903ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1178) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1180) = 0;
   *(undefined4 *)(validationContext + 0x1190) = 0;
@@ -37205,7 +37205,7 @@ void Unwind_180903ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1158) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1160) = 0;
   *(undefined4 *)(validationContext + 0x1170) = 0;
@@ -37227,7 +37227,7 @@ void Unwind_180904010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x11e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x11f0) = 0;
   *(undefined4 *)(validationContext + 0x1200) = 0;
@@ -37235,7 +37235,7 @@ void Unwind_180904010(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x11c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x11d0) = 0;
   *(undefined4 *)(validationContext + 0x11e0) = 0;
@@ -37257,7 +37257,7 @@ void Unwind_180904030(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1258) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1260) = 0;
   *(undefined4 *)(validationContext + 0x1270) = 0;
@@ -37265,7 +37265,7 @@ void Unwind_180904030(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1238) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1240) = 0;
   *(undefined4 *)(validationContext + 0x1250) = 0;
@@ -37287,7 +37287,7 @@ void Unwind_180904050(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x12c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x12d0) = 0;
   *(undefined4 *)(validationContext + 0x12e0) = 0;
@@ -37295,7 +37295,7 @@ void Unwind_180904050(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x12a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x12b0) = 0;
   *(undefined4 *)(validationContext + 0x12c0) = 0;
@@ -37317,7 +37317,7 @@ void Unwind_180904070(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1338) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1340) = 0;
   *(undefined4 *)(validationContext + 0x1350) = 0;
@@ -37325,7 +37325,7 @@ void Unwind_180904070(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1318) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1320) = 0;
   *(undefined4 *)(validationContext + 0x1330) = 0;
@@ -37353,7 +37353,7 @@ void Unwind_180904090(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -37376,7 +37376,7 @@ void Unwind_1809040b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -37390,7 +37390,7 @@ void Unwind_1809040d0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -37437,7 +37437,7 @@ void Unwind_180904100(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -37470,7 +37470,7 @@ void Unwind_180904120(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -37489,7 +37489,7 @@ void Unwind_180904130(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -37508,7 +37508,7 @@ void Unwind_180904140(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x40) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x48) = 0;
   *(undefined4 *)(validationContext + 0x58) = 0;
@@ -37527,7 +37527,7 @@ void Unwind_180904150(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x68) = 0;
   *(undefined4 *)(validationContext + 0x78) = 0;
@@ -37546,7 +37546,7 @@ void Unwind_180904160(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x80) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x88) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x88) = 0;
   *(undefined4 *)(validationContext + 0x98) = 0;
@@ -37579,7 +37579,7 @@ void Unwind_1809041a0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x68) = 0;
   *(undefined4 *)(validationContext + 0x78) = 0;
@@ -37615,7 +37615,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x160) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x168) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x168) = 0;
   *(undefined4 *)(validationContext + 0x178) = 0;
@@ -37623,7 +37623,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x140) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x148) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x148) = 0;
   *(undefined4 *)(validationContext + 0x158) = 0;
@@ -37631,7 +37631,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x120) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x128) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x128) = 0;
   *(undefined4 *)(validationContext + 0x138) = 0;
@@ -37639,7 +37639,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x100) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x108) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x108) = 0;
   *(undefined4 *)(validationContext + 0x118) = 0;
@@ -37647,7 +37647,7 @@ void Unwind_1809041d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe8) = 0;
   *(undefined4 *)(validationContext + 0xf8) = 0;
@@ -37669,7 +37669,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x220) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x228) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x228) = 0;
   *(undefined4 *)(validationContext + 0x238) = 0;
@@ -37677,7 +37677,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x200) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x208) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x208) = 0;
   *(undefined4 *)(validationContext + 0x218) = 0;
@@ -37685,7 +37685,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1e8) = 0;
   *(undefined4 *)(validationContext + 0x1f8) = 0;
@@ -37693,7 +37693,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1c8) = 0;
   *(undefined4 *)(validationContext + 0x1d8) = 0;
@@ -37701,7 +37701,7 @@ void Unwind_1809041f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a8) = 0;
   *(undefined4 *)(validationContext + 0x1b8) = 0;
@@ -37723,7 +37723,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2e8) = 0;
   *(undefined4 *)(validationContext + 0x2f8) = 0;
@@ -37731,7 +37731,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2c8) = 0;
   *(undefined4 *)(validationContext + 0x2d8) = 0;
@@ -37739,7 +37739,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2a8) = 0;
   *(undefined4 *)(validationContext + 0x2b8) = 0;
@@ -37747,7 +37747,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x280) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x288) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x288) = 0;
   *(undefined4 *)(validationContext + 0x298) = 0;
@@ -37755,7 +37755,7 @@ void Unwind_180904210(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x260) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x268) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x268) = 0;
   *(undefined4 *)(validationContext + 0x278) = 0;
@@ -37777,7 +37777,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x3a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x3a8) = 0;
   *(undefined4 *)(validationContext + 0x3b8) = 0;
@@ -37785,7 +37785,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x380) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x388) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x388) = 0;
   *(undefined4 *)(validationContext + 0x398) = 0;
@@ -37793,7 +37793,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x360) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x368) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x368) = 0;
   *(undefined4 *)(validationContext + 0x378) = 0;
@@ -37801,7 +37801,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x340) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x348) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x348) = 0;
   *(undefined4 *)(validationContext + 0x358) = 0;
@@ -37809,7 +37809,7 @@ void Unwind_180904230(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 800) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x328) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x328) = 0;
   *(undefined4 *)(validationContext + 0x338) = 0;
@@ -37831,7 +37831,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x468) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x468) = 0;
   *(undefined4 *)(validationContext + 0x478) = 0;
@@ -37839,7 +37839,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x440) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x448) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x448) = 0;
   *(undefined4 *)(validationContext + 0x458) = 0;
@@ -37847,7 +37847,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x420) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x428) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x428) = 0;
   *(undefined4 *)(validationContext + 0x438) = 0;
@@ -37855,7 +37855,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x400) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x408) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x408) = 0;
   *(undefined4 *)(validationContext + 0x418) = 0;
@@ -37863,7 +37863,7 @@ void Unwind_180904250(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x3e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 1000) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 1000) = 0;
   *(undefined4 *)(validationContext + 0x3f8) = 0;
@@ -37885,7 +37885,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x520) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x528) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x528) = 0;
   *(undefined4 *)(validationContext + 0x538) = 0;
@@ -37893,7 +37893,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x500) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x508) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x508) = 0;
   *(undefined4 *)(validationContext + 0x518) = 0;
@@ -37901,7 +37901,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4e8) = 0;
   *(undefined4 *)(validationContext + 0x4f8) = 0;
@@ -37909,7 +37909,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4c8) = 0;
   *(undefined4 *)(validationContext + 0x4d8) = 0;
@@ -37917,7 +37917,7 @@ void Unwind_180904270(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4a8) = 0;
   *(undefined4 *)(validationContext + 0x4b8) = 0;
@@ -37939,7 +37939,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5e8) = 0;
   *(undefined4 *)(validationContext + 0x5f8) = 0;
@@ -37947,7 +37947,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5c8) = 0;
   *(undefined4 *)(validationContext + 0x5d8) = 0;
@@ -37955,7 +37955,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x5a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x5a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5a8) = 0;
   *(undefined4 *)(validationContext + 0x5b8) = 0;
@@ -37963,7 +37963,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x580) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x588) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x588) = 0;
   *(undefined4 *)(validationContext + 0x598) = 0;
@@ -37971,7 +37971,7 @@ void Unwind_180904290(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x560) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x568) = 0;
   *(undefined4 *)(validationContext + 0x578) = 0;
@@ -37993,7 +37993,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x6a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x6a8) = 0;
   *(undefined4 *)(validationContext + 0x6b8) = 0;
@@ -38001,7 +38001,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x680) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x688) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x688) = 0;
   *(undefined4 *)(validationContext + 0x698) = 0;
@@ -38009,7 +38009,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x660) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x668) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x668) = 0;
   *(undefined4 *)(validationContext + 0x678) = 0;
@@ -38017,7 +38017,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x640) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x648) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x648) = 0;
   *(undefined4 *)(validationContext + 0x658) = 0;
@@ -38025,7 +38025,7 @@ void Unwind_1809042b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x620) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x628) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x628) = 0;
   *(undefined4 *)(validationContext + 0x638) = 0;
@@ -38047,7 +38047,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x760) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x768) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x768) = 0;
   *(undefined4 *)(validationContext + 0x778) = 0;
@@ -38055,7 +38055,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x740) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x748) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x748) = 0;
   *(undefined4 *)(validationContext + 0x758) = 0;
@@ -38063,7 +38063,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x720) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x728) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x728) = 0;
   *(undefined4 *)(validationContext + 0x738) = 0;
@@ -38071,7 +38071,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x700) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x708) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x708) = 0;
   *(undefined4 *)(validationContext + 0x718) = 0;
@@ -38079,7 +38079,7 @@ void Unwind_1809042d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x6e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x6e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x6e8) = 0;
   *(undefined4 *)(validationContext + 0x6f8) = 0;
@@ -38101,7 +38101,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x820) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x828) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x828) = 0;
   *(undefined4 *)(validationContext + 0x838) = 0;
@@ -38109,7 +38109,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x800) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x808) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x808) = 0;
   *(undefined4 *)(validationContext + 0x818) = 0;
@@ -38117,7 +38117,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x7e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7e8) = 0;
   *(undefined4 *)(validationContext + 0x7f8) = 0;
@@ -38125,7 +38125,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x7c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7c8) = 0;
   *(undefined4 *)(validationContext + 0x7d8) = 0;
@@ -38133,7 +38133,7 @@ void Unwind_1809042f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x7a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x7a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x7a8) = 0;
   *(undefined4 *)(validationContext + 0x7b8) = 0;
@@ -38155,7 +38155,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8e8) = 0;
   *(undefined4 *)(validationContext + 0x8f8) = 0;
@@ -38163,7 +38163,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8c0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8c8) = 0;
   *(undefined4 *)(validationContext + 0x8d8) = 0;
@@ -38171,7 +38171,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x8a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x8a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x8a8) = 0;
   *(undefined4 *)(validationContext + 0x8b8) = 0;
@@ -38179,7 +38179,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x880) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x888) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x888) = 0;
   *(undefined4 *)(validationContext + 0x898) = 0;
@@ -38187,7 +38187,7 @@ void Unwind_180904310(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x860) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x868) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x868) = 0;
   *(undefined4 *)(validationContext + 0x878) = 0;
@@ -38209,7 +38209,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9a0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9a8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9a8) = 0;
   *(undefined4 *)(validationContext + 0x9b8) = 0;
@@ -38217,7 +38217,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x980) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x988) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x988) = 0;
   *(undefined4 *)(validationContext + 0x998) = 0;
@@ -38225,7 +38225,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x960) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x968) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x968) = 0;
   *(undefined4 *)(validationContext + 0x978) = 0;
@@ -38233,7 +38233,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x940) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x948) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x948) = 0;
   *(undefined4 *)(validationContext + 0x958) = 0;
@@ -38241,7 +38241,7 @@ void Unwind_180904330(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x920) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x928) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x928) = 0;
   *(undefined4 *)(validationContext + 0x938) = 0;
@@ -38263,7 +38263,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa68) = 0;
   *(undefined4 *)(validationContext + 0xa78) = 0;
@@ -38271,7 +38271,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa40) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa48) = 0;
   *(undefined4 *)(validationContext + 0xa58) = 0;
@@ -38279,7 +38279,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa28) = 0;
   *(undefined4 *)(validationContext + 0xa38) = 0;
@@ -38287,7 +38287,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa00) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa08) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa08) = 0;
   *(undefined4 *)(validationContext + 0xa18) = 0;
@@ -38295,7 +38295,7 @@ void Unwind_180904350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9e0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9e8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9e8) = 0;
   *(undefined4 *)(validationContext + 0x9f8) = 0;
@@ -38317,7 +38317,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb28) = 0;
   *(undefined4 *)(validationContext + 0xb38) = 0;
@@ -38325,7 +38325,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb00) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb08) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb08) = 0;
   *(undefined4 *)(validationContext + 0xb18) = 0;
@@ -38333,7 +38333,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xae0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xae8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xae8) = 0;
   *(undefined4 *)(validationContext + 0xaf8) = 0;
@@ -38341,7 +38341,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xac0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xac8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xac8) = 0;
   *(undefined4 *)(validationContext + 0xad8) = 0;
@@ -38349,7 +38349,7 @@ void Unwind_180904370(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xaa0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xaa8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xaa8) = 0;
   *(undefined4 *)(validationContext + 0xab8) = 0;
@@ -38371,7 +38371,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xbe0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xbe8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xbe8) = 0;
   *(undefined4 *)(validationContext + 0xbf8) = 0;
@@ -38379,7 +38379,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xbc0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xbc8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xbc8) = 0;
   *(undefined4 *)(validationContext + 0xbd8) = 0;
@@ -38387,7 +38387,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xba0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xba8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xba8) = 0;
   *(undefined4 *)(validationContext + 3000) = 0;
@@ -38395,7 +38395,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb80) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb88) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb88) = 0;
   *(undefined4 *)(validationContext + 0xb98) = 0;
@@ -38403,7 +38403,7 @@ void Unwind_180904390(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb68) = 0;
   *(undefined4 *)(validationContext + 0xb78) = 0;
@@ -38425,7 +38425,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xca0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xca8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xca8) = 0;
   *(undefined4 *)(validationContext + 0xcb8) = 0;
@@ -38433,7 +38433,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc80) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc88) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc88) = 0;
   *(undefined4 *)(validationContext + 0xc98) = 0;
@@ -38441,7 +38441,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc60) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc68) = 0;
   *(undefined4 *)(validationContext + 0xc78) = 0;
@@ -38449,7 +38449,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc40) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc48) = 0;
   *(undefined4 *)(validationContext + 0xc58) = 0;
@@ -38457,7 +38457,7 @@ void Unwind_1809043b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc28) = 0;
   *(undefined4 *)(validationContext + 0xc38) = 0;
@@ -38479,7 +38479,7 @@ void Unwind_1809043d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd10) = 0;
   *(undefined4 *)(validationContext + 0xd20) = 0;
@@ -38487,7 +38487,7 @@ void Unwind_1809043d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xce8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xcf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xcf0) = 0;
   *(undefined4 *)(validationContext + 0xd00) = 0;
@@ -38509,7 +38509,7 @@ void Unwind_1809043f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd80) = 0;
   *(undefined4 *)(validationContext + 0xd90) = 0;
@@ -38517,7 +38517,7 @@ void Unwind_1809043f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd60) = 0;
   *(undefined4 *)(validationContext + 0xd70) = 0;
@@ -38539,7 +38539,7 @@ void Unwind_180904410(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xde8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xdf0) = 0;
   *(undefined4 *)(validationContext + 0xe00) = 0;
@@ -38547,7 +38547,7 @@ void Unwind_180904410(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xdc8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xdd0) = 0;
   *(undefined4 *)(validationContext + 0xde0) = 0;
@@ -38569,7 +38569,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xeb0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xeb8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xeb8) = 0;
   *(undefined4 *)(validationContext + 0xec8) = 0;
@@ -38577,7 +38577,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe90) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe98) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe98) = 0;
   *(undefined4 *)(validationContext + 0xea8) = 0;
@@ -38585,7 +38585,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe70) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe78) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe78) = 0;
   *(undefined4 *)(validationContext + 0xe88) = 0;
@@ -38593,7 +38593,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe50) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe58) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe58) = 0;
   *(undefined4 *)(validationContext + 0xe68) = 0;
@@ -38601,7 +38601,7 @@ void Unwind_180904430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe30) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe38) = 0;
   *(undefined4 *)(validationContext + 0xe48) = 0;
@@ -38623,7 +38623,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf70) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf78) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf78) = 0;
   *(undefined4 *)(validationContext + 0xf88) = 0;
@@ -38631,7 +38631,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf50) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf58) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf58) = 0;
   *(undefined4 *)(validationContext + 0xf68) = 0;
@@ -38639,7 +38639,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf30) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf38) = 0;
   *(undefined4 *)(validationContext + 0xf48) = 0;
@@ -38647,7 +38647,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf10) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf18) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf18) = 0;
   *(undefined4 *)(validationContext + 0xf28) = 0;
@@ -38655,7 +38655,7 @@ void Unwind_180904450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xef0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xef8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xef8) = 0;
   *(undefined4 *)(validationContext + 0xf08) = 0;
@@ -38677,7 +38677,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1030) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1038) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1038) = 0;
   *(undefined4 *)(validationContext + 0x1048) = 0;
@@ -38685,7 +38685,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1010) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1018) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1018) = 0;
   *(undefined4 *)(validationContext + 0x1028) = 0;
@@ -38693,7 +38693,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xff0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xff8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xff8) = 0;
   *(undefined4 *)(validationContext + 0x1008) = 0;
@@ -38701,7 +38701,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xfd0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xfd8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xfd8) = 0;
   *(undefined4 *)(validationContext + 0xfe8) = 0;
@@ -38709,7 +38709,7 @@ void Unwind_180904470(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xfb0) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xfb8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xfb8) = 0;
   *(undefined4 *)(validationContext + 0xfc8) = 0;
@@ -38731,7 +38731,7 @@ void Unwind_180904490(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1098) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10a0) = 0;
   *(undefined4 *)(validationContext + 0x10b0) = 0;
@@ -38739,7 +38739,7 @@ void Unwind_180904490(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1078) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1080) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1080) = 0;
   *(undefined4 *)(validationContext + 0x1090) = 0;
@@ -38761,7 +38761,7 @@ void Unwind_1809044b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1110) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1110) = 0;
   *(undefined4 *)(validationContext + 0x1120) = 0;
@@ -38769,7 +38769,7 @@ void Unwind_1809044b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x10e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10f0) = 0;
   *(undefined4 *)(validationContext + 0x1100) = 0;
@@ -38791,7 +38791,7 @@ void Unwind_1809044d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1178) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1180) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1180) = 0;
   *(undefined4 *)(validationContext + 0x1190) = 0;
@@ -38799,7 +38799,7 @@ void Unwind_1809044d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1158) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1160) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1160) = 0;
   *(undefined4 *)(validationContext + 0x1170) = 0;
@@ -38821,7 +38821,7 @@ void Unwind_1809044f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x11e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x11f0) = 0;
   *(undefined4 *)(validationContext + 0x1200) = 0;
@@ -38829,7 +38829,7 @@ void Unwind_1809044f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x11c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x11d0) = 0;
   *(undefined4 *)(validationContext + 0x11e0) = 0;
@@ -38851,7 +38851,7 @@ void Unwind_180904510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1258) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1260) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1260) = 0;
   *(undefined4 *)(validationContext + 0x1270) = 0;
@@ -38859,7 +38859,7 @@ void Unwind_180904510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1238) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1240) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1240) = 0;
   *(undefined4 *)(validationContext + 0x1250) = 0;
@@ -38881,7 +38881,7 @@ void Unwind_180904530(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x12c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x12d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x12d0) = 0;
   *(undefined4 *)(validationContext + 0x12e0) = 0;
@@ -38889,7 +38889,7 @@ void Unwind_180904530(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x12a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x12b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x12b0) = 0;
   *(undefined4 *)(validationContext + 0x12c0) = 0;
@@ -38911,7 +38911,7 @@ void Unwind_180904550(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1338) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1340) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1340) = 0;
   *(undefined4 *)(validationContext + 0x1350) = 0;
@@ -38919,7 +38919,7 @@ void Unwind_180904550(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1318) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1320) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1320) = 0;
   *(undefined4 *)(validationContext + 0x1330) = 0;
@@ -38947,7 +38947,7 @@ void Unwind_180904570(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -38970,7 +38970,7 @@ void Unwind_180904590(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -38993,7 +38993,7 @@ void Unwind_1809045b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -39153,7 +39153,7 @@ void Unwind_1809046c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = 0;
   *(undefined4 *)(validationContext + 0x30) = 0;
@@ -39172,7 +39172,7 @@ void Unwind_1809046d0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = 0;
   *(undefined4 *)(validationContext + 0x30) = 0;
@@ -39382,7 +39382,7 @@ void Unwind_180904810(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x40) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x48) = 0;
   *(undefined4 *)(validationContext + 0x58) = 0;
@@ -39390,7 +39390,7 @@ void Unwind_180904810(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -39409,7 +39409,7 @@ void Unwind_180904820(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -39446,7 +39446,7 @@ void Unwind_180904870(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x50) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x58) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x58) = 0;
   *(undefined4 *)(param_2 + 0x68) = 0;
@@ -39529,7 +39529,7 @@ void Unwind_1809048e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -39548,7 +39548,7 @@ void Unwind_1809048f0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -39691,7 +39691,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0xa8) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0xa8) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0xa0);
   while (lVar4 != 0) {
@@ -39699,7 +39699,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0x90);
@@ -39753,7 +39753,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0x310) != 0) &&
      (*(longlong *)(*(longlong *)(lVar5 + 0x310) + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0x308);
   while (lVar4 != 0) {
@@ -39761,7 +39761,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0x2f8);
@@ -39815,7 +39815,7 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0x578) != 0) &&
      (*(longlong *)(*(longlong *)(lVar5 + 0x578) + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0x570);
   while (lVar4 != 0) {
@@ -39823,7 +39823,7 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0x560);
@@ -40021,7 +40021,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0xa8) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0xa8) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0xa0);
   while (lVar4 != 0) {
@@ -40029,7 +40029,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0x90);
@@ -40083,7 +40083,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0x310) != 0) &&
      (*(longlong *)(*(longlong *)(lVar5 + 0x310) + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0x308);
   while (lVar4 != 0) {
@@ -40091,7 +40091,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0x2f8);
@@ -40145,7 +40145,7 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0x578) != 0) &&
      (*(longlong *)(*(longlong *)(lVar5 + 0x578) + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0x570);
   while (lVar4 != 0) {
@@ -40153,7 +40153,7 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0x560);
@@ -40303,7 +40303,7 @@ void Unwind_180904ab0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   if (*(int *)(puVar1[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
                     // WARNING: Subroutine does not return
   terminate();
@@ -40371,7 +40371,7 @@ void Unwind_180904af0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   if (*(int *)(puVar1[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
                     // WARNING: Subroutine does not return
   terminate();
@@ -40577,7 +40577,7 @@ void Unwind_180904dd0(undefined8 param_1,longlong param_2)
   puVar1[7] = &UNK_180a3c3e0;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[8] = 0;
   *(undefined4 *)(puVar1 + 10) = 0;
@@ -40585,7 +40585,7 @@ void Unwind_180904dd0(undefined8 param_1,longlong param_2)
   puVar1[1] = &UNK_180a3c3e0;
   if (puVar1[2] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[2] = 0;
   *(undefined4 *)(puVar1 + 4) = 0;
@@ -40606,7 +40606,7 @@ void Unwind_180904de0(undefined8 param_1,longlong param_2)
   puVar1[7] = &UNK_180a3c3e0;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[8] = 0;
   *(undefined4 *)(puVar1 + 10) = 0;
@@ -40614,7 +40614,7 @@ void Unwind_180904de0(undefined8 param_1,longlong param_2)
   puVar1[1] = &UNK_180a3c3e0;
   if (puVar1[2] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[2] = 0;
   *(undefined4 *)(puVar1 + 4) = 0;
@@ -40634,7 +40634,7 @@ void Unwind_180904df0(undefined8 param_1,longlong param_2)
   puVar1[7] = &UNK_180a3c3e0;
   if (puVar1[8] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[8] = 0;
   *(undefined4 *)(puVar1 + 10) = 0;
@@ -40642,7 +40642,7 @@ void Unwind_180904df0(undefined8 param_1,longlong param_2)
   puVar1[1] = &UNK_180a3c3e0;
   if (puVar1[2] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[2] = 0;
   *(undefined4 *)(puVar1 + 4) = 0;
@@ -40719,7 +40719,7 @@ void Unwind_180904e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   if (*(int *)(puVar1[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
                     // WARNING: Subroutine does not return
   terminate();
@@ -40743,7 +40743,7 @@ void Unwind_180904e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -40764,7 +40764,7 @@ void Unwind_180904e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -40857,7 +40857,7 @@ void Unwind_180904f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -40878,7 +40878,7 @@ void Unwind_180904f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -40940,7 +40940,7 @@ void Unwind_180904f70(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x30) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x38) = 0;
   *(undefined4 *)(validationContext + 0x48) = 0;
@@ -40959,7 +40959,7 @@ void Unwind_180904f80(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -40985,7 +40985,7 @@ void Unwind_180904f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41006,7 +41006,7 @@ void Unwind_180904fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41053,7 +41053,7 @@ void Unwind_180904fc0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xb8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined4 *)(param_2 + 0xd0) = 0;
@@ -41079,7 +41079,7 @@ void Unwind_180904fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41107,7 +41107,7 @@ void Unwind_180904ff0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xd8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xe0) = 0;
   *(undefined4 *)(param_2 + 0xf0) = 0;
@@ -41140,7 +41140,7 @@ void Unwind_180905010(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xf8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x100) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x100) = 0;
   *(undefined4 *)(param_2 + 0x110) = 0;
@@ -41166,7 +41166,7 @@ void Unwind_180905020(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41223,7 +41223,7 @@ void Unwind_180905040(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41309,7 +41309,7 @@ void Unwind_1809050c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x1e8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x1f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x1f0) = 0;
   *(undefined4 *)(param_2 + 0x200) = 0;
@@ -41342,7 +41342,7 @@ void Unwind_1809050e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x168) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x170) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x170) = 0;
   *(undefined4 *)(param_2 + 0x180) = 0;
@@ -41358,7 +41358,7 @@ void Unwind_1809050f0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x1a8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x1b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x1b0) = 0;
   *(undefined4 *)(param_2 + 0x1c0) = 0;
@@ -41374,7 +41374,7 @@ void Unwind_180905100(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x188) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 400) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 400) = 0;
   *(undefined4 *)(param_2 + 0x1a0) = 0;
@@ -41400,7 +41400,7 @@ void Unwind_180905110(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41421,7 +41421,7 @@ void Unwind_180905120(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41450,7 +41450,7 @@ void Unwind_180905150(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x128) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x130) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x130) = 0;
   *(undefined4 *)(param_2 + 0x140) = 0;
@@ -41476,7 +41476,7 @@ void Unwind_180905160(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41497,7 +41497,7 @@ void Unwind_180905170(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41508,7 +41508,7 @@ void Unwind_180905180(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 200) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xd0) = 0;
   *(undefined4 *)(param_2 + 0xe0) = 0;
@@ -41524,7 +41524,7 @@ void Unwind_180905190(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x1c8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x1d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x1d0) = 0;
   *(undefined4 *)(param_2 + 0x1e0) = 0;
@@ -41580,7 +41580,7 @@ void Unwind_1809051f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41637,7 +41637,7 @@ void Unwind_180905210(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41712,7 +41712,7 @@ void Unwind_180905250(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41769,7 +41769,7 @@ void Unwind_180905270(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -41882,7 +41882,7 @@ void Unwind_180905350(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -41898,7 +41898,7 @@ void Unwind_180905360(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x108) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x110) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x110) = 0;
   *(undefined4 *)(param_2 + 0x120) = 0;
@@ -42187,7 +42187,7 @@ void Unwind_1809054a0(undefined8 param_1,longlong param_2)
 {
   if ((*(char *)(param_2 + 0x48) == '\0') && (*(longlong *)(param_2 + 0x30) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -42199,7 +42199,7 @@ void Unwind_1809054b0(undefined8 param_1,longlong param_2)
 {
   if ((*(char *)(param_2 + 0x68) == '\0') && (*(longlong *)(param_2 + 0x50) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -42212,7 +42212,7 @@ void Unwind_1809054c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x90) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x98) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x98) = 0;
   *(undefined4 *)(param_2 + 0xa8) = 0;
@@ -42228,7 +42228,7 @@ void Unwind_1809054d0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x90) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x98) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x98) = 0;
   *(undefined4 *)(param_2 + 0xa8) = 0;
@@ -42650,7 +42650,7 @@ void Unwind_180905770(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -42776,7 +42776,7 @@ LAB_1801571ef:
   plStackX_10 = puVar5 + 0x16;
   if (*plStackX_10 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   plStackX_10 = puVar5 + 0xc;
   _Mtx_destroy_in_situ();
@@ -42784,7 +42784,7 @@ LAB_1801571ef:
   FUN_18015b450(pvalidationContext);
   if ((1 < (ulonglong)puVar5[8]) && (puVar5[7] != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if ((code *)puVar5[3] != (code *)0x0) {
     (*(code *)puVar5[3])(puVar5 + 1,0,0);
@@ -42825,7 +42825,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x100) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x108) = 0;
   *(undefined4 *)(param_2 + 0x118) = 0;
@@ -42833,7 +42833,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xe8) = 0;
   *(undefined4 *)(param_2 + 0xf8) = 0;
@@ -42841,7 +42841,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xb8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined4 *)(param_2 + 0xd0) = 0;
@@ -42849,7 +42849,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
@@ -42857,7 +42857,7 @@ void Unwind_1809057e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
@@ -42953,7 +42953,7 @@ void Unwind_180905860(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -42976,7 +42976,7 @@ void Unwind_180905870(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -43030,7 +43030,7 @@ void Unwind_180905890(undefined8 param_1,longlong param_2)
     *(undefined8 *)(lVar3 + 8) = &UNK_180a3c3e0;
     if (*(longlong *)(lVar3 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(undefined8 *)(lVar3 + 0x10) = 0;
     *(undefined4 *)(lVar3 + 0x20) = 0;
@@ -43038,7 +43038,7 @@ void Unwind_180905890(undefined8 param_1,longlong param_2)
   }
   if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -43063,7 +43063,7 @@ void Unwind_1809058a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -43086,7 +43086,7 @@ void Unwind_1809058b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -43104,7 +43104,7 @@ void Unwind_1809058c0(undefined8 param_1,longlong param_2)
     *(undefined8 *)(lVar3 + 8) = &UNK_180a3c3e0;
     if (*(longlong *)(lVar3 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(undefined8 *)(lVar3 + 0x10) = 0;
     *(undefined4 *)(lVar3 + 0x20) = 0;
@@ -43112,7 +43112,7 @@ void Unwind_1809058c0(undefined8 param_1,longlong param_2)
   }
   if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -43125,7 +43125,7 @@ void Unwind_1809058d0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x200) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x208) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x208) = 0;
   *(undefined4 *)(param_2 + 0x218) = 0;
@@ -43188,7 +43188,7 @@ void Unwind_180905910(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -43379,7 +43379,7 @@ LAB_1801571ef:
   plStackX_10 = puVar5 + 0x16;
   if (*plStackX_10 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   plStackX_10 = puVar5 + 0xc;
   _Mtx_destroy_in_situ();
@@ -43387,7 +43387,7 @@ LAB_1801571ef:
   FUN_18015b450(pvalidationContext);
   if ((1 < (ulonglong)puVar5[8]) && (puVar5[7] != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if ((code *)puVar5[3] != (code *)0x0) {
     (*(code *)puVar5[3])(puVar5 + 1,0,0);
@@ -43415,7 +43415,7 @@ void Unwind_180905960(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -43433,7 +43433,7 @@ void Unwind_180905980(undefined8 param_1,longlong param_2)
     *puVar3 = &UNK_180a3c3e0;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     puVar3[1] = 0;
     *(undefined4 *)(puVar3 + 3) = 0;
@@ -43441,7 +43441,7 @@ void Unwind_180905980(undefined8 param_1,longlong param_2)
   }
   if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -43466,7 +43466,7 @@ void Unwind_1809059a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -43490,7 +43490,7 @@ void Unwind_1809059c0(undefined8 param_1,longlong param_2)
 {
   if (**(longlong **)(param_2 + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   **(longlong **)(param_2 + 0x40) = 0;
   return;
@@ -43584,7 +43584,7 @@ void Unwind_180905a80(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
@@ -43600,7 +43600,7 @@ void Unwind_180905a90(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
@@ -43616,7 +43616,7 @@ void Unwind_180905aa0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xb8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xc0) = 0;
   *(undefined4 *)(param_2 + 0xd0) = 0;
@@ -43632,7 +43632,7 @@ void Unwind_180905ab0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xe0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xe8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xe8) = 0;
   *(undefined4 *)(param_2 + 0xf8) = 0;
@@ -43648,7 +43648,7 @@ void Unwind_180905ad0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x100) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x108) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x108) = 0;
   *(undefined4 *)(param_2 + 0x118) = 0;
@@ -43716,7 +43716,7 @@ void Unwind_180905b40(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -43777,7 +43777,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
   if ((*(longlong *)(lVar5 + 0x40) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0x40) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0x38);
   while (lVar4 != 0) {
@@ -43785,7 +43785,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
     lVar4 = *(longlong *)(lVar4 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0x28);
@@ -43835,7 +43835,7 @@ void Unwind_180905b70(undefined8 param_1,longlong param_2)
       if (puVar2 != (undefined8 *)0x0) {
         *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -43845,7 +43845,7 @@ void Unwind_180905b70(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x348) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -43874,7 +43874,7 @@ void Unwind_180905b90(undefined8 param_1,longlong param_2)
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar5 = plVar4[5];
   while (lVar5 != 0) {
@@ -43882,7 +43882,7 @@ void Unwind_180905b90(undefined8 param_1,longlong param_2)
     lVar5 = *(longlong *)(lVar5 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = (undefined8 *)plVar4[3];
@@ -43989,7 +43989,7 @@ void UnwindCleanupPointerArray(undefined8 exceptionContext,longlong unwindContex
       if (puVar2 != (undefined8 *)0x0) {
         *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -43999,7 +43999,7 @@ void UnwindCleanupPointerArray(undefined8 exceptionContext,longlong unwindContex
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -44025,7 +44025,7 @@ void Unwind_180905c20(undefined8 param_1,longlong param_2)
       if (puVar2 != (undefined8 *)0x0) {
         *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -44035,7 +44035,7 @@ void Unwind_180905c20(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -44061,7 +44061,7 @@ void Unwind_180905c30(undefined8 param_1,longlong param_2)
       if (puVar2 != (undefined8 *)0x0) {
         *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -44071,7 +44071,7 @@ void Unwind_180905c30(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -44097,7 +44097,7 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
       if (puVar2 != (undefined8 *)0x0) {
         *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -44107,7 +44107,7 @@ void Unwind_180905c40(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -44139,7 +44139,7 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0x40) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0x40) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0x38);
   while (lVar4 != 0) {
@@ -44147,7 +44147,7 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0x28);
@@ -44197,7 +44197,7 @@ void Unwind_180905c60(undefined8 param_1,longlong param_2)
       if (puVar2 != (undefined8 *)0x0) {
         *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -44207,7 +44207,7 @@ void Unwind_180905c60(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x348) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x338) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -44233,7 +44233,7 @@ void Unwind_180905c80(undefined8 param_1,longlong param_2)
       if (puVar2 != (undefined8 *)0x0) {
         *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -44243,7 +44243,7 @@ void Unwind_180905c80(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -44269,7 +44269,7 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
       if (puVar2 != (undefined8 *)0x0) {
         *puVar2 = &UNK_18098bcb0;
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       *(undefined8 *)(validationContext + uVar5 * 8) = 0;
       uVar5 = uVar5 + 1;
@@ -44279,7 +44279,7 @@ void Unwind_180905c90(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -44308,7 +44308,7 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar5 = plVar4[5];
   while (lVar5 != 0) {
@@ -44316,7 +44316,7 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
     lVar5 = *(longlong *)(lVar5 + 0x138);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = (undefined8 *)plVar4[3];
@@ -44659,7 +44659,7 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0xf8) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0xf8) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0xf0);
   while (lVar4 != 0) {
@@ -44667,7 +44667,7 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x3538);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0xe0);
@@ -44714,7 +44714,7 @@ void Unwind_180905ec0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -44735,7 +44735,7 @@ void Unwind_180905ee0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -44762,7 +44762,7 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar5 = plVar4[5];
   while (lVar5 != 0) {
@@ -44770,7 +44770,7 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
     lVar5 = *(longlong *)(lVar5 + 0x3538);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = (undefined8 *)plVar4[3];
@@ -44868,7 +44868,7 @@ void Unwind_180905f70(undefined8 param_1,longlong param_2)
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar5 = plVar4[5];
   while (lVar5 != 0) {
@@ -44876,7 +44876,7 @@ void Unwind_180905f70(undefined8 param_1,longlong param_2)
     lVar5 = *(longlong *)(lVar5 + 0x3538);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = (undefined8 *)plVar4[3];
@@ -44923,7 +44923,7 @@ void Unwind_180905f80(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -44970,7 +44970,7 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
   if ((*(longlong *)(lVar5 + 0xf8) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0xf8) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar4 = *(longlong *)(lVar5 + 0xf0);
   while (lVar4 != 0) {
@@ -44978,7 +44978,7 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
     lVar4 = *(longlong *)(lVar4 + 0x3538);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = *(undefined8 **)(lVar5 + 0xe0);
@@ -45025,7 +45025,7 @@ void Unwind_180905fc0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -45052,7 +45052,7 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   lVar5 = plVar4[5];
   while (lVar5 != 0) {
@@ -45060,7 +45060,7 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
     lVar5 = *(longlong *)(lVar5 + 0x3538);
     if (*pcVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   puVar3 = (undefined8 *)plVar4[3];
@@ -45152,7 +45152,7 @@ void Unwind_180906060(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -45588,7 +45588,7 @@ void Unwind_1809062b0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xb0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xb8) = 0;
   *(undefined4 *)(param_2 + 200) = 0;
@@ -45695,7 +45695,7 @@ void Unwind_1809063f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -45740,7 +45740,7 @@ void Unwind_180906460(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -45786,29 +45786,29 @@ void Unwind_180906480(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(param_2 + 0x82) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x82) = 0;
   if (*(longlong *)(param_2 + 0x8a) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x8a) = 0;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   if (*(longlong *)(param_2 + 0x78) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x78) = 0;
   FUN_180074a80();
   *(undefined8 *)(param_2 + 0x30) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x38) = 0;
   *(undefined4 *)(param_2 + 0x48) = 0;
@@ -45830,31 +45830,31 @@ void Unwind_180906490(undefined8 param_1,longlong param_2)
     if (plVar2 == pvalidationContext) {
       if (*(longlong *)(param_2 + 0x50) != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       return;
     }
     if (*(longlong *)((longlong)plVar2 + 0x12) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(undefined8 *)((longlong)plVar2 + 0x12) = 0;
     if (*(longlong *)((longlong)plVar2 + 0x1a) != 0) break;
     *(undefined8 *)((longlong)plVar2 + 0x1a) = 0;
     if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *plVar2 = 0;
     if (plVar2[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     plVar2[1] = 0;
     plVar2 = (longlong *)((longlong)plVar2 + 0x24);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -45864,12 +45864,12 @@ void Unwind_1809064a0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(longlong *)(param_2 + 0x70) = 0;
   if (*(longlong *)(param_2 + 0x78) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x78) = 0;
   return;
@@ -45882,12 +45882,12 @@ void Unwind_1809064b0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(param_2 + 0x82) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(longlong *)(param_2 + 0x82) = 0;
   if (*(longlong *)(param_2 + 0x8a) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x8a) = 0;
   return;
@@ -45909,31 +45909,31 @@ void Unwind_1809064c0(undefined8 param_1,longlong param_2)
     if (plVar3 == pvalidationContext) {
       if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       return;
     }
     if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
     if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) break;
     *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
     if (*plVar3 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *plVar3 = 0;
     if (plVar3[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     plVar3[1] = 0;
     plVar3 = (longlong *)((longlong)plVar3 + 0x24);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -45952,31 +45952,31 @@ void Unwind_1809064d0(undefined8 param_1,longlong param_2)
     if (plVar3 == pvalidationContext) {
       if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       return;
     }
     if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
     if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) break;
     *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
     if (*plVar3 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *plVar3 = 0;
     if (plVar3[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     plVar3[1] = 0;
     plVar3 = (longlong *)((longlong)plVar3 + 0x24);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -45989,12 +45989,12 @@ void Unwind_1809064e0(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(longlong *)(validationContext + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(longlong *)(validationContext + 0x40) = 0;
   if (*(longlong *)(validationContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x48) = 0;
   return;
@@ -46010,12 +46010,12 @@ void Unwind_1809064f0(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x40);
   if (*(longlong *)(validationContext + 0x52) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(longlong *)(validationContext + 0x52) = 0;
   if (*(longlong *)(validationContext + 0x5a) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x5a) = 0;
   return;
@@ -46037,31 +46037,31 @@ void Unwind_180906500(undefined8 param_1,longlong param_2)
     if (plVar3 == pvalidationContext) {
       if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       return;
     }
     if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
     if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) break;
     *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
     if (*plVar3 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *plVar3 = 0;
     if (plVar3[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     plVar3[1] = 0;
     plVar3 = (longlong *)((longlong)plVar3 + 0x24);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -46080,31 +46080,31 @@ void Unwind_180906510(undefined8 param_1,longlong param_2)
     if (plVar3 == pvalidationContext) {
       if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
       return;
     }
     if (*(longlong *)((longlong)plVar3 + 0x12) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(undefined8 *)((longlong)plVar3 + 0x12) = 0;
     if (*(longlong *)((longlong)plVar3 + 0x1a) != 0) break;
     *(undefined8 *)((longlong)plVar3 + 0x1a) = 0;
     if (*plVar3 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *plVar3 = 0;
     if (plVar3[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     plVar3[1] = 0;
     plVar3 = (longlong *)((longlong)plVar3 + 0x24);
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -46150,12 +46150,12 @@ void Unwind_180906550(undefined8 param_1,longlong param_2)
   pvalidationContext = *(longlong **)(param_2 + 0x58);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *pvalidationContext = 0;
   if (pvalidationContext[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   pvalidationContext[1] = 0;
   return;
@@ -46171,12 +46171,12 @@ void Unwind_180906560(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x58);
   if (*(longlong *)(validationContext + 0x12) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(longlong *)(validationContext + 0x12) = 0;
   if (*(longlong *)(validationContext + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a) = 0;
   return;
@@ -46192,12 +46192,12 @@ void Unwind_180906570(undefined8 param_1,longlong param_2)
   pvalidationContext = *(longlong **)(param_2 + 0x50);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *pvalidationContext = 0;
   if (pvalidationContext[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   pvalidationContext[1] = 0;
   return;
@@ -46213,12 +46213,12 @@ void Unwind_180906580(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x50);
   if (*(longlong *)(validationContext + 0x12) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(longlong *)(validationContext + 0x12) = 0;
   if (*(longlong *)(validationContext + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a) = 0;
   return;
@@ -46234,12 +46234,12 @@ void Unwind_180906590(undefined8 param_1,longlong param_2)
   pvalidationContext = *(longlong **)(param_2 + 0x60);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *pvalidationContext = 0;
   if (pvalidationContext[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   pvalidationContext[1] = 0;
   return;
@@ -46255,12 +46255,12 @@ void Unwind_1809065a0(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x60);
   if (*(longlong *)(validationContext + 0x12) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(longlong *)(validationContext + 0x12) = 0;
   if (*(longlong *)(validationContext + 0x1a) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a) = 0;
   return;
@@ -46439,7 +46439,7 @@ void Unwind_180906700(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -46516,7 +46516,7 @@ void Unwind_1809067b0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -46640,7 +46640,7 @@ void Unwind_180906890(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -46704,7 +46704,7 @@ void Unwind_180906940(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -47049,7 +47049,7 @@ void Unwind_180906b10(undefined8 param_1,longlong param_2)
     *puVar2 = &UNK_180a3c3e0;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     puVar2[1] = 0;
     *(undefined4 *)(puVar2 + 3) = 0;
@@ -47057,7 +47057,7 @@ void Unwind_180906b10(undefined8 param_1,longlong param_2)
   }
   if (*(longlong *)(param_2 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -47097,7 +47097,7 @@ void Unwind_180906b40(undefined8 param_1,longlong param_2)
     *puVar2 = &UNK_180a3c3e0;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     puVar2[1] = 0;
     *(undefined4 *)(puVar2 + 3) = 0;
@@ -47105,7 +47105,7 @@ void Unwind_180906b40(undefined8 param_1,longlong param_2)
   }
   if (*(longlong *)(param_2 + 0x88) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -47161,7 +47161,7 @@ void Unwind_180906b60(undefined8 param_1,longlong param_2)
     *puVar3 = &UNK_180a3c3e0;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     puVar3[1] = 0;
     *(undefined4 *)(puVar3 + 3) = 0;
@@ -47169,7 +47169,7 @@ void Unwind_180906b60(undefined8 param_1,longlong param_2)
   }
   if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -47435,14 +47435,14 @@ void Unwind_180906c60(undefined8 param_1,longlong param_2)
       pvalidationContext = pvalidationContext + 4) {
     if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*(longlong *)(param_2 + 0xf8) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -47456,14 +47456,14 @@ void Unwind_180906c70(undefined8 param_1,longlong param_2)
       pvalidationContext = pvalidationContext + 4) {
     if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*(longlong *)(param_2 + 0xd8) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -47585,14 +47585,14 @@ void Unwind_180906cb0(undefined8 param_1,longlong param_2)
       pvalidationContext = pvalidationContext + 4) {
     if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*(longlong *)(param_2 + 0x30) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -47678,14 +47678,14 @@ void Unwind_180906ce0(undefined8 param_1,longlong param_2)
       pvalidationContext = pvalidationContext + 4) {
     if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*(longlong *)(param_2 + 0xf8) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -47807,14 +47807,14 @@ void Unwind_180906d20(undefined8 param_1,longlong param_2)
       pvalidationContext = pvalidationContext + 4) {
     if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*(longlong *)(param_2 + 0xd8) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -48116,14 +48116,14 @@ void Unwind_180906db0(undefined8 param_1,longlong param_2)
       pvalidationContext = pvalidationContext + 4) {
     if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*(longlong *)(param_2 + 0x30) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -48174,14 +48174,14 @@ void Unwind_180906dd0(undefined8 param_1,longlong param_2)
   for (plVar2 = (longlong *)*pvalidationContext; plVar2 != (longlong *)pvalidationContext[1]; plVar2 = plVar2 + 4) {
     if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*pvalidationContext == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -48196,14 +48196,14 @@ void Unwind_180906de0(undefined8 param_1,longlong param_2)
   for (plVar2 = (longlong *)*pvalidationContext; plVar2 != (longlong *)pvalidationContext[1]; plVar2 = plVar2 + 4) {
     if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*pvalidationContext == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -48906,7 +48906,7 @@ void Unwind_180907190(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(param_2 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -48960,7 +48960,7 @@ void Unwind_1809071e0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x20) + 0x18) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -48972,7 +48972,7 @@ void Unwind_1809071f0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x20) + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -48984,7 +48984,7 @@ void Unwind_180907200(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x20) + 0x68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -48996,7 +48996,7 @@ void Unwind_180907210(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x20) + 0x90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49013,7 +49013,7 @@ void Unwind_180907230(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0xb0) = 0;
   if (*(longlong *)(validationContext + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb8) = 0;
   return;
@@ -49026,7 +49026,7 @@ void Unwind_180907250(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x20) + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49038,7 +49038,7 @@ void Unwind_180907270(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49050,7 +49050,7 @@ void Unwind_180907280(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x40) + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49062,7 +49062,7 @@ void Unwind_180907290(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x40) + 0x68) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49074,7 +49074,7 @@ void Unwind_1809072a0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x40) + 0x90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49091,7 +49091,7 @@ void Unwind_1809072c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0xb0) = 0;
   if (*(longlong *)(validationContext + 0xb8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb8) = 0;
   return;
@@ -49104,7 +49104,7 @@ void Unwind_1809072e0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x40) + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49843,7 +49843,7 @@ void Unwind_1809076c0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x60) + 8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49855,7 +49855,7 @@ void Unwind_1809076d0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x60) + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49867,7 +49867,7 @@ void Unwind_1809076e0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x40) + 8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49879,7 +49879,7 @@ void Unwind_1809076f0(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -49895,7 +49895,7 @@ void Unwind_180907700(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -49926,12 +49926,12 @@ void Unwind_180907710(undefined8 param_1,longlong param_2)
   puVar2[0x11] = 0;
   if (puVar2[0x12] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar2[0xd] = &UNK_180a3c3e0;
   if (puVar2[0xe] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar2[0xe] = 0;
   *(undefined4 *)(puVar2 + 0x10) = 0;
@@ -49978,12 +49978,12 @@ void Unwind_180907740(undefined8 param_1,longlong param_2)
   puVar2[0x11] = 0;
   if (puVar2[0x12] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar2[0xd] = &UNK_180a3c3e0;
   if (puVar2[0xe] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar2[0xe] = 0;
   *(undefined4 *)(puVar2 + 0x10) = 0;
@@ -50124,7 +50124,7 @@ void Unwind_180907800(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -50147,7 +50147,7 @@ void Unwind_180907810(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -50258,7 +50258,7 @@ void Unwind_1809078a0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -50294,7 +50294,7 @@ void ProcessExceptionChainAndCleanup(undefined8 exceptionContext, longlong handl
     return;
   }
   // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -50435,7 +50435,7 @@ void Unwind_180907920(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -50469,7 +50469,7 @@ void Unwind_180907950(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -50488,7 +50488,7 @@ void Unwind_180907960(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -50545,7 +50545,7 @@ void Unwind_1809079a0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = 0;
   *(undefined4 *)(validationContext + 0x30) = 0;
@@ -50564,7 +50564,7 @@ void Unwind_1809079b0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x40) = 0;
   *(undefined4 *)(validationContext + 0x50) = 0;
@@ -50583,7 +50583,7 @@ void Unwind_1809079c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x60) = 0;
   *(undefined4 *)(validationContext + 0x70) = 0;
@@ -50605,7 +50605,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
   *(undefined **)(lVar3 + 0xd8) = &UNK_18098bcb0;
   if (*(longlong *)(lVar3 + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   FUN_1800ba100(lVar3 + 0x78);
   if ((1 < *(ulonglong *)(lVar3 + 0x88)) &&
@@ -50681,7 +50681,7 @@ void Unwind_180907a00(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a14d00;
   if (puVar1[3] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined4 *)(puVar1 + 4) = 0;
   puVar1[3] = 0;
@@ -50868,7 +50868,7 @@ void Unwind_180907a90(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -51024,7 +51024,7 @@ void Unwind_180907b70(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x30) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x38) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x38) = 0;
   *(undefined4 *)(param_2 + 0x48) = 0;
@@ -51094,7 +51094,7 @@ void Unwind_180907c10(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -51305,7 +51305,7 @@ void Unwind_180907cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -51334,7 +51334,7 @@ void Unwind_180907cf0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x1c0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x1c8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x1c8) = 0;
   *(undefined4 *)(param_2 + 0x1d8) = 0;
@@ -51353,7 +51353,7 @@ void Unwind_180907d00(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -51396,7 +51396,7 @@ void Unwind_180907d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -51579,7 +51579,7 @@ void Unwind_180907e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -51892,7 +51892,7 @@ void Unwind_180907f80(undefined8 cleanupContext, longlong pointerContext)
   }
   if (((char)pointerToCheck[3] == '\0') && (*pointerToCheck != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
                     // WARNING: Subroutine does not return
   FUN_18064e900(pointerToCheck);
@@ -51913,7 +51913,7 @@ void Unwind_180907f90(undefined8 resetContext, longlong resourceContext)
   *(undefined8 *)(resourceContext + 0xa0) = &UNK_180a3c3e0;
   if (*(longlong *)(resourceContext + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(resourceContext + 0xa8) = 0;
   *(undefined4 *)(resourceContext + 0xb8) = 0;
@@ -51929,7 +51929,7 @@ void Unwind_180907fa0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xa0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xa8) = 0;
   *(undefined4 *)(param_2 + 0xb8) = 0;
@@ -52340,7 +52340,7 @@ void Unwind_180908130(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -52622,7 +52622,7 @@ void Unwind_180908340(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -52704,7 +52704,7 @@ void Unwind_180908460(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -53036,7 +53036,7 @@ void Unwind_180908730(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -53077,7 +53077,7 @@ void Unwind_180908770(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -53174,7 +53174,7 @@ void Unwind_1809087d0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -53331,7 +53331,7 @@ void Unwind_180908860(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -53457,7 +53457,7 @@ void Unwind_180908900(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = 0;
   *(undefined4 *)(validationContext + 0x30) = 0;
@@ -53476,7 +53476,7 @@ void Unwind_180908910(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = 0;
   *(undefined4 *)(validationContext + 0x30) = 0;
@@ -54080,7 +54080,7 @@ void Unwind_180908b00(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -54230,7 +54230,7 @@ void Unwind_180908ba0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xa8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xb0) = 0;
   *(undefined4 *)(param_2 + 0xc0) = 0;
@@ -54263,7 +54263,7 @@ void Unwind_180908bc0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x48) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x50) = 0;
   *(undefined4 *)(param_2 + 0x60) = 0;
@@ -54288,7 +54288,7 @@ void Unwind_180908bd0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -54318,7 +54318,7 @@ void Unwind_180908bf0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xa8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xb0) = 0;
   *(undefined4 *)(param_2 + 0xc0) = 0;
@@ -54365,7 +54365,7 @@ void Unwind_180908c30(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x48) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x50) = 0;
   *(undefined4 *)(param_2 + 0x60) = 0;
@@ -54409,7 +54409,7 @@ void Unwind_180908c60(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -54564,7 +54564,7 @@ void Unwind_180908db0(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -54583,7 +54583,7 @@ void Unwind_180908dc0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -54875,7 +54875,7 @@ void Unwind_180908e90(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -55752,7 +55752,7 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   FUN_1808fc8a8(puVar3 + 0x101b,0x20,5,FUN_180046860);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   FUN_1808fc8a8(puVar3 + 0xffd,0x20,5,FUN_180046860);
   lVar4 = puVar3[0xffa];
@@ -55761,7 +55761,7 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   }
   if (puVar3[0xff9] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -55900,7 +55900,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   FUN_1808fc8a8(puVar3 + 0x101b,0x20,5,FUN_180046860);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   FUN_1808fc8a8(puVar3 + 0xffd,0x20,5,FUN_180046860);
   lVar4 = puVar3[0xffa];
@@ -55909,7 +55909,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   }
   if (puVar3[0xff9] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -55977,7 +55977,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_1808fc8a8(lVar3 + 0x80d8,0x20,5,FUN_180046860);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   FUN_1808fc8a8(lVar3 + 0x7fe8,0x20,5,FUN_180046860);
   lVar4 = *(longlong *)(lVar3 + 0x7fd0);
@@ -55986,7 +55986,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   if (*(longlong *)(lVar3 + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -56082,7 +56082,7 @@ void Unwind_180909460(undefined8 param_1,longlong param_2)
   if (*(char *)(param_2 + 0xb1) == '\0') {
     if ((*(char *)(param_2 + 0xb0) == '\0') && (*(longlong *)(param_2 + 0xa0) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(longlong *)(param_2 + 0xa0) = 0;
     *(undefined8 *)(param_2 + 0xa8) = 0;
@@ -56121,7 +56121,7 @@ void Unwind_180909480(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -56158,7 +56158,7 @@ void Unwind_1809094b0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -56179,7 +56179,7 @@ void Unwind_1809094c0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -56198,7 +56198,7 @@ void Unwind_1809094d0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -56218,7 +56218,7 @@ void Unwind_1809094f0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x218) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x220) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x220) = 0;
   *(undefined4 *)(param_2 + 0x230) = 0;
@@ -56234,7 +56234,7 @@ void Unwind_180909500(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x298) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x2a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x2a0) = 0;
   *(undefined4 *)(param_2 + 0x2b0) = 0;
@@ -56259,7 +56259,7 @@ void Unwind_180909520(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x278) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x280) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x280) = 0;
   *(undefined4 *)(param_2 + 0x290) = 0;
@@ -56321,7 +56321,7 @@ void Unwind_180909560(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x1f8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x200) = 0;
   *(undefined4 *)(param_2 + 0x210) = 0;
@@ -56354,7 +56354,7 @@ void Unwind_180909580(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xf0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xf8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xf8) = 0;
   *(undefined4 *)(param_2 + 0x108) = 0;
@@ -56387,7 +56387,7 @@ void Unwind_1809095a0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x198) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x1a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x1a0) = 0;
   *(undefined4 *)(param_2 + 0x1b0) = 0;
@@ -56442,7 +56442,7 @@ void Unwind_180909610(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x2f0) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x2f8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x2f8) = 0;
   *(undefined4 *)(param_2 + 0x308) = 0;
@@ -56493,7 +56493,7 @@ void Unwind_180909650(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -56743,7 +56743,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   FUN_1808fc8a8(puVar3 + 0x101b,0x20,5,FUN_180046860);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   FUN_1808fc8a8(puVar3 + 0xffd,0x20,5,FUN_180046860);
   lVar4 = puVar3[0xffa];
@@ -56752,7 +56752,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   }
   if (puVar3[0xff9] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -56820,7 +56820,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_1808fc8a8(lVar3 + 0x80d8,0x20,5,FUN_180046860);
   if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   FUN_1808fc8a8(lVar3 + 0x7fe8,0x20,5,FUN_180046860);
   lVar4 = *(longlong *)(lVar3 + 0x7fd0);
@@ -56829,7 +56829,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   if (*(longlong *)(lVar3 + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -56895,7 +56895,7 @@ void Unwind_180909740(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x60) = 0;
   *(undefined4 *)(validationContext + 0x70) = 0;
@@ -56911,7 +56911,7 @@ void Unwind_180909750(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x10) = 0;
   *(undefined4 *)(param_2 + 0x20) = 0;
@@ -56939,7 +56939,7 @@ void Unwind_180909770(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -56958,7 +56958,7 @@ void Unwind_180909780(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10) = 0;
   *(undefined4 *)(validationContext + 0x20) = 0;
@@ -57817,7 +57817,7 @@ void Unwind_180909ce0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x560) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x568) = 0;
   *(undefined4 *)(validationContext + 0x578) = 0;
@@ -57845,7 +57845,7 @@ void Unwind_180909d00(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -57877,7 +57877,7 @@ void Unwind_180909d60(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -57900,7 +57900,7 @@ void Unwind_180909d80(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -57923,7 +57923,7 @@ void Unwind_180909da0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -57946,7 +57946,7 @@ void Unwind_180909dc0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -58082,7 +58082,7 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
   _Mtx_destroy_in_situ();
   if (*(longlong *)(lVar3 + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar2 = *(undefined8 **)(lVar3 + 0xac0);
   if (puVar2 != (undefined8 *)0x0) {
@@ -58193,7 +58193,7 @@ void Unwind_18090a060(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -58382,7 +58382,7 @@ void Unwind_18090a1d0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x560) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x568) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x568) = 0;
   *(undefined4 *)(validationContext + 0x578) = 0;
@@ -58410,7 +58410,7 @@ void Unwind_18090a1f0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -58442,7 +58442,7 @@ void Unwind_18090a250(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -58465,7 +58465,7 @@ void Unwind_18090a270(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -58488,7 +58488,7 @@ void Unwind_18090a290(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -58511,7 +58511,7 @@ void Unwind_18090a2b0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -58647,7 +58647,7 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
   _Mtx_destroy_in_situ();
   if (*(longlong *)(lVar3 + 0xae0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar2 = *(undefined8 **)(lVar3 + 0xac0);
   if (puVar2 != (undefined8 *)0x0) {
@@ -58758,7 +58758,7 @@ void Unwind_18090a550(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -58781,7 +58781,7 @@ void Unwind_18090a570(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59179,7 +59179,7 @@ void Unwind_18090a7b0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x30) = 0;
   *(undefined4 *)(param_2 + 0x40) = 0;
@@ -59209,7 +59209,7 @@ void Unwind_18090a7d0(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -59249,7 +59249,7 @@ void Unwind_18090a7f0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59282,7 +59282,7 @@ void Unwind_18090a830(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59403,7 +59403,7 @@ void Unwind_18090a8a0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59426,7 +59426,7 @@ void Unwind_18090a8b0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59449,7 +59449,7 @@ void Unwind_18090a8c0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59472,7 +59472,7 @@ void Unwind_18090a8d0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59523,7 +59523,7 @@ void Unwind_18090a900(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59540,7 +59540,7 @@ void Unwind_18090a910(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -59568,7 +59568,7 @@ void Unwind_18090a920(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -59878,7 +59878,7 @@ void Unwind_18090aae0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
@@ -60430,7 +60430,7 @@ void Unwind_18090af70(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x2b8) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -61037,7 +61037,7 @@ void Unwind_18090b4b0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -61075,7 +61075,7 @@ void Unwind_18090b4c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -61131,7 +61131,7 @@ void Unwind_18090b4f0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -61169,7 +61169,7 @@ void Unwind_18090b500(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -61472,7 +61472,7 @@ void Unwind_18090b7d0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x2b8) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 0x2a8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -62079,7 +62079,7 @@ void Unwind_18090bd10(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -62117,7 +62117,7 @@ void Unwind_18090bd20(undefined8 param_1,longlong param_2)
   *(undefined8 *)(lVar3 + 0x18) = 0;
   if ((1 < uVar4) && (*(longlong *)(lVar3 + 8) != 0)) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -62170,7 +62170,7 @@ void Unwind_18090bd70(undefined8 param_1,longlong param_2)
   if (*(char *)(param_2 + 0x51) == '\0') {
     if ((*(char *)(param_2 + 0x50) == '\0') && (*(longlong *)(param_2 + 0x40) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *(longlong *)(param_2 + 0x40) = 0;
     *(undefined8 *)(param_2 + 0x48) = 0;
@@ -62489,7 +62489,7 @@ void Unwind_18090bfb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -62534,7 +62534,7 @@ void Unwind_18090bfe0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -62608,7 +62608,7 @@ void Unwind_18090c060(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -62714,7 +62714,7 @@ void Unwind_18090c100(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -62753,7 +62753,7 @@ void Unwind_18090c130(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -62806,7 +62806,7 @@ void Unwind_18090c150(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -62842,7 +62842,7 @@ void Unwind_18090c170(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -63229,7 +63229,7 @@ void Unwind_18090c310(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x28) = 0;
   *(undefined4 *)(validationContext + 0x38) = 0;
@@ -63416,7 +63416,7 @@ void Unwind_18090c420(undefined8 param_1,longlong param_2)
   
   if (*(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x70) + 0x1b8);
   if (pvalidationContext != (longlong *)0x0) {
@@ -63539,7 +63539,7 @@ void Unwind_18090c4a0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xd8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xe0) = 0;
   *(undefined4 *)(param_2 + 0xf0) = 0;
@@ -63564,7 +63564,7 @@ void Unwind_18090c4b0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -63603,7 +63603,7 @@ void Unwind_18090c4e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xd8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xe0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xe0) = 0;
   *(undefined4 *)(param_2 + 0xf0) = 0;
@@ -63647,7 +63647,7 @@ void Unwind_18090c510(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -64371,7 +64371,7 @@ void Unwind_18090c790(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x148) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x150) = 0;
   *(undefined4 *)(param_2 + 0x160) = 0;
@@ -65735,7 +65735,7 @@ void Unwind_18090cdf0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x148) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x150) = 0;
   *(undefined4 *)(param_2 + 0x160) = 0;
@@ -65760,7 +65760,7 @@ void Unwind_18090ce00(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -65782,7 +65782,7 @@ void Unwind_18090ce10(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x358) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x360) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x360) = 0;
   *(undefined4 *)(param_2 + 0x370) = 0;
@@ -65807,7 +65807,7 @@ void Unwind_18090ce20(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -65829,7 +65829,7 @@ void Unwind_18090ce30(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x1f8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x200) = 0;
   *(undefined4 *)(param_2 + 0x210) = 0;
@@ -65851,7 +65851,7 @@ void Unwind_18090ce40(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 600) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x260) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x260) = 0;
   *(undefined4 *)(param_2 + 0x270) = 0;
@@ -65873,7 +65873,7 @@ void Unwind_18090ce50(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x2b8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x2c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x2c0) = 0;
   *(undefined4 *)(param_2 + 0x2d0) = 0;
@@ -65895,7 +65895,7 @@ void Unwind_18090ce60(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x3b8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x3c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x3c0) = 0;
   *(undefined4 *)(param_2 + 0x3d0) = 0;
@@ -65920,7 +65920,7 @@ void Unwind_18090ce70(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -65950,7 +65950,7 @@ void Unwind_18090ce90(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x148) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x150) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x150) = 0;
   *(undefined4 *)(param_2 + 0x160) = 0;
@@ -65994,7 +65994,7 @@ void Unwind_18090cec0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -66035,7 +66035,7 @@ void Unwind_18090cef0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x358) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x360) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x360) = 0;
   *(undefined4 *)(param_2 + 0x370) = 0;
@@ -66073,7 +66073,7 @@ void Unwind_18090cf20(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x1f8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x200) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x200) = 0;
   *(undefined4 *)(param_2 + 0x210) = 0;
@@ -66111,7 +66111,7 @@ void Unwind_18090cf50(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 600) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x260) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x260) = 0;
   *(undefined4 *)(param_2 + 0x270) = 0;
@@ -66149,7 +66149,7 @@ void Unwind_18090cf80(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x2b8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x2c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x2c0) = 0;
   *(undefined4 *)(param_2 + 0x2d0) = 0;
@@ -66187,7 +66187,7 @@ void Unwind_18090cfb0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x3b8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x3c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x3c0) = 0;
   *(undefined4 *)(param_2 + 0x3d0) = 0;
@@ -69088,7 +69088,7 @@ void Unwind_18090d530(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -69133,7 +69133,7 @@ void Unwind_18090d560(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -69166,7 +69166,7 @@ void Unwind_18090d580(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x88) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x90) = 0;
   *(undefined4 *)(param_2 + 0xa0) = 0;
@@ -69191,7 +69191,7 @@ void Unwind_18090d590(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -69221,7 +69221,7 @@ void Unwind_18090d5b0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x88) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x90) = 0;
   *(undefined4 *)(param_2 + 0xa0) = 0;
@@ -69332,7 +69332,7 @@ void Unwind_18090d650(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -69512,7 +69512,7 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
   FUN_180080df0();
   if (*(longlong *)(lVar3 + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar2 = *(undefined8 **)(lVar3 + 0x1460);
   if (puVar2 == (undefined8 *)0x0) {
@@ -69907,7 +69907,7 @@ void Unwind_18090dd00(undefined8 param_1,longlong param_2)
     *puVar3 = &UNK_180a3c3e0;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     puVar3[1] = 0;
     *(undefined4 *)(puVar3 + 3) = 0;
@@ -69915,7 +69915,7 @@ void Unwind_18090dd00(undefined8 param_1,longlong param_2)
   }
   if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -69935,7 +69935,7 @@ void Unwind_18090dd10(undefined8 param_1,longlong param_2)
     *puVar3 = &UNK_180a3c3e0;
     if (puVar3[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     puVar3[1] = 0;
     *(undefined4 *)(puVar3 + 3) = 0;
@@ -69943,7 +69943,7 @@ void Unwind_18090dd10(undefined8 param_1,longlong param_2)
   }
   if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -70083,7 +70083,7 @@ void Unwind_18090de50(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -70286,7 +70286,7 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
   FUN_180080df0();
   if (*(longlong *)(lVar3 + 0x1480) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar2 = *(undefined8 **)(lVar3 + 0x1460);
   if (puVar2 == (undefined8 *)0x0) {
@@ -70681,7 +70681,7 @@ void Unwind_18090e3e0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -71532,7 +71532,7 @@ void Unwind_18090e8d0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
@@ -71557,7 +71557,7 @@ void Unwind_18090e8e0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -71579,7 +71579,7 @@ void Unwind_18090e8f0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xf8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x100) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x100) = 0;
   *(undefined4 *)(param_2 + 0x110) = 0;
@@ -71618,7 +71618,7 @@ void Unwind_18090e920(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x70) = 0;
   *(undefined4 *)(param_2 + 0x80) = 0;
@@ -71662,7 +71662,7 @@ void Unwind_18090e950(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -71703,7 +71703,7 @@ void Unwind_18090e980(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0xf8) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0x100) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0x100) = 0;
   *(undefined4 *)(param_2 + 0x110) = 0;
@@ -71761,7 +71761,7 @@ void Unwind_18090e9c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -71782,7 +71782,7 @@ void Unwind_18090e9d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -71926,7 +71926,7 @@ void Unwind_18090eb20(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -71971,7 +71971,7 @@ void Unwind_18090eb50(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -72040,7 +72040,7 @@ void Unwind_18090ebf0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
@@ -72065,7 +72065,7 @@ void Unwind_18090ec00(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -72095,7 +72095,7 @@ void Unwind_18090ec20(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 0x98) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xa0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xa0) = 0;
   *(undefined4 *)(param_2 + 0xb0) = 0;
@@ -72125,7 +72125,7 @@ void Unwind_18090ec40(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -72278,7 +72278,7 @@ void Unwind_18090ed20(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 200) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xd0) = 0;
   *(undefined4 *)(param_2 + 0xe0) = 0;
@@ -72303,7 +72303,7 @@ void Unwind_18090ed30(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -72333,7 +72333,7 @@ void Unwind_18090ed50(undefined8 param_1,longlong param_2)
   *(undefined8 *)(param_2 + 200) = &UNK_180a3c3e0;
   if (*(longlong *)(param_2 + 0xd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(param_2 + 0xd0) = 0;
   *(undefined4 *)(param_2 + 0xe0) = 0;
@@ -72363,7 +72363,7 @@ void Unwind_18090ed70(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -72614,7 +72614,7 @@ void Unwind_18090eea0(undefined8 param_1,longlong param_2)
   
   if (*(longlong *)(*(longlong *)(param_2 + 0x58) + 0x1d8) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x58) + 0x1b8);
   if (pvalidationContext != (longlong *)0x0) {
@@ -72922,12 +72922,12 @@ void Unwind_18090efe0(undefined8 param_1,longlong param_2)
       plVar5 = plVar5 + 1;
       if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
     }
     if (*plVar2 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *plVar2 = 0;
   }
@@ -72963,7 +72963,7 @@ void Unwind_18090f000(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -73018,12 +73018,12 @@ void Unwind_18090f040(undefined8 param_1,longlong param_2)
       plVar4 = plVar4 + 1;
       if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
     }
     if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *pvalidationContext = 0;
   }
@@ -73049,14 +73049,14 @@ void Unwind_18090f050(undefined8 param_1,longlong param_2)
         plVar3 = plVar3 + 1;
         if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          TerminateSystemE0();
         }
       } while (plVar3 < (longlong *)(pvalidationContext[9] + 8));
       lVar2 = *pvalidationContext;
     }
     if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *pvalidationContext = 0;
   }
@@ -73092,7 +73092,7 @@ void Unwind_18090f060(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -73181,12 +73181,12 @@ void Unwind_18090f0c0(undefined8 param_1,longlong param_2)
       plVar4 = plVar4 + 1;
       if (lVar3 != 0) {
                     // WARNING: Subroutine does not return
-        FUN_18064e900();
+        TerminateSystemE0();
       }
     }
     if (*pvalidationContext != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *pvalidationContext = 0;
   }
@@ -73222,7 +73222,7 @@ void Unwind_18090f0d0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -73278,14 +73278,14 @@ void Unwind_18090f110(undefined8 param_1,longlong param_2)
         plVar3 = plVar3 + 1;
         if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
-          FUN_18064e900();
+          TerminateSystemE0();
         }
       } while (plVar3 < (longlong *)(pvalidationContext[9] + 8));
       lVar2 = *pvalidationContext;
     }
     if (lVar2 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     *pvalidationContext = 0;
   }
@@ -73331,7 +73331,7 @@ void Unwind_18090f140(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -73350,7 +73350,7 @@ void Unwind_18090f150(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10) = 0;
   *(undefined4 *)(validationContext + 0x20) = 0;
@@ -73369,7 +73369,7 @@ void Unwind_18090f160(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10) = 0;
   *(undefined4 *)(validationContext + 0x20) = 0;
@@ -73416,7 +73416,7 @@ void Unwind_18090f190(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10) = 0;
   *(undefined4 *)(validationContext + 0x20) = 0;
@@ -73526,7 +73526,7 @@ void Unwind_18090f200(undefined8 param_1,longlong param_2)
 {
   if (*(longlong *)(*(longlong *)(param_2 + 0x60) + 0x60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   _Mtx_destroy_in_situ();
   return;
@@ -73766,7 +73766,7 @@ void Unwind_18090f2d0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -73834,7 +73834,7 @@ void Unwind_18090f330(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -73857,7 +73857,7 @@ void Unwind_18090f350(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -73876,7 +73876,7 @@ void Unwind_18090f370(undefined8 param_1,longlong param_2)
   do {
     if (*plVar4 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     lVar2 = (longlong)(int)uVar3;
     plVar4 = plVar4 + 1;
@@ -74190,7 +74190,7 @@ void Unwind_18090f650(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x4140) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4148) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4148) = 0;
   *(undefined4 *)(validationContext + 0x4158) = 0;
@@ -74209,7 +74209,7 @@ void Unwind_18090f670(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x4190) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x4198) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4198) = 0;
   *(undefined4 *)(validationContext + 0x41a8) = 0;
@@ -74235,7 +74235,7 @@ void Unwind_18090f690(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -74429,7 +74429,7 @@ void Unwind_18090f7e0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -74902,7 +74902,7 @@ void Unwind_18090fac0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -74947,7 +74947,7 @@ void Unwind_18090faf0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x30) = 0;
   *(undefined4 *)(validationContext + 0x40) = 0;
@@ -75034,7 +75034,7 @@ void Unwind_18090fb70(undefined8 param_1,longlong param_2)
   *puVar1 = &UNK_180a3c3e0;
   if (puVar1[1] != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   puVar1[1] = 0;
   *(undefined4 *)(puVar1 + 3) = 0;
@@ -75375,7 +75375,7 @@ void Unwind_18090fe50(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75396,7 +75396,7 @@ void Unwind_18090fe60(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75502,7 +75502,7 @@ void Unwind_18090ff10(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75564,7 +75564,7 @@ void Unwind_18090ff80(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75642,7 +75642,7 @@ void Unwind_18090ffe0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75663,7 +75663,7 @@ void Unwind_18090fff0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75698,7 +75698,7 @@ void Unwind_180910010(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75719,7 +75719,7 @@ void Unwind_180910020(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75742,7 +75742,7 @@ void Unwind_180910030(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75765,7 +75765,7 @@ void Unwind_180910040(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75788,7 +75788,7 @@ void Unwind_180910050(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75957,7 +75957,7 @@ void Unwind_1809100d0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -75980,7 +75980,7 @@ void Unwind_1809100e0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -76053,7 +76053,7 @@ void Unwind_180910100(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -76067,7 +76067,7 @@ void Unwind_180910110(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x110) = 0;
   *(undefined4 *)(validationContext + 0x120) = 0;
@@ -76086,7 +76086,7 @@ void Unwind_180910130(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x110) = 0;
   *(undefined4 *)(validationContext + 0x120) = 0;
@@ -76112,7 +76112,7 @@ void Unwind_180910150(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -76144,7 +76144,7 @@ void Unwind_1809101c0(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x108) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x110) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x110) = 0;
   *(undefined4 *)(validationContext + 0x120) = 0;
@@ -76367,7 +76367,7 @@ void Unwind_1809102e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -76388,7 +76388,7 @@ void Unwind_1809102f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -76409,7 +76409,7 @@ void Unwind_180910300(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -76432,7 +76432,7 @@ void Unwind_180910310(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -76489,7 +76489,7 @@ void Unwind_180910330(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -76805,7 +76805,7 @@ void Unwind_1809104d0(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -77026,7 +77026,7 @@ void Unwind_180910620(undefined8 param_1,longlong param_2)
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -77271,14 +77271,14 @@ void Unwind_180910760(undefined8 param_1,longlong param_2)
   for (lVar2 = *pvalidationContext; lVar2 != pvalidationContext[1]; lVar2 = lVar2 + 0x28) {
     if (*(longlong *)(lVar2 + 8) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
   }
   if (*pvalidationContext == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -77403,7 +77403,7 @@ void Unwind_1809107a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9d0) = 0;
   *(undefined4 *)(validationContext + 0x9e0) = 0;
@@ -77411,7 +77411,7 @@ void Unwind_1809107a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9b0) = 0;
   *(undefined4 *)(validationContext + 0x9c0) = 0;
@@ -77433,7 +77433,7 @@ void Unwind_1809107c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa40) = 0;
   *(undefined4 *)(validationContext + 0xa50) = 0;
@@ -77441,7 +77441,7 @@ void Unwind_1809107c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa20) = 0;
   *(undefined4 *)(validationContext + 0xa30) = 0;
@@ -77463,7 +77463,7 @@ void Unwind_1809107e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xaa8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xab0) = 0;
   *(undefined4 *)(validationContext + 0xac0) = 0;
@@ -77471,7 +77471,7 @@ void Unwind_1809107e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa88) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa90) = 0;
   *(undefined4 *)(validationContext + 0xaa0) = 0;
@@ -77493,7 +77493,7 @@ void Unwind_180910800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb20) = 0;
   *(undefined4 *)(validationContext + 0xb30) = 0;
@@ -77501,7 +77501,7 @@ void Unwind_180910800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xaf8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb00) = 0;
   *(undefined4 *)(validationContext + 0xb10) = 0;
@@ -77523,7 +77523,7 @@ void Unwind_180910820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb88) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb90) = 0;
   *(undefined4 *)(validationContext + 0xba0) = 0;
@@ -77531,7 +77531,7 @@ void Unwind_180910820(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb70) = 0;
   *(undefined4 *)(validationContext + 0xb80) = 0;
@@ -77553,7 +77553,7 @@ void Unwind_180910840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xbf8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc00) = 0;
   *(undefined4 *)(validationContext + 0xc10) = 0;
@@ -77561,7 +77561,7 @@ void Unwind_180910840(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xbd8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xbe0) = 0;
   *(undefined4 *)(validationContext + 0xbf0) = 0;
@@ -77583,7 +77583,7 @@ void Unwind_180910860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc70) = 0;
   *(undefined4 *)(validationContext + 0xc80) = 0;
@@ -77591,7 +77591,7 @@ void Unwind_180910860(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc50) = 0;
   *(undefined4 *)(validationContext + 0xc60) = 0;
@@ -77613,7 +77613,7 @@ void Unwind_180910880(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xcd8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xce0) = 0;
   *(undefined4 *)(validationContext + 0xcf0) = 0;
@@ -77621,7 +77621,7 @@ void Unwind_180910880(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xcb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xcc0) = 0;
   *(undefined4 *)(validationContext + 0xcd0) = 0;
@@ -77643,7 +77643,7 @@ void Unwind_1809108a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd50) = 0;
   *(undefined4 *)(validationContext + 0xd60) = 0;
@@ -77651,7 +77651,7 @@ void Unwind_1809108a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd30) = 0;
   *(undefined4 *)(validationContext + 0xd40) = 0;
@@ -77673,7 +77673,7 @@ void Unwind_1809108c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xdb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xdc0) = 0;
   *(undefined4 *)(validationContext + 0xdd0) = 0;
@@ -77681,7 +77681,7 @@ void Unwind_1809108c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xda0) = 0;
   *(undefined4 *)(validationContext + 0xdb0) = 0;
@@ -77703,7 +77703,7 @@ void Unwind_1809108e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe30) = 0;
   *(undefined4 *)(validationContext + 0xe40) = 0;
@@ -77711,7 +77711,7 @@ void Unwind_1809108e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe10) = 0;
   *(undefined4 *)(validationContext + 0xe20) = 0;
@@ -77733,7 +77733,7 @@ void Unwind_180910900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xea0) = 0;
   *(undefined4 *)(validationContext + 0xeb0) = 0;
@@ -77741,7 +77741,7 @@ void Unwind_180910900(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe80) = 0;
   *(undefined4 *)(validationContext + 0xe90) = 0;
@@ -77763,7 +77763,7 @@ void Unwind_180910920(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf10) = 0;
   *(undefined4 *)(validationContext + 0xf20) = 0;
@@ -77771,7 +77771,7 @@ void Unwind_180910920(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xee8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xef0) = 0;
   *(undefined4 *)(validationContext + 0xf00) = 0;
@@ -77793,7 +77793,7 @@ void Unwind_180910940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf80) = 0;
   *(undefined4 *)(validationContext + 0xf90) = 0;
@@ -77801,7 +77801,7 @@ void Unwind_180910940(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf60) = 0;
   *(undefined4 *)(validationContext + 0xf70) = 0;
@@ -77823,7 +77823,7 @@ void Unwind_180910960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xfe8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xff0) = 0;
   *(undefined4 *)(validationContext + 0x1000) = 0;
@@ -77831,7 +77831,7 @@ void Unwind_180910960(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xfc8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xfd0) = 0;
   *(undefined4 *)(validationContext + 0xfe0) = 0;
@@ -77853,7 +77853,7 @@ void Unwind_180910980(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1058) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1060) = 0;
   *(undefined4 *)(validationContext + 0x1070) = 0;
@@ -77861,7 +77861,7 @@ void Unwind_180910980(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1038) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1040) = 0;
   *(undefined4 *)(validationContext + 0x1050) = 0;
@@ -77883,7 +77883,7 @@ void Unwind_1809109a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x10c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10d0) = 0;
   *(undefined4 *)(validationContext + 0x10e0) = 0;
@@ -77891,7 +77891,7 @@ void Unwind_1809109a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x10a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10b0) = 0;
   *(undefined4 *)(validationContext + 0x10c0) = 0;
@@ -77913,7 +77913,7 @@ void Unwind_1809109c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1138) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1140) = 0;
   *(undefined4 *)(validationContext + 0x1150) = 0;
@@ -77921,7 +77921,7 @@ void Unwind_1809109c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1118) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1120) = 0;
   *(undefined4 *)(validationContext + 0x1130) = 0;
@@ -77943,7 +77943,7 @@ void Unwind_1809109e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x11a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x11b0) = 0;
   *(undefined4 *)(validationContext + 0x11c0) = 0;
@@ -77951,7 +77951,7 @@ void Unwind_1809109e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1188) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1190) = 0;
   *(undefined4 *)(validationContext + 0x11a0) = 0;
@@ -77973,7 +77973,7 @@ void Unwind_180910a00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1218) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1220) = 0;
   *(undefined4 *)(validationContext + 0x1230) = 0;
@@ -77981,7 +77981,7 @@ void Unwind_180910a00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x11f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1200) = 0;
   *(undefined4 *)(validationContext + 0x1210) = 0;
@@ -78003,7 +78003,7 @@ void Unwind_180910a20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1288) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1290) = 0;
   *(undefined4 *)(validationContext + 0x12a0) = 0;
@@ -78011,7 +78011,7 @@ void Unwind_180910a20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1268) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1270) = 0;
   *(undefined4 *)(validationContext + 0x1280) = 0;
@@ -78033,7 +78033,7 @@ void Unwind_180910a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x12f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1300) = 0;
   *(undefined4 *)(validationContext + 0x1310) = 0;
@@ -78041,7 +78041,7 @@ void Unwind_180910a40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x12d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x12e0) = 0;
   *(undefined4 *)(validationContext + 0x12f0) = 0;
@@ -78063,7 +78063,7 @@ void Unwind_180910a60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1368) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1370) = 0;
   *(undefined4 *)(validationContext + 0x1380) = 0;
@@ -78071,7 +78071,7 @@ void Unwind_180910a60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1348) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1350) = 0;
   *(undefined4 *)(validationContext + 0x1360) = 0;
@@ -78093,7 +78093,7 @@ void Unwind_180910a80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x13d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x13e0) = 0;
   *(undefined4 *)(validationContext + 0x13f0) = 0;
@@ -78101,7 +78101,7 @@ void Unwind_180910a80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x13b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x13c0) = 0;
   *(undefined4 *)(validationContext + 0x13d0) = 0;
@@ -78123,7 +78123,7 @@ void Unwind_180910aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1448) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1450) = 0;
   *(undefined4 *)(validationContext + 0x1460) = 0;
@@ -78131,7 +78131,7 @@ void Unwind_180910aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1428) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1430) = 0;
   *(undefined4 *)(validationContext + 0x1440) = 0;
@@ -78153,7 +78153,7 @@ void Unwind_180910ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x14b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x14c0) = 0;
   *(undefined4 *)(validationContext + 0x14d0) = 0;
@@ -78161,7 +78161,7 @@ void Unwind_180910ac0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1498) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x14a0) = 0;
   *(undefined4 *)(validationContext + 0x14b0) = 0;
@@ -78183,7 +78183,7 @@ void Unwind_180910ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1528) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1530) = 0;
   *(undefined4 *)(validationContext + 0x1540) = 0;
@@ -78191,7 +78191,7 @@ void Unwind_180910ae0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1508) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1510) = 0;
   *(undefined4 *)(validationContext + 0x1520) = 0;
@@ -78213,7 +78213,7 @@ void Unwind_180910b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1598) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x15a0) = 0;
   *(undefined4 *)(validationContext + 0x15b0) = 0;
@@ -78221,7 +78221,7 @@ void Unwind_180910b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1578) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1580) = 0;
   *(undefined4 *)(validationContext + 0x1590) = 0;
@@ -78243,7 +78243,7 @@ void Unwind_180910b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1608) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1610) = 0;
   *(undefined4 *)(validationContext + 0x1620) = 0;
@@ -78251,7 +78251,7 @@ void Unwind_180910b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x15e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x15f0) = 0;
   *(undefined4 *)(validationContext + 0x1600) = 0;
@@ -78273,7 +78273,7 @@ void Unwind_180910b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1678) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1680) = 0;
   *(undefined4 *)(validationContext + 0x1690) = 0;
@@ -78281,7 +78281,7 @@ void Unwind_180910b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1658) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1660) = 0;
   *(undefined4 *)(validationContext + 0x1670) = 0;
@@ -78303,7 +78303,7 @@ void Unwind_180910b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x16e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x16f0) = 0;
   *(undefined4 *)(validationContext + 0x1700) = 0;
@@ -78311,7 +78311,7 @@ void Unwind_180910b60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x16c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x16d0) = 0;
   *(undefined4 *)(validationContext + 0x16e0) = 0;
@@ -78333,7 +78333,7 @@ void Unwind_180910b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1758) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1760) = 0;
   *(undefined4 *)(validationContext + 6000) = 0;
@@ -78341,7 +78341,7 @@ void Unwind_180910b80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1738) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1740) = 0;
   *(undefined4 *)(validationContext + 0x1750) = 0;
@@ -78363,7 +78363,7 @@ void Unwind_180910ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x17c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x17d0) = 0;
   *(undefined4 *)(validationContext + 0x17e0) = 0;
@@ -78371,7 +78371,7 @@ void Unwind_180910ba0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x17a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x17b0) = 0;
   *(undefined4 *)(validationContext + 0x17c0) = 0;
@@ -78393,7 +78393,7 @@ void Unwind_180910bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1838) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1840) = 0;
   *(undefined4 *)(validationContext + 0x1850) = 0;
@@ -78401,7 +78401,7 @@ void Unwind_180910bc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1818) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1820) = 0;
   *(undefined4 *)(validationContext + 0x1830) = 0;
@@ -78423,7 +78423,7 @@ void Unwind_180910be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x18a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x18b0) = 0;
   *(undefined4 *)(validationContext + 0x18c0) = 0;
@@ -78431,7 +78431,7 @@ void Unwind_180910be0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1888) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1890) = 0;
   *(undefined4 *)(validationContext + 0x18a0) = 0;
@@ -78453,7 +78453,7 @@ void Unwind_180910c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1918) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1920) = 0;
   *(undefined4 *)(validationContext + 0x1930) = 0;
@@ -78461,7 +78461,7 @@ void Unwind_180910c00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x18f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1900) = 0;
   *(undefined4 *)(validationContext + 0x1910) = 0;
@@ -78483,7 +78483,7 @@ void Unwind_180910c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1988) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1990) = 0;
   *(undefined4 *)(validationContext + 0x19a0) = 0;
@@ -78491,7 +78491,7 @@ void Unwind_180910c20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1968) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1970) = 0;
   *(undefined4 *)(validationContext + 0x1980) = 0;
@@ -78513,7 +78513,7 @@ void Unwind_180910c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x19f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a00) = 0;
   *(undefined4 *)(validationContext + 0x1a10) = 0;
@@ -78521,7 +78521,7 @@ void Unwind_180910c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x19d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x19e0) = 0;
   *(undefined4 *)(validationContext + 0x19f0) = 0;
@@ -78543,7 +78543,7 @@ void Unwind_180910c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1a68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a70) = 0;
   *(undefined4 *)(validationContext + 0x1a80) = 0;
@@ -78551,7 +78551,7 @@ void Unwind_180910c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1a48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a50) = 0;
   *(undefined4 *)(validationContext + 0x1a60) = 0;
@@ -78573,7 +78573,7 @@ void Unwind_180910c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ad8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ae0) = 0;
   *(undefined4 *)(validationContext + 0x1af0) = 0;
@@ -78581,7 +78581,7 @@ void Unwind_180910c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ab8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ac0) = 0;
   *(undefined4 *)(validationContext + 0x1ad0) = 0;
@@ -78603,7 +78603,7 @@ void Unwind_180910ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1b48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1b50) = 0;
   *(undefined4 *)(validationContext + 0x1b60) = 0;
@@ -78611,7 +78611,7 @@ void Unwind_180910ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1b28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1b30) = 0;
   *(undefined4 *)(validationContext + 0x1b40) = 0;
@@ -78633,7 +78633,7 @@ void Unwind_180910cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1bb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1bc0) = 0;
   *(undefined4 *)(validationContext + 0x1bd0) = 0;
@@ -78641,7 +78641,7 @@ void Unwind_180910cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1b98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ba0) = 0;
   *(undefined4 *)(validationContext + 0x1bb0) = 0;
@@ -78663,7 +78663,7 @@ void Unwind_180910ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1c30) = 0;
   *(undefined4 *)(validationContext + 0x1c40) = 0;
@@ -78671,7 +78671,7 @@ void Unwind_180910ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1c10) = 0;
   *(undefined4 *)(validationContext + 0x1c20) = 0;
@@ -78693,7 +78693,7 @@ void Unwind_180910d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ca0) = 0;
   *(undefined4 *)(validationContext + 0x1cb0) = 0;
@@ -78701,7 +78701,7 @@ void Unwind_180910d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1c80) = 0;
   *(undefined4 *)(validationContext + 0x1c90) = 0;
@@ -78723,7 +78723,7 @@ void Unwind_180910d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1d08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1d10) = 0;
   *(undefined4 *)(validationContext + 0x1d20) = 0;
@@ -78731,7 +78731,7 @@ void Unwind_180910d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ce8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1cf0) = 0;
   *(undefined4 *)(validationContext + 0x1d00) = 0;
@@ -78753,7 +78753,7 @@ void Unwind_180910d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1d78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1d80) = 0;
   *(undefined4 *)(validationContext + 0x1d90) = 0;
@@ -78761,7 +78761,7 @@ void Unwind_180910d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1d58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1d60) = 0;
   *(undefined4 *)(validationContext + 0x1d70) = 0;
@@ -78783,7 +78783,7 @@ void Unwind_180910d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1de8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1df0) = 0;
   *(undefined4 *)(validationContext + 0x1e00) = 0;
@@ -78791,7 +78791,7 @@ void Unwind_180910d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1dc8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1dd0) = 0;
   *(undefined4 *)(validationContext + 0x1de0) = 0;
@@ -78813,7 +78813,7 @@ void Unwind_180910d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1e58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1e60) = 0;
   *(undefined4 *)(validationContext + 0x1e70) = 0;
@@ -78821,7 +78821,7 @@ void Unwind_180910d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1e38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1e40) = 0;
   *(undefined4 *)(validationContext + 0x1e50) = 0;
@@ -78843,7 +78843,7 @@ void Unwind_180910da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ec8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ed0) = 0;
   *(undefined4 *)(validationContext + 0x1ee0) = 0;
@@ -78851,7 +78851,7 @@ void Unwind_180910da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ea8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1eb0) = 0;
   *(undefined4 *)(validationContext + 0x1ec0) = 0;
@@ -78873,7 +78873,7 @@ void Unwind_180910dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1f38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 8000) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 8000) = 0;
   *(undefined4 *)(validationContext + 0x1f50) = 0;
@@ -78881,7 +78881,7 @@ void Unwind_180910dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1f18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1f20) = 0;
   *(undefined4 *)(validationContext + 0x1f30) = 0;
@@ -78903,7 +78903,7 @@ void Unwind_180910de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1fa8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1fb0) = 0;
   *(undefined4 *)(validationContext + 0x1fc0) = 0;
@@ -78911,7 +78911,7 @@ void Unwind_180910de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1f88) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1f90) = 0;
   *(undefined4 *)(validationContext + 0x1fa0) = 0;
@@ -78933,7 +78933,7 @@ void Unwind_180910e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2018) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2020) = 0;
   *(undefined4 *)(validationContext + 0x2030) = 0;
@@ -78941,7 +78941,7 @@ void Unwind_180910e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ff8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2000) = 0;
   *(undefined4 *)(validationContext + 0x2010) = 0;
@@ -78963,7 +78963,7 @@ void Unwind_180910e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2088) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2090) = 0;
   *(undefined4 *)(validationContext + 0x20a0) = 0;
@@ -78971,7 +78971,7 @@ void Unwind_180910e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2068) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2070) = 0;
   *(undefined4 *)(validationContext + 0x2080) = 0;
@@ -78993,7 +78993,7 @@ void Unwind_180910e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x20f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2100) = 0;
   *(undefined4 *)(validationContext + 0x2110) = 0;
@@ -79001,7 +79001,7 @@ void Unwind_180910e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x20d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20e0) = 0;
   *(undefined4 *)(validationContext + 0x20f0) = 0;
@@ -79023,7 +79023,7 @@ void Unwind_180910e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2168) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2170) = 0;
   *(undefined4 *)(validationContext + 0x2180) = 0;
@@ -79031,7 +79031,7 @@ void Unwind_180910e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2148) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2150) = 0;
   *(undefined4 *)(validationContext + 0x2160) = 0;
@@ -79053,7 +79053,7 @@ void Unwind_180910e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x21d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x21e0) = 0;
   *(undefined4 *)(validationContext + 0x21f0) = 0;
@@ -79061,7 +79061,7 @@ void Unwind_180910e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x21b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x21c0) = 0;
   *(undefined4 *)(validationContext + 0x21d0) = 0;
@@ -79083,7 +79083,7 @@ void Unwind_180910ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2248) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2250) = 0;
   *(undefined4 *)(validationContext + 0x2260) = 0;
@@ -79091,7 +79091,7 @@ void Unwind_180910ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2228) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2230) = 0;
   *(undefined4 *)(validationContext + 0x2240) = 0;
@@ -79113,7 +79113,7 @@ void Unwind_180910ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x22b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x22c0) = 0;
   *(undefined4 *)(validationContext + 0x22d0) = 0;
@@ -79121,7 +79121,7 @@ void Unwind_180910ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2298) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x22a0) = 0;
   *(undefined4 *)(validationContext + 0x22b0) = 0;
@@ -79143,7 +79143,7 @@ void Unwind_180910ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 9000) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2330) = 0;
   *(undefined4 *)(validationContext + 0x2340) = 0;
@@ -79151,7 +79151,7 @@ void Unwind_180910ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2308) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2310) = 0;
   *(undefined4 *)(validationContext + 0x2320) = 0;
@@ -79173,7 +79173,7 @@ void Unwind_180910f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2398) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x23a0) = 0;
   *(undefined4 *)(validationContext + 0x23b0) = 0;
@@ -79181,7 +79181,7 @@ void Unwind_180910f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2378) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2380) = 0;
   *(undefined4 *)(validationContext + 0x2390) = 0;
@@ -79203,7 +79203,7 @@ void Unwind_180910f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2408) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2410) = 0;
   *(undefined4 *)(validationContext + 0x2420) = 0;
@@ -79211,7 +79211,7 @@ void Unwind_180910f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x23e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x23f0) = 0;
   *(undefined4 *)(validationContext + 0x2400) = 0;
@@ -79233,7 +79233,7 @@ void Unwind_180910f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2478) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2480) = 0;
   *(undefined4 *)(validationContext + 0x2490) = 0;
@@ -79241,7 +79241,7 @@ void Unwind_180910f40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2458) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2460) = 0;
   *(undefined4 *)(validationContext + 0x2470) = 0;
@@ -79263,7 +79263,7 @@ void Unwind_180910f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x24e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x24f0) = 0;
   *(undefined4 *)(validationContext + 0x2500) = 0;
@@ -79271,7 +79271,7 @@ void Unwind_180910f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x24c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x24d0) = 0;
   *(undefined4 *)(validationContext + 0x24e0) = 0;
@@ -79293,7 +79293,7 @@ void Unwind_180910f80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2558) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2560) = 0;
   *(undefined4 *)(validationContext + 0x2570) = 0;
@@ -79301,7 +79301,7 @@ void Unwind_180910f80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2538) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2540) = 0;
   *(undefined4 *)(validationContext + 0x2550) = 0;
@@ -79323,7 +79323,7 @@ void Unwind_180910fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x25c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x25d0) = 0;
   *(undefined4 *)(validationContext + 0x25e0) = 0;
@@ -79331,7 +79331,7 @@ void Unwind_180910fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x25a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x25b0) = 0;
   *(undefined4 *)(validationContext + 0x25c0) = 0;
@@ -79359,7 +79359,7 @@ void Unwind_180910fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -79382,7 +79382,7 @@ void Unwind_180910fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -79399,7 +79399,7 @@ void Unwind_180911000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9d0) = 0;
   *(undefined4 *)(validationContext + 0x9e0) = 0;
@@ -79407,7 +79407,7 @@ void Unwind_180911000(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x9a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x9b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x9b0) = 0;
   *(undefined4 *)(validationContext + 0x9c0) = 0;
@@ -79429,7 +79429,7 @@ void Unwind_180911020(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa40) = 0;
   *(undefined4 *)(validationContext + 0xa50) = 0;
@@ -79437,7 +79437,7 @@ void Unwind_180911020(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa20) = 0;
   *(undefined4 *)(validationContext + 0xa30) = 0;
@@ -79459,7 +79459,7 @@ void Unwind_180911040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xaa8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xab0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xab0) = 0;
   *(undefined4 *)(validationContext + 0xac0) = 0;
@@ -79467,7 +79467,7 @@ void Unwind_180911040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xa88) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xa90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xa90) = 0;
   *(undefined4 *)(validationContext + 0xaa0) = 0;
@@ -79489,7 +79489,7 @@ void Unwind_180911060(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb20) = 0;
   *(undefined4 *)(validationContext + 0xb30) = 0;
@@ -79497,7 +79497,7 @@ void Unwind_180911060(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xaf8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb00) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb00) = 0;
   *(undefined4 *)(validationContext + 0xb10) = 0;
@@ -79519,7 +79519,7 @@ void Unwind_180911080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb88) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb90) = 0;
   *(undefined4 *)(validationContext + 0xba0) = 0;
@@ -79527,7 +79527,7 @@ void Unwind_180911080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xb68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xb70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xb70) = 0;
   *(undefined4 *)(validationContext + 0xb80) = 0;
@@ -79549,7 +79549,7 @@ void Unwind_1809110a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xbf8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc00) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc00) = 0;
   *(undefined4 *)(validationContext + 0xc10) = 0;
@@ -79557,7 +79557,7 @@ void Unwind_1809110a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xbd8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xbe0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xbe0) = 0;
   *(undefined4 *)(validationContext + 0xbf0) = 0;
@@ -79579,7 +79579,7 @@ void Unwind_1809110c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc70) = 0;
   *(undefined4 *)(validationContext + 0xc80) = 0;
@@ -79587,7 +79587,7 @@ void Unwind_1809110c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xc48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xc50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xc50) = 0;
   *(undefined4 *)(validationContext + 0xc60) = 0;
@@ -79609,7 +79609,7 @@ void Unwind_1809110e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xcd8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xce0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xce0) = 0;
   *(undefined4 *)(validationContext + 0xcf0) = 0;
@@ -79617,7 +79617,7 @@ void Unwind_1809110e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xcb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xcc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xcc0) = 0;
   *(undefined4 *)(validationContext + 0xcd0) = 0;
@@ -79639,7 +79639,7 @@ void Unwind_180911100(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd50) = 0;
   *(undefined4 *)(validationContext + 0xd60) = 0;
@@ -79647,7 +79647,7 @@ void Unwind_180911100(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xd30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xd30) = 0;
   *(undefined4 *)(validationContext + 0xd40) = 0;
@@ -79669,7 +79669,7 @@ void Unwind_180911120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xdb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xdc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xdc0) = 0;
   *(undefined4 *)(validationContext + 0xdd0) = 0;
@@ -79677,7 +79677,7 @@ void Unwind_180911120(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xd98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xda0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xda0) = 0;
   *(undefined4 *)(validationContext + 0xdb0) = 0;
@@ -79699,7 +79699,7 @@ void Unwind_180911140(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe30) = 0;
   *(undefined4 *)(validationContext + 0xe40) = 0;
@@ -79707,7 +79707,7 @@ void Unwind_180911140(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe10) = 0;
   *(undefined4 *)(validationContext + 0xe20) = 0;
@@ -79729,7 +79729,7 @@ void Unwind_180911160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xea0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xea0) = 0;
   *(undefined4 *)(validationContext + 0xeb0) = 0;
@@ -79737,7 +79737,7 @@ void Unwind_180911160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xe78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xe80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xe80) = 0;
   *(undefined4 *)(validationContext + 0xe90) = 0;
@@ -79759,7 +79759,7 @@ void Unwind_180911180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf10) = 0;
   *(undefined4 *)(validationContext + 0xf20) = 0;
@@ -79767,7 +79767,7 @@ void Unwind_180911180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xee8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xef0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xef0) = 0;
   *(undefined4 *)(validationContext + 0xf00) = 0;
@@ -79789,7 +79789,7 @@ void Unwind_1809111a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf80) = 0;
   *(undefined4 *)(validationContext + 0xf90) = 0;
@@ -79797,7 +79797,7 @@ void Unwind_1809111a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xf58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xf60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xf60) = 0;
   *(undefined4 *)(validationContext + 0xf70) = 0;
@@ -79819,7 +79819,7 @@ void Unwind_1809111c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xfe8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xff0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xff0) = 0;
   *(undefined4 *)(validationContext + 0x1000) = 0;
@@ -79827,7 +79827,7 @@ void Unwind_1809111c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0xfc8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0xfd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0xfd0) = 0;
   *(undefined4 *)(validationContext + 0xfe0) = 0;
@@ -79849,7 +79849,7 @@ void Unwind_1809111e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1058) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1060) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1060) = 0;
   *(undefined4 *)(validationContext + 0x1070) = 0;
@@ -79857,7 +79857,7 @@ void Unwind_1809111e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1038) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1040) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1040) = 0;
   *(undefined4 *)(validationContext + 0x1050) = 0;
@@ -79879,7 +79879,7 @@ void Unwind_180911200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x10c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10d0) = 0;
   *(undefined4 *)(validationContext + 0x10e0) = 0;
@@ -79887,7 +79887,7 @@ void Unwind_180911200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x10a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x10b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x10b0) = 0;
   *(undefined4 *)(validationContext + 0x10c0) = 0;
@@ -79909,7 +79909,7 @@ void Unwind_180911220(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1138) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1140) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1140) = 0;
   *(undefined4 *)(validationContext + 0x1150) = 0;
@@ -79917,7 +79917,7 @@ void Unwind_180911220(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1118) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1120) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1120) = 0;
   *(undefined4 *)(validationContext + 0x1130) = 0;
@@ -79939,7 +79939,7 @@ void Unwind_180911240(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x11a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x11b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x11b0) = 0;
   *(undefined4 *)(validationContext + 0x11c0) = 0;
@@ -79947,7 +79947,7 @@ void Unwind_180911240(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1188) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1190) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1190) = 0;
   *(undefined4 *)(validationContext + 0x11a0) = 0;
@@ -79969,7 +79969,7 @@ void Unwind_180911260(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1218) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1220) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1220) = 0;
   *(undefined4 *)(validationContext + 0x1230) = 0;
@@ -79977,7 +79977,7 @@ void Unwind_180911260(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x11f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1200) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1200) = 0;
   *(undefined4 *)(validationContext + 0x1210) = 0;
@@ -79999,7 +79999,7 @@ void Unwind_180911280(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1288) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1290) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1290) = 0;
   *(undefined4 *)(validationContext + 0x12a0) = 0;
@@ -80007,7 +80007,7 @@ void Unwind_180911280(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1268) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1270) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1270) = 0;
   *(undefined4 *)(validationContext + 0x1280) = 0;
@@ -80029,7 +80029,7 @@ void Unwind_1809112a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x12f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1300) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1300) = 0;
   *(undefined4 *)(validationContext + 0x1310) = 0;
@@ -80037,7 +80037,7 @@ void Unwind_1809112a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x12d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x12e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x12e0) = 0;
   *(undefined4 *)(validationContext + 0x12f0) = 0;
@@ -80059,7 +80059,7 @@ void Unwind_1809112c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1368) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1370) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1370) = 0;
   *(undefined4 *)(validationContext + 0x1380) = 0;
@@ -80067,7 +80067,7 @@ void Unwind_1809112c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1348) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1350) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1350) = 0;
   *(undefined4 *)(validationContext + 0x1360) = 0;
@@ -80089,7 +80089,7 @@ void Unwind_1809112e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x13d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x13e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x13e0) = 0;
   *(undefined4 *)(validationContext + 0x13f0) = 0;
@@ -80097,7 +80097,7 @@ void Unwind_1809112e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x13b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x13c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x13c0) = 0;
   *(undefined4 *)(validationContext + 0x13d0) = 0;
@@ -80119,7 +80119,7 @@ void Unwind_180911300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1448) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1450) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1450) = 0;
   *(undefined4 *)(validationContext + 0x1460) = 0;
@@ -80127,7 +80127,7 @@ void Unwind_180911300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1428) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1430) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1430) = 0;
   *(undefined4 *)(validationContext + 0x1440) = 0;
@@ -80149,7 +80149,7 @@ void Unwind_180911320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x14b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x14c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x14c0) = 0;
   *(undefined4 *)(validationContext + 0x14d0) = 0;
@@ -80157,7 +80157,7 @@ void Unwind_180911320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1498) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x14a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x14a0) = 0;
   *(undefined4 *)(validationContext + 0x14b0) = 0;
@@ -80179,7 +80179,7 @@ void Unwind_180911340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1528) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1530) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1530) = 0;
   *(undefined4 *)(validationContext + 0x1540) = 0;
@@ -80187,7 +80187,7 @@ void Unwind_180911340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1508) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1510) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1510) = 0;
   *(undefined4 *)(validationContext + 0x1520) = 0;
@@ -80209,7 +80209,7 @@ void Unwind_180911360(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1598) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x15a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x15a0) = 0;
   *(undefined4 *)(validationContext + 0x15b0) = 0;
@@ -80217,7 +80217,7 @@ void Unwind_180911360(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1578) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1580) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1580) = 0;
   *(undefined4 *)(validationContext + 0x1590) = 0;
@@ -80239,7 +80239,7 @@ void Unwind_180911380(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1608) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1610) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1610) = 0;
   *(undefined4 *)(validationContext + 0x1620) = 0;
@@ -80247,7 +80247,7 @@ void Unwind_180911380(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x15e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x15f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x15f0) = 0;
   *(undefined4 *)(validationContext + 0x1600) = 0;
@@ -80269,7 +80269,7 @@ void Unwind_1809113a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1678) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1680) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1680) = 0;
   *(undefined4 *)(validationContext + 0x1690) = 0;
@@ -80277,7 +80277,7 @@ void Unwind_1809113a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1658) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1660) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1660) = 0;
   *(undefined4 *)(validationContext + 0x1670) = 0;
@@ -80299,7 +80299,7 @@ void Unwind_1809113c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x16e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x16f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x16f0) = 0;
   *(undefined4 *)(validationContext + 0x1700) = 0;
@@ -80307,7 +80307,7 @@ void Unwind_1809113c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x16c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x16d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x16d0) = 0;
   *(undefined4 *)(validationContext + 0x16e0) = 0;
@@ -80329,7 +80329,7 @@ void Unwind_1809113e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1758) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1760) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1760) = 0;
   *(undefined4 *)(validationContext + 6000) = 0;
@@ -80337,7 +80337,7 @@ void Unwind_1809113e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1738) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1740) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1740) = 0;
   *(undefined4 *)(validationContext + 0x1750) = 0;
@@ -80359,7 +80359,7 @@ void Unwind_180911400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x17c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x17d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x17d0) = 0;
   *(undefined4 *)(validationContext + 0x17e0) = 0;
@@ -80367,7 +80367,7 @@ void Unwind_180911400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x17a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x17b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x17b0) = 0;
   *(undefined4 *)(validationContext + 0x17c0) = 0;
@@ -80389,7 +80389,7 @@ void Unwind_180911420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1838) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1840) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1840) = 0;
   *(undefined4 *)(validationContext + 0x1850) = 0;
@@ -80397,7 +80397,7 @@ void Unwind_180911420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1818) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1820) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1820) = 0;
   *(undefined4 *)(validationContext + 0x1830) = 0;
@@ -80419,7 +80419,7 @@ void Unwind_180911440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x18a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x18b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x18b0) = 0;
   *(undefined4 *)(validationContext + 0x18c0) = 0;
@@ -80427,7 +80427,7 @@ void Unwind_180911440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1888) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1890) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1890) = 0;
   *(undefined4 *)(validationContext + 0x18a0) = 0;
@@ -80449,7 +80449,7 @@ void Unwind_180911460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1918) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1920) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1920) = 0;
   *(undefined4 *)(validationContext + 0x1930) = 0;
@@ -80457,7 +80457,7 @@ void Unwind_180911460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x18f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1900) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1900) = 0;
   *(undefined4 *)(validationContext + 0x1910) = 0;
@@ -80479,7 +80479,7 @@ void Unwind_180911480(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1988) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1990) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1990) = 0;
   *(undefined4 *)(validationContext + 0x19a0) = 0;
@@ -80487,7 +80487,7 @@ void Unwind_180911480(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1968) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1970) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1970) = 0;
   *(undefined4 *)(validationContext + 0x1980) = 0;
@@ -80509,7 +80509,7 @@ void Unwind_1809114a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x19f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a00) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a00) = 0;
   *(undefined4 *)(validationContext + 0x1a10) = 0;
@@ -80517,7 +80517,7 @@ void Unwind_1809114a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x19d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x19e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x19e0) = 0;
   *(undefined4 *)(validationContext + 0x19f0) = 0;
@@ -80539,7 +80539,7 @@ void Unwind_1809114c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1a68) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a70) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a70) = 0;
   *(undefined4 *)(validationContext + 0x1a80) = 0;
@@ -80547,7 +80547,7 @@ void Unwind_1809114c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1a48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1a50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1a50) = 0;
   *(undefined4 *)(validationContext + 0x1a60) = 0;
@@ -80569,7 +80569,7 @@ void Unwind_1809114e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ad8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ae0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ae0) = 0;
   *(undefined4 *)(validationContext + 0x1af0) = 0;
@@ -80577,7 +80577,7 @@ void Unwind_1809114e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ab8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ac0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ac0) = 0;
   *(undefined4 *)(validationContext + 0x1ad0) = 0;
@@ -80599,7 +80599,7 @@ void Unwind_180911500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1b48) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1b50) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1b50) = 0;
   *(undefined4 *)(validationContext + 0x1b60) = 0;
@@ -80607,7 +80607,7 @@ void Unwind_180911500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1b28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1b30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1b30) = 0;
   *(undefined4 *)(validationContext + 0x1b40) = 0;
@@ -80629,7 +80629,7 @@ void Unwind_180911520(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1bb8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1bc0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1bc0) = 0;
   *(undefined4 *)(validationContext + 0x1bd0) = 0;
@@ -80637,7 +80637,7 @@ void Unwind_180911520(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1b98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ba0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ba0) = 0;
   *(undefined4 *)(validationContext + 0x1bb0) = 0;
@@ -80659,7 +80659,7 @@ void Unwind_180911540(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c28) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c30) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1c30) = 0;
   *(undefined4 *)(validationContext + 0x1c40) = 0;
@@ -80667,7 +80667,7 @@ void Unwind_180911540(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1c10) = 0;
   *(undefined4 *)(validationContext + 0x1c20) = 0;
@@ -80689,7 +80689,7 @@ void Unwind_180911560(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c98) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ca0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ca0) = 0;
   *(undefined4 *)(validationContext + 0x1cb0) = 0;
@@ -80697,7 +80697,7 @@ void Unwind_180911560(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1c78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1c80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1c80) = 0;
   *(undefined4 *)(validationContext + 0x1c90) = 0;
@@ -80719,7 +80719,7 @@ void Unwind_180911580(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1d08) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1d10) = 0;
   *(undefined4 *)(validationContext + 0x1d20) = 0;
@@ -80727,7 +80727,7 @@ void Unwind_180911580(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ce8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1cf0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1cf0) = 0;
   *(undefined4 *)(validationContext + 0x1d00) = 0;
@@ -80749,7 +80749,7 @@ void Unwind_1809115a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1d78) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d80) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1d80) = 0;
   *(undefined4 *)(validationContext + 0x1d90) = 0;
@@ -80757,7 +80757,7 @@ void Unwind_1809115a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1d58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1d60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1d60) = 0;
   *(undefined4 *)(validationContext + 0x1d70) = 0;
@@ -80779,7 +80779,7 @@ void Unwind_1809115c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1de8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1df0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1df0) = 0;
   *(undefined4 *)(validationContext + 0x1e00) = 0;
@@ -80787,7 +80787,7 @@ void Unwind_1809115c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1dc8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1dd0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1dd0) = 0;
   *(undefined4 *)(validationContext + 0x1de0) = 0;
@@ -80809,7 +80809,7 @@ void Unwind_1809115e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1e58) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1e60) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1e60) = 0;
   *(undefined4 *)(validationContext + 0x1e70) = 0;
@@ -80817,7 +80817,7 @@ void Unwind_1809115e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1e38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1e40) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1e40) = 0;
   *(undefined4 *)(validationContext + 0x1e50) = 0;
@@ -80839,7 +80839,7 @@ void Unwind_180911600(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ec8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1ed0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1ed0) = 0;
   *(undefined4 *)(validationContext + 0x1ee0) = 0;
@@ -80847,7 +80847,7 @@ void Unwind_180911600(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ea8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1eb0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1eb0) = 0;
   *(undefined4 *)(validationContext + 0x1ec0) = 0;
@@ -80869,7 +80869,7 @@ void Unwind_180911620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1f38) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 8000) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 8000) = 0;
   *(undefined4 *)(validationContext + 0x1f50) = 0;
@@ -80877,7 +80877,7 @@ void Unwind_180911620(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1f18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1f20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1f20) = 0;
   *(undefined4 *)(validationContext + 0x1f30) = 0;
@@ -80899,7 +80899,7 @@ void Unwind_180911640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1fa8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1fb0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1fb0) = 0;
   *(undefined4 *)(validationContext + 0x1fc0) = 0;
@@ -80907,7 +80907,7 @@ void Unwind_180911640(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1f88) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x1f90) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x1f90) = 0;
   *(undefined4 *)(validationContext + 0x1fa0) = 0;
@@ -80929,7 +80929,7 @@ void Unwind_180911660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2018) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2020) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2020) = 0;
   *(undefined4 *)(validationContext + 0x2030) = 0;
@@ -80937,7 +80937,7 @@ void Unwind_180911660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x1ff8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2000) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2000) = 0;
   *(undefined4 *)(validationContext + 0x2010) = 0;
@@ -80959,7 +80959,7 @@ void Unwind_180911680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2088) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2090) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2090) = 0;
   *(undefined4 *)(validationContext + 0x20a0) = 0;
@@ -80967,7 +80967,7 @@ void Unwind_180911680(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2068) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2070) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2070) = 0;
   *(undefined4 *)(validationContext + 0x2080) = 0;
@@ -80989,7 +80989,7 @@ void Unwind_1809116a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x20f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2100) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2100) = 0;
   *(undefined4 *)(validationContext + 0x2110) = 0;
@@ -80997,7 +80997,7 @@ void Unwind_1809116a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x20d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x20e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20e0) = 0;
   *(undefined4 *)(validationContext + 0x20f0) = 0;
@@ -81019,7 +81019,7 @@ void Unwind_1809116c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2168) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2170) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2170) = 0;
   *(undefined4 *)(validationContext + 0x2180) = 0;
@@ -81027,7 +81027,7 @@ void Unwind_1809116c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2148) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2150) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2150) = 0;
   *(undefined4 *)(validationContext + 0x2160) = 0;
@@ -81049,7 +81049,7 @@ void Unwind_1809116e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x21d8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x21e0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x21e0) = 0;
   *(undefined4 *)(validationContext + 0x21f0) = 0;
@@ -81057,7 +81057,7 @@ void Unwind_1809116e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x21b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x21c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x21c0) = 0;
   *(undefined4 *)(validationContext + 0x21d0) = 0;
@@ -81079,7 +81079,7 @@ void Unwind_180911700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2248) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2250) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2250) = 0;
   *(undefined4 *)(validationContext + 0x2260) = 0;
@@ -81087,7 +81087,7 @@ void Unwind_180911700(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2228) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2230) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2230) = 0;
   *(undefined4 *)(validationContext + 0x2240) = 0;
@@ -81109,7 +81109,7 @@ void Unwind_180911720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x22b8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x22c0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x22c0) = 0;
   *(undefined4 *)(validationContext + 0x22d0) = 0;
@@ -81117,7 +81117,7 @@ void Unwind_180911720(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2298) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x22a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x22a0) = 0;
   *(undefined4 *)(validationContext + 0x22b0) = 0;
@@ -81139,7 +81139,7 @@ void Unwind_180911740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 9000) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2330) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2330) = 0;
   *(undefined4 *)(validationContext + 0x2340) = 0;
@@ -81147,7 +81147,7 @@ void Unwind_180911740(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2308) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2310) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2310) = 0;
   *(undefined4 *)(validationContext + 0x2320) = 0;
@@ -81169,7 +81169,7 @@ void Unwind_180911760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2398) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x23a0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x23a0) = 0;
   *(undefined4 *)(validationContext + 0x23b0) = 0;
@@ -81177,7 +81177,7 @@ void Unwind_180911760(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2378) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2380) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2380) = 0;
   *(undefined4 *)(validationContext + 0x2390) = 0;
@@ -81199,7 +81199,7 @@ void Unwind_180911780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2408) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2410) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2410) = 0;
   *(undefined4 *)(validationContext + 0x2420) = 0;
@@ -81207,7 +81207,7 @@ void Unwind_180911780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x23e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x23f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x23f0) = 0;
   *(undefined4 *)(validationContext + 0x2400) = 0;
@@ -81229,7 +81229,7 @@ void Unwind_1809117a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2478) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2480) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2480) = 0;
   *(undefined4 *)(validationContext + 0x2490) = 0;
@@ -81237,7 +81237,7 @@ void Unwind_1809117a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2458) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2460) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2460) = 0;
   *(undefined4 *)(validationContext + 0x2470) = 0;
@@ -81259,7 +81259,7 @@ void Unwind_1809117c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x24e8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x24f0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x24f0) = 0;
   *(undefined4 *)(validationContext + 0x2500) = 0;
@@ -81267,7 +81267,7 @@ void Unwind_1809117c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x24c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x24d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x24d0) = 0;
   *(undefined4 *)(validationContext + 0x24e0) = 0;
@@ -81289,7 +81289,7 @@ void Unwind_1809117e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2558) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2560) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2560) = 0;
   *(undefined4 *)(validationContext + 0x2570) = 0;
@@ -81297,7 +81297,7 @@ void Unwind_1809117e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x2538) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x2540) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x2540) = 0;
   *(undefined4 *)(validationContext + 0x2550) = 0;
@@ -81319,7 +81319,7 @@ void Unwind_180911800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x25c8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x25d0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x25d0) = 0;
   *(undefined4 *)(validationContext + 0x25e0) = 0;
@@ -81327,7 +81327,7 @@ void Unwind_180911800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x25a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x25b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x25b0) = 0;
   *(undefined4 *)(validationContext + 0x25c0) = 0;
@@ -81355,7 +81355,7 @@ void Unwind_180911820(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81378,7 +81378,7 @@ void Unwind_180911840(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81399,7 +81399,7 @@ void Unwind_180911860(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81420,7 +81420,7 @@ void Unwind_180911870(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81441,7 +81441,7 @@ void Unwind_180911880(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81462,7 +81462,7 @@ void Unwind_180911890(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81483,7 +81483,7 @@ void Unwind_1809118a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81504,7 +81504,7 @@ void Unwind_1809118b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81570,7 +81570,7 @@ void Unwind_1809118e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81627,7 +81627,7 @@ void Unwind_180911900(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81648,7 +81648,7 @@ void Unwind_180911910(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81669,7 +81669,7 @@ void Unwind_180911920(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81690,7 +81690,7 @@ void Unwind_180911930(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -81711,7 +81711,7 @@ void Unwind_180911940(undefined8 param_1,longlong param_2,undefined8 param_3,und
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -84677,7 +84677,7 @@ void Unwind_180912910(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x218) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x220) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x220) = 0;
   *(undefined4 *)(validationContext + 0x230) = 0;
@@ -84685,7 +84685,7 @@ void Unwind_180912910(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x1f8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x200) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x200) = 0;
   *(undefined4 *)(validationContext + 0x210) = 0;
@@ -84740,7 +84740,7 @@ void Unwind_180912950(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x388) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x390) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x390) = 0;
   *(undefined4 *)(validationContext + 0x3a0) = 0;
@@ -84759,7 +84759,7 @@ void Unwind_180912970(undefined8 param_1,longlong param_2)
   *(undefined8 *)(validationContext + 0x3a8) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x3b0) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x3b0) = 0;
   *(undefined4 *)(validationContext + 0x3c0) = 0;
@@ -84936,7 +84936,7 @@ void InitializeUtilityModule(void)
   _DAT_180bf52c0 = &UNK_180a3c3e0;
   if (_DAT_180bf52c8 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   _DAT_180bf52c8 = 0;
   _DAT_180bf52d8 = 0;
@@ -84951,10 +84951,10 @@ void InitializeUtilityModule(void)
       return;
     }
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -85352,7 +85352,7 @@ void FUN_1809419e0(void)
   _DAT_180d49218 = &UNK_180a3c3e0;
   if (_DAT_180d49220 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   _DAT_180d49220 = 0;
   _DAT_180d49230 = 0;
@@ -85372,7 +85372,7 @@ void FUN_180941a30(void)
   _DAT_180d49240 = &UNK_180a3c3e0;
   if (_DAT_180d49248 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   _DAT_180d49248 = 0;
   _DAT_180d49258 = 0;
@@ -85432,7 +85432,7 @@ void UtilityHandleEvent1(void)
   _DAT_180d49638 = &UNK_180a3c3e0;
   if (_DAT_180d49640 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   _DAT_180d49640 = 0;
   _DAT_180d49650 = 0;
@@ -85510,14 +85510,14 @@ void FUN_180941bf0(void)
     FUN_18005a050();
     if ((1 < _DAT_180c91d30) && (_DAT_180c91d28 != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     if (_DAT_180c91d18 != (longlong *)0x0) {
       (**(code **)(*_DAT_180c91d18 + 0x38))();
     }
     if (_DAT_180c91cf0 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
@@ -85556,7 +85556,7 @@ void FUN_180941d50(void)
   _DAT_180d48db8 = &UNK_180a3c3e0;
   if (_DAT_180d48dc0 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   _DAT_180d48dc0 = 0;
   _DAT_180d48dd0 = 0;
@@ -85602,11 +85602,11 @@ void FUN_180941e00(void)
   FUN_180320e20(0x180d497e0);
   if (_DAT_180d49970 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   if (_DAT_180d49950 != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   FUN_180320b20(0x180d498a0);
   _DAT_180d49830 = &UNK_18098bcb0;
@@ -86268,7 +86268,7 @@ void FUN_1809424c0(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -86297,7 +86297,7 @@ void FUN_180942520(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -86326,7 +86326,7 @@ void FUN_180942580(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateSystemE0();
 }
 
 
@@ -86469,7 +86469,7 @@ void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
     *puVar2 = &UNK_180a3c3e0;
     if (puVar2[1] != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     puVar2[1] = 0;
     *(undefined4 *)(puVar2 + 3) = 0;
@@ -86477,7 +86477,7 @@ void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
   }
   if (_DAT_180bfaea0 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   return;
 }
@@ -86971,7 +86971,7 @@ void FUN_180942bb0(void)
   if (DAT_180c96028 != '\0') {
     if (_DAT_180c96010 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     _DAT_180c96010 = 0;
 
@@ -87027,7 +87027,7 @@ void FUN_180942d30(void)
   if (DAT_180c96140 != '\0') {
     if (_DAT_180c96120 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
     _DAT_180c96120 = 0;
     if (_DAT_180c96138 != 0) {
@@ -87067,7 +87067,7 @@ void FUN_180942e70(void)
     }
     if (_DAT_180c95ef8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
 
 // 函数: void FUN_180942f00(void)
@@ -87077,7 +87077,7 @@ void FUN_180942f00(void)
   if (DAT_180c95fe8 != '\0') {
     if (_DAT_180c95fc8 != 0) {
                     // WARNING: Subroutine does not return
-      FUN_18064e900();
+      TerminateSystemE0();
     }
 
 // 函数: void FUN_180942f50(void)
@@ -87269,7 +87269,7 @@ void ResetThreadLocalStorage(void)
   *(undefined8 *)(validationContext + 0x18) = &UNK_180a3c3e0;
   if (*(longlong *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x20) = 0;
   *(undefined4 *)(validationContext + 0x30) = 0;
