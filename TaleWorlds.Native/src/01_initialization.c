@@ -1098,27 +1098,27 @@ void* SystemMemoryAllocationTableEntrySexdenary;     // 系统内存分配表条
 void* SystemMemoryAllocationTableEntrySeptendecenary; // 系统内存分配表条目第十七个
 void* SystemMemoryAllocationTableEntryOctodecenary;  // 系统内存分配表条目第十八个
 
-void* SystemDataNodeFirstRoot;       // 系统数据节点第一根节点
-void* SystemDataNodeSecondRoot;     // 系统数据节点第二根节点
-void* SystemDataNodeThirdRoot;      // 系统数据节点第三根节点
-void* SystemDataNodeFourthRoot;    // 系统数据节点第四根节点
-void* SystemDataNodeFifthRoot;       // 系统数据节点第五根节点
-void* SystemDataNodeFirst;           // 系统数据节点第一节点
-void* SystemDataNodeSecond;         // 系统数据节点第二节点
-void* SystemDataNodeThird;          // 系统数据节点第三节点
-void* SystemDataNodeFourth;        // 系统数据节点第四节点
-void* SystemDataNodeFifth;           // 系统数据节点第五节点
-void* SystemDataNodeSixth;            // 系统数据节点第六节点
-void* SystemDataNodeSeventh;         // 系统数据节点第七节点
-void* SystemDataNodeEighth;          // 系统数据节点第八节点
-void* SystemDataNodeNinth;            // 系统数据节点第九节点
-void* SystemDataNodeTenth;            // 系统数据节点第十节点
-void* SystemDataNodeEleventh;          // 系统数据节点第十一节点
-void* SystemDataNodeTwelfth;         // 系统数据节点第十二节点
-void* SystemDataNodeThirteenth;         // 系统数据节点第十三节点
-void* SystemDataNodeFourteenth;    // 系统数据节点第十四节点
-void* SystemDataNodeQuindenary;        // 系统数据节点第十五节点
-void* SystemDataNodeSexdenary;         // 系统数据节点第十六节点
+void* SystemDataNodePrimaryRoot;       // 系统数据节点第一根节点
+void* SystemDataNodeSecondaryRoot;     // 系统数据节点第二根节点
+void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
+void* SystemDataNodeQuaternaryRoot;    // 系统数据节点第四根节点
+void* SystemDataNodeQuinaryRoot;       // 系统数据节点第五根节点
+void* SystemDataNodePrimary;           // 系统数据节点主节点
+void* SystemDataNodeSecondary;         // 系统数据节点次节点
+void* SystemDataNodeTertiary;          // 系统数据节点第三节点
+void* SystemDataNodeQuaternary;        // 系统数据节点第四节点
+void* SystemDataNodeQuinary;           // 系统数据节点第五节点
+void* SystemDataNodeSenary;            // 系统数据节点第六节点
+void* SystemDataNodeSeptenary;         // 系统数据节点第七节点
+void* SystemDataNodeOctonary;          // 系统数据节点第八节点
+void* SystemDataNodeNonary;            // 系统数据节点第九节点
+void* SystemDataNodeDenary;            // 系统数据节点第十节点
+void* SystemDataNodeUndenary;          // 系统数据节点第十一节点
+void* SystemDataNodeDuodenary;         // 系统数据节点第十二节点
+void* SystemDataNodeTredecimal;         // 系统数据节点第十三节点
+void* SystemDataNodeQuattuordecimal;    // 系统数据节点第十四节点
+void* SystemDataNodeQuindecimal;        // 系统数据节点第十五节点
+void* SystemDataNodeSexdecimal;         // 系统数据节点第十六节点
 void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
 void* SystemDataNodeLinkageManager;               // 系统数据节点链接管理器
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
@@ -1839,55 +1839,67 @@ void InitializeSystemCoreConfig(void)
  * @param void 无参数
  * @return void 无返回值
  */
+/**
+ * @brief 初始化系统内存池
+ * 
+ * 该函数负责初始化系统的内存池管理器，创建内存池节点并设置必要的初始化参数。
+ * 它会遍历系统节点树，查找或创建内存池管理器节点。
+ * 
+ * @note 该函数在系统内存管理初始化时调用，确保内存池正确配置。
+ * @note 函数使用SystemAllocatorSystemIdentifier进行系统识别。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeSystemMemoryPool(void)
 {
-  bool IsNodeActive;
-  void** SystemDataTablePointer;
-  int SystemIdentifierComparisonResult;
-  long long* SystemMemoryPointer;
-  long long SystemTimestampValue;
-  void** RootNodePointerPointer;
-  void** CurrentNodePointerPointer;
-  void** NextNodePointerPointer;
+  bool IsMemoryPoolNodeActive;
+  void** SystemMainTablePointer;
+  int MemoryPoolIdentifierComparisonResult;
+  long long* SystemMemoryInfoPointer;
+  long long SystemCurrentTimestamp;
+  void** SystemRootNodePointer;
+  void** SystemCurrentNodePointer;
+  void** SystemNextNodePointer;
   void** SystemPreviousNodePointer;
   uint64_t SystemInitializationStatusFlag;
-  long long SystemMemoryAllocationSize;
-  void** SystemAllocatedNodePointer;
-  void* SystemAllocatorInitializationHandler;
+  long long SystemRequiredMemorySize;
+  void** SystemAllocatedMemoryPoolNode;
+  void* MemoryPoolInitializationHandler;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
-  RootNodePointerPointer = (void**)*SystemDataTablePointer;
-  IsNodeActive = *(bool*)((long long)RootNodePointerPointer[1] + NodeActiveFlagOffset);
-  SystemAllocatorInitializationHandler = GetSystemAllocatorSystemInitializationFunction;
-  SystemPreviousNodePointer = RootNodePointerPointer;
-  CurrentNodePointerPointer = (void**)RootNodePointerPointer[1];
+  SystemMainTablePointer = (long long*)GetSystemRootPointer();
+  SystemRootNodePointer = (void**)*SystemMainTablePointer;
+  IsMemoryPoolNodeActive = *(bool*)((long long)SystemRootNodePointer[1] + NodeActiveFlagOffset);
+  MemoryPoolInitializationHandler = GetSystemAllocatorSystemInitializationFunction;
+  SystemPreviousNodePointer = SystemRootNodePointer;
+  SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
   
-  while (!IsNodeActive) {
-    SystemIdentifierComparisonResult = memcmp(CurrentNodePointerPointer + 4, &SystemAllocatorSystemIdentifier1, IdentifierSize);
-    if (SystemIdentifierComparisonResult < 0) {
-      NextNodePointerPointer = (void**)CurrentNodePointerPointer[NodeNextPointerOffset];
-      CurrentNodePointerPointer = SystemPreviousNodePointer;
+  while (!IsMemoryPoolNodeActive) {
+    MemoryPoolIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &SystemAllocatorSystemIdentifier1, IdentifierSize);
+    if (MemoryPoolIdentifierComparisonResult < 0) {
+      SystemNextNodePointer = (void**)SystemCurrentNodePointer[NodeNextPointerOffset];
+      SystemCurrentNodePointer = SystemPreviousNodePointer;
     }
     else {
-      NextNodePointerPointer = (void**)CurrentNodePointerPointer[NodeHeadPointerOffset];
+      SystemNextNodePointer = (void**)SystemCurrentNodePointer[NodeHeadPointerOffset];
     }
-    SystemPreviousNodePointer = CurrentNodePointerPointer;
-    CurrentNodePointerPointer = NextNodePointerPointer;
-    IsNodeActive = *(bool*)((long long)NextNodePointerPointer + NodeActiveFlagOffset);
+    SystemPreviousNodePointer = SystemCurrentNodePointer;
+    SystemCurrentNodePointer = SystemNextNodePointer;
+    IsMemoryPoolNodeActive = *(bool*)((long long)SystemNextNodePointer + NodeActiveFlagOffset);
   }
   
-  if ((SystemPreviousNodePointer == RootNodePointerPointer) || 
-      (SystemIdentifierComparisonResult = memcmp(&SystemAllocatorSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), SystemIdentifierComparisonResult < 0)) {
-    SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &SystemAllocatedNodePointer, SystemPreviousNodePointer, SystemMemoryAllocationSize + NodeAllocationExtraSize, SystemMemoryAllocationSize);
-    SystemPreviousNodePointer = SystemAllocatedNodePointer;
+  if ((SystemPreviousNodePointer == SystemRootNodePointer) || 
+      (MemoryPoolIdentifierComparisonResult = memcmp(&SystemAllocatorSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), MemoryPoolIdentifierComparisonResult < 0)) {
+    SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
+    AllocateSystemMemory(SystemMainTablePointer, &SystemAllocatedMemoryPoolNode, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
+    SystemPreviousNodePointer = SystemAllocatedMemoryPoolNode;
   }
   
   SystemPreviousNodePointer[NodeIdentifier1Index] = SystemAllocatorSystemIdentifier1;
   SystemPreviousNodePointer[NodeIdentifier2Index] = SystemAllocatorSystemIdentifier2;
   SystemPreviousNodePointer[NodeDataPointerIndex] = &SystemAllocatorSystemNodeData;
   SystemPreviousNodePointer[NodeActiveFlagIndex] = SystemAllocatorSystemFlag;
-  SystemPreviousNodePointer[NodeHandlerIndex] = SystemAllocatorInitializationHandler;
+  SystemPreviousNodePointer[NodeHandlerIndex] = MemoryPoolInitializationHandler;
   return;
 }
 
