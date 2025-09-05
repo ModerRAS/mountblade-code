@@ -21654,6 +21654,19 @@ void UtilityNoOperationC(void)
 
 
 
+// 函数: ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuffer)
+// 
+// 验证并处理数据块
+// 对输入的数据块进行验证和处理，确保数据完整性和安全性
+// 
+// 参数:
+//   dataContext - 数据上下文指针，包含处理所需的环境信息
+//   dataBuffer - 数据缓冲区指针，指向待处理的数据块
+// 
+// 返回值:
+//   ulonglong - 操作结果状态码，0表示成功，非0表示错误码
+// 
+// 原始函数名: FUN_18089b2a0
 ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuffer)
 
 {
@@ -21712,6 +21725,18 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
 
 
 
+// 函数: ulonglong ProcessDataWithValidation(void)
+// 
+// 带验证的数据处理函数
+// 处理数据流并进行验证，确保数据处理的正确性和完整性
+// 
+// 参数:
+//   无 (使用全局寄存器状态)
+// 
+// 返回值:
+//   ulonglong - 处理结果状态码
+// 
+// 原始函数名: FUN_18089b307
 ulonglong ProcessDataWithValidation(void)
 
 {
@@ -21762,6 +21787,18 @@ ulonglong ProcessDataWithValidation(void)
 
 
 
+// 函数: ulonglong ProcessDataStream(void)
+// 
+// 数据流处理函数
+// 处理数据流，包括数据验证、处理和结果返回
+// 
+// 参数:
+//   无 (使用全局寄存器状态)
+// 
+// 返回值:
+//   ulonglong - 处理结果状态码
+// 
+// 原始函数名: FUN_18089b31f
 ulonglong ProcessDataStream(void)
 
 {
@@ -21803,6 +21840,18 @@ ulonglong ProcessDataStream(void)
 
 
 
+// 函数: ulonglong ValidateAndProcessDataElement(void)
+// 
+// 验证并处理数据元素
+// 对单个数据元素进行验证和处理操作
+// 
+// 参数:
+//   无 (使用全局寄存器状态)
+// 
+// 返回值:
+//   ulonglong - 处理结果状态码
+// 
+// 原始函数名: FUN_18089b380
 ulonglong ValidateAndProcessDataElement(void)
 
 {
