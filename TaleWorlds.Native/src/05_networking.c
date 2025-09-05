@@ -53,11 +53,11 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络系统常量定义
 #define NetworkContextSystemOffset 0x98                  // 网络上下文系统偏移量
 #define NetworkSessionDataOffset 0x200                   // 网络会话数据偏移量
-#define NetworkConnectionStateBufferOffset 0x28                // 连接状态缓冲区偏移量
-#define NetworkConnectionStateDataOffset 0x20                   // 连接状态数据偏移量
-#define NetworkConnectionStateFlagsOffset 0x24                  // 连接状态标志偏移量
+#define NetworkConnectionStateBufferOffset 0x28                // 连接状态缓冲区数据偏移量
+#define NetworkConnectionStateDataOffset 0x20                   // 连接状态有效数据偏移量
+#define NetworkConnectionStateFlagsOffset 0x24                  // 连接状态标志数据偏移量
 #define ConnectionParameterOffset 0xc                     // 连接参数偏移量
-#define NetworkConnectionTableOffset 0x1a0                // 网络连接表偏移量
+#define NetworkConnectionTableOffset 0x1a0                // 网络连接表数据偏移量
 #define ConnectionEntrySize 0x14                          // 连接条目大小
 #define SecurityValidationBufferSize 0x100                // 安全验证缓冲区大小
 #define NetworkPacketHeaderSize 0x18                      // 网络数据包头部大小

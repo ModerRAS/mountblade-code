@@ -10220,8 +10220,8 @@ void InitializeSystemPhysicsNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4c868a42644030f6;
-  HashTablePointer[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemAllocatorNodeId;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -12562,8 +12562,8 @@ void InitializeSystemMemoryManagerI(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4c868a42644030f6;
-  HashTablePointer[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemAllocatorNodeId;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -13185,8 +13185,8 @@ void InitializeSystemMemoryAllocatorNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4c868a42644030f6;
-  HashTablePointer[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemAllocatorNodeId;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -15158,8 +15158,8 @@ void InitializeSystemResourceManagerE(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4c868a42644030f6;
-  HashTablePointer[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemAllocatorNodeId;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -15931,8 +15931,8 @@ void InitializeSystemAllocatorComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4c868a42644030f6;
-  HashTablePointer[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemAllocatorNodeId;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -18263,8 +18263,8 @@ void SystemAllocatorNodeInitializer(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4c868a42644030f6;
-  HashTablePointer[NodeIdentifier2Index] = 0xc29193aa9d9b35b9;
+  HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemAllocatorNodeId;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
