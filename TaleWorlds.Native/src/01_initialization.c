@@ -33721,12 +33721,22 @@ void ExecuteConfigurationDataCallback(void* SystemResourceManager,void* *Configu
 /**
  * @brief 系统资源管理器初始化函数
  * 
- * 该函数负责初始化系统资源管理器，包括内存分配、数据结构设置
- * 和系统状态配置。这是一个复杂的系统初始化函数，涉及多层级的
- * 资源管理和内存操作。
+ * 该函数负责初始化系统资源管理器的核心组件，包括：
+ * - 内存分配器和内存池管理
+ * - 系统数据结构和节点树初始化
+ * - 线程本地存储和同步机制设置
+ * - 资源哈希表和查找表配置
+ * - 系统状态标志和配置参数设置
+ * 
+ * 该函数执行复杂的系统初始化流程，涉及多层级的资源管理、
+ * 内存操作和线程同步。它会创建必要的系统数据结构，
+ * 初始化内存管理器，并设置系统运行时所需的各种参数。
  * 
  * @param resourcePointer 系统资源指针，指向需要初始化的资源结构
+ * @return void 无返回值
  * 
+ * @note 这是简化实现，原本实现包含更复杂的资源管理逻辑
+ * @warning 该函数涉及大量底层内存操作，需要谨慎处理
  */
 void InitializeSystemResourceManager(long long *resourcePointer)
 {
