@@ -2248,14 +2248,14 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *ConnectionStatusBuffer = NULL;
+  NetworkConnectionStatus *NetworkConnectionStatusBuffer = NULL;
   
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxInt32Value) {
       // 处理连接请求并获取状态缓冲区
-      ConnectionStatusBuffer = (NetworkConnectionStatus *)
+      NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
                ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
                              NetworkConnectionCompletionHandleValue, 0, 0, 1);
       

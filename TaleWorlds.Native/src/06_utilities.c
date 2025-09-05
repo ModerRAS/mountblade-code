@@ -33799,22 +33799,22 @@ void DestroyMutexInPlace(void)
 
 
 
-void DestroyMutexAtOffset(undefined8 param_1,longlong param_2)
+void DestroyMutexAtOffset(undefined8 mutexContext,longlong mutexParam)
 
 {
-  _Mtx_destroy_in_situ(*(undefined8 *)(param_2 + 0x78));
+  _Mtx_destroy_in_situ(*(undefined8 *)(mutexParam + 0x78));
   return;
 }
 
 
 
-void ValidateAndCleanupContext(undefined8 param_1,longlong param_2)
+void ValidateAndCleanupContext(undefined8 contextParam,longlong validationParam)
 
 {
   longlong *validationContext;
   longlong contextEntry;
   
-  validationContext = *(longlong **)(param_2 + 0x78);
+  validationContext = *(longlong **)(validationParam + 0x78);
   for (contextEntry = *validationContext; contextEntry != validationContext[1]; contextEntry = contextEntry + 0x28) {
     if (*(longlong *)(contextEntry + 8) != 0) {
                     // WARNING: Subroutine does not return
@@ -33830,15 +33830,15 @@ void ValidateAndCleanupContext(undefined8 param_1,longlong param_2)
 
 
 
-void ProcessAndValidateHandlers(undefined8 param_1,longlong param_2)
+void ProcessAndValidateHandlers(undefined8 handlerParam,longlong processParam)
 
 {
   longlong validationContext;
   longlong *handlerList;
   longlong handlerEntry;
   
-  handlerList = (longlong *)(*(longlong *)(param_2 + 0x70) + 0x50);
-  validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x58);
+  handlerList = (longlong *)(*(longlong *)(processParam + 0x70) + 0x50);
+  validationContext = *(longlong *)(*(longlong *)(processParam + 0x70) + 0x58);
   for (handlerEntry = *handlerList; handlerEntry != validationContext; handlerEntry = handlerEntry + 0x48) {
     CleanupHandlerEntry(handlerEntry);
   }
@@ -33851,14 +33851,14 @@ void ProcessAndValidateHandlers(undefined8 param_1,longlong param_2)
 
 
 
-void CleanupValidationContext(undefined8 param_1,longlong param_2)
+void CleanupValidationContext(undefined8 cleanupParam,longlong contextParam)
 
 {
   longlong validationContext;
   longlong *contextList;
   longlong contextEntry;
   
-  contextList = *(longlong **)(param_2 + 0x78);
+  contextList = *(longlong **)(contextParam + 0x78);
   validationContext = contextList[1];
   for (contextEntry = *contextList; contextEntry != validationContext; contextEntry = contextEntry + 0x48) {
     CleanupHandlerEntry(contextEntry);
@@ -89756,7 +89756,6 @@ void CleanupSystemStateAndResourcesH0(void)
     _Cnd_destroy_in_situ();
     CleanupSystemMemoryA0(0x180c919f0);
 
-941d00(void)
 /**
  * @brief 设置默认异常处理器B到位置1
  * 
@@ -89988,7 +89987,6 @@ void SetDefaultExceptionHandlerB5(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941f60(void)
 /**
  * @brief 初始化异常处理器B
  * 
