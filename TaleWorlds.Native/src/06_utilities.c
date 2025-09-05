@@ -164,8 +164,8 @@
 #define ExecuteSystemCommand ExecuteSystemCommand
 
 // 全局指针设置函数宏定义
-#define InitializeGlobalDataPointerA0 InitializeGlobalDataPointerA0
-#define InitializeGlobalDataPointerA1 InitializeGlobalDataPointerA1
+#define InitializeGlobalDataPointerA0 InitializeGlobalDataPointerSystemCore
+#define InitializeGlobalDataPointerA1 InitializeGlobalDataPointerMemoryManager
 #define SetGlobalDataPointerA2 InitializeGlobalDataPointerA2
 #define SetGlobalDataPointerA3 InitializeGlobalDataPointerA3
 #define SetGlobalDataPointerA4 InitializeGlobalDataPointerA4
@@ -9454,7 +9454,7 @@ void ProcessUtilityOperation(longlong operationParams,uint64_t systemContext)
   ParamValue = *(uint32_t *)(operationParams + 0x18);
   OperationParams[0] = 2;
   resourceDescriptor = operationParams;
-  OperationResult = ExecuteSystemOperation(systemContext,OperationParams,*(undefined4 *)(resourceDescriptor + 0x1c),CallbackData);
+  OperationResult = ExecuteSystemOperation(systemContext,OperationParams,*(uint32_t *)(resourceDescriptor + 0x1c),CallbackData);
   if (OperationResult == 0) {
     ExecuteCallbackA0(systemContext,CallbackData[0]);
   }
@@ -14197,14 +14197,14 @@ undefined8 ValidateSystemConfigurationA0(void)
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
-  fVar1 = *(float *)(registerContext + 0x10);
-  fVar5 = *(float *)(dataContext + 0x38);
-  if ((*(float *)(dataContext + 0x38) <= fVar1) &&
-     (fVar5 = *(float *)(dataContext + 0x3c), fVar1 <= *(float *)(dataContext + 0x3c))) {
-    fVar5 = fVar1;
+  firstFloatValue = *(float *)(registerContext + 0x10);
+  secondFloatValue = *(float *)(dataContext + 0x38);
+  if ((*(float *)(dataContext + 0x38) <= firstFloatValue) &&
+     (secondFloatValue = *(float *)(dataContext + 0x3c), firstFloatValue <= *(float *)(dataContext + 0x3c))) {
+    secondFloatValue = firstFloatValue;
   }
-  *(float *)(registerContext + 0x10) = fVar5;
-  validationStatus = ValidateOperationRangeA0(unaff_RDI + 0x60,stackParameter40,fVar5);
+  *(float *)(registerContext + 0x10) = secondFloatValue;
+  validationStatus = ValidateOperationRangeA0(systemContext + 0x60,operationParameter,secondFloatValue);
   if ((int)validationStatus == 0) {
     pmemoryBaseAddress = (undefined8 *)ProcessSystemDataA0(unaff_RDI + 0x60,&stack0x00000030,stackParameter40);
     *(undefined8 *)(registerContext + 0x18) = *pmemoryBaseAddress;
