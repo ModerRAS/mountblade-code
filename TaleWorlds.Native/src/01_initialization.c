@@ -1650,7 +1650,7 @@ void* GetSystemInitializationFunction;
  */
 void InitializeGameCoreSystem(void)
 {
-  bool IsGameCoreNodeActive;
+  bool IsGameCoreNodeInitialized;
   void** RootNodeReference;
   int GameCoreIdentifierMatchResult;
   long long* MainSystemTablePointer;
@@ -1659,16 +1659,16 @@ void InitializeGameCoreSystem(void)
   void** PreviousNodePointer;
   void** NextNodePointer;
   void** NewNodePointer;
-  void* GameCoreInitializationHandler;
+  void* GameCoreInitializer;
   
   MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
-  IsGameCoreNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  GameCoreInitializationHandler = GetGameCoreSystemInitializationFunction;
+  IsGameCoreNodeInitialized = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
+  GameCoreInitializer = GetGameCoreSystemInitializationFunction;
   PreviousNodePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   
-  while (!IsGameCoreNodeActive) {
+  while (!IsGameCoreNodeInitialized) {
     GameCoreIdentifierMatchResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, IdentifierSize);
     if (GameCoreIdentifierMatchResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
@@ -1679,7 +1679,7 @@ void InitializeGameCoreSystem(void)
     }
     PreviousNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    IsGameCoreNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsGameCoreNodeInitialized = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
   
   if ((PreviousNodePointer == RootNodeReference) || 
@@ -1693,7 +1693,7 @@ void InitializeGameCoreSystem(void)
   PreviousNodePointer[NodeIdentifier2Index] = GameCoreSystemIdentifier2;
   PreviousNodePointer[NodeDataPointerIndex] = &GameCoreSystemNodeData;
   PreviousNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
-  PreviousNodePointer[NodeHandlerIndex] = GameCoreInitializationHandler;
+  PreviousNodePointer[NodeHandlerIndex] = GameCoreInitializer;
   return;
 }
 
@@ -1720,7 +1720,7 @@ void InitializeGameCoreSystem(void)
  */
 void InitializeSystemDataTableBaseAllocator(void)
 {
-  bool IsBaseAllocatorNodeActive;
+  bool IsBaseAllocatorNodeInitialized;
   void** RootNodeReference;
   int BaseAllocatorIdentifierMatchResult;
   long long* MainSystemTablePointer;
@@ -1729,16 +1729,16 @@ void InitializeSystemDataTableBaseAllocator(void)
   void** PreviousNodePointer;
   void** NextNodePointer;
   void** NewAllocatorNodePointer;
-  void* BaseAllocatorInitializationHandler;
+  void* BaseAllocatorInitializer;
   
   MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
-  IsBaseAllocatorNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  BaseAllocatorInitializationHandler = GetBaseAllocatorSystemInitializationFunction;
+  IsBaseAllocatorNodeInitialized = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
+  BaseAllocatorInitializer = GetBaseAllocatorSystemInitializationFunction;
   PreviousNodePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   
-  while (!IsBaseAllocatorNodeActive) {
+  while (!IsBaseAllocatorNodeInitialized) {
     BaseAllocatorIdentifierMatchResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &BaseAllocatorSystemIdentifier1, IdentifierSize);
     if (BaseAllocatorIdentifierMatchResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
@@ -1749,7 +1749,7 @@ void InitializeSystemDataTableBaseAllocator(void)
     }
     PreviousNodePointer = CurrentNodePointer;
     CurrentNodePointer = NextNodePointer;
-    IsBaseAllocatorNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
+    IsBaseAllocatorNodeInitialized = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
   
   if ((PreviousNodePointer == RootNodeReference) || 
@@ -1763,7 +1763,7 @@ void InitializeSystemDataTableBaseAllocator(void)
   PreviousNodePointer[NodeIdentifier2Index] = BaseAllocatorSystemIdentifier2;
   PreviousNodePointer[NodeDataPointerIndex] = &BaseAllocatorSystemNodeData;
   PreviousNodePointer[NodeActiveFlagIndex] = BaseAllocatorSystemFlag;
-  PreviousNodePointer[NodeHandlerIndex] = BaseAllocatorInitializationHandler;
+  PreviousNodePointer[NodeHandlerIndex] = BaseAllocatorInitializer;
   return;
 }
 
@@ -29202,7 +29202,7 @@ void SystemResourceEnumerator(void)
   uint *ResourceFlagPointer;
   void** SystemDataPointer;
   uint32_t SystemResourceID;
-  uint8_t LocalBufferArray [32];
+  uint8_t SystemLocalEncryptionBuffer [32];
   void* *SystemResourceHandleTertiary;
   uint8_t *SystemBufferReferencePrimary;
   uint StackContextSize;
@@ -29243,7 +29243,7 @@ void SystemResourceEnumerator(void)
   
   int SystemResourceIndex;
   SystemTemporaryHandle = 0xfffffffffffffffe;
-  StackEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)LocalBufferArray;
+  StackEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemLocalEncryptionBuffer;
   SystemStatusFlagsPointer = SystemGlobalStatusFlags;
   ResourceDataLocation = *(long long *)(*SystemGlobalStatusFlags + SystemNodeResourceOffset) - *(long long *)(*SystemGlobalStatusFlags + SystemNodeCalculationOffset) >> 5;
   SystemResourceIndex = 0;
@@ -30319,7 +30319,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
   int systemOffset;
   long long SystemMemoryPointer;
   void* *SystemHashBucket;
-  uint8_t StackMemoryBufferC8 [32];
+  uint8_t SystemThreadEncryptionBuffer [32];
   uint8_t UnsignedStackFlagQuaternary;
   uint8_t UnsignedStackFlagSecondary;
   void* *stackParameterB;
@@ -30332,7 +30332,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
   ulong long ThreadEncryptionKey;
   
   PerformanceCounterArray[1] = 0xfffffffffffffffe;
-  ThreadEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)StackMemoryBufferC8;
+  ThreadEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemThreadEncryptionBuffer;
   SystemProcessBufferPtr = SystemPerformancePreviousStorage;
   if (SystemPerformancePreviousStorage == 0) {
     QueryPerformanceCounter(&SystemPerformanceCounter);
@@ -30348,7 +30348,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
   while( true ) {
     do {
       if (*(int *)(SystemResourceManager + 0xcc) == 0) {
-          ValidateSystemChecksum(ThreadEncryptionKey ^ (ulong long)StackMemoryBufferC8);
+          ValidateSystemChecksum(ThreadEncryptionKey ^ (ulong long)SystemThreadEncryptionBuffer);
       }
       Sleep(10);
       SystemProcessBufferPtr = SystemPerformancePreviousStorage;
