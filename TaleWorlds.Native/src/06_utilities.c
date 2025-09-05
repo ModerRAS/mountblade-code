@@ -9433,6 +9433,9 @@ undefined8 ValidateParametersE1(undefined4 validationFlags)
 
 
 
+// 系统清理函数E0
+// 功能：清理系统资源并返回状态码
+// 返回值：0x1c表示清理成功
 undefined8 CleanupSystemE0(void)
 
 {
@@ -9481,7 +9484,7 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
       return 0x1e;
     }
     validationBuffer[0] = 0;
-    uVar4 = FUN_180840950(param_2,lVar5,param_1 + 0x28,auStackX_8);
+    operationResult = FUN_180840950(dataBuffer,resourceHandle,systemContext + 0x28,validationBuffer);
     if ((int)uVar4 != 0) {
       return uVar4;
     }
@@ -9507,7 +9510,8 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
 
 
 
-undefined8 FUN_180892ac0(longlong param_1,longlong param_2)
+// 浮点数验证和处理函数A2
+undefined8 ValidateAndProcessFloatingPointNumberA2(longlong param_1,longlong param_2)
 
 {
   float fVar1;
@@ -9562,7 +9566,8 @@ undefined8 FUN_180892ac0(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180892bd0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 复杂数据处理函数A0
+undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   float fVar1;
@@ -9632,7 +9637,8 @@ undefined8 FUN_180892bd0(longlong param_1,longlong param_2,undefined8 param_3,un
 
 
 
-undefined8 FUN_180892cc0(longlong param_1,longlong param_2)
+// 浮点数数组处理函数A0
+undefined8 ProcessFloatingPointArrayA0(longlong param_1,longlong param_2)
 
 {
   int iVar1;
@@ -9714,7 +9720,8 @@ undefined8 FUN_180892cc0(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180892ceb(void)
+// 系统状态获取函数A0
+undefined8 GetSystemStatusA0(void)
 
 {
   float fVar1;
@@ -9799,7 +9806,8 @@ void UtilityNoOperationI(void)
 
 
 
-undefined8 FUN_180892e35(void)
+// 系统配置验证函数A0
+undefined8 ValidateSystemConfigurationA0(void)
 
 {
   return 0x1e;
@@ -10002,7 +10010,8 @@ code_r0x00018089322c:
 
 
 
-undefined8 FUN_180893290(longlong param_1,longlong param_2)
+// 数据传输处理函数A0
+undefined8 ProcessDataTransferA0(longlong param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -10050,7 +10059,8 @@ undefined8 FUN_180893290(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893330(longlong param_1,longlong param_2)
+// 缓冲区处理函数A0
+undefined8 ProcessBufferA0(longlong param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -10149,7 +10159,8 @@ void DeactivateUtilitySystemState(longlong systemHandle,longlong operationContex
 
 
 
-undefined8 FUN_180893480(longlong param_1,longlong param_2)
+// 内存分配处理函数A0
+undefined8 ProcessMemoryAllocationA0(longlong param_1,longlong param_2)
 
 {
   float fVar1;
@@ -10188,7 +10199,8 @@ undefined8 FUN_180893480(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893540(longlong param_1,longlong param_2)
+// 内存释放处理函数A0
+undefined8 ProcessMemoryReleaseA0(longlong param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -10219,7 +10231,8 @@ undefined8 FUN_180893540(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_1808935c0(longlong param_1,longlong param_2)
+// 内存复制处理函数A0
+undefined8 ProcessMemoryCopyA0(longlong param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -10619,7 +10632,8 @@ undefined8 ValidateAndProcessFloatValue(longlong dataContext,longlong operationC
 
 
 
-undefined8 FUN_180893d8f(undefined8 param_1,undefined8 param_2)
+// 数据同步处理函数A0
+undefined8 ProcessDataSynchronizationA0(undefined8 param_1,undefined8 param_2)
 
 {
   float fVar1;
@@ -10686,7 +10700,8 @@ void ProcessFloatComparisonAndValidation(void)
 
 
 
-undefined8 FUN_180893e30(longlong param_1,longlong param_2)
+// 事件处理函数A0
+undefined8 ProcessEventA0(longlong param_1,longlong param_2)
 
 {
   float fVar1;
@@ -10826,7 +10841,8 @@ void UtilityNoOperationC(void)
 
 
 
-undefined8 FUN_180893f00(longlong param_1,longlong param_2)
+// 配置保存函数A0
+undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
 
 {
   float fVar1;
@@ -10868,7 +10884,8 @@ undefined8 FUN_180893f00(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893f64(void)
+// 配置验证函数A0
+undefined8 ValidateSystemConfigurationA0(void)
 
 {
   float fVar1;
