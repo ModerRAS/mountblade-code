@@ -30060,7 +30060,7 @@ void CleanupResourceHandlerD0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809030f0(undefined8 param_1,longlong param_2)
+void CleanupMemoryResourcesF0(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
