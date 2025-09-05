@@ -249,6 +249,50 @@
 // 功能：空操作函数，不执行任何操作
 #define UtilityNoOperationG FUN_18089233e
 
+// 原始函数名：FUN_180893290 - 数据传输处理函数A0
+// 功能：处理数据传输操作
+#define ProcessDataTransferA0 FUN_180893290
+
+// 原始函数名：FUN_180893330 - 缓冲区处理函数A0
+// 功能：处理缓冲区操作
+#define ProcessBufferA0 FUN_180893330
+
+// 原始函数名：FUN_180893480 - 内存分配处理函数A0
+// 功能：处理内存分配操作
+#define ProcessMemoryAllocationA0 FUN_180893480
+
+// 原始函数名：FUN_180893540 - 内存释放处理函数A0
+// 功能：处理内存释放操作
+#define ProcessMemoryReleaseA0 FUN_180893540
+
+// 原始函数名：FUN_1808935c0 - 内存复制处理函数A0
+// 功能：处理内存复制操作
+#define ProcessMemoryCopyA0 FUN_1808935c0
+
+// 原始函数名：FUN_180893d8f - 数据同步处理函数A0
+// 功能：处理数据同步操作
+#define ProcessDataSynchronizationA0 FUN_180893d8f
+
+// 原始函数名：FUN_180893e30 - 事件处理函数A0
+// 功能：处理事件操作
+#define ProcessEventA0 FUN_180893e30
+
+// 原始函数名：FUN_180893e69 - 状态更新函数A0
+// 功能：更新系统状态
+#define UpdateSystemStatusA0 FUN_180893e69
+
+// 原始函数名：FUN_180893e94 - 配置加载函数A0
+// 功能：加载系统配置
+#define LoadSystemConfigurationA0 FUN_180893e94
+
+// 原始函数名：FUN_180893f00 - 配置保存函数A0
+// 功能：保存系统配置
+#define SaveSystemConfigurationA0 FUN_180893f00
+
+// 原始函数名：FUN_180893f64 - 配置验证函数A0
+// 功能：验证系统配置
+#define ValidateSystemConfigurationA0 FUN_180893f64
+
 // 原始函数名：FUN_180942280 - 全局指针设置函数A24
 // 功能：设置全局数据指针A24到指定地址
 #define SetGlobalDataPointerA24 FUN_180942280
