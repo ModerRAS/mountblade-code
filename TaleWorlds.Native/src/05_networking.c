@@ -666,8 +666,6 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define ExtendedFlagsReset NetworkReset_VALUE                  // 扩展标志重置
 #define NetworkSocketSize 0x100                               // 套接字结构大小（256字节）
 #define NetworkTcpProtocol 0x06                               // TCP协议号
-#define NetworkProtocolVersionOne 0x01                        // 网络协议版本1
-#define NetworkConnectionModeClient 0x01                      // 客户端连接模式
 #define NetworkConnectionPriorityMedium 0x02                  // 中等连接优先级
 #define NetworkConnectionNotFound 0xFFFFFFFF                     // 网络连接未找到
 
@@ -1165,6 +1163,18 @@ uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑�
  * 
  * @note 此函数会在网络系统启动时调用，确保连接池正确初始化
  * @warning 如果初始化失败，系统将无法管理网络连接
+ * 
+ * @return void 无返回值
+ */
+/**
+ * @brief 初始化网络连接池
+ * 
+ * 初始化网络连接池的各项参数和状态，包括连接池容量、分配计数器、
+ * 健康状态、管理器句柄和性能监控等。该函数在网络系统启动时调用，
+ * 确保连接池处于正确的初始状态。
+ * 
+ * @note 此函数会在网络系统初始化阶段自动调用
+ * @warning 连接池初始化失败将影响网络连接的建立和管理
  * 
  * @return void 无返回值
  */
