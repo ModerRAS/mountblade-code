@@ -12699,9 +12699,9 @@ DataBuffer InitializeSystemE0(void)
   int64_t dataContext;
   DataBuffer validationStatus;
   int64_t registerContext;
-  int64_t register_RBP;
-  int64_t register_RDI;
-  int64_t stackParameter40;
+  int64_t stackFramePointer;
+  int64_t destinationIndexRegister;
+  int64_t stackParameterOffset;
   
   dataContext = *(int64_t *)(registerContext + 0x10);
   if (dataContext == 0) {
