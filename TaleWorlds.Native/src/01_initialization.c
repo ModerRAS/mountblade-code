@@ -18907,7 +18907,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
   *(uint64_t *)(LocalStoragePointer + LocalStorageSecondaryOffset) = 0;
   *(uint32_t *)(LocalStoragePointer + LocalStorageTertiaryOffset) = 0;
   LocalStoragePointer = *(uint64_t *)((uint64_t)ThreadLocalStoragePointer + (uint64_t)__tls_index * 8);
-  CallbackTable = *(int **)(LocalStoragePointer + 0x50);
+  CallbackTable = *(int **)(LocalStoragePointer + LocalStorageQuinaryOffset);
   if (CallbackTable == (int *)0x0) {
     CallbackTable = (int *)(LocalStoragePointer + 0x60);
   }
