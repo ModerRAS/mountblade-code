@@ -19841,10 +19841,10 @@ uint32_t FinalSystemInitialization(void)
  * @param SystemResourceManager 系统资源管理器指针，用于管理系统资源
  * @note 这是系统启动时调用的第一个主要函数
  */
-void WotsMain(void* SystemResourceManager)
+void InitializeGameMainSystem(void* SystemResourceManager)
 
 {
-  void* SystemStackBuffer [2];
+  void* SystemStackBufferArray [2];
   
   // 系统事件表大小常量
   #define SystemEventTableSize 0x45a00
@@ -34165,7 +34165,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
               }
               SystemContextValueSecondary = SystemContextValueSecondary & SystemMaximumUnsigned32BitValue;
             }
-            SystemOperationFlag378 = SystemOperationFlag378 & 0xfffffffd;
+            SystemMemoryOperationFlags = SystemMemoryOperationFlags & 0xfffffffd;
             memoryAllocatorPointer = &SystemGlobalDataReference;
             if (ThreadLocalStoragePointerSecondary != (uint8_t *)0x0) {
                 SystemCleanupFunction(ThreadLocalStoragePointerSecondary);
