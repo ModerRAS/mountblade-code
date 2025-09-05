@@ -29177,7 +29177,7 @@ SystemIdCheck:
                 if (pSystemResourceSize != (uint8_t *)0x0) {
                   pSystemResourceSize[SystemOperationResult] = 0;
                 }
-                SystemThreadContextSecondary._4_4_ = ThreadLocalStorageEntry[3];
+                SystemThreadContextSecondary.LowPart = ThreadLocalStorageEntry[3];
                 SystemThreadId148 = SystemInitializationStatus;
                 ExecuteSystemCommand(&pSystemConfigurationId,0x12);
                 HashTableNodePointer = (uint32_t *)(pSystemResourceSize + SystemThreadId148);
@@ -29194,7 +29194,7 @@ SystemIdCheck:
                 if (pSystemResourceSize != (uint8_t *)0x0) {
                     SystemCleanupFunction();
                 }
-                SystemThreadContextSecondary = (ulong long)SystemThreadContextSecondary._4_4_ << 0x20;
+                SystemThreadContextSecondary = (ulong long)SystemThreadContextSecondary.LowPart << 0x20;
               }
               else {
 PathSeparatorCheck:
@@ -29261,7 +29261,7 @@ PathSeparatorFound:
                 if (pSystemResourceSize != (uint8_t *)0x0) {
                     SystemCleanupFunction();
                 }
-                SystemThreadContextSecondary = (ulong long)SystemThreadContextSecondary._4_4_ << 0x20;
+                SystemThreadContextSecondary = (ulong long)SystemThreadContextSecondary.LowPart << 0x20;
               }
             }
             else {
@@ -29270,7 +29270,7 @@ MemoryPointerCheck:
               if (pSystemResourceSize != (uint8_t *)0x0) {
                   SystemCleanupFunction();
               }
-              SystemThreadContextSecondary = (ulong long)SystemThreadContextSecondary._4_4_ << 0x20;
+              SystemThreadContextSecondary = (ulong long)SystemThreadContextSecondary.LowPart << 0x20;
             }
             pSystemResourceSize = (uint8_t *)0x0;
             pSystemConfigurationId = &SystemMemoryAllocatorReference;
@@ -33593,7 +33593,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
           *ThreadLocalStorage = 0;
           ThreadLocalStoragePointerSecondary = ThreadLocalStorage;
           ThreadContextIndicator = StartSystemThread(ThreadLocalStorage);
-          SystemContextValueSecondary = ConcatenatedSystemValue(SystemContextValueSecondary._4_4_,ThreadContextIndicator);
+          SystemContextValueSecondary = ConcatenatedSystemValue(SystemContextValueSecondary.LowPart,ThreadContextIndicator);
             memcpy(ThreadLocalStorage,SystemDataConfigurationPointer,systemResult0);
         }
       }
@@ -33695,7 +33695,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
                                          0x10000 + MemoryAllocationFlags)) % InitializationFlags);
               }
             }
-            SystemMemoryBufferPointer = ConcatenatedSystemValue(SystemMemoryBufferPointer._4_4_,SystemInitializationStatusFlags);
+            SystemMemoryBufferPointer = ConcatenatedSystemValue(SystemMemoryBufferPointer.LowPart,SystemInitializationStatusFlags);
               memcpy(SystemThreadObjectSecondary,&SystemDataBufferProcessing,systemResult0);
           }
           SystemMemoryBufferCapacityValue = 0;
@@ -33873,7 +33873,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
                                            * 0x10000 + ConfigurationData)) % SecurityParameter);
                 }
               }
-              SystemContextValueSecondary = ConcatenatedSystemValue(SystemContextValueSecondary._4_4_,SystemInitializationStatusFlags);
+              SystemContextValueSecondary = ConcatenatedSystemValue(SystemContextValueSecondary.LowPart,SystemInitializationStatusFlags);
               if (*(int *)(SystemAllocationFlags + 0xb8) != 0) {
                   memcpy(ThreadLocalStoragePointerSecondary,*(void* *)(SystemAllocationFlags + 0xb0),*(int *)(SystemAllocationFlags + 0xb8) + 1);
               }
