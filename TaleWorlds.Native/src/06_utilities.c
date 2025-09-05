@@ -13077,7 +13077,7 @@ undefined8 ValidateAndProcessFloatRange(longlong rangeContext,longlong validatio
   }
   switch(*(undefined4 *)(rangeContext + 0x18)) {
   case 0:
-    if ((0.0 <= rangeValue) && (rangeValue <= 256.0)) goto code_r0x00018089322c;
+    if ((0.0 <= rangeValue) && (rangeValue <= 256.0)) goto RangeValidationSuccess;
     goto joined_r0x00018089322a;
   case 1:
   case 2:
@@ -13087,16 +13087,16 @@ undefined8 ValidateAndProcessFloatRange(longlong rangeContext,longlong validatio
   case 5:
     break;
   default:
-    goto code_r0x000180893206;
+    goto RangeValidationFailure;
   }
   if (fVar1 < 0.0) {
 joined_r0x00018089322a:
     if (fVar1 != -1.0) {
-code_r0x000180893206:
+RangeValidationFailure:
       return 0x1f;
     }
   }
-code_r0x00018089322c:
+RangeValidationSuccess:
   uVar2 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10));
   if ((int)uVar2 != 0) {
     return uVar2;
