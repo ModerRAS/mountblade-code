@@ -2103,7 +2103,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t PacketIndex;                                           // 数据包索引
   int32_t MaxIntValue;                                           // 最大整数值
   if (ConnectionOperationCode == 0) {
-PrimaryNetworkProcessingComplete:
+PrimaryNetworkProcessingCompleted:
     if ((0 < *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset)) && (*ConnectionOperationBuffer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
@@ -2134,7 +2134,7 @@ PrimaryNetworkProcessingComplete:
           ConnectionStatusBuffer = ConnectionStatusBuffer + ConnectionContextStatusEntrySize;
         } while (StatusIterator != 0);
       }
-SecondaryNetworkProcessingComplete:
+SecondaryNetworkProcessingCompleted:
       // 网络处理循环完成，继续后续处理
       return NetworkOperationSuccess;
     }
