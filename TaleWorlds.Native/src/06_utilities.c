@@ -54976,7 +54976,7 @@ void Unwind_1809077d0(void)
 void Unwind_1809077e0(void)
 
 {
-  _DAT_180bf6680 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA7 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -54987,7 +54987,7 @@ void Unwind_1809077e0(void)
 void Unwind_1809077f0(void)
 
 {
-  _DAT_180bf66b0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA8 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -55393,7 +55393,7 @@ void Unwind_180907970(undefined8 param_1,longlong param_2)
   validationContextPointer = (longlong *)(param_2 + 0x50);
   if (*validationContextPointer != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SecondaryResourceCounter = SecondaryResourceCounter + -1;
     UNLOCK();
     CloseHandle(*validationContextPointer);
     *validationContextPointer = -1;
@@ -56748,7 +56748,7 @@ void Unwind_180907f70(undefined8 exceptionContext, longlong handleContext)
   handlePointer = (longlong *)(handleContext + 0x38);
   if (*handlePointer != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SecondaryResourceCounter = SecondaryResourceCounter + -1;
     UNLOCK();
     CloseHandle(*handlePointer);
     *handlePointer = -1;
@@ -57001,7 +57001,7 @@ void Unwind_180908040(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d491f8 = 0;
+  ExceptionStatusFlagA3 = 0;
   LeaveCriticalSection(0x180c82210);
   if (_DAT_180c82240 != 0) {
     SetEvent();
@@ -57027,15 +57027,15 @@ void Unwind_180908050(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
 {
   longlong *validationContextPointer;
   
-  validationContextPointer = _DAT_180d49200;
-  FUN_18008d1f0(&DAT_180d49200,_DAT_180d49200[1],param_3,param_4,SystemCleanupFlagfffffffe);
-  _DAT_180d49200[1] = (longlong)validationContextPointer;
-  *_DAT_180d49200 = (longlong)validationContextPointer;
-  _DAT_180d49200[2] = (longlong)validationContextPointer;
+  validationContextPointer = ValidationContextPointerArray;
+  FUN_18008d1f0(&DAT_180d49200,ValidationContextPointerArray[1],param_3,param_4,SystemCleanupFlagfffffffe);
+  ValidationContextPointerArray[1] = (longlong)validationContextPointer;
+  *ValidationContextPointerArray = (longlong)validationContextPointer;
+  ValidationContextPointerArray[2] = (longlong)validationContextPointer;
   _DAT_180d49208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(ValidationContextPointerArray,0x58);
   return;
 }
 
@@ -57048,7 +57048,7 @@ void Unwind_180908060(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(ValidationContextPointerArray,0x58);
   return;
 }
 
@@ -57061,7 +57061,7 @@ void Unwind_180908070(void)
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(ValidationContextPointerArray,0x58);
   return;
 }
 
@@ -61190,7 +61190,7 @@ void Unwind_180909550(undefined8 param_1,longlong param_2)
   validationContextPointer = (longlong *)(param_2 + 0x1e8);
   if (*validationContextPointer != -1) {
     LOCK();
-    _DAT_180c8ed64 = _DAT_180c8ed64 + -1;
+    SecondaryResourceCounter = SecondaryResourceCounter + -1;
     UNLOCK();
     CloseHandle(*validationContextPointer);
     *validationContextPointer = -1;
@@ -81900,7 +81900,7 @@ void Unwind_180910590(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809105a0(undefined8 param_1,longlong param_2)
+void SystemCleanupHandlerA0(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -90219,7 +90219,7 @@ void SetGlobalDataPointerB6(void)
 void SetDefaultExceptionHandlerA0(void)
 
 {
-  _DAT_180bf6680 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA7 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90233,7 +90233,7 @@ void SetDefaultExceptionHandlerA0(void)
 void SetDefaultExceptionHandlerB0(void)
 
 {
-  _DAT_180bf66b0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA8 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90249,15 +90249,15 @@ void ProcessValidationContextA0(undefined8 param_1,undefined8 param_2,undefined8
 {
   longlong *validationContextPointer;
   
-  validationContextPointer = _DAT_180d49200;
-  FUN_18008d1f0(param_1,_DAT_180d49200[1],param_3,param_4,SystemCleanupFlagfffffffe);
-  _DAT_180d49200[1] = (longlong)validationContextPointer;
-  *_DAT_180d49200 = (longlong)validationContextPointer;
-  _DAT_180d49200[2] = (longlong)validationContextPointer;
+  validationContextPointer = ValidationContextPointerArray;
+  FUN_18008d1f0(param_1,ValidationContextPointerArray[1],param_3,param_4,SystemCleanupFlagfffffffe);
+  ValidationContextPointerArray[1] = (longlong)validationContextPointer;
+  *ValidationContextPointerArray = (longlong)validationContextPointer;
+  ValidationContextPointerArray[2] = (longlong)validationContextPointer;
   _DAT_180d49208 = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
-  free(_DAT_180d49200,0x58);
+  free(ValidationContextPointerArray,0x58);
   return;
 }
 
