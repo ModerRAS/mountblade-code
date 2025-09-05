@@ -4564,13 +4564,13 @@ undefined8 ValidateAndProcessResourceA(longlong resourceDescriptor)
       resourceBuffer[0] = resourceBuffer[0] + -8;
     }
     contextBuffer[0] = 0;
-    validationResult = FUN_1808681d0(resourceBuffer[0],resourceDescriptor + 0x18,contextBuffer);
+    validationResult = ValidateResourceAccess(resourceBuffer[0],resourceDescriptor + 0x18,contextBuffer);
     if ((int)validationResult == 0) {
       if (contextBuffer[0] != 0) {
         if (*(longlong *)(contextBuffer[0] + 8) == 0) {
           return 0x1c;
         }
-        validationResult = FUN_1808d73b0(*(longlong *)(contextBuffer[0] + 8),*(undefined4 *)(resourceDescriptor + 0x20),
+        validationResult = ProcessResourceData(*(longlong *)(contextBuffer[0] + 8),*(undefined4 *)(resourceDescriptor + 0x20),
                                        *(undefined1 *)(resourceDescriptor + 0x24));
         if ((int)validationResult != 0) {
           return validationResult;
@@ -4604,13 +4604,13 @@ undefined8 ValidateResourcePointerAccess(longlong resourceDescriptor)
       resourceInfo[0] = resourceInfo[0] + -8;
     }
     accessInfo[0] = 0;
-    validationStatus = FUN_1808681d0(resourceInfo[0],resourceDescriptor + 0x20,accessInfo);
+    validationStatus = ValidateResourceAccess(resourceInfo[0],resourceDescriptor + 0x20,accessInfo);
     if ((int)validationStatus == 0) {
       if (accessInfo[0] != 0) {
         if (*(longlong *)(accessInfo[0] + 8) == 0) {
           return 0x1c;
         }
-        validationStatus = FUN_1808d73b0(*(longlong *)(accessInfo[0] + 8),*(undefined4 *)(resourceDescriptor + 0x18),
+        validationStatus = ProcessResourceData(*(longlong *)(accessInfo[0] + 8),*(undefined4 *)(resourceDescriptor + 0x18),
                               *(undefined1 *)(resourceDescriptor + 0x1c));
         if ((int)validationStatus != 0) {
           return validationStatus;
