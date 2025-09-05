@@ -167,16 +167,16 @@
 #define SystemContextResourceTablePointerOffset 0x2e8  // 系统上下文资源表指针偏移量
 #define SystemContextOperationFlagOffset 0x200         // 系统上下文操作标志偏移量
 #define SystemContextArraySizeOffset 0x17c             // 系统上下文数组大小偏移量
-#define SystemContextErrorDataProcessingOffset 0x1a0       // 系统上下文错误数据处理偏移量
+#define SystemContextErrorDataOffset 0x1a0       // 系统上下文错误数据处理偏移量
 #define SystemContextStatusFlag1Offset 0x180               // 系统上下文状态标志1偏移量
 #define SystemContextStatusFlag2Offset 0x184               // 系统上下文状态标志2偏移量
-#define SystemContextSecondaryDataProcessingOffset 0x18    // 系统上下文次级数据处理偏移量
-#define SystemContextPrimaryDataProcessingOffset 0x20     // 系统上下文主要数据处理偏移量
+#define SystemContextSecondaryDataOffset 0x18    // 系统上下文次级数据处理偏移量
+#define SystemContextPrimaryDataOffset 0x20     // 系统上下文主要数据处理偏移量
 #define SystemContextResourceManagerOffset 0x50            // 系统上下文资源管理器偏移量
 #define SystemContextCallbackPointerOffset 0x58           // 系统上下文回调指针偏移量
 #define SystemContextMethodPointerOffset 0x10             // 系统上下文方法指针偏移量
 #define SystemContextValidationDataSizeOffset 0x104      // 系统上下文验证数据大小偏移量
-#define SystemContextValidationFloatDataProcessingOffset 0x84 // 系统上下文验证浮点数据处理偏移量
+#define SystemContextValidationFloatDataOffset 0x84 // 系统上下文验证浮点数据处理偏移量
 #define SystemContextResourceIndexOffset 0x18              // 系统上下文资源索引偏移量
 
 // 验证相关常量
@@ -222,6 +222,17 @@
 #define SystemContextResourceTablePointerSecondaryOffset 0xb0   // 系统上下文资源表指针次级偏移量
 #define SystemContextResourceStatusOffset 0xb8                 // 系统上下文资源状态偏移量
 #define SystemContextValidationDataOffset 0xd0                 // 系统上下文验证数据偏移量
+
+// 系统回调函数偏移常量
+#define SystemCallbackPrimaryOffset 0x148                     // 系统回调函数主偏移量
+#define SystemCallbackSecondaryOffset 0x160                   // 系统回调函数次级偏移量
+#define SystemCallbackTertiaryOffset 0x180                    // 系统回调函数第三级偏移量
+#define SystemCallbackQuaternaryOffset 0x158                  // 系统回调函数第四级偏移量
+#define SystemCleanupCallbackOffset 0x110                      // 系统清理回调偏移量
+#define SystemDataStructurePrimaryOffset 0x430                // 系统数据结构主偏移量
+#define SystemDataStructureSecondaryOffset 0x570               // 系统数据结构次级偏移量
+#define SystemDataStructureTertiaryOffset 0x610                // 系统数据结构第三级偏移量
+#define SystemDataStructureQuaternaryOffset 0x6b0              // 系统数据结构第四级偏移量
 
 // 范围检查相关常量
 #define RangeLowerBoundOffset 0x38

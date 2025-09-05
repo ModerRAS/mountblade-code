@@ -28950,15 +28950,15 @@ void SystemResourceEnumerator(void)
   uint32_t SystemResourceID;
   uint8_t LocalBufferArray [32];
   void* *SystemResourceHandle158;
-  uint8_t *SystemStackBufferPointer150;
+  uint8_t *SystemBufferPointer150;
   uint StackContextSize;
   void* SystemStackHandlePrimary;
   void* *SystemResourceHandle138;
-  uint8_t *SystemStackBufferPointer130;
+  uint8_t *SystemBufferPointer130;
   uint StackContextOffset;
   ulong long StackContextCapacity;
   void* *SystemResourceHandle118;
-  uint8_t *SystemStackBufferPointer110;
+  uint8_t *SystemBufferPointer110;
   uint32_t StackContextLimit;
   ulong long StackContextTotal;
   int SystemIterationCounter;
