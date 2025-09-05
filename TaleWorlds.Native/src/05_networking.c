@@ -2548,6 +2548,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int64_t NetworkProcessedPacketIdentifier;                                    // 已处理网络数据包标识符
   int32_t NetworkPacketIndex;                                           // 网络数据包索引
   int32_t NetworkMaximumInt32Value;                                    // 网络最大32位整数值
+  int64_t *ConnectionOperationBuffer;                               // 连接操作缓冲区
   if (NetworkConnectionProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)CalculateConnectionParameterAddress(NetworkConnectionContextBuffer)) && (*NetworkConnectionContextBuffer != 0)) {

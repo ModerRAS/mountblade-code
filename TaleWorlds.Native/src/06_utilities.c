@@ -6040,10 +6040,10 @@ undefined SystemMemoryManagementTableA0;
 // 系统资源管理表A0
 undefined SystemResourceManagerTableA0;
 undefined SystemPerformanceCounterB;
-undefined DAT_180bf52b8;
-undefined DAT_180bf52bc;
-undefined DAT_180bf5248;
-undefined DAT_180c8ed60;
+undefined SystemExceptionCounterA;
+undefined SystemExceptionCounterB;
+undefined SystemExceptionCounterC;
+undefined NetworkConnectionStatus;
 // 系统内存管理表A1
 undefined SystemMemoryManagementTableA1;
 // 系统资源管理表A1
