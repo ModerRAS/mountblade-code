@@ -14180,7 +14180,7 @@ ulonglong FUN_180896140(longlong param_1)
                 uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
                 uStack_e8 = 0;
                 puStack_f0 = &UNK_180983588;
-                FUN_180892120(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
+                DoubleValidateAndExecuteOperation(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
                 iVar4 = func_0x0001808c7ed0(uVar3);
               } while (0 < iVar4);
               uVar6 = (ulonglong)auStackX_10[0];
