@@ -5189,27 +5189,27 @@ uint64_t HandleSystemRequestProcessing(int64_t RequestParameters, int64_t System
 uint8_t ValidateSystemAccess(int64_t AccessRequestParameters,int64_t SystemContextParameters)
 {
   int64_t SystemObjectHandle;
-  int SystemValidationStatus;
-  uint8_t AccessValidationStatus;
-  int64_t ObjectValidationBuffer [2];
+  int SystemObjectValidationResult;
+  uint8_t ObjectValidationStatusCode;
+  int64_t ObjectValidationContext [2];
   int64_t *PrimaryValidationContext;
   
-  AccessValidationStatus = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + ObjectHandleMemoryOffset), ObjectValidationBuffer);
-  PrimaryValidationContext = (int64_t *)ObjectValidationBuffer[0];
-  SystemObjectHandle = ObjectValidationBuffer[0];
-  if ((int)AccessValidationStatus != 0) {
-    return AccessValidationStatus;
+  ObjectValidationStatusCode = ValidateObjectContext(*(uint32_t *)(AccessRequestParameters + ObjectHandleMemoryOffset), ObjectValidationContext);
+  PrimaryValidationContext = (int64_t *)ObjectValidationContext[0];
+  SystemObjectHandle = ObjectValidationContext[0];
+  if ((int)ObjectValidationStatusCode != 0) {
+    return ObjectValidationStatusCode;
   }
   (*(int *)(PrimaryValidationContext + ResourceTotalOffset))++;
   if (*(int *)(PrimaryValidationContext + ResourceTertiaryCounterOffset) + *(int *)(PrimaryValidationContext + ResourceSecondaryCounterOffset) +
       *(int *)(PrimaryValidationContext + ResourceTotalOffset) == 1) {
     PrimaryValidationContext = 0;
-    SystemValidationStatus = ValidateSystemObjectConfiguration(ObjectValidationBuffer);
-    if (SystemValidationStatus == 0) {
-      SystemValidationStatus = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + SystemContextSecondaryDataProcessingOffset),
+    SystemObjectValidationResult = ValidateSystemObjectConfiguration(ObjectValidationContext);
+    if (SystemObjectValidationResult == 0) {
+      SystemObjectValidationResult = ProcessSystemObjectValidation(SystemObjectHandle,*(uint8_t *)(SystemObjectHandle + 8),*(uint8_t *)(SystemContextParameters + SystemContextSecondaryDataProcessingOffset),
                             *(uint8_t *)(SystemContextParameters + 800));
     }
-    ReleaseValidationResources(ObjectValidationBuffer);
+    ReleaseValidationResources(ObjectValidationContext);
   }
   return 0;
 }
@@ -73046,12 +73046,18 @@ void InitializeSystemResourceTemplate(uint8_t ObjectContext,int64_t ValidationCo
 
 
 /**
- * @brief Unwind异常处理函数：系统上下文初始化器
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
- * @remark 原始函数名：Unwind_180909d00
+ * @brief 初始化系统上下文和资源管理器
+ * 
+ * 该函数负责系统上下文的初始化工作，包括资源管理器的设置和资源表的配置。
+ * 它会分配必要的内存空间，设置资源指针，并确保系统上下文的正确初始化。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含系统初始化所需的数据和状态
+ * 
+ * @note 该函数在系统启动时被调用，用于初始化系统上下文
+ * @warning 如果初始化失败，可能会影响系统的正常运行
  */
-void UnwindSystemContextInitializer(uint8_t ObjectContext,int64_t ValidationContext)
+void InitializeSystemContextAndResourceManager(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -73074,12 +73080,17 @@ void UnwindSystemContextInitializer(uint8_t ObjectContext,int64_t ValidationCont
 
 
 /**
- * @brief Unwind异常处理函数：扩展资源处理器注册器
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
- * @remark 原始函数名：Unwind_180909d20
+ * @brief 注册扩展资源处理器到系统上下文
+ * 
+ * 该函数负责将扩展资源处理器注册到系统上下文中，提供额外的资源处理能力。
+ * 通过注册扩展处理器，增强系统的资源管理和处理功能。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含扩展资源处理器的注册信息
+ * 
+ * @note 该函数扩展了系统的资源处理能力，用于处理特殊的资源类型
  */
-void UnwindResourceHandlerExtendedRegistrar(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterExtendedResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x5a0,0x20,9,SystemResourceHandlerEx);
@@ -73089,12 +73100,18 @@ void UnwindResourceHandlerExtendedRegistrar(uint8_t ObjectContext,int64_t Valida
 
 
 /**
- * @brief Unwind异常处理函数：资源表处理器
- * @param ObjectContext 对象上下文
- * @param ValidationContext 验证上下文
- * @remark 原始函数名：Unwind_180909d60
+ * @brief 处理资源表指针的初始化和清理
+ * 
+ * 该函数负责资源表指针的初始化和清理工作。
+ * 它会遍历资源表，执行必要的清理操作，并确保资源表的正确状态。
+ * 
+ * @param ObjectContext 对象上下文，用于标识当前操作的对象
+ * @param ValidationContext 验证上下文，包含资源表的相关信息和状态
+ * 
+ * @note 该函数在资源管理过程中被调用，用于维护资源表的完整性
+ * @warning 如果资源表指针无效，可能会导致系统不稳定
  */
-void UnwindResourceTablePointerProcessor(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceTablePointerInitialization(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -97410,7 +97427,20 @@ void ExecuteValidationContextPrimaryOffset60Callback(uint8_t ObjectContext,int64
 
 
 
-void Unwind_18090fa20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 重置资源哈希表和模板
+ * 
+ * 该函数负责重置资源哈希表指针，销毁互斥锁，并重新设置各种资源模板。
+ * 这是一个资源清理和重置操作，确保资源状态正确。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数会重置多个资源模板指针
+ * @warning 调用此函数会销毁现有的互斥锁和条件变量
+ * @remark 原始函数名：Unwind_18090fa20
+ */
+void ResetResourceHashTableAndTemplates(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   uint8_t *ResourceHashPtr;
