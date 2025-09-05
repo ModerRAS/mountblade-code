@@ -3847,7 +3847,8 @@
 #define ValidateDataIntegrityA2 FUN_180895cf1
 
 // 原始函数名：FUN_180895d16 - 空操作函数H
-// 功能：空操作函数
+// 功能：空操作函数，用于占位和流程控制，不执行任何实际操作
+// 在条件分支和异常处理中作为默认操作使用
 #define UtilityNoOperationH FUN_180895d16
 
 // 原始函数名：FUN_180895d30 - 数据查询函数A1
