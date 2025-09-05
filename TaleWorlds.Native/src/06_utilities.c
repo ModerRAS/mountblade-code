@@ -40173,7 +40173,15 @@ void MutexDestroyer450(void)
 
 
 
-void Unwind_180903460(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常资源清理器460
+ * 
+ * 清理异常处理相关的资源和数据结构
+ * 
+ * @param cleanupContext 清理上下文
+ * @param resourceData 资源数据
+ */
+void ExceptionResourceCleaner460(DataBuffer cleanupContext, int64_t resourceData)
 
 {
   int *referenceCountPointer;
@@ -40183,15 +40191,15 @@ void Unwind_180903460(DataBuffer param_1,int64_t param_2)
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  contextPointer = *(int64_t **)(param_2 + 0x40);
+  contextPointer = *(int64_t **)(resourceData + 0x40);
   validationStatusPointer = (DataBuffer *)*contextPointer;
   if (validationStatusPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
       *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer, 0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(validationStatusPointer);
+    ReleaseExceptionBuffer(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -40225,8 +40233,8 @@ void Unwind_180903460(DataBuffer param_1,int64_t param_2)
       }
     }
     else {
-      ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
+      ManageMemory(dataFlags, CONCAT71(0xff000000, *(void ***)(dataFlags + 0x70) == &ExceptionList),
+                          validationStatusPointer, dataFlags, SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -40234,19 +40242,29 @@ void Unwind_180903460(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180903470(void)
+/**
+ * @brief 条件变量销毁器470
+ * 
+ * 销毁系统条件变量并释放相关资源
+ */
+void ConditionVariableDestroyer470(void)
 
 {
-  _Cnd_destroy_in_situ();
+  DestroyConditionVariableInSitu();
   return;
 }
 
 
 
-void Unwind_180903490(void)
+/**
+ * @brief 互斥锁销毁器490
+ * 
+ * 销毁系统互斥锁并释放相关资源
+ */
+void MutexDestroyer490(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInSitu();
   return;
 }
 
