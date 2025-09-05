@@ -109,6 +109,10 @@
 // 功能：执行安全验证操作，验证系统状态并执行相应处理
 #define ExecuteSecurityValidationOperation FUN_180894a07
 
+// 原始函数名：FUN_180894ad2 - 安全检查包装函数
+// 功能：包装安全检查函数，执行栈保护验证
+#define ExecuteSecurityCheckWrapper FUN_180894ad2
+
 // 原始函数名：FUN_180895b89 - 安全检查执行函数
 // 功能：执行安全检查，程序不会返回
 #define ExecuteSecurityCheck FUN_180895b89
@@ -7434,66 +7438,87 @@ undefined8 ConfigureUtilityDataA1(longlong configPointer,longlong dataPointer)
 
 
 
-undefined8 FUN_180892270(longlong param_1,longlong param_2)
+// 函数: undefined8 ProcessResourceValidationAndExecution(longlong resourceContext, longlong executionContext)
+//
+// 资源验证与执行处理函数
+// 验证资源上下文并执行相关操作，遍历资源列表进行验证处理
+//
+// 参数:
+//   resourceContext - 资源上下文指针，包含资源相关信息
+//   executionContext - 执行上下文指针，包含执行环境信息
+//
+// 返回值:
+//   undefined8 - 返回操作结果状态码，0x1f表示失败，0x1e表示资源不存在，其他值表示具体状态
+undefined8 ProcessResourceValidationAndExecution(longlong resourceContext, longlong executionContext)
 
 {
-  longlong lVar1;
-  int iVar2;
-  undefined8 uVar3;
-  undefined *puVar4;
-  uint uVar5;
-  ulonglong uVar6;
-  longlong lVar7;
-  ulonglong uVar8;
-  ulonglong uVar9;
-  longlong lStackX_8;
+  longlong resourcePointer;
+  int validationStatus;
+  undefined8 operationResult;
+  undefined *resourceData;
+  uint iterationCounter;
+  ulonglong baseOffset;
+  longlong listEntry;
+  ulonglong adjustedStackPointer;
+  ulonglong entryOffset;
+  longlong stackBuffer;
   
-  if (param_1 + 0x1c == 0) {
+  if (resourceContext + 0x1c == 0) {
     return 0x1f;
   }
-  uVar3 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar3 == 0) {
-    uVar6 = 0;
-    uVar8 = uVar6;
-    if (lStackX_8 != 0) {
-      uVar8 = lStackX_8 - 8;
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceContext + 0x10), &stackBuffer);
+  if ((int)operationResult == 0) {
+    baseOffset = 0;
+    adjustedStackPointer = baseOffset;
+    if (stackBuffer != 0) {
+      adjustedStackPointer = stackBuffer - 8;
     }
-    uVar9 = uVar6;
-    if (0 < *(int *)(uVar8 + 0x28)) {
+    entryOffset = baseOffset;
+    if (0 < *(int *)(adjustedStackPointer + 0x28)) {
       do {
-        lVar7 = *(longlong *)(uVar8 + 0x20) + uVar9;
-        lVar1 = *(longlong *)(lVar7 + 0x10);
-        if (lVar1 == 0) {
+        listEntry = *(longlong *)(adjustedStackPointer + 0x20) + entryOffset;
+        resourcePointer = *(longlong *)(listEntry + 0x10);
+        if (resourcePointer == 0) {
           return 0x1e;
         }
-        if (*(int *)(lVar1 + 0x58) < 1) {
-          puVar4 = &DAT_18098bc73;
+        if (*(int *)(resourcePointer + 0x58) < 1) {
+          resourceData = &DAT_18098bc73;
         }
         else {
-          puVar4 = *(undefined **)(lVar1 + 0x50);
+          resourceData = *(undefined **)(resourcePointer + 0x50);
         }
-        iVar2 = func_0x00018076b630(puVar4,param_1 + 0x1c);
-        if (iVar2 == 0) {
-          uVar3 = ValidateAndProcessSystemResourceA0(lVar7,param_1 + 0x18);
-          if ((int)uVar3 != 0) {
-            return uVar3;
+        validationStatus = func_0x00018076b630(resourceData, resourceContext + 0x1c);
+        if (validationStatus == 0) {
+          operationResult = ValidateAndProcessSystemResourceA0(listEntry, resourceContext + 0x18);
+          if ((int)operationResult != 0) {
+            return operationResult;
           }
-          uVar3 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
-          return uVar3;
+          operationResult = FUN_18088d7c0(*(undefined8 *)(executionContext + 0x98), resourceContext);
+          return operationResult;
         }
-        uVar5 = (int)uVar6 + 1;
-        uVar6 = (ulonglong)uVar5;
-        uVar9 = uVar9 + 0x18;
-      } while ((int)uVar5 < *(int *)(uVar8 + 0x28));
+        iterationCounter = (int)baseOffset + 1;
+        baseOffset = (ulonglong)iterationCounter;
+        entryOffset = entryOffset + 0x18;
+      } while ((int)iterationCounter < *(int *)(adjustedStackPointer + 0x28));
     }
-    uVar3 = 0x4a;
+    operationResult = 0x4a;
   }
-  return uVar3;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_1808922ad(void)
+// 函数: undefined8 ProcessSystemResourceValidationWithStack(void)
+//
+// 系统资源验证处理函数（使用栈参数）
+// 验证系统资源并执行相关操作，使用栈传递的参数进行资源处理
+//
+// 参数:
+//   无（参数通过栈传递）
+//
+// 返回值:
+//   undefined8 - 返回操作结果状态码，0x1e表示资源不存在，0x4a表示处理完成
+undefined8 ProcessSystemResourceValidationWithStack(void)
 
 {
   longlong lVar1;
