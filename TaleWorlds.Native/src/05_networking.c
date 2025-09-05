@@ -99,10 +99,10 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 
 // 状态数组索引常量
 #define PrimaryConnectionStateIndex 0                          // 主要连接状态索引
-#define SecondaryValidationStateIndex 0                        // 第二级验证状态索引
-#define TertiaryValidationStateIndex 0                         // 第三级验证状态索引
-#define QuaternaryValidationStateIndex 0                       // 第四级验证状态索引
-#define PrimaryDataProcessingIndex 0                          // 主要数据处理索引
+#define SecondaryValidationStateIndex 1                        // 第二级验证状态索引
+#define TertiaryValidationStateIndex 2                         // 第三级验证状态索引
+#define QuaternaryValidationStateIndex 3                       // 第四级验证状态索引
+#define PrimaryDataProcessingIndex 4                          // 主要数据处理索引
 
 // 输出缓冲区索引常量
 #define PacketDecodingStatusIndex 0                            // 数据包解码状态索引
@@ -121,8 +121,8 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define DataIntegrityValidationCheckIndex 1                     // 数据完整性验证检查索引
 #define SecurityComplianceValidationCheckIndex 2                // 安全合规性验证检查索引
 #define NetworkValidationModeDataIndex 3                        // 网络验证模式数据索引
-#define DataIntegrityValidationIndex 1                           // 数据完整性验证索引
-#define SecurityComplianceValidationIndex 2                      // 安全合规性验证索引
+#define DataIntegrityValidationResultIndex 1                    // 数据完整性验证结果索引
+#define SecurityComplianceValidationResultIndex 2               // 安全合规性验证结果索引
 
 /**
  * @brief 计算连接参数偏移量
