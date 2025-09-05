@@ -4891,6 +4891,16 @@ void ValidateSystemState(void)
 undefined8 RegisterSystemComponent(longlong componentHandle)
 
 {
+  // 组件句柄结构体偏移量定义
+  #define COMPONENT_HANDLE_OFFSET 0x10    // 组件句柄在结构体中的偏移量
+  #define SYSTEM_CONTEXT_OFFSET 0x48       // 系统上下文偏移量
+  #define COMPONENT_DATA_OFFSET 0x38       // 组件数据偏移量
+  #define COMPONENT_STATUS_OFFSET 0xe4     // 组件状态偏移量
+  #define COMPONENT_LIST_OFFSET 0x4d8      // 组件列表偏移量
+  #define COMPONENT_COUNT_OFFSET 0x4e4    // 组件计数偏移量
+  #define COMPONENT_CAPACITY_OFFSET 0x4e8  // 组件容量偏移量
+  #define COMPONENT_ACTIVE_OFFSET 0x4e0    // 组件活跃数偏移量
+  
   longlong componentData;
   longlong systemHandle;
   int bufferSize;
@@ -4905,19 +4915,19 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
   longlong stackBuffer;
   char processBuffer [16];
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(componentHandle + 0x10),&stackBuffer);
+  queryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(componentHandle + COMPONENT_HANDLE_OFFSET),&stackBuffer);
   if ((int)queryResult != 0) {
     return queryResult;
   }
   systemHandle = *(longlong *)(stackBuffer + 8);
-  if ((systemHandle == 0) || (*(longlong *)(systemHandle + 0x48) != stackBuffer)) {
+  if ((systemHandle == 0) || (*(longlong *)(systemHandle + SYSTEM_CONTEXT_OFFSET) != stackBuffer)) {
     return 0x1c;
   }
-  componentData = *(longlong *)(systemHandle + 0x38);
+  componentData = *(longlong *)(systemHandle + COMPONENT_DATA_OFFSET);
   if (systemHandle == 0) {
     return 0x1f;
   }
-  if (*(int *)(systemHandle + 0xe4) == -1) {
+  if (*(int *)(systemHandle + COMPONENT_STATUS_OFFSET) == -1) {
     queryResult = ProcessInputData(systemHandle,processBuffer);
     if ((int)queryResult != 0) {
       return queryResult;
@@ -4928,9 +4938,9 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
     }
     if ((char)queryResult == (char)processResult) {
       if (processBuffer[0] == (char)processResult) {
-        componentList = (longlong *)(componentData + 0x4d8);
+        componentList = (longlong *)(componentData + COMPONENT_LIST_OFFSET);
         searchIndex = 0;
-        componentCount = *(int *)(componentData + 0x4e4);
+        componentCount = *(int *)(componentData + COMPONENT_COUNT_OFFSET);
         if (0 < componentCount) {
           componentPointer = (longlong *)*componentList;
           loopIndex = searchIndex;
@@ -4947,8 +4957,8 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
           } while ((longlong)searchIndex < (longlong)componentCount);
         }
         componentCount = componentCount + 1;
-        if (*(int *)(componentData + 0x4e8) < componentCount) {
-          capacity = (int)((float)*(int *)(componentData + 0x4e8) * 1.5);
+        if (*(int *)(componentData + COMPONENT_CAPACITY_OFFSET) < componentCount) {
+          capacity = (int)((float)*(int *)(componentData + COMPONENT_CAPACITY_OFFSET) * 1.5);
           bufferSize = componentCount;
           if (componentCount <= capacity) {
             bufferSize = capacity;
@@ -4964,9 +4974,9 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
             return 0;
           }
         }
-        *(longlong *)(*componentList + (longlong)*(int *)(componentData + 0x4e4) * 8) = processBuffer;
-        *(int *)(componentData + 0x4e4) = *(int *)(componentData + 0x4e4) + 1;
-        *(int *)(componentData + 0x4e0) = *(int *)(componentData + 0x4e0) + 1;
+        *(longlong *)(*componentList + (longlong)*(int *)(componentData + COMPONENT_COUNT_OFFSET) * 8) = processBuffer;
+        *(int *)(componentData + COMPONENT_COUNT_OFFSET) = *(int *)(componentData + COMPONENT_COUNT_OFFSET) + 1;
+        *(int *)(componentData + COMPONENT_ACTIVE_OFFSET) = *(int *)(componentData + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
         queryResult = ExecuteComponentCommand(componentData + 0x368,processBuffer);
