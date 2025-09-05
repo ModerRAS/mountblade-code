@@ -6114,18 +6114,19 @@ undefined8 FUN_180891c40(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180891ca0(longlong param_1,longlong param_2)
-void FUN_180891ca0(longlong param_1,longlong param_2)
+// 函数: void ProcessDataSetFlagA0(longlong dataContext,longlong systemContext)
+// 功能：处理数据并设置标志位0x29，调用系统处理函数
+void ProcessDataSetFlagA0(longlong dataContext,longlong systemContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int status;
+  longlong dataPointer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    *(undefined1 *)(lStackX_8 + 0x29) = *(undefined1 *)(param_1 + 0x18);
+  status = func_0x00018088c530(*(undefined4 *)(dataContext + 0x10),&dataPointer);
+  if (status == 0) {
+    *(undefined1 *)(dataPointer + 0x29) = *(undefined1 *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    FUN_18088d720(*(undefined8 *)(systemContext + 0x98),dataContext);
   }
   return;
 }
@@ -6133,18 +6134,19 @@ void FUN_180891ca0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180891cf0(longlong param_1,longlong param_2)
-void FUN_180891cf0(longlong param_1,longlong param_2)
+// 函数: void ProcessDataSetFlagA1(longlong dataContext,longlong systemContext)
+// 功能：处理数据并设置标志位0x28，调用系统处理函数
+void ProcessDataSetFlagA1(longlong dataContext,longlong systemContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int status;
+  longlong dataPointer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    *(undefined1 *)(lStackX_8 + 0x28) = *(undefined1 *)(param_1 + 0x18);
+  status = func_0x00018088c530(*(undefined4 *)(dataContext + 0x10),&dataPointer);
+  if (status == 0) {
+    *(undefined1 *)(dataPointer + 0x28) = *(undefined1 *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    FUN_18088d720(*(undefined8 *)(systemContext + 0x98),dataContext);
   }
   return;
 }
