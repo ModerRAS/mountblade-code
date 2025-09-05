@@ -650,7 +650,7 @@ void* InputSystemConfiguration;                  // 输入系统配置
 void* GameSubsystemMainEntryPoint;              // 游戏子系统主入口点
 void* SubsystemMainContext;                     // 子系统主上下文
 void* InputSystemDataTable;                     // 输入系统数据表
-uint8_t InputSystemStatusFlags;                  // 输入系统状态标志
+uint8_t InputSystemOperationStatusFlags;         // 输入系统操作状态标志
 void* InputSystemMainConfiguration;             // 输入系统主配置
 void* InputSystemDeviceConfigurationTable;      // 输入系统设备配置表
 void* InputSystemMappingConfigurationTable;     // 输入系统映射配置表
@@ -3417,7 +3417,7 @@ void InitializeSystemStringProcessor(void)
 {
   uint64_t SystemStringParameter;
   void* StringProcessCallbackPointer;
-  uint8_t* StringDataBufferPointer;
+  uint8_t* StringDataBufferReference;
   uint32_t StringDataBufferSize;
   uint8_t StringDataBuffer [136];
   
@@ -5179,7 +5179,7 @@ void InitializeSystemStringProcessor(void)
 {
   long long StringParameter;
   void** CallbackPointer;
-  uint8_t* DataBufferPointer;
+  uint8_t* DataBufferReference;
   int DataBufferSize;
   uint8_t DataBuffer[136];
   
@@ -26945,8 +26945,8 @@ void InitializeSystemDataStructures(void)
   uint systemIndex;
   ulong long SystemOperationTimestamp;
   float systemFloatValue;
-  double SystemFloatingPointValue1;
-  double SystemFloatingPointValue2;
+  double SystemFloatingPointValuePrimary;
+  double SystemFloatingPointValueSecondary;
   long long **stackDoublePointerX8;
   long long *stackPointerX10;
   long long *stackPointerX18;
