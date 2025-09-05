@@ -302,7 +302,7 @@
  * 
  * @note 原始函数名：FUN_180896800
  */
-#define InitializeDataBlockPointer FUN_180896800
+#define InitializeDataBlockWithMemoryRelease InitializeDataBlockWithMemoryRelease
 
 /**
  * @brief 初始化数据块指针A1
@@ -312,7 +312,7 @@
  * 
  * @note 原始函数名：FUN_180896830
  */
-#define InitializeDataBlockPointerEx FUN_180896830
+#define InitializeDataBlockWithCleanup InitializeDataBlockWithCleanup
 
 /**
  * @brief 处理数据缓冲区A0
@@ -50002,9 +50002,9 @@ void CleanupSystemResources(undefined8 systemContext,longlong contextHandle)
   longlong resourceIterator;
   ulonglong cleanupFlags;
   
-  plVar4 = *(longlong **)(param_2 + 0x60);
-  pvalidationStatus = (undefined8 *)*plVar4;
-  if (pvalidationStatus != (undefined8 *)0x0) {
+  contextPointer = *(longlong **)(contextHandle + 0x60);
+  validationStatus = (undefined8 *)*contextPointer;
+  if (validationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
     }
