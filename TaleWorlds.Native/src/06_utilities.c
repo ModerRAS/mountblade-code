@@ -22,7 +22,7 @@
 // 内存管理相关常量
 #define MemoryAddressAlignmentMask 0xffffffffffc00000    // 内存地址对齐掩码
 #define MemoryResourceTablePointerOffset 0x70           // 内存资源表指针偏移量
-#define MemoryResourceDataProcessingOffset 0x80                   // 内存资源数据偏移量
+#define MemoryResourceDataOffset 0x80                   // 内存资源数据偏移量
 #define MemoryResourceEntrySize 0x50                    // 内存资源条目大小
 #define MemoryResourceHeaderSize 0x18                   // 内存资源头部大小
 #define MemoryResourceStatusOffset 0xe                   // 内存资源状态偏移量
@@ -38,10 +38,10 @@
 
 // 对象上下文相关常量
 #define ObjectContextOffset 0x10                          // 对象上下文偏移量
-#define ObjectContextSecondaryDataProcessingOffset 0x18             // 对象上下文次要数据偏移量
-#define ObjectContextExtendedDataProcessingOffset 0x30              // 对象上下文扩展数据偏移量
+#define ObjectContextSecondaryDataOffset 0x18             // 对象上下文次要数据偏移量
+#define ObjectContextExtendedDataOffset 0x30              // 对象上下文扩展数据偏移量
 #define ObjectContextValidationOffset 0x10                // 对象上下文验证偏移量
-#define ObjectContextHandleDataProcessingOffset 0x18                // 对象上下文句柄数据偏移量
+#define ObjectContextHandleDataOffset 0x18                // 对象上下文句柄数据偏移量
 #define ObjectContextConfigDataProcessingOffset 0x1c                // 对象上下文配置数据偏移量
 #define ObjectContextStatusOffset 8                       // 对象上下文状态偏移量
 #define ObjectVirtualMethodTableOffset 800                // 对象虚拟方法表偏移量
