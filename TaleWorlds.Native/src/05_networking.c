@@ -287,9 +287,9 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 
 // 网络连接状态标志
 #define NetworkHealthGoodFlag 0x01                          // 连接健康状态良好标志
-#define NetworkStabilityHighFlag 0x01                         // 连接稳定性高标志
-#define NetworkPerformanceGoodFlag 0x01                       // 连接性能良好标志
-#define NetworkQueueEnabledFlag 0x01                          // 队列启用标志别名
+#define NetworkStabilityHighFlag 0x02                         // 连接稳定性高标志
+#define NetworkPerformanceGoodFlag 0x04                       // 连接性能良好标志
+#define NetworkQueueEnabledFlag 0x08                          // 队列启用标志别名
 #define NetworkPacketStatusPrimaryOffset 0x38                  // 网络数据包主状态偏移量
 #define NetworkPacketStatusSecondaryOffset 0x3c                // 网络数据包次级状态偏移量
 #define NetworkPacketStatusTertiaryOffset 0x40                 // 网络数据包第三级状态偏移量
