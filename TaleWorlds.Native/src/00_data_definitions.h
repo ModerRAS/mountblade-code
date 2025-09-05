@@ -12741,7 +12741,7 @@ MemoryAllocationReset:
     if (LoopCounter == 0) {
       return 0;
     }
-    if (LoopCounter != 2) goto Label_1808c72a7;
+    if (LoopCounter != 2) goto MemoryAllocationReset;
     MemoryAllocationResult = 1;
   }
   StringProcessingResultPointer = (uint *)GetStringProcessingResult();
