@@ -7831,7 +7831,7 @@ void InitializeSystemFloatingPointCalculator(void)
           }
           else {
             CalculatedValue = 1.0 - (float)InnerOffsetValue / (float)RangeOffset;
-            CalculatedValue = SQRT(CalculatedValue) * CalculatedValue;
+            CalculatedValue = CalculateSquareRoot(CalculatedValue) * CalculatedValue;
           }
         }
         *TableEntryPointer = CalculatedValue;
@@ -7847,7 +7847,7 @@ void InitializeSystemFloatingPointCalculator(void)
   CurrentTableAddress = (float *)SYSTEM_FLOAT_TABLE_SECOND_START_ADDRESS;
   do {
     InnerLoopCounter = (int)BaseCounter + 1;
-    *CurrentTableAddress = 1.0 / SQRT((float)BaseCounter) + 1.0 / SQRT((float)BaseCounter);
+    *CurrentTableAddress = 1.0 / CalculateSquareRoot((float)BaseCounter) + 1.0 / CalculateSquareRoot((float)BaseCounter);
     CurrentTableAddress = CurrentTableAddress + 1;
     BaseCounter = (ulong long)InnerLoopCounter;
   } while (InnerLoopCounter < 0x40);
@@ -27140,7 +27140,7 @@ void SystemCleanupHandler(void)
   *(uint32_t *)(resourceMemoryOffset + 0x248) = systemOperationResult;
   systemOperationResult = CalculateLogarithmBase2();
   *(uint32_t *)(resourceMemoryOffset + 0x24c) = systemOperationResult;
-  systemOperationResult = log2f(*(float *)(SystemNodeManagerPointer + 0x2220) * 0.01);
+  systemOperationResult = CalculateLogarithmBase2(*(float *)(SystemNodeManagerPointer + 0x2220) * 0.01);
   *(uint32_t *)(resourceMemoryOffset + 0x23c) = systemOperationResult;
   *(void* *)(resourceMemoryOffset + 0x254) = 0x3f8000003f800000;
   systemMemoryPoolHandle = 0x3f8000003f800000;
@@ -28490,7 +28490,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
     isSystemConfigured = false;
   }
   if (isSystemConfigured) {
-    scaleFactorX = (float)exp2f(SystemNodeManagerPointer,contextParameter,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
+    scaleFactorX = (float)CalculateExponentialBase2(SystemNodeManagerPointer,contextParameter,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
     if (*(char *)(SystemResourceManager + 0x22d) == '\0') {
       SystemMemoryPointer = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
       if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValuePrimary) &&
@@ -28498,11 +28498,11 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
         SystemDataValueSecondary = ConfigurationDataPointer;
         InitializeSystemDataPointer(&SystemDataValuePrimary);
       }
-      calculationResultPrimary = (float)exp2f();
-      InterpolationFactorAlpha = (float)exp2f();
-      InterpolationFactorBeta = (float)exp2f();
-      InterpolationFactorGamma = (float)exp2f();
-      InterpolationFactorDelta = (float)exp2f();
+      calculationResultPrimary = (float)CalculateExponentialBase2();
+      InterpolationFactorAlpha = (float)CalculateExponentialBase2();
+      InterpolationFactorBeta = (float)CalculateExponentialBase2();
+      InterpolationFactorGamma = (float)CalculateExponentialBase2();
+      InterpolationFactorDelta = (float)CalculateExponentialBase2();
       SystemDataValueSecondary = (1.0 - calculationResultPrimary) * SystemDataValueSecondary + calculationResultPrimary * ConfigurationDataPointer;
       calculationResultSecondary = (float)*(int *)(SystemNodeManagerPointer + 0x21b0);
       if (*(float *)(SystemGlobalStatusFlags + 0x1f8) <= (float)*(int *)(SystemNodeManagerPointer + 0x21b0)) {
@@ -28535,7 +28535,7 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
         InterpolationFactorX = 1.0;
       }
       *(float *)(SystemResourceManager + 0x238) = InterpolationFactorX;
-      ThreadCreationFlags = log2f();
+      ThreadCreationFlags = CalculateLogarithmBase2();
       *(uint32_t *)(SystemResourceManager + 0x248) = ThreadCreationFlags;
       *(float *)(SystemResourceManager + 0x250) = SystemDataValueSecondary;
       SystemAllocationFlags = SystemRenderManagerPointer;
@@ -49914,7 +49914,7 @@ void ConfigureSystemResourceNode(void* SystemResourceManager,void* Configuration
   long long ResourceConfigurationOffset;
   long long MemoryOffset;
   
-  SystemProcessBufferPtr = SUB168(SEXT816(ResourceConfigurationValue) * SEXT816(AdditionalParameter - ResourceConfigurationOffset),8);
+  SystemProcessBufferPtr = SubtractWith168BitSignExtension(SignExtend8To16Bits(ResourceConfigurationValue) * SignExtend8To16Bits(AdditionalParameter - ResourceConfigurationOffset),8);
   SystemProcessBufferPtr = (SystemProcessingBufferPointer >> 7) - (SystemProcessingBufferPointer >> 0x3f);
   if (SystemProcessBufferPtr == 0) {
     SystemProcessBufferPtr = 1;
@@ -56648,7 +56648,7 @@ void InitializeSystemGlobalState(void)
     }
     *(void* *)(SystemResourceHandle + 0x40) = StringIterator;
       memcpy(*(void* *)(SystemResourceHandle + 0x48),*(void* *)(systemDataIndexPtr + 8),
-           (long long)((int)CONCAT62(systemParameter,basePointer) * 4));
+           (long long)((int)Concatenate62BitValues(systemParameter,basePointer) * 4));
   }
     SystemCleanupFunction();
 }
@@ -57803,7 +57803,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager, 
                   RatioValue = MagnitudeSquared;
                 }
                 if ((RatioValue - 1.0 <= -1e-06) || (1e-06 <= RatioValue - 1.0)) {
-                  RatioValue = SQRT(RatioValue) * *(float *)(ResourceMemoryOffset + 0x2a4);
+                  RatioValue = CalculateSquareRoot(RatioValue) * *(float *)(ResourceMemoryOffset + 0x2a4);
                 }
                 else {
                   RatioValue = *(float *)(ResourceMemoryOffset + 0x2a4) * 1.0;
@@ -57818,7 +57818,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager, 
                 InterpolationFactorX = 0.0;
               }
               if (InterpolationFactorA * InterpolationFactorA < InterpolationFactorW) {
-                InterpolationFactorZ = SQRT(InterpolationFactorW) + RatioValue;
+                InterpolationFactorZ = CalculateSquareRoot(InterpolationFactorW) + RatioValue;
               }
               PrimaryResourceHandle0 = PrimaryResourceHandle0 + 2;
             } while (PrimaryResourceHandle0 < (long long *)resourcePoolPointer[8]);
@@ -58258,7 +58258,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
           offsetValue = scalingFactor;
         } while (operationCode != 0);
       }
-      SystemResourceManager[0xa9] = SQRT(scalingFactor);
+      SystemResourceManager[0xa9] = CalculateSquareRoot(scalingFactor);
     }
     if (systemFloatPointer != (float *)0x0) {
       while( true ) {
@@ -61198,18 +61198,18 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   VectorDotProduct38 = MatrixElement1 * InputFloatValue5 + InputFloatValue1 * floatValue6 + InputFloatValue2 * ScaleValue;
   MatrixElement1 = *(float *)(MemoryBlockAddress + 0x138);
   MatrixElement3 = *(float *)(MemoryBlockAddress + 0x140);
-  FloatStack40 = AudioInterpolationCoeff1 * InputFloatValue3 + MatrixElement2 * MatrixElement4 + MatrixElement1 * floatValue7;
-  FloatStack44 = AudioInterpolationCoeff1 * InputFloatValue4 + MatrixElement2 * BaseValue + MatrixElement1 * CalculationResult8;
-  FloatStack48 = AudioInterpolationCoeff1 * InputFloatValue5 + MatrixElement2 * floatValue6 + MatrixElement1 * ScaleValue;
+  InterpolatedValue40 = AudioInterpolationCoeff1 * InputFloatValue3 + MatrixElement2 * MatrixElement4 + MatrixElement1 * floatValue7;
+  ScaledVectorResult44 = AudioInterpolationCoeff1 * InputFloatValue4 + MatrixElement2 * BaseValue + MatrixElement1 * CalculationResult8;
+  NormalizedVector48 = AudioInterpolationCoeff1 * InputFloatValue5 + MatrixElement2 * floatValue6 + MatrixElement1 * ScaleValue;
   MatrixElement1 = *(float *)(MemoryBlockAddress + 0x148);
   MatrixElement2 = *(float *)(MemoryBlockAddress + 0x150);
-  FloatStack50 = ConfigurationFlag * InputFloatValue3 + MatrixElement3 * MatrixElement4 + MatrixElement1 * floatValue7;
-  FloatStack54 = ConfigurationFlag * InputFloatValue4 + MatrixElement3 * BaseValue + MatrixElement1 * CalculationResult8;
-  FloatStack58 = ConfigurationFlag * InputFloatValue5 + MatrixElement3 * floatValue6 + MatrixElement1 * ScaleValue;
+  ConfiguredTransform50 = ConfigurationFlag * InputFloatValue3 + MatrixElement3 * MatrixElement4 + MatrixElement1 * floatValue7;
+  ConfiguredVectorResult54 = ConfigurationFlag * InputFloatValue4 + MatrixElement3 * BaseValue + MatrixElement1 * CalculationResult8;
+  ConfiguredNormalizedValue58 = ConfigurationFlag * InputFloatValue5 + MatrixElement3 * floatValue6 + MatrixElement1 * ScaleValue;
   MatrixElement1 = *(float *)(MemoryBlockAddress + 0x158);
-  FloatStack60 = AdditionalParameter * InputFloatValue3 + MatrixElement2 * MatrixElement4 + MatrixElement1 * floatValue7 + systemDataIndexPtr[0xc];
-  FloatStack64 = AdditionalParameter * InputFloatValue4 + MatrixElement2 * BaseValue + MatrixElement1 * CalculationResult8 + systemDataIndexPtr[0xd];
-  FloatStack68 = AdditionalParameter * InputFloatValue5 + MatrixElement2 * floatValue6 + MatrixElement1 * ScaleValue + systemDataIndexPtr[0xe];
+  AdditionalTransformResult60 = AdditionalParameter * InputFloatValue3 + MatrixElement2 * MatrixElement4 + MatrixElement1 * floatValue7 + systemDataIndexPtr[0xc];
+  AdditionalVectorResult64 = AdditionalParameter * InputFloatValue4 + MatrixElement2 * BaseValue + MatrixElement1 * CalculationResult8 + systemDataIndexPtr[0xd];
+  AdditionalFinalValue68 = AdditionalParameter * InputFloatValue5 + MatrixElement2 * floatValue6 + MatrixElement1 * ScaleValue + systemDataIndexPtr[0xe];
   SystemStackParameter28 = InputParameterE8;
   SystemDataResourcePointer = 0x3f800000;
   SystemDataFlag2 = 0;
@@ -64356,7 +64356,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
           OffsetValue = floatValue6;
         } while (ThreadContext != 0);
       }
-      SystemResourceManager[0xa9] = SQRT(floatValue6);
+      SystemResourceManager[0xa9] = CalculateSquareRoot(floatValue6);
     }
     if (SystemFloatPointer != (float *)0x0) {
       while( true ) {
@@ -64548,13 +64548,13 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
       HashEntryPointer2 = HashEntryPointer2 + 1;
     }
   }
-  aSystemResourceSize = ZEXT816(0);
+  aSystemResourceSize = ZeroExtend8To16Bits(0);
   SystemThreadContext = 0;
   ShaderParameterCount = 3;
   SystemThreadHandlePrimary = (ulong long)*(ushort *)(SystemResourceManager + 0xc0) + 1;
   if (SystemThreadHandlePrimary == 0) {
     SystemThreadHandlePrimary = 0;
-    aSystemResourceSize = ZEXT816(0) << 0x40;
+    aSystemResourceSize = ZeroExtend8To16Bits(0) << 0x40;
   }
   else {
     ProcessThreadHandle(aSystemResourceSize,SystemThreadHandlePrimary);
@@ -64656,7 +64656,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
         BaseValue0 = (MatrixElement46 - BaseValue1) * (matrixElement - BaseValue) - (BaseValue2 - BaseValue) * (BaseValue3 - BaseValue1);
         BaseValue1 = MatrixElement49 * (BaseValue3 - BaseValue1) - MatrixElement48 * (MatrixElement46 - BaseValue1);
         MatrixElement48 = MatrixElement48 * (BaseValue2 - BaseValue) - MatrixElement49 * (matrixElement - BaseValue);
-        VectorMagnitude = SQRT(BaseValue1 * BaseValue1 + MatrixElement48 * MatrixElement48 + BaseValue0 * BaseValue0);
+        VectorMagnitude = CalculateSquareRoot(BaseValue1 * BaseValue1 + MatrixElement48 * MatrixElement48 + BaseValue0 * BaseValue0);
         if (VectorMagnitude <= 0.0) {
           MatrixElement48 = 0.0;
           BaseValue1 = 0.0;
@@ -64845,7 +64845,7 @@ ResourceInitializationLoop:
                 BaseValue2 = *(float *)(ResourceMemoryOffset + 4);
                 BaseValue1 = *(float *)(ResourceMemoryOffset + 0xc);
                 matrixElement = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + MatrixElement48 * MatrixElement48;
-                resourceAddress = rsqrtss(ZEXT416((uint)matrixElement),ZEXT416((uint)matrixElement));
+                resourceAddress = CalculateReciprocalSquareRoot(ZeroExtend4To16Bits((uint)matrixElement),ZeroExtend4To16Bits((uint)matrixElement));
                 MatrixElement46 = resourceAddress.HighWord;
                 matrixElement = MatrixElement46 * 0.5 * (3.0 - matrixElement * MatrixElement46 * MatrixElement46);
                 *(float *)(ResourceMemoryOffset + 4) = matrixElement * BaseValue2;
@@ -64855,7 +64855,7 @@ ResourceInitializationLoop:
                 BaseValue2 = *(float *)(ResourceMemoryOffset + 0x34);
                 BaseValue1 = *(float *)(ResourceMemoryOffset + 0x3c);
                 matrixElement = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + MatrixElement48 * MatrixElement48;
-                resourceAddress = rsqrtss(ZEXT416((uint)matrixElement),ZEXT416((uint)matrixElement));
+                resourceAddress = CalculateReciprocalSquareRoot(ZeroExtend4To16Bits((uint)matrixElement),ZeroExtend4To16Bits((uint)matrixElement));
                 MatrixElement46 = resourceAddress.HighWord;
                 matrixElement = MatrixElement46 * 0.5 * (3.0 - matrixElement * MatrixElement46 * MatrixElement46);
                 *(float *)(ResourceMemoryOffset + 0x34) = BaseValue2 * matrixElement;
@@ -64876,7 +64876,7 @@ ResourceInitializationLoop:
                 BaseValue2 = *pMagnitudeSquared;
                 BaseValue1 = pMagnitudeSquared[2];
                 matrixElement = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + MatrixElement48 * MatrixElement48;
-                resourceAddress = rsqrtss(ZEXT416((uint)matrixElement),ZEXT416((uint)matrixElement));
+                resourceAddress = CalculateReciprocalSquareRoot(ZeroExtend4To16Bits((uint)matrixElement),ZeroExtend4To16Bits((uint)matrixElement));
                 MatrixElement46 = resourceAddress.HighWord;
                 matrixElement = MatrixElement46 * 0.5 * (3.0 - matrixElement * MatrixElement46 * MatrixElement46);
                 *pMagnitudeSquared = BaseValue2 * matrixElement;
@@ -65076,11 +65076,11 @@ SystemConfigurationAllocation:
               BaseValue2 = *(float *)(ResourceDataPosition + 4 + SystemThreadHandleSecondary);
               BaseValue1 = *(float *)(ResourceDataPosition + 0xc + SystemThreadHandleSecondary);
               matrixElement = BaseValue2 * BaseValue2 + MatrixElement48 * MatrixElement48 + BaseValue1 * BaseValue1;
-              if (SQRT(matrixElement) == 0.0) {
+              if (CalculateSquareRoot(matrixElement) == 0.0) {
                 *(uint8_t (*) [16])(ResourceDataPosition + 4 + SystemThreadHandleSecondary) = SystemZeroVectorData;
               }
               else {
-                resourceAddress = rsqrtss(ZEXT416((uint)matrixElement),ZEXT416((uint)matrixElement));
+                resourceAddress = CalculateReciprocalSquareRoot(ZeroExtend4To16Bits((uint)matrixElement),ZeroExtend4To16Bits((uint)matrixElement));
                 MatrixElement46 = resourceAddress.HighWord;
                 matrixElement = MatrixElement46 * 0.5 * (3.0 - matrixElement * MatrixElement46 * MatrixElement46);
                 *(float *)(ResourceDataPosition + 4 + SystemThreadHandleSecondary) = BaseValue2 * matrixElement;
@@ -65424,7 +65424,7 @@ LabelExpandSystemThread:
         SystemResourceOffsetPointer9 = pSystemMemoryAllocationOffset168;
         GlobalDataFlags = (uint)resourceManagerHandle;
         StackOperationValue = (uint32_t)((ulong long)resourceManagerHandle >> 0x20);
-        SystemOperationFlag1b8._0_4_ = SUB84(MatrixPointer1F8,0);
+        SystemOperationFlag1b8._0_4_ = SubtractWith84BitOperation(MatrixPointer1F8,0);
         SystemOperationFlag1b8.LowPart = (uint32_t)((ulong long)MatrixPointer1F8 >> 0x20);
         MatrixPointer1B0 = MatrixPointer208;
         StackAllocationSize = 3;
@@ -66523,7 +66523,7 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
   if (LocalResourceOffset != (long long *)0x0) {
     (**(code **)(*LocalResourceOffset + 0x28))(LocalResourceOffset);
   }
-  SystemConfigurationFlag1 = CONCAT31(SystemConfigurationFlag1.Byte3,ConfigurationDataPointer);
+  SystemConfigurationFlag1 = Concatenate31BitValues(SystemConfigurationFlag1.Byte3,ConfigurationDataPointer);
   SystemResourceManager1 = SystemResourceManager;
   if ((void* *)*SystemResourceManager == &SystemResourceDataTableC) {
     LOCK();
@@ -70790,7 +70790,7 @@ void* NormalizeAudioData(void)
     currentAudioSample = currentAudioSample + 1;
     audioNormalizedValue = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (long long)(int)processedAudioBit * 8);
     audioWeightedSum2 = *(float *)(*(long long *)(audioProcessingContext + TRANSFORM_CONTEXT_OFFSET_218) + (long long)(int)processedAudioBit * 8);
-    audioNormalizedValue = SQRT(audioWeightedSum2 * audioWeightedSum2 + audioNormalizedValue * audioNormalizedValue) * 2.5;
+    audioNormalizedValue = CalculateSquareRoot(audioWeightedSum2 * audioWeightedSum2 + audioNormalizedValue * audioNormalizedValue) * 2.5;
     if (audioMaxAmplitude <= audioNormalizedValue) {
       audioNormalizedValue = audioMaxAmplitude;
     }
