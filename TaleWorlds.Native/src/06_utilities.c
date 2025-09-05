@@ -50042,10 +50042,15 @@ void CleanupExceptionResources(undefined8 exceptionContext, longlong cleanupCont
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180906c00(void)
+/**
+ * @brief 重置系统事件状态
+ * 
+ * 该函数负责重置系统事件状态，清理事件标志并执行相关操作
+ */
+void ResetSystemEventState(void)
 
 {
-  byte bVar1;
+  byte shiftBits;
   
   EnterCriticalSection(0x180c82210);
   _DAT_180d49158 = 0;
@@ -50057,11 +50062,11 @@ void Unwind_180906c00(void)
     ResetEvent(_DAT_180c82240);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  shiftBits = (byte)_DAT_180bf00a8 & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> shiftBits |
+            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - shiftBits))(0x180c82238);
   return;
 }
 
