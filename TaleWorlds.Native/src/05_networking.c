@@ -84,6 +84,10 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define NetworkSystemDebugFlag 0x80                           // 网络系统调试标志
 #define NetworkSystemStatusOffset 0x10                        // 网络系统状态偏移量
 
+// 网络序列号和确认号常量
+#define NetworkSequenceInitialValue 0                          // 网络序列号初始值
+#define NetworkAckInitialValue 0                               // 网络确认号初始值
+
 // 连接上下文缓冲区索引常量
 #define ConnectionStateIndex 0                                // 连接状态索引
 #define ConnectionIdentifierIndex 1                             // 连接标识符索引
@@ -2263,7 +2267,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
       if (NetworkConnectionStatusBuffer != NULL) {
         int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionIterationCounter = (long long)ActiveConnectionCount;
-        int64_t ConnectionContextAddress = 0;  // 连接上下文基地址
+        int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址
         NetworkConnectionStatus *NetworkConnectionStatusBufferPointer = NetworkConnectionStatusBuffer;
           
           // 循环处理所有连接数据
