@@ -619,7 +619,7 @@ void InitializeSystemMemoryManager(void);
  * @param bufferContext 缓冲区上下文，包含缓冲区的相关信息
  * @return 分配器指针，返回初始化后的内存分配器指针
  */
-void* InitializeSystemMemoryAllocator(long long MemoryHandle, void* BufferContext);
+void* InitializeSystemMemoryAllocator(long long memoryHandle, void* bufferContext);
 
 /**
  * @brief 初始化系统数据
@@ -631,7 +631,7 @@ void* InitializeSystemMemoryAllocator(long long MemoryHandle, void* BufferContex
  * @param TemplateContext 模板上下文，包含数据模板的相关信息
  * @return 无返回值
  */
-void InitializeSystemData(void* DataContext, void* TemplateContext);
+void InitializeSystemData(void* dataContext, void* templateContext);
 
 /**
  * @brief 验证系统配置
@@ -643,7 +643,7 @@ void InitializeSystemData(void* DataContext, void* TemplateContext);
  * @param ConfigurationContext 配置上下文，包含配置的相关信息
  * @return 验证结果，返回0表示成功，非0表示失败
  */
-int VerifySystemConfiguration(long long ConfigurationFlags, void* ConfigurationContext);
+int VerifySystemConfiguration(long long configurationFlags, void* configurationContext);
 
 /**
  * @brief 获取系统状态标志
@@ -39027,8 +39027,8 @@ void InitializeAndConfigureSystemResources(void)
   SystemResourceDataSize = 4;
   strcpy_s(SystemConfigurationBuffer,0x10,&SystemStringData1);
   SystemMemoryAllocationOffsetPrimary = SystemAllocationFlags + 0x78;
-  SystemMemoryAllocationOffset190 = SystemAllocationFlags + 0x548;
-  SystemMemoryAllocationOffset188 = SystemAllocationFlags + 0x68;
+  SystemMemoryAllocationOffsetExtended = SystemAllocationFlags + 0x548;
+  SystemMemoryAllocationOffsetStandard = SystemAllocationFlags + 0x68;
   ResourceAllocationContext = ProcessSystemResources(ResourceAllocationContext,&SystemResourceHandleSecondary,0,0);
   *(void* *)*pThreadLocalStorageEntry = ResourceAllocationContext;
   SystemResourceHandleSecondary = &SystemMemoryAllocatorReference;
@@ -39040,8 +39040,8 @@ void InitializeAndConfigureSystemResources(void)
   SystemProcessFlags = ResourceAddressPointer;
   strcpy_s(SystemSecondaryBuffer120,0x10,&SystemStringData2);
   SystemMemoryAllocationOffsetPrimary = SystemAllocationFlags + 0x78;
-  SystemMemoryAllocationOffset190 = SystemAllocationFlags + 0x548;
-  SystemMemoryAllocationOffset188 = SystemAllocationFlags + 0x68;
+  SystemMemoryAllocationOffsetExtended = SystemAllocationFlags + 0x548;
+  SystemMemoryAllocationOffsetStandard = SystemAllocationFlags + 0x68;
   InitializeSystemDataMemoryContext(ResourceAddressPointer,&SystemMemoryContext,1);
   *ResourceAddressPointer = &SystemStringFormatTemplateA;
   *(void* **)((long long)*pThreadLocalStorageEntry + 8) = ResourceAddressPointer;
@@ -39069,7 +39069,7 @@ void InitializeAndConfigureSystemResources(void)
       }
       ResourceAllocationContext = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
       SystemMemoryAllocationOffset188 = SystemMemoryAllocationOffset178 + 0x68;
-      SystemMemoryAllocationOffset190 = SystemMemoryAllocationOffset178 + 0x548;
+      SystemMemoryAllocationOffsetExtended = SystemMemoryAllocationOffset178 + 0x548;
       SystemMemoryAllocationOffsetPrimary = SystemMemoryAllocationOffset178 + 0x78;
       ResourceAllocationContext = ExtendSystemDataMemoryContext(ResourceAllocationContext,&SystemResourceHandleSecondary,2,SystemProcessingResult);
       *(void* *)((long long)*pThreadLocalStorageEntry + SystemAllocationFlags * 8) = ResourceAllocationContext;
@@ -45458,7 +45458,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   uint32_t SystemThreadCleanupFlag;
   void* CalculationFlagsPrimary;
   void* *pSystemStackFlag;
-  long long SystemMemoryAllocationOffset190;
+  long long SystemMemoryAllocationOffsetExtended;
   uint32_t ContextManagerPointer;
   void* *pSystemCalculationFlags;
   void* *pSystemOperationFlags;
@@ -45668,10 +45668,10 @@ SystemIndexCheckPoint:
     systemDataBuffer = 0;
     dataBufferContext = &SystemMemoryAllocatorReference;
     pSystemStackFlag = &SystemGlobalDataReference;
-    if (SystemMemoryAllocationOffset190 != 0) {
+    if (SystemMemoryAllocationOffsetExtended != 0) {
         SystemCleanupFunction();
     }
-    SystemMemoryAllocationOffset190 = 0;
+    SystemMemoryAllocationOffsetExtended = 0;
     ContextManagerPointer = 0;
     pSystemStackFlag = &SystemMemoryAllocatorReference;
   }
