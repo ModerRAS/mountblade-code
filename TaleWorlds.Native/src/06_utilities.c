@@ -14280,15 +14280,15 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
     }
     functionReturnValue = ProcessDataValidationA0(calculatedOffset,param_1 + 0xa0,param_1 + 0x10);
     if ((int)functionReturnValue == 0) {
-      fVar1 = *(float *)(param_1 + 0x10);
-      if ((fVar1 < *(float *)(calculatedOffset + 0x38)) ||
-         (*(float *)(calculatedOffset + 0x3c) <= fVar1 && fVar1 != *(float *)(calculatedOffset + 0x3c))) {
+      comparisonValue = *(float *)(param_1 + 0x10);
+      if ((comparisonValue < *(float *)(calculatedOffset + 0x38)) ||
+         (*(float *)(calculatedOffset + 0x3c) <= comparisonValue && comparisonValue != *(float *)(calculatedOffset + 0x3c))) {
         functionReturnValue = 0x1c;
       }
       else {
-        functionReturnValue = ValidateOperationRangeA0(param_2 + 0x60,auStackX_18[0]);
+        functionReturnValue = ValidateOperationRangeA0(param_2 + 0x60,operationFlags[0]);
         if ((int)functionReturnValue == 0) {
-          pmemoryBaseAddress = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
+          pmemoryBaseAddress = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,stackBuffer,operationFlags[0]);
           *(undefined8 *)(param_1 + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
           CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -14305,13 +14305,13 @@ undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
 undefined8 CleanupSystemB0(void)
 
 {
-  float fVar1;
+  float floatValue;
   longlong dataContext;
   undefined8 validationStatus;
   undefined8 *pmemoryBaseAddress;
-  longlong unaff_RDI;
-  longlong registerR14;
-  undefined4 in_stack_00000050;
+  longlong systemContext;
+  longlong operationContext;
+  undefined4 stackParameter;
   
   dataContext = GetSystemContextHandle();
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
