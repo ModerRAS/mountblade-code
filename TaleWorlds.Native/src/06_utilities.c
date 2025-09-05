@@ -23345,7 +23345,7 @@ OperationLabelC:
   }
   *(undefined4 *)(param_1 + 0x30) = uVar4;
   uVar3 = uVar6;
-LAB_18089c878:
+OperationLabelD:
   if ((int)uVar3 != 0) {
     return uVar3;
   }
@@ -23697,7 +23697,7 @@ OperationLabelC:
   }
   *(uint *)(unaff_R13 + 0x30) = uVar5;
   uVar4 = uVar7;
-LAB_18089c878:
+OperationLabelD:
   if ((int)uVar4 != 0) {
     return uVar4;
   }
@@ -36000,7 +36000,15 @@ void Unwind_180903990(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_1809039b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 异常处理验证函数A0
+ * 验证异常处理上下文并执行相应的清理操作
+ * @param exceptionContext 异常上下文参数
+ * @param contextPointer 上下文指针参数
+ * @param callbackParam 回调参数
+ * @param exceptionData 异常数据
+ */
+void ValidateExceptionContextA0(undefined8 exceptionContext, longlong contextPointer, undefined8 callbackParam, undefined8 exceptionData)
 
 {
   longlong validationContext;
