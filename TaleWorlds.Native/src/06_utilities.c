@@ -7852,33 +7852,33 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
   dataBufferPtr = 0;
   infFlag3 = 0;
   infFlag4 = infFlag3;
-  if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
-    iVar9 = 0x1d;
+  if ((*(uint *)(dataPtr + 0x20) & 0x7f800000) == 0x7f800000) {
+    infFlag4 = 0x1d;
   }
-  iVar6 = iVar8;
-  if ((*(uint *)(param_1 + 0x1c) & 0x7f800000) == 0x7f800000) {
-    iVar6 = 0x1d;
+  infFlag1 = infFlag3;
+  if ((*(uint *)(dataPtr + 0x1c) & 0x7f800000) == 0x7f800000) {
+    infFlag1 = 0x1d;
   }
-  iVar7 = iVar8;
-  if ((*(uint *)(param_1 + 0x18) & 0x7f800000) == 0x7f800000) {
-    iVar7 = 0x1d;
+  infFlag2 = infFlag3;
+  if ((*(uint *)(dataPtr + 0x18) & 0x7f800000) == 0x7f800000) {
+    infFlag2 = 0x1d;
   }
-  if ((iVar9 != 0 || iVar6 != 0) || iVar7 != 0) {
+  if ((infFlag4 != 0 || infFlag1 != 0) || infFlag2 != 0) {
     return 0x1f;
   }
-  iVar9 = 0;
-  if ((*(uint *)(param_1 + 0x2c) & 0x7f800000) == 0x7f800000) {
-    iVar8 = 0x1d;
+  infFlag4 = 0;
+  if ((*(uint *)(dataPtr + 0x2c) & 0x7f800000) == 0x7f800000) {
+    infFlag3 = 0x1d;
   }
-  iVar6 = iVar9;
-  if ((*(uint *)(param_1 + 0x28) & 0x7f800000) == 0x7f800000) {
-    iVar6 = 0x1d;
+  infFlag1 = infFlag4;
+  if ((*(uint *)(dataPtr + 0x28) & 0x7f800000) == 0x7f800000) {
+    infFlag1 = 0x1d;
   }
-  iVar7 = iVar9;
-  if ((*(uint *)(param_1 + 0x24) & 0x7f800000) == 0x7f800000) {
-    iVar7 = 0x1d;
+  infFlag2 = infFlag4;
+  if ((*(uint *)(dataPtr + 0x24) & 0x7f800000) == 0x7f800000) {
+    infFlag2 = 0x1d;
   }
-  if ((iVar8 != 0 || iVar6 != 0) || iVar7 != 0) {
+  if ((infFlag3 != 0 || infFlag1 != 0) || infFlag2 != 0) {
     return 0x1f;
   }
   iVar8 = iVar9;
