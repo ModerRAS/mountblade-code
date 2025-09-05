@@ -2607,6 +2607,10 @@
 // 功能：存储全局异常处理器A12的指针
 #define GlobalExceptionHandlerPointerA12 _DAT_180bf97b0
 
+// 原始变量名：_DAT_180c92050 - 默认异常处理器指针A0
+// 功能：存储默认异常处理器A0的指针
+#define DefaultExceptionHandlerPointerA0 _DAT_180c92050
+
 // 原始变量名：0x180c82210 - 异常临界区
 // 功能：异常处理的临界区对象
 #define ExceptionCriticalSection 0x180c82210
