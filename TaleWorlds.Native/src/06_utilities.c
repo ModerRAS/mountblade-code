@@ -21634,18 +21634,18 @@ void UtilityNoOperationC(void)
 
 
 
-ulonglong FUN_18089b2a0(longlong param_1,undefined8 *param_2)
+ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuffer)
 
 {
-  undefined8 uVar1;
-  undefined4 *puVar2;
-  ulonglong uVar3;
-  uint uVar4;
-  undefined4 uStack_38;
-  undefined4 uStack_34;
-  undefined4 uStack_30;
-  undefined4 uStack_2c;
-  undefined1 auStack_28 [32];
+  undefined8 resultValue;
+  undefined4 *dataPointer;
+  ulonglong operationResult;
+  uint validationStatus;
+  undefined4 bufferValue1;
+  undefined4 bufferValue2;
+  undefined4 bufferValue3;
+  undefined4 bufferValue4;
+  undefined1 tempBuffer [32];
   
   puVar2 = (undefined4 *)FUN_180847820();
   uStack_38 = *puVar2;

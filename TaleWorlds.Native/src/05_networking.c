@@ -999,8 +999,8 @@ void *NetworkConnectionProcessingConfigPointer = &NetworkConnectionProcessingCon
 void *NetworkConnectionTransportConfigPointer = &NetworkConnectionTransportConfig;             // 网络连接传输配置指针，指向传输配置数据
 void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;               // 网络连接协议配置指针，指向协议配置数据
 void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;           // 网络连接验证配置指针，指向验证配置数据
-void *NetworkConnectionRoutingPrimaryConfigPointer = &NetworkConnectionRoutingPrimaryConfig;   // 网络连接路由主要配置指针，指向路由主要配置数据
-void *NetworkConnectionRoutingSecondaryConfigPointer = &NetworkConnectionRoutingSecondaryConfig; // 网络连接路由次要配置指针，指向路由次要配置数据
+void *NetworkConnectionRoutingMainConfigPointer = &NetworkConnectionRoutingMainConfig;       // 网络连接路由主配置指针，指向路由主配置数据
+void *NetworkConnectionRoutingBackupConfigPointer = &NetworkConnectionRoutingBackupConfig;     // 网络连接路由备用配置指针，指向路由备用配置数据
 void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig; // 网络连接路由第三配置指针，指向路由第三配置数据
 void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig; // 网络连接路由第四配置指针，指向路由第四配置数据
 
