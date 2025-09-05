@@ -3996,16 +3996,28 @@
  * @note 原始函数名：InitializeUtilityModule
  */
 void InitializeUtilityModule(void);
+
+/**
+ * @brief 工具模块配置参数
+ */
 uint32_t UtilityModulePrimaryConfiguration;
 uint32_t UtilityModuleSecondaryConfiguration;
 uint32_t UtilityModuleTertiaryConfiguration;
 uint32_t UtilityModuleQuaternaryConfiguration;
 uint32_t UtilityModuleQuinaryConfiguration;
 uint32_t UtilityModuleSenaryConfiguration;
+
+/**
+ * @brief 工具模块激活状态
+ */
 bool UtilityModulePrimaryActivationState;
 uint32_t UtilityModuleSeptenaryConfiguration;
 uint32_t UtilityModuleOctonaryConfiguration;
 bool UtilityModuleSecondaryActivationState;
+
+/**
+ * @brief 工具模块资源指针
+ */
 void* UtilityModulePrimaryResourcePointer;
 void* UtilityModulePrimaryMemoryPointer;
 void* UtilityModuleSecondaryMemoryPointer;
@@ -4015,37 +4027,43 @@ uint32_t UtilityModuleUndenaryConfiguration;
 uint32_t UtilityModuleDuodenaryConfiguration;
 void* UtilityModuleSecondaryResourcePointer;
 
-// 函数: void ResetUtilityPointers1(void)
-// 
-// 重置工具模块指针组1
 /**
- * @brief 清理和重置第一组工具模块相关的指针
+ * @brief 重置工具模块指针组1
  * 
  * 重置工具模块中的第一组指针，清理内存和资源引用
  * 
  * @note 原始函数名：ResetUtilityPointers1
  */
 void ResetUtilityPointers1(void);
+
+/**
+ * @brief 指针重置配置参数
+ */
 uint32_t PrimaryPointerResetConfiguration;
 uint32_t SecondaryPointerResetConfiguration;
 uint32_t TertiaryPointerResetConfiguration;
 uint32_t QuaternaryPointerResetConfiguration;
 
-// 函数: void ResetUtilityPointers2(void)
-// 
-// 重置工具模块指针组2
-// 清理和重置第二组工具模块相关的指针
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 重置工具模块指针组2
+ * 
+ * 清理和重置第二组工具模块相关的指针
+ * 
+ * @note 原始函数名：ResetUtilityPointers2
+ */
 void ResetUtilityPointers2(void);
+
+/**
+ * @brief 工具重置指针值
+ */
 uint32_t UtilityResetPrimaryPointerValue;
 uint32_t UtilityResetSecondaryPointerValue;
 uint32_t UtilityResetTertiaryPointerValue;
 uint32_t UtilityResetQuaternaryPointerValue;
+
+/**
+ * @brief 工具系统状态指示器
+ */
 uint32_t UtilitySystemPrimaryStatusIndicator;
 
 // 异常处理系统全局变量宏定义
