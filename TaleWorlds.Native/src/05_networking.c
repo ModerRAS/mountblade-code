@@ -372,8 +372,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkMagicValidationMask 0x03               // 魔数验证掩码
 #define NetworkPacketFirstMagicValidMask 0x01               // 第一个魔数有效掩码
 #define NetworkPacketSecondMagicValidMask 0x02              // 第二个魔数有效掩码
-#define NetworkValidationSuccess 0x01                       // 验证成功状态
-#define NetworkValidationFailure 0x00                       // 验证失败状态
 #define NetworkIntegrityCheckSuccess 0x01                   // 完整性检查成功
 #define NetworkDataFormatValid 0x01                        // 数据格式有效
 #define NetworkChecksumValid 0x01                           // 校验和有效
@@ -409,7 +407,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络连接默认配置
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
-#define NetworkOperationSuccess 0                              // 网络操作成功状态
 #define NetworkStandardBufferSize 256                         // 标准缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
@@ -908,8 +905,8 @@ uint32_t NetworkEncryptionAlgorithm;                          // 网络加密算
 uint32_t NetworkConnectionCompressionMethod;                  // 网络压缩方法，数据压缩使用的算法方法
 uint32_t NetworkCompressionMethod;                            // 网络压缩方法，系统使用的压缩算法类型
 uint32_t NetworkConnectionSessionTimeoutDuration;             // 网络会话超时持续时间，会话无活动的超时时间
-uint32_t NetworkPacketBufferPointer;                      // 网络数据包缓冲区指针，指向数据包缓冲区的内存地址
-uint32_t NetworkPacketHeaderPointer;                      // 网络数据包头指针，指向数据包头部信息的内存地址
+uint32_t NetworkPacketBuffer;                      // 网络数据包缓冲区，指向数据包缓冲区的内存地址
+uint32_t NetworkPacketHeader;                      // 网络数据包头，指向数据包头部信息的内存地址
 uint32_t NetworkSendBufferSize;                           // 网络发送缓冲区大小，发送缓冲区的当前大小
 uint32_t NetworkReceiveBufferSize;                        // 网络接收缓冲区大小，接收缓冲区的当前大小
 uint32_t NetworkSendBufferCapacity;                       // 网络发送缓冲区容量，发送缓冲区的最大容量
@@ -1946,13 +1943,13 @@ uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
  */
 uint32_t NetworkProcessedPacketIdentifier;          // 已处理的网络连接数据包标识符
 uint32_t NetworkSecurityValidationBuffer;                  // 网络安全验证缓冲区，用于存储安全验证过程中的临时数据
-uint32_t NetworkBufferTemplatePointer;                     // 网络缓冲区模板指针
+uint32_t NetworkBufferTemplate;                     // 网络缓冲区模板
 uint32_t NetworkConnectionDefaultData;                    // 网络连接默认数据
 uint32_t NetworkConnectionSourceAddress;                   // 网络连接源地址
 uint32_t NetworkConnectionArrayIndex;                      // 网络连接数组索引
-uint32_t NetworkPacketArrayPointer;                        // 网络数据包数组指针
-uint32_t NetworkConnectionPrimaryContextPointer;           // 网络连接主上下文指针
-uint32_t NetworkPacketEntryPointer;                        // 网络数据包条目指针
+uint32_t NetworkPacketArray;                        // 网络数据包数组
+uint32_t NetworkConnectionPrimaryContext;           // 网络连接主上下文
+uint32_t NetworkPacketEntry;                        // 网络数据包条目
 uint32_t NetworkConnectionTargetAddress;                   // 网络连接目标地址
 uint32_t NetworkConnectionIndexCounter;                    // 网络连接索引计数器
 uint32_t NetworkConnectionLoopCounter;                     // 网络连接循环计数器
@@ -1967,7 +1964,7 @@ uint32_t NetworkInitializationStatus;                     // 网络初始化状�
 uint32_t NetworkPacketProcessingSize;                            // 网络数据包处理大小
 uint32_t NetworkSystemContext;                             // 网络系统上下文
 uint32_t NetworkConnectionSessionIdentifier;                         // 网络会话标识符
-uint32_t NetworkContextPointer;                            // 网络上下文指针
+uint32_t NetworkContext;                            // 网络上下文
 uint32_t NetworkContextData;                               // 网络上下文数据
 uint32_t NetworkConnectionIdentifier;                     // 网络连接标识符
 uint32_t NetworkConnectionState;                           // 网络连接状态
@@ -1982,7 +1979,7 @@ uint32_t NetworkConnectionValidationStatus;              // 连接验证状态
 uint32_t NetworkConnectionValidationData;                // 连接验证数据
 uint32_t NetworkConnectionValidationDataSize;                // 连接验证数据大小
 uint32_t NetworkConnectionValidationCode;                // 连接验证码
-uint32_t NetworkConnectionBaseAddressPointer;                  // 连接基地址指针
+uint32_t NetworkConnectionBaseAddress;                  // 连接基地址
 uint32_t NetworkConnectionContextDataArray;                     // 连接上下文数据数组
 uint32_t NetworkConnectionContextDataSize;                      // 连接上下文数据大小
 uint32_t NetworkConnectionContextDataIndex;                     // 连接上下文数据索引
@@ -2129,11 +2126,11 @@ NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHand
   NetworkConnectionContextId = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
   if (NetworkValidationStatusCode == 0) {
-    if ((0 < *(int *)ComputeContextParameterOffset(NetworkConnectionValidationData)) && (*NetworkConnectionValidationData != 0)) {
+    if ((0 < *(int *)CalculateContextParameterOffset(NetworkConnectionValidationData)) && (*NetworkConnectionValidationData != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationData, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     *NetworkConnectionValidationData = NetworkConnectionContextId;
-    *(int *)ComputeContextParameterOffset(NetworkConnectionValidationData) = NetworkValidationStatusCode;
+    *(int *)CalculateContextParameterOffset(NetworkConnectionValidationData) = NetworkValidationStatusCode;
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
