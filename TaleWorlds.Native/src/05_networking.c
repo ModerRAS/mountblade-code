@@ -596,12 +596,12 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define SocketReset NetworkResetValue                                      // 套接字重置
 #define SocketDataReset NetworkResetValue                                 // 套接字数据重置
 #define EventReset NetworkResetValue                                       // 事件重置
-#define CallbackReset NetworkReset_VALUE                                    // 回调重置
-#define QueueReset NetworkReset_VALUE                                       // 队列重置
-#define HandlerReset NetworkReset_VALUE                                     // 处理器重置
-#define StatsReset NetworkReset_VALUE                                       // 统计重置
+#define CallbackReset NetworkResetValue                                    // 回调重置
+#define QueueReset NetworkResetValue                                       // 队列重置
+#define HandlerReset NetworkResetValue                                     // 处理器重置
+#define StatsReset NetworkResetValue                                       // 统计重置
 #define ConnectionTimeReset NetworkResetValue                             // 连接时间重置
-#define ActivityReset NetworkReset_VALUE                                    // 活动重置
+#define ActivityReset NetworkResetValue                                    // 活动重置
 #define ExtendedFlagsReset NetworkResetValue                              // 扩展标志重置
 
 // 网络数据传输常量
