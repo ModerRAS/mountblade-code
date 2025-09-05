@@ -558,11 +558,11 @@
 #define ChecksumSeedValueSPRP 0x53505250  // "SPRP" 的十六进制表示
 #define ChecksumSeedValuePORP 0x504f5250  // "PORP" 的十六进制表示
 #define ChecksumSeedValueNLMT 0x4e4c4d54  // "NLMT" 的十六进制表示
-#define ChecksumSeedValueBNLMT 0x424e4c54
-#define ChecksumSeedValueNART 0x4e415254
-#define ChecksumSeedValueBNRT 0x424e5254
-#define ChecksumSeedValueTIW 0x54494157
-#define ChecksumSeedValueBTIW 0x42494157
+#define ChecksumSeedValueBNLMT 0x424e4c54  // "BNLT" 的十六进制表示
+#define ChecksumSeedValueNART 0x4e415254  // "NART" 的十六进制表示
+#define ChecksumSeedValueBNRT 0x424e5254  // "BNRT" 的十六进制表示
+#define ChecksumSeedValueTIW 0x54494157  // "TIAW" 的十六进制表示
+#define ChecksumSeedValueBTIW 0x42494157  // "BIAW" 的十六进制表示
 
 // 系统安全相关常量
 #define SystemSecurityValidationKeySeed 0x12345678
