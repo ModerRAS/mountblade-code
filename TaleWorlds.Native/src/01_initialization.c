@@ -23171,7 +23171,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
 
 
 void* *
-CreateStringBufferWithBackup(void* *StringBuffer, long long StringLength, void* ReservedParam3, void* ReservedParam4)
+CreateStringBufferWithBackup(void** StringBuffer, long long StringLength, void* UnusedParameter3, void* UnusedParameter4)
 
 {
   long long CharacterIndex;
@@ -23606,7 +23606,7 @@ void StartAndManageSystemThread(long long SystemResourceManager,long long Config
 
 
 void* *
-SetupDataBufferTemplates(void* *DataBufferReference, unsigned long long InitializationFlags, void* ReservedParam3, void* ReservedParam4)
+SetupDataBufferTemplates(void** DataBufferReference, unsigned long long InitializationFlags, void* UnusedParameter3, void* UnusedParameter4)
 
 {
   *DataBufferReference = &SystemDataBufferInputTemplateE;
@@ -23924,7 +23924,7 @@ void ExecuteSystemFinalCleanup(void)
 
 
 void* *
-CreateSystemPathBuffers(void* *PathBufferReference, void* ReservedParam2, void* ReservedParam3, void* ReservedParam4)
+CreateSystemPathBuffers(void** PathBufferReference, void* UnusedParameter2, void* UnusedParameter3, void* UnusedParameter4)
 
 {
   uint32_t *SystemDataPointer;
