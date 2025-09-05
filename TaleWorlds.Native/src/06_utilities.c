@@ -86060,8 +86060,9 @@ void SetDefaultExceptionHandlerB0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180941920(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 验证上下文处理函数A0 - 处理验证上下文并释放相关资源
+// 原始函数名：FUN_180941920
+void ProcessValidationContextA0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
   longlong *pvalidationContext;
