@@ -37035,32 +37035,52 @@ void SetDefaultExceptionHandlerB(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_ResetExceptionHandler(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 重置异常处理器
+ * 
+ * 该函数负责重置异常处理器，清理异常处理状态
+ * 
+ * @param exceptionHandler 异常处理器指针
+ * @param contextOffset 上下文偏移量
+ * 
+ * @note 原始函数名：Unwind_ResetExceptionHandler
+ */
+void ResetExceptionHandlerCleanup(DataBuffer exceptionHandler,int64_t contextOffset)
 
 {
-  DataBuffer *pdataValue;
+  DataBuffer *exceptionHandlerPointer;
   
-  pdataValue = *(DataBuffer **)(param_2 + 0x90);
-  *pdataValue = &UNK_180a3c3e0;
-  if (pdataValue[1] != 0) {
+  exceptionHandlerPointer = *(DataBuffer **)(contextOffset + 0x90);
+  *exceptionHandlerPointer = &NullExceptionHandler;
+  if (exceptionHandlerPointer[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  pdataValue[1] = 0;
-  *(DataWord *)(pdataValue + 3) = 0;
-  *pdataValue = &DefaultExceptionHandlerB;
+  exceptionHandlerPointer[1] = 0;
+  *(DataWord *)(exceptionHandlerPointer + 3) = 0;
+  *exceptionHandlerPointer = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_ResetValidationContext(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 重置验证上下文
+ * 
+ * 该函数负责重置验证上下文，清理验证状态和异常处理器
+ * 
+ * @param validationBuffer 验证缓冲区
+ * @param contextOffset 上下文偏移量
+ * 
+ * @note 原始函数名：Unwind_ResetValidationContext
+ */
+void ResetValidationContextCleanup(DataBuffer validationBuffer,int64_t contextOffset)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x90);
-  *(DataBuffer *)(validationContext + 0x20) = &UNK_180a3c3e0;
+  validationContext = *(int64_t *)(contextOffset + 0x90);
+  *(DataBuffer *)(validationContext + 0x20) = &NullExceptionHandler;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
