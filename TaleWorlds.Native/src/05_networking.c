@@ -3163,7 +3163,7 @@ NetworkHandle ProcessNetworkPacketData(NetworkHandle *PacketData, int64_t Handle
   if (ProcessingMode == NetworkOperationSuccess) {
     // 基本处理模式
     PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult;
-  } else if (ProcessingMode == 0x02) {
+  } else if (ProcessingMode == NetworkPacketStrictDecodingMode) {
     // 严格处理模式
     PacketDataProcessingResult = PacketDataParsingResult & PacketDataValidationResult & NetworkOperationSuccess;
   } else {
@@ -3195,9 +3195,9 @@ NetworkHandle FinalizePacketProcessingWithOffset(NetworkHandle *PacketData, int6
   uint32_t PacketResourceCleanupResult;           // 数据包资源清理结果
   
   // 初始化完成状态
-  PacketFinalizationResult = 0x00;
-  PacketStatusUpdateResult = 0x00;
-  PacketResourceCleanupResult = 0x00;
+  PacketFinalizationResult = NetworkValidationFailure;
+  PacketStatusUpdateResult = NetworkValidationFailure;
+  PacketResourceCleanupResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
@@ -3239,9 +3239,9 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
   uint32_t SecuritySetupResult;                  // 安全设置结果
   
   // 初始化结果状态
-  ContextInitializationResult = 0x00;
-  MemoryAllocationResult = 0x00;
-  SecuritySetupResult = 0x00;
+  ContextInitializationResult = NetworkValidationFailure;
+  MemoryAllocationResult = NetworkValidationFailure;
+  SecuritySetupResult = NetworkValidationFailure;
   
   // 验证连接句柄有效性
   if (ConnectionHandle != 0) {
