@@ -1042,8 +1042,8 @@ uint32_t NetworkConnectionRoutingBackupConfig;          // 网络连接路由备
 // 网络连接路由替代配置数据
 uint32_t NetworkConnectionRoutingAlternativeConfig;           // 网络连接路由替代配置数据，路由的替代配置参数
 
-// 网络连接路由第四配置数据
-uint32_t NetworkConnectionRoutingQuaternaryConfig;          // 网络连接路由第四配置数据，路由的第四级配置参数
+// 网络连接路由回退配置数据
+uint32_t NetworkConnectionRoutingFallbackConfig;          // 网络连接路由回退配置数据，路由的回退配置参数
 
 /**
  * @brief 初始化网络套接字
