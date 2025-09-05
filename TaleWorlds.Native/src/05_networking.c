@@ -1915,7 +1915,7 @@ void InitializeNetworkSocket(void)
   // 初始化套接字基本参数
   NetworkSocketFileDescriptor = NetworkSocketDescriptorInvalid;
   NetworkSocketContextSize = NetworkSocketContextSizeExtended;  // 使用扩展套接字上下文大小
-  NetworkSocketIndex = 0;
+  NetworkSocketDescriptor = 0;
   NetworkSocketSize = NetworkSocketCompactSize;          // 使用紧凑套接字大小
   
   // 初始化套接字配置
@@ -1923,8 +1923,8 @@ void InitializeNetworkSocket(void)
   NetworkSocketProtocol = NetworkTcpProtocol;
   
   // 初始化套接字数据缓冲区
-  NetworkSocketRuntimeData = 0;
-  NetworkSocketContextPointer = 0;
+  NetworkSocketOperatingData = 0;
+  NetworkSocketContextData = 0;
   
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;
@@ -2129,7 +2129,7 @@ void CloseNetworkConnection(void)
   
   // 重置统计信息
   NetworkActiveConnectionCount = 0;                   // 重置活跃连接计数
-  NetworkCurrentAverageConnectionTime = 0;                           // 重置连接时间
+  NetworkAverageConnectionDuration = 0;                           // 重置连接时间
   NetworkLastActivityTimeMs = 0;                             // 重置最后活动时间
 }
 
@@ -2363,8 +2363,8 @@ void InitializeNetworkDataTransmission(void)
   // 初始化传输统计
   NetworkTotalBytesSent = 0;                                 // 重置发送字节数
   NetworkTotalPacketsSent = 0;                               // 重置发送数据包数量
-  NetworkPacketRetransmissionCount = 0;                 // 重置重传计数
-  NetworkPacketLossRate = 0x00;                         // 重置丢包率为0%
+  NetworkPacketRetryCount = 0;                 // 重置重传计数
+  NetworkPacketDropRate = 0x00;                         // 重置丢包率为0%
   
   // 初始化性能监控
   NetworkThroughputMonitor = NetworkMonitorActive;                     // 初始化吞吐量监控器
@@ -2411,7 +2411,7 @@ void InitializeNetworkDataReception(void)
   
   // 初始化数据包上下文
   NetworkPacketContext = NetworkBufferInitializationFlag;                          // 初始化数据包上下文
-  CurrentPacketContextSize = 0x100;                          // 设置数据包上下文大小为256字节（标准大小）
+  NetworkPacketContextSize = 0x100;                          // 设置数据包上下文大小为256字节（标准大小）
   NetworkPacketData = NetworkBufferInitializationFlag;                             // 初始化数据包数据
   NetworkPacketIndex = NetworkPacketIndexResetValue;                            // 重置数据包索引
   
@@ -2559,7 +2559,7 @@ void InitializeNetworkErrorHandlingSystem(void)
   
   // 初始化资源分配参数
   NetworkResourceAllocationSize = 0x20;                  // 设置资源分配大小为32字节
-  NetworkResourceAllocationSizeExtended = 0x28;               // 设置扩展资源分配大小为40字节
+  NetworkResourceAllocationExpandedSize = 0x28;               // 设置扩展资源分配大小为40字节
   NetworkHandleStorageSize = 0x30;                      // 设置句柄存储大小为48字节
   
   // 初始化处理缓冲区
@@ -2908,7 +2908,7 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
   int32_t ConnectionValidationStatus;                          // 网络连接验证状态码
   NetworkHandle ConnectionRequestResult;                         // 网络连接请求结果句柄
   
-  ConnectionContextId = 0;
+  ConnectionContextIdentifier = 0;
   ConnectionValidationData = NULL;  // 初始化验证数据指针
   ConnectionValidationStatus = 0;  // 初始化验证状态码
   if (ConnectionValidationStatus == 0) {
@@ -3096,38 +3096,55 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
  * @see InitializeNetworkConnectionResultHandler, ProcessNetworkConnectionPacketData
  */
 /**
- * @brief 更新网络状态
+ * @brief 更新网络连接状态
  * 
  * 更新网络连接的状态信息，包括验证状态、超时状态和处理状态等。
  * 该函数负责维护连接的状态机，确保网络连接状态的正确性和一致性。
  * 
- * @param ConnectionContext 网络连接上下文句柄
- * @param PacketData 数据包数据，包含状态更新的信息
+ * @param ConnectionContext 网络连接上下文句柄，包含连接的配置和状态信息
+ * @param PacketData 数据包数据，包含状态更新的信息和控制参数
  * @return NetworkHandle 更新结果句柄，0表示成功，其他值表示错误码
+ * 
+ * @retval NetworkOperationSuccess 状态更新成功
+ * @retval NetworkErrorInvalidHandle 连接上下文句柄无效
+ * @retval NetworkErrorConnectionFailed 连接状态更新失败
+ * @retval NetworkErrorTimeout 状态更新超时
+ * @retval NetworkErrorSecurity 安全验证失败
+ * 
+ * @details 该函数执行以下关键步骤：
+ *          1. 初始化状态处理变量和缓冲区
+ *          2. 检查处理代码状态，执行相应的状态更新逻辑
+ *          3. 处理网络数据包索引和连接条目
+ *          4. 验证连接数据并更新状态信息
+ *          5. 返回处理结果
+ * 
+ * @note 此函数使用状态机模式处理连接状态转换，确保状态更新的原子性
+ * @warning 如果状态转换失败，系统会记录错误日志并尝试恢复到安全状态
+ * @see ProcessNetworkConnectionRequest, AuthenticateConnectionData
  */
 NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
-  int64_t ContextIdentifier = 0;                               // 网络连接上下文标识符
-  int64_t StatusIterator = 0;                           // 网络状态处理迭代器
+  int64_t NetworkContextIdentifier = 0;                               // 网络连接上下文标识符
+  int64_t NetworkStatusIterator = 0;                           // 网络状态处理迭代器
   int64_t *ContextBuffer = NULL;                             // 网络连接上下文缓冲区
-  int32_t ProcessingCode = 0;                              // 网络连接处理代码
-  int64_t ProcessedPacketId = 0;                                    // 已处理网络数据包标识符
-  int32_t PacketIndex = 0;                                           // 网络数据包索引
+  int32_t NetworkProcessingCode = 0;                              // 网络连接处理代码
+  int64_t ProcessedPacketIdentifier = 0;                                    // 已处理网络数据包标识符
+  int32_t NetworkPacketIndex = 0;                                           // 网络数据包索引
   int32_t NetworkMaximumInt32Value = 0;                              // 网络最大32位整数值
-  int64_t *OperationBuffer = NULL;                               // 连接操作缓冲区
-  if (ProcessingCode == 0) {
+  int64_t *NetworkOperationBuffer = NULL;                               // 连接操作缓冲区
+  if (NetworkProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
-    if ((0 < *(int *)CalculateConnectionParameterOffset(ContextBuffer)) && (*ContextBuffer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ContextBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)CalculateConnectionParameterOffset(NetworkOperationBuffer)) && (*NetworkOperationBuffer != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *ContextBuffer = (int64_t)ProcessedPacketId;
-    *(int *)CalculateConnectionParameterOffset(ContextBuffer) = ProcessingCode;
+    *NetworkOperationBuffer = (int64_t)ProcessedPacketIdentifier;
+    *(int *)CalculateConnectionParameterOffset(NetworkOperationBuffer) = NetworkProcessingCode;
     return NetworkOperationSuccess;
   }
-  if (PacketIndex * ConnectionEntrySize - 1U < NetworkMaximumInt32Value) {
+  if (NetworkPacketIndex * ConnectionEntrySize - 1U < NetworkMaximumInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), NetworkPacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            NetworkConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
       int32_t ProcessingIterationCount = (int)OperationBuffer[NetworkOperationBufferSizeIndex];
@@ -3422,8 +3439,25 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
  * @param PacketData 数据包数据，包含待处理的数据包信息
  * @return NetworkHandle 处理结果句柄，0表示处理成功，非0值表示处理失败的具体错误码
  * 
- * @note 此函数会根据数据包状态选择不同的处理策略
+ * @retval NetworkOperationSuccess 数据包处理成功
+ * @retval NetworkErrorCodeInvalidPacket 数据包格式无效或损坏
+ * @retval NetworkErrorConnectionFailed 连接处理失败
+ * @retval NetworkErrorTimeout 数据包处理超时
+ * @retval NetworkErrorSecurity 安全验证失败
+ * 
+ * @details 该函数执行以下关键步骤：
+ *          1. 初始化数据包处理变量和缓冲区
+ *          2. 获取数据包处理状态值
+ *          3. 根据状态值选择不同的处理路径：
+ *             - 状态限制内：验证数据包头部并返回成功状态
+ *             - 状态限制外：解码数据流并执行完整处理流程
+ *          4. 执行数据包头部验证和完整性检查
+ *          5. 处理连接数据并完成数据包处理
+ *          6. 返回处理结果
+ * 
+ * @note 此函数会根据数据包状态选择不同的处理策略，使用状态机模式确保处理的完整性
  * @warning 处理过程中如果发现数据包格式错误，会立即返回相应的错误码
+ * @see ValidateNetworkPacketHeader, DecodePacketDataStream, ProcessConnectionData
  */
 NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, int64_t PacketData)
 {
