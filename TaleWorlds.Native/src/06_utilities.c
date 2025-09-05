@@ -3223,7 +3223,7 @@ undefined DAT_180bfc150;
 undefined1 DAT_180bfc140;
 undefined DAT_180bfc160;
 undefined DAT_180bfc168;
-undefined8 UtilitySystemControlPointer158;
+uint64_t utilitySystemControlPointer158;
 undefined DAT_180bfaec0;
 undefined DAT_180bfaec8;
 undefined DAT_180bfaed0;
@@ -4580,7 +4580,7 @@ undefined DAT_180bfbd80;
 void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
 
 {
-  undefined8 resourceHandle;
+  uint64_t resourceHandle;
   int operationResult;
   longlong arrayIndex;
   int processedCount;
@@ -4641,7 +4641,7 @@ void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
 void ProcessResourceCleanup(void)
 
 {
-  undefined8 resourceHandle;
+  uint64_t resourceHandle;
   int operationResult;
   longlong systemContext;
   longlong systemRegistry;
