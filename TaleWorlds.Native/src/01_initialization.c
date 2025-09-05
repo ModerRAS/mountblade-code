@@ -1270,10 +1270,10 @@ uint32_t SystemInitializationThreadStatus;    // 系统初始化线程状态
 uint32_t SystemInitializationResourceStatus; // 系统初始化资源状态
 
 // 系统内存状态标志变量
-uint32_t SystemMemoryOperationStatusFlagPrimary;      // 系统内存操作状态标志主标志
-uint32_t SystemMemoryOperationStatusFlagSecondary;      // 系统内存操作状态标志次标志
-uint32_t SystemMemoryOperationStatusFlagTertiary;      // 系统内存操作状态标志第三标志
-uint32_t SystemMemoryOperationStatusFlagQuaternary;    // 系统内存操作状态标志第四标志
+uint32_t SystemMemoryOperationStatusFlagPrimary;      // 系统内存操作状态标志-主标志
+uint32_t SystemMemoryOperationStatusFlagSecondary;      // 系统内存操作状态标志-次标志
+uint32_t SystemMemoryOperationStatusFlagTertiary;      // 系统内存操作状态标志-第三标志
+uint32_t SystemMemoryOperationStatusFlagQuaternary;    // 系统内存操作状态标志-第四标志
 
 // 系统回调函数指针
 void* SystemEventNotificationHandler;     // SystemEventNotificationHandler
@@ -1412,9 +1412,9 @@ void* SystemDataBufferStateQuattuordecenary;
 void* SystemDataBufferStateQuindecenary;
 void* SystemDataBufferStateSexdecenary;
 void* SystemDataBufferStateSeptendecenary;
-uint32_t SystemDataBufferExtendedMain;
-uint32_t SystemDataBufferExtendedAuxiliary;
-uint32_t SystemDataBufferExtendedReserve;
+uint32_t SystemDataBufferExtendedMain;      // 系统数据缓冲区扩展-主区域
+uint32_t SystemDataBufferExtendedAuxiliary;  // 系统数据缓冲区扩展-辅助区域
+uint32_t SystemDataBufferExtendedReserve;    // 系统数据缓冲区扩展-保留区域
 void* SystemDataBufferStateOctodecenary;
 // 系统状态和数据缓冲区
 char SystemStatusBufferPrimary;
@@ -2516,16 +2516,16 @@ int InitializeSystemSemaphore(void)
  */
 void InitializeSystemMemoryManager(void)
 {
-  bool IsMemoryManagerNodeActive;
-  void** SystemDataTable;
-  int MemoryManagerIdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long MemorySystemOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTablePointer;
-  void* MemoryManagerEventCallback;
+  bool IsMemoryManagerNodeActive;                    // 内存管理器节点是否激活
+  void** SystemDataTable;                            // 系统数据表指针
+  int MemoryManagerIdentifierCompareResult;          // 内存管理器标识符比较结果
+  long long* MemorySystemDataPointer;                // 内存系统数据指针
+  long long MemorySystemOperationTimestamp;          // 内存系统操作时间戳
+  void** RootNodeReference;                          // 根节点引用
+  void** CurrentNodePointer;                         // 当前节点指针
+  void** NextNodePointer;                            // 下一个节点指针
+  void** HashTablePointer;                           // 哈希表指针
+  void* MemoryManagerEventCallback;                  // 内存管理器事件回调函数
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
@@ -3519,11 +3519,11 @@ int InitializeSystemStringProcessingGlobals(void)
 void InitializeSystemStringProcessor(void)
 
 {
-  uint64_t SystemStringParameter;
-  void* StringProcessCallbackPointer;
-  uint8_t* StringDataBufferReference;
-  uint32_t StringDataBufferSize;
-  uint8_t StringDataBuffer [136];
+  uint64_t SystemStringParameter;           // 系统字符串参数
+  void* StringProcessCallbackPointer;       // 字符串处理回调指针
+  uint8_t* StringDataBufferReference;       // 字符串数据缓冲区引用
+  uint32_t StringDataBufferSize;            // 字符串数据缓冲区大小
+  uint8_t StringDataBuffer [136];           // 字符串数据缓冲区
   
   StringProcessCallbackPointer = &SystemStringProcessorNode;
   StringDataBufferReference = StringDataBuffer;
@@ -4032,16 +4032,16 @@ void InitializeSystemMemoryManager(void)
 void InitializeSystemThreadPoolManager(void)
 
 {
-  char NodeActiveFlag;
-  void** SystemDataTable;
-  int IdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTablePointer;
-  void* SystemEventCallback;
+  char NodeActiveFlag;                     // 节点活动标志
+  void** SystemDataTable;                 // 系统数据表指针
+  int IdentifierCompareResult;            // 标识符比较结果
+  long long* MemorySystemDataPointer;     // 内存系统数据指针
+  long long SystemOperationTimestamp;     // 系统操作时间戳
+  void** RootNodeReference;               // 根节点引用
+  void** CurrentNodePointer;              // 当前节点指针
+  void** NextNodePointer;                 // 下一个节点指针
+  void** HashTablePointer;                // 哈希表指针
+  void* SystemEventCallback;              // 系统事件回调函数
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
@@ -4533,18 +4533,18 @@ void InitializeSystemDebugManager(void)
 void InitializeSystemMemoryAllocator(void)
 
 {
-  char NodeActiveFlag;
-  void** SystemDataTable;
-  int IdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTablePointer;
-  void* SystemEventCallback;
-  void* SystemCallbackPointer;
-  void* EventCallbackPointer;
+  char NodeActiveFlag;                     // 节点活动标志
+  void** SystemDataTable;                 // 系统数据表指针
+  int IdentifierCompareResult;            // 标识符比较结果
+  long long* MemorySystemDataPointer;     // 内存系统数据指针
+  long long SystemOperationTimestamp;     // 系统操作时间戳
+  void** RootNodeReference;               // 根节点引用
+  void** CurrentNodePointer;              // 当前节点指针
+  void** NextNodePointer;                 // 下一个节点指针
+  void** HashTablePointer;                // 哈希表指针
+  void* SystemEventCallback;              // 系统事件回调函数
+  void* SystemCallbackPointer;            // 系统回调指针
+  void* EventCallbackPointer;             // 事件回调指针
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
@@ -5048,16 +5048,16 @@ void InitializeSystemSecurityManager(void)
 void InitializeSystemDataTableStructureA(void)
 
 {
-  char NodeActiveFlag;
-  void** SystemDataTable;
-  int IdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long SystemOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** HashTablePointer;
-  void* SystemEventCallback;
+  char NodeActiveFlag;                     // 节点活动标志
+  void** SystemDataTable;                 // 系统数据表指针
+  int IdentifierCompareResult;            // 标识符比较结果
+  long long* MemorySystemDataPointer;     // 内存系统数据指针
+  long long SystemOperationTimestamp;     // 系统操作时间戳
+  void** RootNodeReference;               // 根节点引用
+  void** CurrentNodePointer;              // 当前节点指针
+  void** NextNodePointer;                 // 下一个节点指针
+  void** HashTablePointer;                // 哈希表指针
+  void* SystemEventCallback;              // 系统事件回调函数
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
@@ -5508,16 +5508,16 @@ void InitializeSystemConfigurationManager(void)
 void InitializeSystemResourceManager(void)
 
 {
-  char SystemNodeActiveFlag;
-  void** SystemDataTable;
-  int IdentifierCompareResult;
-  long long* MemorySystemDataPointer;
-  long long MemorySystemOperationTimestamp;
-  void** RootNodeReference;
-  void** CurrentNodePointer;
-  void** NextNodePointer;
-  void** PreviousNodePointer;
-  void* ResourceManagerInitializationFunction;
+  char SystemNodeActiveFlag;                    // 系统节点活动标志
+  void** SystemDataTable;                        // 系统数据表指针
+  int IdentifierCompareResult;                   // 标识符比较结果
+  long long* MemorySystemDataPointer;           // 内存系统数据指针
+  long long MemorySystemOperationTimestamp;     // 内存系统操作时间戳
+  void** RootNodeReference;                     // 根节点引用
+  void** CurrentNodePointer;                    // 当前节点指针
+  void** NextNodePointer;                       // 下一个节点指针
+  void** PreviousNodePointer;                   // 前一个节点指针
+  void* ResourceManagerInitializationFunction;  // 资源管理器初始化函数
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
