@@ -3553,7 +3553,7 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
         *(int *)(lVar1 + 0x4e0) = *(int *)(lVar1 + 0x4e0) + 1;
       }
       else {
-        uVar4 = FUN_180851490(lVar1 + 0x368,lVar2);
+        uVar4 = ExecuteGameCommand(lVar1 + 0x368,lVar2);
         if ((int)uVar4 != 0) {
           return uVar4;
         }
