@@ -44062,7 +44062,7 @@ void InitializeAndConfigureSystemResources(void* SystemResourceManager)
   void* *SystemBufferReference;
   void* *pSystemDataCount;
   void* SystemMemoryPoolSize;
-  uint32_t SystemOperationFlag2a8;
+  uint32_t SystemOperationFlag.alignmentMask;
   void* *SecondaryBufferPointer;
   long long SystemMemoryAllocationOffset298;
   uint32_t EncryptionKeyValue8;
@@ -44532,7 +44532,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   StackPointerTemporary = 0;
   pEncryptionOffsetSecondary = (uint8_t *)0x0;
   MemoryBufferPointer = 0;
-  SystemConfigurationValue._0_4_ = (int)ThreadContext;
+  SystemConfigurationValue.threadContext = (int)ThreadContext;
   SystemOperationResult = (int)SystemConfigurationValue;
   SystemConfigurationValue = ThreadContext;
   ExecuteSystemCommand(&pEncryptionOffset,ThreadContext & SystemMaximumUnsigned32BitValue);
@@ -44697,7 +44697,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* *SystemBufferReference;
   void* SystemDataCount;
   uint32_t SystemMemoryPoolSize;
-  ulong long SystemOperationFlag2a8;
+  ulong long SystemOperationFlag.alignmentMask;
   void* *SecondaryBufferPointer;
   char *StringProcessingBuffer;
   int stackVariable290;
@@ -44712,7 +44712,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* *pSystemThreadStackSize;
   long long StackInteger238;
   uint32_t SystemMemoryAlignment;
-  void* *SystemStringTemplatePointer2;
+  void* *SystemStringTemplatePointer.secondary;
   void* *SystemStringTemplatePointer;
   void* StackPointerTwoHundredTenth;
   uint32_t SystemMaxOperationCountSecondary;
@@ -44888,7 +44888,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   SystemResourceHandle = SystemResourceHandle & SystemMemoryAlignmentMask;
   ResourceDataPointer = &SystemMemoryAllocatorReference;
   SystemDataCount = 0;
-  SystemOperationFlag2a8 = SystemOperationFlag2a8 & SystemMemoryAlignmentMask;
+  SystemOperationFlag.alignmentMask = SystemOperationFlag.alignmentMask & SystemMemoryAlignmentMask;
   SystemBufferReference = &SystemMemoryAllocatorReference;
   ResourceDataLocation = SystemPerformancePreviousStorage;
   if (SystemPerformancePreviousStorage == 0) {
@@ -44903,7 +44903,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
     SystemDataTemplatePointer = SystemSecondaryGlobalDataReferencePtr;
   }
   ConfigureSystemDataBuffer(&MemoryContextPointer,&SystemDataBufferConfigTemplate,&SystemGlobalDataReference,&SystemConfigParam3);
-  SystemStringTemplatePointer2 = (void* *)0x0;
+  SystemStringTemplatePointer.secondary = (void* *)0x0;
   SystemStringTemplatePointer = (void* *)0x0;
   SystemTemporaryFlag210 = 0;
   SystemMaxOperationCountSecondary = 3;
@@ -44925,14 +44925,14 @@ void ReleaseSystemResource(void* SystemResourceManager)
     aEncryptionOffsetSecondary[0] = 0;
     EncryptionOffset = 1;
     strcpy_s(aEncryptionOffsetSecondary,0x10,&SystemStringConstantG);
-    ProcessSystemResourceTemplate(&SystemStringTemplatePointer2,SystemDataResourcePointer + 4,&pUnsignedStackFlagPrimary);
+    ProcessSystemResourceTemplate(&SystemStringTemplatePointer.secondary,SystemDataResourcePointer + 4,&pUnsignedStackFlagPrimary);
     pUnsignedStackFlagPrimary = &SystemMemoryAllocatorReference;
   }
   SystemResourceHandlePrimary = &SystemMemoryAllocatorReference;
-  ResourceAddressPointer = SystemStringTemplatePointer2;
-  for (SystemStringTemplatePointer = SystemDataResourcePointer; SystemStringTemplatePointer2 = ResourceAddressPointer, SystemStringTemplatePointer != SystemDataBufferPointer; SystemStringTemplatePointer = SystemStringTemplatePointer + 4) {
+  ResourceAddressPointer = SystemStringTemplatePointer.secondary;
+  for (SystemStringTemplatePointer = SystemDataResourcePointer; SystemStringTemplatePointer.secondary = ResourceAddressPointer, SystemStringTemplatePointer != SystemDataBufferPointer; SystemStringTemplatePointer = SystemStringTemplatePointer + 4) {
     (**(code **)*SystemStringTemplatePointer)(SystemStringTemplatePointer,0);
-    ResourceAddressPointer = SystemStringTemplatePointer2;
+    ResourceAddressPointer = SystemStringTemplatePointer.secondary;
   }
   if (SystemDataResourcePointer != (void* *)0x0) {
       SystemCleanupFunction(SystemDataResourcePointer);
@@ -45124,9 +45124,9 @@ SystemResultCheckLoop:
     SystemReferenceCounterStorage = SystemReferenceCounterStorage + -1;
     UNLOCK();
     resourceCounter = 0;
-    ResourceAddressPointer = SystemStringTemplatePointer2;
+    ResourceAddressPointer = SystemStringTemplatePointer.secondary;
     SystemDataResourcePointer = SystemStringTemplatePointer;
-    SystemDataBufferPointer = SystemStringTemplatePointer2;
+    SystemDataBufferPointer = SystemStringTemplatePointer.secondary;
   }
   for (; SystemStringTemplatePointer = SystemStringTemplatePointer, ResourceAddressPointer != SystemStringTemplatePointer; ResourceAddressPointer = ResourceAddressPointer + 4) {
     SystemStringTemplatePointer = SystemDataResourcePointer;
