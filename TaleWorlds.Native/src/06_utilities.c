@@ -5111,7 +5111,17 @@ void ReturnEmptyFunctionD(void)
 
 
 
-undefined8 FUN_180890e10(longlong param_1)
+// 函数: undefined8 ProcessResourceDescriptorValidation(longlong resourceDescriptor)
+// 
+// 资源描述符验证处理函数
+// 处理资源描述符的验证过程，确保资源描述符的有效性
+// 
+// 参数:
+//   resourceDescriptor - 资源描述符指针
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码
+undefined8 ProcessResourceDescriptorValidation(longlong resourceDescriptor)
 
 {
   undefined8 uVar1;
@@ -8861,19 +8871,19 @@ undefined8 FUN_1808935c0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180893640(longlong param_1,longlong param_2)
-void FUN_180893640(longlong param_1,longlong param_2)
+// 函数: void ProcessContextValidationAndExecution(longlong contextHandle,longlong operationHandle)
+void ProcessContextValidationAndExecution(longlong contextHandle,longlong operationHandle)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationResult;
+  undefined8 validationData;
   
-  iVar1 = FUN_180894860(param_2,param_1 + 0x10,&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = func_0x00018088c500(uStackX_8,param_1 + 0x20);
-    if (iVar1 == 0) {
+  validationResult = ValidateContextData(operationHandle,contextHandle + 0x10,&validationData);
+  if (validationResult == 0) {
+    validationResult = ExecuteContextOperation(validationData,contextHandle + 0x20);
+    if (validationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      ExecuteCriticalOperation(*(undefined8 *)(operationHandle + 0x98),contextHandle);
     }
   }
   return;
