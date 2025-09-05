@@ -131,11 +131,11 @@
 #define ResourceTableOffsetPrimary 0x50
 #define ResourceTableOffsetSecondary 0x54
 #define ResourceTableOffsetTertiary 0x58
-#define ResourceTableOffsetQuaternary 0x60
-#define ResourceTableOffsetQuinary 100
-#define ResourceTableOffsetSenary 0x68
-#define ResourceTableOffsetSeptenary 0x6c
-#define ResourceTableOffsetOctonary 0x70
+#define ResourceTableOffsetFourth 0x60
+#define ResourceTableOffsetFifth 100
+#define ResourceTableOffsetSixth 0x68
+#define ResourceTableOffsetSeventh 0x6c
+#define ResourceTableOffsetEighth 0x70
 #define ResourceTableOffsetNonary 0x74
 
 // 安全处理相关常量
@@ -97644,85 +97644,155 @@ void SetSystemDataStructureAtOffset158(uint8_t ObjectContext,int64_t ValidationC
 void SetValidationContextExtendedDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  *(uint8_t **)(ValidationContext + ValidationContextExtendedDataStructureOffset) = &SystemDataStructure;
+  *(uint8_t **)(ValidationContext + SystemCallbackQuaternaryOffset) = &SystemDataStructure;
   return;
 }
 
 
 
-void Unwind_18090fac0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源哈希状态重置和清理
+ * 
+ * 该函数负责重置系统资源的哈希状态，并执行必要的清理操作
+ * 包括处理资源处理器模板、检查系统状态并调用相应的回调函数
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含哈希状态信息
+ * @return 无返回值
+ * @note 此函数会修改系统上下文中的多个状态字段
+ * @warning 如果发现系统状态异常，会触发紧急退出
+ * 
+ * 原始函数名为Unwind_18090fac0，现已重命名为ExecuteSystemResourceHashStatusResetAndCleanup
+ */
+void ExecuteSystemResourceHashStatusResetAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
+  int64_t HashStatusCounter;
   
-  LoopCounter = *(int64_t *)(ValidationContext + 0x120);
-  if (*(int64_t **)(SystemContextPointer + 0x58) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(SystemContextPointer + 0x58) + 0x38))();
+  HashStatusCounter = *(int64_t *)(ValidationContext + SystemContextResourceHashStatusOffset);
+  if (*(int64_t **)(SystemContextPointer + SystemContextCallbackPointerOffset) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + SystemContextCallbackPointerOffset) + SystemCallbackFunctionOffset))();
   }
-  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  *(uint8_t *)(SystemContextPointer + SystemContextTertiaryResourceOffset) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = 0;
-  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
-  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
-  if (*(int64_t **)(SystemContextPointer + 0x20) != (int64_t *)0x0) {
-    (**(code **)(**(int64_t **)(SystemContextPointer + 0x20) + 0x38))();
+  *(uint32_t *)(SystemContextPointer + ValidationContextBufferOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + SystemContextTertiaryResourceOffset) = &SystemDataStructure;
+  if (*(int64_t **)(SystemContextPointer + SystemContextPrimaryDataOffset) != (int64_t *)0x0) {
+    (**(code **)(**(int64_t **)(SystemContextPointer + SystemContextPrimaryDataOffset) + SystemCallbackFunctionOffset))();
   }
   return;
 }
 
 
 
-void Unwind_18090fad0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统数据结构到验证上下文哈希状态
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的哈希状态位置
+ * 用于在哈希验证过程中访问系统数据结构
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，用于设置数据结构指针
+ * @return 无返回值
+ * @note 此函数会直接修改验证上下文中的二级指针
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * 
+ * 原始函数名为Unwind_18090fad0，现已重命名为SetSystemDataStructureToValidationContextHashStatus
+ */
+void SetSystemDataStructureToValidationContextHashStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x120) = &SystemDataStructure;
+  **(uint8_t **)(ValidationContext + SystemContextResourceHashStatusOffset) = &SystemDataStructure;
   return;
 }
 
 
 
-void Unwind_18090fae0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调处理
+ * 
+ * 该函数从验证上下文的哈希状态中提取资源上下文，并执行相应的回调函数
+ * 用于处理资源相关的回调操作
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含资源上下文信息
+ * @return 无返回值
+ * @note 此函数会从验证上下文中提取资源上下文并执行回调
+ * @warning 如果资源上下文无效，可能会跳过回调执行
+ * 
+ * 原始函数名为Unwind_18090fae0，现已重命名为ExecuteResourceContextCallbackHandler
+ */
+void ExecuteResourceContextCallbackHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x120) + 0x20);
+  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceHashStatusOffset) + SystemContextPrimaryDataOffset);
   if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+    (**(code **)(*ResourceContext + SystemCallbackFunctionOffset))();
   }
   return;
 }
 
 
 
-void Unwind_18090faf0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源哈希状态初始化和清理
+ * 
+ * 该函数负责初始化系统资源的哈希状态，并执行必要的清理操作
+ * 包括设置资源处理器模板、检查系统状态并重置相关字段
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含哈希状态信息
+ * @return 无返回值
+ * @note 此函数会修改系统上下文中的多个状态字段
+ * @warning 如果发现系统状态异常，会触发紧急退出
+ * 
+ * 原始函数名为Unwind_18090faf0，现已重命名为ExecuteSystemResourceHashStatusInitializationAndCleanup
+ */
+void ExecuteSystemResourceHashStatusInitializationAndCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  int64_t LoopCounter;
+  int64_t HashStatusCounter;
   
-  LoopCounter = *(int64_t *)(ValidationContext + 0x120);
-  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemResourceHandlerTemplate;
+  HashStatusCounter = *(int64_t *)(ValidationContext + SystemContextResourceHashStatusOffset);
+  *(uint8_t *)(SystemContextPointer + SystemContextTertiaryResourceOffset) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(SystemContextPointer + ResourceContextTertiaryOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(SystemContextPointer + ResourceContextTertiaryOffset) = 0;
-  *(uint32_t *)(SystemContextPointer + 0x40) = 0;
-  *(uint8_t *)(SystemContextPointer + 0x28) = &SystemDataStructure;
+  *(uint32_t *)(SystemContextPointer + ValidationContextBufferOffset) = 0;
+  *(uint8_t *)(SystemContextPointer + SystemContextTertiaryResourceOffset) = &SystemDataStructure;
   return;
 }
 
 
 
-void Unwind_18090fb00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文回调处理（扩展版本）
+ * 
+ * 该函数从验证上下文的哈希状态中提取资源上下文，并执行相应的回调函数
+ * 使用回调指针偏移量来访问资源上下文
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，包含资源上下文信息
+ * @return 无返回值
+ * @note 此函数会从验证上下文中提取资源上下文并执行回调
+ * @warning 如果资源上下文无效，可能会跳过回调执行
+ * 
+ * 原始函数名为Unwind_18090fb00，现已重命名为ExecuteResourceContextCallbackHandlerExtended
+ */
+void ExecuteResourceContextCallbackHandlerExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
   
-  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + 0x120) + 0x58);
+  ResourceContext = *(int64_t **)(*(int64_t *)(ValidationContext + SystemContextResourceHashStatusOffset) + SystemContextCallbackPointerOffset);
   if (ResourceContext != (int64_t *)0x0) {
-    (**(code **)(*ResourceContext + 0x38))();
+    (**(code **)(*ResourceContext + SystemCallbackFunctionOffset))();
   }
   return;
 }
