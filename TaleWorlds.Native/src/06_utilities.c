@@ -791,12 +791,12 @@ bool SystemCleanupEnabled;
 // 
 // 返回值:
 //   undefined - 数据处理结果
-undefined UtilityProcessData1;
-undefined UtilityProcessBuffer1;
-undefined UtilityProcessPointer1;
+uint32_t DataProcessingStatus1;
+uint32_t DataProcessingBuffer1;
+void* DataProcessingPointer1;
 
 // 函数: undefined UtilityProcessData2;
-undefined UtilityProcessData2;
+uint32_t DataProcessingStatus2;
 
 // 函数: undefined UtilityProcessData3;
 undefined UtilityProcessData3;
