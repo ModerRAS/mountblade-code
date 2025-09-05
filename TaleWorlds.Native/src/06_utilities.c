@@ -4940,38 +4940,38 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
   longlong stackContext8;
   longlong stackContext18;
   
-  uVar6 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x18),&lStackX_18);
-  iVar4 = (int)uVar6;
-  if (iVar4 == 0) {
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x18),&stackContext18);
+  resultStatus = (int)operationResult;
+  if (resultStatus == 0) {
     pvalidationContext0 = (longlong *)0x0;
-    plVar9 = pvalidationContext0;
-    if (lStackX_18 != 0) {
-      plVar9 = (longlong *)(lStackX_18 + -8);
+    pmoduleData = pvalidationContext0;
+    if (stackContext18 != 0) {
+      pmoduleData = (longlong *)(stackContext18 + -8);
     }
-    uVar6 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
-    iVar4 = (int)uVar6;
-    if (iVar4 == 0) {
-      lStackX_8 = 0;
-      uVar5 = ProcessGameMessage(*(undefined8 *)(param_2 + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
-                            &lStackX_8);
-      if (uVar5 != 0) {
-        CleanupSystemDataStructures(plVar9);
-        return (ulonglong)uVar5;
+    operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&stackContext18);
+    resultStatus = (int)operationResult;
+    if (resultStatus == 0) {
+      stackContext8 = 0;
+      messageResult = ProcessGameMessage(*(undefined8 *)(param_2 + 0x90),*(longlong *)(stackContext18 + 8) + 0x10,
+                            &stackContext8);
+      if (messageResult != 0) {
+        CleanupSystemDataStructures(pmoduleData);
+        return (ulonglong)messageResult;
       }
-      if (((*(uint *)(*(longlong *)(lStackX_18 + 8) + 0xf8) >> 2 & 1) == 0) &&
-         (uVar6 = func_0x000180861a30(lStackX_8), (int)uVar6 != 0)) {
-        return uVar6;
+      if (((*(uint *)(*(longlong *)(stackContext18 + 8) + 0xf8) >> 2 & 1) == 0) &&
+         (operationResult = func_0x000180861a30(stackContext8), (int)operationResult != 0)) {
+        return operationResult;
       }
-      pvalidationContext = (longlong *)(lStackX_8 + 0x240);
-      plVar7 = (longlong *)(*pvalidationContext + -0x18);
+      pvalidationContext = (longlong *)(stackContext8 + 0x240);
+      presourceInfo = (longlong *)(*pvalidationContext + -0x18);
       if (*pvalidationContext == 0) {
-        plVar7 = pvalidationContext0;
+        presourceInfo = pvalidationContext0;
       }
-      plVar8 = pvalidationContext0;
-      plVar2 = pvalidationContext0;
-      plVar3 = pvalidationContext0;
-      if (plVar7 != (longlong *)0x0) {
-        plVar8 = plVar7 + 3;
+      pcontextData = pvalidationContext0;
+      pcomponentData = pvalidationContext0;
+      pcomponentInfo = pvalidationContext0;
+      if (presourceInfo != (longlong *)0x0) {
+        pcontextData = presourceInfo + 3;
       }
       while( true ) {
         if (plVar8 == pvalidationContext) {
