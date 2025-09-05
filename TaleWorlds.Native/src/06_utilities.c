@@ -95,6 +95,12 @@
  */
 #define ValidateSystemContext ValidateSystemContext
 
+// 系统验证和清理函数宏定义
+#define InitializeSystemValidation FUN_18004b730
+#define ProcessSystemDataValidation FUN_180058370
+#define ValidateSystemDataBuffer FUN_18004b790
+#define CleanupSystemDataPointer FUN_18064e900
+
 /**
  * @brief 上下文处理函数
  * 
@@ -59089,13 +59095,13 @@ void ProcessDataBufferA1(DataBuffer contextParameter, int64_t systemContext, Dat
   
   dataContext = *(int64_t *)(systemContext + 0x70);
   validationStatus = SystemCleanupFlagfffffffe;
-  FUN_18004b730();
-  FUN_180058370(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),dataParameter,validationParameter,validationStatus);
+  InitializeSystemValidation();
+  ProcessSystemDataValidation(dataContext + 0x40,*(DataBuffer *)(dataContext + 0x50),dataParameter,validationParameter,validationStatus);
   dataValuePointer = *(DataBuffer **)(dataContext + 0x20);
   if (dataValuePointer != (DataBuffer *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*dataValuePointer,dataParameter,validationParameter,SystemCleanupFlagfffffffe);
+    ValidateSystemDataBuffer(dataContext + 0x10,*dataValuePointer,dataParameter,validationParameter,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(dataValuePointer);
+    CleanupSystemDataPointer(dataValuePointer);
   }
   return;
 }
