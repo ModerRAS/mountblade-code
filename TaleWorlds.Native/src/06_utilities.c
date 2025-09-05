@@ -3593,25 +3593,25 @@
 // 功能：处理系统缓冲区数据的替代版本
 #define ProcessSystemBufferAlternative func_0x0001808c8700
 
-// 原始函数名：func_0x0001808c8470 - 缓冲区初始化函数A0
+// 原始函数名：func_0x0001808c8470 - 缓冲区初始化函数
 // 功能：初始化系统缓冲区
-#define InitializeSystemBufferA0 func_0x0001808c8470
+#define InitializeSystemBuffer func_0x0001808c8470
 
-// 原始函数名：func_0x0001808c7d30 - 数据验证函数A0
+// 原始函数名：func_0x0001808c7d30 - 数据验证函数
 // 功能：验证系统数据有效性
-#define ValidateSystemDataIntegrityA0 func_0x0001808c7d30
+#define ValidateSystemDataIntegrity func_0x0001808c7d30
 
-// 原始函数名：func_0x00018076b630 - 资源数据验证函数A0
+// 原始函数名：func_0x00018076b630 - 资源数据验证函数
 // 功能：验证资源数据完整性
-#define ValidateResourceDataIntegrityA0 func_0x00018076b630
+#define ValidateResourceDataIntegrity func_0x00018076b630
 
-// 原始函数名：func_0x0001808e64d0 - 系统状态获取函数A0
+// 原始函数名：func_0x0001808e64d0 - 系统状态获取函数
 // 功能：获取系统当前状态
-#define GetSystemCurrentStateA0 func_0x0001808e64d0
+#define GetSystemCurrentState func_0x0001808e64d0
 
-// 原始函数名：func_0x000180867680 - 范围数据获取函数A0
+// 原始函数名：func_0x000180867680 - 范围数据获取函数
 // 功能：获取系统操作范围数据
-#define GetOperationRangeDataA0 func_0x000180867680
+#define GetOperationRangeData func_0x000180867680
 
 // 原始函数名：func_0x000180867960 - 范围验证函数A0
 // 功能：验证系统操作范围
@@ -14165,7 +14165,7 @@ int ProcessUtilityDataWithCallback(longlong *callbackContext,longlong dataBuffer
   iVar1 = ProcessSystemBufferDataA0(param_2,param_3,&UNK_180986298);
   operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
-  operationResult = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 8 + 0x20);
+  operationResult = ProcessSystemDataWithEncryption(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 8 + 0x20);
   iVar1 = iVar1 + operationResult;
   operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
@@ -14184,7 +14184,7 @@ int ProcessUtilityDataWithEncryptionB(longlong *encryptionContext,longlong dataB
   iVar1 = ProcessSystemBufferDataA0(param_2,param_3,&UNK_180984010);
   operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
-  operationResult = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 0xc + 0x20);
+  operationResult = ProcessSystemDataWithEncryption(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 0xc + 0x20);
   iVar1 = iVar1 + operationResult;
   operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
@@ -15444,13 +15444,13 @@ MemoryCopyLabel:
   }
   else {
     if (cVar2 == '\x06') {
-      cVar2 = func_0x000180881f80(*(undefined8 *)(param_1 + 0x58));
+      cVar2 = ValidateSystemConfiguration(*(undefined8 *)(param_1 + 0x58));
       if (cVar2 == '\0') goto MemoryCopyLabel;
       *unaff_R13 = 0;
       goto LAB_180895b69;
     }
     if (cVar2 == '\a') {
-      cVar2 = func_0x000180881f80(*(undefined8 *)(param_1 + 0x58));
+      cVar2 = ValidateSystemConfiguration(*(undefined8 *)(param_1 + 0x58));
       if (cVar2 == '\0') {
         if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(unaff_RDI + 0x58) + 0x90) + 0x790) +
                     0x1c8) != 0) {
@@ -16733,7 +16733,7 @@ int ProcessEncodedData(longlong encodingContext, longlong dataBuffer, int buffer
   processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&UNK_1809863f8);
   processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&DAT_180a06434);
   processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = func_0x00018074be80(processedBytes1 + dataBuffer,bufferSize - processedBytes1,encodingKey);
+  processedBytes2 = EncryptData(processedBytes1 + dataBuffer,bufferSize - processedBytes1,encodingKey);
   return processedBytes2 + processedBytes1;
 }
 
@@ -16768,7 +16768,7 @@ int ProcessComplexData(longlong complexContext, longlong dataBuffer, int bufferS
   processedBytes1 = processedBytes1 + processedBytes2;
   processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&DAT_180a06434);
   processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = func_0x00018074b800(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag1);
+  processedBytes2 = ProcessSystemDataWithValidation(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag1);
   return processedBytes2 + processedBytes1;
 }
 
@@ -16852,7 +16852,7 @@ void ProcessComplexDataBufferA1(undefined8 systemHandle, longlong dataContext, u
       uStack_270 = 0;
       uStack_264 = 0;
       uStack_268 = param_3;
-      func_0x00018076b450(auStack_260,*(undefined8 *)(param_2 + 0x228),0x200);
+      InitializeMemory(auStack_260,*(undefined8 *)(param_2 + 0x228),0x200);
       ppdataFlags = &puStack_278;
 SecurityValidationLabel:
       iVar3 = ValidateDataIntegrityA0(param_1,ppdataFlags);
@@ -17639,7 +17639,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
               else {
                 puVar12 = *(undefined **)(calculatedOffset + 0x50);
               }
-              func_0x00018076b450(auStack_e0,puVar12,0x80);
+              InitializeMemory(auStack_e0,puVar12,0x80);
               iVar6 = ValidateDataIntegrityA0(param_1,&puStack_108);
               if (iVar6 != 0) goto FUN_180897b16;
             }
@@ -17881,7 +17881,7 @@ ProcessDataSecurityValidation:
             else {
               puVar18 = *(undefined **)(dataContext + 0x50);
             }
-            uVar24 = func_0x00018076b450(unaff_RBP + 1,puVar18,0x80);
+            uVar24 = InitializeMemory(unaff_RBP + 1,puVar18,0x80);
             iVar13 = ValidateDataIntegrityA0(uVar24,unaff_RBP + -4);
             if (iVar13 != 0) goto FUN_180897b0e;
           }
@@ -18128,7 +18128,7 @@ ValidateDataSecurity:
         else {
           puVar18 = *(undefined **)(dataContext + 0x50);
         }
-        uVar23 = func_0x00018076b450(unaff_RBP + 1,puVar18,0x80);
+        uVar23 = InitializeMemory(unaff_RBP + 1,puVar18,0x80);
         iVar13 = ValidateDataIntegrityA0(uVar23,unaff_RBP + -4);
         if (iVar13 != 0) goto FUN_180897afe;
       }
@@ -18971,7 +18971,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
             else {
               puVar12 = *(undefined **)(validationContext1 + 0x50);
             }
-            func_0x00018076b450(&uStack_2b8,puVar12,0x80);
+            InitializeMemory(&uStack_2b8,puVar12,0x80);
             validationContext1 = param_1[4];
             if ((char)validationContext1 == '\0') {
               *(undefined1 *)(param_1 + 4) = 1;
