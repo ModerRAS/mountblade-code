@@ -29044,11 +29044,11 @@ void SystemResourceEnumerator(void)
   uint8_t *SystemBufferPointerPrimary;
   uint StackContextSize;
   void* SystemStackHandlePrimary;
-  void* *SystemResourceHandle138;
-  uint8_t *SystemBufferPointer130;
+  void* *SystemResourceHandleQuaternary;
+  uint8_t *SystemBufferPointerSecondary;
   uint StackContextOffset;
   ulong long SystemContextCapacity;
-  void* *SystemResourceHandle118;
+  void* *SystemResourceHandleQuinary;
   uint8_t *SystemBufferPointer110;
   uint32_t StackContextLimit;
   ulong long StackContextTotal;
@@ -37566,7 +37566,7 @@ void FormatSystemResourceOutput(void* SystemResourceManager,void* ConfigurationD
   formatConfigurationFlag = ConfigurationFlag;
   standardOutputHandle = __acrt_iob_func(1);
   globalDataBuffer = (void* *)SystemGlobalDataAllocate();
-  __stdio_common_vfprintf(*globalDataBuffer,standardOutputHandle,SystemResourceManager,0,&formatParameter1);
+  __stdio_common_vfprintf(*globalDataBuffer,standardOutputHandle,SystemResourceManager,0,&formatDataPointer);
   return;
 }
 
@@ -38447,8 +38447,8 @@ void InitializeAndConfigureSystemResources(void)
   uint32_t SystemProcessingBufferValue128;
   uint8_t SystemSecondaryBuffer120 [24];
   void* *SystemContextArray108 [19];
-  int SystemContextValue70;
-  void* SystemProcessContext58;
+  int SystemContextIndex;
+  void* SystemProcessContextPointer;
   char SystemStringBuffer48 [16];
   ulong long SystemEncryptionKey38;
   long long SystemFlags;
@@ -43281,12 +43281,12 @@ void InitializeSecurityContext(void* SystemResourceManager)
 {
   uint8_t securityBuffer [96];
   uint8_t configurationBuffer [64];
-  void* stackValue1;
+  void* systemStackPointer;
   void* contextValue;
   uint8_t memoryBuffer [512];
   ulong long securityKey;
   
-  stackValue1 = 0xfffffffffffffffe;
+  systemStackPointer = (void*)0xfffffffffffffffe;
   securityKey = SystemEncryptionKeyTemplate ^ (ulong long)securityBuffer;
   contextValue = SystemResourceManager;
   CreateSystemObject(configurationBuffer,SystemContextManagerPointer + 0x28);
@@ -43524,7 +43524,7 @@ void InitializeAndConfigureSystemResources(void* SystemResourceManager)
   uint8_t SystemDataBufferExtended [64];
   void* *pSystemMemoryBufferPointer;
   void* *GlobalDataReferencePointer;
-  void* SystemResourceStatusFlag8;
+  void* SystemResourceStatusFlagExtended;
   uint32_t SystemResourceStatusFlag;
   void* SystemResourceValue;
   long long SystemMemoryAllocationOffset2f0;
