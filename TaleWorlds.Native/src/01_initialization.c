@@ -1049,11 +1049,11 @@ void* SystemMemoryBlockLockbox;
 // 系统内存块存档主区域
 void* SystemDataTableEntryArchiveMain;
 // 系统内存块存档次区域
-void* SystemMemoryBlockArchiveSecondary;
+void* SystemDataTableEntryArchiveSecondary;
 // 系统内存块存档第三区域
-void* SystemMemoryBlockArchiveTertiary;
+void* SystemDataTableEntryArchiveTertiary;
 // 系统内存块存档第四区域
-void* SystemMemoryBlockArchiveQuaternary;
+void* SystemDataTableEntryArchiveQuaternary;
 char SystemProtectionStatusIndicator;
 void* SystemDataTableEntrySystem;
 void* SystemMemoryBlockArchiveQuinary;
