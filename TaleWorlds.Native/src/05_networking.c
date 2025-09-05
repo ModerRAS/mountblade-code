@@ -560,29 +560,10 @@ uint32_t CompareNetworkConnectionTimestamps(int64_t *SourceTimestamp, int64_t *T
  * @brief 处理网络连接数据包数据
  * 
  * 处理网络连接中的数据包，包括数据验证、状态更新和错误处理。
- * 此函数是网络数据包处理的核心函数，负责验证数据包的有效性，
- * 更新连接状态，并处理各种网络异常情况。
- * 
- * @details 该函数执行以下关键操作：
- * - 验证数据包参数的有效性
- * - 检查数据包大小是否在有效范围内
- * - 处理连接请求并获取状态缓冲区
- * - 循环处理所有连接数据
- * - 提取和更新连接状态信息
- * - 验证连接安全性
- * - 更新连接上下文和参数
  * 
  * @param ConnectionContext 连接上下文指针，包含连接的状态信息和配置参数
  * @param PacketData 数据包数据，包含待处理的网络数据包信息
  * @return NetworkHandle 处理结果句柄，0表示成功，非0值表示错误码
- * 
- * @retval 0 处理成功
- * @retval NetworkConnectionNotFound 连接未找到
- * @retval NetworkErrorConnectionFailed 连接处理失败
- * 
- * @note 此函数会进行数据包验证、状态更新和连接管理
- * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
- * @see ValidateNetworkConnectionPacket, ProcessNetworkConnectionPacket
  */
 NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData);
 
@@ -1109,19 +1090,6 @@ void *NetworkConnectionRoutingSecondaryConfigPointer = &NetworkConnectionRouting
 void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig; // 网络连接路由第三配置指针，指向路由第三配置数据
 void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig; // 网络连接路由第四配置指针，指向路由第四配置数据
 
-// 网络连接配置数据定义
-uint32_t NetworkConnectionContextTemplateConfiguration;     // 网络连接上下文模板配置数据，用于初始化连接上下文的模板
-uint32_t NetworkConnectionPrimaryConfig;                    // 网络连接主要配置数据，连接的主要配置参数
-uint32_t NetworkConnectionSecondaryConfig;                  // 网络连接次要配置数据，连接的次要配置参数
-uint32_t NetworkConnectionProcessingConfig;                 // 网络连接处理配置数据，连接处理的配置参数
-uint32_t NetworkConnectionTransportConfig;                  // 网络连接传输配置数据，连接传输的配置参数
-uint32_t NetworkConnectionProtocolConfig;                   // 网络连接协议配置数据，连接协议的配置参数
-uint32_t NetworkConnectionValidationConfig;                 // 网络连接验证配置数据，连接验证的配置参数
-uint32_t NetworkConnectionRoutingPrimaryConfig;            // 网络连接路由主要配置数据，路由的主要配置参数
-uint32_t NetworkConnectionRoutingSecondaryConfig;          // 网络连接路由次要配置数据，路由的次要配置参数
-uint32_t NetworkConnectionRoutingTertiaryConfig;           // 网络连接路由第三配置数据，路由的第三级配置参数
-uint32_t NetworkConnectionRoutingQuaternaryConfig;          // 网络连接路由第四配置数据，路由的第四级配置参数
-
 /**
  * @brief 网络连接上下文模板数据
  * 
@@ -1136,80 +1104,37 @@ uint32_t NetworkConnectionContextTemplateConfiguration;     // 网络连接上�
  */
 uint32_t NetworkConnectionPrimaryConfig;                    // 网络连接主要配置数据，连接的主要配置参数
 
-/**
- * @brief 网络连接次要配置数据
- * 
- * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
- */
+// 网络连接次要配置数据
 uint32_t NetworkConnectionSecondaryConfig;                  // 网络连接次要配置数据，连接的次要配置参数
 
-/**
- * @brief 网络连接处理配置数据
- * 
- * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
- */
+// 网络连接处理配置数据
 uint32_t NetworkConnectionProcessingConfig;                 // 网络连接处理配置数据，连接处理的配置参数
 
-/**
- * @brief 网络连接传输配置数据
- * 
- * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
- */
+// 网络连接传输配置数据
 uint32_t NetworkConnectionTransportConfig;                  // 网络连接传输配置数据，连接传输的配置参数
 
-/**
- * @brief 网络连接协议配置数据
- * 
- * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
- */
+// 网络连接协议配置数据
 uint32_t NetworkConnectionProtocolConfig;                   // 网络连接协议配置数据，连接协议的配置参数
 
-/**
- * @brief 网络连接验证配置数据
- * 
- * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
- */
+// 网络连接验证配置数据
 uint32_t NetworkConnectionValidationConfig;                 // 网络连接验证配置数据，连接验证的配置参数
 
-/**
- * @brief 网络连接路由主要配置数据
- * 
- * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
- */
+// 网络连接路由主要配置数据
 uint32_t NetworkConnectionRoutingPrimaryConfig;            // 网络连接路由主要配置数据，路由的主要配置参数
 
-/**
- * @brief 网络连接路由次要配置数据
- * 
- * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
- */
+// 网络连接路由次要配置数据
 uint32_t NetworkConnectionRoutingSecondaryConfig;          // 网络连接路由次要配置数据，路由的次要配置参数
 
-/**
- * @brief 网络连接路由第三配置数据
- * 
- * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
- */
+// 网络连接路由第三配置数据
 uint32_t NetworkConnectionRoutingTertiaryConfig;           // 网络连接路由第三配置数据，路由的第三级配置参数
 
-/**
- * @brief 网络连接路由第四配置数据
- * 
- * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
- */
+// 网络连接路由第四配置数据
 uint32_t NetworkConnectionRoutingQuaternaryConfig;          // 网络连接路由第四配置数据，路由的第四级配置参数
 
 /**
  * @brief 初始化网络套接字
  * 
- * 初始化网络套接字，为网络通信做准备。此函数负责设置套接字的基本参数，
- * 包括文件描述符、上下文大小、协议类型等。初始化后的套接字可以用于
- * 建立网络连接和进行数据传输。
- * 
- * @note 此函数会在网络连接建立前调用
- * @warning 如果初始化失败，网络通信功能将无法正常工作
- * 
- * @return void 无返回值
+ * 初始化网络套接字，为网络通信做准备。
  */
 void InitializeNetworkSocket(void)
 {
@@ -1350,14 +1275,7 @@ void AcceptConnection(void)
 /**
  * @brief 关闭网络连接处理器
  * 
- * 关闭网络连接处理器，释放相关资源。此函数负责清理连接状态、释放连接资源、
- * 清理安全资源、网络资源、事件和回调资源等。关闭后会重置所有统计信息，
- * 确保所有资源被正确释放，避免内存泄漏。
- * 
- * @note 此函数会清理连接状态并释放分配的资源
- * @warning 如果资源释放不完全，可能会导致内存泄漏
- * 
- * @return void 无返回值
+ * 关闭网络连接处理器，释放相关资源。
  */
 void CloseConnection(void)
 {
@@ -1698,14 +1616,7 @@ void ValidatePacketSecurity(void)
 /**
  * @brief 处理网络数据包处理
  * 
- * 处理网络数据包的接收和发送逻辑，根据数据包类型调用相应的处理函数。此函数负责初始化处理参数、
- * 连接管理、路由和过滤缓冲区、错误处理等。处理系统会根据数据包类型、优先级、安全级别等
- * 自动选择合适的处理函数和处理流程。
- * 
- * @note 此函数会根据数据包类型调用相应的处理函数
- * @warning 如果处理失败，系统会记录错误并尝试进行错误恢复
- * 
- * @return void 无返回值
+ * 处理网络数据包的接收和发送逻辑，根据数据包类型调用相应的处理函数。
  */
 void ProcessNetworkPacketData(void)
 {
