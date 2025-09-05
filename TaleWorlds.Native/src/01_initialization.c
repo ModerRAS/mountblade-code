@@ -28597,14 +28597,14 @@ void* SystemResourceManagerNodeHandler(void* SystemResourceManager,void* Configu
   void* SystemStackHandle;
   void* *ResourceHandle1;
   void* *ResourceHandle2;
-  void* StackAllocationContext;
+  void* SystemAllocationContext;
   uint32_t StackAllocationFlags;
   ulong long ProcessedCount;
   
   ResourceHandle1 = (void* *)0x0;
   ResourceHandle2 = (void* *)0x0;
   AllocationSize = 0;
-  StackAllocationContext = 0;
+  SystemAllocationContext = 0;
   StackAllocationFlags = 3;
   InitializeSystemResourceManager(SystemGlobalStatusFlags,&ResourceHandle1,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
   ResourceEndPointer = ResourceHandle2;
@@ -28956,16 +28956,16 @@ void SystemResourceEnumerator(void)
   void* *SystemResourceHandle138;
   uint8_t *SystemBufferPointer130;
   uint StackContextOffset;
-  ulong long StackContextCapacity;
+  ulong long SystemContextCapacity;
   void* *SystemResourceHandle118;
   uint8_t *SystemBufferPointer110;
   uint32_t StackContextLimit;
   ulong long StackContextTotal;
   int SystemIterationCounter;
   void* *SystemResourceHandleF0;
-  uint8_t *SystemStackBufferPointerE8;
-  uint32_t StackAllocationBoundary;
-  ulong long StackAllocationOffset;
+  uint8_t *SystemBufferPointerE8;
+  uint32_t SystemAllocationBoundary;
+  ulong long SystemAllocationOffset;
   void* *SystemResourceHandleD0;
   long long SystemMemoryContextOffset;
   int SystemOperationCounter;
@@ -28981,12 +28981,12 @@ void SystemResourceEnumerator(void)
   void* *SystemResourceHandle58;
   void* *SystemResourceHandle50;
   void* SystemStackHandleSecondary;
-  uint32_t StackAllocationContext;
+  uint32_t SystemAllocationContext;
   void* SystemStackHandleTertiary;
   ulong long StackEncryptionKey;
   
   int SystemResourceIndex;
-  SystemStackHandle38 = 0xfffffffffffffffe;
+  SystemHandle38 = 0xfffffffffffffffe;
   StackEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)LocalBufferArray;
   SystemStatusFlagsPointer = SystemGlobalStatusFlags;
   ResourceDataLocation = *(long long *)(*SystemGlobalStatusFlags + 0x890) - *(long long *)(*SystemGlobalStatusFlags + 0x888) >> 5;
