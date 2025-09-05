@@ -18057,8 +18057,24 @@ void ProcessDataPointerOperationsA0(longlong *dataPointer, longlong *resultPoint
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 原始函数名：FUN_1808975e0 - 数据转换和验证函数A0
-// 功能：执行数据类型转换和验证操作，处理浮点和长整型数据
+/**
+ * @brief 数据转换和验证函数A0
+ * 
+ * 该函数负责执行数据类型转换和验证操作，处理浮点和长整型数据。
+ * 主要功能包括：
+ * 1. 验证系统资源和数据完整性
+ * 2. 执行数据类型转换操作
+ * 3. 处理浮点数比较和验证
+ * 4. 执行内存管理和安全检查
+ * 
+ * @param dataContext 数据上下文指针，包含要处理的数据信息
+ * @param validationContext 验证上下文指针，包含验证规则和状态信息
+ * 
+ * @note 此函数包含复杂的数据处理逻辑和多层验证机制
+ * @warning 函数执行过程中可能会调用不返回的子函数
+ * 
+ * @see ValidateAndProcessSystemResourceA0, ValidateDataIntegrityA0, CheckSystemStatus
+ */
 #define ConvertAndValidateDataA0 FUN_1808975e0
 
 void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
