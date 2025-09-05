@@ -1507,16 +1507,16 @@ void* SystemDataBufferExtendedPrime;
 void* SystemDataBufferExtendedSecondary;
 void* SystemDataBufferExtendedTertiary;
 void* SystemDataBufferExtendedFinalPrime;
-void* SystemDataBufferStandardExtraLarge;
-void* SystemDataBufferStandardExtraThirtyThree;
-void* SystemDataBufferStandardExtraThirtyFour;
-void* SystemDataBufferStandardExtraThirtyFive;
-void* SystemDataBufferStandardExtraThirtySix;
-void* SystemDataBufferStandardExtraThirtySeven;
-void* SystemDataBufferStandardExtraThirtyEight;
-void* SystemDataBufferStandardExtraThirtyNine;
-void* SystemDataBufferStandardExtraForty;
-void* SystemDataBufferStandardExtraFortyOne;
+void* SystemDataBufferStandardExtendedLarge;
+void* SystemDataBufferStandardExtended33;
+void* SystemDataBufferStandardExtended34;
+void* SystemDataBufferStandardExtended35;
+void* SystemDataBufferStandardExtended36;
+void* SystemDataBufferStandardExtended37;
+void* SystemDataBufferStandardExtended38;
+void* SystemDataBufferStandardExtended39;
+void* SystemDataBufferStandardExtended40;
+void* SystemDataBufferStandardExtended41;
 
 // 系统初始化协调器
 void* SystemInitializationCoordinator;
@@ -1633,7 +1633,7 @@ void* SystemInputContextA;                 // 系统输入上下文A
 void* SystemInputContextB;                 // 系统输入上下文B
 void* SystemNetworkContextA;                // 系统网络上下文A
 
-void* SystemStartupValidator;
+void* SystemStartupValidationHandler;
 
 void* GetSystemRootPointer;
 
@@ -48930,7 +48930,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   long long *PrimaryResourceDataPointer;
   byte *ByteValidationPointer;
   long long resourceDataIndexPrimary;
-  long long ResourceDataIndex4;
+  long long resourceDataIndexSecondary;
   long long *PrimaryResourceNodePointer;
   uint SystemInitializationStatusFlags;
   int SystemInitializationStatusPrimary;

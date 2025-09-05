@@ -32344,19 +32344,39 @@ void CleanupSystemFlagBit8(undefined8 context, longlong systemData)
 
 
 
-void Unwind_1809023b0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置偏移量0x180处的异常处理器
+ * 
+ * 该函数在指定的处理器表中设置默认异常处理器B，用于处理特定类型的异常情况
+ * 
+ * @param systemContext 系统上下文指针（未使用）
+ * @param handlerTable 处理器表指针
+ * 
+ * @note 原始函数名：Unwind_1809023b0
+ */
+void SetExceptionHandlerOffset180(undefined8 systemContext, longlong handlerTable)
 
 {
-  *(undefined **)(param_2 + 0x180) = &DefaultExceptionHandlerB;
+  *(undefined **)(handlerTable + 0x180) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809023c0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置偏移量0x1a0处的异常处理器
+ * 
+ * 该函数在指定的处理器表中设置默认异常处理器B，用于处理特定类型的异常情况
+ * 
+ * @param systemContext 系统上下文指针（未使用）
+ * @param handlerTable 处理器表指针
+ * 
+ * @note 原始函数名：Unwind_1809023c0
+ */
+void SetExceptionHandlerOffset1a0(undefined8 systemContext, longlong handlerTable)
 
 {
-  *(undefined **)(param_2 + 0x1a0) = &DefaultExceptionHandlerB;
+  *(undefined **)(handlerTable + 0x1a0) = &DefaultExceptionHandlerB;
   return;
 }
 
