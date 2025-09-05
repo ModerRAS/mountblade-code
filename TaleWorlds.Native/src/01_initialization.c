@@ -189,6 +189,25 @@
 #define DisplayContextQuaternaryAddress      0x180be14e0
 #define DisplayContextQuinaryAddress         0x180be1550
 
+// 音频系统地址常量
+#define SystemAudioContextPrimaryAddress       0x180be1c00
+#define SystemAudioContextSecondaryAddress     0x180be1c08
+#define SystemAudioContextTertiaryAddress      0x180be23a0
+#define SystemAudioContextQuaternaryAddress    0x180be23c0
+
+// 输入系统地址常量
+#define SystemInputContextPrimaryAddress        0x180be2ad8
+#define SystemInputContextSecondaryAddress      0x180be2af8
+
+// 物理系统地址常量
+#define PhysicsSystemPrimaryAddress            0x180be4710
+#define PhysicsSystemSecondaryAddress          0x180be4728
+
+// 网络系统地址常量
+#define NetworkSystemPrimaryAddress            0x180be6068
+#define NetworkSystemSecondaryAddress          0x180be6070
+#define NetworkSystemTertiaryAddress           0x180be6078
+
 // 虚函数表偏移量常量
 #define VirtualTableInitializeMethodOffset  0x28
 #define VirtualTableCleanupMethodOffset     0x38
@@ -1659,7 +1678,7 @@ void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeActive;
   void** SystemRootNodePointer;
-  int BaseAllocatorSystemIdentifierComparisonResult;
+  int BaseAllocatorSystemIdComparisonResult;
   long long* SystemMainTablePointer;
   long long SystemRequiredMemorySize;
   void** SystemCurrentNodePointer;

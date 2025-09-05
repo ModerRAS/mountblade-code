@@ -1457,6 +1457,19 @@ int32_t ValidateNetworkConnectionId(int64_t ConnectionContext, int64_t PacketDat
  * 
  * @return void 无返回值
  */
+
+/**
+ * @brief 验证网络安全值
+ * 
+ * 验证网络连接的安全值，确保连接的安全性和完整性。
+ * 此函数用于检查网络连接的安全参数，防止未授权访问。
+ * 
+ * @param SecurityValue 安全验证值，包含连接的安全信息和验证数据
+ * @return void 无返回值
+ * 
+ * @note 此函数在网络连接建立时调用，确保连接的安全性
+ * @warning 如果安全验证失败，连接将被拒绝
+ */
 void ValidateNetworkSecurity(uint64_t SecurityValue);
 
 /**
