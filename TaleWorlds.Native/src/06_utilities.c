@@ -28070,12 +28070,28 @@ void UnwindExceptionHandling010(undefined8 exceptionContext,longlong unwindParam
 
 
 
-void Unwind_180902040(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理展开函数040
+ * @details 处理标志位0x02的异常展开，清理相关资源
+ * 
+ * 参数:
+ *   param_1 - 异常上下文参数
+ *   param_2 - 展开参数结构体
+ * 
+ * 返回值:
+ *   无
+ */
+void UnwindExceptionHandling040(undefined8 exceptionContext,longlong unwindParam)
 
 {
-  if ((*(uint *)(param_2 + 0x20) & 2) != 0) {
-    *(uint *)(param_2 + 0x20) = *(uint *)(param_2 + 0x20) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x30);
+  uint32_t *statusFlags;
+  void *resourceData;
+  
+  statusFlags = (uint32_t *)(unwindParam + 0x20);
+  if ((*statusFlags & 2) != 0) {
+    *statusFlags = *statusFlags & 0xfffffffd;
+    resourceData = (void *)(unwindParam + 0x30);
+    FUN_180627b90(resourceData);
   }
   return;
 }
