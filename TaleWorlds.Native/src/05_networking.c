@@ -2474,15 +2474,6 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
 // =============================================================================
 
 /**
- * @brief 合并连接状态和句柄
- * 
- * 将连接状态和句柄信息合并为一个单一的值，便于后续处理
- * 
- * @param NetworkConnectionStateFlags 连接状态标志
- * @param NetworkConnectionIdentifier 连接标识符
- * @return uint64_t 合并后的连接状态和句柄值
- */
-/**
  * @brief 合并连接状态和标识符
  * 
  * 将连接状态标志和连接标识符合并为一个64位整数，便于在系统中传递和处理。
