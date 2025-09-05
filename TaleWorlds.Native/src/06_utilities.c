@@ -100059,7 +100059,19 @@ void ExecuteResourceHashCleanupWithOptions1(uint8_t ObjectContext, int64_t Valid
 
 
 
-void Unwind_1809102f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行带选项的资源哈希清理操作2
+ * 
+ * 在系统unwind过程中遍历扩展资源哈希表并执行清理操作，
+ * 支持自定义清理选项和标志位。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @param CleanupOption 清理选项
+ * @param CleanupFlag 清理标志
+ * @note 原始函数名：Unwind_1809102f0
+ */
+void ExecuteResourceHashCleanupWithOptions2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   uint8_t *ResourceHashPtr;
