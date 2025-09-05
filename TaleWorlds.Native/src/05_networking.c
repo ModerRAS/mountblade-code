@@ -1309,7 +1309,7 @@ uint32_t NetworkConnectionRoutingFallbackConfig;          // 网络连接路由�
  * 
  * @return void 无返回值
  * 
- * @see BindNetworkSocket, StartListeningForConnections
+ * @see BindNetworkSocketToAddress, StartNetworkConnectionListening
  */
 void InitializeNetworkSocket(void)
 {
