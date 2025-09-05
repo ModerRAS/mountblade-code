@@ -18459,9 +18459,9 @@ ProcessDataSecurityValidation:
   DataBuffer dataValue6;
   DataBuffer dataValue7;
   uint8_t *pdataValue8;
-  float fVar19;
+  float calculationResult19;
   uint64_t functionReturnValue0;
-  float *pfVar21;
+  float *poutputValue21;
   DataBuffer *register_RBP;
   int64_t systemContext;
   DataBuffer *resourcePointer2;
@@ -18722,9 +18722,9 @@ ValidateDataSecurity:
   DataBuffer dataValue6;
   DataBuffer dataValue7;
   uint8_t *pdataValue8;
-  float fVar19;
+  float processingValue19;
   uint64_t functionReturnValue0;
-  float *pfVar21;
+  float *poutputValue21;
   DataBuffer *register_RBP;
   int64_t systemContext;
   DataBuffer *register_R12;
@@ -19818,8 +19818,18 @@ void ValidateDataBlockA0(int64_t param_1,DataBuffer param_2)
 
 
 
-// 原始函数名：FUN_180898790 - 数据处理函数A0
-// 功能：处理输入数据并执行相应操作
+/**
+ * @brief 数据处理函数A0
+ * 
+ * 该函数处理输入数据，验证系统内存，并根据需要调整数据大小。
+ * 如果数据大小不足，会自动扩展缓冲区并清零新分配的内存。
+ * 
+ * @param param_1 数据上下文指针，包含数据缓冲区和大小信息
+ * @param param_2 请求的数据大小
+ * @return DataBuffer 返回操作状态：0表示成功，其他值表示错误
+ * 
+ * @note 原始函数名：FUN_180898790
+ */
 #define ProcessDataA0 FUN_180898790
 DataBuffer ProcessDataA0(int64_t *param_1,int param_2)
 
@@ -19844,8 +19854,18 @@ DataBuffer ProcessDataA0(int64_t *param_1,int param_2)
 
 
 
-// 原始函数名：FUN_1808987e0 - 数据验证函数A1
-// 功能：验证数据的有效性并返回验证结果
+/**
+ * @brief 数据验证函数A1
+ * 
+ * 该函数验证输入数据的有效性，初始化数据结构，并执行安全检查。
+ * 函数会设置验证标志，分配必要的内存资源，并确保数据完整性。
+ * 
+ * @param param_1 数据上下文指针，包含验证所需的信息和状态
+ * @param param_2 验证模式标志，控制验证的行为和严格程度
+ * @return DataBuffer 返回验证结果：0表示成功，其他值表示验证失败
+ * 
+ * @note 原始函数名：FUN_1808987e0
+ */
 #define ValidateDataA1 FUN_1808987e0
 DataBuffer ValidateDataA1(int64_t *param_1,char param_2)
 
@@ -21978,9 +21998,9 @@ DataBuffer ExecuteDataValidationA1(int64_t param_1,int64_t param_2)
 
 {
   DataBuffer dataValue;
-  float *pfVar2;
+  float *pinputData2;
   int operationStatus;
-  float fVar4;
+  float calculationResult4;
   BytePair auStackX_8 [4];
   
   auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(ByteFlag *)(param_2 + 0x104));
@@ -25816,9 +25836,9 @@ uint64_t * ValidateSystemDataProcessing(void)
   DataWord functionReturnValue;
   DataWord validationStatus;
   DataWord memoryBaseAddress;
-  float fVar5;
-  float fVar6;
-  float fVar7;
+  float coordinateValue5;
+  float coordinateValue6;
+  float coordinateValue7;
   uint securityCheckResult;
   uint statusCounter;
   uint loopCounter;
@@ -25826,7 +25846,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   DataBuffer *pdataValue1;
   DataWord *pdataValue2;
   DataBuffer *pdataValue3;
-  float *pfVar14;
+  float *pcoordinateValue14;
   uint64_t dataValue5;
   DataBuffer *pdataValue6;
   int64_t validationContext7;
@@ -27005,7 +27025,7 @@ uint64_t ProcessSystemDataD0(void)
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
-  float fVar9;
+  float calculationValue9;
   float extraout_XMM0_Da_06;
   DataWord extraout_XMM0_Da_07;
   DataWord extraout_XMM0_Da_08;
@@ -27639,7 +27659,7 @@ uint64_t FUN_18089c872(void)
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
-  float fVar12;
+  float calculationValue12;
   float extraout_XMM0_Da_06;
   DataWord extraout_XMM0_Da_07;
   DataWord extraout_XMM0_Da_08;
