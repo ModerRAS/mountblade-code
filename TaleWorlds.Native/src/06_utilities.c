@@ -218,7 +218,7 @@
  * 
  * @note 原始函数名：FUN_180899040
  */
-#define ValidateAndProcessData FUN_180899040
+#define ValidateAndProcessData ValidateAndProcessData
 
 /**
  * @brief 处理数据块
@@ -227,7 +227,7 @@
  * 
  * @note 原始函数名：FUN_180899090
  */
-#define ProcessDataBlocks FUN_180899090
+#define ProcessDataBlocks ProcessDataBlocks
 
 /**
  * @brief 验证并执行操作
@@ -236,7 +236,7 @@
  * 
  * @note 原始函数名：FUN_180899100
  */
-#define ValidateAndExecuteOperations FUN_180899100
+#define ValidateAndExecuteOperations ValidateAndExecuteOperations
 
 /**
  * @brief 初始化系统组件A0
@@ -245,7 +245,7 @@
  * 
  * @note 原始函数名：FUN_1808992c4
  */
-#define InitializeSystemComponents FUN_1808992c4
+#define InitializeSystemComponents InitializeSystemComponents
 
 /**
  * @brief 带安全检查的数据验证A2
