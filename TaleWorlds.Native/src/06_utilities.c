@@ -10073,33 +10073,33 @@ void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operati
 
 
 
-// 函数: void FUN_180894a07(ulonglong param_1)
-void FUN_180894a07(ulonglong param_1)
+// 函数: void ExecuteSecurityValidationOperation(ulonglong securityContext)
+void ExecuteSecurityValidationOperation(ulonglong securityContext)
 
 {
-  int iVar1;
-  longlong in_RAX;
-  longlong lVar2;
-  longlong *unaff_RSI;
-  longlong unaff_RDI;
-  ulonglong uStack0000000000000070;
-  ulonglong in_stack_000000a8;
+  int validationResult;
+  longlong systemHandler;
+  longlong securityContextHandle;
+  longlong *resultPointer;
+  longlong systemData;
+  ulonglong contextValue;
+  ulonglong stackGuard;
   
-  uStack0000000000000070 = param_1;
-  lVar2 = (**(code **)(in_RAX + 0x288))();
-  if (lVar2 == 0) {
+  contextValue = securityContext;
+  securityContextHandle = (**(code **)(systemHandler + 0x288))();
+  if (securityContextHandle == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18076b390(&stack0x00000080,0x27,&UNK_180958180,uStack0000000000000070 & 0xffffffff,
-                  uStack0000000000000070._4_2_);
+    FUN_18076b390(&stack0x00000080,0x27,&UNK_180958180,contextValue & 0xffffffff,
+                  contextValue._4_2_);
   }
-  if (**(int **)(lVar2 + 0xd0) == 0) {
-    iVar1 = FUN_18088c060(*(undefined4 *)(unaff_RDI + 0x18));
-    if (iVar1 != 0) goto LAB_180894aca;
+  if (**(int **)(securityContextHandle + 0xd0) == 0) {
+    validationResult = FUN_18088c060(*(undefined4 *)(systemData + 0x18));
+    if (validationResult != 0) goto LAB_180894aca;
   }
-  *unaff_RSI = lVar2;
+  *resultPointer = securityContextHandle;
 LAB_180894aca:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(stackGuard ^ (ulonglong)&stack0x00000000);
 }
 
 
