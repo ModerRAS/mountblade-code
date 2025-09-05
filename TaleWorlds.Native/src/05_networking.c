@@ -1635,7 +1635,7 @@ uint32_t NetworkConnectionPoolConfig;
 /**
  * @brief 网络连接池健康状态
  */
-uint32_t NetworkConnectionPoolHealthIndicator;
+uint32_t NetworkConnectionPoolHealthStatus;
 
 /**
  * @brief 网络连接池性能指标
@@ -1645,12 +1645,12 @@ uint32_t NetworkConnectionPoolPerformanceMetrics;
 /**
  * @brief 网络连接池分配计数
  */
-uint32_t NetworkConnectionPoolAllocationCounter;
+uint32_t NetworkConnectionPoolAllocationCount;
 
 /**
  * @brief 网络连接池释放计数
  */
-uint32_t NetworkConnectionPoolDeallocationCounter;
+uint32_t NetworkConnectionPoolDeallocationCount;
 
 /**
  * @brief 网络连接池容量
@@ -2963,9 +2963,9 @@ NetworkHandle InitializeConnectionProcessor(void)
 NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkConnectionStatus *ConnectionContextDataArray;      // 网络连接上下文数据数组
-  NetworkConnectionStatus NetworkPacketProcessingStatus; // 网络数据包处理状态
-  NetworkConnectionStatus NetworkConnectionValidationStatus; // 网络连接验证状态
+  NetworkConnectionStatus *NetworkContextDataArray;      // 网络连接上下文数据数组
+  NetworkConnectionStatus NetworkPacketProcessingStatusCode; // 网络数据包处理状态
+  NetworkConnectionStatus NetworkConnectionValidationStatusCode; // 网络连接验证状态
   
   /**
    * @brief 处理网络连接数据包的核心逻辑
