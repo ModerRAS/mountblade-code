@@ -2257,7 +2257,7 @@ PrimaryNetworkProcessingCompleted:
       if ((OperationProcessingCode != 0) && (ConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < OperationProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
-          NetworkStatus *ContextStatusPointer = (NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusPointer) + (long long)ConnectionStatusIterator);
+          NetworkStatus *ContextStatusPointer = (NetworkStatus *)CalculateStatusPointerOffset(ConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           NetworkStatus ValidationState = ContextStatusPointer[NetworkStatusValidationIndex];
           NetworkStatus TimeoutState = ContextStatusPointer[NetworkStatusTimeoutIndex];
           NetworkStatus SecondaryState = ContextStatusPointer[NetworkStatusSecondaryIndex];
@@ -2265,7 +2265,7 @@ PrimaryNetworkProcessingCompleted:
           ConnectionStatusIterator[NetworkStatusValidationIndex] = ValidationState;
           ConnectionStatusIterator[NetworkStatusTimeoutIndex] = TimeoutState;
           ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryState;
-          ConnectionStatusIterator[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusPointer) + -4 + (long long)(ConnectionStatusIterator + ConnectionContextStatusEntrySize));
+          ConnectionStatusIterator[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)CalculateLastStatusEntryOffset(ConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           StatusIterationCounter = StatusIterationCounter - 1;
           ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextStatusEntrySize;
         } while (StatusIterationCounter != 0);
