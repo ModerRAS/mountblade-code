@@ -198,9 +198,9 @@ static int64_t CalculateConnectionStatusPointerOffset(int64_t NetworkContextIden
  * @param StatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的最后一个状态条目偏移量地址
  */
-static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
+static int64_t CalculateLastConnectionStatusEntryAddress(int64_t NetworkContextIdentifier, void *NetworkStatusBasePointer, void *NetworkStatusIteratorPointer)
 {
-    return CalculateConnectionStatusPointerOffset(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
+    return CalculateConnectionStatusPointerOffset(NetworkContextIdentifier, NetworkStatusBasePointer, NetworkStatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)NetworkStatusIteratorPointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -3003,15 +3003,15 @@ void ResetNetworkConnectionPointer(void)
  * @security 该函数是网络安全的第一道防线，确保只有合法的连接参数能够通过验证
  * @see NetworkErrorInvalidHandle, NetworkErrorConnectionFailed
  */
-uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
+uint32_t ValidateNetworkConnectionParameters(int64_t *NetworkConnectionParameters)
 {
   // 检查参数指针是否有效
-  if (ConnectionParameters == NULL) {
+  if (NetworkConnectionParameters == NULL) {
     return NetworkErrorInvalidHandle;
   }
   
   // 检查连接参数的基本结构
-  if (*ConnectionParameters == 0) {
+  if (*NetworkConnectionParameters == 0) {
     return NetworkErrorConnectionFailed;
   }
   
@@ -3034,19 +3034,19 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
  * @note 此函数使用状态机模式处理连接请求的各个阶段
  * @warning 如果连接验证失败，系统会记录错误日志并拒绝连接
  */
-NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
+NetworkHandle HandleNetworkConnectionRequest(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketData)
 {
   // 网络连接请求处理变量
-  int64_t ConnectionContextIdentifier;                                  // 网络连接上下文标识符
-  int64_t *ConnectionValidationData;                        // 网络连接验证数据指针
-  int32_t ConnectionValidationStatus;                          // 网络连接验证状态码
-  int32_t NetworkValidationStatus;                              // 网络验证状态码
-  NetworkHandle ConnectionRequestResult;                         // 网络连接请求结果句柄
+  int64_t NetworkContextIdentifier;                                  // 网络连接上下文标识符
+  int64_t *NetworkValidationData;                        // 网络连接验证数据指针
+  int32_t NetworkConnectionValidationStatus;                          // 网络连接验证状态码
+  int32_t NetworkSecurityValidationStatus;                              // 网络验证状态码
+  NetworkHandle NetworkRequestResult;                         // 网络连接请求结果句柄
   
-  ConnectionContextIdentifier = 0;
-  ConnectionValidationData = NULL;  // 初始化验证数据指针
-  ConnectionValidationStatus = 0;  // 初始化验证状态码
-  NetworkValidationStatus = 0;     // 初始化网络验证状态码
+  NetworkContextIdentifier = 0;
+  NetworkValidationData = NULL;  // 初始化验证数据指针
+  NetworkConnectionValidationStatus = 0;  // 初始化验证状态码
+  NetworkSecurityValidationStatus = 0;     // 初始化网络验证状态码
   if (ConnectionValidationStatus == 0) {
     if (ConnectionValidationData && (0 < *(int *)CalculateConnectionParameterOffset(ConnectionValidationData)) && (*ConnectionValidationData != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationData, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
