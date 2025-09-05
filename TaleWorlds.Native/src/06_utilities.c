@@ -4354,7 +4354,7 @@ uint32_t UtilityInitObjectFooter;
 uint32_t UtilityInitObjectReservedData;
 
 // 函数: uint32_t UtilityProcessObject1(void);
-uint32_t UtilityProcessObject1;
+uint32_t UtilityProcessObjectPrimary;
 uint32_t UtilityProcessObjectInput;
 uint32_t UtilityProcessObjectOutput;
 uint32_t UtilityProcessObjectState;
@@ -4362,14 +4362,14 @@ uint32_t UtilityProcessObjectResult;
 uint32_t UtilityProcessObjectReservedData;
 
 // 函数: uint32_t UtilityProcessObject2(void);
-uint32_t UtilityProcessObject2;
+uint32_t UtilityProcessObjectSecondary;
 
 // 函数: uint32_t UtilityProcessObject3(void);
-uint32_t UtilityProcessObject3;
+uint32_t UtilityProcessObjectTertiary;
 uint32_t SystemConfigurationData;
-void* SystemFunctionPointer1;
+void* SystemFunctionPointerPrimary;
 uint32_t SystemConfigurationEnd;
-void* SystemFunctionPointer2;
+void* SystemFunctionPointerSecondary;
 uint32_t UtilityThreadPointerArray;
 uint32_t UtilityMemoryPointerArray;
 uint32_t UtilityResourcePointerArray;
@@ -8519,24 +8519,30 @@ undefined8 ValidateUtilitySystemState(void)
 // 功能：执行空操作，用于占位或同步
 #define ExecuteNoOperationA0 FUN_180890ac1
 
-// 函数: void ExecuteNoOperationA0(void)
-// 功能：执行空操作，用于占位或同步
-void ExecuteNoOperationA0(void)
-
+/**
+ * @brief 执行空操作A0
+ * 
+ * 该函数不执行任何操作，直接返回。用于占位或同步目的
+ * 
+ * @note 原始函数名：ExecuteNoOperationA0
+ */
+void ExecuteNoOperationFunctionA0(void)
 {
   return;
 }
 
 
 
-// 原始函数名：FUN_180890ac7 - 常量返回函数A0
-// 功能：返回常量值0x1c
-#define ReturnConstantValueA0 FUN_180890ac7
-
-// 函数: undefined8 ReturnConstantValueA0(void)
-// 功能：返回常量值0x1c
-undefined8 ReturnConstantValueA0(void)
-
+/**
+ * @brief 返回常量值A0
+ * 
+ * 该函数返回固定的常量值0x1c
+ * 
+ * @return 固定常量值0x1c
+ * 
+ * @note 原始函数名：FUN_180890ac7
+ */
+uint64_t ReturnConstantValueA0(void)
 {
   return 0x1c;
 }
