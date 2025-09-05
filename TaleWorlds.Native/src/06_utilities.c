@@ -4308,12 +4308,12 @@ void* UtilityProcessConfiguration3;
 void* UtilityProcessConfiguration4;
 void* UtilityProcessUnknownData1;
 
-// 函数: undefined UtilityProcessData10;
-undefined UtilityProcessInputData;
-undefined UtilityProcessOutputData;
-undefined UtilityProcessTempData;
-undefined UtilityProcessCacheData;
-undefined UtilityProcessResultData;
+// 函数: uint32_t UtilityProcessData10(void);
+uint32_t UtilityProcessInputData;
+uint32_t UtilityProcessOutputData;
+uint32_t UtilityProcessTempData;
+uint32_t UtilityProcessCacheData;
+uint32_t UtilityProcessResultData;
 uint32_t UtilityProcessReserved;
 
 // 函数: undefined UtilityValidateObject;
