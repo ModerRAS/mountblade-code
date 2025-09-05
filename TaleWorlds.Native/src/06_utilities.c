@@ -7101,7 +7101,7 @@ void ProcessUtilityOperation(longlong operationParams,uint64_t systemContext)
   OperationParams[0] = 2;
   OperationResult = ExecuteSystemOperation(systemContext,OperationParams,*(undefined4 *)(resourceDescriptor + 0x1c),CallbackData);
   if (OperationResult == 0) {
-    FUN_180875fc0(systemContext,CallbackData[0]);
+    ExecuteCallbackA0(systemContext,CallbackData[0]);
   }
   return;
 }
@@ -7397,7 +7397,7 @@ void ValidateAndProcessUtilityData(longlong dataContext,longlong systemContext)
 {
   int validationResult;
   
-  validationResult = FUN_18073b5f0(*(undefined8 *)(systemContext + 0x78),*(undefined4 *)(dataContext + 0x10),
+  validationResult = ValidateSystemDataA1(*(undefined8 *)(systemContext + 0x78),*(undefined4 *)(dataContext + 0x10),
                         dataContext + 0x14,dataContext + 0x20,dataContext + 0x2c,dataContext + 0x38);
   if ((validationResult == 0) &&
      (validationResult = ValidateDataAndReturnA0((longlong)*(int *)(dataContext + 0x10) * 0x44 +
@@ -7620,7 +7620,7 @@ void ExecuteUtilityOperation(longlong operationPointer,longlong contextPointer)
   longlong operationData;
   
   if (*(int *)(operationPointer + 0x2c) == 0) {
-    executionResult = FUN_1808949c0(contextPointer,operationPointer + 0x1c,&operationData);
+    executionResult = ExecuteSystemOperation(contextPointer,operationPointer + 0x1c,&operationData);
     if (executionResult != 0) {
       return;
     }
@@ -8580,7 +8580,7 @@ void ProcessSystemEventA3(longlong eventContext,longlong systemContext)
     }
     if ((0 < *(int *)(queueInfo + 0x2c)) && (*(longlong *)(queueInfo + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(queueInfo + 0x20),
+      AllocateResourceA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(queueInfo + 0x20),
                     &UNK_180957f70,0x100,1);
     }
     *(longlong *)(queueInfo + 0x20) = newBuffer;
@@ -12800,7 +12800,7 @@ void ProcessUtilitySystemData(longlong systemContext,undefined1 *dataBuffer,int 
       }
       bVar1 = *(byte *)(param_1 + 0x6c);
       if (*(longlong *)(param_1 + 0xc0) != 0) {
-        uVar5 = FUN_180895ef0(param_1);
+        uVar5 = CleanupAndValidateDataStructure(param_1);
         iVar4 = (**(code **)(param_1 + 0xc0))
                           (uVar5,iVar4,*(undefined4 *)(lVar9 + 0x18),*(undefined8 *)(param_1 + 0xb8)
                           );
@@ -12923,7 +12923,7 @@ void ProcessSystemDataWithValidation(longlong systemContext,undefined8 dataHandl
       dataType = typeCheck;
     }
     if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
-      uVar6 = FUN_180895ef0();
+      uVar6 = CleanupAndValidateDataStructure();
       iVar3 = (**(code **)(unaff_RDI + 0xc0))
                         (uVar6,unaff_EBX,*(undefined4 *)(lVar8 + 0x18),
                          *(undefined8 *)(unaff_RDI + 0xb8));
@@ -20752,7 +20752,6 @@ LAB_1808a2e6d:
 
 
 
-89b599(void)
 // 空操作函数A - 不执行任何操作
 void UtilityNoOperationA(void)
 
