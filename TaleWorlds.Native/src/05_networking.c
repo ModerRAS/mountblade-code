@@ -1001,7 +1001,7 @@ void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;
 void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;           // 网络连接验证配置指针，指向验证配置数据
 void *NetworkConnectionRoutingMainConfigPointer = &NetworkConnectionRoutingMainConfig;       // 网络连接路由主配置指针，指向路由主配置数据
 void *NetworkConnectionRoutingBackupConfigPointer = &NetworkConnectionRoutingBackupConfig;     // 网络连接路由备用配置指针，指向路由备用配置数据
-void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig; // 网络连接路由第三配置指针，指向路由第三配置数据
+void *NetworkConnectionRoutingAlternativeConfigPointer = &NetworkConnectionRoutingAlternativeConfig; // 网络连接路由替代配置指针，指向路由替代配置数据
 void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig; // 网络连接路由第四配置指针，指向路由第四配置数据
 
 /**
