@@ -417,6 +417,8 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络连接默认配置
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
+#define NetworkConnectionTimeout 30000                       // 连接超时时间（30秒）
+#define NetworkTimeoutThirtySeconds 30000                    // 30秒超时时间
 #define NetworkStandardBufferSize 256                         // 标准缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
@@ -1113,6 +1115,13 @@ uint32_t NetworkConnectionRoutingQuaternaryConfig;          // 网络连接路�
 
 /**
  * @brief 网络连接上下文模板数据
+ * 
+ * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
+ */
+uint32_t NetworkConnectionContextTemplateConfiguration;     // 网络连接上下文模板配置数据，用于初始化连接上下文的模板
+
+/**
+ * @brief 网络连接主要配置数据
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
