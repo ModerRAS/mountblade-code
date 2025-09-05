@@ -84,6 +84,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络连接超时常量
 #define NetworkConnectionTimeoutDefault 30000                  // 网络连接默认超时时间（30秒）
 #define NetworkConnectionTimeoutMs NetworkConnectionTimeoutDefault   // 网络连接超时时间（毫秒）
+#define Network30SecondsTimeout NetworkConnectionTimeoutDefault    // 30秒超时别名
 
 // 网络序列号和确认号常量
 #define NetworkSequenceInitialValue 0                          // 网络序列号初始值
