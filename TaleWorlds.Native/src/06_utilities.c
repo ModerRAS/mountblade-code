@@ -11918,7 +11918,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 //   - 函数内部会进行错误检查，初始化失败时会安全返回
 //   - 该函数是系统初始化的重要组成部分
 //
-void InitializeSystemEventHandlerA0(int64_t eventHandlerConfig,int64_t callbackTable)
+void InitializePrimarySystemEventHandler(int64_t eventHandlerConfig,int64_t callbackTable)
 
 {
   int systemOperationResult;
