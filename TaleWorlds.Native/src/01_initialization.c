@@ -1578,7 +1578,7 @@ void InitializeGameCoreSystem(void)
   }
   
   if ((SystemPreviousNodePointer == SystemRootNodePointer) || 
-      (GameCoreIdentifierNodeIdentifierComparisonResult = memcmp(&GameCoreSystemId, SystemPreviousNodePointer + 4, IdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
+      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemId, SystemPreviousNodePointer + 4, IdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &SystemAllocatedNodePointer, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
     SystemPreviousNodePointer = SystemAllocatedNodePointer;
