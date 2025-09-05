@@ -91623,7 +91623,7 @@ void ExecuteValidationContextMutexDestruction(uint8_t ObjectContext, int64_t Val
 void RegisterTertiaryResourceHandler(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  RegisterResourceHandler(*(uint8_t *)(ValidationContext + ResourceContextTertiaryOffset),0x488,2,ResourceTypeHandler488,0xfffffffffffffffe);
+  RegisterResourceHandler(*(uint8_t *)(ValidationContext + ResourceContextTertiaryOffset),ResourceTypeHandler488,2,ResourceTypeHandler488,ResourceSystemExitTrigger);
   return;
 }
 
@@ -91642,7 +91642,7 @@ void RegisterTertiaryResourceHandler(uint8_t ObjectContext, int64_t ValidationCo
 void RegisterExtendedResourceHandler1(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0x918,0x128,2,ResourceTypeHandler128,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + ResourceOperationOffset918,ResourceTypeHandler128,2,ResourceTypeHandler128,ResourceSystemExitTrigger);
   return;
 }
 
@@ -91661,7 +91661,7 @@ void RegisterExtendedResourceHandler1(uint8_t ObjectContext, int64_t ValidationC
 void RegisterExtendedResourceHandler2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
-  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + 0xb70,0x128,2,ResourceTypeHandler128,0xfffffffffffffffe);
+  RegisterResourceHandler(*(int64_t *)(ValidationContext + ResourceContextTertiaryOffset) + ResourceOperationOffsetB70,ResourceTypeHandler128,2,ResourceTypeHandler128,ResourceSystemExitTrigger);
   return;
 }
 
