@@ -2262,7 +2262,7 @@ void InitializeSystemThreadPool(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   long long SystemMemoryAllocationSize;
-  void** AllocatedMemoryNode;
+  void** AllocatedSystemNode;
   void* ResourceInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootTable();
@@ -2286,8 +2286,8 @@ void InitializeSystemThreadPool(void)
   }
   if ((HashTablePointer == RootNodeReference) || (NodeIdentifierComparisonResult = memcmp(&SystemConfigurationIdentifier, HashTablePointer + NodeIdentifierOffset, IdentifierSize), NodeIdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_CONFIGURATION_NODE_IDENTIFIER2;
@@ -2322,7 +2322,7 @@ void InitializeSystemEventManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   long long SystemMemoryAllocationSize;
-  void** AllocatedMemoryNode;
+  void** AllocatedSystemNode;
   void* ResourceInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootTable();
@@ -2346,8 +2346,8 @@ void InitializeSystemEventManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (NodeIdentifierComparisonResult = memcmp(&SystemEventIdentifier, HashTablePointer + NodeIdentifierOffset, IdentifierSize), NodeIdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
@@ -2383,7 +2383,7 @@ void InitializeSystemResourceManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   long long SystemMemoryAllocationSize;
-  void** AllocatedMemoryNode;
+  void** AllocatedSystemNode;
   void* ResourceInitializationCallback;
   
   SystemDataTable = (long long*)GetSystemRootTable();
@@ -2407,8 +2407,8 @@ void InitializeSystemResourceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (NodeIdentifierComparisonResult = memcmp(&SystemResourceIdentifier, HashTablePointer + NodeIdentifierOffset, IdentifierSize), NodeIdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
@@ -2817,8 +2817,8 @@ void InitializeSystemMemoryManager(void)
   if ((HashTablePointer == RootNodeReference) || 
       (MemoryManagerIdentifierCompareResult = memcmp(&SystemMemoryManagerTemplateId, HashTablePointer + NodeIdentifierOffset, IdentifierSize), MemoryManagerIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_D_ID1;
@@ -2880,8 +2880,8 @@ void InitializeSystemMemoryAllocator(void)
   }
   if ((PreviousNodePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&MemoryAllocatorTemplateId, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, PreviousNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    PreviousNodePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, PreviousNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    PreviousNodePointer = AllocatedSystemNode;
   }
   PreviousNodePointer[NodeIdentifier1Index] = MemoryAllocatorNodeIdentifier1;
   PreviousNodePointer[NodeIdentifier2Index] = MemoryAllocatorNodeIdentifier2;
@@ -3013,8 +3013,8 @@ void InitializeSystemThreadManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateAudioProcessor, HashTablePointer + NodeIdentifierOffset, 0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedSystemNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateHId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateHId2;
@@ -3068,8 +3068,8 @@ void InitializeSystemEventManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
@@ -3404,8 +3404,8 @@ void InitializeSystemDataTableQuinaryRoot(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateResourceHandler,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateEId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateEId2;
@@ -3460,8 +3460,8 @@ void InitializeSystemDataTableSenaryRoot(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateFileSystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
@@ -3516,8 +3516,8 @@ void InitializeSystemDataTableSeptenaryRoot(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateMemoryManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryManagerTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryManagerTemplateId2;
@@ -3572,8 +3572,8 @@ void InitializeSystemDataTableOctonaryRoot(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateGId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateGId2;
@@ -3628,8 +3628,8 @@ void InitializeSystemDataTableNonaryRoot(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeId2;
@@ -3684,8 +3684,8 @@ void InitializeSystemDataTableDenaryRoot(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateOId2;
@@ -3740,8 +3740,8 @@ void InitializeSystemDataTableDuodenaryRoot(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemMemoryComparisonTemplate,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryTemplateId2;
@@ -3846,8 +3846,8 @@ void InitializeSystemMemoryManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -3908,7 +3908,7 @@ void InitializeSystemDataStructure(void)
   }
   PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID1;
   PreviousNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_I_ID2;
-  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   PreviousNode[NodeActiveFlagIndex] = 4;
   PreviousNode[SystemNodeCallbackIndex] = SystemInitializationFunction;
   return;
@@ -3954,12 +3954,12 @@ void InitializeSystemDataTable(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -4005,12 +4005,12 @@ void InitializeSystemNodeTree(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -4056,12 +4056,12 @@ void InitializeMemoryAllocator(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -4118,12 +4118,12 @@ void InitializeResourcePool(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -4169,12 +4169,12 @@ void InitializeConfigurationManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -4220,8 +4220,8 @@ void InitializeEventSystem(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateFileSystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
@@ -4275,8 +4275,8 @@ void InitializeSystemMemoryManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -4330,12 +4330,12 @@ void InitializeSystemThreadPoolManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -4385,12 +4385,12 @@ void InitializeSystemResourceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -4442,12 +4442,12 @@ void InitializeSystemNodeTree(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -4499,12 +4499,12 @@ void InitializeSystemDataTable(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -4536,7 +4536,7 @@ void InitializeSystemEventHandler(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -4554,12 +4554,12 @@ void InitializeSystemEventHandler(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -4609,12 +4609,12 @@ void InitializeSystemNetworkManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -4664,8 +4664,8 @@ void InitializeSystemSecurityManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -4719,12 +4719,12 @@ void InitializeSystemPerformanceMonitor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -4774,12 +4774,12 @@ void InitializeSystemDebugManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -4833,12 +4833,12 @@ void InitializeSystemMemoryAllocator(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -4890,12 +4890,12 @@ void InitializeSystemResourcePool(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -4929,7 +4929,7 @@ void InitializeSystemConfigurationManager(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -4947,12 +4947,12 @@ void InitializeSystemConfigurationManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -5004,12 +5004,12 @@ void InitializeSystemResourceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -5061,8 +5061,8 @@ void InitializeSystemPerformanceMonitor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeId2;
@@ -5118,8 +5118,8 @@ void InitializeSystemDebugManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateFileSystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
@@ -5175,8 +5175,8 @@ void InitializeSystemEventHandler(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -5232,12 +5232,12 @@ void InitializeSystemNetworkManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -5289,12 +5289,12 @@ void InitializeSystemSecurityManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -5346,12 +5346,12 @@ void InitializeSystemDataTablePrimaryRoot(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -5403,14 +5403,14 @@ void InitializeSystemResourceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     long long SystemMemoryAllocationSize;
-    void** AllocatedMemoryNode;
+    void** AllocatedSystemNode;
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -5444,7 +5444,7 @@ void InitializeSystemPerformanceMonitor(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   IsNodeActive = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  PerformanceMonitorCallback = &SystemDataNodeJ;
+  PerformanceMonitorCallback = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (IsNodeActive == '\0') {
@@ -5462,14 +5462,14 @@ void InitializeSystemPerformanceMonitor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierNodeIdentifierComparisonResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierNodeIdentifierComparisonResult < 0)) {
     long long SystemMemoryAllocationSize;
-    void** AllocatedMemoryNode;
+    void** AllocatedSystemNode;
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = PerformanceMonitorCallback;
   return;
@@ -5521,14 +5521,14 @@ void InitializeSystemDebugManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierNodeIdentifierComparisonResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierComparisonResult < 0)) {
     long long SystemMemoryAllocationSize;
-    void** AllocatedMemoryNode;
+    void** AllocatedSystemNode;
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -5629,10 +5629,10 @@ void InitializeSystemEventManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateD, HashTablePointer + NodeIdentifierOffset, 0x10), IdentifierCompareResult < 0)) {
     long long SystemMemoryAllocationSize;
-    void** AllocatedMemoryNode;
+    void** AllocatedSystemNode;
     MemoryAllocationSize = GetSystemMemorySize(DataTable);
-    AllocateSystemMemory(DataTable, &AllocatedMemoryNode, PreviousNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    PreviousNode = AllocatedMemoryNode;
+    AllocateSystemMemory(DataTable, &AllocatedSystemNode, PreviousNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    PreviousNode = AllocatedSystemNode;
   }
   PreviousNode[NodeIdentifier1Index] = SystemMemoryManagerTemplateId1;
   PreviousNode[NodeIdentifier2Index] = SystemMemoryManagerTemplateId2;
@@ -5997,8 +5997,8 @@ void InitializeSystemResourceNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&RESOURCE_NODE_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
@@ -6055,12 +6055,12 @@ void InitializeSystemNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -6113,12 +6113,12 @@ void InitializeSystemDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -6153,7 +6153,7 @@ void InitializeSystemResourceNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -6171,12 +6171,12 @@ void InitializeSystemResourceNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -6229,12 +6229,12 @@ void InitializeSystemMemoryNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -6317,8 +6317,8 @@ void InitializeSystemConfigurationNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -6374,12 +6374,12 @@ void InitializeSystemEventNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -6436,7 +6436,7 @@ void InitializeSystemResourceNode(void)
   }
   PreviousNodePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   PreviousNodePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  PreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  PreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   PreviousNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   PreviousNodePointer[NodeHandlerIndex] = ResourceInitializationCallback;
   return;
@@ -6493,7 +6493,7 @@ void InitializeSystemEventNode(void)
   }
   PreviousNodePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   PreviousNodePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  PreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  PreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   PreviousNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   PreviousNodePointer[NodeHandlerIndex] = EventInitializationHandler;
   return;
@@ -6550,7 +6550,7 @@ void InitializeSystemMemoryNode(void)
   }
   PreviousNodePointer[NodeIdentifier1Index] = DataComparisonTemplateSystemNodeId1;
   PreviousNodePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  PreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  PreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   PreviousNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   PreviousNodePointer[NodeHandlerIndex] = ResourceInitializationCallback;
   return;
@@ -6583,7 +6583,7 @@ void InitializeRenderingSystem(void)
   RenderingSystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*RenderingSystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   RenderingHashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -6601,12 +6601,12 @@ void InitializeRenderingSystem(void)
   }
   if ((RenderingHashTablePointer == RootNodeReference) || (RenderingIdentifierCompareResult = memcmp(&SystemDataTemplateEventProcessor,RenderingHashTablePointer + NodeIdentifierOffset,0x10), RenderingIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(RenderingSystemDataTable);
-    AllocateSystemMemory(RenderingSystemDataTable,&AllocatedMemoryNode,RenderingHashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    RenderingHashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(RenderingSystemDataTable,&AllocatedSystemNode,RenderingHashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    RenderingHashTablePointer = AllocatedSystemNode;
   }
   RenderingHashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   RenderingHashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  RenderingHashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  RenderingHashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   RenderingHashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   RenderingHashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -6658,12 +6658,12 @@ void InitializeSystemConfigurationManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -6971,9 +6971,9 @@ void InitializeSystemMemoryManagerNode(void)
   }
   if ((SystemCurrentMemoryNode == SystemRootMemoryNode) || (IdentifierCompareResult = memcmp(&SystemMemoryComparisonTemplate,SystemCurrentMemoryNode + 4,0x10), IdentifierCompareResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTableReference);
-    void* *SystemAllocatedMemoryNode;
-    AllocateSystemMemory(SystemDataTableReference,&SystemAllocatedMemoryNode,SystemPreviousMemoryNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    SystemPreviousMemoryNode = SystemAllocatedMemoryNode;
+    void* *SystemAllocatedSystemNode;
+    AllocateSystemMemory(SystemDataTableReference,&SystemAllocatedSystemNode,SystemPreviousMemoryNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    SystemPreviousMemoryNode = SystemAllocatedSystemNode;
   }
   SystemCurrentMemoryNode[6] = SystemMemoryTemplateId1;
   SystemCurrentMemoryNode[7] = SystemMemoryTemplateId2;
@@ -7030,8 +7030,8 @@ void InitializeSystemDataTableNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -7088,12 +7088,12 @@ void InitializeSystemConfigurationNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -7146,12 +7146,12 @@ void InitializeSystemEventNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -7204,12 +7204,12 @@ void InitializeSystemNodeTreeProcessor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -7262,12 +7262,12 @@ void InitializeSystemMemoryPoolManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -7302,7 +7302,7 @@ void InitializeSystemServiceManager(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -7320,12 +7320,12 @@ void InitializeSystemServiceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -7378,12 +7378,12 @@ void InitializeSystemResourceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -7436,8 +7436,8 @@ void InitializeSystemEventHandler(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -7494,12 +7494,12 @@ void InitializeSystemTaskManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -7552,12 +7552,12 @@ void InitializeSystemDataProcessor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -7610,12 +7610,12 @@ void InitializeSystemCommunicationManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -7668,12 +7668,12 @@ void InitializeSystemMemoryManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -7708,7 +7708,7 @@ void InitializeSystemThreadManager(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -7726,12 +7726,12 @@ void InitializeSystemThreadManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -7783,13 +7783,13 @@ void InitializeSystemResourceInitializer(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    void** AllocatedMemoryNode;
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    void** AllocatedSystemNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -7914,9 +7914,9 @@ void InitializeSystemEventManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateFileSystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     long long MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    void** AllocatedMemoryNode;
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    void** AllocatedSystemNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
@@ -7973,8 +7973,8 @@ void InitializeSystemSearchManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateResourceHandler,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateEId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateEId2;
@@ -8031,8 +8031,8 @@ void InitializeSystemIndexManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateMemoryManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryManagerTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryManagerTemplateId2;
@@ -8089,8 +8089,8 @@ void InitializeSystemCacheManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateGId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateGId2;
@@ -8147,8 +8147,8 @@ void InitializeSystemLogManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -8205,12 +8205,12 @@ void InitializeSystemPerformanceMonitor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8263,12 +8263,12 @@ void InitializeSystemResourceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -8321,12 +8321,12 @@ void InitializeSystemEventDispatcher(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8379,12 +8379,12 @@ void InitializeSystemSecurityManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -8419,7 +8419,7 @@ void InitializeSystemConfigurationManager(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -8437,12 +8437,12 @@ void InitializeSystemConfigurationManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -8495,12 +8495,12 @@ void InitializeSystemNetworkManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -8553,8 +8553,8 @@ void InitializeSystemStorageManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateOId2;
@@ -8611,8 +8611,8 @@ void InitializeSystemProcessManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemMemoryComparisonTemplate,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryTemplateId2;
@@ -8669,8 +8669,8 @@ void InitializeSystemThreadManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -8729,7 +8729,7 @@ void InitializeSystemEventProcessor(void)
   }
   EventPreviousNode[NodeIdentifier1Index] = SystemDataTemplateIId1;
   EventPreviousNode[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  EventPreviousNode[NodeDataPointerIndex] = &SystemDataNodeF;
+  EventPreviousNode[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   EventPreviousNode[NodeActiveFlagIndex] = 4;
   EventPreviousNode[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8775,12 +8775,12 @@ void InitializeSystemResourceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -8826,12 +8826,12 @@ void InitializeSystemMemoryManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -8877,12 +8877,12 @@ void InitializeSystemLogManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -8910,7 +8910,7 @@ void InitializeSystemPerformanceMonitor(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -8928,12 +8928,12 @@ void InitializeSystemPerformanceMonitor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -8979,12 +8979,12 @@ void InitializeSystemSecurityMonitor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -9030,8 +9030,8 @@ void InitializeSystemNetworkManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateResourceHandler,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateEId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateEId2;
@@ -9081,8 +9081,8 @@ void InitializeSystemStorageManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateFileSystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
@@ -9132,8 +9132,8 @@ void InitializeSystemMemoryManagerNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateOId2;
@@ -9183,8 +9183,8 @@ void InitializeSystemConfigurationManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemMemoryComparisonTemplate,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryTemplateId2;
@@ -9234,8 +9234,8 @@ void InitializeSystemThreadManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeId2;
@@ -9285,8 +9285,8 @@ void InitializeSystemProcessManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -9336,12 +9336,12 @@ void InitializeSystemDeviceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -9387,12 +9387,12 @@ void InitializeSystemServiceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -9438,12 +9438,12 @@ void InitializeSystemDriverManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -9496,12 +9496,12 @@ void InitializeSystemModuleManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -9540,7 +9540,7 @@ void InitializeSystemComponentManager(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -9558,12 +9558,12 @@ void InitializeSystemComponentManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -9609,12 +9609,12 @@ void InitializeSystemPluginManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -9755,8 +9755,8 @@ void InitializeSystemFrameworkManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -9820,7 +9820,7 @@ void InitializeSystemSearchManagerAdvanced(void)
   
   PreviousSystemNode[SystemNodeIdentifier1Index] = SystemScriptingModuleIdentifier1;
   PreviousSystemNode[SystemNodeIdentifier2Index] = SystemNetworkModuleIdentifier2;
-  PreviousSystemNode[8] = &SystemDataNodeF;
+  PreviousSystemNode[8] = &SystemDataNodeMemoryManager;
   PreviousSystemNode[9] = 4;
   PreviousSystemNode[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -9870,12 +9870,12 @@ void InitializeSystemResourceNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -9924,12 +9924,12 @@ void InitializeSystemMemoryNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -9978,12 +9978,12 @@ void InitializeSystemDataTableNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -10014,7 +10014,7 @@ void InitializeSystemConfigurationNode(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  systemConfigurationData = &SystemDataNodeJ;
+  SystemConfigurationData = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -10032,14 +10032,14 @@ void InitializeSystemConfigurationNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
-  HashTablePointer[SystemNodeCallbackIndex] = systemConfigurationData;
+  HashTablePointer[SystemNodeCallbackIndex] = SystemConfigurationData;
   return;
 }
 
@@ -10082,12 +10082,12 @@ void InitializeSystemEventNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -10132,8 +10132,8 @@ void InitializeSystemThreadNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeId2;
@@ -10205,8 +10205,8 @@ void InitializeSystemSecurityNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
@@ -10255,8 +10255,8 @@ void InitializeSystemNetworkNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
@@ -10317,8 +10317,8 @@ void InitializeSystemAudioNode(void)
   }
   if ((HashTablePointerPointer == RootNodeReference) || (IdentifierComparisonResult = memcmp(&SystemDataTemplateP,HashTablePointerPointer + 4,0x10), IdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
-    AllocateSystemMemory(DataTablePointer,&AllocatedMemoryNode,HashTablePointerPointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointerPointer = AllocatedMemoryNode;
+    AllocateSystemMemory(DataTablePointer,&AllocatedSystemNode,HashTablePointerPointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointerPointer = AllocatedSystemNode;
   }
   HashTablePointerPointer[NodeIdentifier1Index] = SystemHashTableNodeIdentifier5;
   HashTablePointerPointer[NodeIdentifier2Index] = SystemHashTableNodeIdentifier6;
@@ -10379,8 +10379,8 @@ void InitializeSystemInputNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateQ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
@@ -10441,8 +10441,8 @@ void InitializeSystemPhysicsNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
@@ -10503,8 +10503,8 @@ void InitializeSystemFileSystemNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemConfigurationIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDatabaseModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemDatabaseModuleIdentifier2;
@@ -10565,8 +10565,8 @@ void InitializeSystemDatabaseNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemEventIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
@@ -10624,8 +10624,8 @@ void InitializeSystemConfigurationManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemResourceIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
@@ -10686,8 +10686,8 @@ void InitializeSystemConfigurationManager(void)
   }
   if ((SystemHashTablePointerPointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateR,SystemHashTablePointerPointer + 4,0x10), SystemIdentifierCompareResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedMemoryNode,SystemHashTablePointerPointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
-    SystemHashTablePointerPointer = SystemAllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedSystemNode,SystemHashTablePointerPointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
+    SystemHashTablePointerPointer = SystemAllocatedSystemNode;
   }
   SystemHashTablePointerPointer[NodeIdentifier1Index] = DataComparisonTemplateAlphaId1;
   SystemHashTablePointerPointer[NodeIdentifier2Index] = DataComparisonTemplateAlphaId2;
@@ -10745,8 +10745,8 @@ void InitializeSystemNetworkConfigurationManager(void)
   }
   if ((SystemHashTablePointerPointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&SystemDataTemplateSecondarySystem,SystemHashTablePointerPointer + 4,0x10), SystemIdentifierCompareResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedMemoryNode,SystemHashTablePointerPointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
-    SystemHashTablePointerPointer = SystemAllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedSystemNode,SystemHashTablePointerPointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
+    SystemHashTablePointerPointer = SystemAllocatedSystemNode;
   }
   SystemHashTablePointerPointer[NodeIdentifier1Index] = SystemDataTemplateSecondarySystemId1;
   SystemHashTablePointerPointer[NodeIdentifier2Index] = SystemDataTemplateSecondarySystemId2;
@@ -10804,8 +10804,8 @@ void InitializeSystemSearchConfigurationManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateFileSystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
@@ -11115,8 +11115,8 @@ void InitializeSystemInputControllerStringProcessor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -11165,12 +11165,12 @@ void InitializeSystemAudioProcessorStringProcessor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -11215,12 +11215,12 @@ void InitializeSystemDebugManagerStringProcessor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -11265,12 +11265,12 @@ void InitializeSystemStringProcessorExtended(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -11315,12 +11315,12 @@ void InitializeSystemStringProcessorIndexed(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -11347,7 +11347,7 @@ void InitializeSystemStringProcessorJobQueue(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -11365,12 +11365,12 @@ void InitializeSystemStringProcessorJobQueue(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -11415,12 +11415,12 @@ void InitializeSystemStringProcessorKernel(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -11465,8 +11465,8 @@ void InitializeSystemStringProcessorSpecialized(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -11515,12 +11515,12 @@ void InitializeSystemStringProcessorConfigurable(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -11565,12 +11565,12 @@ void InitializeSystemStringProcessorDynamic(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -11628,12 +11628,12 @@ void InitializeSystemStringProcessorOptimized(void)
   }
   if ((HashTablePointerPointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointerPointer + 4,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer,&AllocatedMemoryNode,HashTablePointerPointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointerPointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTablePointer,&AllocatedSystemNode,HashTablePointerPointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointerPointer = AllocatedSystemNode;
   }
   HashTablePointerPointer[NodeIdentifier1Index] = SystemEventModuleIdentifier1;
   HashTablePointerPointer[NodeIdentifier2Index] = SystemEventModuleIdentifier2;
-  HashTablePointerPointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointerPointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointerPointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointerPointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -11691,12 +11691,12 @@ void InitializeSystemStringProcessorParallel(void)
   }
   if ((HashTablePointerPointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointerPointer + 4,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer,&AllocatedMemoryNode,HashTablePointerPointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointerPointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTablePointer,&AllocatedSystemNode,HashTablePointerPointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointerPointer = AllocatedSystemNode;
   }
   HashTablePointerPointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
   HashTablePointerPointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
-  HashTablePointerPointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointerPointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointerPointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointerPointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -11736,7 +11736,7 @@ void InitializeSystemStringProcessorQueued(void)
   SystemDataTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTablePointer;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -11754,12 +11754,12 @@ void InitializeSystemStringProcessorQueued(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -11804,12 +11804,12 @@ void InitializeSystemStringProcessorResponsive(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -11854,8 +11854,8 @@ void InitializeSystemStringProcessorScalable(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -11904,12 +11904,12 @@ void InitializeSystemStringProcessorThreaded(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -11954,12 +11954,12 @@ void InitializeSystemStringProcessorUnified(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -12004,12 +12004,12 @@ void InitializeSystemStringProcessorVirtual(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -12054,12 +12054,12 @@ void InitializeSystemStringProcessorWorker(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -12086,7 +12086,7 @@ void InitializeSystemStringProcessorExtended(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -12104,12 +12104,12 @@ void InitializeSystemStringProcessorExtended(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -12154,12 +12154,12 @@ void InitializeSystemStringProcessorOptimized(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -12213,8 +12213,8 @@ void InitializeSystemStringProcessorZeroCopy(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -12280,12 +12280,12 @@ void InitializeSystemMemoryAllocator(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -12330,12 +12330,12 @@ void InitializeSystemMemoryManagerSecondary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -12380,12 +12380,12 @@ void InitializeSystemMemoryManagerTertiary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -12430,12 +12430,12 @@ void InitializeSystemMemoryManagerSecondary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -12462,7 +12462,7 @@ void InitializeSystemMemoryManagerTertiary(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -12480,12 +12480,12 @@ void InitializeSystemMemoryManagerTertiary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -12530,12 +12530,12 @@ void InitializeSystemMemoryManagerQuaternary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -12585,8 +12585,8 @@ void InitializeSystemMemoryAllocatorSetup(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
@@ -12640,8 +12640,8 @@ void InitializeSystemDataTableConfigurator(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
@@ -12702,8 +12702,8 @@ void InitializeSystemMemoryManagerGamma(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateP,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
@@ -12752,8 +12752,8 @@ void InitializeSystemMemoryManagerAdvanced(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateQ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
@@ -12802,8 +12802,8 @@ void InitializeSystemMemoryManagerIota(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
@@ -12860,8 +12860,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemConfigurationIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDatabaseModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemDatabaseModuleIdentifier2;
@@ -12918,8 +12918,8 @@ void InitializeSystemEventDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemEventIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
@@ -12976,8 +12976,8 @@ void InitializeSystemResourceNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemResourceIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
@@ -13034,8 +13034,8 @@ void InitializeSystemMemoryNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateR,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemCoreModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemCoreModuleIdentifier2;
@@ -13092,8 +13092,8 @@ void InitializeSystemDeviceNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecondarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryModuleIdentifier2;
@@ -13197,8 +13197,8 @@ void InitializeSystemMemoryNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
@@ -13254,8 +13254,8 @@ void InitializeSystemDeviceNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
@@ -13311,8 +13311,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateP,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
@@ -13368,8 +13368,8 @@ void InitializeSystemEventDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateQ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
@@ -13425,8 +13425,8 @@ void InitializeSystemMemoryAllocatorNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
@@ -13482,8 +13482,8 @@ void InitializeSystemConfigurationNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemConfigurationIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDatabaseModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemDatabaseModuleIdentifier2;
@@ -13539,8 +13539,8 @@ void InitializeSystemEventNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemEventIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
@@ -13596,8 +13596,8 @@ void InitializeSystemResourceNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemResourceIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
@@ -13653,8 +13653,8 @@ void InitializeSystemDataNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateR,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemCoreModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemCoreModuleIdentifier2;
@@ -13710,8 +13710,8 @@ void InitializeSystemStringProcessor(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecondarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryModuleIdentifier2;
@@ -13825,8 +13825,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -13882,12 +13882,12 @@ void InitializeSystemEventDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -13939,12 +13939,12 @@ void InitializeSystemResourceDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -13996,12 +13996,12 @@ void InitializeSystemDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -14053,12 +14053,12 @@ void InitializeSystemStringDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -14092,7 +14092,7 @@ void InitializeSystemMemoryDataNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -14110,12 +14110,12 @@ void InitializeSystemMemoryDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -14167,12 +14167,12 @@ void InitializeSystemDeviceDataNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -14242,8 +14242,8 @@ void InitializeSystemSearchNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateFileSystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
@@ -14299,8 +14299,8 @@ void InitializeSystemDebugNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -14356,12 +14356,12 @@ void InitializeSystemLoggingNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -14413,12 +14413,12 @@ void InitializeSystemPerformanceNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -14470,12 +14470,12 @@ void InitializeSystemSecurityNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -14527,12 +14527,12 @@ void InitializeSystemNetworkNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -14566,7 +14566,7 @@ void InitializeSystemThreadNodeManager(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -14584,12 +14584,12 @@ void InitializeSystemThreadNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -14641,12 +14641,12 @@ void InitializeSystemProcessNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -14699,8 +14699,8 @@ void InitializeSystemEventManagerGamma(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -14757,12 +14757,12 @@ void InitializeSystemEventManagerHotel(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -14815,12 +14815,12 @@ void InitializeSystemEventManagerIndia(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -14867,12 +14867,12 @@ void InitializeSystemEventManagerJuliett(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -14919,12 +14919,12 @@ void InitializeSystemEventManagerKilo(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -14953,7 +14953,7 @@ void InitializeSystemEventManagerL(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -14971,12 +14971,12 @@ void InitializeSystemEventManagerL(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -15023,12 +15023,12 @@ void InitializeSystemEventManagerM(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -15181,8 +15181,8 @@ void InitializeSystemResourceManagerA(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
@@ -15233,8 +15233,8 @@ void InitializeSystemResourceManagerB(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
@@ -15285,8 +15285,8 @@ void InitializeSystemResourceManagerC(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateP,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
@@ -15337,8 +15337,8 @@ void InitializeSystemResourceManagerD(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateQ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
@@ -15398,8 +15398,8 @@ void InitializeSystemResourceManagerE(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
@@ -15460,8 +15460,8 @@ void InitializeSystemResourceManagerF(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemConfigurationIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDatabaseModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemDatabaseModuleIdentifier2;
@@ -15513,8 +15513,8 @@ void InitializeSystemResourceManagerG(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemEventIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
@@ -15566,8 +15566,8 @@ void InitializeSystemResourceManagerH(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemResourceIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
@@ -15619,8 +15619,8 @@ void InitializeSystemResourceManagerI(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateR,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemCoreModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemCoreModuleIdentifier2;
@@ -15681,8 +15681,8 @@ void InitializeSystemResourceManagerJ(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecondarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryModuleIdentifier2;
@@ -15847,8 +15847,8 @@ void InitializeSystemDebugManagerPrimary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateS,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPerformanceModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPerformanceModuleIdentifier2;
@@ -15900,8 +15900,8 @@ void InitializeSystemDebugManagerSecondary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateT,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemComponentIdentifier3;
   HashTablePointer[NodeIdentifier2Index] = SystemComponentIdentifier4;
@@ -15953,8 +15953,8 @@ void InitializeSystemDebugManagerTertiary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
@@ -16011,8 +16011,8 @@ void InitializeSystemResourceAllocator(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
@@ -16069,8 +16069,8 @@ void InitializeSystemDataTableAllocator(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateP,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
@@ -16120,8 +16120,8 @@ void InitializeSystemResourceComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateQ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
@@ -16171,8 +16171,8 @@ void InitializeSystemAllocatorComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
@@ -16222,8 +16222,8 @@ void InitializeSystemConfigurationComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemConfigurationIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDatabaseModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemDatabaseModuleIdentifier2;
@@ -16273,8 +16273,8 @@ void InitializeSystemCoreComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemEventIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
@@ -16324,8 +16324,8 @@ void InitializeSystemMemoryComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemResourceIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
@@ -16375,8 +16375,8 @@ void InitializeSystemThreadComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateR,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemCoreModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemCoreModuleIdentifier2;
@@ -16426,8 +16426,8 @@ void InitializeSystemEventComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecondarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryModuleIdentifier2;
@@ -16477,8 +16477,8 @@ void InitializeSystemSecurityComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateS,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPerformanceModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPerformanceModuleIdentifier2;
@@ -16528,8 +16528,8 @@ void InitializeSystemNetworkComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateT,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemComponentIdentifier3;
   HashTablePointer[NodeIdentifier2Index] = SystemComponentIdentifier4;
@@ -16579,8 +16579,8 @@ void InitializeSystemDatabaseComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateFileSystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateFId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateFId2;
@@ -16630,8 +16630,8 @@ void InitializeSystemLoggingComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateResourceHandler,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateEId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateEId2;
@@ -16692,8 +16692,8 @@ void InitializeSystemPerformanceComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateMemoryManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryManagerTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryManagerTemplateId2;
@@ -16743,8 +16743,8 @@ void InitializeSystemDiagnosticComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateGId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateGId2;
@@ -16794,8 +16794,8 @@ void InitializeSystemDebugComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -16845,12 +16845,12 @@ void InitializeSystemPluginComponent(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateInputController,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -16897,12 +16897,12 @@ void InitializeSystemSubcomponentA(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateJ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeG;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -16949,12 +16949,12 @@ void InitializeSystemSubcomponentB(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateK,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeH;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -17001,12 +17001,12 @@ void InitializeSystemSubcomponentC(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecurityManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeI;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeNetworkManager;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -17035,7 +17035,7 @@ void InitializeSystemSubcomponentD(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -17053,12 +17053,12 @@ void InitializeSystemSubcomponentD(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -17105,12 +17105,12 @@ void InitializeSystemSubcomponentE(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -17157,8 +17157,8 @@ void InitializeSystemSubcomponentF(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateTertiarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateOId1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeId2;
@@ -17209,8 +17209,8 @@ void InitializeSystemSubcomponentG(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateS,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPerformanceModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPerformanceModuleIdentifier2;
@@ -17261,8 +17261,8 @@ void InitializeSystemSubcomponentH(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateT,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemComponentIdentifier3;
   HashTablePointer[NodeIdentifier2Index] = SystemComponentIdentifier4;
@@ -17386,8 +17386,8 @@ void InitializeSystemSubcomponentI(void)
   }
   if ((PerformanceMonitorHashTablePointer == PerformanceMonitorRootNodeReference) || (PerformanceMonitorSystemIdCompareResult = memcmp(&SystemDataTemplateS,PerformanceMonitorHashTablePointer + NodeIdentifierOffset,0x10), PerformanceMonitorSystemIdCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(PerformanceMonitorSystemDataTable);
-    AllocateSystemMemory(PerformanceMonitorSystemDataTable,&AllocatedMemoryNode,PerformanceMonitorHashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    PerformanceMonitorHashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(PerformanceMonitorSystemDataTable,&AllocatedSystemNode,PerformanceMonitorHashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    PerformanceMonitorHashTablePointer = AllocatedSystemNode;
   }
   PerformanceMonitorHashTablePointer[NodeIdentifier1Index] = 0x46c54bc98fc3fc2a;
   PerformanceMonitorHashTablePointer[NodeIdentifier2Index] = 0x727b256e3af32585;
@@ -17438,8 +17438,8 @@ void InitializeSystemSubcomponentJ(void)
   }
   if ((ConfigurationManagerHashTablePointer == ConfigurationManagerRootNodeReference) || (ConfigurationManagerIdentifierCompareResult = memcmp(&SystemDataTemplateT,ConfigurationManagerHashTablePointer + NodeIdentifierOffset,0x10), ConfigurationManagerIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(ConfigurationManagerSystemDataTable);
-    AllocateSystemMemory(ConfigurationManagerSystemDataTable,&AllocatedMemoryNode,ConfigurationManagerHashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    ConfigurationManagerHashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(ConfigurationManagerSystemDataTable,&AllocatedSystemNode,ConfigurationManagerHashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    ConfigurationManagerHashTablePointer = AllocatedSystemNode;
   }
   ConfigurationManagerHashTablePointer[NodeIdentifier1Index] = SystemConfigurationManagerIdentifier1;
   ConfigurationManagerHashTablePointer[NodeIdentifier2Index] = SystemConfigurationManagerIdentifier2;
@@ -17490,8 +17490,8 @@ void InitializeSystemSubcomponentK(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateS,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPerformanceModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPerformanceModuleIdentifier2;
@@ -17542,8 +17542,8 @@ void InitializeSystemSubcomponentL(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateT,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemComponentIdentifier3;
   HashTablePointer[NodeIdentifier2Index] = SystemComponentIdentifier4;
@@ -17643,8 +17643,8 @@ void InitializeSystemSubcomponentN(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateS,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPerformanceModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPerformanceModuleIdentifier2;
@@ -17699,8 +17699,8 @@ void InitializeSystemNodeManagerPrimary(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateT,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemComponentIdentifier3;
   HashTablePointer[NodeIdentifier2Index] = SystemComponentIdentifier4;
@@ -17755,8 +17755,8 @@ void InitializeSystemSearchManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateMemoryManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryManagerTemplateId1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryManagerTemplateId2;
@@ -17812,8 +17812,8 @@ void InitializeSystemNodeManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateGId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateGId2;
@@ -17871,8 +17871,8 @@ void InitializeSystemSearchManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateH,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_H_ID2;
@@ -17929,8 +17929,8 @@ void InitializeSystemEventManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemEventComparisonTemplate,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
@@ -17987,8 +17987,8 @@ void InitializeSystemResourceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemResourceComparisonTemplate,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
@@ -18045,8 +18045,8 @@ void InitializeSystemDeviceManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDeviceComparisonTemplate,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
@@ -18103,8 +18103,8 @@ void InitializeSystemMemoryManager(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemMemoryComparisonTemplate,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateLId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
@@ -18149,7 +18149,7 @@ void SystemDataNodeInitializerM(void)
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  SystemStackPointer = &SystemDataNodeJ;
+  SystemStackPointer = &SystemDataNodeAudioProcessor;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
@@ -18167,12 +18167,12 @@ void SystemDataNodeInitializerM(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateConfigurationManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = PerformanceMonitorSystemId1;
   HashTablePointer[NodeIdentifier2Index] = PerformanceMonitorSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeK;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeInputController;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = SystemStackPointer;
   return;
@@ -18223,12 +18223,12 @@ void InitializeSystemResourceInitializationNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateNetworkManager,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = DebugManagerSystemId1;
   HashTablePointer[NodeIdentifier2Index] = DebugManagerSystemId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeL;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodePhysicsEngine;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
   return;
@@ -18279,8 +18279,8 @@ void InitializeGameCoreSystemNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&GAME_CORE_SYSTEM_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemSecondaryNodeIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemSecondaryNodeIdentifier2;
@@ -18335,8 +18335,8 @@ void InitializeBaseAllocatorNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&BASE_ALLOCATOR_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemFileSystemModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemFileSystemModuleIdentifier2;
@@ -18391,8 +18391,8 @@ void InitializeSystemDataTableNode(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateP,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
@@ -18447,8 +18447,8 @@ void ResourceInitializationCallbackSetter(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateQ,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
@@ -18503,8 +18503,8 @@ void SystemAllocatorNodeInitializer(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemAllocatorIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemPhysicsModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemPhysicsModuleIdentifier2;
@@ -18559,8 +18559,8 @@ void SystemConfigurationNodeInitializer(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemConfigurationIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDatabaseModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemDatabaseModuleIdentifier2;
@@ -18615,8 +18615,8 @@ void SystemEventNodeInitializer(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemEventIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_EVENT_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_EVENT_NODE_IDENTIFIER2;
@@ -18671,8 +18671,8 @@ void SystemMemoryManagementNodeInitializer(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemResourceIdentifier,HashTablePointer + NodeIdentifierOffset,IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER1;
   HashTablePointer[NodeIdentifier2Index] = SYSTEM_RESOURCE_NODE_IDENTIFIER2;
@@ -18727,8 +18727,8 @@ void SystemThreadManagerInitializer(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateR,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemCoreModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemCoreModuleIdentifier2;
@@ -18783,8 +18783,8 @@ void SystemResourceTrackerInitializer(void)
   }
   if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateSecondarySystem,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    HashTablePointer = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable,&AllocatedSystemNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    HashTablePointer = AllocatedSystemNode;
   }
   HashTablePointer[NodeIdentifier1Index] = SystemMemoryModuleIdentifier1;
   HashTablePointer[NodeIdentifier2Index] = SystemMemoryModuleIdentifier2;
@@ -58105,7 +58105,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
   uint32_t systemUnsignedValue9C;
   float *systemFloatPointer;
   uint32_t SystemConfigurationValue;
-  long long systemConfigurationData;
+  long long SystemConfigurationData;
   void* systemUnsignedFlagSecondary;
   void* systemProcessFlagsSecondary;
   void* SystemEncryptionStatus;
@@ -58142,9 +58142,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
     SystemConfigurationValue = 0;
     systemFloatPointer = systemFloatReference;
     ProcessFloatValue(&systemFloatPointer);
-    if (*(int *)(systemConfigurationData + 0x10) != 0) {
+    if (*(int *)(SystemConfigurationData + 0x10) != 0) {
       do {
-        systemFloatReference = (float *)((long long)(int)threadContextFlag * 0x10 + *(long long *)(systemConfigurationData + 0x18));
+        systemFloatReference = (float *)((long long)(int)threadContextFlag * 0x10 + *(long long *)(SystemConfigurationData + 0x18));
         maximumFloatValueA8 = *systemFloatReference;
         if (*SystemPrimaryFloatPointer < maximumFloatValueA8) {
           maximumFloatValueA8 = *SystemPrimaryFloatPointer;
@@ -58174,7 +58174,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
         *(ulong long *)(SystemResourceManager + 0xa1) = ConcatenatedSystemValue(minimumFloatValueB4,minimumFloatValueB8);
         *(ulong long *)(SystemResourceManager + 0xa3) = ConcatenatedSystemValue(systemUnsignedValueAC,minimumFloatValueB0);
         threadContextFlag = threadContextFlag + 1;
-      } while (threadContextFlag < *(uint *)(systemConfigurationData + 0x10));
+      } while (threadContextFlag < *(uint *)(SystemConfigurationData + 0x10));
     }
     systemFloatReference = *(float **)(SystemResourceManager + 0x6e);
     if ((systemFloatReference != (float *)0x0) && (((uint)systemFloatReference[0x4e] & 0x3000) != 0)) {
@@ -58240,9 +58240,9 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
       SystemResourceManager[0xa7] = (SystemResourceManager[0xa3] + SystemResourceManager[0x9f]) * 0.5;
       SystemResourceManager[0xa8] = 3.4028235e+38;
       scalingFactor = 0.0;
-      operationCode = (ulong long)*(uint *)(systemConfigurationData + 0x10);
-      if (0 < (int)*(uint *)(systemConfigurationData + 0x10)) {
-        systemFloatReference = *(float **)(systemConfigurationData + 0x18);
+      operationCode = (ulong long)*(uint *)(SystemConfigurationData + 0x10);
+      if (0 < (int)*(uint *)(SystemConfigurationData + 0x10)) {
+        systemFloatReference = *(float **)(SystemConfigurationData + 0x18);
         offsetValue = scalingFactor;
         do {
           scalingFactor = (*systemFloatReference - SystemResourceManager[0xa5]) * (*systemFloatReference - SystemResourceManager[0xa5]) +

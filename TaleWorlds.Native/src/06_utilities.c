@@ -51039,7 +51039,7 @@ void UnwindProcessDataValidation(DataBuffer exceptionContext, int64_t validation
   
   pdataContext = (int64_t *)(*(int64_t *)(validationContext + 0x50) + 0x3c8);
   contextIterator = *(int64_t *)(*(int64_t *)(validationContext + 0x50) + 0x3d0);
-  for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
+  for (calculatedOffset = *pdataContext; calculatedOffset != contextIterator; calculatedOffset = calculatedOffset + 0x1a8) {
     FUN_180069530(calculatedOffset);
   }
   if (*pdataContext == 0) {
@@ -51051,14 +51051,14 @@ void UnwindProcessDataValidation(DataBuffer exceptionContext, int64_t validation
 
 
 
-void Unwind_180905ee0(DataBuffer param_1,int64_t param_2)
+void UnwindValidateMemoryAccess(DataBuffer exceptionContext, int64_t memoryContext)
 
 {
   int64_t validationContext;
   int64_t *pdataContext;
   int64_t calculatedOffset;
   
-  pdataContext = *(int64_t **)(param_2 + 0x60);
+  pdataContext = *(int64_t **)(memoryContext + 0x60);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
     FUN_180069530(calculatedOffset);
@@ -51386,7 +51386,7 @@ void Unwind_180905fc0(DataBuffer param_1,int64_t param_2)
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x70) + 0x3c8);
   validationContext = *(int64_t *)(*(int64_t *)(param_2 + 0x70) + 0x3d0);
-  for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
+  for (calculatedOffset = *pdataContext; calculatedOffset != contextIterator; calculatedOffset = calculatedOffset + 0x1a8) {
     FUN_180069530(calculatedOffset);
   }
   if (*pdataContext == 0) {
@@ -51513,7 +51513,7 @@ void Unwind_180906060(DataBuffer param_1,int64_t param_2)
   
   pdataContext = *(int64_t **)(param_2 + 0x78);
   validationContext = pdataContext[1];
-  for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x1a8) {
+  for (calculatedOffset = *pdataContext; calculatedOffset != contextIterator; calculatedOffset = calculatedOffset + 0x1a8) {
     FUN_180069530(calculatedOffset);
   }
   if (*pdataContext == 0) {
@@ -59055,13 +59055,13 @@ void ProcessDataBufferA0(DataBuffer contextParameter, int64_t systemContext, Dat
   
   dataContext = *(int64_t *)(systemContext + 0x68);
   validationStatus = SystemCleanupFlagfffffffe;
-  FUN_18004b730();
-  FUN_180058370(dataContext + 0x60,*(DataBuffer *)(dataContext + 0x70),dataParameter,validationParameter,validationStatus);
+  InitializeSystemValidation();
+  ProcessSystemDataValidation(dataContext + 0x60,*(DataBuffer *)(dataContext + 0x70),dataParameter,validationParameter,validationStatus);
   dataValuePointer = *(DataBuffer **)(dataContext + 0x40);
   if (dataValuePointer != (DataBuffer *)0x0) {
-    FUN_18004b790(dataContext + 0x30,*dataValuePointer,dataParameter,validationParameter,SystemCleanupFlagfffffffe);
+    ValidateSystemDataBuffer(dataContext + 0x30,*dataValuePointer,dataParameter,validationParameter,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(dataValuePointer);
+    CleanupSystemDataPointer(dataValuePointer);
   }
   return;
 }
