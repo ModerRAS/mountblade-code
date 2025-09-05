@@ -409,8 +409,8 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkTimeout5Seconds 5000                           // 网络超时：5秒
 #define NetworkTimeout30Seconds 30000                          // 网络超时：30秒
 #define NetworkTimeout5Minutes 300000                          // 网络超时：5分钟
-#define NetworkHeartbeatThirtySeconds 30                          // 30秒心跳
-#define NetworkHeartbeatSixtySeconds 60                          // 60秒心跳
+#define NetworkHeartbeat30Seconds 30                          // 网络心跳：30秒
+#define NetworkHeartbeat60Seconds 60                          // 网络心跳：60秒
 
 // 网络质量常量
 #define NetworkConnectionQualityGood 0x05                       // 良好连接质量
