@@ -19622,7 +19622,7 @@ LibraryHandleLoadedSuccessfully:
       }
     }
     else {
-      *(char *)AllocatedMemoryPointer = '\x01';
+      *(char *)AllocatedMemoryPointer = SystemStatusActive;
       systemGlobalDataPtr = &SystemGlobalDataReference;
       if (AlternateBufferPointer != (void* *)0x0) {
           SystemCleanupFunction();
