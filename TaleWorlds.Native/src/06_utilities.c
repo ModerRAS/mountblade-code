@@ -1069,6 +1069,27 @@
 // 功能：异常处理的函数参数
 #define ExceptionProcessParameter 0x180c82238
 
+// 系统数据变量语义化宏定义
+// 原始变量名：UNK_1809864e0 - 数据配置表A0
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA0 UNK_1809864e0
+
+// 原始变量名：UNK_180986508 - 数据配置表A1
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA1 UNK_180986508
+
+// 原始变量名：UNK_180986550 - 数据配置表A2
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA2 UNK_180986550
+
+// 原始变量名：UNK_180986590 - 数据配置表A3
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA3 UNK_180986590
+
+// 原始变量名：UNK_1809865f0 - 数据配置表A4
+// 功能：存储系统数据配置信息
+#define DataConfigurationTableA4 UNK_1809865f0
+
 // FUN_1809414xx函数语义化宏定义
 // 原始函数名：FUN_180941445 - 数据结构初始化函数A0
 // 功能：初始化数据结构并设置指针，包含验证逻辑
@@ -4616,13 +4637,13 @@ void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
   int operationResult;
   longlong arrayIndex;
   int processedCount;
-  undefined1 auStack_278 [32];
-  longlong alStack_258 [2];
-  undefined1 *puStack_248;
-  int iStack_240;
-  undefined4 uStack_23c;
-  undefined1 auStack_238 [512];
-  ulonglong uStack_38;
+  undefined1 securityValidationBuffer [32];
+  longlong systemContextArray [2];
+  undefined1 *dataProcessingBuffer;
+  int iterationCounter;
+  undefined4 operationFlags;
+  undefined1 workingDataBuffer [512];
+  ulonglong stackGuardValue;
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(objectHandle + 0x10),alStack_258);
