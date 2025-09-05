@@ -1413,22 +1413,22 @@ void RetrieveNetworkPacketData(void)
   // 初始化接收参数
   NetworkBytesReceived = 0;                             // 重置接收字节数
   NetworkPacketsReceived = 0;                            // 重置接收数据包数量
-  NetworkRoundTripTime = ROUND_TRIP_TIME_RESET;                          // 重置往返时间
+  NetworkRoundTripTime = NetworkRoundTripTimeResetValue;                          // 重置往返时间
   
   // 初始化数据包队列
-  NetworkPacketQueue = QUEUE_ENABLED;                            // 初始化数据包队列
-  NetworkPacketQueueSize = PACKET_QUEUE_SIZE;                       // 设置数据包队列大小为256
+  NetworkPacketQueue = NetworkQueueEnabledFlag;                            // 初始化数据包队列
+  NetworkPacketQueueSize = NetworkPacketQueueSize;                       // 设置数据包队列大小为256
   
   // 初始化缓冲区管理
   NetworkBufferManager = NetworkBufferEnabledFlag;                          // 初始化缓冲区管理器
-  NetworkBufferSize = BufferSize4KB;                            // 设置缓冲区大小为4KB
-  NetworkBufferIndex = INDEX_RESET;                            // 重置缓冲区索引
+  NetworkBufferSize = NetworkBufferSize4Kilobytes;                            // 设置缓冲区大小为4KB
+  NetworkBufferIndex = NetworkIndexResetValue;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
   NetworkPacketContext = NetworkBufferEnabledFlag;                          // 初始化数据包上下文
-  NetworkPacketContextSize = ContextSize256B;                    // 设置数据包上下文大小为256字节
+  NetworkPacketContextSize = ContextSize256Bytes;                    // 设置数据包上下文大小为256字节
   NetworkPacketData = NetworkBufferEnabledFlag;                             // 初始化数据包数据
-  NetworkPacketIndex = PACKET_INDEX_RESET;                            // 重置数据包索引
+  NetworkPacketIndex = NetworkPacketIndexResetValue;                            // 重置数据包索引
   
   // 初始化数据包处理
   NetworkPacketHeaderData = NetworkBufferEnabledFlag;                       // 初始化数据包包头数据
@@ -1438,12 +1438,12 @@ void RetrieveNetworkPacketData(void)
   
   // 初始化抖动缓冲区
   NetworkConnectionJitterBuffer = NetworkBufferEnabledFlag;                // 初始化抖动缓冲区
-  NetworkConnectionErrorRate = ERROR_RATE_RESET;                   // 重置错误率
+  NetworkConnectionErrorRate = NetworkErrorRateResetValue;                   // 重置错误率
   
   // 初始化连接健康监控
-  NetworkConnectionHealth = HEALTH_GOOD;                       // 设置连接健康状态为良好
-  NetworkConnectionStability = STABILITY_HIGH;                    // 设置连接稳定性为高
-  NetworkConnectionPerformance = PERFORMANCE_GOOD;                  // 设置连接性能为良好
+  NetworkConnectionHealth = NetworkHealthGoodFlag;                       // 设置连接健康状态为良好
+  NetworkConnectionStability = NetworkStabilityHighFlag;                    // 设置连接稳定性为高
+  NetworkConnectionPerformance = NetworkPerformanceGoodFlag;                  // 设置连接性能为良好
 }
 
 /**
@@ -1503,14 +1503,14 @@ void ValidateNetworkPacketSecurity(void)
 void ProcessNetworkPackets(void)
 {
   // 初始化处理参数
-  NetworkConnectionTableIndex = 0x00;          // 重置连接表索引
-  NetworkConnectionTableSize = CONNECTION_POOL_SIZE;           // 设置连接表大小为256
+  NetworkConnectionTableIndex = NetworkTableIndexResetValue;          // 重置连接表索引
+  NetworkConnectionTableSize = NetworkConnectionPoolSize;           // 设置连接表大小为256
   
   // 初始化连接管理
   NetworkConnectionManager = NetworkConnectionEstablished;             // 初始化连接管理器
   NetworkConnectionData = NetworkConnectionEstablished;                 // 初始化连接数据
   NetworkConnectionSize = NetworkConnectionSize256Bytes;                // 设置连接大小为256字节
-  NetworkConnectionIndex = 0x00;               // 重置连接索引
+  NetworkConnectionIndex = NetworkIndexResetValue;               // 重置连接索引
   
   // 初始化路由和过滤缓冲区
   NetworkPacketRoutingBuffer = NetworkBufferInitialized;            // 初始化数据包路由缓冲区
@@ -1519,9 +1519,9 @@ void ProcessNetworkPackets(void)
   NetworkPacketFilterBuffer = NetworkBufferInitialized;             // 初始化数据包过滤缓冲区
   
   // 初始化网络统计
-  NetworkBandwidthUsage = 0x00;                         // 重置带宽使用量
-  NetworkLatency = 0x00;                                // 重置延迟
-  NetworkPacketLoss = 0x00;                             // 重置数据包丢失率
+  NetworkBandwidthUsage = NetworkBytesResetValue;                         // 重置带宽使用量
+  NetworkLatency = NetworkLatencyResetValue;                                // 重置延迟
+  NetworkPacketLoss = NetworkPacketsResetValue;                             // 重置数据包丢失率
   
   // 初始化重试机制
   NetworkRetryInterval = NetworkTimeoutOneSecond;                        // 设置重试间隔为1秒
@@ -1531,9 +1531,9 @@ void ProcessNetworkPackets(void)
   
   // 初始化事件处理
   NetworkEventSize = NetworkEventSize64Bytes;                              // 设置事件大小为64字节
-  NetworkEventIndex = 0x00;                            // 重置事件索引为0
+  NetworkEventIndex = NetworkIndexResetValue;                            // 重置事件索引为0
   NetworkCallbackSize = NetworkCallbackSize64Bytes;                           // 设置回调大小为64字节
-  NetworkCallbackIndex = 0x00;                          // 重置回调索引为0
+  NetworkCallbackIndex = NetworkIndexResetValue;                          // 重置回调索引为0
 }
 
 /**
@@ -1552,13 +1552,13 @@ void HandleNetworkErrors(void)
 {
   // 初始化错误处理参数
   NetworkErrorProcessor = NetworkSystemEnabled;                         // 初始化错误处理器
-  NetworkErrorCounter = 0x00;                            // 重置错误计数器为0
+  NetworkErrorCounter = NetworkErrorRateResetValue;                            // 重置错误计数器为0
   
   // 初始化错误报告缓冲区
-  NetworkErrorReportSize = 0x0B;                         // 设置错误报告大小为11字节
-  NetworkSecurityReportSize = 0x0D;                     // 设置安全报告大小为13字节
-  NetworkConnectionReportSize = 0x0F;                    // 设置连接报告大小为15字节
-  NetworkPacketReportSize = 0x0C;                       // 设置数据包报告大小为12字节
+  NetworkErrorReportSize = NetworkErrorReportSize;                         // 设置错误报告大小为11字节
+  NetworkSecurityReportSize = NetworkSecurityReportSize;                     // 设置安全报告大小为13字节
+  NetworkConnectionReportSize = NetworkConnectionReportSize;                    // 设置连接报告大小为15字节
+  NetworkPacketReportSize = NetworkPacketReportSize;                       // 设置数据包报告大小为12字节
   
   // 初始化资源分配参数
   NetworkResourceAllocationSize = 0x20;                  // 设置资源分配大小为32字节
