@@ -50230,6 +50230,14 @@ void Unwind_1809059b0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
+/**
+ * @brief 验证异常状态并重置相关标志
+ * @param param_1 数据缓冲区指针
+ * @param param_2 异常上下文参数
+ * @return 无返回值
+ * @note 原始函数名：Unwind_1809059c0 - 异常状态验证函数G10
+ * 功能：验证异常状态并重置相关标志
+ */
 void Unwind_1809059c0(DataBuffer param_1,int64_t param_2)
 
 {
