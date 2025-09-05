@@ -101046,7 +101046,19 @@ void Unwind_180910620(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910640(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源表清理操作
+ * 
+ * 该函数负责清理系统资源表中的资源状态。
+ * 通过内存地址对齐和哈希状态检查来确保资源的安全释放。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数会处理系统资源表的清理和内存管理
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ */
+void ExecuteSystemResourceTableCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
