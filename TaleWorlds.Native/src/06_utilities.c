@@ -12852,7 +12852,7 @@ LAB_18089555d:
     *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) | 0x4000000;
     *param_2 = 0;
   }
-FUN_180895b89:
+ExecuteSecurityValidation:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(uStack_48 ^ (ulonglong)auStack_738);
 }
@@ -14590,7 +14590,7 @@ LAB_180896ce3:
       iVar3 = iVar3 + 1;
     } while( true );
   }
-FUN_1808974f4:
+ExecuteSystemSecurityCheck:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(uStack_58 ^ (ulonglong)auStack_328);
 }
@@ -15232,7 +15232,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
       }
     }
   }
-FUN_180897b16:
+ProcessDataSecurityValidation:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(uStack_58 ^ (ulonglong)auStack_1e8);
 }
@@ -15495,7 +15495,7 @@ FUN_180897b16:
       }
     }
   }
-FUN_180897b0e:
+ValidateDataSecurity:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
@@ -15740,7 +15740,7 @@ FUN_180897b0e:
       }
     }
   }
-FUN_180897afe:
+ExecuteFloatingPointSecurityCheck:
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
