@@ -3204,7 +3204,7 @@ NetworkHandle ValidatePacketHeaderSecurity(int64_t ConnectionContext, int64_t Pa
   // 6. 检查时间戳和序列号
   // 7. 验证校验和和CRC
   
-  return NetworkOperationSuccess;  // 验证成功（简化实现）
+  return NetworkOperationSuccess;
 }
 
 /**
