@@ -30142,28 +30142,37 @@ void ExecuteCleanupCallbacks(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902680(undefined8 param_1,longlong param_2)
+/**
+ * 执行上下文清理回调函数
+ * 
+ * 遍历验证上下文中的回调函数列表，执行所有注册的清理回调
+ * 用于异常处理期间的资源清理工作
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 展开参数，包含回调列表信息
+ */
+void ExecuteContextCleanupCallbacks(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
-  longlong *plVar2;
-  longlong *plVar3;
+  longlong *validationContext;
+  longlong *callbackList;
+  longlong *callbackEntry;
   
-  plVar2 = *(longlong **)(param_2 + 0x78);
-  pvalidationContext = (longlong *)plVar2[1];
-  for (plVar3 = (longlong *)*plVar2; plVar3 != pvalidationContext; plVar3 = plVar3 + 3) {
-    if ((longlong *)plVar3[1] != (longlong *)0x0) {
-      (**(code **)(*(longlong *)plVar3[1] + 0x38))();
+  callbackList = *(longlong **)(param_2 + 0x78);
+  validationContext = (longlong *)callbackList[1];
+  for (callbackEntry = (longlong *)*callbackList; callbackEntry != validationContext; callbackEntry = callbackEntry + 3) {
+    if ((longlong *)callbackEntry[1] != (longlong *)0x0) {
+      (**(code **)(*(longlong *)callbackEntry[1] + 0x38))();
     }
-    if ((longlong *)*plVar3 != (longlong *)0x0) {
-      (**(code **)(*(longlong *)*plVar3 + 0x38))();
+    if ((longlong *)*callbackEntry != (longlong *)0x0) {
+      (**(code **)(*(longlong *)*callbackEntry + 0x38))();
     }
   }
-  if (*plVar2 == 0) {
+  if (*callbackList == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900();
+  TerminateOnError();
 }
 
 
