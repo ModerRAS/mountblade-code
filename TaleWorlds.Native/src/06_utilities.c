@@ -3995,11 +3995,11 @@ undefined UtilityControlRegion6;
 undefined UtilityControlRegion7;
 undefined UtilityControlRegion8;
 // 工具系统配置数据区域
-undefined UtilityConfigData1;
-undefined UtilityConfigData2;
-undefined UtilityConfigData3;
-undefined UtilityConfigData4;
-undefined UtilityConfigData5;
+uint32_t UtilitySystemConfigVersion;                    // 工具系统配置版本号
+uint32_t UtilitySystemConfigFlags;                     // 工具系统配置标志
+uint32_t UtilitySystemConfigBufferSize;                 // 工具系统配置缓冲区大小
+uint32_t UtilitySystemConfigTimeout;                   // 工具系统配置超时时间
+uint32_t UtilitySystemConfigRetryCount;                // 工具系统配置重试次数
 undefined UtilityConfigData6;
 undefined UtilityConfigData7;
 undefined UtilityConfigData8;

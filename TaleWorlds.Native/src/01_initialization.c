@@ -32608,8 +32608,8 @@ void InitializeSystemResourceManager(ulong long* SystemResourceManager)
       }
     }
     else {
-      SystemExceptionCheck(SystemResourceValue1,CombineMemoryFlags(0xff000000,*(void ***)(SystemResourceValue1 + 0x70) == &ExceptionList),
-                          resourcePointer,SystemResourceValue1,InvalidHandleValue);
+      SystemExceptionCheck(SystemResourcePrimaryValue,CombineMemoryFlags(0xff000000,*(void ***)(SystemResourcePrimaryValue + 0x70) == &ExceptionList),
+                          resourcePointer,SystemResourcePrimaryValue,InvalidHandleValue);
     }
   }
   return;
