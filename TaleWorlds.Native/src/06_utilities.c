@@ -24071,7 +24071,7 @@ DataProcessLabelA:
           (dataFlags = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x9c), (int)dataFlags == 0)) &&
          ((dataFlags = securityCheckResult, *(int *)(param_2[1] + 0x18) == 0 &&
           ((dataFlags = OperateDataO0(*param_2,param_1 + 0xb4,4), (int)dataFlags == 0 &&
-           (dataFlags = FUN_18089d490(param_1 + 0x30,param_2), (int)dataFlags == 0)))))))))) {
+           (dataFlags = ValidateDataIntegrityA1(param_1 + 0x30,param_2), (int)dataFlags == 0)))))))))) {
       dataFlags = operationResult;
       if (0x34 < *(uint *)(param_2 + 8)) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
