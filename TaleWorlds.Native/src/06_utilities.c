@@ -7217,7 +7217,7 @@ uint8_t ProcessSystemDataA0;
 // 系统标志变量A0
 // 功能：存储系统状态标志
 #define SystemFlagA0 DAT_180bf66d8
-uint8_t1 SystemFlagA0;
+ByteFlag SystemFlagA0;
 // 系统数据表A1
 // 功能：存储系统数据表信息
 #define SystemDataTableA1 DAT_180c96858
@@ -7860,7 +7860,7 @@ uint8_t8 ProcessMemoryFlagUpdate(int64_t memoryConfig)
   int64_t *memoryRegionIterator;
   int64_t localMemoryBuffer [4];
   
-  memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(memoryConfig + 0x10),localMemoryBuffer);
+  memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryConfig + 0x10),localMemoryBuffer);
   if ((int)memoryUpdateStatus == 0) {
     memoryRegionIterator = *(int64_t **)(localMemoryBuffer[0] + 0x20);
     while ((*(int64_t **)(localMemoryBuffer[0] + 0x20) <= memoryRegionIterator &&
@@ -7904,7 +7904,7 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
   int decrementOperationResult;
   int64_t localDecrementBuffer [2];
   
-  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceContext + 0x10),localDecrementBuffer);
+  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + 0x10),localDecrementBuffer);
   resourceContextPtr = localDecrementBuffer[0];
   if ((int)resourceDecrementStatus != 0) {
     return resourceDecrementStatus;
@@ -7944,7 +7944,7 @@ uint8_t8 UpdateResourceReferenceCount(int64_t resourceHandle)
   uint64_t validationStatus;
   int64_t systemContextBuffer [4];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceHandle + ComponentHandleOffset),systemContextBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),systemContextBuffer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -7972,7 +7972,7 @@ uint8_t8 ReleaseUtilityResource(int64_t resourceHandle)
   uint64_t validationStatus;
   int64_t systemContextPointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceHandle + ComponentHandleOffset),&systemContextPointer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&systemContextPointer);
   if ((int)validationStatus == 0) {
     if (systemContextPointer == 0) {
       systemContextPointer = 0;
@@ -8065,7 +8065,7 @@ uint8_t8 ForceResourceRelease(int64_t resourceDescriptor)
   uint64_t resourceValidationStatus;
   int64_t systemContextPointer;
   
-  resourceValidationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceDescriptor + ComponentHandleOffset),&systemContextPointer);
+  resourceValidationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + ComponentHandleOffset),&systemContextPointer);
   if ((int)resourceValidationStatus != 0) {
     return resourceValidationStatus;
   }
@@ -8091,14 +8091,14 @@ uint8_t8 ForceResourceRelease(int64_t resourceDescriptor)
  * 函数会验证资源指针的有效性，确保不会释放无效的资源。
  * 
  * @param void 无参数
- * @return uint8_t4 释放操作结果状态码：
+ * @return DataWord 释放操作结果状态码：
  *         - 0x1c: 资源无效或释放失败
  *         - 其他值: 操作结果状态
  * 
  * @note 此函数会无条件执行资源释放，确保栈资源被正确清理
  * @warning 确保寄存器值有效，否则可能导致未定义行为
  */
-uint8_t4 ReleaseStackResource(void)
+DataWord ReleaseStackResource(void)
 
 {
   int64_t cpuRegisterValue;
@@ -8150,7 +8150,7 @@ uint8_t8 ValidateMemoryAccess(int64_t memoryContext)
   uint8_t8 ValidationStatus;
   int64_t MemoryAccessPointer;
   
-  ValidationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(memoryContext + 0x10),&MemoryAccessPointer);
+  ValidationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryContext + 0x10),&MemoryAccessPointer);
   if ((int)ValidationStatus != 0) {
     return ValidationStatus;
   }
@@ -8169,10 +8169,10 @@ uint8_t8 ValidateMemoryAccess(int64_t memoryContext)
 
 
 
-// 函数: uint8_t4 GetSystemStatus(void)
+// 函数: DataWord GetSystemStatus(void)
 // 功能：获取系统状态，检查系统资源状态并返回相应状态码
 // 返回值：系统状态码，0x1c表示系统资源未初始化
-uint8_t4 GetSystemStatus(void)
+DataWord GetSystemStatus(void)
 
 {
   int64_t systemContext;
@@ -8245,7 +8245,7 @@ uint8_t8 ValidateAndProcessResourceA(int64_t resourceDescriptor)
   int64_t contextData [2];
   int64_t resourceInfo [2];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceDescriptor + 0x10),resourceInfo);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + 0x10),resourceInfo);
   if ((int)validationStatus == 0) {
     if (resourceInfo[0] == 0) {
       resourceInfo[0] = 0;
@@ -8260,8 +8260,8 @@ uint8_t8 ValidateAndProcessResourceA(int64_t resourceDescriptor)
         if (*(int64_t *)(contextData[0] + 8) == 0) {
           return 0x1c;
         }
-        validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + 8),*(uint8_t4 *)(resourceDescriptor + 0x20),
-                                       *(uint8_t1 *)(resourceDescriptor + 0x24));
+        validationStatus = ProcessResourceData(*(int64_t *)(contextData[0] + 8),*(DataWord *)(resourceDescriptor + 0x20),
+                                       *(ByteFlag *)(resourceDescriptor + 0x24));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -8285,7 +8285,7 @@ uint8_t8 ValidateResourcePointerAccess(int64_t resourceDescriptor)
   int64_t resourceInfo [2];
   int64_t accessInfo [2];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceDescriptor + 0x10),resourceInfo);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + 0x10),resourceInfo);
   if ((int)validationStatus == 0) {
     if (resourceInfo[0] == 0) {
       resourceInfo[0] = 0;
@@ -8300,8 +8300,8 @@ uint8_t8 ValidateResourcePointerAccess(int64_t resourceDescriptor)
         if (*(int64_t *)(accessInfo[0] + 8) == 0) {
           return 0x1c;
         }
-        validationStatus = ProcessResourceData(*(int64_t *)(accessInfo[0] + 8),*(uint8_t4 *)(resourceDescriptor + 0x18),
-                              *(uint8_t1 *)(resourceDescriptor + 0x1c));
+        validationStatus = ProcessResourceData(*(int64_t *)(accessInfo[0] + 8),*(DataWord *)(resourceDescriptor + 0x18),
+                              *(ByteFlag *)(resourceDescriptor + 0x1c));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -8520,7 +8520,7 @@ uint64_t ProcessUtilitySystemInitialization(void)
   if (systemContext == 0) {
     baseAddress = loopCounter;
   }
-  dataPointer = (uint8_t4 *)(registryPointer + 0x20 + (int64_t)*(int *)(registryPointer + 0x18) * 4);
+  dataPointer = (DataWord *)(registryPointer + 0x20 + (int64_t)*(int *)(registryPointer + 0x18) * 4);
   if (0 < *(int *)(registryPointer + 0x18)) {
     offsetDelta = (registryPointer + 0x20) - (int64_t)dataPointer;
     do {
@@ -8659,7 +8659,7 @@ uint8_t8 ValidateUtilitySystemState(void)
   uint8_t8 operationResult;
   int *operationPointer;
   int64_t basePointer;
-  uint8_t4 *dataPointer3;
+  DataWord *dataPointer3;
   uint counterValue;
   uint64_t adjustedValue;
   int64_t systemContextBuffer;
@@ -8673,7 +8673,7 @@ uint8_t8 ValidateUtilitySystemState(void)
   if (in_RAX == 0) {
     memoryAddress = addressOffset;
   }
-  pvalidationStatus = (uint8_t4 *)(register_RBP + 0x20 + (int64_t)*(int *)(register_RBP + 0x18) * 8);
+  pvalidationStatus = (DataWord *)(register_RBP + 0x20 + (int64_t)*(int *)(register_RBP + 0x18) * 8);
   poperationResult = (int *)(register_RBP + 0x20);
   if (0 < *(int *)(register_RBP + 0x18)) {
     do {
@@ -8688,7 +8688,7 @@ uint8_t8 ValidateUtilitySystemState(void)
           return 0x1c;
         }
         validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(LocalValidationContext + 8),*pvalidationStatus,
-                              *(uint8_t1 *)(register_RBP + 0x1c));
+                              *(ByteFlag *)(register_RBP + 0x1c));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -8751,7 +8751,7 @@ uint8_t8 ValidateMemoryStructureA0(int64_t memoryContext)
   uint8_t8 validationStatus;
   int64_t memoryHandle;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(memoryContext + 0x10),&memoryHandle);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(memoryContext + 0x10),&memoryHandle);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -8774,9 +8774,9 @@ uint8_t8 ValidateMemoryStructureA0(int64_t memoryContext)
 // 功能：检查内存结构并调用相关处理函数
 #define CheckMemoryStructureA0 FUN_180890aef
 
-// 函数: uint8_t4 CheckMemoryStructureA0(void)
+// 函数: DataWord CheckMemoryStructureA0(void)
 // 功能：检查内存结构并调用相关处理函数
-uint8_t4 CheckMemoryStructureA0(void)
+DataWord CheckMemoryStructureA0(void)
 
 {
   int64_t contextPointer;
@@ -8852,7 +8852,7 @@ uint8_t8 ValidateResourceAccessChain(int64_t resourceHandle)
   uint8_t8 validationStatus;
   int64_t accessChain;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceHandle + ComponentHandleOffset),&accessChain);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&accessChain);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -8871,7 +8871,7 @@ uint8_t8 ValidateResourceAccessChain(int64_t resourceHandle)
 
 
 
-// 函数: uint8_t4 ValidateResourceHandleAndRelease(void)
+// 函数: DataWord ValidateResourceHandleAndRelease(void)
 // 
 // 资源句柄验证和释放函数
 // 验证资源句柄的有效性，并在验证通过后释放相关资源
@@ -8881,7 +8881,7 @@ uint8_t8 ValidateResourceAccessChain(int64_t resourceHandle)
 // 
 // 返回值:
 //   成功返回0x1c，失败时调用资源释放函数
-uint8_t4 ValidateResourceHandleAndRelease(void)
+DataWord ValidateResourceHandleAndRelease(void)
 
 {
   int64_t resourceHandle;
@@ -8958,7 +8958,7 @@ uint8_t8 ValidateAndTerminateProcess(int64_t contextHandle)
   int64_t adjustedPointer;
   int64_t systemContextBuffer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextHandle + ComponentHandleOffset),&systemContextBuffer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -8975,7 +8975,7 @@ uint8_t8 ValidateAndTerminateProcess(int64_t contextHandle)
 
 
 
-// 函数: uint8_t4 ValidateRegisterAndTerminate(void)
+// 函数: DataWord ValidateRegisterAndTerminate(void)
 // 
 // 验证寄存器并终止进程函数
 // 从寄存器读取值并进行验证，在特定条件下终止进程
@@ -8984,8 +8984,8 @@ uint8_t8 ValidateAndTerminateProcess(int64_t contextHandle)
 //   无
 // 
 // 返回值:
-//   uint8_t4 - 返回操作结果或错误代码
-uint8_t4 ValidateRegisterAndTerminate(void)
+//   DataWord - 返回操作结果或错误代码
+DataWord ValidateRegisterAndTerminate(void)
 
 {
   int64_t registerValue;
@@ -9059,7 +9059,7 @@ uint8_t8 ValidateContextAndTerminate(int64_t contextHandle)
   uint64_t validationResult;
   int64_t systemContextBuffer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextHandle + ComponentHandleOffset),&systemContextBuffer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&systemContextBuffer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -9078,7 +9078,7 @@ uint8_t8 ValidateContextAndTerminate(int64_t contextHandle)
 
 
 
-// 函数: uint8_t4 ValidateRegisterAndTerminateB(void)
+// 函数: DataWord ValidateRegisterAndTerminateB(void)
 // 
 // 验证寄存器并终止进程函数B
 // 从寄存器读取值并进行验证，在特定条件下终止进程
@@ -9087,8 +9087,8 @@ uint8_t8 ValidateContextAndTerminate(int64_t contextHandle)
 //   无
 // 
 // 返回值:
-//   uint8_t4 - 返回操作结果或错误代码
-uint8_t4 ValidateRegisterAndTerminateB(void)
+//   DataWord - 返回操作结果或错误代码
+DataWord ValidateRegisterAndTerminateB(void)
 
 {
   int64_t registerValue;
@@ -9164,7 +9164,7 @@ uint8_t8 ProcessResourceDescriptorValidation(int64_t resourceDescriptor)
   uint8_t8 validationStatus;
   int64_t stackPointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceDescriptor + 0x10),&stackPointer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + 0x10),&stackPointer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -9183,7 +9183,7 @@ uint8_t8 ProcessResourceDescriptorValidation(int64_t resourceDescriptor)
 
 
 
-// 函数: uint8_t4 ValidateResourceHandleAndReleaseAlternate(void)
+// 函数: DataWord ValidateResourceHandleAndReleaseAlternate(void)
 // 
 // 资源句柄验证和释放函数(替代版本)
 // 验证资源句柄的有效性，并在验证通过后释放相关资源
@@ -9194,7 +9194,7 @@ uint8_t8 ProcessResourceDescriptorValidation(int64_t resourceDescriptor)
 // 
 // 返回值:
 //   成功返回0x1c，失败时调用资源释放函数
-uint8_t4 ValidateResourceHandleAndReleaseAlternate(void)
+DataWord ValidateResourceHandleAndReleaseAlternate(void)
 
 {
   int64_t resourceHandle;
@@ -9254,7 +9254,7 @@ uint8_t8 ValidateResourceAndTerminate(int64_t resourceHandle)
   uint64_t validationResult;
   int64_t stackPointer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceHandle + ComponentHandleOffset),&stackPointer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackPointer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -9278,7 +9278,7 @@ uint8_t8 ValidateResourceAndTerminate(int64_t resourceHandle)
  * @details 验证RAX寄存器中的资源指针，如果无效则终止程序
  * @return 验证结果或错误码
  */
-uint8_t4 ValidateRegisterResource(void)
+DataWord ValidateRegisterResource(void)
 
 {
   int64_t registerValue;
@@ -9338,7 +9338,7 @@ uint8_t8 ValidateResourceAndTerminateB(int64_t resourceHandle)
   uint64_t validationResult;
   int64_t stackPointer;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceHandle + ComponentHandleOffset),&stackPointer);
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackPointer);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -9358,7 +9358,7 @@ uint8_t8 ValidateResourceAndTerminateB(int64_t resourceHandle)
  * @brief 空操作函数C
  * @details 执行空操作，直接返回
  */
-uint8_t4 NoOperationC(void)
+DataWord NoOperationC(void)
 
 {
   int64_t ResourceHandlePointer;
@@ -9446,7 +9446,7 @@ uint8_t8 ValidateResourceAndReleaseA(int64_t resourceParam)
   uint64_t validationResult;
   int64_t resourceContext;
   
-  validationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceParam + 0x10),&resourceContext);
+  validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceParam + 0x10),&resourceContext);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -9466,7 +9466,7 @@ uint8_t8 ValidateResourceAndReleaseA(int64_t resourceParam)
  * @brief 空操作函数H
  * @details 执行空操作，直接返回
  */
-uint8_t4 NoOperationH(void)
+DataWord NoOperationH(void)
 
 {
   int64_t ResourceHandlePointer;
@@ -9602,14 +9602,14 @@ uint8_t8 ProcessFloatDataResource(int64_t resourceHandle)
   uint8_t8 *dataIterator;
   int integerConversionValue;
   float floatDataValue;
-  uint8_t1 vectorRegisterData [16];
+  ByteFlag vectorRegisterData [16];
   int64_t stackTempValue;
   uint processingFlags;
   uint bitShiftedFlags;
   uint8_t8 vectorRegister;
   uint maskResult;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
+  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&stackTempValue);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -9643,7 +9643,7 @@ uint8_t8 ProcessFloatDataResource(int64_t resourceHandle)
            (floatDataValue != *(float *)(dataContextPointer + 0x20))) {
           *(float *)(dataContextPointer + 0x20) = floatDataValue;
           UpdateValidationContextA0(dataContextPointer);
-          *(uint8_t1 *)(dataContextPointer + 0x35) = 0;
+          *(ByteFlag *)(dataContextPointer + 0x35) = 0;
         }
       }
     }
@@ -9727,10 +9727,10 @@ void ProcessUtilityDataRequest(int64_t dataHandle,uint64_t requestInfo)
   int processingStatus [2];
   int64_t dataOffset;
   
-  processingStatus[0] = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(dataHandle + 0x10),&resultBuffer);
+  processingStatus[0] = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataHandle + 0x10),&resultBuffer);
   if (processingStatus[0] == 0) {
     dataOffset = dataHandle + 0x18;
-    ProcessDataRequest(requestInfo,processingStatus,*(uint8_t4 *)(dataHandle + 0x14),resultBuffer);
+    ProcessDataRequest(requestInfo,processingStatus,*(DataWord *)(dataHandle + 0x14),resultBuffer);
   }
   return;
 }
@@ -9757,11 +9757,11 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
   uint64_t conversionStatus;
   int64_t dataPointer;
   uint8_t8 systemContextBuffer;
-  uint8_t4 operationParams [2];
+  DataWord operationParams [2];
   int64_t contextData;
   int dataCount;
   
-  conversionStatus = InitializeConversionContext(*(uint8_t4 *)(contextHandle + 0x24),&systemContextBuffer);
+  conversionStatus = InitializeConversionContext(*(DataWord *)(contextHandle + 0x24),&systemContextBuffer);
   if ((int)conversionStatus == 0) {
     dataCount = *(int *)(contextHandle + 0x18);
     if ((0 < dataCount) && (*(uint *)(contextHandle + 0x1c) < 2)) {
@@ -9775,7 +9775,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
         contextData = *(int64_t *)(contextHandle + ComponentHandleOffset);
         operationParams[0] = 2;
       }
-      operationResult = ExecuteDataConversion(operationHandle,operationParams,*(uint8_t4 *)(contextHandle + 0x20),systemContextBuffer);
+      operationResult = ExecuteDataConversion(operationHandle,operationParams,*(DataWord *)(contextHandle + 0x20),systemContextBuffer);
       conversionStatus = (uint64_t)operationResult;
       if (operationResult == 0) {
         conversionStatus = 0;
@@ -9804,9 +9804,9 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
   int operationResult;
   int64_t resourcePointer;
   int64_t contextPointer;
-  uint8_t4 operationMode;
+  DataWord operationMode;
   int64_t systemContextBuffer;
-  uint8_t4 parameterBuffer;
+  DataWord parameterBuffer;
   
   resourcePointer = 0;
   if (registerValue == 0) {
@@ -9886,7 +9886,7 @@ void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
 {
   int validationResult;
   
-  validationResult = ValidateSystemDataA1(*(uint8_t8 *)(systemContext + 0x78),*(uint8_t4 *)(dataContext + 0x10),
+  validationResult = ValidateSystemDataA1(*(uint8_t8 *)(systemContext + 0x78),*(DataWord *)(dataContext + 0x10),
                         dataContext + 0x14,dataContext + 0x20,dataContext + 0x2c,dataContext + 0x38);
   if ((validationResult == 0) &&
      (validationResult = ValidateDataAndReturnA0((int64_t)*(int *)(dataContext + 0x10) * 0x44 +
@@ -9899,7 +9899,7 @@ void ValidateAndProcessUtilityData(int64_t dataContext,int64_t systemContext)
       return;
     }
     ProcessDataAndExecute((int64_t)*(int *)(dataContext + 0x10) * 0x44 +
-                        *(int64_t *)(systemContext + 0x90) + 0x554,*(uint8_t1 *)(dataContext + 0x50));
+                        *(int64_t *)(systemContext + 0x90) + 0x554,*(ByteFlag *)(dataContext + 0x50));
   }
   return;
 }
@@ -9934,9 +9934,9 @@ void ExecuteUtilitySystemCleanup(int64_t systemHandle, int64_t cleanupContext)
 {
   int cleanupStatus;
   
-  cleanupStatus = CleanupSystemResourceA1(*(uint8_t8 *)(cleanupContext + 0x78),*(uint8_t4 *)(systemHandle + 0x10));
+  cleanupStatus = CleanupSystemResourceA1(*(uint8_t8 *)(cleanupContext + 0x78),*(DataWord *)(systemHandle + 0x10));
   if (cleanupStatus == 0) {
-    ExecuteCleanupOperation(*(uint8_t8 *)(cleanupContext + 0x90),*(uint8_t4 *)(systemHandle + 0x10));
+    ExecuteCleanupOperation(*(uint8_t8 *)(cleanupContext + 0x90),*(DataWord *)(systemHandle + 0x10));
   }
   return;
 }
@@ -9975,17 +9975,17 @@ uint8_t8 ValidateDataIntegrity(int64_t dataStructure,int64_t validationContext)
 {
   uint8_t8 validationResult;
   int *dataElementPointer;
-  uint8_t4 *validationFlagPointer;
+  DataWord *validationFlagPointer;
   int elementIndex;
   
   elementIndex = 0;
-  validationFlagPointer = (uint8_t4 *)(dataStructure + 0x18 + (int64_t)*(int *)(dataStructure + 0x10) * 8);
+  validationFlagPointer = (DataWord *)(dataStructure + 0x18 + (int64_t)*(int *)(dataStructure + 0x10) * 8);
   dataElementPointer = (int *)(dataStructure + 0x18);
   if (0 < *(int *)(dataStructure + 0x10)) {
     do {
       if (((*dataElementPointer != MemoryValidationConstantA) || (dataElementPointer[1] != MemoryValidationConstantB)) &&
          (validationResult = ProcessDataIndexA0(validationContext + 0x60,(int *)(dataStructure + 0x18) + (int64_t)elementIndex * 2,*validationFlagPointer
-                                ,*(uint8_t1 *)(dataStructure + 0x14)), (int)validationResult != 0)) {
+                                ,*(ByteFlag *)(dataStructure + 0x14)), (int)validationResult != 0)) {
         return validationResult;
       }
       elementIndex = elementIndex + 1;
@@ -10062,9 +10062,9 @@ uint8_t8 ProcessUtilitySystemRequest(int64_t requestPointer)
   uint64_t operationResult;
   int64_t contextBuffer[4];
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(requestPointer + 0x10),contextBuffer);
+  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(requestPointer + 0x10),contextBuffer);
   if ((int)operationResult == 0) {
-    *(uint8_t4 *)(*(int64_t *)(contextBuffer[0] + 0x10) + 0x50) = *(uint8_t4 *)(requestPointer + 0x18);
+    *(DataWord *)(*(int64_t *)(contextBuffer[0] + 0x10) + 0x50) = *(DataWord *)(requestPointer + 0x18);
     if ((*(int64_t *)(contextBuffer[0] + 8) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != 0)) {
       return operationResult;
     }
@@ -10133,10 +10133,10 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
   int eventProcessingResult;
   int64_t systemEventData;
   
-  eventProcessingResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(eventPointer + 0x10),&systemEventData);
+  eventProcessingResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventPointer + 0x10),&systemEventData);
   if (eventProcessingResult == 0) {
-    *(uint8_t4 *)(eventPointer + 0x18) = *(uint8_t4 *)(systemEventData + 0x30);
-    *(uint8_t4 *)(eventPointer + 0x1c) = *(uint8_t4 *)(systemEventData + 0x34);
+    *(DataWord *)(eventPointer + 0x18) = *(DataWord *)(systemEventData + 0x30);
+    *(DataWord *)(eventPointer + 0x1c) = *(DataWord *)(systemEventData + 0x34);
     ProcessSystemEventB0(*(uint8_t8 *)(contextPointer + 0x98),eventPointer);
   }
   return;
@@ -11083,7 +11083,7 @@ void InitializeSystemEventHandlerA0(int64_t eventHandlerConfig,int64_t callbackT
   int systemOperationResult;
   uint8_t8 systemContextDataBuffer;
   
-  systemOperationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(eventHandlerConfig + 0x10),&systemContextDataBuffer);
+  systemOperationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventHandlerConfig + 0x10),&systemContextDataBuffer);
   if (systemOperationResult == 0) {
     systemOperationResult = ProcessDataOperationA0(systemContextDataBuffer,eventHandlerConfig + 0x18);
     if (systemOperationResult == 0) {
@@ -11146,7 +11146,7 @@ uint8_t8 CheckSystemStatusA0(int64_t contextHandle,int64_t eventManager)
   uint8_t8 queryResult;
   int64_t systemContext;
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextHandle + ComponentHandleOffset),&systemContext);
+  queryResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&systemContext);
   if ((int)queryResult == 0) {
     if (*(int *)(systemContext + 0x34) != 0) {
       return 0x2e;
@@ -11194,9 +11194,9 @@ void ResetSystemStateA0(int64_t systemConfig,int64_t cleanupContext)
   int operationResult;
   int64_t systemContext;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(systemConfig + 0x10),&systemContext);
+  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemConfig + 0x10),&systemContext);
   if (operationResult == 0) {
-    *(uint8_t4 *)(systemContext + 0x30) = 0;
+    *(DataWord *)(systemContext + 0x30) = 0;
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(uint8_t8 *)(cleanupContext + 0x98),systemConfig);
   }
@@ -11230,7 +11230,7 @@ uint8_t8 ManageResourceState(int64_t resourceManager,int64_t systemParams)
   uint64_t operationResult;
   int64_t resourceContext;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceManager + 0x10),&resourceContext);
+  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceManager + 0x10),&resourceContext);
   if ((int)operationResult == 0) {
     if (*(int *)(resourceContext + 0x34) != 0) {
       return 0x2e;
@@ -11273,7 +11273,7 @@ uint8_t8 HandlePermissionRequest(int64_t permissionRequestContext,int64_t system
   uint8_t8 permissionResult;
   int64_t permissionContext;
   
-  permissionResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(permissionRequestContext + 0x10),&permissionContext);
+  permissionResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(permissionRequestContext + 0x10),&permissionContext);
   if ((int)permissionResult == 0) {
     if (*(int64_t *)(permissionContext + 8) == 0) {
       return 0x4c;
@@ -11305,14 +11305,14 @@ uint8_t8 ProcessSystemRequest(int64_t contextHandle,int64_t systemParameters)
   uint8_t8 requestResult;
   int64_t requestContext;
   
-  requestResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextHandle + ComponentHandleOffset),&requestContext);
+  requestResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&requestContext);
   if ((int)requestResult != 0) {
     return requestResult;
   }
   if (*(char *)(requestContext + 0x2c) != '\0') {
     return 0x4e;
   }
-  *(uint8_t1 *)(requestContext + 0x2c) = 1;
+  *(ByteFlag *)(requestContext + 0x2c) = 1;
                     // WARNING: Subroutine does not return
   CleanupSystemEventA0(*(uint8_t8 *)(param_2 + 0x98),param_1);
 }
@@ -11328,9 +11328,9 @@ void ProcessDataSetFlagA0(int64_t dataContext,int64_t systemContext)
   int status;
   int64_t dataPointer;
   
-  status = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(dataContext + 0x10),&dataPointer);
+  status = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&dataPointer);
   if (status == 0) {
-    *(uint8_t1 *)(dataPointer + 0x29) = *(uint8_t1 *)(dataContext + 0x18);
+    *(ByteFlag *)(dataPointer + 0x29) = *(ByteFlag *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(uint8_t8 *)(systemContext + 0x98),dataContext);
   }
@@ -11348,9 +11348,9 @@ void ProcessDataSetFlagA1(int64_t dataContext,int64_t systemContext)
   int status;
   int64_t dataPointer;
   
-  status = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(dataContext + 0x10),&dataPointer);
+  status = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&dataPointer);
   if (status == 0) {
-    *(uint8_t1 *)(dataPointer + 0x28) = *(uint8_t1 *)(dataContext + 0x18);
+    *(ByteFlag *)(dataPointer + 0x28) = *(ByteFlag *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(uint8_t8 *)(systemContext + 0x98),dataContext);
   }
@@ -11364,15 +11364,15 @@ uint8_t8 ValidateDataReturnStatusA2(int64_t dataContext,int64_t systemContext)
 {
   uint8_t8 result;
   uint validationData;
-  uint8_t4 tempValue;
+  DataWord tempValue;
   
   validationData = *(uint *)(dataContext + 0x18);
   if ((validationData & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  result = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(dataContext + 0x10),&validationData);
+  result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&validationData);
   if ((int)result == 0) {
-    *(uint8_t4 *)(CONCAT44(tempValue,dataValue) + 0x24) = *(uint8_t4 *)(dataContext + 0x18);
+    *(DataWord *)(CONCAT44(tempValue,dataValue) + 0x24) = *(DataWord *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(uint8_t8 *)(systemContext + 0x98),dataContext);
   }
@@ -11398,14 +11398,14 @@ uint8_t8 ProcessUtilityDataAndExecute(int64_t dataContext,int64_t systemContext)
   uint64_t operationResult;
   int64_t dataValue;
   
-  operationResult = InitializeDataProcessing(*(uint8_t4 *)(dataContext + 0x10),&dataValue);
+  operationResult = InitializeDataProcessing(*(DataWord *)(dataContext + 0x10),&dataValue);
   if ((int)operationResult != 0) {
     return operationResult;
   }
   if (*(char *)(dataValue + 0x2c) == '\0') {
     return 0x4f;
   }
-  *(uint8_t1 *)(dataValue + 0x2c) = 0;
+  *(ByteFlag *)(dataValue + 0x2c) = 0;
                     // WARNING: Subroutine does not return
   ExecuteSystemOperation(*(uint8_t8 *)(systemContext + 0x98),dataContext);
 }
@@ -11428,7 +11428,7 @@ void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
   int64_t eventHandle;
   int64_t queueInfo;
   
-  status = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(eventContext + 0x10),&queueInfo);
+  status = QueryAndRetrieveSystemDataA0(*(DataWord *)(eventContext + 0x10),&queueInfo);
   if (((status != 0) || (status = InitializeSystemEventA0(&eventHandle), status != 0)) ||
      (status = ProcessSystemEventDataA0(eventHandle,systemContext,*(uint8_t8 *)(queueInfo + 8)), status != 0)) {
     return;
@@ -11730,7 +11730,7 @@ void ManageUtilitySystemConnectionsAF0(int64_t connectionManager,int64_t connect
   int operationStatus;
   uint8_t8 systemContext;
   
-  operationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(connectionManager + 0x10),&systemContext);
+  operationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(connectionManager + 0x10),&systemContext);
   if (operationStatus == 0) {
     operationStatus = ProcessSystemBufferA0(systemContext);
     if (operationStatus < 1) {
@@ -11740,7 +11740,7 @@ void ManageUtilitySystemConnectionsAF0(int64_t connectionManager,int64_t connect
     else {
       operationStatus = ProcessSystemBufferA1(systemContext);
       if (operationStatus < 1) {
-        *(uint8_t4 *)(connectionManager + 0x18) = 2;
+        *(DataWord *)(connectionManager + 0x18) = 2;
       }
       else {
         operationStatus = ValidateDataIntegrityA0(systemContext,connectionManager + 0x18);
@@ -11783,7 +11783,7 @@ void UtilityValidateSystemState(void)
   else {
     operationResult = ProcessSystemBufferA1(systemParameter);
     if (operationResult < 1) {
-      *(uint8_t4 *)(systemContext + 0x18) = 2;
+      *(DataWord *)(systemContext + 0x18) = 2;
     }
     else {
       operationResult = ValidateDataIntegrityA0(systemParameter,systemContext + 0x18);
@@ -11836,7 +11836,7 @@ void UtilityProcessResourceRequest(int64_t resourceHandle,int64_t requestContext
   int operationStatus;
   uint8_t8 systemContext;
   
-  operationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceHandle + ComponentHandleOffset),&systemContext);
+  operationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&systemContext);
   if (operationStatus == 0) {
     operationStatus = InitializeSystemBufferA0(systemContext);
     if (operationStatus == 0) {
@@ -11903,7 +11903,7 @@ uint8_t8 ConfigureUtilityDataA0(int64_t configPointer,int64_t dataPointer)
   uint8_t8 configurationStatus;
   int64_t systemStackPointer;
   
-  configurationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(configPointer + 0x10),&systemStackPointer);
+  configurationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(configPointer + 0x10),&systemStackPointer);
   if ((int)configurationStatus == 0) {
     if (systemStackPointer != 0) {
       systemStackPointer = systemStackPointer + -8;
@@ -11933,7 +11933,7 @@ uint8_t8 ConfigureUtilityDataA1(int64_t configPointer,int64_t dataPointer)
   uint8_t8 configurationStatus;
   int64_t systemStackPointer;
   
-  configurationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(configPointer + 0x10),&systemStackPointer);
+  configurationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(configPointer + 0x10),&systemStackPointer);
   if ((int)configurationStatus == 0) {
     if (systemStackPointer != 0) {
       systemStackPointer = systemStackPointer + -8;
@@ -11980,7 +11980,7 @@ uint8_t8 ProcessResourceValidationAndExecution(int64_t resourceContext, int64_t 
   if (resourceContext + 0x1c == 0) {
     return 0x1f;
   }
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceContext + 0x10), &systemContextBuffer);
+  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + 0x10), &systemContextBuffer);
   if ((int)operationResult == 0) {
     baseOffset = 0;
     adjustedStackPointer = baseOffset;
@@ -12146,7 +12146,7 @@ uint64_t ValidateSystemDataIndexAndProcessResource(int64_t systemContext, int64_
   int64_t bufferPtr;
   
   // 查询并检索系统数据
-  operationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(systemContext + 0x10), &bufferPtr);
+  operationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemContext + 0x10), &bufferPtr);
   if ((int)operationStatus != 0) {
     return operationStatus;
   }
@@ -12218,16 +12218,16 @@ void ExecuteSecurityValidation(int64_t securityContext, int64_t operationDescrip
   int queryStatus;
   int64_t securityHandle;
   int64_t *permissionPtr;
-  uint8_t1 securityValidationBuffer[32];
+  ByteFlag securityValidationBuffer[32];
   int64_t systemCtx;
-  uint8_t1 authorizationData[40];
+  ByteFlag authorizationData[40];
   uint64_t stackGuardValue;
   
   // 初始化栈保护值
   stackGuardValue = ExceptionEncryptionKey ^ (uint64_t)securityValidationBuffer;
   
   // 查询并检索系统数据
-  queryStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(securityContext + 0x10), &systemCtx);
+  queryStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(securityContext + 0x10), &systemCtx);
   if (queryStatus == 0) {
     if (systemCtx != 0) {
       systemCtx = systemCtx + -8;
@@ -12278,7 +12278,7 @@ void ProcessResourcePointer(int64_t *resourceHandle, int64_t operationOffset)
   int64_t *dataContextPointer;
   int64_t resourceContext;
   uint64_t stackGuardValue;
-  uint8_t1 stackBuffer [40];
+  ByteFlag stackBuffer [40];
   
   validationContext = (**(FunctionPointer**)(*resourceHandle + 0x2f0))(resourceHandle,operationOffset + 0x30);
   if (validationContext == 0) {
@@ -12302,7 +12302,7 @@ void ExecuteSecurityValidation(void)
 
 {
   uint64_t stackGuardValue;
-  uint8_t1 stackBuffer [40];
+  ByteFlag stackBuffer [40];
   
   stackGuardValue = ExceptionEncryptionKey ^ (uint64_t)stackBuffer;
                     // WARNING: Subroutine does not return
@@ -12409,7 +12409,7 @@ uint8_t8 ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPtr)
     if (((floatTemp == 0.0) && (*(float *)(dataPtr + 0x40) == 0.0)) && (floatComponentZ == 0.0)) {
       return 0x1f;
     }
-    result = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(dataPtr + 0x10),systemContextBuffer);
+    result = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataPtr + 0x10),systemContextBuffer);
     if ((int)result != 0) {
       return result;
     }
@@ -12419,20 +12419,20 @@ uint8_t8 ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPtr)
     result = *(uint8_t8 *)(dataPtr + 0x20);
     *(uint8_t8 *)(dataBufferPtr + 0x38) = *(uint8_t8 *)(dataPtr + 0x18);
     *(uint8_t8 *)(dataBufferPtr + 0x40) = result;
-    uintComponentX = *(uint8_t4 *)(dataPtr + 0x2c);
-    uintComponentY = *(uint8_t4 *)(dataPtr + 0x30);
-    uintComponentZ = *(uint8_t4 *)(dataPtr + 0x34);
-    *(uint8_t4 *)(dataBufferPtr + 0x48) = *(uint8_t4 *)(dataPtr + 0x28);
-    *(uint8_t4 *)(dataBufferPtr + 0x4c) = uintComponentX;
-    *(uint8_t4 *)(dataBufferPtr + 0x50) = uintComponentY;
-    *(uint8_t4 *)(dataBufferPtr + 0x54) = uintComponentZ;
-    uintComponentX = *(uint8_t4 *)(dataPtr + 0x3c);
-    uintComponentY = *(uint8_t4 *)(dataPtr + 0x40);
-    uintComponentZ = *(uint8_t4 *)(dataPtr + 0x44);
-    *(uint8_t4 *)(dataBufferPtr + 0x58) = *(uint8_t4 *)(dataPtr + 0x38);
-    *(uint8_t4 *)(dataBufferPtr + 0x5c) = uintComponentX;
-    *(uint8_t4 *)(dataBufferPtr + 0x60) = uintComponentY;
-    *(uint8_t4 *)(dataBufferPtr + 100) = uintComponentZ;
+    uintComponentX = *(DataWord *)(dataPtr + 0x2c);
+    uintComponentY = *(DataWord *)(dataPtr + 0x30);
+    uintComponentZ = *(DataWord *)(dataPtr + 0x34);
+    *(DataWord *)(dataBufferPtr + 0x48) = *(DataWord *)(dataPtr + 0x28);
+    *(DataWord *)(dataBufferPtr + 0x4c) = uintComponentX;
+    *(DataWord *)(dataBufferPtr + 0x50) = uintComponentY;
+    *(DataWord *)(dataBufferPtr + 0x54) = uintComponentZ;
+    uintComponentX = *(DataWord *)(dataPtr + 0x3c);
+    uintComponentY = *(DataWord *)(dataPtr + 0x40);
+    uintComponentZ = *(DataWord *)(dataPtr + 0x44);
+    *(DataWord *)(dataBufferPtr + 0x58) = *(DataWord *)(dataPtr + 0x38);
+    *(DataWord *)(dataBufferPtr + 0x5c) = uintComponentX;
+    *(DataWord *)(dataBufferPtr + 0x60) = uintComponentY;
+    *(DataWord *)(dataBufferPtr + 100) = uintComponentZ;
     dataBufferPtr = *(int64_t *)(contextPtr + 0x98);
     if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
       systemContextBuffer[0] = 0;
@@ -12476,7 +12476,7 @@ void ValidateResourceAccess(int64_t ResourceDescriptor, int64_t AccessRequest)
   int64_t ResourcePointer;
   uint8_t8 SystemContext;
   
-  QueryResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(ResourceDescriptor + 0x10));
+  QueryResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(ResourceDescriptor + 0x10));
   if (QueryResult == 0) {
     if (SystemContext == 0) {
       ResourcePointer = 0;
@@ -12484,7 +12484,7 @@ void ValidateResourceAccess(int64_t ResourceDescriptor, int64_t AccessRequest)
     else {
       ResourcePointer = SystemContext + -8;
     }
-    *(uint8_t4 *)(ResourcePointer + 0x88) = *(uint8_t4 *)(ResourceDescriptor + 0x18);
+    *(DataWord *)(ResourcePointer + 0x88) = *(DataWord *)(ResourceDescriptor + 0x18);
                     // WARNING: Subroutine does not return
     UpdateSystemResourceState(*(uint8_t8 *)(AccessRequest + 0x98),ResourceDescriptor);
   }
@@ -12527,7 +12527,7 @@ uint8_t8 ValidateAndProcessFloatingPointRange(int64_t contextPointer, int64_t sy
   if ((*(uint *)(contextPointer + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  result = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextPointer + 0x10),queryBuffer);
+  result = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextPointer + 0x10),queryBuffer);
   if ((int)result == 0) {
     if (queryBuffer[0] == 0) {
       queryBuffer[0] = 0;
@@ -12603,7 +12603,7 @@ uint8_t8 ValidateAndProcessFloatingPointNumberA1(int64_t DataHandle,int64_t Cont
   int64_t SystemDataArray [2];                    // 系统数据数组
   
   // 查询系统数据并获取相关信息
-  OperationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(DataHandle + 0x10),SystemDataArray);
+  OperationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(DataHandle + 0x10),SystemDataArray);
   if ((int)OperationResult == 0) {
     // 处理系统数据数组
     if (SystemDataArray[0] == 0) {
@@ -12727,7 +12727,7 @@ uint8_t8 InitializeSystemE0(void)
 
 
 
-uint8_t8 ValidateParametersE0(uint8_t4 parameterFlags)
+uint8_t8 ValidateParametersE0(DataWord parameterFlags)
 
 {
   float floatValue;
@@ -12765,7 +12765,7 @@ uint8_t8 ValidateParametersE0(uint8_t4 parameterFlags)
  * @param validationFlags 验证标志位，用于指定验证类型和范围
  * @return uint8_t8 验证结果状态码，0x1c表示验证成功
  */
-uint8_t8 ValidateParametersE1(uint8_t4 validationFlags)
+uint8_t8 ValidateParametersE1(DataWord validationFlags)
 
 {
   float inputValue;
@@ -12841,7 +12841,7 @@ uint8_t8 ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     return 0x1d;
   }
   if (systemContext + 0x28 != 0) {
-    operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(systemContext + 0x10),&systemContextBuffer);
+    operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemContext + 0x10),&systemContextBuffer);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -12894,7 +12894,7 @@ uint8_t8 ValidateAndProcessFloatingPointNumberA2(int64_t dataParameter,int64_t c
   int64_t stackBuffer;
   
   if (dataParameter + 0x28 != 0) {
-    memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(dataParameter + 0x10),&stackBuffer);
+    memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataParameter + 0x10),&stackBuffer);
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
@@ -12974,7 +12974,7 @@ uint8_t8 ProcessComplexDataStructureA0(int64_t DataStructureHandle, int64_t Proc
   if ((*(uint *)(DataStructureHandle + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(DataStructureHandle + 0x10),&stackBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(DataStructureHandle + 0x10),&stackBuffer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -13055,10 +13055,10 @@ uint8_t8 ProcessFloatingPointArrayA0(int64_t ArrayDescriptor,int64_t SystemConte
   float currentValue;
   float rangeMinValue;
   float rangeMaxValue;
-  uint8_t4 tempValue;
+  DataWord tempValue;
   uint64_t loopCounter;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(ArrayDescriptor + 0x10),&contextBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(ArrayDescriptor + 0x10),&contextBuffer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -13253,7 +13253,7 @@ void InitializeResourceContext(int64_t contextDescriptor, uint8_t8 initializatio
   
   securityToken = ExceptionEncryptionKey ^ (uint64_t)resourceBuffer;
   optionsCopy = initializationOptions;
-  initializationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextDescriptor + 0x10),resourceBuffer);
+  initializationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextDescriptor + 0x10),resourceBuffer);
   if (initializationStatus == 0) {
     isNullPointer = resourceBuffer[0] == 0;
     resourceBuffer[0] = resourceBuffer[0] + -8;
@@ -13283,7 +13283,7 @@ void ProcessUtilitySystemRequest(int64_t systemHandle,int64_t requestContext)
   int64_t systemContext;
   uint8_t8 contextVariable;
   
-  systemStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(systemHandle + 0x10));
+  systemStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemHandle + 0x10));
   if (systemStatus == 0) {
     if (contextVariable == 0) {
       systemContext = 0;
@@ -13291,7 +13291,7 @@ void ProcessUtilitySystemRequest(int64_t systemHandle,int64_t requestContext)
     else {
       systemContext = contextVariable + -8;
     }
-    *(uint8_t1 *)(systemContext + 0xbc) = *(uint8_t1 *)(systemHandle + 0x18);
+    *(ByteFlag *)(systemContext + 0xbc) = *(ByteFlag *)(systemHandle + 0x18);
                     // WARNING: Subroutine does not return
     ExecuteSystemResourceOperationCB0(*(uint8_t8 *)(requestContext + 0x98),systemHandle);
   }
@@ -13317,7 +13317,7 @@ uint8_t8 ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCont
   if ((floatValue < 0.0) || (3.4028235e+38 <= floatValue)) {
     return 0x1f;
   }
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(valueContext + 0x10),&stackValue);
+  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(valueContext + 0x10),&stackValue);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -13327,7 +13327,7 @@ uint8_t8 ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCont
   else {
     resultPointer = stackValue + -8;
   }
-  *(uint8_t4 *)(resultPointer + 0x90) = *(uint8_t4 *)(valueContext + 0x18);
+  *(DataWord *)(resultPointer + 0x90) = *(DataWord *)(valueContext + 0x18);
   resultPointer = *(int64_t *)(operationContext + 0x98);
   if ((*(int *)(resultPointer + 0x180) != 0) || (*(int *)(resultPointer + 0x184) != 0)) {
     stackValue = 0;
@@ -13363,7 +13363,7 @@ uint8_t8 ValidateAndProcessFloatRange(int64_t rangeContext,int64_t validationCon
   if (((uint)rangeValue & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  switch(*(uint8_t4 *)(rangeContext + 0x18)) {
+  switch(*(DataWord *)(rangeContext + 0x18)) {
   case 0:
     if ((0.0 <= rangeValue) && (rangeValue <= 256.0)) goto RangeValidationSuccess;
     goto joined_r0x00018089322a;
@@ -13385,7 +13385,7 @@ RangeValidationFailure:
     }
   }
 RangeValidationSuccess:
-  functionReturnValue = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(param_1 + 0x10));
+  functionReturnValue = QueryAndRetrieveSystemDataA0(*(DataWord *)(param_1 + 0x10));
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -13395,8 +13395,8 @@ RangeValidationSuccess:
   else {
     calculatedOffset = lStackX_8 + -8;
   }
-  *(uint8_t4 *)(calculatedOffset + 0xa4 + (int64_t)*(int *)(param_1 + 0x18) * 4) =
-       *(uint8_t4 *)(resourceDescriptor + 0x1c);
+  *(DataWord *)(calculatedOffset + 0xa4 + (int64_t)*(int *)(param_1 + 0x18) * 4) =
+       *(DataWord *)(resourceDescriptor + 0x1c);
   calculatedOffset = *(int64_t *)(param_2 + 0x98);
   if ((*(int *)(calculatedOffset + 0x180) != 0) || (*(int *)(calculatedOffset + 0x184) != 0)) {
     lStackX_8 = 0;
@@ -13434,7 +13434,7 @@ uint8_t8 ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   if ((*(uint *)(dataDescriptor + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(dataDescriptor + 0x10));
+  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataDescriptor + 0x10));
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -13444,8 +13444,8 @@ uint8_t8 ProcessDataTransferA0(int64_t dataDescriptor,int64_t systemContext)
   else {
     dataContext = transferSize + -8;
   }
-  *(uint8_t4 *)(dataContext + 0x94 + (int64_t)*(int *)(dataDescriptor + 0x18) * 4) =
-       *(uint8_t4 *)(resourceDescriptor + 0x1c);
+  *(DataWord *)(dataContext + 0x94 + (int64_t)*(int *)(dataDescriptor + 0x18) * 4) =
+       *(DataWord *)(resourceDescriptor + 0x1c);
   dataContext = *(int64_t *)(systemContext + 0x98);
   if ((*(int *)(dataContext + 0x180) != 0) || (*(int *)(dataContext + 0x184) != 0)) {
     transferSize = 0;
@@ -13475,13 +13475,13 @@ uint8_t8 ProcessBufferA0(int64_t bufferDescriptor,int64_t systemContext)
   uint8_t8 operationResult;
   int64_t dataContext;
   uint bufferSize;
-  uint8_t4 bufferFlags;
+  DataWord bufferFlags;
   
   bufferSize = *(uint *)(bufferDescriptor + 0x18);
   if ((bufferSize & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(bufferDescriptor + 0x10),&bufferSize);
+  operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(bufferDescriptor + 0x10),&bufferSize);
   if ((int)operationResult == 0) {
     if (CONCAT44(bufferFlags,bufferSize) == 0) {
       dataContext = 0;
@@ -13489,7 +13489,7 @@ uint8_t8 ProcessBufferA0(int64_t bufferDescriptor,int64_t systemContext)
     else {
       dataContext = CONCAT44(bufferFlags,bufferSize) + -8;
     }
-    *(uint8_t4 *)(dataContext + 0x8c) = *(uint8_t4 *)(bufferDescriptor + 0x18);
+    *(DataWord *)(dataContext + 0x8c) = *(DataWord *)(bufferDescriptor + 0x18);
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(uint8_t8 *)(systemContext + 0x98),bufferDescriptor);
   }
@@ -13513,13 +13513,13 @@ void ActivateUtilitySystemState(int64_t systemHandle,int64_t operationContext)
   int validationStatus;
   int64_t statePointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(systemHandle + 0x10),&statePointer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemHandle + 0x10),&statePointer);
   if (validationStatus == 0) {
     if (statePointer != 0) {
       statePointer = statePointer + -8;
     }
     *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
-    *(uint8_t1 *)(statePointer + 0xbd) = 1;
+    *(ByteFlag *)(statePointer + 0xbd) = 1;
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(uint8_t8 *)(operationContext + 0x98),systemHandle);
   }
@@ -13545,13 +13545,13 @@ void DeactivateUtilitySystemState(int64_t systemHandle,int64_t operationContext)
   int validationStatus;
   int64_t statePointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(systemHandle + 0x10),&statePointer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(systemHandle + 0x10),&statePointer);
   if (validationStatus == 0) {
     if (statePointer != 0) {
       statePointer = statePointer + -8;
     }
     *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
-    *(uint8_t1 *)(statePointer + 0xbd) = 0;
+    *(ByteFlag *)(statePointer + 0xbd) = 0;
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(uint8_t8 *)(operationContext + 0x98),systemHandle);
   }
@@ -13569,13 +13569,13 @@ uint8_t8 ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemConte
   uint8_t8 validationStatus;
   float rangeValue;
   uint stackDataBuffer;
-  uint8_t4 stackDataBufferExtension;
+  DataWord stackDataBufferExtension;
   
   stackDataBuffer = *(uint *)(allocationContext + 0x14);
   if ((stackDataBuffer & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  validationStatus = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(allocationContext + 0x10),&stackDataBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(allocationContext + 0x10),&stackDataBuffer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -13606,15 +13606,15 @@ uint8_t8 ProcessMemoryReleaseA0(int64_t memoryDescriptor,int64_t systemContext)
 {
   int64_t validationContext;
   uint8_t8 operationResult;
-  uint8_t4 memoryOffset1;
-  uint8_t4 memoryOffset2;
-  uint8_t4 memoryOffset3;
-  uint8_t4 memoryFlags;
+  DataWord memoryOffset1;
+  DataWord memoryOffset2;
+  DataWord memoryOffset3;
+  DataWord memoryFlags;
   
-  memoryOffset1 = *(uint8_t4 *)(memoryDescriptor + 0x10);
-  memoryOffset2 = *(uint8_t4 *)(memoryDescriptor + 0x14);
-  memoryOffset3 = *(uint8_t4 *)(memoryDescriptor + 0x18);
-  memoryFlags = *(uint8_t4 *)(memoryDescriptor + 0x1c);
+  memoryOffset1 = *(DataWord *)(memoryDescriptor + 0x10);
+  memoryOffset2 = *(DataWord *)(memoryDescriptor + 0x14);
+  memoryOffset3 = *(DataWord *)(memoryDescriptor + 0x18);
+  memoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
   validationContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
                     (*(int64_t **)(systemContext + 800),&memoryOffset1,1);
   if ((validationContext == 0) || (*(int64_t *)(validationContext + 0x2e8) == 0)) {
@@ -13638,15 +13638,15 @@ uint8_t8 ProcessMemoryCopyA0(int64_t memoryDescriptor,int64_t systemContext)
 {
   int64_t validationContext;
   uint8_t8 operationResult;
-  uint8_t4 memoryOffset1;
-  uint8_t4 memoryOffset2;
-  uint8_t4 memoryOffset3;
-  uint8_t4 memoryFlags;
+  DataWord memoryOffset1;
+  DataWord memoryOffset2;
+  DataWord memoryOffset3;
+  DataWord memoryFlags;
   
-  memoryOffset1 = *(uint8_t4 *)(memoryDescriptor + 0x10);
-  memoryOffset2 = *(uint8_t4 *)(memoryDescriptor + 0x14);
-  memoryOffset3 = *(uint8_t4 *)(memoryDescriptor + 0x18);
-  memoryFlags = *(uint8_t4 *)(memoryDescriptor + 0x1c);
+  memoryOffset1 = *(DataWord *)(memoryDescriptor + 0x10);
+  memoryOffset2 = *(DataWord *)(memoryDescriptor + 0x14);
+  memoryOffset3 = *(DataWord *)(memoryDescriptor + 0x18);
+  memoryFlags = *(DataWord *)(memoryDescriptor + 0x1c);
   validationContext = (**(FunctionPointer**)(**(int64_t **)(systemContext + 800) + 600))
                     (*(int64_t **)(systemContext + 800),&memoryOffset1,1);
   if ((validationContext == 0) || (*(int64_t *)(validationContext + 0x2e8) == 0)) {
@@ -13753,9 +13753,9 @@ int ValidateAndProcessSystemOperation(int64_t systemContext,int64_t operationCon
     if (*(int *)(systemContext + 0x20) < 1) {
       operationResult = ValidateSystemOperation(operationContext,systemContext + 0x4c);
       if ((operationResult == 0) &&
-         (operationResult = ProcessOperationData(*(uint8_t4 *)(systemContext + 0x4c),&operationData), operationResult == 0)) {
+         (operationResult = ProcessOperationData(*(DataWord *)(systemContext + 0x4c),&operationData), operationResult == 0)) {
         if (*(int *)(operationData + 0x30) == 1) {
-          *(uint8_t4 *)(operationData + 0x30) = 2;
+          *(DataWord *)(operationData + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
         ExecuteCriticalOperation(*(uint8_t8 *)(operationContext + 0x98),systemContext);
@@ -13799,10 +13799,10 @@ int ValidateAndProcessDataOperation(int64_t dataContext,uint8_t8 operationFlags)
   if ((int)operationFlags < 1) {
     validationResult = ExecuteSystemValidationA0();
     if ((validationResult == 0) &&
-       (validationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextHandle + 0x4c),&systemContextBuffer), validationResult == 0)
+       (validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + 0x4c),&systemContextBuffer), validationResult == 0)
        ) {
       if (*(int *)(systemContextBuffer + 0x30) == 1) {
-        *(uint8_t4 *)(systemContextBuffer + 0x30) = 2;
+        *(DataWord *)(systemContextBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(uint8_t8 *)(resourceHandle + 0x98));
@@ -13849,10 +13849,10 @@ void ValidateContextAndUpdateState(int64_t contextHandle,int64_t operationHandle
   
   validationResult = ExecuteSystemValidationA0(operationHandle,contextHandle + ComponentHandleOffset);
   if (validationResult == 0) {
-    validationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextHandle + ComponentHandleOffset),&localBuffer);
+    validationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + ComponentHandleOffset),&localBuffer);
     if (validationResult == 0) {
       if (*(int *)(localBuffer + 0x30) == 1) {
-        *(uint8_t4 *)(localBuffer + 0x30) = 2;
+        *(DataWord *)(localBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(uint8_t8 *)(operationHandle + 0x98),contextHandle);
@@ -13893,9 +13893,9 @@ int ValidateDataStateAndProcess(int64_t dataContext,int64_t operationContext)
     else {
       processResult = ExecuteSystemValidationA0(operationContext,dataContext + 0x24);
       if ((processResult == 0) &&
-         (processResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(dataContext + 0x24),&localStackBuffer), processResult == 0)) {
+         (processResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x24),&localStackBuffer), processResult == 0)) {
         if (*(int *)(localStackBuffer + 0x30) == 1) {
-          *(uint8_t4 *)(localStackBuffer + 0x30) = 2;
+          *(DataWord *)(localStackBuffer + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(uint8_t8 *)(operationContext + 0x98),dataContext);
@@ -13936,10 +13936,10 @@ int ProcessDataByCondition(uint8_t8 inputCondition,uint8_t8 dataSize)
   else {
     operationResult = ExecuteSystemValidationA0();
     if ((operationResult == 0) &&
-       (operationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(contextHandle + 0x24),&systemContextBuffer), operationResult == 0)
+       (operationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(contextHandle + 0x24),&systemContextBuffer), operationResult == 0)
        ) {
       if (*(int *)(systemContextBuffer + 0x30) == 1) {
-        *(uint8_t4 *)(systemContextBuffer + 0x30) = 2;
+        *(DataWord *)(systemContextBuffer + 0x30) = 2;
       }
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(uint8_t8 *)(resourceHandle + 0x98));
@@ -14002,7 +14002,7 @@ uint8_t8 ValidateAndProcessFloatValue(int64_t dataContext,int64_t operationConte
   int64_t rangeData;
   float minValue;
   float maxValue;
-  uint8_t4 systemContextBuffer [2];
+  DataWord systemContextBuffer [2];
   
   if ((*(uint *)(dataContext + 0x18) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
@@ -14076,13 +14076,13 @@ void ProcessFloatComparisonAndValidation(void)
 
 {
   float inputValue;
-  uint8_t4 registerEAX;
+  DataWord registerEAX;
   int operationResult;
-  uint8_t4 registerParameter;
+  DataWord registerParameter;
   int64_t registerContext;
   int64_t systemContext;
   float rangeValue;
-  uint8_t4 stackParameter;
+  DataWord stackParameter;
   
   rangeValue = *(float *)(CONCAT44(registerParameter,registerEAX) + 0x38);
   inputValue = *(float *)(registerContext + 0x18);
@@ -14108,7 +14108,7 @@ uint8_t8 ProcessEventA0(int64_t eventContext,int64_t systemContext)
   float eventDataValue;
   uint8_t8 operationResult;
   int64_t dataRangeOffset;
-  uint8_t4 eventDataBuffer [2];
+  DataWord eventDataBuffer [2];
   
   eventDataBuffer[0] = 0;
   operationResult = ProcessSystemDataTransferA0(systemContext + 0x60,eventContext + 0x10,eventDataBuffer);
@@ -14160,7 +14160,7 @@ uint8_t8 ValidateFloatRangeAndProcessSystemCall(void)
   uint64_t validationResult;
   int64_t systemContext;
   int64_t resourceDescriptor;
-  uint8_t4 validationParameter;
+  DataWord validationParameter;
   
   resourceHandle = GetSystemResourceHandle();
   if ((*(uint *)(resourceHandle + 0x34) >> 4 & 1) != 0) {
@@ -14210,7 +14210,7 @@ uint8_t8 ValidateFloatRangeAndDispatchCall(void)
   int64_t resourceHandle;
   int64_t dataDescriptor;
   int64_t systemContext;
-  uint8_t4 processingParameter;
+  DataWord processingParameter;
   
   validationResult = ValidateResourceData();
   if ((int)validationResult == 0) {
@@ -14261,7 +14261,7 @@ uint8_t8 SaveSystemConfigurationA0(int64_t configHandle,int64_t systemContext)
   uint8_t8 *memoryBaseAddress;
   float validatedValue;
   uint validationBuffer [2];
-  uint8_t4 securityBuffer [2];
+  DataWord securityBuffer [2];
   
   validationBuffer[0] = *(uint *)(configHandle + 0x10);
   if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
@@ -14305,7 +14305,7 @@ uint8_t8 ValidateSystemConfigurationA0(void)
   int64_t registerContext;
   int64_t systemContext;
   float secondFloatValue;
-  uint8_t4 operationParameter;
+  DataWord operationParameter;
   
   dataContext = GetSystemContextHandle();
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
@@ -14337,13 +14337,13 @@ void ProcessFloatRangeValidation(void)
 {
   float currentValue;
   uint8_t8 *resultPointer;
-  uint8_t4 in_EAX;
+  DataWord in_EAX;
   int validationStatus;
-  uint8_t4 in_register_00000004;
+  DataWord in_register_00000004;
   int64_t contextPointer;
   int64_t systemHandle;
   float processedValue;
-  uint8_t4 stackParameter40;
+  DataWord stackParameter40;
   
   processedValue = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
   currentValue = *(float *)(contextPointer + 0x10);
@@ -14382,8 +14382,8 @@ uint8_t8 InitializeSystemB0(int64_t systemContext,int64_t operationContext)
   uint8_t8 functionReturnValue;
   int64_t calculatedOffset;
   uint8_t8 *pmemoryBaseAddress;
-  uint8_t1 stackBuffer [8];
-  uint8_t4 operationFlags [2];
+  ByteFlag stackBuffer [8];
+  DataWord operationFlags [2];
   
   operationFlags[0] = 0;
   operationResult = ExecuteSystemDataProcessingA0(operationContext,systemContext + 0x20,operationBuffer);
@@ -14425,7 +14425,7 @@ uint8_t8 CleanupSystemB0(void)
   uint8_t8 *pmemoryBaseAddress;
   int64_t systemContext;
   int64_t operationContext;
-  uint8_t4 stackParameter;
+  DataWord stackParameter;
   
   dataContext = GetSystemContextHandle();
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
@@ -14479,7 +14479,7 @@ uint8_t8 ResetSystemB0(void)
   int64_t registerContext;
   int64_t register_RDI;
   int64_t registerR14;
-  uint8_t4 in_stack_00000050;
+  DataWord in_stack_00000050;
   
   functionReturnValue = ProcessDataValidationA0();
   if ((int)functionReturnValue == 0) {
@@ -14522,7 +14522,7 @@ void UtilityNoOperationE(void)
 void InitializeUtilitySystemContext(int64_t contextHandle, int64_t systemData)
 
 {
-  uint8_t1 localStackData [8];
+  ByteFlag localStackData [8];
   int64_t contextOffset;
   int64_t handlePointer;
   int64_t dataPointer;
@@ -14559,7 +14559,7 @@ uint8_t8 ValidateSystemB0(int64_t validationContext,int64_t systemContext)
 {
   uint8_t8 ValidationResult;          // 验证结果
   uint StackParameter8;                 // 栈参数8
-  uint8_t4 StackParameterC;           // 栈参数C
+  DataWord StackParameterC;           // 栈参数C
   
   // 获取系统参数并检查浮点数是否为无穷大
   StackParameter8 = *(uint *)(validationContext + 0x18);
@@ -14568,10 +14568,10 @@ uint8_t8 ValidateSystemB0(int64_t validationContext,int64_t systemContext)
   }
   
   // 查询系统数据
-  ValidationResult = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(validationContext + 0x10), &StackParameter8);
+  ValidationResult = QueryAndRetrieveSystemDataA0(*(DataWord *)(validationContext + 0x10), &StackParameter8);
   if ((int)ValidationResult == 0) {
     // 设置系统参数并执行清理操作
-    *(uint8_t4 *)(CONCAT44(StackParameterC, StackParameter8) + 0x18) = *(uint8_t4 *)(validationContext + 0x18);
+    *(DataWord *)(CONCAT44(StackParameterC, StackParameter8) + 0x18) = *(DataWord *)(validationContext + 0x18);
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(uint8_t8 *)(systemContext + 0x98), validationContext);
   }
@@ -14605,14 +14605,14 @@ int ProcessUtilityDataWithCompression(int64_t dataContext,int64_t dataBuffer,int
   int OperationResult;           // 操作结果
   
   // 第一步：验证系统数据
-  ProcessedBytes = ProcessSystemDataWithValidation(dataBuffer, dataSize, *(uint8_t4 *)(dataContext + 0x10));
+  ProcessedBytes = ProcessSystemDataWithValidation(dataBuffer, dataSize, *(DataWord *)(dataContext + 0x10));
   
   // 第二步：处理数据缓冲区
   OperationResult = ProcessSystemBufferDataA0(dataBuffer + ProcessedBytes, dataSize - ProcessedBytes, &SystemDataBufferA);
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第三步：执行数据加密
-  OperationResult = ProcessSystemDataWithEncryption(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(uint8_t4 *)(dataContext + 0x18));
+  OperationResult = ProcessSystemDataWithEncryption(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(DataWord *)(dataContext + 0x18));
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第四步：再次处理数据缓冲区
@@ -14621,7 +14621,7 @@ int ProcessUtilityDataWithCompression(int64_t dataContext,int64_t dataBuffer,int
   
   // 第五步：执行系统缓冲区操作
   OperationResult = ProcessSystemBufferOperationA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, dataContext + 0x20,
-                        *(uint8_t4 *)(dataContext + 0x18));
+                        *(DataWord *)(dataContext + 0x18));
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第六步：第三次处理数据缓冲区
@@ -14663,14 +14663,14 @@ int ProcessUtilityDataWithEncryption(int64_t dataContext,int64_t dataBuffer,int 
   int OperationResult;           // 操作结果
   
   // 第一步：验证系统数据
-  ProcessedBytes = ProcessSystemDataWithValidation(dataBuffer, dataSize, *(uint8_t4 *)(dataContext + 0x10));
+  ProcessedBytes = ProcessSystemDataWithValidation(dataBuffer, dataSize, *(DataWord *)(dataContext + 0x10));
   
   // 第二步：处理数据缓冲区
   OperationResult = ProcessSystemBufferDataA0(dataBuffer + ProcessedBytes, dataSize - ProcessedBytes, &SystemDataBufferA);
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第三步：执行数据加密
-  OperationResult = ProcessSystemDataWithEncryption(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(uint8_t4 *)(dataContext + 0x18));
+  OperationResult = ProcessSystemDataWithEncryption(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(DataWord *)(dataContext + 0x18));
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第四步：再次处理数据缓冲区
@@ -14679,7 +14679,7 @@ int ProcessUtilityDataWithEncryption(int64_t dataContext,int64_t dataBuffer,int 
   
   // 第五步：执行系统缓冲区处理
   OperationResult = ExecuteSystemBufferProcessingA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, dataContext + 0x20,
-                        *(uint8_t4 *)(dataContext + 0x18));
+                        *(DataWord *)(dataContext + 0x18));
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第六步：第三次处理数据缓冲区
@@ -14696,7 +14696,7 @@ int ProcessUtilityDataWithEncryption(int64_t dataContext,int64_t dataBuffer,int 
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第九步：执行数据缓冲区转换
-  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(uint8_t1 *)(dataContext + 0x1c));
+  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(ByteFlag *)(dataContext + 0x1c));
   
   // 返回总处理字节数
   return OperationResult + ProcessedBytes;
@@ -14729,7 +14729,7 @@ int ProcessUtilityDataWithValidation(int64_t dataContext,int64_t dataBuffer,int 
   int OperationResult;           // 操作结果
   
   // 第一步：执行数据加密
-  ProcessedBytes = ProcessSystemDataWithEncryption(dataBuffer, dataSize, *(uint8_t4 *)(dataContext + 0x10));
+  ProcessedBytes = ProcessSystemDataWithEncryption(dataBuffer, dataSize, *(DataWord *)(dataContext + 0x10));
   
   // 第二步：处理数据缓冲区
   OperationResult = ProcessSystemBufferDataA0(dataBuffer + ProcessedBytes, dataSize - ProcessedBytes, &SystemDataBufferA);
@@ -14737,7 +14737,7 @@ int ProcessUtilityDataWithValidation(int64_t dataContext,int64_t dataBuffer,int 
   
   // 第三步：执行系统缓冲区处理
   OperationResult = ExecuteSystemBufferProcessingA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, dataContext + 0x18,
-                        *(uint8_t4 *)(dataContext + 0x10));
+                        *(DataWord *)(dataContext + 0x10));
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第四步：再次处理数据缓冲区
@@ -14754,7 +14754,7 @@ int ProcessUtilityDataWithValidation(int64_t dataContext,int64_t dataBuffer,int 
   ProcessedBytes = ProcessedBytes + OperationResult;
   
   // 第七步：执行数据缓冲区转换
-  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(uint8_t1 *)(dataContext + 0x14));
+  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(ByteFlag *)(dataContext + 0x14));
   
   // 返回总处理字节数
   return OperationResult + ProcessedBytes;
@@ -14855,14 +14855,14 @@ int ProcessDataBufferWithValidation(int64_t *bufferContext,int64_t dataBuffer,in
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ExecuteUtilityDataValidation(int64_t validationContext,uint8_t4 *validationFlags,int64_t *resultPointer)
-void ExecuteUtilityDataValidation(int64_t validationContext,uint8_t4 *validationFlags,int64_t *resultPointer)
+// 函数: void ExecuteUtilityDataValidation(int64_t validationContext,DataWord *validationFlags,int64_t *resultPointer)
+void ExecuteUtilityDataValidation(int64_t validationContext,DataWord *validationFlags,int64_t *resultPointer)
 
 {
   int64_t *validationContextPointer;
   int operationResult;
   int64_t calculatedOffset;
-  uint8_t1 auStack_c8 [32];
+  ByteFlag auStack_c8 [32];
   uint uStack_a8;
   uint uStack_a0;
   uint uStack_98;
@@ -14873,12 +14873,12 @@ void ExecuteUtilityDataValidation(int64_t validationContext,uint8_t4 *validation
   uint uStack_70;
   uint uStack_68;
   uint uStack_60;
-  uint8_t4 uStack_58;
+  DataWord uStack_58;
   uint uStack_54;
   uint uStack_50;
   uint uStack_4c;
   int64_t systemContext;
-  uint8_t1 auStack_40 [40];
+  ByteFlag auStack_40 [40];
   uint64_t uStack_18;
   
   uStack_18 = ExceptionEncryptionKey ^ (uint64_t)auStack_c8;
@@ -14945,14 +14945,14 @@ void ExecuteSecurityCheckAndTerminateA(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ExecuteUtilitySystemOperation(int64_t operationContext,uint8_t4 *operationFlags,int64_t *resultPointer)
-void ExecuteUtilitySystemOperation(int64_t operationContext,uint8_t4 *operationFlags,int64_t *resultPointer)
+// 函数: void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationFlags,int64_t *resultPointer)
+void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationFlags,int64_t *resultPointer)
 
 {
   int64_t *validationContextPointer;
   int operationResult;
   int64_t calculatedOffset;
-  uint8_t1 auStack_b8 [32];
+  ByteFlag auStack_b8 [32];
   uint uStack_98;
   uint uStack_90;
   uint uStack_88;
@@ -14963,11 +14963,11 @@ void ExecuteUtilitySystemOperation(int64_t operationContext,uint8_t4 *operationF
   uint uStack_60;
   uint uStack_58;
   uint uStack_50;
-  uint8_t4 uStack_48;
+  DataWord uStack_48;
   uint uStack_44;
   uint uStack_40;
   uint uStack_3c;
-  uint8_t1 auStack_38 [40];
+  ByteFlag auStack_38 [40];
   uint64_t uStack_10;
   
   uStack_10 = ExceptionEncryptionKey ^ (uint64_t)auStack_b8;
@@ -14993,7 +14993,7 @@ void ExecuteUtilitySystemOperation(int64_t operationContext,uint8_t4 *operationF
       InitializeSystemBufferA0(auStack_38,0x27,&SystemBufferConfiguration,uStack_48);
     }
     if ((**(int **)(calculatedOffset + 0xd0) != 0) ||
-       (operationResult = ValidateSystemConfigurationA0(*(uint8_t4 *)(param_1 + 0x18)), operationResult == 0)) {
+       (operationResult = ValidateSystemConfigurationA0(*(DataWord *)(param_1 + 0x18)), operationResult == 0)) {
       *param_3 = calculatedOffset;
     }
   }
@@ -15024,7 +15024,7 @@ void ExecuteSecurityValidationOperation(uint64_t securityContext)
                   contextValue._4_2_);
   }
   if (**(int **)(securityContextHandle + 0xd0) == 0) {
-    validationResult = ValidateSystemConfigurationA0(*(uint8_t4 *)(systemData + 0x18));
+    validationResult = ValidateSystemConfigurationA0(*(DataWord *)(systemData + 0x18));
     if (validationResult != 0) goto DataProcessingLabel;
   }
   *resultPointer = securityContextHandle;
@@ -15060,13 +15060,13 @@ void ExecuteSecurityCheckWrapper(void)
  * @param DataBuffer 数据缓冲区，用于存储处理结果
  * @param ResultPointer 结果指针，用于返回处理状态
  */
-void ProcessDataOperationB1(int64_t DataPointer, uint8_t4 *DataBuffer, int64_t *ResultPointer)
+void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *ResultPointer)
 
 {
   int64_t *validationContextPointer;
   int operationResult;
   int64_t calculatedOffset;
-  uint8_t1 auStack_c8 [32];
+  ByteFlag auStack_c8 [32];
   uint uStack_a8;
   uint uStack_a0;
   uint uStack_98;
@@ -15077,12 +15077,12 @@ void ProcessDataOperationB1(int64_t DataPointer, uint8_t4 *DataBuffer, int64_t *
   uint uStack_70;
   uint uStack_68;
   uint uStack_60;
-  uint8_t4 uStack_58;
+  DataWord uStack_58;
   uint uStack_54;
   uint uStack_50;
   uint uStack_4c;
   int64_t systemContext;
-  uint8_t1 auStack_40 [40];
+  ByteFlag auStack_40 [40];
   uint64_t uStack_18;
   
   uStack_18 = ExceptionEncryptionKey ^ (uint64_t)auStack_c8;
@@ -15173,7 +15173,7 @@ void ValidateAndCleanupSystemResources(int64_t systemContext,uint8_t8 resourceHa
   
   validationStatus = ValidateNetworkStatusA0(resourceHandle,systemContext + 0x10);
   if (((validationStatus == 0) && (validationStatus = ValidateNetworkConnectionA0(resourceHandle,systemContext + 0x18), validationStatus == 0)) &&
-     (validationStatus = ProcessNetworkValidationA0(resourceHandle,systemContext + 0x20,*(uint8_t4 *)(systemContext + 0x18)), validationStatus == 0)) {
+     (validationStatus = ProcessNetworkValidationA0(resourceHandle,systemContext + 0x20,*(DataWord *)(systemContext + 0x18)), validationStatus == 0)) {
     ExecuteNetworkOperationA0(resourceHandle,systemContext + 0x20 + (int64_t)*(int *)(systemContext + 0x18) * 4);
   }
   return;
@@ -15249,7 +15249,7 @@ void ValidateResourceAndProcess(int64_t resourceHandle, uint8_t8 contextHandle)
   validationResult = ValidateNetworkStatusA0(contextHandle, resourceHandle + ComponentHandleOffset);
   if ((((validationResult == 0) && 
         (validationResult = ValidateNetworkConnectionA0(contextHandle, resourceHandle + 0x18), validationResult == 0)) &&
-       (validationResult = ValidateNetworkConfigurationA0(contextHandle, resourceHandle + 0x20, *(uint8_t4 *)(resourceHandle + 0x18)), validationResult == 0))
+       (validationResult = ValidateNetworkConfigurationA0(contextHandle, resourceHandle + 0x20, *(DataWord *)(resourceHandle + 0x18)), validationResult == 0))
       && (validationResult = ExecuteNetworkOperationA0(contextHandle, resourceHandle + 0x20 + (int64_t)*(int *)(resourceHandle + 0x18) * 8),
          validationResult == 0)) {
     InitializeNetworkConnectionA0(contextHandle, resourceHandle + 0x1c);
@@ -15325,7 +15325,7 @@ void ValidateContextAndProcess(int64_t contextHandle, uint8_t8 validationData)
   
   validationResult = ValidateNetworkConnectionA0(validationData, contextHandle + ComponentHandleOffset);
   if (validationResult == 0) {
-    validationResult = ValidateNetworkConfigurationA0(validationData, contextHandle + 0x18, *(uint8_t4 *)(contextHandle + ComponentHandleOffset));
+    validationResult = ValidateNetworkConfigurationA0(validationData, contextHandle + 0x18, *(DataWord *)(contextHandle + ComponentHandleOffset));
     if (validationResult == 0) {
       validationResult = ExecuteNetworkOperationA0(validationData, contextHandle + 0x18 + (int64_t)*(int *)(contextHandle + ComponentHandleOffset) * 8);
       if (validationResult == 0) {
@@ -15466,7 +15466,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
     // 重置组件状态
     *componentContext = 0;
     dataCounter = 0;
-    *(uint8_t4 *)((int64_t)componentContext + 0xc) = 0;
+    *(DataWord *)((int64_t)componentContext + 0xc) = 0;
   }
   
   // 检查数据项数量
@@ -15477,7 +15477,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
   }
   
   // 重置组件状态标志
-  *(uint8_t4 *)(componentContext + 1) = 0;
+  *(DataWord *)(componentContext + 1) = 0;
   dataCounter = (dataCounter ^ (int)dataCounter >> 0x1f) - ((int)dataCounter >> 0x1f);
   
   // 检查数据计数器状态
@@ -15498,7 +15498,7 @@ uint InitializeSystemComponentDL0(int64_t *componentContext)
   
   // 完成组件初始化
   *componentContext = 0;
-  *(uint8_t4 *)((int64_t)componentContext + 0xc) = 0;
+  *(DataWord *)((int64_t)componentContext + 0xc) = 0;
   return 0; // 初始化成功
 }
 
@@ -15533,8 +15533,8 @@ uint8_t8 ResetSystemStateDX0(int64_t systemContext)
   operationResult = ReleaseSystemResourceDJ0(systemContext + 0x70);
   if ((operationResult == 0) && (operationResult = ValidateSystemStateDI0(systemContext + 0x80), operationResult == 0)) {
     // 设置系统状态标志
-    *(uint8_t4 *)(systemContext + 0x90) = SystemCleanupFlag;
-    *(uint8_t4 *)(systemContext + 0x94) = 0;
+    *(DataWord *)(systemContext + 0x90) = SystemCleanupFlag;
+    *(DataWord *)(systemContext + 0x94) = 0;
   }
   
   // 验证系统状态DI0
@@ -15547,8 +15547,8 @@ uint8_t8 ResetSystemStateDX0(int64_t systemContext)
   operationResult = ReleaseSystemResourceDJ0(systemContext + 0x28);
   if ((operationResult == 0) && (operationResult = ConfigureSystemParameterDK0(systemContext + 0x38), operationResult == 0)) {
     // 设置系统参数标志
-    *(uint8_t4 *)(systemContext + 0x48) = SystemCleanupFlag;
-    *(uint8_t4 *)(systemContext + 0x4c) = 0;
+    *(DataWord *)(systemContext + 0x48) = SystemCleanupFlag;
+    *(DataWord *)(systemContext + 0x4c) = 0;
   }
   
   // 配置系统参数DK0
@@ -15576,7 +15576,7 @@ uint8_t8 ResetSystemStateDX0(int64_t systemContext)
     // 重置验证上下文
     *validationContext = 0;
     validationCounter = 0;
-    *(uint8_t4 *)(systemContext + 0x14) = 0;
+    *(DataWord *)(systemContext + 0x14) = 0;
   }
   
   // 清理系统数据
@@ -15586,7 +15586,7 @@ uint8_t8 ResetSystemStateDX0(int64_t systemContext)
   }
   
   // 重置系统状态标志
-  *(uint8_t4 *)(systemContext + 0x10) = 0;
+  *(DataWord *)(systemContext + 0x10) = 0;
   
   // 最终验证检查
   if ((0 < (int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f))) &&
@@ -15632,7 +15632,7 @@ uint8_t8 ConfigureSystemParameterDK0(int64_t *parameterContext)
     // 重置参数上下文
     *parameterContext = 0;
     validationCounter = 0;
-    *(uint8_t4 *)((int64_t)parameterContext + 0xc) = 0;
+    *(DataWord *)((int64_t)parameterContext + 0xc) = 0;
   }
   
   // 检查参数项数量
@@ -15643,7 +15643,7 @@ uint8_t8 ConfigureSystemParameterDK0(int64_t *parameterContext)
   }
   
   // 重置参数状态标志
-  *(uint8_t4 *)(parameterContext + 1) = 0;
+  *(DataWord *)(parameterContext + 1) = 0;
   
   // 最终验证和配置操作
   if ((0 < (int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f))) &&
@@ -15675,7 +15675,7 @@ uint64_t CleanupAndResetParameterContext(int64_t *parameterContext)
 
 {
   int parameterCount;
-  uint8_t4 *parameterDataPointer;
+  DataWord *parameterDataPointer;
   uint8_t8 operationResult;
   int64_t cleanupCounter;
   uint parameterFlags;
@@ -15690,14 +15690,14 @@ uint64_t CleanupAndResetParameterContext(int64_t *parameterContext)
       AllocateSystemResource(*(uint8_t8 *)(GlobalResourceTable + 0x1a0),*parameterContext,&ParameterCleanupBuffer,0x100,1);
     }
     *parameterContext = 0;
-    *(uint8_t4 *)((int64_t)parameterContext + 0xc) = 0;
+    *(DataWord *)((int64_t)parameterContext + 0xc) = 0;
     parameterFlags = 0;
   }
   parameterCount = (int)parameterContext[1];
   if (parameterCount < 0) {
     cleanupCounter = (int64_t)-parameterCount;
     if (parameterCount < 0) {
-      parameterDataPointer = (uint8_t4 *)((int64_t)parameterCount * 0x10 + *parameterContext + 4);
+      parameterDataPointer = (DataWord *)((int64_t)parameterCount * 0x10 + *parameterContext + 4);
       do {
         parameterDataPointer[-1] = 0;
         *parameterDataPointer = SystemCleanupFlag;
@@ -15708,7 +15708,7 @@ uint64_t CleanupAndResetParameterContext(int64_t *parameterContext)
       parameterFlags = *(uint *)((int64_t)parameterContext + 0xc);
     }
   }
-  *(uint8_t4 *)(parameterContext + 1) = 0;
+  *(DataWord *)(parameterContext + 1) = 0;
   if ((0 < (int)((parameterFlags ^ (int)parameterFlags >> 0x1f) - ((int)parameterFlags >> 0x1f))) &&
      (operationResult = ValidateParameterContext(parameterContext,0), (int)operationResult != 0)) {
     return operationResult;
@@ -15758,7 +15758,7 @@ uint8_t8 InitializeSystemDataStructure(int64_t *systemContext)
     memoryBaseAddress = statusCounter;
     if (0 < calculatedSize) {
       do {
-        *(uint8_t4 *)(*param_1 + memoryBaseAddress * 4) = SystemCleanupFlag;
+        *(DataWord *)(*param_1 + memoryBaseAddress * 4) = SystemCleanupFlag;
         memoryBaseAddress = memoryBaseAddress + 1;
       } while ((int64_t)memoryBaseAddress < (int64_t)calculatedSize);
     }
@@ -15780,7 +15780,7 @@ uint8_t8 InitializeSystemDataStructure(int64_t *systemContext)
         *pcalculatedValue = (int)statusCounter;
         loopCounter = loopCounter + 1;
         statusCounter = (uint64_t)((int)statusCounter + 1);
-        *(uint8_t4 *)(param_1[2] + 4 + memoryBaseAddress) = SystemCleanupFlag;
+        *(DataWord *)(param_1[2] + 4 + memoryBaseAddress) = SystemCleanupFlag;
         memoryBaseAddress = memoryBaseAddress + 0x10;
       } while ((int64_t)loopCounter < (int64_t)(int)dataContext);
     }
@@ -15827,7 +15827,7 @@ uint8_t8 UtilityNoOperationK(void)
     validationStatus = securityCheckResult;
     if (0 < calculatedValue) {
       do {
-        *(uint8_t4 *)(*registerContext + validationStatus * 4) = SystemCleanupFlag;
+        *(DataWord *)(*registerContext + validationStatus * 4) = SystemCleanupFlag;
         validationStatus = validationStatus + 1;
       } while ((int64_t)validationStatus < (int64_t)calculatedValue);
     }
@@ -15849,7 +15849,7 @@ uint8_t8 UtilityNoOperationK(void)
         *operationResultPointer = (int)securityCheckResult;
         statusCounter = statusCounter + 1;
         securityCheckResult = (uint64_t)((int)securityCheckResult + 1);
-        *(uint8_t4 *)(registerContext[2] + 4 + validationStatus) = SystemCleanupFlag;
+        *(DataWord *)(registerContext[2] + 4 + validationStatus) = SystemCleanupFlag;
         validationStatus = validationStatus + 0x10;
       } while ((int64_t)statusCounter < (int64_t)(int)validationContext);
     }
@@ -15873,11 +15873,11 @@ uint8_t8 GetSystemConfigurationSize(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ProcessUtilitySystemData(int64_t systemContext,uint8_t1 *dataBuffer,int *resultCounter)
+// 函数: void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *resultCounter)
 // 功能：处理工具系统数据，包括数据验证、状态更新和内存管理
 // 参数：systemContext-系统上下文指针，dataBuffer-数据缓冲区，resultCounter-结果计数器
 // 返回值：无
-void ProcessUtilitySystemData(int64_t systemContext,uint8_t1 *dataBuffer,int *resultCounter)
+void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *resultCounter)
 
 {
   byte statusFlag;
@@ -15891,13 +15891,13 @@ void ProcessUtilitySystemData(int64_t systemContext,uint8_t1 *dataBuffer,int *re
   int64_t dataPointer;
   float value1;
   float value2;
-  uint8_t1 securityBuffer [68];
-  uint8_t4 checksumValue;
+  ByteFlag securityBuffer [68];
+  DataWord checksumValue;
   int *resultCounterPtr;
   int64_t baseAddress;
   int64_t arrayOffset;
   int64_t tempArray [13];
-  uint8_t1 dataBuffer [1536];
+  ByteFlag dataBuffer [1536];
   uint64_t securityChecksum;
   
   securityChecksum = ExceptionEncryptionKey ^ (uint64_t)securityBuffer;
@@ -15920,8 +15920,8 @@ void ProcessUtilitySystemData(int64_t systemContext,uint8_t1 *dataBuffer,int *re
       if (calculatedSize != -1) {
         fVar11 = *(float *)(param_1 + 0xb4);
         calculatedSize = -1;
-        *(uint8_t4 *)(param_1 + 0xb0) = SystemCleanupFlag;
-        *(uint8_t4 *)(param_1 + 0xb4) = NegativeZeroFloat;
+        *(DataWord *)(param_1 + 0xb0) = SystemCleanupFlag;
+        *(DataWord *)(param_1 + 0xb4) = NegativeZeroFloat;
       }
       *(float *)(param_1 + 0xa8) = floatValue;
       memoryOffset = 0;
@@ -15944,7 +15944,7 @@ void ProcessUtilitySystemData(int64_t systemContext,uint8_t1 *dataBuffer,int *re
       if (*(int64_t *)(param_1 + 0xc0) != 0) {
         operationResult = CleanupAndValidateDataStructure(param_1);
         arrayIndex = (**(FunctionPointer**)(param_1 + 0xc0))
-                          (operationResult,arrayIndex,*(uint8_t4 *)(dataPointer + 0x18),*(uint8_t8 *)(param_1 + 0xb8)
+                          (operationResult,arrayIndex,*(DataWord *)(dataPointer + 0x18),*(uint8_t8 *)(param_1 + 0xb8)
                           );
         if (arrayIndex != 0) goto FUN_180895b89;
       }
@@ -15977,7 +15977,7 @@ MemoryCopyLabel:
       }
       else {
         if ((validationResult != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
-        uStack_6f4 = *(uint8_t4 *)(dataPointer + 0x20);
+        uStack_6f4 = *(DataWord *)(dataPointer + 0x20);
         arrayIndex = ValidateAndProcessDataFlags(param_1,arrayIndex,&uStack_6f4);
         if (arrayIndex != 0) goto FUN_180895b89;
         arrayIndex = QueryAndRetrieveSystemDataA0(uStack_6f4,alStack_6b0);
@@ -16014,11 +16014,11 @@ void ProcessSystemDataWithValidation(int64_t systemContext,uint8_t8 dataHandle,i
   uint8_t8 processData;
   int64_t dataValue;
   int currentIndex;
-  uint8_t4 processFlags;
+  DataWord processFlags;
   int64_t stackPointer;
   int64_t dataIterator;
   char typeCheck;
-  uint8_t1 *dataBuffer;
+  ByteFlag *dataBuffer;
   int64_t calculatedValue;
   float floatValue;
   float normalizedValue;
@@ -16040,8 +16040,8 @@ void ProcessSystemDataWithValidation(int64_t systemContext,uint8_t8 dataHandle,i
     if (itemCount != -1) {
       normalizedValue = *(float *)(systemContext + 0xb4);
       itemCount = -1;
-      *(uint8_t4 *)(systemContext + 0xb0) = SystemCleanupFlag;
-      *(uint8_t4 *)(systemContext + 0xb4) = NegativeZeroFloat;
+      *(DataWord *)(systemContext + 0xb0) = SystemCleanupFlag;
+      *(DataWord *)(systemContext + 0xb4) = NegativeZeroFloat;
     }
     *(float *)(systemContext + 0xa8) = floatValue;
     arrayIndex = 0;
@@ -16067,7 +16067,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,uint8_t8 dataHandle,i
     if (*(int64_t *)(register_RDI + 0xc0) != 0) {
       dataFlags = CleanupAndValidateDataStructure();
       operationStatus = (**(FunctionPointer**)(register_RDI + 0xc0))
-                        (dataFlags,register_EBX,*(uint8_t4 *)(bufferPointer + 0x18),
+                        (dataFlags,register_EBX,*(DataWord *)(bufferPointer + 0x18),
                          *(uint8_t8 *)(register_RDI + 0xb8));
       param_3 = in_stack_00000048;
       if (operationStatus != 0) goto LAB_180895b69;
@@ -16101,7 +16101,7 @@ MemoryCopyLabel:
     }
     else {
       if ((characterFlag != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
-      stackParameter40._4_4_ = *(uint8_t4 *)(bufferPointer + 0x20);
+      stackParameter40._4_4_ = *(DataWord *)(bufferPointer + 0x20);
       arrayIndex = ValidateAndProcessDataFlags(param_1,register_EBX,(int64_t)&stack0x00000040 + 4);
       if (arrayIndex != 0) goto LAB_180895b69;
       arrayIndex = QueryAndRetrieveSystemDataA0(stackParameter40._4_4_,register_RBP + -0x78);
@@ -16131,7 +16131,7 @@ void ExecuteSecurityCheck(void)
 
 {
   int64_t securityContext;
-  uint8_t1 stackBuffer [40];
+  ByteFlag stackBuffer [40];
   
   securityContext = GetSecurityContext();
                     // WARNING: Subroutine does not return
@@ -16221,7 +16221,7 @@ uint8_t8 ValidateAndProcessDataFlags(int64_t dataContext,int operationIndex,uint
   int64_t currentIndex;
   uint8_t8 *functionPointer;
   int hashIndex;
-  uint8_t4 resultValue;
+  DataWord resultValue;
   
   if (validationFlags != (uint *)0x0) {
     flagValue = *validationFlags;
@@ -16442,13 +16442,13 @@ uint8_t8 ValidateAndProcessDataStructure(uint8_t8 param_1,int param_2)
   uint8_t8 *poperationResult;
   int iterationCount;
   int64_t memoryOffset;
-  uint8_t4 *psecurityCheckResult;
+  DataWord *psecurityCheckResult;
   uint statusCounter;
   int inputParameter0;
   int *referenceCountPointer1;
   int64_t *register_RDI;
   uint8_t8 *registerR14;
-  uint8_t4 *register_R15;
+  DataWord *register_R15;
   uint8_t8 uStack0000000000000028;
   
   referenceCountPointer1 = (int *)(*register_RDI + (int64_t)in_EAX * 4);
@@ -16495,8 +16495,8 @@ uint8_t8 ValidateAndProcessDataStructure(uint8_t8 param_1,int param_2)
     *(int *)(register_RDI + 3) = (int)register_RDI[3] + 1;
   }
   else {
-    psecurityCheckResult = (uint8_t4 *)((int64_t)operationResult * 0x10 + register_RDI[2]);
-    *(uint8_t4 *)(register_RDI + 4) = psecurityCheckResult[1];
+    psecurityCheckResult = (DataWord *)((int64_t)operationResult * 0x10 + register_RDI[2]);
+    *(DataWord *)(register_RDI + 4) = psecurityCheckResult[1];
     psecurityCheckResult[1] = SystemCleanupFlag;
     *psecurityCheckResult = *register_R15;
     *(uint8_t8 *)(psecurityCheckResult + 2) = *registerR14;
@@ -16511,21 +16511,21 @@ uint8_t8 ValidateAndProcessDataStructure(uint8_t8 param_1,int param_2)
 // 原始函数名：FUN_180895d9c - 数据块处理和验证函数
 // 功能：处理数据块并进行验证，确保数据完整性
 #define ProcessAndValidateDataBlock FUN_180895d9c
-uint8_t8 ProcessAndValidateDataBlock(uint8_t8 param_1,uint8_t4 param_2)
+uint8_t8 ProcessAndValidateDataBlock(uint8_t8 param_1,DataWord param_2)
 
 {
   int inputParameter;
   uint8_t8 functionReturnValue;
   uint8_t8 *pvalidationStatus;
   int arrayIndex;
-  uint8_t4 *poperationResult;
+  DataWord *poperationResult;
   uint dataFlags;
   int calculatedValue;
   int *registerContext;
   int calculatedSize;
   int64_t register_RDI;
   uint8_t8 *registerR14;
-  uint8_t4 *register_R15;
+  DataWord *register_R15;
   uint8_t8 uStack0000000000000028;
   
   calculatedSize = *(int *)(register_RDI + 0x20);
@@ -16559,8 +16559,8 @@ uint8_t8 ProcessAndValidateDataBlock(uint8_t8 param_1,uint8_t4 param_2)
     *(int *)(register_RDI + 0x18) = *(int *)(register_RDI + 0x18) + 1;
   }
   else {
-    poperationResult = (uint8_t4 *)((int64_t)calculatedSize * 0x10 + *(int64_t *)(register_RDI + 0x10));
-    *(uint8_t4 *)(register_RDI + 0x20) = poperationResult[1];
+    poperationResult = (DataWord *)((int64_t)calculatedSize * 0x10 + *(int64_t *)(register_RDI + 0x10));
+    *(DataWord *)(register_RDI + 0x20) = poperationResult[1];
     poperationResult[1] = SystemCleanupFlag;
     *poperationResult = *register_R15;
     *(uint8_t8 *)(poperationResult + 2) = *registerR14;
@@ -16597,8 +16597,8 @@ uint8_t8 ValidateAndProcessResourceAllocation(int minimumSize,int requestedSize,
 {
   uint8_t8 allocationResult;
   uint8_t8 *resourcePointer;
-  uint8_t4 *statusRegister;
-  uint8_t4 statusValue;
+  DataWord *statusRegister;
+  DataWord statusValue;
   int64_t systemContext;
   uint8_t8 stackData;
   
@@ -16633,15 +16633,15 @@ void NoOperationC(void)
 
 
 
-// 函数: uint8_t4 ValidateAndProcessSystemData(uint8_t8 systemHandle)
+// 函数: DataWord ValidateAndProcessSystemData(uint8_t8 systemHandle)
 // 功能：验证并处理系统数据，调用系统资源验证函数并返回结果
 // 参数：systemHandle - 系统句柄
 // 返回值：验证成功返回处理结果，失败返回0
-uint8_t4 ValidateAndProcessSystemData(uint8_t8 systemHandle)
+DataWord ValidateAndProcessSystemData(uint8_t8 systemHandle)
 
 {
   int validationResult;
-  uint8_t4 resultBuffer [6];
+  DataWord resultBuffer [6];
   
   resultBuffer[0] = 0;
   validationResult = ValidateAndProcessSystemResourceA0(systemHandle,resultBuffer);
@@ -16684,8 +16684,8 @@ uint8_t8 ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
           destinationPointer = newBuffer;
           do {
             *destinationPointer = *(uint8_t8 *)((sourceBuffer - (int64_t)newBuffer) + (int64_t)destinationPointer);
-            *(uint8_t4 *)(destinationPointer + 1) =
-                 *(uint8_t4 *)((sourceBuffer - (int64_t)newBuffer) + 8 + (int64_t)destinationPointer);
+            *(DataWord *)(destinationPointer + 1) =
+                 *(DataWord *)((sourceBuffer - (int64_t)newBuffer) + 8 + (int64_t)destinationPointer);
             destinationPointer = (uint8_t8 *)((int64_t)destinationPointer + 0xc);
             itemsToCopy = itemsToCopy + -1;
           } while (itemsToCopy != 0);
@@ -16756,8 +16756,8 @@ CalculationLabel:
         poperationResult = pvalidationStatus;
         do {
           *poperationResult = *(uint8_t8 *)((dataContext - (int64_t)pvalidationStatus) + (int64_t)poperationResult);
-          *(uint8_t4 *)(poperationResult + 1) =
-               *(uint8_t4 *)((dataContext - (int64_t)pvalidationStatus) + 8 + (int64_t)poperationResult);
+          *(DataWord *)(poperationResult + 1) =
+               *(DataWord *)((dataContext - (int64_t)pvalidationStatus) + 8 + (int64_t)poperationResult);
           poperationResult = (uint8_t8 *)((int64_t)poperationResult + 0xc);
           calculatedIndex = calculatedIndex + -1;
         } while (calculatedIndex != 0);
@@ -16877,7 +16877,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
 
 {
   byte *pbVar1;
-  uint8_t4 functionReturnValue;
+  DataWord functionReturnValue;
   uint8_t8 validationStatus;
   int arrayIndex;
   int64_t resourceIterator;
@@ -16887,7 +16887,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
   uint statusCounter;
   uint64_t loopCounter;
   int inputParameter1;
-  uint8_t4 *pdataValue2;
+  DataWord *pdataValue2;
   int64_t *validationContextPointer3;
   int inputParameter4;
   int64_t validationContext5;
@@ -16896,30 +16896,30 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
   int aiStackX_8 [2];
   uint auStackX_10 [2];
   uint8_t8 uStackX_18;
-  uint8_t1 auStackX_20 [8];
+  ByteFlag auStackX_20 [8];
   uint64_t uStack_118;
   uint8_t8 uStack_110;
   int64_t *plStack_108;
   uint64_t uStack_100;
   int aiStack_f8 [2];
   uint8_t *puStack_f0;
-  uint8_t4 uStack_e8;
-  uint8_t4 uStack_e0;
+  DataWord uStack_e8;
+  DataWord uStack_e0;
   uint8_t *puStack_d8;
-  uint8_t4 uStack_d0;
-  uint8_t4 uStack_c8;
-  uint8_t4 uStack_c0;
+  DataWord uStack_d0;
+  DataWord uStack_c8;
+  DataWord uStack_c0;
   uint8_t *puStack_b8;
-  uint8_t4 uStack_b0;
-  uint8_t4 uStack_a8;
+  DataWord uStack_b0;
+  DataWord uStack_a8;
   uint uStack_a0;
   uint8_t *puStack_98;
-  uint8_t4 uStack_90;
-  uint8_t4 uStack_88;
-  uint8_t1 uStack_80;
-  uint8_t1 auStack_78 [8];
-  uint8_t1 auStack_70 [8];
-  uint8_t1 auStack_68 [40];
+  DataWord uStack_90;
+  DataWord uStack_88;
+  ByteFlag uStack_80;
+  ByteFlag auStack_78 [8];
+  ByteFlag auStack_70 [8];
+  ByteFlag auStack_68 [40];
   
   securityCheckResult = *(uint *)(param_1 + 0x6c);
   dataFlags = 0;
@@ -16946,13 +16946,13 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
           validationContext5 = (int64_t)aiStackX_8[0];
           arrayIndex = *(int *)(resourceIterator + 8 + validationContext5 * 0x10);
           if (arrayIndex == 2) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10),&uStackX_18);
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),&uStackX_18);
             validationStatus = uStackX_18;
             validationContextPointer3 = plStack_108;
             if ((arrayIndex == 0) &&
                (arrayIndex = PerformSystemValidationCheck(uStackX_18), validationContextPointer3 = plStack_108, 0 < arrayIndex)) {
               do {
-                uStack_e0 = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+                uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
                 uStack_e8 = 0;
                 puStack_f0 = &UNK_180983588;
                 DoubleValidateAndExecuteOperation(&puStack_f0,*(uint8_t8 *)(param_1 + 0x58));
@@ -16963,53 +16963,53 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
             }
           }
           else if (arrayIndex == 3) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10),auStackX_20);
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),auStackX_20);
             validationContextPointer3 = plStack_108;
             if (arrayIndex == 0) {
               puStack_d8 = &UNK_180983b68;
-              uStack_c8 = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              uStack_c8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 1;
               ProcessSystemDataA2(&puStack_d8,*(uint8_t8 *)(param_1 + 0x58));
               puStack_f0 = &UNK_180983cf8;
-              uStack_e0 = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ValidateAndExecuteOperationA0(&puStack_f0,*(uint8_t8 *)(param_1 + 0x58));
               validationContextPointer3 = plStack_108;
             }
           }
           else if (arrayIndex == 5) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_78);
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_78);
             validationContextPointer3 = plStack_108;
             if (arrayIndex == 0) {
               puStack_d8 = &UNK_1809842e0;
-              uStack_c8 = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              uStack_c8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 0x3f800000;
               ValidateDataIntegrityA1(&puStack_d8,*(uint8_t8 *)(param_1 + 0x58));
               puStack_98 = &UNK_180984358;
-              uStack_88 = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              uStack_88 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_90 = 0;
               uStack_80 = 0;
               ProcessDataBlockA0(&puStack_98,*(uint8_t8 *)(param_1 + 0x58));
               puStack_b8 = &UNK_1809843d0;
-              uStack_a8 = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              uStack_a8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
               ProcessDataSetFlagA0(&puStack_b8,*(uint8_t8 *)(param_1 + 0x58));
               puStack_f0 = &UNK_1809841e0;
-              uStack_e0 = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ProcessSystemEventA0(&puStack_f0,*(uint8_t8 *)(param_1 + 0x58));
               validationContextPointer3 = plStack_108;
             }
           }
           else if (arrayIndex == 6) {
-            arrayIndex = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_70);
+            arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_70);
             validationContextPointer3 = plStack_108;
             if (arrayIndex == 0) {
               puStack_b8 = &UNK_1809844c8;
-              uStack_a8 = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+              uStack_a8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
               ValidateSystemA0(&puStack_b8,*(uint8_t8 *)(param_1 + 0x58));
@@ -17017,9 +17017,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
             }
           }
           else if ((arrayIndex == 7) &&
-                  (arrayIndex = QueryAndRetrieveSystemDataA0(*(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10),
+                  (arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),
                                                auStack_68), validationContextPointer3 = plStack_108, arrayIndex == 0)) {
-            functionReturnValue = *(uint8_t4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
+            functionReturnValue = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
             calculatedValue = (int)dataFlags + 1;
             arrayIndex = inputParameter6;
             if (inputParameter6 < 0) {
@@ -17065,7 +17065,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
                   statusCounter = 0;
                 }
                 if (arrayIndex < 0) {
-                  pdataValue2 = (uint8_t4 *)(uStack_118 + resourceIterator * 4);
+                  pdataValue2 = (DataWord *)(uStack_118 + resourceIterator * 4);
                   resourceIterator = (int64_t)-arrayIndex;
                   if (arrayIndex < 0) {
                     for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
@@ -17090,7 +17090,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
             auStackX_10[0] = inputParameter4 + 1;
             dataFlags = (uint64_t)auStackX_10[0];
             uStack_110 = CONCAT44(uStack_110._4_4_,auStackX_10[0]);
-            *(uint8_t4 *)(uStack_118 + (int64_t)inputParameter4 * 4) = functionReturnValue;
+            *(DataWord *)(uStack_118 + (int64_t)inputParameter4 * 4) = functionReturnValue;
             validationContextPointer3 = plStack_108;
           }
           arrayIndex = (int)loopCounter;
@@ -17148,7 +17148,7 @@ MemoryAllocationLabel:
     }
     if (inputParameter6 < 0) {
       resourceIterator = (int64_t)-inputParameter6;
-      pdataValue2 = (uint8_t4 *)(dataFlags + (int64_t)inputParameter6 * 4);
+      pdataValue2 = (DataWord *)(dataFlags + (int64_t)inputParameter6 * 4);
       if (inputParameter6 < 0) {
         for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
           *pdataValue2 = 0;
@@ -17178,8 +17178,8 @@ ProcessCompleteLabel:
   }
   arrayIndex = ReleaseSystemResourceDJ0(param_1 + 0x70);
   if ((arrayIndex == 0) && (arrayIndex = ResetSystemStatusA0(param_1 + 0x80), arrayIndex == 0)) {
-    *(uint8_t4 *)(param_1 + 0x90) = SystemCleanupFlag;
-    *(uint8_t4 *)(param_1 + 0x94) = 0;
+    *(DataWord *)(param_1 + 0x90) = SystemCleanupFlag;
+    *(DataWord *)(param_1 + 0x94) = 0;
   }
   *(uint *)(param_1 + 0x6c) = *(uint *)(param_1 + 0x6c) & 0xfbffffff;
   securityCheckResult = *(uint *)(param_1 + 0x6c);
@@ -17263,7 +17263,7 @@ void ResetResourceState(int64_t *resourceHandle)
   
   resetResult = (**(FunctionPointer**)(*resourceHandle + 0x18))();
   if (resetResult == 0) {
-    *(uint8_t1 *)(resourceHandle + 4) = 0;
+    *(ByteFlag *)(resourceHandle + 4) = 0;
   }
   return;
 }
@@ -17308,11 +17308,11 @@ uint8_t8 ProcessResourceData(int64_t resourceContext)
     dataBuffer[4] = 0;
     dataBuffer[5] = 0;
     *dataBuffer = dataSize + 0x19;
-    *(uint8_t2 *)(dataBuffer + 2) = 0x508;
-    *(uint8_t1 *)((int64_t)dataBuffer + 10) = 3;
+    *(BytePair *)(dataBuffer + 2) = 0x508;
+    *(ByteFlag *)((int64_t)dataBuffer + 10) = 3;
     dataBuffer[3] = 1;
     adjustedSize = *(int64_t *)(*(int64_t *)(resourceContext + 8) + 0x90);
-    dataHandle = AcquireSystemDataHandle(*(uint8_t8 *)(adjustedSize + 0x4d0),*(uint8_t4 *)(adjustedSize + 0x774));
+    dataHandle = AcquireSystemDataHandle(*(uint8_t8 *)(adjustedSize + 0x4d0),*(DataWord *)(adjustedSize + 0x774));
     *(uint8_t8 *)(dataBuffer + 4) = dataHandle;
                     // WARNING: Subroutine does not return
     memcpy(dataBuffer + 6,dataSource,(int64_t)dataSize);
@@ -17337,12 +17337,12 @@ uint8_t8 ProcessResourceData(int64_t resourceContext)
 int ProcessStringData(int64_t stringContext, int64_t dataBuffer, int bufferSize)
 
 {
-  uint8_t4 formatFlag;
+  DataWord formatFlag;
   int processedBytes1;
   int processedBytes2;
   
-  formatFlag = *(uint8_t4 *)(stringContext + 0x14);
-  processedBytes1 = EncryptSystemData(dataBuffer,bufferSize,*(uint8_t4 *)(stringContext + 0x10));
+  formatFlag = *(DataWord *)(stringContext + 0x14);
+  processedBytes1 = EncryptSystemData(dataBuffer,bufferSize,*(DataWord *)(stringContext + 0x10));
   processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&SystemDataBufferA);
   processedBytes1 = processedBytes1 + processedBytes2;
   processedBytes2 = ProcessSystemDataWithValidation(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag);
@@ -17395,13 +17395,13 @@ int ProcessEncodedData(int64_t encodingContext, int64_t dataBuffer, int bufferSi
 int ProcessComplexData(int64_t complexContext, int64_t dataBuffer, int bufferSize)
 
 {
-  uint8_t4 formatFlag1;
-  uint8_t4 formatFlag2;
+  DataWord formatFlag1;
+  DataWord formatFlag2;
   int processedBytes1;
   int processedBytes2;
   
-  formatFlag1 = *(uint8_t4 *)(complexContext + 0x14);
-  formatFlag2 = *(uint8_t4 *)(complexContext + 0x10);
+  formatFlag1 = *(DataWord *)(complexContext + 0x14);
+  formatFlag2 = *(DataWord *)(complexContext + 0x10);
   processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&UNK_180986470);
   processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&SystemDataBufferA);
   processedBytes1 = processedBytes1 + processedBytes2;
@@ -17425,7 +17425,7 @@ uint8_t8 ValidateAndProcessDataOperation(int64_t param_1,uint8_t8 param_2,uint8_
   
   dataValue = ValidateNetworkConnectionA0(param_3,param_1 + 0x10);
   if ((int)dataValue == 0) {
-    *(uint8_t4 *)(param_1 + 0x14) = 0;
+    *(DataWord *)(param_1 + 0x14) = 0;
     if ((1 < *(int *)(param_1 + 0x10)) && (dataValue = ValidateNetworkStatusA0(param_3), (int)dataValue != 0)) {
       return dataValue;
     }
@@ -17453,8 +17453,8 @@ void ProcessComplexDataBufferA1(uint8_t8 systemHandle, int64_t dataContext, uint
   int loopIndex;
   uint8_t **ppdataFlags;
   int calculatedValue;
-  uint8_t1 auStack_328 [32];
-  uint8_t4 uStack_308;
+  ByteFlag auStack_328 [32];
+  DataWord uStack_308;
   float afStack_304 [3];
   uint8_t *puStack_2f8;
   int iStack_2f0;
@@ -17465,23 +17465,23 @@ void ProcessComplexDataBufferA1(uint8_t8 systemHandle, int64_t dataContext, uint
   uint8_t8 uStack_2c8;
   uint8_t8 uStack_2c0;
   uint8_t8 uStack_2b8;
-  uint8_t4 uStack_2b0;
+  DataWord uStack_2b0;
   uint uStack_2ac;
   uint8_t *puStack_2a8;
   int iStack_2a0;
   uint uStack_298;
-  uint8_t4 uStack_294;
+  DataWord uStack_294;
   int iStack_290;
-  uint8_t4 uStack_28c;
+  DataWord uStack_28c;
   uint uStack_288;
-  uint8_t4 uStack_284;
-  uint8_t4 uStack_280;
-  uint8_t4 uStack_27c;
+  DataWord uStack_284;
+  DataWord uStack_280;
+  DataWord uStack_27c;
   uint8_t *puStack_278;
-  uint8_t4 uStack_270;
+  DataWord uStack_270;
   uint uStack_268;
-  uint8_t4 uStack_264;
-  uint8_t1 auStack_260 [520];
+  DataWord uStack_264;
+  ByteFlag auStack_260 [520];
   uint64_t uStack_58;
   
   uStack_58 = ExceptionEncryptionKey ^ (uint64_t)auStack_328;
@@ -17517,14 +17517,14 @@ SecurityValidationLabel:
       puStack_2f8 = &UNK_180982588;
       lStack_2d8 = (uint64_t)param_3 << 0x20;
       uStack_2e8 = *(uint8_t8 *)(param_2 + 0x228);
-      uStack_2e0 = (uint64_t)CONCAT14(operationStatus != 1,*(uint8_t4 *)(param_2 + 0x230));
+      uStack_2e0 = (uint64_t)CONCAT14(operationStatus != 1,*(DataWord *)(param_2 + 0x230));
       operationStatus = ValidateDataIntegrityA0(param_1,&puStack_2f8);
     }
     if (operationStatus != 0) goto FUN_1808974f4;
     uStack_298 = *(uint *)(param_2 + 0x10);
-    uStack_294 = *(uint8_t4 *)(param_2 + 0x14);
+    uStack_294 = *(DataWord *)(param_2 + 0x14);
     iStack_290 = *(int *)(param_2 + 0x18);
-    uStack_28c = *(uint8_t4 *)(param_2 + 0x1c);
+    uStack_28c = *(DataWord *)(param_2 + 0x1c);
     iStack_2a0 = 0;
     puStack_2a8 = &UNK_180985a80;
     uStack_284 = 0;
@@ -17553,10 +17553,10 @@ SecurityValidationLabel:
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
         if (calculatedValue != 0) goto FUN_1808974f4;
-        uStack_28c = *(uint8_t4 *)(validationContext + 0x10);
+        uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
-        uStack_284 = *(uint8_t4 *)(validationContext + 0x18);
-        uStack_280 = *(uint8_t4 *)(validationContext + 0x1c);
+        uStack_284 = *(DataWord *)(validationContext + 0x18);
+        uStack_280 = *(DataWord *)(validationContext + 0x1c);
         puStack_2a8 = &SystemDataTableReference;
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
@@ -17600,10 +17600,10 @@ SecurityValidationLabel:
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
         if (calculatedValue != 0) goto FUN_1808974f4;
-        uStack_28c = *(uint8_t4 *)(validationContext + 0x10);
+        uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
-        uStack_284 = *(uint8_t4 *)(validationContext + 0x18);
-        uStack_280 = *(uint8_t4 *)(validationContext + 0x1c);
+        uStack_284 = *(DataWord *)(validationContext + 0x18);
+        uStack_280 = *(DataWord *)(validationContext + 0x1c);
         puStack_2a8 = &SystemDataTableReference;
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
@@ -17647,10 +17647,10 @@ SecurityValidationLabel:
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
         if (calculatedValue != 0) goto FUN_1808974f4;
-        uStack_28c = *(uint8_t4 *)(validationContext + 0x10);
+        uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
-        uStack_284 = *(uint8_t4 *)(validationContext + 0x18);
-        uStack_280 = *(uint8_t4 *)(validationContext + 0x1c);
+        uStack_284 = *(DataWord *)(validationContext + 0x18);
+        uStack_280 = *(DataWord *)(validationContext + 0x1c);
         puStack_2a8 = &SystemDataTableReference;
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
@@ -17694,10 +17694,10 @@ SecurityValidationLabel:
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
         if (calculatedValue != 0) goto FUN_1808974f4;
-        uStack_28c = *(uint8_t4 *)(validationContext + 0x10);
+        uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
-        uStack_284 = *(uint8_t4 *)(validationContext + 0x18);
-        uStack_280 = *(uint8_t4 *)(validationContext + 0x1c);
+        uStack_284 = *(DataWord *)(validationContext + 0x18);
+        uStack_280 = *(DataWord *)(validationContext + 0x1c);
         puStack_2a8 = &SystemDataTableReference;
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
@@ -17744,11 +17744,11 @@ SecurityValidationLabel:
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
         if (calculatedValue != 0) break;
-        uStack_28c = *(uint8_t4 *)(validationContext + 0x10);
+        uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
-        uStack_284 = *(uint8_t4 *)(validationContext + 0x18);
-        uStack_280 = *(uint8_t4 *)(validationContext + 0x1c);
-        puStack_2a8 = &UNK_180983238;
+        uStack_284 = *(DataWord *)(validationContext + 0x18);
+        uStack_280 = *(DataWord *)(validationContext + 0x1c);
+        puStack_2a8 = &SystemDataValidationReference;
         arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
@@ -17786,14 +17786,14 @@ void ProcessFloatingPointDataA0(void)
 {
   int64_t validationContext;
   int64_t dataContext;
-  uint8_t4 validationStatus;
-  uint8_t4 memoryBaseAddress;
-  uint8_t4 operationResult;
-  uint8_t4 dataFlags;
+  DataWord validationStatus;
+  DataWord memoryBaseAddress;
+  DataWord operationResult;
+  DataWord dataFlags;
   int calculatedValue;
   int calculatedSize;
   int validationErrorCode;
-  uint8_t4 register_EBX;
+  DataWord register_EBX;
   int64_t register_RBP;
   int register_R12D;
   int64_t register_R13;
@@ -17807,11 +17807,11 @@ void ProcessFloatingPointDataA0(void)
   float extraout_XMM0_Da_05;
   float extraout_XMM0_Da_06;
   float floatValue;
-  uint8_t4 uStackX_20;
+  DataWord uStackX_20;
   float fStackX_24;
   uint8_t *in_stack_00000030;
   int in_stack_00000038;
-  uint8_t4 stackParameter40;
+  DataWord stackParameter40;
   float in_stack_00000048;
   
   if (((register_R15B != '\0') || (*(int *)(*(int64_t *)(register_R13 + 0x2e8) + 0x34) == register_R12D)) &&
@@ -17823,20 +17823,20 @@ void ProcessFloatingPointDataA0(void)
         uStackX_20 = 0;
         calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
         if (calculatedSize != 0) goto LAB_1808974ec;
-        validationStatus = *(uint8_t4 *)(validationContext + 0x10);
-        memoryBaseAddress = *(uint8_t4 *)(validationContext + 0x14);
-        operationResult = *(uint8_t4 *)(validationContext + 0x18);
-        dataFlags = *(uint8_t4 *)(validationContext + 0x1c);
-        *(uint8_t4 *)(register_RBP + -0x78) = 0;
+        validationStatus = *(DataWord *)(validationContext + 0x10);
+        memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
+        operationResult = *(DataWord *)(validationContext + 0x18);
+        dataFlags = *(DataWord *)(validationContext + 0x1c);
+        *(DataWord *)(register_RBP + -0x78) = 0;
         *(int *)(register_RBP + -0x68) = register_R12D;
         *(uint8_t **)(register_RBP + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(uint8_t4 *)(register_RBP + -0x54) = uStackX_20;
-        *(uint8_t4 *)(register_RBP + -0x70) = register_EBX;
-        *(uint8_t4 *)(register_RBP + -100) = validationStatus;
-        *(uint8_t4 *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(uint8_t4 *)(register_RBP + -0x5c) = operationResult;
-        *(uint8_t4 *)(register_RBP + -0x58) = dataFlags;
+        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
+        *(DataWord *)(register_RBP + -0x70) = register_EBX;
+        *(DataWord *)(register_RBP + -100) = validationStatus;
+        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
+        *(DataWord *)(register_RBP + -0x5c) = operationResult;
+        *(DataWord *)(register_RBP + -0x58) = dataFlags;
         calculatedSize = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
         if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
         goto LAB_1808974ec;
@@ -17876,20 +17876,20 @@ void ProcessFloatingPointDataA0(void)
         uStackX_20 = 0;
         calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
         if (calculatedSize != 0) goto LAB_1808974ec;
-        validationStatus = *(uint8_t4 *)(validationContext + 0x10);
-        memoryBaseAddress = *(uint8_t4 *)(validationContext + 0x14);
-        operationResult = *(uint8_t4 *)(validationContext + 0x18);
-        dataFlags = *(uint8_t4 *)(validationContext + 0x1c);
-        *(uint8_t4 *)(register_RBP + -0x78) = 0;
+        validationStatus = *(DataWord *)(validationContext + 0x10);
+        memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
+        operationResult = *(DataWord *)(validationContext + 0x18);
+        dataFlags = *(DataWord *)(validationContext + 0x1c);
+        *(DataWord *)(register_RBP + -0x78) = 0;
         *(int *)(register_RBP + -0x68) = register_R12D;
         *(uint8_t **)(register_RBP + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(uint8_t4 *)(register_RBP + -0x54) = uStackX_20;
-        *(uint8_t4 *)(register_RBP + -0x70) = register_EBX;
-        *(uint8_t4 *)(register_RBP + -100) = validationStatus;
-        *(uint8_t4 *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(uint8_t4 *)(register_RBP + -0x5c) = operationResult;
-        *(uint8_t4 *)(register_RBP + -0x58) = dataFlags;
+        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
+        *(DataWord *)(register_RBP + -0x70) = register_EBX;
+        *(DataWord *)(register_RBP + -100) = validationStatus;
+        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
+        *(DataWord *)(register_RBP + -0x5c) = operationResult;
+        *(DataWord *)(register_RBP + -0x58) = dataFlags;
         calculatedSize = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
         if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
         goto LAB_1808974ec;
@@ -17929,20 +17929,20 @@ void ProcessFloatingPointDataA0(void)
         uStackX_20 = 0;
         calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
         if (calculatedSize != 0) goto LAB_1808974ec;
-        validationStatus = *(uint8_t4 *)(validationContext + 0x10);
-        memoryBaseAddress = *(uint8_t4 *)(validationContext + 0x14);
-        operationResult = *(uint8_t4 *)(validationContext + 0x18);
-        dataFlags = *(uint8_t4 *)(validationContext + 0x1c);
-        *(uint8_t4 *)(register_RBP + -0x78) = 0;
+        validationStatus = *(DataWord *)(validationContext + 0x10);
+        memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
+        operationResult = *(DataWord *)(validationContext + 0x18);
+        dataFlags = *(DataWord *)(validationContext + 0x1c);
+        *(DataWord *)(register_RBP + -0x78) = 0;
         *(int *)(register_RBP + -0x68) = register_R12D;
         *(uint8_t **)(register_RBP + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(uint8_t4 *)(register_RBP + -0x54) = uStackX_20;
-        *(uint8_t4 *)(register_RBP + -0x70) = register_EBX;
-        *(uint8_t4 *)(register_RBP + -100) = validationStatus;
-        *(uint8_t4 *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(uint8_t4 *)(register_RBP + -0x5c) = operationResult;
-        *(uint8_t4 *)(register_RBP + -0x58) = dataFlags;
+        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
+        *(DataWord *)(register_RBP + -0x70) = register_EBX;
+        *(DataWord *)(register_RBP + -100) = validationStatus;
+        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
+        *(DataWord *)(register_RBP + -0x5c) = operationResult;
+        *(DataWord *)(register_RBP + -0x58) = dataFlags;
         calculatedSize = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
         if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
         goto LAB_1808974ec;
@@ -17982,20 +17982,20 @@ void ProcessFloatingPointDataA0(void)
         uStackX_20 = 0;
         calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
         if (calculatedSize != 0) goto LAB_1808974ec;
-        validationStatus = *(uint8_t4 *)(validationContext + 0x10);
-        memoryBaseAddress = *(uint8_t4 *)(validationContext + 0x14);
-        operationResult = *(uint8_t4 *)(validationContext + 0x18);
-        dataFlags = *(uint8_t4 *)(validationContext + 0x1c);
-        *(uint8_t4 *)(register_RBP + -0x78) = 0;
+        validationStatus = *(DataWord *)(validationContext + 0x10);
+        memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
+        operationResult = *(DataWord *)(validationContext + 0x18);
+        dataFlags = *(DataWord *)(validationContext + 0x1c);
+        *(DataWord *)(register_RBP + -0x78) = 0;
         *(int *)(register_RBP + -0x68) = register_R12D;
         *(uint8_t **)(register_RBP + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(uint8_t4 *)(register_RBP + -0x54) = uStackX_20;
-        *(uint8_t4 *)(register_RBP + -0x70) = register_EBX;
-        *(uint8_t4 *)(register_RBP + -100) = validationStatus;
-        *(uint8_t4 *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(uint8_t4 *)(register_RBP + -0x5c) = operationResult;
-        *(uint8_t4 *)(register_RBP + -0x58) = dataFlags;
+        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
+        *(DataWord *)(register_RBP + -0x70) = register_EBX;
+        *(DataWord *)(register_RBP + -100) = validationStatus;
+        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
+        *(DataWord *)(register_RBP + -0x5c) = operationResult;
+        *(DataWord *)(register_RBP + -0x58) = dataFlags;
         calculatedSize = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
         if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
         goto LAB_1808974ec;
@@ -18038,20 +18038,20 @@ void ProcessFloatingPointDataA0(void)
         uStackX_20 = 0;
         validationErrorCode = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
         if (validationErrorCode != 0) break;
-        validationStatus = *(uint8_t4 *)(validationContext + 0x10);
-        memoryBaseAddress = *(uint8_t4 *)(validationContext + 0x14);
-        operationResult = *(uint8_t4 *)(validationContext + 0x18);
-        dataFlags = *(uint8_t4 *)(validationContext + 0x1c);
-        *(uint8_t4 *)(register_RBP + -0x78) = 0;
+        validationStatus = *(DataWord *)(validationContext + 0x10);
+        memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
+        operationResult = *(DataWord *)(validationContext + 0x18);
+        dataFlags = *(DataWord *)(validationContext + 0x1c);
+        *(DataWord *)(register_RBP + -0x78) = 0;
         *(int *)(register_RBP + -0x68) = calculatedSize;
-        *(uint8_t **)(register_RBP + -0x80) = &UNK_180983238;
+        *(uint8_t **)(register_RBP + -0x80) = &SystemDataValidationReference;
         calculatedSize = calculatedSize + 1;
-        *(uint8_t4 *)(register_RBP + -0x54) = uStackX_20;
-        *(uint8_t4 *)(register_RBP + -0x70) = register_EBX;
-        *(uint8_t4 *)(register_RBP + -100) = validationStatus;
-        *(uint8_t4 *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(uint8_t4 *)(register_RBP + -0x5c) = operationResult;
-        *(uint8_t4 *)(register_RBP + -0x58) = dataFlags;
+        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
+        *(DataWord *)(register_RBP + -0x70) = register_EBX;
+        *(DataWord *)(register_RBP + -100) = validationStatus;
+        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
+        *(DataWord *)(register_RBP + -0x5c) = operationResult;
+        *(DataWord *)(register_RBP + -0x58) = dataFlags;
         validationErrorCode = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = ValidateDataA2(dataContext,&fStackX_24,0), validationErrorCode != 0)) break;
         if (fStackX_24 != 1.0) {
@@ -18101,8 +18101,8 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
 {
   int64_t validationContext;
   int operationResult;
-  uint8_t1 auStack_248 [32];
-  uint8_t1 auStack_228 [512];
+  ByteFlag auStack_248 [32];
+  ByteFlag auStack_228 [512];
   uint64_t uStack_28;
   
   uStack_28 = ExceptionEncryptionKey ^ (uint64_t)auStack_248;
@@ -18113,7 +18113,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
     operationResult = (**(FunctionPointer**)(*param_1 + 8))(param_1,auStack_228);
     if ((operationResult == 0) &&
        (((char)validationContext == '\0' && (operationResult = (**(FunctionPointer**)(*param_1 + 0x18))(param_1), operationResult == 0)))) {
-      *(uint8_t1 *)(param_1 + 4) = 0;
+      *(ByteFlag *)(param_1 + 4) = 0;
     }
   }
                     // WARNING: Subroutine does not return
@@ -18132,7 +18132,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   int64_t in_RAX;
   char register_SIL;
   int64_t *register_RDI;
-  uint8_t1 auStackX_20 [8];
+  ByteFlag auStackX_20 [8];
   uint64_t in_stack_00000220;
   
   inputParameter = (**(FunctionPointer**)(in_RAX + 0x10))();
@@ -18140,7 +18140,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   inputParameter = (**(FunctionPointer**)(*register_RDI + 8))();
   if (((inputParameter == 0) && (register_SIL == '\0')) &&
      (inputParameter = (**(FunctionPointer**)(*register_RDI + 0x18))(), inputParameter == 0)) {
-    *(uint8_t1 *)(register_RDI + 4) = 0;
+    *(ByteFlag *)(register_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(in_stack_00000220 ^ (uint64_t)&stack0x00000000);
@@ -18160,7 +18160,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
   uint64_t in_stack_00000220;
   
   if ((register_SIL == '\0') && (inputParameter = (**(FunctionPointer**)(*register_RDI + 0x18))(), inputParameter == 0)) {
-    *(uint8_t1 *)(register_RDI + 4) = 0;
+    *(ByteFlag *)(register_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(in_stack_00000220 ^ (uint64_t)&stack0x00000000);
@@ -18210,44 +18210,44 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
   int64_t validationContext4;
   float *pfVar15;
   uint8_t8 *pdataValue6;
-  uint8_t1 auStack_1e8 [32];
-  uint8_t4 uStack_1c8;
+  ByteFlag auStack_1e8 [32];
+  DataWord uStack_1c8;
   char acStack_1c4 [4];
   uint8_t *puStack_1c0;
-  uint8_t4 uStack_1b8;
-  uint8_t4 uStack_1b0;
+  DataWord uStack_1b8;
+  DataWord uStack_1b0;
   float fStack_1a8;
   float fStack_1a4;
-  uint8_t4 uStack_1a0;
+  DataWord uStack_1a0;
   float fStack_19c;
   float afStack_198 [2];
   uint8_t8 *puStack_190;
   int64_t lStack_188;
   int64_t lStack_180;
   uint8_t *puStack_178;
-  uint8_t4 uStack_170;
-  uint8_t4 uStack_168;
-  uint8_t4 uStack_160;
+  DataWord uStack_170;
+  DataWord uStack_168;
+  DataWord uStack_160;
   uint8_t *puStack_158;
-  uint8_t4 uStack_150;
-  uint8_t4 uStack_148;
+  DataWord uStack_150;
+  DataWord uStack_148;
   uint8_t8 uStack_140;
   uint8_t8 uStack_138;
-  uint8_t4 uStack_130;
-  uint8_t4 uStack_12c;
-  uint8_t4 uStack_128;
-  uint8_t4 uStack_124;
-  uint8_t4 uStack_120;
-  uint8_t4 uStack_11c;
-  uint8_t4 uStack_118;
-  uint8_t4 uStack_114;
+  DataWord uStack_130;
+  DataWord uStack_12c;
+  DataWord uStack_128;
+  DataWord uStack_124;
+  DataWord uStack_120;
+  DataWord uStack_11c;
+  DataWord uStack_118;
+  DataWord uStack_114;
   uint8_t *puStack_108;
-  uint8_t4 uStack_100;
-  uint8_t4 uStack_f8;
-  uint8_t4 uStack_f0;
-  uint8_t1 uStack_ec;
+  DataWord uStack_100;
+  DataWord uStack_f8;
+  DataWord uStack_f0;
+  ByteFlag uStack_ec;
   uint8_t8 uStack_e8;
-  uint8_t1 auStack_e0 [136];
+  ByteFlag auStack_e0 [136];
   uint64_t uStack_58;
   
   uStack_58 = ExceptionEncryptionKey ^ (uint64_t)auStack_1e8;
@@ -18283,8 +18283,8 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             statusFlag = CheckSystemStatus(calculatedOffset,1);
             pdataValue6 = puStack_190;
             if ((statusFlag == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
-              uStack_f0 = *(uint8_t4 *)(validationContext4 + 4 + dataPointer);
-              puStack_108 = &UNK_180984038;
+              uStack_f0 = *(DataWord *)(validationContext4 + 4 + dataPointer);
+              puStack_108 = &SystemMemoryInitializationReference;
               uStack_f8 = uStack_1c8;
               uStack_100 = 0;
               dataPointer = (**(FunctionPointer**)*puStack_190)(puStack_190);
@@ -18315,16 +18315,16 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
             if (iterationCount != 0) {
               uStack_140 = *(uint8_t8 *)(dataContext + 0x38);
               uStack_138 = *(uint8_t8 *)(dataContext + 0x40);
-              uStack_130 = *(uint8_t4 *)(dataContext + 0x48);
-              uStack_12c = *(uint8_t4 *)(dataContext + 0x4c);
-              uStack_128 = *(uint8_t4 *)(dataContext + 0x50);
-              uStack_124 = *(uint8_t4 *)(dataContext + 0x54);
-              puStack_158 = &UNK_180983840;
+              uStack_130 = *(DataWord *)(dataContext + 0x48);
+              uStack_12c = *(DataWord *)(dataContext + 0x4c);
+              uStack_128 = *(DataWord *)(dataContext + 0x50);
+              uStack_124 = *(DataWord *)(dataContext + 0x54);
+              puStack_158 = &SystemSecurityCheckReference;
               uStack_150 = 0;
-              uStack_120 = *(uint8_t4 *)(dataContext + 0x58);
-              uStack_11c = *(uint8_t4 *)(dataContext + 0x5c);
-              uStack_118 = *(uint8_t4 *)(dataContext + 0x60);
-              uStack_114 = *(uint8_t4 *)(dataContext + 100);
+              uStack_120 = *(DataWord *)(dataContext + 0x58);
+              uStack_11c = *(DataWord *)(dataContext + 0x5c);
+              uStack_118 = *(DataWord *)(dataContext + 0x60);
+              uStack_114 = *(DataWord *)(dataContext + 100);
               uStack_148 = uStack_1c8;
               iterationCount = ValidateDataIntegrityA0(param_1,&puStack_158);
               if (iterationCount != 0) goto FUN_180897b16;
@@ -18444,13 +18444,13 @@ ProcessDataSecurityValidation:
   int64_t dataContext;
   int64_t calculatedOffset;
   uint8_t8 *pmemoryBaseAddress;
-  uint8_t4 operationResult;
-  uint8_t4 dataFlags;
-  uint8_t4 validationOutcome;
-  uint8_t4 securityCheckResult;
-  uint8_t4 statusCounter;
-  uint8_t4 loopCounter;
-  uint8_t4 dataValue1;
+  DataWord operationResult;
+  DataWord dataFlags;
+  DataWord validationOutcome;
+  DataWord securityCheckResult;
+  DataWord statusCounter;
+  DataWord loopCounter;
+  DataWord dataValue1;
   char cVar12;
   int inputParameter3;
   uint dataValue4;
@@ -18469,24 +18469,24 @@ ProcessDataSecurityValidation:
   int64_t registerR14;
   uint64_t functionReturnValue3;
   int64_t register_R15;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 functionReturnValue4;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
+  DataWord extraout_XMM0_Da;
+  DataWord functionReturnValue4;
+  DataWord extraout_XMM0_Da_00;
+  DataWord extraout_XMM0_Da_01;
+  DataWord extraout_XMM0_Da_02;
   float extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
-  uint8_t4 extraout_XMM0_Da_05;
-  uint8_t4 extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 extraout_XMM0_Da_08;
-  uint8_t4 register_XMM6_Da;
-  uint8_t4 register_XMM6_Dc;
-  uint8_t4 uStackX_20;
+  DataWord extraout_XMM0_Da_04;
+  DataWord extraout_XMM0_Da_05;
+  DataWord extraout_XMM0_Da_06;
+  DataWord extraout_XMM0_Da_07;
+  DataWord extraout_XMM0_Da_08;
+  DataWord register_XMM6_Da;
+  DataWord register_XMM6_Dc;
+  DataWord uStackX_20;
   char acStackX_24 [4];
   uint8_t *in_stack_00000028;
   float in_stack_00000030;
-  uint8_t4 in_stack_00000038;
+  DataWord in_stack_00000038;
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000048;
@@ -18497,8 +18497,8 @@ ProcessDataSecurityValidation:
   int64_t in_stack_00000068;
   uint8_t *in_stack_00000070;
   float in_stack_00000078;
-  uint8_t4 in_stack_000001a0;
-  uint8_t4 in_stack_000001a8;
+  DataWord in_stack_000001a0;
+  DataWord in_stack_000001a8;
   
   resourcePointer2 = (uint8_t8 *)(registerR14 + 8);
   fStack0000000000000048 = register_R13D;
@@ -18507,7 +18507,7 @@ ProcessDataSecurityValidation:
   inputParameter3 = ValidateAndProcessSystemResourceA0(*(uint8_t8 *)(validationContext5 + 0xd0),&stack0x00000048);
   if (inputParameter3 == 0) {
     in_stack_00000070 = &UNK_1809832b8;
-    *(uint8_t4 *)(register_RBP + -0xf) = uStackX_20;
+    *(DataWord *)(register_RBP + -0xf) = uStackX_20;
     *(float *)(register_RBP + -0x10) = fStack0000000000000048;
     in_stack_00000078 = register_R13D;
     inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da,&stack0x00000070);
@@ -18523,15 +18523,15 @@ ProcessDataSecurityValidation:
           cVar12 = CheckSystemStatus(dataContext,1);
           resourcePointer2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
-            functionReturnValue4 = *(uint8_t4 *)(functionReturnValue0 + 4 + validationContext5);
-            register_RBP[-4] = &UNK_180984038;
-            *(uint8_t4 *)(register_RBP + -2) = uStackX_20;
+            functionReturnValue4 = *(DataWord *)(functionReturnValue0 + 4 + validationContext5);
+            register_RBP[-4] = &SystemMemoryInitializationReference;
+            *(DataWord *)(register_RBP + -2) = uStackX_20;
             pmemoryBaseAddress = (uint8_t8 *)*puStack0000000000000058;
-            *(uint8_t4 *)(register_RBP + -1) = functionReturnValue4;
-            *(uint8_t4 *)(register_RBP + -3) = 0;
+            *(DataWord *)(register_RBP + -1) = functionReturnValue4;
+            *(DataWord *)(register_RBP + -3) = 0;
             validationContext5 = (*(code *)*pmemoryBaseAddress)(puStack0000000000000058);
             *register_RBP = *(uint8_t8 *)(*(int64_t *)(validationContext5 + 0x90) + functionReturnValue3 * 8);
-            *(uint8_t1 *)((int64_t)register_RBP + -4) = 0;
+            *(ByteFlag *)((int64_t)register_RBP + -4) = 0;
             if (*(int *)(dataContext + 0x58) < 1) {
               pdataValue8 = &DAT_18098bc73;
             }
@@ -18560,27 +18560,27 @@ ProcessDataSecurityValidation:
           if (inputParameter3 != 0) {
             dataValue7 = *(uint8_t8 *)(register_R15 + 0x38);
             dataValue6 = *(uint8_t8 *)(register_R15 + 0x40);
-            functionReturnValue4 = *(uint8_t4 *)(register_R15 + 0x48);
-            operationResult = *(uint8_t4 *)(register_R15 + 0x4c);
-            dataFlags = *(uint8_t4 *)(register_R15 + 0x50);
-            validationOutcome = *(uint8_t4 *)(register_R15 + 0x54);
-            register_RBP[-0xe] = &UNK_180983840;
+            functionReturnValue4 = *(DataWord *)(register_R15 + 0x48);
+            operationResult = *(DataWord *)(register_R15 + 0x4c);
+            dataFlags = *(DataWord *)(register_R15 + 0x50);
+            validationOutcome = *(DataWord *)(register_R15 + 0x54);
+            register_RBP[-0xe] = &SystemSecurityCheckReference;
             register_RBP[-0xb] = dataValue7;
             register_RBP[-10] = dataValue6;
             *(float *)(register_RBP + -0xd) = register_R13D;
-            securityCheckResult = *(uint8_t4 *)(register_R15 + 0x58);
-            statusCounter = *(uint8_t4 *)(register_R15 + 0x5c);
-            loopCounter = *(uint8_t4 *)(register_R15 + 0x60);
-            dataValue1 = *(uint8_t4 *)(register_R15 + 100);
-            *(uint8_t4 *)(register_RBP + -0xc) = uStackX_20;
-            *(uint8_t4 *)(register_RBP + -9) = functionReturnValue4;
-            *(uint8_t4 *)((int64_t)register_RBP + -0x44) = operationResult;
-            *(uint8_t4 *)(register_RBP + -8) = dataFlags;
-            *(uint8_t4 *)((int64_t)register_RBP + -0x3c) = validationOutcome;
-            *(uint8_t4 *)(register_RBP + -7) = securityCheckResult;
-            *(uint8_t4 *)((int64_t)register_RBP + -0x34) = statusCounter;
-            *(uint8_t4 *)(register_RBP + -6) = loopCounter;
-            *(uint8_t4 *)((int64_t)register_RBP + -0x2c) = dataValue1;
+            securityCheckResult = *(DataWord *)(register_R15 + 0x58);
+            statusCounter = *(DataWord *)(register_R15 + 0x5c);
+            loopCounter = *(DataWord *)(register_R15 + 0x60);
+            dataValue1 = *(DataWord *)(register_R15 + 100);
+            *(DataWord *)(register_RBP + -0xc) = uStackX_20;
+            *(DataWord *)(register_RBP + -9) = functionReturnValue4;
+            *(DataWord *)((int64_t)register_RBP + -0x44) = operationResult;
+            *(DataWord *)(register_RBP + -8) = dataFlags;
+            *(DataWord *)((int64_t)register_RBP + -0x3c) = validationOutcome;
+            *(DataWord *)(register_RBP + -7) = securityCheckResult;
+            *(DataWord *)((int64_t)register_RBP + -0x34) = statusCounter;
+            *(DataWord *)(register_RBP + -6) = loopCounter;
+            *(DataWord *)((int64_t)register_RBP + -0x2c) = dataValue1;
             inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,register_RBP + -0xe);
             functionReturnValue4 = extraout_XMM0_Da_02;
             if (inputParameter3 != 0) goto FUN_180897b0e;
@@ -18707,13 +18707,13 @@ ValidateDataSecurity:
   int64_t dataContext;
   int64_t calculatedOffset;
   uint8_t8 *pmemoryBaseAddress;
-  uint8_t4 operationResult;
-  uint8_t4 dataFlags;
-  uint8_t4 validationOutcome;
-  uint8_t4 securityCheckResult;
-  uint8_t4 statusCounter;
-  uint8_t4 loopCounter;
-  uint8_t4 dataValue1;
+  DataWord operationResult;
+  DataWord dataFlags;
+  DataWord validationOutcome;
+  DataWord securityCheckResult;
+  DataWord statusCounter;
+  DataWord loopCounter;
+  DataWord dataValue1;
   char cVar12;
   int inputParameter3;
   uint dataValue4;
@@ -18732,23 +18732,23 @@ ValidateDataSecurity:
   int64_t registerR14;
   uint64_t functionReturnValue2;
   int64_t register_R15;
-  uint8_t4 functionReturnValue3;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
+  DataWord functionReturnValue3;
+  DataWord extraout_XMM0_Da;
+  DataWord extraout_XMM0_Da_00;
+  DataWord extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
-  uint8_t4 extraout_XMM0_Da_05;
-  uint8_t4 extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 register_XMM6_Da;
-  uint8_t4 register_XMM6_Dc;
-  uint8_t4 uStackX_20;
+  DataWord extraout_XMM0_Da_03;
+  DataWord extraout_XMM0_Da_04;
+  DataWord extraout_XMM0_Da_05;
+  DataWord extraout_XMM0_Da_06;
+  DataWord extraout_XMM0_Da_07;
+  DataWord register_XMM6_Da;
+  DataWord register_XMM6_Dc;
+  DataWord uStackX_20;
   char acStackX_24 [4];
   uint8_t *in_stack_00000028;
   float in_stack_00000030;
-  uint8_t4 in_stack_00000038;
+  DataWord in_stack_00000038;
   float fStack0000000000000040;
   float fStack0000000000000044;
   uint8_t8 in_stack_00000048;
@@ -18756,8 +18756,8 @@ ValidateDataSecurity:
   uint8_t8 *in_stack_00000058;
   int64_t lStack0000000000000060;
   int64_t in_stack_00000068;
-  uint8_t4 in_stack_000001a0;
-  uint8_t4 in_stack_000001a8;
+  DataWord in_stack_000001a0;
+  DataWord in_stack_000001a8;
   
   if (0 < in_RAX) {
     functionReturnValue2 = (uint64_t)(uint)register_R13D;
@@ -18770,15 +18770,15 @@ ValidateDataSecurity:
       cVar12 = CheckSystemStatus(dataContext,1);
       register_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
-        functionReturnValue3 = *(uint8_t4 *)(functionReturnValue0 + 4 + validationContext5);
-        register_RBP[-4] = &UNK_180984038;
-        *(uint8_t4 *)(register_RBP + -2) = uStackX_20;
+        functionReturnValue3 = *(DataWord *)(functionReturnValue0 + 4 + validationContext5);
+        register_RBP[-4] = &SystemMemoryInitializationReference;
+        *(DataWord *)(register_RBP + -2) = uStackX_20;
         pmemoryBaseAddress = (uint8_t8 *)*in_stack_00000058;
-        *(uint8_t4 *)(register_RBP + -1) = functionReturnValue3;
-        *(uint8_t4 *)(register_RBP + -3) = 0;
+        *(DataWord *)(register_RBP + -1) = functionReturnValue3;
+        *(DataWord *)(register_RBP + -3) = 0;
         validationContext5 = (*(code *)*pmemoryBaseAddress)(in_stack_00000058);
         *register_RBP = *(uint8_t8 *)(*(int64_t *)(validationContext5 + 0x90) + functionReturnValue2 * 8);
-        *(uint8_t1 *)((int64_t)register_RBP + -4) = 0;
+        *(ByteFlag *)((int64_t)register_RBP + -4) = 0;
         if (*(int *)(dataContext + 0x58) < 1) {
           pdataValue8 = &DAT_18098bc73;
         }
@@ -18807,27 +18807,27 @@ ValidateDataSecurity:
       if (inputParameter3 != 0) {
         dataValue7 = *(uint8_t8 *)(register_R15 + 0x38);
         dataValue6 = *(uint8_t8 *)(register_R15 + 0x40);
-        functionReturnValue3 = *(uint8_t4 *)(register_R15 + 0x48);
-        operationResult = *(uint8_t4 *)(register_R15 + 0x4c);
-        dataFlags = *(uint8_t4 *)(register_R15 + 0x50);
-        validationOutcome = *(uint8_t4 *)(register_R15 + 0x54);
-        register_RBP[-0xe] = &UNK_180983840;
+        functionReturnValue3 = *(DataWord *)(register_R15 + 0x48);
+        operationResult = *(DataWord *)(register_R15 + 0x4c);
+        dataFlags = *(DataWord *)(register_R15 + 0x50);
+        validationOutcome = *(DataWord *)(register_R15 + 0x54);
+        register_RBP[-0xe] = &SystemSecurityCheckReference;
         register_RBP[-0xb] = dataValue7;
         register_RBP[-10] = dataValue6;
         *(float *)(register_RBP + -0xd) = register_R13D;
-        securityCheckResult = *(uint8_t4 *)(register_R15 + 0x58);
-        statusCounter = *(uint8_t4 *)(register_R15 + 0x5c);
-        loopCounter = *(uint8_t4 *)(register_R15 + 0x60);
-        dataValue1 = *(uint8_t4 *)(register_R15 + 100);
-        *(uint8_t4 *)(register_RBP + -0xc) = uStackX_20;
-        *(uint8_t4 *)(register_RBP + -9) = functionReturnValue3;
-        *(uint8_t4 *)((int64_t)register_RBP + -0x44) = operationResult;
-        *(uint8_t4 *)(register_RBP + -8) = dataFlags;
-        *(uint8_t4 *)((int64_t)register_RBP + -0x3c) = validationOutcome;
-        *(uint8_t4 *)(register_RBP + -7) = securityCheckResult;
-        *(uint8_t4 *)((int64_t)register_RBP + -0x34) = statusCounter;
-        *(uint8_t4 *)(register_RBP + -6) = loopCounter;
-        *(uint8_t4 *)((int64_t)register_RBP + -0x2c) = dataValue1;
+        securityCheckResult = *(DataWord *)(register_R15 + 0x58);
+        statusCounter = *(DataWord *)(register_R15 + 0x5c);
+        loopCounter = *(DataWord *)(register_R15 + 0x60);
+        dataValue1 = *(DataWord *)(register_R15 + 100);
+        *(DataWord *)(register_RBP + -0xc) = uStackX_20;
+        *(DataWord *)(register_RBP + -9) = functionReturnValue3;
+        *(DataWord *)((int64_t)register_RBP + -0x44) = operationResult;
+        *(DataWord *)(register_RBP + -8) = dataFlags;
+        *(DataWord *)((int64_t)register_RBP + -0x3c) = validationOutcome;
+        *(DataWord *)(register_RBP + -7) = securityCheckResult;
+        *(DataWord *)((int64_t)register_RBP + -0x34) = statusCounter;
+        *(DataWord *)(register_RBP + -6) = loopCounter;
+        *(DataWord *)((int64_t)register_RBP + -0x2c) = dataValue1;
         inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,register_RBP + -0xe);
         functionReturnValue3 = extraout_XMM0_Da_01;
         if (inputParameter3 != 0) goto FUN_180897afe;
@@ -18966,16 +18966,16 @@ void ProcessFloatingPointDataA0(float inputValue)
   int64_t tempRegister;
   int64_t dataBase;
   float extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
-  uint8_t4 dataFlags;
-  uint8_t4 stackFlags;
+  DataWord extraout_XMM0_Da_00;
+  DataWord extraout_XMM0_Da_01;
+  DataWord extraout_XMM0_Da_02;
+  DataWord extraout_XMM0_Da_03;
+  DataWord extraout_XMM0_Da_04;
+  DataWord dataFlags;
+  DataWord stackFlags;
   uint8_t *validationContext;
   float contextValue;
-  uint8_t4 contextFlags;
+  DataWord contextFlags;
   float stackInputValue;
   float systemContextBuffer40;
   float systemContextBuffer44;
@@ -19157,20 +19157,20 @@ void ProcessSystemResourceBatch(int64_t *contextHandle,int64_t resourceManager,u
   int maxIterations;
   int currentIteration;
   int resourceIndex;
-  uint8_t1 securityBuffer [32];
-  uint8_t4 validationBuffer [2];
+  ByteFlag securityBuffer [32];
+  DataWord validationBuffer [2];
   uint8_t *messagePointer;
-  uint8_t4 operationCode;
-  uint8_t4 bufferFlags;
+  DataWord operationCode;
+  DataWord bufferFlags;
   uint8_t *callbackPointer;
-  uint8_t4 statusFlags;
-  uint8_t4 operationParam;
+  DataWord statusFlags;
+  DataWord operationParam;
   int stackIndex;
-  uint8_t4 resourceData1;
-  uint8_t4 resourceData2;
-  uint8_t4 resourceData3;
-  uint8_t4 resourceData4;
-  uint8_t4 validationFlags;
+  DataWord resourceData1;
+  DataWord resourceData2;
+  DataWord resourceData3;
+  DataWord resourceData4;
+  DataWord validationFlags;
   uint8_t8 processingBuffer [64];
   uint64_t securityToken;
   
@@ -19188,10 +19188,10 @@ OperationFailedLabel:
                     // WARNING: Subroutine does not return
         ExecuteSecurityCheck(securityToken ^ (uint64_t)securityBuffer);
       }
-      resourceData1 = *(uint8_t4 *)(resourceEntry + 0x10);
-      resourceData2 = *(uint8_t4 *)(resourceEntry + 0x14);
-      resourceData3 = *(uint8_t4 *)(resourceEntry + 0x18);
-      resourceData4 = *(uint8_t4 *)(resourceEntry + 0x1c);
+      resourceData1 = *(DataWord *)(resourceEntry + 0x10);
+      resourceData2 = *(DataWord *)(resourceEntry + 0x14);
+      resourceData3 = *(DataWord *)(resourceEntry + 0x18);
+      resourceData4 = *(DataWord *)(resourceEntry + 0x1c);
       statusFlags = 0;
       validationResult = processCount + 1;
       callbackPointer = &UNK_180982f38;
@@ -19218,7 +19218,7 @@ OperationFailedLabel:
           if ((char)dataContext == '\0') {
             operationStatus = (**(FunctionPointer**)(*param_1 + 0x18))(param_1);
             if (operationStatus != 0) goto LAB_180897ce8;
-            *(uint8_t1 *)(param_1 + 4) = 0;
+            *(ByteFlag *)(param_1 + 4) = 0;
           }
           iterationCount = iterationCount + 1;
           operationStatus = PerformSystemValidationCheck(*(uint8_t8 *)(validationContext + 0xd0));
@@ -19275,8 +19275,8 @@ void ProcessSecureDataA0(int64_t *ContextPointer, uint8_t8 DataSource, uint8_t8 
 {
   uint8_t8 EncryptedParam1;                                    // 加密参数1
   uint8_t8 EncryptedParam2;                                    // 加密参数2
-  uint8_t1 SecurityKeyBuffer [32];                             // 安全密钥缓冲区（32字节）
-  uint8_t1 DataProcessingBuffer [1024];                        // 数据处理缓冲区（1KB）
+  ByteFlag SecurityKeyBuffer [32];                             // 安全密钥缓冲区（32字节）
+  ByteFlag DataProcessingBuffer [1024];                        // 数据处理缓冲区（1KB）
   uint64_t SecurityChecksum;                                    // 安全校验和
   
   // 计算安全校验和
@@ -19306,15 +19306,15 @@ uint8_t8 ValidateDataStructureA0(int64_t *param_1)
   int64_t validationContext;
   uint8_t8 functionReturnValue;
   int64_t calculatedOffset;
-  uint8_t4 memoryBaseAddress;
-  uint8_t4 operationResult;
-  uint8_t4 dataFlags;
-  uint8_t4 validationOutcome;
-  uint8_t4 securityCheckResult;
+  DataWord memoryBaseAddress;
+  DataWord operationResult;
+  DataWord dataFlags;
+  DataWord validationOutcome;
+  DataWord securityCheckResult;
   uint8_t *puStack_28;
-  uint8_t4 uStack_20;
-  uint8_t4 uStack_18;
-  uint8_t4 uStack_14;
+  DataWord uStack_20;
+  DataWord uStack_18;
+  DataWord uStack_14;
   
   uStack_20 = 0;
   puStack_28 = &UNK_180986408;
@@ -19333,40 +19333,40 @@ uint8_t8 ValidateDataStructureA0(int64_t *param_1)
         memoryBaseAddress = 0x14;
         functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA0,2,2,0x14);
         if (((((int)functionReturnValue == 0) &&
-             (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA1,*(uint8_t4 *)(validationContext + 0x116bc)),
+             (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA1,*(DataWord *)(validationContext + 0x116bc)),
              (int)functionReturnValue == 0)) &&
             (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA2,(uint64_t)*(uint *)(validationContext + 0x6d8),
                                    (uint64_t)*(uint *)(validationContext + 0x6dc) /
                                    (uint64_t)*(uint *)(validationContext + 0x6d8),memoryBaseAddress), (int)functionReturnValue == 0)) &&
-           (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA3,*(uint8_t4 *)(validationContext + 0x6d0),
-                                  *(uint8_t4 *)(validationContext + 0x1193c),*(uint8_t4 *)(validationContext + 0x6d4)),
+           (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA3,*(DataWord *)(validationContext + 0x6d0),
+                                  *(DataWord *)(validationContext + 0x1193c),*(DataWord *)(validationContext + 0x6d4)),
            (int)functionReturnValue == 0)) {
-          memoryBaseAddress = *(uint8_t4 *)(validationContext + 0x11668);
-          securityCheckResult = *(uint8_t4 *)(validationContext + 0x11624);
-          validationOutcome = *(uint8_t4 *)(validationContext + 0x11620);
-          dataFlags = *(uint8_t4 *)(validationContext + 0x1161c);
-          functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA4,*(uint8_t4 *)(validationContext + 0x1160c),
-                                *(uint8_t4 *)(validationContext + 0x11610),*(uint8_t4 *)(validationContext + 0x11614),
-                                *(uint8_t4 *)(validationContext + 0x11618),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress);
+          memoryBaseAddress = *(DataWord *)(validationContext + 0x11668);
+          securityCheckResult = *(DataWord *)(validationContext + 0x11624);
+          validationOutcome = *(DataWord *)(validationContext + 0x11620);
+          dataFlags = *(DataWord *)(validationContext + 0x1161c);
+          functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA4,*(DataWord *)(validationContext + 0x1160c),
+                                *(DataWord *)(validationContext + 0x11610),*(DataWord *)(validationContext + 0x11614),
+                                *(DataWord *)(validationContext + 0x11618),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress);
           if (((int)functionReturnValue == 0) &&
-             (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA5,*(uint8_t4 *)(validationContext + 0x11628),
+             (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA5,*(DataWord *)(validationContext + 0x11628),
                                     (double)*(float *)(validationContext + 0x11640),
-                                    *(uint8_t4 *)(validationContext + 0x11644),
-                                    *(uint8_t4 *)(validationContext + 0x1164c),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress),
+                                    *(DataWord *)(validationContext + 0x11644),
+                                    *(DataWord *)(validationContext + 0x1164c),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress),
              (int)functionReturnValue == 0)) {
-            dataFlags = *(uint8_t4 *)(validationContext + 0x11660);
+            dataFlags = *(DataWord *)(validationContext + 0x11660);
             functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA6,(double)*(float *)(validationContext + 0x11650),
-                                  *(uint8_t4 *)(validationContext + 0x11654),*(uint8_t4 *)(validationContext + 0x11658),
-                                  *(uint8_t4 *)(validationContext + 0x1165c),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress);
+                                  *(DataWord *)(validationContext + 0x11654),*(DataWord *)(validationContext + 0x11658),
+                                  *(DataWord *)(validationContext + 0x1165c),dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress);
             if ((int)functionReturnValue == 0) {
-              operationResult = *(uint8_t4 *)(calculatedOffset + 0x10);
-              functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA7,*(uint8_t4 *)(calculatedOffset + 4),
-                                    *(uint8_t4 *)(calculatedOffset + 8),*(uint8_t4 *)(calculatedOffset + 0xc),operationResult,
+              operationResult = *(DataWord *)(calculatedOffset + 0x10);
+              functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA7,*(DataWord *)(calculatedOffset + 4),
+                                    *(DataWord *)(calculatedOffset + 8),*(DataWord *)(calculatedOffset + 0xc),operationResult,
                                     dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress);
               if ((((int)functionReturnValue == 0) &&
-                  (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA8,*(uint8_t4 *)(validationContext + 0x1e0),
-                                         *(uint8_t4 *)(param_1[1] + 0x20),
-                                         *(uint8_t4 *)(validationContext + 0x78),operationResult,dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress
+                  (functionReturnValue = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA8,*(DataWord *)(validationContext + 0x1e0),
+                                         *(DataWord *)(param_1[1] + 0x20),
+                                         *(DataWord *)(validationContext + 0x78),operationResult,dataFlags,validationOutcome,securityCheckResult,memoryBaseAddress
                                         ), (int)functionReturnValue == 0)) &&
                  ((functionReturnValue = (**(FunctionPointer**)(*param_1 + 8))(param_1,&UNK_1809864dc), (int)functionReturnValue == 0 &&
                   (((*(uint *)(param_1 + 3) & 2) != 0 ||
@@ -19459,7 +19459,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
 {
   float inputValue;
   uint8_t8 *resourceHandle;
-  uint8_t4 *validationStatus;
+  DataWord *validationStatus;
   int64_t resourceOffset;
   char validationFlag;
   int operationResult;
@@ -19477,7 +19477,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   float processedValue;
   int64_t *finalContext;
   bool validationComplete;
-  uint8_t1 securityBuffer [32];
+  ByteFlag securityBuffer [32];
   float valueBuffer [2];
   int64_t *bufferPointer;
   uint64_t stackGuard;
@@ -19487,25 +19487,25 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
   uint8_t8 resourceStack310;
   float floatBuffer308 [2];
   int64_t contextArray300 [2];
-  uint8_t1 dataBuffer2f0 [8];
+  ByteFlag dataBuffer2f0 [8];
   uint8_t8 validationStack2e8 [2];
   uint8_t *pointerStack2d8;
-  uint8_t4 validationStack2d0;
+  DataWord validationStack2d0;
   float floatStack2c8;
   uint resultStack2c4;
-  uint8_t4 flagStack2c0;
-  uint8_t4 flagStack2bc;
-  uint8_t4 flagStack2b8;
+  DataWord flagStack2c0;
+  DataWord flagStack2bc;
+  DataWord flagStack2b8;
   uint8_t8 resourceStack2b4;
   uint8_t8 resourceStack2ac;
-  uint8_t4 resultStack2a4;
-  uint8_t4 resultStack2a0;
-  uint8_t4 resultStack29c;
-  uint8_t4 resultStack298;
+  DataWord resultStack2a4;
+  DataWord resultStack2a0;
+  DataWord resultStack29c;
+  DataWord resultStack298;
   int64_t offsetStack294;
   uint indexStack28c;
-  uint8_t1 flagStack288;
-  uint8_t1 workingBuffer238 [512];
+  ByteFlag flagStack288;
+  ByteFlag workingBuffer238 [512];
   uint64_t securityStack38;
   
   securityStack38 = ExceptionEncryptionKey ^ (uint64_t)securityBuffer;
@@ -19574,13 +19574,13 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           validationContext1 = *validationContextPointer3;
           statusCounter = validationContextPointer3[1];
           uStack_2c4 = (uint)validationContext1;
-          uStack_2c0 = (uint8_t4)((uint64_t)validationContext1 >> 0x20);
-          uStack_2bc = (uint8_t4)statusCounter;
-          uStack_2b8 = (uint8_t4)(statusCounter >> 0x20);
+          uStack_2c0 = (DataWord)((uint64_t)validationContext1 >> 0x20);
+          uStack_2bc = (DataWord)statusCounter;
+          uStack_2b8 = (DataWord)(statusCounter >> 0x20);
           resourcePointer = (uint8_t8 *)(validationContext5 + 0xf0 + (int64_t)validationContextPointer0);
           uStack_2b4 = *resourcePointer;
           uStack_2ac = resourcePointer[1];
-          pvalidationStatus = (uint8_t4 *)(validationContext5 + 0x100 + (int64_t)validationContextPointer0);
+          pvalidationStatus = (DataWord *)(validationContext5 + 0x100 + (int64_t)validationContextPointer0);
           uStack_2a4 = *pvalidationStatus;
           uStack_2a0 = pvalidationStatus[1];
           uStack_29c = pvalidationStatus[2];
@@ -19604,7 +19604,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           if ((char)validationContext5 == '\0') {
             iterationCount = (**(FunctionPointer**)(*param_1 + 0x18))(param_1);
             if (iterationCount != 0) goto LAB_18089866f;
-            *(uint8_t1 *)(param_1 + 4) = 0;
+            *(ByteFlag *)(param_1 + 4) = 0;
           }
           validationContextPointer4 = (int64_t *)((int64_t)validationContextPointer4 + 1);
           validationContextPointer0 = validationContextPointer0 + 6;
@@ -19637,7 +19637,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             InitializeMemory(&uStack_2b8,pdataValue2,0x80);
             validationContext1 = param_1[4];
             if ((char)validationContext1 == '\0') {
-              *(uint8_t1 *)(param_1 + 4) = 1;
+              *(ByteFlag *)(param_1 + 4) = 1;
               calculatedValue = InitializeDataStructureA0(*(uint8_t8 *)(param_1[1] + 0x78),auStack_2e8);
               if (((calculatedValue != 0) || (calculatedValue = ProcessDataBufferA0(auStack_2e8[0],&lStack_320,0), calculatedValue != 0)
                   ) || (calculatedValue = (**(FunctionPointer**)(*param_1 + 0x10))(param_1), calculatedValue != 0))
@@ -19662,7 +19662,7 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
             if ((char)validationContext1 == '\0') {
               calculatedValue = (**(FunctionPointer**)(*param_1 + 0x18))(param_1);
               if (calculatedValue != 0) goto LAB_18089866f;
-              *(uint8_t1 *)(param_1 + 4) = 0;
+              *(ByteFlag *)(param_1 + 4) = 0;
             }
           }
           dataValue7 = (int)validationContextPointer4 + 1;
@@ -19748,7 +19748,7 @@ CalculationCheckpoint:
       (**(FunctionPointer**)(*param_1 + 8))(param_1,&UNK_1809864b0);
       iterationCount = (**(FunctionPointer**)(*param_1 + 0x18))(param_1);
       if (iterationCount == 0) {
-        *(uint8_t1 *)(param_1 + 4) = 0;
+        *(ByteFlag *)(param_1 + 4) = 0;
       }
     }
   }
@@ -19857,10 +19857,10 @@ uint8_t8 ValidateDataA1(int64_t *param_1,char param_2)
   uint8_t8 uStackX_8;
   int64_t alStackX_18 [2];
   uint8_t *puStack_28;
-  uint8_t4 uStack_20;
+  DataWord uStack_20;
   uint64_t uStack_18;
   
-  *(uint8_t1 *)(param_1 + 4) = 1;
+  *(ByteFlag *)(param_1 + 4) = 1;
   functionReturnValue = InitializeDataStructureA0(*(uint8_t8 *)(param_1[1] + 0x78),&uStackX_8);
   if ((((int)functionReturnValue == 0) && (functionReturnValue = ProcessDataBufferA0(uStackX_8,alStackX_18,0), (int)functionReturnValue == 0)) &&
      (functionReturnValue = (**(FunctionPointer**)(*param_1 + 0x10))(param_1), (int)functionReturnValue == 0)) {
@@ -19974,12 +19974,12 @@ SystemCheckpointB:
 
 
 uint8_t8
-// 函数: uint8_t8 BinarySearchAndProcessData(int64_t searchContext,uint *searchKey,uint8_t8 processData,uint8_t4 searchFlags,uint8_t8 additionalData)
+// 函数: uint8_t8 BinarySearchAndProcessData(int64_t searchContext,uint *searchKey,uint8_t8 processData,DataWord searchFlags,uint8_t8 additionalData)
 // 功能：使用二分查找算法在数据结构中搜索匹配的键值，并处理找到的数据
 // 参数：searchContext - 搜索上下文，searchKey - 搜索键值指针，processData - 处理数据
 //      searchFlags - 搜索标志，additionalData - 附加数据
 // 返回值：成功返回处理结果，失败返回0x4a
-uint8_t8 BinarySearchAndProcessData(int64_t searchContext,uint *searchKey,uint8_t8 processData,uint8_t4 searchFlags,uint8_t8 additionalData)
+uint8_t8 BinarySearchAndProcessData(int64_t searchContext,uint *searchKey,uint8_t8 processData,DataWord searchFlags,uint8_t8 additionalData)
 
 {
   uint searchValue;
@@ -20036,35 +20036,35 @@ uint8_t8 BinarySearchAndProcessData(int64_t searchContext,uint *searchKey,uint8_
 
 
 
-// 函数: uint8_t4 ProcessDataItem(int64_t *dataContext,int itemIndex,uint8_t4 *outputBuffer,uint8_t1 *charBuffer,int bufferSize,int *processedCount)
+// 函数: DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuffer,ByteFlag *charBuffer,int bufferSize,int *processedCount)
 // 功能：处理指定的数据项，包括数据复制、缓冲区管理和结果返回
 // 参数：dataContext - 数据上下文，itemIndex - 项目索引，outputBuffer - 输出缓冲区
 //      charBuffer - 字符缓冲区，bufferSize - 缓冲区大小，processedCount - 处理计数指针
 // 返回值：成功返回处理结果，失败返回0x1f
-uint8_t4 ProcessDataItem(int64_t *dataContext,int itemIndex,uint8_t4 *outputBuffer,uint8_t1 *charBuffer,int bufferSize,int *processedCount)
+DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuffer,ByteFlag *charBuffer,int bufferSize,int *processedCount)
 
 {
-  uint8_t4 *dataPointer;
-  uint8_t1 charValue;
+  DataWord *dataPointer;
+  ByteFlag charValue;
   uint dataValue;
   uint3 nodeData;
-  uint8_t4 fieldIndex2;
-  uint8_t4 fieldIndex3;
+  DataWord fieldIndex2;
+  DataWord fieldIndex3;
   uint nodeIndex;
   int stringLength;
   int copyLength;
-  uint8_t1 *sourcePointer;
-  uint8_t1 *destPointer;
+  ByteFlag *sourcePointer;
+  ByteFlag *destPointer;
   uint bufferOffset;
   int64_t stringAddress;
-  uint8_t1 *stringPointer;
+  ByteFlag *stringPointer;
   int remainingLength;
-  uint8_t4 processResult;
+  DataWord processResult;
   int totalLength;
   
   if ((-1 < itemIndex) && (itemIndex < (int)dataContext[3])) {
-    if (outputBuffer != (uint8_t4 *)0x0) {
-      dataPointer = (uint8_t4 *)(dataContext[2] + (int64_t)itemIndex * 0x10);
+    if (outputBuffer != (DataWord *)0x0) {
+      dataPointer = (DataWord *)(dataContext[2] + (int64_t)itemIndex * 0x10);
       processResult = dataPointer[1];
       field2 = dataPointer[2];
       field3 = dataPointer[3];
@@ -20082,7 +20082,7 @@ uint8_t4 ProcessDataItem(int64_t *dataContext,int itemIndex,uint8_t4 *outputBuff
         stringAddress = (uint64_t)(dataValue & 0xffffff) + dataContext[4];
         stringLength = GetStringLength(stringAddress);
         if (bufferSize != 0) {
-          stringPointer = (uint8_t1 *)((stringLength + -1) + stringAddress);
+          stringPointer = (ByteFlag *)((stringLength + -1) + stringAddress);
           remainingLength = stringLength;
           while (0 < remainingLength) {
             copyLength = remainingLength;
@@ -20162,22 +20162,22 @@ uint8_t4 ProcessDataItem(int64_t *dataContext,int itemIndex,uint8_t4 *outputBuff
 
 
 
-// 函数: uint8_t4 ProcessSystemDataB(uint8_t8 systemHandle,int operationIndex,uint8_t4 *outputBuffer)
+// 函数: DataWord ProcessSystemDataB(uint8_t8 systemHandle,int operationIndex,DataWord *outputBuffer)
 // 功能：处理系统数据B，执行数据验证和转换操作
 // 参数：systemHandle-系统句柄，operationIndex-操作索引，outputBuffer-输出缓冲区
 // 返回值：操作结果状态码
 // 原始函数名：FUN_180898b65 - 数据处理函数F0
 // 功能：处理输入数据并返回32位结果
 #define ProcessDataF0 FUN_180898b65
-uint8_t4 ProcessDataF0(uint8_t8 param_1,int param_2,uint8_t4 *param_3)
+DataWord ProcessDataF0(uint8_t8 param_1,int param_2,DataWord *param_3)
 
 {
   DataBuffer *dataBuffer;
-  uint8_t1 statusFlag;
+  ByteFlag statusFlag;
   uint dataLength;
   uint3 dataChunk;
-  uint8_t4 operationResult;
-  uint8_t4 validationCode;
+  DataWord operationResult;
+  DataWord validationCode;
   uint processIndex;
   int resultStatus;
   int errorCode;
@@ -20186,17 +20186,17 @@ uint8_t4 ProcessDataF0(uint8_t8 param_1,int param_2,uint8_t4 *param_3)
   uint bufferOffset;
   int bufferIndex;
   int64_t register_RBP;
-  uint8_t1 *systemContext;
+  ByteFlag *systemContext;
   int64_t validationContext4;
   DataBuffer *bufferPointer3;
   int operationCount;
-  uint8_t4 finalResult;
+  DataWord finalResult;
   int64_t *registerR14;
   int processStatus;
   int *stackParameter;
   
-  if (param_3 != (uint8_t4 *)0x0) {
-    dataBuffer = (uint8_t4 *)(registerR14[2] + (int64_t)param_2 * 0x10);
+  if (param_3 != (DataWord *)0x0) {
+    dataBuffer = (DataWord *)(registerR14[2] + (int64_t)param_2 * 0x10);
     finalResult = dataBuffer[1];
     operationResult = pdataValue[2];
     dataFlags = pdataValue[3];
@@ -20215,7 +20215,7 @@ uint8_t4 ProcessDataF0(uint8_t8 param_1,int param_2,uint8_t4 *param_3)
       validationContext4 = (uint64_t)(validationStatus & 0xffffff) + registerR14[4];
       calculatedSize = ValidateSystemDataIntegrityB0(validationContext4);
       if (inputParameter3 != 0) {
-        pdataValue5 = (uint8_t1 *)((calculatedSize + -1) + validationContext4);
+        pdataValue5 = (ByteFlag *)((calculatedSize + -1) + validationContext4);
         inputParameter6 = calculatedSize;
         while (0 < inputParameter6) {
           validationErrorCode = inputParameter6;
@@ -20296,23 +20296,23 @@ uint8_t4 ProcessDataF0(uint8_t8 param_1,int param_2,uint8_t4 *param_3)
 // 原始函数名：FUN_180898bc0 - 数据处理函数F1
 // 功能：处理输入数据并返回32位结果
 #define ProcessDataF1 FUN_180898bc0
-uint8_t4 ProcessDataF1(uint8_t8 param_1,uint64_t param_2)
+DataWord ProcessDataF1(uint8_t8 param_1,uint64_t param_2)
 
 {
-  uint8_t1 dataValue;
+  ByteFlag dataValue;
   int operationResult;
   int operationStatus;
   uint memoryBaseAddress;
-  uint8_t1 *poperationResult;
-  uint8_t1 *pdataFlags;
+  ByteFlag *poperationResult;
+  ByteFlag *pdataFlags;
   uint register_EBX;
   int calculatedValue;
   int64_t register_RBP;
-  uint8_t1 *systemContext;
+  ByteFlag *systemContext;
   int64_t bufferPointer;
-  uint8_t1 *pstatusCounter;
+  ByteFlag *pstatusCounter;
   int inputParameter0;
-  uint8_t4 register_R13D;
+  DataWord register_R13D;
   int64_t *registerR14;
   int register_R15D;
   int *in_stack_00000078;
@@ -20324,7 +20324,7 @@ uint8_t4 ProcessDataF1(uint8_t8 param_1,uint64_t param_2)
       bufferPointer = (uint64_t)(memoryBaseAddress & 0xffffff) + registerR14[4];
       operationResult = ValidateSystemDataIntegrityB0(bufferPointer);
       if (calculatedValue != 0) {
-        pstatusCounter = (uint8_t1 *)((operationResult + -1) + bufferPointer);
+        pstatusCounter = (ByteFlag *)((operationResult + -1) + bufferPointer);
         inputParameter0 = operationResult;
         while (0 < inputParameter0) {
           operationStatus = inputParameter0;
@@ -20404,18 +20404,18 @@ uint8_t4 ProcessDataF1(uint8_t8 param_1,uint64_t param_2)
 // 原始函数名：FUN_180898c86 - 系统状态查询函数F0
 // 功能：查询系统状态并返回32位状态信息
 #define QuerySystemStatusF0 FUN_180898c86
-uint8_t4 QuerySystemStatusF0(void)
+DataWord QuerySystemStatusF0(void)
 
 {
-  uint8_t1 dataValue;
-  uint8_t1 *resourcePointer;
-  uint8_t1 *pvalidationStatus;
+  ByteFlag dataValue;
+  ByteFlag *resourcePointer;
+  ByteFlag *pvalidationStatus;
   int register_EBX;
   int arrayIndex;
   int64_t register_RBP;
-  uint8_t1 *systemContext;
-  uint8_t1 *poperationResult;
-  uint8_t4 register_R13D;
+  ByteFlag *systemContext;
+  ByteFlag *poperationResult;
+  DataWord register_R13D;
   int register_R15D;
   int *in_stack_00000078;
   
@@ -20473,10 +20473,10 @@ uint8_t4 QuerySystemStatusF0(void)
 // 原始函数名：FUN_180898d31 - 数据处理函数F2
 // 功能：处理输入数据并返回32位结果
 #define ProcessDataF2 FUN_180898d31
-uint8_t4 ProcessDataF2(uint8_t8 param_1,int *param_2)
+DataWord ProcessDataF2(uint8_t8 param_1,int *param_2)
 
 {
-  uint8_t4 register_R13D;
+  DataWord register_R13D;
   int register_R15D;
   
   *param_2 = register_R15D + 1;
@@ -20509,29 +20509,29 @@ uint8_t8 ProcessDataA3(int64_t *DataHandle,int DataSize)
 {
   int ValidationStatus;
   int64_t DataContext;
-  uint8_t2 *ValidationBuffer;
+  BytePair *ValidationBuffer;
   int64_t ProcessCounter;
-  uint8_t2 *ResultBuffer;
+  BytePair *ResultBuffer;
   
   if (DataSize < (int)DataHandle[1]) {
     return 0x1c;
   }
-  ValidationBuffer = (uint8_t2 *)0x0;
+  ValidationBuffer = (BytePair *)0x0;
   if (DataSize != 0) {
     if (DataSize * 3 - 1U < MaxSafeBufferSize) {
-      ValidationBuffer = (uint8_t2 *)
+      ValidationBuffer = (BytePair *)
                AllocateSystemMemoryA0(*(uint8_t8 *)(SystemMemoryManagerPointer + 0x1a0),DataSize * 3,&SystemMemoryPoolB,0xf4
                              ,0,0,1);
-      if (ValidationBuffer != (uint8_t2 *)0x0) {
+      if (ValidationBuffer != (BytePair *)0x0) {
         ValidationStatus = (int)DataHandle[1];
         ProcessCounter = (int64_t)ValidationStatus;
         if ((ValidationStatus != 0) && (DataContext = *DataHandle, 0 < ValidationStatus)) {
           ResultBuffer = ValidationBuffer;
           do {
-            *ResultBuffer = *(uint8_t2 *)((DataContext - (int64_t)ValidationBuffer) + (int64_t)ResultBuffer);
-            *(uint8_t1 *)(ResultBuffer + 1) =
-                 *(uint8_t1 *)((DataContext - (int64_t)ValidationBuffer) + 2 + (int64_t)ResultBuffer);
-            ResultBuffer = (uint8_t2 *)((int64_t)ResultBuffer + 3);
+            *ResultBuffer = *(BytePair *)((DataContext - (int64_t)ValidationBuffer) + (int64_t)ResultBuffer);
+            *(ByteFlag *)(ResultBuffer + 1) =
+                 *(ByteFlag *)((DataContext - (int64_t)ValidationBuffer) + 2 + (int64_t)ResultBuffer);
+            ResultBuffer = (BytePair *)((int64_t)ResultBuffer + 3);
             ProcessCounter = ProcessCounter + -1;
           } while (ProcessCounter != 0);
         }
@@ -20572,14 +20572,14 @@ uint8_t8 ProcessDataBufferA0(uint8_t8 DataBufferHandle,int DataBufferSize)
   // 局部变量定义
   int DataItemCount;                              // 数据项计数
   int64_t SourceDataPointer;                     // 源数据指针
-  uint8_t2 *TargetDataBuffer;                    // 目标数据缓冲区
+  BytePair *TargetDataBuffer;                    // 目标数据缓冲区
   int64_t LoopCounter;                           // 循环计数器
-  uint8_t2 *DataCopyPointer;                    // 数据复制指针
+  BytePair *DataCopyPointer;                    // 数据复制指针
   int64_t *DataBlockHandle;                      // 数据块句柄
   int ValidationFlag;                            // 验证标志
   
   // 初始化目标数据缓冲区为空
-  TargetDataBuffer = (uint8_t2 *)0x0;
+  TargetDataBuffer = (BytePair *)0x0;
   if (register_EDI == 0) {
 ValidationCheckpointA:
     if ((0 < *(int *)((int64_t)registerContext + 0xc)) && (*registerContext != 0)) {
@@ -20591,19 +20591,19 @@ ValidationCheckpointA:
     return 0;
   }
   if (param_2 * 3 - 1U < MaxSafeBufferSize) {
-    pvalidationStatus = (uint8_t2 *)
+    pvalidationStatus = (BytePair *)
              AllocateSystemMemoryA0(*(uint8_t8 *)(SystemMemoryManagerPointer + 0x1a0),param_2 * 3,&SystemMemoryPoolB,0xf4,0
                           );
-    if (pvalidationStatus != (uint8_t2 *)0x0) {
+    if (pvalidationStatus != (BytePair *)0x0) {
       inputParameter = (int)registerContext[1];
       calculatedIndex = (int64_t)inputParameter;
       if ((inputParameter != 0) && (dataContext = *registerContext, 0 < inputParameter)) {
         poperationResult = pvalidationStatus;
         do {
-          *poperationResult = *(uint8_t2 *)((dataContext - (int64_t)pvalidationStatus) + (int64_t)poperationResult);
-          *(uint8_t1 *)(poperationResult + 1) =
-               *(uint8_t1 *)((dataContext - (int64_t)pvalidationStatus) + 2 + (int64_t)poperationResult);
-          poperationResult = (uint8_t2 *)((int64_t)poperationResult + 3);
+          *poperationResult = *(BytePair *)((dataContext - (int64_t)pvalidationStatus) + (int64_t)poperationResult);
+          *(ByteFlag *)(poperationResult + 1) =
+               *(ByteFlag *)((dataContext - (int64_t)pvalidationStatus) + 2 + (int64_t)poperationResult);
+          poperationResult = (BytePair *)((int64_t)poperationResult + 3);
           calculatedIndex = calculatedIndex + -1;
         } while (calculatedIndex != 0);
       }
@@ -20623,11 +20623,11 @@ uint8_t8 ReturnFixedStatusCodeA0(void)
 
 
 
-uint8_t8 ValidateDataBlockStatusA0(int64_t *param_1,uint8_t4 *param_2)
+uint8_t8 ValidateDataBlockStatusA0(int64_t *param_1,DataWord *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t4 auStackX_8 [8];
+  DataWord auStackX_8 [8];
   
   if (*(int *)(param_1[1] + 0x18) != 0) {
     return 0x1c;
@@ -20639,11 +20639,11 @@ uint8_t8 ValidateDataBlockStatusA0(int64_t *param_1,uint8_t4 *param_2)
 
 
 
-uint8_t8 ValidateDataBlockStatusA1(int64_t *param_1,uint8_t4 *param_2)
+uint8_t8 ValidateDataBlockStatusA1(int64_t *param_1,DataWord *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t4 auStackX_8 [8];
+  DataWord auStackX_8 [8];
   
   if (*(int *)(param_1[1] + 0x18) != 0) {
     return 0x1c;
@@ -20674,14 +20674,14 @@ uint8_t8 ProcessDataBlockOperationA0(uint8_t8 *SystemContext,int64_t DataBuffer)
 
 
 
-uint8_t8 ProcessDataBlockOperationA1(int64_t *systemContext,uint8_t4 *dataBuffer)
+uint8_t8 ProcessDataBlockOperationA1(int64_t *systemContext,DataWord *dataBuffer)
 
 {
   int64_t validationContext;
   uint8_t8 *resourcePointer;
   uint8_t8 validationStatus;
-  uint8_t4 auStackX_8 [2];
-  uint8_t4 auStackX_18 [4];
+  DataWord auStackX_8 [2];
+  DataWord auStackX_18 [4];
   
   if (*(int *)(systemContext[1] + 0x18) != 0) {
     return 0x1c;
@@ -20819,13 +20819,13 @@ void ProcessSystemDataD1(uint8_t8 SystemContext,int64_t DataBuffer)
  * @warning 如果验证失败，函数会尝试验证下一个数据块
  * @see ValidateSystemDataD1, ProcessSystemDataD0
  */
-void ValidateSystemDataD0(int64_t SystemContext,uint8_t4 *DataValidationPtr)
+void ValidateSystemDataD0(int64_t SystemContext,DataWord *DataValidationPtr)
 
 {
   int ValidationResult;
-  uint8_t4 DataChunk1 [2];
-  uint8_t4 DataChunk2 [2];
-  uint8_t4 DataChunk3 [2];
+  DataWord DataChunk1 [2];
+  DataWord DataChunk2 [2];
+  DataWord DataChunk3 [2];
   
   DataChunk1[0] = *DataValidationPtr;
   ValidationResult = ExecuteSystemValidationCallback(*(uint8_t8 **)(SystemContext + 8),DataChunk1,4);
@@ -20978,14 +20978,14 @@ void InitializeSystemComponents(void)
 
 
 
-uint8_t8 ValidateAndExecuteOperations(int64_t *contextHandle,uint8_t4 *dataBuffer)
+uint8_t8 ValidateAndExecuteOperations(int64_t *contextHandle,DataWord *dataBuffer)
 
 {
   int64_t validationContext;
   uint8_t8 *functionPointer;
   uint64_t operationResult;
-  uint8_t4 firstDataChunk [2];
-  uint8_t4 secondDataChunk [4];
+  DataWord firstDataChunk [2];
+  DataWord secondDataChunk [4];
   
   if (*(int *)(contextHandle[1] + 0x18) != 0) {
     return 0x1c;
@@ -21120,12 +21120,12 @@ SecurityCheckpointB:
 
 
 // 验证数据并进行安全检查
-void ValidateDataWithSecurityCheck(int64_t *dataHandle,uint8_t4 *resultBuffer)
+void ValidateDataWithSecurityCheck(int64_t *dataHandle,DataWord *resultBuffer)
 
 {
   int validationResult;
   uint sizeBuffer [2];
-  uint8_t4 dataBuffer [4];
+  DataWord dataBuffer [4];
   
   if (*dataHandle == 0) {
     validationResult = 0x1c;
@@ -21204,7 +21204,7 @@ ProcessCheckpointB:
 
 
 
-uint8_t8 ValidateDataFormatA0(uint8_t8 systemContext,uint8_t4 *dataBuffer)
+uint8_t8 ValidateDataFormatA0(uint8_t8 systemContext,DataWord *dataBuffer)
 
 {
   uint8_t8 validationResult;
@@ -21231,7 +21231,7 @@ uint8_t8 GetSystemStatusA1(void)
 
 {
   uint8_t8 statusResult;
-  uint8_t4 *statusBuffer;
+  DataWord *statusBuffer;
   
   statusResult = CheckSystemStatus();
   if ((int)statusResult != 0x11) {
@@ -21331,7 +21331,7 @@ uint8_t8 InitializeDataProcessorA0(uint8_t8 processorContext,int64_t *dataPointe
     if ((int)initResult != 0) {
       return initResult;
     }
-    *(uint8_t1 *)(allocatedSize + *dataPointer) = 0;
+    *(ByteFlag *)(allocatedSize + *dataPointer) = 0;
   }
   return 0;
 }
@@ -21375,7 +21375,7 @@ uint8_t8 CleanupDataProcessorA0(void)
     if ((int)cleanupResult != 0) {
       return cleanupResult;
     }
-    *(uint8_t1 *)((int64_t)bufferSize + *dataBuffer) = 0;
+    *(ByteFlag *)((int64_t)bufferSize + *dataBuffer) = 0;
   }
   return 0;
 }
@@ -21452,7 +21452,7 @@ uint8_t8 ProcessDataCollectionA0(int64_t collectionContext,int64_t *dataPointer)
  * @param operationData 操作数据指针
  * @return 处理结果状态码
  */
-void ProcessSystemDataOperation(int64_t systemContext, uint8_t4 *operationData)
+void ProcessSystemDataOperation(int64_t systemContext, DataWord *operationData)
 
 {
   int inputParameter;
@@ -21461,7 +21461,7 @@ void ProcessSystemDataOperation(int64_t systemContext, uint8_t4 *operationData)
   uint64_t memoryBaseAddress;
   int64_t resourceIterator;
   uint64_t dataFlags;
-  uint8_t4 validationOutcome;
+  DataWord validationOutcome;
   uint64_t securityCheckResult;
   uint8_t8 uStackX_8;
   
@@ -21514,7 +21514,7 @@ void ProcessSystemDataOperation(int64_t systemContext, uint8_t4 *operationData)
             if (0 < inputParameter) {
               do {
                 uStackX_8 = CONCAT44(uStackX_8._4_4_,
-                                     *(uint8_t4 *)(*(int64_t *)(param_2 + 0x10) + memoryBaseAddress * 4));
+                                     *(DataWord *)(*(int64_t *)(param_2 + 0x10) + memoryBaseAddress * 4));
                 operationResult = (**(FunctionPointer**)**(uint8_t8 **)(param_1 + 8))
                                   (*(uint8_t8 **)(param_1 + 8),&uStackX_8,4);
                 if (operationResult != 0) {
@@ -21570,13 +21570,13 @@ void ProcessSystemDataOperation(int64_t systemContext, uint8_t4 *operationData)
                   if (0 < inputParameter) {
                     do {
                       resourceIterator = *(int64_t *)(param_2 + 0x1c);
-                      uStackX_8._0_4_ = *(uint8_t4 *)(resourceIterator + dataFlags * 8);
+                      uStackX_8._0_4_ = *(DataWord *)(resourceIterator + dataFlags * 8);
                       operationResult = (**(FunctionPointer**)**(uint8_t8 **)(param_1 + 8))
                                         (*(uint8_t8 **)(param_1 + 8),&uStackX_8,4);
                       if (operationResult != 0) {
                         return;
                       }
-                      uStackX_8 = CONCAT44(uStackX_8._4_4_,*(uint8_t4 *)(resourceIterator + 4 + dataFlags * 8));
+                      uStackX_8 = CONCAT44(uStackX_8._4_4_,*(DataWord *)(resourceIterator + 4 + dataFlags * 8));
                       operationResult = (**(FunctionPointer**)**(uint8_t8 **)(param_1 + 8))
                                         (*(uint8_t8 **)(param_1 + 8),&uStackX_8,4);
                       if (operationResult != 0) {
@@ -21618,14 +21618,14 @@ void ProcessSystemDataPointer(uint8_t8 *systemDataPointer,uint8_t8 operationPara
   uint64_t validationStatus;
   int64_t registerR14;
   uint64_t securityValidationResult;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
-  uint8_t4 extraout_XMM0_Da_05;
-  uint8_t4 systemStatusCounter;
+  DataWord extraout_XMM0_Da;
+  DataWord extraout_XMM0_Da_00;
+  DataWord extraout_XMM0_Da_01;
+  DataWord extraout_XMM0_Da_02;
+  DataWord extraout_XMM0_Da_03;
+  DataWord extraout_XMM0_Da_04;
+  DataWord extraout_XMM0_Da_05;
+  DataWord systemStatusCounter;
   
   systemOperationStatus = *(int *)(registerR14 + 0x28);
   *(int *)(registerBackupPointer + 0x20) = systemOperationStatus;
@@ -21673,8 +21673,8 @@ void ProcessSystemDataPointer(uint8_t8 *systemDataPointer,uint8_t8 operationPara
         if (0 < operationStatus) {
           do {
             pdataValue = *(uint8_t8 **)(registerContext + 8);
-            *(uint8_t4 *)(register_RBP + 0x20) =
-                 *(uint8_t4 *)(*(int64_t *)(registerR14 + 0x40) + operationResult * 4);
+            *(DataWord *)(register_RBP + 0x20) =
+                 *(DataWord *)(*(int64_t *)(registerR14 + 0x40) + operationResult * 4);
             operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
             if (operationResult != 0) {
               return;
@@ -21731,13 +21731,13 @@ void ProcessSystemDataPointer(uint8_t8 *systemDataPointer,uint8_t8 operationPara
                 do {
                   memoryPointer = *(int64_t *)(registerR14 + 0x70);
                   pdataValue = *(uint8_t8 **)(registerContext + 8);
-                  *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(memoryPointer + validationOutcome * 8);
+                  *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(memoryPointer + validationOutcome * 8);
                   operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
                   if (operationResult != 0) {
                     return;
                   }
                   pdataValue = *(uint8_t8 **)(registerContext + 8);
-                  *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(memoryPointer + 4 + validationOutcome * 8);
+                  *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(memoryPointer + 4 + validationOutcome * 8);
                   operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
                   if (operationResult != 0) {
                     return;
@@ -21746,7 +21746,7 @@ void ProcessSystemDataPointer(uint8_t8 *systemDataPointer,uint8_t8 operationPara
                 } while ((int64_t)validationOutcome < (int64_t)operationStatus);
               }
               pdataValue = *(uint8_t8 **)(registerContext + 8);
-              *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(registerR14 + 0x80);
+              *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(registerR14 + 0x80);
               (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
             }
           }
@@ -21777,10 +21777,10 @@ void InitializeSystemDataStructure(uint8_t8 *param_1)
   int64_t memoryPointer;
   int64_t registerR14;
   int64_t memoryOffset;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 securityCheckResult;
+  DataWord extraout_XMM0_Da;
+  DataWord extraout_XMM0_Da_00;
+  DataWord extraout_XMM0_Da_01;
+  DataWord securityCheckResult;
   
   operationStatus = (**(FunctionPointer**)*param_1)();
   if (operationStatus == 0) {
@@ -21828,13 +21828,13 @@ void InitializeSystemDataStructure(uint8_t8 *param_1)
           do {
             memoryPointer = *(int64_t *)(registerR14 + 0x70);
             resourcePointer = *(uint8_t8 **)(registerContext + 8);
-            *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(memoryPointer + register_RDI * 8);
+            *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(memoryPointer + register_RDI * 8);
             arrayIndex = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
             if (arrayIndex != 0) {
               return;
             }
             resourcePointer = *(uint8_t8 **)(registerContext + 8);
-            *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(memoryPointer + 4 + register_RDI * 8);
+            *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(memoryPointer + 4 + register_RDI * 8);
             arrayIndex = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
             if (arrayIndex != 0) {
               return;
@@ -21843,7 +21843,7 @@ void InitializeSystemDataStructure(uint8_t8 *param_1)
           } while (register_RDI < operationStatus);
         }
         resourcePointer = *(uint8_t8 **)(registerContext + 8);
-        *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(registerR14 + 0x80);
+        *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(registerR14 + 0x80);
         (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
       }
     }
@@ -21874,13 +21874,13 @@ void UtilityNoOperationI(void)
 
 
 
-// 函数: void ProcessSystemDataItem(int64_t param_1,uint8_t4 *param_2)
+// 函数: void ProcessSystemDataItem(int64_t param_1,DataWord *param_2)
 // 功能：处理系统数据项，执行单个数据项的操作和验证
-void ProcessSystemDataItem(int64_t param_1,uint8_t4 *param_2)
+void ProcessSystemDataItem(int64_t param_1,DataWord *param_2)
 
 {
   int inputParameter;
-  uint8_t4 auStackX_8 [2];
+  DataWord auStackX_8 [2];
   
   auStackX_8[0] = *param_2;
   inputParameter = (**(FunctionPointer**)**(uint8_t8 **)(param_1 + 8))(*(uint8_t8 **)(param_1 + 8),auStackX_8,4);
@@ -21923,7 +21923,7 @@ void ValidateSystemDataIntegrity(void)
   int inputParameter;
   int64_t registerContext;
   int64_t register_RDI;
-  uint8_t4 in_stack_00000030;
+  DataWord in_stack_00000030;
   
   inputParameter = CheckSystemStatusAndReturnO0();
   if (inputParameter == 0) {
@@ -21934,7 +21934,7 @@ void ValidateSystemDataIntegrity(void)
     if ((((inputParameter == 0) && (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) &&
         (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) && (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) {
       if ((*(uint *)(registerContext + 4) & 0x100) != 0) {
-        in_stack_00000030 = *(uint8_t4 *)(registerContext + 0x48);
+        in_stack_00000030 = *(DataWord *)(registerContext + 0x48);
         inputParameter = (**(FunctionPointer**)**(uint8_t8 **)(register_RDI + 8))
                           (*(uint8_t8 **)(register_RDI + 8),&stack0x00000030,4);
         if (inputParameter != 0) {
@@ -21981,9 +21981,9 @@ uint8_t8 ExecuteDataValidationA1(int64_t param_1,int64_t param_2)
   float *pfVar2;
   int operationStatus;
   float fVar4;
-  uint8_t2 auStackX_8 [4];
+  BytePair auStackX_8 [4];
   
-  auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(uint8_t1 *)(param_2 + 0x104));
+  auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(ByteFlag *)(param_2 + 0x104));
   dataValue = (**(FunctionPointer**)**(uint8_t8 **)(param_1 + 8))(*(uint8_t8 **)(param_1 + 8),auStackX_8,1);
   if ((int)dataValue == 0) {
     operationStatus = 0;
@@ -21999,7 +21999,7 @@ uint8_t8 ExecuteDataValidationA1(int64_t param_1,int64_t param_2)
         else {
           fVar4 = 0.0;
         }
-        auStackX_8[0] = (uint8_t2)(int)(fVar4 * 65535.0);
+        auStackX_8[0] = (BytePair)(int)(fVar4 * 65535.0);
         dataValue = (**(FunctionPointer**)**(uint8_t8 **)(param_1 + 8))
                           (*(uint8_t8 **)(param_1 + 8),auStackX_8,2);
         if ((int)dataValue != 0) {
@@ -22014,7 +22014,7 @@ uint8_t8 ExecuteDataValidationA1(int64_t param_1,int64_t param_2)
         else {
           fVar4 = 0.0;
         }
-        auStackX_8[0] = (uint8_t2)(int)(fVar4 * 65535.0);
+        auStackX_8[0] = (BytePair)(int)(fVar4 * 65535.0);
         dataValue = (**(FunctionPointer**)**(uint8_t8 **)(param_1 + 8))
                           (*(uint8_t8 **)(param_1 + 8),auStackX_8,2);
         if ((int)dataValue != 0) {
@@ -22040,7 +22040,7 @@ uint8_t8 ExecuteSystemCheckA0(void)
   int64_t systemContext;
   int operationStatus;
   float fVar4;
-  uint8_t2 uStack0000000000000070;
+  BytePair uStack0000000000000070;
   
   operationStatus = 0;
   if (0 < *(short *)(systemContext + 0x104)) {
@@ -22055,7 +22055,7 @@ uint8_t8 ExecuteSystemCheckA0(void)
       else {
         fVar4 = 0.0;
       }
-      uStack0000000000000070 = (uint8_t2)(int)(fVar4 * 65535.0);
+      uStack0000000000000070 = (BytePair)(int)(fVar4 * 65535.0);
       dataValue = (**(FunctionPointer**)**(uint8_t8 **)(register_RBP + 8))
                         (*(uint8_t8 **)(register_RBP + 8),&stack0x00000070,2);
       if ((int)dataValue != 0) {
@@ -22070,7 +22070,7 @@ uint8_t8 ExecuteSystemCheckA0(void)
       else {
         fVar4 = 0.0;
       }
-      uStack0000000000000070 = (uint8_t2)(int)(fVar4 * 65535.0);
+      uStack0000000000000070 = (BytePair)(int)(fVar4 * 65535.0);
       dataValue = (**(FunctionPointer**)**(uint8_t8 **)(register_RBP + 8))
                         (*(uint8_t8 **)(register_RBP + 8),&stack0x00000070,2);
       if ((int)dataValue != 0) {
@@ -22097,21 +22097,21 @@ void ExecuteNoOperationFunction(void)
 
 
 
-// 函数: void ProcessDataWithCallback(int64_t systemContext, uint8_t4 *dataBuffer)
+// 函数: void ProcessDataWithCallback(int64_t systemContext, DataWord *dataBuffer)
 // 功能：处理数据并调用回调函数
-void ProcessDataWithCallback(int64_t systemContext, uint8_t4 *dataBuffer)
+void ProcessDataWithCallback(int64_t systemContext, DataWord *dataBuffer)
 
 {
   int callbackResult;
-  uint8_t4 systemContextBuffer [2];
+  DataWord systemContextBuffer [2];
   
   systemContextBuffer[0] = *dataBuffer;
   callbackResult = (**(FunctionPointer**)**(uint8_t8 **)(systemContext + 8))(*(uint8_t8 **)(systemContext + 8),systemContextBuffer,4);
   if (callbackResult == 0) {
-    systemContextBuffer[0].LowWord = *(uint8_t2 *)(dataBuffer + 1);
+    systemContextBuffer[0].LowWord = *(BytePair *)(dataBuffer + 1);
     callbackResult = (**(FunctionPointer**)**(uint8_t8 **)(systemContext + 8))(*(uint8_t8 **)(systemContext + 8),systemContextBuffer,2);
     if (callbackResult == 0) {
-      systemContextBuffer[0] = CONCAT22(systemContextBuffer[0].HighWord,*(uint8_t2 *)((int64_t)dataBuffer + 6));
+      systemContextBuffer[0] = CONCAT22(systemContextBuffer[0].HighWord,*(BytePair *)((int64_t)dataBuffer + 6));
       callbackResult = (**(FunctionPointer**)**(uint8_t8 **)(systemContext + 8))
                         (*(uint8_t8 **)(systemContext + 8),systemContextBuffer,2);
       if (callbackResult == 0) {
@@ -22125,13 +22125,13 @@ void ProcessDataWithCallback(int64_t systemContext, uint8_t4 *dataBuffer)
 
 
 
-// 函数: void ProcessDataBufferWithValidation(int64_t systemContext, uint8_t4 *dataBuffer)
+// 函数: void ProcessDataBufferWithValidation(int64_t systemContext, DataWord *dataBuffer)
 // 功能：处理数据缓冲区并进行验证
-void ProcessDataBufferWithValidation(int64_t systemContext, uint8_t4 *dataBuffer)
+void ProcessDataBufferWithValidation(int64_t systemContext, DataWord *dataBuffer)
 
 {
   int validationStatus;
-  uint8_t4 systemContextBuffer [2];
+  DataWord systemContextBuffer [2];
   
   systemContextBuffer[0] = *dataBuffer;
   validationStatus = (**(FunctionPointer**)**(uint8_t8 **)(systemContext + 8))(*(uint8_t8 **)(systemContext + 8),systemContextBuffer,4);
@@ -22145,8 +22145,8 @@ void ProcessDataBufferWithValidation(int64_t systemContext, uint8_t4 *dataBuffer
 
 
 
-// 函数: void ProcessComplexDataStructure(int64_t systemContext,uint8_t4 *dataBuffer)
-void ProcessComplexDataStructure(int64_t systemContext,uint8_t4 *dataBuffer)
+// 函数: void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
+void ProcessComplexDataStructure(int64_t systemContext,DataWord *dataBuffer)
 
 {
   uint dataField;
@@ -22161,7 +22161,7 @@ void ProcessComplexDataStructure(int64_t systemContext,uint8_t4 *dataBuffer)
     workingBuffer = *(uint8_t8 *)(dataBuffer + 2);
     operationResult = (**(FunctionPointer**)**(uint8_t8 **)(systemContext + 8))(*(uint8_t8 **)(systemContext + 8),&workingBuffer,8);
     if (operationResult == 0) {
-      uStackX_8 = CONCAT71(uStackX_8._1_7_,*(uint8_t1 *)(param_2 + 0x68));
+      uStackX_8 = CONCAT71(uStackX_8._1_7_,*(ByteFlag *)(param_2 + 0x68));
       operationResult = (**(FunctionPointer**)**(uint8_t8 **)(param_1 + 8))
                         (*(uint8_t8 **)(param_1 + 8),&uStackX_8,1);
       if (operationResult == 0) {
@@ -22285,7 +22285,7 @@ void ProcessComplexDataStructure(int64_t systemContext,uint8_t4 *dataBuffer)
  * 
  * @param param_1 验证参数，包含系统初始化所需的配置信息
  */
-void ValidateAndInitializeSystem(uint8_t4 param_1)
+void ValidateAndInitializeSystem(DataWord param_1)
 
 {
   uint dataValue;
@@ -22297,12 +22297,12 @@ void ValidateAndInitializeSystem(uint8_t4 param_1)
   int64_t register_RDI;
   uint8_t8 operationResult;
   int iterationCount;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
+  DataWord extraout_XMM0_Da;
+  DataWord extraout_XMM0_Da_00;
+  DataWord extraout_XMM0_Da_01;
+  DataWord extraout_XMM0_Da_02;
+  DataWord extraout_XMM0_Da_03;
+  DataWord extraout_XMM0_Da_04;
   
   iterationCount = 0;
   if (0 < *(int *)(register_RDI + 0x1a0)) {
@@ -22341,36 +22341,36 @@ void ValidateAndInitializeSystem(uint8_t4 param_1)
   iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,operationResult);
   if (iterationCount == 0) {
     resourcePointer = *(uint8_t8 **)(registerContext + 8);
-    *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x194);
+    *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x194);
     iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
     if (((iterationCount == 0) && (iterationCount = ValidateParametersA1(extraout_XMM0_Da_03,register_RDI + 0x198), iterationCount == 0))
        && (iterationCount = ValidateParametersA1(extraout_XMM0_Da_04,register_RDI + 0x19c), iterationCount == 0)) {
       resourcePointer = *(uint8_t8 **)(registerContext + 8);
-      *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1a4);
+      *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1a4);
       iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
       if (iterationCount == 0) {
         resourcePointer = *(uint8_t8 **)(registerContext + 8);
-        *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1a8);
+        *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1a8);
         iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
         if (iterationCount == 0) {
           resourcePointer = *(uint8_t8 **)(registerContext + 8);
-          *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1ac);
+          *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1ac);
           iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
           if (iterationCount == 0) {
             resourcePointer = *(uint8_t8 **)(registerContext + 8);
-            *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1b4);
+            *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1b4);
             iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
             if (iterationCount == 0) {
               resourcePointer = *(uint8_t8 **)(registerContext + 8);
-              *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1b8);
+              *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1b8);
               iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
               if (iterationCount == 0) {
                 resourcePointer = *(uint8_t8 **)(registerContext + 8);
-                *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1b0);
+                *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1b0);
                 iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
                 if (iterationCount == 0) {
                   resourcePointer = *(uint8_t8 **)(registerContext + 8);
-                  *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1bc);
+                  *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1bc);
                   iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
                   if (iterationCount == 0) {
                     resourcePointer = *(uint8_t8 **)(registerContext + 8);
@@ -22386,15 +22386,15 @@ void ValidateAndInitializeSystem(uint8_t4 param_1)
                         iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,8);
                         if (iterationCount == 0) {
                           resourcePointer = *(uint8_t8 **)(registerContext + 8);
-                          *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1dc);
+                          *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1dc);
                           iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
                           if (iterationCount == 0) {
                             resourcePointer = *(uint8_t8 **)(registerContext + 8);
-                            *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1d8);
+                            *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1d8);
                             iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
                             if (iterationCount == 0) {
                               resourcePointer = *(uint8_t8 **)(registerContext + 8);
-                              *(uint8_t4 *)(register_RBP + 0x20) = *(uint8_t4 *)(register_RDI + 0x1e0)
+                              *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1e0)
                               ;
                               (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
                             }
@@ -22615,7 +22615,7 @@ void UtilityNoOperationK(void)
 
 
 
-uint8_t8 ProcessDataStreamA0(int64_t param_1,uint8_t4 *param_2)
+uint8_t8 ProcessDataStreamA0(int64_t param_1,DataWord *param_2)
 
 {
   int inputParameter;
@@ -22713,7 +22713,7 @@ void ProcessUtilityDataOperation(int64_t operationHandle, uint *operationData)
   uint dataValue;
   int operationResult;
   uint8_t8 processingMode;
-  uint8_t4 processedData;
+  DataWord processedData;
   
   dataValue = *operationData;
   if (dataValue + 0x4000 < 0x8000) {
@@ -22860,7 +22860,7 @@ uint64_t ProcessBinaryDataA0(void)
   int64_t systemContext;
   uint *register_RDI;
   uint8_t8 in_R9;
-  uint8_t4 extraout_XMM0_Da;
+  DataWord extraout_XMM0_Da;
   uint uStack0000000000000068;
   uint in_stack_00000070;
   uint in_stack_00000078;
@@ -22955,23 +22955,23 @@ void ProcessSystemDataWithValidation(int64_t SystemContext, int *ParameterArray)
   char *pcVar1;
   code *validationFlag;
   char validationResult;
-  uint8_t4 in_EAX;
-  uint8_t3 dataFlags;
+  DataWord in_EAX;
+  ByteTriple dataFlags;
   int loopIndex;
-  uint8_t4 in_register_00000004;
+  DataWord in_register_00000004;
   uint register_EBP;
   char in_CF;
   int *piStack_8;
-  uint8_t4 memoryBaseAddress;
+  DataWord memoryBaseAddress;
   
-  dataFlags = (uint8_t3)((uint)in_EAX >> 8);
+  dataFlags = (ByteTriple)((uint)in_EAX >> 8);
   validationResult = (char)in_EAX + -0x57 + in_CF;
   memoryBaseAddress = CONCAT31(dataFlags,validationResult);
-  *(uint8_t4 *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
+  *(DataWord *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
   *(uint *)(param_1 + -0x565dff77) = *(uint *)(param_1 + -0x565dff77) & register_EBP;
-  *(uint8_t4 *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
+  *(DataWord *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
   piStack_8 = param_2;
-  *(uint8_t4 *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
+  *(DataWord *)CONCAT44(in_register_00000004,memoryBaseAddress) = memoryBaseAddress;
   *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
        *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + validationResult;
   *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
@@ -23094,8 +23094,8 @@ uint8_t8 ProcessDataCacheA0(int64_t param_1,uint8_t8 *param_2)
 
 {
   uint8_t8 operationResult;
-  uint8_t1 dataBufferA [32];
-  uint8_t1 dataBufferB [48];
+  ByteFlag dataBufferA [32];
+  ByteFlag dataBufferB [48];
   
   dataValue = ValidatePortControlRequest(param_2,auStack_38,1,0x46464542);
   if (((((int)dataValue == 0) &&
@@ -23229,7 +23229,7 @@ uint8_t8 ResetDataCacheA0(void)
           }
           pvalidationStatus[1] = register_RBP;
           *pvalidationStatus = &UNK_180986940;
-          *(uint8_t4 *)(pvalidationStatus + 2) = 1;
+          *(DataWord *)(pvalidationStatus + 2) = 1;
           *(int *)(pvalidationStatus + 3) = (int)register_RBP;
           **(uint8_t8 **)(register_RDI + 0x48) = pvalidationStatus;
           *(int *)(pvalidationStatus + 3) = (int)fVar1;
@@ -23306,13 +23306,13 @@ void UtilityNoOperationL(void)
  * @param dataType 数据类型
  * @return 处理结果状态码
  */
-void ExecuteSystemDataProcessing(int64_t dataContext, uint8_t8 operationHandle, uint8_t4 operationFlags,
-                                uint8_t4 dataSize, char dataType)
+void ExecuteSystemDataProcessing(int64_t dataContext, uint8_t8 operationHandle, DataWord operationFlags,
+                                DataWord dataSize, char dataType)
 
 {
   int processResult;
-  uint8_t1 dataBuffer1 [64];
-  uint8_t1 dataBuffer2 [32];
+  ByteFlag dataBuffer1 [64];
+  ByteFlag dataBuffer2 [32];
   
   processResult = ValidatePortControlRequest(operationHandle,dataBuffer2,1,operationFlags);
   if (((processResult == 0) && (processResult = ValidatePortControlRequest(operationHandle,dataBuffer1,0,dataSize), processResult == 0)) &&
@@ -23349,7 +23349,7 @@ uint64_t GetSystemValidationContext(void)
   uint validationOutcome;
   char cStack0000000000000030;
   uint uStack0000000000000034;
-  uint8_t4 in_stack_00000038;
+  DataWord in_stack_00000038;
   
   operationResult = 0;
   dataFlags = 0;
@@ -23528,7 +23528,7 @@ int SetSystemStatusFlag(void)
   int64_t systemContext;
   int systemStatus;
   
-  *(uint8_t4 *)(systemContext + 0xd4) = 7;
+  *(DataWord *)(systemContext + 0xd4) = 7;
   if (systemStatus != 0) {
     return systemStatus;
   }
@@ -23546,10 +23546,10 @@ int GetSystemStatusFlag(void)
 
 {
   int64_t systemContext;
-  uint8_t4 statusValue;
+  DataWord statusValue;
   int systemStatus;
   
-  *(uint8_t4 *)(systemContext + 0xd4) = statusValue;
+  *(DataWord *)(systemContext + 0xd4) = statusValue;
   if (systemStatus != 0) {
     return systemStatus;
   }
@@ -23595,16 +23595,16 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, uint8_t8 *dataBuffer)
 
 {
   uint8_t8 resultValue;
-  uint8_t4 *dataPointer;
+  DataWord *dataPointer;
   uint64_t operationResult;
   uint validationStatus;
-  uint8_t4 bufferValue1;
-  uint8_t4 bufferValue2;
-  uint8_t4 bufferValue3;
-  uint8_t4 bufferValue4;
-  uint8_t1 securityValidationBuffer [32];
+  DataWord bufferValue1;
+  DataWord bufferValue2;
+  DataWord bufferValue3;
+  DataWord bufferValue4;
+  ByteFlag securityValidationBuffer [32];
   
-  resourcePointer = (uint8_t4 *)FUN_180847820();
+  resourcePointer = (DataWord *)FUN_180847820();
   uStack_38 = *resourcePointer;
   uStack_34 = resourcePointer[1];
   uStack_30 = resourcePointer[2];
@@ -23671,9 +23671,9 @@ uint64_t ProcessDataWithValidation(void)
   int64_t contextPointer;
   uint validationFlag;
   bool carryFlag;
-  uint8_t1 dataElementBuffer [4];
-  uint8_t1 dataSizeBuffer [2];
-  uint8_t1 tempBuffer3 [2];
+  ByteFlag dataElementBuffer [4];
+  ByteFlag dataSizeBuffer [2];
+  ByteFlag tempBuffer3 [2];
   
   validationFlag = registerEAX + 0x1c;
   if (carryFlag) {
@@ -23732,9 +23732,9 @@ uint64_t ProcessDataStream(void)
   uint8_t8 *dataBuffer;
   int64_t contextPointer;
   uint64_t dataLength;
-  uint8_t1 dataElementBuffer [4];
-  uint8_t1 dataSizeBuffer [2];
-  uint8_t1 tempBuffer3 [2];
+  ByteFlag dataElementBuffer [4];
+  ByteFlag dataSizeBuffer [2];
+  ByteFlag tempBuffer3 [2];
   
   dataHandle = *dataBuffer;
   operationResult = ProcessDataElement(dataHandle, tempBuffer1, 4);
@@ -23856,7 +23856,7 @@ void UtilityNoOperationD(void)
 void ValidateAndProcessPortControlRequest(int64_t portContext, uint8_t8 controlRequest)
 {
   int validationStatus;
-  uint8_t1 portBuffer [32];
+  ByteFlag portBuffer [32];
   
   // 验证控制请求的有效性
   validationStatus = ValidatePortControlRequest(controlRequest, portBuffer, 0, PORT_CONTROL_FLAG);
@@ -24138,7 +24138,7 @@ uint8_t8 ValidateSystemDataIntegrity(int validationFlag)
   char statusFlag;
   uint8_t8 stackData;
   uint bufferSize;
-  uint8_t4 bufferFlag;
+  DataWord bufferFlag;
   
   if (validationFlag != 0) {
     return 0x1c;
@@ -24406,7 +24406,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataBlock, int64_t *validationConte
   uint64_t securityCheckResult;
   char acStackX_18 [8];
   uint auStackX_20 [2];
-  uint8_t1 auStack_48 [32];
+  ByteFlag auStack_48 [32];
   
   operationResult = ExecuteSecurityValidation(validationContext,auStack_48,0,0x54534e49);
   if ((int)operationResult != 0) {
@@ -25059,7 +25059,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, uint8_t8 *DataArray)
   uint validationOutcome;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
-  uint8_t1 auStack_48 [32];
+  ByteFlag auStack_48 [32];
   
   arrayIndex = ExecuteSecurityValidation(param_2,auStack_48,0,0x2050414d);
   if ((arrayIndex == 0) && (arrayIndex = ValidatePortControlRequest(param_2,param_1 + 0x10), arrayIndex == 0)) {
@@ -25570,13 +25570,13 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, uint8_t8 *SecurityParam
 
 {
   uint8_t8 tempValue1;
-  uint8_t4 tempValue2;
-  uint8_t4 securityStatus;
-  uint8_t4 memoryAddress;
+  DataWord tempValue2;
+  DataWord securityStatus;
+  DataWord memoryAddress;
   uint processResult;
   uint dataAccessFlags;
   uint64_t validationResult;
-  uint8_t4 *securityCheckPointer;
+  DataWord *securityCheckPointer;
   uint validationFlag;
   uint8_t8 *contextPointer;
   int64_t primaryContext;
@@ -25585,12 +25585,12 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, uint8_t8 *SecurityParam
   uint8_t8 *stackPointer1;
   uint8_t8 *stackPointer2;
   uint8_t8 stackValue1;
-  uint8_t4 securityValue1;
-  uint8_t4 securityValue2;
-  uint8_t4 securityValue3;
-  uint8_t4 securityValue4;
-  uint8_t1 securityBuffer1 [32];
-  uint8_t1 securityBuffer2 [32];
+  DataWord securityValue1;
+  DataWord securityValue2;
+  DataWord securityValue3;
+  DataWord securityValue4;
+  ByteFlag securityBuffer1 [32];
+  ByteFlag securityBuffer2 [32];
   
   validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer2,1,0x4f4c4d50);
   if ((int)validationResult != 0) {
@@ -25611,7 +25611,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, uint8_t8 *SecurityParam
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  securityCheckPointer = (uint8_t4 *)FUN_180847820();
+  securityCheckPointer = (DataWord *)FUN_180847820();
   validationResult = 0;
   securityValue1 = *securityCheckPointer;
   securityValue2 = securityCheckPointer[1];
@@ -25679,14 +25679,14 @@ ValidationLabelB:
         if (inputParameter3 < 0) {
           validationContext1 = (int64_t)inputParameter3 * 0x18 + 0x14 + (int64_t)puStack_88;
           do {
-            psecurityCheckResult = (uint8_t4 *)FUN_180847820();
+            psecurityCheckResult = (DataWord *)FUN_180847820();
             functionReturnValue = psecurityCheckResult[1];
             validationStatus = psecurityCheckResult[2];
             memoryBaseAddress = psecurityCheckResult[3];
-            *(uint8_t4 *)(validationContext1 + -0x14) = *psecurityCheckResult;
-            *(uint8_t4 *)(validationContext1 + -0x10) = functionReturnValue;
-            *(uint8_t4 *)(validationContext1 + -0xc) = validationStatus;
-            *(uint8_t4 *)(validationContext1 + -8) = memoryBaseAddress;
+            *(DataWord *)(validationContext1 + -0x14) = *psecurityCheckResult;
+            *(DataWord *)(validationContext1 + -0x10) = functionReturnValue;
+            *(DataWord *)(validationContext1 + -0xc) = validationStatus;
+            *(DataWord *)(validationContext1 + -8) = memoryBaseAddress;
             *(uint8_t8 *)(validationContext1 + -4) = 0;
             validationContext2 = validationContext2 + -1;
             validationContext1 = validationContext1 + 0x18;
@@ -25725,10 +25725,10 @@ ValidationLabelB:
         dataValue = ploopCounter[1];
         *puStackX_18 = *ploopCounter;
         puStackX_18[1] = dataValue;
-        *(uint8_t4 *)(puStackX_18 + 2) = *(uint8_t4 *)(ploopCounter + 2);
+        *(DataWord *)(puStackX_18 + 2) = *(DataWord *)(ploopCounter + 2);
         *(float *)((int64_t)puStackX_18 + 0x14) =
              *(float *)((int64_t)ploopCounter + 0x14) + *(float *)(ploopCounter + 2);
-        *(uint8_t1 *)(puStackX_18 + 3) = 1;
+        *(ByteFlag *)(puStackX_18 + 3) = 1;
       }
     }
     dataFlags = uStack_80._4_4_;
@@ -25751,14 +25751,14 @@ ValidationLabelB:
       if (inputParameter3 < 0) {
         validationContext1 = (int64_t)inputParameter3 * 0x18 + 0x14 + (int64_t)puStack_88;
         do {
-          psecurityCheckResult = (uint8_t4 *)FUN_180847820();
+          psecurityCheckResult = (DataWord *)FUN_180847820();
           functionReturnValue = psecurityCheckResult[1];
           validationStatus = psecurityCheckResult[2];
           memoryBaseAddress = psecurityCheckResult[3];
-          *(uint8_t4 *)(validationContext1 + -0x14) = *psecurityCheckResult;
-          *(uint8_t4 *)(validationContext1 + -0x10) = functionReturnValue;
-          *(uint8_t4 *)(validationContext1 + -0xc) = validationStatus;
-          *(uint8_t4 *)(validationContext1 + -8) = memoryBaseAddress;
+          *(DataWord *)(validationContext1 + -0x14) = *psecurityCheckResult;
+          *(DataWord *)(validationContext1 + -0x10) = functionReturnValue;
+          *(DataWord *)(validationContext1 + -0xc) = validationStatus;
+          *(DataWord *)(validationContext1 + -8) = memoryBaseAddress;
           *(uint8_t8 *)(validationContext1 + -4) = 0;
           validationContext2 = validationContext2 + -1;
           validationContext1 = validationContext1 + 0x18;
@@ -25813,9 +25813,9 @@ uint64_t * ValidateSystemDataProcessing(void)
 
 {
   uint8_t8 dataValue;
-  uint8_t4 functionReturnValue;
-  uint8_t4 validationStatus;
-  uint8_t4 memoryBaseAddress;
+  DataWord functionReturnValue;
+  DataWord validationStatus;
+  DataWord memoryBaseAddress;
   float fVar5;
   float fVar6;
   float fVar7;
@@ -25824,7 +25824,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   uint loopCounter;
   int64_t in_RAX;
   uint8_t8 *pdataValue1;
-  uint8_t4 *pdataValue2;
+  DataWord *pdataValue2;
   uint8_t8 *pdataValue3;
   float *pfVar14;
   uint64_t dataValue5;
@@ -25835,8 +25835,8 @@ uint64_t * ValidateSystemDataProcessing(void)
   uint8_t8 *register_RDI;
   int64_t validationContext8;
   int inputParameter9;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 functionReturnValue0;
+  DataWord extraout_XMM0_Da;
+  DataWord functionReturnValue0;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
@@ -25851,17 +25851,17 @@ uint64_t * ValidateSystemDataProcessing(void)
   if ((int)pdataValue1 != 0) {
     return pdataValue1;
   }
-  pdataValue2 = (uint8_t4 *)FUN_180847820();
+  pdataValue2 = (DataWord *)FUN_180847820();
   pdataValue1 = (uint8_t8 *)0x0;
   statusCounter = *(uint *)(register_RDI + 8);
   functionReturnValue0 = *pdataValue2;
   functionReturnValue = pdataValue2[1];
   validationStatus = pdataValue2[2];
   memoryBaseAddress = pdataValue2[3];
-  *(uint8_t4 *)(register_RBP + -0x19) = functionReturnValue0;
-  *(uint8_t4 *)(register_RBP + -0x15) = functionReturnValue;
-  *(uint8_t4 *)(register_RBP + -0x11) = validationStatus;
-  *(uint8_t4 *)(register_RBP + -0xd) = memoryBaseAddress;
+  *(DataWord *)(register_RBP + -0x19) = functionReturnValue0;
+  *(DataWord *)(register_RBP + -0x15) = functionReturnValue;
+  *(DataWord *)(register_RBP + -0x11) = validationStatus;
+  *(DataWord *)(register_RBP + -0xd) = memoryBaseAddress;
   securityCheckResult = 0;
   pdataValue3 = pdataValue1;
   if (statusCounter < 0x6d) {
@@ -25920,7 +25920,7 @@ ValidationLabelB:
                         &SystemMemoryPoolB,0x100,1);
         }
         *(uint8_t8 *)(register_RBP + -0x29) = 0;
-        *(uint8_t4 *)(register_RBP + -0x1d) = 0;
+        *(DataWord *)(register_RBP + -0x1d) = 0;
         statusCounter = securityCheckResult;
       }
       else {
@@ -25931,14 +25931,14 @@ ValidationLabelB:
         if (inputParameter9 < 0) {
           validationContext7 = (int64_t)inputParameter9 * 0x18 + 0x14 + (int64_t)pdataValue1;
           do {
-            pdataValue2 = (uint8_t4 *)FUN_180847820();
+            pdataValue2 = (DataWord *)FUN_180847820();
             functionReturnValue0 = pdataValue2[1];
             functionReturnValue = pdataValue2[2];
             validationStatus = pdataValue2[3];
-            *(uint8_t4 *)(validationContext7 + -0x14) = *pdataValue2;
-            *(uint8_t4 *)(validationContext7 + -0x10) = functionReturnValue0;
-            *(uint8_t4 *)(validationContext7 + -0xc) = functionReturnValue;
-            *(uint8_t4 *)(validationContext7 + -8) = validationStatus;
+            *(DataWord *)(validationContext7 + -0x14) = *pdataValue2;
+            *(DataWord *)(validationContext7 + -0x10) = functionReturnValue0;
+            *(DataWord *)(validationContext7 + -0xc) = functionReturnValue;
+            *(DataWord *)(validationContext7 + -8) = validationStatus;
             *(uint8_t8 *)(validationContext7 + -4) = 0;
             validationContext8 = validationContext8 + -1;
             validationContext7 = validationContext7 + 0x18;
@@ -25946,7 +25946,7 @@ ValidationLabelB:
           statusCounter = *(uint *)(register_RBP + -0x1d);
         }
       }
-      *(uint8_t4 *)(register_RBP + -0x21) = 0;
+      *(DataWord *)(register_RBP + -0x21) = 0;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
@@ -25981,10 +25981,10 @@ ValidationLabelB:
         pdataValue3 = *(uint8_t8 **)(register_RBP + 0x77);
         *pdataValue3 = *pdataValue6;
         pdataValue3[1] = dataValue;
-        *(uint8_t4 *)(pdataValue3 + 2) = *(uint8_t4 *)(pdataValue6 + 2);
+        *(DataWord *)(pdataValue3 + 2) = *(DataWord *)(pdataValue6 + 2);
         fVar21 = *(float *)((int64_t)pdataValue6 + 0x14) + *(float *)(pdataValue6 + 2);
         *(float *)((int64_t)pdataValue3 + 0x14) = fVar21;
-        *(uint8_t1 *)(pdataValue3 + 3) = 1;
+        *(ByteFlag *)(pdataValue3 + 3) = 1;
         inputParameter9 = *(int *)(register_RBP + -0x21);
         pdataValue3 = *(uint8_t8 **)(register_RBP + -0x29);
       }
@@ -26001,7 +26001,7 @@ ValidationLabelB:
         ReleaseSystemMemoryA0(*(uint8_t8 *)(SystemMemoryManagerPointer + 0x1a0),pdataValue3,&SystemMemoryPoolB,0x100,1);
       }
       *(uint8_t8 *)(register_RBP + -0x29) = 0;
-      *(uint8_t4 *)(register_RBP + -0x1d) = 0;
+      *(DataWord *)(register_RBP + -0x1d) = 0;
       pdataValue3 = pdataValue1;
       statusCounter = securityCheckResult;
     }
@@ -26026,7 +26026,7 @@ ValidationLabelB:
         statusCounter = *(uint *)(register_RBP + -0x1d);
       }
     }
-    *(uint8_t4 *)(register_RBP + -0x21) = 0;
+    *(DataWord *)(register_RBP + -0x21) = 0;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
@@ -26081,16 +26081,16 @@ uint8_t8 * ProcessSystemDataValidation(void)
 
 {
   uint8_t8 validationResult;
-  uint8_t4 operationStatus;
-  uint8_t4 dataValidationResult;
-  uint8_t4 memoryBaseAddress;
+  DataWord operationStatus;
+  DataWord dataValidationResult;
+  DataWord memoryBaseAddress;
   float normalizedValue1;
   float normalizedValue2;
   float normalizedValue3;
   uint securityCheckStatus;
   uint processingFlags;
   uint systemFlags;
-  uint8_t4 *dataPointer;
+  DataWord *dataPointer;
   uint8_t8 *resultPointer;
   uint8_t8 *contextPointer;
   float *floatArrayPointer;
@@ -26102,8 +26102,8 @@ uint8_t8 * ProcessSystemDataValidation(void)
   uint8_t8 *inputParameter;
   int64_t validationContext2;
   int operationCounter;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 systemStatus;
+  DataWord extraout_XMM0_Da;
+  DataWord systemStatus;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
@@ -26111,17 +26111,17 @@ uint8_t8 * ProcessSystemDataValidation(void)
   float extraout_XMM0_Da_04;
   float calculatedFloatValue;
   
-  dataPointer = (uint8_t4 *)AllocateMemoryEX0();
+  dataPointer = (DataWord *)AllocateMemoryEX0();
   contextPointer = (uint8_t8 *)0x0;
   processingFlags = *(uint *)(inputParameter + 8);
   systemStatus = *dataPointer;
   operationStatus = dataPointer[1];
   dataValidationResult = dataPointer[2];
   memoryBaseAddress = dataPointer[3];
-  *(uint8_t4 *)(framePointer + -0x19) = systemStatus;
-  *(uint8_t4 *)(framePointer + -0x15) = operationStatus;
-  *(uint8_t4 *)(framePointer + -0x11) = dataValidationResult;
-  *(uint8_t4 *)(framePointer + -0xd) = memoryBaseAddress;
+  *(DataWord *)(framePointer + -0x19) = systemStatus;
+  *(DataWord *)(framePointer + -0x15) = operationStatus;
+  *(DataWord *)(framePointer + -0x11) = dataValidationResult;
+  *(DataWord *)(framePointer + -0xd) = memoryBaseAddress;
   securityCheckStatus = 0;
   resultPointer = contextPointer;
   if (processingFlags < 0x6d) {
@@ -26180,7 +26180,7 @@ ValidationProcessingLabel:
                         &SystemMemoryPoolB,0x100,1);
         }
         *(uint8_t8 *)(register_RBP + -0x29) = 0;
-        *(uint8_t4 *)(register_RBP + -0x1d) = 0;
+        *(DataWord *)(register_RBP + -0x1d) = 0;
         statusCounter = securityCheckResult;
       }
       else {
@@ -26191,14 +26191,14 @@ ValidationProcessingLabel:
         if (inputParameter9 < 0) {
           validationContext7 = (int64_t)inputParameter9 * 0x18 + 0x14 + (int64_t)pdataValue3;
           do {
-            pdataValue1 = (uint8_t4 *)FUN_180847820();
+            pdataValue1 = (DataWord *)FUN_180847820();
             functionReturnValue0 = pdataValue1[1];
             functionReturnValue = pdataValue1[2];
             validationStatus = pdataValue1[3];
-            *(uint8_t4 *)(validationContext7 + -0x14) = *pdataValue1;
-            *(uint8_t4 *)(validationContext7 + -0x10) = functionReturnValue0;
-            *(uint8_t4 *)(validationContext7 + -0xc) = functionReturnValue;
-            *(uint8_t4 *)(validationContext7 + -8) = validationStatus;
+            *(DataWord *)(validationContext7 + -0x14) = *pdataValue1;
+            *(DataWord *)(validationContext7 + -0x10) = functionReturnValue0;
+            *(DataWord *)(validationContext7 + -0xc) = functionReturnValue;
+            *(DataWord *)(validationContext7 + -8) = validationStatus;
             *(uint8_t8 *)(validationContext7 + -4) = 0;
             validationContext8 = validationContext8 + -1;
             validationContext7 = validationContext7 + 0x18;
@@ -26206,7 +26206,7 @@ ValidationProcessingLabel:
           statusCounter = *(uint *)(register_RBP + -0x1d);
         }
       }
-      *(uint8_t4 *)(register_RBP + -0x21) = 0;
+      *(DataWord *)(register_RBP + -0x21) = 0;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
@@ -26241,10 +26241,10 @@ ValidationProcessingLabel:
         pdataValue2 = *(uint8_t8 **)(register_RBP + 0x77);
         *pdataValue2 = *pdataValue6;
         pdataValue2[1] = dataValue;
-        *(uint8_t4 *)(pdataValue2 + 2) = *(uint8_t4 *)(pdataValue6 + 2);
+        *(DataWord *)(pdataValue2 + 2) = *(DataWord *)(pdataValue6 + 2);
         fVar21 = *(float *)((int64_t)pdataValue6 + 0x14) + *(float *)(pdataValue6 + 2);
         *(float *)((int64_t)pdataValue2 + 0x14) = fVar21;
-        *(uint8_t1 *)(pdataValue2 + 3) = 1;
+        *(ByteFlag *)(pdataValue2 + 3) = 1;
         inputParameter9 = *(int *)(register_RBP + -0x21);
         pdataValue2 = *(uint8_t8 **)(register_RBP + -0x29);
       }
@@ -26261,7 +26261,7 @@ ValidationProcessingLabel:
         ReleaseSystemMemoryA0(*(uint8_t8 *)(SystemMemoryManagerPointer + 0x1a0),pdataValue2,&SystemMemoryPoolB,0x100,1);
       }
       *(uint8_t8 *)(register_RBP + -0x29) = 0;
-      *(uint8_t4 *)(register_RBP + -0x1d) = 0;
+      *(DataWord *)(register_RBP + -0x1d) = 0;
       pdataValue2 = pdataValue3;
       statusCounter = securityCheckResult;
     }
@@ -26286,7 +26286,7 @@ ValidationProcessingLabel:
         statusCounter = *(uint *)(register_RBP + -0x1d);
       }
     }
-    *(uint8_t4 *)(register_RBP + -0x21) = 0;
+    *(DataWord *)(register_RBP + -0x21) = 0;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
@@ -26339,9 +26339,9 @@ ValidationLabelD:
 uint64_t ValidateAndProcessSystemOperations(uint8_t8 SystemContext)
 
 {
-  uint8_t4 validationData1;
-  uint8_t4 validationData2;
-  uint8_t4 validationStatus;
+  DataWord validationData1;
+  DataWord validationData2;
+  DataWord validationStatus;
   float floatValue1;
   float floatValue2;
   float floatValue3;
@@ -26351,7 +26351,7 @@ uint64_t ValidateAndProcessSystemOperations(uint8_t8 SystemContext)
   uint processingFlag;
   uint absoluteValue;
   uint64_t operationResult;
-  uint8_t4 *validationDataPtr;
+  DataWord *validationDataPtr;
   float *floatDataPtr;
   uint8_t8 *dataBufferPtr;
   uint8_t8 *tempDataPtr;
@@ -26415,14 +26415,14 @@ ValidationLabelB:
         if (inputParameter8 < 0) {
           validationContext6 = (int64_t)inputParameter8 * 0x18 + 0x14 + (int64_t)pdataValue4;
           do {
-            pdataValue2 = (uint8_t4 *)FUN_180847820();
+            pdataValue2 = (DataWord *)FUN_180847820();
             dataValue = pdataValue2[1];
             functionReturnValue = pdataValue2[2];
             validationStatus = pdataValue2[3];
-            *(uint8_t4 *)(validationContext6 + -0x14) = *pdataValue2;
-            *(uint8_t4 *)(validationContext6 + -0x10) = dataValue;
-            *(uint8_t4 *)(validationContext6 + -0xc) = functionReturnValue;
-            *(uint8_t4 *)(validationContext6 + -8) = validationStatus;
+            *(DataWord *)(validationContext6 + -0x14) = *pdataValue2;
+            *(DataWord *)(validationContext6 + -0x10) = dataValue;
+            *(DataWord *)(validationContext6 + -0xc) = functionReturnValue;
+            *(DataWord *)(validationContext6 + -8) = validationStatus;
             *(uint8_t8 **)(validationContext6 + -4) = register_R12;
             validationContext7 = validationContext7 + -1;
             validationContext6 = validationContext6 + 0x18;
@@ -26465,10 +26465,10 @@ ValidationLabelB:
         pdataValue4 = *(uint8_t8 **)(register_RBP + 0x77);
         *pdataValue4 = *pdataValue5;
         pdataValue4[1] = validationOutcome;
-        *(uint8_t4 *)(pdataValue4 + 2) = *(uint8_t4 *)(pdataValue5 + 2);
+        *(DataWord *)(pdataValue4 + 2) = *(DataWord *)(pdataValue5 + 2);
         fVar20 = *(float *)((int64_t)pdataValue5 + 0x14) + *(float *)(pdataValue5 + 2);
         *(float *)((int64_t)pdataValue4 + 0x14) = fVar20;
-        *(uint8_t1 *)(pdataValue4 + 3) = 1;
+        *(ByteFlag *)(pdataValue4 + 3) = 1;
         inputParameter8 = *(int *)(register_RBP + -0x21);
         pdataValue4 = *(uint8_t8 **)(register_RBP + -0x29);
       }
@@ -26629,7 +26629,7 @@ uint64_t ProcessSystemDataA0(int64_t systemContext, int64_t *validationContext)
   int64_t *validationContextPointer;
   uint validationStatus2;
   uint64_t validationStatus;
-  uint8_t4 memoryBaseAddress;
+  DataWord memoryBaseAddress;
   uint operationResult;
   uint validationOutcome;
   uint securityCheckResult;
@@ -26638,8 +26638,8 @@ uint64_t ProcessSystemDataA0(int64_t systemContext, int64_t *validationContext)
   uint validationBuffer2 [2];
   uint stackData1;
   uint stackData2;
-  uint8_t1 securityBuffer1 [32];
-  uint8_t1 securityBuffer2 [40];
+  ByteFlag securityBuffer1 [32];
+  ByteFlag securityBuffer2 [40];
   uint64_t dataFlags;
   
   operationResult = 1;
@@ -26772,7 +26772,7 @@ OperationLabelC:
     validationStatus = 0xd;
     goto LAB_18089c878;
   }
-  *(uint8_t4 *)(param_1 + 0x30) = memoryBaseAddress;
+  *(DataWord *)(param_1 + 0x30) = memoryBaseAddress;
   validationStatus = dataFlags;
 OperationLabelD:
   if ((int)validationStatus != 0) {
@@ -27007,9 +27007,9 @@ uint64_t ProcessSystemDataD0(void)
   float extraout_XMM0_Da_05;
   float fVar9;
   float extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 extraout_XMM0_Da_08;
-  uint8_t4 loopCounter;
+  DataWord extraout_XMM0_Da_07;
+  DataWord extraout_XMM0_Da_08;
+  DataWord loopCounter;
   float extraout_XMM0_Da_09;
   uint64_t validationOutcome;
   
@@ -27044,7 +27044,7 @@ OperationLabelA:
       securityCheckResult = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D,0);
     }
     else {
-      *(uint8_t4 *)(register_RBP + 0x7f) = 0;
+      *(DataWord *)(register_RBP + 0x7f) = 0;
       securityCheckResult = AllocateMemory(dataContext,register_RBP + 0x7f);
       if (securityCheckResult == 0) {
         if ((uint64_t)*(uint *)(register_RBP + 0x7f) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089c743;
@@ -27057,7 +27057,7 @@ OperationLabelA:
       securityCheckResult = 0;
     }
     else {
-      *(uint8_t4 *)(register_RBP + 0x7f) = 0;
+      *(DataWord *)(register_RBP + 0x7f) = 0;
       *(uint *)(register_RBP + -0x29) = registerR14D;
       if (securityCheckResult == 0) {
         securityCheckResult = dataFlags;
@@ -27067,7 +27067,7 @@ OperationLabelA:
   else {
 OperationLabelB:
     *(uint *)(register_RBP + -0x29) = registerR14D;
-    *(uint8_t4 *)(register_RBP + 0x7f) = 0;
+    *(DataWord *)(register_RBP + 0x7f) = 0;
   }
   if (securityCheckResult != 0) {
     return (uint64_t)securityCheckResult;
@@ -27082,7 +27082,7 @@ OperationLabelB:
   }
   else {
     if (validationContextPointer[2] != 0) {
-      *(uint8_t4 *)(register_RBP + 0x77) = 0;
+      *(DataWord *)(register_RBP + 0x77) = 0;
       memoryBaseAddress = AllocateMemory(dataContext,register_RBP + 0x77);
       if ((int)memoryBaseAddress != 0) {
         return memoryBaseAddress;
@@ -27098,7 +27098,7 @@ OperationLabelC:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  switch(*(uint8_t4 *)(register_RBP + -0x25)) {
+  switch(*(DataWord *)(register_RBP + -0x25)) {
   case 0:
     operationResult = 0;
     break;
@@ -27197,7 +27197,7 @@ ValidationContextHandler:
         fVar9 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint8_t4 *)(register_RBP + -0x25) = 0;
+        *(DataWord *)(register_RBP + -0x25) = 0;
         validationStatus = AllocateMemory(dataContext,register_RBP + -0x25);
         fVar9 = extraout_XMM0_Da_00;
         if (validationStatus == 0) {
@@ -27260,7 +27260,7 @@ ValidationRetryHandler:
     fVar9 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint8_t4 *)(register_RBP + -0x25) = 0;
+    *(DataWord *)(register_RBP + -0x25) = 0;
     validationStatus = AllocateMemory(dataContext,register_RBP + -0x25);
     fVar9 = extraout_XMM0_Da_04;
     if (validationStatus == 0) {
@@ -27296,7 +27296,7 @@ ValidationErrorHandler2:
   }
   if (0x8a < validationStatus) {
     dataContext = *registerContext;
-    *(uint8_t4 *)(register_RBP + 0x7f) = 0;
+    *(DataWord *)(register_RBP + 0x7f) = 0;
     memoryBaseAddress = FUN_1808afe30(dataContext,register_RBP + 0x7f);
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
@@ -27306,7 +27306,7 @@ ValidationErrorHandler2:
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    *(uint8_t4 *)(register_RBP + 0x77) = 0;
+    *(DataWord *)(register_RBP + 0x77) = 0;
     memoryBaseAddress = validationOutcome;
     fVar9 = extraout_XMM0_Da_06;
     if (operationResult >> 1 != 0) {
@@ -27360,7 +27360,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
 {
   int64_t *validationContextPointer;
   int64_t dataContext;
-  uint8_t7 validationStatus;
+  DataChunk validationStatus;
   uint memoryBaseAddress;
   uint64_t operationResult;
   uint64_t dataFlags;
@@ -27383,12 +27383,12 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   float tempValue6;
   float mainValue;
   float tempValue7;
-  uint8_t4 tempValue8;
-  uint8_t4 tempValue9;
-  uint8_t4 validationResult;
+  DataWord tempValue8;
+  DataWord tempValue9;
+  DataWord validationResult;
   float finalValue;
   
-  *(uint8_t4 *)(register_R13 + 0x30) = 10;
+  *(DataWord *)(register_R13 + 0x30) = 10;
   if ((int)register_RDI != 0) {
     return register_RDI & SystemCleanupFlag;
   }
@@ -27434,7 +27434,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  validationStatus = (uint8_t7)(register_RDI >> 8);
+  validationStatus = (DataChunk)(register_RDI >> 8);
   calculatedValue = 0;
   fVar12 = extraout_XMM0_Da;
   inputParameter1 = calculatedValue;
@@ -27452,7 +27452,7 @@ ValidationContextHandler:
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint8_t4 *)(register_RBP + -0x25) = 0;
+        *(DataWord *)(register_RBP + -0x25) = 0;
         memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (memoryBaseAddress == 0) {
@@ -27519,7 +27519,7 @@ ValidationRetryHandler:
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint8_t4 *)(register_RBP + -0x25) = 0;
+    *(DataWord *)(register_RBP + -0x25) = 0;
     memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (memoryBaseAddress == 0) {
@@ -27554,7 +27554,7 @@ ValidationErrorHandler2:
   }
   if (0x8a < memoryBaseAddress) {
     dataContext = *registerContext;
-    *(uint8_t4 *)(register_RBP + 0x7f) = 0;
+    *(DataWord *)(register_RBP + 0x7f) = 0;
     operationResult = FUN_1808afe30(dataContext,register_RBP + 0x7f);
     if ((int)operationResult != 0) {
       return operationResult;
@@ -27564,7 +27564,7 @@ ValidationErrorHandler2:
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    *(uint8_t4 *)(register_RBP + 0x77) = 0;
+    *(DataWord *)(register_RBP + 0x77) = 0;
     operationResult = register_RDI & SystemCleanupFlag;
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
@@ -27617,14 +27617,14 @@ uint64_t FUN_18089c872(void)
 {
   int64_t *validationContextPointer;
   int64_t dataContext;
-  uint8_t7 validationStatus;
+  DataChunk validationStatus;
   uint memoryBaseAddress;
   uint64_t operationResult;
   uint64_t dataFlags;
   int calculatedValue;
   int64_t *registerContext;
   int64_t register_RBP;
-  uint8_t4 register_ESI;
+  DataWord register_ESI;
   uint securityCheckResult;
   uint statusCounter;
   uint64_t register_RDI;
@@ -27641,12 +27641,12 @@ uint64_t FUN_18089c872(void)
   float extraout_XMM0_Da_05;
   float fVar12;
   float extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 extraout_XMM0_Da_08;
-  uint8_t4 dataValue3;
+  DataWord extraout_XMM0_Da_07;
+  DataWord extraout_XMM0_Da_08;
+  DataWord dataValue3;
   float extraout_XMM0_Da_09;
   
-  *(uint8_t4 *)(register_R13 + 0x30) = register_ESI;
+  *(DataWord *)(register_R13 + 0x30) = register_ESI;
   if ((int)register_RDI != 0) {
     return register_RDI & SystemCleanupFlag;
   }
@@ -27692,7 +27692,7 @@ uint64_t FUN_18089c872(void)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  validationStatus = (uint8_t7)(register_RDI >> 8);
+  validationStatus = (DataChunk)(register_RDI >> 8);
   calculatedValue = 0;
   fVar12 = extraout_XMM0_Da;
   inputParameter1 = calculatedValue;
@@ -27710,7 +27710,7 @@ ValidationContextHandler:
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
-        *(uint8_t4 *)(register_RBP + -0x25) = 0;
+        *(DataWord *)(register_RBP + -0x25) = 0;
         memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (memoryBaseAddress == 0) {
@@ -27777,7 +27777,7 @@ ValidationRetryHandler:
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
-    *(uint8_t4 *)(register_RBP + -0x25) = 0;
+    *(DataWord *)(register_RBP + -0x25) = 0;
     memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (memoryBaseAddress == 0) {
@@ -27812,7 +27812,7 @@ ValidationErrorHandler2:
   }
   if (0x8a < memoryBaseAddress) {
     dataContext = *registerContext;
-    *(uint8_t4 *)(register_RBP + 0x7f) = 0;
+    *(DataWord *)(register_RBP + 0x7f) = 0;
     operationResult = FUN_1808afe30(dataContext,register_RBP + 0x7f);
     if ((int)operationResult != 0) {
       return operationResult;
@@ -27822,7 +27822,7 @@ ValidationErrorHandler2:
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    *(uint8_t4 *)(register_RBP + 0x77) = 0;
+    *(DataWord *)(register_RBP + 0x77) = 0;
     operationResult = register_RDI & SystemCleanupFlag;
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
@@ -27876,7 +27876,7 @@ uint64_t FUN_18089c94a(float param_1)
 {
   int64_t *validationContextPointer;
   int64_t dataContext;
-  uint8_t7 validationStatus;
+  DataChunk validationStatus;
   uint memoryBaseAddress;
   uint64_t operationResult;
   uint64_t dataFlags;
@@ -27900,13 +27900,13 @@ uint64_t FUN_18089c94a(float param_1)
   float extraout_XMM0_Da_04;
   float extraout_XMM0_Da_05;
   float fVar13;
-  uint8_t4 extraout_XMM0_Da_06;
-  uint8_t4 extraout_XMM0_Da_07;
-  uint8_t4 dataValue4;
+  DataWord extraout_XMM0_Da_06;
+  DataWord extraout_XMM0_Da_07;
+  DataWord dataValue4;
   float extraout_XMM0_Da_08;
   
   validationErrorCode = (int)register_RDI;
-  validationStatus = (uint8_t7)(register_RDI >> 8);
+  validationStatus = (DataChunk)(register_RDI >> 8);
   inputParameter2 = validationErrorCode;
   inputParameter1 = registerR14D;
   if (in_CF) {
@@ -28128,7 +28128,7 @@ uint64_t FUN_18089cc80(int64_t param_1,int64_t *param_2)
   int arrayIndex;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
-  uint8_t1 auStack_38 [32];
+  ByteFlag auStack_38 [32];
   
   validationStatus = ExecuteSecurityValidation(param_2,auStack_38,0,0x46454d50);
   if ((int)validationStatus != 0) {
@@ -28358,7 +28358,7 @@ uint64_t FUN_18089ce30(int64_t param_1,int64_t *param_2)
   bool bVar4;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
-  uint8_t1 auStack_48 [32];
+  ByteFlag auStack_48 [32];
   
   functionReturnValue = ExecuteSecurityValidation(param_2,auStack_48,0,0x54534c50);
   if ((int)functionReturnValue != 0) {
@@ -28462,7 +28462,7 @@ ValidationErrorHandler3:
     return (uint64_t)validationStatus;
   }
   if (bVar4) {
-    *(uint8_t4 *)(param_1 + 0x10) = 3;
+    *(DataWord *)(param_1 + 0x10) = 3;
   }
 ValidationExitHandler:
                     // WARNING: Subroutine does not return
@@ -28590,7 +28590,7 @@ ValidationErrorHandler3:
     return (uint64_t)validationStatus;
   }
   if (bVar4) {
-    *(uint8_t4 *)(registerR14 + 0x10) = 3;
+    *(DataWord *)(registerR14 + 0x10) = 3;
   }
 ValidationExitHandler:
                     // WARNING: Subroutine does not return
@@ -28647,7 +28647,7 @@ ValidationErrorHandler3:
     return registerContext & SystemCleanupFlag;
   }
   if (functionReturnValue == 0 && stackDataBuffer != (char)register_R15) {
-    *(uint8_t4 *)(registerR14 + 0x10) = 3;
+    *(DataWord *)(registerR14 + 0x10) = 3;
   }
 ValidationExitHandler:
                     // WARNING: Subroutine does not return
@@ -28701,8 +28701,8 @@ uint64_t FUN_18089d0f0(int64_t param_1,uint8_t8 *param_2)
   uint dataValue;
   uint64_t functionReturnValue;
   uint64_t validationStatus;
-  uint8_t1 auStack_48 [32];
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_48 [32];
+  ByteFlag auStack_28 [32];
   
   functionReturnValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x46464550);
   if (((((int)functionReturnValue != 0) ||
@@ -28866,10 +28866,10 @@ uint8_t8 ValidateDataFormatA1(uint8_t8 param_1,int64_t *param_2)
   uint8_t8 validationStatus;
   int aiStackX_18 [2];
   uint auStackX_20 [2];
-  uint8_t4 auStack_68 [2];
+  DataWord auStack_68 [2];
   int64_t lStack_60;
-  uint8_t1 auStack_58 [32];
-  uint8_t1 auStack_38 [32];
+  ByteFlag auStack_58 [32];
+  ByteFlag auStack_38 [32];
   
   validationStatus = ExecuteSecurityValidation(param_2,auStack_38,1,0x53505250);
   if ((int)validationStatus != 0) {
@@ -28940,7 +28940,7 @@ ValidationErrorHandler4:
         }
         validationStatus = ValidateMemoryAllocation(param_2,dataContext + 0x10,0);
         if ((int)validationStatus == 0) {
-          *(uint8_t4 *)(dataContext + 0x44) = SystemCleanupFlag;
+          *(DataWord *)(dataContext + 0x44) = SystemCleanupFlag;
           goto LAB_18089d435;
         }
       }
@@ -28969,7 +28969,7 @@ uint8_t8 GetSystemStatusA2(void)
   int64_t dataContext;
   uint8_t8 validationStatus;
   int64_t *registerContext;
-  uint8_t4 in_stack_00000030;
+  DataWord in_stack_00000030;
   int64_t in_stack_00000038;
   int iStack00000000000000b0;
   uint in_stack_000000b8;
@@ -29039,7 +29039,7 @@ ValidationErrorHandler4:
         }
         validationStatus = ValidateMemoryAllocation();
         if ((int)validationStatus == 0) {
-          *(uint8_t4 *)(dataContext + 0x44) = SystemCleanupFlag;
+          *(DataWord *)(dataContext + 0x44) = SystemCleanupFlag;
           goto LAB_18089d435;
         }
       }
@@ -29111,8 +29111,8 @@ void ValidateDataParametersC0(int64_t param_1,uint8_t8 *param_2)
 
 {
   int inputParameter;
-  uint8_t1 auStack_48 [32];
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_48 [32];
+  ByteFlag auStack_28 [32];
   
   inputParameter = ExecuteSecurityValidation(param_2,auStack_28,1,0x4a4f5250);
   if (((inputParameter == 0) && (inputParameter = ExecuteSecurityValidation(param_2,auStack_48,0,0x494b4e42), inputParameter == 0)) &&
@@ -29127,7 +29127,7 @@ void ValidateDataParametersC0(int64_t param_1,uint8_t8 *param_2)
       inputParameter = 0x1c;
     }
     if (inputParameter == 0) {
-      *(uint8_t4 *)(param_1 + 0x218) = *(uint8_t4 *)(param_2 + 8);
+      *(DataWord *)(param_1 + 0x218) = *(DataWord *)(param_2 + 8);
       if (*(uint *)(param_2 + 8) < 0x41) {
         inputParameter = 0;
       }
@@ -29148,10 +29148,10 @@ void ValidateDataParametersC0(int64_t param_1,uint8_t8 *param_2)
           inputParameter = 0x1c;
         }
         if (inputParameter == 0) {
-          *(uint8_t4 *)(param_1 + 0x200) = *(uint8_t4 *)(param_1 + 0x10);
-          *(uint8_t4 *)(param_1 + 0x204) = *(uint8_t4 *)(param_1 + 0x14);
-          *(uint8_t4 *)(param_1 + 0x208) = *(uint8_t4 *)(param_1 + 0x18);
-          *(uint8_t4 *)(param_1 + 0x20c) = *(uint8_t4 *)(resourceDescriptor + 0x1c);
+          *(DataWord *)(param_1 + 0x200) = *(DataWord *)(param_1 + 0x10);
+          *(DataWord *)(param_1 + 0x204) = *(DataWord *)(param_1 + 0x14);
+          *(DataWord *)(param_1 + 0x208) = *(DataWord *)(param_1 + 0x18);
+          *(DataWord *)(param_1 + 0x20c) = *(DataWord *)(resourceDescriptor + 0x1c);
                     // WARNING: Subroutine does not return
           FUN_1808ddf80(param_2,auStack_48);
         }
@@ -29164,14 +29164,14 @@ void ValidateDataParametersC0(int64_t param_1,uint8_t8 *param_2)
 
 
 
-89d557(uint8_t4 param_1)
-void CheckSystemStateC0(uint8_t4 param_1)
+89d557(DataWord param_1)
+void CheckSystemStateC0(DataWord param_1)
 
 {
   int inputParameter;
   uint8_t8 *registerContext;
   int64_t register_RDI;
-  uint8_t4 extraout_XMM0_Da;
+  DataWord extraout_XMM0_Da;
   
   inputParameter = ExecuteSecurityValidation(param_1,&stack0x00000030,0);
   if (inputParameter == 0) {
@@ -29187,7 +29187,7 @@ void CheckSystemStateC0(uint8_t4 param_1)
         inputParameter = 0x1c;
       }
       if (inputParameter == 0) {
-        *(uint8_t4 *)(register_RDI + 0x218) = *(uint8_t4 *)(registerContext + 8);
+        *(DataWord *)(register_RDI + 0x218) = *(DataWord *)(registerContext + 8);
         if (*(uint *)(registerContext + 8) < 0x41) {
           inputParameter = 0;
         }
@@ -29208,12 +29208,12 @@ void CheckSystemStateC0(uint8_t4 param_1)
             inputParameter = 0x1c;
           }
           if (inputParameter == 0) {
-            *(uint8_t4 *)(register_RDI + 0x200) = *(uint8_t4 *)(register_RDI + 0x10);
-            *(uint8_t4 *)(register_RDI + 0x204) = *(uint8_t4 *)(register_RDI + 0x14);
-            *(uint8_t4 *)(register_RDI + 0x208) = *(uint8_t4 *)(register_RDI + 0x18);
-            *(uint8_t4 *)(register_RDI + 0x20c) = *(uint8_t4 *)(register_RDI + 0x1c);
+            *(DataWord *)(register_RDI + 0x200) = *(DataWord *)(register_RDI + 0x10);
+            *(DataWord *)(register_RDI + 0x204) = *(DataWord *)(register_RDI + 0x14);
+            *(DataWord *)(register_RDI + 0x208) = *(DataWord *)(register_RDI + 0x18);
+            *(DataWord *)(register_RDI + 0x20c) = *(DataWord *)(register_RDI + 0x1c);
                     // WARNING: Subroutine does not return
-            FUN_1808ddf80(*(uint8_t4 *)(register_RDI + 0x10),&stack0x00000030);
+            FUN_1808ddf80(*(DataWord *)(register_RDI + 0x10),&stack0x00000030);
           }
         }
       }
@@ -29241,10 +29241,10 @@ uint64_t FUN_18089dcf0(int64_t param_1,uint8_t8 *param_2)
   uint functionReturnValue;
   uint64_t validationStatus;
   uint64_t memoryBaseAddress;
-  uint8_t1 auStackX_18 [4];
-  uint8_t1 auStackX_1c [12];
-  uint8_t1 auStack_58 [32];
-  uint8_t1 auStack_38 [32];
+  ByteFlag auStackX_18 [4];
+  ByteFlag auStackX_1c [12];
+  ByteFlag auStack_58 [32];
+  ByteFlag auStack_38 [32];
   
   validationStatus = ExecuteSecurityValidation(param_2,auStack_38,1,0x54495053);
   if ((((int)validationStatus == 0) &&
@@ -29263,7 +29263,7 @@ uint64_t FUN_18089dcf0(int64_t param_1,uint8_t8 *param_2)
       if (functionReturnValue == 0) {
         if (((*(uint *)(param_2 + 8) < 0x8a) && (*(int *)(param_1 + 0xf8) == 0)) ||
            ((*(uint *)(param_2 + 8) < 0x8e && (*(int *)(param_1 + 0xf8) == 0x7fffffff)))) {
-          *(uint8_t4 *)(param_1 + 0xf8) = 0x21;
+          *(DataWord *)(param_1 + 0xf8) = 0x21;
         }
         validationStatus = FUN_180898ef0(param_2,param_1 + 0x100);
         if ((int)validationStatus == 0) {
@@ -29344,7 +29344,7 @@ uint64_t FUN_18089dd54(void)
       if (functionReturnValue == 0) {
         if (((*(uint *)(registerContext + 8) < 0x8a) && (*(int *)(systemContext + 0xf8) == 0)) ||
            ((*(uint *)(registerContext + 8) < 0x8e && (*(int *)(systemContext + 0xf8) == 0x7fffffff)))) {
-          *(uint8_t4 *)(systemContext + 0xf8) = 0x21;
+          *(DataWord *)(systemContext + 0xf8) = 0x21;
         }
         validationStatus = FUN_180898ef0();
         if ((int)validationStatus == 0) {
@@ -29424,7 +29424,7 @@ uint64_t FUN_18089dd78(void)
     if (functionReturnValue == 0) {
       if (((*(uint *)(registerContext + 8) < 0x8a) && (*(int *)(systemContext + 0xf8) == 0)) ||
          ((*(uint *)(registerContext + 8) < 0x8e && (*(int *)(systemContext + 0xf8) == 0x7fffffff)))) {
-        *(uint8_t4 *)(systemContext + 0xf8) = 0x21;
+        *(DataWord *)(systemContext + 0xf8) = 0x21;
       }
       validationStatus = FUN_180898ef0();
       if ((int)validationStatus == 0) {
@@ -29497,7 +29497,7 @@ uint64_t FUN_18089dda2(void)
     if (functionReturnValue == 0) {
       if (((*(uint *)(registerContext + 8) < 0x8a) && (*(int *)(systemContext + 0xf8) == 0)) ||
          ((*(uint *)(registerContext + 8) < 0x8e && (*(int *)(systemContext + 0xf8) == 0x7fffffff)))) {
-        *(uint8_t4 *)(systemContext + 0xf8) = 0x21;
+        *(DataWord *)(systemContext + 0xf8) = 0x21;
       }
       validationStatus = FUN_180898ef0();
       if ((int)validationStatus == 0) {
@@ -29654,8 +29654,8 @@ uint8_t8 ExecuteSystemCheckA1(int64_t param_1,uint8_t8 *param_2)
 {
   uint8_t8 dataValue;
   uint8_t8 functionReturnValue;
-  uint8_t1 auStack_48 [32];
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_48 [32];
+  ByteFlag auStack_28 [32];
   
   functionReturnValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x46464553);
   if (((((int)functionReturnValue == 0) &&
@@ -29833,8 +29833,8 @@ uint8_t8 ProcessDataStreamA1(int64_t param_1,uint8_t8 *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t1 auStack_48 [32];
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_48 [32];
+  ByteFlag auStack_28 [32];
   
   if ((0x87 < *(uint *)(param_2 + 8)) &&
      (dataValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x46464353), (int)dataValue != 0)) {
@@ -29886,8 +29886,8 @@ uint64_t FUN_18089e230(int64_t param_1,int64_t *param_2)
   uint64_t validationOutcome;
   uint auStackX_18 [2];
   uint auStackX_20 [2];
-  uint8_t1 auStack_68 [32];
-  uint8_t1 auStack_48 [32];
+  ByteFlag auStack_68 [32];
+  ByteFlag auStack_48 [32];
   uint64_t operationResult;
   
   functionReturnValue = ExecuteSecurityValidation(param_2,auStack_48,1,0x50414e53);
@@ -30307,26 +30307,26 @@ void ConfigureSystemParametersC0(void)
 uint64_t FUN_18089e4f0(int64_t param_1,uint8_t8 *param_2)
 
 {
-  uint8_t4 dataValue;
+  DataWord dataValue;
   uint8_t8 functionReturnValue;
   uint validationStatus;
   uint64_t memoryBaseAddress;
-  uint8_t4 *poperationResult;
+  DataWord *poperationResult;
   int64_t memoryPointer;
-  uint8_t4 *puStack_88;
+  DataWord *puStack_88;
   uint8_t8 uStack_80;
-  uint8_t4 uStack_78;
-  uint8_t4 uStack_74;
-  uint8_t4 uStack_70;
-  uint8_t4 uStack_6c;
-  uint8_t1 auStack_58 [32];
-  uint8_t1 auStack_38 [32];
+  DataWord uStack_78;
+  DataWord uStack_74;
+  DataWord uStack_70;
+  DataWord uStack_6c;
+  ByteFlag auStack_58 [32];
+  ByteFlag auStack_38 [32];
   
   memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_38,1,0x4e4c4d54);
   if ((((int)memoryBaseAddress == 0) &&
       (memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_58,0,0x424e4c54), (int)memoryBaseAddress == 0)) &&
      (memoryBaseAddress = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)memoryBaseAddress == 0)) {
-    poperationResult = (uint8_t4 *)FUN_180847820();
+    poperationResult = (DataWord *)FUN_180847820();
     memoryBaseAddress = 0;
     uStack_78 = *poperationResult;
     uStack_74 = poperationResult[1];
@@ -30356,7 +30356,7 @@ uint64_t FUN_18089e4f0(int64_t param_1,uint8_t8 *param_2)
     if ((((int)memoryBaseAddress == 0) && (memoryBaseAddress = ValidateSystemOperationA0(param_2,param_1 + 0x38,0), (int)memoryBaseAddress == 0)) &&
        (memoryBaseAddress = ValidateSystemOperationA0(param_2,param_1 + 0x48,0), (int)memoryBaseAddress == 0)) {
       if (*(uint *)(param_2 + 8) < 0x84) {
-        puStack_88 = (uint8_t4 *)0x0;
+        puStack_88 = (DataWord *)0x0;
         uStack_80 = 0;
         validationStatus = InitializeSystemComponentA0(param_2,&puStack_88,0);
         memoryBaseAddress = (uint64_t)validationStatus;
@@ -30378,9 +30378,9 @@ ValidationErrorHandler5:
             dataValue = *poperationResult;
             *(int64_t *)memoryPointer = memoryPointer;
             *(int64_t *)(memoryPointer + 8) = memoryPointer;
-            *(uint8_t4 *)(memoryPointer + 0x10) = dataValue;
+            *(DataWord *)(memoryPointer + 0x10) = dataValue;
             *(uint8_t8 *)(memoryPointer + 0x18) = 0;
-            *(uint8_t4 *)(memoryPointer + 0x20) = 0;
+            *(DataWord *)(memoryPointer + 0x20) = 0;
             validationStatus = ConvertData(param_1 + 0x58,memoryPointer);
             memoryBaseAddress = (uint64_t)validationStatus;
             if (validationStatus != 0) goto LAB_18089e70b;
@@ -30412,37 +30412,37 @@ uint64_t FUN_18089e558(void)
 
 {
   uint8_t8 dataValue;
-  uint8_t4 functionReturnValue;
-  uint8_t4 validationStatus;
-  uint8_t4 memoryBaseAddress;
+  DataWord functionReturnValue;
+  DataWord validationStatus;
+  DataWord memoryBaseAddress;
   uint operationResult;
   int iterationCount;
-  uint8_t4 *pvalidationOutcome;
+  DataWord *pvalidationOutcome;
   uint64_t securityCheckResult;
   int64_t dataPointer;
   int64_t register_RBP;
-  uint8_t4 *ploopCounter;
+  DataWord *ploopCounter;
   uint8_t8 *register_RDI;
   int64_t register_R15;
-  uint8_t4 extraout_XMM0_Da;
-  uint8_t4 extraout_XMM0_Da_00;
-  uint8_t4 extraout_XMM0_Da_01;
-  uint8_t4 extraout_XMM0_Da_02;
-  uint8_t4 dataValue1;
-  uint8_t4 extraout_XMM0_Da_03;
-  uint8_t4 extraout_XMM0_Da_04;
+  DataWord extraout_XMM0_Da;
+  DataWord extraout_XMM0_Da_00;
+  DataWord extraout_XMM0_Da_01;
+  DataWord extraout_XMM0_Da_02;
+  DataWord dataValue1;
+  DataWord extraout_XMM0_Da_03;
+  DataWord extraout_XMM0_Da_04;
   
-  pvalidationOutcome = (uint8_t4 *)FUN_180847820();
+  pvalidationOutcome = (DataWord *)FUN_180847820();
   securityCheckResult = 0;
   operationResult = *(uint *)(register_RDI + 8);
   dataValue1 = *pvalidationOutcome;
   functionReturnValue = pvalidationOutcome[1];
   validationStatus = pvalidationOutcome[2];
   memoryBaseAddress = pvalidationOutcome[3];
-  *(uint8_t4 *)(register_RBP + -0x19) = dataValue1;
-  *(uint8_t4 *)(register_RBP + -0x15) = functionReturnValue;
-  *(uint8_t4 *)(register_RBP + -0x11) = validationStatus;
-  *(uint8_t4 *)(register_RBP + -0xd) = memoryBaseAddress;
+  *(DataWord *)(register_RBP + -0x19) = dataValue1;
+  *(DataWord *)(register_RBP + -0x15) = functionReturnValue;
+  *(DataWord *)(register_RBP + -0x11) = validationStatus;
+  *(DataWord *)(register_RBP + -0xd) = memoryBaseAddress;
   if (operationResult < 0x6d) {
     if (*(int *)(register_RDI[1] + 0x18) == 0) {
       dataValue = *register_RDI;
@@ -30479,7 +30479,7 @@ ValidationErrorHandler5:
       }
       iterationCount = *(int *)(register_RBP + -0x21);
       if (iterationCount != 0) {
-        pvalidationOutcome = *(uint8_t4 **)(register_RBP + -0x29);
+        pvalidationOutcome = *(DataWord **)(register_RBP + -0x29);
         for (ploopCounter = pvalidationOutcome; (pvalidationOutcome <= ploopCounter && (ploopCounter < pvalidationOutcome + iterationCount));
             ploopCounter = ploopCounter + 1) {
           dataPointer = AllocateSystemMemoryA0(*(uint8_t8 *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
@@ -30491,14 +30491,14 @@ ValidationErrorHandler5:
           dataValue1 = *ploopCounter;
           *(int64_t *)dataPointer = dataPointer;
           *(int64_t *)(dataPointer + 8) = dataPointer;
-          *(uint8_t4 *)(dataPointer + 0x10) = dataValue1;
+          *(DataWord *)(dataPointer + 0x10) = dataValue1;
           *(uint8_t8 *)(dataPointer + 0x18) = 0;
-          *(uint8_t4 *)(dataPointer + 0x20) = 0;
+          *(DataWord *)(dataPointer + 0x20) = 0;
           operationResult = ConvertData(register_R15 + 0x58,dataPointer);
           securityCheckResult = (uint64_t)operationResult;
           if (operationResult != 0) goto LAB_18089e70b;
           iterationCount = *(int *)(register_RBP + -0x21);
-          pvalidationOutcome = *(uint8_t4 **)(register_RBP + -0x29);
+          pvalidationOutcome = *(DataWord **)(register_RBP + -0x29);
         }
       }
       dataValue1 = FUN_18084c150(register_RBP + -0x29);
@@ -30527,15 +30527,15 @@ ValidationErrorHandler5:
 uint64_t FUN_18089e624(void)
 
 {
-  uint8_t4 dataValue;
+  DataWord dataValue;
   uint functionReturnValue;
   int operationStatus;
   uint64_t memoryBaseAddress;
   int64_t resourceIterator;
-  uint8_t4 *pdataFlags;
+  DataWord *pdataFlags;
   uint8_t8 registerContext;
   int64_t register_RBP;
-  uint8_t4 *pvalidationOutcome;
+  DataWord *pvalidationOutcome;
   int64_t register_RDI;
   int64_t register_R15;
   
@@ -30551,7 +30551,7 @@ ValidationErrorHandler5:
     }
     operationStatus = *(int *)(register_RBP + -0x21);
     if (operationStatus != 0) {
-      pdataFlags = *(uint8_t4 **)(register_RBP + -0x29);
+      pdataFlags = *(DataWord **)(register_RBP + -0x29);
       for (pvalidationOutcome = pdataFlags; (pdataFlags <= pvalidationOutcome && (pvalidationOutcome < pdataFlags + operationStatus)); pvalidationOutcome = pvalidationOutcome + 1) {
         resourceIterator = AllocateSystemMemoryA0(*(uint8_t8 *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c);
         if (resourceIterator == 0) {
@@ -30561,14 +30561,14 @@ ValidationErrorHandler5:
         dataValue = *pvalidationOutcome;
         *(int64_t *)resourceIterator = resourceIterator;
         *(int64_t *)(resourceIterator + 8) = resourceIterator;
-        *(uint8_t4 *)(resourceIterator + 0x10) = dataValue;
+        *(DataWord *)(resourceIterator + 0x10) = dataValue;
         *(uint8_t8 *)(resourceIterator + 0x18) = registerContext;
         *(int *)(resourceIterator + 0x20) = (int)registerContext;
         functionReturnValue = ConvertData(register_R15 + 0x58,resourceIterator);
         memoryBaseAddress = (uint64_t)functionReturnValue;
         if (functionReturnValue != 0) goto LAB_18089e70b;
         operationStatus = *(int *)(register_RBP + -0x21);
-        pdataFlags = *(uint8_t4 **)(register_RBP + -0x29);
+        pdataFlags = *(DataWord **)(register_RBP + -0x29);
       }
     }
     FUN_18084c150(register_RBP + -0x29);
@@ -30629,7 +30629,7 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t validationContext,int6
   uint validationStatus;
   uint64_t memoryBaseAddress;
   uint64_t operationResult;
-  uint8_t4 dataFlags;
+  DataWord dataFlags;
   bool isFirstValidation;
   bool isSecondValidation;
   bool isThirdValidation;
@@ -30637,9 +30637,9 @@ uint64_t ProcessSystemDataValidationAndAllocation(int64_t validationContext,int6
   char stackCharBuffer;
   char additionalBuffer [4];
   uint stackBuffer;
-  uint8_t1 stackAllocation1 [40];
-  uint8_t1 stackAllocation2 [32];
-  uint8_t1 stackAllocation3 [32];
+  ByteFlag stackAllocation1 [40];
+  ByteFlag stackAllocation2 [32];
+  ByteFlag stackAllocation3 [32];
   
   dataFlags = 1;
   memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_58,1,0x4e415254);
@@ -30911,7 +30911,7 @@ LAB_18089ecba:
   if ((((!bVar7) && ((char)auStackX_18[0] == '\0')) && (cStackX_20 == '\0')) && (!bVar9)) {
     dataFlags = 0;
   }
-  *(uint8_t4 *)(param_1 + 0x38) = dataFlags;
+  *(DataWord *)(param_1 + 0x38) = dataFlags;
   validationStatus = *(uint *)(param_2 + 8);
 LAB_18089ed1b:
   memoryBaseAddress = 0;
@@ -31014,7 +31014,7 @@ ValidationStartHandler:
     memoryBaseAddress = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x41,register_R12D,4,0);
   }
   else {
-    *(uint8_t4 *)(register_RBP + 0x77) = 0;
+    *(DataWord *)(register_RBP + 0x77) = 0;
     memoryBaseAddress = AllocateMemory(validationContext,register_RBP + 0x77);
     if ((int)memoryBaseAddress == 0) {
       if ((uint64_t)*(uint *)(register_RBP + 0x77) + 4 <= (uint64_t)pdataContext[2]) goto LAB_18089ea0f;
@@ -31048,7 +31048,7 @@ ValidationStateHandler2:
           validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
           goto LAB_18089eaae;
         }
-        *(uint8_t4 *)(register_RBP + -0x45) = 0;
+        *(DataWord *)(register_RBP + -0x45) = 0;
         validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
         bVar7 = validationStatus == 0;
         if (bVar7) {
@@ -31084,7 +31084,7 @@ ValidationDataHandler2:
         validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
       }
       else {
-        *(uint8_t4 *)(register_RBP + -0x45) = 0;
+        *(DataWord *)(register_RBP + -0x45) = 0;
         validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
         if (validationStatus == 0) {
           if ((uint64_t)*(uint *)(register_RBP + -0x45) + 1 <= (uint64_t)pdataContext[2])
@@ -31120,7 +31120,7 @@ ValidationStateHandler3:
         validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
       }
       else {
-        *(uint8_t4 *)(register_RBP + -0x45) = 0;
+        *(DataWord *)(register_RBP + -0x45) = 0;
         validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
         if (validationStatus == 0) {
           if ((uint64_t)*(uint *)(register_RBP + -0x45) + 1 <= (uint64_t)pdataContext[2])
@@ -31156,7 +31156,7 @@ LAB_18089ec32:
         validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
       }
       else {
-        *(uint8_t4 *)(register_RBP + -0x45) = 0;
+        *(DataWord *)(register_RBP + -0x45) = 0;
         validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
         if (validationStatus == 0) {
           if ((uint64_t)*(uint *)(register_RBP + -0x45) + 1 <= (uint64_t)pdataContext[2])
@@ -31192,7 +31192,7 @@ LAB_18089ecba:
         validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
       }
       else {
-        *(uint8_t4 *)(register_RBP + -0x45) = 0;
+        *(DataWord *)(register_RBP + -0x45) = 0;
         validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
         if (validationStatus == 0) {
           if ((uint64_t)*(uint *)(register_RBP + -0x45) + 1 <= (uint64_t)pdataContext[2])
@@ -31247,7 +31247,7 @@ uint64_t FUN_18089e9af(uint8_t8 param_1,uint8_t8 param_2,uint64_t param_3)
   uint64_t operationResult;
   int64_t register_RBP;
   int64_t *register_RDI;
-  uint8_t4 register_R12D;
+  DataWord register_R12D;
   int64_t register_R15;
   bool bVar6;
   bool bVar7;
@@ -31508,9 +31508,9 @@ LAB_18089ecd4:
   }
   if ((((!bVar6) && (*(char *)(register_RBP + 0x77) == '\0')) && (*(char *)(register_RBP + 0x7f) == '\0'))
      && (!bVar8)) {
-    register_R12D = (uint8_t4)param_3;
+    register_R12D = (DataWord)param_3;
   }
-  *(uint8_t4 *)(register_R15 + 0x38) = register_R12D;
+  *(DataWord *)(register_R15 + 0x38) = register_R12D;
   in_EAX = *(uint *)(register_RDI + 8);
 LAB_18089ed1b:
   if (in_EAX < 0x7f) {
@@ -31554,8 +31554,8 @@ uint8_t8 ProcessDataCollectionA1(int64_t param_1,uint8_t8 *param_2)
 {
   uint8_t8 dataValue;
   uint8_t8 functionReturnValue;
-  uint8_t1 auStack_48 [32];
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_48 [32];
+  ByteFlag auStack_28 [32];
   
   functionReturnValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x54494157);
   if (((((int)functionReturnValue == 0) &&
@@ -31669,33 +31669,33 @@ uint8_t8 ExecuteDataValidationA2(int64_t param_1,int64_t *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t4 auStackX_10 [6];
+  DataWord auStackX_10 [6];
   
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x50);
+  auStackX_10[0] = *(DataWord *)(param_1 + 0x50);
   dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))(*(uint8_t8 **)(*param_2 + 8),auStackX_10,4)
   ;
   if ((int)dataValue == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x54);
+    auStackX_10[0] = *(DataWord *)(param_1 + 0x54);
     dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))
                       (*(uint8_t8 **)(*param_2 + 8),auStackX_10,4);
     if ((int)dataValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x58);
+      auStackX_10[0] = *(DataWord *)(param_1 + 0x58);
       dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))
                         (*(uint8_t8 **)(*param_2 + 8),auStackX_10,4);
       if ((int)dataValue == 0) {
         if (*(int *)(param_2[1] + 0x18) != 0) {
           return 0x1c;
         }
-        auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x60);
+        auStackX_10[0] = *(DataWord *)(param_1 + 0x60);
         dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))
                           (*(uint8_t8 **)(*param_2 + 8),auStackX_10,4);
         if (((((int)dataValue == 0) && (dataValue = FUN_180898eb0(param_2,param_1 + 100), (int)dataValue == 0))
@@ -31718,9 +31718,9 @@ uint8_t8 ProcessComplexDataStructureA1(int64_t param_1,int64_t *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t4 auStackX_18 [2];
-  uint8_t1 auStack_68 [64];
-  uint8_t1 auStack_28 [32];
+  DataWord auStackX_18 [2];
+  ByteFlag auStack_68 [64];
+  ByteFlag auStack_28 [32];
   
   dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x46464542);
   if (((int)dataValue == 0) &&
@@ -31731,7 +31731,7 @@ uint8_t8 ProcessComplexDataStructureA1(int64_t param_1,int64_t *param_2)
          ((0x5a < *(uint *)(param_2 + 8) ||
           (dataValue = FUN_1808afd90(param_2,param_1 + 0x44), (int)dataValue == 0)))) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
-          switch(*(uint8_t4 *)(param_1 + 0x60)) {
+          switch(*(DataWord *)(param_1 + 0x60)) {
           default:
             auStackX_18[0] = 0;
             break;
@@ -31872,14 +31872,14 @@ uint8_t8 ReturnFixedStatusCodeA3(void)
   uint8_t8 dataValue;
   int64_t *registerContext;
   int64_t systemContext;
-  uint8_t4 in_stack_000000b0;
+  DataWord in_stack_000000b0;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
     dataValue = ProcessDataPointerA0(*registerContext,systemContext + 0x10);
     if (((int)dataValue == 0) &&
        ((0x5a < *(uint *)(registerContext + 8) || (dataValue = FUN_1808afd90(), (int)dataValue == 0)))) {
       if (*(int *)(registerContext[1] + 0x18) == 0) {
-        switch(*(uint8_t4 *)(systemContext + 0x60)) {
+        switch(*(DataWord *)(systemContext + 0x60)) {
         default:
           in_stack_000000b0 = 0;
           break;
@@ -32022,7 +32022,7 @@ void ConfigureSystemOptionsC1(void)
   int64_t *registerContext;
   int register_EBP;
   int64_t systemContext;
-  uint8_t4 in_stack_000000b0;
+  DataWord in_stack_000000b0;
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(registerContext + 8) < 0x3b) {
@@ -32059,7 +32059,7 @@ void ConfigureSystemOptionsC1(void)
       register_EBP = 0;
     }
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      in_stack_000000b0 = CONCAT31(in_stack_000000b0._1_3_,*(uint8_t1 *)(systemContext + 0x5c));
+      in_stack_000000b0 = CONCAT31(in_stack_000000b0._1_3_,*(ByteFlag *)(systemContext + 0x5c));
       register_EBP = (**(FunctionPointer**)**(uint8_t8 **)(*registerContext + 8))
                             (*(uint8_t8 **)(*registerContext + 8),&stack0x000000b0,1);
     }
@@ -32100,14 +32100,14 @@ void UtilityNoOperationAA(void)
 
 
 
-uint64_t FUN_18089f530(int64_t param_1,uint8_t8 *param_2,uint8_t4 param_3,uint8_t4 param_4,
+uint64_t FUN_18089f530(int64_t param_1,uint8_t8 *param_2,DataWord param_3,DataWord param_4,
                        char param_5)
 
 {
   uint dataValue;
   uint64_t functionReturnValue;
-  uint8_t1 auStack_70 [64];
-  uint8_t1 auStack_30 [40];
+  ByteFlag auStack_70 [64];
+  ByteFlag auStack_30 [40];
   
   functionReturnValue = FUN_1808ddd30(param_2,auStack_30,1,0x5453494c,param_3);
   if (((int)functionReturnValue == 0) && (functionReturnValue = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)functionReturnValue == 0))
@@ -32174,9 +32174,9 @@ uint8_t8 ProcessDataConversionA1(int64_t param_1,int64_t *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t4 auStackX_18 [4];
-  uint8_t1 auStack_48 [32];
-  uint8_t1 auStack_28 [32];
+  DataWord auStackX_18 [4];
+  ByteFlag auStack_48 [32];
+  ByteFlag auStack_28 [32];
   
   dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x49444d43);
   if (((int)dataValue == 0) &&
@@ -32189,7 +32189,7 @@ uint8_t8 ProcessDataConversionA1(int64_t param_1,int64_t *param_2)
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      auStackX_18[0] = *(uint8_t4 *)(param_1 + 0xd8);
+      auStackX_18[0] = *(DataWord *)(param_1 + 0xd8);
       dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))
                         (*(uint8_t8 **)(*param_2 + 8),auStackX_18,4);
       if ((int)dataValue == 0) {
@@ -32215,18 +32215,18 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
 {
   int64_t validationContext;
   uint functionReturnValue;
-  uint8_t4 *pvalidationStatus;
+  DataWord *pvalidationStatus;
   uint64_t memoryBaseAddress;
-  uint8_t2 auStackX_18 [4];
-  uint8_t2 auStackX_20 [4];
-  uint8_t4 auStack_58 [2];
-  uint8_t4 uStack_50;
-  uint8_t4 uStack_4c;
-  uint8_t4 uStack_48;
-  uint8_t4 uStack_44;
-  uint8_t1 auStack_40 [40];
+  BytePair auStackX_18 [4];
+  BytePair auStackX_20 [4];
+  DataWord auStack_58 [2];
+  DataWord uStack_50;
+  DataWord uStack_4c;
+  DataWord uStack_48;
+  DataWord uStack_44;
+  ByteFlag auStack_40 [40];
   
-  pvalidationStatus = (uint8_t4 *)FUN_180847820();
+  pvalidationStatus = (DataWord *)FUN_180847820();
   uStack_50 = *pvalidationStatus;
   uStack_4c = pvalidationStatus[1];
   uStack_48 = pvalidationStatus[2];
@@ -32253,7 +32253,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
           functionReturnValue = (**(FunctionPointer**)**(uint8_t8 **)(validationContext + 8))
                             (*(uint8_t8 **)(validationContext + 8),auStack_58,4);
           if (functionReturnValue == 0) {
-            auStackX_18[0] = (uint8_t2)uStack_4c;
+            auStackX_18[0] = (BytePair)uStack_4c;
             functionReturnValue = (**(FunctionPointer**)**(uint8_t8 **)(validationContext + 8))
                               (*(uint8_t8 **)(validationContext + 8),auStackX_18,2);
             if (functionReturnValue == 0) {
@@ -32301,12 +32301,12 @@ uint64_t FUN_18089f9b3(void)
   int64_t register_RBP;
   uint register_ESI;
   int64_t *register_RDI;
-  uint8_t4 in_stack_00000030;
-  uint8_t4 uStack0000000000000038;
-  uint8_t2 uStack000000000000003c;
-  uint8_t2 uStack000000000000003e;
-  uint8_t2 in_stack_000000a0;
-  uint8_t2 in_stack_000000a8;
+  DataWord in_stack_00000030;
+  DataWord uStack0000000000000038;
+  BytePair uStack000000000000003c;
+  BytePair uStack000000000000003e;
+  BytePair in_stack_000000a0;
+  BytePair in_stack_000000a8;
   
   if (*(uint *)(in_RAX + 0x18) != register_ESI) {
     return 0x1c;
@@ -32374,12 +32374,12 @@ uint64_t FUN_18089f9f6(void)
   int64_t register_RBP;
   uint register_ESI;
   int64_t *register_RDI;
-  uint8_t4 in_stack_00000030;
-  uint8_t4 uStack0000000000000038;
-  uint8_t2 uStack000000000000003c;
-  uint8_t2 uStack000000000000003e;
-  uint8_t2 in_stack_000000a0;
-  uint8_t2 in_stack_000000a8;
+  DataWord in_stack_00000030;
+  DataWord uStack0000000000000038;
+  BytePair uStack000000000000003c;
+  BytePair uStack000000000000003e;
+  BytePair in_stack_000000a0;
+  BytePair in_stack_000000a8;
   
   functionReturnValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x20);
   validationStatus = (uint64_t)functionReturnValue;
@@ -32438,8 +32438,8 @@ uint64_t FUN_18089fa3c(void)
   int64_t register_RBP;
   int64_t *register_RDI;
   uint8_t8 in_stack_00000038;
-  uint8_t2 in_stack_000000a0;
-  uint8_t2 in_stack_000000a8;
+  BytePair in_stack_000000a0;
+  BytePair in_stack_000000a8;
   
   validationContext = *register_RDI;
   functionReturnValue = (**(FunctionPointer**)**(uint8_t8 **)(validationContext + 8))();
@@ -32579,7 +32579,7 @@ void ProcessPortControlRequestB(int64_t portContext, uint8_t8 controlRequest)
 
 {
   int operationResult;
-  uint8_t1 portBuffer [32];
+  ByteFlag portBuffer [32];
   
   // 验证控制请求的有效性
   operationResult = ValidatePortControlRequestExtended(controlRequest, portBuffer, 0, PORT_CONTROL_FLAG, 0);
@@ -32600,7 +32600,7 @@ uint8_t8 ValidateDataSynchronizationA1(int64_t param_1,uint8_t8 *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_28 [32];
   
   dataValue = FUN_1808ddd30(param_2,auStack_28,0,0x56525543,0);
   if ((int)dataValue == 0) {
@@ -32629,8 +32629,8 @@ uint8_t8 ExecuteDataCleanupA1(int64_t param_1,uint8_t8 *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t1 auStack_48 [32];
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_48 [32];
+  ByteFlag auStack_28 [32];
   
   dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54494645);
   if (((int)dataValue == 0) &&
@@ -32659,13 +32659,13 @@ uint8_t8 InitializeDataProcessorA1(int64_t param_1,int64_t *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t4 auStackX_10 [6];
+  DataWord auStackX_10 [6];
   
   if (*(uint *)(param_2 + 8) < 0x55) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x50);
+    auStackX_10[0] = *(DataWord *)(param_1 + 0x50);
     dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))
                       (*(uint8_t8 **)(*param_2 + 8),auStackX_10,4);
     if ((int)dataValue != 0) {
@@ -32674,7 +32674,7 @@ uint8_t8 InitializeDataProcessorA1(int64_t param_1,int64_t *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x54);
+    auStackX_10[0] = *(DataWord *)(param_1 + 0x54);
     dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))
                       (*(uint8_t8 **)(*param_2 + 8),auStackX_10,4);
     if ((int)dataValue != 0) {
@@ -32685,7 +32685,7 @@ uint8_t8 InitializeDataProcessorA1(int64_t param_1,int64_t *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x78);
+    auStackX_10[0] = *(DataWord *)(param_1 + 0x78);
     dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))
                       (*(uint8_t8 **)(*param_2 + 8),auStackX_10,4);
     if ((int)dataValue != 0) {
@@ -32695,7 +32695,7 @@ uint8_t8 InitializeDataProcessorA1(int64_t param_1,int64_t *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x58);
+  auStackX_10[0] = *(DataWord *)(param_1 + 0x58);
   dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))(*(uint8_t8 **)(*param_2 + 8),auStackX_10,4)
   ;
   if ((int)dataValue != 0) {
@@ -32704,7 +32704,7 @@ uint8_t8 InitializeDataProcessorA1(int64_t param_1,int64_t *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_10[0] = *(uint8_t4 *)(param_1 + 0x5c);
+  auStackX_10[0] = *(DataWord *)(param_1 + 0x5c);
   dataValue = (**(FunctionPointer**)**(uint8_t8 **)(*param_2 + 8))(*(uint8_t8 **)(*param_2 + 8),auStackX_10,4)
   ;
   if ((int)dataValue == 0) {
@@ -32739,8 +32739,8 @@ uint8_t8 ProcessDataCacheA1(int64_t param_1,uint8_t8 *param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t1 auStack_48 [32];
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_48 [32];
+  ByteFlag auStack_28 [32];
   
   dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54495645);
   if (((int)dataValue == 0) &&
@@ -32770,7 +32770,7 @@ uint8_t8 CleanupDataCacheA1(uint8_t8 param_1,int64_t param_2)
 
 {
   uint8_t8 dataValue;
-  uint8_t1 auStack_28 [32];
+  ByteFlag auStack_28 [32];
   
   if (*(uint *)(param_2 + 0x40) < 0x31) {
     dataValue = FUN_1808a3d50(param_1,param_2,0x544e5645);
@@ -32804,7 +32804,7 @@ uint8_t8 CleanupDataCacheA1(uint8_t8 param_1,int64_t param_2)
 void ProcessUtilityCallback(uint8_t8 *param_1)
 
 {
-  FUN_18006a050(*(uint8_t4 *)*param_1,param_1);
+  FUN_18006a050(*(DataWord *)*param_1,param_1);
   return;
 }
 
@@ -33351,7 +33351,7 @@ void ProcessExceptionState(void* exceptionContext, int64_t contextData)
   
   // 清理异常状态
   *(uint8_t8 *)(contextData + 0x70) = 0;
-  *(uint8_t4 *)(contextData + 0x80) = 0;
+  *(DataWord *)(contextData + 0x80) = 0;
   
   // 重置为默认异常处理器
   *(uint8_t8 *)(contextData + 0x68) = &DefaultExceptionHandlerB;
@@ -33601,7 +33601,7 @@ void SetDefaultExceptionHandlerAtOffset138(uint8_t8 param_1, int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x140) = 0;
-  *(uint8_t4 *)(param_2 + 0x150) = 0;
+  *(DataWord *)(param_2 + 0x150) = 0;
   *(uint8_t8 *)(param_2 + 0x138) = &DefaultExceptionHandlerB;
   return;
 }
@@ -33627,7 +33627,7 @@ void SetDefaultExceptionHandlerAtOffset1A0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x1a8) = 0;
-  *(uint8_t4 *)(param_2 + 0x1b8) = 0;
+  *(DataWord *)(param_2 + 0x1b8) = 0;
   *(uint8_t8 *)(param_2 + 0x1a0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -33674,7 +33674,7 @@ void SetDefaultExceptionHandlerAtOffset180(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x188) = 0;
-  *(uint8_t4 *)(param_2 + 0x198) = 0;
+  *(DataWord *)(param_2 + 0x198) = 0;
   *(uint8_t8 *)(param_2 + 0x180) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34168,7 +34168,7 @@ void InitializeExceptionHandler78(uint8_t8 exceptionContext, int64_t handlerTabl
     TerminateSystemE0();
   }
   *(uint8_t8 *)(handlerTable + 0x80) = 0;
-  *(uint8_t4 *)(handlerTable + 0x90) = 0;
+  *(DataWord *)(handlerTable + 0x90) = 0;
   *(uint8_t8 *)(handlerTable + 0x78) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34235,7 +34235,7 @@ void InitializeExceptionHandlerA8(uint8_t8 exceptionContext, int64_t handlerTabl
     TerminateSystemE0();
   }
   *(uint8_t8 *)(handlerTable + 0xb0) = 0;
-  *(uint8_t4 *)(handlerTable + 0xc0) = 0;
+  *(DataWord *)(handlerTable + 0xc0) = 0;
   *(uint8_t8 *)(handlerTable + 0xa8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34262,7 +34262,7 @@ void ExceptionRecoveryHandlerB0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xd8) = 0;
-  *(uint8_t4 *)(param_2 + 0xe8) = 0;
+  *(DataWord *)(param_2 + 0xe8) = 0;
   *(uint8_t8 *)(param_2 + 0xd0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34290,7 +34290,7 @@ void ExceptionRecoveryHandlerB1(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x80) = 0;
-  *(uint8_t4 *)(param_2 + 0x90) = 0;
+  *(DataWord *)(param_2 + 0x90) = 0;
   *(uint8_t8 *)(param_2 + 0x78) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34454,7 +34454,7 @@ void ExceptionRecoveryHandlerB8(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x108) = 0;
-  *(uint8_t4 *)(param_2 + 0x118) = 0;
+  *(DataWord *)(param_2 + 0x118) = 0;
   *(uint8_t8 *)(param_2 + 0x100) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34481,7 +34481,7 @@ void ExceptionRecoveryHandlerB9(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x90) = 0;
-  *(uint8_t4 *)(param_2 + 0xa0) = 0;
+  *(DataWord *)(param_2 + 0xa0) = 0;
   *(uint8_t8 *)(param_2 + 0x88) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34639,7 +34639,7 @@ void ExceptionContextCleanupHandlerB14(uint8_t8 ExceptionContext, int64_t Valida
     TerminateSystemE0();
   }
   *(uint8_t8 *)(exceptionData + 0x60) = 0;
-  *(uint8_t4 *)(exceptionData + 0x70) = 0;
+  *(DataWord *)(exceptionData + 0x70) = 0;
   *(uint8_t8 *)(exceptionData + 0x58) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(exceptionData + 0x28) = &UNK_180a3c3e0;
   if (*(int64_t *)(exceptionData + 0x30) != 0) {
@@ -34647,7 +34647,7 @@ void ExceptionContextCleanupHandlerB14(uint8_t8 ExceptionContext, int64_t Valida
     TerminateSystemE0();
   }
   *(uint8_t8 *)(exceptionData + 0x30) = 0;
-  *(uint8_t4 *)(exceptionData + 0x40) = 0;
+  *(DataWord *)(exceptionData + 0x40) = 0;
   *(uint8_t8 *)(exceptionData + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34684,7 +34684,7 @@ void ExceptionContextCleanupHandlerB15(uint8_t8 ExceptionContext, int64_t Valida
     TerminateSystemE0();
   }
   *(uint8_t8 *)(exceptionData + 0x118) = 0;
-  *(uint8_t4 *)(exceptionData + 0x128) = 0;
+  *(DataWord *)(exceptionData + 0x128) = 0;
   *(uint8_t8 *)(exceptionData + 0x110) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(exceptionData + 0xe0) = &UNK_180a3c3e0;
   if (*(int64_t *)(exceptionData + 0xe8) != 0) {
@@ -34692,7 +34692,7 @@ void ExceptionContextCleanupHandlerB15(uint8_t8 ExceptionContext, int64_t Valida
     TerminateSystemE0();
   }
   *(uint8_t8 *)(exceptionData + 0xe8) = 0;
-  *(uint8_t4 *)(exceptionData + 0xf8) = 0;
+  *(DataWord *)(exceptionData + 0xf8) = 0;
   *(uint8_t8 *)(exceptionData + 0xe0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -34729,7 +34729,7 @@ void ExceptionContextCleanupHandlerB16(uint8_t8 ExceptionContext, int64_t Contex
     TerminateSystemE0();
   }
   exceptionHandlerArray[8] = 0;
-  *(uint8_t4 *)(exceptionHandlerArray + 10) = 0;
+  *(DataWord *)(exceptionHandlerArray + 10) = 0;
   exceptionHandlerArray[7] = &DefaultExceptionHandlerB;
   exceptionHandlerArray[1] = &UNK_180a3c3e0;
   if (exceptionHandlerArray[2] != 0) {
@@ -34737,7 +34737,7 @@ void ExceptionContextCleanupHandlerB16(uint8_t8 ExceptionContext, int64_t Contex
     TerminateSystemE0();
   }
   exceptionHandlerArray[2] = 0;
-  *(uint8_t4 *)(exceptionHandlerArray + 4) = 0;
+  *(DataWord *)(exceptionHandlerArray + 4) = 0;
   exceptionHandlerArray[1] = &DefaultExceptionHandlerB;
   return;
 }
@@ -34772,7 +34772,7 @@ void ExceptionRecoveryHandlerB22(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   exceptionHandlerPointer[8] = 0;
-  *(uint8_t4 *)(exceptionHandlerPointer + 10) = 0;
+  *(DataWord *)(exceptionHandlerPointer + 10) = 0;
   exceptionHandlerPointer[7] = &DefaultExceptionHandlerB;
   exceptionHandlerPointer[1] = &UNK_180a3c3e0;
   if (exceptionHandlerPointer[2] != 0) {
@@ -34780,7 +34780,7 @@ void ExceptionRecoveryHandlerB22(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   exceptionHandlerPointer[2] = 0;
-  *(uint8_t4 *)(exceptionHandlerPointer + 4) = 0;
+  *(DataWord *)(exceptionHandlerPointer + 4) = 0;
   exceptionHandlerPointer[1] = &DefaultExceptionHandlerB;
   return;
 }
@@ -35543,7 +35543,7 @@ void ExceptionHandler7C0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -35570,7 +35570,7 @@ void ExceptionHandler7D0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x58) = 0;
-  *(uint8_t4 *)(validationContext + 0x68) = 0;
+  *(DataWord *)(validationContext + 0x68) = 0;
   *(uint8_t8 *)(validationContext + 0x50) = &DefaultExceptionHandlerB;
   return;
 }
@@ -35957,7 +35957,7 @@ void InitializeExceptionHandlerA0(uint8_t8 exceptionContext,int64_t systemContex
     TerminateSystemE0();
   }
   *(uint8_t8 *)(handlerContext + 0x48) = 0;
-  *(uint8_t4 *)(handlerContext + 0x58) = 0;
+  *(DataWord *)(handlerContext + 0x58) = 0;
   *(uint8_t8 *)(handlerContext + 0x40) = &DefaultExceptionHandlerB;
   return;
 }
@@ -36933,7 +36933,7 @@ void InitializeExceptionHandlerContext(uint8_t8 exceptionContext, int64_t thread
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10) = 0;
-  *(uint8_t4 *)(validationContext + 0x20) = 0;
+  *(DataWord *)(validationContext + 0x20) = 0;
   *(uint8_t8 *)(validationContext + 8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -36963,7 +36963,7 @@ void SetupSecondaryExceptionHandler(uint8_t8 exceptionContext, int64_t threadCon
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -37027,7 +37027,7 @@ void Unwind_ResetExceptionHandler(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -37046,7 +37046,7 @@ void Unwind_ResetValidationContext(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -37281,7 +37281,7 @@ void Unwind_CleanupThreadContext(uint8_t8 param_1,int64_t param_2,uint8_t8 param
     FUN_18020f530();
     if (pdataValue[0xe] != 0) {
       *(uint8_t8 *)(pdataValue[0xe] + 0x10) = 0;
-      *(uint8_t1 *)(pdataValue[0xe] + 8) = 1;
+      *(ByteFlag *)(pdataValue[0xe] + 8) = 1;
     }
     pdataValue[2] = &DefaultExceptionHandlerB;
     return;
@@ -37336,7 +37336,7 @@ void Unwind_CleanupExceptionStack(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -37543,7 +37543,7 @@ void Unwind_CleanupClassMemory(uint8_t8 param_1,int64_t param_2)
   *(int64_t *)(dataContext + 0x15d8) =
        *(int64_t *)(&DAT_180c8ed30 + (int64_t)*(int *)(dataContext + 0x15e0) * 8) + -100000;
   FUN_180090b80((int64_t *)(dataContext + 0x8b0));
-  *(uint8_t4 *)(dataContext + 0x15e8) = 0;
+  *(DataWord *)(dataContext + 0x15e8) = 0;
   validationContextPointer = *(int64_t **)(dataContext + 0x15d0);
   *(uint8_t8 *)(dataContext + 0x15d0) = 0;
   if (validationContextPointer != (int64_t *)0x0) {
@@ -37686,7 +37686,7 @@ void Unwind_CleanupReadOnlyMemory(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -37856,7 +37856,7 @@ void Unwind_CleanupFunctionFrame(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x150) = 0;
-  *(uint8_t4 *)(validationContext + 0x160) = 0;
+  *(DataWord *)(validationContext + 0x160) = 0;
   *(uint8_t8 *)(validationContext + 0x148) = &DefaultExceptionHandlerB;
   return;
 }
@@ -38126,7 +38126,7 @@ void Unwind_180902fa0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x920) = 0;
-  *(uint8_t4 *)(validationContext + 0x930) = 0;
+  *(DataWord *)(validationContext + 0x930) = 0;
   *(uint8_t8 *)(validationContext + 0x918) = &DefaultExceptionHandlerB;
   return;
 }
@@ -38381,7 +38381,7 @@ void CleanupMemoryResourcesF0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -38420,7 +38420,7 @@ void ResetMemoryState110(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -38443,7 +38443,7 @@ void CleanupThreadResources120(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -38538,7 +38538,7 @@ void CleanupThreadMemory150(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -38597,7 +38597,7 @@ void CleanupResourceState170(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -38616,7 +38616,7 @@ void ResetResourcePointer180(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -38991,7 +38991,7 @@ void Unwind_180903320(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -39058,7 +39058,7 @@ void Unwind_180903360(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x48) = 0;
-  *(uint8_t4 *)(validationContext + 0x58) = 0;
+  *(DataWord *)(validationContext + 0x58) = 0;
   *(uint8_t8 *)(validationContext + 0x40) = &DefaultExceptionHandlerB;
   return;
 }
@@ -39776,7 +39776,7 @@ void Unwind_180903610(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   pdataValue[0x19] = 0;
-  *(uint8_t4 *)(pdataValue + 0x1b) = 0;
+  *(DataWord *)(pdataValue + 0x1b) = 0;
   pdataValue[0x18] = &DefaultExceptionHandlerB;
   FUN_18005d260(pdataValue + 0x12,pdataValue[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
   if (pdataValue[0xd] != 0) {
@@ -39815,7 +39815,7 @@ void Unwind_180903620(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x110) = 0;
-  *(uint8_t4 *)(validationContext + 0x120) = 0;
+  *(DataWord *)(validationContext + 0x120) = 0;
   *(uint8_t8 *)(validationContext + 0x108) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf0) != 0) {
@@ -39823,7 +39823,7 @@ void Unwind_180903620(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf0) = 0;
-  *(uint8_t4 *)(validationContext + 0x100) = 0;
+  *(DataWord *)(validationContext + 0x100) = 0;
   *(uint8_t8 *)(validationContext + 0xe8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -39845,7 +39845,7 @@ void Unwind_180903640(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x180) = 0;
-  *(uint8_t4 *)(validationContext + 400) = 0;
+  *(DataWord *)(validationContext + 400) = 0;
   *(uint8_t8 *)(validationContext + 0x178) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x158) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x160) != 0) {
@@ -39853,7 +39853,7 @@ void Unwind_180903640(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x160) = 0;
-  *(uint8_t4 *)(validationContext + 0x170) = 0;
+  *(DataWord *)(validationContext + 0x170) = 0;
   *(uint8_t8 *)(validationContext + 0x158) = &DefaultExceptionHandlerB;
   return;
 }
@@ -39875,7 +39875,7 @@ void Unwind_180903660(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x200) = 0;
+  *(DataWord *)(validationContext + 0x200) = 0;
   *(uint8_t8 *)(validationContext + 0x1e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1d0) != 0) {
@@ -39883,7 +39883,7 @@ void Unwind_180903660(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1e0) = 0;
+  *(DataWord *)(validationContext + 0x1e0) = 0;
   *(uint8_t8 *)(validationContext + 0x1c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -39905,7 +39905,7 @@ void Unwind_180903680(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x260) = 0;
-  *(uint8_t4 *)(validationContext + 0x270) = 0;
+  *(DataWord *)(validationContext + 0x270) = 0;
   *(uint8_t8 *)(validationContext + 600) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x238) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x240) != 0) {
@@ -39913,7 +39913,7 @@ void Unwind_180903680(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x240) = 0;
-  *(uint8_t4 *)(validationContext + 0x250) = 0;
+  *(DataWord *)(validationContext + 0x250) = 0;
   *(uint8_t8 *)(validationContext + 0x238) = &DefaultExceptionHandlerB;
   return;
 }
@@ -39935,7 +39935,7 @@ void Unwind_1809036a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x2e0) = 0;
+  *(DataWord *)(validationContext + 0x2e0) = 0;
   *(uint8_t8 *)(validationContext + 0x2c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2b0) != 0) {
@@ -39943,7 +39943,7 @@ void Unwind_1809036a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x2c0) = 0;
+  *(DataWord *)(validationContext + 0x2c0) = 0;
   *(uint8_t8 *)(validationContext + 0x2a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -39965,7 +39965,7 @@ void Unwind_1809036c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x340) = 0;
-  *(uint8_t4 *)(validationContext + 0x350) = 0;
+  *(DataWord *)(validationContext + 0x350) = 0;
   *(uint8_t8 *)(validationContext + 0x338) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x318) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 800) != 0) {
@@ -39973,7 +39973,7 @@ void Unwind_1809036c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 800) = 0;
-  *(uint8_t4 *)(validationContext + 0x330) = 0;
+  *(DataWord *)(validationContext + 0x330) = 0;
   *(uint8_t8 *)(validationContext + 0x318) = &DefaultExceptionHandlerB;
   return;
 }
@@ -39995,7 +39995,7 @@ void Unwind_1809036e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x3b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x3c0) = 0;
+  *(DataWord *)(validationContext + 0x3c0) = 0;
   *(uint8_t8 *)(validationContext + 0x3a8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x388) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x390) != 0) {
@@ -40003,7 +40003,7 @@ void Unwind_1809036e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x390) = 0;
-  *(uint8_t4 *)(validationContext + 0x3a0) = 0;
+  *(DataWord *)(validationContext + 0x3a0) = 0;
   *(uint8_t8 *)(validationContext + 0x388) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40025,7 +40025,7 @@ void Unwind_180903700(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x420) = 0;
-  *(uint8_t4 *)(validationContext + 0x430) = 0;
+  *(DataWord *)(validationContext + 0x430) = 0;
   *(uint8_t8 *)(validationContext + 0x418) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x3f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x400) != 0) {
@@ -40033,7 +40033,7 @@ void Unwind_180903700(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x400) = 0;
-  *(uint8_t4 *)(validationContext + 0x410) = 0;
+  *(DataWord *)(validationContext + 0x410) = 0;
   *(uint8_t8 *)(validationContext + 0x3f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40055,7 +40055,7 @@ void Unwind_180903720(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4f8) = 0;
+  *(DataWord *)(validationContext + 0x4f8) = 0;
   *(uint8_t8 *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
@@ -40063,7 +40063,7 @@ void Unwind_180903720(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4d8) = 0;
+  *(DataWord *)(validationContext + 0x4d8) = 0;
   *(uint8_t8 *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
@@ -40071,7 +40071,7 @@ void Unwind_180903720(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4b8) = 0;
+  *(DataWord *)(validationContext + 0x4b8) = 0;
   *(uint8_t8 *)(validationContext + 0x4a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x480) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x488) != 0) {
@@ -40079,7 +40079,7 @@ void Unwind_180903720(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x488) = 0;
-  *(uint8_t4 *)(validationContext + 0x498) = 0;
+  *(DataWord *)(validationContext + 0x498) = 0;
   *(uint8_t8 *)(validationContext + 0x480) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
@@ -40087,7 +40087,7 @@ void Unwind_180903720(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x468) = 0;
-  *(uint8_t4 *)(validationContext + 0x478) = 0;
+  *(DataWord *)(validationContext + 0x478) = 0;
   *(uint8_t8 *)(validationContext + 0x460) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40109,7 +40109,7 @@ void Unwind_180903740(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x550) = 0;
-  *(uint8_t4 *)(validationContext + 0x560) = 0;
+  *(DataWord *)(validationContext + 0x560) = 0;
   *(uint8_t8 *)(validationContext + 0x548) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x528) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x530) != 0) {
@@ -40117,7 +40117,7 @@ void Unwind_180903740(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x530) = 0;
-  *(uint8_t4 *)(validationContext + 0x540) = 0;
+  *(DataWord *)(validationContext + 0x540) = 0;
   *(uint8_t8 *)(validationContext + 0x528) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40137,7 +40137,7 @@ void Unwind_180903760(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   pdataValue[0x19] = 0;
-  *(uint8_t4 *)(pdataValue + 0x1b) = 0;
+  *(DataWord *)(pdataValue + 0x1b) = 0;
   pdataValue[0x18] = &DefaultExceptionHandlerB;
   FUN_18005d260(pdataValue + 0x12,pdataValue[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
   if (pdataValue[0xd] != 0) {
@@ -40176,7 +40176,7 @@ void Unwind_180903770(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x110) = 0;
-  *(uint8_t4 *)(validationContext + 0x120) = 0;
+  *(DataWord *)(validationContext + 0x120) = 0;
   *(uint8_t8 *)(validationContext + 0x108) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf0) != 0) {
@@ -40184,7 +40184,7 @@ void Unwind_180903770(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf0) = 0;
-  *(uint8_t4 *)(validationContext + 0x100) = 0;
+  *(DataWord *)(validationContext + 0x100) = 0;
   *(uint8_t8 *)(validationContext + 0xe8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40206,7 +40206,7 @@ void Unwind_180903790(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x180) = 0;
-  *(uint8_t4 *)(validationContext + 400) = 0;
+  *(DataWord *)(validationContext + 400) = 0;
   *(uint8_t8 *)(validationContext + 0x178) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x158) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x160) != 0) {
@@ -40214,7 +40214,7 @@ void Unwind_180903790(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x160) = 0;
-  *(uint8_t4 *)(validationContext + 0x170) = 0;
+  *(DataWord *)(validationContext + 0x170) = 0;
   *(uint8_t8 *)(validationContext + 0x158) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40236,7 +40236,7 @@ void Unwind_1809037b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x200) = 0;
+  *(DataWord *)(validationContext + 0x200) = 0;
   *(uint8_t8 *)(validationContext + 0x1e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1d0) != 0) {
@@ -40244,7 +40244,7 @@ void Unwind_1809037b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1e0) = 0;
+  *(DataWord *)(validationContext + 0x1e0) = 0;
   *(uint8_t8 *)(validationContext + 0x1c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40266,7 +40266,7 @@ void Unwind_1809037d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x260) = 0;
-  *(uint8_t4 *)(validationContext + 0x270) = 0;
+  *(DataWord *)(validationContext + 0x270) = 0;
   *(uint8_t8 *)(validationContext + 600) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x238) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x240) != 0) {
@@ -40274,7 +40274,7 @@ void Unwind_1809037d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x240) = 0;
-  *(uint8_t4 *)(validationContext + 0x250) = 0;
+  *(DataWord *)(validationContext + 0x250) = 0;
   *(uint8_t8 *)(validationContext + 0x238) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40296,7 +40296,7 @@ void Unwind_1809037f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x2e0) = 0;
+  *(DataWord *)(validationContext + 0x2e0) = 0;
   *(uint8_t8 *)(validationContext + 0x2c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2b0) != 0) {
@@ -40304,7 +40304,7 @@ void Unwind_1809037f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x2c0) = 0;
+  *(DataWord *)(validationContext + 0x2c0) = 0;
   *(uint8_t8 *)(validationContext + 0x2a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40326,7 +40326,7 @@ void Unwind_180903810(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x340) = 0;
-  *(uint8_t4 *)(validationContext + 0x350) = 0;
+  *(DataWord *)(validationContext + 0x350) = 0;
   *(uint8_t8 *)(validationContext + 0x338) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x318) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 800) != 0) {
@@ -40334,7 +40334,7 @@ void Unwind_180903810(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 800) = 0;
-  *(uint8_t4 *)(validationContext + 0x330) = 0;
+  *(DataWord *)(validationContext + 0x330) = 0;
   *(uint8_t8 *)(validationContext + 0x318) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40356,7 +40356,7 @@ void Unwind_180903830(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x3b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x3c0) = 0;
+  *(DataWord *)(validationContext + 0x3c0) = 0;
   *(uint8_t8 *)(validationContext + 0x3a8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x388) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x390) != 0) {
@@ -40364,7 +40364,7 @@ void Unwind_180903830(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x390) = 0;
-  *(uint8_t4 *)(validationContext + 0x3a0) = 0;
+  *(DataWord *)(validationContext + 0x3a0) = 0;
   *(uint8_t8 *)(validationContext + 0x388) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40386,7 +40386,7 @@ void Unwind_180903850(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x420) = 0;
-  *(uint8_t4 *)(validationContext + 0x430) = 0;
+  *(DataWord *)(validationContext + 0x430) = 0;
   *(uint8_t8 *)(validationContext + 0x418) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x3f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x400) != 0) {
@@ -40394,7 +40394,7 @@ void Unwind_180903850(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x400) = 0;
-  *(uint8_t4 *)(validationContext + 0x410) = 0;
+  *(DataWord *)(validationContext + 0x410) = 0;
   *(uint8_t8 *)(validationContext + 0x3f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40416,7 +40416,7 @@ void Unwind_180903870(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4f8) = 0;
+  *(DataWord *)(validationContext + 0x4f8) = 0;
   *(uint8_t8 *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
@@ -40424,7 +40424,7 @@ void Unwind_180903870(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4d8) = 0;
+  *(DataWord *)(validationContext + 0x4d8) = 0;
   *(uint8_t8 *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
@@ -40432,7 +40432,7 @@ void Unwind_180903870(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4b8) = 0;
+  *(DataWord *)(validationContext + 0x4b8) = 0;
   *(uint8_t8 *)(validationContext + 0x4a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x480) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x488) != 0) {
@@ -40440,7 +40440,7 @@ void Unwind_180903870(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x488) = 0;
-  *(uint8_t4 *)(validationContext + 0x498) = 0;
+  *(DataWord *)(validationContext + 0x498) = 0;
   *(uint8_t8 *)(validationContext + 0x480) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
@@ -40448,7 +40448,7 @@ void Unwind_180903870(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x468) = 0;
-  *(uint8_t4 *)(validationContext + 0x478) = 0;
+  *(DataWord *)(validationContext + 0x478) = 0;
   *(uint8_t8 *)(validationContext + 0x460) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40470,7 +40470,7 @@ void Unwind_180903890(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x550) = 0;
-  *(uint8_t4 *)(validationContext + 0x560) = 0;
+  *(DataWord *)(validationContext + 0x560) = 0;
   *(uint8_t8 *)(validationContext + 0x548) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x528) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x530) != 0) {
@@ -40478,7 +40478,7 @@ void Unwind_180903890(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x530) = 0;
-  *(uint8_t4 *)(validationContext + 0x540) = 0;
+  *(DataWord *)(validationContext + 0x540) = 0;
   *(uint8_t8 *)(validationContext + 0x528) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40497,7 +40497,7 @@ void Unwind_1809038b0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10) = 0;
-  *(uint8_t4 *)(validationContext + 0x20) = 0;
+  *(DataWord *)(validationContext + 0x20) = 0;
   *(uint8_t8 *)(validationContext + 8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40516,7 +40516,7 @@ void Unwind_1809038c0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40566,7 +40566,7 @@ void Unwind_1809038f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x490) = 0;
-  *(uint8_t4 *)(validationContext + 0x4a0) = 0;
+  *(DataWord *)(validationContext + 0x4a0) = 0;
   *(uint8_t8 *)(validationContext + 0x488) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x468) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x470) != 0) {
@@ -40574,7 +40574,7 @@ void Unwind_1809038f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x470) = 0;
-  *(uint8_t4 *)(validationContext + 0x480) = 0;
+  *(DataWord *)(validationContext + 0x480) = 0;
   *(uint8_t8 *)(validationContext + 0x468) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40596,7 +40596,7 @@ void Unwind_180903910(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x500) = 0;
-  *(uint8_t4 *)(validationContext + 0x510) = 0;
+  *(DataWord *)(validationContext + 0x510) = 0;
   *(uint8_t8 *)(validationContext + 0x4f8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4e0) != 0) {
@@ -40604,7 +40604,7 @@ void Unwind_180903910(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x4f0) = 0;
+  *(DataWord *)(validationContext + 0x4f0) = 0;
   *(uint8_t8 *)(validationContext + 0x4d8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40626,7 +40626,7 @@ void Unwind_180903930(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x570) = 0;
-  *(uint8_t4 *)(validationContext + 0x580) = 0;
+  *(DataWord *)(validationContext + 0x580) = 0;
   *(uint8_t8 *)(validationContext + 0x568) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x550) != 0) {
@@ -40634,7 +40634,7 @@ void Unwind_180903930(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x550) = 0;
-  *(uint8_t4 *)(validationContext + 0x560) = 0;
+  *(DataWord *)(validationContext + 0x560) = 0;
   *(uint8_t8 *)(validationContext + 0x548) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40656,7 +40656,7 @@ void Unwind_180903950(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x5f0) = 0;
+  *(DataWord *)(validationContext + 0x5f0) = 0;
   *(uint8_t8 *)(validationContext + 0x5d8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x5b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5c0) != 0) {
@@ -40664,7 +40664,7 @@ void Unwind_180903950(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x5d0) = 0;
+  *(DataWord *)(validationContext + 0x5d0) = 0;
   *(uint8_t8 *)(validationContext + 0x5b8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40686,7 +40686,7 @@ void Unwind_180903970(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x650) = 0;
-  *(uint8_t4 *)(validationContext + 0x660) = 0;
+  *(DataWord *)(validationContext + 0x660) = 0;
   *(uint8_t8 *)(validationContext + 0x648) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x628) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x630) != 0) {
@@ -40694,7 +40694,7 @@ void Unwind_180903970(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x630) = 0;
-  *(uint8_t4 *)(validationContext + 0x640) = 0;
+  *(DataWord *)(validationContext + 0x640) = 0;
   *(uint8_t8 *)(validationContext + 0x628) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40716,7 +40716,7 @@ void Unwind_180903990(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x6c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x6d0) = 0;
+  *(DataWord *)(validationContext + 0x6d0) = 0;
   *(uint8_t8 *)(validationContext + 0x6b8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x698) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x6a0) != 0) {
@@ -40724,7 +40724,7 @@ void Unwind_180903990(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x6a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x6b0) = 0;
+  *(DataWord *)(validationContext + 0x6b0) = 0;
   *(uint8_t8 *)(validationContext + 0x698) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40754,7 +40754,7 @@ void ValidateExceptionContextA0(uint8_t8 exceptionContext, int64_t contextPointe
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x730) = 0;
-  *(uint8_t4 *)(validationContext + 0x740) = 0;
+  *(DataWord *)(validationContext + 0x740) = 0;
   *(uint8_t8 *)(validationContext + 0x728) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x708) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x710) != 0) {
@@ -40762,7 +40762,7 @@ void ValidateExceptionContextA0(uint8_t8 exceptionContext, int64_t contextPointe
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x710) = 0;
-  *(uint8_t4 *)(validationContext + 0x720) = 0;
+  *(DataWord *)(validationContext + 0x720) = 0;
   *(uint8_t8 *)(validationContext + 0x708) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40784,7 +40784,7 @@ void Unwind_1809039d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x7b0) = 0;
+  *(DataWord *)(validationContext + 0x7b0) = 0;
   *(uint8_t8 *)(validationContext + 0x798) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x778) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x780) != 0) {
@@ -40792,7 +40792,7 @@ void Unwind_1809039d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x780) = 0;
-  *(uint8_t4 *)(validationContext + 0x790) = 0;
+  *(DataWord *)(validationContext + 0x790) = 0;
   *(uint8_t8 *)(validationContext + 0x778) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40814,7 +40814,7 @@ void Unwind_1809039f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x810) = 0;
-  *(uint8_t4 *)(validationContext + 0x820) = 0;
+  *(DataWord *)(validationContext + 0x820) = 0;
   *(uint8_t8 *)(validationContext + 0x808) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x7e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7f0) != 0) {
@@ -40822,7 +40822,7 @@ void Unwind_1809039f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x800) = 0;
+  *(DataWord *)(validationContext + 0x800) = 0;
   *(uint8_t8 *)(validationContext + 0x7e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40844,7 +40844,7 @@ void Unwind_180903a10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x880) = 0;
-  *(uint8_t4 *)(validationContext + 0x890) = 0;
+  *(DataWord *)(validationContext + 0x890) = 0;
   *(uint8_t8 *)(validationContext + 0x878) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x858) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x860) != 0) {
@@ -40852,7 +40852,7 @@ void Unwind_180903a10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x860) = 0;
-  *(uint8_t4 *)(validationContext + 0x870) = 0;
+  *(DataWord *)(validationContext + 0x870) = 0;
   *(uint8_t8 *)(validationContext + 0x858) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40874,7 +40874,7 @@ void Unwind_180903a30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x900) = 0;
+  *(DataWord *)(validationContext + 0x900) = 0;
   *(uint8_t8 *)(validationContext + 0x8e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x8c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8d0) != 0) {
@@ -40882,7 +40882,7 @@ void Unwind_180903a30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x8e0) = 0;
+  *(DataWord *)(validationContext + 0x8e0) = 0;
   *(uint8_t8 *)(validationContext + 0x8c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40904,7 +40904,7 @@ void Unwind_180903a50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x960) = 0;
-  *(uint8_t4 *)(validationContext + 0x970) = 0;
+  *(DataWord *)(validationContext + 0x970) = 0;
   *(uint8_t8 *)(validationContext + 0x958) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x938) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x940) != 0) {
@@ -40912,7 +40912,7 @@ void Unwind_180903a50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x940) = 0;
-  *(uint8_t4 *)(validationContext + 0x950) = 0;
+  *(DataWord *)(validationContext + 0x950) = 0;
   *(uint8_t8 *)(validationContext + 0x938) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40934,7 +40934,7 @@ void Unwind_180903a70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9d8) = 0;
-  *(uint8_t4 *)(validationContext + 0x9e8) = 0;
+  *(DataWord *)(validationContext + 0x9e8) = 0;
   *(uint8_t8 *)(validationContext + 0x9d0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x9b0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9b8) != 0) {
@@ -40942,7 +40942,7 @@ void Unwind_180903a70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9b8) = 0;
-  *(uint8_t4 *)(validationContext + 0x9c8) = 0;
+  *(DataWord *)(validationContext + 0x9c8) = 0;
   *(uint8_t8 *)(validationContext + 0x9b0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -40964,7 +40964,7 @@ void Unwind_180903a90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa50) = 0;
-  *(uint8_t4 *)(validationContext + 0xa60) = 0;
+  *(DataWord *)(validationContext + 0xa60) = 0;
   *(uint8_t8 *)(validationContext + 0xa48) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa30) != 0) {
@@ -40972,7 +40972,7 @@ void Unwind_180903a90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa30) = 0;
-  *(uint8_t4 *)(validationContext + 0xa40) = 0;
+  *(DataWord *)(validationContext + 0xa40) = 0;
   *(uint8_t8 *)(validationContext + 0xa28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41005,7 +41005,7 @@ void Unwind_180903ac0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x18) = 0;
-  *(uint8_t4 *)(validationContext + 0x28) = 0;
+  *(DataWord *)(validationContext + 0x28) = 0;
   *(uint8_t8 *)(validationContext + 0x10) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41024,7 +41024,7 @@ void Unwind_180903ad0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x38) = 0;
-  *(uint8_t4 *)(validationContext + 0x48) = 0;
+  *(DataWord *)(validationContext + 0x48) = 0;
   *(uint8_t8 *)(validationContext + 0x30) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41074,7 +41074,7 @@ void Unwind_180903b00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x490) = 0;
-  *(uint8_t4 *)(validationContext + 0x4a0) = 0;
+  *(DataWord *)(validationContext + 0x4a0) = 0;
   *(uint8_t8 *)(validationContext + 0x488) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x468) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x470) != 0) {
@@ -41082,7 +41082,7 @@ void Unwind_180903b00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x470) = 0;
-  *(uint8_t4 *)(validationContext + 0x480) = 0;
+  *(DataWord *)(validationContext + 0x480) = 0;
   *(uint8_t8 *)(validationContext + 0x468) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41104,7 +41104,7 @@ void Unwind_180903b20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x500) = 0;
-  *(uint8_t4 *)(validationContext + 0x510) = 0;
+  *(DataWord *)(validationContext + 0x510) = 0;
   *(uint8_t8 *)(validationContext + 0x4f8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4e0) != 0) {
@@ -41112,7 +41112,7 @@ void Unwind_180903b20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x4f0) = 0;
+  *(DataWord *)(validationContext + 0x4f0) = 0;
   *(uint8_t8 *)(validationContext + 0x4d8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41134,7 +41134,7 @@ void Unwind_180903b40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x570) = 0;
-  *(uint8_t4 *)(validationContext + 0x580) = 0;
+  *(DataWord *)(validationContext + 0x580) = 0;
   *(uint8_t8 *)(validationContext + 0x568) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x548) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x550) != 0) {
@@ -41142,7 +41142,7 @@ void Unwind_180903b40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x550) = 0;
-  *(uint8_t4 *)(validationContext + 0x560) = 0;
+  *(DataWord *)(validationContext + 0x560) = 0;
   *(uint8_t8 *)(validationContext + 0x548) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41164,7 +41164,7 @@ void Unwind_180903b60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x5f0) = 0;
+  *(DataWord *)(validationContext + 0x5f0) = 0;
   *(uint8_t8 *)(validationContext + 0x5d8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x5b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5c0) != 0) {
@@ -41172,7 +41172,7 @@ void Unwind_180903b60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x5d0) = 0;
+  *(DataWord *)(validationContext + 0x5d0) = 0;
   *(uint8_t8 *)(validationContext + 0x5b8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41194,7 +41194,7 @@ void Unwind_180903b80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x650) = 0;
-  *(uint8_t4 *)(validationContext + 0x660) = 0;
+  *(DataWord *)(validationContext + 0x660) = 0;
   *(uint8_t8 *)(validationContext + 0x648) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x628) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x630) != 0) {
@@ -41202,7 +41202,7 @@ void Unwind_180903b80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x630) = 0;
-  *(uint8_t4 *)(validationContext + 0x640) = 0;
+  *(DataWord *)(validationContext + 0x640) = 0;
   *(uint8_t8 *)(validationContext + 0x628) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41224,7 +41224,7 @@ void Unwind_180903ba0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x6c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x6d0) = 0;
+  *(DataWord *)(validationContext + 0x6d0) = 0;
   *(uint8_t8 *)(validationContext + 0x6b8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x698) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x6a0) != 0) {
@@ -41232,7 +41232,7 @@ void Unwind_180903ba0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x6a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x6b0) = 0;
+  *(DataWord *)(validationContext + 0x6b0) = 0;
   *(uint8_t8 *)(validationContext + 0x698) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41254,7 +41254,7 @@ void Unwind_180903bc0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x730) = 0;
-  *(uint8_t4 *)(validationContext + 0x740) = 0;
+  *(DataWord *)(validationContext + 0x740) = 0;
   *(uint8_t8 *)(validationContext + 0x728) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x708) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x710) != 0) {
@@ -41262,7 +41262,7 @@ void Unwind_180903bc0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x710) = 0;
-  *(uint8_t4 *)(validationContext + 0x720) = 0;
+  *(DataWord *)(validationContext + 0x720) = 0;
   *(uint8_t8 *)(validationContext + 0x708) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41284,7 +41284,7 @@ void Unwind_180903be0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x7b0) = 0;
+  *(DataWord *)(validationContext + 0x7b0) = 0;
   *(uint8_t8 *)(validationContext + 0x798) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x778) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x780) != 0) {
@@ -41292,7 +41292,7 @@ void Unwind_180903be0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x780) = 0;
-  *(uint8_t4 *)(validationContext + 0x790) = 0;
+  *(DataWord *)(validationContext + 0x790) = 0;
   *(uint8_t8 *)(validationContext + 0x778) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41314,7 +41314,7 @@ void Unwind_180903c00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x810) = 0;
-  *(uint8_t4 *)(validationContext + 0x820) = 0;
+  *(DataWord *)(validationContext + 0x820) = 0;
   *(uint8_t8 *)(validationContext + 0x808) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x7e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7f0) != 0) {
@@ -41322,7 +41322,7 @@ void Unwind_180903c00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x800) = 0;
+  *(DataWord *)(validationContext + 0x800) = 0;
   *(uint8_t8 *)(validationContext + 0x7e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41344,7 +41344,7 @@ void Unwind_180903c20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x880) = 0;
-  *(uint8_t4 *)(validationContext + 0x890) = 0;
+  *(DataWord *)(validationContext + 0x890) = 0;
   *(uint8_t8 *)(validationContext + 0x878) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x858) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x860) != 0) {
@@ -41352,7 +41352,7 @@ void Unwind_180903c20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x860) = 0;
-  *(uint8_t4 *)(validationContext + 0x870) = 0;
+  *(DataWord *)(validationContext + 0x870) = 0;
   *(uint8_t8 *)(validationContext + 0x858) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41374,7 +41374,7 @@ void Unwind_180903c40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x900) = 0;
+  *(DataWord *)(validationContext + 0x900) = 0;
   *(uint8_t8 *)(validationContext + 0x8e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x8c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8d0) != 0) {
@@ -41382,7 +41382,7 @@ void Unwind_180903c40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x8e0) = 0;
+  *(DataWord *)(validationContext + 0x8e0) = 0;
   *(uint8_t8 *)(validationContext + 0x8c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41404,7 +41404,7 @@ void Unwind_180903c60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x960) = 0;
-  *(uint8_t4 *)(validationContext + 0x970) = 0;
+  *(DataWord *)(validationContext + 0x970) = 0;
   *(uint8_t8 *)(validationContext + 0x958) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x938) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x940) != 0) {
@@ -41412,7 +41412,7 @@ void Unwind_180903c60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x940) = 0;
-  *(uint8_t4 *)(validationContext + 0x950) = 0;
+  *(DataWord *)(validationContext + 0x950) = 0;
   *(uint8_t8 *)(validationContext + 0x938) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41434,7 +41434,7 @@ void Unwind_180903c80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9d8) = 0;
-  *(uint8_t4 *)(validationContext + 0x9e8) = 0;
+  *(DataWord *)(validationContext + 0x9e8) = 0;
   *(uint8_t8 *)(validationContext + 0x9d0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x9b0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9b8) != 0) {
@@ -41442,7 +41442,7 @@ void Unwind_180903c80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9b8) = 0;
-  *(uint8_t4 *)(validationContext + 0x9c8) = 0;
+  *(DataWord *)(validationContext + 0x9c8) = 0;
   *(uint8_t8 *)(validationContext + 0x9b0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41464,7 +41464,7 @@ void Unwind_180903ca0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa50) = 0;
-  *(uint8_t4 *)(validationContext + 0xa60) = 0;
+  *(DataWord *)(validationContext + 0xa60) = 0;
   *(uint8_t8 *)(validationContext + 0xa48) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa30) != 0) {
@@ -41472,7 +41472,7 @@ void Unwind_180903ca0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa30) = 0;
-  *(uint8_t4 *)(validationContext + 0xa40) = 0;
+  *(DataWord *)(validationContext + 0xa40) = 0;
   *(uint8_t8 *)(validationContext + 0xa28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41491,7 +41491,7 @@ void Unwind_180903cc0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x18) = 0;
-  *(uint8_t4 *)(validationContext + 0x28) = 0;
+  *(DataWord *)(validationContext + 0x28) = 0;
   *(uint8_t8 *)(validationContext + 0x10) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41510,7 +41510,7 @@ void Unwind_180903cd0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x38) = 0;
-  *(uint8_t4 *)(validationContext + 0x48) = 0;
+  *(DataWord *)(validationContext + 0x48) = 0;
   *(uint8_t8 *)(validationContext + 0x30) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41546,7 +41546,7 @@ void Unwind_180903cf0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x168) = 0;
-  *(uint8_t4 *)(validationContext + 0x178) = 0;
+  *(DataWord *)(validationContext + 0x178) = 0;
   *(uint8_t8 *)(validationContext + 0x160) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x140) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x148) != 0) {
@@ -41554,7 +41554,7 @@ void Unwind_180903cf0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x148) = 0;
-  *(uint8_t4 *)(validationContext + 0x158) = 0;
+  *(DataWord *)(validationContext + 0x158) = 0;
   *(uint8_t8 *)(validationContext + 0x140) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x120) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x128) != 0) {
@@ -41562,7 +41562,7 @@ void Unwind_180903cf0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x128) = 0;
-  *(uint8_t4 *)(validationContext + 0x138) = 0;
+  *(DataWord *)(validationContext + 0x138) = 0;
   *(uint8_t8 *)(validationContext + 0x120) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x100) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x108) != 0) {
@@ -41570,7 +41570,7 @@ void Unwind_180903cf0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x108) = 0;
-  *(uint8_t4 *)(validationContext + 0x118) = 0;
+  *(DataWord *)(validationContext + 0x118) = 0;
   *(uint8_t8 *)(validationContext + 0x100) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe8) != 0) {
@@ -41578,7 +41578,7 @@ void Unwind_180903cf0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe8) = 0;
-  *(uint8_t4 *)(validationContext + 0xf8) = 0;
+  *(DataWord *)(validationContext + 0xf8) = 0;
   *(uint8_t8 *)(validationContext + 0xe0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41600,7 +41600,7 @@ void Unwind_180903d10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x228) = 0;
-  *(uint8_t4 *)(validationContext + 0x238) = 0;
+  *(DataWord *)(validationContext + 0x238) = 0;
   *(uint8_t8 *)(validationContext + 0x220) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x200) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x208) != 0) {
@@ -41608,7 +41608,7 @@ void Unwind_180903d10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x208) = 0;
-  *(uint8_t4 *)(validationContext + 0x218) = 0;
+  *(DataWord *)(validationContext + 0x218) = 0;
   *(uint8_t8 *)(validationContext + 0x200) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1e8) != 0) {
@@ -41616,7 +41616,7 @@ void Unwind_180903d10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x1f8) = 0;
+  *(DataWord *)(validationContext + 0x1f8) = 0;
   *(uint8_t8 *)(validationContext + 0x1e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1c8) != 0) {
@@ -41624,7 +41624,7 @@ void Unwind_180903d10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d8) = 0;
+  *(DataWord *)(validationContext + 0x1d8) = 0;
   *(uint8_t8 *)(validationContext + 0x1c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1a8) != 0) {
@@ -41632,7 +41632,7 @@ void Unwind_180903d10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x1b8) = 0;
+  *(DataWord *)(validationContext + 0x1b8) = 0;
   *(uint8_t8 *)(validationContext + 0x1a0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41654,7 +41654,7 @@ void Unwind_180903d30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x2f8) = 0;
+  *(DataWord *)(validationContext + 0x2f8) = 0;
   *(uint8_t8 *)(validationContext + 0x2e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2c8) != 0) {
@@ -41662,7 +41662,7 @@ void Unwind_180903d30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x2d8) = 0;
+  *(DataWord *)(validationContext + 0x2d8) = 0;
   *(uint8_t8 *)(validationContext + 0x2c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2a8) != 0) {
@@ -41670,7 +41670,7 @@ void Unwind_180903d30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x2b8) = 0;
+  *(DataWord *)(validationContext + 0x2b8) = 0;
   *(uint8_t8 *)(validationContext + 0x2a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x280) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x288) != 0) {
@@ -41678,7 +41678,7 @@ void Unwind_180903d30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x288) = 0;
-  *(uint8_t4 *)(validationContext + 0x298) = 0;
+  *(DataWord *)(validationContext + 0x298) = 0;
   *(uint8_t8 *)(validationContext + 0x280) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x260) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x268) != 0) {
@@ -41686,7 +41686,7 @@ void Unwind_180903d30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x268) = 0;
-  *(uint8_t4 *)(validationContext + 0x278) = 0;
+  *(DataWord *)(validationContext + 0x278) = 0;
   *(uint8_t8 *)(validationContext + 0x260) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41708,7 +41708,7 @@ void Unwind_180903d50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x3a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x3b8) = 0;
+  *(DataWord *)(validationContext + 0x3b8) = 0;
   *(uint8_t8 *)(validationContext + 0x3a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x380) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x388) != 0) {
@@ -41716,7 +41716,7 @@ void Unwind_180903d50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x388) = 0;
-  *(uint8_t4 *)(validationContext + 0x398) = 0;
+  *(DataWord *)(validationContext + 0x398) = 0;
   *(uint8_t8 *)(validationContext + 0x380) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x360) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x368) != 0) {
@@ -41724,7 +41724,7 @@ void Unwind_180903d50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x368) = 0;
-  *(uint8_t4 *)(validationContext + 0x378) = 0;
+  *(DataWord *)(validationContext + 0x378) = 0;
   *(uint8_t8 *)(validationContext + 0x360) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x340) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x348) != 0) {
@@ -41732,7 +41732,7 @@ void Unwind_180903d50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x348) = 0;
-  *(uint8_t4 *)(validationContext + 0x358) = 0;
+  *(DataWord *)(validationContext + 0x358) = 0;
   *(uint8_t8 *)(validationContext + 0x340) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 800) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x328) != 0) {
@@ -41740,7 +41740,7 @@ void Unwind_180903d50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x328) = 0;
-  *(uint8_t4 *)(validationContext + 0x338) = 0;
+  *(DataWord *)(validationContext + 0x338) = 0;
   *(uint8_t8 *)(validationContext + 800) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41762,7 +41762,7 @@ void Unwind_180903d70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x468) = 0;
-  *(uint8_t4 *)(validationContext + 0x478) = 0;
+  *(DataWord *)(validationContext + 0x478) = 0;
   *(uint8_t8 *)(validationContext + 0x460) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x440) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x448) != 0) {
@@ -41770,7 +41770,7 @@ void Unwind_180903d70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x448) = 0;
-  *(uint8_t4 *)(validationContext + 0x458) = 0;
+  *(DataWord *)(validationContext + 0x458) = 0;
   *(uint8_t8 *)(validationContext + 0x440) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x420) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x428) != 0) {
@@ -41778,7 +41778,7 @@ void Unwind_180903d70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x428) = 0;
-  *(uint8_t4 *)(validationContext + 0x438) = 0;
+  *(DataWord *)(validationContext + 0x438) = 0;
   *(uint8_t8 *)(validationContext + 0x420) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x400) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x408) != 0) {
@@ -41786,7 +41786,7 @@ void Unwind_180903d70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x408) = 0;
-  *(uint8_t4 *)(validationContext + 0x418) = 0;
+  *(DataWord *)(validationContext + 0x418) = 0;
   *(uint8_t8 *)(validationContext + 0x400) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x3e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 1000) != 0) {
@@ -41794,7 +41794,7 @@ void Unwind_180903d70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 1000) = 0;
-  *(uint8_t4 *)(validationContext + 0x3f8) = 0;
+  *(DataWord *)(validationContext + 0x3f8) = 0;
   *(uint8_t8 *)(validationContext + 0x3e0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41816,7 +41816,7 @@ void Unwind_180903d90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x528) = 0;
-  *(uint8_t4 *)(validationContext + 0x538) = 0;
+  *(DataWord *)(validationContext + 0x538) = 0;
   *(uint8_t8 *)(validationContext + 0x520) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x500) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x508) != 0) {
@@ -41824,7 +41824,7 @@ void Unwind_180903d90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x508) = 0;
-  *(uint8_t4 *)(validationContext + 0x518) = 0;
+  *(DataWord *)(validationContext + 0x518) = 0;
   *(uint8_t8 *)(validationContext + 0x500) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
@@ -41832,7 +41832,7 @@ void Unwind_180903d90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4f8) = 0;
+  *(DataWord *)(validationContext + 0x4f8) = 0;
   *(uint8_t8 *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
@@ -41840,7 +41840,7 @@ void Unwind_180903d90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4d8) = 0;
+  *(DataWord *)(validationContext + 0x4d8) = 0;
   *(uint8_t8 *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
@@ -41848,7 +41848,7 @@ void Unwind_180903d90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4b8) = 0;
+  *(DataWord *)(validationContext + 0x4b8) = 0;
   *(uint8_t8 *)(validationContext + 0x4a0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41870,7 +41870,7 @@ void Unwind_180903db0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x5f8) = 0;
+  *(DataWord *)(validationContext + 0x5f8) = 0;
   *(uint8_t8 *)(validationContext + 0x5e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x5c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5c8) != 0) {
@@ -41878,7 +41878,7 @@ void Unwind_180903db0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x5d8) = 0;
+  *(DataWord *)(validationContext + 0x5d8) = 0;
   *(uint8_t8 *)(validationContext + 0x5c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x5a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5a8) != 0) {
@@ -41886,7 +41886,7 @@ void Unwind_180903db0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x5b8) = 0;
+  *(DataWord *)(validationContext + 0x5b8) = 0;
   *(uint8_t8 *)(validationContext + 0x5a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x580) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x588) != 0) {
@@ -41894,7 +41894,7 @@ void Unwind_180903db0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x588) = 0;
-  *(uint8_t4 *)(validationContext + 0x598) = 0;
+  *(DataWord *)(validationContext + 0x598) = 0;
   *(uint8_t8 *)(validationContext + 0x580) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x560) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x568) != 0) {
@@ -41902,7 +41902,7 @@ void Unwind_180903db0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x568) = 0;
-  *(uint8_t4 *)(validationContext + 0x578) = 0;
+  *(DataWord *)(validationContext + 0x578) = 0;
   *(uint8_t8 *)(validationContext + 0x560) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41924,7 +41924,7 @@ void Unwind_180903dd0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x6a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x6b8) = 0;
+  *(DataWord *)(validationContext + 0x6b8) = 0;
   *(uint8_t8 *)(validationContext + 0x6a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x680) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x688) != 0) {
@@ -41932,7 +41932,7 @@ void Unwind_180903dd0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x688) = 0;
-  *(uint8_t4 *)(validationContext + 0x698) = 0;
+  *(DataWord *)(validationContext + 0x698) = 0;
   *(uint8_t8 *)(validationContext + 0x680) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x660) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x668) != 0) {
@@ -41940,7 +41940,7 @@ void Unwind_180903dd0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x668) = 0;
-  *(uint8_t4 *)(validationContext + 0x678) = 0;
+  *(DataWord *)(validationContext + 0x678) = 0;
   *(uint8_t8 *)(validationContext + 0x660) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x640) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x648) != 0) {
@@ -41948,7 +41948,7 @@ void Unwind_180903dd0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x648) = 0;
-  *(uint8_t4 *)(validationContext + 0x658) = 0;
+  *(DataWord *)(validationContext + 0x658) = 0;
   *(uint8_t8 *)(validationContext + 0x640) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x620) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x628) != 0) {
@@ -41956,7 +41956,7 @@ void Unwind_180903dd0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x628) = 0;
-  *(uint8_t4 *)(validationContext + 0x638) = 0;
+  *(DataWord *)(validationContext + 0x638) = 0;
   *(uint8_t8 *)(validationContext + 0x620) = &DefaultExceptionHandlerB;
   return;
 }
@@ -41978,7 +41978,7 @@ void Unwind_180903df0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x768) = 0;
-  *(uint8_t4 *)(validationContext + 0x778) = 0;
+  *(DataWord *)(validationContext + 0x778) = 0;
   *(uint8_t8 *)(validationContext + 0x760) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x740) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x748) != 0) {
@@ -41986,7 +41986,7 @@ void Unwind_180903df0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x748) = 0;
-  *(uint8_t4 *)(validationContext + 0x758) = 0;
+  *(DataWord *)(validationContext + 0x758) = 0;
   *(uint8_t8 *)(validationContext + 0x740) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x720) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x728) != 0) {
@@ -41994,7 +41994,7 @@ void Unwind_180903df0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x728) = 0;
-  *(uint8_t4 *)(validationContext + 0x738) = 0;
+  *(DataWord *)(validationContext + 0x738) = 0;
   *(uint8_t8 *)(validationContext + 0x720) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x700) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x708) != 0) {
@@ -42002,7 +42002,7 @@ void Unwind_180903df0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x708) = 0;
-  *(uint8_t4 *)(validationContext + 0x718) = 0;
+  *(DataWord *)(validationContext + 0x718) = 0;
   *(uint8_t8 *)(validationContext + 0x700) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x6e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x6e8) != 0) {
@@ -42010,7 +42010,7 @@ void Unwind_180903df0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x6e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x6f8) = 0;
+  *(DataWord *)(validationContext + 0x6f8) = 0;
   *(uint8_t8 *)(validationContext + 0x6e0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42032,7 +42032,7 @@ void Unwind_180903e10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x828) = 0;
-  *(uint8_t4 *)(validationContext + 0x838) = 0;
+  *(DataWord *)(validationContext + 0x838) = 0;
   *(uint8_t8 *)(validationContext + 0x820) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x800) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x808) != 0) {
@@ -42040,7 +42040,7 @@ void Unwind_180903e10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x808) = 0;
-  *(uint8_t4 *)(validationContext + 0x818) = 0;
+  *(DataWord *)(validationContext + 0x818) = 0;
   *(uint8_t8 *)(validationContext + 0x800) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x7e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7e8) != 0) {
@@ -42048,7 +42048,7 @@ void Unwind_180903e10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x7f8) = 0;
+  *(DataWord *)(validationContext + 0x7f8) = 0;
   *(uint8_t8 *)(validationContext + 0x7e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x7c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7c8) != 0) {
@@ -42056,7 +42056,7 @@ void Unwind_180903e10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x7d8) = 0;
+  *(DataWord *)(validationContext + 0x7d8) = 0;
   *(uint8_t8 *)(validationContext + 0x7c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x7a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7a8) != 0) {
@@ -42064,7 +42064,7 @@ void Unwind_180903e10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x7b8) = 0;
+  *(DataWord *)(validationContext + 0x7b8) = 0;
   *(uint8_t8 *)(validationContext + 0x7a0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42086,7 +42086,7 @@ void Unwind_180903e30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x8f8) = 0;
+  *(DataWord *)(validationContext + 0x8f8) = 0;
   *(uint8_t8 *)(validationContext + 0x8e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x8c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8c8) != 0) {
@@ -42094,7 +42094,7 @@ void Unwind_180903e30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x8d8) = 0;
+  *(DataWord *)(validationContext + 0x8d8) = 0;
   *(uint8_t8 *)(validationContext + 0x8c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x8a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8a8) != 0) {
@@ -42102,7 +42102,7 @@ void Unwind_180903e30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x8b8) = 0;
+  *(DataWord *)(validationContext + 0x8b8) = 0;
   *(uint8_t8 *)(validationContext + 0x8a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x880) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x888) != 0) {
@@ -42110,7 +42110,7 @@ void Unwind_180903e30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x888) = 0;
-  *(uint8_t4 *)(validationContext + 0x898) = 0;
+  *(DataWord *)(validationContext + 0x898) = 0;
   *(uint8_t8 *)(validationContext + 0x880) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x860) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x868) != 0) {
@@ -42118,7 +42118,7 @@ void Unwind_180903e30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x868) = 0;
-  *(uint8_t4 *)(validationContext + 0x878) = 0;
+  *(DataWord *)(validationContext + 0x878) = 0;
   *(uint8_t8 *)(validationContext + 0x860) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42140,7 +42140,7 @@ void Unwind_180903e50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x9b8) = 0;
+  *(DataWord *)(validationContext + 0x9b8) = 0;
   *(uint8_t8 *)(validationContext + 0x9a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x980) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x988) != 0) {
@@ -42148,7 +42148,7 @@ void Unwind_180903e50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x988) = 0;
-  *(uint8_t4 *)(validationContext + 0x998) = 0;
+  *(DataWord *)(validationContext + 0x998) = 0;
   *(uint8_t8 *)(validationContext + 0x980) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x960) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x968) != 0) {
@@ -42156,7 +42156,7 @@ void Unwind_180903e50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x968) = 0;
-  *(uint8_t4 *)(validationContext + 0x978) = 0;
+  *(DataWord *)(validationContext + 0x978) = 0;
   *(uint8_t8 *)(validationContext + 0x960) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x940) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x948) != 0) {
@@ -42164,7 +42164,7 @@ void Unwind_180903e50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x948) = 0;
-  *(uint8_t4 *)(validationContext + 0x958) = 0;
+  *(DataWord *)(validationContext + 0x958) = 0;
   *(uint8_t8 *)(validationContext + 0x940) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x920) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x928) != 0) {
@@ -42172,7 +42172,7 @@ void Unwind_180903e50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x928) = 0;
-  *(uint8_t4 *)(validationContext + 0x938) = 0;
+  *(DataWord *)(validationContext + 0x938) = 0;
   *(uint8_t8 *)(validationContext + 0x920) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42194,7 +42194,7 @@ void Unwind_180903e70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa68) = 0;
-  *(uint8_t4 *)(validationContext + 0xa78) = 0;
+  *(DataWord *)(validationContext + 0xa78) = 0;
   *(uint8_t8 *)(validationContext + 0xa60) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa40) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa48) != 0) {
@@ -42202,7 +42202,7 @@ void Unwind_180903e70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa48) = 0;
-  *(uint8_t4 *)(validationContext + 0xa58) = 0;
+  *(DataWord *)(validationContext + 0xa58) = 0;
   *(uint8_t8 *)(validationContext + 0xa40) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa28) != 0) {
@@ -42210,7 +42210,7 @@ void Unwind_180903e70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa28) = 0;
-  *(uint8_t4 *)(validationContext + 0xa38) = 0;
+  *(DataWord *)(validationContext + 0xa38) = 0;
   *(uint8_t8 *)(validationContext + 0xa20) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa00) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa08) != 0) {
@@ -42218,7 +42218,7 @@ void Unwind_180903e70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa08) = 0;
-  *(uint8_t4 *)(validationContext + 0xa18) = 0;
+  *(DataWord *)(validationContext + 0xa18) = 0;
   *(uint8_t8 *)(validationContext + 0xa00) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x9e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9e8) != 0) {
@@ -42226,7 +42226,7 @@ void Unwind_180903e70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x9f8) = 0;
+  *(DataWord *)(validationContext + 0x9f8) = 0;
   *(uint8_t8 *)(validationContext + 0x9e0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42248,7 +42248,7 @@ void Unwind_180903e90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb28) = 0;
-  *(uint8_t4 *)(validationContext + 0xb38) = 0;
+  *(DataWord *)(validationContext + 0xb38) = 0;
   *(uint8_t8 *)(validationContext + 0xb20) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xb00) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb08) != 0) {
@@ -42256,7 +42256,7 @@ void Unwind_180903e90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb08) = 0;
-  *(uint8_t4 *)(validationContext + 0xb18) = 0;
+  *(DataWord *)(validationContext + 0xb18) = 0;
   *(uint8_t8 *)(validationContext + 0xb00) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xae0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xae8) != 0) {
@@ -42264,7 +42264,7 @@ void Unwind_180903e90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xae8) = 0;
-  *(uint8_t4 *)(validationContext + 0xaf8) = 0;
+  *(DataWord *)(validationContext + 0xaf8) = 0;
   *(uint8_t8 *)(validationContext + 0xae0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xac0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xac8) != 0) {
@@ -42272,7 +42272,7 @@ void Unwind_180903e90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xac8) = 0;
-  *(uint8_t4 *)(validationContext + 0xad8) = 0;
+  *(DataWord *)(validationContext + 0xad8) = 0;
   *(uint8_t8 *)(validationContext + 0xac0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xaa0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xaa8) != 0) {
@@ -42280,7 +42280,7 @@ void Unwind_180903e90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xaa8) = 0;
-  *(uint8_t4 *)(validationContext + 0xab8) = 0;
+  *(DataWord *)(validationContext + 0xab8) = 0;
   *(uint8_t8 *)(validationContext + 0xaa0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42302,7 +42302,7 @@ void Unwind_180903eb0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xbe8) = 0;
-  *(uint8_t4 *)(validationContext + 0xbf8) = 0;
+  *(DataWord *)(validationContext + 0xbf8) = 0;
   *(uint8_t8 *)(validationContext + 0xbe0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xbc0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xbc8) != 0) {
@@ -42310,7 +42310,7 @@ void Unwind_180903eb0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xbc8) = 0;
-  *(uint8_t4 *)(validationContext + 0xbd8) = 0;
+  *(DataWord *)(validationContext + 0xbd8) = 0;
   *(uint8_t8 *)(validationContext + 0xbc0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xba0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xba8) != 0) {
@@ -42318,7 +42318,7 @@ void Unwind_180903eb0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xba8) = 0;
-  *(uint8_t4 *)(validationContext + 3000) = 0;
+  *(DataWord *)(validationContext + 3000) = 0;
   *(uint8_t8 *)(validationContext + 0xba0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xb80) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb88) != 0) {
@@ -42326,7 +42326,7 @@ void Unwind_180903eb0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb88) = 0;
-  *(uint8_t4 *)(validationContext + 0xb98) = 0;
+  *(DataWord *)(validationContext + 0xb98) = 0;
   *(uint8_t8 *)(validationContext + 0xb80) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xb60) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb68) != 0) {
@@ -42334,7 +42334,7 @@ void Unwind_180903eb0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb68) = 0;
-  *(uint8_t4 *)(validationContext + 0xb78) = 0;
+  *(DataWord *)(validationContext + 0xb78) = 0;
   *(uint8_t8 *)(validationContext + 0xb60) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42356,7 +42356,7 @@ void Unwind_180903ed0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xca8) = 0;
-  *(uint8_t4 *)(validationContext + 0xcb8) = 0;
+  *(DataWord *)(validationContext + 0xcb8) = 0;
   *(uint8_t8 *)(validationContext + 0xca0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc80) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc88) != 0) {
@@ -42364,7 +42364,7 @@ void Unwind_180903ed0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc88) = 0;
-  *(uint8_t4 *)(validationContext + 0xc98) = 0;
+  *(DataWord *)(validationContext + 0xc98) = 0;
   *(uint8_t8 *)(validationContext + 0xc80) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc60) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc68) != 0) {
@@ -42372,7 +42372,7 @@ void Unwind_180903ed0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc68) = 0;
-  *(uint8_t4 *)(validationContext + 0xc78) = 0;
+  *(DataWord *)(validationContext + 0xc78) = 0;
   *(uint8_t8 *)(validationContext + 0xc60) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc40) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc48) != 0) {
@@ -42380,7 +42380,7 @@ void Unwind_180903ed0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc48) = 0;
-  *(uint8_t4 *)(validationContext + 0xc58) = 0;
+  *(DataWord *)(validationContext + 0xc58) = 0;
   *(uint8_t8 *)(validationContext + 0xc40) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc28) != 0) {
@@ -42388,7 +42388,7 @@ void Unwind_180903ed0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc28) = 0;
-  *(uint8_t4 *)(validationContext + 0xc38) = 0;
+  *(DataWord *)(validationContext + 0xc38) = 0;
   *(uint8_t8 *)(validationContext + 0xc20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42410,7 +42410,7 @@ void Unwind_180903ef0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd10) = 0;
-  *(uint8_t4 *)(validationContext + 0xd20) = 0;
+  *(DataWord *)(validationContext + 0xd20) = 0;
   *(uint8_t8 *)(validationContext + 0xd08) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xce8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xcf0) != 0) {
@@ -42418,7 +42418,7 @@ void Unwind_180903ef0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xcf0) = 0;
-  *(uint8_t4 *)(validationContext + 0xd00) = 0;
+  *(DataWord *)(validationContext + 0xd00) = 0;
   *(uint8_t8 *)(validationContext + 0xce8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42440,7 +42440,7 @@ void Unwind_180903f10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd80) = 0;
-  *(uint8_t4 *)(validationContext + 0xd90) = 0;
+  *(DataWord *)(validationContext + 0xd90) = 0;
   *(uint8_t8 *)(validationContext + 0xd78) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xd58) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd60) != 0) {
@@ -42448,7 +42448,7 @@ void Unwind_180903f10(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd60) = 0;
-  *(uint8_t4 *)(validationContext + 0xd70) = 0;
+  *(DataWord *)(validationContext + 0xd70) = 0;
   *(uint8_t8 *)(validationContext + 0xd58) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42470,7 +42470,7 @@ void Unwind_180903f30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xdf0) = 0;
-  *(uint8_t4 *)(validationContext + 0xe00) = 0;
+  *(DataWord *)(validationContext + 0xe00) = 0;
   *(uint8_t8 *)(validationContext + 0xde8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xdc8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xdd0) != 0) {
@@ -42478,7 +42478,7 @@ void Unwind_180903f30(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xdd0) = 0;
-  *(uint8_t4 *)(validationContext + 0xde0) = 0;
+  *(DataWord *)(validationContext + 0xde0) = 0;
   *(uint8_t8 *)(validationContext + 0xdc8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42500,7 +42500,7 @@ void Unwind_180903f50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xeb8) = 0;
-  *(uint8_t4 *)(validationContext + 0xec8) = 0;
+  *(DataWord *)(validationContext + 0xec8) = 0;
   *(uint8_t8 *)(validationContext + 0xeb0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe90) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe98) != 0) {
@@ -42508,7 +42508,7 @@ void Unwind_180903f50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe98) = 0;
-  *(uint8_t4 *)(validationContext + 0xea8) = 0;
+  *(DataWord *)(validationContext + 0xea8) = 0;
   *(uint8_t8 *)(validationContext + 0xe90) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe70) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe78) != 0) {
@@ -42516,7 +42516,7 @@ void Unwind_180903f50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe78) = 0;
-  *(uint8_t4 *)(validationContext + 0xe88) = 0;
+  *(DataWord *)(validationContext + 0xe88) = 0;
   *(uint8_t8 *)(validationContext + 0xe70) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe50) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe58) != 0) {
@@ -42524,7 +42524,7 @@ void Unwind_180903f50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe58) = 0;
-  *(uint8_t4 *)(validationContext + 0xe68) = 0;
+  *(DataWord *)(validationContext + 0xe68) = 0;
   *(uint8_t8 *)(validationContext + 0xe50) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe30) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe38) != 0) {
@@ -42532,7 +42532,7 @@ void Unwind_180903f50(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe38) = 0;
-  *(uint8_t4 *)(validationContext + 0xe48) = 0;
+  *(DataWord *)(validationContext + 0xe48) = 0;
   *(uint8_t8 *)(validationContext + 0xe30) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42554,7 +42554,7 @@ void Unwind_180903f70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf78) = 0;
-  *(uint8_t4 *)(validationContext + 0xf88) = 0;
+  *(DataWord *)(validationContext + 0xf88) = 0;
   *(uint8_t8 *)(validationContext + 0xf70) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xf50) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf58) != 0) {
@@ -42562,7 +42562,7 @@ void Unwind_180903f70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf58) = 0;
-  *(uint8_t4 *)(validationContext + 0xf68) = 0;
+  *(DataWord *)(validationContext + 0xf68) = 0;
   *(uint8_t8 *)(validationContext + 0xf50) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xf30) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf38) != 0) {
@@ -42570,7 +42570,7 @@ void Unwind_180903f70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf38) = 0;
-  *(uint8_t4 *)(validationContext + 0xf48) = 0;
+  *(DataWord *)(validationContext + 0xf48) = 0;
   *(uint8_t8 *)(validationContext + 0xf30) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xf10) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf18) != 0) {
@@ -42578,7 +42578,7 @@ void Unwind_180903f70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf18) = 0;
-  *(uint8_t4 *)(validationContext + 0xf28) = 0;
+  *(DataWord *)(validationContext + 0xf28) = 0;
   *(uint8_t8 *)(validationContext + 0xf10) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xef0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xef8) != 0) {
@@ -42586,7 +42586,7 @@ void Unwind_180903f70(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xef8) = 0;
-  *(uint8_t4 *)(validationContext + 0xf08) = 0;
+  *(DataWord *)(validationContext + 0xf08) = 0;
   *(uint8_t8 *)(validationContext + 0xef0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42608,7 +42608,7 @@ void Unwind_180903f90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1038) = 0;
-  *(uint8_t4 *)(validationContext + 0x1048) = 0;
+  *(DataWord *)(validationContext + 0x1048) = 0;
   *(uint8_t8 *)(validationContext + 0x1030) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1010) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1018) != 0) {
@@ -42616,7 +42616,7 @@ void Unwind_180903f90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1018) = 0;
-  *(uint8_t4 *)(validationContext + 0x1028) = 0;
+  *(DataWord *)(validationContext + 0x1028) = 0;
   *(uint8_t8 *)(validationContext + 0x1010) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xff0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xff8) != 0) {
@@ -42624,7 +42624,7 @@ void Unwind_180903f90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xff8) = 0;
-  *(uint8_t4 *)(validationContext + 0x1008) = 0;
+  *(DataWord *)(validationContext + 0x1008) = 0;
   *(uint8_t8 *)(validationContext + 0xff0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xfd0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xfd8) != 0) {
@@ -42632,7 +42632,7 @@ void Unwind_180903f90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xfd8) = 0;
-  *(uint8_t4 *)(validationContext + 0xfe8) = 0;
+  *(DataWord *)(validationContext + 0xfe8) = 0;
   *(uint8_t8 *)(validationContext + 0xfd0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xfb0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xfb8) != 0) {
@@ -42640,7 +42640,7 @@ void Unwind_180903f90(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xfb8) = 0;
-  *(uint8_t4 *)(validationContext + 0xfc8) = 0;
+  *(DataWord *)(validationContext + 0xfc8) = 0;
   *(uint8_t8 *)(validationContext + 0xfb0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42662,7 +42662,7 @@ void Unwind_180903fb0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x10b0) = 0;
+  *(DataWord *)(validationContext + 0x10b0) = 0;
   *(uint8_t8 *)(validationContext + 0x1098) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1078) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1080) != 0) {
@@ -42670,7 +42670,7 @@ void Unwind_180903fb0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1080) = 0;
-  *(uint8_t4 *)(validationContext + 0x1090) = 0;
+  *(DataWord *)(validationContext + 0x1090) = 0;
   *(uint8_t8 *)(validationContext + 0x1078) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42692,7 +42692,7 @@ void Unwind_180903fd0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1110) = 0;
-  *(uint8_t4 *)(validationContext + 0x1120) = 0;
+  *(DataWord *)(validationContext + 0x1120) = 0;
   *(uint8_t8 *)(validationContext + 0x1108) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x10e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x10f0) != 0) {
@@ -42700,7 +42700,7 @@ void Unwind_180903fd0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1100) = 0;
+  *(DataWord *)(validationContext + 0x1100) = 0;
   *(uint8_t8 *)(validationContext + 0x10e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42722,7 +42722,7 @@ void Unwind_180903ff0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1180) = 0;
-  *(uint8_t4 *)(validationContext + 0x1190) = 0;
+  *(DataWord *)(validationContext + 0x1190) = 0;
   *(uint8_t8 *)(validationContext + 0x1178) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1158) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1160) != 0) {
@@ -42730,7 +42730,7 @@ void Unwind_180903ff0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1160) = 0;
-  *(uint8_t4 *)(validationContext + 0x1170) = 0;
+  *(DataWord *)(validationContext + 0x1170) = 0;
   *(uint8_t8 *)(validationContext + 0x1158) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42752,7 +42752,7 @@ void Unwind_180904010(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x11f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1200) = 0;
+  *(DataWord *)(validationContext + 0x1200) = 0;
   *(uint8_t8 *)(validationContext + 0x11e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x11c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x11d0) != 0) {
@@ -42760,7 +42760,7 @@ void Unwind_180904010(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x11d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x11e0) = 0;
+  *(DataWord *)(validationContext + 0x11e0) = 0;
   *(uint8_t8 *)(validationContext + 0x11c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42782,7 +42782,7 @@ void Unwind_180904030(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1260) = 0;
-  *(uint8_t4 *)(validationContext + 0x1270) = 0;
+  *(DataWord *)(validationContext + 0x1270) = 0;
   *(uint8_t8 *)(validationContext + 0x1258) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1238) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1240) != 0) {
@@ -42790,7 +42790,7 @@ void Unwind_180904030(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1240) = 0;
-  *(uint8_t4 *)(validationContext + 0x1250) = 0;
+  *(DataWord *)(validationContext + 0x1250) = 0;
   *(uint8_t8 *)(validationContext + 0x1238) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42812,7 +42812,7 @@ void Unwind_180904050(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x12d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x12e0) = 0;
+  *(DataWord *)(validationContext + 0x12e0) = 0;
   *(uint8_t8 *)(validationContext + 0x12c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x12a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x12b0) != 0) {
@@ -42820,7 +42820,7 @@ void Unwind_180904050(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x12b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x12c0) = 0;
+  *(DataWord *)(validationContext + 0x12c0) = 0;
   *(uint8_t8 *)(validationContext + 0x12a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42842,7 +42842,7 @@ void Unwind_180904070(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1340) = 0;
-  *(uint8_t4 *)(validationContext + 0x1350) = 0;
+  *(DataWord *)(validationContext + 0x1350) = 0;
   *(uint8_t8 *)(validationContext + 0x1338) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1318) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1320) != 0) {
@@ -42850,7 +42850,7 @@ void Unwind_180904070(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1320) = 0;
-  *(uint8_t4 *)(validationContext + 0x1330) = 0;
+  *(DataWord *)(validationContext + 0x1330) = 0;
   *(uint8_t8 *)(validationContext + 0x1318) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42915,7 +42915,7 @@ void Unwind_1809040d0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42962,7 +42962,7 @@ void Unwind_180904100(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -42995,7 +42995,7 @@ void Unwind_180904120(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -43014,7 +43014,7 @@ void Unwind_180904130(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43033,7 +43033,7 @@ void Unwind_180904140(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x48) = 0;
-  *(uint8_t4 *)(validationContext + 0x58) = 0;
+  *(DataWord *)(validationContext + 0x58) = 0;
   *(uint8_t8 *)(validationContext + 0x40) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43052,7 +43052,7 @@ void Unwind_180904150(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x68) = 0;
-  *(uint8_t4 *)(validationContext + 0x78) = 0;
+  *(DataWord *)(validationContext + 0x78) = 0;
   *(uint8_t8 *)(validationContext + 0x60) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43071,7 +43071,7 @@ void Unwind_180904160(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x88) = 0;
-  *(uint8_t4 *)(validationContext + 0x98) = 0;
+  *(DataWord *)(validationContext + 0x98) = 0;
   *(uint8_t8 *)(validationContext + 0x80) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43104,7 +43104,7 @@ void Unwind_1809041a0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x68) = 0;
-  *(uint8_t4 *)(validationContext + 0x78) = 0;
+  *(DataWord *)(validationContext + 0x78) = 0;
   *(uint8_t8 *)(validationContext + 0x60) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43140,7 +43140,7 @@ void Unwind_1809041d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x168) = 0;
-  *(uint8_t4 *)(validationContext + 0x178) = 0;
+  *(DataWord *)(validationContext + 0x178) = 0;
   *(uint8_t8 *)(validationContext + 0x160) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x140) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x148) != 0) {
@@ -43148,7 +43148,7 @@ void Unwind_1809041d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x148) = 0;
-  *(uint8_t4 *)(validationContext + 0x158) = 0;
+  *(DataWord *)(validationContext + 0x158) = 0;
   *(uint8_t8 *)(validationContext + 0x140) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x120) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x128) != 0) {
@@ -43156,7 +43156,7 @@ void Unwind_1809041d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x128) = 0;
-  *(uint8_t4 *)(validationContext + 0x138) = 0;
+  *(DataWord *)(validationContext + 0x138) = 0;
   *(uint8_t8 *)(validationContext + 0x120) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x100) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x108) != 0) {
@@ -43164,7 +43164,7 @@ void Unwind_1809041d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x108) = 0;
-  *(uint8_t4 *)(validationContext + 0x118) = 0;
+  *(DataWord *)(validationContext + 0x118) = 0;
   *(uint8_t8 *)(validationContext + 0x100) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe8) != 0) {
@@ -43172,7 +43172,7 @@ void Unwind_1809041d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe8) = 0;
-  *(uint8_t4 *)(validationContext + 0xf8) = 0;
+  *(DataWord *)(validationContext + 0xf8) = 0;
   *(uint8_t8 *)(validationContext + 0xe0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43194,7 +43194,7 @@ void Unwind_1809041f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x228) = 0;
-  *(uint8_t4 *)(validationContext + 0x238) = 0;
+  *(DataWord *)(validationContext + 0x238) = 0;
   *(uint8_t8 *)(validationContext + 0x220) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x200) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x208) != 0) {
@@ -43202,7 +43202,7 @@ void Unwind_1809041f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x208) = 0;
-  *(uint8_t4 *)(validationContext + 0x218) = 0;
+  *(DataWord *)(validationContext + 0x218) = 0;
   *(uint8_t8 *)(validationContext + 0x200) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1e8) != 0) {
@@ -43210,7 +43210,7 @@ void Unwind_1809041f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x1f8) = 0;
+  *(DataWord *)(validationContext + 0x1f8) = 0;
   *(uint8_t8 *)(validationContext + 0x1e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1c8) != 0) {
@@ -43218,7 +43218,7 @@ void Unwind_1809041f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d8) = 0;
+  *(DataWord *)(validationContext + 0x1d8) = 0;
   *(uint8_t8 *)(validationContext + 0x1c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1a8) != 0) {
@@ -43226,7 +43226,7 @@ void Unwind_1809041f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x1b8) = 0;
+  *(DataWord *)(validationContext + 0x1b8) = 0;
   *(uint8_t8 *)(validationContext + 0x1a0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43248,7 +43248,7 @@ void Unwind_180904210(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x2f8) = 0;
+  *(DataWord *)(validationContext + 0x2f8) = 0;
   *(uint8_t8 *)(validationContext + 0x2e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2c8) != 0) {
@@ -43256,7 +43256,7 @@ void Unwind_180904210(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x2d8) = 0;
+  *(DataWord *)(validationContext + 0x2d8) = 0;
   *(uint8_t8 *)(validationContext + 0x2c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2a8) != 0) {
@@ -43264,7 +43264,7 @@ void Unwind_180904210(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x2b8) = 0;
+  *(DataWord *)(validationContext + 0x2b8) = 0;
   *(uint8_t8 *)(validationContext + 0x2a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x280) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x288) != 0) {
@@ -43272,7 +43272,7 @@ void Unwind_180904210(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x288) = 0;
-  *(uint8_t4 *)(validationContext + 0x298) = 0;
+  *(DataWord *)(validationContext + 0x298) = 0;
   *(uint8_t8 *)(validationContext + 0x280) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x260) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x268) != 0) {
@@ -43280,7 +43280,7 @@ void Unwind_180904210(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x268) = 0;
-  *(uint8_t4 *)(validationContext + 0x278) = 0;
+  *(DataWord *)(validationContext + 0x278) = 0;
   *(uint8_t8 *)(validationContext + 0x260) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43302,7 +43302,7 @@ void Unwind_180904230(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x3a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x3b8) = 0;
+  *(DataWord *)(validationContext + 0x3b8) = 0;
   *(uint8_t8 *)(validationContext + 0x3a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x380) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x388) != 0) {
@@ -43310,7 +43310,7 @@ void Unwind_180904230(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x388) = 0;
-  *(uint8_t4 *)(validationContext + 0x398) = 0;
+  *(DataWord *)(validationContext + 0x398) = 0;
   *(uint8_t8 *)(validationContext + 0x380) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x360) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x368) != 0) {
@@ -43318,7 +43318,7 @@ void Unwind_180904230(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x368) = 0;
-  *(uint8_t4 *)(validationContext + 0x378) = 0;
+  *(DataWord *)(validationContext + 0x378) = 0;
   *(uint8_t8 *)(validationContext + 0x360) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x340) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x348) != 0) {
@@ -43326,7 +43326,7 @@ void Unwind_180904230(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x348) = 0;
-  *(uint8_t4 *)(validationContext + 0x358) = 0;
+  *(DataWord *)(validationContext + 0x358) = 0;
   *(uint8_t8 *)(validationContext + 0x340) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 800) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x328) != 0) {
@@ -43334,7 +43334,7 @@ void Unwind_180904230(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x328) = 0;
-  *(uint8_t4 *)(validationContext + 0x338) = 0;
+  *(DataWord *)(validationContext + 0x338) = 0;
   *(uint8_t8 *)(validationContext + 800) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43356,7 +43356,7 @@ void Unwind_180904250(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x468) = 0;
-  *(uint8_t4 *)(validationContext + 0x478) = 0;
+  *(DataWord *)(validationContext + 0x478) = 0;
   *(uint8_t8 *)(validationContext + 0x460) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x440) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x448) != 0) {
@@ -43364,7 +43364,7 @@ void Unwind_180904250(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x448) = 0;
-  *(uint8_t4 *)(validationContext + 0x458) = 0;
+  *(DataWord *)(validationContext + 0x458) = 0;
   *(uint8_t8 *)(validationContext + 0x440) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x420) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x428) != 0) {
@@ -43372,7 +43372,7 @@ void Unwind_180904250(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x428) = 0;
-  *(uint8_t4 *)(validationContext + 0x438) = 0;
+  *(DataWord *)(validationContext + 0x438) = 0;
   *(uint8_t8 *)(validationContext + 0x420) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x400) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x408) != 0) {
@@ -43380,7 +43380,7 @@ void Unwind_180904250(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x408) = 0;
-  *(uint8_t4 *)(validationContext + 0x418) = 0;
+  *(DataWord *)(validationContext + 0x418) = 0;
   *(uint8_t8 *)(validationContext + 0x400) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x3e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 1000) != 0) {
@@ -43388,7 +43388,7 @@ void Unwind_180904250(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 1000) = 0;
-  *(uint8_t4 *)(validationContext + 0x3f8) = 0;
+  *(DataWord *)(validationContext + 0x3f8) = 0;
   *(uint8_t8 *)(validationContext + 0x3e0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43410,7 +43410,7 @@ void Unwind_180904270(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x528) = 0;
-  *(uint8_t4 *)(validationContext + 0x538) = 0;
+  *(DataWord *)(validationContext + 0x538) = 0;
   *(uint8_t8 *)(validationContext + 0x520) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x500) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x508) != 0) {
@@ -43418,7 +43418,7 @@ void Unwind_180904270(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x508) = 0;
-  *(uint8_t4 *)(validationContext + 0x518) = 0;
+  *(DataWord *)(validationContext + 0x518) = 0;
   *(uint8_t8 *)(validationContext + 0x500) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
@@ -43426,7 +43426,7 @@ void Unwind_180904270(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4f8) = 0;
+  *(DataWord *)(validationContext + 0x4f8) = 0;
   *(uint8_t8 *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
@@ -43434,7 +43434,7 @@ void Unwind_180904270(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4d8) = 0;
+  *(DataWord *)(validationContext + 0x4d8) = 0;
   *(uint8_t8 *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
@@ -43442,7 +43442,7 @@ void Unwind_180904270(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x4b8) = 0;
+  *(DataWord *)(validationContext + 0x4b8) = 0;
   *(uint8_t8 *)(validationContext + 0x4a0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43464,7 +43464,7 @@ void Unwind_180904290(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x5f8) = 0;
+  *(DataWord *)(validationContext + 0x5f8) = 0;
   *(uint8_t8 *)(validationContext + 0x5e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x5c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5c8) != 0) {
@@ -43472,7 +43472,7 @@ void Unwind_180904290(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x5d8) = 0;
+  *(DataWord *)(validationContext + 0x5d8) = 0;
   *(uint8_t8 *)(validationContext + 0x5c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x5a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x5a8) != 0) {
@@ -43480,7 +43480,7 @@ void Unwind_180904290(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x5a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x5b8) = 0;
+  *(DataWord *)(validationContext + 0x5b8) = 0;
   *(uint8_t8 *)(validationContext + 0x5a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x580) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x588) != 0) {
@@ -43488,7 +43488,7 @@ void Unwind_180904290(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x588) = 0;
-  *(uint8_t4 *)(validationContext + 0x598) = 0;
+  *(DataWord *)(validationContext + 0x598) = 0;
   *(uint8_t8 *)(validationContext + 0x580) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x560) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x568) != 0) {
@@ -43496,7 +43496,7 @@ void Unwind_180904290(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x568) = 0;
-  *(uint8_t4 *)(validationContext + 0x578) = 0;
+  *(DataWord *)(validationContext + 0x578) = 0;
   *(uint8_t8 *)(validationContext + 0x560) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43518,7 +43518,7 @@ void Unwind_1809042b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x6a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x6b8) = 0;
+  *(DataWord *)(validationContext + 0x6b8) = 0;
   *(uint8_t8 *)(validationContext + 0x6a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x680) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x688) != 0) {
@@ -43526,7 +43526,7 @@ void Unwind_1809042b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x688) = 0;
-  *(uint8_t4 *)(validationContext + 0x698) = 0;
+  *(DataWord *)(validationContext + 0x698) = 0;
   *(uint8_t8 *)(validationContext + 0x680) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x660) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x668) != 0) {
@@ -43534,7 +43534,7 @@ void Unwind_1809042b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x668) = 0;
-  *(uint8_t4 *)(validationContext + 0x678) = 0;
+  *(DataWord *)(validationContext + 0x678) = 0;
   *(uint8_t8 *)(validationContext + 0x660) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x640) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x648) != 0) {
@@ -43542,7 +43542,7 @@ void Unwind_1809042b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x648) = 0;
-  *(uint8_t4 *)(validationContext + 0x658) = 0;
+  *(DataWord *)(validationContext + 0x658) = 0;
   *(uint8_t8 *)(validationContext + 0x640) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x620) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x628) != 0) {
@@ -43550,7 +43550,7 @@ void Unwind_1809042b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x628) = 0;
-  *(uint8_t4 *)(validationContext + 0x638) = 0;
+  *(DataWord *)(validationContext + 0x638) = 0;
   *(uint8_t8 *)(validationContext + 0x620) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43572,7 +43572,7 @@ void Unwind_1809042d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x768) = 0;
-  *(uint8_t4 *)(validationContext + 0x778) = 0;
+  *(DataWord *)(validationContext + 0x778) = 0;
   *(uint8_t8 *)(validationContext + 0x760) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x740) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x748) != 0) {
@@ -43580,7 +43580,7 @@ void Unwind_1809042d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x748) = 0;
-  *(uint8_t4 *)(validationContext + 0x758) = 0;
+  *(DataWord *)(validationContext + 0x758) = 0;
   *(uint8_t8 *)(validationContext + 0x740) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x720) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x728) != 0) {
@@ -43588,7 +43588,7 @@ void Unwind_1809042d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x728) = 0;
-  *(uint8_t4 *)(validationContext + 0x738) = 0;
+  *(DataWord *)(validationContext + 0x738) = 0;
   *(uint8_t8 *)(validationContext + 0x720) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x700) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x708) != 0) {
@@ -43596,7 +43596,7 @@ void Unwind_1809042d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x708) = 0;
-  *(uint8_t4 *)(validationContext + 0x718) = 0;
+  *(DataWord *)(validationContext + 0x718) = 0;
   *(uint8_t8 *)(validationContext + 0x700) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x6e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x6e8) != 0) {
@@ -43604,7 +43604,7 @@ void Unwind_1809042d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x6e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x6f8) = 0;
+  *(DataWord *)(validationContext + 0x6f8) = 0;
   *(uint8_t8 *)(validationContext + 0x6e0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43626,7 +43626,7 @@ void Unwind_1809042f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x828) = 0;
-  *(uint8_t4 *)(validationContext + 0x838) = 0;
+  *(DataWord *)(validationContext + 0x838) = 0;
   *(uint8_t8 *)(validationContext + 0x820) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x800) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x808) != 0) {
@@ -43634,7 +43634,7 @@ void Unwind_1809042f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x808) = 0;
-  *(uint8_t4 *)(validationContext + 0x818) = 0;
+  *(DataWord *)(validationContext + 0x818) = 0;
   *(uint8_t8 *)(validationContext + 0x800) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x7e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7e8) != 0) {
@@ -43642,7 +43642,7 @@ void Unwind_1809042f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x7f8) = 0;
+  *(DataWord *)(validationContext + 0x7f8) = 0;
   *(uint8_t8 *)(validationContext + 0x7e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x7c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7c8) != 0) {
@@ -43650,7 +43650,7 @@ void Unwind_1809042f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x7d8) = 0;
+  *(DataWord *)(validationContext + 0x7d8) = 0;
   *(uint8_t8 *)(validationContext + 0x7c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x7a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x7a8) != 0) {
@@ -43658,7 +43658,7 @@ void Unwind_1809042f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x7a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x7b8) = 0;
+  *(DataWord *)(validationContext + 0x7b8) = 0;
   *(uint8_t8 *)(validationContext + 0x7a0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43680,7 +43680,7 @@ void Unwind_180904310(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x8f8) = 0;
+  *(DataWord *)(validationContext + 0x8f8) = 0;
   *(uint8_t8 *)(validationContext + 0x8e0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x8c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8c8) != 0) {
@@ -43688,7 +43688,7 @@ void Unwind_180904310(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8c8) = 0;
-  *(uint8_t4 *)(validationContext + 0x8d8) = 0;
+  *(DataWord *)(validationContext + 0x8d8) = 0;
   *(uint8_t8 *)(validationContext + 0x8c0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x8a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8a8) != 0) {
@@ -43696,7 +43696,7 @@ void Unwind_180904310(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x8a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x8b8) = 0;
+  *(DataWord *)(validationContext + 0x8b8) = 0;
   *(uint8_t8 *)(validationContext + 0x8a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x880) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x888) != 0) {
@@ -43704,7 +43704,7 @@ void Unwind_180904310(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x888) = 0;
-  *(uint8_t4 *)(validationContext + 0x898) = 0;
+  *(DataWord *)(validationContext + 0x898) = 0;
   *(uint8_t8 *)(validationContext + 0x880) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x860) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x868) != 0) {
@@ -43712,7 +43712,7 @@ void Unwind_180904310(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x868) = 0;
-  *(uint8_t4 *)(validationContext + 0x878) = 0;
+  *(DataWord *)(validationContext + 0x878) = 0;
   *(uint8_t8 *)(validationContext + 0x860) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43734,7 +43734,7 @@ void Unwind_180904330(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9a8) = 0;
-  *(uint8_t4 *)(validationContext + 0x9b8) = 0;
+  *(DataWord *)(validationContext + 0x9b8) = 0;
   *(uint8_t8 *)(validationContext + 0x9a0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x980) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x988) != 0) {
@@ -43742,7 +43742,7 @@ void Unwind_180904330(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x988) = 0;
-  *(uint8_t4 *)(validationContext + 0x998) = 0;
+  *(DataWord *)(validationContext + 0x998) = 0;
   *(uint8_t8 *)(validationContext + 0x980) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x960) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x968) != 0) {
@@ -43750,7 +43750,7 @@ void Unwind_180904330(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x968) = 0;
-  *(uint8_t4 *)(validationContext + 0x978) = 0;
+  *(DataWord *)(validationContext + 0x978) = 0;
   *(uint8_t8 *)(validationContext + 0x960) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x940) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x948) != 0) {
@@ -43758,7 +43758,7 @@ void Unwind_180904330(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x948) = 0;
-  *(uint8_t4 *)(validationContext + 0x958) = 0;
+  *(DataWord *)(validationContext + 0x958) = 0;
   *(uint8_t8 *)(validationContext + 0x940) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x920) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x928) != 0) {
@@ -43766,7 +43766,7 @@ void Unwind_180904330(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x928) = 0;
-  *(uint8_t4 *)(validationContext + 0x938) = 0;
+  *(DataWord *)(validationContext + 0x938) = 0;
   *(uint8_t8 *)(validationContext + 0x920) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43788,7 +43788,7 @@ void Unwind_180904350(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa68) = 0;
-  *(uint8_t4 *)(validationContext + 0xa78) = 0;
+  *(DataWord *)(validationContext + 0xa78) = 0;
   *(uint8_t8 *)(validationContext + 0xa60) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa40) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa48) != 0) {
@@ -43796,7 +43796,7 @@ void Unwind_180904350(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa48) = 0;
-  *(uint8_t4 *)(validationContext + 0xa58) = 0;
+  *(DataWord *)(validationContext + 0xa58) = 0;
   *(uint8_t8 *)(validationContext + 0xa40) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa28) != 0) {
@@ -43804,7 +43804,7 @@ void Unwind_180904350(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa28) = 0;
-  *(uint8_t4 *)(validationContext + 0xa38) = 0;
+  *(DataWord *)(validationContext + 0xa38) = 0;
   *(uint8_t8 *)(validationContext + 0xa20) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa00) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa08) != 0) {
@@ -43812,7 +43812,7 @@ void Unwind_180904350(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa08) = 0;
-  *(uint8_t4 *)(validationContext + 0xa18) = 0;
+  *(DataWord *)(validationContext + 0xa18) = 0;
   *(uint8_t8 *)(validationContext + 0xa00) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x9e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9e8) != 0) {
@@ -43820,7 +43820,7 @@ void Unwind_180904350(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9e8) = 0;
-  *(uint8_t4 *)(validationContext + 0x9f8) = 0;
+  *(DataWord *)(validationContext + 0x9f8) = 0;
   *(uint8_t8 *)(validationContext + 0x9e0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43842,7 +43842,7 @@ void Unwind_180904370(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb28) = 0;
-  *(uint8_t4 *)(validationContext + 0xb38) = 0;
+  *(DataWord *)(validationContext + 0xb38) = 0;
   *(uint8_t8 *)(validationContext + 0xb20) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xb00) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb08) != 0) {
@@ -43850,7 +43850,7 @@ void Unwind_180904370(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb08) = 0;
-  *(uint8_t4 *)(validationContext + 0xb18) = 0;
+  *(DataWord *)(validationContext + 0xb18) = 0;
   *(uint8_t8 *)(validationContext + 0xb00) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xae0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xae8) != 0) {
@@ -43858,7 +43858,7 @@ void Unwind_180904370(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xae8) = 0;
-  *(uint8_t4 *)(validationContext + 0xaf8) = 0;
+  *(DataWord *)(validationContext + 0xaf8) = 0;
   *(uint8_t8 *)(validationContext + 0xae0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xac0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xac8) != 0) {
@@ -43866,7 +43866,7 @@ void Unwind_180904370(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xac8) = 0;
-  *(uint8_t4 *)(validationContext + 0xad8) = 0;
+  *(DataWord *)(validationContext + 0xad8) = 0;
   *(uint8_t8 *)(validationContext + 0xac0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xaa0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xaa8) != 0) {
@@ -43874,7 +43874,7 @@ void Unwind_180904370(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xaa8) = 0;
-  *(uint8_t4 *)(validationContext + 0xab8) = 0;
+  *(DataWord *)(validationContext + 0xab8) = 0;
   *(uint8_t8 *)(validationContext + 0xaa0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43896,7 +43896,7 @@ void Unwind_180904390(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xbe8) = 0;
-  *(uint8_t4 *)(validationContext + 0xbf8) = 0;
+  *(DataWord *)(validationContext + 0xbf8) = 0;
   *(uint8_t8 *)(validationContext + 0xbe0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xbc0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xbc8) != 0) {
@@ -43904,7 +43904,7 @@ void Unwind_180904390(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xbc8) = 0;
-  *(uint8_t4 *)(validationContext + 0xbd8) = 0;
+  *(DataWord *)(validationContext + 0xbd8) = 0;
   *(uint8_t8 *)(validationContext + 0xbc0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xba0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xba8) != 0) {
@@ -43912,7 +43912,7 @@ void Unwind_180904390(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xba8) = 0;
-  *(uint8_t4 *)(validationContext + 3000) = 0;
+  *(DataWord *)(validationContext + 3000) = 0;
   *(uint8_t8 *)(validationContext + 0xba0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xb80) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb88) != 0) {
@@ -43920,7 +43920,7 @@ void Unwind_180904390(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb88) = 0;
-  *(uint8_t4 *)(validationContext + 0xb98) = 0;
+  *(DataWord *)(validationContext + 0xb98) = 0;
   *(uint8_t8 *)(validationContext + 0xb80) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xb60) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb68) != 0) {
@@ -43928,7 +43928,7 @@ void Unwind_180904390(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb68) = 0;
-  *(uint8_t4 *)(validationContext + 0xb78) = 0;
+  *(DataWord *)(validationContext + 0xb78) = 0;
   *(uint8_t8 *)(validationContext + 0xb60) = &DefaultExceptionHandlerB;
   return;
 }
@@ -43950,7 +43950,7 @@ void Unwind_1809043b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xca8) = 0;
-  *(uint8_t4 *)(validationContext + 0xcb8) = 0;
+  *(DataWord *)(validationContext + 0xcb8) = 0;
   *(uint8_t8 *)(validationContext + 0xca0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc80) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc88) != 0) {
@@ -43958,7 +43958,7 @@ void Unwind_1809043b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc88) = 0;
-  *(uint8_t4 *)(validationContext + 0xc98) = 0;
+  *(DataWord *)(validationContext + 0xc98) = 0;
   *(uint8_t8 *)(validationContext + 0xc80) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc60) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc68) != 0) {
@@ -43966,7 +43966,7 @@ void Unwind_1809043b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc68) = 0;
-  *(uint8_t4 *)(validationContext + 0xc78) = 0;
+  *(DataWord *)(validationContext + 0xc78) = 0;
   *(uint8_t8 *)(validationContext + 0xc60) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc40) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc48) != 0) {
@@ -43974,7 +43974,7 @@ void Unwind_1809043b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc48) = 0;
-  *(uint8_t4 *)(validationContext + 0xc58) = 0;
+  *(DataWord *)(validationContext + 0xc58) = 0;
   *(uint8_t8 *)(validationContext + 0xc40) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc28) != 0) {
@@ -43982,7 +43982,7 @@ void Unwind_1809043b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc28) = 0;
-  *(uint8_t4 *)(validationContext + 0xc38) = 0;
+  *(DataWord *)(validationContext + 0xc38) = 0;
   *(uint8_t8 *)(validationContext + 0xc20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44004,7 +44004,7 @@ void Unwind_1809043d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd10) = 0;
-  *(uint8_t4 *)(validationContext + 0xd20) = 0;
+  *(DataWord *)(validationContext + 0xd20) = 0;
   *(uint8_t8 *)(validationContext + 0xd08) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xce8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xcf0) != 0) {
@@ -44012,7 +44012,7 @@ void Unwind_1809043d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xcf0) = 0;
-  *(uint8_t4 *)(validationContext + 0xd00) = 0;
+  *(DataWord *)(validationContext + 0xd00) = 0;
   *(uint8_t8 *)(validationContext + 0xce8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44034,7 +44034,7 @@ void Unwind_1809043f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd80) = 0;
-  *(uint8_t4 *)(validationContext + 0xd90) = 0;
+  *(DataWord *)(validationContext + 0xd90) = 0;
   *(uint8_t8 *)(validationContext + 0xd78) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xd58) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd60) != 0) {
@@ -44042,7 +44042,7 @@ void Unwind_1809043f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd60) = 0;
-  *(uint8_t4 *)(validationContext + 0xd70) = 0;
+  *(DataWord *)(validationContext + 0xd70) = 0;
   *(uint8_t8 *)(validationContext + 0xd58) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44064,7 +44064,7 @@ void Unwind_180904410(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xdf0) = 0;
-  *(uint8_t4 *)(validationContext + 0xe00) = 0;
+  *(DataWord *)(validationContext + 0xe00) = 0;
   *(uint8_t8 *)(validationContext + 0xde8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xdc8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xdd0) != 0) {
@@ -44072,7 +44072,7 @@ void Unwind_180904410(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xdd0) = 0;
-  *(uint8_t4 *)(validationContext + 0xde0) = 0;
+  *(DataWord *)(validationContext + 0xde0) = 0;
   *(uint8_t8 *)(validationContext + 0xdc8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44094,7 +44094,7 @@ void Unwind_180904430(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xeb8) = 0;
-  *(uint8_t4 *)(validationContext + 0xec8) = 0;
+  *(DataWord *)(validationContext + 0xec8) = 0;
   *(uint8_t8 *)(validationContext + 0xeb0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe90) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe98) != 0) {
@@ -44102,7 +44102,7 @@ void Unwind_180904430(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe98) = 0;
-  *(uint8_t4 *)(validationContext + 0xea8) = 0;
+  *(DataWord *)(validationContext + 0xea8) = 0;
   *(uint8_t8 *)(validationContext + 0xe90) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe70) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe78) != 0) {
@@ -44110,7 +44110,7 @@ void Unwind_180904430(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe78) = 0;
-  *(uint8_t4 *)(validationContext + 0xe88) = 0;
+  *(DataWord *)(validationContext + 0xe88) = 0;
   *(uint8_t8 *)(validationContext + 0xe70) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe50) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe58) != 0) {
@@ -44118,7 +44118,7 @@ void Unwind_180904430(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe58) = 0;
-  *(uint8_t4 *)(validationContext + 0xe68) = 0;
+  *(DataWord *)(validationContext + 0xe68) = 0;
   *(uint8_t8 *)(validationContext + 0xe50) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe30) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe38) != 0) {
@@ -44126,7 +44126,7 @@ void Unwind_180904430(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe38) = 0;
-  *(uint8_t4 *)(validationContext + 0xe48) = 0;
+  *(DataWord *)(validationContext + 0xe48) = 0;
   *(uint8_t8 *)(validationContext + 0xe30) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44148,7 +44148,7 @@ void Unwind_180904450(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf78) = 0;
-  *(uint8_t4 *)(validationContext + 0xf88) = 0;
+  *(DataWord *)(validationContext + 0xf88) = 0;
   *(uint8_t8 *)(validationContext + 0xf70) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xf50) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf58) != 0) {
@@ -44156,7 +44156,7 @@ void Unwind_180904450(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf58) = 0;
-  *(uint8_t4 *)(validationContext + 0xf68) = 0;
+  *(DataWord *)(validationContext + 0xf68) = 0;
   *(uint8_t8 *)(validationContext + 0xf50) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xf30) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf38) != 0) {
@@ -44164,7 +44164,7 @@ void Unwind_180904450(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf38) = 0;
-  *(uint8_t4 *)(validationContext + 0xf48) = 0;
+  *(DataWord *)(validationContext + 0xf48) = 0;
   *(uint8_t8 *)(validationContext + 0xf30) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xf10) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf18) != 0) {
@@ -44172,7 +44172,7 @@ void Unwind_180904450(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf18) = 0;
-  *(uint8_t4 *)(validationContext + 0xf28) = 0;
+  *(DataWord *)(validationContext + 0xf28) = 0;
   *(uint8_t8 *)(validationContext + 0xf10) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xef0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xef8) != 0) {
@@ -44180,7 +44180,7 @@ void Unwind_180904450(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xef8) = 0;
-  *(uint8_t4 *)(validationContext + 0xf08) = 0;
+  *(DataWord *)(validationContext + 0xf08) = 0;
   *(uint8_t8 *)(validationContext + 0xef0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44202,7 +44202,7 @@ void Unwind_180904470(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1038) = 0;
-  *(uint8_t4 *)(validationContext + 0x1048) = 0;
+  *(DataWord *)(validationContext + 0x1048) = 0;
   *(uint8_t8 *)(validationContext + 0x1030) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1010) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1018) != 0) {
@@ -44210,7 +44210,7 @@ void Unwind_180904470(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1018) = 0;
-  *(uint8_t4 *)(validationContext + 0x1028) = 0;
+  *(DataWord *)(validationContext + 0x1028) = 0;
   *(uint8_t8 *)(validationContext + 0x1010) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xff0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xff8) != 0) {
@@ -44218,7 +44218,7 @@ void Unwind_180904470(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xff8) = 0;
-  *(uint8_t4 *)(validationContext + 0x1008) = 0;
+  *(DataWord *)(validationContext + 0x1008) = 0;
   *(uint8_t8 *)(validationContext + 0xff0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xfd0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xfd8) != 0) {
@@ -44226,7 +44226,7 @@ void Unwind_180904470(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xfd8) = 0;
-  *(uint8_t4 *)(validationContext + 0xfe8) = 0;
+  *(DataWord *)(validationContext + 0xfe8) = 0;
   *(uint8_t8 *)(validationContext + 0xfd0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xfb0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xfb8) != 0) {
@@ -44234,7 +44234,7 @@ void Unwind_180904470(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xfb8) = 0;
-  *(uint8_t4 *)(validationContext + 0xfc8) = 0;
+  *(DataWord *)(validationContext + 0xfc8) = 0;
   *(uint8_t8 *)(validationContext + 0xfb0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44256,7 +44256,7 @@ void Unwind_180904490(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x10b0) = 0;
+  *(DataWord *)(validationContext + 0x10b0) = 0;
   *(uint8_t8 *)(validationContext + 0x1098) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1078) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1080) != 0) {
@@ -44264,7 +44264,7 @@ void Unwind_180904490(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1080) = 0;
-  *(uint8_t4 *)(validationContext + 0x1090) = 0;
+  *(DataWord *)(validationContext + 0x1090) = 0;
   *(uint8_t8 *)(validationContext + 0x1078) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44286,7 +44286,7 @@ void Unwind_1809044b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1110) = 0;
-  *(uint8_t4 *)(validationContext + 0x1120) = 0;
+  *(DataWord *)(validationContext + 0x1120) = 0;
   *(uint8_t8 *)(validationContext + 0x1108) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x10e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x10f0) != 0) {
@@ -44294,7 +44294,7 @@ void Unwind_1809044b0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1100) = 0;
+  *(DataWord *)(validationContext + 0x1100) = 0;
   *(uint8_t8 *)(validationContext + 0x10e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44316,7 +44316,7 @@ void Unwind_1809044d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1180) = 0;
-  *(uint8_t4 *)(validationContext + 0x1190) = 0;
+  *(DataWord *)(validationContext + 0x1190) = 0;
   *(uint8_t8 *)(validationContext + 0x1178) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1158) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1160) != 0) {
@@ -44324,7 +44324,7 @@ void Unwind_1809044d0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1160) = 0;
-  *(uint8_t4 *)(validationContext + 0x1170) = 0;
+  *(DataWord *)(validationContext + 0x1170) = 0;
   *(uint8_t8 *)(validationContext + 0x1158) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44346,7 +44346,7 @@ void Unwind_1809044f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x11f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1200) = 0;
+  *(DataWord *)(validationContext + 0x1200) = 0;
   *(uint8_t8 *)(validationContext + 0x11e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x11c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x11d0) != 0) {
@@ -44354,7 +44354,7 @@ void Unwind_1809044f0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x11d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x11e0) = 0;
+  *(DataWord *)(validationContext + 0x11e0) = 0;
   *(uint8_t8 *)(validationContext + 0x11c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44376,7 +44376,7 @@ void Unwind_180904510(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1260) = 0;
-  *(uint8_t4 *)(validationContext + 0x1270) = 0;
+  *(DataWord *)(validationContext + 0x1270) = 0;
   *(uint8_t8 *)(validationContext + 0x1258) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1238) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1240) != 0) {
@@ -44384,7 +44384,7 @@ void Unwind_180904510(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1240) = 0;
-  *(uint8_t4 *)(validationContext + 0x1250) = 0;
+  *(DataWord *)(validationContext + 0x1250) = 0;
   *(uint8_t8 *)(validationContext + 0x1238) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44406,7 +44406,7 @@ void Unwind_180904530(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x12d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x12e0) = 0;
+  *(DataWord *)(validationContext + 0x12e0) = 0;
   *(uint8_t8 *)(validationContext + 0x12c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x12a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x12b0) != 0) {
@@ -44414,7 +44414,7 @@ void Unwind_180904530(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x12b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x12c0) = 0;
+  *(DataWord *)(validationContext + 0x12c0) = 0;
   *(uint8_t8 *)(validationContext + 0x12a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44436,7 +44436,7 @@ void Unwind_180904550(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1340) = 0;
-  *(uint8_t4 *)(validationContext + 0x1350) = 0;
+  *(DataWord *)(validationContext + 0x1350) = 0;
   *(uint8_t8 *)(validationContext + 0x1338) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1318) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1320) != 0) {
@@ -44444,7 +44444,7 @@ void Unwind_180904550(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1320) = 0;
-  *(uint8_t4 *)(validationContext + 0x1330) = 0;
+  *(DataWord *)(validationContext + 0x1330) = 0;
   *(uint8_t8 *)(validationContext + 0x1318) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44678,7 +44678,7 @@ void Unwind_1809046c0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x20) = 0;
-  *(uint8_t4 *)(validationContext + 0x30) = 0;
+  *(DataWord *)(validationContext + 0x30) = 0;
   *(uint8_t8 *)(validationContext + 0x18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44697,7 +44697,7 @@ void Unwind_1809046d0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x20) = 0;
-  *(uint8_t4 *)(validationContext + 0x30) = 0;
+  *(DataWord *)(validationContext + 0x30) = 0;
   *(uint8_t8 *)(validationContext + 0x18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44907,7 +44907,7 @@ void Unwind_180904810(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x48) = 0;
-  *(uint8_t4 *)(validationContext + 0x58) = 0;
+  *(DataWord *)(validationContext + 0x58) = 0;
   *(uint8_t8 *)(validationContext + 0x40) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x20) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x28) != 0) {
@@ -44915,7 +44915,7 @@ void Unwind_180904810(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44934,7 +44934,7 @@ void Unwind_180904820(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -44971,7 +44971,7 @@ void Unwind_180904870(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x58) = 0;
-  *(uint8_t4 *)(param_2 + 0x68) = 0;
+  *(DataWord *)(param_2 + 0x68) = 0;
   *(uint8_t8 *)(param_2 + 0x50) = &DefaultExceptionHandlerB;
   return;
 }
@@ -45054,7 +45054,7 @@ void Unwind_1809048e0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -45073,7 +45073,7 @@ void Unwind_1809048f0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -45818,7 +45818,7 @@ void Unwind_180904ab0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     FUN_18020f530();
     if (pdataValue[0xe] != 0) {
       *(uint8_t8 *)(pdataValue[0xe] + 0x10) = 0;
-      *(uint8_t1 *)(pdataValue[0xe] + 8) = 1;
+      *(ByteFlag *)(pdataValue[0xe] + 8) = 1;
     }
     pdataValue[2] = &DefaultExceptionHandlerB;
     return;
@@ -45886,7 +45886,7 @@ void Unwind_180904af0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     FUN_18020f530();
     if (pdataValue[0xe] != 0) {
       *(uint8_t8 *)(pdataValue[0xe] + 0x10) = 0;
-      *(uint8_t1 *)(pdataValue[0xe] + 8) = 1;
+      *(ByteFlag *)(pdataValue[0xe] + 8) = 1;
     }
     pdataValue[2] = &DefaultExceptionHandlerB;
     return;
@@ -46102,7 +46102,7 @@ void Unwind_180904dd0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[8] = 0;
-  *(uint8_t4 *)(pdataValue + 10) = 0;
+  *(DataWord *)(pdataValue + 10) = 0;
   pdataValue[7] = &DefaultExceptionHandlerB;
   pdataValue[1] = &UNK_180a3c3e0;
   if (pdataValue[2] != 0) {
@@ -46110,7 +46110,7 @@ void Unwind_180904dd0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[2] = 0;
-  *(uint8_t4 *)(pdataValue + 4) = 0;
+  *(DataWord *)(pdataValue + 4) = 0;
   pdataValue[1] = &DefaultExceptionHandlerB;
   return;
 }
@@ -46131,7 +46131,7 @@ void Unwind_180904de0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[8] = 0;
-  *(uint8_t4 *)(pdataValue + 10) = 0;
+  *(DataWord *)(pdataValue + 10) = 0;
   pdataValue[7] = &DefaultExceptionHandlerB;
   pdataValue[1] = &UNK_180a3c3e0;
   if (pdataValue[2] != 0) {
@@ -46139,7 +46139,7 @@ void Unwind_180904de0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[2] = 0;
-  *(uint8_t4 *)(pdataValue + 4) = 0;
+  *(DataWord *)(pdataValue + 4) = 0;
   pdataValue[1] = &DefaultExceptionHandlerB;
   return;
 }
@@ -46159,7 +46159,7 @@ void Unwind_180904df0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[8] = 0;
-  *(uint8_t4 *)(pdataValue + 10) = 0;
+  *(DataWord *)(pdataValue + 10) = 0;
   pdataValue[7] = &DefaultExceptionHandlerB;
   pdataValue[1] = &UNK_180a3c3e0;
   if (pdataValue[2] != 0) {
@@ -46167,7 +46167,7 @@ void Unwind_180904df0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[2] = 0;
-  *(uint8_t4 *)(pdataValue + 4) = 0;
+  *(DataWord *)(pdataValue + 4) = 0;
   pdataValue[1] = &DefaultExceptionHandlerB;
   return;
 }
@@ -46234,7 +46234,7 @@ void Unwind_180904e40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     FUN_18020f530();
     if (pdataValue[0xe] != 0) {
       *(uint8_t8 *)(pdataValue[0xe] + 0x10) = 0;
-      *(uint8_t1 *)(pdataValue[0xe] + 8) = 1;
+      *(ByteFlag *)(pdataValue[0xe] + 8) = 1;
     }
     pdataValue[2] = &DefaultExceptionHandlerB;
     return;
@@ -46465,7 +46465,7 @@ void Unwind_180904f70(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x38) = 0;
-  *(uint8_t4 *)(validationContext + 0x48) = 0;
+  *(DataWord *)(validationContext + 0x48) = 0;
   *(uint8_t8 *)(validationContext + 0x30) = &DefaultExceptionHandlerB;
   return;
 }
@@ -46484,7 +46484,7 @@ void Unwind_180904f80(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -46578,7 +46578,7 @@ void Unwind_180904fc0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xc0) = 0;
-  *(uint8_t4 *)(param_2 + 0xd0) = 0;
+  *(DataWord *)(param_2 + 0xd0) = 0;
   *(uint8_t8 *)(param_2 + 0xb8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -46632,7 +46632,7 @@ void Unwind_180904ff0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xe0) = 0;
-  *(uint8_t4 *)(param_2 + 0xf0) = 0;
+  *(DataWord *)(param_2 + 0xf0) = 0;
   *(uint8_t8 *)(param_2 + 0xd8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -46665,7 +46665,7 @@ void Unwind_180905010(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x100) = 0;
-  *(uint8_t4 *)(param_2 + 0x110) = 0;
+  *(DataWord *)(param_2 + 0x110) = 0;
   *(uint8_t8 *)(param_2 + 0xf8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -46834,7 +46834,7 @@ void Unwind_1809050c0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x1f0) = 0;
-  *(uint8_t4 *)(param_2 + 0x200) = 0;
+  *(DataWord *)(param_2 + 0x200) = 0;
   *(uint8_t8 *)(param_2 + 0x1e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -46867,7 +46867,7 @@ void Unwind_1809050e0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x170) = 0;
-  *(uint8_t4 *)(param_2 + 0x180) = 0;
+  *(DataWord *)(param_2 + 0x180) = 0;
   *(uint8_t8 *)(param_2 + 0x168) = &DefaultExceptionHandlerB;
   return;
 }
@@ -46883,7 +46883,7 @@ void Unwind_1809050f0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x1b0) = 0;
-  *(uint8_t4 *)(param_2 + 0x1c0) = 0;
+  *(DataWord *)(param_2 + 0x1c0) = 0;
   *(uint8_t8 *)(param_2 + 0x1a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -46899,7 +46899,7 @@ void Unwind_180905100(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 400) = 0;
-  *(uint8_t4 *)(param_2 + 0x1a0) = 0;
+  *(DataWord *)(param_2 + 0x1a0) = 0;
   *(uint8_t8 *)(param_2 + 0x188) = &DefaultExceptionHandlerB;
   return;
 }
@@ -46975,7 +46975,7 @@ void Unwind_180905150(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x130) = 0;
-  *(uint8_t4 *)(param_2 + 0x140) = 0;
+  *(DataWord *)(param_2 + 0x140) = 0;
   *(uint8_t8 *)(param_2 + 0x128) = &DefaultExceptionHandlerB;
   return;
 }
@@ -47033,7 +47033,7 @@ void Unwind_180905180(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xd0) = 0;
-  *(uint8_t4 *)(param_2 + 0xe0) = 0;
+  *(DataWord *)(param_2 + 0xe0) = 0;
   *(uint8_t8 *)(param_2 + 200) = &DefaultExceptionHandlerB;
   return;
 }
@@ -47049,7 +47049,7 @@ void Unwind_180905190(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x1d0) = 0;
-  *(uint8_t4 *)(param_2 + 0x1e0) = 0;
+  *(DataWord *)(param_2 + 0x1e0) = 0;
   *(uint8_t8 *)(param_2 + 0x1c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -47407,7 +47407,7 @@ void Unwind_180905350(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -47423,7 +47423,7 @@ void Unwind_180905360(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x110) = 0;
-  *(uint8_t4 *)(param_2 + 0x120) = 0;
+  *(DataWord *)(param_2 + 0x120) = 0;
   *(uint8_t8 *)(param_2 + 0x108) = &DefaultExceptionHandlerB;
   return;
 }
@@ -47737,7 +47737,7 @@ void Unwind_1809054c0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x98) = 0;
-  *(uint8_t4 *)(param_2 + 0xa8) = 0;
+  *(DataWord *)(param_2 + 0xa8) = 0;
   *(uint8_t8 *)(param_2 + 0x90) = &DefaultExceptionHandlerB;
   return;
 }
@@ -47753,7 +47753,7 @@ void Unwind_1809054d0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x98) = 0;
-  *(uint8_t4 *)(param_2 + 0xa8) = 0;
+  *(DataWord *)(param_2 + 0xa8) = 0;
   *(uint8_t8 *)(param_2 + 0x90) = &DefaultExceptionHandlerB;
   return;
 }
@@ -48212,7 +48212,7 @@ void Unwind_1809057b0(uint8_t8 param_1,int64_t param_2)
   
   poperationResult = *(uint8_t8 **)(param_2 + 0x40);
   *poperationResult = &UNK_180a07cd0;
-  *(uint8_t1 *)((int64_t)poperationResult + 0x162) = 1;
+  *(ByteFlag *)((int64_t)poperationResult + 0x162) = 1;
   pdataContext = poperationResult + 0x1a;
   plStackX_20 = pdataContext;
   iterationCount = _Mtx_lock(pdataContext);
@@ -48233,8 +48233,8 @@ void Unwind_1809057b0(uint8_t8 param_1,int64_t param_2)
         }
       }
       FUN_18066c220(poperationResult + 10,&plStackX_10,(uint64_t)*(uint *)(poperationResult + 8),
-                    *(uint8_t4 *)(poperationResult + 9),1);
-      pcalculatedValue = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(uint8_t1 *)((int64_t)poperationResult + 0x5c));
+                    *(DataWord *)(poperationResult + 9),1);
+      pcalculatedValue = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(ByteFlag *)((int64_t)poperationResult + 0x5c));
       *pcalculatedValue = iterationCount;
       pcalculatedValue[2] = 0;
       pcalculatedValue[3] = 0;
@@ -48334,7 +48334,7 @@ void CleanupExceptionResourcesA(uint8_t8 exceptionContext, int64_t unwindParamet
     ResourceCleanupHandler();
   }
   *(uint8_t8 *)(resourcePointer + 200) = 0;
-  *(uint8_t4 *)(resourcePointer + 0xd8) = 0;
+  *(DataWord *)(resourcePointer + 0xd8) = 0;
   *(uint8_t8 *)(resourcePointer + 0xc0) = &ExceptionCleanupFlagB;
   return;
 }
@@ -48362,7 +48362,7 @@ void InitializeExceptionHandlerPointers(uint8_t8 exceptionContext, int64_t handl
     TerminateSystemE0();
   }
   *(uint8_t8 *)(handlerContext + 0x108) = 0;
-  *(uint8_t4 *)(handlerContext + 0x118) = 0;
+  *(DataWord *)(handlerContext + 0x118) = 0;
   *(uint8_t8 *)(handlerContext + 0x100) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(handlerContext + 0xe0) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0xe8) != 0) {
@@ -48370,7 +48370,7 @@ void InitializeExceptionHandlerPointers(uint8_t8 exceptionContext, int64_t handl
     TerminateSystemE0();
   }
   *(uint8_t8 *)(handlerContext + 0xe8) = 0;
-  *(uint8_t4 *)(handlerContext + 0xf8) = 0;
+  *(DataWord *)(handlerContext + 0xf8) = 0;
   *(uint8_t8 *)(handlerContext + 0xe0) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(handlerContext + 0xb8) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0xc0) != 0) {
@@ -48378,7 +48378,7 @@ void InitializeExceptionHandlerPointers(uint8_t8 exceptionContext, int64_t handl
     TerminateSystemE0();
   }
   *(uint8_t8 *)(handlerContext + 0xc0) = 0;
-  *(uint8_t4 *)(handlerContext + 0xd0) = 0;
+  *(DataWord *)(handlerContext + 0xd0) = 0;
   *(uint8_t8 *)(handlerContext + 0xb8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(handlerContext + 0x98) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0xa0) != 0) {
@@ -48386,7 +48386,7 @@ void InitializeExceptionHandlerPointers(uint8_t8 exceptionContext, int64_t handl
     TerminateSystemE0();
   }
   *(uint8_t8 *)(handlerContext + 0xa0) = 0;
-  *(uint8_t4 *)(handlerContext + 0xb0) = 0;
+  *(DataWord *)(handlerContext + 0xb0) = 0;
   *(uint8_t8 *)(handlerContext + 0x98) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(handlerContext + 0x68) = &DefaultExceptionHandlerA;
   if (*(int64_t *)(handlerContext + 0x70) != 0) {
@@ -48394,7 +48394,7 @@ void InitializeExceptionHandlerPointers(uint8_t8 exceptionContext, int64_t handl
     TerminateSystemE0();
   }
   *(uint8_t8 *)(handlerContext + 0x70) = 0;
-  *(uint8_t4 *)(handlerContext + 0x80) = 0;
+  *(DataWord *)(handlerContext + 0x80) = 0;
   *(uint8_t8 *)(handlerContext + 0x68) = &DefaultExceptionHandlerB;
   return;
 }
@@ -48648,7 +48648,7 @@ void Unwind_180905890(uint8_t8 param_1,int64_t param_2)
       TerminateSystemE0();
     }
     *(uint8_t8 *)(calculatedOffset + 0x10) = 0;
-    *(uint8_t4 *)(calculatedOffset + 0x20) = 0;
+    *(DataWord *)(calculatedOffset + 0x20) = 0;
     *(uint8_t8 *)(calculatedOffset + 8) = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
@@ -48722,7 +48722,7 @@ void Unwind_1809058c0(uint8_t8 param_1,int64_t param_2)
       TerminateSystemE0();
     }
     *(uint8_t8 *)(calculatedOffset + 0x10) = 0;
-    *(uint8_t4 *)(calculatedOffset + 0x20) = 0;
+    *(DataWord *)(calculatedOffset + 0x20) = 0;
     *(uint8_t8 *)(calculatedOffset + 8) = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
@@ -48743,7 +48743,7 @@ void Unwind_1809058d0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x208) = 0;
-  *(uint8_t4 *)(param_2 + 0x218) = 0;
+  *(DataWord *)(param_2 + 0x218) = 0;
   *(uint8_t8 *)(param_2 + 0x200) = &DefaultExceptionHandlerB;
   return;
 }
@@ -48908,7 +48908,7 @@ void Unwind_180905950(uint8_t8 param_1,int64_t param_2)
   
   poperationResult = *(uint8_t8 **)(param_2 + 0x2e8);
   *poperationResult = &UNK_180a07cd0;
-  *(uint8_t1 *)((int64_t)poperationResult + 0x162) = 1;
+  *(ByteFlag *)((int64_t)poperationResult + 0x162) = 1;
   pdataContext = poperationResult + 0x1a;
   plStackX_20 = pdataContext;
   iterationCount = _Mtx_lock(pdataContext);
@@ -48929,8 +48929,8 @@ void Unwind_180905950(uint8_t8 param_1,int64_t param_2)
         }
       }
       FUN_18066c220(poperationResult + 10,&plStackX_10,(uint64_t)*(uint *)(poperationResult + 8),
-                    *(uint8_t4 *)(poperationResult + 9),1);
-      pcalculatedValue = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(uint8_t1 *)((int64_t)poperationResult + 0x5c));
+                    *(DataWord *)(poperationResult + 9),1);
+      pcalculatedValue = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(ByteFlag *)((int64_t)poperationResult + 0x5c));
       *pcalculatedValue = iterationCount;
       pcalculatedValue[2] = 0;
       pcalculatedValue[3] = 0;
@@ -49051,7 +49051,7 @@ void Unwind_180905980(uint8_t8 param_1,int64_t param_2)
       TerminateSystemE0();
     }
     pvalidationStatus[1] = 0;
-    *(uint8_t4 *)(pvalidationStatus + 3) = 0;
+    *(DataWord *)(pvalidationStatus + 3) = 0;
     *pvalidationStatus = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
@@ -49202,7 +49202,7 @@ void Unwind_180905a80(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x70) = 0;
-  *(uint8_t4 *)(param_2 + 0x80) = 0;
+  *(DataWord *)(param_2 + 0x80) = 0;
   *(uint8_t8 *)(param_2 + 0x68) = &DefaultExceptionHandlerB;
   return;
 }
@@ -49218,7 +49218,7 @@ void Unwind_180905a90(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
-  *(uint8_t4 *)(param_2 + 0xb0) = 0;
+  *(DataWord *)(param_2 + 0xb0) = 0;
   *(uint8_t8 *)(param_2 + 0x98) = &DefaultExceptionHandlerB;
   return;
 }
@@ -49234,7 +49234,7 @@ void Unwind_180905aa0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xc0) = 0;
-  *(uint8_t4 *)(param_2 + 0xd0) = 0;
+  *(DataWord *)(param_2 + 0xd0) = 0;
   *(uint8_t8 *)(param_2 + 0xb8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -49250,7 +49250,7 @@ void Unwind_180905ab0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xe8) = 0;
-  *(uint8_t4 *)(param_2 + 0xf8) = 0;
+  *(DataWord *)(param_2 + 0xf8) = 0;
   *(uint8_t8 *)(param_2 + 0xe0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -49266,7 +49266,7 @@ void Unwind_180905ad0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x108) = 0;
-  *(uint8_t4 *)(param_2 + 0x118) = 0;
+  *(DataWord *)(param_2 + 0x118) = 0;
   *(uint8_t8 *)(param_2 + 0x100) = &DefaultExceptionHandlerB;
   return;
 }
@@ -49334,7 +49334,7 @@ void Unwind_180905b40(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -50193,7 +50193,7 @@ void ProcessDataWithMaskAndOffset(uint8_t8 systemContext,int64_t processData)
   maskValue = *(uint *)(processData + 0x30) & 0x1f;
   calculatedOffset = (uint64_t)maskValue * 0x1a8 + *(int64_t *)(processData + 0x28);
   FUN_180069530(calculatedOffset);
-  *(uint8_t1 *)((*(int64_t *)(processData + 0x28) - (uint64_t)maskValue) + 0x352f) = 1;
+  *(ByteFlag *)((*(int64_t *)(processData + 0x28) - (uint64_t)maskValue) + 0x352f) = 1;
   return;
 }
 
@@ -50263,7 +50263,7 @@ void Unwind_180905e40(uint8_t8 param_1,int64_t param_2)
       bufferPointer = *(int64_t *)(memoryPointer + 0x28);
       do {
         *(int64_t *)(resourceIterator + 0x3538) = bufferPointer;
-        *(uint8_t4 *)(resourceIterator + 0x3530) = 1;
+        *(DataWord *)(resourceIterator + 0x3530) = 1;
         validationContextPointer = (int64_t *)(memoryPointer + 0x28);
         LOCK();
         memoryOffset = *validationContextPointer;
@@ -51437,7 +51437,7 @@ void InitializeExceptionHandlerB(uint8_t8 exceptionHandler,int64_t systemContext
     TerminateSystemE0();
   }
   *(uint8_t8 *)(systemContext + 0xb8) = 0;
-  *(uint8_t4 *)(systemContext + 200) = 0;
+  *(DataWord *)(systemContext + 200) = 0;
   *(uint8_t8 *)(systemContext + 0xb0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -51723,7 +51723,7 @@ void Unwind_180906480(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x38) = 0;
-  *(uint8_t4 *)(param_2 + 0x48) = 0;
+  *(DataWord *)(param_2 + 0x48) = 0;
   *(uint8_t8 *)(param_2 + 0x30) = &DefaultExceptionHandlerB;
   return;
 }
@@ -52431,7 +52431,7 @@ void Unwind_1809067b0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -52964,7 +52964,7 @@ void Unwind_180906b10(uint8_t8 param_1,int64_t param_2)
       TerminateSystemE0();
     }
     resourcePointer[1] = 0;
-    *(uint8_t4 *)(resourcePointer + 3) = 0;
+    *(DataWord *)(resourcePointer + 3) = 0;
     *resourcePointer = &DefaultExceptionHandlerB;
   }
   if (*(int64_t *)(param_2 + 0x88) != 0) {
@@ -53012,7 +53012,7 @@ void Unwind_180906b40(uint8_t8 param_1,int64_t param_2)
       TerminateSystemE0();
     }
     resourcePointer[1] = 0;
-    *(uint8_t4 *)(resourcePointer + 3) = 0;
+    *(DataWord *)(resourcePointer + 3) = 0;
     *resourcePointer = &DefaultExceptionHandlerB;
   }
   if (*(int64_t *)(param_2 + 0x88) != 0) {
@@ -53076,7 +53076,7 @@ void Unwind_180906b60(uint8_t8 param_1,int64_t param_2)
       TerminateSystemE0();
     }
     pvalidationStatus[1] = 0;
-    *(uint8_t4 *)(pvalidationStatus + 3) = 0;
+    *(DataWord *)(pvalidationStatus + 3) = 0;
     *pvalidationStatus = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
@@ -56053,7 +56053,7 @@ void Unwind_180907700(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -56089,7 +56089,7 @@ void Unwind_180907710(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   resourcePointer[0xe] = 0;
-  *(uint8_t4 *)(resourcePointer + 0x10) = 0;
+  *(DataWord *)(resourcePointer + 0x10) = 0;
   resourcePointer[0xd] = &DefaultExceptionHandlerB;
   FUN_180179f00(resourcePointer + 7,resourcePointer[9]);
   *resourcePointer = &UNK_180a14c60;
@@ -56141,7 +56141,7 @@ void Unwind_180907740(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   resourcePointer[0xe] = 0;
-  *(uint8_t4 *)(resourcePointer + 0x10) = 0;
+  *(DataWord *)(resourcePointer + 0x10) = 0;
   resourcePointer[0xd] = &DefaultExceptionHandlerB;
   FUN_180179f00(resourcePointer + 7,resourcePointer[9]);
   *resourcePointer = &UNK_180a14c60;
@@ -56627,7 +56627,7 @@ void Unwind_180907950(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -56646,7 +56646,7 @@ void Unwind_180907960(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -56703,7 +56703,7 @@ void Unwind_1809079a0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x20) = 0;
-  *(uint8_t4 *)(validationContext + 0x30) = 0;
+  *(DataWord *)(validationContext + 0x30) = 0;
   *(uint8_t8 *)(validationContext + 0x18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -56722,7 +56722,7 @@ void Unwind_1809079b0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x40) = 0;
-  *(uint8_t4 *)(validationContext + 0x50) = 0;
+  *(DataWord *)(validationContext + 0x50) = 0;
   *(uint8_t8 *)(validationContext + 0x38) = &DefaultExceptionHandlerB;
   return;
 }
@@ -56741,7 +56741,7 @@ void Unwind_1809079c0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x60) = 0;
-  *(uint8_t4 *)(validationContext + 0x70) = 0;
+  *(DataWord *)(validationContext + 0x70) = 0;
   *(uint8_t8 *)(validationContext + 0x58) = &DefaultExceptionHandlerB;
   return;
 }
@@ -56838,7 +56838,7 @@ void Unwind_180907a00(uint8_t8 param_1,int64_t param_2)
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(uint8_t4 *)(pdataValue + 4) = 0;
+  *(DataWord *)(pdataValue + 4) = 0;
   pdataValue[3] = 0;
   return;
 }
@@ -57026,7 +57026,7 @@ void Unwind_180907a90(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -57182,7 +57182,7 @@ void Unwind_180907b70(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x38) = 0;
-  *(uint8_t4 *)(param_2 + 0x48) = 0;
+  *(DataWord *)(param_2 + 0x48) = 0;
   *(uint8_t8 *)(param_2 + 0x30) = &DefaultExceptionHandlerB;
   return;
 }
@@ -57252,7 +57252,7 @@ void Unwind_180907c10(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -57492,7 +57492,7 @@ void Unwind_180907cf0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x1c8) = 0;
-  *(uint8_t4 *)(param_2 + 0x1d8) = 0;
+  *(DataWord *)(param_2 + 0x1d8) = 0;
   *(uint8_t8 *)(param_2 + 0x1c0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -57511,7 +57511,7 @@ void Unwind_180907d00(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -58071,7 +58071,7 @@ void Unwind_180907f90(uint8_t8 resetContext, int64_t resourceContext)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(resourceContext + 0xa8) = 0;
-  *(uint8_t4 *)(resourceContext + 0xb8) = 0;
+  *(DataWord *)(resourceContext + 0xb8) = 0;
   *(uint8_t8 *)(resourceContext + 0xa0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -58087,7 +58087,7 @@ void Unwind_180907fa0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xa8) = 0;
-  *(uint8_t4 *)(param_2 + 0xb8) = 0;
+  *(DataWord *)(param_2 + 0xb8) = 0;
   *(uint8_t8 *)(param_2 + 0xa0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -58500,7 +58500,7 @@ void Unwind_180908130(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -59079,7 +59079,7 @@ void CleanupExceptionResourcesA2(uint8_t8 exceptionContext,int64_t unwindInfo)
   *(int64_t *)(contextBase + 0x15d8) =
        *(int64_t *)(&ExceptionDataTable1 + (int64_t)*(int *)(contextBase + 0x15e0) * 8) + -100000;
   FUN_180090b80((int64_t *)(contextBase + 0x8b0));
-  *(uint8_t4 *)(contextBase + 0x15e8) = 0;
+  *(DataWord *)(contextBase + 0x15e8) = 0;
   resourcePointer = *(int64_t **)(contextBase + 0x15d0);
   *(uint8_t8 *)(contextBase + 0x15d0) = 0;
   if (resourcePointer != (int64_t *)0x0) {
@@ -59617,7 +59617,7 @@ void Unwind_180908900(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x20) = 0;
-  *(uint8_t4 *)(validationContext + 0x30) = 0;
+  *(DataWord *)(validationContext + 0x30) = 0;
   *(uint8_t8 *)(validationContext + 0x18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -59636,7 +59636,7 @@ void Unwind_180908910(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x20) = 0;
-  *(uint8_t4 *)(validationContext + 0x30) = 0;
+  *(DataWord *)(validationContext + 0x30) = 0;
   *(uint8_t8 *)(validationContext + 0x18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -60240,7 +60240,7 @@ void Unwind_180908b00(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -60390,7 +60390,7 @@ void Unwind_180908ba0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xb0) = 0;
-  *(uint8_t4 *)(param_2 + 0xc0) = 0;
+  *(DataWord *)(param_2 + 0xc0) = 0;
   *(uint8_t8 *)(param_2 + 0xa8) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0xa0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0xa0) + 0x38))();
@@ -60441,7 +60441,7 @@ void ExceptionHandlerSetupRoutine(void* handlerContext, int64_t contextData)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(contextData + 0x50) = 0;
-  *(uint8_t4 *)(contextData + 0x60) = 0;
+  *(DataWord *)(contextData + 0x60) = 0;
   *(uint8_t8 *)(contextData + 0x48) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(contextData + 0x40) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(contextData + 0x40) + 0x38))();
@@ -60475,7 +60475,7 @@ void ExceptionHandlerContextValidator(void* validatorContext, int64_t contextDat
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -60505,7 +60505,7 @@ void ExceptionHandlerResetRoutine(void* resetContext, int64_t contextData)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(contextData + 0xb0) = 0;
-  *(uint8_t4 *)(contextData + 0xc0) = 0;
+  *(DataWord *)(contextData + 0xc0) = 0;
   *(uint8_t8 *)(contextData + 0xa8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -60552,7 +60552,7 @@ void Unwind_180908c30(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x50) = 0;
-  *(uint8_t4 *)(param_2 + 0x60) = 0;
+  *(DataWord *)(param_2 + 0x60) = 0;
   *(uint8_t8 *)(param_2 + 0x48) = &DefaultExceptionHandlerB;
   return;
 }
@@ -60596,7 +60596,7 @@ void Unwind_180908c60(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -60751,7 +60751,7 @@ void Unwind_180908db0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -60770,7 +60770,7 @@ void Unwind_180908dc0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -61062,7 +61062,7 @@ void Unwind_180908e90(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -62270,7 +62270,7 @@ void Unwind_180909460(uint8_t8 param_1,int64_t param_2)
     }
     *(int64_t *)(param_2 + 0xa0) = 0;
     *(uint8_t8 *)(param_2 + 0xa8) = 0;
-    *(uint8_t1 *)(param_2 + 0xb0) = 0;
+    *(ByteFlag *)(param_2 + 0xb0) = 0;
   }
   return;
 }
@@ -62405,7 +62405,7 @@ void Unwind_1809094f0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x220) = 0;
-  *(uint8_t4 *)(param_2 + 0x230) = 0;
+  *(DataWord *)(param_2 + 0x230) = 0;
   *(uint8_t8 *)(param_2 + 0x218) = &DefaultExceptionHandlerB;
   return;
 }
@@ -62421,7 +62421,7 @@ void Unwind_180909500(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x2a0) = 0;
-  *(uint8_t4 *)(param_2 + 0x2b0) = 0;
+  *(DataWord *)(param_2 + 0x2b0) = 0;
   *(uint8_t8 *)(param_2 + 0x298) = &DefaultExceptionHandlerB;
   return;
 }
@@ -62446,7 +62446,7 @@ void Unwind_180909520(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x280) = 0;
-  *(uint8_t4 *)(param_2 + 0x290) = 0;
+  *(DataWord *)(param_2 + 0x290) = 0;
   *(uint8_t8 *)(param_2 + 0x278) = &DefaultExceptionHandlerB;
   return;
 }
@@ -62518,7 +62518,7 @@ void CleanupSystemExceptionHandlerA0(uint8_t8 systemParameter, int64_t systemCon
     TerminateSystemE0();
   }
   *(uint8_t8 *)(systemContext + 0x200) = 0;
-  *(uint8_t4 *)(systemContext + 0x210) = 0;
+  *(DataWord *)(systemContext + 0x210) = 0;
   *(uint8_t8 *)(systemContext + 0x1f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -62571,7 +62571,7 @@ void CleanupSystemExceptionHandlerB0(uint8_t8 systemParameter, int64_t systemCon
     TerminateSystemE0();
   }
   *(uint8_t8 *)(systemContext + 0xf8) = 0;
-  *(uint8_t4 *)(systemContext + 0x108) = 0;
+  *(DataWord *)(systemContext + 0x108) = 0;
   *(uint8_t8 *)(systemContext + 0xf0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -62624,7 +62624,7 @@ void CleanupSystemExceptionHandlerC0(uint8_t8 systemParameter, int64_t systemCon
     TerminateSystemE0();
   }
   *(uint8_t8 *)(systemContext + 0x1a0) = 0;
-  *(uint8_t4 *)(systemContext + 0x1b0) = 0;
+  *(DataWord *)(systemContext + 0x1b0) = 0;
   *(uint8_t8 *)(systemContext + 0x198) = &DefaultExceptionHandlerB;
   return;
 }
@@ -62689,7 +62689,7 @@ void Unwind_180909610(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x2f8) = 0;
-  *(uint8_t4 *)(param_2 + 0x308) = 0;
+  *(DataWord *)(param_2 + 0x308) = 0;
   *(uint8_t8 *)(param_2 + 0x2f0) = &DefaultExceptionHandlerB;
   return;
 }
@@ -63142,7 +63142,7 @@ void Unwind_180909740(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x60) = 0;
-  *(uint8_t4 *)(validationContext + 0x70) = 0;
+  *(DataWord *)(validationContext + 0x70) = 0;
   *(uint8_t8 *)(validationContext + 0x58) = &DefaultExceptionHandlerB;
   return;
 }
@@ -63158,7 +63158,7 @@ void Unwind_180909750(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x10) = 0;
-  *(uint8_t4 *)(param_2 + 0x20) = 0;
+  *(DataWord *)(param_2 + 0x20) = 0;
   *(uint8_t8 *)(param_2 + 8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -63186,7 +63186,7 @@ void Unwind_180909770(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -63205,7 +63205,7 @@ void Unwind_180909780(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10) = 0;
-  *(uint8_t4 *)(validationContext + 0x20) = 0;
+  *(DataWord *)(validationContext + 0x20) = 0;
   *(uint8_t8 *)(validationContext + 8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -63966,7 +63966,7 @@ void Unwind_180909c30(uint8_t8 param_1,int64_t param_2)
   inputParameter = *(int *)(**(int64_t **)(_DAT_180c82868 + 8) + 0x48);
   operationResult = _Thrd_id();
   if (operationResult != inputParameter) {
-    SystemStatusFlagA = *(uint8_t4 *)(param_2 + 0x90);
+    SystemStatusFlagA = *(DataWord *)(param_2 + 0x90);
   }
   return;
 }
@@ -64064,7 +64064,7 @@ void Unwind_180909ce0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x568) = 0;
-  *(uint8_t4 *)(validationContext + 0x578) = 0;
+  *(DataWord *)(validationContext + 0x578) = 0;
   *(uint8_t8 *)(validationContext + 0x560) = &DefaultExceptionHandlerB;
   return;
 }
@@ -64629,7 +64629,7 @@ void Unwind_18090a1d0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x568) = 0;
-  *(uint8_t4 *)(validationContext + 0x578) = 0;
+  *(DataWord *)(validationContext + 0x578) = 0;
   *(uint8_t8 *)(validationContext + 0x560) = &DefaultExceptionHandlerB;
   return;
 }
@@ -65458,7 +65458,7 @@ void Unwind_18090a7b0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x30) = 0;
-  *(uint8_t4 *)(param_2 + 0x40) = 0;
+  *(DataWord *)(param_2 + 0x40) = 0;
   *(uint8_t8 *)(param_2 + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -65488,7 +65488,7 @@ void Unwind_18090a7d0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -65819,7 +65819,7 @@ void Unwind_18090a910(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -66157,7 +66157,7 @@ void Unwind_18090aae0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
-  *(uint8_t4 *)(param_2 + 0xb0) = 0;
+  *(DataWord *)(param_2 + 0xb0) = 0;
   *(uint8_t8 *)(param_2 + 0x98) = &DefaultExceptionHandlerB;
   return;
 }
@@ -68450,7 +68450,7 @@ void Unwind_18090bd70(uint8_t8 param_1,int64_t param_2)
     }
     *(int64_t *)(param_2 + 0x40) = 0;
     *(uint8_t8 *)(param_2 + 0x48) = 0;
-    *(uint8_t1 *)(param_2 + 0x50) = 0;
+    *(ByteFlag *)(param_2 + 0x50) = 0;
   }
   return;
 }
@@ -69085,7 +69085,7 @@ void Unwind_18090c150(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -69121,7 +69121,7 @@ void Unwind_18090c170(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -69508,7 +69508,7 @@ void Unwind_18090c310(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x28) = 0;
-  *(uint8_t4 *)(validationContext + 0x38) = 0;
+  *(DataWord *)(validationContext + 0x38) = 0;
   *(uint8_t8 *)(validationContext + 0x20) = &DefaultExceptionHandlerB;
   return;
 }
@@ -69826,7 +69826,7 @@ void ComplexExceptionHandlerAndReset(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xe0) = 0;
-  *(uint8_t4 *)(param_2 + 0xf0) = 0;
+  *(DataWord *)(param_2 + 0xf0) = 0;
   *(uint8_t8 *)(param_2 + 0xd8) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0xd0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0xd0) + 0x38))();
@@ -69859,7 +69859,7 @@ void ComplexValidationContextCleanup(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -69914,7 +69914,7 @@ void Unwind_18090c4e0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xe0) = 0;
-  *(uint8_t4 *)(param_2 + 0xf0) = 0;
+  *(DataWord *)(param_2 + 0xf0) = 0;
   *(uint8_t8 *)(param_2 + 0xd8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -69966,7 +69966,7 @@ void Unwind_18090c510(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -70690,7 +70690,7 @@ void Unwind_18090c790(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x150) = 0;
-  *(uint8_t4 *)(param_2 + 0x160) = 0;
+  *(DataWord *)(param_2 + 0x160) = 0;
   *(uint8_t8 *)(param_2 + 0x148) = &DefaultExceptionHandlerB;
   return;
 }
@@ -72054,7 +72054,7 @@ void Unwind_18090cdf0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x150) = 0;
-  *(uint8_t4 *)(param_2 + 0x160) = 0;
+  *(DataWord *)(param_2 + 0x160) = 0;
   *(uint8_t8 *)(param_2 + 0x148) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x140) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x140) + 0x38))();
@@ -72079,7 +72079,7 @@ void Unwind_18090ce00(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -72101,7 +72101,7 @@ void Unwind_18090ce10(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x360) = 0;
-  *(uint8_t4 *)(param_2 + 0x370) = 0;
+  *(DataWord *)(param_2 + 0x370) = 0;
   *(uint8_t8 *)(param_2 + 0x358) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x350) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x350) + 0x38))();
@@ -72126,7 +72126,7 @@ void Unwind_18090ce20(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -72148,7 +72148,7 @@ void Unwind_18090ce30(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x200) = 0;
-  *(uint8_t4 *)(param_2 + 0x210) = 0;
+  *(DataWord *)(param_2 + 0x210) = 0;
   *(uint8_t8 *)(param_2 + 0x1f8) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x1f0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x1f0) + 0x38))();
@@ -72170,7 +72170,7 @@ void Unwind_18090ce40(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x260) = 0;
-  *(uint8_t4 *)(param_2 + 0x270) = 0;
+  *(DataWord *)(param_2 + 0x270) = 0;
   *(uint8_t8 *)(param_2 + 600) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x250) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x250) + 0x38))();
@@ -72192,7 +72192,7 @@ void Unwind_18090ce50(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x2c0) = 0;
-  *(uint8_t4 *)(param_2 + 0x2d0) = 0;
+  *(DataWord *)(param_2 + 0x2d0) = 0;
   *(uint8_t8 *)(param_2 + 0x2b8) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x2b0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x2b0) + 0x38))();
@@ -72214,7 +72214,7 @@ void Unwind_18090ce60(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x3c0) = 0;
-  *(uint8_t4 *)(param_2 + 0x3d0) = 0;
+  *(DataWord *)(param_2 + 0x3d0) = 0;
   *(uint8_t8 *)(param_2 + 0x3b8) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x3b0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x3b0) + 0x38))();
@@ -72239,7 +72239,7 @@ void Unwind_18090ce70(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -72269,7 +72269,7 @@ void Unwind_18090ce90(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x150) = 0;
-  *(uint8_t4 *)(param_2 + 0x160) = 0;
+  *(DataWord *)(param_2 + 0x160) = 0;
   *(uint8_t8 *)(param_2 + 0x148) = &DefaultExceptionHandlerB;
   return;
 }
@@ -72313,7 +72313,7 @@ void Unwind_18090cec0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -72354,7 +72354,7 @@ void Unwind_18090cef0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x360) = 0;
-  *(uint8_t4 *)(param_2 + 0x370) = 0;
+  *(DataWord *)(param_2 + 0x370) = 0;
   *(uint8_t8 *)(param_2 + 0x358) = &DefaultExceptionHandlerB;
   return;
 }
@@ -72392,7 +72392,7 @@ void Unwind_18090cf20(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x200) = 0;
-  *(uint8_t4 *)(param_2 + 0x210) = 0;
+  *(DataWord *)(param_2 + 0x210) = 0;
   *(uint8_t8 *)(param_2 + 0x1f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -72430,7 +72430,7 @@ void Unwind_18090cf50(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x260) = 0;
-  *(uint8_t4 *)(param_2 + 0x270) = 0;
+  *(DataWord *)(param_2 + 0x270) = 0;
   *(uint8_t8 *)(param_2 + 600) = &DefaultExceptionHandlerB;
   return;
 }
@@ -72468,7 +72468,7 @@ void Unwind_18090cf80(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x2c0) = 0;
-  *(uint8_t4 *)(param_2 + 0x2d0) = 0;
+  *(DataWord *)(param_2 + 0x2d0) = 0;
   *(uint8_t8 *)(param_2 + 0x2b8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -72506,7 +72506,7 @@ void Unwind_18090cfb0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x3c0) = 0;
-  *(uint8_t4 *)(param_2 + 0x3d0) = 0;
+  *(DataWord *)(param_2 + 0x3d0) = 0;
   *(uint8_t8 *)(param_2 + 0x3b8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -75407,7 +75407,7 @@ void Unwind_18090d530(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -75452,7 +75452,7 @@ void Unwind_18090d560(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -75485,7 +75485,7 @@ void Unwind_18090d580(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x90) = 0;
-  *(uint8_t4 *)(param_2 + 0xa0) = 0;
+  *(DataWord *)(param_2 + 0xa0) = 0;
   *(uint8_t8 *)(param_2 + 0x88) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x80) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x80) + 0x38))();
@@ -75510,7 +75510,7 @@ void Unwind_18090d590(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -75540,7 +75540,7 @@ void Unwind_18090d5b0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x90) = 0;
-  *(uint8_t4 *)(param_2 + 0xa0) = 0;
+  *(DataWord *)(param_2 + 0xa0) = 0;
   *(uint8_t8 *)(param_2 + 0x88) = &DefaultExceptionHandlerB;
   return;
 }
@@ -76226,7 +76226,7 @@ void Unwind_18090dd00(uint8_t8 param_1,int64_t param_2)
       TerminateSystemE0();
     }
     pvalidationStatus[1] = 0;
-    *(uint8_t4 *)(pvalidationStatus + 3) = 0;
+    *(DataWord *)(pvalidationStatus + 3) = 0;
     *pvalidationStatus = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
@@ -76254,7 +76254,7 @@ void Unwind_18090dd10(uint8_t8 param_1,int64_t param_2)
       TerminateSystemE0();
     }
     pvalidationStatus[1] = 0;
-    *(uint8_t4 *)(pvalidationStatus + 3) = 0;
+    *(DataWord *)(pvalidationStatus + 3) = 0;
     *pvalidationStatus = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
@@ -77851,7 +77851,7 @@ void Unwind_18090e8d0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x70) = 0;
-  *(uint8_t4 *)(param_2 + 0x80) = 0;
+  *(DataWord *)(param_2 + 0x80) = 0;
   *(uint8_t8 *)(param_2 + 0x68) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x60) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x60) + 0x38))();
@@ -77876,7 +77876,7 @@ void Unwind_18090e8e0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -77898,7 +77898,7 @@ void Unwind_18090e8f0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x100) = 0;
-  *(uint8_t4 *)(param_2 + 0x110) = 0;
+  *(DataWord *)(param_2 + 0x110) = 0;
   *(uint8_t8 *)(param_2 + 0xf8) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0xf0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0xf0) + 0x38))();
@@ -77937,7 +77937,7 @@ void Unwind_18090e920(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x70) = 0;
-  *(uint8_t4 *)(param_2 + 0x80) = 0;
+  *(DataWord *)(param_2 + 0x80) = 0;
   *(uint8_t8 *)(param_2 + 0x68) = &DefaultExceptionHandlerB;
   return;
 }
@@ -77981,7 +77981,7 @@ void Unwind_18090e950(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -78022,7 +78022,7 @@ void Unwind_18090e980(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0x100) = 0;
-  *(uint8_t4 *)(param_2 + 0x110) = 0;
+  *(DataWord *)(param_2 + 0x110) = 0;
   *(uint8_t8 *)(param_2 + 0xf8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -78245,7 +78245,7 @@ void Unwind_18090eb20(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -78290,7 +78290,7 @@ void Unwind_18090eb50(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -78359,7 +78359,7 @@ void Unwind_18090ebf0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
-  *(uint8_t4 *)(param_2 + 0xb0) = 0;
+  *(DataWord *)(param_2 + 0xb0) = 0;
   *(uint8_t8 *)(param_2 + 0x98) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0x90) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0x90) + 0x38))();
@@ -78384,7 +78384,7 @@ void Unwind_18090ec00(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -78414,7 +78414,7 @@ void Unwind_18090ec20(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xa0) = 0;
-  *(uint8_t4 *)(param_2 + 0xb0) = 0;
+  *(DataWord *)(param_2 + 0xb0) = 0;
   *(uint8_t8 *)(param_2 + 0x98) = &DefaultExceptionHandlerB;
   return;
 }
@@ -78444,7 +78444,7 @@ void Unwind_18090ec40(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -78597,7 +78597,7 @@ void Unwind_18090ed20(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xd0) = 0;
-  *(uint8_t4 *)(param_2 + 0xe0) = 0;
+  *(DataWord *)(param_2 + 0xe0) = 0;
   *(uint8_t8 *)(param_2 + 200) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(param_2 + 0xc0) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(param_2 + 0xc0) + 0x38))();
@@ -78622,7 +78622,7 @@ void Unwind_18090ed30(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -78652,7 +78652,7 @@ void Unwind_18090ed50(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(param_2 + 0xd0) = 0;
-  *(uint8_t4 *)(param_2 + 0xe0) = 0;
+  *(DataWord *)(param_2 + 0xe0) = 0;
   *(uint8_t8 *)(param_2 + 200) = &DefaultExceptionHandlerB;
   return;
 }
@@ -78682,7 +78682,7 @@ void Unwind_18090ed70(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -79650,7 +79650,7 @@ void Unwind_18090f140(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -79669,7 +79669,7 @@ void Unwind_18090f150(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10) = 0;
-  *(uint8_t4 *)(validationContext + 0x20) = 0;
+  *(DataWord *)(validationContext + 0x20) = 0;
   *(uint8_t8 *)(validationContext + 8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -79688,7 +79688,7 @@ void Unwind_18090f160(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10) = 0;
-  *(uint8_t4 *)(validationContext + 0x20) = 0;
+  *(DataWord *)(validationContext + 0x20) = 0;
   *(uint8_t8 *)(validationContext + 8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -79735,7 +79735,7 @@ void Unwind_18090f190(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10) = 0;
-  *(uint8_t4 *)(validationContext + 0x20) = 0;
+  *(DataWord *)(validationContext + 0x20) = 0;
   *(uint8_t8 *)(validationContext + 8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -80509,7 +80509,7 @@ void Unwind_18090f650(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4148) = 0;
-  *(uint8_t4 *)(validationContext + 0x4158) = 0;
+  *(DataWord *)(validationContext + 0x4158) = 0;
   *(uint8_t8 *)(validationContext + 0x4140) = &DefaultExceptionHandlerB;
   return;
 }
@@ -80528,7 +80528,7 @@ void Unwind_18090f670(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x4198) = 0;
-  *(uint8_t4 *)(validationContext + 0x41a8) = 0;
+  *(DataWord *)(validationContext + 0x41a8) = 0;
   *(uint8_t8 *)(validationContext + 0x4190) = &DefaultExceptionHandlerB;
   return;
 }
@@ -81221,7 +81221,7 @@ void CleanupExceptionHandlers18090fac0(uint8_t8 exceptionContext,int64_t systemC
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   if (*(int64_t **)(validationContext + 0x20) != (int64_t *)0x0) {
     (**(FunctionPointer**)(**(int64_t **)(validationContext + 0x20) + 0x38))();
@@ -81266,7 +81266,7 @@ void Unwind_18090faf0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x30) = 0;
-  *(uint8_t4 *)(validationContext + 0x40) = 0;
+  *(DataWord *)(validationContext + 0x40) = 0;
   *(uint8_t8 *)(validationContext + 0x28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -81353,7 +81353,7 @@ void Unwind_18090fb70(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   pdataValue[1] = 0;
-  *(uint8_t4 *)(pdataValue + 3) = 0;
+  *(DataWord *)(pdataValue + 3) = 0;
   *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
@@ -82386,7 +82386,7 @@ void Unwind_180910110(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x110) = 0;
-  *(uint8_t4 *)(validationContext + 0x120) = 0;
+  *(DataWord *)(validationContext + 0x120) = 0;
   *(uint8_t8 *)(validationContext + 0x108) = &DefaultExceptionHandlerB;
   return;
 }
@@ -82405,7 +82405,7 @@ void Unwind_180910130(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x110) = 0;
-  *(uint8_t4 *)(validationContext + 0x120) = 0;
+  *(DataWord *)(validationContext + 0x120) = 0;
   *(uint8_t8 *)(validationContext + 0x108) = &DefaultExceptionHandlerB;
   return;
 }
@@ -82463,7 +82463,7 @@ void Unwind_1809101c0(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x110) = 0;
-  *(uint8_t4 *)(validationContext + 0x120) = 0;
+  *(DataWord *)(validationContext + 0x120) = 0;
   *(uint8_t8 *)(validationContext + 0x108) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83722,7 +83722,7 @@ void Unwind_1809107a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x9e0) = 0;
+  *(DataWord *)(validationContext + 0x9e0) = 0;
   *(uint8_t8 *)(validationContext + 0x9c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x9a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9b0) != 0) {
@@ -83730,7 +83730,7 @@ void Unwind_1809107a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x9c0) = 0;
+  *(DataWord *)(validationContext + 0x9c0) = 0;
   *(uint8_t8 *)(validationContext + 0x9a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83752,7 +83752,7 @@ void Unwind_1809107c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa40) = 0;
-  *(uint8_t4 *)(validationContext + 0xa50) = 0;
+  *(DataWord *)(validationContext + 0xa50) = 0;
   *(uint8_t8 *)(validationContext + 0xa38) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa18) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa20) != 0) {
@@ -83760,7 +83760,7 @@ void Unwind_1809107c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa20) = 0;
-  *(uint8_t4 *)(validationContext + 0xa30) = 0;
+  *(DataWord *)(validationContext + 0xa30) = 0;
   *(uint8_t8 *)(validationContext + 0xa18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83782,7 +83782,7 @@ void Unwind_1809107e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xab0) = 0;
-  *(uint8_t4 *)(validationContext + 0xac0) = 0;
+  *(DataWord *)(validationContext + 0xac0) = 0;
   *(uint8_t8 *)(validationContext + 0xaa8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa88) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa90) != 0) {
@@ -83790,7 +83790,7 @@ void Unwind_1809107e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa90) = 0;
-  *(uint8_t4 *)(validationContext + 0xaa0) = 0;
+  *(DataWord *)(validationContext + 0xaa0) = 0;
   *(uint8_t8 *)(validationContext + 0xa88) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83812,7 +83812,7 @@ void Unwind_180910800(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb20) = 0;
-  *(uint8_t4 *)(validationContext + 0xb30) = 0;
+  *(DataWord *)(validationContext + 0xb30) = 0;
   *(uint8_t8 *)(validationContext + 0xb18) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xaf8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb00) != 0) {
@@ -83820,7 +83820,7 @@ void Unwind_180910800(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb00) = 0;
-  *(uint8_t4 *)(validationContext + 0xb10) = 0;
+  *(DataWord *)(validationContext + 0xb10) = 0;
   *(uint8_t8 *)(validationContext + 0xaf8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83842,7 +83842,7 @@ void Unwind_180910820(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb90) = 0;
-  *(uint8_t4 *)(validationContext + 0xba0) = 0;
+  *(DataWord *)(validationContext + 0xba0) = 0;
   *(uint8_t8 *)(validationContext + 0xb88) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xb68) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb70) != 0) {
@@ -83850,7 +83850,7 @@ void Unwind_180910820(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb70) = 0;
-  *(uint8_t4 *)(validationContext + 0xb80) = 0;
+  *(DataWord *)(validationContext + 0xb80) = 0;
   *(uint8_t8 *)(validationContext + 0xb68) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83872,7 +83872,7 @@ void Unwind_180910840(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc00) = 0;
-  *(uint8_t4 *)(validationContext + 0xc10) = 0;
+  *(DataWord *)(validationContext + 0xc10) = 0;
   *(uint8_t8 *)(validationContext + 0xbf8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xbd8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xbe0) != 0) {
@@ -83880,7 +83880,7 @@ void Unwind_180910840(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xbe0) = 0;
-  *(uint8_t4 *)(validationContext + 0xbf0) = 0;
+  *(DataWord *)(validationContext + 0xbf0) = 0;
   *(uint8_t8 *)(validationContext + 0xbd8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83902,7 +83902,7 @@ void Unwind_180910860(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc70) = 0;
-  *(uint8_t4 *)(validationContext + 0xc80) = 0;
+  *(DataWord *)(validationContext + 0xc80) = 0;
   *(uint8_t8 *)(validationContext + 0xc68) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc50) != 0) {
@@ -83910,7 +83910,7 @@ void Unwind_180910860(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc50) = 0;
-  *(uint8_t4 *)(validationContext + 0xc60) = 0;
+  *(DataWord *)(validationContext + 0xc60) = 0;
   *(uint8_t8 *)(validationContext + 0xc48) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83932,7 +83932,7 @@ void Unwind_180910880(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xce0) = 0;
-  *(uint8_t4 *)(validationContext + 0xcf0) = 0;
+  *(DataWord *)(validationContext + 0xcf0) = 0;
   *(uint8_t8 *)(validationContext + 0xcd8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xcb8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xcc0) != 0) {
@@ -83940,7 +83940,7 @@ void Unwind_180910880(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xcc0) = 0;
-  *(uint8_t4 *)(validationContext + 0xcd0) = 0;
+  *(DataWord *)(validationContext + 0xcd0) = 0;
   *(uint8_t8 *)(validationContext + 0xcb8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83962,7 +83962,7 @@ void Unwind_1809108a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd50) = 0;
-  *(uint8_t4 *)(validationContext + 0xd60) = 0;
+  *(DataWord *)(validationContext + 0xd60) = 0;
   *(uint8_t8 *)(validationContext + 0xd48) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xd28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd30) != 0) {
@@ -83970,7 +83970,7 @@ void Unwind_1809108a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd30) = 0;
-  *(uint8_t4 *)(validationContext + 0xd40) = 0;
+  *(DataWord *)(validationContext + 0xd40) = 0;
   *(uint8_t8 *)(validationContext + 0xd28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -83992,7 +83992,7 @@ void Unwind_1809108c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xdc0) = 0;
-  *(uint8_t4 *)(validationContext + 0xdd0) = 0;
+  *(DataWord *)(validationContext + 0xdd0) = 0;
   *(uint8_t8 *)(validationContext + 0xdb8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xd98) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xda0) != 0) {
@@ -84000,7 +84000,7 @@ void Unwind_1809108c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xda0) = 0;
-  *(uint8_t4 *)(validationContext + 0xdb0) = 0;
+  *(DataWord *)(validationContext + 0xdb0) = 0;
   *(uint8_t8 *)(validationContext + 0xd98) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84022,7 +84022,7 @@ void Unwind_1809108e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe30) = 0;
-  *(uint8_t4 *)(validationContext + 0xe40) = 0;
+  *(DataWord *)(validationContext + 0xe40) = 0;
   *(uint8_t8 *)(validationContext + 0xe28) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe10) != 0) {
@@ -84030,7 +84030,7 @@ void Unwind_1809108e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe10) = 0;
-  *(uint8_t4 *)(validationContext + 0xe20) = 0;
+  *(DataWord *)(validationContext + 0xe20) = 0;
   *(uint8_t8 *)(validationContext + 0xe08) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84052,7 +84052,7 @@ void Unwind_180910900(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xea0) = 0;
-  *(uint8_t4 *)(validationContext + 0xeb0) = 0;
+  *(DataWord *)(validationContext + 0xeb0) = 0;
   *(uint8_t8 *)(validationContext + 0xe98) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe80) != 0) {
@@ -84060,7 +84060,7 @@ void Unwind_180910900(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe80) = 0;
-  *(uint8_t4 *)(validationContext + 0xe90) = 0;
+  *(DataWord *)(validationContext + 0xe90) = 0;
   *(uint8_t8 *)(validationContext + 0xe78) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84082,7 +84082,7 @@ void Unwind_180910920(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf10) = 0;
-  *(uint8_t4 *)(validationContext + 0xf20) = 0;
+  *(DataWord *)(validationContext + 0xf20) = 0;
   *(uint8_t8 *)(validationContext + 0xf08) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xee8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xef0) != 0) {
@@ -84090,7 +84090,7 @@ void Unwind_180910920(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xef0) = 0;
-  *(uint8_t4 *)(validationContext + 0xf00) = 0;
+  *(DataWord *)(validationContext + 0xf00) = 0;
   *(uint8_t8 *)(validationContext + 0xee8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84112,7 +84112,7 @@ void Unwind_180910940(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf80) = 0;
-  *(uint8_t4 *)(validationContext + 0xf90) = 0;
+  *(DataWord *)(validationContext + 0xf90) = 0;
   *(uint8_t8 *)(validationContext + 0xf78) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xf58) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf60) != 0) {
@@ -84120,7 +84120,7 @@ void Unwind_180910940(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf60) = 0;
-  *(uint8_t4 *)(validationContext + 0xf70) = 0;
+  *(DataWord *)(validationContext + 0xf70) = 0;
   *(uint8_t8 *)(validationContext + 0xf58) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84142,7 +84142,7 @@ void Unwind_180910960(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xff0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1000) = 0;
+  *(DataWord *)(validationContext + 0x1000) = 0;
   *(uint8_t8 *)(validationContext + 0xfe8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xfc8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xfd0) != 0) {
@@ -84150,7 +84150,7 @@ void Unwind_180910960(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xfd0) = 0;
-  *(uint8_t4 *)(validationContext + 0xfe0) = 0;
+  *(DataWord *)(validationContext + 0xfe0) = 0;
   *(uint8_t8 *)(validationContext + 0xfc8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84172,7 +84172,7 @@ void Unwind_180910980(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1060) = 0;
-  *(uint8_t4 *)(validationContext + 0x1070) = 0;
+  *(DataWord *)(validationContext + 0x1070) = 0;
   *(uint8_t8 *)(validationContext + 0x1058) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1038) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1040) != 0) {
@@ -84180,7 +84180,7 @@ void Unwind_180910980(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1040) = 0;
-  *(uint8_t4 *)(validationContext + 0x1050) = 0;
+  *(DataWord *)(validationContext + 0x1050) = 0;
   *(uint8_t8 *)(validationContext + 0x1038) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84202,7 +84202,7 @@ void Unwind_1809109a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x10e0) = 0;
+  *(DataWord *)(validationContext + 0x10e0) = 0;
   *(uint8_t8 *)(validationContext + 0x10c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x10a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x10b0) != 0) {
@@ -84210,7 +84210,7 @@ void Unwind_1809109a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x10c0) = 0;
+  *(DataWord *)(validationContext + 0x10c0) = 0;
   *(uint8_t8 *)(validationContext + 0x10a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84232,7 +84232,7 @@ void Unwind_1809109c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1140) = 0;
-  *(uint8_t4 *)(validationContext + 0x1150) = 0;
+  *(DataWord *)(validationContext + 0x1150) = 0;
   *(uint8_t8 *)(validationContext + 0x1138) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1118) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1120) != 0) {
@@ -84240,7 +84240,7 @@ void Unwind_1809109c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1120) = 0;
-  *(uint8_t4 *)(validationContext + 0x1130) = 0;
+  *(DataWord *)(validationContext + 0x1130) = 0;
   *(uint8_t8 *)(validationContext + 0x1118) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84262,7 +84262,7 @@ void Unwind_1809109e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x11b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x11c0) = 0;
+  *(DataWord *)(validationContext + 0x11c0) = 0;
   *(uint8_t8 *)(validationContext + 0x11a8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1188) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1190) != 0) {
@@ -84270,7 +84270,7 @@ void Unwind_1809109e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1190) = 0;
-  *(uint8_t4 *)(validationContext + 0x11a0) = 0;
+  *(DataWord *)(validationContext + 0x11a0) = 0;
   *(uint8_t8 *)(validationContext + 0x1188) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84292,7 +84292,7 @@ void Unwind_180910a00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1220) = 0;
-  *(uint8_t4 *)(validationContext + 0x1230) = 0;
+  *(DataWord *)(validationContext + 0x1230) = 0;
   *(uint8_t8 *)(validationContext + 0x1218) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x11f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1200) != 0) {
@@ -84300,7 +84300,7 @@ void Unwind_180910a00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1200) = 0;
-  *(uint8_t4 *)(validationContext + 0x1210) = 0;
+  *(DataWord *)(validationContext + 0x1210) = 0;
   *(uint8_t8 *)(validationContext + 0x11f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84322,7 +84322,7 @@ void Unwind_180910a20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1290) = 0;
-  *(uint8_t4 *)(validationContext + 0x12a0) = 0;
+  *(DataWord *)(validationContext + 0x12a0) = 0;
   *(uint8_t8 *)(validationContext + 0x1288) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1268) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1270) != 0) {
@@ -84330,7 +84330,7 @@ void Unwind_180910a20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1270) = 0;
-  *(uint8_t4 *)(validationContext + 0x1280) = 0;
+  *(DataWord *)(validationContext + 0x1280) = 0;
   *(uint8_t8 *)(validationContext + 0x1268) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84352,7 +84352,7 @@ void Unwind_180910a40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1300) = 0;
-  *(uint8_t4 *)(validationContext + 0x1310) = 0;
+  *(DataWord *)(validationContext + 0x1310) = 0;
   *(uint8_t8 *)(validationContext + 0x12f8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x12d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x12e0) != 0) {
@@ -84360,7 +84360,7 @@ void Unwind_180910a40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x12e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x12f0) = 0;
+  *(DataWord *)(validationContext + 0x12f0) = 0;
   *(uint8_t8 *)(validationContext + 0x12d8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84382,7 +84382,7 @@ void Unwind_180910a60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1370) = 0;
-  *(uint8_t4 *)(validationContext + 0x1380) = 0;
+  *(DataWord *)(validationContext + 0x1380) = 0;
   *(uint8_t8 *)(validationContext + 0x1368) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1348) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1350) != 0) {
@@ -84390,7 +84390,7 @@ void Unwind_180910a60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1350) = 0;
-  *(uint8_t4 *)(validationContext + 0x1360) = 0;
+  *(DataWord *)(validationContext + 0x1360) = 0;
   *(uint8_t8 *)(validationContext + 0x1348) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84412,7 +84412,7 @@ void Unwind_180910a80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x13e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x13f0) = 0;
+  *(DataWord *)(validationContext + 0x13f0) = 0;
   *(uint8_t8 *)(validationContext + 0x13d8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x13b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x13c0) != 0) {
@@ -84420,7 +84420,7 @@ void Unwind_180910a80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x13c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x13d0) = 0;
+  *(DataWord *)(validationContext + 0x13d0) = 0;
   *(uint8_t8 *)(validationContext + 0x13b8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84442,7 +84442,7 @@ void Unwind_180910aa0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1450) = 0;
-  *(uint8_t4 *)(validationContext + 0x1460) = 0;
+  *(DataWord *)(validationContext + 0x1460) = 0;
   *(uint8_t8 *)(validationContext + 0x1448) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1428) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1430) != 0) {
@@ -84450,7 +84450,7 @@ void Unwind_180910aa0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1430) = 0;
-  *(uint8_t4 *)(validationContext + 0x1440) = 0;
+  *(DataWord *)(validationContext + 0x1440) = 0;
   *(uint8_t8 *)(validationContext + 0x1428) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84472,7 +84472,7 @@ void Unwind_180910ac0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x14c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x14d0) = 0;
+  *(DataWord *)(validationContext + 0x14d0) = 0;
   *(uint8_t8 *)(validationContext + 0x14b8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1498) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x14a0) != 0) {
@@ -84480,7 +84480,7 @@ void Unwind_180910ac0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x14a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x14b0) = 0;
+  *(DataWord *)(validationContext + 0x14b0) = 0;
   *(uint8_t8 *)(validationContext + 0x1498) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84502,7 +84502,7 @@ void Unwind_180910ae0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1530) = 0;
-  *(uint8_t4 *)(validationContext + 0x1540) = 0;
+  *(DataWord *)(validationContext + 0x1540) = 0;
   *(uint8_t8 *)(validationContext + 0x1528) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1508) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1510) != 0) {
@@ -84510,7 +84510,7 @@ void Unwind_180910ae0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1510) = 0;
-  *(uint8_t4 *)(validationContext + 0x1520) = 0;
+  *(DataWord *)(validationContext + 0x1520) = 0;
   *(uint8_t8 *)(validationContext + 0x1508) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84532,7 +84532,7 @@ void Unwind_180910b00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x15a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x15b0) = 0;
+  *(DataWord *)(validationContext + 0x15b0) = 0;
   *(uint8_t8 *)(validationContext + 0x1598) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1578) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1580) != 0) {
@@ -84540,7 +84540,7 @@ void Unwind_180910b00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1580) = 0;
-  *(uint8_t4 *)(validationContext + 0x1590) = 0;
+  *(DataWord *)(validationContext + 0x1590) = 0;
   *(uint8_t8 *)(validationContext + 0x1578) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84562,7 +84562,7 @@ void Unwind_180910b20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1610) = 0;
-  *(uint8_t4 *)(validationContext + 0x1620) = 0;
+  *(DataWord *)(validationContext + 0x1620) = 0;
   *(uint8_t8 *)(validationContext + 0x1608) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x15e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x15f0) != 0) {
@@ -84570,7 +84570,7 @@ void Unwind_180910b20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x15f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1600) = 0;
+  *(DataWord *)(validationContext + 0x1600) = 0;
   *(uint8_t8 *)(validationContext + 0x15e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84592,7 +84592,7 @@ void Unwind_180910b40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1680) = 0;
-  *(uint8_t4 *)(validationContext + 0x1690) = 0;
+  *(DataWord *)(validationContext + 0x1690) = 0;
   *(uint8_t8 *)(validationContext + 0x1678) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1658) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1660) != 0) {
@@ -84600,7 +84600,7 @@ void Unwind_180910b40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1660) = 0;
-  *(uint8_t4 *)(validationContext + 0x1670) = 0;
+  *(DataWord *)(validationContext + 0x1670) = 0;
   *(uint8_t8 *)(validationContext + 0x1658) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84622,7 +84622,7 @@ void Unwind_180910b60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x16f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1700) = 0;
+  *(DataWord *)(validationContext + 0x1700) = 0;
   *(uint8_t8 *)(validationContext + 0x16e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x16c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x16d0) != 0) {
@@ -84630,7 +84630,7 @@ void Unwind_180910b60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x16d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x16e0) = 0;
+  *(DataWord *)(validationContext + 0x16e0) = 0;
   *(uint8_t8 *)(validationContext + 0x16c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84652,7 +84652,7 @@ void Unwind_180910b80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1760) = 0;
-  *(uint8_t4 *)(validationContext + 6000) = 0;
+  *(DataWord *)(validationContext + 6000) = 0;
   *(uint8_t8 *)(validationContext + 0x1758) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1738) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1740) != 0) {
@@ -84660,7 +84660,7 @@ void Unwind_180910b80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1740) = 0;
-  *(uint8_t4 *)(validationContext + 0x1750) = 0;
+  *(DataWord *)(validationContext + 0x1750) = 0;
   *(uint8_t8 *)(validationContext + 0x1738) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84682,7 +84682,7 @@ void Unwind_180910ba0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x17d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x17e0) = 0;
+  *(DataWord *)(validationContext + 0x17e0) = 0;
   *(uint8_t8 *)(validationContext + 0x17c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x17a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x17b0) != 0) {
@@ -84690,7 +84690,7 @@ void Unwind_180910ba0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x17b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x17c0) = 0;
+  *(DataWord *)(validationContext + 0x17c0) = 0;
   *(uint8_t8 *)(validationContext + 0x17a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84712,7 +84712,7 @@ void Unwind_180910bc0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1840) = 0;
-  *(uint8_t4 *)(validationContext + 0x1850) = 0;
+  *(DataWord *)(validationContext + 0x1850) = 0;
   *(uint8_t8 *)(validationContext + 0x1838) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1818) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1820) != 0) {
@@ -84720,7 +84720,7 @@ void Unwind_180910bc0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1820) = 0;
-  *(uint8_t4 *)(validationContext + 0x1830) = 0;
+  *(DataWord *)(validationContext + 0x1830) = 0;
   *(uint8_t8 *)(validationContext + 0x1818) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84742,7 +84742,7 @@ void Unwind_180910be0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x18b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x18c0) = 0;
+  *(DataWord *)(validationContext + 0x18c0) = 0;
   *(uint8_t8 *)(validationContext + 0x18a8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1888) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1890) != 0) {
@@ -84750,7 +84750,7 @@ void Unwind_180910be0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1890) = 0;
-  *(uint8_t4 *)(validationContext + 0x18a0) = 0;
+  *(DataWord *)(validationContext + 0x18a0) = 0;
   *(uint8_t8 *)(validationContext + 0x1888) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84772,7 +84772,7 @@ void Unwind_180910c00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1920) = 0;
-  *(uint8_t4 *)(validationContext + 0x1930) = 0;
+  *(DataWord *)(validationContext + 0x1930) = 0;
   *(uint8_t8 *)(validationContext + 0x1918) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x18f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1900) != 0) {
@@ -84780,7 +84780,7 @@ void Unwind_180910c00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1900) = 0;
-  *(uint8_t4 *)(validationContext + 0x1910) = 0;
+  *(DataWord *)(validationContext + 0x1910) = 0;
   *(uint8_t8 *)(validationContext + 0x18f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84802,7 +84802,7 @@ void Unwind_180910c20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1990) = 0;
-  *(uint8_t4 *)(validationContext + 0x19a0) = 0;
+  *(DataWord *)(validationContext + 0x19a0) = 0;
   *(uint8_t8 *)(validationContext + 0x1988) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1968) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1970) != 0) {
@@ -84810,7 +84810,7 @@ void Unwind_180910c20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1970) = 0;
-  *(uint8_t4 *)(validationContext + 0x1980) = 0;
+  *(DataWord *)(validationContext + 0x1980) = 0;
   *(uint8_t8 *)(validationContext + 0x1968) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84832,7 +84832,7 @@ void Unwind_180910c40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1a00) = 0;
-  *(uint8_t4 *)(validationContext + 0x1a10) = 0;
+  *(DataWord *)(validationContext + 0x1a10) = 0;
   *(uint8_t8 *)(validationContext + 0x19f8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x19d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x19e0) != 0) {
@@ -84840,7 +84840,7 @@ void Unwind_180910c40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x19e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x19f0) = 0;
+  *(DataWord *)(validationContext + 0x19f0) = 0;
   *(uint8_t8 *)(validationContext + 0x19d8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84862,7 +84862,7 @@ void Unwind_180910c60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1a70) = 0;
-  *(uint8_t4 *)(validationContext + 0x1a80) = 0;
+  *(DataWord *)(validationContext + 0x1a80) = 0;
   *(uint8_t8 *)(validationContext + 0x1a68) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1a48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1a50) != 0) {
@@ -84870,7 +84870,7 @@ void Unwind_180910c60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1a50) = 0;
-  *(uint8_t4 *)(validationContext + 0x1a60) = 0;
+  *(DataWord *)(validationContext + 0x1a60) = 0;
   *(uint8_t8 *)(validationContext + 0x1a48) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84892,7 +84892,7 @@ void Unwind_180910c80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ae0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1af0) = 0;
+  *(DataWord *)(validationContext + 0x1af0) = 0;
   *(uint8_t8 *)(validationContext + 0x1ad8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1ab8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ac0) != 0) {
@@ -84900,7 +84900,7 @@ void Unwind_180910c80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ac0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1ad0) = 0;
+  *(DataWord *)(validationContext + 0x1ad0) = 0;
   *(uint8_t8 *)(validationContext + 0x1ab8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84922,7 +84922,7 @@ void Unwind_180910ca0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1b50) = 0;
-  *(uint8_t4 *)(validationContext + 0x1b60) = 0;
+  *(DataWord *)(validationContext + 0x1b60) = 0;
   *(uint8_t8 *)(validationContext + 0x1b48) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1b28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1b30) != 0) {
@@ -84930,7 +84930,7 @@ void Unwind_180910ca0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1b30) = 0;
-  *(uint8_t4 *)(validationContext + 0x1b40) = 0;
+  *(DataWord *)(validationContext + 0x1b40) = 0;
   *(uint8_t8 *)(validationContext + 0x1b28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84952,7 +84952,7 @@ void Unwind_180910cc0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1bc0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1bd0) = 0;
+  *(DataWord *)(validationContext + 0x1bd0) = 0;
   *(uint8_t8 *)(validationContext + 0x1bb8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1b98) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ba0) != 0) {
@@ -84960,7 +84960,7 @@ void Unwind_180910cc0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ba0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1bb0) = 0;
+  *(DataWord *)(validationContext + 0x1bb0) = 0;
   *(uint8_t8 *)(validationContext + 0x1b98) = &DefaultExceptionHandlerB;
   return;
 }
@@ -84982,7 +84982,7 @@ void Unwind_180910ce0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1c30) = 0;
-  *(uint8_t4 *)(validationContext + 0x1c40) = 0;
+  *(DataWord *)(validationContext + 0x1c40) = 0;
   *(uint8_t8 *)(validationContext + 0x1c28) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1c08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1c10) != 0) {
@@ -84990,7 +84990,7 @@ void Unwind_180910ce0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1c10) = 0;
-  *(uint8_t4 *)(validationContext + 0x1c20) = 0;
+  *(DataWord *)(validationContext + 0x1c20) = 0;
   *(uint8_t8 *)(validationContext + 0x1c08) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85012,7 +85012,7 @@ void Unwind_180910d00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ca0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1cb0) = 0;
+  *(DataWord *)(validationContext + 0x1cb0) = 0;
   *(uint8_t8 *)(validationContext + 0x1c98) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1c78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1c80) != 0) {
@@ -85020,7 +85020,7 @@ void Unwind_180910d00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1c80) = 0;
-  *(uint8_t4 *)(validationContext + 0x1c90) = 0;
+  *(DataWord *)(validationContext + 0x1c90) = 0;
   *(uint8_t8 *)(validationContext + 0x1c78) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85042,7 +85042,7 @@ void Unwind_180910d20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1d10) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d20) = 0;
+  *(DataWord *)(validationContext + 0x1d20) = 0;
   *(uint8_t8 *)(validationContext + 0x1d08) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1ce8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1cf0) != 0) {
@@ -85050,7 +85050,7 @@ void Unwind_180910d20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1cf0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d00) = 0;
+  *(DataWord *)(validationContext + 0x1d00) = 0;
   *(uint8_t8 *)(validationContext + 0x1ce8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85072,7 +85072,7 @@ void Unwind_180910d40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1d80) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d90) = 0;
+  *(DataWord *)(validationContext + 0x1d90) = 0;
   *(uint8_t8 *)(validationContext + 0x1d78) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1d58) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1d60) != 0) {
@@ -85080,7 +85080,7 @@ void Unwind_180910d40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1d60) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d70) = 0;
+  *(DataWord *)(validationContext + 0x1d70) = 0;
   *(uint8_t8 *)(validationContext + 0x1d58) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85102,7 +85102,7 @@ void Unwind_180910d60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1df0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1e00) = 0;
+  *(DataWord *)(validationContext + 0x1e00) = 0;
   *(uint8_t8 *)(validationContext + 0x1de8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1dc8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1dd0) != 0) {
@@ -85110,7 +85110,7 @@ void Unwind_180910d60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1dd0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1de0) = 0;
+  *(DataWord *)(validationContext + 0x1de0) = 0;
   *(uint8_t8 *)(validationContext + 0x1dc8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85132,7 +85132,7 @@ void Unwind_180910d80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1e60) = 0;
-  *(uint8_t4 *)(validationContext + 0x1e70) = 0;
+  *(DataWord *)(validationContext + 0x1e70) = 0;
   *(uint8_t8 *)(validationContext + 0x1e58) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1e38) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1e40) != 0) {
@@ -85140,7 +85140,7 @@ void Unwind_180910d80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1e40) = 0;
-  *(uint8_t4 *)(validationContext + 0x1e50) = 0;
+  *(DataWord *)(validationContext + 0x1e50) = 0;
   *(uint8_t8 *)(validationContext + 0x1e38) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85162,7 +85162,7 @@ void Unwind_180910da0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ed0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1ee0) = 0;
+  *(DataWord *)(validationContext + 0x1ee0) = 0;
   *(uint8_t8 *)(validationContext + 0x1ec8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1ea8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1eb0) != 0) {
@@ -85170,7 +85170,7 @@ void Unwind_180910da0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1eb0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1ec0) = 0;
+  *(DataWord *)(validationContext + 0x1ec0) = 0;
   *(uint8_t8 *)(validationContext + 0x1ea8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85192,7 +85192,7 @@ void Unwind_180910dc0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 8000) = 0;
-  *(uint8_t4 *)(validationContext + 0x1f50) = 0;
+  *(DataWord *)(validationContext + 0x1f50) = 0;
   *(uint8_t8 *)(validationContext + 0x1f38) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1f18) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1f20) != 0) {
@@ -85200,7 +85200,7 @@ void Unwind_180910dc0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1f20) = 0;
-  *(uint8_t4 *)(validationContext + 0x1f30) = 0;
+  *(DataWord *)(validationContext + 0x1f30) = 0;
   *(uint8_t8 *)(validationContext + 0x1f18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85222,7 +85222,7 @@ void Unwind_180910de0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1fb0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1fc0) = 0;
+  *(DataWord *)(validationContext + 0x1fc0) = 0;
   *(uint8_t8 *)(validationContext + 0x1fa8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1f88) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1f90) != 0) {
@@ -85230,7 +85230,7 @@ void Unwind_180910de0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1f90) = 0;
-  *(uint8_t4 *)(validationContext + 0x1fa0) = 0;
+  *(DataWord *)(validationContext + 0x1fa0) = 0;
   *(uint8_t8 *)(validationContext + 0x1f88) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85252,7 +85252,7 @@ void Unwind_180910e00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2020) = 0;
-  *(uint8_t4 *)(validationContext + 0x2030) = 0;
+  *(DataWord *)(validationContext + 0x2030) = 0;
   *(uint8_t8 *)(validationContext + 0x2018) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1ff8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2000) != 0) {
@@ -85260,7 +85260,7 @@ void Unwind_180910e00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2000) = 0;
-  *(uint8_t4 *)(validationContext + 0x2010) = 0;
+  *(DataWord *)(validationContext + 0x2010) = 0;
   *(uint8_t8 *)(validationContext + 0x1ff8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85282,7 +85282,7 @@ void Unwind_180910e20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2090) = 0;
-  *(uint8_t4 *)(validationContext + 0x20a0) = 0;
+  *(DataWord *)(validationContext + 0x20a0) = 0;
   *(uint8_t8 *)(validationContext + 0x2088) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2068) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2070) != 0) {
@@ -85290,7 +85290,7 @@ void Unwind_180910e20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2070) = 0;
-  *(uint8_t4 *)(validationContext + 0x2080) = 0;
+  *(DataWord *)(validationContext + 0x2080) = 0;
   *(uint8_t8 *)(validationContext + 0x2068) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85312,7 +85312,7 @@ void Unwind_180910e40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2100) = 0;
-  *(uint8_t4 *)(validationContext + 0x2110) = 0;
+  *(DataWord *)(validationContext + 0x2110) = 0;
   *(uint8_t8 *)(validationContext + 0x20f8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x20d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x20e0) != 0) {
@@ -85320,7 +85320,7 @@ void Unwind_180910e40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x20e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x20f0) = 0;
+  *(DataWord *)(validationContext + 0x20f0) = 0;
   *(uint8_t8 *)(validationContext + 0x20d8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85342,7 +85342,7 @@ void Unwind_180910e60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2170) = 0;
-  *(uint8_t4 *)(validationContext + 0x2180) = 0;
+  *(DataWord *)(validationContext + 0x2180) = 0;
   *(uint8_t8 *)(validationContext + 0x2168) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2148) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2150) != 0) {
@@ -85350,7 +85350,7 @@ void Unwind_180910e60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2150) = 0;
-  *(uint8_t4 *)(validationContext + 0x2160) = 0;
+  *(DataWord *)(validationContext + 0x2160) = 0;
   *(uint8_t8 *)(validationContext + 0x2148) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85372,7 +85372,7 @@ void Unwind_180910e80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x21e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x21f0) = 0;
+  *(DataWord *)(validationContext + 0x21f0) = 0;
   *(uint8_t8 *)(validationContext + 0x21d8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x21b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x21c0) != 0) {
@@ -85380,7 +85380,7 @@ void Unwind_180910e80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x21c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x21d0) = 0;
+  *(DataWord *)(validationContext + 0x21d0) = 0;
   *(uint8_t8 *)(validationContext + 0x21b8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85402,7 +85402,7 @@ void Unwind_180910ea0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2250) = 0;
-  *(uint8_t4 *)(validationContext + 0x2260) = 0;
+  *(DataWord *)(validationContext + 0x2260) = 0;
   *(uint8_t8 *)(validationContext + 0x2248) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2228) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2230) != 0) {
@@ -85410,7 +85410,7 @@ void Unwind_180910ea0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2230) = 0;
-  *(uint8_t4 *)(validationContext + 0x2240) = 0;
+  *(DataWord *)(validationContext + 0x2240) = 0;
   *(uint8_t8 *)(validationContext + 0x2228) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85432,7 +85432,7 @@ void Unwind_180910ec0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x22c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x22d0) = 0;
+  *(DataWord *)(validationContext + 0x22d0) = 0;
   *(uint8_t8 *)(validationContext + 0x22b8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2298) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x22a0) != 0) {
@@ -85440,7 +85440,7 @@ void Unwind_180910ec0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x22a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x22b0) = 0;
+  *(DataWord *)(validationContext + 0x22b0) = 0;
   *(uint8_t8 *)(validationContext + 0x2298) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85462,7 +85462,7 @@ void Unwind_180910ee0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2330) = 0;
-  *(uint8_t4 *)(validationContext + 0x2340) = 0;
+  *(DataWord *)(validationContext + 0x2340) = 0;
   *(uint8_t8 *)(validationContext + 9000) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2308) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2310) != 0) {
@@ -85470,7 +85470,7 @@ void Unwind_180910ee0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2310) = 0;
-  *(uint8_t4 *)(validationContext + 0x2320) = 0;
+  *(DataWord *)(validationContext + 0x2320) = 0;
   *(uint8_t8 *)(validationContext + 0x2308) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85492,7 +85492,7 @@ void Unwind_180910f00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x23a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x23b0) = 0;
+  *(DataWord *)(validationContext + 0x23b0) = 0;
   *(uint8_t8 *)(validationContext + 0x2398) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2378) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2380) != 0) {
@@ -85500,7 +85500,7 @@ void Unwind_180910f00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2380) = 0;
-  *(uint8_t4 *)(validationContext + 0x2390) = 0;
+  *(DataWord *)(validationContext + 0x2390) = 0;
   *(uint8_t8 *)(validationContext + 0x2378) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85522,7 +85522,7 @@ void Unwind_180910f20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2410) = 0;
-  *(uint8_t4 *)(validationContext + 0x2420) = 0;
+  *(DataWord *)(validationContext + 0x2420) = 0;
   *(uint8_t8 *)(validationContext + 0x2408) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x23e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x23f0) != 0) {
@@ -85530,7 +85530,7 @@ void Unwind_180910f20(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x23f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x2400) = 0;
+  *(DataWord *)(validationContext + 0x2400) = 0;
   *(uint8_t8 *)(validationContext + 0x23e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85552,7 +85552,7 @@ void Unwind_180910f40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2480) = 0;
-  *(uint8_t4 *)(validationContext + 0x2490) = 0;
+  *(DataWord *)(validationContext + 0x2490) = 0;
   *(uint8_t8 *)(validationContext + 0x2478) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2458) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2460) != 0) {
@@ -85560,7 +85560,7 @@ void Unwind_180910f40(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2460) = 0;
-  *(uint8_t4 *)(validationContext + 0x2470) = 0;
+  *(DataWord *)(validationContext + 0x2470) = 0;
   *(uint8_t8 *)(validationContext + 0x2458) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85582,7 +85582,7 @@ void Unwind_180910f60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x24f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x2500) = 0;
+  *(DataWord *)(validationContext + 0x2500) = 0;
   *(uint8_t8 *)(validationContext + 0x24e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x24c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x24d0) != 0) {
@@ -85590,7 +85590,7 @@ void Unwind_180910f60(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x24d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x24e0) = 0;
+  *(DataWord *)(validationContext + 0x24e0) = 0;
   *(uint8_t8 *)(validationContext + 0x24c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85612,7 +85612,7 @@ void Unwind_180910f80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2560) = 0;
-  *(uint8_t4 *)(validationContext + 0x2570) = 0;
+  *(DataWord *)(validationContext + 0x2570) = 0;
   *(uint8_t8 *)(validationContext + 0x2558) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2538) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2540) != 0) {
@@ -85620,7 +85620,7 @@ void Unwind_180910f80(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2540) = 0;
-  *(uint8_t4 *)(validationContext + 0x2550) = 0;
+  *(DataWord *)(validationContext + 0x2550) = 0;
   *(uint8_t8 *)(validationContext + 0x2538) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85642,7 +85642,7 @@ void Unwind_180910fa0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x25d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x25e0) = 0;
+  *(DataWord *)(validationContext + 0x25e0) = 0;
   *(uint8_t8 *)(validationContext + 0x25c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x25a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x25b0) != 0) {
@@ -85650,7 +85650,7 @@ void Unwind_180910fa0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x25b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x25c0) = 0;
+  *(DataWord *)(validationContext + 0x25c0) = 0;
   *(uint8_t8 *)(validationContext + 0x25a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85718,7 +85718,7 @@ void Unwind_180911000(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x9e0) = 0;
+  *(DataWord *)(validationContext + 0x9e0) = 0;
   *(uint8_t8 *)(validationContext + 0x9c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x9a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9b0) != 0) {
@@ -85726,7 +85726,7 @@ void Unwind_180911000(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x9b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x9c0) = 0;
+  *(DataWord *)(validationContext + 0x9c0) = 0;
   *(uint8_t8 *)(validationContext + 0x9a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85748,7 +85748,7 @@ void Unwind_180911020(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa40) = 0;
-  *(uint8_t4 *)(validationContext + 0xa50) = 0;
+  *(DataWord *)(validationContext + 0xa50) = 0;
   *(uint8_t8 *)(validationContext + 0xa38) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa18) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa20) != 0) {
@@ -85756,7 +85756,7 @@ void Unwind_180911020(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa20) = 0;
-  *(uint8_t4 *)(validationContext + 0xa30) = 0;
+  *(DataWord *)(validationContext + 0xa30) = 0;
   *(uint8_t8 *)(validationContext + 0xa18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85778,7 +85778,7 @@ void Unwind_180911040(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xab0) = 0;
-  *(uint8_t4 *)(validationContext + 0xac0) = 0;
+  *(DataWord *)(validationContext + 0xac0) = 0;
   *(uint8_t8 *)(validationContext + 0xaa8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xa88) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xa90) != 0) {
@@ -85786,7 +85786,7 @@ void Unwind_180911040(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xa90) = 0;
-  *(uint8_t4 *)(validationContext + 0xaa0) = 0;
+  *(DataWord *)(validationContext + 0xaa0) = 0;
   *(uint8_t8 *)(validationContext + 0xa88) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85808,7 +85808,7 @@ void Unwind_180911060(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb20) = 0;
-  *(uint8_t4 *)(validationContext + 0xb30) = 0;
+  *(DataWord *)(validationContext + 0xb30) = 0;
   *(uint8_t8 *)(validationContext + 0xb18) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xaf8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb00) != 0) {
@@ -85816,7 +85816,7 @@ void Unwind_180911060(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb00) = 0;
-  *(uint8_t4 *)(validationContext + 0xb10) = 0;
+  *(DataWord *)(validationContext + 0xb10) = 0;
   *(uint8_t8 *)(validationContext + 0xaf8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85838,7 +85838,7 @@ void Unwind_180911080(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb90) = 0;
-  *(uint8_t4 *)(validationContext + 0xba0) = 0;
+  *(DataWord *)(validationContext + 0xba0) = 0;
   *(uint8_t8 *)(validationContext + 0xb88) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xb68) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xb70) != 0) {
@@ -85846,7 +85846,7 @@ void Unwind_180911080(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xb70) = 0;
-  *(uint8_t4 *)(validationContext + 0xb80) = 0;
+  *(DataWord *)(validationContext + 0xb80) = 0;
   *(uint8_t8 *)(validationContext + 0xb68) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85868,7 +85868,7 @@ void Unwind_1809110a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc00) = 0;
-  *(uint8_t4 *)(validationContext + 0xc10) = 0;
+  *(DataWord *)(validationContext + 0xc10) = 0;
   *(uint8_t8 *)(validationContext + 0xbf8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xbd8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xbe0) != 0) {
@@ -85876,7 +85876,7 @@ void Unwind_1809110a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xbe0) = 0;
-  *(uint8_t4 *)(validationContext + 0xbf0) = 0;
+  *(DataWord *)(validationContext + 0xbf0) = 0;
   *(uint8_t8 *)(validationContext + 0xbd8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85898,7 +85898,7 @@ void Unwind_1809110c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc70) = 0;
-  *(uint8_t4 *)(validationContext + 0xc80) = 0;
+  *(DataWord *)(validationContext + 0xc80) = 0;
   *(uint8_t8 *)(validationContext + 0xc68) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xc48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xc50) != 0) {
@@ -85906,7 +85906,7 @@ void Unwind_1809110c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xc50) = 0;
-  *(uint8_t4 *)(validationContext + 0xc60) = 0;
+  *(DataWord *)(validationContext + 0xc60) = 0;
   *(uint8_t8 *)(validationContext + 0xc48) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85928,7 +85928,7 @@ void Unwind_1809110e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xce0) = 0;
-  *(uint8_t4 *)(validationContext + 0xcf0) = 0;
+  *(DataWord *)(validationContext + 0xcf0) = 0;
   *(uint8_t8 *)(validationContext + 0xcd8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xcb8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xcc0) != 0) {
@@ -85936,7 +85936,7 @@ void Unwind_1809110e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xcc0) = 0;
-  *(uint8_t4 *)(validationContext + 0xcd0) = 0;
+  *(DataWord *)(validationContext + 0xcd0) = 0;
   *(uint8_t8 *)(validationContext + 0xcb8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85958,7 +85958,7 @@ void Unwind_180911100(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd50) = 0;
-  *(uint8_t4 *)(validationContext + 0xd60) = 0;
+  *(DataWord *)(validationContext + 0xd60) = 0;
   *(uint8_t8 *)(validationContext + 0xd48) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xd28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xd30) != 0) {
@@ -85966,7 +85966,7 @@ void Unwind_180911100(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xd30) = 0;
-  *(uint8_t4 *)(validationContext + 0xd40) = 0;
+  *(DataWord *)(validationContext + 0xd40) = 0;
   *(uint8_t8 *)(validationContext + 0xd28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -85988,7 +85988,7 @@ void Unwind_180911120(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xdc0) = 0;
-  *(uint8_t4 *)(validationContext + 0xdd0) = 0;
+  *(DataWord *)(validationContext + 0xdd0) = 0;
   *(uint8_t8 *)(validationContext + 0xdb8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xd98) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xda0) != 0) {
@@ -85996,7 +85996,7 @@ void Unwind_180911120(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xda0) = 0;
-  *(uint8_t4 *)(validationContext + 0xdb0) = 0;
+  *(DataWord *)(validationContext + 0xdb0) = 0;
   *(uint8_t8 *)(validationContext + 0xd98) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86018,7 +86018,7 @@ void Unwind_180911140(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe30) = 0;
-  *(uint8_t4 *)(validationContext + 0xe40) = 0;
+  *(DataWord *)(validationContext + 0xe40) = 0;
   *(uint8_t8 *)(validationContext + 0xe28) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe10) != 0) {
@@ -86026,7 +86026,7 @@ void Unwind_180911140(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe10) = 0;
-  *(uint8_t4 *)(validationContext + 0xe20) = 0;
+  *(DataWord *)(validationContext + 0xe20) = 0;
   *(uint8_t8 *)(validationContext + 0xe08) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86048,7 +86048,7 @@ void Unwind_180911160(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xea0) = 0;
-  *(uint8_t4 *)(validationContext + 0xeb0) = 0;
+  *(DataWord *)(validationContext + 0xeb0) = 0;
   *(uint8_t8 *)(validationContext + 0xe98) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xe78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xe80) != 0) {
@@ -86056,7 +86056,7 @@ void Unwind_180911160(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xe80) = 0;
-  *(uint8_t4 *)(validationContext + 0xe90) = 0;
+  *(DataWord *)(validationContext + 0xe90) = 0;
   *(uint8_t8 *)(validationContext + 0xe78) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86078,7 +86078,7 @@ void Unwind_180911180(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf10) = 0;
-  *(uint8_t4 *)(validationContext + 0xf20) = 0;
+  *(DataWord *)(validationContext + 0xf20) = 0;
   *(uint8_t8 *)(validationContext + 0xf08) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xee8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xef0) != 0) {
@@ -86086,7 +86086,7 @@ void Unwind_180911180(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xef0) = 0;
-  *(uint8_t4 *)(validationContext + 0xf00) = 0;
+  *(DataWord *)(validationContext + 0xf00) = 0;
   *(uint8_t8 *)(validationContext + 0xee8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86108,7 +86108,7 @@ void Unwind_1809111a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf80) = 0;
-  *(uint8_t4 *)(validationContext + 0xf90) = 0;
+  *(DataWord *)(validationContext + 0xf90) = 0;
   *(uint8_t8 *)(validationContext + 0xf78) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xf58) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xf60) != 0) {
@@ -86116,7 +86116,7 @@ void Unwind_1809111a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xf60) = 0;
-  *(uint8_t4 *)(validationContext + 0xf70) = 0;
+  *(DataWord *)(validationContext + 0xf70) = 0;
   *(uint8_t8 *)(validationContext + 0xf58) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86138,7 +86138,7 @@ void Unwind_1809111c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xff0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1000) = 0;
+  *(DataWord *)(validationContext + 0x1000) = 0;
   *(uint8_t8 *)(validationContext + 0xfe8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0xfc8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0xfd0) != 0) {
@@ -86146,7 +86146,7 @@ void Unwind_1809111c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0xfd0) = 0;
-  *(uint8_t4 *)(validationContext + 0xfe0) = 0;
+  *(DataWord *)(validationContext + 0xfe0) = 0;
   *(uint8_t8 *)(validationContext + 0xfc8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86168,7 +86168,7 @@ void Unwind_1809111e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1060) = 0;
-  *(uint8_t4 *)(validationContext + 0x1070) = 0;
+  *(DataWord *)(validationContext + 0x1070) = 0;
   *(uint8_t8 *)(validationContext + 0x1058) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1038) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1040) != 0) {
@@ -86176,7 +86176,7 @@ void Unwind_1809111e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1040) = 0;
-  *(uint8_t4 *)(validationContext + 0x1050) = 0;
+  *(DataWord *)(validationContext + 0x1050) = 0;
   *(uint8_t8 *)(validationContext + 0x1038) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86198,7 +86198,7 @@ void Unwind_180911200(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x10e0) = 0;
+  *(DataWord *)(validationContext + 0x10e0) = 0;
   *(uint8_t8 *)(validationContext + 0x10c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x10a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x10b0) != 0) {
@@ -86206,7 +86206,7 @@ void Unwind_180911200(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x10b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x10c0) = 0;
+  *(DataWord *)(validationContext + 0x10c0) = 0;
   *(uint8_t8 *)(validationContext + 0x10a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86228,7 +86228,7 @@ void Unwind_180911220(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1140) = 0;
-  *(uint8_t4 *)(validationContext + 0x1150) = 0;
+  *(DataWord *)(validationContext + 0x1150) = 0;
   *(uint8_t8 *)(validationContext + 0x1138) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1118) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1120) != 0) {
@@ -86236,7 +86236,7 @@ void Unwind_180911220(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1120) = 0;
-  *(uint8_t4 *)(validationContext + 0x1130) = 0;
+  *(DataWord *)(validationContext + 0x1130) = 0;
   *(uint8_t8 *)(validationContext + 0x1118) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86258,7 +86258,7 @@ void Unwind_180911240(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x11b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x11c0) = 0;
+  *(DataWord *)(validationContext + 0x11c0) = 0;
   *(uint8_t8 *)(validationContext + 0x11a8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1188) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1190) != 0) {
@@ -86266,7 +86266,7 @@ void Unwind_180911240(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1190) = 0;
-  *(uint8_t4 *)(validationContext + 0x11a0) = 0;
+  *(DataWord *)(validationContext + 0x11a0) = 0;
   *(uint8_t8 *)(validationContext + 0x1188) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86288,7 +86288,7 @@ void Unwind_180911260(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1220) = 0;
-  *(uint8_t4 *)(validationContext + 0x1230) = 0;
+  *(DataWord *)(validationContext + 0x1230) = 0;
   *(uint8_t8 *)(validationContext + 0x1218) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x11f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1200) != 0) {
@@ -86296,7 +86296,7 @@ void Unwind_180911260(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1200) = 0;
-  *(uint8_t4 *)(validationContext + 0x1210) = 0;
+  *(DataWord *)(validationContext + 0x1210) = 0;
   *(uint8_t8 *)(validationContext + 0x11f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86318,7 +86318,7 @@ void Unwind_180911280(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1290) = 0;
-  *(uint8_t4 *)(validationContext + 0x12a0) = 0;
+  *(DataWord *)(validationContext + 0x12a0) = 0;
   *(uint8_t8 *)(validationContext + 0x1288) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1268) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1270) != 0) {
@@ -86326,7 +86326,7 @@ void Unwind_180911280(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1270) = 0;
-  *(uint8_t4 *)(validationContext + 0x1280) = 0;
+  *(DataWord *)(validationContext + 0x1280) = 0;
   *(uint8_t8 *)(validationContext + 0x1268) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86348,7 +86348,7 @@ void Unwind_1809112a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1300) = 0;
-  *(uint8_t4 *)(validationContext + 0x1310) = 0;
+  *(DataWord *)(validationContext + 0x1310) = 0;
   *(uint8_t8 *)(validationContext + 0x12f8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x12d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x12e0) != 0) {
@@ -86356,7 +86356,7 @@ void Unwind_1809112a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x12e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x12f0) = 0;
+  *(DataWord *)(validationContext + 0x12f0) = 0;
   *(uint8_t8 *)(validationContext + 0x12d8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86378,7 +86378,7 @@ void Unwind_1809112c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1370) = 0;
-  *(uint8_t4 *)(validationContext + 0x1380) = 0;
+  *(DataWord *)(validationContext + 0x1380) = 0;
   *(uint8_t8 *)(validationContext + 0x1368) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1348) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1350) != 0) {
@@ -86386,7 +86386,7 @@ void Unwind_1809112c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1350) = 0;
-  *(uint8_t4 *)(validationContext + 0x1360) = 0;
+  *(DataWord *)(validationContext + 0x1360) = 0;
   *(uint8_t8 *)(validationContext + 0x1348) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86408,7 +86408,7 @@ void Unwind_1809112e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x13e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x13f0) = 0;
+  *(DataWord *)(validationContext + 0x13f0) = 0;
   *(uint8_t8 *)(validationContext + 0x13d8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x13b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x13c0) != 0) {
@@ -86416,7 +86416,7 @@ void Unwind_1809112e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x13c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x13d0) = 0;
+  *(DataWord *)(validationContext + 0x13d0) = 0;
   *(uint8_t8 *)(validationContext + 0x13b8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86438,7 +86438,7 @@ void Unwind_180911300(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1450) = 0;
-  *(uint8_t4 *)(validationContext + 0x1460) = 0;
+  *(DataWord *)(validationContext + 0x1460) = 0;
   *(uint8_t8 *)(validationContext + 0x1448) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1428) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1430) != 0) {
@@ -86446,7 +86446,7 @@ void Unwind_180911300(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1430) = 0;
-  *(uint8_t4 *)(validationContext + 0x1440) = 0;
+  *(DataWord *)(validationContext + 0x1440) = 0;
   *(uint8_t8 *)(validationContext + 0x1428) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86468,7 +86468,7 @@ void Unwind_180911320(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x14c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x14d0) = 0;
+  *(DataWord *)(validationContext + 0x14d0) = 0;
   *(uint8_t8 *)(validationContext + 0x14b8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1498) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x14a0) != 0) {
@@ -86476,7 +86476,7 @@ void Unwind_180911320(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x14a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x14b0) = 0;
+  *(DataWord *)(validationContext + 0x14b0) = 0;
   *(uint8_t8 *)(validationContext + 0x1498) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86498,7 +86498,7 @@ void Unwind_180911340(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1530) = 0;
-  *(uint8_t4 *)(validationContext + 0x1540) = 0;
+  *(DataWord *)(validationContext + 0x1540) = 0;
   *(uint8_t8 *)(validationContext + 0x1528) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1508) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1510) != 0) {
@@ -86506,7 +86506,7 @@ void Unwind_180911340(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1510) = 0;
-  *(uint8_t4 *)(validationContext + 0x1520) = 0;
+  *(DataWord *)(validationContext + 0x1520) = 0;
   *(uint8_t8 *)(validationContext + 0x1508) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86528,7 +86528,7 @@ void Unwind_180911360(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x15a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x15b0) = 0;
+  *(DataWord *)(validationContext + 0x15b0) = 0;
   *(uint8_t8 *)(validationContext + 0x1598) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1578) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1580) != 0) {
@@ -86536,7 +86536,7 @@ void Unwind_180911360(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1580) = 0;
-  *(uint8_t4 *)(validationContext + 0x1590) = 0;
+  *(DataWord *)(validationContext + 0x1590) = 0;
   *(uint8_t8 *)(validationContext + 0x1578) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86558,7 +86558,7 @@ void Unwind_180911380(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1610) = 0;
-  *(uint8_t4 *)(validationContext + 0x1620) = 0;
+  *(DataWord *)(validationContext + 0x1620) = 0;
   *(uint8_t8 *)(validationContext + 0x1608) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x15e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x15f0) != 0) {
@@ -86566,7 +86566,7 @@ void Unwind_180911380(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x15f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1600) = 0;
+  *(DataWord *)(validationContext + 0x1600) = 0;
   *(uint8_t8 *)(validationContext + 0x15e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86588,7 +86588,7 @@ void Unwind_1809113a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1680) = 0;
-  *(uint8_t4 *)(validationContext + 0x1690) = 0;
+  *(DataWord *)(validationContext + 0x1690) = 0;
   *(uint8_t8 *)(validationContext + 0x1678) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1658) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1660) != 0) {
@@ -86596,7 +86596,7 @@ void Unwind_1809113a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1660) = 0;
-  *(uint8_t4 *)(validationContext + 0x1670) = 0;
+  *(DataWord *)(validationContext + 0x1670) = 0;
   *(uint8_t8 *)(validationContext + 0x1658) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86618,7 +86618,7 @@ void Unwind_1809113c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x16f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1700) = 0;
+  *(DataWord *)(validationContext + 0x1700) = 0;
   *(uint8_t8 *)(validationContext + 0x16e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x16c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x16d0) != 0) {
@@ -86626,7 +86626,7 @@ void Unwind_1809113c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x16d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x16e0) = 0;
+  *(DataWord *)(validationContext + 0x16e0) = 0;
   *(uint8_t8 *)(validationContext + 0x16c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86648,7 +86648,7 @@ void Unwind_1809113e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1760) = 0;
-  *(uint8_t4 *)(validationContext + 6000) = 0;
+  *(DataWord *)(validationContext + 6000) = 0;
   *(uint8_t8 *)(validationContext + 0x1758) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1738) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1740) != 0) {
@@ -86656,7 +86656,7 @@ void Unwind_1809113e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1740) = 0;
-  *(uint8_t4 *)(validationContext + 0x1750) = 0;
+  *(DataWord *)(validationContext + 0x1750) = 0;
   *(uint8_t8 *)(validationContext + 0x1738) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86678,7 +86678,7 @@ void Unwind_180911400(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x17d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x17e0) = 0;
+  *(DataWord *)(validationContext + 0x17e0) = 0;
   *(uint8_t8 *)(validationContext + 0x17c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x17a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x17b0) != 0) {
@@ -86686,7 +86686,7 @@ void Unwind_180911400(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x17b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x17c0) = 0;
+  *(DataWord *)(validationContext + 0x17c0) = 0;
   *(uint8_t8 *)(validationContext + 0x17a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86708,7 +86708,7 @@ void Unwind_180911420(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1840) = 0;
-  *(uint8_t4 *)(validationContext + 0x1850) = 0;
+  *(DataWord *)(validationContext + 0x1850) = 0;
   *(uint8_t8 *)(validationContext + 0x1838) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1818) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1820) != 0) {
@@ -86716,7 +86716,7 @@ void Unwind_180911420(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1820) = 0;
-  *(uint8_t4 *)(validationContext + 0x1830) = 0;
+  *(DataWord *)(validationContext + 0x1830) = 0;
   *(uint8_t8 *)(validationContext + 0x1818) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86738,7 +86738,7 @@ void Unwind_180911440(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x18b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x18c0) = 0;
+  *(DataWord *)(validationContext + 0x18c0) = 0;
   *(uint8_t8 *)(validationContext + 0x18a8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1888) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1890) != 0) {
@@ -86746,7 +86746,7 @@ void Unwind_180911440(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1890) = 0;
-  *(uint8_t4 *)(validationContext + 0x18a0) = 0;
+  *(DataWord *)(validationContext + 0x18a0) = 0;
   *(uint8_t8 *)(validationContext + 0x1888) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86768,7 +86768,7 @@ void Unwind_180911460(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1920) = 0;
-  *(uint8_t4 *)(validationContext + 0x1930) = 0;
+  *(DataWord *)(validationContext + 0x1930) = 0;
   *(uint8_t8 *)(validationContext + 0x1918) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x18f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1900) != 0) {
@@ -86776,7 +86776,7 @@ void Unwind_180911460(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1900) = 0;
-  *(uint8_t4 *)(validationContext + 0x1910) = 0;
+  *(DataWord *)(validationContext + 0x1910) = 0;
   *(uint8_t8 *)(validationContext + 0x18f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86798,7 +86798,7 @@ void Unwind_180911480(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1990) = 0;
-  *(uint8_t4 *)(validationContext + 0x19a0) = 0;
+  *(DataWord *)(validationContext + 0x19a0) = 0;
   *(uint8_t8 *)(validationContext + 0x1988) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1968) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1970) != 0) {
@@ -86806,7 +86806,7 @@ void Unwind_180911480(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1970) = 0;
-  *(uint8_t4 *)(validationContext + 0x1980) = 0;
+  *(DataWord *)(validationContext + 0x1980) = 0;
   *(uint8_t8 *)(validationContext + 0x1968) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86828,7 +86828,7 @@ void Unwind_1809114a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1a00) = 0;
-  *(uint8_t4 *)(validationContext + 0x1a10) = 0;
+  *(DataWord *)(validationContext + 0x1a10) = 0;
   *(uint8_t8 *)(validationContext + 0x19f8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x19d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x19e0) != 0) {
@@ -86836,7 +86836,7 @@ void Unwind_1809114a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x19e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x19f0) = 0;
+  *(DataWord *)(validationContext + 0x19f0) = 0;
   *(uint8_t8 *)(validationContext + 0x19d8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86858,7 +86858,7 @@ void Unwind_1809114c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1a70) = 0;
-  *(uint8_t4 *)(validationContext + 0x1a80) = 0;
+  *(DataWord *)(validationContext + 0x1a80) = 0;
   *(uint8_t8 *)(validationContext + 0x1a68) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1a48) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1a50) != 0) {
@@ -86866,7 +86866,7 @@ void Unwind_1809114c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1a50) = 0;
-  *(uint8_t4 *)(validationContext + 0x1a60) = 0;
+  *(DataWord *)(validationContext + 0x1a60) = 0;
   *(uint8_t8 *)(validationContext + 0x1a48) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86888,7 +86888,7 @@ void Unwind_1809114e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ae0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1af0) = 0;
+  *(DataWord *)(validationContext + 0x1af0) = 0;
   *(uint8_t8 *)(validationContext + 0x1ad8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1ab8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ac0) != 0) {
@@ -86896,7 +86896,7 @@ void Unwind_1809114e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ac0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1ad0) = 0;
+  *(DataWord *)(validationContext + 0x1ad0) = 0;
   *(uint8_t8 *)(validationContext + 0x1ab8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86918,7 +86918,7 @@ void Unwind_180911500(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1b50) = 0;
-  *(uint8_t4 *)(validationContext + 0x1b60) = 0;
+  *(DataWord *)(validationContext + 0x1b60) = 0;
   *(uint8_t8 *)(validationContext + 0x1b48) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1b28) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1b30) != 0) {
@@ -86926,7 +86926,7 @@ void Unwind_180911500(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1b30) = 0;
-  *(uint8_t4 *)(validationContext + 0x1b40) = 0;
+  *(DataWord *)(validationContext + 0x1b40) = 0;
   *(uint8_t8 *)(validationContext + 0x1b28) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86948,7 +86948,7 @@ void Unwind_180911520(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1bc0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1bd0) = 0;
+  *(DataWord *)(validationContext + 0x1bd0) = 0;
   *(uint8_t8 *)(validationContext + 0x1bb8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1b98) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1ba0) != 0) {
@@ -86956,7 +86956,7 @@ void Unwind_180911520(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ba0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1bb0) = 0;
+  *(DataWord *)(validationContext + 0x1bb0) = 0;
   *(uint8_t8 *)(validationContext + 0x1b98) = &DefaultExceptionHandlerB;
   return;
 }
@@ -86978,7 +86978,7 @@ void Unwind_180911540(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1c30) = 0;
-  *(uint8_t4 *)(validationContext + 0x1c40) = 0;
+  *(DataWord *)(validationContext + 0x1c40) = 0;
   *(uint8_t8 *)(validationContext + 0x1c28) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1c08) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1c10) != 0) {
@@ -86986,7 +86986,7 @@ void Unwind_180911540(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1c10) = 0;
-  *(uint8_t4 *)(validationContext + 0x1c20) = 0;
+  *(DataWord *)(validationContext + 0x1c20) = 0;
   *(uint8_t8 *)(validationContext + 0x1c08) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87008,7 +87008,7 @@ void Unwind_180911560(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ca0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1cb0) = 0;
+  *(DataWord *)(validationContext + 0x1cb0) = 0;
   *(uint8_t8 *)(validationContext + 0x1c98) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1c78) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1c80) != 0) {
@@ -87016,7 +87016,7 @@ void Unwind_180911560(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1c80) = 0;
-  *(uint8_t4 *)(validationContext + 0x1c90) = 0;
+  *(DataWord *)(validationContext + 0x1c90) = 0;
   *(uint8_t8 *)(validationContext + 0x1c78) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87038,7 +87038,7 @@ void Unwind_180911580(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1d10) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d20) = 0;
+  *(DataWord *)(validationContext + 0x1d20) = 0;
   *(uint8_t8 *)(validationContext + 0x1d08) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1ce8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1cf0) != 0) {
@@ -87046,7 +87046,7 @@ void Unwind_180911580(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1cf0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d00) = 0;
+  *(DataWord *)(validationContext + 0x1d00) = 0;
   *(uint8_t8 *)(validationContext + 0x1ce8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87068,7 +87068,7 @@ void Unwind_1809115a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1d80) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d90) = 0;
+  *(DataWord *)(validationContext + 0x1d90) = 0;
   *(uint8_t8 *)(validationContext + 0x1d78) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1d58) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1d60) != 0) {
@@ -87076,7 +87076,7 @@ void Unwind_1809115a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1d60) = 0;
-  *(uint8_t4 *)(validationContext + 0x1d70) = 0;
+  *(DataWord *)(validationContext + 0x1d70) = 0;
   *(uint8_t8 *)(validationContext + 0x1d58) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87098,7 +87098,7 @@ void Unwind_1809115c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1df0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1e00) = 0;
+  *(DataWord *)(validationContext + 0x1e00) = 0;
   *(uint8_t8 *)(validationContext + 0x1de8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1dc8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1dd0) != 0) {
@@ -87106,7 +87106,7 @@ void Unwind_1809115c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1dd0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1de0) = 0;
+  *(DataWord *)(validationContext + 0x1de0) = 0;
   *(uint8_t8 *)(validationContext + 0x1dc8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87128,7 +87128,7 @@ void Unwind_1809115e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1e60) = 0;
-  *(uint8_t4 *)(validationContext + 0x1e70) = 0;
+  *(DataWord *)(validationContext + 0x1e70) = 0;
   *(uint8_t8 *)(validationContext + 0x1e58) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1e38) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1e40) != 0) {
@@ -87136,7 +87136,7 @@ void Unwind_1809115e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1e40) = 0;
-  *(uint8_t4 *)(validationContext + 0x1e50) = 0;
+  *(DataWord *)(validationContext + 0x1e50) = 0;
   *(uint8_t8 *)(validationContext + 0x1e38) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87158,7 +87158,7 @@ void Unwind_180911600(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1ed0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1ee0) = 0;
+  *(DataWord *)(validationContext + 0x1ee0) = 0;
   *(uint8_t8 *)(validationContext + 0x1ec8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1ea8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1eb0) != 0) {
@@ -87166,7 +87166,7 @@ void Unwind_180911600(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1eb0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1ec0) = 0;
+  *(DataWord *)(validationContext + 0x1ec0) = 0;
   *(uint8_t8 *)(validationContext + 0x1ea8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87188,7 +87188,7 @@ void Unwind_180911620(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 8000) = 0;
-  *(uint8_t4 *)(validationContext + 0x1f50) = 0;
+  *(DataWord *)(validationContext + 0x1f50) = 0;
   *(uint8_t8 *)(validationContext + 0x1f38) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1f18) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1f20) != 0) {
@@ -87196,7 +87196,7 @@ void Unwind_180911620(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1f20) = 0;
-  *(uint8_t4 *)(validationContext + 0x1f30) = 0;
+  *(DataWord *)(validationContext + 0x1f30) = 0;
   *(uint8_t8 *)(validationContext + 0x1f18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87218,7 +87218,7 @@ void Unwind_180911640(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1fb0) = 0;
-  *(uint8_t4 *)(validationContext + 0x1fc0) = 0;
+  *(DataWord *)(validationContext + 0x1fc0) = 0;
   *(uint8_t8 *)(validationContext + 0x1fa8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1f88) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x1f90) != 0) {
@@ -87226,7 +87226,7 @@ void Unwind_180911640(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x1f90) = 0;
-  *(uint8_t4 *)(validationContext + 0x1fa0) = 0;
+  *(DataWord *)(validationContext + 0x1fa0) = 0;
   *(uint8_t8 *)(validationContext + 0x1f88) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87248,7 +87248,7 @@ void Unwind_180911660(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2020) = 0;
-  *(uint8_t4 *)(validationContext + 0x2030) = 0;
+  *(DataWord *)(validationContext + 0x2030) = 0;
   *(uint8_t8 *)(validationContext + 0x2018) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1ff8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2000) != 0) {
@@ -87256,7 +87256,7 @@ void Unwind_180911660(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2000) = 0;
-  *(uint8_t4 *)(validationContext + 0x2010) = 0;
+  *(DataWord *)(validationContext + 0x2010) = 0;
   *(uint8_t8 *)(validationContext + 0x1ff8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87278,7 +87278,7 @@ void Unwind_180911680(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2090) = 0;
-  *(uint8_t4 *)(validationContext + 0x20a0) = 0;
+  *(DataWord *)(validationContext + 0x20a0) = 0;
   *(uint8_t8 *)(validationContext + 0x2088) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2068) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2070) != 0) {
@@ -87286,7 +87286,7 @@ void Unwind_180911680(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2070) = 0;
-  *(uint8_t4 *)(validationContext + 0x2080) = 0;
+  *(DataWord *)(validationContext + 0x2080) = 0;
   *(uint8_t8 *)(validationContext + 0x2068) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87308,7 +87308,7 @@ void Unwind_1809116a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2100) = 0;
-  *(uint8_t4 *)(validationContext + 0x2110) = 0;
+  *(DataWord *)(validationContext + 0x2110) = 0;
   *(uint8_t8 *)(validationContext + 0x20f8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x20d8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x20e0) != 0) {
@@ -87316,7 +87316,7 @@ void Unwind_1809116a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x20e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x20f0) = 0;
+  *(DataWord *)(validationContext + 0x20f0) = 0;
   *(uint8_t8 *)(validationContext + 0x20d8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87338,7 +87338,7 @@ void Unwind_1809116c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2170) = 0;
-  *(uint8_t4 *)(validationContext + 0x2180) = 0;
+  *(DataWord *)(validationContext + 0x2180) = 0;
   *(uint8_t8 *)(validationContext + 0x2168) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2148) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2150) != 0) {
@@ -87346,7 +87346,7 @@ void Unwind_1809116c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2150) = 0;
-  *(uint8_t4 *)(validationContext + 0x2160) = 0;
+  *(DataWord *)(validationContext + 0x2160) = 0;
   *(uint8_t8 *)(validationContext + 0x2148) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87368,7 +87368,7 @@ void Unwind_1809116e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x21e0) = 0;
-  *(uint8_t4 *)(validationContext + 0x21f0) = 0;
+  *(DataWord *)(validationContext + 0x21f0) = 0;
   *(uint8_t8 *)(validationContext + 0x21d8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x21b8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x21c0) != 0) {
@@ -87376,7 +87376,7 @@ void Unwind_1809116e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x21c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x21d0) = 0;
+  *(DataWord *)(validationContext + 0x21d0) = 0;
   *(uint8_t8 *)(validationContext + 0x21b8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87398,7 +87398,7 @@ void Unwind_180911700(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2250) = 0;
-  *(uint8_t4 *)(validationContext + 0x2260) = 0;
+  *(DataWord *)(validationContext + 0x2260) = 0;
   *(uint8_t8 *)(validationContext + 0x2248) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2228) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2230) != 0) {
@@ -87406,7 +87406,7 @@ void Unwind_180911700(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2230) = 0;
-  *(uint8_t4 *)(validationContext + 0x2240) = 0;
+  *(DataWord *)(validationContext + 0x2240) = 0;
   *(uint8_t8 *)(validationContext + 0x2228) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87428,7 +87428,7 @@ void Unwind_180911720(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x22c0) = 0;
-  *(uint8_t4 *)(validationContext + 0x22d0) = 0;
+  *(DataWord *)(validationContext + 0x22d0) = 0;
   *(uint8_t8 *)(validationContext + 0x22b8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2298) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x22a0) != 0) {
@@ -87436,7 +87436,7 @@ void Unwind_180911720(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x22a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x22b0) = 0;
+  *(DataWord *)(validationContext + 0x22b0) = 0;
   *(uint8_t8 *)(validationContext + 0x2298) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87458,7 +87458,7 @@ void Unwind_180911740(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2330) = 0;
-  *(uint8_t4 *)(validationContext + 0x2340) = 0;
+  *(DataWord *)(validationContext + 0x2340) = 0;
   *(uint8_t8 *)(validationContext + 9000) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2308) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2310) != 0) {
@@ -87466,7 +87466,7 @@ void Unwind_180911740(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2310) = 0;
-  *(uint8_t4 *)(validationContext + 0x2320) = 0;
+  *(DataWord *)(validationContext + 0x2320) = 0;
   *(uint8_t8 *)(validationContext + 0x2308) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87488,7 +87488,7 @@ void Unwind_180911760(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x23a0) = 0;
-  *(uint8_t4 *)(validationContext + 0x23b0) = 0;
+  *(DataWord *)(validationContext + 0x23b0) = 0;
   *(uint8_t8 *)(validationContext + 0x2398) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2378) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2380) != 0) {
@@ -87496,7 +87496,7 @@ void Unwind_180911760(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2380) = 0;
-  *(uint8_t4 *)(validationContext + 0x2390) = 0;
+  *(DataWord *)(validationContext + 0x2390) = 0;
   *(uint8_t8 *)(validationContext + 0x2378) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87518,7 +87518,7 @@ void Unwind_180911780(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2410) = 0;
-  *(uint8_t4 *)(validationContext + 0x2420) = 0;
+  *(DataWord *)(validationContext + 0x2420) = 0;
   *(uint8_t8 *)(validationContext + 0x2408) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x23e8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x23f0) != 0) {
@@ -87526,7 +87526,7 @@ void Unwind_180911780(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x23f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x2400) = 0;
+  *(DataWord *)(validationContext + 0x2400) = 0;
   *(uint8_t8 *)(validationContext + 0x23e8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87548,7 +87548,7 @@ void Unwind_1809117a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2480) = 0;
-  *(uint8_t4 *)(validationContext + 0x2490) = 0;
+  *(DataWord *)(validationContext + 0x2490) = 0;
   *(uint8_t8 *)(validationContext + 0x2478) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2458) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2460) != 0) {
@@ -87556,7 +87556,7 @@ void Unwind_1809117a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2460) = 0;
-  *(uint8_t4 *)(validationContext + 0x2470) = 0;
+  *(DataWord *)(validationContext + 0x2470) = 0;
   *(uint8_t8 *)(validationContext + 0x2458) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87578,7 +87578,7 @@ void Unwind_1809117c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x24f0) = 0;
-  *(uint8_t4 *)(validationContext + 0x2500) = 0;
+  *(DataWord *)(validationContext + 0x2500) = 0;
   *(uint8_t8 *)(validationContext + 0x24e8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x24c8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x24d0) != 0) {
@@ -87586,7 +87586,7 @@ void Unwind_1809117c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x24d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x24e0) = 0;
+  *(DataWord *)(validationContext + 0x24e0) = 0;
   *(uint8_t8 *)(validationContext + 0x24c8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87608,7 +87608,7 @@ void Unwind_1809117e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2560) = 0;
-  *(uint8_t4 *)(validationContext + 0x2570) = 0;
+  *(DataWord *)(validationContext + 0x2570) = 0;
   *(uint8_t8 *)(validationContext + 0x2558) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x2538) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x2540) != 0) {
@@ -87616,7 +87616,7 @@ void Unwind_1809117e0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x2540) = 0;
-  *(uint8_t4 *)(validationContext + 0x2550) = 0;
+  *(DataWord *)(validationContext + 0x2550) = 0;
   *(uint8_t8 *)(validationContext + 0x2538) = &DefaultExceptionHandlerB;
   return;
 }
@@ -87638,7 +87638,7 @@ void Unwind_180911800(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x25d0) = 0;
-  *(uint8_t4 *)(validationContext + 0x25e0) = 0;
+  *(DataWord *)(validationContext + 0x25e0) = 0;
   *(uint8_t8 *)(validationContext + 0x25c8) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x25a8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x25b0) != 0) {
@@ -87646,7 +87646,7 @@ void Unwind_180911800(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x25b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x25c0) = 0;
+  *(DataWord *)(validationContext + 0x25c0) = 0;
   *(uint8_t8 *)(validationContext + 0x25a8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -88374,10 +88374,10 @@ void Unwind_180911b90(uint8_t8 param_1,int64_t param_2)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(param_2 + 0x50);
-  *(uint8_t1 *)(validationContext + 0x88) = 0;
+  *(ByteFlag *)(validationContext + 0x88) = 0;
   *(uint8_t8 *)(validationContext + 0x90) = 0;
   *(uint8_t8 *)(validationContext + 0x9c) = 0;
-  *(uint8_t4 *)(validationContext + 0x98) = 0;
+  *(DataWord *)(validationContext + 0x98) = 0;
   *(uint8_t8 *)(validationContext + 0xac) = 0;
   *(uint8_t8 *)(validationContext + 0xa4) = 0;
   return;
@@ -88746,7 +88746,7 @@ void Unwind_180911de0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
   }
   calculatedOffset = *(int64_t *)(calculatedIndex + 0x1e68);
   if (calculatedOffset == 0) {
-    *(uint8_t4 *)(calculatedIndex + 0x1e80) = 0;
+    *(DataWord *)(calculatedIndex + 0x1e80) = 0;
     calculatedOffset = *(int64_t *)(calculatedIndex + 0x1e78);
     if (calculatedOffset != 0) {
       if (ExceptionContextPtr != 0) {
@@ -88997,7 +88997,7 @@ void Unwind_180911f00(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
 void Unwind_180911f20(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x28),**(uint8_t1 **)(param_2 + 0x88),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x28),**(ByteFlag **)(param_2 + 0x88),
                      *(uint8_t8 *)(param_2 + 0x80));
   return;
 }
@@ -90053,7 +90053,7 @@ void Unwind_180912360(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
 void Unwind_180912370(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x58),**(uint8_t1 **)(param_2 + 0x50),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x58),**(ByteFlag **)(param_2 + 0x50),
                      *(uint8_t8 *)(param_2 + 0x48));
   return;
 }
@@ -90063,7 +90063,7 @@ void Unwind_180912370(uint8_t8 param_1,int64_t param_2)
 void Unwind_1809123a0(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x68),**(uint8_t1 **)(param_2 + 0x60),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x68),**(ByteFlag **)(param_2 + 0x60),
                      *(uint8_t8 *)(param_2 + 0x58));
   return;
 }
@@ -90073,7 +90073,7 @@ void Unwind_1809123a0(uint8_t8 param_1,int64_t param_2)
 void Unwind_1809123d0(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 200),**(uint8_t1 **)(param_2 + 0xc0),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 200),**(ByteFlag **)(param_2 + 0xc0),
                      *(uint8_t8 *)(param_2 + 0xb8));
   return;
 }
@@ -90223,7 +90223,7 @@ void Unwind_180912460(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
 void Unwind_180912470(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x38),**(uint8_t1 **)(param_2 + 0x30),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x38),**(ByteFlag **)(param_2 + 0x30),
                      *(uint8_t8 *)(param_2 + 0x28));
   return;
 }
@@ -90233,7 +90233,7 @@ void Unwind_180912470(uint8_t8 param_1,int64_t param_2)
 void Unwind_1809124a0(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x30),**(uint8_t1 **)(param_2 + 0x28),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x30),**(ByteFlag **)(param_2 + 0x28),
                      *(uint8_t8 *)(param_2 + 0x70));
   return;
 }
@@ -90410,7 +90410,7 @@ void Unwind_180912540(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
 void Unwind_180912550(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x68),**(uint8_t1 **)(param_2 + 0x60),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x68),**(ByteFlag **)(param_2 + 0x60),
                      *(uint8_t8 *)(param_2 + 0x50));
   return;
 }
@@ -90462,7 +90462,7 @@ void Unwind_180912590(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
-  *(uint8_t4 *)(param_2 + 0x60) = 0;
+  *(DataWord *)(param_2 + 0x60) = 0;
   validationContext = *(int64_t *)(param_2 + 0x58);
   if (validationContext != 0) {
     if (ExceptionContextPtr != 0) {
@@ -90547,7 +90547,7 @@ void Unwind_1809125c0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
 void Unwind_1809125d0(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x30),**(uint8_t1 **)(param_2 + 0x28),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x30),**(ByteFlag **)(param_2 + 0x28),
                      *(uint8_t8 *)(param_2 + 0xd0));
   return;
 }
@@ -90557,7 +90557,7 @@ void Unwind_1809125d0(uint8_t8 param_1,int64_t param_2)
 void Unwind_180912600(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x28),**(uint8_t1 **)(param_2 + 0x30),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x28),**(ByteFlag **)(param_2 + 0x30),
                      *(uint8_t8 *)(param_2 + 0x38));
   return;
 }
@@ -90567,7 +90567,7 @@ void Unwind_180912600(uint8_t8 param_1,int64_t param_2)
 void Unwind_180912630(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0xa8),**(uint8_t1 **)(param_2 + 0xa0),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0xa8),**(ByteFlag **)(param_2 + 0xa0),
                      *(uint8_t8 *)(param_2 + 0x98));
   return;
 }
@@ -90597,7 +90597,7 @@ void Unwind_180912660(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
 void Unwind_180912670(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x28),**(uint8_t1 **)(param_2 + 0x68),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x28),**(ByteFlag **)(param_2 + 0x68),
                      *(uint8_t8 *)(param_2 + 0x60));
   return;
 }
@@ -90627,7 +90627,7 @@ void Unwind_1809126a0(uint8_t8 param_1,int64_t param_2,uint8_t8 param_3,uint8_t8
 void Unwind_1809126b0(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x78),**(uint8_t1 **)(param_2 + 0x68),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x78),**(ByteFlag **)(param_2 + 0x68),
                      *(uint8_t8 *)(param_2 + 0x60));
   return;
 }
@@ -90637,7 +90637,7 @@ void Unwind_1809126b0(uint8_t8 param_1,int64_t param_2)
 void Unwind_1809126e0(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x40),**(uint8_t1 **)(param_2 + 0x30),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x40),**(ByteFlag **)(param_2 + 0x30),
                      *(uint8_t8 *)(param_2 + 0x180));
   return;
 }
@@ -90647,7 +90647,7 @@ void Unwind_1809126e0(uint8_t8 param_1,int64_t param_2)
 void Unwind_180912710(uint8_t8 param_1,int64_t param_2)
 
 {
-  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x28),**(uint8_t1 **)(param_2 + 0x68),
+  _guard_check_icall(*(uint8_t8 *)(param_2 + 0x28),**(ByteFlag **)(param_2 + 0x68),
                      *(uint8_t8 *)(param_2 + 0x88));
   return;
 }
@@ -90907,10 +90907,10 @@ void Unwind_180912810(uint8_t8 param_1,int64_t param_2)
   int64_t validationContext;
   
   validationContext = *(int64_t *)(param_2 + 0x40);
-  *(uint8_t1 *)(validationContext + 0x88) = 0;
+  *(ByteFlag *)(validationContext + 0x88) = 0;
   *(uint8_t8 *)(validationContext + 0x90) = 0;
   *(uint8_t8 *)(validationContext + 0x9c) = 0;
-  *(uint8_t4 *)(validationContext + 0x98) = 0;
+  *(DataWord *)(validationContext + 0x98) = 0;
   *(uint8_t8 *)(validationContext + 0xac) = 0;
   *(uint8_t8 *)(validationContext + 0xa4) = 0;
   return;
@@ -90996,7 +90996,7 @@ void Unwind_180912910(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x220) = 0;
-  *(uint8_t4 *)(validationContext + 0x230) = 0;
+  *(DataWord *)(validationContext + 0x230) = 0;
   *(uint8_t8 *)(validationContext + 0x218) = &DefaultExceptionHandlerB;
   *(uint8_t8 *)(validationContext + 0x1f8) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x200) != 0) {
@@ -91004,7 +91004,7 @@ void Unwind_180912910(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x200) = 0;
-  *(uint8_t4 *)(validationContext + 0x210) = 0;
+  *(DataWord *)(validationContext + 0x210) = 0;
   *(uint8_t8 *)(validationContext + 0x1f8) = &DefaultExceptionHandlerB;
   return;
 }
@@ -91059,7 +91059,7 @@ void Unwind_180912950(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x390) = 0;
-  *(uint8_t4 *)(validationContext + 0x3a0) = 0;
+  *(DataWord *)(validationContext + 0x3a0) = 0;
   *(uint8_t8 *)(validationContext + 0x388) = &DefaultExceptionHandlerB;
   return;
 }
@@ -91078,13 +91078,13 @@ void Unwind_180912970(uint8_t8 param_1,int64_t param_2)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(validationContext + 0x3b0) = 0;
-  *(uint8_t4 *)(validationContext + 0x3c0) = 0;
+  *(DataWord *)(validationContext + 0x3c0) = 0;
   *(uint8_t8 *)(validationContext + 0x3a8) = &DefaultExceptionHandlerB;
   return;
 }
 
 
-uint8_t4 UNK_180d49260;
+DataWord UNK_180d49260;
 
 // 函数: void UtilityProcessParameter1(uint8_t8 param_1,int64_t param_2)
 void UtilityProcessParameter1(uint8_t8 param_1,int64_t param_2)
@@ -91136,8 +91136,8 @@ void UtilityProcessParameter2(uint8_t8 param_1,int64_t param_2)
 void ExecuteUtilityOperation(uint8_t8 *param_1,int64_t param_2)
 
 {
-  FUN_1808fc51c(*(uint8_t8 *)(param_2 + 0x60),*(uint8_t4 *)(param_2 + 0x68),
-                *(uint8_t8 *)(param_2 + 0x70),FUN_1808fc074,*(uint8_t4 *)*param_1,param_1);
+  FUN_1808fc51c(*(uint8_t8 *)(param_2 + 0x60),*(DataWord *)(param_2 + 0x68),
+                *(uint8_t8 *)(param_2 + 0x70),FUN_1808fc074,*(DataWord *)*param_1,param_1);
   return;
 }
 
@@ -91189,19 +91189,19 @@ void HandleUtilitySystemRequest(uint8_t8 param_1,int64_t param_2)
 
 
 
-// 函数: uint8_t4 InitializeDataStructureA0(uint8_t8 param_1,int64_t param_2)
+// 函数: DataWord InitializeDataStructureA0(uint8_t8 param_1,int64_t param_2)
 // 功能：初始化数据结构并设置指针，包含验证逻辑
 // 参数：param_1-数据值，param_2-目标结构指针
 // 返回值：成功返回0，失败终止程序
-uint8_t4 InitializeDataStructureA0(uint8_t8 param_1,int64_t param_2)
+DataWord InitializeDataStructureA0(uint8_t8 param_1,int64_t param_2)
 
 {
   *(uint8_t8 *)(param_2 + 0x40) = param_1;
   *(uint8_t8 *)(param_2 + 0x30) = param_1;
   *(uint8_t8 *)(param_2 + 0x38) = **(uint8_t8 **)(param_2 + 0x30);
   if (**(int **)(param_2 + 0x38) != -0x1f928c9d) {
-    *(uint8_t4 *)(param_2 + 0x20) = 0;
-    return *(uint8_t4 *)(param_2 + 0x20);
+    *(DataWord *)(param_2 + 0x20) = 0;
+    return *(DataWord *)(param_2 + 0x20);
   }
                     // WARNING: Subroutine does not return
   terminate();
@@ -91232,7 +91232,7 @@ void ConditionalExecuteFunctionA0(uint8_t8 param_1,int64_t param_2)
 void ExecuteCallbackFunction(uint8_t8 *callbackContext)
 
 {
-  func_0x0001808fd024(*(uint8_t4 *)*callbackContext);
+  func_0x0001808fd024(*(DataWord *)*callbackContext);
   return;
 }
 
@@ -93277,7 +93277,7 @@ void InitializeExceptionHandlerTableA0(uint8_t8 param_1,uint8_t8 param_2,uint8_t
       TerminateSystemE0();
     }
     exceptionTableIterator[1] = 0;
-    *(uint8_t4 *)(exceptionTableIterator + 3) = 0;
+    *(DataWord *)(exceptionTableIterator + 3) = 0;
     *exceptionTableIterator = &DefaultExceptionHandlerB;
   }
   if (_DAT_180bfaea0 != (uint8_t8 *)0x0) {
@@ -94409,7 +94409,7 @@ void ResetThreadLocalStorage(void)
     TerminateSystemE0();
   }
   *(uint8_t8 *)(threadContext + 0x20) = 0;
-  *(uint8_t4 *)(threadContext + 0x30) = 0;
+  *(DataWord *)(threadContext + 0x30) = 0;
   *(uint8_t8 *)(threadContext + 0x18) = &DefaultExceptionHandlerB;
   return;
 }
@@ -94439,7 +94439,7 @@ void CleanupUtilitySystemResources(uint8_t8 param_1,uint8_t8 param_2,uint8_t8 pa
     TerminateSystemE0();
   }
   resourceManager[5] = 0;
-  *(uint8_t4 *)(resourceManager + 7) = 0;
+  *(DataWord *)(resourceManager + 7) = 0;
   resourceManager[4] = &SystemResourceBufferA1;
                     // WARNING: Subroutine does not return
   TerminateSystemE0(resourceManager);
