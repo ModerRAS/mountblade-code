@@ -12456,7 +12456,7 @@ void ResetUtilitySystemAA0(void)
     *(int *)(registerContext + 0x2c) = validationCount;
   }
   *(DataBuffer *)(*(int64_t *)(registerContext + 0x20) + (int64_t)*(int *)(registerContext + 0x28) * 8) =
-       in_stack_00000060;
+       StackParameter60;
   *(int *)(registerContext + 0x28) = *(int *)(registerContext + 0x28) + 1;
 SystemCleanupLabel:
                     // WARNING: Subroutine does not return
@@ -18963,7 +18963,7 @@ void ProcessFloatingPointDataA0(void)
   }
 ProcessCompleteLabel:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -18979,7 +18979,7 @@ void ExecuteSecurityCheckJumpA0(void)
   int64_t stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -19038,7 +19038,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
     *(ByteFlag *)(destinationIndexRegister + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_00000220 ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(StackParameter220 ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -19058,7 +19058,7 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
     *(ByteFlag *)(destinationIndexRegister + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_00000220 ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(StackParameter220 ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -19399,16 +19399,16 @@ ProcessDataSecurityValidation:
   fStack0000000000000048 = register_R13D;
   puStack0000000000000058 = resourcePointer2;
   validationContext5 = (*(code *)*inputAccumulatorRegister)(resourcePointer2);
-  inputParameter3 = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(validationContext5 + 0xd0),&stack0x00000048);
+  inputParameter3 = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(validationContext5 + 0xd0),&StackBuffer48);
   if (inputParameter3 == 0) {
-    in_stack_00000070 = &UNK_1809832b8;
+    StackBuffer70 = &UNK_1809832b8;
     *(DataWord *)(stackFramePointer + -0xf) = StackParameter20;
     *(float *)(stackFramePointer + -0x10) = fStack0000000000000048;
-    in_stack_00000078 = register_R13D;
-    inputParameter3 = ValidateDataIntegrityA0(floatResultA,&stack0x00000070);
+    StackParameter78 = register_R13D;
+    inputParameter3 = ValidateDataIntegrityA0(floatResultA,&StackBuffer70);
     if (inputParameter3 == 0) {
-      in_stack_00000060 = (int64_t)*(int *)(register_R15 + 0x28);
-      if (0 < in_stack_00000060) {
+      StackParameter60 = (int64_t)*(int *)(register_R15 + 0x28);
+      if (0 < StackParameter60) {
         functionReturnValue3 = (uint64_t)(uint)register_R13D;
         functionReturnValue0 = (uint64_t)(uint)register_R13D;
         do {
@@ -19441,7 +19441,7 @@ ProcessDataSecurityValidation:
           functionReturnValue3 = functionReturnValue3 + 1;
           functionReturnValue0 = functionReturnValue0 + 0x18;
           systemContext = in_stack_00000068;
-        } while ((int64_t)functionReturnValue3 < in_stack_00000060);
+        } while ((int64_t)functionReturnValue3 < StackParameter60);
       }
       dataValue7 = *(DataBuffer *)(*(int64_t *)(systemContext + 8) + 800);
       dataValue6 = (**(FunctionPointer**)*resourcePointer2)(resourcePointer2);
@@ -19481,7 +19481,7 @@ ProcessDataSecurityValidation:
             if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
           }
         }
-        inputParameter3 = ConvertDataFormatA2(functionReturnValue4,(int64_t)&stack0x00000048 + 4,0);
+        inputParameter3 = ConvertDataFormatA2(functionReturnValue4,(int64_t)&StackBuffer48 + 4,0);
         if (inputParameter3 == 0) {
           in_stack_000001a0 = register_XMM6_Da;
           in_stack_000001a8 = register_XMM6_Dc;
@@ -19587,7 +19587,7 @@ ProcessDataSecurityValidation:
   }
 ValidateDataSecurity:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -19728,7 +19728,7 @@ ValidateDataSecurity:
         if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
       }
     }
-    inputParameter3 = ConvertDataFormatA2(functionReturnValue3,(int64_t)&stack0x00000048 + 4,0);
+    inputParameter3 = ConvertDataFormatA2(functionReturnValue3,(int64_t)&StackBuffer48 + 4,0);
     if (inputParameter3 == 0) {
       in_stack_000001a0 = register_XMM6_Da;
       in_stack_000001a8 = register_XMM6_Dc;
@@ -19832,7 +19832,7 @@ ValidateDataSecurity:
   }
 ExecuteFloatingPointSecurityCheck:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -19974,7 +19974,7 @@ void ProcessFloatingPointDataA0(float inputValue)
   }
 ValidationFailedLabel:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -19990,7 +19990,7 @@ void ExecuteSecurityCheckAndTerminateA1(void)
   int64_t stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -20006,7 +20006,7 @@ void ExecuteSecurityCheckAndTerminateA2(void)
   int64_t stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -20022,7 +20022,7 @@ void ExecuteSecurityCheckAndTerminateA3(void)
   int64_t stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -21200,8 +21200,8 @@ DataWord ProcessDataWithValidation(DataBuffer inputDataBuffer,int bufferSize,Dat
       dataValue7 = 0x41;
     }
   }
-  if (in_stack_00000078 != (int *)0x0) {
-    *in_stack_00000078 = inputParameter8 + 1;
+  if (StackParameter78 != (int *)0x0) {
+    *StackParameter78 = inputParameter8 + 1;
   }
   return dataValue7;
 }
@@ -21308,8 +21308,8 @@ DataWord ProcessDataWithIndex(DataBuffer inputDataBuffer,uint64_t dataIndex)
       register_R13D = 0x41;
     }
   }
-  if (in_stack_00000078 != (int *)0x0) {
-    *in_stack_00000078 = register_R15D + 1;
+  if (StackParameter78 != (int *)0x0) {
+    *StackParameter78 = register_R15D + 1;
   }
   return register_R13D;
 }
@@ -21377,8 +21377,8 @@ DataWord QuerySystemStatusWithValidation(void)
       register_R13D = 0x41;
     }
   }
-  if (in_stack_00000078 != (int *)0x0) {
-    *in_stack_00000078 = register_R15D + 1;
+  if (StackParameter78 != (int *)0x0) {
+    *StackParameter78 = register_R15D + 1;
   }
   return register_R13D;
 }
@@ -22984,7 +22984,7 @@ DataBuffer ExecuteSystemCheckA0(void)
       }
       uStack0000000000000070 = (BytePair)(int)(fVar4 * 65535.0);
       dataValue = (**(FunctionPointer**)**(DataBuffer **)(stackFramePointer + 8))
-                        (*(DataBuffer **)(stackFramePointer + 8),&stack0x00000070,2);
+                        (*(DataBuffer **)(stackFramePointer + 8),&StackBuffer70,2);
       if ((int)dataValue != 0) {
         return dataValue;
       }
@@ -22999,7 +22999,7 @@ DataBuffer ExecuteSystemCheckA0(void)
       }
       uStack0000000000000070 = (BytePair)(int)(fVar4 * 65535.0);
       dataValue = (**(FunctionPointer**)**(DataBuffer **)(stackFramePointer + 8))
-                        (*(DataBuffer **)(stackFramePointer + 8),&stack0x00000070,2);
+                        (*(DataBuffer **)(stackFramePointer + 8),&StackBuffer70,2);
       if ((int)dataValue != 0) {
         return dataValue;
       }
@@ -23813,9 +23813,9 @@ uint64_t ProcessBinaryDataA0(void)
       default:
         return 0x1c;
       case 0x10:
-        in_stack_00000070 = destinationIndexRegister[1];
+        StackBuffer70 = destinationIndexRegister[1];
         dataValue = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&stack0x00000070,4);
+                          (*(DataBuffer **)(systemContext + 8),&StackBuffer70,4);
         if ((int)dataValue != 0) {
           return dataValue;
         }
@@ -23831,7 +23831,7 @@ uint64_t ProcessBinaryDataA0(void)
         operationStatus = -0x14;
         break;
       case 0x20:
-        in_stack_00000078 = destinationIndexRegister[1];
+        StackParameter78 = destinationIndexRegister[1];
         dataValue = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
                           (*(DataBuffer **)(systemContext + 8),&stack0x00000078,4);
         if ((int)dataValue != 0) {
