@@ -2660,11 +2660,11 @@ void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int
   
   // 设置连接上下文数据
   ConnectionContextData[ConnectionStateIndex] = ActiveConnectionState;
-  ConnectionContextData[ConnectionIdIndex] = ConnectionIdentifier;
-  ConnectionContextData[SecurityValidationIndex] = SecurityValidationStatus;
-  ConnectionContextData[FinalizeValueIndex] = FinalizeValue;
-  ConnectionContextData[ProcessingFlagsIndex] = ProcessingFlags;
-  ConnectionContextData[ValidationFlagsIndex] = ValidationFlags;
+  ConnectionContextData[ConnectionIdentifierIndex] = ConnectionIdentifier;
+  ConnectionContextData[SecurityValidationResultIndex] = SecurityValidationStatus;
+  ConnectionContextData[FinalizationValueIndex] = FinalizeValue;
+  ConnectionContextData[ProcessingStateFlagsIndex] = ProcessingFlags;
+  ConnectionContextData[ValidationStateFlagsIndex] = ValidationFlags;
   ConnectionContextData[ProcessingModeIndex] = ProcessingMode;
   
   return ConnectionContextData;
