@@ -95705,8 +95705,18 @@ void ExecuteSystemContextCallbackChain(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_18090f3d0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 注册资源操作处理器
+ * 
+ * 该函数负责注册资源操作处理器到系统中
+ * 为资源管理提供处理接口
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f3d0，现已重命名为RegisterResourceOperationHandler
+ */
+void RegisterResourceOperationHandler(uint8_t ObjectContext,int64_t ValidationContext)
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + ValidationContextDataProcessingOffset) + 0x3a8,8,0xd,ProcessResourceOperation);
   return;
@@ -95714,8 +95724,18 @@ void Unwind_18090f3d0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f410(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源处理回调
+ * 
+ * 该函数负责执行资源处理的回调函数
+ * 通过资源上下文调用相应的处理方法
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f410，现已重命名为ExecuteResourceProcessingCallback
+ */
+void ExecuteResourceProcessingCallback(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
@@ -95728,8 +95748,18 @@ void Unwind_18090f410(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f430(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源处理回调扩展
+ * 
+ * 该函数负责执行资源处理的扩展回调函数
+ * 通过资源上下文调用相应的处理方法（扩展版本）
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f430，现已重命名为ExecuteResourceProcessingCallbackExtended
+ */
+void ExecuteResourceProcessingCallbackExtended(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
@@ -95742,8 +95772,18 @@ void Unwind_18090f430(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f450(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源处理回调备用
+ * 
+ * 该函数负责执行资源处理的备用回调函数
+ * 通过资源上下文调用相应的处理方法（备用版本）
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f450，现已重命名为ExecuteResourceProcessingCallbackAlternate
+ */
+void ExecuteResourceProcessingCallbackAlternate(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
@@ -95840,8 +95880,18 @@ void ProcessResourceCleanupAtOffset440(uint8_t ObjectContext, int64_t Validation
 
 
 
-void Unwind_18090f4f0(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源处理回调偏移448
+ * 
+ * 该函数负责执行资源处理的回调函数
+ * 从偏移量0x448处获取资源上下文并调用相应的处理方法
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f4f0，现已重命名为ExecuteResourceProcessingCallbackOffset448
+ */
+void ExecuteResourceProcessingCallbackOffset448(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
@@ -95854,8 +95904,18 @@ void Unwind_18090f4f0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f510(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源处理回调偏移450
+ * 
+ * 该函数负责执行资源处理的回调函数
+ * 从偏移量0x450处获取资源上下文并调用相应的处理方法
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f510，现已重命名为ExecuteResourceProcessingCallbackOffset450
+ */
+void ExecuteResourceProcessingCallbackOffset450(uint8_t ObjectContext,int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
