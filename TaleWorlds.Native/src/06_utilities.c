@@ -4169,7 +4169,7 @@ undefined UtilityProcessData11;
 undefined UtilityProcessData12;
 undefined UtilityProcessData13;
 undefined UtilityProcessData14;
-undefined UtilityProcessUnknown2;
+uint32_t UtilityProcessReserved;
 
 // 函数: undefined UtilityValidateObject;
 undefined UtilityValidateObject;
@@ -4177,7 +4177,7 @@ undefined UtilityValidateConfig1;
 undefined UtilityValidateConfig2;
 undefined UtilityValidateConfig3;
 undefined UtilityValidateConfig4;
-undefined UtilityValidateUnknown1;
+uint32_t UtilityValidateReserved;
 
 // 函数: undefined UtilityInitializeObject;
 undefined UtilityInitializeObject;
@@ -4185,7 +4185,7 @@ undefined UtilityInitObjectData1;
 undefined UtilityInitObjectData2;
 undefined UtilityInitObjectData3;
 undefined UtilityInitObjectData4;
-undefined UtilityInitObjectUnknown1;
+uint32_t UtilityInitObjectReserved;
 
 // 函数: undefined UtilityProcessObject1;
 undefined UtilityProcessObject1;
@@ -4193,7 +4193,7 @@ undefined UtilityProcessObjectData1;
 undefined UtilityProcessObjectData2;
 undefined UtilityProcessObjectData3;
 undefined UtilityProcessObjectData4;
-undefined UtilityProcessObjectUnknown1;
+uint32_t UtilityProcessObjectReserved;
 
 // 函数: undefined UtilityProcessObject2;
 undefined UtilityProcessObject2;
@@ -4201,9 +4201,9 @@ undefined UtilityProcessObject2;
 // 函数: undefined UtilityProcessObject3;
 undefined UtilityProcessObject3;
 undefined SystemConfigData;
-undefined UnknownFunctionPtr1;
+void* UnknownFunctionPtr1;
 undefined SystemConfigEnd;
-undefined UnknownFunctionPtr2;
+void* UnknownFunctionPtr2;
 undefined UtilityPointerArray1;
 undefined UtilityPointerArray2;
 undefined UtilityPointerArray3;
@@ -5003,12 +5003,12 @@ void AllocateUtilityBuffers(void);
 //   无
 void InitializeUtilityThreads(void);
 // 工具系统初始化线程数据变量
-undefined UtilityInitThreadData1;
-undefined UtilityInitThreadData2;
-undefined UtilityInitThreadData3;
-undefined UtilityInitThreadData4;
-undefined UtilityInitThreadStatus1;
-undefined UtilityInitThreadConfig1;
+uint32_t UtilityInitThreadCounter;
+uint32_t UtilityInitThreadId;
+uint32_t UtilityInitThreadFlags;
+uint32_t UtilityInitThreadPriority;
+uint32_t UtilityInitThreadStatus;
+uint32_t UtilityInitThreadConfig;
 
 // 函数: void StartUtilityWorkers(void)
 // 
@@ -5022,12 +5022,12 @@ undefined UtilityInitThreadConfig1;
 //   无
 void StartUtilityWorkers(void);
 // 工具系统启动工作线程数据变量
-undefined UtilityStartWorkerData1;
-undefined UtilityStartWorkerData2;
-undefined UtilityStartWorkerData3;
-undefined UtilityStartWorkerStatus1;
-undefined UtilityStartWorkerConfig1;
-undefined UtilityStartWorkerConfig2;
+uint32_t UtilityStartWorkerCount;
+uint32_t UtilityStartWorkerId;
+uint32_t UtilityStartWorkerFlags;
+uint32_t UtilityStartWorkerStatus;
+uint32_t UtilityStartWorkerConfig;
+uint32_t UtilityStartWorkerPriority;
 
 // 函数: void ProcessUtilityQueue(void)
 // 
@@ -5041,12 +5041,12 @@ undefined UtilityStartWorkerConfig2;
 //   无
 void ProcessUtilityQueue(void);
 // 工具系统队列处理变量
-undefined UtilityQueueData1;
-undefined UtilityQueueData2;
-undefined UtilityQueueStatus1;
-undefined UtilityQueueConfig1;
-undefined UtilityQueueConfig2;
-undefined UtilityQueueConfig3;
+uint32_t UtilityQueueSize;
+uint32_t UtilityQueuePosition;
+uint32_t UtilityQueueStatus;
+uint32_t UtilityQueueConfig;
+uint32_t UtilityQueueTimeout;
+uint32_t UtilityQueuePriority;
 
 // 函数: void ConfigureUtilityThreadPool(void)
 // 
@@ -5060,12 +5060,12 @@ undefined UtilityQueueConfig3;
 //   无
 void ConfigureUtilityThreadPool;
 // 工具系统线程池配置变量
-undefined UtilityThreadPoolData1;
-undefined UtilityThreadPoolStatus1;
-undefined UtilityThreadPoolConfig1;
-undefined UtilityThreadPoolConfig2;
-undefined UtilityThreadPoolConfig3;
-undefined UtilityThreadPoolConfig4;
+uint32_t UtilityThreadPoolSize;
+uint32_t UtilityThreadPoolStatus;
+uint32_t UtilityThreadPoolMinThreads;
+uint32_t UtilityThreadPoolMaxThreads;
+uint32_t UtilityThreadPoolTimeout;
+uint32_t UtilityThreadPoolPriority;
 
 // 函数: void SynchronizeUtilityData(void)
 // 
@@ -5079,11 +5079,11 @@ undefined UtilityThreadPoolConfig4;
 //   无
 void SynchronizeUtilityData(void);
 // 工具系统同步数据变量
-undefined UtilitySyncDataStatus1;
-undefined UtilitySyncData1;
-undefined UtilitySyncData2;
-undefined UtilitySyncData3;
-undefined UtilitySyncData4;
+uint32_t UtilitySyncDataStatus;
+uint32_t UtilitySyncDataSize;
+uint32_t UtilitySyncDataOffset;
+uint32_t UtilitySyncDataFlags;
+uint32_t UtilitySyncDataVersion;
 
 // 函数: undefined UtilityEncodeData;
 // 
@@ -5095,12 +5095,12 @@ undefined UtilitySyncData4;
 // 
 // 返回值:
 //   undefined - 编码结果状态
-undefined UtilityEncodeData;
-undefined UtilityEncodingBuffer;
-undefined UtilityEncodeInputData;
-undefined UtilityEncodeOutputBuffer;
-undefined UtilityEncodeKey;
-undefined UtilityEncodeResult;
+uint32_t UtilityEncodeData;
+uint8_t* UtilityEncodingBuffer;
+uint8_t* UtilityEncodeInputData;
+uint8_t* UtilityEncodeOutputBuffer;
+uint32_t UtilityEncodeKey;
+uint32_t UtilityEncodeResult;
 
 // 函数: undefined UtilityDecodeData;
 // 
@@ -5112,13 +5112,13 @@ undefined UtilityEncodeResult;
 // 
 // 返回值:
 //   undefined - 解码结果状态
-undefined UtilityDecodeData;
-undefined UtilityDecodeBuffer;
-undefined UtilityDecodeInputData;
-undefined UtilityDecodeOutputBuffer;
-undefined UtilityDecodeKey;
-undefined UtilityDecodeResult;
-undefined UtilityDecodeStatus;
+uint32_t UtilityDecodeData;
+uint8_t* UtilityDecodeBuffer;
+uint8_t* UtilityDecodeInputData;
+uint8_t* UtilityDecodeOutputBuffer;
+uint32_t UtilityDecodeKey;
+uint32_t UtilityDecodeResult;
+uint32_t UtilityDecodeStatus;
 
 // 函数: undefined UtilitySerializeData;
 // 
@@ -5130,12 +5130,12 @@ undefined UtilityDecodeStatus;
 // 
 // 返回值:
 //   undefined - 序列化结果状态
-undefined UtilitySerializeData;
-undefined SerializationDataBuffer;
-undefined SerializationDataSize;
-undefined SerializationDataFlags;
-undefined SerializationDataChecksum;
-undefined SerializationDataHandle;
+uint32_t UtilitySerializeData;
+uint8_t* SerializationDataBuffer;
+uint32_t SerializationDataSize;
+uint32_t SerializationDataFlags;
+uint32_t SerializationDataChecksum;
+uint32_t SerializationDataHandle;
 
 // 函数: undefined UtilityDeserializeData;
 // 
@@ -10719,16 +10719,16 @@ ValidationCheckpoint:
 
 
 
-// 函数: undefined8 CheckSystemStatusA0(longlong param_1,longlong param_2)
+// 函数: undefined8 CheckSystemStatusA0(longlong contextHandle,longlong eventManager)
 // 功能：检查系统状态并返回状态码
-undefined8 CheckSystemStatusA0(longlong param_1,longlong param_2)
+undefined8 CheckSystemStatusA0(longlong contextHandle,longlong eventManager)
 
 {
   int referenceCount;
   undefined8 queryResult;
   longlong systemContext;
   
-  queryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContext);
+  queryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x10),&systemContext);
   if ((int)queryResult == 0) {
     if (*(int *)(systemContext + 0x34) != 0) {
       return 0x2e;
@@ -10737,7 +10737,7 @@ undefined8 CheckSystemStatusA0(longlong param_1,longlong param_2)
     *(int *)(systemContext + 0x28) = referenceCount + 1;
     if (referenceCount == 0) {
                     // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(undefined8 *)(eventManager + 0x98),contextHandle);
     }
     queryResult = 0;
   }
@@ -10836,58 +10836,58 @@ undefined8 ManageResourceState(longlong resourceManager,longlong systemParams)
 
 
 
-// 函数: undefined8 HandlePermissionRequest(longlong param_1,longlong param_2)
+// 函数: undefined8 HandlePermissionRequest(longlong permissionRequestContext,longlong systemParameters)
 // 
 // 处理权限请求，验证和分配系统权限
 // 该函数负责处理系统的权限请求，包括权限验证和权限分配
 // 
 // 参数:
-//   param_1 - 权限请求上下文
-//   param_2 - 系统参数块
+//   permissionRequestContext - 权限请求上下文
+//   systemParameters - 系统参数块
 // 
 // 返回值:
 //   undefined8 - 操作状态码
 //     0x4c - 权限验证失败
 //     其他值 - 权限处理结果
-undefined8 HandlePermissionRequest(longlong param_1,longlong param_2)
+undefined8 HandlePermissionRequest(longlong permissionRequestContext,longlong systemParameters)
 
 {
   undefined8 permissionResult;
   longlong permissionContext;
   
-  permissionResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&permissionContext);
+  permissionResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(permissionRequestContext + 0x10),&permissionContext);
   if ((int)permissionResult == 0) {
     if (*(longlong *)(permissionContext + 8) == 0) {
       return 0x4c;
     }
-    *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(*(longlong *)(permissionContext + 8) + 0x78);
-    permissionResult = ProcessSystemEventB0(*(undefined8 *)(param_2 + 0x98),param_1);
+    *(undefined8 *)(permissionRequestContext + 0x18) = *(undefined8 *)(*(longlong *)(permissionContext + 8) + 0x78);
+    permissionResult = ProcessSystemEventB0(*(undefined8 *)(systemParameters + 0x98),permissionRequestContext);
   }
   return permissionResult;
 }
 
 
 
-// 函数: undefined8 ProcessSystemRequest(longlong param_1,longlong param_2)
+// 函数: undefined8 ProcessSystemRequest(longlong contextHandle,longlong systemParameters)
 // 
 // 处理系统请求，验证请求状态并执行相应操作
 // 该函数负责处理系统级别的请求，包括请求验证和状态管理
 // 
 // 参数:
-//   param_1 - 系统请求上下文
-//   param_2 - 系统参数块
+//   contextHandle - 系统请求上下文
+//   systemParameters - 系统参数块
 // 
 // 返回值:
 //   undefined8 - 操作状态码
 //     0x4e - 请求已被处理或状态冲突
 //     其他值 - 请求处理结果
-undefined8 ProcessSystemRequest(longlong param_1,longlong param_2)
+undefined8 ProcessSystemRequest(longlong contextHandle,longlong systemParameters)
 
 {
   undefined8 requestResult;
   longlong requestContext;
   
-  requestResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&requestContext);
+  requestResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x10),&requestContext);
   if ((int)requestResult != 0) {
     return requestResult;
   }
@@ -11218,7 +11218,7 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
 
 {
   int in_EAX;
-  int iVar1;
+  int scaledValue;
   longlong registerContext;
   longlong systemContext;
   int operationResult;
@@ -11227,9 +11227,9 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
   
   operationResult = param_1 + 1;
   if (in_EAX - param_2 < operationResult) {
-    iVar1 = (int)((float)(in_EAX - param_2) * 1.5);
-    if (operationResult <= iVar1) {
-      operationResult = iVar1;
+    scaledValue = (int)((float)(in_EAX - param_2) * 1.5);
+    if (operationResult <= scaledValue) {
+      operationResult = scaledValue;
     }
     if (operationResult < 8) {
       operationResult = 8;
@@ -11309,29 +11309,29 @@ void ManageUtilitySystemCacheAE0(void)
 void ManageUtilitySystemConnectionsAF0(longlong connectionManager,longlong connectionFlags)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int operationStatus;
+  undefined8 systemContext;
   
-  iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = ProcessSystemBufferA0(uStackX_8);
-    if (iVar1 < 1) {
-      iVar1 = ProcessSystemBufferA1(uStackX_8);
-      *(uint *)(param_1 + 0x18) = (uint)(iVar1 < 1);
+  operationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(connectionManager + 0x10),&systemContext);
+  if (operationStatus == 0) {
+    operationStatus = ProcessSystemBufferA0(systemContext);
+    if (operationStatus < 1) {
+      operationStatus = ProcessSystemBufferA1(systemContext);
+      *(uint *)(connectionManager + 0x18) = (uint)(operationStatus < 1);
     }
     else {
-      iVar1 = ProcessSystemBufferA1(uStackX_8);
-      if (iVar1 < 1) {
-        *(undefined4 *)(param_1 + 0x18) = 2;
+      operationStatus = ProcessSystemBufferA1(systemContext);
+      if (operationStatus < 1) {
+        *(undefined4 *)(connectionManager + 0x18) = 2;
       }
       else {
-        iVar1 = ValidateDataIntegrityA0(uStackX_8,param_1 + 0x18);
-        if (iVar1 != 0) {
+        operationStatus = ValidateDataIntegrityA0(systemContext,connectionManager + 0x18);
+        if (operationStatus != 0) {
           return;
         }
       }
     }
-    ProcessSystemEventB0(*(undefined8 *)(param_2 + 0x98),param_1);
+    ProcessSystemEventB0(*(undefined8 *)(connectionFlags + 0x98),connectionManager);
   }
   return;
 }
