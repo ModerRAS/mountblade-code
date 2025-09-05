@@ -59999,6 +59999,15 @@ void Unwind_180908ba0(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 异常处理清理例程
+ * @details 清理异常处理相关的资源，执行必要的清理操作
+ * 
+ * @param exceptionContext 异常处理上下文指针
+ * @param contextData 上下文数据，包含异常状态信息
+ * 
+ * @return 无返回值
+ */
 void ExceptionHandlerCleanupRoutine(void* exceptionContext, longlong contextData)
 
 {
@@ -60010,6 +60019,15 @@ void ExceptionHandlerCleanupRoutine(void* exceptionContext, longlong contextData
 
 
 
+/**
+ * @brief 异常处理器设置例程
+ * @details 设置和配置异常处理器，包括临时异常处理器的安装和清理
+ * 
+ * @param handlerContext 处理器上下文指针
+ * @param contextData 上下文数据，包含异常状态和处理器信息
+ * 
+ * @return 无返回值
+ */
 void ExceptionHandlerSetupRoutine(void* handlerContext, longlong contextData)
 
 {
