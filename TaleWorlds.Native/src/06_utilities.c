@@ -1618,9 +1618,9 @@
 // 功能：处理输入的浮点数据，进行一系列验证和计算操作
 #define ProcessFloatingPointData FUN_180897859
 
-// 原始函数名：FUN_1809424c0 - 数据解密函数A0
-// 功能：解密工具系统数据A0
-#define DecryptUtilityDataA0 FUN_1809424c0
+// 原始函数名：FUN_1809424c0 - 数据解密函数
+// 功能：解密工具系统数据
+#define DecryptUtilityData FUN_1809424c0
 
 // 原始函数名：FUN_180942520 - 系统状态重置函数C0
 // 功能：重置工具系统状态C0
@@ -6293,13 +6293,13 @@ undefined UNK_180a18e20;
 // 函数: undefined UtilityCompactMemoryHeap;
 // 压缩内存堆，整理碎片化内存
 undefined UtilityCompactMemoryHeap;
-undefined UNK_180a19fd8;
-undefined UNK_180a19eb0;
-undefined UNK_180302310;
-undefined UNK_180a19e28;
-undefined UNK_180a19e38;
-undefined UNK_1803048b0;
-undefined UNK_180a19e88;
+undefined MemoryHeapCompressionFlag;
+undefined MemoryHeapCompactionStatus;
+undefined MemoryHeapCompactionProgress;
+undefined MemoryHeapCompactionResult;
+undefined MemoryHeapCompactionCounter;
+undefined MemoryHeapCompactionSize;
+undefined MemoryHeapCompactionAlignment;
 
 // 函数: undefined UtilityValidateMemoryHeap;
 // 验证内存堆的完整性和有效性
