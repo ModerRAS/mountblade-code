@@ -41,7 +41,7 @@
 
 // 系统处理函数宏定义 (E系列)
 #define ValidateAndProcessFloatingPointNumberA1 FUN_180892880
-#define QuerySystemStatusE0 FUN_1808928d3
+#define QuerySystemStatusA0 FUN_1808928d3
 #define InitializeSystemE0 FUN_1808928f1
 #define ValidateParametersE0 FUN_180892909
 #define ValidateParametersE1 FUN_180892920
@@ -3777,16 +3777,16 @@ void* UtilitySystemThreadData3;
 // 函数: void ProcessUtilitySystemFlags();
 #define ProcessUtilitySystemFlags FUN_180942fa0
 void ProcessUtilitySystemFlags;
-undefined UtilitySystemFlagData1;
-undefined UtilitySystemFlagData2;
-undefined UtilitySystemFlagData3;
-undefined UtilitySystemFlagData4;
+void* UtilitySystemFlagData1;
+void* UtilitySystemFlagData2;
+void* UtilitySystemFlagData3;
+void* UtilitySystemFlagData4;
 
-942fc0;
+// 函数: void ValidateUtilitySystemFlags();
 #define ValidateUtilitySystemFlags FUN_180942fc0
-undefined ValidateUtilitySystemFlags;
-undefined UtilitySystemCleanupData1;
-undefined UtilitySystemCleanupStatus1;
+void ValidateUtilitySystemFlags;
+void* UtilitySystemCleanupData1;
+uint8_t UtilitySystemCleanupStatus1;
 
 943070;
 #define InitializeUtilitySystemLocalData FUN_180943070
