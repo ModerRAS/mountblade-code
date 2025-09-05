@@ -1144,6 +1144,26 @@
 // 原始变量名：_DAT_180c8a9a8 - 异常处理数据指针
 // 功能：存储异常处理的数据指针信息
 #define ExceptionDataPointer _DAT_180c8a9a8
+
+// 空操作函数语义化宏定义
+// 原始函数名：FUN_180899c45 - 空操作函数H
+// 功能：空函数，用于占位或同步操作
+#define UtilityNoOperationH FUN_180899c45
+
+// 原始函数名：FUN_180899c54 - 空操作函数I
+// 功能：空函数，用于占位或同步操作
+#define UtilityNoOperationI FUN_180899c54
+
+// 原始函数名：FUN_18089ae2d - 空操作函数J
+// 功能：空函数，用于占位或同步操作
+#define UtilityNoOperationJ FUN_18089ae2d
+
+// 原始函数名：FUN_18089ae35 - 空操作函数K
+// 功能：空函数，用于占位或同步操作
+#define UtilityNoOperationK FUN_18089ae35
+
+// 原始函数名：FUN_180853000 - 处理输入数据
+// 功能：处理用户输入数据
 #define ProcessInputData FUN_180853000
 
 // 原始函数名：FUN_180851490 - 执行游戏命令
@@ -12519,16 +12539,20 @@ void NoOperationC(void)
 
 
 
-undefined4 FUN_180895ef0(undefined8 param_1)
+// 函数: undefined4 ValidateAndProcessSystemData(undefined8 systemHandle)
+// 功能：验证并处理系统数据，调用系统资源验证函数并返回结果
+// 参数：systemHandle - 系统句柄
+// 返回值：验证成功返回处理结果，失败返回0
+undefined4 ValidateAndProcessSystemData(undefined8 systemHandle)
 
 {
-  int iVar1;
-  undefined4 auStackX_10 [6];
+  int validationResult;
+  undefined4 resultBuffer [6];
   
-  auStackX_10[0] = 0;
-  iVar1 = ValidateAndProcessSystemResourceA0(param_1,auStackX_10);
-  if (iVar1 == 0) {
-    return auStackX_10[0];
+  resultBuffer[0] = 0;
+  validationResult = ValidateAndProcessSystemResourceA0(systemHandle,resultBuffer);
+  if (validationResult == 0) {
+    return resultBuffer[0];
   }
   return 0;
 }

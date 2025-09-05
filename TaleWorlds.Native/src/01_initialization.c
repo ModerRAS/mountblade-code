@@ -18635,18 +18635,18 @@ CallbackTableInitializationComplete:
 void InitializeEngineModuleA(void)
 
 {
-  uint64_t RegisterR9Parameter;
-  void *ParameterStackPointer;
-  uint8_t *BufferPointer;
-  uint32_t StringBufferSize;
-  uint8_t StringBuffer [136];
+  uint64_t SystemRegisterR9Parameter;
+  void *SystemParameterStackPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemStringBufferSize;
+  uint8_t SystemStringBuffer [136];
   
-  ParameterStackPointer = &SystemDataBufferMainTemplateA;
-  BufferPointer = StringBuffer;
-  StringBuffer[0] = 0;
-  StringBufferSize = 0x17;
-  strcpy_s(StringBuffer,StringBufferSize,&SystemStringConstantBufferTemplateD,RegisterR9Parameter,InvalidHandleValue);
-  SystemMemoryRegionCacheD = SystemMemoryAllocationFunction(&ParameterStackPointer);
+  SystemParameterStackPointer = &SystemDataBufferMainTemplateA;
+  SystemBufferPointer = SystemStringBuffer;
+  SystemStringBuffer[0] = 0;
+  SystemStringBufferSize = 0x17;
+  strcpy_s(SystemStringBuffer,SystemStringBufferSize,&SystemStringConstantBufferTemplateD,SystemRegisterR9Parameter,InvalidHandleValue);
+  SystemMemoryRegionCacheD = SystemMemoryAllocationFunction(&SystemParameterStackPointer);
   return;
 }
 
@@ -18661,18 +18661,18 @@ void InitializeEngineModuleA(void)
 void InitializeEngineModuleB(void)
 
 {
-  uint64_t RegisterR9Parameter;
-  void *ParameterStackPointer;
-  uint8_t *BufferPointer;
-  uint32_t StringBufferSize;
-  uint8_t StringBuffer [136];
+  uint64_t SystemRegisterR9Parameter;
+  void *SystemParameterStackPointer;
+  uint8_t *SystemBufferPointer;
+  uint32_t SystemStringBufferSize;
+  uint8_t SystemStringBuffer [136];
   
-  ParameterStackPointer = &SystemDataBufferMainTemplateA;
-  BufferPointer = StringBuffer;
-  StringBuffer[0] = 0;
-  StringBufferSize = 0x11;
-  strcpy_s(StringBuffer,StringBufferSize,&SystemStringConstantBufferCapacityValueE,RegisterR9Parameter,InvalidHandleValue);
-  SystemMemoryRegionCacheE = SystemMemoryAllocationFunction(&ParameterStackPointer);
+  SystemParameterStackPointer = &SystemDataBufferMainTemplateA;
+  SystemBufferPointer = SystemStringBuffer;
+  SystemStringBuffer[0] = 0;
+  SystemStringBufferSize = 0x11;
+  strcpy_s(SystemStringBuffer,SystemStringBufferSize,&SystemStringConstantBufferCapacityValueE,SystemRegisterR9Parameter,InvalidHandleValue);
+  SystemMemoryRegionCacheE = SystemMemoryAllocationFunction(&SystemParameterStackPointer);
   return;
 }
 
@@ -28816,39 +28816,39 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   void* SystemResourceHandleTertiary;
   uint32_t SystemConfigPrimaryValuee8;
   void* *pGlobalDataFlags2;
-  long long SystemMemoryAllocationOffset1d8;
-  uint SystemResourceCount1d0;
+  long long SystemMemoryAllocationOffsetPrimary;
+  uint SystemResourceCountTertiary;
   void* SystemResourceHandleQuaternary;
   void* *pGlobalDataFlags;
-  long long SystemMemoryAllocationOffset1b8;
+  long long SystemMemoryAllocationOffsetSecondary;
   uint32_t SystemOperationResultb0;
-  ulong long SystemResourceHandle1a8;
+  ulong long SystemResourceHandlePrimary;
   uint32_t CalculationFlagsExtended;
-  uint SystemResourceCount19c;
+  uint SystemResourceCountQuaternary;
   uint8_t SystemStackFlag;
   uint32_t SystemOperationResult94;
   void* *SystemMemoryBufferPointerTertiary;
-  long long SystemMemoryAllocationOffset188;
-  int SystemThreadCount180;
+  long long SystemMemoryAllocationOffsetTertiary;
+  int SystemThreadCountPrimary;
   uint32_t CalculationFlags178;
-  void* **SystemResourceManager170;
-  void* *SystemResourceHandle168;
-  long long SystemMemoryAllocationOffset160;
+  void* **SystemResourceManagerPrimary;
+  void* *SystemResourceHandleSecondary;
+  long long SystemMemoryAllocationOffsetQuaternary;
   uint32_t SystemResourceSize;
-  uint32_t SystemAllocationFlags148;
-  uint32_t SystemAllocationFlags144;
-  uint32_t SystemAllocationFlags140;
-  uint32_t SystemAllocationFlags13c;
-  uint32_t SystemAllocationFlags138;
-  uint32_t SystemAllocationFlags134;
-  uint32_t SystemAllocationFlags130;
-  uint32_t SystemAllocationFlags12c;
+  uint32_t SystemAllocationFlagsSeptenary;
+  uint32_t SystemAllocationFlagsOctonary;
+  uint32_t SystemAllocationFlagsPrimary;
+  uint32_t SystemAllocationFlagsSecondary;
+  uint32_t SystemAllocationFlagsTertiary;
+  uint32_t SystemAllocationFlagsQuaternary;
+  uint32_t SystemAllocationFlagsQuinary;
+  uint32_t SystemAllocationFlagsSenary;
   uint32_t SystemMemoryAllocationOffset;
-  uint32_t SystemStackVariable124;
-  uint32_t SystemStackVariable120;
-  uint32_t SystemStackVariable11c;
+  uint32_t SystemStackVariablePrimary;
+  uint32_t SystemStackVariableSecondary;
+  uint32_t SystemStackVariableTertiary;
   uint32_t SystemUnsignedStackFlagPrimary;
-  uint32_t SystemStackVariable114;
+  uint32_t SystemStackVariableQuaternary;
   uint32_t SystemUnsignedStackFlagSecondary;
   uint32_t SystemEncryptionKeyC;
   uint8_t SystemEncryptionKeyA;
@@ -28892,14 +28892,14 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemStackVariableTemp = 0;
   StackFlagValuePrimary = 0;
   StackFloatingValueSecondary = 0x3f800000;
-  SystemStackVariable130 = 0;
-  SystemStackVariable12c = 0;
+  SystemAllocationFlagsQuinary = 0;
+  SystemAllocationFlagsSenary = 0;
   SystemMemoryAllocationOffset = 0;
-  SystemStackVariable124 = 0;
-  SystemStackVariable120 = 0x3f800000;
-  SystemStackVariable11c = 0;
+  SystemStackVariablePrimary = 0;
+  SystemStackVariableSecondary = 0x3f800000;
+  SystemStackVariableTertiary = 0;
   UnsignedStackFlagPrimary = 0;
-  SystemStackVariable114 = 0;
+  SystemStackVariableQuaternary = 0;
   UnsignedStackFlagSecondary = 0;
   SystemEncryptionKeyC = 0x3f800000;
   SystemEncryptionKeyG = 0x1010101;
@@ -29040,8 +29040,8 @@ void SystemResourceEnumerator(void)
   void** SystemDataPointer;
   uint32_t SystemResourceID;
   uint8_t LocalBufferArray [32];
-  void* *SystemResourceHandle158;
-  uint8_t *SystemBufferPointer150;
+  void* *SystemResourceHandleTertiary;
+  uint8_t *SystemBufferPointerPrimary;
   uint StackContextSize;
   void* SystemStackHandlePrimary;
   void* *SystemResourceHandle138;
@@ -37557,13 +37557,13 @@ void FormatSystemResourceOutput(void* SystemResourceManager,void* ConfigurationD
 {
   void* standardOutputHandle;
   void** globalDataBuffer;
-  void* formatParameter1;
+  void* formatDataPointer;
   uint64_t SystemInitializationStatusFlag;
-  void* formatParameter3;
+  void* formatConfigurationFlag;
   
-  formatParameter1 = ConfigurationDataPointer;
+  formatDataPointer = ConfigurationDataPointer;
   formatParameter2 = AdditionalParameter;
-  formatParameter3 = ConfigurationFlag;
+  formatConfigurationFlag = ConfigurationFlag;
   standardOutputHandle = __acrt_iob_func(1);
   globalDataBuffer = (void* *)SystemGlobalDataAllocate();
   __stdio_common_vfprintf(*globalDataBuffer,standardOutputHandle,SystemResourceManager,0,&formatParameter1);
