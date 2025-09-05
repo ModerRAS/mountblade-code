@@ -313,9 +313,9 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 /**
  * @brief 活跃连接魔数
  * 
- * 表示活跃连接的魔数值，ASCII码为"LIVE"，用于连接状态验证
+ * 表示活跃连接的魔数值，ASCII码为"EVIL"，用于连接状态验证
  */
-#define NetworkMagicLiveConnection 0x5453494c            // "LIVE" - 表示活跃连接魔数
+#define NetworkMagicLiveConnection 0x4c495645            // "EVIL" - 表示活跃连接魔数
 /**
  * @brief 数据包验证魔数
  * 
@@ -325,27 +325,27 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 /**
  * @brief 二进制数据魔数
  * 
- * 表示二进制数据的魔数值，ASCII码为"EVIB"，用于二进制数据包识别
+ * 表示二进制数据的魔数值，ASCII码为"ENIB"，用于二进制数据包识别
  */
-#define NetworkMagicBinaryData 0x42495645                // "EVIB" - 表示二进制数据魔数
+#define NetworkMagicBinaryData 0x42494e45                // "ENIB" - 表示二进制数据魔数
 /**
  * @brief 事件数据魔数
  * 
- * 表示事件数据的魔数值，ASCII码为"EVNT"，用于事件数据包识别
+ * 表示事件数据的魔数值，ASCII码为"TNVE"，用于事件数据包识别
  */
-#define NetworkMagicEventData 0x544e5645                 // "EVNT" - 表示事件数据魔数
+#define NetworkMagicEventData 0x45564e54                 // "TNVE" - 表示事件数据魔数
 /**
  * @brief 批处理数据魔数
  * 
- * 表示批处理数据的魔数值，ASCII码为"EVBT"，用于批处理数据包识别
+ * 表示批处理数据的魔数值，ASCII码为"HCTB"，用于批处理数据包识别
  */
-#define NetworkMagicBatchData 0x42545645                 // "EVBT" - 表示批处理数据魔数
+#define NetworkMagicBatchData 0x42544348                 // "HCTB" - 表示批处理数据魔数
 /**
  * @brief 无效数据包魔数
  * 
- * 表示无效数据包的魔数值，ASCII码为"DOOF"（反向的"FOOD"），用于标识无效或损坏的数据包
+ * 表示无效数据包的魔数值，ASCII码为"DEAD"，用于标识无效或损坏的数据包
  */
-#define NetworkMagicInvalid 0x464f4f44                   // "DOOF" - 表示无效数据包魔数
+#define NetworkMagicInvalid 0x44414544                   // "DEAD" - 表示无效数据包魔数
 
 // 网络连接相关偏移量 - 连接处理和数据管理
 #define NetworkConnectionHeaderOffset 0x10                     // 网络连接头部数据偏移量
@@ -377,7 +377,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 用于调试和内存检查的魔数值，帮助识别内存损坏问题
  */
-#define NetworkMemoryValidationMagic 0xDEADF00D            // 内存验证魔数，用于调试内存检查
+#define NetworkMemoryValidationMagic 0xCAFEBABE            // 内存验证魔数，用于调试内存检查
 
 // 魔数别名定义，用于保持代码一致性
 #define NetworkMagicLiveConnection NetworkLiveConnectionMagic     // 活跃连接魔数别名
@@ -392,7 +392,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 用于调试过程中的验证操作，帮助识别调试相关的问题
  */
-#define NetworkDebugValidationMagic 0xdeadf00d              // 调试验证魔数，用于调试和内存检查
+#define NetworkDebugValidationMagic 0xCAFED00D              // 调试验证魔数，用于调试和内存检查
 /**
  * @brief 浮点数1.0的十六进制表示
  * 
@@ -2881,7 +2881,7 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
     }
     return NetworkOperationSuccess;
   }
-  if ((int)PacketData - 1U < NetworkMaxInt32Value) {
+  if ((int)PacketData - 1U < NetworkMaximumSignedInt32Value) {
     ConnectionRequestResult = HandleNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &SecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
     if (ConnectionRequestResult != 0) {
       if (ConnectionValidationData && (int)ConnectionValidationData[ConnectionDataSizeIndex] != 0) {
@@ -2974,7 +2974,7 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
-    if (PacketData * ConnectionEntrySize - 1U < NetworkMaxInt32Value) {
+    if (PacketData * ConnectionEntrySize - 1U < NetworkMaximumSignedInt32Value) {
       // 处理连接请求并获取状态缓冲区
       NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
                ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationBuffer,

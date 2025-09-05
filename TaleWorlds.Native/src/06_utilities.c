@@ -1,8 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// Mount & Blade: Native 工具模块
-// 系统常量和宏定义
-
 // 系统常量定义
 #define DefaultSystemDataAddress 0x18
 #define ComponentHandleOffset 0x10
@@ -20717,7 +20714,7 @@ DataBuffer ReturnFixedStatusCodeA0(void)
 
 
 
-DataBuffer ValidateDataBlockStatusA0(int64_t *param_1,DataWord *param_2)
+DataBuffer ValidateDataBlockStatusA0(int64_t *dataHandle,DataWord *validationData)
 
 {
   DataBuffer dataValue;
@@ -59994,14 +59991,14 @@ void Unwind_180908a00(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180908a10(DataBuffer param_1,int64_t param_2)
+void ReleaseMutexLockA10(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  inputParameter = _Mtx_unlock(*(DataBuffer *)(param_2 + 0x1d8));
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  mutexUnlockResult = _Mtx_unlock(*(DataBuffer *)(stackFrame + 0x1d8));
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
