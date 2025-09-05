@@ -5529,11 +5529,11 @@ undefined GlobalDataPointerA37ValidationBuffer;
 // 原始函数名：FUN_180942440 - 全局指针设置函数A38
 // 功能：设置全局数据指针A38到指定地址
 #define SetGlobalDataPointerA38 FUN_180942440
-void* GlobalDataPointerA38_1;
-void* GlobalDataPointerA38_2;
-void* GlobalDataPointerA38_3;
-void* GlobalDataPointerA38_4;
-void* GlobalDataPointerA38_5;
+void* GlobalDataPointerA38Primary;
+void* GlobalDataPointerA38Secondary;
+void* GlobalDataPointerA38Tertiary;
+void* GlobalDataPointerA38Quaternary;
+void* GlobalDataPointerA38Quinary;
 
 // 函数: void* UtilityProcessDataA0;
 // 
@@ -33426,7 +33426,7 @@ void CleanupSystemFlagBit8(undefined8 context, longlong systemData)
 {
   if ((*(uint *)(systemData + 0x30) & 0x100) != 0) {
     *(uint *)(systemData + 0x30) = *(uint *)(systemData + 0x30) & 0xfffffeff;
-    FUN_180627b90(systemData + 0x38);
+    CleanupResourceHandler(systemData + 0x38);
   }
   return;
 }
