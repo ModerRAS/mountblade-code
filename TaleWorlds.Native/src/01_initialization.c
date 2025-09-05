@@ -39034,11 +39034,11 @@ void InitializeAndConfigureSystemResources(void)
   SystemResourceHandleSecondary = &SystemMemoryAllocatorReference;
   ResourceAddressPointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
   SystemMemoryContext = &SystemResourceTemplateSecondary;
-  ResourceBufferPointerSecondary = SystemSecondaryBuffer120;
-  SystemSecondaryBuffer120[0] = 0;
+  ResourceBufferPointerSecondary = SystemSecondaryProcessingBuffer;
+  SystemSecondaryProcessingBuffer[0] = 0;
   SystemMemoryAllocationOffset = 6;
   SystemProcessFlags = ResourceAddressPointer;
-  strcpy_s(SystemSecondaryBuffer120,0x10,&SystemStringData2);
+  strcpy_s(SystemSecondaryProcessingBuffer,0x10,&SystemStringData2);
   SystemMemoryAllocationOffsetPrimary = SystemAllocationFlags + 0x78;
   SystemMemoryAllocationOffsetExtended = SystemAllocationFlags + 0x548;
   SystemMemoryAllocationOffsetStandard = SystemAllocationFlags + 0x68;
