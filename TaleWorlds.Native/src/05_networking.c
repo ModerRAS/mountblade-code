@@ -798,17 +798,17 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络连接基础配置变量
 uint32_t ConnectionManagerHandle;                    // 连接管理器句柄，用于访问和管理连接表的入口点
-uint32_t *NetworkConnectionManagerContextPointer = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
-uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据，存储连接管理的上下文信息和状态数据
-uint32_t NetworkConnectionStateFlags;                 // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
-uint32_t NetworkConnectionTimeoutMs;               // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
-uint32_t NetworkMaxConnectionsAllowed;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
-uint32_t NetworkConnectionAttributeFlags;              // 网络连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
-uint32_t NetworkConnectionCurrentStateFlags;                // 网络连接当前状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
+uint32_t *ConnectionManagerContextPointer = &ConnectionManagerContextData;     // 连接管理器上下文指针，指向连接管理器的上下文数据
+uint32_t ConnectionManagerContextData;             // 连接管理器上下文数据，存储连接管理的上下文信息和状态数据
+uint32_t ConnectionStateFlags;                 // 连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
+uint32_t ConnectionTimeoutMs;               // 连接超时时间（毫秒），连接无活动时的超时时间阈值
+uint32_t MaxConnectionsAllowed;                  // 最大连接数限制，系统允许同时建立的最大连接数量
+uint32_t ConnectionAttributeFlags;              // 连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
+uint32_t CurrentStateFlags;                // 当前状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
 uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板，用于格式化错误报告数据
 
 // 网络协议和地址配置
-uint32_t NetworkConnectionProtocol;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）
+uint32_t ConnectionProtocol;                   // 连接协议类型，定义连接使用的网络协议（TCP、UDP等）
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本，指定协议的版本号用于兼容性检查
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址，存储服务器的IP地址信息
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号，服务器监听的端口号
