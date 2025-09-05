@@ -445,12 +445,12 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 定义网络操作中的超时时间设置，用于控制各种网络操作的等待时间
  */
-#define NetworkTimeout1Second 1000                             // 网络超时：1秒
-#define NetworkTimeout5Seconds 5000                           // 网络超时：5秒
-#define NetworkTimeout30Seconds 30000                          // 网络超时：30秒
-#define NetworkTimeout5Minutes 300000                          // 网络超时：5分钟
-#define NetworkHeartbeat30Seconds 30                          // 网络心跳：30秒
-#define NetworkHeartbeat60Seconds 60                          // 网络心跳：60秒
+#define Network1SecondTimeout 1000                             // 网络超时：1秒
+#define Network5SecondsTimeout 5000                           // 网络超时：5秒
+#define Network30SecondsTimeout 30000                          // 网络超时：30秒
+#define Network5MinutesTimeout 300000                          // 网络超时：5分钟
+#define Network30SecondsHeartbeat 30                          // 网络心跳：30秒
+#define Network60SecondsHeartbeat 60                          // 网络心跳：60秒
 
 /**
  * @brief 网络质量常量
@@ -458,10 +458,10 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 定义网络连接质量评估相关的参数，用于衡量网络性能和可靠性
  */
 #define NetworkConnectionQualityGood 0x05                       // 良好连接质量
-#define NetworkLatency50Milliseconds 50                                     // 网络延迟：50毫秒
-#define NetworkBandwidthFourKilobytes 4096                                 // 4KB带宽
+#define Network50MillisecondsLatency 50                                     // 网络延迟：50毫秒
+#define Network4KBandwidth 4096                                 // 4KB带宽
 #define NetworkReliabilityLevelHigh 0x01                           // 高可靠性级别
-#define NetworkWindowScaleSixteen 16                                 // 窗口缩放16
+#define Network16WindowScale 16                                 // 窗口缩放16
 
 // 网络连接配置常量
 #define NetworkConnectionQueueEnabled 0x01                    // 网络队列启用标志
@@ -479,7 +479,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkCompressionMethodZLIB 0x01                             // ZLIB压缩方法
 #define NetworkHashAlgorithmSHA256 0x01                        // SHA-256哈希算法
 #define NetworkSignatureMethodRSA 0x01                         // RSA签名方法
-#define NetworkEncryptionKeyLength256Bits 256                  // 256位加密密钥长度
+#define Network256BitEncryptionKeyLength 256                  // 256位加密密钥长度
 #define NetworkCompressionLevelDefault 0x06                    // 默认压缩级别
 /**
  * @brief 默认会话加密密钥
@@ -493,9 +493,9 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkConnectionPriorityMedium 0x05        // 网络中等连接优先级
 #define NetworkProtocolVersionOne 0x01                // 网络协议版本1.0
 #define NetworkConnectionPoolSize 256             // 连接池大小256
-#define NetworkConnectionSize256Bytes 256             // 连接大小256字节
-#define NetworkEventSize64Bytes 64                    // 事件大小64字节
-#define NetworkCallbackSize64Bytes 64                 // 回调大小64字节
+#define Network256ByteConnectionSize 256             // 连接大小256字节
+#define Network64ByteEventSize 64                    // 事件大小64字节
+#define Network64ByteCallbackSize 64                 // 回调大小64字节
 #define NetworkRetryCountMaximum 3               // 最大重试次数3次
 #define NetworkBackoffTimeTwoSeconds 2000          // 退避时间2秒
 

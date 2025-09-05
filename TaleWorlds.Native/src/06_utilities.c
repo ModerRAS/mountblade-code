@@ -395,58 +395,58 @@
 #define ValidatePortControlRequest FUN_180899360
 
 /**
- * @brief 执行数据验证A0
+ * @brief 执行数据验证
  * 
  * 该函数负责执行数据的验证操作，确保数据的有效性
  * 
  * @note 原始函数名：FUN_1808993e0
  */
-#define ExecuteDataValidationA0 FUN_1808993e0
+#define ExecuteDataValidation FUN_1808993e0
 
 /**
- * @brief 处理复杂数据结构A0
+ * @brief 处理复杂数据结构
  * 
  * 该函数负责处理复杂的数据结构，包括结构体和数组
  * 
  * @note 原始函数名：FUN_180899650
  */
-#define ProcessComplexDataStructureA0 FUN_180899650
+#define ProcessComplexDataStructure FUN_180899650
 
 /**
- * @brief 验证数据格式A0
+ * @brief 验证数据格式
  * 
  * 该函数负责验证数据的格式，确保数据符合预期的格式要求
  * 
  * @note 原始函数名：FUN_180899740
  */
-#define ValidateDataFormatA0 FUN_180899740
+#define ValidateDataFormat FUN_180899740
 
 /**
- * @brief 获取系统状态A1
+ * @brief 获取系统状态
  * 
  * 该函数负责获取系统的当前状态信息
  * 
  * @note 原始函数名：FUN_180899763
  */
-#define GetSystemStatusA1 FUN_180899763
+#define GetSystemStatus FUN_180899763
 
 /**
- * @brief 初始化数据处理器A0
+ * @brief 初始化数据处理器
  * 
  * 该函数负责初始化数据处理器，设置处理器的初始状态
  * 
  * @note 原始函数名：FUN_1808997f0
  */
-#define InitializeDataProcessorA0 FUN_1808997f0
+#define InitializeDataProcessor FUN_1808997f0
 
 /**
- * @brief 清理数据处理器A0
+ * @brief 清理数据处理器
  * 
  * 该函数负责清理数据处理器，释放占用的资源
  * 
  * @note 原始函数名：FUN_180899816
  */
-#define CleanupDataProcessorA0 FUN_180899816
+#define CleanupDataProcessor FUN_180899816
 
 /**
  * @brief 处理数据集合A0
@@ -455,7 +455,7 @@
  * 
  * @note 原始函数名：FUN_1808998a0
  */
-#define ProcessDataCollectionA0 FUN_1808998a0
+#define ProcessDataCollection FUN_1808998a0
 
 /**
  * @brief 验证数据完整性A0
@@ -36647,7 +36647,7 @@ void SetupSecondaryExceptionHandler(undefined8 exceptionContext, longlong thread
 
 
 
-void Unwind_180902bb0(undefined8 param_1,longlong param_2)
+void HandleResourceCleanupException(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -36683,7 +36683,7 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902bc0(undefined8 param_1,longlong param_2)
+void SetDefaultExceptionHandlerB(undefined8 param_1,longlong param_2)
 
 {
   **(undefined8 **)(param_2 + 0x90) = &DefaultExceptionHandlerB;
