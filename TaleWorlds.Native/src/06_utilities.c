@@ -5996,7 +5996,6 @@ undefined SystemAudioManager;
 undefined ExceptionStatusManagerA;
 // 异常处理状态管理器B
 undefined ExceptionStatusManagerB;
-// 系统资源管理器A
 // 系统性能计数器A
 undefined SystemPerformanceCounterA;
 // 异常处理配置管理器A
