@@ -2011,7 +2011,7 @@ uint32_t NetworkConnectionConfiguration;                         // 网络连接
 uint32_t NetworkConnectionGeneralSettings;                       // 网络连接设置
 uint32_t NetworkConnectionContextIdentifier;                 // 网络连接上下文标识符
 uint32_t NetworkConnectionContextData;                  // 网络连接上下文数据
-uint32_t NetworkConnectionContextConfig;                // 网络连接上下文配置
+uint32_t NetworkConnectionContextConfiguration;                // 网络连接上下文配置
 uint32_t NetworkConnectionValidationStatus;              // 连接验证状态
 uint32_t NetworkConnectionValidationData;                // 连接验证数据
 uint32_t NetworkConnectionValidationDataSize;                // 连接验证数据大小
