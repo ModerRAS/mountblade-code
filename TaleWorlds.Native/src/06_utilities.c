@@ -13081,12 +13081,12 @@ code_r0x00018089322c:
 
 
 // 数据传输处理函数A0
-undefined8 ProcessDataTransferA0(longlong param_1,longlong param_2)
+undefined8 ProcessDataTransferA0(longlong dataDescriptor,longlong systemContext)
 
 {
-  undefined8 uVar1;
+  undefined8 operationResult;
   longlong dataContext;
-  longlong lStackX_8;
+  longlong transferSize;
   
   if (3 < *(uint *)(param_1 + 0x18)) {
     return 0x1f;
