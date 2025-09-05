@@ -7706,6 +7706,14 @@ undefined8 ConditionalResourceRelease(char shouldRelease)
  * @param void 无参数
  * @return void 无返回值
  */
+/**
+ * @brief 空操作函数1
+ * 
+ * 该函数是一个空操作函数，不执行任何实际操作。
+ * 通常用于占位或作为默认的回调函数。
+ * 
+ * @note 该函数直接返回，不产生任何副作用
+ */
 void UtilityNoOperation1(void)
 
 {
@@ -10718,7 +10726,7 @@ void InitializeSystemEventHandlerA1(longlong eventHandlerConfig,longlong callbac
   }
 ValidationCheckpoint:
                     // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+  CleanupSystemEventA0(*(undefined8 *)(callbackTable + 0x98),eventHandlerConfig);
 }
 
 
@@ -11404,29 +11412,30 @@ void UtilityNoOperation(void)
 
 
 
-// 函数: void UtilityProcessResourceRequest(longlong param_1,longlong param_2)
-// 
-// 处理资源请求
-// 处理和验证资源请求，执行相应的操作
-// 
-// 参数:
-//   param_1 - 资源请求句柄
-//   param_2 - 请求上下文或配置信息
-// 
-// 返回值:
-//   无
-void UtilityProcessResourceRequest(longlong param_1,longlong param_2)
+/**
+ * @brief 处理工具资源请求
+ * 
+ * 该函数负责处理和验证工具系统的资源请求，执行相应的资源操作。
+ * 函数会先查询系统数据，然后初始化系统缓冲区，最后执行资源清理操作。
+ * 
+ * @param resourceHandle 资源请求句柄，标识要处理的资源
+ * @param requestContext 请求上下文，包含请求的配置信息和参数
+ * 
+ * @note 函数包含完整的资源处理流程，从验证到执行
+ * @warning 如果初始化成功，函数可能不会返回（会调用清理函数）
+ */
+void UtilityProcessResourceRequest(longlong resourceHandle,longlong requestContext)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int operationStatus;
+  undefined8 systemContext;
   
-  iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = InitializeSystemBufferA0(uStackX_8);
-    if (iVar1 == 0) {
+  operationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&systemContext);
+  if (operationStatus == 0) {
+    operationStatus = InitializeSystemBufferA0(systemContext);
+    if (operationStatus == 0) {
                     // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(undefined8 *)(requestContext + 0x98),resourceHandle);
     }
   }
   return;
@@ -11805,37 +11814,38 @@ void ExecuteSecurityValidation(longlong param_1, longlong param_2)
 
 
 
-// 函数: void ProcessResourcePointer(longlong *param_1, longlong param_2)
-//
-// 资源指针处理函数
-// 处理资源指针相关的操作，包括指针验证和数据访问
-// 
-// 参数:
-//   param_1 - 资源指针的指针，包含要处理的资源地址
-//   param_2 - 处理参数，指定操作类型和相关数据
-// 
-// 返回值:
-//   无 - 操作结果通过指针参数返回
-void ProcessResourcePointer(longlong *param_1, longlong param_2)
+/**
+ * @brief 处理资源指针操作
+ * 
+ * 该函数负责处理资源指针相关的操作，包括指针验证、数据访问和安全检查。
+ * 函数会验证资源指针的有效性，确保操作的合法性，并在验证通过后执行相应的处理。
+ * 
+ * @param resourceHandle 资源句柄指针，指向要处理的资源数据结构
+ * @param operationOffset 操作偏移量，用于计算具体的操作位置
+ * 
+ * @note 函数包含安全验证机制，确保资源访问的安全性
+ * @warning 如果验证失败，函数可能不会返回
+ */
+void ProcessResourcePointer(longlong *resourceHandle, longlong operationOffset)
 
 {
   longlong validationContext;
-  longlong *pdataContext;
-  longlong unaff_RDI;
-  ulonglong in_stack_00000050;
+  longlong *dataContextPointer;
+  longlong registerRDI;
+  ulonglong stackParameter;
   
-  validationContext = (**(code **)(*param_1 + 0x2f0))(param_1,param_2 + 0x30);
+  validationContext = (**(code **)(*resourceHandle + 0x2f0))(resourceHandle,operationOffset + 0x30);
   if (validationContext == 0) {
                     // WARNING: Subroutine does not return
-    ValidateSystemDataA0(param_2 + 0x30,&stack0x00000028);
+    ValidateSystemDataA0(operationOffset + 0x30,&stack0x00000028);
   }
-  pdataContext = (longlong *)(validationContext + 0x58);
-  if (((longlong *)*pdataContext == pdataContext) && (*(longlong **)(validationContext + 0x60) == pdataContext)) {
+  dataContextPointer = (longlong *)(validationContext + 0x58);
+  if (((longlong *)*dataContextPointer == dataContextPointer) && (*(longlong **)(validationContext + 0x60) == dataContextPointer)) {
                     // WARNING: Subroutine does not return
-    ExecuteSecurityCheck(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+    ExecuteSecurityCheck(stackParameter ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(undefined8 *)(unaff_RDI + 0x98));
+  CleanupSystemEventA0(*(undefined8 *)(registerRDI + 0x98));
 }
 
 
@@ -12134,7 +12144,7 @@ undefined8 ValidateAndProcessFloatingPointRange(longlong contextPointer, longlon
  * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
  * @see ValidateAndProcessFloatingPointNumberA0, QuerySystemStatusA0
  */
-undefined8 ValidateAndProcessFloatingPointNumberA1(longlong param_1,longlong param_2)
+undefined8 ValidateAndProcessFloatingPointNumberA1(longlong DataHandle,longlong ContextHandle)
 
 {
   // 浮点数处理变量
@@ -12145,7 +12155,7 @@ undefined8 ValidateAndProcessFloatingPointNumberA1(longlong param_1,longlong par
   longlong SystemDataArray [2];                    // 系统数据数组
   
   // 查询系统数据并获取相关信息
-  OperationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),SystemDataArray);
+  OperationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(DataHandle + 0x10),SystemDataArray);
   if ((int)OperationResult == 0) {
     // 处理系统数据数组
     if (SystemDataArray[0] == 0) {
@@ -19803,49 +19813,49 @@ undefined8 InitializeSystemOperation(void)
 // 原始函数名：FUN_180898d60 - 数据处理函数A3
 // 功能：处理输入数据并执行相应操作
 #define ProcessDataA3 FUN_180898d60
-undefined8 ProcessDataA3(longlong *param_1,int param_2)
+undefined8 ProcessDataA3(longlong *DataHandle,int DataSize)
 
 {
-  int iVar1;
-  longlong dataContext;
-  undefined2 *pvalidationStatus;
-  longlong lVar4;
-  undefined2 *poperationResult;
+  int ValidationStatus;
+  longlong DataContext;
+  undefined2 *ValidationBuffer;
+  longlong ProcessCounter;
+  undefined2 *ResultBuffer;
   
-  if (param_2 < (int)param_1[1]) {
+  if (DataSize < (int)DataHandle[1]) {
     return 0x1c;
   }
-  pvalidationStatus = (undefined2 *)0x0;
-  if (param_2 != 0) {
-    if (param_2 * 3 - 1U < 0x3fffffff) {
-      pvalidationStatus = (undefined2 *)
-               AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),param_2 * 3,&UNK_180957f70,0xf4
+  ValidationBuffer = (undefined2 *)0x0;
+  if (DataSize != 0) {
+    if (DataSize * 3 - 1U < 0x3fffffff) {
+      ValidationBuffer = (undefined2 *)
+               AllocateSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),DataSize * 3,&SystemMemoryPoolB,0xf4
                              ,0,0,1);
-      if (pvalidationStatus != (undefined2 *)0x0) {
-        iVar1 = (int)param_1[1];
-        lVar4 = (longlong)iVar1;
-        if ((iVar1 != 0) && (dataContext = *param_1, 0 < iVar1)) {
-          poperationResult = pvalidationStatus;
+      if (ValidationBuffer != (undefined2 *)0x0) {
+        ValidationStatus = (int)DataHandle[1];
+        ProcessCounter = (longlong)ValidationStatus;
+        if ((ValidationStatus != 0) && (DataContext = *DataHandle, 0 < ValidationStatus)) {
+          ResultBuffer = ValidationBuffer;
           do {
-            *poperationResult = *(undefined2 *)((dataContext - (longlong)pvalidationStatus) + (longlong)poperationResult);
-            *(undefined1 *)(poperationResult + 1) =
-                 *(undefined1 *)((dataContext - (longlong)pvalidationStatus) + 2 + (longlong)poperationResult);
-            poperationResult = (undefined2 *)((longlong)poperationResult + 3);
-            lVar4 = lVar4 + -1;
-          } while (lVar4 != 0);
+            *ResultBuffer = *(undefined2 *)((DataContext - (longlong)ValidationBuffer) + (longlong)ResultBuffer);
+            *(undefined1 *)(ResultBuffer + 1) =
+                 *(undefined1 *)((DataContext - (longlong)ValidationBuffer) + 2 + (longlong)ResultBuffer);
+            ResultBuffer = (undefined2 *)((longlong)ResultBuffer + 3);
+            ProcessCounter = ProcessCounter + -1;
+          } while (ProcessCounter != 0);
         }
-        goto LAB_180898e0b;
+        goto ValidationComplete;
       }
     }
     return 0x26;
   }
-ValidationCheckpointA:
-  if ((0 < *(int *)((longlong)param_1 + 0xc)) && (*param_1 != 0)) {
+ValidationCheckpoint:
+  if ((0 < *(int *)((longlong)DataHandle + 0xc)) && (*DataHandle != 0)) {
                     // WARNING: Subroutine does not return
-    ReleaseSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
+    ReleaseSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),*DataHandle,&SystemMemoryPoolB,0x100,1);
   }
-  *param_1 = (longlong)pvalidationStatus;
-  *(int *)((longlong)param_1 + 0xc) = param_2;
+  *DataHandle = (longlong)ValidationBuffer;
+  *(int *)((longlong)DataHandle + 0xc) = DataSize;
   return 0;
 }
 
@@ -19865,7 +19875,7 @@ ValidationCheckpointA:
  * 
  * @note 原始函数名：FUN_180898d84
  */
-undefined8 ProcessDataBufferA0(undefined8 param_1,int param_2)
+undefined8 ProcessDataBufferA0(undefined8 DataBufferHandle,int DataBufferSize)
 
 {
   // 局部变量定义
@@ -91601,31 +91611,45 @@ void ConfigureExceptionHandlerC(void)
 
 
 942890(void)
-void FUN_180942890(void)
+/**
+ * @brief 释放引用计数器资源
+ * 
+ * 该函数用于管理引用计数器的资源释放。它会检查全局引用计数器指针，
+ * 递减引用计数，并在计数器达到1时执行资源清理操作。
+ * 
+ * 功能说明：
+ * 1. 检查全局引用计数器指针是否有效
+ * 2. 获取引用计数并递减
+ * 3. 当引用计数为1时，执行资源清理回调
+ * 4. 检查操作结果计数器，为1时执行二次清理
+ * 
+ * @note 原始函数名：FUN_180942890
+ */
+void ReleaseReferenceCounter(void)
 
 {
-  longlong *validationContextPointer;
-  int *poperationResult;
-  int iVar3;
-  longlong lVar4;
-  longlong *plVar5;
+  longlong *ReferenceContextPointer;
+  int *OperationResultPointer;
+  int ReferenceCount;
+  longlong PreviousReferenceCount;
+  longlong *ResourceHandlePointer;
   
-  plVar5 = _DAT_180c92478;
+  ResourceHandlePointer = _DAT_180c92478;
   if (_DAT_180c92478 != (longlong *)0x0) {
     LOCK();
-    validationContextPointer = _DAT_180c92478 + 1;
-    lVar4 = *validationContextPointer;
-    *(int *)validationContextPointer = (int)*validationContextPointer + -1;
+    ReferenceContextPointer = _DAT_180c92478 + 1;
+    PreviousReferenceCount = *ReferenceContextPointer;
+    *(int *)ReferenceContextPointer = (int)*ReferenceContextPointer + -1;
     UNLOCK();
-    if ((int)lVar4 == 1) {
-      (**(code **)*plVar5)(plVar5);
+    if ((int)PreviousReferenceCount == 1) {
+      (**(code **)*ResourceHandlePointer)(ResourceHandlePointer);
       LOCK();
-      poperationResult = (int *)((longlong)plVar5 + 0xc);
-      iVar3 = *poperationResult;
-      *poperationResult = *poperationResult + -1;
+      OperationResultPointer = (int *)((longlong)ResourceHandlePointer + 0xc);
+      ReferenceCount = *OperationResultPointer;
+      *OperationResultPointer = *OperationResultPointer + -1;
       UNLOCK();
-      if (iVar3 == 1) {
-        (**(code **)(*plVar5 + 8))(plVar5);
+      if (ReferenceCount == 1) {
+        (**(code **)(*ResourceHandlePointer + 8))(ResourceHandlePointer);
       }
     }
   }
@@ -91636,29 +91660,42 @@ void FUN_180942890(void)
 
 
 9428a2(void)
-void FUN_1809428a2(void)
+/**
+ * @brief 释放系统引用计数
+ * 
+ * 该函数用于管理系统资源的引用计数释放。它会递减引用计数，
+ * 并在计数器达到1时执行相应的清理回调函数。
+ * 
+ * 功能说明：
+ * 1. 获取引用计数器指针并递减计数
+ * 2. 当引用计数为1时，执行主清理回调
+ * 3. 检查操作结果计数器，为1时执行二次清理回调
+ * 
+ * @note 原始函数名：FUN_1809428a2
+ */
+void ReleaseSystemReferenceCount(void)
 
 {
-  longlong *validationContextPointer;
-  int *poperationResult;
-  int iVar3;
-  longlong lVar4;
-  longlong *registerContext;
+  longlong *ReferenceCounterPointer;
+  int *OperationResultPointer;
+  int OperationCount;
+  longlong PreviousReferenceCount;
+  longlong *SystemContextPointer;
   
   LOCK();
-  validationContextPointer = registerContext + 1;
-  lVar4 = *validationContextPointer;
-  *(int *)validationContextPointer = (int)*validationContextPointer + -1;
+  ReferenceCounterPointer = SystemContextPointer + 1;
+  PreviousReferenceCount = *ReferenceCounterPointer;
+  *(int *)ReferenceCounterPointer = (int)*ReferenceCounterPointer + -1;
   UNLOCK();
-  if ((int)lVar4 == 1) {
-    (**(code **)*registerContext)();
+  if ((int)PreviousReferenceCount == 1) {
+    (**(code **)*SystemContextPointer)();
     LOCK();
-    poperationResult = (int *)((longlong)registerContext + 0xc);
-    iVar3 = *poperationResult;
-    *poperationResult = *poperationResult + -1;
+    OperationResultPointer = (int *)((longlong)SystemContextPointer + 0xc);
+    OperationCount = *OperationResultPointer;
+    *OperationResultPointer = *OperationResultPointer + -1;
     UNLOCK();
-    if (iVar3 == 1) {
-      (**(code **)(*registerContext + 8))();
+    if (OperationCount == 1) {
+      (**(code **)(*SystemContextPointer + 8))();
     }
   }
   return;
@@ -91668,7 +91705,15 @@ void FUN_1809428a2(void)
 
 
 9428d8(void)
-void FUN_1809428d8(void)
+/**
+ * @brief 空操作函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作直接返回。
+ * 通常用作占位符或默认回调函数。
+ * 
+ * @note 原始函数名：FUN_1809428d8
+ */
+void NoOperationFunction(void)
 
 {
   return;
@@ -91765,7 +91810,15 @@ void ReleaseSystemResourceReference(void)
 
 
 942928(void)
-void FUN_180942928(void)
+/**
+ * @brief 空操作清理函数
+ * 
+ * 该函数是一个空操作函数，不执行任何操作直接返回。
+ * 用作清理操作的占位符或默认回调。
+ * 
+ * @note 原始函数名：FUN_180942928
+ */
+void NoOperationCleanupFunction(void)
 
 {
   return;
