@@ -20757,8 +20757,8 @@ uint64_t ExecuteResourceDataValidation(void)
   uint ValidationStatusCode;
   bool CarryFlag;
   uint8_t StackContextBuffer [4];
-  uint8_t ResourceHashPart1Buffer [2];
-  uint8_t ResourceHashPart2Buffer [2];
+  uint8_t ResourceHashFirstPartBuffer [2];
+  uint8_t ResourceHashSecondPartBuffer [2];
   
   ValidationStatusCode = InputParameterValue + 0x1c;
   if (CarryFlag) {
@@ -97672,7 +97672,20 @@ void Unwind_18090fdf0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fe00(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文偏移200处的资源表独占锁
+ * 
+ * 该函数检查验证上下文偏移200处的字符值，如果不为零，
+ * 则释放验证上下文中资源表偏移量处的独占锁。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于线程同步和资源表管理
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090fe00
+ */
+void ReleaseValidationContextOffset200ResourceTableLock(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 200) != '\0') {
