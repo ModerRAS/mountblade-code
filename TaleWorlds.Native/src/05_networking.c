@@ -1059,7 +1059,7 @@ uint32_t NetworkRoutingTertiaryConfigData;   // 网络连接路由第三配置�
  * 
  * 包含网络连接路由的第四级配置参数，如监控设置、统计收集、报告生成等
  */
-uint32_t NetworkConnectionRoutingQuaternaryConfigData;  // 网络连接路由第四配置数据
+uint32_t NetworkRoutingQuaternaryConfigData;  // 网络连接路由第四配置数据
 
 /**
  * @brief 初始化网络套接字
