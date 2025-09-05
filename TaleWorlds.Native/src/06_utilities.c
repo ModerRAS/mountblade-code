@@ -34393,14 +34393,14 @@ void SetDefaultExceptionHandlerAtOffset138(DataBuffer param_1, int64_t param_2)
 void SetDefaultExceptionHandlerAtOffset1A0(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
-  *(DataBuffer *)(param_2 + 0x1a0) = &UNK_180a3c3e0;
-  if (*(int64_t *)(param_2 + 0x1a8) != 0) {
+  *(DataBuffer *)(targetObjectPointer + 0x1a0) = &UNK_180a3c3e0;
+  if (*(int64_t *)(targetObjectPointer + 0x1a8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(param_2 + 0x1a8) = 0;
-  *(DataWord *)(param_2 + 0x1b8) = 0;
-  *(DataBuffer *)(param_2 + 0x1a0) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(targetObjectPointer + 0x1a8) = 0;
+  *(DataWord *)(targetObjectPointer + 0x1b8) = 0;
+  *(DataBuffer *)(targetObjectPointer + 0x1a0) = &DefaultExceptionHandlerB;
   return;
 }
 
