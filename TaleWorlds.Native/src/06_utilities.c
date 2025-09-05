@@ -12797,7 +12797,7 @@ undefined8 GetSystemStatusA0(void)
 {
   float fVar1;
   int operationResult;
-  int iVar3;
+  int ArrayIndexCheck;
   longlong in_RAX;
   float *pfVar4;
   longlong registerContext;
@@ -12819,13 +12819,13 @@ undefined8 GetSystemStatusA0(void)
     pfVar4 = pfVar7;
     securityCheckResult = in_R9D;
     do {
-      iVar3 = *(int *)(((registerContext + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
-      if (iVar3 != -1) {
+      ArrayIndexCheck = *(int *)(((registerContext + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
+      if (ArrayIndexCheck != -1) {
         fVar1 = *pfVar4;
         if (((uint)fVar1 & FloatInfinityValue) == FloatInfinityValue) {
           return 0x1d;
         }
-        if ((iVar3 < 0) || (operationResult <= iVar3)) {
+        if ((ArrayIndexCheck < 0) || (operationResult <= ArrayIndexCheck)) {
           return 0x1f;
         }
         lVar5 = *(longlong *)(dataFlags + 0x20) + (longlong)iVar3 * 0x18;
@@ -13088,73 +13088,73 @@ undefined8 ProcessDataTransferA0(longlong dataDescriptor,longlong systemContext)
   longlong dataContext;
   longlong transferSize;
   
-  if (3 < *(uint *)(param_1 + 0x18)) {
+  if (3 < *(uint *)(dataDescriptor + 0x18)) {
     return 0x1f;
   }
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(param_1 + 0x1c));
-  if ((*(uint *)(param_1 + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
+  transferSize = CONCAT44(transferSize._4_4_,*(uint *)(dataDescriptor + 0x1c));
+  if ((*(uint *)(dataDescriptor + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10));
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataDescriptor + 0x10));
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (lStackX_8 == 0) {
+  if (transferSize == 0) {
     dataContext = 0;
   }
   else {
-    dataContext = lStackX_8 + -8;
+    dataContext = transferSize + -8;
   }
-  *(undefined4 *)(dataContext + 0x94 + (longlong)*(int *)(param_1 + 0x18) * 4) =
+  *(undefined4 *)(dataContext + 0x94 + (longlong)*(int *)(dataDescriptor + 0x18) * 4) =
        *(undefined4 *)(resourceDescriptor + 0x1c);
-  dataContext = *(longlong *)(param_2 + 0x98);
+  dataContext = *(longlong *)(systemContext + 0x98);
   if ((*(int *)(dataContext + 0x180) != 0) || (*(int *)(dataContext + 0x184) != 0)) {
-    lStackX_8 = 0;
-    InitializeSystemContextA0(&lStackX_8);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(dataContext + 0x17c) * 8 + 0x180c4f450)) {
-      uVar1 = ProcessSystemDataEC0(dataContext,param_1);
-      if ((int)uVar1 == 0) {
+    transferSize = 0;
+    InitializeSystemContextA0(&transferSize);
+    if (transferSize == *(longlong *)((longlong)*(int *)(dataContext + 0x17c) * 8 + 0x180c4f450)) {
+      operationResult = ProcessSystemDataEC0(dataContext,dataDescriptor);
+      if ((int)operationResult == 0) {
         return 0;
       }
-      return uVar1;
+      return operationResult;
     }
   }
-  *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar1 = GetSystemCurrentStateA0(*(undefined8 *)(dataContext + 0x1e0));
-  if ((int)uVar1 == 0) {
+  *(uint *)(dataDescriptor + 8) = *(int *)(dataDescriptor + 8) + 0xfU & 0xfffffff0;
+  operationResult = GetSystemCurrentStateA0(*(undefined8 *)(dataContext + 0x1e0));
+  if ((int)operationResult == 0) {
     return 0;
   }
-  return uVar1;
+  return operationResult;
 }
 
 
 
 // 缓冲区处理函数A0
-undefined8 ProcessBufferA0(longlong param_1,longlong param_2)
+undefined8 ProcessBufferA0(longlong bufferDescriptor,longlong systemContext)
 
 {
-  undefined8 uVar1;
+  undefined8 operationResult;
   longlong dataContext;
-  uint uStackX_8;
-  undefined4 uStackX_c;
+  uint bufferSize;
+  undefined4 bufferFlags;
   
-  uStackX_8 = *(uint *)(param_1 + 0x18);
-  if ((uStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
+  bufferSize = *(uint *)(bufferDescriptor + 0x18);
+  if ((bufferSize & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if ((int)uVar1 == 0) {
-    if (CONCAT44(uStackX_c,uStackX_8) == 0) {
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(bufferDescriptor + 0x10),&bufferSize);
+  if ((int)operationResult == 0) {
+    if (CONCAT44(bufferFlags,bufferSize) == 0) {
       dataContext = 0;
     }
     else {
-      dataContext = CONCAT44(uStackX_c,uStackX_8) + -8;
+      dataContext = CONCAT44(bufferFlags,bufferSize) + -8;
     }
-    *(undefined4 *)(dataContext + 0x8c) = *(undefined4 *)(param_1 + 0x18);
+    *(undefined4 *)(dataContext + 0x8c) = *(undefined4 *)(bufferDescriptor + 0x18);
                     // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+    CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98),bufferDescriptor);
   }
-  return uVar1;
+  return operationResult;
 }
 
 
@@ -80002,7 +80002,7 @@ void Unwind_18090fab0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090fac0(undefined8 param_1,longlong param_2)
+void CleanupExceptionHandlers18090fac0(undefined8 exceptionContext,longlong systemContext)
 
 {
   longlong validationContext;
@@ -80027,7 +80027,7 @@ void Unwind_18090fac0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090fad0(undefined8 param_1,longlong param_2)
+void SetDefaultExceptionHandler18090fad0(undefined8 exceptionContext,longlong systemContext)
 
 {
   **(undefined8 **)(param_2 + 0x120) = &DefaultExceptionHandlerB;
@@ -80036,7 +80036,7 @@ void Unwind_18090fad0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090fae0(undefined8 param_1,longlong param_2)
+void CallExceptionHandler18090fae0(undefined8 exceptionContext,longlong systemContext)
 
 {
   longlong *validationContextPointer;
