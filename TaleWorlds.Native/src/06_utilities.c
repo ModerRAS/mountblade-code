@@ -9071,51 +9071,85 @@ undefined8 ValidateAndProcessFloatingPointRange(longlong contextPointer, longlon
 
 
 
-undefined8 FUN_180892880(longlong param_1,longlong param_2)
+/**
+ * @brief 验证并处理浮点数数据A1
+ * 
+ * 验证浮点数数据的有效性，处理INF和NaN值，执行数据范围检查和更新操作。
+ * 此函数用于处理系统中的浮点数数据，确保数据的有效性和一致性。
+ * 
+ * @details 该函数执行以下关键操作：
+ * - 查询系统数据并获取相关信息
+ * - 验证数据指针的有效性
+ * - 检查数据状态和标志位
+ * - 验证浮点数范围的有效性
+ * - 更新系统状态和数据
+ * 
+ * @param param_1 数据参数指针，包含待处理的浮点数数据和相关信息
+ * @param param_2 上下文参数指针，包含系统上下文和状态信息
+ * @return undefined8 处理结果状态码，0表示成功，非0值表示错误码
+ * 
+ * @retval 0 处理成功
+ * @retval 0x1e 数据指针无效
+ * @retval 0x1f 数据状态异常
+ * @retval 0x1c 数据范围验证失败
+ * @retval 0x4a 系统数据查询失败
+ * 
+ * @note 此函数会进行复杂的数据验证和处理流程
+ * @warning 如果数据处理失败，会返回相应的错误码供调用者处理
+ * @see ValidateAndProcessFloatingPointNumberA0, QuerySystemStatusA0
+ */
+undefined8 ValidateAndProcessFloatingPointNumberA1(longlong param_1,longlong param_2)
 
 {
-  float fVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong lStackX_8;
-  longlong alStackX_18 [2];
+  // 浮点数处理变量
+  float InputFloatValue;                           // 输入浮点数值
+  longlong DataPointer;                           // 数据指针
+  undefined8 OperationResult;                     // 操作结果
+  longlong StackBuffer;                           // 栈缓冲区
+  longlong SystemDataArray [2];                    // 系统数据数组
   
-  uVar3 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),alStackX_18);
-  if ((int)uVar3 == 0) {
-    if (alStackX_18[0] == 0) {
-      alStackX_18[0] = 0;
+  // 查询系统数据并获取相关信息
+  OperationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),SystemDataArray);
+  if ((int)OperationResult == 0) {
+    // 处理系统数据数组
+    if (SystemDataArray[0] == 0) {
+      SystemDataArray[0] = 0;
     }
     else {
-      alStackX_18[0] = alStackX_18[0] + -8;
+      SystemDataArray[0] = SystemDataArray[0] + -8;
     }
-    lStackX_8 = 0;
-    uVar3 = FUN_1808681d0(alStackX_18[0],param_1 + 0x18,&lStackX_8);
-    if ((int)uVar3 == 0) {
-      if (lStackX_8 == 0) {
+    StackBuffer = 0;
+    OperationResult = ValidateSystemDataStructureA0(SystemDataArray[0],param_1 + 0x18,&StackBuffer);
+    if ((int)OperationResult == 0) {
+      // 验证数据指针有效性
+      if (StackBuffer == 0) {
         return 0x4a;
       }
-      lVar2 = *(longlong *)(lStackX_8 + 0x10);
-      if (lVar2 == 0) {
+      DataPointer = *(longlong *)(StackBuffer + 0x10);
+      if (DataPointer == 0) {
         return 0x1e;
       }
-      if ((*(byte *)(lVar2 + 0x34) & 0x11) != 0) {
+      // 检查数据状态标志位
+      if ((*(byte *)(DataPointer + 0x34) & 0x11) != 0) {
         return 0x1f;
       }
-      uVar3 = FUN_18084de40(lVar2,param_1 + 0x25,param_1 + 0x20);
-      if ((int)uVar3 == 0) {
-        fVar1 = *(float *)(param_1 + 0x20);
-        if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
-           (fVar1 < *(float *)(lVar2 + 0x3c) || fVar1 == *(float *)(lVar2 + 0x3c))) {
-          uVar3 = *(undefined8 *)(param_2 + 0x98);
-          *(float *)(lStackX_8 + 4) = fVar1;
+      // 执行数据验证操作
+      OperationResult = ValidateDataRangeAndFlagsA0(DataPointer,param_1 + 0x25,param_1 + 0x20);
+      if ((int)OperationResult == 0) {
+        InputFloatValue = *(float *)(param_1 + 0x20);
+        // 验证浮点数范围
+        if ((*(float *)(DataPointer + 0x38) <= InputFloatValue) &&
+           (InputFloatValue < *(float *)(DataPointer + 0x3c) || InputFloatValue == *(float *)(DataPointer + 0x3c))) {
+          OperationResult = *(undefined8 *)(param_2 + 0x98);
+          *(float *)(StackBuffer + 4) = InputFloatValue;
                     // WARNING: Subroutine does not return
-          FUN_18088d720(uVar3,param_1);
+          ExecuteSystemContextOperationA0(OperationResult,param_1);
         }
-        uVar3 = 0x1c;
+        OperationResult = 0x1c;
       }
     }
   }
-  return uVar3;
+  return OperationResult;
 }
 
 
