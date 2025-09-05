@@ -87,6 +87,9 @@
 #define SystemNodeNextPointerIndex           5  // 系统节点下一指针索引
 #define SystemNodeHeadPointerIndex           6  // 系统节点头指针索引
 
+// 根节点引用索引常量
+#define RootNodeCurrentNodeIndex            1  // 根节点当前节点索引
+
 // 联合体字段访问宏定义
 #define UNION_LOW_PART(union_var)             (union_var).LowPart
 #define UNION_HIGH_PART(union_var)            (union_var).HighPart
