@@ -194,7 +194,7 @@
 #define ValidationContextLoopCounterOffset 0x98           // 验证上下文循环计数器偏移量
 #define ValidationContextMethodPointerOffset 0x10         // 验证上下文方法指针偏移量
 #define ValidationContextSecondaryResourceOffset 0x14      // 验证上下文次级资源偏移量
-#define ValidationContextValidationDataProcessingOffset 0x220 // 验证上下文验证数据处理偏移量
+#define ValidationContextValidationDataOffset 0x220 // 验证上下文验证数据处理偏移量
 #define ValidationContextEntrySize 0xc                    // 验证上下文条目大小
 #define ValidationBitIndex 3                             // 验证位索引
 #define ValidationBitMask (1 << ValidationBitIndex)        // 验证位掩码
@@ -210,7 +210,7 @@
 
 // 系统清理相关常量
 #define SystemCleanupHandlerOffset 0x8b0
-#define SystemCleanupDataProcessingOffset 0x8a0
+#define SystemCleanupDataOffset 0x8a0
 #define SystemResourceTemplatePointerOffset 0x878
 #define SystemCleanupStatusOffset 0x880
 #define SystemCleanupCounterOffset 0x890
@@ -9981,7 +9981,7 @@ uint8_t ProcessObjectContextFloatRangeValidationAndClamping(int64_t ObjectContex
   if ((int)ResourceHashStatus != 0) {
     return ResourceHashStatus;
   }
-  ResourceTablePointer = *(int64_t *)(CONCAT44(ValidationContextParam,ValidationContext) + ValidationContextCleanupFunctionOffset);
+  ResourceTablePointer = *(int64_t *)(CombineFloatAndInteger(ValidationContextParam,ValidationContext) + ValidationContextCleanupFunctionOffset);
   if (ResourceTablePointer == 0) {
     return ErrorInvalidResourceData;
   }
