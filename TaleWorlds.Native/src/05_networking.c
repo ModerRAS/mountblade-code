@@ -3348,37 +3348,37 @@ void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
  * @note 这是简化实现，实际应用中需要实现完整的数据包解码逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的解码工作
  */
-NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
+NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 网络数据包解码变量
-  uint32_t NetworkPacketValidationResult;                         // 网络数据包验证结果
-  uint32_t NetworkHeaderDecodingStatus;                           // 网络头部解码状态
-  uint32_t NetworkPayloadDecodingStatus;                          // 网络负载解码状态
+  uint32_t PacketValidationResult;                         // 网络数据包验证结果
+  uint32_t HeaderDecodingStatus;                           // 网络头部解码状态
+  uint32_t PayloadDecodingStatus;                          // 网络负载解码状态
   
   // 初始化解码状态
-  NetworkPacketValidationResult = NetworkValidationFailure;
-  NetworkHeaderDecodingStatus = NetworkValidationFailure;
-  NetworkPayloadDecodingStatus = NetworkValidationFailure;
+  PacketValidationResult = NetworkValidationFailure;
+  HeaderDecodingStatus = NetworkValidationFailure;
+  PayloadDecodingStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData && OutputBuffer) {
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      NetworkHeaderDecodingStatus = NetworkValidationSuccess;
+      HeaderDecodingStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      NetworkPayloadDecodingStatus = NetworkValidationSuccess;
+      PayloadDecodingStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    NetworkPacketValidationResult = NetworkHeaderDecodingStatus & NetworkPayloadDecodingStatus;
+    PacketValidationResult = HeaderDecodingStatus & PayloadDecodingStatus;
     
     // 初始化输出缓冲区
-    if (NetworkPacketValidationResult == NetworkValidationSuccess) {
+    if (PacketValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
       OutputBuffer[PrimaryMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
@@ -3386,7 +3386,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
   }
   
-  return NetworkPacketValidationResult;
+  return PacketValidationResult;
 }
 
 /**
@@ -3402,33 +3402,33 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
  * @note 这是简化实现，实际应用中需要实现完整的头部处理逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的头部解析工作
  */
-NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
+NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t NetworkHeaderValidationResult;                              // 网络头部验证结果
-  uint32_t NetworkContextProcessingStatus;                             // 网络上下文处理状态
-  uint32_t NetworkHeaderFormatCheckResult;                             // 网络头部格式检查结果
+  uint32_t HeaderValidationResult;                              // 网络头部验证结果
+  uint32_t ContextProcessingStatus;                             // 网络上下文处理状态
+  uint32_t HeaderFormatCheckResult;                             // 网络头部格式检查结果
   
   // 初始化处理状态
-  NetworkHeaderValidationResult = NetworkValidationFailure;
-  NetworkContextProcessingStatus = NetworkValidationFailure;
-  NetworkHeaderFormatCheckResult = NetworkValidationFailure;
+  HeaderValidationResult = NetworkValidationFailure;
+  ContextProcessingStatus = NetworkValidationFailure;
+  HeaderFormatCheckResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    NetworkHeaderValidationResult = NetworkValidationSuccess;
+    HeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    NetworkContextProcessingStatus = NetworkValidationSuccess;
+    ContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
-      NetworkContextProcessingStatus == NetworkValidationSuccess) {
-    NetworkHeaderFormatCheckResult = NetworkValidationSuccess;
+  if (HeaderValidationResult == NetworkValidationSuccess && 
+      ContextProcessingStatus == NetworkValidationSuccess) {
+    HeaderFormatCheckResult = NetworkValidationSuccess;
   }
   
-  return NetworkHeaderFormatCheckResult;
+  return HeaderFormatCheckResult;
 }

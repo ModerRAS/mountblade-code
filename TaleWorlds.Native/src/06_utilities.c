@@ -27,24 +27,162 @@
 #define SetGlobalDataPointerA23 InitializeGlobalDataPointerA23
 
 // 数据处理函数宏定义 (D系列)
+
+/**
+ * @brief 更新系统状态A0
+ * 
+ * 该函数负责更新系统的状态信息，包括处理状态标志、
+ * 执行状态转换和更新系统配置参数
+ * 
+ * @note 原始函数名：FUN_180893e69
+ */
 #define UpdateSystemStatusA0 FUN_180893e69
+
+/**
+ * @brief 带安全检查的数据块处理A0
+ * 
+ * 该函数负责处理数据块并进行安全验证，确保数据处理的
+ * 安全性和完整性
+ * 
+ * @note 原始函数名：FUN_180897d20
+ */
 #define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
+
+/**
+ * @brief 验证和处理数据A0
+ * 
+ * 该函数负责验证输入数据的有效性，并执行相应的处理操作
+ * 
+ * @note 原始函数名：FUN_180899040
+ */
 #define ValidateAndProcessDataA0 FUN_180899040
+
+/**
+ * @brief 处理数据块A1
+ * 
+ * 该函数负责处理多个数据块，支持批量数据处理操作
+ * 
+ * @note 原始函数名：FUN_180899090
+ */
 #define ProcessDataBlocksA1 FUN_180899090
+
+/**
+ * @brief 验证并执行操作A1
+ * 
+ * 该函数负责验证系统参数并执行相应的操作，确保操作的安全性
+ * 
+ * @note 原始函数名：FUN_180899100
+ */
 #define ValidateAndExecuteOperationsA1 FUN_180899100
+
+/**
+ * @brief 初始化系统组件A0
+ * 
+ * 该函数负责初始化系统的各个组件，设置初始状态和配置
+ * 
+ * @note 原始函数名：FUN_1808992c4
+ */
 #define InitializeSystemComponentsA0 FUN_1808992c4
+
+/**
+ * @brief 带安全检查的数据验证A2
+ * 
+ * 该函数负责验证数据的有效性并进行安全检查，防止数据注入
+ * 
+ * @note 原始函数名：FUN_1808995c0
+ */
 #define ValidateDataWithSecurityCheckA2 FUN_1808995c0
+
+/**
+ * @brief 清理系统资源A0
+ * 
+ * 该函数负责清理系统占用的资源，释放内存和关闭文件句柄
+ * 
+ * @note 原始函数名：FUN_180899790
+ */
 #define CleanupSystemResourcesA0 FUN_180899790
+
+/**
+ * @brief 重置系统状态A0
+ * 
+ * 该函数负责重置系统状态到初始状态，清除临时数据和缓存
+ * 
+ * @note 原始函数名：FUN_180899799
+ */
 #define ResetSystemStateA0 FUN_180899799
+
+/**
+ * @brief 同步数据A0
+ * 
+ * 该函数负责同步系统数据，确保数据的一致性和完整性
+ * 
+ * @note 原始函数名：FUN_1808997b0
+ */
 #define SynchronizeDataA0 FUN_1808997b0
+
+/**
+ * @brief 内存管理A0
+ * 
+ * 该函数负责管理系统内存，包括内存分配、释放和优化
+ * 
+ * @note 原始函数名：FUN_180899891
+ */
 #define ManageMemoryA0 FUN_180899891
 
 // 系统处理函数宏定义 (E系列)
+
+/**
+ * @brief 验证和处理浮点数A1
+ * 
+ * 该函数负责验证浮点数的有效性，并执行相应的处理操作
+ * 
+ * @note 原始函数名：FUN_180892880
+ */
 #define ValidateAndProcessFloatingPointNumberA1 FUN_180892880
+
+/**
+ * @brief 查询系统状态A0
+ * 
+ * 该函数负责查询系统的当前状态，返回状态信息
+ * 
+ * @note 原始函数名：FUN_1808928d3
+ */
 #define QuerySystemStatusA0 FUN_1808928d3
+
+/**
+ * @brief 获取系统配置A0
+ * 
+ * 该函数负责获取系统的配置信息，包括参数设置和运行环境
+ * 
+ * @note 原始函数名：FUN_1808928f1
+ */
 #define GetSystemConfigurationA0 FUN_1808928f1
+
+/**
+ * @brief 验证系统参数A0
+ * 
+ * 该函数负责验证系统参数的有效性和合法性
+ * 
+ * @note 原始函数名：FUN_180892909
+ */
 #define ValidateSystemParameterA0 FUN_180892909
+
+/**
+ * @brief 设置系统参数A0
+ * 
+ * 该函数负责设置系统参数，更新系统配置
+ * 
+ * @note 原始函数名：FUN_180892920
+ */
 #define SetSystemParameterA0 FUN_180892920
+
+/**
+ * @brief 检查系统初始化状态A0
+ * 
+ * 该函数负责检查系统的初始化状态，确保系统已正确初始化
+ * 
+ * @note 原始函数名：FUN_180892974
+ */
 #define CheckSystemInitializationStatusA0 FUN_180892974
 #define ProcessSystemDataE1 FUN_180892990
 #define ProcessSystemDataE2 FUN_180892ac0
