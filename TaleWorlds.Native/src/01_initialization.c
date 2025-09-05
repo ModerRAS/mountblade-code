@@ -12,9 +12,9 @@
 #define SystemMaximumUnsigned32BitValue               0xffffffff
 #define SystemSineLookupTableSize            0x7fff
 #define SystemQuadrantShiftBits              0xd
-#define SystemSineTableOffset4CC             0x4cc
-#define SystemSineTableOffset4132            0x4132
-#define SystemSineTableOffsetFB34            0xfb34
+#define SystemSineTableQuadrant1Offset        0x4cc
+#define SystemSineTableQuadrant2Offset        0x4132
+#define SystemSineTableQuadrant3Offset        0xfb34
 #define SystemSineTableOffset8132            0x8132
 #define SystemTransformContextOffset         0x218
 
@@ -19076,8 +19076,8 @@ SkipControllerInitialization:
   SystemThreadSyncBroadcast((void* )(SystemResourceManager + SystemEventBroadcastOffset));
   if ((char )(SystemGlobalStatusFlags + SystemSystemStatusFlagOffset) != '\0') {
     ControllerPointer = (long long )SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,SystemSecondaryAllocationSize,SystemMemoryAlignment,SystemAllocationPriority);
-    ControllerPointer = (long long)&SystemMemoryTemplateA;
-    ControllerPointer = (long long)&SystemMemoryTemplateB;
+    ControllerPointer = (long long)&SystemMemoryTemplatePrimary;
+    ControllerPointer = (long long)&SystemMemoryTemplateSecondary;
     (uint32_t )(ControllerPointer + 1) = 0;
     ControllerPointer = (long long)&SystemMemoryTemplateC;
     LOCK();
@@ -19115,8 +19115,8 @@ void* CleanupSystemMemoryManager(void** memoryManager, unsigned long long cleanu
 {
   *memoryManager = &SystemMemoryTemplateD;
   *memoryManager = &SystemMemoryTemplateC;
-  *memoryManager = &SystemMemoryTemplateB;
-  *memoryManager = &SystemMemoryTemplateA;
+  *memoryManager = &SystemMemoryTemplateSecondary;
+  *memoryManager = &SystemMemoryTemplatePrimary;
   if ((cleanupFlags & 1) != 0) {
     free(memoryManager, 0x28, reservedParam3, reservedParam4, InvalidHandleValue);
   }
@@ -20560,8 +20560,8 @@ void InitializeSystemReferencePointers(void* *SystemReferencePointer)
 
 {
   *SystemReferencePointer = &SystemMemoryTemplateC;
-  *SystemReferencePointer = &SystemMemoryTemplateB;
-  *SystemReferencePointer = &SystemMemoryTemplateA;
+  *SystemReferencePointer = &SystemMemoryTemplateSecondary;
+  *SystemReferencePointer = &SystemMemoryTemplatePrimary;
   return;
 }
 
@@ -20582,8 +20582,8 @@ void InitializeSystemReferencePointers(void* *SystemReferencePointer)
 void* InitializeSystemReferencePointersWithCleanup(void** systemReferencePointer, unsigned long long cleanupFlags, void* cleanupParameter1, void* cleanupParameter2)
 {
   *systemReferencePointer = &SystemMemoryTemplateC;
-  *systemReferencePointer = &SystemMemoryTemplateB;
-  *systemReferencePointer = &SystemMemoryTemplateA;
+  *systemReferencePointer = &SystemMemoryTemplateSecondary;
+  *systemReferencePointer = &SystemMemoryTemplatePrimary;
   if ((cleanupFlags & 1) != 0) {
     free(systemReferencePointer, 0x20, cleanupParameter1, cleanupParameter2, InvalidHandleValue);
   }
@@ -22407,8 +22407,8 @@ void ResetSystemMemoryManager(void* *SystemResourceManager)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(SystemResourceManager + 4);
   *SystemResourceManager = &SystemMemoryTemplateC;
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   return;
 }
 
@@ -25682,8 +25682,8 @@ SystemProcessingBufferAllocationHandler:
       resourceEntryPointer[3] = 0;
       resourceEntryPointer[4] = 0;
       resourceEntryPointer[5] = 0;
-      *resourceEntryPointer = &SystemMemoryTemplateA;
-      *resourceEntryPointer = &SystemMemoryTemplateB;
+      *resourceEntryPointer = &SystemMemoryTemplatePrimary;
+      *resourceEntryPointer = &SystemMemoryTemplateSecondary;
       *(uint32_t *)(resourceEntryPointer + 1) = 0;
       *resourceEntryPointer = &SystemResourceTemplateNonary;
       resourceEntryPointer[2] = 0;
@@ -25739,8 +25739,8 @@ ManageSystemMemoryTemplate(void* *SystemResourceManager, unsigned long long Conf
   if (SystemResourceManager[2] != 0) {
       SystemCleanupFunction();
   }
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0x30,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
   }
@@ -25764,8 +25764,8 @@ void CleanupSystemMemoryTemplate(void* *SystemResourceManager)
   if (SystemResourceManager[2] != 0) {
       SystemCleanupFunction();
   }
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   return;
 }
 
@@ -27013,8 +27013,8 @@ void InitializeSystemDataStructures(void)
   if (SystemDebugFlag != '\0') {
     PrimaryResourceHandle = *(long long **)(SystemThreadFlags + 8);
     ppresourceCounter = (long long **)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x48,8,3);
-    *ppresourceCounter = (long long *)&SystemMemoryTemplateA;
-    *ppresourceCounter = (long long *)&SystemMemoryTemplateB;
+    *ppresourceCounter = (long long *)&SystemMemoryTemplatePrimary;
+    *ppresourceCounter = (long long *)&SystemMemoryTemplateSecondary;
     *(uint32_t *)(ppresourceCounter + 1) = 0;
     *ppresourceCounter = (long long *)&SystemMemoryTemplateC;
     LOCK();
@@ -27141,8 +27141,8 @@ void InitializeSystemResourceAllocator(long long SystemResourceHandle)
   if (SystemDebugFlag != '\0') {
     primaryResourceHandle = *(long long **)(SystemResourceHandle + 8);
     memoryAllocationPointer = (long long **)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x48,8,3);
-    *memoryAllocationPointer = (long long *)&SystemMemoryTemplateA;
-    *memoryAllocationPointer = (long long *)&SystemMemoryTemplateB;
+    *memoryAllocationPointer = (long long *)&SystemMemoryTemplatePrimary;
+    *memoryAllocationPointer = (long long *)&SystemMemoryTemplateSecondary;
     *(uint32_t *)(memoryAllocationPointer + 1) = 0;
     *memoryAllocationPointer = (long long *)&SystemMemoryTemplateC;
     LOCK();
@@ -36383,8 +36383,8 @@ void* * ConfigureSystemResourceMemoryBuffer(void* *SystemResourceManager,uint Co
     (*(code *)SystemResourceManager[6])(SystemResourceManager + 4,0,0,ConfigurationFlag,InvalidHandleValue);
   }
   *SystemResourceManager = &SystemMemoryTemplateC;
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0x40);
   }
@@ -36400,8 +36400,8 @@ CreateMemoryAllocationHandle(void* *SystemResourceManager,void* *ConfigurationDa
   void** SystemDataPointer;
   code *SystemStringPointer;
   
-  *SystemResourceManager = &SystemMemoryTemplateA;
-  *SystemResourceManager = &SystemMemoryTemplateB;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
   *SystemResourceManager = &SystemMemoryTemplateC;
   LOCK();
@@ -37071,8 +37071,8 @@ ConfigureSystemResourceMemoryAllocator(void* *SystemResourceManager,ulong long C
 {
   SystemResourceManager[4] = &SystemMemoryAllocatorReference;
   *SystemResourceManager = &SystemMemoryTemplateC;
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0x100,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
   }
@@ -37087,8 +37087,8 @@ void* * InitializeResourceContext(void* *SystemResourceManager,void* *Configurat
   void** SystemDataPointer;
   void* resourceCreationFlags;
   
-  *SystemResourceManager = &SystemMemoryTemplateA;
-  *SystemResourceManager = &SystemMemoryTemplateB;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
   *SystemResourceManager = &SystemMemoryTemplateC;
   LOCK();
@@ -43159,8 +43159,8 @@ ConfigureSystemResources(void* *SystemResourceManager,ulong long ConfigurationDa
   *(uint32_t *)(SystemResourceManager + 9) = 0;
   SystemResourceManager[6] = &SystemMemoryAllocatorReference;
   *SystemResourceManager = &SystemMemoryTemplateC;
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0x70,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
   }
@@ -43175,8 +43175,8 @@ AllocateSystemMemory(void* *SystemResourceManager,uint32_t ConfigurationDataPoin
 {
   long long *PrimaryResourceHandle;
   
-  *SystemResourceManager = &SystemMemoryTemplateA;
-  *SystemResourceManager = &SystemMemoryTemplateB;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
   *SystemResourceManager = &SystemMemoryTemplateC;
   LOCK();
@@ -47208,8 +47208,8 @@ InitializeSystemMemoryTemplates(void* *SystemResourceManager,ulong long Configur
 
 {
   *SystemResourceManager = &SystemMemoryTemplateC;
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0x30,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
   }
@@ -47682,8 +47682,8 @@ InitializeSystemResource(void* *SystemResourceManager,void* *ConfigurationDataPo
 {
   code *systemFunctionPointer;
   
-  *SystemResourceManager = &SystemMemoryTemplateA;
-  *SystemResourceManager = &SystemMemoryTemplateB;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
   *SystemResourceManager = &SystemMemoryTemplateC;
   LOCK();
@@ -56264,8 +56264,8 @@ void InitializeSystemResourceBuffer(long long SystemResourceManager)
   
   if (*(char *)(*(long long *)(SystemResourceManager + 0x20) + 0x28) == '\0') {
     SystemResourceOffsetPointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,0x10,4,InvalidHandleValue);
-    *SystemResourceOffsetPointer = (long long)&SystemMemoryTemplateA;
-    *SystemResourceOffsetPointer = (long long)&SystemMemoryTemplateB;
+    *SystemResourceOffsetPointer = (long long)&SystemMemoryTemplatePrimary;
+    *SystemResourceOffsetPointer = (long long)&SystemMemoryTemplateSecondary;
     *(uint32_t *)(SystemResourceOffsetPointer + 1) = 0;
     *SystemResourceOffsetPointer = (long long)&SystemResourceDataTableA;
     SystemResourceOffsetPointer[2] = (long long)&SystemMemoryAllocatorReference;
@@ -56837,8 +56837,8 @@ void** InitializeSystemResourceManagerEx(void** SystemResourceManager, char Conf
   long long* ResourceMemoryOffset;
   long long* MemorySystemPointer;
   
-  *SystemResourceManager = &SystemMemoryTemplateA;
-  *SystemResourceManager = &SystemMemoryTemplateB;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
   *SystemResourceManager = &SystemResourceDataTableA;
   SystemResourceManager[2] = &SystemMemoryAllocatorReference;
@@ -56987,8 +56987,8 @@ void** InitializeSystemResourceManagerEx(void** SystemResourceManager, char Conf
   *(uint32_t*)((long long)SystemResourceManager + 0x1ac) = 0x7f7fffff;
   *(uint32_t*)(SystemResourceManager + 0x3a) = 0xffffffff;
   ResourceMemoryOffset = (long long*)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate, 0x70, 8, 9, BufferBaseAddress, ResourceMemoryOffset);
-  *ResourceMemoryOffset = (long long)&SystemMemoryTemplateA;
-  *ResourceMemoryOffset = (long long)&SystemMemoryTemplateB;
+  *ResourceMemoryOffset = (long long)&SystemMemoryTemplatePrimary;
+  *ResourceMemoryOffset = (long long)&SystemMemoryTemplateSecondary;
   *(uint32_t*)(ResourceMemoryOffset + 1) = 0;
   *ResourceMemoryOffset = (long long)&SystemResourceDataTableD;
   ResourceMemoryOffset[4] = (long long)&SystemMemoryAllocatorReference;
@@ -57393,8 +57393,8 @@ void InitializeSystemResourceManager(void* *SystemResourceManager)
   }
   *SystemResourceManager = &SystemResourceDataTableA;
   SystemResourceManager[2] = &SystemMemoryAllocatorReference;
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   return;
 }
 
@@ -65186,8 +65186,8 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   }
   if (*PrimaryResourceHandle4 == 0) {
     HashTableNodePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x28,8,0x20);
-    *HashTableNodePointer = &SystemMemoryTemplateA;
-    *HashTableNodePointer = &SystemMemoryTemplateB;
+    *HashTableNodePointer = &SystemMemoryTemplatePrimary;
+    *HashTableNodePointer = &SystemMemoryTemplateSecondary;
     *(uint32_t *)(HashTableNodePointer + 1) = 0;
     *HashTableNodePointer = &SystemHashBucketTableA;
     LOCK();
@@ -65202,8 +65202,8 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   }
   if (PrimaryResourceHandle4[1] == 0) {
     HashTableNodePointer = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,0x20);
-    *HashTableNodePointer = &SystemMemoryTemplateA;
-    *HashTableNodePointer = &SystemMemoryTemplateB;
+    *HashTableNodePointer = &SystemMemoryTemplatePrimary;
+    *HashTableNodePointer = &SystemMemoryTemplateSecondary;
     *(uint32_t *)(HashTableNodePointer + 1) = 0;
     *HashTableNodePointer = &SystemHashBucketTableB;
     LOCK();
@@ -65251,8 +65251,8 @@ LabelCheckThreadFlags2:
     ConfigurationFlag = '\x01';
   }
   PrimaryResourceDataPointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x30,8,0x20);
-  *PrimaryResourceDataPointer = (long long)&SystemMemoryTemplateA;
-  *PrimaryResourceDataPointer = (long long)&SystemMemoryTemplateB;
+  *PrimaryResourceDataPointer = (long long)&SystemMemoryTemplatePrimary;
+  *PrimaryResourceDataPointer = (long long)&SystemMemoryTemplateSecondary;
   *(uint32_t *)(PrimaryResourceDataPointer + 1) = 0;
   *PrimaryResourceDataPointer = (long long)&SystemResourceDataTableF;
   PrimaryResourceDataPointer[4] = 0;
@@ -68308,8 +68308,8 @@ void SetSystemResourceCounter(void)
 void* * InitializeSystemResourceManagerTemplate(void* *SystemResourceManager)
 
 {
-  *SystemResourceManager = &SystemMemoryTemplateA;
-  *SystemResourceManager = &SystemMemoryTemplateB;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
   *SystemResourceManager = &SystemResourceManagerTemplateB;
   SystemResourceManager[2] = 0;
@@ -68375,8 +68375,8 @@ void* * ConfigureSystemResourceManagerData(void* *SystemResourceManager,ulong lo
   if (SystemResourceManager[3] != 0) {
       SystemCleanupFunction();
   }
-  *SystemResourceManager = &SystemMemoryTemplateB;
-  *SystemResourceManager = &SystemMemoryTemplateA;
+  *SystemResourceManager = &SystemMemoryTemplateSecondary;
+  *SystemResourceManager = &SystemMemoryTemplatePrimary;
   if ((ConfigurationDataPointer & 1) != 0) {
     free(SystemResourceManager,0xf0);
   }

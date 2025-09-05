@@ -660,7 +660,7 @@ uint32_t HandlePriorityNetworkPacket(int64_t PacketBuffer, bool HasPriorityFlag)
  * @warning 如果连接上下文已存在迭代器，创建新的迭代器可能会影响现有操作
  * @see ProcessNetworkConnectionData, CleanupNetworkConnectionContext
  */
-uint32_t CreateNetworkConnectionIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
+uint32_t InitializeNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
 
 /**
  * @brief 处理网络堆栈数据
@@ -671,7 +671,7 @@ uint32_t CreateNetworkConnectionIterationContext(int64_t ConnectionContext, int6
  * @param ContextData 上下文数据
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessNetworkProtocolStackData(int64_t *StackBuffer, int64_t ContextData);
+uint32_t HandleNetworkProtocolStackData(int64_t *StackBuffer, int64_t ContextData);
 
 /**
  * @brief 验证网络连接句柄
@@ -682,7 +682,7 @@ uint32_t ProcessNetworkProtocolStackData(int64_t *StackBuffer, int64_t ContextDa
  * @param PacketData 数据包数据句柄
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidateSecureConnectionHandle(NetworkHandle ConnectionContext, NetworkHandle PacketData);
+uint32_t ValidateNetworkConnectionHandleSecurity(NetworkHandle ConnectionContext, NetworkHandle PacketData);
 
 /**
  * @brief 获取网络连接句柄
