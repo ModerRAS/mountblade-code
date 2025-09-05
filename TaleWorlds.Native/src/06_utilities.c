@@ -34466,37 +34466,70 @@ void CallCleanupFunctionForOffset78WithCheck(undefined8 param_1, longlong param_
 
 
 
-void Unwind_180902760(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器G0
+ * 
+ * 该函数负责处理系统异常恢复，检查并调用特定的异常处理函数
+ * 处理异常上下文中的数据结构和资源清理
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryG0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pExceptionHandler;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,0xfffffffffffffffe);
+  pExceptionHandler = *(undefined8 **)(*(longlong *)(exceptionData + 0x78) + 0x10);
+  if (pExceptionHandler != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(exceptionData + 0x78), *pExceptionHandler, recoveryParameter, additionalData, 0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pExceptionHandler);
   }
   return;
 }
 
 
 
-void Unwind_180902770(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器H0
+ * 
+ * 该函数负责处理系统异常恢复，调用底层异常处理函数
+ * 处理异常上下文中的数据结构和资源清理
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryH0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  FUN_180058210(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_180058210(*(longlong *)(exceptionData + 0x70),*(undefined8 *)(*(longlong *)(exceptionData + 0x70) + 0x10),
+                recoveryParameter, additionalData, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_180902780(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器I0
+ * 
+ * 该函数负责处理系统异常恢复，调用底层异常处理函数
+ * 处理异常上下文中的数据结构和资源清理
+ * 
+ * @param context 系统上下文参数
+ * @param exceptionData 异常数据指针
+ * @param recoveryParameter 恢复参数
+ * @param additionalData 附加数据
+ */
+void HandleExceptionRecoveryI0(undefined8 context, longlong exceptionData, undefined8 recoveryParameter, undefined8 additionalData)
 
 {
-  FUN_180058210(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_180058210(*(longlong *)(exceptionData + 0x78),*(undefined8 *)(*(longlong *)(exceptionData + 0x78) + 0x10),
+                recoveryParameter, additionalData, 0xfffffffffffffffe);
   return;
 }
 
