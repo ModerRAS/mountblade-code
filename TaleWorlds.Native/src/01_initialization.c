@@ -41108,10 +41108,9 @@ ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,lon
   ulong long SystemOperationCounter;
   ulong long SystemInitializationStatusFlags;
   ulong long SystemInitializationStatusPrimary;
-  ulong long SystemOperationResult;
   long long ResourceDataIndexSecondary;
-  ulong long *ResourceHashEntryPointer0;
-  bool isSystemActive1;
+  ulong long *ResourceHashEntryPointer;
+  bool isSystemActive;
   
   SystemInitializationStatusFlags = *(ulong long *)(SystemResourceManager + 0x20);
   SystemInitializationStatusPrimary = *(ulong long *)(SystemResourceManager + 0x40);
@@ -41159,9 +41158,9 @@ ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,lon
        (SystemLocalContextPointer = *(long long **)(SystemResourceManager + 0x60), SystemLocalContextPointer == (long long *)0x0))
     goto StringProcessingComplete;
     SystemOperationCounter = *SystemLocalContextPointer - 1U & SystemLocalContextPointer[1] + 1U;
-    ResourceHashEntryPointer0 = *(ulong long **)(SystemLocalContextPointer[3] + SystemOperationCounter * 8);
-    if ((*ResourceHashEntryPointer0 == 1) || (ResourceHashEntryPointer0[1] == 0)) {
-      *ResourceHashEntryPointer0 = SystemOperationFlags;
+    ResourceHashEntryPointer = *(ulong long **)(SystemLocalContextPointer[3] + SystemOperationCounter * 8);
+    if ((*ResourceHashEntryPointer == 1) || (ResourceHashEntryPointer[1] == 0)) {
+      *ResourceHashEntryPointer = SystemOperationFlags;
       SystemLocalContextPointer[1] = SystemOperationCounter;
     }
     else {
