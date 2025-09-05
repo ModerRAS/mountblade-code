@@ -1661,7 +1661,7 @@ void InitializeSystemDataTableBaseAllocator(void)
   }
   
   if ((SystemPreviousNodePointer == SystemRootNodePointer) || 
-      (BaseAllocatorIdentifierNodeIdentifierComparisonResult = memcmp(&BaseAllocatorSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), BaseAllocatorIdentifierComparisonResult < 0)) {
+      (BaseAllocatorIdentifierComparisonResult = memcmp(&BaseAllocatorSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), BaseAllocatorIdentifierComparisonResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &SystemNewBaseAllocatorNodePointer, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
     SystemPreviousNodePointer = SystemNewBaseAllocatorNodePointer;
