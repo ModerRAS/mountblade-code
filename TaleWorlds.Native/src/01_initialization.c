@@ -19091,6 +19091,16 @@ void* CleanupSystemMemoryManager(void** memoryManager, unsigned long long cleanu
  * 
  * @note 该函数应该在系统关闭时调用，确保所有资源都被正确释放
  */
+/**
+ * @brief 终止系统运行
+ * 
+ * 该函数负责安全地终止系统运行，执行必要的清理操作。
+ * 在系统关闭时调用，确保所有资源被正确释放。
+ * 
+ * @note 该函数在系统关闭过程中调用，确保系统安全终止。
+ * 
+ * @return void 无返回值
+ */
 void TerminateSystem(void)
 {
     SystemDataOperation();
