@@ -8677,7 +8677,7 @@ DataBuffer ValidateUtilitySystemState(void)
   operationResultPointer = (int *)(stackFramePointer + 0x20);
   if (0 < *(int *)(stackFramePointer + 0x18)) {
     do {
-      if ((*poperationResult != MemoryValidationConstantA) || (poperationResult[1] != MemoryValidationConstantB)) {
+      if ((*operationResultPointer != MemoryValidationConstantA) || (operationResultPointer[1] != MemoryValidationConstantB)) {
         LocalValidationContext = 0;
         validationStatus = ValidateMemoryAddressA0(memoryAddress,(int *)(stackFramePointer + 0x20) + (int64_t)(int)addressOffset * 2,
                               &systemContextBuffer50);

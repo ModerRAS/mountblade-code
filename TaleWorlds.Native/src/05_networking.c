@@ -676,7 +676,8 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkSocketContextSizeExtended 0x1000                 // 套接字上下文扩展大小（4KB）
 #define NetworkClientIpAddressAny 0x00000000                 // 任意客户端IP地址
 #define NetworkClientPortAny 0x0000                          // 任意客户端端口
-#define NetworkSocketSize 0x100                               // 套接字结构大小（256字节）
+#define NetworkSocketStandardSize 0x100                       // 套接字标准结构大小（256字节）
+#define NetworkSocketCompactSize 0x40                        // 套接字紧凑结构大小（64字节）
 #define NetworkConnectionPriorityMedium 0x02                  // 中等连接优先级
 #define NetworkConnectionNotFound 0xFFFFFFFF                     // 网络连接未找到
 
@@ -702,6 +703,14 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define BufferCleanupPass 0x01                    // 缓冲区清理通过
 #define DataValidPass 0x01                        // 数据验证通过
 #define NetworkNullPointerValue 0x0                            // 网络空指针值
+
+// 网络套接字状态常量
+#define NetworkSocketBound 0x01                              // 套接字已绑定状态
+#define NetworkSocketUnbound 0x00                            // 套接字未绑定状态
+#define NetworkQueueEnabled 0x01                              // 队列已启用状态
+#define NetworkQueueDisabled 0x00                             // 队列未启用状态
+#define TcpSocketCategory 0x01                                // TCP套接字类别
+#define NetworkHttpAlternativePort 0x1F90                      // HTTP备用端口8080
 
 
 
@@ -1867,10 +1876,10 @@ void InitializeNetworkSocket(void)
   NetworkSocketFileDescriptor = NetworkSocketDescriptorInvalid;
   NetworkSocketContextSize = NetworkSocketContextSizeExtended;  // 使用扩展套接字上下文大小
   NetworkSocketIndex = 0;
-  NetworkSocketSize = NetworkSocketSize;  // 使用标准套接字大小
+  NetworkSocketSize = NetworkSocketCompactSize;          // 使用紧凑套接字大小
   
   // 初始化套接字配置
-  NetworkSocketType = TcpSocketCategory;
+  NetworkSocketType = TcpSocketCategory;  // TCP套接字类别
   NetworkSocketProtocol = NetworkTcpProtocol;
   
   // 初始化套接字数据缓冲区
