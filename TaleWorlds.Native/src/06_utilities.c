@@ -32,13 +32,13 @@
 #define AcquireSystemDataHandle AcquireSystemDataHandle
 
 /**
- * @brief 数据加密处理函数A0
+ * @brief 数据加密处理函数
  * @note 原始函数名：func_0x00018074be80
  */
 #define EncryptData EncryptData
 
 /**
- * @brief 数据验证处理函数A0
+ * @brief 数据验证处理函数
  * @note 原始函数名：ValidateData
  */
 #define ValidateData ValidateData
@@ -458,22 +458,22 @@
 #define ProcessDataCollection FUN_1808998a0
 
 /**
- * @brief 验证数据完整性A0
+ * @brief 验证数据完整性
  * 
  * 该函数负责验证数据的完整性，确保数据没有被损坏或篡改
  * 
  * @note 原始函数名：FUN_1808999d90
  */
-#define ValidateDataIntegrityA0 FUN_1808999d90
+#define ValidateDataIntegrity FUN_1808999d90
 
 /**
- * @brief 执行系统检查A0
+ * @brief 执行系统检查
  * 
  * 该函数负责执行系统检查，验证系统的各个组件是否正常工作
  * 
  * @note 原始函数名：FUN_180899dc7
  */
-#define ExecuteSystemCheckA0 FUN_180899dc7
+#define ExecuteSystemCheck FUN_180899dc7
 
 /**
  * @brief 处理高级数据操作A0
@@ -36692,7 +36692,7 @@ void SetDefaultExceptionHandlerB(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902bd0(undefined8 param_1,longlong param_2)
+void Unwind_ResetExceptionHandler(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
@@ -36711,7 +36711,7 @@ void Unwind_180902bd0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902be0(undefined8 param_1,longlong param_2)
+void Unwind_ResetValidationContext(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -36730,7 +36730,7 @@ void Unwind_180902be0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902bf0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupResourceReference(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -36766,7 +36766,7 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902c00(undefined8 param_1,longlong param_2)
+void Unwind_CleanupResourcePointer(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -36802,7 +36802,7 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902c10(undefined8 param_1,longlong param_2)
+void Unwind_CleanupSecondaryResource(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -36838,7 +36838,7 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902c20(undefined8 param_1,longlong param_2)
+void Unwind_ResetDefaultHandler(undefined8 param_1,longlong param_2)
 
 {
   **(undefined8 **)(param_2 + 0xa0) = &DefaultExceptionHandlerB;
@@ -36847,7 +36847,7 @@ void Unwind_180902c20(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902c30(undefined8 param_1,longlong param_2)
+void Unwind_CleanupMemoryResource(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -62002,17 +62002,27 @@ void Unwind_180909550(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180909560(undefined8 param_1,longlong param_2)
+/**
+ * @brief 系统异常处理器清理函数A0
+ * 
+ * 该函数用于清理系统异常处理器，重置相关状态并设置默认异常处理器
+ * 
+ * @param param_1 系统参数1（未使用）
+ * @param param_2 系统上下文指针
+ * 
+ * @note 原始函数名：Unwind_180909560
+ */
+void CleanupSystemExceptionHandlerA0(undefined8 systemParameter, longlong systemContext)
 
 {
-  *(undefined8 *)(param_2 + 0x1f8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0x200) != 0) {
+  *(undefined8 *)(systemContext + 0x1f8) = &TemporaryExceptionHandler;
+  if (*(longlong *)(systemContext + 0x200) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0x200) = 0;
-  *(undefined4 *)(param_2 + 0x210) = 0;
-  *(undefined8 *)(param_2 + 0x1f8) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(systemContext + 0x200) = 0;
+  *(undefined4 *)(systemContext + 0x210) = 0;
+  *(undefined8 *)(systemContext + 0x1f8) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -62020,14 +62030,24 @@ void Unwind_180909560(undefined8 param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180909570(undefined8 param_1,longlong param_2)
+/**
+ * @brief 文件句柄清理函数A0
+ * 
+ * 该函数用于清理文件句柄，关闭打开的文件并更新资源计数器
+ * 
+ * @param param_1 系统参数1（未使用）
+ * @param param_2 系统上下文指针
+ * 
+ * @note 原始函数名：Unwind_180909570
+ */
+void CleanupFileHandleA0(undefined8 systemParameter, longlong systemContext)
 
 {
-  if (*(longlong *)(param_2 + 0x2e0) != 0) {
+  if (*(longlong *)(systemContext + 0x2e0) != 0) {
     fclose();
-    *(undefined8 *)(param_2 + 0x2e0) = 0;
+    *(undefined8 *)(systemContext + 0x2e0) = 0;
     LOCK();
-    ResourceCounter = ResourceCounter + -1;
+    ResourceCounter = ResourceCounter - 1;
     UNLOCK();
   }
   return;
@@ -62035,17 +62055,27 @@ void Unwind_180909570(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180909580(undefined8 param_1,longlong param_2)
+/**
+ * @brief 系统异常处理器清理函数B0
+ * 
+ * 该函数用于清理系统异常处理器，重置相关状态并设置默认异常处理器
+ * 
+ * @param param_1 系统参数1（未使用）
+ * @param param_2 系统上下文指针
+ * 
+ * @note 原始函数名：Unwind_180909580
+ */
+void CleanupSystemExceptionHandlerB0(undefined8 systemParameter, longlong systemContext)
 
 {
-  *(undefined8 *)(param_2 + 0xf0) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0xf8) != 0) {
+  *(undefined8 *)(systemContext + 0xf0) = &TemporaryExceptionHandler;
+  if (*(longlong *)(systemContext + 0xf8) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0xf8) = 0;
-  *(undefined4 *)(param_2 + 0x108) = 0;
-  *(undefined8 *)(param_2 + 0xf0) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(systemContext + 0xf8) = 0;
+  *(undefined4 *)(systemContext + 0x108) = 0;
+  *(undefined8 *)(systemContext + 0xf0) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -62053,14 +62083,24 @@ void Unwind_180909580(undefined8 param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180909590(undefined8 param_1,longlong param_2)
+/**
+ * @brief 文件句柄清理函数B0
+ * 
+ * 该函数用于清理文件句柄，关闭打开的文件并更新资源计数器
+ * 
+ * @param param_1 系统参数1（未使用）
+ * @param param_2 系统上下文指针
+ * 
+ * @note 原始函数名：Unwind_180909590
+ */
+void CleanupFileHandleB0(undefined8 systemParameter, longlong systemContext)
 
 {
-  if (*(longlong *)(param_2 + 0x2c8) != 0) {
+  if (*(longlong *)(systemContext + 0x2c8) != 0) {
     fclose();
-    *(undefined8 *)(param_2 + 0x2c8) = 0;
+    *(undefined8 *)(systemContext + 0x2c8) = 0;
     LOCK();
-    ResourceCounter = ResourceCounter + -1;
+    ResourceCounter = ResourceCounter - 1;
     UNLOCK();
   }
   return;
@@ -62068,26 +62108,46 @@ void Unwind_180909590(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809095a0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 系统异常处理器清理函数C0
+ * 
+ * 该函数用于清理系统异常处理器，重置相关状态并设置默认异常处理器
+ * 
+ * @param param_1 系统参数1（未使用）
+ * @param param_2 系统上下文指针
+ * 
+ * @note 原始函数名：Unwind_1809095a0
+ */
+void CleanupSystemExceptionHandlerC0(undefined8 systemParameter, longlong systemContext)
 
 {
-  *(undefined8 *)(param_2 + 0x198) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0x1a0) != 0) {
+  *(undefined8 *)(systemContext + 0x198) = &TemporaryExceptionHandler;
+  if (*(longlong *)(systemContext + 0x1a0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0x1a0) = 0;
-  *(undefined4 *)(param_2 + 0x1b0) = 0;
-  *(undefined8 *)(param_2 + 0x198) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(systemContext + 0x1a0) = 0;
+  *(undefined4 *)(systemContext + 0x1b0) = 0;
+  *(undefined8 *)(systemContext + 0x198) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809095b0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 默认异常处理器设置函数A0
+ * 
+ * 该函数用于设置默认异常处理器
+ * 
+ * @param param_1 系统参数1（未使用）
+ * @param param_2 系统上下文指针
+ * 
+ * @note 原始函数名：Unwind_1809095b0
+ */
+void SetDefaultExceptionHandlerA0(undefined8 systemParameter, longlong systemContext)
 
 {
-  *(undefined **)(param_2 + 0x6f0) = &DefaultExceptionHandlerB;
+  *(undefined **)(systemContext + 0x6f0) = &DefaultExceptionHandlerB;
   return;
 }
 
