@@ -9993,6 +9993,18 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：处理多段数据
 #define ProcessMultiSegmentDataA0 FUN_180898fc0
 
+// 原始函数名：FUN_180899ef0 - 数据处理函数A0
+// 功能：处理数据和指针
+#define ProcessDataPointerA0 FUN_180899ef0
+
+// 原始函数名：FUN_180899c60 - 数据验证函数A0
+// 功能：验证数据和参数
+#define ValidateDataParametersA0 FUN_180899c60
+
+// 原始函数名：FUN_180899040 - 数据验证和处理函数A0
+// 功能：验证数据并处理
+#define ValidateAndProcessDataA0 FUN_180899040
+
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
 // 系统事件处理器初始化函数A0
@@ -22976,42 +22988,42 @@ ulonglong ValidateAndProcessDataBlock(longlong dataBlock, longlong *validationCo
   uint auStackX_20 [2];
   undefined1 auStack_48 [32];
   
-  uVar5 = FUN_1808ddc20(param_2,auStack_48,0,0x54534e49);
+  uVar5 = FUN_1808ddc20(validationContext,auStack_48,0,0x54534e49);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  uVar5 = FUN_180899360(param_2,param_1 + 0x60);
+  uVar5 = FUN_180899360(validationContext,dataBlock + 0x60);
   if ((int)uVar5 != 0) {
     return uVar5;
   }
-  if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(int *)(validationContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x90);
+  uVar3 = ValidateDataWithSecurityCheckA2(*validationContext,dataBlock + 0x90);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
-  if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(int *)(validationContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xa4);
+  uVar3 = ValidateDataWithSecurityCheckA2(*validationContext,dataBlock + 0xa4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
-  if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(int *)(validationContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar3 = FUN_1808aed00(*param_2,param_1 + 0xb0,4);
+  uVar3 = FUN_1808aed00(*validationContext,dataBlock + 0xb0,4);
   if (uVar3 != 0) {
     return (ulonglong)uVar3;
   }
   uVar8 = 0x1c;
   uVar5 = 0;
-  if (*(uint *)(param_2 + 8) < 0x82) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(uint *)(validationContext + 8) < 0x82) {
+    if (*(int *)(validationContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    pvalidationContext = (longlong *)*param_2;
+    pvalidationContext = (longlong *)*validationContext;
     uVar3 = 1;
     if (*pvalidationContext == 0) {
       memoryBaseAddress = 0x1c;
@@ -23037,13 +23049,13 @@ DataProcessLabelA:
     if (memoryBaseAddress != 0) {
       return (ulonglong)memoryBaseAddress;
     }
-    *(uint *)(param_1 + 0xb8) = (*(uint *)(param_1 + 0xb8) | uVar7) & ~uVar3;
+    *(uint *)(dataBlock + 0xb8) = (*(uint *)(dataBlock + 0xb8) | uVar7) & ~uVar3;
   }
   else {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
+    if (*(int *)(validationContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar6 = FUN_1808aed00(*param_2,param_1 + 0xb8,4);
+    uVar6 = FUN_1808aed00(*validationContext,dataBlock + 0xb8,4);
     if ((int)uVar6 != 0) {
       return uVar6;
     }
