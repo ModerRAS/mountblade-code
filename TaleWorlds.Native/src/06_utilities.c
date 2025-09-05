@@ -1579,6 +1579,275 @@
 // 功能：管理内存
 #define ManageMemoryA0 FUN_180899891
 
+// 数据处理函数语义化宏定义
+// 原始函数名：FUN_1808d73b0 - 浮点数据处理函数A0
+// 功能：处理浮点数据验证和转换操作
+#define ProcessFloatingPointDataValidationA0 FUN_1808d73b0
+
+// 原始函数名：FUN_1808d7020 - 验证上下文更新函数A0
+// 功能：更新验证上下文状态
+#define UpdateValidationContextA0 FUN_1808d7020
+
+// 原始函数名：FUN_1808681d0 - 地址验证函数A0
+// 功能：验证内存地址有效性
+#define ValidateMemoryAddressA0 FUN_1808681d0
+
+// 原始函数名：FUN_1808678e0 - 数据索引处理函数A0
+// 功能：处理数据索引和数组操作
+#define ProcessDataIndexA0 FUN_1808678e0
+
+// 原始函数名：FUN_1808bdd90 - 系统验证函数A0
+// 功能：验证系统状态和配置
+#define ValidateSystemConfigurationA0 FUN_1808bdd90
+
+// 原始函数名：FUN_1808c44f0 - 系统操作函数A0
+// 功能：执行系统操作和状态检查
+#define ExecuteSystemOperationA0 FUN_1808c44f0
+
+// 原始函数名：FUN_180894860 - 上下文验证函数A0
+// 功能：验证操作上下文有效性
+#define ValidateOperationContextA0 FUN_180894860
+
+// 原始函数名：FUN_1808949c0 - 操作执行函数A0
+// 功能：执行系统操作
+#define ExecuteSystemOperationB0 FUN_1808949c0
+
+// 原始函数名：FUN_18088d7c0 - 事件处理函数A0
+// 功能：处理系统事件
+#define ProcessSystemEventB0 FUN_18088d7c0
+
+// 原始函数名：FUN_1808deb90 - 数据处理函数A0
+// 功能：处理数据操作
+#define ProcessDataOperationA0 FUN_1808deb90
+
+// 原始函数名：FUN_180894b00 - 数据查询函数A0
+// 功能：查询系统数据
+#define QuerySystemDataA0 FUN_180894b00
+
+// 原始函数名：FUN_18088d720 - 事件清理函数A0
+// 功能：清理系统事件
+#define CleanupSystemEventA0 FUN_18088d720
+
+// 原始函数名：FUN_180867bc0 - 事件初始化函数A0
+// 功能：初始化系统事件
+#define InitializeSystemEventA0 FUN_180867bc0
+
+// 原始函数名：FUN_180868490 - 事件处理函数A1
+// 功能：处理系统事件
+#define ProcessSystemEventA1 FUN_180868490
+
+// 原始函数名：FUN_1808c7f30 - 数据验证函数A1
+// 功能：验证数据有效性
+#define ValidateDataIntegrityA0 FUN_1808c7f30
+
+// 原始函数名：FUN_18088dd60 - 系统数据处理函数A0
+// 功能：处理系统数据
+#define ProcessSystemDataA0 FUN_18088dd60
+
+// 原始函数名：FUN_18084b240 - 缓冲区处理函数A0
+// 功能：处理缓冲区操作
+#define ProcessBufferOperationA0 FUN_18084b240
+
+// 原始函数名：FUN_18084de40 - 上下文创建函数A0
+// 功能：创建操作上下文
+#define CreateOperationContextA0 FUN_18084de40
+
+// 原始函数名：FUN_180840950 - 资源处理函数A0
+// 功能：处理系统资源
+#define ProcessSystemResourceA0 FUN_180840950
+
+// 原始函数名：FUN_1808fd200 - 数据转换函数A0
+// 功能：转换数据格式
+#define ConvertDataFormatA0 FUN_1808fd200
+
+// 原始函数名：FUN_180867600 - 数据传输函数A0
+// 功能：传输数据
+#define TransferDataA0 FUN_180867600
+
+// 原始函数名：FUN_180840af0 - 数据验证函数A2
+// 功能：验证数据完整性
+#define ValidateDataIntegrityA1 FUN_180840af0
+
+// 原始函数名：FUN_18088ed70 - 数据编码函数A0
+// 功能：编码数据
+#define EncodeDataA0 FUN_18088ed70
+
+// 原始函数名：FUN_18088c7c0 - 系统配置函数A0
+// 功能：配置系统参数
+#define ConfigureSystemA0 FUN_18088c7c0
+
+// 原始函数名：FUN_18088c060 - 系统状态检查函数A0
+// 功能：检查系统状态
+#define CheckSystemStatusA0 FUN_18088c060
+
+// 原始函数名：FUN_18088ca20 - 系统初始化函数A0
+// 功能：初始化系统
+#define InitializeSystemA0 FUN_18088ca20
+
+// 原始函数名：FUN_18088ee60 - 资源验证函数A0
+// 功能：验证资源有效性
+#define ValidateResourceA0 FUN_18088ee60
+
+// 原始函数名：FUN_18088ee20 - 资源验证函数A1
+// 功能：验证资源状态
+#define ValidateResourceA1 FUN_18088ee20
+
+// 原始函数名：FUN_18088f530 - 资源处理函数A0
+// 功能：处理资源操作
+#define ProcessResourceA0 FUN_18088f530
+
+// 原始函数名：FUN_18088f5c0 - 资源配置函数A0
+// 功能：配置资源参数
+#define ConfigureResourceA0 FUN_18088f5c0
+
+// 原始函数名：FUN_18088f620 - 资源处理函数A1
+// 功能：处理资源操作
+#define ProcessResourceA1 FUN_18088f620
+
+// 原始函数名：FUN_18088f470 - 资源初始化函数A0
+// 功能：初始化资源
+#define InitializeResourceA0 FUN_18088f470
+
+// 原始函数名：FUN_18088c740 - 上下文处理函数A0
+// 功能：处理操作上下文
+#define ProcessOperationContextA1 FUN_18088c740
+
+// 原始函数名：FUN_180882c20 - 数据同步函数A0
+// 功能：同步数据
+#define SynchronizeDataA1 FUN_180882c20
+
+// 原始函数名：FUN_18088c790 - 上下文清理函数A0
+// 功能：清理操作上下文
+#define CleanupOperationContextA0 FUN_18088c790
+
+// 原始函数名：FUN_180849030 - 系统验证函数A1
+// 功能：验证系统状态
+#define ValidateSystemA0 FUN_180849030
+
+// 原始函数名：FUN_180896040 - 参数验证函数A0
+// 功能：验证参数有效性
+#define ValidateParametersA2 FUN_180896040
+
+// 原始函数名：FUN_180895ef0 - 数据处理函数A1
+// 功能：处理数据操作
+#define ProcessDataOperationA1 FUN_180895ef0
+
+// 原始函数名：FUN_180895c60 - 数据转换函数A1
+// 功能：转换数据格式
+#define ConvertDataFormatA1 FUN_180895c60
+
+// 原始函数名：FUN_180895cf1 - 数据验证函数A3
+// 功能：验证数据完整性
+#define ValidateDataIntegrityA2 FUN_180895cf1
+
+// 原始函数名：FUN_180895d16 - 空操作函数H
+// 功能：空操作函数
+#define UtilityNoOperationH FUN_180895d16
+
+// 原始函数名：FUN_180895d30 - 数据查询函数A1
+// 功能：查询系统数据
+#define QuerySystemDataA1 FUN_180895d30
+
+// 原始函数名：FUN_180895d62 - 数据处理函数A2
+// 功能：处理数据操作
+#define ProcessDataOperationA2 FUN_180895d62
+
+// 原始函数名：FUN_180895d9c - 数据验证函数A4
+// 功能：验证数据有效性
+#define ValidateDataA0 FUN_180895d9c
+
+// 原始函数名：FUN_180895f44 - 数据处理函数A3
+// 功能：处理数据操作
+#define ProcessDataOperationA3 FUN_180895f44
+
+// 原始函数名：FUN_180896027 - 空操作函数I
+// 功能：空操作函数
+#define UtilityNoOperationI FUN_180896027
+
+// 原始函数名：FUN_180896064 - 数据验证函数A5
+// 功能：验证数据有效性
+#define ValidateDataA1 FUN_180896064
+
+// 原始函数名：FUN_18089611f - 空操作函数J
+// 功能：空操作函数
+#define UtilityNoOperationJ FUN_18089611f
+
+// 原始函数名：FUN_180896140 - 数据处理函数A4
+// 功能：处理数据操作
+#define ProcessDataOperationA4 FUN_180896140
+
+// 原始函数名：FUN_180896800 - 数据处理函数A5
+// 功能：处理数据操作
+#define ProcessDataOperationA5 FUN_180896800
+
+// 原始函数名：FUN_180896830 - 数据处理函数A6
+// 功能：处理数据操作
+#define ProcessDataOperationA6 FUN_180896830
+
+// 原始函数名：FUN_180840270 - 数据初始化函数A0
+// 功能：初始化数据
+#define InitializeDataA0 FUN_180840270
+
+// 原始函数名：FUN_180896c10 - 资源验证函数A2
+// 功能：验证资源有效性
+#define ValidateResourceA2 FUN_180896c10
+
+// 原始函数名：FUN_180897520 - 上下文验证函数A2
+// 功能：验证上下文有效性
+#define ValidateContextA0 FUN_180897520
+
+// 原始函数名：FUN_180897b40 - 系统配置函数A1
+// 功能：配置系统参数
+#define ConfigureSystemA1 FUN_180897b40
+
+// 原始函数名：FUN_18088c970 - 数据同步函数A2
+// 功能：同步数据
+#define SynchronizeDataA2 FUN_18088c970
+
+// 原始函数名：FUN_18088cbb0 - 数据验证函数A6
+// 功能：验证数据有效性
+#define ValidateDataA2 FUN_18088cbb0
+
+// 原始函数名：FUN_1808987e0 - 系统验证函数A2
+// 功能：验证系统状态
+#define ValidateSystemA1 FUN_1808987e0
+
+// 原始函数名：FUN_1808479d0 - 数据处理函数A7
+// 功能：处理数据操作
+#define ProcessDataOperationA7 FUN_1808479d0
+
+// 原始函数名：FUN_1808682e0 - 数据转换函数A2
+// 功能：转换数据格式
+#define ConvertDataFormatA2 FUN_1808682e0
+
+// 原始函数名：FUN_180868270 - 数据验证函数A7
+// 功能：验证数据有效性
+#define ValidateDataA3 FUN_180868270
+
+// 原始函数名：FUN_180895130 - 系统检查函数A0
+// 功能：检查系统状态
+#define CheckSystemA0 FUN_180895130
+
+// 原始函数名：FUN_180895210 - 系统初始化函数A1
+// 功能：初始化系统
+#define InitializeSystemA1 FUN_180895210
+
+// 原始函数名：FUN_180895236 - 空操作函数K
+// 功能：空操作函数
+#define UtilityNoOperationK FUN_180895236
+
+// 原始函数名：FUN_180895b89 - 安全检查函数A0
+// 功能：执行安全检查
+#define ExecuteSecurityCheckA0 FUN_180895b89
+
+// 原始函数名：FUN_180895c8b - 数据处理函数A8
+// 功能：处理数据操作
+#define ProcessDataOperationA8 FUN_180895c8b
+
+// 原始函数名：FUN_180895e7e - 空操作函数L
+// 功能：空操作函数
+#define UtilityNoOperationL FUN_180895e7e
+
 // 函数: void InitializeUtilityModule(void)
 // 
 // 初始化工具模块
@@ -5540,7 +5809,7 @@ undefined8 ProcessFloatArrayResource(longlong resourceDescriptor)
     for (arrayPointer = *(undefined8 **)(validationContext + 0x48);
         (*(undefined8 **)(validationContext + 0x48) <= arrayPointer &&
         (arrayPointer < *(undefined8 **)(validationContext + 0x48) + *(int *)(validationContext + 0x50))); arrayPointer = arrayPointer + 1) {
-      operationResult = FUN_1808d73b0(*arrayPointer,floatValue,0);
+      operationResult = ProcessFloatingPointDataValidationA0(*arrayPointer,floatValue,0);
       if ((int)operationResult != 0) {
         return operationResult;
       }
@@ -5563,7 +5832,7 @@ undefined8 ProcessFloatArrayResource(longlong resourceDescriptor)
             ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) &&
            (floatValue != *(float *)(validationContext + 0x20))) {
           *(float *)(validationContext + 0x20) = floatValue;
-          FUN_1808d7020(validationContext);
+          UpdateValidationContextA0(validationContext);
           *(undefined1 *)(validationContext + 0x35) = 0;
         }
       }
@@ -5615,7 +5884,7 @@ undefined8 ProcessBatchDataOperations(longlong batchDataDescriptor)
           if ((validationContext == 0) || (validationContext = *(longlong *)(validationContext + 8), validationContext == 0)) {
             return 0x1c;
           }
-          queryStatus = FUN_1808d73b0(validationContext,*dataPointerArray,0);
+          queryStatus = ProcessFloatingPointDataValidationA0(validationContext,*dataPointerArray,0);
           if ((int)queryStatus != 0) {
             return queryStatus;
           }
@@ -5671,7 +5940,7 @@ undefined8 ProcessUtilitySystemInitialization(void)
         if ((resourceHandle == 0) || (resourceHandle = *(longlong *)(resourceHandle + 8), resourceHandle == 0)) {
           return 0x1c;
         }
-        operationResult = FUN_1808d73b0(resourceHandle,*dataPointer,0);
+        operationResult = ProcessFloatingPointDataValidationA0(resourceHandle,*dataPointer,0);
         if ((int)operationResult != 0) {
           return operationResult;
         }
@@ -5747,7 +6016,7 @@ undefined8 ValidateDataArray(longlong arrayDescriptor)
       do {
         if ((*dataComparisonPointer != _DAT_180c4eaa0) || (dataComparisonPointer[1] != _DAT_180c4eaa4)) {
           stackBuffer = 0;
-          validationStatus = FUN_1808681d0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (longlong)(int)loopIndex * 2,&stackBuffer)
+          validationStatus = ValidateMemoryAddressA0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (longlong)(int)loopIndex * 2,&stackBuffer)
           ;
           if ((int)validationStatus != 0) {
             return validationStatus;
@@ -5755,7 +6024,7 @@ undefined8 ValidateDataArray(longlong arrayDescriptor)
           if (*(longlong *)(stackBuffer + 8) == 0) {
             return 0x1c;
           }
-          validationStatus = FUN_1808d73b0(*(longlong *)(stackBuffer + 8),*validationDataPointer,*(undefined1 *)(arrayDescriptor + 0x1c)
+          validationStatus = ProcessFloatingPointDataValidationA0(*(longlong *)(stackBuffer + 8),*validationDataPointer,*(undefined1 *)(arrayDescriptor + 0x1c)
                                );
           if ((int)validationStatus != 0) {
             return validationStatus;
@@ -5818,7 +6087,7 @@ undefined8 ValidateUtilitySystemState(void)
         if (*(longlong *)(lStack0000000000000050 + 8) == 0) {
           return 0x1c;
         }
-        uVar1 = FUN_1808d73b0(*(longlong *)(lStack0000000000000050 + 8),*puVar3,
+        uVar1 = ProcessFloatingPointDataValidationA0(*(longlong *)(lStack0000000000000050 + 8),*puVar3,
                               *(undefined1 *)(unaff_RBP + 0x1c));
         if ((int)uVar1 != 0) {
           return uVar1;
@@ -87585,13 +87854,156 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ProcessComplexDataStructureA0 FUN_180896c60
 #define CheckSystemStatusAndExecuteA0 FUN_180896e11
 
-// 浮点数处理相关宏定义
-#define ExecuteSecurityCheckAndTerminateA0 FUN_1808974f4
-#define ProcessDataPointerAndBufferA1 FUN_180897520
-#define ProcessComplexDataBufferA1 FUN_180896c60
-#define ProcessFloatingPointDataA0 FUN_180896e11
-#define ExecuteSecurityCheckJumpA0 FUN_1808974f4
-#define ProcessSecureDataA0 FUN_180897d20
+// 原始函数名：FUN_18088d720 - 错误处理函数EA0
+// 功能：处理系统错误EA0，执行错误恢复操作
+#define HandleSystemErrorEA0 FUN_18088d720
 
+// 原始函数名：FUN_18088d7c0 - 事件处理函数EB0
+// 功能：处理系统事件EB0，响应系统事件
+#define HandleSystemEventEB0 FUN_18088d7c0
+
+// 原始函数名：FUN_18088dd60 - 数据处理函数EC0
+// 功能：处理系统数据EC0，执行数据操作
+#define ProcessSystemDataEC0 FUN_18088dd60
+
+// 原始函数名：FUN_18088ed70 - 数据编码函数ED0
+// 功能：编码数据ED0，进行数据编码操作
+#define EncodeDataED0 FUN_18088ed70
+
+// 原始函数名：FUN_18088c7c0 - 上下文处理函数EE0
+// 功能：处理上下文EE0，管理上下文数据
+#define ProcessContextEE0 FUN_18088c7c0
+
+// 原始函数名：FUN_18088c060 - 状态检查函数EF0
+// 功能：检查系统状态EF0，监控系统状态
+#define CheckSystemStatusEF0 FUN_18088c060
+
+// 原始函数名：FUN_18088ca20 - 上下文初始化函数EG0
+// 功能：初始化上下文EG0，设置上下文数据
+#define InitializeContextEG0 FUN_18088ca20
+
+// 原始函数名：FUN_18088ee60 - 资源验证函数EH0
+// 功能：验证资源EH0，确保资源有效性
+#define ValidateResourceEH0 FUN_18088ee60
+
+// 原始函数名：FUN_18088ee20 - 资源验证函数EI0
+// 功能：验证资源EI0，进行资源检查
+#define ValidateResourceEI0 FUN_18088ee20
+
+// 原始函数名：FUN_18088f530 - 资源处理函数EJ0
+// 功能：处理资源EJ0，执行资源操作
+#define ProcessResourceEJ0 FUN_18088f530
+
+// 原始函数名：FUN_18088f5c0 - 资源配置函数EK0
+// 功能：配置资源EK0，设置资源参数
+#define ConfigureResourceEK0 FUN_18088f5c0
+
+// 原始函数名：FUN_18088f620 - 资源处理函数EL0
+// 功能：处理资源EL0，执行资源管理
+#define ProcessResourceEL0 FUN_18088f620
+
+// 原始函数名：FUN_18088f470 - 资源初始化函数EM0
+// 功能：初始化资源EM0，设置资源初始状态
+#define InitializeResourceEM0 FUN_18088f470
+
+// 原始函数名：FUN_18088c740 - 缓冲区分配函数EN0
+// 功能：分配缓冲区EN0，管理内存缓冲区
+#define AllocateBufferEN0 FUN_18088c740
+
+// 原始函数名：FUN_18088c790 - 资源清理函数EO0
+// 功能：清理资源EO0，释放资源占用
+#define CleanupResourceEO0 FUN_18088c790
+
+// 原始函数名：FUN_18088aca0 - 状态检查函数EP0
+// 功能：检查状态EP0，监控系统运行状态
+#define CheckSystemStatusEP0 FUN_18088aca0
+
+// 原始函数名：FUN_18088c970 - 数据同步函数EQ0
+// 功能：同步数据EQ0，确保数据一致性
+#define SynchronizeDataEQ0 FUN_18088c970
+
+// 原始函数名：FUN_18088cbb0 - 数据验证函数ER0
+// 功能：验证数据ER0，确保数据正确性
+#define ValidateDataER0 FUN_18088cbb0
+
+// 原始函数名：FUN_180882c20 - 数据转换函数ES0
+// 功能：转换数据ES0，进行数据格式转换
+#define ConvertDataFormatES0 FUN_180882c20
+
+// 原始函数名：FUN_18088c620 - 状态重置函数ET0
+// 功能：重置状态ET0，恢复系统状态
+#define ResetSystemStateET0 FUN_18088c620
+
+// 原始函数名：FUN_180882f00 - 输入处理函数EU0
+// 功能：处理输入EU0，管理输入数据
+#define ProcessInputEU0 FUN_180882f00
+
+// 原始函数名：FUN_180883750 - 配置处理函数EV0
+// 功能：处理配置EV0，管理系统配置
+#define ProcessConfigurationEV0 FUN_180883750
+
+// 原始函数名：FUN_18088ac50 - 状态检查函数EW0
+// 功能：检查状态EW0，监控系统运行状态
+#define CheckSystemStatusEW0 FUN_18088ac50
+
+// 原始函数名：FUN_180847820 - 内存分配函数EX0
+// 功能：分配内存EX0，管理内存资源
+#define AllocateMemoryEX0 FUN_180847820
+
+// 原始函数名：FUN_18084c150 - 内存释放函数EY0
+// 功能：释放内存EY0，清理内存资源
+#define FreeMemoryEY0 FUN_18084c150
+
+// 原始函数名：FUN_180840af0 - 数据验证函数EZ0
+// 功能：验证数据EZ0，确保数据完整性
+#define ValidateDataEZ0 FUN_180840af0
+
+// 原始函数名：FUN_18084de40 - 上下文创建函数FA0
+// 功能：创建上下文FA0，初始化上下文数据
+#define CreateContextFA0 FUN_18084de40
+
+// 原始函数名：FUN_180840950 - 资源处理函数FB0
+// 功能：处理资源FB0，执行资源管理操作
+#define ProcessResourceFB0 FUN_180840950
+
+// 原始函数名：FUN_18084b240 - 缓冲区处理函数FC0
+// 功能：处理缓冲区FC0，管理缓冲区数据
+#define ProcessBufferFC0 FUN_18084b240
+
+// 原始函数名：FUN_180849030 - 系统验证函数FD0
+// 功能：验证系统FD0，确保系统正确性
+#define ValidateSystemFD0 FUN_180849030
+
+// 原始函数名：FUN_180840270 - 数据初始化函数FE0
+// 功能：初始化数据FE0，设置数据初始状态
+#define InitializeDataFE0 FUN_180840270
+
+// 原始函数名：FUN_1808479d0 - 数据处理函数FF0
+// 功能：处理数据FF0，执行数据操作
+#define ProcessDataFF0 FUN_1808479d0
+
+// 原始函数名：FUN_180847820 - 内存管理函数FG0
+// 功能：管理内存FG0，处理内存分配和释放
+#define ManageMemoryFG0 FUN_180847820
+
+// 原始函数名：FUN_18084c470 - 系统清理函数FH0
+// 功能：清理系统FH0，释放系统资源
+#define CleanupSystemFH0 FUN_18084c470
+
+// 原始函数名：FUN_180867680 - 系统查询函数FI0
+// 功能：查询系统FI0，获取系统信息
+#define QuerySystemFI0 FUN_180867680
+
+// 原始函数名：FUN_180867960 - 系统处理函数FJ0
+// 功能：处理系统FJ0，执行系统操作
+#define ProcessSystemFJ0 FUN_180867960
+
+// 原始函数名：FUN_180867660 - 资源获取函数FK0
+// 功能：获取资源FK0，返回资源指针
+#define GetResourceFK0 FUN_180867660
+
+// 原始函数名：FUN_18088d720 - 系统终止函数FL0
+// 功能：终止系统FL0，停止系统运行
+#define TerminateSystemFL0 FUN_18088d720
 
 
