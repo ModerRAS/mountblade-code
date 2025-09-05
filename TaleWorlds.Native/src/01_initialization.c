@@ -551,7 +551,7 @@
  * @param MemoryPagePointer 内存页指针，指向要处理的内存页
  * @return 无返回值
  */
-void HandleSystemMemoryPage(long long MemoryPagePointer);
+void HandleSystemMemoryPage(long long memoryPagePointer);
 
 /**
  * @brief 释放系统资源
@@ -41275,13 +41275,13 @@ ResourceOperationRetry:
       if (ResourceAddress != ResourceAllocationContext) goto ResourceOperationRetry;
       LOCK();
       SystemOperationResult = *(ulong long *)(SystemThreadFlags + 0x28);
-      isSystemActive1 = SystemOperationCounter == SystemOperationResult;
-      if (isSystemActive1) {
+      IsSystemOperationValid = SystemOperationCounter == SystemOperationResult;
+      if (IsSystemOperationValid) {
         *(ulong long *)(SystemThreadFlags + 0x28) = *(ulong long *)(SystemOperationCounter + 0x138);
         SystemOperationResult = SystemOperationCounter;
       }
       UNLOCK();
-      if (isSystemActive1) {
+      if (IsSystemOperationValid) {
         LOCK();
         *ResourceHashEntryPointer = *ResourceHashEntryPointer - 2;
         UNLOCK();
@@ -41299,13 +41299,13 @@ ResourceOperationRetry:
           *ResourceHashEntryPointer = 1;
           LOCK();
           SystemProcessingResult = *(ulong long *)(SystemThreadFlags + 0x28);
-          isSystemActive1 = SystemInitializationStatus == SystemProcessingResult;
-          if (isSystemActive1) {
+          IsSystemInitialized = SystemInitializationStatus == SystemProcessingResult;
+          if (IsSystemInitialized) {
             *(ulong long *)(SystemThreadFlags + 0x28) = SystemOperationCounter;
             SystemProcessingResult = SystemInitializationStatus;
           }
           UNLOCK();
-          if (isSystemActive1) break;
+          if (IsSystemInitialized) break;
           LOCK();
           ResourceAddress = *ResourceHashEntryPointer;
           *ResourceHashEntryPointer = *ResourceHashEntryPointer + 0x7fffffff;
