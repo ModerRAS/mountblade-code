@@ -24686,7 +24686,7 @@ OperationLabelD:
       uVar2 = 0x1c;
     }
     else if (pvalidationContext[2] == 0) {
-LAB_18089c9a8:
+ValidationContextHandler:
       uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_18,1,1,0);
     }
     else {
@@ -25039,7 +25039,7 @@ OperationLabelD:
         uVar3 = 0x1c;
       }
       else if (pvalidationContext[2] == 0) {
-LAB_18089c9a8:
+ValidationContextHandler:
         uVar3 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D,0);
         fVar9 = extraout_XMM0_Da_01;
       }
@@ -25285,7 +25285,7 @@ ulonglong FUN_18089c86d(void)
         uVar4 = 0x1c;
       }
       else if (pvalidationContext[2] == unaff_RDI) {
-LAB_18089c9a8:
+ValidationContextHandler:
         uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
@@ -25535,7 +25535,7 @@ ulonglong FUN_18089c872(void)
         uVar4 = 0x1c;
       }
       else if (pvalidationContext[2] == unaff_RDI) {
-LAB_18089c9a8:
+ValidationContextHandler:
         uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
@@ -25738,7 +25738,7 @@ ulonglong FUN_18089c94a(float param_1)
         uVar4 = 0x1c;
       }
       else if (pvalidationContext[2] == unaff_RDI) {
-LAB_18089c9a8:
+ValidationContextHandler:
         uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_00;
       }
@@ -90143,5 +90143,38 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 原始函数名：FUN_1808de000 - 执行端口控制操作扩展
 // 功能：执行端口控制操作（扩展版本）
 #define ExecutePortControlOperationExtended FUN_1808de000
+
+// 验证上下文处理标签宏定义
+#define ValidationContextHandler LAB_18089c9a8
+#define ValidationErrorHandler LAB_18089c9ee
+#define ValidationRetryHandler LAB_18089ca9c
+#define ValidationErrorHandler2 LAB_18089cad8
+#define DataProcessingHandler LAB_18089cbf6
+#define ValidationContextHandler2 LAB_18089cd46
+#define ValidationStateHandler LAB_18089cd76
+#define ValidationContextCleanup LAB_18089cef2
+#define ValidationStateUpdate LAB_18089cf93
+#define ValidationCompleteHandler LAB_18089d034
+#define ValidationErrorHandler3 LAB_18089d06e
+#define ValidationExitHandler LAB_18089d07f
+#define ValidationDataHandler LAB_18089d455
+#define ValidationErrorHandler4 LAB_18089d378
+#define ValidationStateUpdate2 LAB_18089d435
+#define ValidationCompleteHandler2 LAB_18089e447
+#define ValidationErrorHandler5 LAB_18089e70b
+#define ValidationStartHandler LAB_18089ea0f
+#define ValidationErrorHandler6 LAB_18089eaae
+#define ValidationStateHandler2 LAB_18089ea93
+#define ValidationDataHandler2 LAB_18089eb22
+#define ValidationErrorHandler7 LAB_18089eb3c
+#define ValidationStateHandler3 LAB_18089ebaa
+#define ValidationErrorHandler8 LAB_18089ebc4
+#define ValidationStateHandler4 LAB_18089ec32
+#define ValidationErrorHandler9 LAB_18089ec4c
+#define ValidationStateHandler5 LAB_18089ecba
+#define ValidationErrorHandler10 LAB_18089ecd4
+#define ValidationExitHandler2 LAB_18089ed1b
+#define ValidationCaseHandler LAB_18089f45f
+#define ValidationDataHandler3 LAB_1801571ef
 
 
