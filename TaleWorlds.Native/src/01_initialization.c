@@ -1544,6 +1544,18 @@ void* GetSystemInitializationFunction;
  * @param void 无参数
  * @return void 无返回值
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括游戏引擎的核心功能模块。
+ * 它会在系统节点树中查找或创建游戏核心节点，并设置节点的标识符和初始化处理器。
+ * 游戏核心系统是整个游戏运行的基础，负责协调各个子系统的运行。
+ * 
+ * @return 无返回值
+ * 
+ * @note 该函数使用内存分配和节点比较操作来确保游戏核心节点的正确初始化
+ * @note 节点标识符为 GameCoreSystemId
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
@@ -27555,7 +27567,7 @@ SystemValidationCheck:
   SystemDataBufferPointer = SystemDataPointer;
 SystemValueValidationCheck:
   GlobalDataReferencePointer = &SystemGlobalDataReference;
-  if (SystemByteArray28 == (byte *)0x0) {
+  if (SystemReservedByteArray28 == (byte *)0x0) {
     return SystemDataBufferPointer != SystemDataPointer;
   }
     SystemCleanupFunction();
@@ -28093,37 +28105,37 @@ void ProcessSystemResourceAndRenderManagement(long long* SystemResourceManager,v
       primaryScaleFactor = *(float *)(SystemNodeManagerPointer + 0x20d0);
     }
     else {
-      scaleFactor1 = 100.0;
+      primaryScaleFactor = 100.0;
     }
-    scaleFactor1 = scaleFactor1 * 0.01;
+    primaryScaleFactor = primaryScaleFactor * 0.01;
   }
   else {
-    scaleFactor1 = 1.0;
+    primaryScaleFactor = 1.0;
   }
-  *(float *)(systemHandle + 0x234) = scaleFactor1;
+  *(float *)(systemHandle + 0x234) = primaryScaleFactor;
   *(uint32_t *)(systemHandle + 0x238) = 0x3f800000;
-  scaleFactor2 = 1.0;
+  secondaryScaleFactor = 1.0;
   if (*(int *)(renderManagerOffset + 0x1ea0) == 1) {
     SystemInitializationStatusValue = *(int *)(renderManagerOffset + 0x1d50);
     resourceCountPointer = (int *)GetSystemResourceManager(*(void* *)(SystemGlobalStatusFlags + 8),&StackParameter2);
-    scaleFactor2 = (float)SystemInitializationStatusValue / (float)*resourceCountPointer;
-    scaleFactor1 = scaleFactor2 * *(float *)(systemHandle + 0x234);
-    scaleFactor2 = scaleFactor2 * *(float *)(systemHandle + 0x238);
+    secondaryScaleFactor = (float)SystemInitializationStatusValue / (float)*resourceCountPointer;
+    primaryScaleFactor = secondaryScaleFactor * *(float *)(systemHandle + 0x234);
+    secondaryScaleFactor = secondaryScaleFactor * *(float *)(systemHandle + 0x238);
   }
-  if (0.2 <= scaleFactor1) {
-    if (1.0 <= scaleFactor1) {
-      scaleFactor1 = 1.0;
+  if (0.2 <= primaryScaleFactor) {
+    if (1.0 <= primaryScaleFactor) {
+      primaryScaleFactor = 1.0;
     }
   }
   else {
-    scaleFactor1 = 0.2;
+    primaryScaleFactor = 0.2;
   }
-  *(float *)(systemHandle + 0x234) = scaleFactor1;
-  if (0.2 <= scaleFactor2) {
-    if (1.0 <= scaleFactor2) {
-      scaleFactor2 = 1.0;
+  *(float *)(systemHandle + 0x234) = primaryScaleFactor;
+  if (0.2 <= secondaryScaleFactor) {
+    if (1.0 <= secondaryScaleFactor) {
+      secondaryScaleFactor = 1.0;
     }
-    *(float *)(systemHandle + 0x238) = scaleFactor2;
+    *(float *)(systemHandle + 0x238) = secondaryScaleFactor;
   }
   else {
     *(uint32_t *)(systemHandle + 0x238) = 0x3e4ccccd;

@@ -1011,9 +1011,9 @@ uint32_t NetworkConnectionRoutingTertiaryConfig = 0x00;   // 网络连接路由�
 uint32_t NetworkConnectionRoutingQuaternaryConfig = 0x00;  // 网络连接路由第四配置数据
 
 /**
- * @brief 初始化网络套接字句柄
+ * @brief 初始化网络套接字
  * 
- * 初始化网络套接字句柄，为网络通信做准备。此函数负责设置套接字的基本参数，
+ * 初始化网络套接字，为网络通信做准备。此函数负责设置套接字的基本参数，
  * 包括文件描述符、上下文大小、协议类型等。初始化后的套接字可以用于
  * 建立网络连接和进行数据传输。
  * 
@@ -1022,7 +1022,7 @@ uint32_t NetworkConnectionRoutingQuaternaryConfig = 0x00;  // 网络连接路由
  * 
  * @return void 无返回值
  */
-void InitializeNetworkSocketHandle(void)
+void InitializeNetworkSocket(void)
 {
   // 初始化套接字基本参数
   NetworkSocketDescriptor = SOCKET_DESCRIPTOR_INVALID;        // 初始化文件描述符为无效值
@@ -1056,7 +1056,7 @@ void InitializeNetworkSocketHandle(void)
  * 
  * @return void 无返回值
  */
-void BindNetworkSocketToAddress(void)
+void BindNetworkSocket(void)
 {
   // 设置网络地址和端口配置
   NetworkServerIpAddress = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
@@ -1091,7 +1091,7 @@ void BindNetworkSocketToAddress(void)
  * 
  * @return void 无返回值
  */
-void StartListeningForNetworkConnections(void)
+void StartListeningForConnections(void)
 {
   // 设置监听队列参数
   NetworkConnectionRequestQueue = NetworkQueueEnabled;                // 初始化连接请求队列
@@ -1421,7 +1421,7 @@ void RetrieveNetworkPacketData(void)
   
   // 初始化缓冲区管理
   NetworkBufferManager = NetworkBufferEnabledFlag;                          // 初始化缓冲区管理器
-  NetworkBufferSize = NetworkBufferSize4Kilobytes;                            // 设置缓冲区大小为4KB
+  NetworkBufferSize = BufferSize4Kilobytes;                            // 设置缓冲区大小为4KB
   NetworkBufferIndex = NetworkIndexResetValue;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
@@ -1548,7 +1548,7 @@ void ProcessNetworkPackets(void)
  * 
  * @return void 无返回值
  */
-void HandleNetworkErrors(void)
+void HandleNetworkErrorManagement(void)
 {
   // 初始化错误处理参数
   NetworkErrorProcessor = NetworkSystemEnabled;                         // 初始化错误处理器
@@ -2432,35 +2432,35 @@ void* HandleNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int6
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
 {
   // 连接请求处理变量
-  static uint32_t ConnectionContextBuffer[16];                    // 连接上下文数据
-  uint32_t ConnectionState;                                    // 连接状态
-  uint32_t ConnectionId;                                // 连接标识符
-  uint32_t SecurityValidationResult;                            // 安全验证状态
+  static uint32_t ConnectionContextData[16];                       // 连接上下文数据
+  uint32_t ActiveConnectionState;                                 // 连接状态
+  uint32_t ConnectionIdentifier;                                 // 连接标识符
+  uint32_t SecurityValidationStatus;                             // 安全验证状态
   
   // 初始化连接上下文数据
-  memset(ConnectionContextBuffer, 0, sizeof(ConnectionContextBuffer));
+  memset(ConnectionContextData, 0, sizeof(ConnectionContextData));
   
   // 设置连接基本信息
-  ConnectionState = NetworkStatusActive;                      // 设置连接状态为活跃
-  ConnectionId = (uint32_t)(RequestData & 0xFFFF);     // 从请求数据提取连接标识符
+  ActiveConnectionState = NetworkStatusActive;                   // 设置连接状态为活跃
+  ConnectionIdentifier = (uint32_t)(RequestData & 0xFFFF);        // 从请求数据提取连接标识符
   
   // 验证连接安全性
-  SecurityValidationResult = NetworkValidationFailure;
+  SecurityValidationStatus = NetworkValidationFailure;
   if (SecurityValidationData) {
     memset(SecurityValidationData, 0, SecurityValidationBufferSize);
-    SecurityValidationResult = NetworkValidationSuccess;  // 验证成功
+    SecurityValidationStatus = NetworkValidationSuccess;         // 验证成功
   }
   
   // 设置连接上下文数据
-  ConnectionContextBuffer[ConnectionStateIndex] = ConnectionState;
-  ConnectionContextBuffer[ConnectionIdIndex] = ConnectionId;
-  ConnectionContextBuffer[SecurityValidationIndex] = SecurityValidationResult;
-  ConnectionContextBuffer[FinalizeValueIndex] = FinalizeValue;
-  ConnectionContextBuffer[ProcessingFlagsIndex] = ProcessingFlags;
-  ConnectionContextBuffer[ValidationFlagsIndex] = ValidationFlags;
-  ConnectionContextBuffer[ProcessingModeIndex] = ProcessingMode;
+  ConnectionContextData[ConnectionStateIndex] = ActiveConnectionState;
+  ConnectionContextData[ConnectionIdIndex] = ConnectionIdentifier;
+  ConnectionContextData[SecurityValidationIndex] = SecurityValidationStatus;
+  ConnectionContextData[FinalizeValueIndex] = FinalizeValue;
+  ConnectionContextData[ProcessingFlagsIndex] = ProcessingFlags;
+  ConnectionContextData[ValidationFlagsIndex] = ValidationFlags;
+  ConnectionContextData[ProcessingModeIndex] = ProcessingMode;
   
-  return ConnectionContextBuffer;
+  return ConnectionContextData;
 }
 
 /**
