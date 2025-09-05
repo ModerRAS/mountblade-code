@@ -1923,7 +1923,7 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
   int64_t NetworkConnectionContextIdentifier;              // 网络连接上下文标识符
   int64_t *NetworkConnectionValidationResult;          // 网络连接验证结果数据指针
   int32_t NetworkValidationStatusCode;               // 网络连接验证结果码
-  NetworkHandle NetworkConnectionContextId;           // 网络连接上下文标识符
+  NetworkHandle ConnectionContextHandle;           // 网络连接上下文标识符
   
   NetworkConnectionContextIdentifier = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
@@ -1936,12 +1936,12 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
-    NetworkConnectionContextId = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
-    if (NetworkConnectionContextId != 0) {
+    ConnectionContextHandle = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
+    if (ConnectionContextHandle != 0) {
       if ((int)NetworkConnectionValidationResult[1] != 0) {
-          memcpy(NetworkConnectionContextId, *NetworkConnectionValidationResult, (long long)(int)NetworkConnectionValidationResult[1]);
+          memcpy(ConnectionContextHandle, *NetworkConnectionValidationResult, (long long)(int)NetworkConnectionValidationResult[1]);
       }
-      return NetworkConnectionContextId;
+      return ConnectionContextHandle;
     }
   }
   return NetworkErrorConnectionFailed;
