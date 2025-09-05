@@ -39673,11 +39673,21 @@ void ExecuteSystemCleanupA(DataBuffer dataBuffer, int64_t executionContext, Data
 
 
 
-void Unwind_180903230(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+/**
+ * @brief 系统清理处理函数B
+ * 
+ * 执行系统资源的清理处理操作
+ * 
+ * @param dataBuffer 数据缓冲区
+ * @param executionContext 执行上下文
+ * @param cleanupParam 清理参数A
+ * @param cleanupParamB 清理参数B
+ */
+void ExecuteSystemCleanupB(DataBuffer dataBuffer, int64_t executionContext, DataBuffer cleanupParam, DataBuffer cleanupParamB)
 
 {
-  FUN_180058710(*(int64_t *)(param_2 + 0x40) + 0x30,
-                *(DataBuffer *)(*(int64_t *)(param_2 + 0x40) + 0x40),param_3,param_4,
+  FUN_180058710(*(int64_t *)(executionContext + 0x40) + 0x30,
+                *(DataBuffer *)(*(int64_t *)(executionContext + 0x40) + 0x40),cleanupParam,cleanupParamB,
                 SystemCleanupFlagfffffffe);
   return;
 }
