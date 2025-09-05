@@ -38021,24 +38021,42 @@ void ExecuteSystemResourceCleanup(undefined8 param_1,int64_t param_2,undefined8 
 
 
 
+/**
+ * @brief 异常处理展开函数F20
+ * 
+ * 该函数负责处理系统异常展开操作，遍历数据上下文中的验证状态，
+ * 并执行相应的清理函数。如果数据上下文为空，则正常返回；
+ * 否则调用系统终止函数。
+ * 
+ * @param param_1 异常处理参数1
+ * @param param_2 异常处理参数2，包含数据上下文指针
+ * @param param_3 异常处理参数3
+ * @param param_4 异常处理参数4
+ */
 void Unwind_180902f20(undefined8 param_1,int64_t param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *pdataValue;
-  int64_t *pdataContext;
-  undefined8 *pvalidationStatus;
-  undefined8 memoryBaseAddress;
+  undefined8 *DataValuePointer;
+  int64_t *DataContextPointer;
+  undefined8 *ValidationStatusPointer;
+  undefined8 MemoryBaseAddress;
   
-  pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x888);
-  memoryBaseAddress = SystemCleanupFlagfffffffe;
-  pdataValue = *(undefined8 **)(*(int64_t *)(param_2 + 0x40) + 0x890);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  // 获取数据上下文指针
+  DataContextPointer = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x888);
+  MemoryBaseAddress = SystemCleanupFlagfffffffe;
+  DataValuePointer = *(undefined8 **)(*(int64_t *)(param_2 + 0x40) + 0x890);
+  
+  // 遍历验证状态并执行清理函数
+  for (ValidationStatusPointer = (undefined8 *)*DataContextPointer; ValidationStatusPointer != DataValuePointer; ValidationStatusPointer = ValidationStatusPointer + 4) {
+    (**(code **)*ValidationStatusPointer)(ValidationStatusPointer,0,param_3,param_4,MemoryBaseAddress);
   }
-  if (*pdataContext == 0) {
+  
+  // 检查数据上下文是否为空
+  if (*DataContextPointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  
+  // 如果数据上下文不为空，则终止系统
   TerminateSystemE0();
 }
 
@@ -40044,18 +40062,35 @@ void CleanupExceptionHandlers(undefined8 contextHandle, int64_t contextPointer, 
 
 
 
-void Unwind_180903720(undefined8 param_1,int64_t param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 清理多层上下文处理器
+ * 
+ * 该函数用于清理多层上下文处理器，包括五个层次的异常处理器清理。
+ * 每个层次都包含独立的异常处理状态和回调函数，确保系统能够
+ * 在多层嵌套的异常处理后正确恢复状态
+ * 
+ * @param contextHandle 上下文句柄，用于标识当前的执行上下文
+ * @param contextPointer 上下文指针，指向包含多层异常处理信息的上下文结构
+ * @param reservedParam1 保留参数1，当前未使用
+ * @param cleanupFlag 清理标志，用于传递清理操作的标志位
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数执行五层异常处理器的清理，每层都有独立的异常处理机制
+ * @warning 如果任何一层的清理过程中检测到错误，会调用TerminateSystemE0终止系统
+ */
+void CleanupMultiLayerContextHandlers(undefined8 contextHandle, int64_t contextPointer, undefined8 reservedParam1, undefined8 cleanupFlag)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x40);
+  validationContext = *(int64_t *)(contextPointer + 0x40);
   if (*(FunctionPointer**)(validationContext + 0x510) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x510))(validationContext + 0x500, 0, 0, cleanupFlag, SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(validationContext + 0x4e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4e8) != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4e8) = 0;
@@ -40063,7 +40098,7 @@ void Unwind_180903720(undefined8 param_1,int64_t param_2,undefined8 param_3,unde
   *(undefined8 *)(validationContext + 0x4e0) = &DefaultExceptionHandlerB;
   *(undefined8 *)(validationContext + 0x4c0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4c8) != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4c8) = 0;
@@ -40071,7 +40106,7 @@ void Unwind_180903720(undefined8 param_1,int64_t param_2,undefined8 param_3,unde
   *(undefined8 *)(validationContext + 0x4c0) = &DefaultExceptionHandlerB;
   *(undefined8 *)(validationContext + 0x4a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x4a8) != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x4a8) = 0;
@@ -40079,7 +40114,7 @@ void Unwind_180903720(undefined8 param_1,int64_t param_2,undefined8 param_3,unde
   *(undefined8 *)(validationContext + 0x4a0) = &DefaultExceptionHandlerB;
   *(undefined8 *)(validationContext + 0x480) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x488) != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x488) = 0;
@@ -40087,7 +40122,7 @@ void Unwind_180903720(undefined8 param_1,int64_t param_2,undefined8 param_3,unde
   *(undefined8 *)(validationContext + 0x480) = &DefaultExceptionHandlerB;
   *(undefined8 *)(validationContext + 0x460) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x468) != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   *(undefined8 *)(validationContext + 0x468) = 0;
