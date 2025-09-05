@@ -31,12 +31,12 @@
 #define ProcessDataBlockWithSecurityCheckA0 FUN_180897d20
 #define ValidateAndProcessDataA0 FUN_180899040
 #define ProcessDataBlocksA1 FUN_180899090
-#define ValidateSystemDataD0 FUN_180899100
-#define InitializeSystemComponentD0 FUN_1808992c4
-#define ProcessSystemDataD2 FUN_1808995c0
-#define CleanupSystemD0 FUN_180899790
-#define ResetSystemD0 FUN_180899799
-#define ValidateSystemDataD1 FUN_1808997b0
+#define ValidateAndExecuteOperationsA1 FUN_180899100
+#define InitializeSystemComponentsA0 FUN_1808992c4
+#define ValidateDataWithSecurityCheckA2 FUN_1808995c0
+#define CleanupSystemResourcesA0 FUN_180899790
+#define ResetSystemStateA0 FUN_180899799
+#define SynchronizeDataA0 FUN_1808997b0
 #define CheckSystemStatusD0 FUN_180899891
 
 // 系统处理函数宏定义 (E系列)
