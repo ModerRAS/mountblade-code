@@ -118,6 +118,8 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define DataIntegrityValidationCheckIndex 1                     // 数据完整性验证检查索引
 #define SecurityComplianceValidationCheckIndex 2                // 安全合规性验证检查索引
 #define NetworkValidationModeDataIndex 3                        // 网络验证模式数据索引
+#define DataIntegrityValidationIndex 1                           // 数据完整性验证索引
+#define SecurityComplianceValidationIndex 2                      // 安全合规性验证索引
 
 /**
  * @brief 计算连接参数偏移量
@@ -183,13 +185,13 @@ static int64_t CalculateConnectionStatusPointerOffset(int64_t ContextIdentifier,
  * 计算网络状态中最后一个条目的偏移量
  * 
  * @param ContextIdentifier 上下文标识符
- * @param NetworkConnectionStatusBasePointer 网络连接状态基础指针
- * @param NetworkConnectionStatusIteratorPointer 网络连接状态迭代器指针
+ * @param StatusBasePointer 网络连接状态基础指针
+ * @param StatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的最后一个状态条目偏移量地址
  */
-static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifier, void *NetworkConnectionStatusBasePointer, void *NetworkConnectionStatusIteratorPointer)
+static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
 {
-    return CalculateConnectionStatusPointerOffset(ContextIdentifier, NetworkConnectionStatusBasePointer, NetworkConnectionStatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)NetworkConnectionStatusIteratorPointer + ConnectionContextEntrySize);
+    return CalculateConnectionStatusPointerOffset(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
 }
 
 // 网络连接相关偏移量 - 连接上下文和状态管理
@@ -2691,31 +2693,31 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
 {
   // 连接数据验证变量
   uint32_t ConnectionValidationStatus;                       // 连接验证状态
-  uint32_t NetworkDataIntegrityValidationResult;                    // 网络数据完整性验证结果
-  uint32_t NetworkSecurityComplianceValidationResult;               // 网络安全合规验证结果
+  uint32_t DataIntegrityValidationResult;                    // 网络数据完整性验证结果
+  uint32_t SecurityComplianceValidationResult;               // 网络安全合规验证结果
   
   // 初始化验证状态
   ConnectionValidationStatus = NetworkValidationFailure;
-  NetworkDataIntegrityValidationResult = NetworkValidationFailure;
-  NetworkSecurityComplianceValidationResult = NetworkValidationFailure;
+  DataIntegrityValidationResult = NetworkValidationFailure;
+  SecurityComplianceValidationResult = NetworkValidationFailure;
   
   // 执行数据完整性检查
   if (ConnectionData != 0) {
-    NetworkDataIntegrityValidationResult = NetworkValidationSuccess;  // 数据完整性检查通过
+    DataIntegrityValidationResult = NetworkValidationSuccess;  // 数据完整性检查通过
   }
   
   // 执行安全合规检查
   if (ConnectionTable != 0) {
-    NetworkSecurityComplianceValidationResult = NetworkValidationSuccess;  // 安全合规检查通过
+    SecurityComplianceValidationResult = NetworkValidationSuccess;  // 安全合规检查通过
   }
   
   // 根据验证模式设置验证结果
   if (ValidationMode == NetworkConnectionBasicValidationMode) {
     // 基本验证模式
-    ConnectionValidationStatus = NetworkDataIntegrityValidationResult & NetworkSecurityComplianceValidationResult;
+    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult;
   } else if (ValidationMode == NetworkConnectionStrictValidationMode) {
     // 严格验证模式
-    ConnectionValidationStatus = NetworkDataIntegrityValidationResult & NetworkSecurityComplianceValidationResult & NetworkValidationSuccessMask;
+    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult & NetworkValidationSuccessMask;
   } else {
     // 默认验证模式
     ConnectionValidationStatus = NetworkValidationSuccess;

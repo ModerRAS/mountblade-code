@@ -741,6 +741,107 @@
 // 注意：由于Unwind函数数量众多，这里只展示了部分示例
 // 其他Unwind函数可以按照相同的模式进行命名和定义
 
+// 默认异常处理器设置函数宏定义
+
+/**
+ * @brief 设置默认异常处理器A0
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942060
+ */
+#define SetDefaultExceptionHandlerA0 FUN_180942060
+
+/**
+ * @brief 设置默认异常处理器A1
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942080
+ */
+#define SetDefaultExceptionHandlerA1 FUN_180942080
+
+/**
+ * @brief 设置默认异常处理器A2
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809420a0
+ */
+#define SetDefaultExceptionHandlerA2 FUN_1809420a0
+
+/**
+ * @brief 设置默认异常处理器A3
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809420c0
+ */
+#define SetDefaultExceptionHandlerA3 FUN_1809420c0
+
+/**
+ * @brief 设置默认异常处理器A4
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809420e0
+ */
+#define SetDefaultExceptionHandlerA4 FUN_1809420e0
+
+/**
+ * @brief 设置默认异常处理器A5
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942100
+ */
+#define SetDefaultExceptionHandlerA5 FUN_180942100
+
+/**
+ * @brief 设置默认异常处理器A6
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942120
+ */
+#define SetDefaultExceptionHandlerA6 FUN_180942120
+
+/**
+ * @brief 设置默认异常处理器A7
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942140
+ */
+#define SetDefaultExceptionHandlerA7 FUN_180942140
+
+/**
+ * @brief 设置默认异常处理器A8
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942160
+ */
+#define SetDefaultExceptionHandlerA8 FUN_180942160
+
+/**
+ * @brief 设置默认异常处理器A9
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_180942180
+ */
+#define SetDefaultExceptionHandlerA9 FUN_180942180
+
+/**
+ * @brief 设置默认异常处理器A10
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常
+ * 
+ * @note 原始函数名：FUN_1809421a0
+ */
+#define SetDefaultExceptionHandlerA10 FUN_1809421a0
+
 // 系统处理函数宏定义 (E系列)
 
 /**
@@ -45216,33 +45317,66 @@ void ExecuteDeepResourceCleanup(undefined8 cleanupContext, longlong deepResource
 
 
 
-void Unwind_180905820(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置默认异常处理器
+ * 
+ * 该函数负责设置默认的异常处理器，将指定的异常处理器
+ * 指针赋值给系统中的异常处理器指针。
+ * 
+ * @param exceptionContext 异常上下文参数
+ * @param handlerPointer 处理器指针，用于设置默认异常处理器
+ * 
+ * @note 原始函数名：Unwind_180905820
+ */
+void SetDefaultExceptionHandler(undefined8 exceptionContext, longlong handlerPointer)
 
 {
-  **(undefined8 **)(param_2 + 0x2e0) = &UNK_180a0e170;
+  **(undefined8 **)(handlerPointer + 0x2e0) = &DefaultExceptionHandler;
   return;
 }
 
 
 
-void Unwind_180905830(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行验证上下文清理
+ * 
+ * 该函数负责执行验证上下文的清理操作，通过获取验证上下文
+ * 指针并调用相应的清理函数来释放资源。
+ * 
+ * @param cleanupContext 清理上下文参数
+ * @param validationContext 验证上下文指针，包含需要清理的验证信息
+ * 
+ * @note 原始函数名：Unwind_180905830
+ */
+void ExecuteValidationContextCleanup(undefined8 cleanupContext, longlong validationContext)
 
 {
-  longlong *pvalidationContext;
+  longlong *contextPointer;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x2e0) + 0x20);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  contextPointer = *(longlong **)(*(longlong *)(validationContext + 0x2e0) + 0x20);
+  if (contextPointer != (longlong *)0x0) {
+    (**(code **)(*contextPointer + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180905840(undefined8 param_1,longlong param_2)
+/**
+ * @brief 释放异常处理内存
+ * 
+ * 该函数负责释放异常处理过程中分配的内存块，确保系统
+ * 资源的正确回收和内存管理的完整性。
+ * 
+ * @param memoryContext 内存上下文参数
+ * @param memoryPointer 内存指针，指向需要释放的内存块
+ * 
+ * @note 原始函数名：Unwind_180905840
+ */
+void FreeExceptionMemory(undefined8 memoryContext, longlong memoryPointer)
 
 {
-  free(*(undefined8 *)(param_2 + 0x2e0),0x428);
+  free(*(undefined8 *)(memoryPointer + 0x2e0),0x428);
   return;
 }
 
