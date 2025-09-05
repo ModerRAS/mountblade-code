@@ -4063,6 +4063,13 @@
 // 
 // 返回值:
 //   无
+/**
+ * @brief 初始化工具模块
+ * 
+ * 初始化系统工具模块，设置初始配置参数和资源指针
+ * 
+ * @note 原始函数名：InitializeUtilityModule
+ */
 void InitializeUtilityModule(void);
 uint32_t UtilityModulePrimaryConfig;
 uint32_t UtilityModuleSecondaryConfig;
@@ -4086,13 +4093,13 @@ void* UtilityModuleSecondaryResourcePointer;
 // 函数: void ResetUtilityPointers1(void)
 // 
 // 重置工具模块指针组1
-// 清理和重置第一组工具模块相关的指针
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
+/**
+ * @brief 清理和重置第一组工具模块相关的指针
+ * 
+ * 重置工具模块中的第一组指针，清理内存和资源引用
+ * 
+ * @note 原始函数名：ResetUtilityPointers1
+ */
 void ResetUtilityPointers1(void);
 uint32_t PrimaryPointerResetValue;
 uint32_t SecondaryPointerResetValue;
@@ -4110,11 +4117,11 @@ uint32_t QuaternaryPointerResetValue;
 // 返回值:
 //   无
 void ResetUtilityPointers2(void);
-uint32_t UtilityResetPointer1;
-uint32_t UtilityResetPointer2;
-uint32_t UtilityResetPointer3;
-uint32_t UtilityResetPointer4;
-uint32_t UtilitySystemStatus1;
+uint32_t UtilityResetPrimaryPointer;
+uint32_t UtilityResetSecondaryPointer;
+uint32_t UtilityResetTertiaryPointer;
+uint32_t UtilityResetQuaternaryPointer;
+uint32_t UtilitySystemPrimaryStatus;
 
 // 异常处理系统全局变量宏定义
 #define ExceptionHandlerTablePointer GlobalExceptionHandlerPointerA2     // 异常处理器表指针
@@ -4475,40 +4482,40 @@ uint32_t UtilitySystemConfigLogLevel;                  // 工具系统配置日�
 uint32_t UtilitySystemConfigSecurityLevel;              // 工具系统配置安全级别
 uint32_t UtilitySystemConfigPerformanceMode;            // 工具系统配置性能模式
 uint32_t UtilitySystemConfigMemoryLimit;                // 工具系统配置内存限制
-uint32_t UtilityConfigData11;
-uint32_t UtilityConfigData12;
-uint32_t UtilityConfigData13;
-uint32_t UtilityConfigData14;
-uint32_t UtilityConfigData15;
-uint32_t UtilityConfigData16;
-uint32_t UtilityConfigData17;
-uint32_t UtilityConfigData18;
-uint32_t UtilityConfigData19;
-uint32_t UtilityConfigData20;
-uint32_t UtilityConfigData21;
-uint32_t UtilityConfigData22;
-uint32_t UtilityConfigData23;
-uint32_t UtilityConfigData24;
-uint32_t UtilityConfigData25;
-uint32_t UtilityConfigData26;
-uint32_t UtilityConfigData27;
-uint32_t UtilityConfigData28;
-uint32_t UtilityConfigData29;
-uint32_t UtilityConfigData30;
-uint32_t UtilityConfigData31;
-uint32_t UtilityConfigData32;
-uint32_t UtilityConfigData33;
-uint32_t UtilityConfigData34;
-uint32_t UtilityConfigData35;
-uint32_t UtilityConfigData36;
-uint32_t UtilityConfigData37;
-uint32_t UtilityConfigData38;
-uint32_t UtilityConfigData39;
-uint32_t UtilityConfigData40;
-uint32_t UtilityConfigData41;
-uint32_t UtilityConfigData42;
-uint32_t UtilityConfigData43;
-uint32_t UtilityConfigData44;
+uint32_t UtilityConfigNetworkData;
+uint32_t UtilityConfigSecurityData;
+uint32_t UtilityConfigThreadData;
+uint32_t UtilityConfigMemoryData;
+uint32_t UtilityConfigResourceData;
+uint32_t UtilityConfigPerformanceData;
+uint32_t UtilityConfigDebugData;
+uint32_t UtilityConfigLogData;
+uint32_t UtilityConfigCacheData;
+uint32_t UtilityConfigBufferData;
+uint32_t UtilityConfigValidationData;
+uint32_t UtilityConfigEncryptionData;
+uint32_t UtilityConfigCompressionData;
+uint32_t UtilityConfigSerializationData;
+uint32_t UtilityConfigDeserializationData;
+uint32_t UtilityConfigStreamingData;
+uint32_t UtilityConfigSynchronizationData;
+uint32_t UtilityConfigEventHandlingData;
+uint32_t UtilityConfigErrorHandlingData;
+uint32_t UtilityConfigCleanupData;
+uint32_t UtilityConfigInitializationData;
+uint32_t UtilityConfigShutdownData;
+uint32_t UtilityConfigMaintenanceData;
+uint32_t UtilityConfigMonitoringData;
+uint32_t UtilityConfigProfilingData;
+uint32_t UtilityConfigOptimizationData;
+uint32_t UtilityConfigBackupData;
+uint32_t UtilityConfigRecoveryData;
+uint32_t UtilityConfigMigrationData;
+uint32_t UtilityConfigUpgradeData;
+uint32_t UtilityConfigCompatibilityData;
+uint32_t UtilityConfigIntegrationData;
+uint32_t UtilityConfigExtensionData;
+uint32_t UtilityConfigCustomizationData;
 // 工具系统状态数据区域
 uint32_t UtilitySystemState1;
 uint32_t UtilitySystemState2;
@@ -13294,15 +13301,15 @@ void DeactivateUtilitySystemState(longlong systemHandle,longlong operationContex
 
 
 // 内存分配处理函数A0
-undefined8 ProcessMemoryAllocationA0(longlong param_1,longlong param_2)
+undefined8 ProcessMemoryAllocationA0(longlong allocationContext,longlong systemContext)
 
 {
-  float fVar1;
-  longlong dataContext;
+  float inputValue;
+  longlong dataHandle;
   undefined8 validationStatus;
-  float fVar4;
-  uint uStackX_8;
-  undefined4 uStackX_c;
+  float rangeValue;
+  uint stackDataBuffer;
+  undefined4 stackDataBufferExtension;
   
   uStackX_8 = *(uint *)(param_1 + 0x14);
   if ((uStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
@@ -35459,26 +35466,46 @@ void SystemCallHandler_ContextResourceRelease(undefined8 param_1,longlong param_
 
 
 
-void Unwind_1809028e0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理器初始化函数A0
+ * 
+ * 该函数用于初始化异常处理器的上下文，设置默认异常处理程序
+ * 主要用于系统异常处理机制的初始化
+ * 
+ * @param exceptionContext 异常上下文句柄
+ * @param systemContext 系统上下文指针
+ * @return 无返回值
+ */
+void InitializeExceptionHandlerA0(undefined8 exceptionContext,longlong systemContext)
 
 {
-  longlong validationContext;
+  longlong handlerContext;
   
-  validationContext = *(longlong *)(param_2 + 0x70);
-  *(undefined8 *)(validationContext + 0x40) = &UNK_180a3c3e0;
-  if (*(longlong *)(validationContext + 0x48) != 0) {
+  handlerContext = *(longlong *)(systemContext + 0x70);
+  *(undefined8 *)(handlerContext + 0x40) = &TemporaryExceptionHandler;
+  if (*(longlong *)(handlerContext + 0x48) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(validationContext + 0x48) = 0;
-  *(undefined4 *)(validationContext + 0x58) = 0;
-  *(undefined8 *)(validationContext + 0x40) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(handlerContext + 0x48) = 0;
+  *(undefined4 *)(handlerContext + 0x58) = 0;
+  *(undefined8 *)(handlerContext + 0x40) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809028f0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 资源引用计数清理函数
+ * 
+ * 该函数用于清理资源的引用计数，处理异常状态下的资源释放
+ * 主要用于系统资源管理和内存清理
+ * 
+ * @param exceptionContext 异常上下文句柄
+ * @param systemContext 系统上下文指针
+ * @return 无返回值
+ */
+void CleanupResourceReferenceCount(undefined8 exceptionContext,longlong systemContext)
 
 {
   int *referenceCountPointer;
@@ -35763,7 +35790,18 @@ void ExceptionCleanupHandlerDataContext2(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902970(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理验证上下文
+ * 
+ * 该函数负责清理验证上下文，包括：
+ * - 遍历验证上下文中的数据
+ * - 调用清理函数处理每个数据项
+ * - 在数据为空时调用系统终止函数
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerValidationContext(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -35784,7 +35822,18 @@ void Unwind_180902970(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902980(undefined8 param_1,longlong param_2)
+/**
+ * 系统调用处理器 - 调用内存清理函数
+ * 
+ * 该函数负责调用系统内存清理函数，包括：
+ * - 从异常上下文中提取内存地址
+ * - 调用底层的内存清理函数
+ * - 传递必要的清理参数
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void SystemCallHandlerMemoryCleanup(undefined8 param_1,longlong param_2)
 
 {
   FUN_1808fc8a8(*(longlong *)(param_2 + 0x70) + 0x98,0x20,0x10,FUN_180046860);
