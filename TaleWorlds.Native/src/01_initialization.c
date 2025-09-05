@@ -28814,8 +28814,8 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   long long SystemMemoryAllocationOffset;
   uint SystemResourceCountSecondary;
   void* SystemResourceHandleTertiary;
-  uint32_t SystemConfigPrimaryValuee8;
-  void* *pGlobalDataFlags2;
+  uint32_t SystemConfigPrimaryValue;
+  void* *pGlobalDataFlagsSecondary;
   long long SystemMemoryAllocationOffsetPrimary;
   uint SystemResourceCountTertiary;
   void* SystemResourceHandleQuaternary;
