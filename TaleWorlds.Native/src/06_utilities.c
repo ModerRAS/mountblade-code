@@ -27445,6 +27445,16 @@ void UtilityNoOperationR(void)
 
 
 
+/**
+ * @brief 数据处理函数O8
+ * 
+ * 该函数用于处理数据并返回结果
+ * 
+ * @param param_1 输入参数，包含处理条件
+ * @param param_2 指向数据区域的指针
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089cc80
+ */
 ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
 
 {
@@ -27523,6 +27533,14 @@ ValidationStateHandler:
 
 
 
+/**
+ * @brief 数据处理函数O9
+ * 
+ * 该函数用于处理数据并返回结果
+ * 
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089ccb9
+ */
 ulonglong FUN_18089ccb9(void)
 
 {
@@ -27657,6 +27675,16 @@ void UtilityNoOperationN(void)
 
 
 
+/**
+ * @brief 数据处理函数O10
+ * 
+ * 该函数用于处理数据并返回结果
+ * 
+ * @param param_1 输入参数，包含处理条件
+ * @param param_2 指向数据区域的指针
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089ce30
+ */
 ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
 
 {
@@ -27779,6 +27807,14 @@ ValidationExitHandler:
 
 
 
+/**
+ * @brief 数据处理函数O11
+ * 
+ * 该函数用于处理数据并返回结果
+ * 
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089ce60
+ */
 ulonglong FUN_18089ce60(void)
 
 {
@@ -27899,6 +27935,14 @@ ValidationExitHandler:
 
 
 
+/**
+ * @brief 数据处理函数O12
+ * 
+ * 该函数用于处理数据并返回结果
+ * 
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089cfd6
+ */
 ulonglong FUN_18089cfd6(void)
 
 {
