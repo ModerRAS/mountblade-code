@@ -17975,7 +17975,7 @@ undefined8 FUN_180899650(longlong *param_1,longlong *param_2)
     }
     uVar1 = FUN_180769ed0(*param_1,aiStackX_8,1,4,0);
   }
-LAB_1808996c5:
+ProcessCheckpointB:
   if ((int)uVar1 == 0) {
     if (aiStackX_8[0] < 0) {
       return 0xd;
@@ -19992,7 +19992,7 @@ undefined8 FUN_18089ace4(void)
   if ((int)uVar2 != 0) {
     return uVar2;
   }
-LAB_18089ae18:
+DataCheckpointA:
                     // WARNING: Subroutine does not return
   FUN_1808ddf80();
 }
@@ -20104,7 +20104,7 @@ ulonglong GetSystemValidationContext(void)
     uVar3 = unaff_EDI;
     if (*pvalidationContext != 0) {
       if (pvalidationContext[2] == 0) {
-LAB_18089af81:
+DataCheckpointB:
         uVar3 = FUN_180769ed0(*pvalidationContext,&stack0x00000030,unaff_ESI,unaff_ESI,0);
       }
       else {
@@ -20207,7 +20207,7 @@ LAB_18089af81:
     pvalidationContext = (longlong *)*registerRBX;
     if (*pvalidationContext != 0) {
       if (pvalidationContext[2] == 0) {
-LAB_18089b1ab:
+MemoryCheckpointA:
         unaff_EDI = FUN_180769ed0(*pvalidationContext,&stack0x00000038,unaff_ESI,4,0);
       }
       else {
@@ -20249,7 +20249,7 @@ LAB_18089b1ab:
     *(uint *)(unaff_RBP + 0xd4) = unaff_ESI;
     uVar6 = uVar7;
   }
-LAB_18089b226:
+MemoryCheckpointB:
   if (uVar6 == 0) {
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
