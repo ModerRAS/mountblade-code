@@ -9435,7 +9435,7 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
   dataContextPointer = *(longlong *)(stackTempValue + 8);
   if (dataContextPointer != 0) {
     floatDataValue = *(float *)(resourceHandle + 0x14);
-    for (dataArrayPointer = *(undefined8 **)(dataContextPointer + 0x48);
+    for (dataIterator = *(undefined8 **)(dataContextPointer + 0x48);
         (*(undefined8 **)(dataContextPointer + 0x48) <= dataIterator &&
         (dataIterator < *(undefined8 **)(dataContextPointer + 0x48) + *(int *)(dataContextPointer + 0x50))); dataIterator = dataIterator + 1) {
       operationResult = ProcessFloatingPointDataValidationA0(*dataIterator,floatDataValue,0);
@@ -12677,8 +12677,8 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    lVar5 = *(longlong *)(lVar5 + 0x20);
-    calculatedOffset = *(longlong *)(lVar5 + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
+    resourceIterator = *(longlong *)(resourceIterator + 0x20);
+    calculatedOffset = *(longlong *)(resourceIterator + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
     if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
       fVar1 = *(float *)(param_1 + 0x18);
       fVar6 = *(float *)(calculatedOffset + 0x38);
@@ -12688,7 +12688,7 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
       }
       *(float *)(param_1 + 0x18) = fVar6;
       dataContext = *(longlong *)(dataContext + 0x90);
-      *(float *)(lVar5 + 4 + (longlong)(int)auStackX_8[0] * 0x18) = fVar6;
+      *(float *)(resourceIterator + 4 + (longlong)(int)auStackX_8[0] * 0x18) = fVar6;
       *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(dataContext + (longlong)(int)auStackX_8[0] * 8);
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -12967,55 +12967,55 @@ undefined8 GetSystemStatusA0(void)
   longlong systemContext;
   float resultValue;
   
-  dataFlags = in_RAX - 8;
+  systemFlags = in_RAX - 8;
   if (in_RAX == 0) {
-    dataFlags = (ulonglong)in_R9D;
+    systemFlags = (ulonglong)in_R9D;
   }
-  operationResult = *(int *)(dataFlags + 0x28);
-  pfVar7 = (float *)(registerContext + 0x20 + (longlong)*(int *)(registerContext + 0x18) * 4);
+  validationStatus = *(int *)(systemFlags + 0x28);
+  floatArrayBase = (float *)(registerContext + 0x20 + (longlong)*(int *)(registerContext + 0x18) * 4);
   if (0 < *(int *)(registerContext + 0x18)) {
-    pfVar4 = pfVar7;
+    floatArrayPointer = floatArrayBase;
     securityCheckResult = in_R9D;
     do {
-      ArrayIndexCheck = *(int *)(((registerContext + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
-      if (ArrayIndexCheck != -1) {
-        fVar1 = *pfVar4;
-        if (((uint)fVar1 & FloatInfinityValue) == FloatInfinityValue) {
+      arrayIndex = *(int *)(((registerContext + 0x20) - (longlong)floatArrayBase) + (longlong)floatArrayPointer);
+      if (arrayIndex != -1) {
+        inputValue = *floatArrayPointer;
+        if (((uint)inputValue & FloatInfinityValue) == FloatInfinityValue) {
           return 0x1d;
         }
-        if ((ArrayIndexCheck < 0) || (operationResult <= ArrayIndexCheck)) {
+        if ((arrayIndex < 0) || (validationStatus <= arrayIndex)) {
           return 0x1f;
         }
-        lVar5 = *(longlong *)(dataFlags + 0x20) + (longlong)ArrayIndexCheck * 0x18;
-        if (lVar5 == 0) {
+        dataNodePointer = *(longlong *)(systemFlags + 0x20) + (longlong)arrayIndex * 0x18;
+        if (dataNodePointer == 0) {
           return 0x1c;
         }
-        lVar5 = *(longlong *)(lVar5 + 0x10);
-        if (lVar5 == 0) {
+        dataNodePointer = *(longlong *)(dataNodePointer + 0x10);
+        if (dataNodePointer == 0) {
           return 0x1e;
         }
-        if (*(uint *)(lVar5 + 0x30) != in_R9D) {
+        if (*(uint *)(dataNodePointer + 0x30) != in_R9D) {
           return 0x1f;
         }
-        fVar9 = *(float *)(lVar5 + 0x38);
-        if ((*(float *)(lVar5 + 0x38) <= fVar1) &&
-           (fVar9 = *(float *)(lVar5 + 0x3c), fVar1 <= *(float *)(lVar5 + 0x3c))) {
-          fVar9 = fVar1;
+        resultValue = *(float *)(dataNodePointer + 0x38);
+        if ((*(float *)(dataNodePointer + 0x38) <= inputValue) &&
+           (resultValue = *(float *)(dataNodePointer + 0x3c), inputValue <= *(float *)(dataNodePointer + 0x3c))) {
+          resultValue = inputValue;
         }
-        *pfVar4 = fVar9;
+        *floatArrayPointer = resultValue;
       }
       securityCheckResult = securityCheckResult + 1;
-      pfVar4 = pfVar4 + 1;
+      floatArrayPointer = floatArrayPointer + 1;
     } while ((int)securityCheckResult < *(int *)(registerContext + 0x18));
     if (0 < *(int *)(registerContext + 0x18)) {
-      lVar5 = (registerContext + 0x20) - (longlong)pfVar7;
+      dataPointer = (registerContext + 0x20) - (longlong)floatArrayBase;
       do {
-        operationResult = *(int *)((longlong)pfVar7 + lVar5);
-        if (operationResult != -1) {
-          *(float *)(*(longlong *)(dataFlags + 0x20) + 4 + (longlong)operationResult * 0x18) = *pfVar7;
+        validationStatus = *(int *)((longlong)floatArrayBase + dataPointer);
+        if (validationStatus != -1) {
+          *(float *)(*(longlong *)(systemFlags + 0x20) + 4 + (longlong)validationStatus * 0x18) = *floatArrayBase;
         }
         in_R9D = in_R9D + 1;
-        pfVar7 = pfVar7 + 1;
+        floatArrayBase = floatArrayBase + 1;
       } while ((int)in_R9D < *(int *)(registerContext + 0x18));
     }
   }
@@ -15476,9 +15476,9 @@ undefined8 InitializeSystemDataStructure(longlong *systemContext)
         if ((int)param_1[1] == 0) {
           return 0x1c;
         }
-        lVar5 = (longlong)(int)(*(uint *)(memoryBaseAddress + param_1[2]) & (int)param_1[1] - 1U);
-        piVar7 = (int *)(*param_1 + lVar5 * 4);
-        iVar8 = *(int *)(*param_1 + lVar5 * 4);
+        resourceIterator = (longlong)(int)(*(uint *)(memoryBaseAddress + param_1[2]) & (int)param_1[1] - 1U);
+        piVar7 = (int *)(*param_1 + resourceIterator * 4);
+        iVar8 = *(int *)(*param_1 + resourceIterator * 4);
         while (iVar8 != -1) {
           piVar7 = (int *)(param_1[2] + 4 + (longlong)iVar8 * 0x10);
           iVar8 = *piVar7;
@@ -16586,7 +16586,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
   undefined4 uVar2;
   undefined8 validationStatus;
   int iVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   int iVar7;
   uint securityCheckResult;
@@ -16648,17 +16648,17 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
       do {
         do {
           iVar16 = (int)uVar10;
-          lVar5 = validationContextPointer3[2];
+          resourceIterator = validationContextPointer3[2];
           validationContext5 = (longlong)aiStackX_8[0];
-          iVar4 = *(int *)(lVar5 + 8 + validationContext5 * 0x10);
+          iVar4 = *(int *)(resourceIterator + 8 + validationContext5 * 0x10);
           if (iVar4 == 2) {
-            iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),&uStackX_18);
+            iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10),&uStackX_18);
             validationStatus = uStackX_18;
             validationContextPointer3 = plStack_108;
             if ((iVar4 == 0) &&
                (iVar4 = PerformSystemValidationCheck(uStackX_18), validationContextPointer3 = plStack_108, 0 < iVar4)) {
               do {
-                uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+                uStack_e0 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
                 uStack_e8 = 0;
                 puStack_f0 = &UNK_180983588;
                 DoubleValidateAndExecuteOperation(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
@@ -16669,53 +16669,53 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
             }
           }
           else if (iVar4 == 3) {
-            iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),auStackX_20);
+            iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10),auStackX_20);
             validationContextPointer3 = plStack_108;
             if (iVar4 == 0) {
               puStack_d8 = &UNK_180983b68;
-              uStack_c8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+              uStack_c8 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 1;
               ProcessSystemDataA2(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
               puStack_f0 = &UNK_180983cf8;
-              uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+              uStack_e0 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ValidateAndExecuteOperationA0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
               validationContextPointer3 = plStack_108;
             }
           }
           else if (iVar4 == 5) {
-            iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),auStack_78);
+            iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_78);
             validationContextPointer3 = plStack_108;
             if (iVar4 == 0) {
               puStack_d8 = &UNK_1809842e0;
-              uStack_c8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+              uStack_c8 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 0x3f800000;
               ValidateDataIntegrityA1(&puStack_d8,*(undefined8 *)(param_1 + 0x58));
               puStack_98 = &UNK_180984358;
-              uStack_88 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+              uStack_88 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_90 = 0;
               uStack_80 = 0;
               ProcessDataBlockA0(&puStack_98,*(undefined8 *)(param_1 + 0x58));
               puStack_b8 = &UNK_1809843d0;
-              uStack_a8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+              uStack_a8 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
               ProcessDataSetFlagA0(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
               puStack_f0 = &UNK_1809841e0;
-              uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+              uStack_e0 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
               ProcessSystemEventA0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
               validationContextPointer3 = plStack_108;
             }
           }
           else if (iVar4 == 6) {
-            iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),auStack_70);
+            iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10),auStack_70);
             validationContextPointer3 = plStack_108;
             if (iVar4 == 0) {
               puStack_b8 = &UNK_1809844c8;
-              uStack_a8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+              uStack_a8 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
               ValidateSystemA0(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
@@ -16723,9 +16723,9 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
             }
           }
           else if ((iVar4 == 7) &&
-                  (iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10),
+                  (iVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10),
                                                auStack_68), validationContextPointer3 = plStack_108, iVar4 == 0)) {
-            uVar2 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
+            uVar2 = *(undefined4 *)(resourceIterator + 0xc + validationContext5 * 0x10);
             iVar7 = (int)dataFlags + 1;
             iVar4 = iVar16;
             if (iVar16 < 0) {
@@ -16755,7 +16755,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                 if ((longlong)uStack_110 < 0) {
                   securityCheckResult = -uStack_110._4_4_;
                 }
-                lVar5 = (longlong)(int)uStack_110;
+                resourceIterator = (longlong)(int)uStack_110;
                 uVar9 = uStack_110._4_4_;
                 if ((int)securityCheckResult < 0) {
                   if (0 < (int)uStack_110) {
@@ -16771,10 +16771,10 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                   uVar9 = 0;
                 }
                 if (iVar4 < 0) {
-                  puVar12 = (undefined4 *)(uStack_118 + lVar5 * 4);
-                  lVar5 = (longlong)-iVar4;
+                  puVar12 = (undefined4 *)(uStack_118 + resourceIterator * 4);
+                  resourceIterator = (longlong)-iVar4;
                   if (iVar4 < 0) {
-                    for (; lVar5 != 0; lVar5 = lVar5 + -1) {
+                    for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
                       *puVar12 = 0;
                       puVar12 = puVar12 + 1;
                     }
@@ -16810,15 +16810,15 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
           iVar11 = iVar7;
         }
         if (iVar11 != (int)validationContextPointer3[1]) {
-          lVar5 = (longlong)iVar11;
+          resourceIterator = (longlong)iVar11;
           do {
-            if (*(int *)(*validationContextPointer3 + lVar5 * 4) != -1) {
+            if (*(int *)(*validationContextPointer3 + resourceIterator * 4) != -1) {
               aiStackX_8[0] = *(int *)(*validationContextPointer3 + (longlong)iVar11 * 4);
               goto LAB_1808962af;
             }
             iVar11 = iVar11 + 1;
-            lVar5 = lVar5 + 1;
-          } while (lVar5 != (int)validationContextPointer3[1]);
+            resourceIterator = resourceIterator + 1;
+          } while (resourceIterator != (int)validationContextPointer3[1]);
         }
         aiStackX_8[0] = -1;
         iVar11 = aiStackX_8[0];
@@ -16827,15 +16827,15 @@ MemoryAllocationLabel:
       aiStackX_8[0] = -1;
       dataFlags = uStack_118;
     }
-    lVar5 = (longlong)(iVar16 + -1);
+    resourceIterator = (longlong)(iVar16 + -1);
     if (-1 < iVar16 + -1) {
       do {
         uStack_100 = uStack_100 & SystemCleanupFlag00000000;
         plStack_108 = (longlong *)&UNK_180982dc0;
-        aiStack_f8[0] = *(int *)(dataFlags + lVar5 * 4);
+        aiStack_f8[0] = *(int *)(dataFlags + resourceIterator * 4);
         ResetSystemStateA1(&plStack_108,*(undefined8 *)(param_1 + 0x58));
-        lVar5 = lVar5 + -1;
-      } while (-1 < lVar5);
+        resourceIterator = resourceIterator + -1;
+      } while (-1 < resourceIterator);
     }
     iVar11 = iVar4;
     if (iVar4 < 0) {
@@ -16853,10 +16853,10 @@ MemoryAllocationLabel:
       iVar4 = 0;
     }
     if (iVar16 < 0) {
-      lVar5 = (longlong)-iVar16;
+      resourceIterator = (longlong)-iVar16;
       puVar12 = (undefined4 *)(dataFlags + (longlong)iVar16 * 4);
       if (iVar16 < 0) {
-        for (; lVar5 != 0; lVar5 = lVar5 + -1) {
+        for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
           *puVar12 = 0;
           puVar12 = puVar12 + 1;
         }
@@ -16891,7 +16891,7 @@ ProcessCompleteLabel:
   securityCheckResult = *(uint *)(param_1 + 0x6c);
 ResourceCleanupLabel:
   if ((securityCheckResult >> 0x19 & 1) != 0) {
-    lVar5 = *(longlong *)(param_1 + 0xa0);
+    resourceIterator = *(longlong *)(param_1 + 0xa0);
     dataFlags = ProcessDataBufferA0(*(undefined8 *)(param_1 + 0x60),param_1 + 0xa0,0);
     if ((int)dataFlags != 0) {
       return dataFlags;
@@ -16915,9 +16915,9 @@ ResourceCleanupLabel:
         *(undefined8 *)(param_1 + 0xa0) = 0;
       }
     }
-    else if ((*(longlong *)(param_1 + 0x98) != 0) && (lVar5 != 0)) {
+    else if ((*(longlong *)(param_1 + 0x98) != 0) && (resourceIterator != 0)) {
       *(longlong *)(param_1 + 0x98) =
-           (*(longlong *)(param_1 + 0x98) - lVar5) + *(longlong *)(param_1 + 0xa0);
+           (*(longlong *)(param_1 + 0x98) - resourceIterator) + *(longlong *)(param_1 + 0xa0);
     }
   }
   return 0;
@@ -21149,7 +21149,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
   int operationResult;
   uint validationStatus;
   ulonglong memoryBaseAddress;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   undefined4 validationOutcome;
   ulonglong securityCheckResult;
@@ -21222,12 +21222,12 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
               securityCheckResult = dataFlags;
               if (0 < iVar1) {
                 do {
-                  lVar5 = *(longlong *)(param_2 + 0x14) + memoryBaseAddress;
-                  operationResult = ProcessDataPointerA0(param_1,lVar5);
+                  resourceIterator = *(longlong *)(param_2 + 0x14) + memoryBaseAddress;
+                  operationResult = ProcessDataPointerA0(param_1,resourceIterator);
                   if (operationResult != 0) {
                     return;
                   }
-                  validationStatus = *(uint *)(lVar5 + 0x10);
+                  validationStatus = *(uint *)(resourceIterator + 0x10);
                   if (validationStatus < 0x8000) {
                     uStackX_8 = CONCAT62(uStackX_8._2_6_,(short)validationStatus);
                     validationOutcome = 2;
@@ -21242,7 +21242,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
                   if (operationResult != 0) {
                     return;
                   }
-                  operationResult = CheckSystemStatusAndReturnO0(param_1,lVar5 + 0x14);
+                  operationResult = CheckSystemStatusAndReturnO0(param_1,resourceIterator + 0x14);
                   if (operationResult != 0) {
                     return;
                   }
@@ -21259,14 +21259,14 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
                 if (operationResult == 0) {
                   if (0 < iVar1) {
                     do {
-                      lVar5 = *(longlong *)(param_2 + 0x1c);
-                      uStackX_8._0_4_ = *(undefined4 *)(lVar5 + dataFlags * 8);
+                      resourceIterator = *(longlong *)(param_2 + 0x1c);
+                      uStackX_8._0_4_ = *(undefined4 *)(resourceIterator + dataFlags * 8);
                       operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                                         (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
                       if (operationResult != 0) {
                         return;
                       }
-                      uStackX_8 = CONCAT44(uStackX_8._4_4_,*(undefined4 *)(lVar5 + 4 + dataFlags * 8));
+                      uStackX_8 = CONCAT44(uStackX_8._4_4_,*(undefined4 *)(resourceIterator + 4 + dataFlags * 8));
                       operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                                         (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
                       if (operationResult != 0) {
@@ -21462,7 +21462,7 @@ void InitializeSystemDataStructure(undefined8 *param_1)
   longlong registerContext;
   longlong unaff_RBP;
   longlong systemContext;
-  longlong lVar5;
+  longlong resourceIterator;
   longlong unaff_RDI;
   longlong lVar6;
   longlong registerR14;
@@ -21479,12 +21479,12 @@ void InitializeSystemDataStructure(undefined8 *param_1)
     securityCheckResult = extraout_XMM0_Da;
     if (0 < (int)systemContext) {
       do {
-        lVar5 = *(longlong *)(registerR14 + 0x50) + lVar6;
-        iVar3 = ProcessDataPointerA0(securityCheckResult,lVar5);
+        resourceIterator = *(longlong *)(registerR14 + 0x50) + lVar6;
+        iVar3 = ProcessDataPointerA0(securityCheckResult,resourceIterator);
         if (iVar3 != 0) {
           return;
         }
-        uVar1 = *(uint *)(lVar5 + 0x10);
+        uVar1 = *(uint *)(resourceIterator + 0x10);
         resourcePointer = *(undefined8 **)(registerContext + 8);
         if (uVar1 < 0x8000) {
           *(short *)(unaff_RBP + 0x20) = (short)uVar1;
@@ -21498,7 +21498,7 @@ void InitializeSystemDataStructure(undefined8 *param_1)
         if (iVar3 != 0) {
           return;
         }
-        iVar3 = CheckSystemStatusAndReturnO0(extraout_XMM0_Da_00,lVar5 + 0x14);
+        iVar3 = CheckSystemStatusAndReturnO0(extraout_XMM0_Da_00,resourceIterator + 0x14);
         if (iVar3 != 0) {
           return;
         }
@@ -22643,7 +22643,7 @@ void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray
 
 {
   char *pcVar1;
-  code *pcVar2;
+  code *validationFlag;
   char cVar3;
   undefined4 in_EAX;
   undefined3 dataFlags;
@@ -22670,8 +22670,8 @@ void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray
   *param_2 = *param_2 + iVar5;
   pcVar1 = (char *)((longlong)&piStack_8 + CONCAT44(in_register_00000004,iVar5));
   *pcVar1 = *pcVar1 + cVar3 + '\x18';
-  pcVar2 = (code *)swi(3);
-  (*pcVar2)();
+  validationFlag = (code *)swi(3);
+  (*validationFlag)();
   return;
 }
 
@@ -25042,7 +25042,7 @@ void CheckSystemStatusB0(void)
   uint validationStatus;
   undefined8 *registerContext;
   uint memoryBaseAddress;
-  longlong lVar5;
+  longlong resourceIterator;
   int unaff_R12D;
   longlong unaff_R15;
   uint in_stack_00000050;
@@ -25097,7 +25097,7 @@ void CheckSystemStatusB0(void)
   if (operationResult != 0) {
     return;
   }
-  lVar5 = (longlong)(int)in_stack_00000050;
+  resourceIterator = (longlong)(int)in_stack_00000050;
   validationStatus = (int)*(uint *)(unaff_R15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(unaff_R15 + 0x2c) ^ validationStatus) - validationStatus) < (int)in_stack_00000050) &&
      (operationResult = ValidateSystemMemoryA0(unaff_R15 + 0x20,in_stack_00000050), operationResult != 0)) {
@@ -25111,7 +25111,7 @@ void CheckSystemStatusB0(void)
   *(int *)(unaff_R15 + 0x28) = iVar1;
   if (iVar1 != 0) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      iVar1 = OperateDataO0(*registerContext,*(undefined8 *)(unaff_R15 + 0x20),lVar5);
+      iVar1 = OperateDataO0(*registerContext,*(undefined8 *)(unaff_R15 + 0x20),resourceIterator);
       if (iVar1 == 0) goto LAB_18089bfc7;
     }
     else {
@@ -30221,7 +30221,7 @@ ulonglong FUN_18089e624(void)
   uint uVar2;
   int iVar3;
   ulonglong memoryBaseAddress;
-  longlong lVar5;
+  longlong resourceIterator;
   undefined4 *pdataFlags;
   undefined8 registerContext;
   longlong unaff_RBP;
@@ -30243,18 +30243,18 @@ ValidationErrorHandler5:
     if (iVar3 != 0) {
       pdataFlags = *(undefined4 **)(unaff_RBP + -0x29);
       for (pvalidationOutcome = pdataFlags; (pdataFlags <= pvalidationOutcome && (pvalidationOutcome < pdataFlags + iVar3)); pvalidationOutcome = pvalidationOutcome + 1) {
-        lVar5 = AllocateSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c);
-        if (lVar5 == 0) {
+        resourceIterator = AllocateSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c);
+        if (resourceIterator == 0) {
           memoryBaseAddress = 0x26;
           goto LAB_18089e70b;
         }
         uVar1 = *pvalidationOutcome;
-        *(longlong *)lVar5 = lVar5;
-        *(longlong *)(lVar5 + 8) = lVar5;
-        *(undefined4 *)(lVar5 + 0x10) = uVar1;
-        *(undefined8 *)(lVar5 + 0x18) = registerContext;
-        *(int *)(lVar5 + 0x20) = (int)registerContext;
-        uVar2 = ConvertData(unaff_R15 + 0x58,lVar5);
+        *(longlong *)resourceIterator = resourceIterator;
+        *(longlong *)(resourceIterator + 8) = resourceIterator;
+        *(undefined4 *)(resourceIterator + 0x10) = uVar1;
+        *(undefined8 *)(resourceIterator + 0x18) = registerContext;
+        *(int *)(resourceIterator + 0x20) = (int)registerContext;
+        uVar2 = ConvertData(unaff_R15 + 0x58,resourceIterator);
         memoryBaseAddress = (ulonglong)uVar2;
         if (uVar2 != 0) goto LAB_18089e70b;
         iVar3 = *(int *)(unaff_RBP + -0x21);
@@ -35835,22 +35835,22 @@ void ExceptionCleanupHandlerDataContext(undefined8 param_1,longlong param_2)
   longlong dataContext;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x70);
   validationOutcome = *(ulonglong *)(lVar4 + 0x10);
-  lVar5 = *(longlong *)(lVar4 + 8);
+  resourceIterator = *(longlong *)(lVar4 + 8);
   dataFlags = 0;
   if (validationOutcome != 0) {
     do {
-      dataContext = *(longlong *)(lVar5 + dataFlags * 8);
+      dataContext = *(longlong *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(dataContext);
       }
-      *(undefined8 *)(lVar5 + dataFlags * 8) = 0;
+      *(undefined8 *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
     } while (dataFlags < validationOutcome);
     validationOutcome = *(ulonglong *)(lVar4 + 0x10);
@@ -35859,12 +35859,12 @@ void ExceptionCleanupHandlerDataContext(undefined8 param_1,longlong param_2)
   if ((1 < validationOutcome) && (pvalidationStatus = *(undefined8 **)(lVar4 + 8), pvalidationStatus != (undefined8 *)0x0)) {
     validationOutcome = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
-      lVar5 = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
-      lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-        *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-        *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-        referenceCountPointer = (int *)(lVar5 + 0x18);
+      resourceIterator = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
+      resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+        *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+        *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+        referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
           HandleExceptionE0();
@@ -35901,22 +35901,22 @@ void ExceptionCleanupHandlerDataContext2(undefined8 param_1,longlong param_2)
   longlong dataContext;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x70);
   validationOutcome = *(ulonglong *)(lVar4 + 0x40);
-  lVar5 = *(longlong *)(lVar4 + 0x38);
+  resourceIterator = *(longlong *)(lVar4 + 0x38);
   dataFlags = 0;
   if (validationOutcome != 0) {
     do {
-      dataContext = *(longlong *)(lVar5 + dataFlags * 8);
+      dataContext = *(longlong *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(dataContext);
       }
-      *(undefined8 *)(lVar5 + dataFlags * 8) = 0;
+      *(undefined8 *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
     } while (dataFlags < validationOutcome);
     validationOutcome = *(ulonglong *)(lVar4 + 0x40);
@@ -35925,12 +35925,12 @@ void ExceptionCleanupHandlerDataContext2(undefined8 param_1,longlong param_2)
   if ((1 < validationOutcome) && (pvalidationStatus = *(undefined8 **)(lVar4 + 0x38), pvalidationStatus != (undefined8 *)0x0)) {
     validationOutcome = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
-      lVar5 = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
-      lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-        *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-        *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-        referenceCountPointer = (int *)(lVar5 + 0x18);
+      resourceIterator = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
+      resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+        *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+        *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+        referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
           HandleExceptionE0();
@@ -36048,22 +36048,22 @@ void ExceptionCleanupHandlerDataContext3(undefined8 param_1,longlong param_2)
   longlong dataContext;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x78);
   validationOutcome = *(ulonglong *)(lVar4 + 0x10);
-  lVar5 = *(longlong *)(lVar4 + 8);
+  resourceIterator = *(longlong *)(lVar4 + 8);
   dataFlags = 0;
   if (validationOutcome != 0) {
     do {
-      dataContext = *(longlong *)(lVar5 + dataFlags * 8);
+      dataContext = *(longlong *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(dataContext);
       }
-      *(undefined8 *)(lVar5 + dataFlags * 8) = 0;
+      *(undefined8 *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
     } while (dataFlags < validationOutcome);
     validationOutcome = *(ulonglong *)(lVar4 + 0x10);
@@ -36072,12 +36072,12 @@ void ExceptionCleanupHandlerDataContext3(undefined8 param_1,longlong param_2)
   if ((1 < validationOutcome) && (pvalidationStatus = *(undefined8 **)(lVar4 + 8), pvalidationStatus != (undefined8 *)0x0)) {
     validationOutcome = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
-      lVar5 = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
-      lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-        *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-        *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-        referenceCountPointer = (int *)(lVar5 + 0x18);
+      resourceIterator = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
+      resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+        *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+        *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+        referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
           HandleExceptionE0();
@@ -36114,22 +36114,22 @@ void ExceptionCleanupHandlerDataContext4(undefined8 param_1,longlong param_2)
   longlong dataContext;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   ulonglong validationOutcome;
   
   lVar4 = *(longlong *)(param_2 + 0x78);
   validationOutcome = *(ulonglong *)(lVar4 + 0x10);
-  lVar5 = *(longlong *)(lVar4 + 8);
+  resourceIterator = *(longlong *)(lVar4 + 8);
   dataFlags = 0;
   if (validationOutcome != 0) {
     do {
-      dataContext = *(longlong *)(lVar5 + dataFlags * 8);
+      dataContext = *(longlong *)(resourceIterator + dataFlags * 8);
       if (dataContext != 0) {
                     // WARNING: Subroutine does not return
         FUN_18064e900(dataContext);
       }
-      *(undefined8 *)(lVar5 + dataFlags * 8) = 0;
+      *(undefined8 *)(resourceIterator + dataFlags * 8) = 0;
       dataFlags = dataFlags + 1;
     } while (dataFlags < validationOutcome);
     validationOutcome = *(ulonglong *)(lVar4 + 0x10);
@@ -36138,12 +36138,12 @@ void ExceptionCleanupHandlerDataContext4(undefined8 param_1,longlong param_2)
   if ((1 < validationOutcome) && (pvalidationStatus = *(undefined8 **)(lVar4 + 8), pvalidationStatus != (undefined8 *)0x0)) {
     validationOutcome = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
-      lVar5 = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
-      lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-        *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-        *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-        referenceCountPointer = (int *)(lVar5 + 0x18);
+      resourceIterator = validationOutcome + 0x80 + ((longlong)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
+      resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+      if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+        *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+        *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+        referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
           HandleExceptionE0();
@@ -38777,14 +38777,14 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  plVar4 = *(longlong **)(param_2 + 0x40);
-  pvalidationStatus = (undefined8 *)*plVar4;
+  contextPointer = *(longlong **)(param_2 + 0x40);
+  pvalidationStatus = (undefined8 *)*contextPointer;
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -38793,31 +38793,31 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
+  if ((contextPointer[6] != 0) && (*(longlong *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar5 = plVar4[5];
-  while (lVar5 != 0) {
-    pcVar2 = (char *)(lVar5 + 0x141);
-    lVar5 = *(longlong *)(lVar5 + 0x138);
-    if (*pcVar2 != '\0') {
+  resourceIterator = contextPointer[5];
+  while (resourceIterator != 0) {
+    validationFlag = (char *)(resourceIterator + 0x141);
+    resourceIterator = *(longlong *)(resourceIterator + 0x138);
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (undefined8 *)plVar4[3];
+  pvalidationStatus = (undefined8 *)contextPointer[3];
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -39076,16 +39076,16 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  plVar4 = *(longlong **)(param_2 + 0x70);
+  contextPointer = *(longlong **)(param_2 + 0x70);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = (undefined8 *)*plVar4;
+  pvalidationStatus = (undefined8 *)*contextPointer;
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -39094,31 +39094,31 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
+  if ((contextPointer[6] != 0) && (*(longlong *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar5 = plVar4[5];
-  while (lVar5 != 0) {
-    pcVar2 = (char *)(lVar5 + 0x141);
-    lVar5 = *(longlong *)(lVar5 + 0x138);
-    if (*pcVar2 != '\0') {
+  resourceIterator = contextPointer[5];
+  while (resourceIterator != 0) {
+    validationFlag = (char *)(resourceIterator + 0x141);
+    resourceIterator = *(longlong *)(resourceIterator + 0x138);
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (undefined8 *)plVar4[3];
+  pvalidationStatus = (undefined8 *)contextPointer[3];
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -39227,14 +39227,14 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  plVar4 = *(longlong **)(param_2 + 0x80);
-  pvalidationStatus = (undefined8 *)*plVar4;
+  contextPointer = *(longlong **)(param_2 + 0x80);
+  pvalidationStatus = (undefined8 *)*contextPointer;
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -39243,31 +39243,31 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
+  if ((contextPointer[6] != 0) && (*(longlong *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar5 = plVar4[5];
-  while (lVar5 != 0) {
-    pcVar2 = (char *)(lVar5 + 0x141);
-    lVar5 = *(longlong *)(lVar5 + 0x138);
-    if (*pcVar2 != '\0') {
+  resourceIterator = contextPointer[5];
+  while (resourceIterator != 0) {
+    validationFlag = (char *)(resourceIterator + 0x141);
+    resourceIterator = *(longlong *)(resourceIterator + 0x138);
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (undefined8 *)plVar4[3];
+  pvalidationStatus = (undefined8 *)contextPointer[3];
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -44829,14 +44829,14 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x40);
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x78);
+  resourceIterator = *(longlong *)(param_2 + 0x40);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x78);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -44845,32 +44845,32 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0xa8) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0xa8) + 0x10) != 0)
+  if ((*(longlong *)(resourceIterator + 0xa8) != 0) && (*(longlong *)(*(longlong *)(resourceIterator + 0xa8) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0xa0);
+  lVar4 = *(longlong *)(resourceIterator + 0xa0);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
+    validationFlag = (char *)(lVar4 + 0x141);
     lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x90);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x90);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -44891,14 +44891,14 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x40);
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x2e0);
+  resourceIterator = *(longlong *)(param_2 + 0x40);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x2e0);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -44907,32 +44907,32 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0x310) != 0) &&
-     (*(longlong *)(*(longlong *)(lVar5 + 0x310) + 0x10) != 0)) {
+  if ((*(longlong *)(resourceIterator + 0x310) != 0) &&
+     (*(longlong *)(*(longlong *)(resourceIterator + 0x310) + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0x308);
+  lVar4 = *(longlong *)(resourceIterator + 0x308);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
+    validationFlag = (char *)(lVar4 + 0x141);
     lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x2f8);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x2f8);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -44953,14 +44953,14 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x40);
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x548);
+  resourceIterator = *(longlong *)(param_2 + 0x40);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x548);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -44969,32 +44969,32 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0x578) != 0) &&
-     (*(longlong *)(*(longlong *)(lVar5 + 0x578) + 0x10) != 0)) {
+  if ((*(longlong *)(resourceIterator + 0x578) != 0) &&
+     (*(longlong *)(*(longlong *)(resourceIterator + 0x578) + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0x570);
+  lVar4 = *(longlong *)(resourceIterator + 0x570);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
+    validationFlag = (char *)(lVar4 + 0x141);
     lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x560);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x560);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -45159,14 +45159,14 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x70);
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x78);
+  resourceIterator = *(longlong *)(param_2 + 0x70);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x78);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -45175,32 +45175,32 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0xa8) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0xa8) + 0x10) != 0)
+  if ((*(longlong *)(resourceIterator + 0xa8) != 0) && (*(longlong *)(*(longlong *)(resourceIterator + 0xa8) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0xa0);
+  lVar4 = *(longlong *)(resourceIterator + 0xa0);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
+    validationFlag = (char *)(lVar4 + 0x141);
     lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x90);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x90);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -45221,14 +45221,14 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x70);
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x2e0);
+  resourceIterator = *(longlong *)(param_2 + 0x70);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x2e0);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -45237,32 +45237,32 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0x310) != 0) &&
-     (*(longlong *)(*(longlong *)(lVar5 + 0x310) + 0x10) != 0)) {
+  if ((*(longlong *)(resourceIterator + 0x310) != 0) &&
+     (*(longlong *)(*(longlong *)(resourceIterator + 0x310) + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0x308);
+  lVar4 = *(longlong *)(resourceIterator + 0x308);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
+    validationFlag = (char *)(lVar4 + 0x141);
     lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x2f8);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x2f8);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -45283,14 +45283,14 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x70);
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x548);
+  resourceIterator = *(longlong *)(param_2 + 0x70);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x548);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -45299,32 +45299,32 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0x578) != 0) &&
-     (*(longlong *)(*(longlong *)(lVar5 + 0x578) + 0x10) != 0)) {
+  if ((*(longlong *)(resourceIterator + 0x578) != 0) &&
+     (*(longlong *)(*(longlong *)(resourceIterator + 0x578) + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0x570);
+  lVar4 = *(longlong *)(resourceIterator + 0x570);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
+    validationFlag = (char *)(lVar4 + 0x141);
     lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x560);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x560);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -47832,7 +47832,7 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
   longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
-  longlong *plVar4;
+  longlong *contextPointer;
   undefined8 *poperationResult;
   int iVar6;
   int *piVar7;
@@ -47897,15 +47897,15 @@ LAB_1801571ef:
   validationContextPointer = poperationResult + 6;
   FUN_18015b450(validationContextPointer);
   pcalculatedOffset = poperationResult + 0x2d;
-  plVar4 = (longlong *)poperationResult[0x2e];
+  contextPointer = (longlong *)poperationResult[0x2e];
   plVar8 = (longlong *)*pcalculatedOffset;
-  if (plVar8 != plVar4) {
+  if (plVar8 != contextPointer) {
     do {
       if ((longlong *)*plVar8 != (longlong *)0x0) {
         (**(code **)(*(longlong *)*plVar8 + 0x38))();
       }
       plVar8 = plVar8 + 1;
-    } while (plVar8 != plVar4);
+    } while (plVar8 != contextPointer);
     plVar8 = (longlong *)*pcalculatedOffset;
   }
   poperationResult[0x2e] = plVar8;
@@ -48528,7 +48528,7 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
   longlong *validationContextPointer;
   longlong *pdataContext;
   longlong *pcalculatedOffset;
-  longlong *plVar4;
+  longlong *contextPointer;
   undefined8 *poperationResult;
   int iVar6;
   int *piVar7;
@@ -48593,15 +48593,15 @@ LAB_1801571ef:
   validationContextPointer = poperationResult + 6;
   FUN_18015b450(validationContextPointer);
   pcalculatedOffset = poperationResult + 0x2d;
-  plVar4 = (longlong *)poperationResult[0x2e];
+  contextPointer = (longlong *)poperationResult[0x2e];
   plVar8 = (longlong *)*pcalculatedOffset;
-  if (plVar8 != plVar4) {
+  if (plVar8 != contextPointer) {
     do {
       if ((longlong *)*plVar8 != (longlong *)0x0) {
         (**(code **)(*(longlong *)*plVar8 + 0x38))();
       }
       plVar8 = plVar8 + 1;
-    } while (plVar8 != plVar4);
+    } while (plVar8 != contextPointer);
     plVar8 = (longlong *)*pcalculatedOffset;
   }
   poperationResult[0x2e] = plVar8;
@@ -49006,16 +49006,16 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x58);
+  resourceIterator = *(longlong *)(param_2 + 0x58);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x10);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x10);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -49024,32 +49024,32 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0x40) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0x40) + 0x10) != 0)
+  if ((*(longlong *)(resourceIterator + 0x40) != 0) && (*(longlong *)(*(longlong *)(resourceIterator + 0x40) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0x38);
+  lVar4 = *(longlong *)(resourceIterator + 0x38);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
+    validationFlag = (char *)(lVar4 + 0x141);
     lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x28);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x28);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -49370,16 +49370,16 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x40);
+  resourceIterator = *(longlong *)(param_2 + 0x40);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x10);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x10);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -49388,32 +49388,32 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0x40) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0x40) + 0x10) != 0)
+  if ((*(longlong *)(resourceIterator + 0x40) != 0) && (*(longlong *)(*(longlong *)(resourceIterator + 0x40) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0x38);
+  lVar4 = *(longlong *)(resourceIterator + 0x38);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x141);
+    validationFlag = (char *)(lVar4 + 0x141);
     lVar4 = *(longlong *)(lVar4 + 0x138);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0x28);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0x28);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -49542,14 +49542,14 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  plVar4 = *(longlong **)(param_2 + 0x48);
-  pvalidationStatus = (undefined8 *)*plVar4;
+  contextPointer = *(longlong **)(param_2 + 0x48);
+  pvalidationStatus = (undefined8 *)*contextPointer;
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -49558,31 +49558,31 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
+  if ((contextPointer[6] != 0) && (*(longlong *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar5 = plVar4[5];
-  while (lVar5 != 0) {
-    pcVar2 = (char *)(lVar5 + 0x141);
-    lVar5 = *(longlong *)(lVar5 + 0x138);
-    if (*pcVar2 != '\0') {
+  resourceIterator = contextPointer[5];
+  while (resourceIterator != 0) {
+    validationFlag = (char *)(resourceIterator + 0x141);
+    resourceIterator = *(longlong *)(resourceIterator + 0x138);
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (undefined8 *)plVar4[3];
+  pvalidationStatus = (undefined8 *)contextPointer[3];
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -49791,7 +49791,7 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
   int *poperationResult;
   longlong *pcalculatedOffset;
   int iVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   longlong lVar6;
   longlong lVar7;
   longlong lVar8;
@@ -49801,29 +49801,29 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
   FUN_180069530((ulonglong)(*(uint *)(param_2 + 0x30) & 0x1f) * 0x1a8 + *pcalculatedOffset);
   LOCK();
   validationContextPointer = (longlong *)(*pcalculatedOffset + 0x3508);
-  lVar5 = *validationContextPointer;
+  resourceIterator = *validationContextPointer;
   *validationContextPointer = *validationContextPointer + 1;
   UNLOCK();
-  if (lVar5 == 0x1f) {
+  if (resourceIterator == 0x1f) {
     *(undefined8 *)(*(longlong *)(param_2 + 0x38) + 8) = 0;
-    lVar5 = *pcalculatedOffset;
+    resourceIterator = *pcalculatedOffset;
     lVar6 = *(longlong *)(param_2 + 0x40);
     LOCK();
-    poperationResult = (int *)(lVar5 + 0x3530);
+    poperationResult = (int *)(resourceIterator + 0x3530);
     iVar4 = *poperationResult;
     *poperationResult = *poperationResult + -0x80000000;
     UNLOCK();
     if (iVar4 == 0) {
       lVar8 = *(longlong *)(lVar6 + 0x28);
       do {
-        *(longlong *)(lVar5 + 0x3538) = lVar8;
-        *(undefined4 *)(lVar5 + 0x3530) = 1;
+        *(longlong *)(resourceIterator + 0x3538) = lVar8;
+        *(undefined4 *)(resourceIterator + 0x3530) = 1;
         validationContextPointer = (longlong *)(lVar6 + 0x28);
         LOCK();
         lVar7 = *validationContextPointer;
         bVar9 = lVar8 == lVar7;
         if (bVar9) {
-          *validationContextPointer = lVar5;
+          *validationContextPointer = resourceIterator;
           lVar7 = lVar8;
         }
         UNLOCK();
@@ -49831,7 +49831,7 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
           return;
         }
         LOCK();
-        poperationResult = (int *)(lVar5 + 0x3530);
+        poperationResult = (int *)(resourceIterator + 0x3530);
         iVar4 = *poperationResult;
         *poperationResult = *poperationResult + 0x7fffffff;
         UNLOCK();
@@ -49890,16 +49890,16 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x50);
+  resourceIterator = *(longlong *)(param_2 + 0x50);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = *(undefined8 **)(lVar5 + 200);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 200);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -49908,32 +49908,32 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0xf8) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0xf8) + 0x10) != 0)
+  if ((*(longlong *)(resourceIterator + 0xf8) != 0) && (*(longlong *)(*(longlong *)(resourceIterator + 0xf8) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0xf0);
+  lVar4 = *(longlong *)(resourceIterator + 0xf0);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x3541);
+    validationFlag = (char *)(lVar4 + 0x3541);
     lVar4 = *(longlong *)(lVar4 + 0x3538);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0xe0);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0xe0);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -50012,31 +50012,31 @@ void CleanupSystemResources(undefined8 systemContext,longlong contextHandle)
                     // WARNING: Subroutine does not return
     ReleaseSystemResources(validationStatus);
   }
-  if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
+  if ((contextPointer[6] != 0) && (*(longlong *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar5 = plVar4[5];
-  while (lVar5 != 0) {
-    pcVar2 = (char *)(lVar5 + 0x3541);
-    lVar5 = *(longlong *)(lVar5 + 0x3538);
-    if (*pcVar2 != '\0') {
+  resourceIterator = contextPointer[5];
+  while (resourceIterator != 0) {
+    validationFlag = (char *)(resourceIterator + 0x3541);
+    resourceIterator = *(longlong *)(resourceIterator + 0x3538);
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (undefined8 *)plVar4[3];
+  pvalidationStatus = (undefined8 *)contextPointer[3];
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -50226,16 +50226,16 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  lVar5 = *(longlong *)(param_2 + 0x70);
+  resourceIterator = *(longlong *)(param_2 + 0x70);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = *(undefined8 **)(lVar5 + 200);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 200);
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -50244,32 +50244,32 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((*(longlong *)(lVar5 + 0xf8) != 0) && (*(longlong *)(*(longlong *)(lVar5 + 0xf8) + 0x10) != 0)
+  if ((*(longlong *)(resourceIterator + 0xf8) != 0) && (*(longlong *)(*(longlong *)(resourceIterator + 0xf8) + 0x10) != 0)
      ) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar4 = *(longlong *)(lVar5 + 0xf0);
+  lVar4 = *(longlong *)(resourceIterator + 0xf0);
   while (lVar4 != 0) {
-    pcVar2 = (char *)(lVar4 + 0x3541);
+    validationFlag = (char *)(lVar4 + 0x3541);
     lVar4 = *(longlong *)(lVar4 + 0x3538);
-    if (*pcVar2 != '\0') {
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(undefined8 **)(lVar5 + 0xe0);
+  pvalidationStatus = *(undefined8 **)(resourceIterator + 0xe0);
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -50311,14 +50311,14 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
-  char *pcVar2;
+  char *validationFlag;
   undefined8 *pvalidationStatus;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
-  plVar4 = *(longlong **)(param_2 + 0x78);
-  pvalidationStatus = (undefined8 *)*plVar4;
+  contextPointer = *(longlong **)(param_2 + 0x78);
+  pvalidationStatus = (undefined8 *)*contextPointer;
   if (pvalidationStatus != (undefined8 *)0x0) {
     if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
       *(undefined8 *)pvalidationStatus[3] = 0;
@@ -50327,31 +50327,31 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
                     // WARNING: Subroutine does not return
     FUN_18064e900(pvalidationStatus);
   }
-  if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
+  if ((contextPointer[6] != 0) && (*(longlong *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  lVar5 = plVar4[5];
-  while (lVar5 != 0) {
-    pcVar2 = (char *)(lVar5 + 0x3541);
-    lVar5 = *(longlong *)(lVar5 + 0x3538);
-    if (*pcVar2 != '\0') {
+  resourceIterator = contextPointer[5];
+  while (resourceIterator != 0) {
+    validationFlag = (char *)(resourceIterator + 0x3541);
+    resourceIterator = *(longlong *)(resourceIterator + 0x3538);
+    if (*validationFlag != '\0') {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (undefined8 *)plVar4[3];
+  pvalidationStatus = (undefined8 *)contextPointer[3];
   if (pvalidationStatus == (undefined8 *)0x0) {
     return;
   }
   dataFlags = (ulonglong)pvalidationStatus & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    lVar5 = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
-    lVar5 = lVar5 - (ulonglong)*(uint *)(lVar5 + 4);
-    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar5 + 0xe) == '\0')) {
-      *pvalidationStatus = *(undefined8 *)(lVar5 + 0x20);
-      *(undefined8 **)(lVar5 + 0x20) = pvalidationStatus;
-      referenceCountPointer = (int *)(lVar5 + 0x18);
+    resourceIterator = dataFlags + 0x80 + ((longlong)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = resourceIterator - (ulonglong)*(uint *)(resourceIterator + 4);
+    if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
+      *pvalidationStatus = *(undefined8 *)(resourceIterator + 0x20);
+      *(undefined8 **)(resourceIterator + 0x20) = pvalidationStatus;
+      referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
         HandleExceptionE0();
@@ -61456,8 +61456,8 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   }
   FUN_1808fc8a8(pvalidationStatus + 0xffd,0x20,5,FUN_180046860);
   lVar4 = pvalidationStatus[0xffa];
-  for (lVar5 = pvalidationStatus[0xff9]; lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
-    FUN_180152b00(lVar5);
+  for (resourceIterator = pvalidationStatus[0xff9]; resourceIterator != lVar4; resourceIterator = resourceIterator + 0x40) {
+    FUN_180152b00(resourceIterator);
   }
   if (pvalidationStatus[0xff9] != 0) {
                     // WARNING: Subroutine does not return
@@ -61542,7 +61542,7 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   undefined8 *resourcePointer;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
   pvalidationStatus = *(undefined8 **)(param_2 + 0x90);
@@ -61604,8 +61604,8 @@ void Unwind_1809093b0(undefined8 param_1,longlong param_2)
   }
   FUN_1808fc8a8(pvalidationStatus + 0xffd,0x20,5,FUN_180046860);
   lVar4 = pvalidationStatus[0xffa];
-  for (lVar5 = pvalidationStatus[0xff9]; lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
-    FUN_180152b00(lVar5);
+  for (resourceIterator = pvalidationStatus[0xff9]; resourceIterator != lVar4; resourceIterator = resourceIterator + 0x40) {
+    FUN_180152b00(resourceIterator);
   }
   if (pvalidationStatus[0xff9] != 0) {
                     // WARNING: Subroutine does not return
@@ -61623,7 +61623,7 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   longlong calculatedOffset;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
   calculatedOffset = *(longlong *)(param_2 + 0x90);
@@ -61681,8 +61681,8 @@ void Unwind_1809093c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   FUN_1808fc8a8(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
   lVar4 = *(longlong *)(calculatedOffset + 0x7fd0);
-  for (lVar5 = *(longlong *)(calculatedOffset + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
-    FUN_180152b00(lVar5);
+  for (resourceIterator = *(longlong *)(calculatedOffset + 0x7fc8); resourceIterator != lVar4; resourceIterator = resourceIterator + 0x40) {
+    FUN_180152b00(resourceIterator);
   }
   if (*(longlong *)(calculatedOffset + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
@@ -62445,7 +62445,7 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   undefined8 *resourcePointer;
   undefined8 *pvalidationStatus;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
   pvalidationStatus = *(undefined8 **)(param_2 + 0x40);
@@ -62507,8 +62507,8 @@ void Unwind_1809096b0(undefined8 param_1,longlong param_2)
   }
   FUN_1808fc8a8(pvalidationStatus + 0xffd,0x20,5,FUN_180046860);
   lVar4 = pvalidationStatus[0xffa];
-  for (lVar5 = pvalidationStatus[0xff9]; lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
-    FUN_180152b00(lVar5);
+  for (resourceIterator = pvalidationStatus[0xff9]; resourceIterator != lVar4; resourceIterator = resourceIterator + 0x40) {
+    FUN_180152b00(resourceIterator);
   }
   if (pvalidationStatus[0xff9] != 0) {
                     // WARNING: Subroutine does not return
@@ -62526,7 +62526,7 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   undefined8 *resourcePointer;
   longlong calculatedOffset;
   longlong lVar4;
-  longlong lVar5;
+  longlong resourceIterator;
   ulonglong dataFlags;
   
   calculatedOffset = *(longlong *)(param_2 + 0x40);
@@ -62584,8 +62584,8 @@ void Unwind_1809096c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   }
   FUN_1808fc8a8(calculatedOffset + 0x7fe8,0x20,5,FUN_180046860);
   lVar4 = *(longlong *)(calculatedOffset + 0x7fd0);
-  for (lVar5 = *(longlong *)(calculatedOffset + 0x7fc8); lVar5 != lVar4; lVar5 = lVar5 + 0x40) {
-    FUN_180152b00(lVar5);
+  for (resourceIterator = *(longlong *)(calculatedOffset + 0x7fc8); resourceIterator != lVar4; resourceIterator = resourceIterator + 0x40) {
+    FUN_180152b00(resourceIterator);
   }
   if (*(longlong *)(calculatedOffset + 0x7fc8) != 0) {
                     // WARNING: Subroutine does not return
@@ -69284,35 +69284,35 @@ void Unwind_18090c490(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x150)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -69547,35 +69547,35 @@ void Unwind_18090c540(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x180)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -69593,35 +69593,35 @@ void Unwind_18090c550(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x240)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -69669,35 +69669,35 @@ void Unwind_18090c590(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x1e0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -69736,35 +69736,35 @@ void Unwind_18090c5c0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x120)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -69782,35 +69782,35 @@ void Unwind_18090c5d0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x2a0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -69840,35 +69840,35 @@ void Unwind_18090c5f0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x300)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -69886,35 +69886,35 @@ void Unwind_18090c600(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x360)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -70575,35 +70575,35 @@ void Unwind_18090ca20(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0xd0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -70633,35 +70633,35 @@ void Unwind_18090ca40(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x130)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -70703,35 +70703,35 @@ void Unwind_18090ca70(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 400)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -70770,35 +70770,35 @@ void Unwind_18090caa0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x1f0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -70837,35 +70837,35 @@ void Unwind_18090cad0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x250)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -70904,35 +70904,35 @@ void Unwind_18090cb00(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x2b0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -70959,35 +70959,35 @@ void Unwind_18090cb20(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x310)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -71014,35 +71014,35 @@ void Unwind_18090cb40(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x4f0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -71072,35 +71072,35 @@ void Unwind_18090cb60(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x370)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -71127,35 +71127,35 @@ void Unwind_18090cb80(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x3d0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -71218,35 +71218,35 @@ void Unwind_18090cbd0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x430)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -71285,35 +71285,35 @@ void Unwind_18090cc00(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x490)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -71451,35 +71451,35 @@ void Unwind_18090cce0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x50)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -76752,35 +76752,35 @@ void Unwind_18090e760(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x70)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -76810,35 +76810,35 @@ void Unwind_18090e7a0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x1a0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -76856,35 +76856,35 @@ void Unwind_18090e7b0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0xa0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -76902,35 +76902,35 @@ void Unwind_18090e7c0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x100)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -76948,35 +76948,35 @@ void Unwind_18090e7d0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x60)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -76994,35 +76994,35 @@ void Unwind_18090e7e0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x90)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -77040,35 +77040,35 @@ void Unwind_18090e7f0(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0xf0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -77086,35 +77086,35 @@ void Unwind_18090e800(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x1b0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -77144,35 +77144,35 @@ void Unwind_18090e820(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x210)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -77202,35 +77202,35 @@ void Unwind_18090e840(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x270)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -77260,35 +77260,35 @@ void Unwind_18090e860(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x2d0)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -77699,35 +77699,35 @@ void Unwind_18090eb00(undefined8 param_1,longlong param_2)
   longlong validationContext;
   int operationResult;
   longlong calculatedOffset;
-  longlong *plVar4;
-  longlong lVar5;
+  longlong *contextPointer;
+  longlong resourceIterator;
   
   if (0 < *(int *)(param_2 + 0x140)) {
-    lVar5 = *(longlong *)(_DAT_180c86938 + 0x1cd8);
+    resourceIterator = *(longlong *)(_DAT_180c86938 + 0x1cd8);
     if ((*(char *)(SystemResourcePointer + 0x12e3) != '\0') || (*(char *)(SystemResourcePointer + 0x12dd) != '\0')
        ) {
-      plVar4 = (longlong *)(lVar5 + 0x80d8 + (longlong)*(int *)(lVar5 + 0x8088) * 0x20);
-      validationContext = *plVar4;
-      validationContext = *(longlong *)(validationContext + ((longlong)(int)(plVar4[1] - validationContext >> 3) + -1) * 8);
+      contextPointer = (longlong *)(resourceIterator + 0x80d8 + (longlong)*(int *)(resourceIterator + 0x8088) * 0x20);
+      validationContext = *contextPointer;
+      validationContext = *(longlong *)(validationContext + ((longlong)(int)(contextPointer[1] - validationContext >> 3) + -1) * 8);
       FUN_180057340();
       if (*(longlong *)(validationContext + 0x68) == 0) {
-        *(longlong *)(lVar5 + 0x80b0 + (longlong)*(int *)(lVar5 + 0x8088) * 8) = validationContext;
+        *(longlong *)(resourceIterator + 0x80b0 + (longlong)*(int *)(resourceIterator + 0x8088) * 8) = validationContext;
       }
-      calculatedOffset = (longlong)*(int *)(lVar5 + 0x8088) * 0x20;
-      validationContext = *(longlong *)(calculatedOffset + 200 + lVar5 + 0x7f20);
-      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + lVar5 + 0x7f20) - validationContext >> 3) + -1;
+      calculatedOffset = (longlong)*(int *)(resourceIterator + 0x8088) * 0x20;
+      validationContext = *(longlong *)(calculatedOffset + 200 + resourceIterator + 0x7f20);
+      operationResult = (int)(*(longlong *)(calculatedOffset + 0xd0 + resourceIterator + 0x7f20) - validationContext >> 3) + -1;
       if (-1 < operationResult) {
-        lVar5 = (longlong)operationResult;
+        resourceIterator = (longlong)operationResult;
         do {
-          if (*(char *)(*(longlong *)(validationContext + lVar5 * 8) + 0x60) == '\x01') {
+          if (*(char *)(*(longlong *)(validationContext + resourceIterator * 8) + 0x60) == '\x01') {
             if (operationResult != -1) {
               FUN_1802c24b0(*(undefined8 *)(validationContext + (longlong)operationResult * 8));
             }
             break;
           }
           operationResult = operationResult + -1;
-          lVar5 = lVar5 + -1;
-        } while (-1 < lVar5);
+          resourceIterator = resourceIterator + -1;
+        } while (-1 < resourceIterator);
       }
     }
   }
@@ -78729,29 +78729,29 @@ void Unwind_18090efe0(undefined8 param_1,longlong param_2)
   longlong *pdataContext;
   longlong calculatedOffset;
   longlong lVar4;
-  longlong *plVar5;
+  longlong *presourceIterator;
   
   validationContext = *(longlong *)(param_2 + 0x70);
   pdataContext = (longlong *)(validationContext + 0x300);
   calculatedOffset = *(longlong *)(validationContext + 0x310);
   lVar4 = *(longlong *)(validationContext + 800);
-  plVar5 = *(longlong **)(validationContext + 0x328);
+  presourceIterator = *(longlong **)(validationContext + 0x328);
   if (calculatedOffset != *(longlong *)(validationContext + 0x330)) {
     do {
       FUN_1800edd10(calculatedOffset);
       calculatedOffset = calculatedOffset + 0x78;
       if (calculatedOffset == lVar4) {
-        plVar5 = plVar5 + 1;
-        calculatedOffset = *plVar5;
+        presourceIterator = presourceIterator + 1;
+        calculatedOffset = *presourceIterator;
         lVar4 = calculatedOffset + 0x1e0;
       }
     } while (calculatedOffset != *(longlong *)(validationContext + 0x330));
   }
   if (*pdataContext != 0) {
-    plVar5 = *(longlong **)(validationContext + 0x328);
-    while (plVar5 < (longlong *)(*(longlong *)(validationContext + 0x348) + 8)) {
-      lVar4 = *plVar5;
-      plVar5 = plVar5 + 1;
+    presourceIterator = *(longlong **)(validationContext + 0x328);
+    while (presourceIterator < (longlong *)(*(longlong *)(validationContext + 0x348) + 8)) {
+      lVar4 = *presourceIterator;
+      presourceIterator = presourceIterator + 1;
       if (lVar4 != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
@@ -78826,28 +78826,28 @@ void Unwind_18090f040(undefined8 param_1,longlong param_2)
   longlong *validationContextPointer;
   longlong dataContext;
   longlong calculatedOffset;
-  longlong *plVar4;
+  longlong *contextPointer;
   
   validationContextPointer = *(longlong **)(param_2 + 0x78);
   dataContext = validationContextPointer[2];
   calculatedOffset = validationContextPointer[4];
-  plVar4 = (longlong *)validationContextPointer[5];
+  contextPointer = (longlong *)validationContextPointer[5];
   if (dataContext != validationContextPointer[6]) {
     do {
       FUN_1800edd10(dataContext);
       dataContext = dataContext + 0x78;
       if (dataContext == calculatedOffset) {
-        plVar4 = plVar4 + 1;
-        dataContext = *plVar4;
+        contextPointer = contextPointer + 1;
+        dataContext = *contextPointer;
         calculatedOffset = dataContext + 0x1e0;
       }
     } while (dataContext != validationContextPointer[6]);
   }
   if (*validationContextPointer != 0) {
-    plVar4 = (longlong *)validationContextPointer[5];
-    while (plVar4 < (longlong *)(validationContextPointer[9] + 8)) {
-      calculatedOffset = *plVar4;
-      plVar4 = plVar4 + 1;
+    contextPointer = (longlong *)validationContextPointer[5];
+    while (contextPointer < (longlong *)(validationContextPointer[9] + 8)) {
+      calculatedOffset = *contextPointer;
+      contextPointer = contextPointer + 1;
       if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
@@ -78989,28 +78989,28 @@ void Unwind_18090f0c0(undefined8 param_1,longlong param_2)
   longlong *validationContextPointer;
   longlong dataContext;
   longlong calculatedOffset;
-  longlong *plVar4;
+  longlong *contextPointer;
   
   validationContextPointer = *(longlong **)(param_2 + 0x40);
   dataContext = validationContextPointer[2];
   calculatedOffset = validationContextPointer[4];
-  plVar4 = (longlong *)validationContextPointer[5];
+  contextPointer = (longlong *)validationContextPointer[5];
   if (dataContext != validationContextPointer[6]) {
     do {
       FUN_1800edd10(dataContext);
       dataContext = dataContext + 0x78;
       if (dataContext == calculatedOffset) {
-        plVar4 = plVar4 + 1;
-        dataContext = *plVar4;
+        contextPointer = contextPointer + 1;
+        dataContext = *contextPointer;
         calculatedOffset = dataContext + 0x1e0;
       }
     } while (dataContext != validationContextPointer[6]);
   }
   if (*validationContextPointer != 0) {
-    plVar4 = (longlong *)validationContextPointer[5];
-    while (plVar4 < (longlong *)(validationContextPointer[9] + 8)) {
-      calculatedOffset = *plVar4;
-      plVar4 = plVar4 + 1;
+    contextPointer = (longlong *)validationContextPointer[5];
+    while (contextPointer < (longlong *)(validationContextPointer[9] + 8)) {
+      calculatedOffset = *contextPointer;
+      contextPointer = contextPointer + 1;
       if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
         TerminateSystemE0();
@@ -79700,18 +79700,18 @@ void Unwind_18090f370(undefined8 param_1,longlong param_2)
   longlong validationContext;
   longlong dataContext;
   uint validationStatus;
-  longlong *plVar4;
+  longlong *contextPointer;
   
   validationContext = *(longlong *)(param_2 + 0x60);
   validationStatus = 0;
-  plVar4 = (longlong *)(validationContext + 600);
+  contextPointer = (longlong *)(validationContext + 600);
   do {
-    if (*plVar4 != 0) {
+    if (*contextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
     dataContext = (longlong)(int)validationStatus;
-    plVar4 = plVar4 + 1;
+    contextPointer = contextPointer + 1;
     validationStatus = validationStatus + 1;
     *(undefined8 *)(validationContext + 600 + dataContext * 8) = 0;
   } while (validationStatus < 10);

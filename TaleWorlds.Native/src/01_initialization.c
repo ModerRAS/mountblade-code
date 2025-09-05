@@ -1319,20 +1319,20 @@ uint32_t SystemMemoryOperationStatusFlagTertiary;      // 系统内存操作状�
 uint32_t SystemMemoryOperationStatusFlagQuaternary;    // 系统内存操作状态标志-第四标志
 
 // 系统回调函数指针
-void* SystemEventNotificationHandler;     // SystemEventNotificationHandler
-void* SystemInitializationHandlerPrimary;  // SystemInitializationHandlerA
-void* SystemInitializationHandlerSecondary;  // SystemInitializationHandlerB
-void* SystemDebugMessageHandler;            // SystemDebugMessageHandler
-void* SystemEventProcessor;            // SystemEventProcessor
-void* SystemNetworkEventHandler;          // SystemNetworkEventHandler
-void* SystemGlobalDataManager;      // SystemGlobalDataManager
+void* SystemEventNotificationHandler;     // 系统事件通知处理器
+void* SystemInitializationHandlerPrimary;  // 系统初始化处理器-主处理器
+void* SystemInitializationHandlerSecondary;  // 系统初始化处理器-次处理器
+void* SystemDebugMessageHandler;            // 系统调试消息处理器
+void* SystemEventProcessor;            // 系统事件处理器
+void* SystemNetworkEventHandler;          // 系统网络事件处理器
+void* SystemGlobalDataManager;      // 系统全局数据管理器
 
 // 系统全局数据指针
 void* SystemGlobalDataReference;        // 全局系统数据引用
-void* SystemGlobalDataSecondary;        // SystemGlobalDataSecondary
-void* SystemGlobalDataTertiary;        // SystemGlobalDataTertiary
-void* SystemGlobalDataQuaternary;        // SystemGlobalDataQuaternary
-void* SystemGlobalDataQuinary;        // SystemGlobalDataQuinary
+void* SystemGlobalDataSecondary;        // 系统全局数据-次级数据
+void* SystemGlobalDataTertiary;        // 系统全局数据-第三级数据
+void* SystemGlobalDataQuaternary;        // 系统全局数据-第四级数据
+void* SystemGlobalDataQuinary;        // 系统全局数据-第五级数据
 
 // 系统配置数据指针
 void* SystemConfigurationDataPrimary;        // 主要系统配置数据
@@ -1357,28 +1357,28 @@ void* SystemMemoryAllocatorFunction;
  * 负责初始化系统核心数据结构，设置系统运行所需的基本数据
  */
 void* SystemDataInitializerFunction;
-void* SystemDataBufferPrimary;
-void* SystemDataBufferSecondary;
-void* SystemDataBufferTertiary;
-void* SystemDataBufferQuaternary;
-void* SystemDataBufferQuinary;
-void* SystemDataBufferSenary;
-void* SystemDataTablePrimary;
+void* SystemDataBufferPrimary;              // 主数据缓冲区
+void* SystemDataBufferSecondary;           // 次级数据缓冲区
+void* SystemDataBufferTertiary;            // 第三数据缓冲区
+void* SystemDataBufferQuaternary;          // 第四数据缓冲区
+void* SystemDataBufferQuinary;             // 第五数据缓冲区
+void* SystemDataBufferSenary;              // 第六数据缓冲区
+void* SystemDataTablePrimary;                 // 主系统数据表
 void* SystemDataTableSecondary;                // 次级系统数据表
-void* SystemDataStructurePrimary;
-void* SystemDataStructureSecondary;
-void* SystemMemoryRegionPrimary;
-void* SystemMemoryRegionSecondary;
-void* SystemMemoryRegionTertiary;
-void* SystemMemoryRegionQuaternary;
-void* SystemMemoryRegionQuinary;
-void* SystemMemoryRegionSenary;
-void* SystemConfigurationDataPrimary;
-void* SystemConfigurationDataSecondary;
-void* SystemConfigurationDataTertiary;
-void* SystemConfigurationDataQuaternary;
-void* SystemConfigurationDataQuinary;
-void* SystemConfigurationDataSenary;
+void* SystemDataStructurePrimary;              // 主数据结构
+void* SystemDataStructureSecondary;           // 次级数据结构
+void* SystemMemoryRegionPrimary;             // 主内存区域
+void* SystemMemoryRegionSecondary;          // 次级内存区域
+void* SystemMemoryRegionTertiary;           // 第三内存区域
+void* SystemMemoryRegionQuaternary;         // 第四内存区域
+void* SystemMemoryRegionQuinary;            // 第五内存区域
+void* SystemMemoryRegionSenary;             // 第六内存区域
+void* SystemConfigurationDataPrimary;        // 主配置数据
+void* SystemConfigurationDataSecondary;     // 次级配置数据
+void* SystemConfigurationDataTertiary;      // 第三配置数据
+void* SystemConfigurationDataQuaternary;    // 第四配置数据
+void* SystemConfigurationDataQuinary;       // 第五配置数据
+void* SystemConfigurationDataSenary;        // 第六配置数据
 // 系统数据缓冲区 - 主要数据序列
 void* SystemDataBufferPrimaryAlpha;     // 主要数据缓冲区第一个
 void* SystemDataBufferPrimaryBeta;      // 主要数据缓冲区第二个
@@ -1391,11 +1391,11 @@ void* SystemDataBufferPrimaryTheta;     // 主要数据缓冲区第八个
 void* SystemDataBufferPrimaryIota;      // 主要数据缓冲区第九个
 
 // 系统配置管理器
-void* SystemConfigurationManager;
-void* SystemDataBufferConfigurationPrimary;
-void* SystemDataBufferConfigurationSecondary;
-void* SystemDataBufferConfigurationTertiary;
-void* SystemDataBufferConfigurationQuaternary;
+void* SystemConfigurationManager;              // 系统配置管理器
+void* SystemDataBufferConfigurationPrimary;   // 主配置数据缓冲区
+void* SystemDataBufferConfigurationSecondary; // 次级配置数据缓冲区
+void* SystemDataBufferConfigurationTertiary;  // 第三配置数据缓冲区
+void* SystemDataBufferConfigurationQuaternary; // 第四配置数据缓冲区
 void* SystemDataBufferConfigurationQuinary;    // 系统配置数据缓冲区第五个
 void* SystemDataBufferConfigurationSenary;    // 系统配置数据缓冲区第六个
 void* SystemDataBufferConfigurationSeptenary;  // 系统配置数据缓冲区第七个
