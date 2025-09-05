@@ -64324,7 +64324,7 @@ void SetSystemDataStructurePointerAtOffset90(uint8_t ObjectContext,int64_t Valid
 
 
 /**
- * @brief 执行系统清理回调函数1
+ * @brief 执行系统清理回调函数（主要版本）
  * 
  * 该函数负责执行系统清理回调函数，从验证上下文中获取回调函数指针并执行
  * 
@@ -64346,10 +64346,10 @@ void ExecuteSystemCleanupCallbackPrimary(uint8_t ObjectContext,int64_t Validatio
 
 
 /**
- * @brief 执行系统清理回调函数2
+ * @brief 执行系统清理回调函数（次要版本）
  * 
  * 该函数负责执行系统清理回调函数，从验证上下文中获取回调函数指针并执行
- * 与ExecuteSystemCleanupCallback1类似，但操作不同的偏移量
+ * 与ExecuteSystemCleanupCallbackPrimary类似，但操作不同的偏移量
  * 
  * @param ObjectContext 对象上下文，包含对象相关的状态信息
  * @param ValidationContext 验证上下文，包含验证所需的数据和参数
@@ -64369,7 +64369,7 @@ void ExecuteSystemCleanupCallbackSecondary(uint8_t ObjectContext,int64_t Validat
 
 
 /**
- * @brief 执行系统清理回调函数3
+ * @brief 执行系统清理回调函数（第三版本）
  * 
  * 该函数负责执行系统清理回调函数，从验证上下文中获取回调函数指针并执行
  * 与之前的清理回调函数类似，但操作不同的数据结构

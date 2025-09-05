@@ -919,17 +919,17 @@ void InitializeNetworkConnectionPool(void)
  */
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplate = &NetworkConnectionContextTemplateData;
-void *NetworkConnectionPrimaryConfig = &NetworkConnectionPrimaryConfig;
-void *NetworkConnectionSecondaryConfig = &NetworkConnectionSecondaryConfig;
-void *NetworkConnectionProcessingConfig = &NetworkConnectionProcessingConfig;
-void *NetworkConnectionTransportConfig = &NetworkConnectionTransportConfig;
-void *NetworkConnectionProtocolConfig = &NetworkConnectionProtocolConfig;
-void *NetworkConnectionValidationConfig = &NetworkConnectionValidationConfig;
-void *NetworkConnectionRoutingPrimaryConfig = &NetworkConnectionRoutingPrimaryConfig;
-void *NetworkConnectionRoutingSecondaryConfig = &NetworkConnectionRoutingSecondaryConfig;
-void *NetworkConnectionRoutingTertiaryConfig = &NetworkConnectionRoutingTertiaryConfig;
-void *NetworkConnectionRoutingQuaternaryConfig = &NetworkConnectionRoutingQuaternaryConfig;
+void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
+void *NetworkConnectionPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;
+void *NetworkConnectionSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;
+void *NetworkConnectionProcessingConfigPointer = &NetworkConnectionProcessingConfig;
+void *NetworkConnectionTransportConfigPointer = &NetworkConnectionTransportConfig;
+void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;
+void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;
+void *NetworkConnectionRoutingPrimaryConfigPointer = &NetworkConnectionRoutingPrimaryConfig;
+void *NetworkConnectionRoutingSecondaryConfigPointer = &NetworkConnectionRoutingSecondaryConfig;
+void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig;
+void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig;
 
 // 网络连接配置数据定义
 
@@ -1879,6 +1879,7 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
   int64_t NetworkConnectionIdentifier;              // 网络连接上下文标识符
   int64_t *NetworkConnectionValidationResult;          // 网络连接验证结果指针
   int32_t NetworkValidationStatusCode;               // 网络连接验证结果码
+  NetworkHandle NetworkConnectionContextId;           // 网络连接上下文ID
   
   NetworkConnectionIdentifier = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
@@ -2065,8 +2066,11 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
   int64_t *ConnectionOperationBuffer;                             // 操作缓冲区
   int32_t ConnectionUpdateOperation;                         // 更新操作代码
-  
-  ConnectionStatusPointer = (NetworkStatus *)0x0;
+  NetworkStatus *ConnectionStatusPointer;                          // 连接状态指针
+  int32_t ConnectionOperationCode;                              // 连接操作代码
+  int64_t ProcessedPacketId;                                    // 已处理数据包ID
+  int32_t PacketIndex;                                           // 数据包索引
+  int32_t MaxIntValue;                                           // 最大整数值
   if (ConnectionOperationCode == 0) {
 PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset)) && (*ConnectionOperationBuffer != 0)) {
