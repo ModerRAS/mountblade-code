@@ -2002,23 +2002,23 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *ContextDataPointer = (NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)ConnectionStatusBufferPointer) + (long long)ConnectionStatusPointer);
+            NetworkConnectionStatus *NetworkContextDataPointer = (NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)NetworkConnectionStatusBuffer) + (long long)NetworkConnectionStatusPointer);
             
             // 提取连接状态信息
-            NetworkConnectionStatus PacketStatus = ContextDataPointer[ConnectionContextPacketStatusIndex];
-            NetworkConnectionStatus DataStatus = ContextDataPointer[ConnectionContextDataStatusIndex];
-            NetworkConnectionStatus ValidationStatus = ContextDataPointer[ConnectionContextValidationStatusIndex];
+            NetworkConnectionStatus PacketStatus = NetworkContextDataPointer[ConnectionContextPacketStatusIndex];
+            NetworkConnectionStatus DataStatus = NetworkContextDataPointer[ConnectionContextDataStatusIndex];
+            NetworkConnectionStatus ValidationStatus = NetworkContextDataPointer[ConnectionContextValidationStatusIndex];
             
             // 更新数据包缓冲区状态
             *NetworkConnectionStatusPointer = *NetworkContextDataPointer;
-            ConnectionStatusPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
+            NetworkConnectionStatusPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
             NetworkConnectionStatusPointer[ConnectionContextDataStatusIndex] = DataStatus;
-            ConnectionStatusPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            ConnectionStatusPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)ConnectionStatusBufferPointer) + -4 + (long long)(ConnectionStatusPointer + ConnectionContextStatusEntrySize));
+            NetworkConnectionStatusPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
+            NetworkConnectionStatusPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)NetworkConnectionStatusBuffer) + -4 + (long long)(NetworkConnectionStatusPointer + ConnectionContextStatusEntrySize));
             
             // 更新计数器
             ConnectionProcessingCounter = ConnectionProcessingCounter - 1;
-            ConnectionStatusPointer = ConnectionStatusPointer + ConnectionContextStatusEntrySize;
+            NetworkConnectionStatusPointer = NetworkConnectionStatusPointer + ConnectionContextStatusEntrySize;
           } while (ConnectionProcessingCounter != 0);
         }
         return NetworkOperationSuccessCode;
