@@ -1808,17 +1808,6 @@ void InitializeNetworkConnectionState(void)
  * @note 此函数会重置所有连接相关的指针和数据结构
  * @warning 清理过程中如果遇到错误，系统会记录错误日志
  */
-/**
- * @brief 重置网络连接指针
- * 
- * 重置网络连接的指针和数据缓冲区，清理连接堆栈。此函数负责将连接指针
- * 重置到初始状态，清理数据缓冲区，并释放相关的连接资源。
- * 
- * @note 此函数会在连接断开或重置时调用
- * @warning 重置操作会清除所有连接相关的数据
- * 
- * @return void 无返回值
- */
 void ResetNetworkConnectionPointer(void)
 {
   // 网络连接指针重置变量
