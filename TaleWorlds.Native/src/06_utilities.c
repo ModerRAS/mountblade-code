@@ -26258,7 +26258,7 @@ ulonglong FUN_18089de72(void)
 
 
 89df30(void)
-void FUN_18089df30(void)
+void ResetSystemComponentsC0(void)
 
 {
   return;
@@ -26438,7 +26438,7 @@ undefined8 FUN_18089e043(void)
 
 
 89e0be(void)
-void FUN_18089e0be(void)
+void ValidateSystemComponentsC0(void)
 
 {
   return;
@@ -26911,7 +26911,7 @@ LAB_18089e447:
 
 
 89e4d7(void)
-void FUN_18089e4d7(void)
+void ConfigureSystemParametersC0(void)
 
 {
   return;
@@ -27208,7 +27208,7 @@ LAB_18089e70b:
 
 
 89e801(void)
-void FUN_18089e801(void)
+void UtilityNoOperationX(void)
 
 {
   return;
@@ -27218,7 +27218,7 @@ void FUN_18089e801(void)
 
 
 89e811(void)
-void FUN_18089e811(void)
+void UtilityNoOperationY(void)
 
 {
   return;
@@ -28136,7 +28136,7 @@ LAB_18089ed1b:
 
 
 89edaf(void)
-void FUN_18089edaf(void)
+void InitializeSystemStateC0(void)
 
 {
   return;
@@ -28146,7 +28146,7 @@ void FUN_18089edaf(void)
 
 
 89edc7(void)
-void FUN_18089edc7(void)
+void CheckSystemStateAndReturnC0(void)
 
 {
   return;
@@ -28221,7 +28221,7 @@ undefined8 FUN_18089ee64(void)
 
 
 89ee87(void)
-void FUN_18089ee87(void)
+void ValidateSystemConfigurationC1(void)
 
 {
   undefined8 uVar1;
@@ -28251,7 +28251,7 @@ void FUN_18089ee87(void)
 
 
 89eef2(void)
-void FUN_18089eef2(void)
+void ProcessSystemOperationsC0(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -28262,7 +28262,7 @@ void FUN_18089eef2(void)
 
 
 89ef24(void)
-void FUN_18089ef24(void)
+void CleanupSystemStateC1(void)
 
 {
   return;
@@ -86270,7 +86270,9 @@ void ProcessValidationContextA0(undefined8 param_1,undefined8 param_2,undefined8
 
 
 941980(void)
-void FUN_180941980(void)
+// 原始函数名：FUN_180941980 - 异常处理器设置函数A0
+// 功能：设置默认异常处理器B到全局指针位置
+void SetDefaultExceptionHandlerA0(void)
 
 {
   _DAT_180bf52e8 = &DefaultExceptionHandlerB;
@@ -86282,8 +86284,9 @@ void FUN_180941980(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9419a0(void)
-void FUN_1809419a0(void)
+// 原始函数名：FUN_1809419a0 - 异常处理器设置函数A1
+// 功能：设置默认异常处理器B到另一个全局指针位置
+void SetDefaultExceptionHandlerA1(void)
 
 {
   _DAT_180bf5738 = &DefaultExceptionHandlerB;
@@ -86293,12 +86296,13 @@ void FUN_1809419a0(void)
 
 
 
-9419c0(void)
-void FUN_1809419c0(void)
+// 原始函数名：FUN_1809419c0 - 互斥锁销毁函数A0
+// 功能：销毁指定位置的互斥锁
+void DestroyMutexA0(void)
 
 {
-                    // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
-                    // WARNING: Treating indirect jump as call
+  // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
+  // WARNING: Treating indirect jump as call
   _Mtx_destroy_in_situ(0x180c91970);
   return;
 }
@@ -86308,13 +86312,14 @@ void FUN_1809419c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-9419e0(void)
-void FUN_1809419e0(void)
+// 原始函数名：FUN_1809419e0 - 系统终止和重置函数A0
+// 功能：设置异常处理器，如果系统正在运行则终止，然后重置系统状态
+void TerminateAndResetSystemA0(void)
 
 {
   _DAT_180d49218 = &UNK_180a3c3e0;
   if (_DAT_180d49220 != 0) {
-                    // WARNING: Subroutine does not return
+    // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   _DAT_180d49220 = 0;
