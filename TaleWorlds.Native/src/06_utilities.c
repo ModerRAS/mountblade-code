@@ -397,7 +397,7 @@
 #define SystemContextQuinaryResourceOffset 0x148             // 系统上下文第五级资源偏移量
 #define SystemContextSenaryResourceOffset 0x918              // 系统上下文第六级资源偏移量
 #define SystemContextHandlerTemplateOffset 0x58              // 系统上下文处理器模板偏移量
-#define SystemContextDataStructureOffset 0x60                // 系统上下文数据结构偏移量
+#define EngineContextDataStructureOffset 0x60                // 系统上下文数据结构偏移量
 #define SystemContextResourceOperationOffset 0x70            // 系统上下文资源操作偏移量
 #define SystemContextCleanupOptionOffset 0xd8                 // 系统上下文清理选项偏移量
 #define SystemContextSecondaryHandlerOffset 0xe8             // 系统上下文次级处理器偏移量
@@ -434,17 +434,17 @@
 #define EngineNonaryMutexAddress 0x180c4f4b8
 #define EngineDenaryMutexAddress 0x180c4f4c0
 #define EngineMemoryCleanupAddress 0x180c4f4c8
-#define SystemContextMutexLockOffset 0x20
-#define SystemContextCleanupCallbackOffset 0x20
-#define SystemContextMutexLockExtendedOffset 0x28
-#define SystemContextConditionVariableOffset 0x28
+#define EngineContextMutexLockOffset 0x20
+#define EngineContextCleanupCallbackOffset 0x20
+#define EngineContextMutexLockExtendedOffset 0x28
+#define EngineContextConditionVariableOffset 0x28
 #define ResourceDataStatusOffset 0x20
-#define SystemContextResourceHandlerOffset 0x50
-#define SystemContextResetOffset 0x50
-#define SystemContextResourceHashOffset 0x20
-#define SystemContextDataReferenceOffset 0x20
-#define SystemContextDataStructureOffset 0x20
-#define SystemContextReferenceOffset 0x28
+#define EngineContextResourceHandlerOffset 0x50
+#define EngineContextResetOffset 0x50
+#define EngineContextResourceHashOffset 0x20
+#define EngineContextDataReferenceOffset 0x20
+#define EngineContextDataStructureOffset 0x20
+#define EngineContextReferenceOffset 0x28
 
 // 缓冲区偏移常量
 #define BufferOffsetPrimary 0x70
@@ -15561,7 +15561,7 @@ void SystemInitializerPrimary(void)
             FloatDataPointer = (float *)&SystemFloatTemplateActive;
             FloatIterationValue = FloatRegisterValue;
             do {
-              ComputedFloatValue = *(float *)(SystemContextRegister + -0x180985054 + (int64_t)FloatPointer);
+              ComputedFloatValue = *(float *)(SystemContextRegister - EngineResourceBaseAddress + (int64_t)FloatPointer);
               if (SourceFloatValue != *FloatPointer) {
                 ContextBufferPointer = StackContextBuffer;
                 ResourceTemplatePointer = &SystemResourceTemplateInput;
@@ -15829,7 +15829,7 @@ void CalculateFloatValueAndValidateResources(void)
         FloatDataPointer = (float *)&SystemFloatTemplateActive;
         FloatIterationValue = FloatRegisterValue;
         do {
-          ComputedFloatValue = *(float *)(SystemContextRegister + -0x180985054 + (int64_t)FloatPointer);
+          ComputedFloatValue = *(float *)(SystemContextRegister - EngineResourceBaseAddress + (int64_t)FloatPointer);
           if (SourceFloatValue != *FloatPointer) {
             ContextBufferPointer = StackContextBuffer;
             ResourceTemplatePointer = &SystemResourceTemplateInput;
@@ -15986,7 +15986,7 @@ void ProcessFloatOperationsAndContextValidation(float ObjectContext)
     pLowerBoundFloatValue = (float *)&SystemFloatTemplateActive;
     secondFloatResult = FloatRegisterValue;
     do {
-      ComputedFloatValue = *(float *)(SystemContextRegister + -0x180985054 + (int64_t)pResultFloatValue);
+      ComputedFloatValue = *(float *)(SystemContextRegister - EngineResourceBaseAddress + (int64_t)pResultFloatValue);
       if (SourceFloatValue != *resultFloatValuePointer) {
         contextBufferPointer = StackContextBuffer;
         resourceTemplatePointer = &SystemResourceTemplateInput;
@@ -45348,7 +45348,7 @@ void DestroyGlobalMutexLock(void)
 void DestroyMutexLock(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  MutexDestroyInPlace(*(uint8_t *)(ValidationContext + SystemContextMutexLockOffset));
+  MutexDestroyInPlace(*(uint8_t *)(ValidationContext + EngineContextMutexLockOffset));
   return;
 }
 
@@ -45373,9 +45373,9 @@ void ExecuteResourceCleanupCallback(uint8_t ObjectContext,int64_t ValidationCont
 {
   code *CleanupCallbackPointer;
   
-  CleanupCallbackPointer = *(code **)(*(int64_t *)(ValidationContext + SystemContextCleanupCallbackOffset) + ValidationContextCleanupFunctionOffset);
+  CleanupCallbackPointer = *(code **)(*(int64_t *)(ValidationContext + EngineContextCleanupCallbackOffset) + ValidationContextCleanupFunctionOffset);
   if (CleanupCallbackPointer != (code *)0x0) {
-    (*CleanupCallbackPointer)(*(int64_t *)(ValidationContext + SystemContextCleanupCallbackOffset),0,0,CleanupFlag,0xfffffffffffffffe);
+    (*CleanupCallbackPointer)(*(int64_t *)(ValidationContext + EngineContextCleanupCallbackOffset),0,0,CleanupFlag,0xfffffffffffffffe);
   }
   return;
 }
@@ -45420,7 +45420,7 @@ void DestroyMutexResource(void)
 void DestroyMutexResourceExtended(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  MutexDestroyInPlace(*(uint8_t *)(ValidationContext + SystemContextMutexLockExtendedOffset));
+  MutexDestroyInPlace(*(uint8_t *)(ValidationContext + EngineContextMutexLockExtendedOffset));
   return;
 }
 
@@ -45443,7 +45443,7 @@ void DestroyMutexResourceExtended(uint8_t ObjectContext,int64_t ValidationContex
 void DestroyConditionVariableResource(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  _Cnd_destroy_in_situ(*(uint8_t *)(ValidationContext + SystemContextConditionVariableOffset));
+  _Cnd_destroy_in_situ(*(uint8_t *)(ValidationContext + EngineContextConditionVariableOffset));
   return;
 }
 
@@ -45579,13 +45579,13 @@ void FreeResourceIndexHandle(uint8_t ObjectContext,int64_t ValidationContext)
 void ResetSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  *(uint8_t *)(ValidationContext + SystemContextResourceHandlerOffset) = &SystemResourceHandlerTemplate;
+  *(uint8_t *)(ValidationContext + EngineContextResourceHandlerOffset) = &SystemResourceHandlerTemplate;
   if (*(int64_t *)(ValidationContext + ValidationContextSecondaryCountOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
   *(uint8_t *)(ValidationContext + ValidationContextSecondaryCountOffset) = 0;
   *(uint32_t *)(ValidationContext + ValidationContextTertiaryCountOffset) = 0;
-  *(uint8_t *)(ValidationContext + SystemContextResourceHandlerOffset) = &SystemDataStructure;
+  *(uint8_t *)(ValidationContext + EngineContextResourceHandlerOffset) = &SystemDataStructure;
   return;
 }
 
@@ -45606,7 +45606,7 @@ void ResetSystemResourceHandler(uint8_t ObjectContext,int64_t ValidationContext)
 void ResetSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + SystemContextDataStructureOffset) = &SystemDataStructure;
+  *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + EngineContextDataStructureOffset) = &SystemDataStructure;
   return;
 }
 
@@ -45615,7 +45615,7 @@ void ResetSystemDataPointer(uint8_t ObjectContext,int64_t ValidationContext)
 void ResetSystemContext(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + SystemContextResetOffset) = &SystemDataStructure;
+  **(uint8_t **)(ValidationContext + EngineContextResetOffset) = &SystemDataStructure;
   return;
 }
 
@@ -45626,7 +45626,7 @@ void ResetResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 {
   uint8_t *ResourceHashPtr;
   
-  ResourceHashPtr = *(uint8_t **)(ValidationContext + SystemContextResourceHashOffset);
+  ResourceHashPtr = *(uint8_t **)(ValidationContext + EngineContextResourceHashOffset);
   *ResourceHashPtr = &ResourceHashTemplate;
   *ResourceHashPtr = &ResourceAllocationTemplate;
   *ResourceHashPtr = &ResourceCacheTemplate;
@@ -45638,7 +45638,7 @@ void ResetResourceHashTable(uint8_t ObjectContext,int64_t ValidationContext)
 void ResetSystemDataReference(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  *(uint8_t **)(*(int64_t *)(ValidationContext + SystemContextDataReferenceOffset) + SystemContextDataStructureOffset) = &SystemDataStructure;
+  *(uint8_t **)(*(int64_t *)(ValidationContext + EngineContextDataReferenceOffset) + EngineContextDataStructureOffset) = &SystemDataStructure;
   return;
 }
 
@@ -45647,7 +45647,7 @@ void ResetSystemDataReference(uint8_t ObjectContext,int64_t ValidationContext)
 void ResetSystemContextReference(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + SystemContextReferenceOffset) = &SystemDataStructure;
+  **(uint8_t **)(ValidationContext + EngineContextReferenceOffset) = &SystemDataStructure;
   return;
 }
 
@@ -50979,7 +50979,7 @@ void CleanupResourceBuffer(uint8_t ObjectContext,int64_t ValidationContext)
 void InitializeSystemResourceBufferPrimary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x2e0) = &SystemResourceBufferA0e170;
+  **(uint8_t **)(ValidationContext + 0x2e0) = &PrimarySystemResourceBuffer;
   return;
 }
 
@@ -51396,7 +51396,7 @@ void CloseFileHandleAndDecrementReferenceCount(uint8_t ObjectContext,int64_t Val
 void InitializeSystemResourceBufferB(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  **(uint8_t **)(ValidationContext + 0x48) = &SystemResourceBufferA3e470;
+  **(uint8_t **)(ValidationContext + 0x48) = &SecondarySystemResourceBuffer;
   return;
 }
 
