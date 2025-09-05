@@ -131,9 +131,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
  * 计算连接上下文中参数的偏移量，用于访问连接参数
  * 
  * @param ConnectionContext 连接上下文指针
- * @return int64_t 计算出的偏移量地址
+ * @return int64_t 计算出的参数地址
  */
-static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
+static int64_t CalculateConnectionParameterAddress(int64_t *ConnectionContext)
 {
     return (int64_t)ConnectionContext + ConnectionParameterOffset;
 }
@@ -146,9 +146,9 @@ static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
  * @param ContextAddress 上下文地址
  * @param ConnectionContextBuffer 连接上下文缓冲区指针
  * @param ConnectionStatusPointer 网络连接状态指针
- * @return int64_t 计算出的偏移量地址
+ * @return int64_t 计算出的数据地址
  */
-static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
+static int64_t CalculateConnectionDataAddress(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
     return (ContextAddress - (int64_t)ConnectionContextBuffer) + (int64_t)ConnectionStatusPointer;
 }
@@ -163,7 +163,7 @@ static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *Conne
  * @param ConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的最后一个条目偏移量地址
  */
-static int64_t CalculateLastConnectionEntryOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
+static int64_t CalculateLastConnectionEntryAddress(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
     return CalculateConnectionDataOffset(ContextAddress, ConnectionContextBuffer, ConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)ConnectionStatusPointer + ConnectionContextEntrySize);
 }
