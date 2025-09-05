@@ -1844,7 +1844,7 @@ undefined SerializationDataHandle;
 //   undefined - 反序列化结果状态
 undefined UtilityDeserializeData;
 undefined DeserializationDataBuffer;
-undefined DAT_180bf9bd8;
+undefined DeserializationDataSize;
 undefined DAT_180bf9be0;
 undefined DAT_180bf9be8;
 undefined UNK_180a22df8;
@@ -9980,8 +9980,8 @@ void ExecuteSecurityCheckAndTerminateA(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808949c0(longlong param_1,undefined4 *param_2,longlong *param_3)
-void FUN_1808949c0(longlong param_1,undefined4 *param_2,longlong *param_3)
+// 函数: void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operationFlags,longlong *resultPointer)
+void ExecuteUtilitySystemOperation(longlong operationContext,undefined4 *operationFlags,longlong *resultPointer)
 
 {
   longlong *plVar1;
