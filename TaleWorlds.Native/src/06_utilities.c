@@ -22699,7 +22699,7 @@ undefined8 ProcessDataCacheA0(longlong param_1,undefined8 *param_2)
           uVar1 = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar1 = FUN_1808a2e00(*param_2,param_1 + 0x40);
+          uVar1 = GetMemoryAddressA0(*param_2,param_1 + 0x40);
         }
         else {
           uVar1 = 0x1c;
