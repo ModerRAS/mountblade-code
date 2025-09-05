@@ -27641,7 +27641,7 @@ DataProcessingHandler:
               return validationStatus;
             }
             if (*(int *)(validationContext[1] + 0x18) == 0) {
-              validationStatus = FUN_1808a2740(*validationContext,(int64_t)(int)dataFlags * 0x10 +
+              validationStatus = ProcessSystemDataA0(*validationContext,(int64_t)(int)dataFlags * 0x10 +
                                              *(int64_t *)(systemContext + 0x60));
             }
             else {
@@ -27835,7 +27835,7 @@ OperationLabelD:
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  memoryBaseAddress = FUN_1808a2740(*registerContext,register_R13 + 0x50);
+  memoryBaseAddress = ProcessSystemDataA0(*registerContext,register_R13 + 0x50);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
