@@ -4539,6 +4539,8 @@ void InitializeSystemMemoryAllocator(void)
   void** NextNodePointer;
   void** HashTablePointer;
   void* SystemEventCallback;
+  void* SystemCallbackPointer;
+  void* EventCallbackPointer;
   
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodeReference = (void**)*SystemDataTable;
