@@ -4730,9 +4730,10 @@ void ExecuteSystemShutdown(void)
 
 {
   ulonglong securityContext;
+  undefined8 systemSecurityBuffer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityContext ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(securityContext ^ (ulonglong)&systemSecurityBuffer);
 }
 
 
@@ -4752,15 +4753,17 @@ void ValidateSystemState(void)
 
 {
   longlong unaff_RBX;
-  ulonglong in_stack_00000240;
+  ulonglong systemValidationParameter;
+  undefined8 systemCleanupBuffer;
+  undefined8 systemSecurityBuffer;
   
   if ((*(uint *)(unaff_RBX + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
     ReleaseResource();
   }
-  CleanupMemory(&stack0x00000030);
+  CleanupMemory(&systemCleanupBuffer);
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(systemValidationParameter ^ (ulonglong)&systemSecurityBuffer);
 }
 
 
