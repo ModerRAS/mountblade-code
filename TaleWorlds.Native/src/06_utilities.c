@@ -481,6 +481,14 @@
 // 功能：处理系统数据，执行验证和更新操作
 #define ProcessSystemDataA0 FUN_180892990
 
+// 原始函数名：FUN_180892ac0 - 浮点数验证和处理函数A2
+// 功能：验证浮点数数据的有效性，处理数据范围检查和更新操作
+#define ValidateAndProcessFloatingPointNumberA2 FUN_180892ac0
+
+// 原始函数名：FUN_180892bd0 - 复杂数据处理函数A0
+// 功能：处理复杂数据结构，执行多层验证和更新操作
+#define ProcessComplexDataStructureA0 FUN_180892bd0
+
 // 原始函数名：FUN_1808992c4 - 系统初始化函数A0
 // 功能：初始化系统组件和资源
 #define InitializeSystemComponentsA0 FUN_1808992c4
