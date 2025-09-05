@@ -7505,39 +7505,65 @@ undefined8 ManageResourceState(longlong param_1,longlong param_2)
 
 
 
+// 函数: undefined8 HandlePermissionRequest(longlong param_1,longlong param_2)
+// 
+// 处理权限请求，验证和分配系统权限
+// 该函数负责处理系统的权限请求，包括权限验证和权限分配
+// 
+// 参数:
+//   param_1 - 权限请求上下文
+//   param_2 - 系统参数块
+// 
+// 返回值:
+//   undefined8 - 操作状态码
+//     0x4c - 权限验证失败
+//     其他值 - 权限处理结果
 undefined8 HandlePermissionRequest(longlong param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 permissionResult;
+  longlong permissionContext;
   
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 == 0) {
-    if (*(longlong *)(lStackX_8 + 8) == 0) {
+  permissionResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&permissionContext);
+  if ((int)permissionResult == 0) {
+    if (*(longlong *)(permissionContext + 8) == 0) {
       return 0x4c;
     }
-    *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(*(longlong *)(lStackX_8 + 8) + 0x78);
-    uVar1 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+    *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(*(longlong *)(permissionContext + 8) + 0x78);
+    permissionResult = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
   }
-  return uVar1;
+  return permissionResult;
 }
 
 
 
+// 函数: undefined8 ProcessSystemRequest(longlong param_1,longlong param_2)
+// 
+// 处理系统请求，验证请求状态并执行相应操作
+// 该函数负责处理系统级别的请求，包括请求验证和状态管理
+// 
+// 参数:
+//   param_1 - 系统请求上下文
+//   param_2 - 系统参数块
+// 
+// 返回值:
+//   undefined8 - 操作状态码
+//     0x4e - 请求已被处理或状态冲突
+//     其他值 - 请求处理结果
 undefined8 ProcessSystemRequest(longlong param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 requestResult;
+  longlong requestContext;
   
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  requestResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&requestContext);
+  if ((int)requestResult != 0) {
+    return requestResult;
   }
-  if (*(char *)(lStackX_8 + 0x2c) != '\0') {
+  if (*(char *)(requestContext + 0x2c) != '\0') {
     return 0x4e;
   }
-  *(undefined1 *)(lStackX_8 + 0x2c) = 1;
+  *(undefined1 *)(requestContext + 0x2c) = 1;
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
 }
