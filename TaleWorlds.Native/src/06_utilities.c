@@ -94,7 +94,7 @@
  * 
  * @note 原始函数名：func_0x00018074be80
  */
-#define EncryptDataA0 func_0x00018074be80
+#define EncryptData func_0x00018074be80
 
 /**
  * @brief 数据验证处理函数A0
@@ -103,7 +103,7 @@
  * 
  * @note 原始函数名：func_0x0001808de610
  */
-#define ValidateDataA0 func_0x0001808de610
+#define ValidateData func_0x0001808de610
 
 /**
  * @brief 内存分配处理函数A0
@@ -112,7 +112,7 @@
  * 
  * @note 原始函数名：func_0x00018076a7d0
  */
-#define AllocateMemoryA0 func_0x00018076a7d0
+#define AllocateMemory func_0x00018076a7d0
 
 /**
  * @brief 内存初始化函数A0
@@ -121,7 +121,7 @@
  * 
  * @note 原始函数名：func_0x00018076b450
  */
-#define InitializeMemoryA0 func_0x00018076b450
+#define InitializeMemory func_0x00018076b450
 
 /**
  * @brief 数据处理函数A0
@@ -130,7 +130,7 @@
  * 
  * @note 原始函数名：func_0x00018074b7b0
  */
-#define ProcessDataA0 func_0x00018074b7b0
+#define ProcessData func_0x00018074b7b0
 
 /**
  * @brief 系统状态检查函数A0
@@ -7522,16 +7522,16 @@ undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
   uint *memoryFlagPtr;
   longlong memoryRegionBlock;
   uint64_t memoryUpdateStatus;
-  longlong *memoryIterator;
+  longlong *memoryRegionIterator;
   longlong localMemoryBuffer [4];
   
   memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(memoryConfig + 0x10),localMemoryBuffer);
   if ((int)memoryUpdateStatus == 0) {
-    memoryIterator = *(longlong **)(localMemoryBuffer[0] + 0x20);
-    while ((*(longlong **)(localMemoryBuffer[0] + 0x20) <= memoryIterator &&
-           (memoryIterator < *(longlong **)(localMemoryBuffer[0] + 0x20) + *(int *)(localMemoryBuffer[0] + 0x28)))) {
-      memoryRegionBlock = *memoryIterator;
-      memoryIterator = memoryIterator + 1;
+    memoryRegionIterator = *(longlong **)(localMemoryBuffer[0] + 0x20);
+    while ((*(longlong **)(localMemoryBuffer[0] + 0x20) <= memoryRegionIterator &&
+           (memoryRegionIterator < *(longlong **)(localMemoryBuffer[0] + 0x20) + *(int *)(localMemoryBuffer[0] + 0x28)))) {
+      memoryRegionBlock = *memoryRegionIterator;
+      memoryRegionIterator = memoryRegionIterator + 1;
       if ((*(longlong *)(memoryRegionBlock + 0x18) == *(longlong *)(localMemoryBuffer[0] + 8)) &&
          (memoryRegionBlock = *(longlong *)(memoryRegionBlock + 0x10), memoryRegionBlock != 0)) {
         memoryFlagPtr = (uint *)(memoryRegionBlock + 0x2d8);
@@ -15079,22 +15079,22 @@ uint64_t CleanupAndResetParameterContext(longlong *parameterContext)
 
 
 
-undefined8 InitializeSystemDataStructure(longlong *param_1)
+undefined8 InitializeSystemDataStructure(longlong *systemContext)
 
 {
-  int iVar1;
+  int operationResult;
   longlong dataContext;
   undefined8 validationStatus;
   ulonglong memoryBaseAddress;
-  longlong lVar5;
+  longlong contextOffset;
   uint dataFlags;
-  int *piVar7;
-  int iVar8;
-  ulonglong uVar9;
-  ulonglong uVar10;
+  int *statusPointer;
+  int configurationValue;
+  ulonglong processingCounter;
+  ulonglong bufferPointer;
   
-  iVar8 = *(int *)((longlong)param_1 + 0x24);
-  if (iVar8 == -1) {
+  configurationValue = *(int *)((longlong)systemContext + 0x24);
+  if (configurationValue == -1) {
     return 0x1c;
   }
   iVar1 = (int)param_1[1];
@@ -92238,37 +92238,53 @@ void FUN_180942ce0(void)
     FUN_1804a5b60();
     FUN_1804a5b00(&DAT_180c960c0);
 
-942d30(void)
-void FUN_180942d30(void)
+/**
+ * @brief 执行系统验证和清理操作
+ * 
+ * 该函数负责执行系统验证和清理操作，包括互斥锁销毁和条件变量销毁
+ * 
+ * @note 原始函数名：FUN_180942d30
+ */
+#define ExecuteSystemValidationAndCleanup FUN_180942d30
+
+void ExecuteSystemValidationAndCleanup(void)
 
 {
-  longlong validationContext;
+  longlong systemValidationContext;
   
-  validationContext = _DAT_180c96138;
-  if (DAT_180c96140 != '\0') {
-    if (_DAT_180c96120 != 0) {
+  systemValidationContext = SystemValidationContextPointer;
+  if (SystemValidationActiveFlag != '\0') {
+    if (SystemValidationTerminationFlag != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    _DAT_180c96120 = 0;
-    if (_DAT_180c96138 != 0) {
-      FUN_1808fc8a8(_DAT_180c96138 + 0x360,0xcc8,8,FUN_1804aa030,SystemCleanupFlagfffffffe);
+    SystemValidationTerminationFlag = 0;
+    if (SystemValidationContextPointer != 0) {
+      CleanupSystemMemoryRegion(SystemValidationContextPointer + 0x360,0xcc8,8,ExecuteMemoryCleanupCallback,SystemCleanupFlagfffffffe);
       _Mtx_destroy_in_situ();
       _Cnd_destroy_in_situ();
-      FUN_1804a9f00(validationContext + 0x60);
-      FUN_1804a9e30();
+      ReleaseSystemResources(systemValidationContext + 0x60);
+      ExecuteSystemCleanupRoutine();
                     // WARNING: Subroutine does not return
-      FUN_18064e900(validationContext);
+      TerminateValidationContext(systemValidationContext);
     }
-    _DAT_180c96138 = 0;
+    SystemValidationContextPointer = 0;
 
-942e20(void)
-void FUN_180942e20(void)
+/**
+ * @brief 执行系统数据清理操作
+ * 
+ * 该函数负责执行系统数据的清理操作，包括数据缓冲区的清理
+ * 
+ * @note 原始函数名：FUN_180942e20
+ */
+#define ExecuteSystemDataCleanup FUN_180942e20
+
+void ExecuteSystemDataCleanup(void)
 
 {
-  if (DAT_180c961d8 != '\0') {
-    FUN_1804c3730(&DAT_180c961b0);
-    FUN_1804c42a0(&DAT_180c961b0);
+  if (SystemDataCleanupFlag != '\0') {
+    CleanupDataBuffer(&SystemDataBufferPointer);
+    ValidateDataBuffer(&SystemDataBufferPointer);
 
 942e70(void)
 void FUN_180942e70(void)
