@@ -16290,7 +16290,10 @@ void ProcessSecureDataA0(longlong *ContextPointer, undefined8 DataSource, undefi
 
 
 
-undefined8 FUN_180897d90(longlong *param_1)
+// 原始函数名：FUN_180897d90 - 数据验证函数A0
+// 功能：验证数据结构A0的有效性
+#define ValidateDataStructureA0 FUN_180897d90
+undefined8 ValidateDataStructureA0(longlong *param_1)
 
 {
   longlong validationContext;
@@ -16374,7 +16377,10 @@ undefined8 FUN_180897d90(longlong *param_1)
 
 
 
-undefined8 FUN_180897dd3(void)
+// 原始函数名：FUN_180897dd3 - 系统状态获取函数
+// 功能：获取当前系统状态信息
+#define GetSystemState FUN_180897dd3
+undefined8 GetSystemState(void)
 
 {
   longlong validationContext;
