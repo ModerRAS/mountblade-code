@@ -987,15 +987,15 @@
 #define SystemExceptionHandlerA10 Unwind_180902210
 
 /**
- * @brief 异常处理函数A11
+ * @brief 系统异常处理器A11
  * 
- * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 该函数负责处理系统异常情况，提供异常恢复和清理机制
  * 
  * @note 原始函数名：Unwind_180902220
  */
-#define ExceptionHandlerA11 Unwind_180902220
+#define SystemExceptionHandlerA11 Unwind_180902220
 
-// 注意：由于Unwind函数数量众多，这里只展示了部分示例
+// 由于Unwind函数数量众多，这里只展示了部分示例
 // 其他Unwind函数可以按照相同的模式进行命名和定义
 
 // Unwind_函数宏定义扩展 (180902440-1809025e0系列)
