@@ -37612,26 +37612,26 @@ void CleanupExceptionHandlerReferences(undefined8 param_1,longlong param_2)
 {
   int *referenceCountPointer;
   undefined8 *resourcePointer;
-  ulonglong *pvalidationStatus;
-  longlong lVar4;
-  undefined8 *poperationResult;
-  ulonglong dataFlags;
+  ulonglong *validationStatusPointer;
+  longlong calculatedOffset;
+  undefined8 *operationResultPointer;
+  ulonglong memoryFlags;
   
-  pvalidationStatus = *(ulonglong **)(param_2 + 0x40);
-  resourcePointer = (undefined8 *)pvalidationStatus[1];
-  for (poperationResult = (undefined8 *)*pvalidationStatus; poperationResult != resourcePointer; poperationResult = poperationResult + 0xe) {
-    *poperationResult = &DefaultExceptionHandlerB;
+  validationStatusPointer = *(ulonglong **)(param_2 + 0x40);
+  resourcePointer = (undefined8 *)validationStatusPointer[1];
+  for (operationResultPointer = (undefined8 *)*validationStatusPointer; operationResultPointer != resourcePointer; operationResultPointer = operationResultPointer + 0xe) {
+    *operationResultPointer = &DefaultExceptionHandlerB;
   }
-  resourcePointer = (undefined8 *)*pvalidationStatus;
+  resourcePointer = (undefined8 *)*validationStatusPointer;
   if (resourcePointer != (undefined8 *)0x0) {
-    dataFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
-    if (dataFlags != 0) {
-      lVar4 = dataFlags + 0x80 + ((longlong)resourcePointer - dataFlags >> 0x10) * 0x50;
-      lVar4 = lVar4 - (ulonglong)*(uint *)(lVar4 + 4);
-      if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(lVar4 + 0xe) == '\0')) {
-        *resourcePointer = *(undefined8 *)(lVar4 + 0x20);
-        *(undefined8 **)(lVar4 + 0x20) = resourcePointer;
-        referenceCountPointer = (int *)(lVar4 + 0x18);
+    memoryFlags = (ulonglong)resourcePointer & SystemCleanupFlagffc00000;
+    if (memoryFlags != 0) {
+      calculatedOffset = memoryFlags + 0x80 + ((longlong)resourcePointer - memoryFlags >> 0x10) * 0x50;
+      calculatedOffset = calculatedOffset - (ulonglong)*(uint *)(calculatedOffset + 4);
+      if ((*(void ***)(memoryFlags + 0x70) == &ExceptionList) && (*(char *)(calculatedOffset + 0xe) == '\0')) {
+        *resourcePointer = *(undefined8 *)(calculatedOffset + 0x20);
+        *(undefined8 **)(calculatedOffset + 0x20) = resourcePointer;
+        referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
           HandleExceptionE0();
@@ -37639,8 +37639,8 @@ void CleanupExceptionHandlerReferences(undefined8 param_1,longlong param_2)
         }
       }
       else {
-        ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                            resourcePointer,dataFlags,SystemCleanupFlagfffffffe);
+        ManageMemory(memoryFlags,CONCAT71(0xff000000,*(void ***)(memoryFlags + 0x70) == &ExceptionList),
+                            resourcePointer,memoryFlags,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -37650,7 +37650,17 @@ void CleanupExceptionHandlerReferences(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902ed0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数用于在指定位置设置默认异常处理器B
+ * 
+ * @param param_1 系统上下文参数
+ * @param param_2 资源管理参数
+ * 
+ * @note 原始函数名：Unwind_180902ed0
+ */
+void SetDefaultExceptionHandlerB(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(*(longlong *)(param_2 + 0x40) + 0x20) = &DefaultExceptionHandlerB;
