@@ -33838,7 +33838,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   uint *statusIndicator;
   ulong long SystemDataPrimary;
   ulong long SystemDataSecondary;
-  ulong long systemData3;
+  ulong long SystemDataTertiary;
   ulong long systemData4;
   bool isOperationComplete;
   uint8_t systemStackBufferPrimary [32];
