@@ -17009,18 +17009,31 @@ void ProcessMultiSegmentDataA0(undefined8 param_1,longlong param_2)
 
 
 // 函数: void FUN_180899040(undefined8 param_1,longlong param_2)
-void FUN_180899040(undefined8 param_1,longlong param_2)
+/**
+ * @brief 处理系统数据D0
+ * 
+ * 处理系统数据并执行相关操作，按照特定的偏移量处理数据块。
+ * 此函数会依次尝试在不同的偏移量处处理数据，直到成功为止。
+ * 
+ * @param SystemContext 系统上下文句柄，包含系统状态和配置信息
+ * @param DataBuffer 数据缓冲区指针，指向待处理的数据
+ * 
+ * @note 此函数使用0xc、0x18、0x24等偏移量进行数据处理
+ * @warning 如果数据处理失败，函数会尝试下一个偏移量
+ * @see ProcessSystemDataD1, ValidateSystemDataD0
+ */
+void ProcessSystemDataD0(undefined8 SystemContext,longlong DataBuffer)
 
 {
-  int iVar1;
+  int ProcessingResult;
   
-  iVar1 = FUN_180899100();
-  if (iVar1 == 0) {
-    iVar1 = FUN_180899100(param_1,param_2 + 0xc);
-    if (iVar1 == 0) {
-      iVar1 = FUN_180899100(param_1,param_2 + 0x18);
-      if (iVar1 == 0) {
-        FUN_180899100(param_1,param_2 + 0x24);
+  ProcessingResult = ValidateSystemDataD0();
+  if (ProcessingResult == 0) {
+    ProcessingResult = ValidateSystemDataD0(SystemContext,DataBuffer + 0xc);
+    if (ProcessingResult == 0) {
+      ProcessingResult = ValidateSystemDataD0(SystemContext,DataBuffer + 0x18);
+      if (ProcessingResult == 0) {
+        ValidateSystemDataD0(SystemContext,DataBuffer + 0x24);
       }
     }
   }
@@ -17030,19 +17043,31 @@ void FUN_180899040(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180899090(undefined8 param_1,longlong param_2)
-void FUN_180899090(undefined8 param_1,longlong param_2)
+/**
+ * @brief 处理系统数据D1
+ * 
+ * 处理系统数据并执行相关操作，按照不同的数据大小处理数据块。
+ * 此函数会依次尝试使用4字节、2字节、2字节、8字节的大小处理数据。
+ * 
+ * @param SystemContext 系统上下文句柄，包含系统状态和配置信息
+ * @param DataBuffer 数据缓冲区指针，指向待处理的数据
+ * 
+ * @note 此函数使用4、2、2、8字节的大小进行数据处理
+ * @warning 如果数据处理失败，函数会尝试下一个数据大小
+ * @see ProcessSystemDataD0, ProcessSystemDataD2
+ */
+void ProcessSystemDataD1(undefined8 SystemContext,longlong DataBuffer)
 
 {
-  int iVar1;
+  int ProcessingResult;
   
-  iVar1 = FUN_1808aed00(param_1,param_2,4);
-  if (iVar1 == 0) {
-    iVar1 = FUN_1808aed00(param_1,param_2 + 4,2);
-    if (iVar1 == 0) {
-      iVar1 = FUN_1808aed00(param_1,param_2 + 6,2);
-      if (iVar1 == 0) {
-        FUN_1808aed00(param_1,param_2 + 8,8);
+  ProcessingResult = ProcessDataChunk(SystemContext,DataBuffer,4);
+  if (ProcessingResult == 0) {
+    ProcessingResult = ProcessDataChunk(SystemContext,DataBuffer + 4,2);
+    if (ProcessingResult == 0) {
+      ProcessingResult = ProcessDataChunk(SystemContext,DataBuffer + 6,2);
+      if (ProcessingResult == 0) {
+        ProcessDataChunk(SystemContext,DataBuffer + 8,8);
       }
     }
   }
@@ -85132,8 +85157,8 @@ void SetGlobalDataPointerB3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941880(void)
-void FUN_180941880(void)
+// 函数: void SetGlobalDataPointerB4(void)
+void SetGlobalDataPointerB4(void)
 
 {
   _DAT_180bf65f0 = &UNK_18098bcb0;
@@ -85145,8 +85170,8 @@ void FUN_180941880(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809418a0(void)
-void FUN_1809418a0(void)
+// 函数: void SetGlobalDataPointerB5(void)
+void SetGlobalDataPointerB5(void)
 
 {
   _DAT_180bf6620 = &UNK_18098bcb0;

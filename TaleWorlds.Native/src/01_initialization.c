@@ -28808,8 +28808,8 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   void* SystemThreadContext;
   long long SystemThreadFlags;
   ulong long ThreadContextIndicator;
-  uint8_t SystemSystemStackBuffer238 [32];
-  uint32_t SystemInitializationStatus218;
+  uint8_t SystemStackBufferArray [32];
+  uint32_t SystemInitializationStatusExtended;
   void* *systemMemoryPointer;
   long long SystemMemoryAllocationOffset;
   uint SystemResourceCountSecondary;
@@ -28821,22 +28821,22 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   void* SystemResourceHandleQuaternary;
   void* *pGlobalDataFlags;
   long long SystemMemoryAllocationOffsetSecondary;
-  uint32_t SystemOperationResultb0;
+  uint32_t SystemOperationResultSecondary;
   ulong long SystemResourceHandlePrimary;
   uint32_t CalculationFlagsExtended;
   uint SystemResourceCountQuaternary;
   uint8_t SystemStackFlag;
-  uint32_t SystemOperationResult94;
+  uint32_t SystemOperationResultTertiary;
   void* *SystemMemoryBufferPointerTertiary;
   long long SystemMemoryAllocationOffsetTertiary;
   int SystemThreadCountPrimary;
-  uint32_t CalculationFlags178;
+  uint32_t SystemCalculationFlags;
   void* **SystemResourceManagerPrimary;
   void* *SystemResourceHandleSecondary;
   long long SystemMemoryAllocationOffsetQuaternary;
   uint32_t SystemResourceSize;
-  uint32_t SystemAllocationFlagsSeptenary;
-  uint32_t SystemAllocationFlagsOctonary;
+  uint32_t SystemAllocationFlagsSeventh;
+  uint32_t SystemAllocationFlagsEighth;
   uint32_t SystemAllocationFlagsPrimary;
   uint32_t SystemAllocationFlagsSecondary;
   uint32_t SystemAllocationFlagsTertiary;
@@ -29002,7 +29002,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemMemoryAllocationOffset = 0;
   SystemResourceCountSecondary = SystemResourceCountSecondary & SystemMemoryAlignmentMask;
   pGlobalDataFlags = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemSystemStackBuffer238);
+    ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemStackBufferArray);
 }
 
 
