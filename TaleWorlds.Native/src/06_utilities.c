@@ -31266,7 +31266,12 @@ void ExceptionUnwindHandlerA22(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902150(undefined8 param_1,longlong param_2)
+/**
+ * 设置默认异常处理器到偏移量 0x30
+ * @param param_1 上下文参数
+ * @param param_2 目标结构体指针
+ */
+void SetDefaultExceptionHandlerAtOffset30(undefined8 param_1, longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x30) = &DefaultExceptionHandlerB;
@@ -31275,7 +31280,12 @@ void Unwind_180902150(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902160(undefined8 param_1,longlong param_2)
+/**
+ * 设置默认异常处理器到偏移量 0xf0
+ * @param param_1 上下文参数
+ * @param param_2 目标结构体指针
+ */
+void SetDefaultExceptionHandlerAtOffsetF0(undefined8 param_1, longlong param_2)
 
 {
   *(undefined **)(param_2 + 0xf0) = &DefaultExceptionHandlerB;
@@ -31284,7 +31294,12 @@ void Unwind_180902160(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902170(undefined8 param_1,longlong param_2)
+/**
+ * 设置默认异常处理器到偏移量 0x138
+ * @param param_1 上下文参数
+ * @param param_2 目标结构体指针
+ */
+void SetDefaultExceptionHandlerAtOffset138(undefined8 param_1, longlong param_2)
 
 {
   *(undefined8 *)(param_2 + 0x138) = &UNK_180a3c3e0;
@@ -31300,7 +31315,17 @@ void Unwind_180902170(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902180(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置默认异常处理器到偏移量0x1a0
+ * 
+ * 该函数负责在偏移量0x1a0位置设置默认异常处理器B，
+ * 并进行相关的安全检查和清理操作
+ * 
+ * @param param_1 参数1（未使用）
+ * @param param_2 参数2（目标对象指针）
+ * @note 原始函数名：Unwind_180902180
+ */
+void SetDefaultExceptionHandlerAtOffset1A0(undefined8 param_1,longlong param_2)
 
 {
   *(undefined8 *)(param_2 + 0x1a0) = &UNK_180a3c3e0;
@@ -31316,7 +31341,16 @@ void Unwind_180902180(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902190(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理状态标志并执行回调函数
+ * 
+ * 该函数负责检查特定状态标志，如果设置了则清除标志并执行回调函数
+ * 
+ * @param param_1 参数1（未使用）
+ * @param param_2 参数2（目标对象指针）
+ * @note 原始函数名：Unwind_180902190
+ */
+void ClearStateFlagAndExecuteCallback(undefined8 param_1,longlong param_2)
 
 {
   if ((*(uint *)(param_2 + 0x30) & 1) != 0) {
@@ -31328,7 +31362,17 @@ void Unwind_180902190(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809021c0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置默认异常处理器到偏移量0x180
+ * 
+ * 该函数负责在偏移量0x180位置设置默认异常处理器B，
+ * 并进行相关的安全检查和清理操作
+ * 
+ * @param param_1 参数1（未使用）
+ * @param param_2 参数2（目标对象指针）
+ * @note 原始函数名：Unwind_1809021c0
+ */
+void SetDefaultExceptionHandlerAtOffset180(undefined8 param_1,longlong param_2)
 
 {
   *(undefined8 *)(param_2 + 0x180) = &UNK_180a3c3e0;
@@ -31344,7 +31388,16 @@ void Unwind_1809021c0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809021d0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置默认异常处理器到偏移量0x138
+ * 
+ * 该函数负责在偏移量0x138位置设置默认异常处理器B
+ * 
+ * @param param_1 参数1（未使用）
+ * @param param_2 参数2（目标对象指针）
+ * @note 原始函数名：Unwind_1809021d0
+ */
+void SetDefaultExceptionHandlerAtOffset138Again(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x138) = &DefaultExceptionHandlerB;
@@ -31353,7 +31406,16 @@ void Unwind_1809021d0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809021e0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理状态标志位2并执行回调函数
+ * 
+ * 该函数负责检查状态标志位2，如果设置了则清除标志并执行回调函数
+ * 
+ * @param param_1 参数1（未使用）
+ * @param param_2 参数2（目标对象指针）
+ * @note 原始函数名：Unwind_1809021e0
+ */
+void ClearStateFlag2AndExecuteCallback(undefined8 param_1,longlong param_2)
 
 {
   if ((*(uint *)(param_2 + 0x30) & 2) != 0) {
@@ -32345,7 +32407,11 @@ void Unwind_1809026c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_1809026e0(void)
+/**
+ * 销毁互斥锁资源
+ * 清理当前线程的互斥锁资源
+ */
+void DestroyMutexResources(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -32354,7 +32420,14 @@ void Unwind_1809026e0(void)
 
 
 
-void Unwind_180902700(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 调用清理函数处理偏移量 0x78 的资源
+ * @param param_1 上下文参数
+ * @param param_2 目标结构体指针
+ * @param param_3 清理参数1
+ * @param param_4 清理参数2
+ */
+void CallCleanupFunctionForOffset78(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
 
 {
   FUN_1803aeb70(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
@@ -32413,7 +32486,11 @@ void Unwind_180902730(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902740(void)
+/**
+ * 销毁互斥锁资源
+ * 清理当前线程的互斥锁资源
+ */
+void DestroyMutexResources2(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -32422,7 +32499,14 @@ void Unwind_180902740(void)
 
 
 
-void Unwind_180902750(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 调用清理函数处理偏移量 0x78 的资源并检查空指针
+ * @param param_1 上下文参数
+ * @param param_2 目标结构体指针
+ * @param param_3 清理参数1
+ * @param param_4 清理参数2
+ */
+void CallCleanupFunctionForOffset78WithCheck(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
 
 {
   undefined8 *puVar1;
