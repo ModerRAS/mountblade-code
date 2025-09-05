@@ -110,6 +110,14 @@
 // 功能：设置全局数据指针A23到指定地址
 #define SetGlobalDataPointerA23 FUN_180942260
 
+// 原始函数名：FUN_180895345 - 错误码返回函数
+// 功能：返回固定错误码0x1c
+#define ReturnErrorCode FUN_180895345
+
+// 原始函数名：FUN_180895b89 - 安全检查执行函数
+// 功能：执行安全检查，程序不会返回
+#define ExecuteSecurityCheck FUN_180895b89
+
 // 原始函数名：FUN_1809423e0 - 工具回调执行函数B0
 // 功能：执行工具系统回调函数B0
 #define ExecuteUtilityCallbackB0 FUN_1809423e0
@@ -6988,8 +6996,8 @@ void UtilityNoOperationF(void)
 
 
 
-// 函数: void FUN_18089233e(void)
-void FUN_18089233e(void)
+// 函数: void CheckSystemConditionAndExecute(void)
+void CheckSystemConditionAndExecute(void)
 
 {
   int iVar1;
@@ -7124,8 +7132,8 @@ void FUN_18089246a(longlong *param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808924c8(void)
-void FUN_1808924c8(void)
+// 函数: void ExecuteSecurityValidation(void)
+void ExecuteSecurityValidation(void)
 
 {
   ulonglong in_stack_00000050;
@@ -7536,8 +7544,8 @@ undefined8 FUN_180892974(void)
 
 
 
-// 函数: void FUN_180892983(void)
-void FUN_180892983(void)
+// 函数: void UtilityNoOperationH(void)
+void UtilityNoOperationH(void)
 
 {
   return;
@@ -7884,8 +7892,8 @@ undefined8 FUN_180892ceb(void)
 
 
 
-// 函数: void FUN_180892e2d(void)
-void FUN_180892e2d(void)
+// 函数: void UtilityNoOperationI(void)
+void UtilityNoOperationI(void)
 
 {
   return;
@@ -10018,7 +10026,10 @@ undefined8 FUN_180895236(void)
 
 
 
-undefined8 FUN_180895345(void)
+// 函数: undefined8 GetSystemConfigurationSize(void)
+// 功能：获取系统配置数据的大小
+// 返回值：系统配置数据的大小（0x1c字节）
+undefined8 GetSystemConfigurationSize(void)
 
 {
   return 0x1c;
@@ -82166,8 +82177,11 @@ void CleanupThreadResources(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809417a0(void)
-void FUN_1809417a0(void)
+// 函数: void CloseSystemHandle(void)
+// 功能：关闭系统句柄，释放系统资源
+// 参数：无
+// 返回值：无
+void CloseSystemHandle(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
@@ -82179,8 +82193,11 @@ void FUN_1809417a0(void)
 
 
 
-// 函数: void FUN_1809417c0(void)
-void FUN_1809417c0(void)
+// 函数: void DestroyMutex(void)
+// 功能：销毁互斥锁对象，释放线程同步资源
+// 参数：无
+// 返回值：无
+void DestroyMutex(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
@@ -82208,8 +82225,11 @@ void ResetSystemDataPointer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941800(void)
-void FUN_180941800(void)
+// 函数: void SetGlobalDataPointerB0(void)
+// 功能：设置全局数据指针B0到指定地址
+// 参数：无
+// 返回值：无
+void SetGlobalDataPointerB0(void)
 
 {
   _DAT_180bf64d0 = &UNK_18098bcb0;
