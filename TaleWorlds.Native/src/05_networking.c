@@ -3538,30 +3538,30 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t PacketHeaderValidationResult;                   // 网络头部验证结果
-  uint32_t PacketContextProcessingStatus;                  // 网络上下文处理状态
-  uint32_t PacketHeaderFormatValidationResult;             // 网络头部格式检查结果
+  uint32_t HeaderValidationResult;                         // 网络头部验证结果
+  uint32_t ContextProcessingStatus;                        // 网络上下文处理状态
+  uint32_t FormatValidationResult;                         // 网络头部格式检查结果
   
   // 初始化处理状态
-  PacketHeaderValidationResult = NetworkValidationFailure;
-  PacketContextProcessingStatus = NetworkValidationFailure;
-  PacketHeaderFormatValidationResult = NetworkValidationFailure;
+  HeaderValidationResult = NetworkValidationFailure;
+  ContextProcessingStatus = NetworkValidationFailure;
+  FormatValidationResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    PacketHeaderValidationResult = NetworkValidationSuccess;
+    HeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    PacketContextProcessingStatus = NetworkValidationSuccess;
+    ContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (PacketHeaderValidationResult == NetworkValidationSuccess && 
-      PacketContextProcessingStatus == NetworkValidationSuccess) {
-    PacketHeaderFormatValidationResult = NetworkValidationSuccess;
+  if (HeaderValidationResult == NetworkValidationSuccess && 
+      ContextProcessingStatus == NetworkValidationSuccess) {
+    FormatValidationResult = NetworkValidationSuccess;
   }
   
-  return PacketHeaderFormatValidationResult;
+  return FormatValidationResult;
 }
