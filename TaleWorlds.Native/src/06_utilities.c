@@ -2251,6 +2251,38 @@
 // 功能：处理数据和执行验证操作
 #define ProcessDataWithValidation FUN_18089e9af
 
+// 原始函数名：FUN_18089f530 - 多参数数据处理函数
+// 功能：处理多参数数据操作和验证
+#define ProcessMultiParameterData FUN_18089f530
+
+// 原始函数名：FUN_18089f571 - 系统状态检查函数
+// 功能：检查系统状态并返回状态码
+#define CheckSystemStatusCode FUN_18089f571
+
+// 原始函数名：FUN_18089f970 - 数据处理和指针操作函数
+// 功能：处理数据和执行指针操作
+#define ProcessDataWithPointerOperation FUN_18089f970
+
+// 原始函数名：FUN_18089f9b3 - 系统重置函数A0
+// 功能：重置系统状态到初始状态
+#define ResetSystemToInitialState FUN_18089f9b3
+
+// 原始函数名：FUN_18089f9f6 - 内存管理函数
+// 功能：管理内存分配和释放操作
+#define ManageMemoryOperations FUN_18089f9f6
+
+// 原始函数名：FUN_18089fa3c - 数据验证函数
+// 功能：验证数据的有效性和完整性
+#define ValidateDataIntegrity FUN_18089fa3c
+
+// 原始函数名：FUN_18089fac2 - 系统清理函数
+// 功能：清理系统资源和释放内存
+#define CleanupSystemResourcesA0 FUN_18089fac2
+
+// 原始函数名：FUN_18089fad8 - 系统初始化函数
+// 功能：初始化系统组件和设置
+#define InitializeSystemSettings FUN_18089fad8
+
 // 原始函数名：FUN_1808ad9d0 - 内存分配验证函数
 // 功能：验证内存分配状态并返回验证结果
 #define ValidateMemoryAllocationStatus FUN_1808ad9d0
