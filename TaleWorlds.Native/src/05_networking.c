@@ -390,6 +390,8 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkDataFormatValid 0x01                        // 数据格式有效
 #define NetworkChecksumValid 0x01                           // 校验和有效
 #define NetworkPacketSizeLimit85Bytes 0x55                          // 数据包大小限制（85字节）
+#define NetworkPacketSizeLimit NetworkPacketSizeLimit85Bytes          // 数据包大小限制（85字节）
+#define NetworkPacketAlternativeSizeLimit NetworkPacketSizeLimit85Bytes  // 替代数据包大小限制（85字节）
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
 
 // 网络连接验证偏移量常量
