@@ -2672,6 +2672,14 @@
 // 功能：存储工具系统的异常处理器指针6
 #define UtilitySystemExceptionHandlerPointer6 _DAT_180bf6080
 
+// 原始变量名：_DAT_180c91900 - 系统句柄指针
+// 功能：存储系统句柄的指针
+#define SystemHandlePointer _DAT_180c91900
+
+// 原始变量名：0x180c91910 - 互斥锁对象指针
+// 功能：存储互斥锁对象的指针
+#define MutexObjectPointer 0x180c91910
+
 // 原始变量名：0x180c82210 - 异常临界区
 // 功能：异常处理的临界区对象
 #define ExceptionCriticalSection 0x180c82210
@@ -92010,8 +92018,14 @@ void UtilityResetPointer6(void)
 
 
 
-// 函数: void DestroyMutexAndCondition(void)
-// 功能：销毁互斥锁和条件变量，清理线程同步资源
+/**
+ * @brief 销毁互斥锁和条件变量
+ * 
+ * 该函数负责销毁互斥锁和条件变量，清理线程同步资源。
+ * 这是一个系统清理函数，用于释放线程同步相关的资源。
+ * 
+ * @note 原始函数名：DestroyMutexAndCondition
+ */
 void DestroyMutexAndCondition(void)
 
 {
@@ -92025,8 +92039,14 @@ void DestroyMutexAndCondition(void)
 
 
 
-// 函数: void CleanupThreadSyncResources(void)
-// 功能：清理线程同步资源，销毁互斥锁和条件变量
+/**
+ * @brief 清理线程同步资源
+ * 
+ * 该函数负责清理线程同步资源，销毁互斥锁和条件变量。
+ * 这是一个资源清理函数，用于释放线程同步相关的系统资源。
+ * 
+ * @note 原始函数名：CleanupThreadSyncResources
+ */
 void CleanupThreadSyncResources(void)
 
 {
@@ -92040,8 +92060,14 @@ void CleanupThreadSyncResources(void)
 
 
 
-// 函数: void ReleaseMutexAndCondition(void)
-// 功能：释放互斥锁和条件变量资源
+/**
+ * @brief 释放互斥锁和条件变量资源
+ * 
+ * 该函数负责释放互斥锁和条件变量资源，清理线程同步对象。
+ * 这是一个资源释放函数，用于确保线程同步资源被正确释放。
+ * 
+ * @note 原始函数名：ReleaseMutexAndCondition
+ */
 void ReleaseMutexAndCondition(void)
 
 {
@@ -92055,10 +92081,14 @@ void ReleaseMutexAndCondition(void)
 
 
 
-// 函数: void CleanupThreadResources(void)
-// 功能：清理线程资源，销毁互斥锁和条件变量
-// 参数：无
-// 返回值：无
+/**
+ * @brief 清理线程资源
+ * 
+ * 该函数负责清理线程资源，销毁互斥锁和条件变量。
+ * 这是一个资源清理函数，用于释放线程相关的系统资源。
+ * 
+ * @note 原始函数名：CleanupThreadResources
+ */
 void CleanupThreadResources(void)
 
 {
@@ -92074,16 +92104,20 @@ void CleanupThreadResources(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void CloseSystemHandle(void)
-// 功能：关闭系统句柄，释放系统资源
-// 参数：无
-// 返回值：无
+/**
+ * @brief 关闭系统句柄
+ * 
+ * 该函数负责关闭系统句柄，释放系统资源。
+ * 这是一个系统清理函数，用于确保系统句柄被正确关闭。
+ * 
+ * @note 原始函数名：CloseSystemHandle
+ */
 void CloseSystemHandle(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417b8. Too many branches
                     // WARNING: Treating indirect jump as call
-  CloseHandle(_DAT_180c91900);
+  CloseHandle(SystemHandlePointer);
   return;
 }
 
