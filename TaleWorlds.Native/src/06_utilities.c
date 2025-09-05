@@ -10779,54 +10779,54 @@ undefined8 ProcessMemoryAllocationA0(longlong param_1,longlong param_2)
 
 
 // 内存释放处理函数A0
-undefined8 ProcessMemoryReleaseA0(longlong param_1,longlong param_2)
+undefined8 ProcessMemoryReleaseA0(longlong memoryDescriptor,longlong systemContext)
 
 {
   longlong validationContext;
-  undefined8 uVar2;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined8 operationResult;
+  undefined4 memoryOffset1;
+  undefined4 memoryOffset2;
+  undefined4 memoryOffset3;
+  undefined4 memoryFlags;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(resourceDescriptor + 0x1c);
-  validationContext = (**(code **)(**(longlong **)(param_2 + 800) + 600))
-                    (*(longlong **)(param_2 + 800),&uStack_18,1);
+  memoryOffset1 = *(undefined4 *)(memoryDescriptor + 0x10);
+  memoryOffset2 = *(undefined4 *)(memoryDescriptor + 0x14);
+  memoryOffset3 = *(undefined4 *)(memoryDescriptor + 0x18);
+  memoryFlags = *(undefined4 *)(memoryDescriptor + 0x1c);
+  validationContext = (**(code **)(**(longlong **)(systemContext + 800) + 600))
+                    (*(longlong **)(systemContext + 800),&memoryOffset1,1);
   if ((validationContext == 0) || (*(longlong *)(validationContext + 0x2e8) == 0)) {
-    uVar2 = 0x4a;
+    operationResult = 0x4a;
   }
   else {
-    uVar2 = ValidateAndProcessSystemResourceA0(*(longlong *)(validationContext + 0x2e8),param_1 + 0x20);
-    if ((int)uVar2 == 0) {
-      uVar2 = FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
-      return uVar2;
+    operationResult = ValidateAndProcessSystemResourceA0(*(longlong *)(validationContext + 0x2e8),memoryDescriptor + 0x20);
+    if ((int)operationResult == 0) {
+      operationResult = FUN_18088d7c0(*(undefined8 *)(systemContext + 0x98),memoryDescriptor);
+      return operationResult;
     }
   }
-  return uVar2;
+  return operationResult;
 }
 
 
 
 // 内存复制处理函数A0
-undefined8 ProcessMemoryCopyA0(longlong param_1,longlong param_2)
+undefined8 ProcessMemoryCopyA0(longlong memoryDescriptor,longlong systemContext)
 
 {
   longlong validationContext;
-  undefined8 uVar2;
-  undefined4 uStack_18;
-  undefined4 uStack_14;
-  undefined4 uStack_10;
-  undefined4 uStack_c;
+  undefined8 operationResult;
+  undefined4 memoryOffset1;
+  undefined4 memoryOffset2;
+  undefined4 memoryOffset3;
+  undefined4 memoryFlags;
   
-  uStack_18 = *(undefined4 *)(param_1 + 0x10);
-  uStack_14 = *(undefined4 *)(param_1 + 0x14);
-  uStack_10 = *(undefined4 *)(param_1 + 0x18);
-  uStack_c = *(undefined4 *)(resourceDescriptor + 0x1c);
-  validationContext = (**(code **)(**(longlong **)(param_2 + 800) + 600))
-                    (*(longlong **)(param_2 + 800),&uStack_18,1);
+  memoryOffset1 = *(undefined4 *)(memoryDescriptor + 0x10);
+  memoryOffset2 = *(undefined4 *)(memoryDescriptor + 0x14);
+  memoryOffset3 = *(undefined4 *)(memoryDescriptor + 0x18);
+  memoryFlags = *(undefined4 *)(memoryDescriptor + 0x1c);
+  validationContext = (**(code **)(**(longlong **)(systemContext + 800) + 600))
+                    (*(longlong **)(systemContext + 800),&memoryOffset1,1);
   if ((validationContext == 0) || (*(longlong *)(validationContext + 0x2e8) == 0)) {
     return 0x4a;
   }
