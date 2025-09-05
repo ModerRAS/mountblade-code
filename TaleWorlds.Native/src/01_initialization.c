@@ -883,37 +883,37 @@ void* SystemDataTableEmergency;                  // 紧急系统数据表
 /**
  * @brief 系统内存区域扩展C
  */
-void* SystemMemoryRegionExpansionC;
+void* SystemMemoryRegionExpansionCharlie;
 
 /**
  * @brief 系统内存区域扩展D
  */
-void* SystemMemoryRegionExpansionD;
+void* SystemMemoryRegionExpansionDelta;
 
 /**
  * @brief 系统内存区域扩展E
  */
-void* SystemMemoryRegionExpansionE;
+void* SystemMemoryRegionExpansionEcho;
 
 /**
  * @brief 系统内存区域扩展F
  */
-void* SystemMemoryRegionExpansionF;
+void* SystemMemoryRegionExpansionFoxtrot;
 
 /**
  * @brief 系统内存区域扩展G
  */
-void* SystemMemoryRegionExpansionG;
+void* SystemMemoryRegionExpansionGolf;
 
 /**
  * @brief 系统内存区域扩展H
  */
-void* SystemMemoryRegionExpansionH;
+void* SystemMemoryRegionExpansionHotel;
 
 /**
  * @brief 系统内存区域扩展I
  */
-void* SystemMemoryRegionExpansionI;
+void* SystemMemoryRegionExpansionIndia;
 void* SystemDataTableHotfix;                     // 热修复系统数据表
 void* SystemMemoryRegionExpansionJ;
 void* SystemMemoryRegionExpansionK;
@@ -2314,15 +2314,15 @@ void InitializeSystemDataTable(void)
   while (!IsDataTableNodeActive) {
     DataTableIdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SYSTEM_DATA_COMPARISON_TEMPLATE_B, SYSTEM_IDENTIFIER_SIZE);
     if (DataTableIdentifierComparisonResult < 0) {
-      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
+      NextSystemNode = (void**)CurrentSystemNode[SystemNodeNextPointerOffset];
       CurrentSystemNode = PreviousSystemNode;
     }
     else {
-      NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_HEAD_POINTER_OFFSET];
+      NextSystemNode = (void**)CurrentSystemNode[SystemNodeHeadPointerOffset];
     }
     PreviousSystemNode = CurrentSystemNode;
     CurrentSystemNode = NextSystemNode;
-    IsDataTableNodeActive = *(char*)((long long)NextSystemNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    IsDataTableNodeActive = *(char*)((long long)NextSystemNode + SystemNodeActiveFlagOffset);
   }
   
   if ((PreviousSystemNode == SystemRootPointer) || 
@@ -2439,14 +2439,14 @@ void InitializeRenderingSystemConfig(void)
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
-  SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + SystemNodeActiveFlagOffset);
   RendererHandler = 0;
   PreviousNodePointer = RootNodeReference;
   CurrentNode = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (!SystemNodeActiveFlag) {
     IdentifierCompareResult = memcmp(CurrentNode + 4, &RENDERING_CONFIG_TEMPLATE_IDENTIFIER, SYSTEM_IDENTIFIER_SIZE);
     if (IdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
+      NextNode = (void**)CurrentNode[SystemNodeNextPointerOffset];
       CurrentNode = PreviousNodePointer;
     }
     else {
@@ -2454,7 +2454,7 @@ void InitializeRenderingSystemConfig(void)
     }
     PreviousNodePointer = CurrentNode;
     CurrentNode = NextNode;
-    SystemNodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    SystemNodeActiveFlag = *(char*)((long long)NextNode + SystemNodeActiveFlagOffset);
   }
   if ((PreviousNode == RootNodeReference) || (IdentifierCompareResult = memcmp(&RENDERING_CONFIG_TEMPLATE_IDENTIFIER, PreviousNode + 4, SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
     RequiredMemorySize = GetSystemMemorySize(SystemDataTable);
@@ -3051,14 +3051,14 @@ void InitializeSystemDataTableSecondaryRoot(void)
   
   SystemRootPointer = (long long*)GetSystemRootTable();
   DataTablePointer = (void**)*SystemRootPointer;
-  NodeActiveFlag = *(char*)((long long)DataTablePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  NodeActiveFlag = *(char*)((long long)DataTablePointer[1] + SystemNodeActiveFlagOffset);
   SystemDataReference = &SystemDataNodeSecondaryRoot;
   PreviousNode = DataTablePointer;
   CurrentNode = (void**)DataTablePointer[1];
   while (NodeActiveFlag == '\0') {
     IdentifierCompareResult = memcmp(CurrentNode + 4,&SYSTEM_DATA_COMPARISON_TEMPLATE_M,SYSTEM_IDENTIFIER_SIZE);
     if (IdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
+      NextNode = (void**)CurrentNode[SystemNodeNextPointerOffset];
       CurrentNode = PreviousNode;
     }
     else {
@@ -3066,7 +3066,7 @@ void InitializeSystemDataTableSecondaryRoot(void)
     }
     PreviousNode = CurrentNode;
     CurrentNodePointer = NextNode;
-    NodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    NodeActiveFlag = *(char*)((long long)NextNode + SystemNodeActiveFlagOffset);
   }
   if ((PreviousNode == DataTablePointer) || (IdentifierCompareResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_M,PreviousNode + 4,SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemRootPointer);
@@ -3107,14 +3107,14 @@ void InitializeSystemDataTableQuaternaryRoot(void)
   
   SystemRootPointer = (long long*)GetSystemRootTable();
   DataTablePointer = (void**)*SystemRootPointer;
-  NodeActiveFlag = *(char*)((long long)DataTablePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  NodeActiveFlag = *(char*)((long long)DataTablePointer[1] + SystemNodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
   PreviousNode = DataTablePointer;
   CurrentNode = (void**)DataTablePointer[1];
   while (NodeActiveFlag == '\0') {
     IdentifierCompareResult = memcmp(CurrentNode + 4,&SYSTEM_DATA_COMPARISON_TEMPLATE_N,SYSTEM_IDENTIFIER_SIZE);
     if (IdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
+      NextNode = (void**)CurrentNode[SystemNodeNextPointerOffset];
       CurrentNode = PreviousNode;
     }
     else {
@@ -3122,7 +3122,7 @@ void InitializeSystemDataTableQuaternaryRoot(void)
     }
     PreviousNode = CurrentNode;
     CurrentNodePointer = NextNode;
-    NodeActiveFlag = *(char*)((long long)NextNode + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+    NodeActiveFlag = *(char*)((long long)NextNode + SystemNodeActiveFlagOffset);
   }
   if ((PreviousNode == DataTablePointer) || (IdentifierCompareResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_N,PreviousNode + 4,SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemRootPointer);
@@ -19952,8 +19952,8 @@ void ProcessSystemStringCopy(long long DestinationBuffer, long long SourceString
   long long StringLengthCounter;
   
   if (SourceString == 0) {
-    *(uint32_t *)(DestinationBuffer + STRING_LENGTH_OFFSET) = 0;
-    **(uint8_t **)(DestinationBuffer + STRING_DATA_OFFSET) = 0;
+    *(uint32_t *)(DestinationBuffer + SystemStringLengthOffset) = 0;
+    **(uint8_t **)(DestinationBuffer + SystemStringBufferOffset) = 0;
     return;
   }
   StringLengthCounter = -1;
@@ -19961,13 +19961,13 @@ void ProcessSystemStringCopy(long long DestinationBuffer, long long SourceString
     StringLengthCounter = StringLengthCounter + 1;
   } while (*(char *)(SourceString + StringLengthCounter) != '\0');
   if ((int)StringLengthCounter < 0x1000) {
-    *(int *)(DestinationBuffer + STRING_LENGTH_OFFSET) = (int)StringLengthCounter;
-    strcpy_s(*(void* *)(DestinationBuffer + STRING_DATA_OFFSET), (int)StringLengthCounter + 1, (const char *)(SourceString));
+    *(int *)(DestinationBuffer + SystemStringLengthOffset) = (int)StringLengthCounter;
+    strcpy_s(*(void* *)(DestinationBuffer + SystemStringBufferOffset), (int)StringLengthCounter + 1, (const char *)(SourceString));
     return;
   }
   ProcessSystemStringAllocation(&SystemMemoryTemplateSeptenary,0x1000,ConfigurationDataPointer);
-  *(uint32_t *)(TargetBuffer + STRING_LENGTH_OFFSET) = 0;
-  **(uint8_t **)(TargetBuffer + STRING_DATA_OFFSET) = 0;
+  *(uint32_t *)(TargetBuffer + SystemStringLengthOffset) = 0;
+  **(uint8_t **)(TargetBuffer + SystemStringBufferOffset) = 0;
   return;
 }
 
@@ -19989,10 +19989,10 @@ void CopySystemMemoryData(long long SystemResourceManager,void* DataSourcePointe
 
 {
   if (CopyLength + 1 < 0x1000) {
-      memcpy(*(uint8_t **)(SystemResourceManager + RESOURCE_DATA_OFFSET),DataSourcePointer,(long long)CopyLength);
+      memcpy(*(uint8_t **)(SystemResourceManager + SystemResourceDataOffset),DataSourcePointer,(long long)CopyLength);
   }
-  **(uint8_t **)(SystemResourceManager + RESOURCE_DATA_OFFSET) = 0;
-  *(uint32_t *)(SystemResourceManager + RESOURCE_LENGTH_OFFSET) = 0;
+  **(uint8_t **)(SystemResourceManager + SystemResourceDataOffset) = 0;
+  *(uint32_t *)(SystemResourceManager + SystemResourceLengthOffset) = 0;
   return;
 }
 
@@ -20162,8 +20162,8 @@ void HandleSystemStringCopy(long long destinationBuffer, long long sourceString)
   long long stringLength;
   
   if (sourceString == 0) {
-    *(uint32_t *)(destinationBuffer + STRING_LENGTH_OFFSET) = 0;
-    **(uint8_t **)(destinationBuffer + STRING_DATA_OFFSET) = 0;
+    *(uint32_t *)(destinationBuffer + SystemStringLengthOffset) = 0;
+    **(uint8_t **)(destinationBuffer + SystemStringBufferOffset) = 0;
     return;
   }
   
@@ -20175,16 +20175,16 @@ void HandleSystemStringCopy(long long destinationBuffer, long long sourceString)
   
   // 检查字符串长度是否在允许范围内
   if ((int)stringLength < SystemStringBufferCapacityValue) {
-    *(int *)(destinationBuffer + STRING_LENGTH_OFFSET) = (int)stringLength;
+    *(int *)(destinationBuffer + SystemStringLengthOffset) = (int)stringLength;
     // 简化实现：原本实现应该包含完整的字符串复制逻辑
-    strcpy_s(*(void* *)(destinationBuffer + STRING_DATA_OFFSET), SystemStringBufferCapacityValue);
+    strcpy_s(*(void* *)(destinationBuffer + SystemStringBufferOffset), SystemStringBufferCapacityValue);
     return;
   }
   
   // 处理长字符串的分配
   ProcessSystemStringAllocation(&SystemStringAllocationHandler, SystemStringBufferCapacityValue, sourceString);
-  *(uint32_t *)(destinationBuffer + STRING_LENGTH_OFFSET) = 0;
-  **(uint8_t **)(destinationBuffer + STRING_DATA_OFFSET) = 0;
+  *(uint32_t *)(destinationBuffer + SystemStringLengthOffset) = 0;
+  **(uint8_t **)(destinationBuffer + SystemStringBufferOffset) = 0;
   return;
 }
 
@@ -20207,12 +20207,12 @@ void ExecuteSystemMemoryDataCopy(long long destinationManager,void* dataSourcePo
 {
   // 检查复制数据大小是否在允许范围内
   if (copyBytes + 1 < SystemStringBufferCapacityValue) {
-      memcpy(*(uint8_t **)(destinationManager + STRING_DATA_OFFSET), dataSourcePointer, (long long)copyBytes);
+      memcpy(*(uint8_t **)(destinationManager + SystemStringBufferOffset), dataSourcePointer, (long long)copyBytes);
   }
   
   // 清理目标缓冲区
-  **(uint8_t **)(destinationManager + STRING_DATA_OFFSET) = 0;
-  *(uint32_t *)(destinationManager + STRING_LENGTH_OFFSET) = 0;
+  **(uint8_t **)(destinationManager + SystemStringBufferOffset) = 0;
+  *(uint32_t *)(destinationManager + SystemStringLengthOffset) = 0;
   return;
 }
 
