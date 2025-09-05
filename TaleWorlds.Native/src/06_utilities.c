@@ -121,7 +121,7 @@
  * 
  * @note 原始函数名：FUN_180899040
  */
-#define ValidateAndProcessDataA0 FUN_180899040
+#define ValidateAndProcessData FUN_180899040
 
 /**
  * @brief 处理数据块A1
@@ -130,7 +130,7 @@
  * 
  * @note 原始函数名：FUN_180899090
  */
-#define ProcessDataBlocksA1 FUN_180899090
+#define ProcessDataBlocks FUN_180899090
 
 /**
  * @brief 验证并执行操作A1
@@ -139,7 +139,7 @@
  * 
  * @note 原始函数名：FUN_180899100
  */
-#define ValidateAndExecuteOperationsA1 FUN_180899100
+#define ValidateAndExecuteOperations FUN_180899100
 
 /**
  * @brief 初始化系统组件A0
@@ -148,7 +148,7 @@
  * 
  * @note 原始函数名：FUN_1808992c4
  */
-#define InitializeSystemComponentsA0 FUN_1808992c4
+#define InitializeSystemComponents FUN_1808992c4
 
 /**
  * @brief 带安全检查的数据验证A2
@@ -157,7 +157,7 @@
  * 
  * @note 原始函数名：FUN_1808995c0
  */
-#define ValidateDataWithSecurityCheckA2 FUN_1808995c0
+#define ValidateDataWithSecurityCheck FUN_1808995c0
 
 /**
  * @brief 清理系统资源A0
@@ -166,7 +166,7 @@
  * 
  * @note 原始函数名：FUN_180899790
  */
-#define CleanupSystemResourcesA0 FUN_180899790
+#define CleanupSystemResources FUN_180899790
 
 /**
  * @brief 重置系统状态A0
@@ -175,7 +175,7 @@
  * 
  * @note 原始函数名：FUN_180899799
  */
-#define ResetSystemStateA0 FUN_180899799
+#define ResetSystemState FUN_180899799
 
 /**
  * @brief 同步数据A0
@@ -184,7 +184,7 @@
  * 
  * @note 原始函数名：FUN_1808997b0
  */
-#define SynchronizeDataA0 FUN_1808997b0
+#define SynchronizeData FUN_1808997b0
 
 /**
  * @brief 内存管理A0
@@ -193,7 +193,7 @@
  * 
  * @note 原始函数名：FUN_180899891
  */
-#define ManageMemoryA0 FUN_180899891
+#define ManageMemory FUN_180899891
 
 // 高级数据处理函数宏定义 (F系列)
 
@@ -205,7 +205,7 @@
  * 
  * @note 原始函数名：FUN_180896800
  */
-#define InitializeDataBlockPointerA0 FUN_180896800
+#define InitializeDataBlockPointer FUN_180896800
 
 /**
  * @brief 初始化数据块指针A1
@@ -215,7 +215,7 @@
  * 
  * @note 原始函数名：FUN_180896830
  */
-#define InitializeDataBlockPointerA1 FUN_180896830
+#define InitializeDataBlockPointerEx FUN_180896830
 
 /**
  * @brief 处理数据缓冲区A0
@@ -224,7 +224,7 @@
  * 
  * @note 原始函数名：FUN_180898d84
  */
-#define ProcessDataBufferA0 FUN_180898d84
+#define ProcessDataBuffer FUN_180898d84
 
 /**
  * @brief 返回固定状态码A0
@@ -233,7 +233,7 @@
  * 
  * @note 原始函数名：FUN_180898e56
  */
-#define ReturnFixedStatusCodeA0 FUN_180898e56
+#define ReturnFixedStatusCode FUN_180898e56
 
 /**
  * @brief 验证数据块状态A0
@@ -242,7 +242,7 @@
  * 
  * @note 原始函数名：FUN_180898e70
  */
-#define ValidateDataBlockStatusA0 FUN_180898e70
+#define ValidateDataBlockStatus FUN_180898e70
 
 /**
  * @brief 验证数据块状态A1
@@ -251,7 +251,7 @@
  * 
  * @note 原始函数名：FUN_180898eb0
  */
-#define ValidateDataBlockStatusA1 FUN_180898eb0
+#define ValidateDataBlockStatusEx FUN_180898eb0
 
 /**
  * @brief 处理数据块操作A0
@@ -260,7 +260,7 @@
  * 
  * @note 原始函数名：FUN_180898ef0
  */
-#define ProcessDataBlockOperationA0 FUN_180898ef0
+#define ProcessDataBlockOperation FUN_180898ef0
 
 /**
  * @brief 处理数据块操作A1
@@ -269,7 +269,7 @@
  * 
  * @note 原始函数名：FUN_180898f40
  */
-#define ProcessDataBlockOperationA1 FUN_180898f40
+#define ProcessDataBlockOperationEx FUN_180898f40
 
 /**
  * @brief 验证数据序列A0
@@ -278,7 +278,7 @@
  * 
  * @note 原始函数名：FUN_180899220
  */
-#define ValidateDataSequenceA0 FUN_180899220
+#define ValidateDataSequence FUN_180899220
 
 /**
  * @brief 处理数据序列A0
