@@ -1024,9 +1024,9 @@ void* SystemInitializationEntryPointQuinary;
 // 系统扩展内存区域指针 - 区域七
 void* SystemMemoryRegionExtendedSeptary;
 // 系统扩展内存区域指针 - 区域八
-void* SystemMemoryRegionExtendedEight;
+void* SystemMemoryRegionExtendedOctary;
 // 系统扩展内存区域指针 - 区域九
-void* SystemMemoryRegionExtendedNine;
+void* SystemMemoryRegionExtendedNovenary;
 // 系统大容量内存区域指针 - 区域二百
 void* SystemMemoryRegionExtendedPrimary;
 // 系统大容量内存区域指针 - 区域二百零一
