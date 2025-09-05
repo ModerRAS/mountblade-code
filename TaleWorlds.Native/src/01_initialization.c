@@ -52202,7 +52202,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   bool isByteValid4;
   bool isByteValid5;
   uint32_t SystemInitializationStatusFlags;
-  byte byteStackD8;
+  byte SystemByteStackD8;
   void* *alternateBufferPtrB0;
   void* *SystemDataBufferPointer;
   uint32_t UnsignedStackFlagSecondary;

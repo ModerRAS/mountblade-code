@@ -10020,7 +10020,7 @@ uint8_t ValidateObjectContextAndProcessComplexFloatOperation(int64_t ObjectConte
   uint8_t ResourceHash;
   int64_t ResourceTablePointer;
   uint ValidationContext;
-  uint32_t ValidationParameterValue;
+  uint32_t ValidationParameter;
   
   ValidationContext = *(uint *)(ObjectContext + ObjectContextValidationDataProcessingOffset);
   if ((ValidationContext & FloatInfinityMask) == FloatInfinityMask) {
