@@ -2000,19 +2000,19 @@ void InitializeNetworkConnectionState(void)
   int64_t NetworkConnectionContextPointer;             // 网络连接上下文指针
   
   // 计算连接状态缓冲区位置
-  NetworkConnectionStateBuffer = (uint8_t *)(CreateConnectionStateIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(GenerateConnectionStateIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
   if (*(int *)(*(int64_t *)(NetworkSystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkConnectionSessionId) {
     *NetworkConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(CreateConnectionStateIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + MergedConnectionDataOffset) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(GenerateConnectionStateIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + MergedConnectionDataOffset) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
     NetworkConnectionInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkConnectionContextPointer + NetworkContextSystemOffset));
     if (NetworkConnectionInitializationStatus == 0) {
-      *NetworkConnectionStateData = (uint64_t)*(uint *)(CreateConnectionStateIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateDataOffset);
+      *NetworkConnectionStateData = (uint64_t)*(uint *)(GenerateConnectionStateIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateDataOffset);
     }
     ResetConnectionStack(&MainNetworkConnectionBuffer);
   }
@@ -2038,7 +2038,7 @@ void ResetNetworkConnectionPointer(void)
   int32_t NetworkConnectionIdentifier;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  NetworkConnectionStateBuffer = (uint8_t *)(CreateConnectionStateIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(GenerateConnectionStateIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + NetworkConnectionStateDataOffset);
@@ -2683,7 +2683,20 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @warning 调用者需要确保参数的有效性，避免生成重复的标识符
  * @see NetworkConnectionStateFlags, NetworkConnectionIdentifier
  */
-uint64_t CreateConnectionStateIdentifier(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
+/**
+ * @brief 生成连接状态标识符
+ * 
+ * 根据连接状态标志和连接标识符生成唯一的连接状态标识符。
+ * 这个标识符用于在网络系统中唯一标识和跟踪连接状态。
+ * 
+ * @param ConnectionStateFlags 连接状态标志，表示连接的当前状态
+ * @param ConnectionIdentifier 连接标识符，唯一标识一个连接
+ * @return uint64_t 生成的连接状态标识符，用于后续的连接管理操作
+ * 
+ * @note 此函数生成的标识符是连接状态管理的关键
+ * @warning 生成的标识符必须是系统内唯一的
+ */
+uint64_t GenerateConnectionStateIdentifier(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
 {
   return ((uint64_t)ConnectionStateFlags << 32) | ConnectionIdentifier;
 }
