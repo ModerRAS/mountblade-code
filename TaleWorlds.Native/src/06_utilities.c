@@ -8300,34 +8300,42 @@ undefined8 ValidateResourcePointerAccess(longlong resourceDescriptor)
 // WARNING: Removing unreachable block (ram,0x0001808d74a4)
 // WARNING: Removing unreachable block (ram,0x0001808d74b1)
 
-// 函数: undefined8 ProcessFloatArrayResource(longlong param_1)
-// 
-// 浮点数组资源处理函数
-// 处理包含浮点数数组的资源，进行数据验证和转换
-// 
-// 参数:
-//   param_1 - 资源描述符指针，包含浮点数据和数组信息
-// 
-// 返回值:
-//   成功返回0，失败返回错误代码
-undefined8 ProcessFloatArrayResource(longlong resourceDescriptor)
+/**
+ * @brief 处理浮点数组资源
+ * 
+ * 该函数处理包含浮点数数组的资源，进行数据验证和转换操作。
+ * 函数首先查询系统数据，然后验证浮点数组的每个元素，最后根据验证结果
+ * 执行必要的数据转换和上下文更新。
+ * 
+ * @param resourceDescriptor 资源描述符指针，包含浮点数据和数组信息
+ * @return uint64_t 处理结果状态码：
+ *         - 0: 处理成功
+ *         - 0x1c: 资源无效或处理失败
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 原始函数名：FUN_1808936a0
+ * @warning 确保传入的资源描述符有效，否则可能导致未定义行为
+ * @see QueryAndRetrieveSystemDataA0, ProcessFloatingPointDataValidationA0
+ * @see ConvertFloatingPointDataA0, UpdateValidationContextA0
+ */
+uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
 
 {
-  longlong resourcePointer;
-  uint processingFlags;
-  uint statusRegister;
+  int64_t resourceContextPointer;
+  uint32_t processingFlags;
+  uint32_t statusRegister;
   uint64_t operationResult;
-  undefined8 *arrayPointer;
-  int integerConversionValue;
-  float floatValue;
-  undefined1 simdProcessingBuffer [16];
-  longlong systemContextBuffer;
-  longlong validationContext;
+  uint64_t *arrayElementPointer;
+  int32_t integerConversionResult;
+  float processedFloatValue;
+  uint8_t simdProcessingBuffer [16];
+  int64_t systemContextBuffer;
+  int64_t validationContext;
   float inputFloatValue;
-  uint flagBits;
-  uint statusBits;
-  int integerConversion;
-  undefined8 simdBuffer;
+  uint32_t validationFlags;
+  uint32_t statusFlags;
+  int32_t integerConversionValue;
+  uint64_t simdRegister;
   
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x1c),&systemContextBuffer);
   if ((int)operationResult != 0) {
@@ -10021,14 +10029,14 @@ undefined8 ProcessUtilitySystemRequest(longlong requestPointer)
 void ValidateUtilityOperation(longlong operationPointer,longlong contextPointer)
 
 {
-  int validationResult;
-  undefined8 validationToken;
+  int operationValidationResult;
+  undefined8 securityValidationToken;
   
   if (*(int *)(operationPointer + 0x2c) == 0) {
-    validationResult = ValidateOperationContext(contextPointer,operationPointer + 0x1c,&validationToken);
-    if (validationResult == 0) {
-      validationResult = ValidateAndProcessSystemResourceA0(validationToken,operationPointer + 0x2c);
-      if (validationResult == 0) goto ValidationFailed;
+    operationValidationResult = ValidateOperationContext(contextPointer,operationPointer + 0x1c,&securityValidationToken);
+    if (operationValidationResult == 0) {
+      operationValidationResult = ValidateAndProcessSystemResourceA0(securityValidationToken,operationPointer + 0x2c);
+      if (operationValidationResult == 0) goto ValidationFailed;
     }
     return;
   }
