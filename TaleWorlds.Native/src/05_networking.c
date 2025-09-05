@@ -268,11 +268,41 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkStatusSecondaryIndex 3                          // 网络状态次级索引
 
 // 网络数据包魔数 - 用于数据包类型识别和验证
+/**
+ * @brief 活跃连接魔数
+ * 
+ * 表示活跃连接的魔数值，ASCII码为"LIVE"，用于连接状态验证
+ */
 #define NetworkMagicLiveConnection 0x5453494c            // "LIVE" - 表示活跃连接魔数
+/**
+ * @brief 数据包验证魔数
+ * 
+ * 表示数据包验证的魔数值，ASCII码为"EVIT"，用于数据包完整性验证
+ */
 #define NetworkMagicValidation 0x54495645                // "EVIT" - 表示数据包验证魔数
+/**
+ * @brief 二进制数据魔数
+ * 
+ * 表示二进制数据的魔数值，ASCII码为"EVIB"，用于二进制数据包识别
+ */
 #define NetworkMagicBinaryData 0x42495645                // "EVIB" - 表示二进制数据魔数
+/**
+ * @brief 事件数据魔数
+ * 
+ * 表示事件数据的魔数值，ASCII码为"EVNT"，用于事件数据包识别
+ */
 #define NetworkMagicEventData 0x544e5645                 // "EVNT" - 表示事件数据魔数
+/**
+ * @brief 批处理数据魔数
+ * 
+ * 表示批处理数据的魔数值，ASCII码为"EVBT"，用于批处理数据包识别
+ */
 #define NetworkPacketMagicBatchData 0x42545645                 // "EVBT" - 表示批处理数据魔数
+/**
+ * @brief 无效数据包魔数
+ * 
+ * 表示无效数据包的魔数值，ASCII码为"FOOD"，用于标识无效或损坏的数据包
+ */
 #define NetworkPacketMagicInvalid 0x464f4f44                   // "FOOD" - 表示无效数据包魔数
 
 // 网络连接相关偏移量 - 连接处理和数据管理
@@ -301,10 +331,35 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkStatusTerminator 0x06                        // 网络状态：终止符
 
 // 网络系统常量 - 调试和数值表示
+/**
+ * @brief 内存验证魔数
+ * 
+ * 用于调试和内存检查的魔数值，帮助识别内存损坏问题
+ */
 #define NetworkMagicMemoryValidation 0xdeadf00d            // 内存验证魔数，用于调试内存检查
+/**
+ * @brief 调试验证魔数
+ * 
+ * 用于调试过程中的验证操作，帮助识别调试相关的问题
+ */
 #define NetworkMagicDebugValidation 0xdeadf00d              // 调试验证魔数，用于调试和内存检查
+/**
+ * @brief 浮点数1.0的十六进制表示
+ * 
+ * 用于表示浮点数1.0的十六进制值，便于数值比较和计算
+ */
 #define NetworkFloatOne 0x3f800000                            // 浮点数1.0的十六进制表示
+/**
+ * @brief 浮点数-1.0的十六进制表示
+ * 
+ * 用于表示浮点数-1.0的十六进制值，便于数值比较和计算
+ */
 #define NetworkFloatNegativeOne 0xbf800000                    // 浮点数-1.0的十六进制表示
+/**
+ * @brief 最大浮点数值
+ * 
+ * 表示32位浮点数的最大值，用于数值边界检查
+ */
 #define NetworkFloatMax 0x7f7fffff                            // 最大浮点数值
 
 // 网络协议常量 - 协议类型和端口配置
@@ -324,6 +379,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  * 用于HTTPS服务的备用端口号8091
  */
 #define PORT_HTTPS_ALT 0x1FBB                                // 端口8091
+/**
+ * @brief 端口范围结束值
+ * 
+ * 网络端口范围的结束值，用于限制端口号的最大值
+ */
 #define PORT_RANGE_END 0x270F                                // 端口9999
 
 // 网络缓冲区大小常量 - 内存和缓冲区配置
@@ -370,6 +430,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkSignatureMethodRSA 0x01                         // RSA签名方法
 #define NetworkEncryptionKeyLength256Bits 256                  // 256位加密密钥长度
 #define NetworkCompressionLevelDefault 0x06                    // 默认压缩级别
+/**
+ * @brief 默认会话加密密钥
+ * 
+ * 用于网络会话加密的默认密钥值，仅用于演示和测试环境
+ */
 #define NetworkDefaultSessionEncryptionKey 0x12345678          // 默认会话加密密钥
 
 // 网络连接常量
