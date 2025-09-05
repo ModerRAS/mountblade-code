@@ -15168,9 +15168,9 @@ void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationF
   uint blueAlphaComponents;
   DataWord inputDataWord;
   uint inputComponent1;
-  uint uStack_40;
-  uint uStack_3c;
-  ByteFlag auStack_38 [40];
+  uint inputComponent2;
+  uint inputComponent3;
+  ByteFlag systemBufferA [40];
   uint64_t uStack_10;
   
   uStack_10 = ExceptionEncryptionKey ^ (uint64_t)auStack_b8;
