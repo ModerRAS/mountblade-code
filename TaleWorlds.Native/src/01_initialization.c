@@ -997,6 +997,7 @@ void* SystemDataTableEntryFirmware;
  * 初始化任务，与入口点A协同工作
  */
 void* SystemInitializationEntryPointBeta;
+// 系统扩展内存区域指针 - 区域六
 void* SystemMemoryRegionExtendedSix;
 
 /**
@@ -1020,11 +1021,17 @@ void* SystemInitializationEntryPointDelta;
  * 该函数负责系统初始化过程中的网络组件配置
  */
 void* SystemInitializationEntryPointEpsilon;
+// 系统扩展内存区域指针 - 区域七
 void* SystemMemoryRegionExtendedSeven;
+// 系统扩展内存区域指针 - 区域八
 void* SystemMemoryRegionExtendedEight;
+// 系统扩展内存区域指针 - 区域九
 void* SystemMemoryRegionExtendedNine;
+// 系统大容量内存区域指针 - 区域二百
 void* SystemMemoryRegionExtendedTwoHundred;
+// 系统大容量内存区域指针 - 区域二百零一
 void* SystemMemoryRegionExtendedTwoHundredOne;
+// 系统大容量内存区域指针 - 区域二百零二
 void* SystemMemoryRegionExtendedTwoHundredTwo;
 
 /**
@@ -1036,13 +1043,21 @@ void* SystemInitializationEntryPointZeta;
 void* SystemMemoryRegionTwoHundredThree;
 void* SystemMemoryRegionTwoHundredFour;
 void* SystemMemoryRegionTwoHundredFive;
+// 系统辅助内存区域指针 - 区域二百零六
 void* SystemMemoryRegionExtendedTwoHundredSix;
+// 系统状态指示器 - 用于表示系统运行状态
 char SystemAdditionalStatusIndicator;
+// 系统辅助内存区域指针 - 区域二百零七
 void* SystemMemoryRegionExtendedTwoHundredSeven;
+// 系统辅助内存区域指针 - 区域二百零八
 void* SystemMemoryRegionExtendedTwoHundredEight;
+// 系统数据表条目指针 - 条目十二
 void* SystemDataTableEntryTwelfth;
+// 系统辅助内存区域指针 - 区域二百零九
 void* SystemMemoryRegionExtendedTwoHundredNine;
+// 系统大容量内存区域指针 - 区域三百
 void* SystemMemoryRegionExtendedThreeHundred;
+// 系统大容量内存区域指针 - 区域三百零一
 void* SystemMemoryRegionExtendedThreeHundredOne;
 // 系统全局数据常量块
 // 系统配置和状态数据块
@@ -1724,7 +1739,7 @@ void InitializeSystemDataTableAllocator(void)
   SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
   
   while (!IsDataTableNodeActive) {
-    DataTableIdentifierNodeIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &SystemDataTableSystemIdentifier1, IdentifierSize);
+    DataTableIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &SystemDataTableSystemIdentifier1, IdentifierSize);
     if (DataTableIdentifierComparisonResult < 0) {
       SystemNextNodePointer = (void**)SystemCurrentNodePointer[NodeNextPointerOffset];
       SystemCurrentNodePointer = SystemPreviousNodePointer;
@@ -1738,7 +1753,7 @@ void InitializeSystemDataTableAllocator(void)
   }
   
   if ((SystemPreviousNodePointer == SystemRootNodePointer) || 
-      (DataTableIdentifierNodeIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), DataTableIdentifierComparisonResult < 0)) {
+      (DataTableIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, SystemPreviousNodePointer + 4, IdentifierSize), DataTableIdentifierComparisonResult < 0)) {
     SystemRequiredMemorySize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &SystemNewDataTableNodePointer, SystemPreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
     SystemPreviousNodePointer = SystemNewDataTableNodePointer;
@@ -2183,7 +2198,7 @@ void InitializeSystemDataTable(void)
   CurrentSystemNode = (void**)SystemRootPointer[1];
   
   while (!IsDataTableNodeActive) {
-    DataTableIdentifierNodeIdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SYSTEM_DATA_COMPARISON_TEMPLATE_B, SYSTEM_IDENTIFIER_SIZE);
+    DataTableIdentifierComparisonResult = memcmp(CurrentSystemNode + 4, &SYSTEM_DATA_COMPARISON_TEMPLATE_B, SYSTEM_IDENTIFIER_SIZE);
     if (DataTableIdentifierComparisonResult < 0) {
       NextSystemNode = (void**)CurrentSystemNode[SYSTEM_NODE_NEXT_POINTER_OFFSET];
       CurrentSystemNode = PreviousSystemNode;
@@ -2197,7 +2212,7 @@ void InitializeSystemDataTable(void)
   }
   
   if ((PreviousSystemNode == SystemRootPointer) || 
-      (DataTableIdentifierNodeIdentifierComparisonResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_B, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), DataTableIdentifierComparisonResult < 0)) {
+      (DataTableIdentifierComparisonResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_B, PreviousSystemNode + 4, SYSTEM_IDENTIFIER_SIZE), DataTableIdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
     AllocateSystemMemory(SystemDataTablePointer, &AllocatedSystemNode, PreviousSystemNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     PreviousSystemNode = AllocatedSystemNode;
