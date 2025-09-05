@@ -26038,11 +26038,11 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint SystemMaxOperationCountSecondary;
   uint32_t StackAllocationSize;
   void* *SystemGlobalDataReferencePtr2;
-  long long SystemCalculationValue1F0;
+  long long SystemMemoryAlignmentOffset1F0;
   uint StackMemoryOffset;
   uint32_t GlobalDataFlagsSecondary;
   void* *SystemGlobalDataReferencePtr;
-  long long SystemCalculationValue1D0;
+  long long SystemMemoryAlignmentOffset1D0;
   uint SystemThreadStackSize;
   uint32_t GlobalDataFlags;
   void* *SystemMemoryBufferPointer1b8;
