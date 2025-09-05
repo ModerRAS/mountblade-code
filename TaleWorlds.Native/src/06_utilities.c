@@ -6184,14 +6184,14 @@ undefined8 ValidateDataArray(longlong arrayDescriptor)
   undefined4 *validationDataPointer;
   uint entryCounter;
   ulonglong adjustedAddress;
-  longlong stackBuffer;
+  longlong dataBuffer;
   ulonglong loopIndex;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(arrayDescriptor + 0x10),&stackBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(arrayDescriptor + 0x10),&dataBuffer);
   if ((int)validationStatus == 0) {
     loopIndex = 0;
-    adjustedAddress = stackBuffer - 8;
-    if (stackBuffer == 0) {
+    adjustedAddress = dataBuffer - 8;
+    if (dataBuffer == 0) {
       adjustedAddress = loopIndex;
     }
     validationDataPointer = (undefined4 *)(arrayDescriptor + 0x20 + (longlong)*(int *)(arrayDescriptor + 0x18) * 8);
@@ -6199,16 +6199,16 @@ undefined8 ValidateDataArray(longlong arrayDescriptor)
     if (0 < *(int *)(arrayDescriptor + 0x18)) {
       do {
         if ((*dataComparisonPointer != _DAT_180c4eaa0) || (dataComparisonPointer[1] != _DAT_180c4eaa4)) {
-          stackBuffer = 0;
-          validationStatus = ValidateMemoryAddressA0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (longlong)(int)loopIndex * 2,&stackBuffer)
+          dataBuffer = 0;
+          validationStatus = ValidateMemoryAddressA0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (longlong)(int)loopIndex * 2,&dataBuffer)
           ;
           if ((int)validationStatus != 0) {
             return validationStatus;
           }
-          if (*(longlong *)(stackBuffer + 8) == 0) {
+          if (*(longlong *)(dataBuffer + 8) == 0) {
             return 0x1c;
           }
-          validationStatus = ProcessFloatingPointDataValidationA0(*(longlong *)(stackBuffer + 8),*validationDataPointer,*(undefined1 *)(arrayDescriptor + 0x1c)
+          validationStatus = ProcessFloatingPointDataValidationA0(*(longlong *)(dataBuffer + 8),*validationDataPointer,*(undefined1 *)(arrayDescriptor + 0x1c)
                                );
           if ((int)validationStatus != 0) {
             return validationStatus;
@@ -6323,27 +6323,27 @@ undefined8 ReturnConstantValueA0(void)
 
 // 函数: undefined8 ValidateMemoryStructureA0(longlong param_1)
 // 功能：验证内存结构并调用相关处理函数
-undefined8 ValidateMemoryStructureA0(longlong param_1)
+undefined8 ValidateMemoryStructureA0(longlong memoryContext)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 validationStatus;
+  longlong memoryHandle;
   
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(memoryContext + 0x10),&memoryHandle);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (memoryHandle == 0) {
+    memoryHandle = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    memoryHandle = memoryHandle + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(memoryHandle + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(memoryHandle + 0x10),1);
 }
 
 
@@ -6357,20 +6357,20 @@ undefined8 ValidateMemoryStructureA0(longlong param_1)
 undefined4 CheckMemoryStructureA0(void)
 
 {
-  longlong inputRegisterRAX;
-  longlong stackPointer;
+  longlong contextPointer;
+  longlong adjustedPointer;
   
-  if (inputRegisterRAX == 0) {
-    stackPointer = 0;
+  if (contextPointer == 0) {
+    adjustedPointer = 0;
   }
   else {
-    stackPointer = inputRegisterRAX + -8;
+    adjustedPointer = contextPointer + -8;
   }
-  if (*(longlong *)(stackPointer + 0x10) == 0) {
+  if (*(longlong *)(adjustedPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(adjustedPointer + 0x10),1);
 }
 
 
