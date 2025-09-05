@@ -414,7 +414,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 
 // 网络质量常量
 #define NetworkConnectionQualityGood 0x05                       // 良好连接质量
-#define NetworkLatencyFiftyMilliseconds 50                                     // 50毫秒延迟
+#define NetworkLatency50Milliseconds 50                                     // 网络延迟：50毫秒
 #define NetworkBandwidthFourKilobytes 4096                                 // 4KB带宽
 #define NetworkReliabilityLevelHigh 0x01                           // 高可靠性级别
 #define NetworkWindowScaleSixteen 16                                 // 窗口缩放16
@@ -1321,7 +1321,7 @@ void AcceptConnection(void)
   // 设置连接参数
   NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
   NetworkConnectionBandwidth = NetworkBandwidthFourKilobytes;                 // 设置连接带宽为4KB
-  NetworkConnectionLatencyMs = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
+  NetworkConnectionLatencyMs = NetworkLatency50Milliseconds;                     // 设置连接延迟为50ms
   NetworkConnectionReliabilityLevel = NetworkReliabilityLevelHigh;                 // 设置连接可靠性为高
   
   // 初始化安全参数
@@ -1596,8 +1596,8 @@ void SendNetworkData(void)
   NetworkAcknowledgeNumber = NetworkAckInitialValue;                      // 初始化确认号
   NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
   NetworkRetransmitTimer = NetworkTimeout5Seconds;                       // 设置重传计时器为5秒
-  NetworkKeepAliveTime = NetworkHeartbeatThirtySeconds;                          // 设置保持连接时间为30秒
-  NetworkHeartbeatTimeout = NetworkHeartbeatSixtySeconds;                      // 设置心跳超时时间为60秒
+  NetworkKeepAliveTime = NetworkHeartbeat30Seconds;                          // 设置保持连接时间为30秒
+  NetworkHeartbeatTimeout = NetworkHeartbeat60Seconds;                      // 设置心跳超时时间为60秒
   
   // 初始化数据包缓冲区
   NetworkPacketBufferPointer = NetworkBufferInitializationFlag;                     // 初始化数据包缓冲区指针
