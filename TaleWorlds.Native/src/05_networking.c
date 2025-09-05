@@ -954,15 +954,13 @@ uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑�
 /**
  * @brief 初始化网络连接池
  * 
- * 初始化网络连接池的配置参数和状态信息，为后续的网络连接管理做准备。
- * 该函数负责设置连接池的最大容量、重置计数器、初始化管理器句柄等。
+ * 初始化网络连接池的各项参数和配置，为后续的网络连接管理做准备。
+ * 此函数负责设置连接池的容量、计数器、健康状态和性能监控参数。
  * 
- * @param void 无参数
+ * @note 此函数会在网络系统启动时调用，确保连接池正确初始化
+ * @warning 如果初始化失败，系统将无法管理网络连接
+ * 
  * @return void 无返回值
- * 
- * @note 此函数在系统启动时调用，用于初始化网络连接池的基础设施
- * @warning 如果初始化失败，可能导致网络连接无法正常建立
- * @see InitializeNetworkSocket, SetupNetworkConnection
  */
 void InitializeNetworkConnectionPool(void)
 {
