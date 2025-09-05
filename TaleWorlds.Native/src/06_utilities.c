@@ -1067,6 +1067,18 @@
 // 功能：存储异常处理的状态信息
 #define ExceptionStatusTable UNK_1809fe100
 
+// 原始变量名：UNK_18098bab0 - 异常处理句柄表A0
+// 功能：存储异常处理的句柄信息
+#define ExceptionHandleTableA0 UNK_18098bab0
+
+// 原始变量名：UNK_18098bac8 - 异常处理句柄表A1
+// 功能：存储异常处理的句柄信息
+#define ExceptionHandleTableA1 UNK_18098bac8
+
+// 原始变量名：UNK_1809fd0a0 - 异常处理数据表A4
+// 功能：存储异常处理的数据表信息
+#define ExceptionDataTable4 UNK_1809fd0a0
+
 // 原始变量名：_DAT_180c8a9b0 - 异常上下文指针
 // 功能：存储异常处理的上下文指针信息
 #define ExceptionContextPtr _DAT_180c8a9b0
