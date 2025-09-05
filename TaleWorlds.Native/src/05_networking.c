@@ -3159,11 +3159,11 @@ NetworkHandle ProcessConnectionPacketData(int64_t *NetworkConnectionContext, int
       
       // 如果状态缓冲区有效，处理连接数据
       if (NetworkConnectionStatusBuffer != NULL) {
-        int32_t ConnectionCount = (int)NetworkConnectionContext[ConnectionContextActiveCountIndex];
-        int64_t ConnectionIterationCounter = (int64_t)ConnectionCount;
+        int32_t ActiveConnectionCount = (int)NetworkConnectionContext[ConnectionContextActiveCountIndex];
+        int64_t ConnectionProcessingCounter = (int64_t)ActiveConnectionCount;
         int64_t NetworkConnectionBaseAddress = 0;  // 连接上下文基地址
         NetworkConnectionStatus *NetworkConnectionStatusIterator = NetworkConnectionStatusBuffer;
-        int64_t NetworkConnectionAddress = NetworkConnectionBaseAddress;  // 连接上下文地址
+        int64_t CurrentConnectionAddress = NetworkConnectionBaseAddress;  // 连接上下文地址
           
           // 循环处理所有连接数据
           do {
