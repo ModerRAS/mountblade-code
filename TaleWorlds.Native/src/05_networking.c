@@ -2447,8 +2447,8 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
       
       // 如果状态缓冲区有效，处理连接数据
       if (NetworkConnectionStatusBuffer != NULL) {
-        int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
-        int64_t ConnectionIterationCounter = (long long)ActiveConnectionCount;
+        int32_t ConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
+        int64_t ConnectionIterationCounter = (long long)ConnectionCount;
         int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址
         NetworkConnectionStatus *NetworkConnectionStatusIterator = NetworkConnectionStatusBuffer;
           
@@ -2562,8 +2562,8 @@ PrimaryNetworkProcessingComplete:
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
-      int32_t NetworkOperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
-      int64_t NetworkStatusIterationCounter = (long long)NetworkOperationProcessingCode;
+      int32_t ProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
+      int64_t NetworkStatusIterationCounter = (long long)ProcessingCode;
       if ((NetworkOperationProcessingCode != 0) && (NetworkConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < NetworkOperationProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
