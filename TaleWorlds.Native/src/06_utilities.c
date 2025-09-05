@@ -28,14 +28,13 @@
 #define ResourceStatusOffset 0x204
 #define ResourceInvalidErrorCode 0x1c
 
-// 系统函数宏定义
-#define GetSystemContextHandle GetSystemContextHandle
-#define ProcessSystemDataWithValidation ProcessSystemDataWithValidation
-#define ProcessSystemDataWithEncryption ProcessSystemDataWithEncryption
-#define ValidateSystemConfiguration ValidateSystemConfiguration
-#define PerformSystemValidationCheck PerformSystemValidationCheck
-#define CalculateSystemDataSize CalculateSystemDataSize
-#define AcquireSystemDataHandle AcquireSystemDataHandle
+// Goto 标签宏定义 - 用于美化代码
+#define GOTO_ValidationFailed goto ExecuteSecurityValidation
+#define GOTO_SecurityCheckFailed goto ExecuteSystemSecurityCheck
+#define GOTO_ValidationFailure goto ValidationFailedLabel
+#define GOTO_SecurityTerminationA1 goto ValidationFailedLabel
+#define GOTO_SecurityTerminationA2 goto ValidationFailedLabel
+#define GOTO_SecurityTerminationA3 goto ValidationFailedLabel
 
 /**
  * @brief 数据加密处理函数
@@ -16117,7 +16116,7 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
       calculatedSize = *(int *)(param_1 + 0xb0);
       if (arrayIndex < calculatedSize) {
         *(int *)(param_1 + 0xac) = arrayIndex + 1;
-        goto FUN_180895b89;
+        GOTO_ValidationFailed;
       }
       floatValue = *(float *)(dataPointer + 0x18);
       calculatedFloatValue = floatValue;
@@ -16150,7 +16149,7 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
         arrayIndex = (**(FunctionPointer**)(param_1 + 0xc0))
                           (operationResult,arrayIndex,*(DataWord *)(dataPointer + 0x18),*(DataBuffer *)(param_1 + 0xb8)
                           );
-        if (arrayIndex != 0) goto FUN_180895b89;
+        if (arrayIndex != 0) GOTO_ValidationFailed;
       }
       if (((((bVar1 & 2) != 0 || (int64_t)floatValue + memoryOffset < dataContext - memoryPointer) &&
            (arrayIndex = *piStack_6f0, *piStack_6f0 = arrayIndex + 1, arrayIndex < 10)) &&
@@ -16166,7 +16165,7 @@ MemoryCopyLabel:
         validationResult = ValidateSystemConfiguration(*(DataBuffer *)(param_1 + 0x58));
         if (validationResult == '\0') goto MemoryCopyLabel;
         *param_2 = 0;
-        goto FUN_180895b89;
+        GOTO_ValidationFailed;
       }
       if (validationResult == '\a') {
         validationResult = ValidateSystemConfiguration(*(DataBuffer *)(param_1 + 0x58));
@@ -16174,7 +16173,7 @@ MemoryCopyLabel:
           if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(param_1 + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
             *param_2 = 0;
-            goto FUN_180895b89;
+            GOTO_ValidationFailed;
           }
           goto MemoryCopyLabel;
         }
@@ -16183,7 +16182,7 @@ MemoryCopyLabel:
         if ((validationResult != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
         uStack_6f4 = *(DataWord *)(dataPointer + 0x20);
         arrayIndex = ValidateAndProcessDataFlags(param_1,arrayIndex,&uStack_6f4);
-        if (arrayIndex != 0) goto FUN_180895b89;
+        if (arrayIndex != 0) GOTO_ValidationFailed;
         arrayIndex = QueryAndRetrieveSystemDataA0(uStack_6f4,alStack_6b0);
         if ((arrayIndex != 0) || (*(int *)(alStack_6b0[0] + 0x30) != 2)) goto MemoryCopyLabel;
       }
@@ -17724,7 +17723,7 @@ SecurityValidationLabel:
       uStack_2e0 = (uint64_t)CONCAT14(operationStatus != 1,*(DataWord *)(param_2 + 0x230));
       operationStatus = ValidateDataIntegrityA0(param_1,&puStack_2f8);
     }
-    if (operationStatus != 0) goto FUN_1808974f4;
+    if (operationStatus != 0) GOTO_SecurityCheckFailed;
     uStack_298 = *(uint *)(param_2 + 0x10);
     uStack_294 = *(DataWord *)(param_2 + 0x14);
     iStack_290 = *(int *)(param_2 + 0x18);
@@ -17734,7 +17733,7 @@ SecurityValidationLabel:
     uStack_284 = 0;
     uStack_288 = param_3;
     operationStatus = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-    if (operationStatus != 0) goto FUN_1808974f4;
+    if (operationStatus != 0) GOTO_SecurityCheckFailed;
     calculatedValue = 0;
     operationStatus = *(int *)(*(int64_t *)(param_2 + 0x2e8) + 0x2c);
     if (0 < operationStatus) {
@@ -17743,7 +17742,7 @@ SecurityValidationLabel:
         puStack_2f8 = &UNK_180982cc0;
         uStack_2e8 = CONCAT44(uStack_2e8._4_4_,param_3);
         arrayIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-        if (arrayIndex != 0) goto FUN_1808974f4;
+        if (arrayIndex != 0) GOTO_SecurityCheckFailed;
         calculatedValue = calculatedValue + 1;
       } while (calculatedValue < operationStatus);
     }
@@ -17756,7 +17755,7 @@ SecurityValidationLabel:
       if (((*(byte *)(validationContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
-        if (calculatedValue != 0) goto FUN_1808974f4;
+        if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
         uStack_284 = *(DataWord *)(validationContext + 0x18);
@@ -17769,14 +17768,14 @@ SecurityValidationLabel:
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
-        goto FUN_1808974f4;
+        GOTO_SecurityCheckFailed;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = loopIndex;
           loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (loopIndex != 0) goto FUN_1808974f4;
+          if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
@@ -17784,7 +17783,7 @@ SecurityValidationLabel:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (loopIndex != 0) goto FUN_1808974f4;
+          if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
         loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
@@ -17793,7 +17792,7 @@ SecurityValidationLabel:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (calculatedValue != 0) goto FUN_1808974f4;
+          if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         }
       }
     }
@@ -17803,7 +17802,7 @@ SecurityValidationLabel:
       if (((*(byte *)(validationContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
-        if (calculatedValue != 0) goto FUN_1808974f4;
+        if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
         uStack_284 = *(DataWord *)(validationContext + 0x18);
@@ -17816,14 +17815,14 @@ SecurityValidationLabel:
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
-        goto FUN_1808974f4;
+        GOTO_SecurityCheckFailed;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = loopIndex;
           loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (loopIndex != 0) goto FUN_1808974f4;
+          if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
@@ -17831,7 +17830,7 @@ SecurityValidationLabel:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (loopIndex != 0) goto FUN_1808974f4;
+          if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
         loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
@@ -17840,7 +17839,7 @@ SecurityValidationLabel:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (calculatedValue != 0) goto FUN_1808974f4;
+          if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         }
       }
     }
@@ -17850,7 +17849,7 @@ SecurityValidationLabel:
       if (((*(byte *)(validationContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
-        if (calculatedValue != 0) goto FUN_1808974f4;
+        if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
         uStack_284 = *(DataWord *)(validationContext + 0x18);
@@ -17863,14 +17862,14 @@ SecurityValidationLabel:
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
-        goto FUN_1808974f4;
+        GOTO_SecurityCheckFailed;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = loopIndex;
           loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (loopIndex != 0) goto FUN_1808974f4;
+          if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
@@ -17878,7 +17877,7 @@ SecurityValidationLabel:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (loopIndex != 0) goto FUN_1808974f4;
+          if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
         loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
@@ -17887,7 +17886,7 @@ SecurityValidationLabel:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (calculatedValue != 0) goto FUN_1808974f4;
+          if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         }
       }
     }
@@ -17897,7 +17896,7 @@ SecurityValidationLabel:
       if (((*(byte *)(validationContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
         uStack_308 = 0;
         calculatedValue = ValidateAndProcessSystemResourceA0(dataContext,&uStack_308);
-        if (calculatedValue != 0) goto FUN_1808974f4;
+        if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         uStack_28c = *(DataWord *)(validationContext + 0x10);
         uStack_288 = *(uint *)(validationContext + 0x14);
         uStack_284 = *(DataWord *)(validationContext + 0x18);
@@ -17910,14 +17909,14 @@ SecurityValidationLabel:
         iStack_290 = loopIndex;
         loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
         if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
-        goto FUN_1808974f4;
+        GOTO_SecurityCheckFailed;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           iStack_2f0 = loopIndex;
           loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (loopIndex != 0) goto FUN_1808974f4;
+          if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
@@ -17925,7 +17924,7 @@ SecurityValidationLabel:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (loopIndex != 0) goto FUN_1808974f4;
+          if (loopIndex != 0) GOTO_SecurityCheckFailed;
         }
         loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
@@ -17934,7 +17933,7 @@ SecurityValidationLabel:
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
           calculatedValue = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (calculatedValue != 0) goto FUN_1808974f4;
+          if (calculatedValue != 0) GOTO_SecurityCheckFailed;
         }
       }
     }
@@ -18502,7 +18501,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               }
               InitializeMemory(auStack_e0,pdataValue2,0x80);
               iterationCount = ValidateDataIntegrityA0(param_1,&puStack_108);
-              if (iterationCount != 0) goto FUN_180897b16;
+              if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
             bufferPointer = bufferPointer + 1;
             validationContext4 = validationContext4 + 0x18;
@@ -18531,7 +18530,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               uStack_114 = *(DataWord *)(dataContext + 100);
               uStack_148 = uStack_1c8;
               iterationCount = ValidateDataIntegrityA0(param_1,&puStack_158);
-              if (iterationCount != 0) goto FUN_180897b16;
+              if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
           }
           iterationCount = ConvertDataFormatA2(dataContext,&fStack_19c,0);
@@ -18542,7 +18541,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
               iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-              if (iterationCount != 0) goto FUN_180897b16;
+              if (iterationCount != 0) GOTO_SecurityTerminationA3;
             }
             iterationCount = ValidateDataA3(dataContext,afStack_198,0);
             if (iterationCount == 0) {
@@ -18552,7 +18551,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iterationCount != 0) goto FUN_180897b16;
+                if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               loopCounter = 0.0;
               floatArrayPointer = (float *)(dataContext + 0x94);
@@ -18564,7 +18563,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   fStack_1a8 = loopCounter;
                   fStack_1a4 = *floatArrayPointer;
                   iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                  if (iterationCount != 0) goto FUN_180897b16;
+                  if (iterationCount != 0) GOTO_SecurityTerminationA3;
                 }
                 loopCounter = (float)((int)loopCounter + 1);
                 floatArrayPointer = floatArrayPointer + 1;
@@ -18580,7 +18579,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   fStack_1a8 = loopCounter;
                   fStack_1a4 = floatValue;
                   iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                  if (iterationCount != 0) goto FUN_180897b16;
+                  if (iterationCount != 0) GOTO_SecurityTerminationA3;
                 }
                 loopCounter = (float)((int)loopCounter + 1);
                 floatArrayPointer = floatArrayPointer + 1;
@@ -18592,7 +18591,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(validationOutcome / 0x30);
                 iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iterationCount != 0) goto FUN_180897b16;
+                if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
@@ -18600,7 +18599,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
                 iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iterationCount != 0) goto FUN_180897b16;
+                if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               iterationCount = ProcessUtilityOperation(param_2);
               if (iterationCount != 2) {
@@ -18608,7 +18607,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 puStack_1c0 = &UNK_180983ae8;
                 uStack_1b0 = uStack_1c8;
                 iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iterationCount != 0) goto FUN_180897b16;
+                if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               iterationCount = ProcessUtilityOperation(param_2);
               if (iterationCount == 4) {
@@ -18617,7 +18616,7 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
                 iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iterationCount != 0) goto FUN_180897b16;
+                if (iterationCount != 0) GOTO_SecurityTerminationA3;
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
@@ -18744,7 +18743,7 @@ ProcessDataSecurityValidation:
             }
             functionReturnValue4 = InitializeMemory(stackFramePointer + 1,pdataValue8,0x80);
             inputParameter3 = ValidateDataIntegrityA0(functionReturnValue4,stackFramePointer + -4);
-            if (inputParameter3 != 0) goto FUN_180897b0e;
+            if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
           }
           register_R13D = 0.0;
           functionReturnValue3 = functionReturnValue3 + 1;
@@ -18787,7 +18786,7 @@ ProcessDataSecurityValidation:
             *(DataWord *)((int64_t)stackFramePointer + -0x2c) = dataValue1;
             inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,stackFramePointer + -0xe);
             functionReturnValue4 = extraout_XMM0_Da_02;
-            if (inputParameter3 != 0) goto FUN_180897b0e;
+            if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
           }
         }
         inputParameter3 = ConvertDataFormatA2(functionReturnValue4,(int64_t)&stack0x00000048 + 4,0);
@@ -18801,7 +18800,7 @@ ProcessDataSecurityValidation:
             in_stack_00000030 = register_R13D;
             inputParameter3 = ValidateDataIntegrityA0(fStack000000000000004c,&stack0x00000028);
             fStack000000000000004c = extraout_XMM0_Da_03;
-            if (inputParameter3 != 0) goto FUN_180897b0e;
+            if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
           }
           inputParameter3 = ValidateDataA3(fStack000000000000004c,&systemContextBuffer50,0);
           if (inputParameter3 == 0) {
@@ -18811,7 +18810,7 @@ ProcessDataSecurityValidation:
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
-              if (inputParameter3 != 0) goto FUN_180897b0e;
+              if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             pfVar21 = (float *)(register_R15 + 0x94);
             fVar19 = register_R13D;
@@ -18824,7 +18823,7 @@ ProcessDataSecurityValidation:
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
                 inputParameter3 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
-                if (inputParameter3 != 0) goto FUN_180897b0e;
+                if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -18840,7 +18839,7 @@ ProcessDataSecurityValidation:
                 fStack0000000000000040 = fVar19;
                 fStack0000000000000044 = fVar1;
                 inputParameter3 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
-                if (inputParameter3 != 0) goto FUN_180897b0e;
+                if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
               }
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
@@ -18854,7 +18853,7 @@ ProcessDataSecurityValidation:
               fStack0000000000000040 = (float)(dataValue4 / 0x30);
               inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da_04,&stack0x00000028);
               functionReturnValue4 = extraout_XMM0_Da_05;
-              if (inputParameter3 != 0) goto FUN_180897b0e;
+              if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             if ((*(uint *)(registerR14 + 0x2d8) >> 1 & 1) != 0) {
               in_stack_00000028 = &UNK_180983a60;
@@ -18862,7 +18861,7 @@ ProcessDataSecurityValidation:
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(functionReturnValue4,&stack0x00000028);
-              if (inputParameter3 != 0) goto FUN_180897b0e;
+              if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             inputParameter3 = ProcessUtilityOperation(registerR14);
             if (inputParameter3 != 2) {
@@ -18870,7 +18869,7 @@ ProcessDataSecurityValidation:
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da_06,&stack0x00000028);
-              if (inputParameter3 != 0) goto FUN_180897b0e;
+              if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             inputParameter3 = ProcessUtilityOperation(registerR14);
             functionReturnValue4 = extraout_XMM0_Da_07;
@@ -18881,7 +18880,7 @@ ProcessDataSecurityValidation:
               fStack0000000000000040 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da_07,&stack0x00000028);
               functionReturnValue4 = extraout_XMM0_Da_08;
-              if (inputParameter3 != 0) goto FUN_180897b0e;
+              if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
             }
             if ((*(uint *)(registerR14 + 0x2d8) >> 3 & 1) != 0) {
               in_stack_00000028 = &UNK_180983cf8;
@@ -18991,7 +18990,7 @@ ValidateDataSecurity:
         }
         functionReturnValue3 = InitializeMemory(stackFramePointer + 1,pdataValue8,0x80);
         inputParameter3 = ValidateDataIntegrityA0(functionReturnValue3,stackFramePointer + -4);
-        if (inputParameter3 != 0) goto FUN_180897afe;
+        if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
       }
       register_R13D = 0.0;
       functionReturnValue2 = functionReturnValue2 + 1;
@@ -19034,7 +19033,7 @@ ValidateDataSecurity:
         *(DataWord *)((int64_t)stackFramePointer + -0x2c) = dataValue1;
         inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,stackFramePointer + -0xe);
         functionReturnValue3 = extraout_XMM0_Da_01;
-        if (inputParameter3 != 0) goto FUN_180897afe;
+        if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
       }
     }
     inputParameter3 = ConvertDataFormatA2(functionReturnValue3,(int64_t)&stack0x00000048 + 4,0);
@@ -19048,7 +19047,7 @@ ValidateDataSecurity:
         in_stack_00000030 = register_R13D;
         inputParameter3 = ValidateDataIntegrityA0(in_stack_00000048._4_4_,&stack0x00000028);
         in_stack_00000048._4_4_ = extraout_XMM0_Da_02;
-        if (inputParameter3 != 0) goto FUN_180897afe;
+        if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
       }
       inputParameter3 = ValidateDataA3(in_stack_00000048._4_4_,&systemContextBuffer50,0);
       if (inputParameter3 == 0) {
@@ -19058,7 +19057,7 @@ ValidateDataSecurity:
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
-          if (inputParameter3 != 0) goto FUN_180897afe;
+          if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         pfVar21 = (float *)(register_R15 + 0x94);
         fVar19 = register_R13D;
@@ -19071,7 +19070,7 @@ ValidateDataSecurity:
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
             inputParameter3 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
-            if (inputParameter3 != 0) goto FUN_180897afe;
+            if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -19087,7 +19086,7 @@ ValidateDataSecurity:
             fStack0000000000000040 = fVar19;
             fStack0000000000000044 = fVar1;
             inputParameter3 = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
-            if (inputParameter3 != 0) goto FUN_180897afe;
+            if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
           }
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
@@ -19101,7 +19100,7 @@ ValidateDataSecurity:
           fStack0000000000000040 = (float)(dataValue4 / 0x30);
           inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da_03,&stack0x00000028);
           functionReturnValue3 = extraout_XMM0_Da_04;
-          if (inputParameter3 != 0) goto FUN_180897afe;
+          if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         if ((*(uint *)(registerR14 + 0x2d8) >> 1 & 1) != 0) {
           in_stack_00000028 = &UNK_180983a60;
@@ -19109,7 +19108,7 @@ ValidateDataSecurity:
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(functionReturnValue3,&stack0x00000028);
-          if (inputParameter3 != 0) goto FUN_180897afe;
+          if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         inputParameter3 = ProcessUtilityOperation(registerR14);
         if (inputParameter3 != 2) {
@@ -19117,7 +19116,7 @@ ValidateDataSecurity:
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da_05,&stack0x00000028);
-          if (inputParameter3 != 0) goto FUN_180897afe;
+          if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         inputParameter3 = ProcessUtilityOperation(registerR14);
         functionReturnValue3 = extraout_XMM0_Da_06;
@@ -19128,7 +19127,7 @@ ValidateDataSecurity:
           fStack0000000000000040 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da_06,&stack0x00000028);
           functionReturnValue3 = extraout_XMM0_Da_07;
-          if (inputParameter3 != 0) goto FUN_180897afe;
+          if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
         }
         if ((*(uint *)(registerR14 + 0x2d8) >> 3 & 1) != 0) {
           in_stack_00000028 = &UNK_180983cf8;
@@ -19192,7 +19191,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     stackInputValue = inputValue;
     operationResult = ValidateDataIntegrityA0(inputValue,&stack0x00000028);
     inputValue = extraout_XMM0_Da;
-    if (operationResult != 0) goto LAB_180897af6;
+    if (operationResult != 0) GOTO_ValidationFailure;
   }
   operationResult = ValidateDataA3(inputValue,&systemContextBuffer50,0);
   if (operationResult == 0) {
@@ -19202,7 +19201,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       contextFlags = stackFlags;
       contextValue = systemValue;
       operationResult = ValidateDataIntegrityA0(secondaryInputValue,&stack0x00000028);
-      if (operationResult != 0) goto LAB_180897af6;
+      if (operationResult != 0) GOTO_ValidationFailure;
     }
     dataPointer = (float *)(dataBase + 0x94);
     baseValue = systemValue;
@@ -19215,7 +19214,7 @@ void ProcessFloatingPointDataA0(float inputValue)
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
         operationResult = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
-        if (operationResult != 0) goto LAB_180897af6;
+        if (operationResult != 0) GOTO_ValidationFailure;
       }
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
@@ -19231,7 +19230,7 @@ void ProcessFloatingPointDataA0(float inputValue)
         fStack0000000000000040 = fVar4;
         fStack0000000000000044 = fVar1;
         operationResult = ValidateDataIntegrityA0(fVar1,&stack0x00000028);
-        if (operationResult != 0) goto LAB_180897af6;
+        if (operationResult != 0) GOTO_ValidationFailure;
       }
       fVar4 = (float)((int)fVar4 + 1);
       pfVar5 = pfVar5 + 1;
@@ -19245,7 +19244,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       fStack0000000000000040 = (float)(validationStatus / 0x30);
       operationResult = ValidateDataIntegrityA0(extraout_XMM0_Da_00,&stack0x00000028);
       dataFlags = extraout_XMM0_Da_01;
-      if (operationResult != 0) goto LAB_180897af6;
+      if (operationResult != 0) GOTO_ValidationFailure;
     }
     if ((*(uint *)(registerR14 + 0x2d8) >> 1 & 1) != 0) {
       in_stack_00000028 = &UNK_180983a60;
@@ -19253,7 +19252,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       in_stack_00000030 = register_R13D;
       operationResult = ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
-      if (operationResult != 0) goto LAB_180897af6;
+      if (operationResult != 0) GOTO_ValidationFailure;
     }
     operationResult = ProcessUtilityOperation();
     if (operationResult != 2) {
@@ -19261,7 +19260,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       in_stack_00000038 = uStackX_20;
       in_stack_00000030 = register_R13D;
       operationResult = ValidateDataIntegrityA0(extraout_XMM0_Da_02,&stack0x00000028);
-      if (operationResult != 0) goto LAB_180897af6;
+      if (operationResult != 0) GOTO_ValidationFailure;
     }
     operationResult = ProcessUtilityOperation();
     dataFlags = extraout_XMM0_Da_03;
@@ -19272,7 +19271,7 @@ void ProcessFloatingPointDataA0(float inputValue)
       fStack0000000000000040 = register_R13D;
       operationResult = ValidateDataIntegrityA0(extraout_XMM0_Da_03,&stack0x00000028);
       dataFlags = extraout_XMM0_Da_04;
-      if (operationResult != 0) goto LAB_180897af6;
+      if (operationResult != 0) GOTO_ValidationFailure;
     }
     if ((*(uint *)(registerR14 + 0x2d8) >> 3 & 1) != 0) {
       in_stack_00000028 = &UNK_180983cf8;

@@ -1180,17 +1180,17 @@ char SystemPrimaryStatusIndicator;               // 系统主状态指示器
 /**
  * @brief 系统状态标志备份标志
  */
-char SystemSecondaryStatusIndicator;
+char SystemSecondaryStatusIndicator;            // 系统次状态指示器
 
 /**
  * @brief 系统状态标志缓存标志
  */
-char SystemCacheStatusIndicator;
+char SystemCacheStatusIndicator;                // 系统缓存状态指示器
 
 /**
  * @brief 系统状态标志临时标志
  */
-char SystemTemporaryStatusIndicator;
+char SystemTemporaryStatusIndicator;           // 系统临时状态指示器
 /**
  * @brief 系统内存块主块
  */
@@ -1230,20 +1230,20 @@ uint8_t SystemPrimaryOperationStatus;         // 系统主操作状态字节
 uint8_t SystemSecondaryOperationStatus;       // 系统次操作状态字节  
 uint8_t SystemCacheOperationStatus;           // 系统缓存操作状态字节
 long long SystemSecondaryOperationTimestamp;
-bool SystemPrimaryStatusFlag;
-void* SystemMemoryBlockCompression;
-void* SystemMemoryBlockEncryption;
-void* SystemMemoryBlockVirtualization;
-void* SystemMemoryBlockSandbox;
-char SystemReservedStatusIndicator;
-void* SystemFunctionReferenceReserved;
-void* SystemMemoryBlockSnapshot;
-void* SystemMemoryBlockCheckpoint;
-void* SystemMemoryBlockRollback;
-bool SystemSecondaryStatusFlag;
-void* SystemMemoryBlockMirror;
-void* SystemMemoryBlockReplica;
-void* SystemMemoryBlockShadow;
+bool SystemPrimaryStatusFlag;                   // 系统主状态标志
+void* SystemMemoryBlockCompression;               // 系统内存块压缩
+void* SystemMemoryBlockEncryption;                // 系统内存块加密
+void* SystemMemoryBlockVirtualization;            // 系统内存块虚拟化
+void* SystemMemoryBlockSandbox;                   // 系统内存块沙箱
+char SystemReservedStatusIndicator;             // 系统保留状态指示器
+void* SystemFunctionReferenceReserved;            // 系统函数引用保留
+void* SystemMemoryBlockSnapshot;                 // 系统内存块快照
+void* SystemMemoryBlockCheckpoint;               // 系统内存块检查点
+void* SystemMemoryBlockRollback;                 // 系统内存块回滚
+bool SystemSecondaryStatusFlag;                  // 系统次状态标志
+void* SystemMemoryBlockMirror;                   // 系统内存块镜像
+void* SystemMemoryBlockReplica;                  // 系统内存块副本
+void* SystemMemoryBlockShadow;                   // 系统内存块阴影
 void* SystemMemoryBlockClone;
 char SystemSecurityStatusIndicator;
 void* SystemMemoryBlockVault;
