@@ -1059,6 +1059,14 @@
 // 功能：存储异常处理相关的数据表信息
 #define ExceptionDataTable3 UNK_180a21720
 
+// 原始变量名：UNK_18098bd40 - 异常处理配置表
+// 功能：存储异常处理的配置信息
+#define ExceptionConfigurationTable UNK_18098bd40
+
+// 原始变量名：UNK_1809fe100 - 异常处理状态表
+// 功能：存储异常处理的状态信息
+#define ExceptionStatusTable UNK_1809fe100
+
 // 原始变量名：_DAT_180c8a9b0 - 异常上下文指针
 // 功能：存储异常处理的上下文指针信息
 #define ExceptionContextPtr _DAT_180c8a9b0
@@ -2195,6 +2203,14 @@
 // 原始函数名：FUN_1807d3f50 - 数据结构验证函数A0
 // 功能：验证数据结构
 #define ValidateDataStructureA0 FUN_1807d3f50
+
+// 原始函数名：FUN_1807703c0 - 系统数据分配函数A0
+// 功能：分配系统数据
+#define AllocateSystemDataA0 FUN_1807703c0
+
+// 原始函数名：func_0x00018076b8a0 - 字符处理函数A0
+// 功能：处理字符转换
+#define ProcessCharacterA0 func_0x00018076b8a0
 
 // 函数: void InitializeUtilityModule(void)
 // 
@@ -13200,7 +13216,7 @@ MemoryCopyLabel:
       else {
         if ((cVar3 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
         uStack_6f4 = *(undefined4 *)(lVar9 + 0x20);
-        iVar4 = FUN_180895c60(param_1,iVar4,&uStack_6f4);
+        iVar4 = ValidateAndProcessDataFlags(param_1,iVar4,&uStack_6f4);
         if (iVar4 != 0) goto FUN_180895b89;
         iVar4 = QueryAndRetrieveSystemDataA0(uStack_6f4,alStack_6b0);
         if ((iVar4 != 0) || (*(int *)(alStack_6b0[0] + 0x30) != 2)) goto MemoryCopyLabel;
