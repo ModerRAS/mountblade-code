@@ -13593,7 +13593,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
         else if (iVar12 < iVar7) {
           iVar12 = iVar7;
         }
-        uVar5 = FUN_1807d3f50(param_1 + 2,iVar12);
+        uVar5 = CheckSystemDataA0(param_1 + 2,iVar12);
         if ((int)uVar5 != 0) {
           return uVar5;
         }
@@ -13675,7 +13675,7 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
       else if (iVar10 < iVar6) {
         iVar10 = iVar6;
       }
-      uVar4 = FUN_1807d3f50(unaff_RDI + 2,iVar10);
+      uVar4 = CheckSystemDataA0(unaff_RDI + 2,iVar10);
       if ((int)uVar4 != 0) {
         return uVar4;
       }
@@ -13738,7 +13738,7 @@ undefined8 ProcessAndValidateDataBlock(undefined8 param_1,undefined4 param_2)
       else if (iVar7 < iVar4) {
         iVar7 = iVar4;
       }
-      uVar2 = FUN_1807d3f50(unaff_RDI + 0x10,iVar7);
+      uVar2 = CheckSystemDataA0(unaff_RDI + 0x10,iVar7);
       if ((int)uVar2 != 0) {
         return uVar2;
       }
