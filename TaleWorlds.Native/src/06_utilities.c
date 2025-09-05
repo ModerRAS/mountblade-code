@@ -412,28 +412,28 @@
 #define ResourceEntrySize 0xc
 
 // 系统基础地址常量
-#define SystemResourceBaseAddress 0x180985054
-#define SystemSecurityContextBaseAddress 0x180c4f450
-#define SystemContextResourceBaseAddress 0x180985054
-#define SystemContextSecurityValidationAddress 0x180c4f450
+#define EngineResourceBaseAddress 0x180985054
+#define EngineSecurityContextBaseAddress 0x180c4f450
+#define EngineContextResourceBaseAddress 0x180985054
+#define EngineContextSecurityValidationAddress 0x180c4f450
 
 // 系统互斥锁和同步相关常量
-#define SystemPrimaryMutexAddress 0x180c4f450
-#define SystemCriticalSectionAddress 0x180c4f458
-#define SystemSecurityFunctionAddress 0x180c4f460
-#define SystemSecondaryMutexAddress 0x180c4f468
-#define SystemDataStructureAddress 0x180c4f470
-#define SystemSecondaryDataStructureAddress 0x180c4f478
-#define SystemDataBaseAddressConstant 0x180c4f480
-#define SystemTertiaryMutexAddress 0x180c4f488
-#define SystemQuaternaryMutexAddress 0x180c4f490
-#define SystemQuinaryMutexAddress 0x180c4f498
-#define SystemSenaryMutexAddress 0x180c4f4a0
-#define SystemSeptenaryMutexAddress 0x180c4f4a8
-#define SystemOctonaryMutexAddress 0x180c4f4b0
-#define SystemNonaryMutexAddress 0x180c4f4b8
-#define SystemDenaryMutexAddress 0x180c4f4c0
-#define SystemMemoryCleanupAddress 0x180c4f4c8
+#define EnginePrimaryMutexAddress 0x180c4f450
+#define EngineCriticalSectionAddress 0x180c4f458
+#define EngineSecurityFunctionAddress 0x180c4f460
+#define EngineSecondaryMutexAddress 0x180c4f468
+#define EngineDataStructureAddress 0x180c4f470
+#define EngineSecondaryDataStructureAddress 0x180c4f478
+#define EngineDataBaseAddressConstant 0x180c4f480
+#define EngineTertiaryMutexAddress 0x180c4f488
+#define EngineQuaternaryMutexAddress 0x180c4f490
+#define EngineQuinaryMutexAddress 0x180c4f498
+#define EngineSenaryMutexAddress 0x180c4f4a0
+#define EngineSeptenaryMutexAddress 0x180c4f4a8
+#define EngineOctonaryMutexAddress 0x180c4f4b0
+#define EngineNonaryMutexAddress 0x180c4f4b8
+#define EngineDenaryMutexAddress 0x180c4f4c0
+#define EngineMemoryCleanupAddress 0x180c4f4c8
 #define SystemContextMutexLockOffset 0x20
 #define SystemContextCleanupCallbackOffset 0x20
 #define SystemContextMutexLockExtendedOffset 0x28
@@ -695,7 +695,7 @@
 #define SystemResourcePrimaryStatusOffset 0x180
 #define SystemResourceSecondaryStatusOffset 0x184
 #define SystemResourceTableIndexOffset 0x17c
-#define SystemSecurityContextBaseAddress 0x180c4f450
+#define EngineSecurityContextBaseAddress 0x180c4f450
 
 // 内存对齐相关常量
 #define MemoryAlignment16Bytes 0xf

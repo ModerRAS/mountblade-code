@@ -409,7 +409,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkResourceAllocationSizeEx 0x28               // 网络资源扩展分配大小（40字节）
 #define NetworkHandleStorageSize 0x30                       // 网络句柄存储大小（48字节）
 #define NetworkPacketProcessingSize 0x100                    // 网络数据包处理大小（256字节）
-#define NetworkStandardBufferSize39Bytes 0x27                    // 标准缓冲区大小39字节
+#define NetworkStandardPacketSize 0x27                    // 标准数据包大小39字节
 #define NetworkErrorReportSize 0xb                          // 网络错误报告大小（11字节）
 #define NetworkSecurityReportSize 0xd                       // 网络安全报告大小（13字节）
 #define NetworkConnectionReportSize 0xf                     // 网络连接报告大小（15字节）
@@ -1099,21 +1099,21 @@ uint32_t NetworkConnectionContextTemplateConfiguration;         // 网络连接�
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
-uint32_t NetworkConnectionPrimaryConfiguration;           // 网络连接主要配置数据
+uint32_t NetworkConnectionPrimaryConfig;     // 网络连接主要配置数据
 
 /**
  * @brief 网络连接次要配置数据
  * 
  * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
  */
-uint32_t NetworkConnectionSecondaryConfiguration;         // 网络连接次要配置数据
+uint32_t NetworkConnectionSecondaryConfig;   // 网络连接次要配置数据
 
 /**
  * @brief 网络连接处理配置数据
  * 
  * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
  */
-uint32_t NetworkConnectionProcessingConfiguration;       // 网络连接处理配置数据
+uint32_t NetworkConnectionProcessingConfig;  // 网络连接处理配置数据
 
 /**
  * @brief 网络连接传输配置数据
