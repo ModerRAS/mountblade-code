@@ -1333,8 +1333,8 @@ void AcceptConnection(void)
   // 初始化会话参数
   NetworkSessionEncryptionKey = DefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
   NetworkSessionTimeoutDuration = NetworkTimeoutFiveMinutes;              // 设置会话超时时间为300秒
-  NetworkHandshakeTimeout = NetworkTimeoutFiveSeconds;                     // 设置握手超时时间为5秒
-  NetworkAuthenticationTimeout = NetworkTimeoutFiveSeconds;               // 设置认证超时时间为5秒
+  NetworkHandshakeTimeout = NetworkTimeout5Seconds;                     // 设置握手超时时间为5秒
+  NetworkAuthenticationTimeout = NetworkTimeout5Seconds;               // 设置认证超时时间为5秒
   NetworkEncryptionTimeout = NetworkTimeoutFiveSeconds;                   // 设置加密超时时间为5秒
   
   // 更新连接统计
