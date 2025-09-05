@@ -298,8 +298,8 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkStatusTerminator 0x06                        // 网络状态：终止符
 
 // 网络系统常量 - 调试和数值表示
-#define NetworkMagicDebugMemory 0xdeadf00d              // 调试魔数，用于内存检查
-#define NetworkMaxIntValue NetworkMaxInt32Value     // 兼容性别名 - 最大32位有符号整数值
+#define NetworkMagicMemoryValidation 0xdeadf00d            // 内存验证魔数，用于调试内存检查
+#define NetworkMaxSignedInt32Value NetworkMaxInt32Value       // 最大32位有符号整数值别名
 #define NetworkFloatOne 0x3f800000                            // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000                    // 浮点数-1.0的十六进制表示
 #define NetworkFloatMax 0x7f7fffff                            // 最大浮点数值
@@ -907,7 +907,7 @@ uint32_t NetworkConnectionProtocol;                   // 网络连接协议类�
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本，指定协议的版本号用于兼容性检查
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址，存储服务器的IP地址信息
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号，服务器监听的端口号
-uint32_t NetworkClientIpAddr;                          // 网络客户端IP地址，客户端的IP地址信息
+uint32_t NetworkClientIpAddress;                        // 网络客户端IP地址，客户端的IP地址信息
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号，客户端使用的端口号
 
 // 网络套接字和缓冲区配置
@@ -915,8 +915,8 @@ uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文�
 uint32_t NetworkSocketType;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
 uint32_t NetworkSocketProtocol;                       // 网络套接字协议类型，套接字使用的协议类型
 uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
-uint32_t NetworkSocketContextData;                                 // 网络套接字上下文，套接字的运行时上下文数据
-uint32_t NetworkSocketRuntimeInformation;                                // 网络套接字运行时数据，套接字相关的数据存储
+uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据
+uint32_t NetworkSocketRuntimeData;                         // 网络套接字运行时数据指针，指向套接字相关的数据存储
 uint32_t NetworkSocketRuntimeContextData;                            // 网络套接字运行时上下文，套接字的运行时上下文数据
 uint32_t NetworkSocketStructureMemorySize;                     // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
@@ -1262,7 +1262,7 @@ void InitializeNetworkSocket(void)
   
   // 初始化套接字数据缓冲区
   NetworkSocketRuntimeInformation = 0;                            // 重置套接字运行时数据指针为NULL
-  NetworkSocketContextData = 0;                         // 重置网络套接字上下文为NULL
+  NetworkSocketContextPointer = 0;                         // 重置网络套接字上下文为NULL
   
   // 初始化网络配置
   NetworkProtocolVersion = NetworkProtocolVersionOne;                    // 设置协议版本为1.0
@@ -2171,7 +2171,7 @@ NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHand
     *(int *)CalculateContextParameterOffset(ConnectionValidationData) = ConnectionValidationResultCode;
     return NetworkOperationSuccess;
   }
-  if ((int)PacketData - 1U < NetworkMaxIntValue) {
+  if ((int)PacketData - 1U < NetworkMaxSignedInt32Value) {
     ConnectionContextHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
     if (ConnectionContextHandle != 0) {
       if ((int)ConnectionValidationData[ConnectionDataSizeIndex] != 0) {
@@ -2264,7 +2264,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   // 处理有效的数据包
   if (PacketData != 0) {
     // 检查数据包大小是否在有效范围内
-    if (PacketData * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
+    if (PacketData * ConnectionEntrySize - 1U < NetworkMaxSignedInt32Value) {
       // 处理连接请求并获取状态缓冲区
       ConnectionStatusBuffer = (NetworkConnectionStatus *)
                ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
@@ -2347,7 +2347,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t ConnectionOperationCode;                              // 连接操作代码
   int64_t ProcessedPacketIdentifier;                                    // 已处理网络数据包ID
   int32_t PacketIndex;                                           // 网络数据包索引
-  int32_t NetworkMaxIntValue;                                    // 最大32位整数值
+  int32_t NetworkMaxSignedInt32Value;                                    // 最大32位整数值
   if (ConnectionOperationCode == 0) {
 PrimaryNetworkProcessingStageComplete:
     if ((0 < *(int *)CalculateContextParameterOffset(NetworkConnectionOperationBuffer)) && (*NetworkConnectionOperationBuffer != 0)) {
@@ -2357,7 +2357,7 @@ PrimaryNetworkProcessingStageComplete:
     *(int *)CalculateContextParameterOffset(NetworkConnectionOperationBuffer) = ConnectionOperationCode;
     return NetworkOperationSuccess;
   }
-  if (PacketIndex * ConnectionEntrySize - 1U < NetworkMaxIntValue) {
+  if (PacketIndex * ConnectionEntrySize - 1U < NetworkMaxSignedInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
@@ -2478,7 +2478,7 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
   // 第一层验证：使用活跃连接魔数进行解码验证
   NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMagicDebugMemory), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMagicMemoryValidation), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -2625,7 +2625,7 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
   // 第一层验证：使用活跃连接魔数进行解码验证
   PacketValidationStatusCode = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
   if (((int)PacketValidationStatusCode == 0) &&
-     (PacketValidationStatusCode = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkMagicBinaryData, NetworkMagicDebugMemory), (int)PacketValidationStatusCode == 0)) {
+     (PacketValidationStatusCode = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkMagicBinaryData, NetworkMagicMemoryValidation), (int)PacketValidationStatusCode == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -2910,7 +2910,7 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
     }
     
     // 验证次魔数
-    if (SecondaryMagicNumber == NetworkMagicBinaryData || SecondaryMagicNumber == NetworkMagicDebugMemory) {
+    if (SecondaryMagicNumber == NetworkMagicBinaryData || SecondaryMagicNumber == NetworkMagicMemoryValidation) {
       MagicValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
@@ -3494,7 +3494,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
-        SecondaryMagicNumber == NetworkMagicDebugMemory) {
+        SecondaryMagicNumber == NetworkMagicMemoryValidation) {
       NetworkPayloadDecodingStatus = NetworkValidationSuccess;
     }
     
