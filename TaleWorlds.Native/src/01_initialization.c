@@ -30069,8 +30069,8 @@ SystemResourceCounterContinue:
         if (SystemMemoryPointer != *(long long **)(ResourceCount + 0x50)) {
           ResourceDataPosition = *(long long *)(SystemResourceManager + 0x48);
           do {
-            *(void* *)(*pSystemMemoryPointer + 0x68) = *(void* *)(SystemOperationResult + ResourceDataPosition);
-            pSystemMemoryPointer = pSystemMemoryPointer + 1;
+            *(void* *)(*SystemMemoryPointer + 0x68) = *(void* *)(SystemOperationResult + ResourceDataPosition);
+            SystemMemoryPointer = SystemMemoryPointer + 1;
             ResourceDataPosition = *(long long *)(SystemResourceManager + 0x48);
           } while (pSystemMemoryPointer != *(long long **)(*(long long *)(ResourceDataPosition + ResourceDataLocation * 8) + 0x50));
         }
