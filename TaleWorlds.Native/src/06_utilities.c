@@ -26307,19 +26307,19 @@ ulonglong ProcessSystemDataA0(longlong systemContext, longlong *validationContex
 
 {
   longlong *validationContextPointer;
-  uint uVar2;
+  uint validationStatus2;
   ulonglong validationStatus;
   undefined4 memoryBaseAddress;
   uint operationResult;
   uint validationOutcome;
   uint securityCheckResult;
-  uint uVar9;
-  uint auStackX_18 [2];
-  uint auStackX_20 [2];
-  uint uStack_88;
-  uint uStack_84;
-  undefined1 auStack_80 [32];
-  undefined1 auStack_60 [40];
+  uint dataFlags1;
+  uint validationBuffer1 [2];
+  uint validationBuffer2 [2];
+  uint stackData1;
+  uint stackData2;
+  undefined1 securityBuffer1 [32];
+  undefined1 securityBuffer2 [40];
   ulonglong dataFlags;
   
   operationResult = 1;

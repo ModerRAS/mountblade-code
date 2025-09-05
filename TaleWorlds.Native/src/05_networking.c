@@ -1084,16 +1084,16 @@ void *NetworkConnectionQuaternaryProcessingConfig;        // 网络连接第四�
 void *NetworkConnectionQuinaryProcessingConfig;           // 网络连接第五处理配置数据，第五级处理流程的配置信息
 
 // 网络连接上下文和数据变量
-uint32_t NetworkConnectionActiveContext;                          // 网络连接活动上下文，存储连接的运行时上下文信息
-uint32_t NetworkConnectionActiveContextData;                      // 网络连接活动上下文数据，上下文相关的数据存储
-uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文，安全相关的上下文信息
+uint32_t NetworkConnectionActiveContext;                         // 网络连接活动上下文，存储连接的运行时上下文信息
+uint32_t NetworkConnectionActiveContextData;                     // 网络连接活动上下文数据，上下文相关的数据存储
+uint32_t NetworkConnectionSecurityContext;                        // 网络连接安全上下文，安全相关的上下文信息
 uint32_t NetworkSystemSecurityLevel;                             // 网络系统安全级别，系统的整体安全保护级别
-uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池，用于管理连接的缓冲区资源
-uint32_t NetworkConnectionRequestInfo;                     // 网络连接请求信息，存储连接请求的相关信息
-uint32_t NetworkConnectionResponseInfo;                    // 网络连接响应信息，存储连接响应的相关信息
-uint32_t NetworkConnectionErrorInfo;                       // 网络连接错误信息，存储连接错误的相关信息
-uint32_t NetworkConnectionStatusInfo;                      // 网络连接状态信息，存储连接状态的相关信息
-uint32_t NetworkConnectionTimeoutInfo;                     // 网络连接超时信息，存储连接超时的相关信息
+uint32_t NetworkConnectionBufferPool;                            // 网络连接缓冲池，用于管理连接的缓冲区资源
+uint32_t NetworkConnectionRequestInfo;                           // 网络连接请求信息，存储连接请求的相关信息
+uint32_t NetworkConnectionResponseInfo;                          // 网络连接响应信息，存储连接响应的相关信息
+uint32_t NetworkConnectionErrorInfo;                             // 网络连接错误信息，存储连接错误的相关信息
+uint32_t NetworkConnectionStatusInfo;                            // 网络连接状态信息，存储连接状态的相关信息
+uint32_t NetworkConnectionTimeoutInfo;                           // 网络连接超时信息，存储连接超时的相关信息
 /**
  * @brief 网络连接验证上下文信息，存储连接验证的相关信息
  * 
