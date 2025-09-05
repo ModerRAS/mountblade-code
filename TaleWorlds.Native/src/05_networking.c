@@ -862,7 +862,7 @@ uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t Conn
  * @note 此函数会为连接分配必要的资源并设置初始状态
  * @warning 初始化失败时，连接将无法正常工作
  */
-uint32_t SetupConnectionContext(NetworkHandle ConnectionHandle);
+uint32_t InitializeConnectionContext(NetworkHandle ConnectionHandle);
 
 /**
  * @brief 清理连接堆栈
@@ -875,7 +875,7 @@ uint32_t SetupConnectionContext(NetworkHandle ConnectionHandle);
  * @note 此函数会释放堆栈中所有连接相关的资源
  * @warning 清理后，堆栈中的所有数据将无法恢复
  */
-void ClearConnectionStack(uint32_t *ConnectionStackPointer);
+void ResetConnectionStack(uint32_t *ConnectionStackPointer);
 
 /**
  * @brief 复制连接缓冲区
@@ -888,7 +888,7 @@ void ClearConnectionStack(uint32_t *ConnectionStackPointer);
  * @note 此函数会创建缓冲区数据的副本
  * @warning 调用者需要确保目标位置有足够的空间
  */
-void DuplicateConnectionBuffer(uint8_t *ConnectionBufferPointer);
+void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络系统全局变量
 
@@ -2059,23 +2059,23 @@ void InitializeNetworkConnectionState(void)
   int64_t NetworkConnectionContextPointer;             // 网络连接上下文指针
   
   // 计算连接状态缓冲区位置
-  NetworkConnectionStateBuffer = (uint8_t *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
   if (*(int *)(*(int64_t *)(NetworkSystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkConnectionSessionId) {
     *NetworkConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + MergedConnectionDataOffset) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
+    *(uint *)(CombineConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + MergedConnectionDataOffset) = ((int)NetworkConnectionStateBuffer - NetworkConnectionIdentifier) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
-    NetworkConnectionInitializationStatus = SetupConnectionContext(*(NetworkHandle *)(NetworkConnectionContextPointer + NetworkContextSystemOffset));
+    NetworkConnectionInitializationStatus = InitializeConnectionContext(*(NetworkHandle *)(NetworkConnectionContextPointer + NetworkContextSystemOffset));
     if (NetworkConnectionInitializationStatus == 0) {
-      *NetworkConnectionStateData = (uint64_t)*(uint *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateDataOffset);
+      *NetworkConnectionStateData = (uint64_t)*(uint *)(CombineConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateDataOffset);
     }
-    ClearConnectionStack(&MainNetworkConnectionBuffer);
+    ResetConnectionStack(&MainNetworkConnectionBuffer);
   }
-  DuplicateConnectionBuffer(NetworkConnectionStateBuffer);
+  CopyConnectionBuffer(NetworkConnectionStateBuffer);
 }
 
 /**
@@ -2097,13 +2097,13 @@ void ResetNetworkConnectionPointer(void)
   int32_t NetworkConnectionIdentifier;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  NetworkConnectionStateBuffer = (uint8_t *)(MergeConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
+  NetworkConnectionStateBuffer = (uint8_t *)(CombineConnectionStateAndIdentifier(NetworkConnectionStateFlags, NetworkConnectionIdentifier) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *NetworkDataBuffer = (uint64_t)*(uint *)(NetworkContextData + NetworkConnectionStateDataOffset);
   
   // 清理连接堆栈
-  ClearConnectionStack(&MainNetworkConnectionBuffer);
+  ResetConnectionStack(&MainNetworkConnectionBuffer);
 }
 
 /**
@@ -2720,7 +2720,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @param ConnectionIdentifier 连接标识符
  * @return uint64_t 合并后的64位连接状态值
  */
-uint64_t MergeConnectionStateAndIdentifier(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
+uint64_t CombineConnectionStateAndIdentifier(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
 {
   return ((uint64_t)ConnectionStateFlags << 32) | ConnectionIdentifier;
 }
