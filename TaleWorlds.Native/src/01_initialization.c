@@ -39051,7 +39051,7 @@ void InitializeAndConfigureSystemResources(void)
           memcpy(pSystemConfigurationPointer + SystemResourceSize,&SystemProcessFlags,(long long)(SystemOperationResult + 1));
       }
       ResourceAllocationContext = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
-      SystemMemoryAllocationOffset188 = SystemMemoryAllocationOffset178 + 0x68;
+      SystemMemoryAllocationOffsetPrimary = SystemMemoryAllocationOffsetSecondary + 0x68;
       SystemMemoryAllocationOffsetExtended = SystemMemoryAllocationOffset178 + 0x548;
       SystemMemoryAllocationOffsetPrimary = SystemMemoryAllocationOffset178 + 0x78;
       ResourceAllocationContext = ExtendSystemDataMemoryContext(ResourceAllocationContext,&SystemResourceHandleSecondary,2,SystemProcessingResult);
@@ -39122,7 +39122,7 @@ void InitializeAndConfigureSystemResources(void)
     } while ((ulong long)(long long)(int)SystemInitializationStatus <
              (ulong long)(*(long long *)(SystemAllocationFlags + 0x30) - *PrimaryResourceHandle >> 3));
   }
-  SystemThreadLocalStoragePointer170 = apEncryptionOffset;
+  SystemThreadLocalStoragePointer = apEncryptionOffset;
   apEncryptionOffset[0] = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(SystemContextValue ^ (ulong long)SystemDataBufferSecondary);
 }
@@ -41938,7 +41938,7 @@ void InitializeSystemResource(long long* SystemResourceManager)
       SystemOperationResult = (**(code **)(*SystemResourceManager + 0x20))(SystemResourceManager,1);
       if (validationStatusFlag == '\0') {
         ReleaseSystemResourceHandle(*(void* *)(*PrimaryResourceHandle + 0x10),0);
-        SystemResourceManager20 = SystemResourceManager + 0x33;
+        SystemResourceManagerSecondary = SystemResourceManager + 0x33;
         SystemLockAcquiredFlag = 0;
         systemCounter = _Mtx_lock();
         if (systemCounter != 0) {
@@ -42827,7 +42827,7 @@ void StartInputSystem(void* SystemResourceManager,long long ConfigurationDataPoi
   SystemStackFlag = 6;
   strcpy_s(SystemPathBuffer,0x10,&SystemStringPathTemplate);
   SystemHashNodeData = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x208,8,3);
-  SystemMemoryAllocationOffset248 = ResourceDataIndex + 0x70;
+  SystemMemoryAllocationOffsetTertiary = ResourceDataIndex + 0x70;
   SystemHashNodePointer = SystemHashNodeData;
   InitializeSystemDataMemoryContext(SystemHashNodeData,&SystemResourceHandle,3,ResourceDataIndex + 0x2e0);
   *SystemHashNodeData = &SystemValueReference;
