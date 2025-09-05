@@ -41166,7 +41166,7 @@ ThreadProcessingLoop:
   }
 ResourceValidationCheck:
   localDataIndex = SystemResourceManager[8];
-  if (resourceCounter == localDataIndex) goto code_r0x000180060327;
+  if (resourceCounter == localDataIndex) goto ResourceValidationComplete;
   goto ResourceProcessingLoop;
 ResourceCounterCheck:
   if (localDataIndex != 0) {
