@@ -1747,6 +1747,7 @@ void InitializeNetworkConnectionPool(void)
 /**
  * @brief 网络连接配置数据结构指针
  */
+void *NetworkConnectionConfigurationDataPointer;
 
 /**
  * @brief 网络连接模板配置指针
@@ -1786,12 +1787,12 @@ void *NetworkConnectionValidationConfigPointer;
 /**
  * @brief 网络连接路由主配置指针
  */
-void *NetworkConnectionRoutingMainConfigPointer;
+void *NetworkConnectionRoutingPrimaryConfigPointer;
 
 /**
  * @brief 网络连接路由备用配置指针
  */
-void *NetworkConnectionRoutingBackupConfigPointer;
+void *NetworkConnectionRoutingSecondaryConfigPointer;
 
 /**
  * @brief 网络连接路由替代配置指针
@@ -1873,11 +1874,21 @@ uint32_t NetworkConnectionRoutingMainConfig;            // 网络连接路由主
  */
 uint32_t NetworkConnectionRoutingBackupConfig;          // 网络连接路由备用配置数据，路由的备用配置参数
 
-// 网络连接路由替代配置数据
-uint32_t NetworkConnectionRoutingAlternativeConfig;           // 网络连接路由替代配置数据，路由的替代配置参数
+/**
+ * @brief 网络连接路由替代配置数据
+ * 
+ * 包含网络路由的替代配置参数，提供与主配置不同的路由策略和路径选择。
+ * 当主配置和备用配置都无法满足需求时，系统会尝试使用替代配置。
+ */
+uint32_t NetworkConnectionRoutingAlternativeConfig;
 
-// 网络连接路由回退配置数据
-uint32_t NetworkConnectionRoutingFallbackConfig;          // 网络连接路由回退配置数据，路由的回退配置参数
+/**
+ * @brief 网络连接路由回退配置数据
+ * 
+ * 包含网络路由的回退配置参数，作为最后的保障方案。当所有其他配置都失败时，
+ * 系统会使用回退配置来确保基本的网络连通性。
+ */
+uint32_t NetworkConnectionRoutingFallbackConfig;
 
 /**
  * @brief 初始化网络套接字
