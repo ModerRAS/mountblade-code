@@ -1498,14 +1498,14 @@ uint32_t NetworkEncryptionTimeoutMs;
  */
 
 /**
- * @brief 网络连接初始化配置数据
+ * @brief 网络连接初始化配置
  */
-void *NetworkConnectionInitializationConfig;
+void *NetworkConnectionInitialization;
 
 /**
- * @brief 网络连接备用配置数据
+ * @brief 网络连接备用配置
  */
-void *NetworkConnectionBackupConfig;
+void *NetworkConnectionBackup;
 
 /**
  * @brief 网络连接头部配置数据
@@ -1938,7 +1938,7 @@ uint32_t NetworkConnectionSecondaryConfigData;
  * 包含网络连接处理过程中的配置参数，定义数据处理流程、状态转换逻辑
  * 和异常处理机制。此配置直接影响连接的性能和稳定性。
  */
-uint32_t NetworkConnectionProcessingConfig;
+uint32_t NetworkConnectionProcessingConfigData;
 
 /**
  * @brief 网络连接传输配置数据
@@ -1946,7 +1946,7 @@ uint32_t NetworkConnectionProcessingConfig;
  * 包含网络数据传输的配置参数，定义传输协议、数据包格式、流量控制
  * 和传输优化策略。此配置确保数据在网络中的高效可靠传输。
  */
-uint32_t NetworkConnectionTransportConfig;                  // 网络连接传输配置数据，连接传输的配置参数
+uint32_t NetworkConnectionTransportConfigData;
 
 /**
  * @brief 网络连接协议配置数据
@@ -1954,7 +1954,7 @@ uint32_t NetworkConnectionTransportConfig;                  // 网络连接传�
  * 包含网络通信协议的配置参数，定义协议版本、兼容性要求、握手流程
  * 和协议特定的行为规则。此配置确保不同系统间的协议兼容性。
  */
-uint32_t NetworkConnectionProtocolConfig;                   // 网络连接协议配置数据，连接协议的配置参数
+uint32_t NetworkConnectionProtocolConfigData;
 
 /**
  * @brief 网络连接验证配置数据
@@ -1962,7 +1962,7 @@ uint32_t NetworkConnectionProtocolConfig;                   // 网络连接协�
  * 包含网络连接验证的配置参数，定义身份验证、数据完整性检查、
  * 安全策略执行和异常检测机制。此配置确保连接的安全性和可靠性。
  */
-uint32_t NetworkConnectionValidationConfig;                 // 网络连接验证配置数据，连接验证的配置参数
+uint32_t NetworkConnectionValidationConfigData;
 
 /**
  * @brief 网络连接路由主配置数据
