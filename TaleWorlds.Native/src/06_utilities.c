@@ -2741,6 +2741,46 @@
 // 功能：存储异常处理的数据表信息
 #define ExceptionDataTable4 UNK_1809fd0a0
 
+// 原始变量名：UNK_180983588 - 系统验证数据表A0
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA0 UNK_180983588
+
+// 原始变量名：UNK_180983b68 - 系统验证数据表A1
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA1 UNK_180983b68
+
+// 原始变量名：UNK_180983cf8 - 系统验证数据表A2
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA2 UNK_180983cf8
+
+// 原始变量名：UNK_1809842e0 - 系统验证数据表A3
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA3 UNK_1809842e0
+
+// 原始变量名：UNK_180984358 - 系统验证数据表A4
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA4 UNK_180984358
+
+// 原始变量名：UNK_1809843d0 - 系统验证数据表A5
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA5 UNK_1809843d0
+
+// 原始变量名：UNK_1809841e0 - 系统验证数据表A6
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA6 UNK_1809841e0
+
+// 原始变量名：UNK_1809844c8 - 系统验证数据表A7
+// 功能：存储系统验证相关的数据表信息
+#define SystemValidationDataTableA7 UNK_1809844c8
+
+// 原始变量名：UNK_180982dc0 - 系统配置数据表
+// 功能：存储系统配置相关的数据表信息
+#define SystemConfigurationDataTable UNK_180982dc0
+
+// 原始变量名：UNK_1809868b0 - 系统状态数据表
+// 功能：存储系统状态相关的数据表信息
+#define SystemStatusDataTable UNK_1809868b0
+
 // 工具函数宏定义
 // 原始函数名：FUN_180896140 - 数据验证和处理函数A0
 // 功能：验证输入数据并执行相应的处理操作
@@ -17441,7 +17481,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
               do {
                 uStack_e0 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
                 uStack_e8 = 0;
-                puStack_f0 = &UNK_180983588;
+                puStack_f0 = &SystemValidationDataTableA0;
                 DoubleValidateAndExecuteOperation(&puStack_f0,*(DataBuffer *)(param_1 + 0x58));
                 arrayIndex = PerformSystemValidationCheck(validationStatus);
               } while (0 < arrayIndex);
@@ -17453,7 +17493,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1)
             arrayIndex = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10),stackByteBuffer);
             validationContextPointer3 = plStack_108;
             if (arrayIndex == 0) {
-              puStack_d8 = &UNK_180983b68;
+              puStack_d8 = &SystemValidationDataTableA1;
               uStack_c8 = *(DataWord *)(resourceIterator + 0xc + validationContext5 * 0x10);
               uStack_d0 = 0;
               uStack_c0 = 1;
