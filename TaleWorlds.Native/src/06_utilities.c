@@ -4785,8 +4785,8 @@ void* UtilityMemoryValidationDataUndenary;
 void* UtilityMemoryValidationDataDuodenary;
 void* UtilityMemoryValidationDataTerdenary;
 // 工具系统内存管理数据块Fourteen-FortyThree
-void* UtilityMemoryManagementData14;
-void* UtilityMemoryManagementData15;
+void* UtilityMemoryManagementPrimaryBlock;
+void* UtilityMemoryManagementSecondaryBlock;
 void* UtilityMemoryManagementData16;
 void* UtilityMemoryManagementData17;
 void* UtilityMemoryManagementData18;
@@ -16236,7 +16236,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     itemCount = *(int *)(systemContext + 0xb0);
     if (currentIndex < itemCount) {
       *(int *)(systemContext + 0xac) = currentIndex + 1;
-      goto LAB_180895b69;
+      goto ValidationSuccessLabel;
     }
     floatValue = *(float *)(calculatedValue + 0x18);
     normalizedValue = floatValue;
@@ -16273,7 +16273,7 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
                         (dataFlags,register_EBX,*(DataWord *)(bufferPointer + 0x18),
                          *(DataBuffer *)(destinationIndexRegister + 0xb8));
       param_3 = in_stack_00000048;
-      if (operationStatus != 0) goto LAB_180895b69;
+      if (operationStatus != 0) goto ValidationSuccessLabel;
     }
     if ((((characterFlag != '\0') && (operationStatus = *param_3, *param_3 = operationStatus + 1, operationStatus < 10)) &&
         ((*(uint *)(destinationIndexRegister + 0x6c) >> 0x18 & 1) == 0)) &&
@@ -16289,7 +16289,7 @@ MemoryCopyLabel:
       characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(param_1 + 0x58));
       if (characterFlag == '\0') goto MemoryCopyLabel;
       *register_R13 = 0;
-      goto LAB_180895b69;
+      goto ValidationSuccessLabel;
     }
     if (characterFlag == '\a') {
       characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(param_1 + 0x58));
@@ -16297,7 +16297,7 @@ MemoryCopyLabel:
         if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(destinationIndexRegister + 0x58) + 0x90) + 0x790) +
                     0x1c8) != 0) {
           *register_R13 = 0;
-          goto LAB_180895b69;
+          goto ValidationSuccessLabel;
         }
         goto MemoryCopyLabel;
       }
@@ -16306,7 +16306,7 @@ MemoryCopyLabel:
       if ((characterFlag != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
       stackParameterOffset._4_4_ = *(DataWord *)(bufferPointer + 0x20);
       arrayIndex = ValidateAndProcessDataFlags(param_1,register_EBX,(int64_t)&stack0x00000040 + 4);
-      if (arrayIndex != 0) goto LAB_180895b69;
+      if (arrayIndex != 0) goto ValidationSuccessLabel;
       arrayIndex = QueryAndRetrieveSystemDataA0(stackParameterOffset._4_4_,stackFramePointer + -0x78);
       if ((arrayIndex != 0) || (*(int *)(*(int64_t *)(stackFramePointer + -0x78) + 0x30) != 2))
       goto MemoryCopyLabel;
@@ -16442,7 +16442,7 @@ DataBuffer ValidateAndProcessDataFlags(int64_t dataContext,int operationIndex,ui
               *validationFlags = resultValue;
               return 0;
             }
-            goto LAB_180895ccb;
+            goto DataProcessingLabel;
           }
           hashIndex = *(int *)(tablePointer + 4 + currentIndex * 0x10);
         } while (hashIndex != -1);
@@ -16489,7 +16489,7 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
           *destinationIndexRegister = iStack0000000000000044;
           return 0;
         }
-        goto LAB_180895ccb;
+        goto DataProcessingLabel;
       }
       arrayIndex = *(int *)(validationContext + 4 + dataContext * 0x10);
     } while (arrayIndex != -1);
@@ -16893,7 +16893,7 @@ DataBuffer ReallocateAndCopyDataBuffer(int64_t *bufferPointer,int bufferSize)
             itemsToCopy = itemsToCopy + -1;
           } while (itemsToCopy != 0);
         }
-        goto LAB_180895fdc;
+        goto MemoryCleanupLabel;
       }
     }
     return 0x26;
@@ -16965,7 +16965,7 @@ CalculationLabel:
           calculatedIndex = calculatedIndex + -1;
         } while (calculatedIndex != 0);
       }
-      goto LAB_180895fdc;
+      goto MemoryCleanupLabel;
     }
   }
   return 0x26;
@@ -17007,7 +17007,7 @@ DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
                     // WARNING: Subroutine does not return
           memcpy(validationContext,*param_1,(int64_t)(int)param_1[1] * 0xc);
         }
-        goto LAB_1808960d4;
+        goto ResourceReleaseLabel;
       }
     }
     return 0x26;
@@ -17055,7 +17055,7 @@ DataTransferLabel:
                     // WARNING: Subroutine does not return
         memcpy(validationContext,*registerContext,(int64_t)(int)registerContext[1] * 0xc);
       }
-      goto LAB_1808960d4;
+      goto ResourceReleaseLabel;
     }
   }
   return 0x26;
@@ -17422,22 +17422,22 @@ ResourceCleanupLabel:
 
 
 
-DataBuffer * InitializeDataBlockPointerA0(DataBuffer *param_1,uint64_t param_2)
+DataBuffer * InitializeDataBlockPointerA0(DataBuffer *dataBlockPointer,uint64_t initializationFlags)
 
 {
-  *param_1 = &DataBlockPointerTableA0;
-  if ((param_2 & 1) != 0) {
-    free(param_1,0x28);
+  *dataBlockPointer = &DataBlockPointerTableA0;
+  if ((initializationFlags & 1) != 0) {
+    free(dataBlockPointer,0x28);
   }
-  return param_1;
+  return dataBlockPointer;
 }
 
 
 
-DataBuffer * InitializeDataBlockPointerA1(DataBuffer *param_1,uint64_t param_2)
+DataBuffer * InitializeDataBlockPointerA1(DataBuffer *dataBlockPointer,uint64_t initializationFlags)
 
 {
-  *param_1 = &DataBlockPointerTableA1;
+  *dataBlockPointer = &DataBlockPointerTableA1;
   ProcessDataAndPointerA0(param_1 + 5);
   *param_1 = &DataBlockPointerTableA0;
   if ((param_2 & 1) != 0) {
