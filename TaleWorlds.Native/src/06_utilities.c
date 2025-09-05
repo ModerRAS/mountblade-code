@@ -90004,16 +90004,16 @@ void ProcessSystemExceptionDataG1(void)
   longlong memoryOffset;
   ulonglong memoryMask;
   
-  systemDataPointer = _DAT_180d493f8;
-  if (_DAT_180d493f8 == (undefined8 *)0x0) {
+  systemDataPointer = SystemDataBufferPointer;
+  if (SystemDataBufferPointer == (undefined8 *)0x0) {
     return;
   }
-  memoryMask = (ulonglong)_DAT_180d493f8 & SystemCleanupFlagffc00000;
+  memoryMask = (ulonglong)SystemDataBufferPointer & SystemCleanupFlagffc00000;
   if (memoryMask != 0) {
-    memoryOffset = memoryMask + 0x80 + ((longlong)_DAT_180d493f8 - memoryMask >> 0x10) * 0x50;
+    memoryOffset = memoryMask + 0x80 + ((longlong)SystemDataBufferPointer - memoryMask >> 0x10) * 0x50;
     memoryOffset = memoryOffset - (ulonglong)*(uint *)(memoryOffset + 4);
     if ((*(void ***)(memoryMask + 0x70) == &ExceptionList) && (*(char *)(memoryOffset + 0xe) == '\0')) {
-      *_DAT_180d493f8 = *(undefined8 *)(memoryOffset + 0x20);
+      *SystemDataBufferPointer = *(undefined8 *)(memoryOffset + 0x20);
       *(undefined8 **)(memoryOffset + 0x20) = systemDataPointer;
       exceptionDataPointer = (int *)(memoryOffset + 0x18);
       *exceptionDataPointer = *exceptionDataPointer + -1;
