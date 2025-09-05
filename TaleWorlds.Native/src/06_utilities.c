@@ -14110,37 +14110,48 @@ void ExecuteSecurityCheckAndTerminateA3(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897b40(longlong *param_1,longlong param_2,undefined4 param_3)
-void FUN_180897b40(longlong *param_1,longlong param_2,undefined4 param_3)
+// 函数: void ProcessSystemResourceBatch(longlong *contextHandle,longlong resourceManager,uint32_t operationFlags)
+//
+// 系统资源批量处理函数
+// 批量处理系统资源，包括资源验证、数据处理和状态更新
+// 
+// 参数:
+//   contextHandle - 上下文句柄指针
+//   resourceManager - 资源管理器句柄
+//   operationFlags - 操作标志位
+// 
+// 返回值:
+//   无 - 函数执行安全检查后终止
+void ProcessSystemResourceBatch(longlong *contextHandle,longlong resourceManager,uint32_t operationFlags)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  int iVar3;
-  int iVar4;
-  int iVar5;
-  int iVar6;
-  int iVar7;
-  undefined1 auStack_2a8 [32];
-  undefined4 auStack_288 [2];
-  undefined *puStack_280;
-  undefined4 uStack_278;
-  undefined4 uStack_270;
-  undefined *puStack_268;
-  undefined4 uStack_260;
-  undefined4 uStack_258;
-  int iStack_250;
-  undefined4 uStack_24c;
-  undefined4 uStack_248;
-  undefined4 uStack_244;
-  undefined4 uStack_240;
-  undefined4 uStack_23c;
-  undefined8 auStack_238 [64];
-  ulonglong uStack_38;
+  longlong resourceEntry;
+  longlong bufferPointer;
+  int validationResult;
+  int processCount;
+  int maxIterations;
+  int currentIteration;
+  int resourceIndex;
+  undefined1 securityBuffer [32];
+  undefined4 validationBuffer [2];
+  undefined *messagePointer;
+  undefined4 operationCode;
+  undefined4 bufferFlags;
+  undefined *callbackPointer;
+  undefined4 statusFlags;
+  undefined4 operationParam;
+  int stackIndex;
+  undefined4 resourceData1;
+  undefined4 resourceData2;
+  undefined4 resourceData3;
+  undefined4 resourceData4;
+  undefined4 validationFlags;
+  undefined8 processingBuffer [64];
+  ulonglong securityToken;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_2a8;
-  iVar4 = 0;
-  iVar7 = 0;
+  securityToken = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  processCount = 0;
+  resourceIndex = 0;
   do {
     if ((iVar7 < 0) || (*(int *)(param_2 + 0x1a8) <= iVar7)) goto LAB_180897ce8;
     lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x1a0) + (longlong)iVar7 * 8);
@@ -85523,6 +85534,28 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ExecuteSystemDataProcessing FUN_18085eef0
 #define TerminateSystemE0 FUN_18064e900
 #define CleanupSystemResourceE1 FUN_180657620
+
+// 系统缓冲区操作相关宏定义
+#define AllocateSystemBufferCA0 FUN_18088c740
+#define ExecuteResourceOperationCM0 FUN_1808c7b30
+#define CleanupSystemResourceCA0 FUN_18088c790
+#define ExecuteSystemCallCN0 FUN_1808c7dc0
+#define CheckSystemStatusCO0 FUN_18088ac50
+
+// 系统验证和状态检查相关宏定义
+#define ValidateSystemStateCP0 FUN_1808552c0
+#define ExecuteSecurityCheckCQ0 FUN_1808c44f0
+#define ProcessDataValidationCR0 FUN_180894860
+#define ExecuteSystemOperationCS0 FUN_1808949c0
+#define ValidateContextCT0 FUN_18073b5f0
+#define CleanupSystemResourcesCU0 FUN_18073b810
+
+// 数据处理和转换相关宏定义
+#define ProcessDataConversionCV0 FUN_1808678e0
+#define CheckSystemStateCW0 FUN_18088aca0
+#define ValidateSystemConfigCX0 FUN_1808bdd90
+#define ExecuteMemoryOperationCY0 FUN_180768b50
+#define ProcessDataValidationCZ0 FUN_18084b240
 
 
 
