@@ -21048,7 +21048,7 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
               if (operationResult != 0) {
                 return;
               }
-              operationResult = FUN_1808affb0(extraout_XMM0_Da_04,lVar6 + 0x14);
+              operationResult = CheckSystemStatusAndReturnO0(extraout_XMM0_Da_04,lVar6 + 0x14);
               if (operationResult != 0) {
                 return;
               }
@@ -21145,7 +21145,7 @@ void InitializeSystemDataStructure(undefined8 *param_1)
         if (iVar3 != 0) {
           return;
         }
-        iVar3 = FUN_1808affb0(extraout_XMM0_Da_00,lVar5 + 0x14);
+        iVar3 = CheckSystemStatusAndReturnO0(extraout_XMM0_Da_00,lVar5 + 0x14);
         if (iVar3 != 0) {
           return;
         }
@@ -21221,13 +21221,13 @@ void ProcessSystemDataItem(longlong param_1,undefined4 *param_2)
   
   auStackX_8[0] = *param_2;
   iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,4);
-  if (((((iVar1 == 0) && (iVar1 = FUN_1808affb0(param_1,param_2 + 1), iVar1 == 0)) &&
+  if (((((iVar1 == 0) && (iVar1 = CheckSystemStatusAndReturnO0(param_1,param_2 + 1), iVar1 == 0)) &&
        (((*(byte *)(param_2 + 1) & 0x20) == 0 ||
-        (iVar1 = FUN_180899040(param_1,param_2 + 2), iVar1 == 0)))) &&
-      (((iVar1 = FUN_1808b0010(param_1,param_2 + 0xe), iVar1 == 0 &&
-        (iVar1 = FUN_1808b0010(param_1,param_2 + 0xf), iVar1 == 0)) &&
-       (iVar1 = FUN_1808b0010(param_1,param_2 + 0x10), iVar1 == 0)))) &&
-     (iVar1 = FUN_1808b0010(param_1,param_2 + 0x11), iVar1 == 0)) {
+        (iVar1 = ValidateAndProcessDataA0(param_1,param_2 + 2), iVar1 == 0)))) &&
+      (((iVar1 = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0xe), iVar1 == 0 &&
+        (iVar1 = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0xf), iVar1 == 0)) &&
+       (iVar1 = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0x10), iVar1 == 0)))) &&
+     (iVar1 = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0x11), iVar1 == 0)) {
     if ((param_2[1] & 0x100) != 0) {
       auStackX_8[0] = param_2[0x12];
       iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
@@ -21241,9 +21241,9 @@ void ProcessSystemDataItem(longlong param_1,undefined4 *param_2)
       }
     }
     if (((param_2[1] & 0x800) == 0) ||
-       ((iVar1 = FUN_1808b0010(param_1,param_2 + 0x18), iVar1 == 0 &&
-        (iVar1 = FUN_1808b0010(param_1,param_2 + 0x17), iVar1 == 0)))) {
-      FUN_18089a750(param_1,param_2 + 0x19);
+       ((iVar1 = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0x18), iVar1 == 0 &&
+        (iVar1 = CheckSystemStateAndReturnCodeO1(param_1,param_2 + 0x17), iVar1 == 0)))) {
+      ProcessDataAndExecuteOperationO10(param_1,param_2 + 0x19);
     }
   }
   return;
@@ -21262,14 +21262,14 @@ void ValidateSystemDataIntegrity(void)
   longlong unaff_RDI;
   undefined4 in_stack_00000030;
   
-  iVar1 = FUN_1808affb0();
+  iVar1 = CheckSystemStatusAndReturnO0();
   if (iVar1 == 0) {
-    if (((*(byte *)(registerContext + 4) & 0x20) != 0) && (iVar1 = FUN_180899040(), iVar1 != 0)) {
+    if (((*(byte *)(registerContext + 4) & 0x20) != 0) && (iVar1 = ValidateAndProcessDataA0(), iVar1 != 0)) {
       return;
     }
-    iVar1 = FUN_1808b0010();
-    if ((((iVar1 == 0) && (iVar1 = FUN_1808b0010(), iVar1 == 0)) &&
-        (iVar1 = FUN_1808b0010(), iVar1 == 0)) && (iVar1 = FUN_1808b0010(), iVar1 == 0)) {
+    iVar1 = CheckSystemStateAndReturnCodeO1();
+    if ((((iVar1 == 0) && (iVar1 = CheckSystemStateAndReturnCodeO1(), iVar1 == 0)) &&
+        (iVar1 = CheckSystemStateAndReturnCodeO1(), iVar1 == 0)) && (iVar1 = CheckSystemStateAndReturnCodeO1(), iVar1 == 0)) {
       if ((*(uint *)(registerContext + 4) & 0x100) != 0) {
         in_stack_00000030 = *(undefined4 *)(registerContext + 0x48);
         iVar1 = (**(code **)**(undefined8 **)(unaff_RDI + 8))
