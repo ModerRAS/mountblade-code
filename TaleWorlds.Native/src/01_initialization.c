@@ -26045,7 +26045,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   long long SystemMemoryAlignmentOffset1D0;
   uint SystemThreadStackSize;
   uint32_t GlobalDataFlags;
-  void* *SystemMemoryBufferPointer1b8;
+  void* *SystemMemoryBufferPointerSecondary;
   void* *SystemMemoryBufferPointer1b0;
   int SystemOperationValue1;
   uint32_t calculationFlagsPrimary;
@@ -26054,7 +26054,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   int SystemOperationValueMax;
   uint32_t concatenatedSystemValue;
   void* *pCalculationFlags1;
-  long long SystemCalculationValue1;
+  long long SystemMemoryAlignmentOffset1;
   uint32_t encryptionKeySize;
   void* threadLocalStoragePointer;
   ulong long resourceCreationFlagsLength;
@@ -28736,7 +28736,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   uint SystemResourceCount19c;
   uint8_t SystemStackFlag;
   uint32_t SystemOperationResult94;
-  void* *SystemMemoryBufferPointer190;
+  void* *SystemMemoryBufferPointerTertiary;
   long long SystemMemoryAllocationOffset188;
   int SystemThreadCount180;
   uint32_t CalculationFlags178;
