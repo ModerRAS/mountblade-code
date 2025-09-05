@@ -132,6 +132,14 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
  * @param ConnectionContext 连接上下文指针
  * @return int64_t 计算出的偏移量地址
  */
+/**
+ * @brief 计算连接参数偏移量
+ * 
+ * 计算连接上下文中参数的偏移量，用于访问连接参数
+ * 
+ * @param ConnectionContext 连接上下文指针
+ * @return int64_t 计算出的偏移量地址
+ */
 static int64_t CalculateConnectionParameterAddress(int64_t *ConnectionContext)
 {
     return (int64_t)ConnectionContext + ConnectionParameterOffset;
@@ -2388,9 +2396,9 @@ NetworkHandle InitializeConnectionProcessor(void)
 NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData)
 {
   // 数据包处理变量
-  NetworkConnectionStatus *ContextDataArray;      // 网络连接上下文数据数组
-  NetworkConnectionStatus PacketProcessingStatus; // 数据包处理状态
-  NetworkConnectionStatus ConnectionValidationStatus; // 连接验证状态
+  NetworkConnectionStatus *ConnectionContextDataArray;      // 网络连接上下文数据数组
+  NetworkConnectionStatus NetworkPacketProcessingStatus; // 网络数据包处理状态
+  NetworkConnectionStatus NetworkConnectionValidationStatus; // 网络连接验证状态
   
   /**
    * @brief 处理网络连接数据包的核心逻辑
@@ -2430,28 +2438,28 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
         int32_t ActiveConnectionCount = (int)ConnectionContext[ConnectionContextActiveCountIndex];
         int64_t ConnectionIterationCounter = (long long)ActiveConnectionCount;
         int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址
-        NetworkConnectionStatus *NetworkConnectionStatusBufferPointer = NetworkConnectionStatusBuffer;
+        NetworkConnectionStatus *NetworkConnectionStatusIterator = NetworkConnectionStatusBuffer;
           
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *NetworkConnectionContextDataPointer = (NetworkConnectionStatus *)CalculateConnectionDataOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusBufferPointer);
+            NetworkConnectionStatus *NetworkConnectionContextDataPointer = (NetworkConnectionStatus *)CalculateConnectionDataOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusIterator);
             
             // 提取连接状态信息
-            NetworkConnectionStatus PacketStatus = NetworkConnectionContextDataPointer[ConnectionContextPacketStatusIndex];
-            NetworkConnectionStatus DataStatus = NetworkConnectionContextDataPointer[ConnectionContextDataStatusIndex];
-            NetworkConnectionStatus ValidationStatus = NetworkConnectionContextDataPointer[ConnectionContextValidationStatusIndex];
+            NetworkConnectionStatus NetworkPacketStatus = NetworkConnectionContextDataPointer[ConnectionContextPacketStatusIndex];
+            NetworkConnectionStatus NetworkDataStatus = NetworkConnectionContextDataPointer[ConnectionContextDataStatusIndex];
+            NetworkConnectionStatus NetworkValidationStatus = NetworkConnectionContextDataPointer[ConnectionContextValidationStatusIndex];
             
             // 更新数据包缓冲区状态
-            *NetworkConnectionStatusBufferPointer = *NetworkConnectionContextDataPointer;
-            NetworkConnectionStatusBufferPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
-            NetworkConnectionStatusBufferPointer[ConnectionContextDataStatusIndex] = DataStatus;
-            NetworkConnectionStatusBufferPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            NetworkConnectionStatusBufferPointer[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastConnectionEntryOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusBufferPointer);
+            *NetworkConnectionStatusIterator = *NetworkConnectionContextDataPointer;
+            NetworkConnectionStatusIterator[ConnectionContextPacketStatusIndex] = NetworkPacketStatus;
+            NetworkConnectionStatusIterator[ConnectionContextDataStatusIndex] = NetworkDataStatus;
+            NetworkConnectionStatusIterator[ConnectionContextValidationStatusIndex] = NetworkValidationStatus;
+            NetworkConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastConnectionEntryOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusIterator);
             
             // 更新计数器
             ConnectionIterationCounter = ConnectionIterationCounter - 1;
-            NetworkConnectionStatusBufferPointer = NetworkConnectionStatusBufferPointer + ConnectionContextEntrySize;
+            NetworkConnectionStatusIterator = NetworkConnectionStatusIterator + ConnectionContextEntrySize;
           } while (ConnectionIterationCounter != 0);
         }
         return NetworkOperationSuccess;
@@ -2547,14 +2555,14 @@ PrimaryNetworkProcessingComplete:
       if ((NetworkOperationProcessingCode != 0) && (NetworkConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < NetworkOperationProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
-          NetworkStatus *ContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
-          NetworkStatus ValidationState = ContextStatusPointer[NetworkStatusValidationIndex];
-          NetworkStatus TimeoutState = ContextStatusPointer[NetworkStatusTimeoutIndex];
-          NetworkStatus SecondaryState = ContextStatusPointer[NetworkStatusSecondaryIndex];
-          *ConnectionStatusIterator = *ContextStatusPointer;
-          ConnectionStatusIterator[NetworkStatusValidationIndex] = ValidationState;
-          ConnectionStatusIterator[NetworkStatusTimeoutIndex] = TimeoutState;
-          ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryState;
+          NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
+          NetworkStatus NetworkValidationState = NetworkContextStatusPointer[NetworkStatusValidationIndex];
+          NetworkStatus NetworkTimeoutState = NetworkContextStatusPointer[NetworkStatusTimeoutIndex];
+          NetworkStatus NetworkSecondaryState = NetworkContextStatusPointer[NetworkStatusSecondaryIndex];
+          *ConnectionStatusIterator = *NetworkContextStatusPointer;
+          ConnectionStatusIterator[NetworkStatusValidationIndex] = NetworkValidationState;
+          ConnectionStatusIterator[NetworkStatusTimeoutIndex] = NetworkTimeoutState;
+          ConnectionStatusIterator[NetworkStatusSecondaryIndex] = NetworkSecondaryState;
           ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastConnectionStatusEntryOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           NetworkStatusIterationCounter = NetworkStatusIterationCounter - 1;
           ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextEntrySize;

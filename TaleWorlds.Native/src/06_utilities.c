@@ -4577,7 +4577,7 @@ void* UtilityEventData;
 int32_t UtilityEventResult;
 int32_t UtilityEventError;
 
-// 函数: undefined UtilityProcessMemoryBlock;
+// 函数: void UtilityProcessMemoryBlock(void);
 // 
 // 处理内存块操作
 // 执行内存块的分配、释放或修改操作
@@ -4586,8 +4586,8 @@ int32_t UtilityEventError;
 //   无
 // 
 // 返回值:
-//   undefined - 操作结果状态
-undefined UtilityProcessMemoryBlock;
+//   void - 无返回值
+void UtilityProcessMemoryBlock(void);
 // 工具系统内存处理相关变量
 undefined UtilityMemoryPointer1;
 undefined UtilityMemoryData1;
