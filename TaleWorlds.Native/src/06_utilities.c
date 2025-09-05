@@ -8227,18 +8227,24 @@ DataWord ReleaseStackResource(void)
 {
   int64_t processorRegisterValue;
   int64_t stackResourcePointer;
+  int64_t* stackDataPointer;
   
+  // 根据处理器寄存器值计算栈资源指针
   if (processorRegisterValue == 0) {
     stackResourcePointer = 0;
   }
   else {
-    stackResourcePointer = processorRegisterValue + -8;
+    stackResourcePointer = processorRegisterValue - 8;
   }
-  if (*(int64_t *)(stackResourcePointer + 0x10) == 0) {
-    return 0x1c;
+  
+  // 检查栈数据指针
+  stackDataPointer = (int64_t *)(stackResourcePointer + 0x10);
+  if (*stackDataPointer == 0) {
+    return 0x1c;  // 返回资源无效错误代码
   }
-                    // WARNING: Subroutine does not return
-  ReleaseResource(*(int64_t *)(stackResourcePointer + 0x10),1);
+  
+  // 释放栈资源（注意：此函数不会返回）
+  ReleaseResource(*stackDataPointer, 1);
 }
 
 

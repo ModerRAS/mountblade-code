@@ -242,6 +242,27 @@
 // 根节点引用索引常量
 #define RootNodeCurrentNodeIndex            1  // 根节点当前节点索引
 
+// 回调表相关偏移量
+#define CallbackTableDataOffset             2    // 回调表数据偏移量
+#define CallbackTableSize                    0x100 // 回调表大小
+#define CallbackTableValidationValue         0x1e  // 回调表验证值
+
+// 虚表相关偏移量
+#define VirtualTableIncrement                0x2b  // 虚表增量
+
+// 系统上下文管理器偏移量
+#define SystemContextManagerStatusOffset     0x18  // 系统上下文管理器状态偏移量
+
+// 系统全局状态偏移量
+#define SystemGlobalStatusOffset            0x2b0 // 系统全局状态偏移量
+#define SystemGlobalCallbackOffset           0x98  // 系统全局回调偏移量
+
+// 数据缓冲区偏移量
+#define DataBufferLengthOffset              0x10  // 数据缓冲区长度偏移量
+
+// 系统控制器偏移量
+#define SystemControllerCallbackOffset       0x68  // 系统控制器回调偏移量
+
 // 节点标识符偏移量常量
 #define NodeIdentifierOffset                4  // 节点标识符偏移量
 
@@ -18927,7 +18948,7 @@ uint64_t InitializeThreadLocalStorageCallbackTable(void)
     if (CallbackTable == (int *)0x0) {
       return 0xffffffff;
     }
-    *(uint64_t *)(CallbackTable + 2) = *(uint64_t *)(LocalStoragePointer + 0x50);
+    *(uint64_t *)(CallbackTable + CallbackTableDataOffset) = *(uint64_t *)(LocalStoragePointer + LocalStorageQuinaryOffset);
   }
   *CallbackTable = 0;
   *(int **)(LocalStoragePointer + 0x50) = CallbackTable;
