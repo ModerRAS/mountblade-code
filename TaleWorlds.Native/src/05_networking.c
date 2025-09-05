@@ -31,11 +31,18 @@ typedef uint8_t NetworkDataByte;
 typedef uint8_t NetworkByte;
 
 /**
- * @brief 网络句柄类型
+ * @brief 网络资源句柄类型
  * 
  * 用于表示网络连接、数据包等资源的句柄，提供统一的资源管理接口
  */
 typedef uint32_t NetworkResourceHandle;
+
+/**
+ * @brief 网络句柄类型
+ * 
+ * 用于表示网络连接和数据包操作的句柄，是网络系统中的基本标识符
+ */
+typedef uint32_t NetworkHandle;
 
 /**
  * @brief 网络数据包处理器函数指针类型
@@ -370,27 +377,27 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkPacketProcessingSize256Bytes 0x100                 // 数据包处理大小256字节
 #define NetworkValidationBufferSize39Bytes 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
-#define NetworkConnectionCompletionHandle 0x7d                // 连接完成状态句柄 (125)
+#define NetworkConnectionCompletionHandle125 0x7d                // 连接完成状态句柄 (125)
 #define NetworkConnectionBasicValidationMode 0x01           // 基本验证模式
 #define NetworkConnectionStrictValidationMode 0x02           // 严格验证模式
 #define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
 #define NetworkPacketBasicDecodingMode 0x01                 // 基本解码模式
 #define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
-#define NetworkMagicValidationMask 0x03               // 魔数验证掩码
-#define NetworkPacketFirstMagicValidMask 0x01               // 第一个魔数有效掩码
-#define NetworkPacketSecondMagicValidMask 0x02              // 第二个魔数有效掩码
+#define NetworkMagicValidationMask03 0x03               // 魔数验证掩码
+#define NetworkPacketFirstMagicValidMask01 0x01               // 第一个魔数有效掩码
+#define NetworkPacketSecondMagicValidMask02 0x02              // 第二个魔数有效掩码
 #define NetworkIntegrityCheckSuccess 0x01                   // 完整性检查成功
 #define NetworkDataFormatValid 0x01                        // 数据格式有效
 #define NetworkChecksumValid 0x01                           // 校验和有效
-#define NetworkPacketSizeLimit 0x55                          // 数据包大小限制（85字节）
+#define NetworkPacketSizeLimit85Bytes 0x55                          // 数据包大小限制（85字节）
 #define NetworkPacketSizeAlternative NetworkPacketAlternativeSizeLimit  // 兼容性别名 - 替代数据包大小限制
 
 // 网络连接验证偏移量常量
-#define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
-#define NetworkConnectionValidationOffsetThird 0x78          // 第三级连接验证偏移量
-#define NetworkConnectionValidationOffsetFourth 0x58         // 第四级连接验证偏移量
-#define NetworkConnectionIntegrityOffsetFirst 0x70           // 第一级连接完整性偏移量
-#define NetworkConnectionIntegrityOffsetSecond 0x74          // 第二级连接完整性偏移量
+#define NetworkConnectionSecondaryValidationOffset84 0x54         // 第二级连接验证偏移量
+#define NetworkConnectionValidationOffsetThird120 0x78          // 第三级连接验证偏移量
+#define NetworkConnectionValidationOffsetFourth88 0x58         // 第四级连接验证偏移量
+#define NetworkConnectionIntegrityOffsetFirst112 0x70           // 第一级连接完整性偏移量
+#define NetworkConnectionIntegrityOffsetSecond116 0x74          // 第二级连接完整性偏移量
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
 // 网络缓冲区对齐和大小常量
@@ -405,7 +412,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkResourceAllocationSizeEx 0x28               // 网络资源扩展分配大小（40字节）
 #define NetworkHandleStorageSize 0x30                       // 网络句柄存储大小（48字节）
 #define NetworkPacketProcessingSize 0x100                    // 网络数据包处理大小（256字节）
-#define NetworkValidationBufferSize 0x27                    // 网络验证缓冲区大小（39字节）
+#define NetworkStandardBufferSize39Bytes 0x27                    // 标准缓冲区大小39字节
 #define NetworkErrorReportSize 0xb                          // 网络错误报告大小（11字节）
 #define NetworkSecurityReportSize 0xd                       // 网络安全报告大小（13字节）
 #define NetworkConnectionReportSize 0xf                     // 网络连接报告大小（15字节）
@@ -1866,6 +1873,8 @@ uint32_t NetworkTotalConnectionAttempts;            // 网络连接总尝试次�
 uint32_t NetworkFailedConnectionAttempts;            // 网络连接失败尝试次数
 uint32_t NetworkAverageConnectionTime;               // 网络平均连接时间
 uint32_t NetworkLastActivityTimestamp;              // 网络最后活动时间戳
+uint32_t NetworkPacketBufferPointer;                 // 网络数据包缓冲区指针
+uint32_t NetworkPacketHeaderPointer;                 // 网络数据包头指针
 uint32_t NetworkPacketSequence;                     // 网络数据包序列号
 uint32_t NetworkAcknowledgeNumber;                  // 网络确认号
 uint32_t NetworkWindowScale;                         // 网络窗口缩放
