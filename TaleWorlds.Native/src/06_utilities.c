@@ -1731,6 +1731,14 @@
 // 功能：销毁互斥锁C，释放相关资源
 #define DestroyMutexC FUN_180943070
 
+// 原始函数名：FUN_180627b90 - 资源清理处理函数
+// 功能：清理和释放系统资源
+#define CleanupResourceHandler FUN_180627b90
+
+// 原始函数名：UNK_180a3c3e0 - 临时异常处理器
+// 功能：临时异常处理程序，用于系统初始化期间
+#define TemporaryExceptionHandler UNK_180a3c3e0
+
 // 原始函数名：FUN_180943090 - 线程本地存储初始化函数A3
 // 功能：初始化线程本地存储A3
 #define InitializeThreadLocalStorageA3 FUN_180943090
@@ -20073,20 +20081,20 @@ undefined8 ProcessDataBlockOperationA1(longlong *param_1,undefined4 *param_2)
  * 返回值:
  *   无 - 处理结果通过返回值机制传递
  */
-void ProcessMultiSegmentDataA0(undefined8 param_1,longlong param_2)
+void ProcessMultiSegmentDataA0(undefined8 SystemContext,longlong DataBuffer)
 
 {
-  int iVar1;
+  int OperationResult;
   
-  iVar1 = OperateDataO0(param_1,param_2,4);
-  if (iVar1 == 0) {
-    iVar1 = OperateDataO0(param_1,param_2 + 4,2);
-    if (iVar1 == 0) {
-      iVar1 = OperateDataO0(param_1,param_2 + 6,2);
-      if (iVar1 == 0) {
-        iVar1 = OperateDataO0(param_1,param_2 + 8,8);
-        if (iVar1 == 0) {
-          OperateDataO0(param_1,param_2 + 0x10,4);
+  OperationResult = OperateDataO0(SystemContext,DataBuffer,4);
+  if (OperationResult == 0) {
+    OperationResult = OperateDataO0(SystemContext,DataBuffer + 4,2);
+    if (OperationResult == 0) {
+      OperationResult = OperateDataO0(SystemContext,DataBuffer + 6,2);
+      if (OperationResult == 0) {
+        OperationResult = OperateDataO0(SystemContext,DataBuffer + 8,8);
+        if (OperationResult == 0) {
+          OperateDataO0(SystemContext,DataBuffer + 0x10,4);
         }
       }
     }
