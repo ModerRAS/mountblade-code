@@ -514,15 +514,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 /**
  * @brief 比较网络连接时间戳
  * 
- * 比较两个网络连接的时间戳，确定连接的先后顺序和时间关系
- * 
- * @param SourceTimestamp 源时间戳指针，用于比较的基准时间戳
- * @param TargetTimestamp 目标时间戳指针，用于比较的目标时间戳
- * @return uint32_t 比较结果：0表示相等，正数表示源时间戳大于目标时间戳，负数表示源时间戳小于目标时间戳
- */
-/**
- * @brief 比较网络连接时间戳
- * 
  * 比较两个网络连接的时间戳，确定连接的新旧顺序。
  * 此函数用于连接管理和超时处理，确保连接的时间顺序正确。
  * 
@@ -2071,7 +2062,7 @@ NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHand
     ConnectionContextHandle = ProcessConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
     if (ConnectionContextHandle != 0) {
       if ((int)NetworkConnectionValidationData[1] != 0) {
-          memcpy(ConnectionContextHandle, *NetworkConnectionValidationData, (long long)(int)NetworkConnectionValidationData[1]);
+          memcpy(ConnectionContextHandle, *NetworkConnectionValidationData, (int64_t)(int)NetworkConnectionValidationData[1]);
       }
       return ConnectionContextHandle;
     }
@@ -2249,11 +2240,11 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t MaxIntValue;                                           // 最大32位整数值
   if (ConnectionOperationCode == 0) {
 PrimaryNetworkProcessingCompleted:
-    if ((0 < *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset)) && (*ConnectionOperationBuffer != 0)) {
+    if ((0 < *(int *)CalculateContextParameterOffset(ConnectionOperationBuffer)) && (*ConnectionOperationBuffer != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *ConnectionOperationBuffer = (long long)ProcessedPacketIdentifier;
-    *(int *)((long long)ConnectionOperationBuffer + ConnectionParameterOffset) = ConnectionOperationCode;
+    *ConnectionOperationBuffer = (int64_t)ProcessedPacketIdentifier;
+    *(int *)CalculateContextParameterOffset(ConnectionOperationBuffer) = ConnectionOperationCode;
     return NetworkOperationSuccess;
   }
   if (PacketIndex * ConnectionEntrySize - 1U < MaxIntValue) {
