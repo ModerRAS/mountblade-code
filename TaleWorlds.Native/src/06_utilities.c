@@ -3110,9 +3110,9 @@ undefined UtilityDataValidationBufferC;
 undefined UtilityDataValidationBufferD;
 undefined UtilityValidationStatusA;
 
-// 原始函数名：FUN_1809422a0 - 数据压缩函数A0
+// 原始函数名：FUN_1809422a0 - 数据压缩函数A1
 // 功能：压缩工具数据以减少存储空间
-#define CompressUtilityDataA0 FUN_1809422a0
+#define CompressUtilityDataA1 FUN_1809422a0
 
 undefined CompressUtilityDataA0;
 undefined UtilityCompressionBufferA;
@@ -3121,9 +3121,9 @@ undefined UtilityCompressionBufferC;
 undefined UtilityCompressionBufferD;
 undefined UtilityCompressionStatusA;
 
-// 原始函数名：FUN_1809422c0 - 数据解压缩函数A0
+// 原始函数名：FUN_1809422c0 - 数据解压缩函数A1
 // 功能：解压缩已压缩的工具数据
-#define DecompressUtilityDataA0 FUN_1809422c0
+#define DecompressUtilityDataA1 FUN_1809422c0
 
 undefined DecompressUtilityDataA0;
 undefined UtilityDecompressionBufferA;
@@ -3132,9 +3132,9 @@ undefined UtilityDecompressionBufferC;
 undefined UtilityDecompressionBufferD;
 undefined UtilityDecompressionStatusA;
 
-// 原始函数名：FUN_1809422e0 - 数据加密函数A0
+// 原始函数名：FUN_1809422e0 - 数据加密函数A1
 // 功能：加密工具数据以确保安全性
-#define EncryptUtilityDataA0 FUN_1809422e0
+#define EncryptUtilityDataA1 FUN_1809422e0
 
 undefined EncryptUtilityDataA0;
 undefined UtilityEncryptionBufferA;
@@ -17068,6 +17068,9 @@ undefined4 FUN_180898d31(undefined8 param_1,int *param_2)
 
 
 
+// 原始函数名：FUN_180898d4d - 返回固定值函数S0
+// 功能：返回固定值0x1f
+#define ReturnFixedValueS0 FUN_180898d4d
 undefined8 FUN_180898d4d(void)
 
 {
@@ -17175,6 +17178,9 @@ LAB_180898e0b:
 
 
 
+// 原始函数名：FUN_180898e56 - 返回固定值函数T0
+// 功能：返回固定值0x26
+#define ReturnFixedValueT0 FUN_180898e56
 undefined8 FUN_180898e56(void)
 
 {
