@@ -29919,12 +29919,12 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1,DataBuffer *param
   uint functionReturnValue;
   uint64_t validationStatus;
   uint64_t memoryBaseAddress;
-  ByteFlag auStackX_18 [4];
-  ByteFlag auStackX_1c [12];
-  ByteFlag acolorDataWord [32];
-  ByteFlag systemBufferA [32];
+  ByteFlag stackSecurityBuffer[4];
+  ByteFlag stackValidationBuffer[12];
+  ByteFlag colorDataBuffer[32];
+  ByteFlag systemProcessingBuffer[32];
   
-  validationStatus = ExecuteSecurityValidation(param_2,systemBufferA,1,0x54495053);
+  validationStatus = ExecuteSecurityValidation(param_2,systemProcessingBuffer,1,0x54495053);
   if ((((int)validationStatus == 0) &&
       (validationStatus = ExecuteSecurityValidation(param_2,acolorDataWord,0,0x42495053), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)validationStatus == 0)) {
