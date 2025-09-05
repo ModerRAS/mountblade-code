@@ -315,19 +315,19 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 表示数据包验证的魔数值，ASCII码为"EVIT"，用于数据包完整性验证
  */
-#define NetworkMagicValidation 0x54495645                // "EVIT" - 表示数据包验证魔数
+#define NetworkValidationMagic 0x54495645                // "EVIT" - 表示数据包验证魔数
 /**
  * @brief 二进制数据魔数
  * 
  * 表示二进制数据的魔数值，ASCII码为"EVIB"，用于二进制数据包识别
  */
-#define NetworkMagicBinaryData 0x42495645                // "EVIB" - 表示二进制数据魔数
+#define NetworkBinaryDataMagic 0x42495645                // "EVIB" - 表示二进制数据魔数
 /**
  * @brief 事件数据魔数
  * 
  * 表示事件数据的魔数值，ASCII码为"EVNT"，用于事件数据包识别
  */
-#define NetworkMagicEventData 0x544e5645                 // "EVNT" - 表示事件数据魔数
+#define NetworkEventDataMagic 0x544e5645                 // "EVNT" - 表示事件数据魔数
 /**
  * @brief 批处理数据魔数
  * 
@@ -377,7 +377,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
  * 
  * 用于调试过程中的验证操作，帮助识别调试相关的问题
  */
-#define NetworkMagicDebugValidation 0xdeadf00d              // 调试验证魔数，用于调试和内存检查
+#define NetworkDebugValidationMagic 0xdeadf00d              // 调试验证魔数，用于调试和内存检查
 /**
  * @brief 浮点数1.0的十六进制表示
  * 
@@ -513,7 +513,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkValidationSuccessMask 0x01                     // 验证成功掩码
 #define NetworkPacketBasicDecodingMode 0x01                 // 基本解码模式
 #define NetworkPacketStrictDecodingMode 0x02                 // 严格解码模式
-#define NetworkMagicValidationMask 0x03                     // 魔数验证掩码
+#define NetworkValidationMagicMask 0x03                     // 魔数验证掩码
 #define NetworkPacketFirstMagicValidMask 0x01               // 第一个魔数有效掩码
 #define NetworkPacketSecondMagicValidMask 0x02              // 第二个魔数有效掩码
 #define NetworkIntegrityCheckSuccess 0x01                   // 完整性检查成功
@@ -679,11 +679,11 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkDecodingBasicMode 0x01                         // 基本解码模式
 #define NetworkDecodingStrictMode 0x02                        // 严格解码模式
 #define NetworkDecodingDefaultMode 0x01                       // 默认解码模式
-#define NetworkMagicValidFirstFlag 0x01                       // 第一个魔数验证通过
-#define NetworkMagicValidSecondFlag 0x02                      // 第二个魔数验证通过
-#define NetworkMagicValidBothFlag 0x03                        // 两个魔数都验证通过
-#define NetworkIntegrityCheckPassFlag 0x01                   // 完整性检查通过
-#define ComplianceCheckPass 0x01                  // 合规检查通过
+#define NetworkFirstMagicValidFlag 0x01                       // 第一个魔数验证通过
+#define NetworkSecondMagicValidFlag 0x02                      // 第二个魔数验证通过
+#define NetworkBothMagicValidFlag 0x03                        // 两个魔数都验证通过
+#define NetworkIntegrityCheckPassedFlag 0x01                   // 完整性检查通过
+#define NetworkComplianceCheckPassedFlag 0x01                  // 合规检查通过
 #define HeaderValidPass 0x01                      // 头部验证通过
 #define ContextProcessPass 0x01                    // 上下文处理通过
 #define FinalizationPass 0x01                      // 完成处理通过
@@ -2677,9 +2677,9 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
   NetworkByte PacketEncryptionBuffer [32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
+  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMagicMemoryValidation), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkBinaryDataMagic, NetworkMemoryValidationMagic), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -2824,9 +2824,9 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
   NetworkByte ConnectionEncryptionBuffer [32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  PacketValidationResult = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
+  PacketValidationResult = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
   if (((int)PacketValidationResult == 0) &&
-     (PacketValidationResult = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkMagicBinaryData, NetworkMagicMemoryValidation), (int)PacketValidationResult == 0)) {
+     (PacketValidationResult = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkBinaryDataMagic, NetworkMemoryValidationMagic), (int)PacketValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -2878,10 +2878,10 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
   }
   else {
     // 处理状态限制外的数据包，需要解码处理
-    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkMagicLiveConnection, NetworkMagicEventData);
+    PacketProcessingResult = DecodePacketDataStream(PacketData, DecodedDataStreamBuffer, 1, NetworkLiveConnectionMagic, NetworkEventDataMagic);
     if ((int)PacketProcessingResult == 0) {
       // 验证数据包头部
-      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkMagicBinaryData);
+      PacketProcessingResult = ValidateNetworkPacketHeader(ConnectionContext, PacketData, NetworkBinaryDataMagic);
       if ((int)PacketProcessingResult == 0) {
         // 处理连接数据
         NetworkHandle ConnectionDataProcessingResult = ProcessConnectionData(ConnectionContext, PacketData);
@@ -3121,25 +3121,25 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   // 验证数据包魔数
   if (PacketData && *PacketData != 0) {
     // 验证主魔数
-    if (PrimaryMagicNumber == NetworkMagicLiveConnection || PrimaryMagicNumber == NetworkMagicValidation) {
+    if (PrimaryMagicNumber == NetworkLiveConnectionMagic || PrimaryMagicNumber == NetworkValidationMagic) {
       MagicValidationResult |= NetworkPacketFirstMagicValidMask;
     }
     
     // 验证次魔数
-    if (SecondaryMagicNumber == NetworkMagicBinaryData || SecondaryMagicNumber == NetworkMagicMemoryValidation) {
+    if (SecondaryMagicNumber == NetworkBinaryDataMagic || SecondaryMagicNumber == NetworkMemoryValidationMagic) {
       MagicValidationResult |= NetworkPacketSecondMagicValidMask;
     }
   }
   
   // 检查数据完整性
-  if (MagicValidationResult == NetworkMagicValidationMask) {
+  if (MagicValidationResult == NetworkValidationMagicMask) {
     IntegrityValidationStatus = NetworkValidationSuccess;
   }
   
   // 根据解码模式处理数据
   if (DecodingMode == NetworkPacketBasicDecodingMode) {
     // 基本解码模式
-    DecodingStatus = MagicValidationResult & NetworkMagicValidationMask;
+    DecodingStatus = MagicValidationResult & NetworkValidationMagicMask;
   } else if (DecodingMode == NetworkPacketStrictDecodingMode) {
     // 严格解码模式
     DecodingStatus = IntegrityValidationStatus & NetworkValidationSuccess;
