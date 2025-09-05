@@ -3667,34 +3667,36 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
 
 
 
-undefined8 FUN_180890450(longlong param_1,longlong param_2)
+// 函数: undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
+// 功能：处理资源分配，更新资源计数器并在条件满足时执行资源释放操作
+undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
 
 {
-  longlong lVar1;
-  int iVar2;
-  undefined8 uVar3;
-  longlong alStackX_8 [2];
+  longlong resourcePointer;
+  int operationResult;
+  undefined8 validationStatus;
+  longlong stackBuffer [2];
   
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  lVar1 = alStackX_8[0];
-  if ((int)uVar3 != 0) {
-    return uVar3;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),stackBuffer);
+  resourcePointer = stackBuffer[0];
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  *(int *)(alStackX_8[0] + 0x4c) = *(int *)(alStackX_8[0] + 0x4c) + 1;
-  if (*(int *)(alStackX_8[0] + 0x58) + *(int *)(alStackX_8[0] + 0x54) +
-      *(int *)(alStackX_8[0] + 0x4c) == 1) {
-    alStackX_8[0] = 0;
-    iVar2 = FUN_18088c740(alStackX_8);
-    if (iVar2 == 0) {
-      iVar2 = FUN_1808c7b30(lVar1,*(undefined8 *)(lVar1 + 8),*(undefined8 *)(param_2 + 0x90),
+  *(int *)(stackBuffer[0] + 0x4c) = *(int *)(stackBuffer[0] + 0x4c) + 1;
+  if (*(int *)(stackBuffer[0] + 0x58) + *(int *)(stackBuffer[0] + 0x54) +
+      *(int *)(stackBuffer[0] + 0x4c) == 1) {
+    stackBuffer[0] = 0;
+    operationResult = FUN_18088c740(stackBuffer);
+    if (operationResult == 0) {
+      operationResult = FUN_1808c7b30(resourcePointer,*(undefined8 *)(resourcePointer + 8),*(undefined8 *)(param_2 + 0x90),
                             *(undefined8 *)(param_2 + 800));
-      if (iVar2 == 0) {
+      if (operationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088c790(alStackX_8);
+        FUN_18088c790(stackBuffer);
       }
     }
                     // WARNING: Subroutine does not return
-    FUN_18088c790(alStackX_8);
+    FUN_18088c790(stackBuffer);
   }
   return 0;
 }
@@ -5888,7 +5890,25 @@ void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 
 
 // 函数: void InitializeSystemEventHandlerA1(longlong param_1,longlong param_2)
-// 功能：初始化系统事件处理器，处理条件分支逻辑
+//
+// 系统事件处理器初始化函数A1
+// 
+// 功能：
+// 初始化系统事件处理器，处理条件分支逻辑。该函数是A0版本的变体，
+// 增加了条件判断逻辑，根据不同的条件执行不同的初始化路径。
+//
+// 参数：
+//   param_1 (longlong) - 事件处理器配置参数指针，包含事件处理所需的配置信息
+//   param_2 (longlong) - 回调函数表指针，包含事件处理回调函数的地址
+//
+// 返回值：
+//   无
+//
+// 注意事项：
+//   - 函数内部包含条件分支逻辑，根据param_1 + 0x2c位置的值决定执行路径
+//   - 如果条件不满足，会调用FUN_18088d720函数（该函数不返回）
+//   - 调用前确保参数有效性，避免未定义行为
+//
 void InitializeSystemEventHandlerA1(longlong param_1,longlong param_2)
 
 {
@@ -81818,8 +81838,9 @@ void UtilityResetPointer6(void)
 
 
 
-// 函数: void FUN_180941650(void)
-void FUN_180941650(void)
+// 函数: void DestroyMutexAndCondition(void)
+// 功能：销毁互斥锁和条件变量，清理线程同步资源
+void DestroyMutexAndCondition(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -81832,8 +81853,9 @@ void FUN_180941650(void)
 
 
 
-// 函数: void FUN_180941690(void)
-void FUN_180941690(void)
+// 函数: void CleanupThreadSyncResources(void)
+// 功能：清理线程同步资源，销毁互斥锁和条件变量
+void CleanupThreadSyncResources(void)
 
 {
   _Mtx_destroy_in_situ();
