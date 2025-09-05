@@ -13,7 +13,7 @@
 #define SecurityAlignment 0xf
 #define SecurityAlignmentMask 0xfffffff0
 #define SystemCleanupFlag 0x80000000
-#define SystemCleanupFlagfffffffe 0xfffffffe
+#define SystemCleanupFlagAlternative 0xfffffffe
 #define NegativeZeroFloat 0x80000000
 #define SecurityValidationMask 0x40000000
 #define ThreadLocalStorageOffset 0x17c
