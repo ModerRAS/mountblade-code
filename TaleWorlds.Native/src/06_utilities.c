@@ -33242,7 +33242,7 @@ void CleanupExceptionHandlingFlags(undefined8 exceptionContext, longlong unwindC
 {
   if ((*(uint *)(unwindContext + 0x30) & 8) != 0) {
     *(uint *)(unwindContext + 0x30) = *(uint *)(unwindContext + 0x30) & 0xfffffff7;
-    FUN_180627b90(unwindContext + 0xf8);
+    CleanupResourceHandler(unwindContext + 0xf8);
   }
   return;
 }
@@ -33294,7 +33294,7 @@ void CleanupExceptionStatusFlags(undefined8 exceptionContext, longlong unwindCon
 {
   if ((*(uint *)(unwindContext + 0x30) & 0x10) != 0) {
     *(uint *)(unwindContext + 0x30) = *(uint *)(unwindContext + 0x30) & 0xffffffef;
-    FUN_180627b90(unwindContext + 0x58);
+    CleanupResourceHandler(unwindContext + 0x58);
   }
   return;
 }
@@ -33322,7 +33322,7 @@ void CleanupExceptionExtendedFlags(undefined8 exceptionContext, longlong unwindC
 {
   if ((*(uint *)(unwindContext + 0x30) & 0x20) != 0) {
     *(uint *)(unwindContext + 0x30) = *(uint *)(unwindContext + 0x30) & 0xffffffdf;
-    FUN_180627b90(unwindContext + 0xd8);
+    CleanupResourceHandler(unwindContext + 0xd8);
   }
   return;
 }
@@ -33367,7 +33367,7 @@ void CleanupSystemFlagBit6(undefined8 context, longlong systemData)
 {
   if ((*(uint *)(systemData + 0x30) & 0x40) != 0) {
     *(uint *)(systemData + 0x30) = *(uint *)(systemData + 0x30) & 0xffffffbf;
-    FUN_180627b90(systemData + 0xb8);
+    CleanupResourceHandler(systemData + 0xb8);
   }
   return;
 }
