@@ -18995,19 +18995,19 @@ void SetNetworkSystemPointer(void)
 int InitializeVirtualFunctionTableArray(void)
 
 {
-  void** VirtualTablePointer;
-  long long VirtualFunctionCounter;
+  void** SystemVirtualTablePointer;
+  long long SystemVirtualFunctionCount;
   
-  VirtualTablePointer = (void* *)0x180c35590;
-  VirtualFunctionCounter = 0x10;
+  SystemVirtualTablePointer = (void* *)0x180c35590;
+  SystemVirtualFunctionCount = 0x10;
   do {
-    SystemVirtualTableInitialize(VirtualTablePointer);
-    *VirtualTablePointer = &SystemVirtualTableTemplateA;
-    VirtualTablePointer = VirtualTablePointer + 0x2b;
-    VirtualFunctionCounter = VirtualFunctionCounter + -1;
-  } while (VirtualFunctionCounter != 0);
-  VirtualFunctionCounter = ProcessSystemEvent(&SystemEventDataA);
-  return (VirtualFunctionCounter != 0) - 1;
+    SystemVirtualTableInitialize(SystemVirtualTablePointer);
+    *SystemVirtualTablePointer = &SystemVirtualTableTemplateA;
+    SystemVirtualTablePointer = SystemVirtualTablePointer + 0x2b;
+    SystemVirtualFunctionCount = SystemVirtualFunctionCount + -1;
+  } while (SystemVirtualFunctionCount != 0);
+  SystemVirtualFunctionCount = ProcessSystemEvent(&SystemPrimaryEventData);
+  return (SystemVirtualFunctionCount != 0) - 1;
 }
 
 
@@ -19077,7 +19077,7 @@ int InitializeDebugSystem(void)
   long long CallbackResult;
   
   InitializeSystemDatabase(0x180c4f510);
-  CallbackResult = ProcessSystemEvent(&SystemEventDataB);
+  CallbackResult = ProcessSystemEvent(&SystemSecondaryEventData);
   return (CallbackResult != 0) - 1;
 }
 
@@ -19095,7 +19095,7 @@ int InitializeThreadSafetyMutex(void)
   long long CallbackResult;
   
   _Mtx_init_in_situ(0x180c82170,2);
-  CallbackResult = ProcessSystemEvent(&SystemEventDataC);
+  CallbackResult = ProcessSystemEvent(&SystemTertiaryEventData);
   return (CallbackResult != 0) - 1;
 }
 

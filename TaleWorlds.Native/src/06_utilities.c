@@ -27745,7 +27745,7 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
     }
     uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_20,1,4,0);
   }
-LAB_18089e447:
+ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
     *(uint *)(param_1 + 0x4c) = auStackX_20[0];
     uVar2 = 0xd;
@@ -27849,7 +27849,7 @@ ulonglong FUN_18089e297(void)
     }
     uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x000000b8,1,4,0);
   }
-LAB_18089e447:
+ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
     *(uint *)(unaff_RSI + 0x4c) = in_stack_000000b8;
     uVar2 = 0xd;
@@ -27949,7 +27949,7 @@ ulonglong FUN_18089e2be(void)
     }
     uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x000000b8,1,4,0);
   }
-LAB_18089e447:
+ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
     *(uint *)(unaff_RSI + 0x4c) = in_stack_000000b8;
     uVar2 = 0xd;
@@ -28045,7 +28045,7 @@ ulonglong FUN_18089e2e8(void)
     }
     uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x000000b8,1,4,0);
   }
-LAB_18089e447:
+ValidationCompleteHandler2:
   if ((int)uVar2 == 0) {
     *(uint *)(unaff_RSI + 0x4c) = uStack00000000000000b8;
     uVar2 = 0xd;
@@ -28138,7 +28138,7 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
         uVar3 = FUN_1808a4a20(param_2,&puStack_88,0);
         uVar4 = (ulonglong)uVar3;
         if (uVar3 != 0) {
-LAB_18089e70b:
+ValidationErrorHandler5:
           FUN_18084c150(&puStack_88);
           return uVar4;
         }
@@ -28250,7 +28250,7 @@ ulonglong FUN_18089e558(void)
       uVar5 = FUN_1808a4a20(extraout_XMM0_Da_01,unaff_RBP + -0x29,0);
       uVar8 = (ulonglong)uVar5;
       if (uVar5 != 0) {
-LAB_18089e70b:
+ValidationErrorHandler5:
         FUN_18084c150(unaff_RBP + -0x29);
         return uVar8;
       }
@@ -28322,7 +28322,7 @@ ulonglong FUN_18089e624(void)
     uVar2 = FUN_1808a4a20();
     uVar4 = (ulonglong)uVar2;
     if (uVar2 != 0) {
-LAB_18089e70b:
+ValidationErrorHandler5:
       FUN_18084c150(unaff_RBP + -0x29);
       return uVar4;
     }
@@ -28479,7 +28479,7 @@ ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
     uVar4 = 0x1c;
   }
   else if (plVar2[2] == 0) {
-LAB_18089ea0f:
+ValidationStartHandler:
     uVar4 = FUN_180769ed0(*plVar2,auStack_a0,1,4,0);
   }
   else {
@@ -28503,7 +28503,7 @@ LAB_18089ea0f:
       plVar2 = (longlong *)*param_2;
       if (*plVar2 == 0) {
         uVar3 = 0x1c;
-LAB_18089eaae:
+ValidationErrorHandler6:
         bVar8 = uVar3 == 0;
         if (bVar8) {
           bVar7 = acStack_a8[0] != '\0';
@@ -28512,7 +28512,7 @@ LAB_18089eaae:
       }
       else {
         if (plVar2[2] == 0) {
-LAB_18089ea93:
+ValidationStateHandler2:
           uVar3 = FUN_180769ed0(*plVar2,acStack_a8,1,1,0);
           goto LAB_18089eaae;
         }
@@ -28547,7 +28547,7 @@ LAB_18089ea93:
         uVar3 = 0x1c;
       }
       else if (plVar2[2] == 0) {
-LAB_18089eb22:
+ValidationDataHandler2:
         uVar3 = FUN_180769ed0(*plVar2,acStack_a8,1,1,0);
       }
       else {
@@ -28581,7 +28581,7 @@ LAB_18089eb22:
         uVar3 = 0x1c;
       }
       else if (plVar2[2] == 0) {
-LAB_18089ebaa:
+ValidationStateHandler3:
         uVar3 = FUN_180769ed0(*plVar2,acStack_a8,1,1,0);
       }
       else {
@@ -28775,7 +28775,7 @@ ulonglong FUN_18089e87d(void)
     uVar4 = 0x1c;
   }
   else if (plVar2[2] == 0) {
-LAB_18089ea0f:
+ValidationStartHandler:
     uVar4 = FUN_180769ed0(*plVar2,unaff_RBP + -0x41,unaff_R12D,4,0);
   }
   else {
@@ -28800,7 +28800,7 @@ LAB_18089ea0f:
       validationContext = *plVar2;
       if (validationContext == 0) {
         uVar3 = 0x1c;
-LAB_18089eaae:
+ValidationErrorHandler6:
         bVar7 = uVar3 == 0;
         if (bVar7) {
           bVar6 = *(char *)(unaff_RBP + -0x49) != '\0';
@@ -28809,7 +28809,7 @@ LAB_18089eaae:
       }
       else {
         if (plVar2[2] == 0) {
-LAB_18089ea93:
+ValidationStateHandler2:
           uVar3 = FUN_180769ed0(*plVar2,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
           goto LAB_18089eaae;
         }
@@ -28845,7 +28845,7 @@ LAB_18089ea93:
         uVar3 = 0x1c;
       }
       else if (plVar2[2] == 0) {
-LAB_18089eb22:
+ValidationDataHandler2:
         uVar3 = FUN_180769ed0(*plVar2,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
@@ -28881,7 +28881,7 @@ LAB_18089eb22:
         uVar3 = 0x1c;
       }
       else if (plVar2[2] == 0) {
-LAB_18089ebaa:
+ValidationStateHandler3:
         uVar3 = FUN_180769ed0(*plVar2,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
       }
       else {
@@ -29030,7 +29030,7 @@ ulonglong FUN_18089e9af(undefined8 param_1,undefined8 param_2,ulonglong param_3)
   }
   else {
     if (pvalidationContext[2] == param_3) {
-LAB_18089ea0f:
+ValidationStartHandler:
       uVar4 = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x41,unaff_R12D,4,param_3);
     }
     else {
@@ -29063,7 +29063,7 @@ LAB_18089ea2c:
     lVar2 = *pvalidationContext;
     if (lVar2 == 0) {
       uVar3 = 0x1c;
-LAB_18089eaae:
+ValidationErrorHandler6:
       bVar7 = uVar3 == 0;
       if (bVar7) {
         bVar6 = *(char *)(unaff_RBP + -0x49) != '\0';
@@ -29072,7 +29072,7 @@ LAB_18089eaae:
     }
     else {
       if (pvalidationContext[2] == 0) {
-LAB_18089ea93:
+ValidationStateHandler2:
         uVar3 = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,0);
         goto LAB_18089eaae;
       }
@@ -29110,7 +29110,7 @@ LAB_18089ea93:
     }
     else {
       if (pvalidationContext[2] == 0) {
-LAB_18089eb22:
+ValidationDataHandler2:
         uVar3 = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
@@ -29127,7 +29127,7 @@ LAB_18089eb22:
       }
       param_3 = 0;
     }
-LAB_18089eb3c:
+ValidationErrorHandler7:
     if (uVar3 == 0) {
       *(bool *)(unaff_RBP + 0x77) = *(char *)(unaff_RBP + -0x49) != '\0';
     }
@@ -29153,7 +29153,7 @@ LAB_18089eb3c:
     }
     else {
       if (pvalidationContext[2] == 0) {
-LAB_18089ebaa:
+ValidationStateHandler3:
         uVar3 = FUN_180769ed0(*pvalidationContext,unaff_RBP + -0x49,unaff_R12D,unaff_R12D,param_3);
       }
       else {
@@ -29170,7 +29170,7 @@ LAB_18089ebaa:
       }
       param_3 = 0;
     }
-LAB_18089ebc4:
+ValidationErrorHandler8:
     if (uVar3 == 0) {
       *(bool *)(unaff_RBP + 0x7f) = *(char *)(unaff_RBP + -0x49) != '\0';
     }
