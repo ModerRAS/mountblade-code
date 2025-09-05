@@ -1918,7 +1918,7 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
     if ((0 < *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset)) && (*NetworkConnectionValidationResult != 0)) {
         ValidateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionValidationResult, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionValidationResult = NetworkConnectionIdentifier;
+    *NetworkConnectionValidationResult = NetworkConnectionContextIdentifier;
     *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset) = NetworkValidationStatusCode;
     return NetworkOperationSuccess;
   }
