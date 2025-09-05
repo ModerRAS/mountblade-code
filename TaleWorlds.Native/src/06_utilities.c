@@ -9042,10 +9042,10 @@ void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
 undefined8 ValidateDataIntegrity(longlong dataStructure,longlong validationContext)
 
 {
-  undefined8 tempResult;
-  int *poperationResult;
-  undefined4 *puVar3;
-  int loopCounter;
+  undefined8 validationResult;
+  int *dataElementPointer;
+  undefined4 *validationFlagPointer;
+  int elementIndex;
   
   loopCounter = 0;
   puVar3 = (undefined4 *)(param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
@@ -10004,6 +10004,14 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 原始函数名：FUN_180899040 - 数据验证和处理函数A0
 // 功能：验证数据并处理
 #define ValidateAndProcessDataA0 FUN_180899040
+
+// 原始函数名：FUN_18089a750 - 数据处理函数A0
+// 功能：处理数据和状态
+#define ProcessDataAndStateA0 FUN_18089a750
+
+// 原始函数名：FUN_180899100 - 验证和执行操作函数A1
+// 功能：验证参数并执行操作
+#define ValidateAndExecuteOperationsA1 FUN_180899100
 
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
@@ -20031,7 +20039,7 @@ undefined8 ProcessDataCollectionA0(longlong param_1,longlong *param_2)
       lVar5 = lVar4;
       do {
         lVar2 = *param_2;
-        uVar3 = FUN_180899ef0(param_1,lVar2 + lVar5);
+        uVar3 = ProcessDataPointerA0(param_1,lVar2 + lVar5);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -20087,7 +20095,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
         memoryBaseAddress = uVar6;
         if (0 < iVar1) {
           do {
-            operationResult = FUN_180899c60(param_1,(longlong)(int)memoryBaseAddress * 0x6c + *(longlong *)(param_2 + 8));
+            operationResult = ValidateDataParametersA0(param_1,(longlong)(int)memoryBaseAddress * 0x6c + *(longlong *)(param_2 + 8));
             if (operationResult != 0) {
               return;
             }
@@ -20103,7 +20111,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
           memoryBaseAddress = uVar6;
           if (0 < iVar1) {
             do {
-              operationResult = FUN_180899ef0(param_1,(longlong)(int)memoryBaseAddress * 0x10 +
+              operationResult = ProcessDataPointerA0(param_1,(longlong)(int)memoryBaseAddress * 0x10 +
                                             *(longlong *)(param_2 + 0xc));
               if (operationResult != 0) {
                 return;
@@ -20140,7 +20148,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
               if (0 < iVar1) {
                 do {
                   lVar5 = *(longlong *)(param_2 + 0x14) + memoryBaseAddress;
-                  operationResult = FUN_180899ef0(param_1,lVar5);
+                  operationResult = ProcessDataPointerA0(param_1,lVar5);
                   if (operationResult != 0) {
                     return;
                   }
@@ -20243,7 +20251,7 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
     uVar9 = extraout_XMM0_Da;
     if (0 < iVar3) {
       do {
-        operationResult = FUN_180899c60(uVar9,(longlong)(int)uVar5 * 0x6c + *(longlong *)(registerR14 + 0x20));
+        operationResult = ValidateDataParametersA0(uVar9,(longlong)(int)uVar5 * 0x6c + *(longlong *)(registerR14 + 0x20));
         if (operationResult != 0) {
           return;
         }
@@ -20261,7 +20269,7 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
       uVar9 = extraout_XMM0_Da_01;
       if (0 < iVar3) {
         do {
-          operationResult = FUN_180899ef0(uVar9,(longlong)(int)uVar5 * 0x10 + *(longlong *)(registerR14 + 0x30))
+          operationResult = ProcessDataPointerA0(uVar9,(longlong)(int)uVar5 * 0x10 + *(longlong *)(registerR14 + 0x30))
           ;
           if (operationResult != 0) {
             return;
@@ -20300,7 +20308,7 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
           if (0 < iVar3) {
             do {
               lVar6 = *(longlong *)(registerR14 + 0x50) + uVar5;
-              operationResult = FUN_180899ef0(uVar9,lVar6);
+              operationResult = ProcessDataPointerA0(uVar9,lVar6);
               if (operationResult != 0) {
                 return;
               }
@@ -20397,7 +20405,7 @@ void InitializeSystemDataStructure(undefined8 *param_1)
     if (0 < (int)unaff_RSI) {
       do {
         lVar5 = *(longlong *)(registerR14 + 0x50) + lVar6;
-        iVar3 = FUN_180899ef0(uVar8,lVar5);
+        iVar3 = ProcessDataPointerA0(uVar8,lVar5);
         if (iVar3 != 0) {
           return;
         }
@@ -20505,7 +20513,7 @@ void ProcessSystemDataItem(longlong param_1,undefined4 *param_2)
       if (iVar1 != 0) {
         return;
       }
-      iVar1 = FUN_180899ef0(param_1,param_2 + 0x13);
+      iVar1 = ProcessDataPointerA0(param_1,param_2 + 0x13);
       if (iVar1 != 0) {
         return;
       }
@@ -20547,7 +20555,7 @@ void ValidateSystemDataIntegrity(void)
         if (iVar1 != 0) {
           return;
         }
-        iVar1 = FUN_180899ef0();
+        iVar1 = ProcessDataPointerA0();
         if (iVar1 != 0) {
           return;
         }
@@ -21079,7 +21087,7 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
      (*(int *)(param_2 + 0x44) != 0)) {
     uVar5 = uVar5 | 0x100;
   }
-  memoryBaseAddress = FUN_180899ef0(param_1);
+  memoryBaseAddress = ProcessDataPointerA0(param_1);
   if ((int)memoryBaseAddress == 0) {
     aiStack_48[0] = *(int *)(param_2 + 0x20);
     memoryBaseAddress = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),aiStack_48,4);
@@ -21115,7 +21123,7 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
               do {
                 lVar6 = *(longlong *)(param_2 + 600) + lVar7;
                 sVar1 = *(short *)(lVar6 + 0x114);
-                memoryBaseAddress = FUN_180899ef0(param_1,lVar6);
+                memoryBaseAddress = ProcessDataPointerA0(param_1,lVar6);
                 if ((int)memoryBaseAddress != 0) {
                   return memoryBaseAddress;
                 }
@@ -21139,7 +21147,7 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
                (((uVar5 & 0x40) == 0 ||
                 ((memoryBaseAddress = FUN_1808affb0(param_1,param_2 + 0x34), (int)memoryBaseAddress == 0 &&
                  (memoryBaseAddress = FUN_1808affb0(param_1,param_2 + 0x38), (int)memoryBaseAddress == 0)))))) &&
-              ((-1 < (char)uVar5 || (memoryBaseAddress = FUN_180899ef0(param_1,param_2 + 0x10), (int)memoryBaseAddress == 0)
+              ((-1 < (char)uVar5 || (memoryBaseAddress = ProcessDataPointerA0(param_1,param_2 + 0x10), (int)memoryBaseAddress == 0)
                ))) && (((uVar5 & 0x100) == 0 ||
                        (((memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x3c), (int)memoryBaseAddress == 0 &&
                          (memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x40), (int)memoryBaseAddress == 0)) &&
@@ -21179,7 +21187,7 @@ undefined8 ExecuteDataCleanupA0(void)
     if (0 < operationResult) {
       do {
         sVar1 = *(short *)(*(longlong *)(unaff_RDI + 600) + registerR14 + 0x114);
-        uVar3 = FUN_180899ef0();
+        uVar3 = ProcessDataPointerA0();
         if ((int)uVar3 != 0) {
           return uVar3;
         }
@@ -21199,7 +21207,7 @@ undefined8 ExecuteDataCleanupA0(void)
   if ((((((unaff_RSI & 0x20) == 0) || (uVar3 = FUN_1808ac8a0(), (int)uVar3 == 0)) &&
        (((unaff_RSI & 0x40) == 0 ||
         ((uVar3 = FUN_1808affb0(), (int)uVar3 == 0 && (uVar3 = FUN_1808affb0(), (int)uVar3 == 0)))))
-       ) && ((-1 < (char)unaff_RSI || (uVar3 = FUN_180899ef0(), (int)uVar3 == 0)))) &&
+       ) && ((-1 < (char)unaff_RSI || (uVar3 = ProcessDataPointerA0(), (int)uVar3 == 0)))) &&
      (((unaff_RSI & 0x100) == 0 ||
       (((uVar3 = FUN_1808aff40(), (int)uVar3 == 0 && (uVar3 = FUN_1808aff40(), (int)uVar3 == 0)) &&
        (uVar3 = FUN_1808aff40(), (int)uVar3 == 0)))))) {
@@ -21425,7 +21433,7 @@ ulonglong ExecuteDataSynchronizationA0(longlong param_1,undefined8 *param_2)
         iVar3 = -8;
         break;
       case 0x11:
-        uVar1 = FUN_180899ef0(param_1,puVar5 + 1);
+        uVar1 = ProcessDataPointerA0(param_1,puVar5 + 1);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -21503,7 +21511,7 @@ ulonglong ProcessBinaryDataA0(void)
         iVar3 = -8;
         break;
       case 0x11:
-        uVar1 = FUN_180899ef0(extraout_XMM0_Da,unaff_RDI + 1);
+        uVar1 = ProcessDataPointerA0(extraout_XMM0_Da,unaff_RDI + 1);
         if ((int)uVar1 != 0) {
           return uVar1;
         }
@@ -30125,7 +30133,7 @@ undefined8 ProcessComplexDataStructureA1(longlong param_1,longlong *param_2)
   if (((int)uVar1 == 0) &&
      (uVar1 = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)uVar1 == 0)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
       if (((int)uVar1 == 0) &&
          ((0x5a < *(uint *)(param_2 + 8) ||
           (uVar1 = FUN_1808afd90(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
@@ -30274,7 +30282,7 @@ undefined8 ReturnFixedStatusCodeA3(void)
   undefined4 in_stack_000000b0;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
-    uVar1 = FUN_180899ef0(*registerRBX,unaff_RSI + 0x10);
+    uVar1 = ProcessDataPointerA0(*registerRBX,unaff_RSI + 0x10);
     if (((int)uVar1 == 0) &&
        ((0x5a < *(uint *)(registerRBX + 8) || (uVar1 = FUN_1808afd90(), (int)uVar1 == 0)))) {
       if (*(int *)(registerRBX[1] + 0x18) == 0) {
@@ -30512,7 +30520,7 @@ ulonglong FUN_18089f530(longlong param_1,undefined8 *param_2,undefined4 param_3,
   if (((int)uVar2 == 0) && (uVar2 = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)uVar2 == 0))
   {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
       uVar2 = (ulonglong)uVar1;
       if ((uVar1 == 0) &&
          ((param_5 == '\0' || (uVar2 = FUN_1808a1870(param_1 + 0x48,param_2), (int)uVar2 == 0)))) {
@@ -30541,7 +30549,7 @@ ulonglong FUN_18089f571(void)
   uVar2 = FUN_1808ddd30();
   if ((int)uVar2 == 0) {
     if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar1 = FUN_180899ef0(*registerRBX,unaff_RBP + 0x10);
+      uVar1 = ProcessDataPointerA0(*registerRBX,unaff_RBP + 0x10);
       uVar2 = (ulonglong)uVar1;
       if ((uVar1 == 0) &&
          ((in_stack_000000d0 == '\0' || (uVar2 = FUN_1808a1870(unaff_RBP + 0x48), (int)uVar2 == 0)))
@@ -30583,7 +30591,7 @@ undefined8 ProcessDataConversionA1(longlong param_1,longlong *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
@@ -30595,7 +30603,7 @@ undefined8 ProcessDataConversionA1(longlong param_1,longlong *param_2)
         if (*(int *)(param_2[1] + 0x18) != 0) {
           return 0x1c;
         }
-        uVar1 = FUN_180899ef0(*param_2,param_1 + 0xdc);
+        uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0xdc);
         if (((int)uVar1 == 0) &&
            (uVar1 = FUN_1808a7c40(param_2,param_1 + 0xec,0x80), (int)uVar1 == 0)) {
                     // WARNING: Subroutine does not return
@@ -30635,13 +30643,13 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
     return memoryBaseAddress;
   }
   if (*(int *)(param_2[1] + 0x18) == 0) {
-    uVar2 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar2 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
     memoryBaseAddress = (ulonglong)uVar2;
     if (uVar2 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar2 = FUN_180899ef0(*param_2,param_1 + 0x20);
+      uVar2 = ProcessDataPointerA0(*param_2,param_1 + 0x20);
       memoryBaseAddress = (ulonglong)uVar2;
       if (uVar2 == 0) {
         memoryBaseAddress = 0x1c;
@@ -30670,7 +30678,7 @@ ulonglong FUN_18089f970(longlong param_1,longlong *param_2)
           return (ulonglong)uVar2;
         }
         if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar2 = FUN_180899ef0(*param_2,param_1 + 0x30);
+          uVar2 = ProcessDataPointerA0(*param_2,param_1 + 0x30);
           memoryBaseAddress = (ulonglong)uVar2;
           if (uVar2 == 0) {
             memoryBaseAddress = FUN_180898e70(param_2,param_1 + 0x40);
@@ -30710,13 +30718,13 @@ ulonglong FUN_18089f9b3(void)
   if (*(uint *)(in_RAX + 0x18) != unaff_ESI) {
     return 0x1c;
   }
-  uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x10);
+  uVar2 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x10);
   uVar3 = (ulonglong)uVar2;
   if (uVar2 == 0) {
     if (*(uint *)(unaff_RDI[1] + 0x18) != unaff_ESI) {
       return 0x1c;
     }
-    uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
+    uVar2 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x20);
     uVar3 = (ulonglong)uVar2;
     if (uVar2 == 0) {
       uVar3 = 0x1c;
@@ -30746,7 +30754,7 @@ ulonglong FUN_18089f9b3(void)
         return (ulonglong)uVar2;
       }
       if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-        uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+        uVar2 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
         uVar3 = (ulonglong)uVar2;
         if (uVar2 == 0) {
           uVar3 = FUN_180898e70();
@@ -30780,7 +30788,7 @@ ulonglong FUN_18089f9f6(void)
   undefined2 in_stack_000000a0;
   undefined2 in_stack_000000a8;
   
-  uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x20);
+  uVar2 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x20);
   uVar3 = (ulonglong)uVar2;
   if (uVar2 == 0) {
     uVar3 = 0x1c;
@@ -30810,7 +30818,7 @@ ulonglong FUN_18089f9f6(void)
       return (ulonglong)uVar2;
     }
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-      uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+      uVar2 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
       uVar3 = (ulonglong)uVar2;
       if (uVar2 == 0) {
         uVar3 = FUN_180898e70();
@@ -30860,7 +30868,7 @@ ulonglong FUN_18089fa3c(void)
     return (ulonglong)uVar2;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar2 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    uVar2 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
     registerRBX = (ulonglong)uVar2;
     if (uVar2 == 0) {
       uVar3 = FUN_180898e70();
@@ -30890,7 +30898,7 @@ ulonglong FUN_18089fac2(void)
     return (ulonglong)unaff_ESI;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar1 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    uVar1 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
     registerRBX = (ulonglong)uVar1;
     if (uVar1 == 0) {
       uVar2 = FUN_180898e70();
@@ -30916,7 +30924,7 @@ ulonglong FUN_18089fad8(void)
   undefined8 *unaff_RDI;
   
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar1 = FUN_180899ef0(*unaff_RDI,unaff_RBP + 0x30);
+    uVar1 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
     registerRBX = (ulonglong)uVar1;
     if (uVar1 == 0) {
       uVar2 = FUN_180898e70();
@@ -31006,12 +31014,12 @@ undefined8 ValidateDataSynchronizationA1(longlong param_1,undefined8 *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x20);
+      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x20);
       if (((int)uVar1 == 0) && (uVar1 = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)uVar1 == 0))
       {
                     // WARNING: Subroutine does not return
@@ -31037,12 +31045,12 @@ undefined8 ExecuteDataCleanupA1(longlong param_1,undefined8 *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0xd8);
+      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
       if ((int)uVar1 == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000(param_2,auStack_48);
@@ -31111,7 +31119,7 @@ undefined8 InitializeDataProcessorA1(longlong param_1,longlong *param_2)
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0x60);
+      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x60);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
@@ -31147,12 +31155,12 @@ undefined8 ProcessDataCacheA1(longlong param_1,undefined8 *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = FUN_180899ef0(*param_2,param_1 + 0x10);
+    uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
     if ((int)uVar1 == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = FUN_180899ef0(*param_2,param_1 + 0xd8);
+      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
       if ((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 0xf8), (int)uVar1 == 0)) &&
          (uVar1 = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)uVar1 == 0)) {
                     // WARNING: Subroutine does not return
