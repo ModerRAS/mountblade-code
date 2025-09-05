@@ -4236,35 +4236,35 @@ void* UtilityProcessConfig4;
 void* UtilityProcessUnknown1;
 
 // 函数: undefined UtilityProcessData10;
-undefined UtilityProcessData10;
-undefined UtilityProcessData11;
-undefined UtilityProcessData12;
-undefined UtilityProcessData13;
-undefined UtilityProcessData14;
+undefined UtilityProcessInputData;
+undefined UtilityProcessOutputData;
+undefined UtilityProcessTempData;
+undefined UtilityProcessCacheData;
+undefined UtilityProcessResultData;
 uint32_t UtilityProcessReserved;
 
 // 函数: undefined UtilityValidateObject;
 undefined UtilityValidateObject;
-undefined UtilityValidateConfig1;
-undefined UtilityValidateConfig2;
-undefined UtilityValidateConfig3;
-undefined UtilityValidateConfig4;
+undefined UtilityValidateSecurityConfig;
+undefined UtilityValidateMemoryConfig;
+undefined UtilityValidateThreadConfig;
+undefined UtilityValidateNetworkConfig;
 uint32_t UtilityValidateReserved;
 
 // 函数: undefined UtilityInitializeObject;
 undefined UtilityInitializeObject;
-undefined UtilityInitObjectData1;
-undefined UtilityInitObjectData2;
-undefined UtilityInitObjectData3;
-undefined UtilityInitObjectData4;
+undefined UtilityInitObjectHeader;
+undefined UtilityInitObjectBody;
+undefined UtilityInitObjectMetadata;
+undefined UtilityInitObjectFooter;
 uint32_t UtilityInitObjectReserved;
 
 // 函数: undefined UtilityProcessObject1;
 undefined UtilityProcessObject1;
-undefined UtilityProcessObjectData1;
-undefined UtilityProcessObjectData2;
-undefined UtilityProcessObjectData3;
-undefined UtilityProcessObjectData4;
+undefined UtilityProcessObjectInput;
+undefined UtilityProcessObjectOutput;
+undefined UtilityProcessObjectState;
+undefined UtilityProcessObjectResult;
 uint32_t UtilityProcessObjectReserved;
 
 // 函数: undefined UtilityProcessObject2;
@@ -4833,7 +4833,7 @@ undefined UtilityProcessData2Context;
 undefined UtilityProcessData2Buffer;
 undefined UtilityProcessData2Result;
 undefined UtilityProcessData2Pointer;
-int UtilityProcessData2Error;
+int UtilityDataProcessingErrorCode;
 
 // 函数: undefined UtilityCreateMemoryHeap;
 // 
@@ -6017,11 +6017,11 @@ undefined UNK_1801527b4;
 undefined UNK_180a07340;
 undefined UNK_180a07378;
 longlong utilityGlobalDataPointer;
-uint utilitySystemStatusIndicator;
+uint UtilitySystemHealthIndicator;
 double utilityPerformanceMetric1;
 double utilityPerformanceMetric2;
-// 工具错误计数器
-int UtilityErrorCount;
+// 工具系统错误计数器
+int UtilitySystemErrorCount;
 double utilityTimingValue;
 undefined UtilitySystemState1;
 undefined UtilitySystemState2;
@@ -6980,8 +6980,8 @@ undefined UNK_180a3ae00;
 undefined UNK_180a3ae18;
 undefined UNK_180a2eac0;
 undefined DAT_180c92510;
-// 系统缓存状态变量A
-char SystemCacheStatusA;
+// 系统主缓存状态标志
+char SystemMainCacheStatusFlag;
 undefined UNK_180a3e5e8;
 
 9430e0;
@@ -6994,8 +6994,8 @@ undefined DAT_180bfbf60;
 undefined DAT_180bf7308;
 undefined DAT_180bfbf78;
 undefined DAT_180bf72a8;
-// 系统缓存状态变量B
-char SystemCacheStatusB;
+// 系统辅助缓存状态标志
+char SystemSecondaryCacheStatusFlag;
 undefined UNK_18064ffc0;
 undefined UNK_180a3c8c8;
 undefined UNK_180a3c908;
@@ -50035,6 +50035,15 @@ void Unwind_1809061a0(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 系统异常处理函数B0
+ * 
+ * 该函数用于处理系统异常，通过验证上下文指针来调用异常处理程序
+ * 主要用于系统级别的异常恢复和清理工作，偏移地址与A0不同
+ * 
+ * @param param_1 保留参数，用于异常处理上下文
+ * @param param_2 异常处理参数，包含验证上下文信息
+ */
 void Unwind_1809061b0(undefined8 param_1,longlong param_2)
 
 {
@@ -50049,6 +50058,15 @@ void Unwind_1809061b0(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 系统异常处理函数C0
+ * 
+ * 该函数用于处理系统异常，通过验证上下文指针来调用异常处理程序
+ * 主要用于系统级别的异常恢复和清理工作，偏移地址与A0、B0不同
+ * 
+ * @param param_1 保留参数，用于异常处理上下文
+ * @param param_2 异常处理参数，包含验证上下文信息
+ */
 void Unwind_1809061c0(undefined8 param_1,longlong param_2)
 
 {
@@ -50063,6 +50081,15 @@ void Unwind_1809061c0(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 系统异常处理函数D0
+ * 
+ * 该函数用于处理系统异常，通过验证上下文指针来调用异常处理程序
+ * 主要用于系统级别的异常恢复和清理工作，使用不同的偏移地址0x1b8
+ * 
+ * @param param_1 保留参数，用于异常处理上下文
+ * @param param_2 异常处理参数，包含验证上下文信息
+ */
 void Unwind_1809061d0(undefined8 param_1,longlong param_2)
 
 {
@@ -50077,6 +50104,15 @@ void Unwind_1809061d0(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 系统资源清理函数E0
+ * 
+ * 该函数用于清理系统资源，包括内存管理和引用计数处理
+ * 主要用于系统级别的资源释放和内存回收工作
+ * 
+ * @param param_1 保留参数，用于资源清理上下文
+ * @param param_2 资源清理参数，包含资源指针和内存信息
+ */
 void Unwind_1809061f0(undefined8 param_1,longlong param_2)
 
 {
@@ -50115,6 +50151,12 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 系统句柄清理函数F0
+ * 
+ * 该函数用于清理系统句柄，调用CloseHandle关闭全局句柄
+ * 主要用于系统级别的句柄管理和资源释放
+ */
 void Unwind_180906210(void)
 
 {
@@ -50124,6 +50166,15 @@ void Unwind_180906210(void)
 
 
 
+/**
+ * @brief 系统状态清理函数G0
+ * 
+ * 该函数用于清理系统状态，当检测到第0位标志被设置时，清除该标志
+ * 并调用相应的清理函数处理偏移量0xa8处的资源
+ * 
+ * @param param_1 保留参数，用于状态清理上下文
+ * @param param_2 状态清理参数，包含系统状态信息
+ */
 void Unwind_180906220(undefined8 param_1,longlong param_2)
 
 {
@@ -50136,6 +50187,15 @@ void Unwind_180906220(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 系统状态清理函数H0
+ * 
+ * 该函数用于清理系统状态，当检测到偏移量0x44处第0位标志被设置时，清除该标志
+ * 并调用相应的清理函数处理偏移量200处的资源
+ * 
+ * @param param_1 保留参数，用于状态清理上下文
+ * @param param_2 状态清理参数，包含系统状态信息
+ */
 void Unwind_180906250(undefined8 param_1,longlong param_2)
 
 {

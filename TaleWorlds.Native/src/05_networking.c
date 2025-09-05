@@ -132,7 +132,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
  * @param ConnectionContext 连接上下文指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
+static int64_t CalculateConnectionParameterAddress(int64_t *ConnectionContext)
 {
     return (int64_t)ConnectionContext + ConnectionParameterOffset;
 }
@@ -147,7 +147,7 @@ static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
  * @param ConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
+static int64_t CalculateConnectionDataAddress(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
     return (ContextAddress - (int64_t)ConnectionContextBuffer) + (int64_t)ConnectionStatusPointer;
 }
@@ -162,9 +162,9 @@ static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *Conne
  * @param ConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的最后一个条目偏移量地址
  */
-static int64_t CalculateLastConnectionEntryOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
+static int64_t CalculateLastConnectionEntryAddress(int64_t ContextAddress, void *ConnectionContextBuffer, void *ConnectionStatusPointer)
 {
-    return CalculateConnectionDataOffset(ContextAddress, ConnectionContextBuffer, ConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)ConnectionStatusPointer + ConnectionContextEntrySize);
+    return CalculateConnectionDataAddress(ContextAddress, ConnectionContextBuffer, ConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)ConnectionStatusPointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -177,7 +177,7 @@ static int64_t CalculateLastConnectionEntryOffset(int64_t ContextAddress, void *
  * @param StatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的状态指针偏移量地址
  */
-static int64_t CalculateConnectionStatusPointerOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
+static int64_t CalculateConnectionStatusPointerAddress(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
 {
     return (ContextIdentifier - (int64_t)StatusBasePointer) + (int64_t)StatusIteratorPointer;
 }
@@ -192,9 +192,9 @@ static int64_t CalculateConnectionStatusPointerOffset(int64_t ContextIdentifier,
  * @param StatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的最后一个状态条目偏移量地址
  */
-static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
+static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
 {
-    return CalculateConnectionStatusPointerOffset(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
+    return CalculateConnectionStatusPointerAddress(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -1740,7 +1740,7 @@ uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
  * @note 此函数在网络系统初始化时调用，确保数据传输功能的正常运行
  */
 /**
- * @brief 发送网络数据
+ * @brief 初始化网络数据传输
  * 
  * 初始化网络数据发送的相关参数和配置，包括序列号、确认号、窗口缩放等。
  * 此函数负责设置数据包传输的基本参数，初始化缓冲区和统计计数器。
@@ -1759,7 +1759,7 @@ uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
  * 
  * @see ReceiveNetworkPacketData, InitializeNetworkConnection
  */
-void SendNetworkData(void)
+void InitializeNetworkDataTransmission(void)
 {
   // 初始化数据包参数
   NetworkPacketSequence = NetworkSequenceInitialValue;                         // 初始化数据包序列号
@@ -1789,7 +1789,7 @@ void SendNetworkData(void)
 }
 
 /**
- * @brief 接收网络数据包数据
+ * @brief 初始化网络数据接收
  * 
  * 初始化网络数据包接收的相关参数和配置，包括接收计数器、队列管理、缓冲区设置等。
  * 此函数负责设置数据包接收的基本参数，初始化接收队列和缓冲区，配置数据包处理组件。
@@ -1806,9 +1806,9 @@ void SendNetworkData(void)
  * 
  * @return void 无返回值
  * 
- * @see SendNetworkData, InitializeNetworkConnection
+ * @see InitializeNetworkDataTransmission, InitializeNetworkConnection
  */
-void ReceiveNetworkPacketData(void)
+void InitializeNetworkDataReception(void)
 {
   // 初始化接收参数
   NetworkTotalBytesReceived = 0;                             // 重置接收字节数
@@ -1847,18 +1847,17 @@ void ReceiveNetworkPacketData(void)
 }
 
 /**
- * @brief 验证网络数据包真实性
+ * @brief 初始化网络数据包安全验证
  * 
- * 验证网络数据包的真实性和完整性，检查数据包的签名和校验和。此函数负责初始化验证参数、
- * 验证缓冲区、安全验证、加密缓冲区、压缩参数等。验证系统会使用哈希算法、签名方法、
- * 加密技术等来确保数据包的真实性和完整性。
+ * 初始化网络数据包的安全验证系统，包括验证参数、验证缓冲区、安全验证、加密缓冲区、压缩参数等。
+ * 验证系统会使用哈希算法、签名方法、加密技术等来确保数据包的真实性和完整性。
  * 
- * @note 此函数会检查数据包的签名和校验和
+ * @note 此函数会初始化验证参数，而不是实际执行验证
  * @warning 如果验证失败，数据包将被拒绝并可能触发安全警报
  * 
  * @return void 无返回值
  */
-void ValidateNetworkPacketSecurity(void)
+void InitializeNetworkPacketSecurityValidation(void)
 {
   // 初始化验证参数
   NetworkPacketHashAlgorithm = NetworkHashAlgorithmSHA256;                         // 设置哈希算法为SHA-256

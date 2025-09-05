@@ -1021,9 +1021,9 @@ void* SystemMemoryBlockFastStartup;
 unsigned long long SystemPrimaryMemorySize;
 unsigned long long SystemSecondaryMemorySize;
 unsigned long long SystemCacheMemorySize;
-uint8_t SystemPrimaryOperationByte;
-uint8_t SystemSecondaryOperationByte;
-uint8_t SystemCacheOperationByte;
+uint8_t SystemPrimaryOperationStatus;         // 系统主操作状态字节
+uint8_t SystemSecondaryOperationStatus;       // 系统次操作状态字节  
+uint8_t SystemCacheOperationStatus;           // 系统缓存操作状态字节
 long long SystemSecondaryOperationTimestamp;
 bool SystemPrimaryStatusFlag;
 void* SystemMemoryBlockCompression;
@@ -1261,21 +1261,21 @@ void* SystemDataNodeLinkageQuaternary;         // 系统数据节点链接第四
 void* SystemDataNodeLinkageQuinary;            // 系统数据节点链接第五表
 
 // 系统数据模板标识符 - 用于系统组件识别
-void* SystemDataTemplateEventProcessor;         // 系统数据模板 - 事件处理器 (原SystemDataTemplateA)
-void* SystemDataTemplateSecondarySystem;         // 系统数据模板 - 次级系统 (原SystemDataTemplateB)
-void* SystemDataTemplateTertiarySystem;          // 系统数据模板 - 第三系统 (原SystemDataTemplateC)
-void* SystemDataTemplateMemoryManager;          // 系统数据模板 - 内存管理器 (原SystemDataTemplateD)
-void* SystemDataTemplateResourceHandler;         // 系统数据模板 - 资源处理器 (原SystemDataTemplateE)
-void* SystemDataTemplateFileSystem;              // 系统数据模板 - 文件系统 (原SystemDataTemplateF)
-void* SystemDataTemplateNetworkManager;          // 系统数据模板 - 网络管理器 (原SystemDataTemplateG)
-void* SystemDataTemplateAudioProcessor;          // 系统数据模板 - 音频处理器 (原SystemDataTemplateH)
-void* SystemDataTemplateInputController;         // 系统数据模板 - 输入控制器 (原SystemDataTemplateI)
-void* SystemDataTemplateDebugManager;            // 系统数据模板 - 调试管理器 (原SystemDataTemplateJ)
-void* SystemDataTemplatePerformanceMonitor;      // 系统数据模板 - 性能监控器 (原SystemDataTemplateK)
-void* SystemDataTemplateSecurityManager;         // 系统数据模板 - 安全管理器 (原SystemDataTemplateL)
-void* SystemDataTemplateConfigurationManager;    // 系统数据模板 - 配置管理器 (原SystemDataTemplateM)
-void* SystemDataTemplateQuaternarySystem;        // 系统数据模板 - 第四系统 (原SystemDataTemplateN)
-void* SystemDataTemplateQuinarySystem;           // 系统数据模板 - 第五系统 (原SystemDataTemplateO)
+void* SystemDataTemplateEventProcessor;         // 系统数据模板 - 事件处理器
+void* SystemDataTemplateSecondarySystem;         // 系统数据模板 - 次级系统
+void* SystemDataTemplateTertiarySystem;          // 系统数据模板 - 第三系统
+void* SystemDataTemplateMemoryManager;          // 系统数据模板 - 内存管理器
+void* SystemDataTemplateResourceHandler;         // 系统数据模板 - 资源处理器
+void* SystemDataTemplateFileSystem;              // 系统数据模板 - 文件系统
+void* SystemDataTemplateNetworkManager;          // 系统数据模板 - 网络管理器
+void* SystemDataTemplateAudioProcessor;          // 系统数据模板 - 音频处理器
+void* SystemDataTemplateInputController;         // 系统数据模板 - 输入控制器
+void* SystemDataTemplateDebugManager;            // 系统数据模板 - 调试管理器
+void* SystemDataTemplatePerformanceMonitor;      // 系统数据模板 - 性能监控器
+void* SystemDataTemplateSecurityManager;         // 系统数据模板 - 安全管理器
+void* SystemDataTemplateConfigurationManager;    // 系统数据模板 - 配置管理器
+void* SystemDataTemplateQuaternarySystem;        // 系统数据模板 - 第四系统
+void* SystemDataTemplateQuinarySystem;           // 系统数据模板 - 第五系统
 
 // 系统数据节点 - 功能模块专用节点
 void* SystemDataNodeEventProcessor;           // 系统数据节点事件处理器 (原SystemDataNodeA)
@@ -1447,7 +1447,7 @@ void* SystemDataBufferStateOctonary;
 void* SystemDataBufferStateNonary;
 void* SystemDataBufferStateDenary;
 void* SystemDataBufferStateUndenary;
-uint8_t SystemDataBufferStateFlag;
+uint8_t SystemDataBufferStateFlag;            // 系统数据缓冲区状态标志
 void* SystemDataBufferStateDuodenary;
 void* SystemDataBufferStateTredecenary;
 void* SystemDataBufferStateQuattuordecenary;
@@ -3561,7 +3561,7 @@ int InitializeSystemStringProcessingGlobals(void)
 void InitializeSystemStringProcessor(void)
 
 {
-  uint64_t SystemStringParameter;           // 系统字符串参数
+  uint64_t SystemStringParameter;           // 系统字符串参数（用于字符串处理的通用参数）
   void* StringProcessCallbackPointer;       // 字符串处理回调指针
   uint8_t* StringDataBufferReference;       // 字符串数据缓冲区引用
   uint32_t StringDataBufferSize;            // 字符串数据缓冲区大小
@@ -5325,11 +5325,11 @@ void InitializeSystemDebugManager(void)
 void InitializeSystemStringProcessor(void)
 
 {
-  long long StringParameter;
-  void** CallbackPointer;
-  uint8_t* DataBufferReference;
-  int DataBufferSize;
-  uint8_t DataBuffer[136];
+  long long StringParameter;                 // 字符串处理参数
+  void** CallbackPointer;                   // 回调函数指针
+  uint8_t* DataBufferReference;             // 数据缓冲区引用
+  int DataBufferSize;                       // 数据缓冲区大小
+  uint8_t DataBuffer[136];                  // 数据缓冲区（136字节）
   
   CallbackPointer = &SystemStringProcessorNode;
   DataBufferPointer = DataBuffer;
@@ -18839,7 +18839,7 @@ int InitializeSystemConfiguration(void)
   long long SystemCallbackResult;
   int ConfigurationIndex;
   
-  SystemConfigurationSize = 0x100;
+  SystemConfigurationSize = 0x100;  // 设置默认配置大小（256字节）
   ConfigurationIndex = 0;
   do {
     ConfigureSystemParameters(ConfigurationIndex,SystemParameterConfigurationMask,SystemParameterConfigurationLimit,0);
