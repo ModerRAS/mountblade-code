@@ -942,6 +942,119 @@
 // 功能：重置系统状态
 #define ResetSystemStateE0 FUN_180639250
 
+// 工具系统数据处理函数宏定义
+// 原始函数名：FUN_1808d73b0 - 数据验证和处理函数A0
+// 功能：验证数据有效性并执行相应的处理操作
+#define ValidateAndProcessDataA0 FUN_1808d73b0
+
+// 原始函数名：FUN_1808d7020 - 资源清理函数A0
+// 功能：清理系统资源，释放内存
+#define CleanupResourceA0 FUN_1808d7020
+
+// 原始函数名：FUN_1808681d0 - 数据块处理函数A0
+// 功能：处理数据块，执行数据转换和验证
+#define ProcessDataBlocksA0 FUN_1808681d0
+
+// 原始函数名：FUN_180875fc0 - 回调执行函数A0
+// 功能：执行系统回调函数
+#define ExecuteCallbackA0 FUN_180875fc0
+
+// 原始函数名：FUN_180742250 - 资源分配函数A0
+// 功能：分配系统资源
+#define AllocateResourceA0 FUN_180742250
+
+// 原始函数名：FUN_180894dd0 - 请求处理函数A0
+// 功能：处理系统请求
+#define ProcessRequestA0 FUN_180894dd0
+
+// 原始函数名：FUN_180741df0 - 上下文初始化函数A0
+// 功能：初始化系统上下文
+#define InitializeContextA0 FUN_180741df0
+
+// 原始函数名：FUN_18073b5f0 - 数据验证函数A1
+// 功能：验证系统数据
+#define ValidateSystemDataA1 FUN_18073b5f0
+
+// 原始函数名：FUN_18073b810 - 系统清理函数A1
+// 功能：清理系统资源
+#define CleanupSystemA1 FUN_18073b810
+
+// 原始函数名：FUN_1808678e0 - 状态查询函数A0
+// 功能：查询系统状态
+#define QuerySystemStatusA0 FUN_1808678e0
+
+// 原始函数名：FUN_18088c740 - 缓冲区初始化函数A0
+// 功能：初始化系统缓冲区
+#define InitializeBufferA0 FUN_18088c740
+
+// 原始函数名：FUN_1808bdd90 - 上下文验证函数A0
+// 功能：验证系统上下文
+#define ValidateContextA0 FUN_1808bdd90
+
+// 原始函数名：FUN_1808c44f0 - 操作执行函数A0
+// 功能：执行系统操作
+#define ExecuteOperationA0 FUN_1808c44f0
+
+// 原始函数名：FUN_180894860 - 参数验证函数A0
+// 功能：验证系统参数
+#define ValidateParametersA0 FUN_180894860
+
+// 原始函数名：FUN_18088d720 - 错误处理函数A0
+// 功能：处理系统错误
+#define HandleErrorA0 FUN_18088d720
+
+// 原始函数名：FUN_18088c790 - 资源释放函数A1
+// 功能：释放系统资源
+#define ReleaseResourceA1 FUN_18088c790
+
+// 原始函数名：FUN_18088aca0 - 状态检查函数A0
+// 功能：检查系统状态
+#define CheckSystemStatusA0 FUN_18088aca0
+
+// 原始函数名：FUN_18088ee60 - 数据处理函数A1
+// 功能：处理系统数据
+#define ProcessSystemDataA1 FUN_18088ee60
+
+// 原始函数名：FUN_180897b40 - 操作验证函数A0
+// 功能：验证系统操作
+#define ValidateOperationA0 FUN_180897b40
+
+// 原始函数名：FUN_1808987e0 - 输入验证函数A0
+// 功能：验证输入数据
+#define ValidateInputA0 FUN_1808987e0
+
+// 原始函数名：FUN_18088c7c0 - 节点处理函数A0
+// 功能：处理系统节点
+#define ProcessNodeA0 FUN_18088c7c0
+
+// 原始函数名：FUN_18088f530 - 资源验证函数A0
+// 功能：验证系统资源
+#define ValidateResourceA0 FUN_18088f530
+
+// 原始函数名：FUN_180895130 - 状态重置函数A0
+// 功能：重置系统状态
+#define ResetSystemStatusA0 FUN_180895130
+
+// 原始函数名：FUN_180895070 - 数据初始化函数A0
+// 功能：初始化系统数据
+#define InitializeSystemDataA0 FUN_180895070
+
+// 原始函数名：FUN_180849030 - 指针处理函数A0
+// 功能：处理系统指针
+#define ProcessPointerA0 FUN_180849030
+
+// 原始函数名：FUN_180896040 - 句柄验证函数A0
+// 功能：验证系统句柄
+#define ValidateHandleA0 FUN_180896040
+
+// 原始函数名：FUN_1807d3f50 - 数据检查函数A0
+// 功能：检查系统数据
+#define CheckSystemDataA0 FUN_1807d3f50
+
+// 原始函数名：FUN_18088ca20 - 上下文处理函数A0
+// 功能：处理系统上下文
+#define ProcessContextA0 FUN_18088ca20
+
 // 函数: void InitializeUtilityModule(void)
 // 
 // 初始化工具模块
