@@ -10114,7 +10114,9 @@ void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
 
 
 // 函数: void FUN_180894bcc(void)
-void FUN_180894bcc(void)
+// 系统终止函数B
+// 调用底层系统终止函数，程序不会返回
+void TerminateSystemB(void)
 
 {
                     // WARNING: Subroutine does not return
