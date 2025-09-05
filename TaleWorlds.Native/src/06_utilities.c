@@ -21775,58 +21775,58 @@ ulonglong ProcessDataStream(void)
   undefined1 tempBuffer2 [2];
   undefined1 tempBuffer3 [2];
   
-  uVar1 = *registerRBX;
-  uVar3 = FUN_1808aed00(uVar1,auStackX_20,4);
-  if ((((int)uVar3 == 0) && (uVar3 = FUN_1808aed00(uVar1,auStackX_24,2), (int)uVar3 == 0)) &&
-     (uVar3 = FUN_1808aed00(uVar1,auStackX_26,2), (int)uVar3 == 0)) {
-    uVar3 = FUN_1808aed00(uVar1,&stack0x00000028,8);
+  dataHandle = *dataBuffer;
+  operationResult = ProcessDataElement(dataHandle, tempBuffer1, 4);
+  if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, tempBuffer2, 2), (int)operationResult == 0)) &&
+     (operationResult = ProcessDataElement(dataHandle, tempBuffer3, 2), (int)operationResult == 0)) {
+    operationResult = ProcessDataElement(dataHandle, &stackBuffer, 8);
   }
-  if ((int)uVar3 != 0) {
-    return uVar3;
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (*(int *)(registerRBX[1] + 0x18) == 0) {
-    uVar3 = FUN_180899090(*registerRBX,unaff_RBP + 0x30);
-    if ((int)uVar3 != 0) {
-      return uVar3;
+  if (*(int *)(dataBuffer[1] + 0x18) == 0) {
+    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + 0x30);
+    if ((int)operationResult != 0) {
+      return operationResult;
     }
-    if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar2 = FUN_1808aed00(*registerRBX,unaff_RBP + 0x40,4);
-      unaff_RDI = (ulonglong)uVar2;
-      if (uVar2 == 0) {
+    if (*(int *)(dataBuffer[1] + 0x18) == 0) {
+      processStatus = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4);
+      dataLength = (ulonglong)processStatus;
+      if (processStatus == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        ExecuteDataProcessing();
       }
     }
   }
-  return unaff_RDI & 0xffffffff;
+  return dataLength & 0xffffffff;
 }
 
 
 
-ulonglong FUN_18089b380(void)
+ulonglong ValidateAndProcessDataElement(void)
 
 {
-  uint uVar1;
-  ulonglong uVar2;
-  undefined8 *registerRBX;
-  longlong unaff_RBP;
-  ulonglong unaff_RDI;
+  uint validationResult;
+  ulonglong operationResult;
+  undefined8 *dataBuffer;
+  longlong contextPointer;
+  ulonglong dataLength;
   
-  if (*(int *)(registerRBX[1] + 0x18) == 0) {
-    uVar2 = FUN_180899090(*registerRBX,unaff_RBP + 0x30);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+  if (*(int *)(dataBuffer[1] + 0x18) == 0) {
+    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + 0x30);
+    if ((int)operationResult != 0) {
+      return operationResult;
     }
-    if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar1 = FUN_1808aed00(*registerRBX,unaff_RBP + 0x40,4);
-      unaff_RDI = (ulonglong)uVar1;
-      if (uVar1 == 0) {
+    if (*(int *)(dataBuffer[1] + 0x18) == 0) {
+      validationResult = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4);
+      dataLength = (ulonglong)validationResult;
+      if (validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80();
+        ExecuteDataProcessing();
       }
     }
   }
-  return unaff_RDI & 0xffffffff;
+  return dataLength & 0xffffffff;
 }
 
 
