@@ -60000,10 +60000,20 @@ void Unwind_18090a4f0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090a510(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理系统验证资源F0
+ * 
+ * 该函数负责清理系统验证相关的资源，释放内存并重置相关状态
+ * 
+ * @param param_1 系统句柄
+ * @param param_2 验证上下文指针
+ * 
+ * @note 原始函数名：Unwind_18090a510
+ */
+void CleanupSystemValidationResourcesF0(undefined8 systemHandle, longlong validationContext)
 
 {
-  FUN_1808fc8a8(*(longlong *)(param_2 + 0x60) + 0xc60,8,0x14,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(validationContext + 0x60) + 0xc60, 8, 0x14, FUN_180045af0);
   return;
 }
 
