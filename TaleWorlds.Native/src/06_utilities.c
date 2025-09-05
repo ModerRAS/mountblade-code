@@ -1,5 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 美化工作开始：函数名重命名和文档注释添加
+
 // 全局数据定义
 #define DefaultSystemDataAddress 0x18
 
@@ -4379,40 +4381,40 @@ uint32_t UtilityMemoryRegion7;
 uint32_t UtilityMemoryRegion8;
 uint32_t UtilityMemoryRegion9;
 uint32_t UtilityMemoryRegion10;
-undefined UtilityMemoryRegion11;
-undefined UtilityMemoryRegion12;
-undefined UtilityCacheRegion1;
-undefined UtilityCacheRegion2;
-undefined UtilityCacheRegion3;
-undefined UtilityCacheRegion4;
-undefined UtilityCacheRegion5;
-undefined UtilityCacheRegion6;
-undefined UtilityCacheRegion7;
-undefined UtilityCacheRegion8;
-undefined UtilityStorageRegion1;
-undefined UtilityStorageRegion2;
-undefined UtilityStorageRegion3;
-undefined UtilityStorageRegion4;
-undefined UtilityStorageRegion5;
-undefined UtilityStorageRegion6;
-undefined UtilityStorageRegion7;
-undefined UtilityStorageRegion8;
-undefined UtilityStateRegion1;
-undefined UtilityStateRegion2;
-undefined UtilityStateRegion3;
-undefined UtilityStateRegion4;
-undefined UtilityStateRegion5;
-undefined UtilityStateRegion6;
-undefined UtilityStateRegion7;
-undefined UtilityStateRegion8;
-undefined UtilityControlRegion1;
-undefined UtilityControlRegion2;
-undefined UtilityControlRegion3;
-undefined UtilityControlRegion4;
-undefined UtilityControlRegion5;
-undefined UtilityControlRegion6;
-undefined UtilityControlRegion7;
-undefined UtilityControlRegion8;
+uint32_t UtilityMemoryRegion11;
+uint32_t UtilityMemoryRegion12;
+uint32_t UtilityCacheRegion1;
+uint32_t UtilityCacheRegion2;
+uint32_t UtilityCacheRegion3;
+uint32_t UtilityCacheRegion4;
+uint32_t UtilityCacheRegion5;
+uint32_t UtilityCacheRegion6;
+uint32_t UtilityCacheRegion7;
+uint32_t UtilityCacheRegion8;
+uint32_t UtilityStorageRegion1;
+uint32_t UtilityStorageRegion2;
+uint32_t UtilityStorageRegion3;
+uint32_t UtilityStorageRegion4;
+uint32_t UtilityStorageRegion5;
+uint32_t UtilityStorageRegion6;
+uint32_t UtilityStorageRegion7;
+uint32_t UtilityStorageRegion8;
+uint32_t UtilityStateRegion1;
+uint32_t UtilityStateRegion2;
+uint32_t UtilityStateRegion3;
+uint32_t UtilityStateRegion4;
+uint32_t UtilityStateRegion5;
+uint32_t UtilityStateRegion6;
+uint32_t UtilityStateRegion7;
+uint32_t UtilityStateRegion8;
+uint32_t UtilityControlRegion1;
+uint32_t UtilityControlRegion2;
+uint32_t UtilityControlRegion3;
+uint32_t UtilityControlRegion4;
+uint32_t UtilityControlRegion5;
+uint32_t UtilityControlRegion6;
+uint32_t UtilityControlRegion7;
+uint32_t UtilityControlRegion8;
 // 工具系统配置数据区域
 uint32_t UtilitySystemConfigVersion;                    // 工具系统配置版本号
 uint32_t UtilitySystemConfigFlags;                     // 工具系统配置标志
@@ -4424,21 +4426,21 @@ uint32_t UtilitySystemConfigLogLevel;                  // 工具系统配置日�
 uint32_t UtilitySystemConfigSecurityLevel;              // 工具系统配置安全级别
 uint32_t UtilitySystemConfigPerformanceMode;            // 工具系统配置性能模式
 uint32_t UtilitySystemConfigMemoryLimit;                // 工具系统配置内存限制
-undefined UtilityConfigData11;
-undefined UtilityConfigData12;
-undefined UtilityConfigData13;
-undefined UtilityConfigData14;
-undefined UtilityConfigData15;
-undefined UtilityConfigData16;
-undefined UtilityConfigData17;
-undefined UtilityConfigData18;
-undefined UtilityConfigData19;
-undefined UtilityConfigData20;
-undefined UtilityConfigData21;
-undefined UtilityConfigData22;
-undefined UtilityConfigData23;
-undefined UtilityConfigData24;
-undefined UtilityConfigData25;
+uint32_t UtilityConfigData11;
+uint32_t UtilityConfigData12;
+uint32_t UtilityConfigData13;
+uint32_t UtilityConfigData14;
+uint32_t UtilityConfigData15;
+uint32_t UtilityConfigData16;
+uint32_t UtilityConfigData17;
+uint32_t UtilityConfigData18;
+uint32_t UtilityConfigData19;
+uint32_t UtilityConfigData20;
+uint32_t UtilityConfigData21;
+uint32_t UtilityConfigData22;
+uint32_t UtilityConfigData23;
+uint32_t UtilityConfigData24;
+uint32_t UtilityConfigData25;
 undefined UtilityConfigData26;
 undefined UtilityConfigData27;
 undefined UtilityConfigData28;
@@ -35112,7 +35114,19 @@ void CleanupExceptionAtOffset96(undefined8 param_1,longlong param_2,undefined8 p
 
 
 
-void Unwind_180902830(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常清理处理器830
+ * 
+ * 该函数用于处理异常清理操作，调用系统清理函数进行资源释放
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含异常状态信息
+ * @param param_3 清理参数1
+ * @param param_4 清理参数2
+ * 
+ * @note 原始函数名：Unwind_180902830
+ */
+void ExceptionCleanupHandler830(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1801fef10(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
