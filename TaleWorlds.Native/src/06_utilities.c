@@ -3797,22 +3797,30 @@ undefined DAT_180c96800;
 undefined DAT_180c96808;
 undefined DAT_180c0c6c0;
 undefined DAT_180be14a0;
-undefined DAT_180be1324;
-undefined UNK_180943250;
-undefined UNK_180943260;
-undefined DAT_180c0c6d0;
-undefined DAT_180c0c6d8;
+// 系统状态标志
+undefined SystemStatusFlag1;
+// 系统配置表A0
+undefined SystemConfigurationTableA0;
+// 系统配置表A1
+undefined SystemConfigurationTableA1;
+// 系统数据指针A0
+undefined SystemDataPointerA0;
+// 系统数据指针A1
+undefined SystemDataPointerA1;
 undefined DAT_180c0d100;
 undefined DAT_180c0e170;
 undefined DAT_180c108d0;
 undefined DAT_180c2bca0;
 undefined DAT_180c31148;
-undefined UNK_180943270;
+// 系统配置表A2
+undefined SystemConfigurationTableA2;
 undefined UNK_18097e888;
 undefined DAT_180c4ea58;
 undefined DAT_180c4ea60;
-undefined UNK_180943310;
-undefined UNK_180943320;
+// 系统配置表A3
+undefined SystemConfigurationTableA3;
+// 系统配置表A4
+undefined SystemConfigurationTableA4;
 undefined1 DAT_180c82841;
 undefined1 DAT_180c82840;
 undefined DAT_180c82864;
@@ -7229,7 +7237,7 @@ void ProcessUtilityDataRequest(longlong dataHandle,uint64_t requestInfo)
   processingStatus[0] = QueryAndRetrieveSystemDataA0(*(undefined4 *)(dataHandle + 0x10),&resultBuffer);
   if (processingStatus[0] == 0) {
     dataOffset = dataHandle + 0x18;
-    FUN_180894dd0(requestInfo,processingStatus,*(undefined4 *)(dataHandle + 0x14),resultBuffer);
+    ProcessDataRequest(requestInfo,processingStatus,*(undefined4 *)(dataHandle + 0x14),resultBuffer);
   }
   return;
 }

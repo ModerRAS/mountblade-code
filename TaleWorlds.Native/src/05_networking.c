@@ -563,7 +563,6 @@ uint32_t CompareNetworkConnectionTimestamps(int64_t *SourceTimestamp, int64_t *T
  * @param PacketData 数据包数据，包含待处理的网络数据包信息
  * @return NetworkHandle 处理结果句柄，0表示成功，非0值表示错误码
  */
-NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int32_t PacketData);
 
 /**
  * @brief 发送网络数据包
