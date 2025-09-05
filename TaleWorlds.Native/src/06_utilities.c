@@ -14425,7 +14425,10 @@ int ProcessComplexData(longlong complexContext, longlong dataBuffer, int bufferS
 
 
 
-undefined8 FUN_180896c10(longlong param_1,undefined8 param_2,undefined8 param_3)
+// 原始函数名：FUN_180896c10 - 数据验证和处理函数
+// 功能：验证输入数据的有效性并执行相应的处理操作
+#define ValidateAndProcessDataOperation FUN_180896c10
+undefined8 ValidateAndProcessDataOperation(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 {
   undefined8 uVar1;
