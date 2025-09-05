@@ -27399,14 +27399,14 @@ void InitializeSystemResourceAllocator(long long SystemResourceHandle)
   double FloatingPointValuePrimary;
   double FloatingPointValueSecondary;
   long long **systemContextPointer;
-  long long *systemContextPointer10;
-  long long *systemContextPointer18;
+  long long *SystemContextPointerPrimary;
+  long long *SystemContextPointerSecondary;
   long long SystemCalculationValue20;
   long long SystemCalculationValue90;
   long long SystemCalculationValue88;
   long long SystemCalculationValue80;
   long long SystemOperationValue78;
-  long long ***systemContextPointer70;
+  long long ***SystemContextTriplePointer;
   void* SystemPrimaryValue;
   long long **systemContextPointer60;
   void* SystemSecondaryValue;
