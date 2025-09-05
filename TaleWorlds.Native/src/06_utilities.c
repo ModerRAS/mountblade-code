@@ -9187,39 +9187,45 @@ undefined8 ReturnErrorCode31(void)
 
 
 
-undefined8 FUN_180893d50(longlong param_1,longlong param_2)
+// 原始函数名：FUN_180893d50 - 浮点数验证和处理函数
+// 功能：验证浮点数有效性并在指定范围内进行数值处理
+#define ValidateAndProcessFloatValue FUN_180893d50
+
+undefined8 ValidateAndProcessFloatValue(longlong dataContext,longlong operationContext)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong lVar3;
-  float fVar4;
-  undefined4 auStackX_18 [2];
+  float inputValue;
+  undefined8 operationResult;
+  longlong rangeData;
+  float minValue;
+  float maxValue;
+  undefined4 stackBuffer [2];
   
-  if ((*(uint *)(param_1 + 0x18) & 0x7f800000) == 0x7f800000) {
+  if ((*(uint *)(dataContext + 0x18) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  auStackX_18[0] = 0;
-  uVar2 = FUN_180867600(param_2 + 0x60,param_1 + 0x10,auStackX_18);
-  if ((int)uVar2 == 0) {
-    lVar3 = func_0x000180867680(param_2 + 0x60,auStackX_18[0]);
-    if ((*(uint *)(lVar3 + 0x34) >> 4 & 1) != 0) {
+  stackBuffer[0] = 0;
+  operationResult = FUN_180867600(operationContext + 0x60,dataContext + 0x10,stackBuffer);
+  if ((int)operationResult == 0) {
+    rangeData = func_0x000180867680(operationContext + 0x60,stackBuffer[0]);
+    if ((*(uint *)(rangeData + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    fVar1 = *(float *)(param_1 + 0x18);
-    fVar4 = *(float *)(lVar3 + 0x38);
-    if ((*(float *)(lVar3 + 0x38) <= fVar1) &&
-       (fVar4 = *(float *)(lVar3 + 0x3c), fVar1 <= *(float *)(lVar3 + 0x3c))) {
-      fVar4 = fVar1;
+    inputValue = *(float *)(dataContext + 0x18);
+    minValue = *(float *)(rangeData + 0x38);
+    maxValue = *(float *)(rangeData + 0x3c);
+    if ((*(float *)(rangeData + 0x38) <= inputValue) &&
+       (maxValue = *(float *)(rangeData + 0x3c), inputValue <= *(float *)(rangeData + 0x3c))) {
+      maxValue = inputValue;
     }
-    *(float *)(param_1 + 0x18) = fVar4;
-    uVar2 = func_0x000180867960(param_2 + 0x60,auStackX_18[0],fVar4);
-    if ((int)uVar2 == 0) {
+    *(float *)(dataContext + 0x18) = maxValue;
+    operationResult = func_0x000180867960(operationContext + 0x60,stackBuffer[0],maxValue);
+    if ((int)operationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      FUN_18088d720(*(undefined8 *)(operationContext + 0x98),dataContext);
     }
   }
-  return uVar2;
+  return operationResult;
 }
 
 
