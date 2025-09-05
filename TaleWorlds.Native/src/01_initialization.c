@@ -46065,7 +46065,7 @@ void CreateSystemIoCompletionPort(long long SystemResourceManager,long long Conf
   ResourceHash = 0;
   SystemDataCount = 0;
   SystemDataCount2c0 = 0x60000001;
-  SystemOperationFlag = ConcatenatedSystemValue(SystemOperationFlag._4_4_,3);
+  SystemOperationFlag = ConcatenatedSystemValue(SystemOperationFlag.LowPart,3);
   SystemThreadHandle = CreateFileA(ResourceAddressPointer,0x80000000,1,0);
   if (SystemThreadHandle == -1) {
     ResourceAddressPointer = &SystemStringTemplate;
@@ -46429,9 +46429,9 @@ ConfigureSystemResourceAllocation(long long SystemResourceManager,long long *Con
     *(void* *)(ResourceMemoryOffset + 0x118) = 0;
     *(void* *)(ResourceMemoryOffset + 0x120) = 0;
     if ((char)ArraySize != '\0') {
-      ResourceAddress = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,(ulong long)ArraySize._4_4_ * 8 + 8,8,
+      ResourceAddress = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,(ulong long)ArraySize.LowPart * 8 + 8,8,
                             *(uint8_t *)(SystemResourceManager + 0x2c));
-        memset(ResourceAddress,0,(ulong long)ArraySize._4_4_ * 8);
+        memset(ResourceAddress,0,(ulong long)ArraySize.LowPart * 8);
     }
     *(void* *)(ResourceMemoryOffset + 0x120) = *(void* *)(*(long long *)(SystemResourceManager + 8) + resourceCreationFlags * 8);
     *(long long *)(*(long long *)(SystemResourceManager + 8) + resourceCreationFlags * 8) = ResourceMemoryOffset;
@@ -48782,8 +48782,8 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         SystemAllocationFlags = ResourceDataIndex4 / 1000000000;
         StackInteger48 = (int)SystemAllocationFlags;
         StackInteger210 = (int)ResourceDataIndex4 + StackInteger48 * -1000000000;
-        SystemAllocationFlags._4_4_ = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
-        SystemFlagComponent = SystemAllocationFlags._4_4_;
+        SystemAllocationFlags.LowPart = (uint32_t)((ulong long)SystemAllocationFlags >> 0x20);
+        SystemFlagComponent = SystemAllocationFlags.LowPart;
         SystemFlag3c = SystemMaxOperationCountc;
         SystemAllocationFlags = SystemAllocationFlags;
         StackInteger40 = StackInteger210;
@@ -52094,7 +52094,7 @@ ulong long InitializeAndProcessSystemResources(void* SystemResourceManager,void*
       *(uint8_t *)SystemThreadLocalStoragePointer = 0;
       SystemMemoryAllocatorReferencePointer = SystemThreadLocalStoragePointer;
       ThreadContextIndicator = StartSystemThread(SystemThreadLocalStoragePointer);
-      SystemThreadIdentifier = ConcatenatedSystemValue(SystemThreadIdentifier._4_4_,ThreadContextIndicator);
+      SystemThreadIdentifier = ConcatenatedSystemValue(SystemThreadIdentifier.LowPart,ThreadContextIndicator);
       *SystemThreadLocalStoragePointer = 0x4e524157204c4752;
       *(uint32_t *)(SystemThreadLocalStoragePointer + 1) = 0x474e49;
       SystemThreadPriority = 0xb;
@@ -52683,7 +52683,7 @@ ResourceAllocationComplete:
     *SystemDataBufferPointer = 0;
     pUnsignedStackFlagSecondary = SystemDataBufferPointer;
     CurrentThreadIdentifier = StartSystemThread(SystemDataBufferPointer);
-    EncryptionOffsetSecondary = ConcatenatedSystemValue(EncryptionOffsetSecondary._4_4_,CurrentThreadIdentifier);
+    EncryptionOffsetSecondary = ConcatenatedSystemValue(EncryptionOffsetSecondary.LowPart,CurrentThreadIdentifier);
     goto SystemMemoryHandler;
   }
   if (SystemDataBufferPointer != (uint8_t *)0x0) {
