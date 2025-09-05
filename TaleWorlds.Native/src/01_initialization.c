@@ -1238,6 +1238,20 @@ void* SystemDataNodeLinkageSecondary;         // 系统数据节点链接次表
 void* SystemDataNodeLinkageTertiary;              // 系统数据节点链接第三表
 void* SystemDataNodeLinkageQuaternary;         // 系统数据节点链接第四表
 void* SystemDataNodeLinkageQuinary;            // 系统数据节点链接第五表
+
+// 系统数据节点 - 功能模块专用节点
+void* SystemDataNodeEventProcessor;           // 系统数据节点事件处理器 (原SystemDataNodeA)
+void* SystemDataNodeMemoryManager;            // 系统数据节点内存管理器 (原SystemDataNodeF)
+void* SystemDataNodeResourceHandler;          // 系统数据节点资源处理器 (原SystemDataNodeG)
+void* SystemDataNodeFileSystem;               // 系统数据节点文件系统 (原SystemDataNodeH)
+void* SystemDataNodeNetworkManager;           // 系统数据节点网络管理器 (原SystemDataNodeI)
+void* SystemDataNodeAudioProcessor;           // 系统数据节点音频处理器 (原SystemDataNodeJ)
+void* SystemDataNodeInputController;          // 系统数据节点输入控制器 (原SystemDataNodeK)
+void* SystemDataNodePhysicsEngine;            // 系统数据节点物理引擎 (原SystemDataNodeL)
+void* SystemDataNodeRenderer;                 // 系统数据节点渲染器 (原SystemDataNodeM)
+void* SystemDataNodeDatabaseManager;          // 系统数据节点数据库管理器 (原SystemDataNodeN)
+void* SystemDataNodeCacheController;          // 系统数据节点缓存控制器 (原SystemDataNodeO)
+
 void* SystemConfigurationDataPointerTertiary;        // 系统配置数据指针第三
 void* SystemConfigurationDataPointerQuaternary;        // 系统配置数据指针第四
 void* SystemResourceManager;        // 系统资源管理器
@@ -1615,7 +1629,7 @@ void* SystemNetworkContextA;                // 系统网络上下文A
 
 void* SystemStartupValidationHandler;
 
-void* GetSystemRootPointer;
+void* GetSystemRootTable;
 
 // 函数: 获取系统初始化函数 - 获取系统初始化相关函数
 void* GetSystemInitializationFunction;
@@ -1638,16 +1652,16 @@ void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
   void** RootNodeReference;
-  int GameCoreIdentifierComparisonResult;
+  int GameCoreIdentifierMatchResult;
   long long* MainSystemTablePointer;
-  long long RequiredMemoryAllocationSize;
+  long long RequiredMemorySize;
   void** CurrentNodePointer;
   void** PreviousNodePointer;
   void** NextNodePointer;
-  void** AllocatedNodePointer;
+  void** NewNodePointer;
   void* GameCoreInitializationHandler;
   
-  MainSystemTablePointer = (long long*)GetSystemRootPointer();
+  MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
   IsGameCoreNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   GameCoreInitializationHandler = GetGameCoreSystemInitializationFunction;
@@ -1655,8 +1669,8 @@ void InitializeGameCoreSystem(void)
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   
   while (!IsGameCoreNodeActive) {
-    GameCoreIdentifierComparisonResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, IdentifierSize);
-    if (GameCoreIdentifierComparisonResult < 0) {
+    GameCoreIdentifierMatchResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, IdentifierSize);
+    if (GameCoreIdentifierMatchResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
     }
@@ -1669,10 +1683,10 @@ void InitializeGameCoreSystem(void)
   }
   
   if ((PreviousNodePointer == RootNodeReference) || 
-      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
-    RequiredMemoryAllocationSize = GetSystemMemorySize(MainSystemTablePointer);
-    AllocateSystemMemory(MainSystemTablePointer, &AllocatedNodePointer, PreviousNodePointer, RequiredMemoryAllocationSize + NodeAllocationExtraSize, RequiredMemoryAllocationSize);
-    PreviousNodePointer = AllocatedNodePointer;
+      (GameCoreIdentifierMatchResult = memcmp(&GameCoreSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), GameCoreIdentifierMatchResult < 0)) {
+    RequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
+    AllocateSystemMemory(MainSystemTablePointer, &NewNodePointer, PreviousNodePointer, RequiredMemorySize + NodeAllocationExtraSize, RequiredMemorySize);
+    PreviousNodePointer = NewNodePointer;
   }
   
   PreviousNodePointer[NodeIdentifier1Index] = GameCoreSystemIdentifier1;
@@ -1708,16 +1722,16 @@ void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeActive;
   void** RootNodeReference;
-  int BaseAllocatorIdentifierComparisonResult;
+  int BaseAllocatorIdentifierMatchResult;
   long long* MainSystemTablePointer;
-  long long RequiredMemoryAllocationSize;
+  long long RequiredMemorySize;
   void** CurrentNodePointer;
   void** PreviousNodePointer;
   void** NextNodePointer;
-  void** NewBaseAllocatorNodePointer;
+  void** NewAllocatorNodePointer;
   void* BaseAllocatorInitializationHandler;
   
-  MainSystemTablePointer = (long long*)GetSystemRootPointer();
+  MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
   IsBaseAllocatorNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   BaseAllocatorInitializationHandler = GetBaseAllocatorSystemInitializationFunction;
@@ -1725,8 +1739,8 @@ void InitializeSystemDataTableBaseAllocator(void)
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   
   while (!IsBaseAllocatorNodeActive) {
-    BaseAllocatorIdentifierComparisonResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &BaseAllocatorSystemIdentifier1, IdentifierSize);
-    if (BaseAllocatorIdentifierComparisonResult < 0) {
+    BaseAllocatorIdentifierMatchResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &BaseAllocatorSystemIdentifier1, IdentifierSize);
+    if (BaseAllocatorIdentifierMatchResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
     }
@@ -1739,10 +1753,10 @@ void InitializeSystemDataTableBaseAllocator(void)
   }
   
   if ((PreviousNodePointer == RootNodeReference) || 
-      (BaseAllocatorIdentifierComparisonResult = memcmp(&BaseAllocatorSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), BaseAllocatorIdentifierComparisonResult < 0)) {
-    RequiredMemoryAllocationSize = GetSystemMemorySize(MainSystemTablePointer);
-    AllocateSystemMemory(MainSystemTablePointer, &NewBaseAllocatorNodePointer, PreviousNodePointer, RequiredMemoryAllocationSize + NodeAllocationExtraSize, RequiredMemoryAllocationSize);
-    PreviousNodePointer = NewBaseAllocatorNodePointer;
+      (BaseAllocatorIdentifierMatchResult = memcmp(&BaseAllocatorSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), BaseAllocatorIdentifierMatchResult < 0)) {
+    RequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
+    AllocateSystemMemory(MainSystemTablePointer, &NewAllocatorNodePointer, PreviousNodePointer, RequiredMemorySize + NodeAllocationExtraSize, RequiredMemorySize);
+    PreviousNodePointer = NewAllocatorNodePointer;
   }
   
   PreviousNodePointer[NodeIdentifier1Index] = BaseAllocatorSystemIdentifier1;
@@ -1781,14 +1795,14 @@ void InitializeSystemDataTableAllocator(void)
   void** RootNodeReference;
   int DataTableSystemIdentifierComparisonResult;
   long long* MainSystemTablePointer;
-  long long RequiredMemoryAllocationSize;
+  long long RequiredMemorySize;
   void** CurrentNodePointer;
   void** PreviousNodePointer;
   void** NextNodePointer;
   void** NewDataTableNodePointer;
   void* DataTableInitializationHandler;
   
-  MainSystemTablePointer = (long long*)GetSystemRootPointer();
+  MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
   IsDataTableNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   DataTableInitializationHandler = GetDataTableSystemInitializationFunction;
@@ -1811,8 +1825,8 @@ void InitializeSystemDataTableAllocator(void)
   
   if ((PreviousNodePointer == RootNodeReference) || 
       (DataTableIdentifierComparisonResult = memcmp(&SystemDataTableSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), DataTableIdentifierComparisonResult < 0)) {
-    RequiredMemoryAllocationSize = GetSystemMemorySize(MainSystemTablePointer);
-    AllocateSystemMemory(MainSystemTablePointer, &NewDataTableNodePointer, PreviousNodePointer, RequiredMemoryAllocationSize + NodeAllocationExtraSize, RequiredMemoryAllocationSize);
+    RequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
+    AllocateSystemMemory(MainSystemTablePointer, &NewDataTableNodePointer, PreviousNodePointer, RequiredMemorySize + NodeAllocationExtraSize, RequiredMemorySize);
     PreviousNodePointer = NewDataTableNodePointer;
   }
   
@@ -1849,10 +1863,10 @@ void InitializeSystemCoreConfig(void)
   void** CurrentNodeReference;
   void** PreviousNodePointer;
   void** NextNodeReference;
-  void** AllocatedNodePointer;
+  void** NewNodePointer;
   void* MemoryInitializationHandler;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemDataTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTablePointer;
   IsMemoryNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   MemoryInitializationHandler = GetSystemMemorySystemInitializationFunction;
@@ -1876,8 +1890,8 @@ void InitializeSystemCoreConfig(void)
   if ((PreviousNodePointer == RootNodeReference) || 
       (MemoryIdentifierComparisonResult = memcmp(&SystemMemorySystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), MemoryIdentifierComparisonResult < 0)) {
     SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTablePointer);
-    AllocateSystemMemory(SystemDataTablePointer, &AllocatedNodePointer, PreviousNodePointer, SystemMemoryAllocationSize + NodeAllocationExtraSize, SystemMemoryAllocationSize);
-    PreviousNodePointer = AllocatedNodePointer;
+    AllocateSystemMemory(SystemDataTablePointer, &NewNodePointer, PreviousNodePointer, SystemMemoryAllocationSize + NodeAllocationExtraSize, SystemMemoryAllocationSize);
+    PreviousNodePointer = NewNodePointer;
   }
   
   PreviousNodePointer[NodeIdentifier1Index] = SystemMemorySystemIdentifier1;
@@ -1915,11 +1929,11 @@ void InitializeSystemMemoryPool(void)
   void** NextNodePointer;
   void** PreviousNodePointer;
   uint64_t SystemInitializationStatusFlag;
-  long long RequiredMemoryAllocationSize;
+  long long RequiredMemorySize;
   void** AllocatedMemoryPoolNode;
   void* MemoryPoolInitializationHandler;
   
-  MainSystemTablePointer = (long long*)GetSystemRootPointer();
+  MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
   IsMemoryPoolNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   MemoryPoolInitializationHandler = GetSystemAllocatorSystemInitializationFunction;
@@ -1942,8 +1956,8 @@ void InitializeSystemMemoryPool(void)
   
   if ((PreviousNodePointer == RootNodeReference) || 
       (MemoryPoolIdentifierComparisonResult = memcmp(&SystemAllocatorSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), MemoryPoolIdentifierComparisonResult < 0)) {
-    RequiredMemoryAllocationSize = GetSystemMemorySize(MainSystemTablePointer);
-    AllocateSystemMemory(MainSystemTablePointer, &AllocatedMemoryPoolNode, PreviousNodePointer, RequiredMemoryAllocationSize + NodeAllocationExtraSize, RequiredMemoryAllocationSize);
+    RequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
+    AllocateSystemMemory(MainSystemTablePointer, &AllocatedMemoryPoolNode, PreviousNodePointer, RequiredMemorySize + NodeAllocationExtraSize, RequiredMemorySize);
     PreviousNodePointer = AllocatedMemoryPoolNode;
   }
   
@@ -1982,7 +1996,7 @@ void InitializeSystemThreadPool(void)
   void** AllocatedMemoryNode;
   void* ResourceInitializationCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   IsCurrentNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -2042,7 +2056,7 @@ void InitializeSystemEventManager(void)
   void** AllocatedMemoryNode;
   void* ResourceInitializationCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   IsCurrentNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -2103,7 +2117,7 @@ void InitializeSystemResourceManager(void)
   void** AllocatedMemoryNode;
   void* ResourceInitializationCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   IsCurrentNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -2164,7 +2178,7 @@ void InitializeSystemCoreData(void)
   void** AllocatedNode;
   void* SystemInitializationCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationCallback = GetSystemInitializationCallback;
@@ -2228,7 +2242,7 @@ void InitializeSystemDataTable(void)
   void** AllocatedSystemNode;
   void* SystemInitializationHandler;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemDataTablePointer = (long long*)GetSystemRootTable();
   SystemRootPointer = (void**)*SystemDataTablePointer;
   IsDataTableNodeActive = *(char*)((long long)SystemRootPointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   SystemInitializationHandler = 0;
@@ -2361,7 +2375,7 @@ void InitializeRenderingSystemConfig(void)
   void** AllocatedNode;
   void* RendererHandler;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   RendererHandler = 0;
@@ -2495,7 +2509,7 @@ void InitializeSystemMemoryManager(void)
   void** HashTablePointer;
   void* MemoryManagerEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   IsMemoryManagerNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunction;
@@ -2561,7 +2575,7 @@ void InitializeSystemMemoryAllocator(void)
   void** PreviousNodePointer;
   void* MemoryAllocatorCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemMemoryAllocatorSearchFunction = GetSystemMemoryAllocatorSearchFunction;
@@ -2694,7 +2708,7 @@ void InitializeSystemThreadManager(void)
   void** HashTablePointer;
   void* ThreadManagerCallbackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointerC = GetSystemSearchFunctionC;
@@ -2749,7 +2763,7 @@ void InitializeSystemEventManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -2805,7 +2819,7 @@ void InitializeSystemConfigurationNode(void)
   void* *AllocatedNode;
   void* InitializationFlag;
   
-  SystemTablePointer = (long long*)GetSystemRootPointer();
+  SystemTablePointer = (long long*)GetSystemRootTable();
   SystemRootPointer = (void* *)*SystemTablePointer;
   NodeFlag = *(char*)((long long)SystemRootPointer[1] + NodeActiveFlagOffset);
   InitializationFlag = 0;
@@ -2861,7 +2875,7 @@ void InitializeSystemResourceNode(void)
   void** AllocatedNode;
   void** InitializationCallback;
   
-  SystemTablePointer = (long long*)GetSystemRootPointer();
+  SystemTablePointer = (long long*)GetSystemRootTable();
   SystemRootPointer = (void* *)*SystemTablePointer;
   NodeFlag = *(char*)((long long)SystemRootPointer[1] + NodeActiveFlagOffset);
   InitializationCallback = GetSystemInitializationCallbackB;
@@ -2917,7 +2931,7 @@ void InitializeSystemMemoryNode(void)
   void** AllocatedNode;
   void* InitializationFlag;
   
-  SystemTablePointer = (long long*)GetSystemRootPointer();
+  SystemTablePointer = (long long*)GetSystemRootTable();
   SystemRootPointer = (void* *)*SystemTablePointer;
   NodeFlag = *(char*)((long long)SystemRootPointer[1] + NodeActiveFlagOffset);
   InitializationFlag = 0;
@@ -2970,10 +2984,10 @@ void InitializeSystemDataTableStructureA(void)
   void** CurrentNodePointer;
   void** PreviousNodePointer;
   void** NextNodePointer;
-  void** AllocatedNodePointer;
+  void** NewNodePointer;
   void** SystemDataReference;
   
-  SystemRootPointer = (long long*)GetSystemRootPointer();
+  SystemRootPointer = (long long*)GetSystemRootTable();
   DataTablePointer = (void**)*SystemRootPointer;
   NodeActiveFlag = *(char*)((long long)DataTablePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   SystemDataReference = &SystemDataNodeSecondaryRoot;
@@ -2994,8 +3008,8 @@ void InitializeSystemDataTableStructureA(void)
   }
   if ((PreviousNode == DataTablePointer) || (IdentifierCompareResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_M,PreviousNode + 4,SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemRootPointer);
-    AllocateSystemMemory(SystemRootPointer,&AllocatedNodePointer,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    PreviousNode = AllocatedNodePointer;
+    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    PreviousNode = NewNodePointer;
   }
   PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_M_ID1;
   PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_M_ID2;
@@ -3026,10 +3040,10 @@ void InitializeSystemDataTableStructureB(void)
   void** CurrentNodePointer;
   void** PreviousNodePointer;
   void** NextNodePointer;
-  void** AllocatedNodePointer;
+  void** NewNodePointer;
   void* SystemInitializationFlag;
   
-  SystemRootPointer = (long long*)GetSystemRootPointer();
+  SystemRootPointer = (long long*)GetSystemRootTable();
   DataTablePointer = (void**)*SystemRootPointer;
   NodeActiveFlag = *(char*)((long long)DataTablePointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
   SystemInitializationStatusFlag = 0;
@@ -3050,8 +3064,8 @@ void InitializeSystemDataTableStructureB(void)
   }
   if ((PreviousNode == DataTablePointer) || (IdentifierCompareResult = memcmp(&SYSTEM_DATA_COMPARISON_TEMPLATE_N,PreviousNode + 4,SYSTEM_IDENTIFIER_SIZE), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemRootPointer);
-    AllocateSystemMemory(SystemRootPointer,&AllocatedNodePointer,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
-    PreviousNode = AllocatedNodePointer;
+    AllocateSystemMemory(SystemRootPointer,&NewNodePointer,PreviousNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
+    PreviousNode = NewNodePointer;
   }
   PreviousNode[SYSTEM_NODE_IDENTIFIER1_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_N_ID1;
   PreviousNode[SYSTEM_NODE_IDENTIFIER2_INDEX] = SYSTEM_DATA_COMPARISON_TEMPLATE_N_ID2;
@@ -3085,7 +3099,7 @@ void InitializeSystemDataTableStructureC(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionE;
@@ -3111,7 +3125,7 @@ void InitializeSystemDataTableStructureC(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateEId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateEId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeA;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeEventProcessor;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = EventCallbackPointer;
   return;
@@ -3141,7 +3155,7 @@ void InitializeSystemDataTableStructureD(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionF;
@@ -3197,7 +3211,7 @@ void InitializeSystemDataTableStructureE(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunction;
@@ -3253,7 +3267,7 @@ void InitializeSystemDataTableStructureF(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionB;
@@ -3309,7 +3323,7 @@ void InitializeSystemDataTableStructureG(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -3365,7 +3379,7 @@ void InitializeSystemDataTableStructureH(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionG;
@@ -3421,7 +3435,7 @@ void InitializeSystemDataTableStructureI(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemEventCallback;
@@ -3527,7 +3541,7 @@ void InitializeSystemMemoryManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -3584,7 +3598,7 @@ void InitializeSystemDataStructure(void)
   void** AllocatedNode;
   void** SystemInitializationFunction;
   
-  SystemTablePointer = (long long*)GetSystemRootPointer();
+  SystemTablePointer = (long long*)GetSystemRootTable();
   SystemRootPointer = (void* *)*SystemTablePointer;
   NodeFlag = *(char*)((long long)SystemRootPointer[1] + NodeActiveFlagOffset);
   SystemInitializationFunction = (void* *)SystemInitializationCallbackA;
@@ -3635,7 +3649,7 @@ void InitializeSystemDataTable(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -3686,7 +3700,7 @@ void InitializeSystemNodeTree(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -3737,7 +3751,7 @@ void InitializeMemoryAllocator(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -3799,7 +3813,7 @@ void InitializeResourcePool(void)
   void** HashTablePointer;
   void* ResourcePoolCallbackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   ResourcePoolCallbackPointer = &ResourcePoolCallbackNode;
@@ -3850,7 +3864,7 @@ void InitializeConfigurationManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -3901,7 +3915,7 @@ void InitializeEventSystem(void)
   void** HashTablePointer;
   void* EventSystemCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionF;
@@ -3956,7 +3970,7 @@ void InitializeSystemMemoryManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -4011,7 +4025,7 @@ void InitializeSystemThreadPoolManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -4066,7 +4080,7 @@ void InitializeSystemResourceManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -4123,7 +4137,7 @@ void InitializeSystemNodeTree(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -4180,7 +4194,7 @@ void InitializeSystemDataTable(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -4235,7 +4249,7 @@ void InitializeSystemEventHandler(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -4290,7 +4304,7 @@ void InitializeSystemNetworkManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -4345,7 +4359,7 @@ void InitializeSystemSecurityManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -4400,7 +4414,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -4455,7 +4469,7 @@ void InitializeSystemDebugManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -4514,7 +4528,7 @@ void InitializeSystemMemoryAllocator(void)
   void* SystemCallbackPointer;
   void* EventCallbackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -4571,7 +4585,7 @@ void InitializeSystemResourcePool(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -4628,7 +4642,7 @@ void InitializeSystemConfigurationManager(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -4685,7 +4699,7 @@ void InitializeSystemResourceManager(void)
   void** HashTablePointer;
   void* *ResourceInitializationCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   ResourceInitializationCallback = 0;
@@ -4742,7 +4756,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -4799,7 +4813,7 @@ void InitializeSystemDebugManager(void)
   void** HashTablePointer;
   code *DebugInitializationCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   DebugInitializationCallback = SystemDebugCallback;
@@ -4856,7 +4870,7 @@ void InitializeSystemEventHandler(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -4913,7 +4927,7 @@ void InitializeSystemNetworkManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -4970,7 +4984,7 @@ void InitializeSystemSecurityManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -5027,7 +5041,7 @@ void InitializeSystemDataTableStructureA(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -5084,7 +5098,7 @@ void InitializeSystemResourceManager(void)
   void** HashTablePointer;
   void* SystemCallbackData;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackData = 0;
@@ -5143,7 +5157,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** HashTablePointer;
   void** PerformanceMonitorCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   IsNodeActive = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   PerformanceMonitorCallback = &SystemDataNodeJ;
@@ -5202,7 +5216,7 @@ void InitializeSystemDebugManager(void)
   void** HashTablePointer;
   void* DebugManagerData;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   IsNodeActive = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   DebugManagerData = 0;
@@ -5310,7 +5324,7 @@ void InitializeSystemEventManager(void)
   void** PreviousNodePointer;
   code* EventCallbackPointer;
   
-  DataTable = (long long*)GetSystemRootPointer();
+  DataTable = (long long*)GetSystemRootTable();
   RootNode = (void**)*DataTable;
   NodeActiveFlag = *(char*)((long long)RootNode[1] + NodeActiveFlagOffset);
   EventCallbackPointer = SystemEventCallback;
@@ -5369,7 +5383,7 @@ void InitializeSystemNetworkManager(void)
   void** PreviousNodePointer;
   code *NetworkCallbackPointer;
   
-  DataTable = (long long*)GetSystemRootPointer();
+  DataTable = (long long*)GetSystemRootTable();
   RootNode = (void* *)*DataTable;
   NodeActiveFlag = *(char*)((long long)RootNode[1] + NodeActiveFlagOffset);
   NetworkCallbackPointer = SystemNetworkCallback;
@@ -5428,7 +5442,7 @@ void InitializeSystemConfigurationManager(void)
   void** PreviousNodePointer;
   void* ConfigurationManagerInitializationFunction;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void* *)*SystemDataTable;
   SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   ConfigurationManagerInitializationFunction = GetSystemConfigurationManagerFunction;
@@ -5487,7 +5501,7 @@ void InitializeSystemResourceManager(void)
   void** PreviousNodePointer;
   void* ResourceManagerInitializationFunction;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   ResourceManagerInitializationFunction = GetSystemResourceManagerFunction;
@@ -5546,7 +5560,7 @@ void InitializeSystemEventManager(void)
   void** HashTablePointer;
   code* SystemInitializationFunction;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationFunction = GetSystemEventManagerFunction;
@@ -5603,7 +5617,7 @@ void InitializeSystemDataManager(void)
   void** HashTablePointer;
   code* SystemInitializationFunction;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationFunction = GetSystemDataManagerFunction;
@@ -5660,7 +5674,7 @@ void InitializeSystemResourceNode(void)
   void** HashTablePointer;
   void* SystemResourceFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemResourceFlag = 0;
@@ -5718,7 +5732,7 @@ void InitializeSystemNodeManager(void)
   void** HashTablePointer;
   void* NodeManagerCallbackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   NodeManagerCallbackPointer = SystemNodeManagerCallback;
@@ -5776,7 +5790,7 @@ void InitializeSystemDataNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -5834,7 +5848,7 @@ void InitializeSystemResourceNodeManager(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -5892,7 +5906,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -5980,7 +5994,7 @@ void InitializeSystemConfigurationNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -6037,7 +6051,7 @@ void InitializeSystemEventNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -6093,7 +6107,7 @@ void InitializeSystemResourceNode(void)
   void** PreviousNodePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (void*)GetSystemRootPointer();
+  SystemDataTable = (void*)GetSystemRootTable();
   RootNodeReference = (void**)*(long long*)SystemDataTable;
   IsResourceNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -6114,9 +6128,9 @@ void InitializeSystemResourceNode(void)
   }
   if ((PreviousNodePointer == RootNodeReference) || (ResourceIdentifierComparisonResult = memcmp(&SystemDataTemplateJ,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),SystemIdentifierComparisonSize), ResourceIdentifierComparisonResult < 0)) {
     long long SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    void** AllocatedNodePointer;
-    AllocateSystemMemory(SystemDataTable,&AllocatedNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
-    PreviousNodePointer = AllocatedNodePointer;
+    void** NewNodePointer;
+    AllocateSystemMemory(SystemDataTable,&NewNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
+    PreviousNodePointer = NewNodePointer;
   }
   PreviousNodePointer[NodeIdentifier1Index] = SystemDataTemplateKappaId1;
   PreviousNodePointer[NodeIdentifier2Index] = SystemDataTemplateKappaId2;
@@ -6150,7 +6164,7 @@ void InitializeSystemEventNode(void)
   void** PreviousNodePointer;
   void* EventInitializationHandler;
   
-  SystemDataTable = (void*)GetSystemRootPointer();
+  SystemDataTable = (void*)GetSystemRootTable();
   RootNodeReference = (void**)*(long long*)SystemDataTable;
   IsEventNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   EventInitializationHandler = GetEventSystemInitializationFunction;
@@ -6171,9 +6185,9 @@ void InitializeSystemEventNode(void)
   }
   if ((PreviousNodePointer == RootNodeReference) || (EventIdentifierComparisonResult = memcmp(&SystemDataTemplateK,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),SystemIdentifierComparisonSize), EventIdentifierComparisonResult < 0)) {
     long long SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    void** AllocatedNodePointer;
-    AllocateSystemMemory(SystemDataTable,&AllocatedNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
-    PreviousNodePointer = AllocatedNodePointer;
+    void** NewNodePointer;
+    AllocateSystemMemory(SystemDataTable,&NewNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
+    PreviousNodePointer = NewNodePointer;
   }
   PreviousNodePointer[NodeIdentifier1Index] = SystemDataTemplateLambdaId1;
   PreviousNodePointer[NodeIdentifier2Index] = SystemDataTemplateLambdaId2;
@@ -6207,7 +6221,7 @@ void InitializeSystemMemoryNode(void)
   void** PreviousNodePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (void*)GetSystemRootPointer();
+  SystemDataTable = (void*)GetSystemRootTable();
   RootNodeReference = (void**)*(long long*)SystemDataTable;
   IsMemoryNodeActive = *(bool*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -6228,9 +6242,9 @@ void InitializeSystemMemoryNode(void)
   }
   if ((PreviousNodePointer == RootNodeReference) || (MemoryIdentifierComparisonResult = memcmp(&SystemDataTemplateL,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),SystemIdentifierComparisonSize), MemoryIdentifierComparisonResult < 0)) {
     long long SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    void** AllocatedNodePointer;
-    AllocateSystemMemory(SystemDataTable,&AllocatedNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
-    PreviousNodePointer = AllocatedNodePointer;
+    void** NewNodePointer;
+    AllocateSystemMemory(SystemDataTable,&NewNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
+    PreviousNodePointer = NewNodePointer;
   }
   PreviousNodePointer[NodeIdentifier1Index] = DataComparisonTemplateSystemNodeId1;
   PreviousNodePointer[NodeIdentifier2Index] = SystemDataTemplateLId2;
@@ -6264,7 +6278,7 @@ void InitializeRenderingSystem(void)
   void** RenderingHashTablePointer;
   void* RenderingInitializationCallback;
   
-  RenderingSystemDataTable = (long long*)GetSystemRootPointer();
+  RenderingSystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*RenderingSystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -6321,7 +6335,7 @@ void InitializeSystemConfigurationManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -6575,7 +6589,7 @@ void InitializeSystemStorageManager(void)
   void** SystemPreviousStorageNode;
   void* StorageManagerCallbackFunction;
   
-  SystemDataTableReference = (long long*)GetSystemRootPointer();
+  SystemDataTableReference = (long long*)GetSystemRootTable();
   SystemRootStorageNode = (void* *)*SystemDataTableReference;
   SystemNodeTraversalFlag = *(char*)((long long)SystemRootStorageNode[1] + NodeActiveFlagOffset);
   SystemStorageManagerCallbackFunction = SystemStorageManagerCallback;
@@ -6634,7 +6648,7 @@ void InitializeSystemMemoryManagerNode(void)
   void* *SystemPreviousMemoryNode;
   void* MemoryManagerCallbackFunction;
   
-  SystemDataTableReference = (long long*)GetSystemRootPointer();
+  SystemDataTableReference = (long long*)GetSystemRootTable();
   SystemRootMemoryNode = (void* *)*SystemDataTableReference;
   SystemNodeTraversalFlag = *(char*)((long long)SystemRootMemoryNode[1] + NodeActiveFlagOffset);
   MemoryManagerCallbackFunction = SystemMemoryManagerCallback;
@@ -6693,7 +6707,7 @@ void InitializeSystemDataTableNode(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -6751,7 +6765,7 @@ void InitializeSystemConfigurationNode(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -6809,7 +6823,7 @@ void InitializeSystemEventNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -6867,7 +6881,7 @@ void InitializeSystemNodeTreeProcessor(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -6925,7 +6939,7 @@ void InitializeSystemMemoryPoolManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -6983,7 +6997,7 @@ void InitializeSystemServiceManager(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -7041,7 +7055,7 @@ void InitializeSystemResourceManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -7099,7 +7113,7 @@ void InitializeSystemEventHandler(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -7157,7 +7171,7 @@ void InitializeSystemTaskManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -7215,7 +7229,7 @@ void InitializeSystemDataProcessor(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -7273,7 +7287,7 @@ void InitializeSystemCommunicationManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -7331,7 +7345,7 @@ void InitializeSystemMemoryManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -7389,7 +7403,7 @@ void InitializeSystemThreadManager(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -7446,7 +7460,7 @@ void InitializeSystemResourceInitializer(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -7577,7 +7591,7 @@ void InitializeSystemEventManager(void)
   void** HashTablePointer;
   code* EventHandlerFunction;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemEventHandlerFunction = SystemEventDispatcher;
@@ -7636,7 +7650,7 @@ void InitializeSystemSearchManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionE;
@@ -7662,7 +7676,7 @@ void InitializeSystemSearchManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateEId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateEId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeA;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeEventProcessor;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = EventCallbackPointer;
   return;
@@ -7694,7 +7708,7 @@ void InitializeSystemIndexManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunction;
@@ -7752,7 +7766,7 @@ void InitializeSystemCacheManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionB;
@@ -7810,7 +7824,7 @@ void InitializeSystemLogManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -7868,7 +7882,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -7926,7 +7940,7 @@ void InitializeSystemResourceManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -7984,7 +7998,7 @@ void InitializeSystemEventDispatcher(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -8042,7 +8056,7 @@ void InitializeSystemSecurityManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -8100,7 +8114,7 @@ void InitializeSystemConfigurationManager(void)
   void** HashTablePointerPointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -8158,7 +8172,7 @@ void InitializeSystemNetworkManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -8216,7 +8230,7 @@ void InitializeSystemStorageManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionG;
@@ -8274,7 +8288,7 @@ void InitializeSystemProcessManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemEventCallback;
@@ -8332,7 +8346,7 @@ void InitializeSystemThreadManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -8387,7 +8401,7 @@ void InitializeSystemEventProcessor(void)
   void* EventSearchFunctionPointer;
   code* EventStackPointer;
   
-  EventSystemDataTable = (long long*)GetSystemRootPointer();
+  EventSystemDataTable = (long long*)GetSystemRootTable();
   EventRootNode = (void**)*EventSystemDataTable;
   EventNodeFlag = *(char*)((long long)EventRootNode[1] + NodeActiveFlagOffset);
   EventSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -8438,7 +8452,7 @@ void InitializeSystemResourceManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -8489,7 +8503,7 @@ void InitializeSystemMemoryManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -8540,7 +8554,7 @@ void InitializeSystemLogManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -8591,7 +8605,7 @@ void InitializeSystemPerformanceMonitor(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -8642,7 +8656,7 @@ void InitializeSystemSecurityMonitor(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -8693,7 +8707,7 @@ void InitializeSystemNetworkManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionE;
@@ -8719,7 +8733,7 @@ void InitializeSystemNetworkManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateEId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateEId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeA;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeEventProcessor;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = EventCallbackPointer;
   return;
@@ -8744,7 +8758,7 @@ void InitializeSystemStorageManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionF;
@@ -8795,7 +8809,7 @@ void InitializeSystemMemoryManagerNode(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionG;
@@ -8846,7 +8860,7 @@ void InitializeSystemConfigurationManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemEventCallback;
@@ -8897,7 +8911,7 @@ void InitializeSystemThreadManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -8948,7 +8962,7 @@ void InitializeSystemProcessManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -8999,7 +9013,7 @@ void InitializeSystemDeviceManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -9050,7 +9064,7 @@ void InitializeSystemServiceManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -9101,7 +9115,7 @@ void InitializeSystemDriverManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -9159,7 +9173,7 @@ void InitializeSystemModuleManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -9221,7 +9235,7 @@ void InitializeSystemComponentManager(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -9272,7 +9286,7 @@ void InitializeSystemPluginManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -9418,7 +9432,7 @@ void InitializeSystemFrameworkManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -9474,7 +9488,7 @@ void InitializeSystemSearchManagerD(void)
   void* SystemSearchFunctionPointer;
   long long MemoryAllocationSize;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -9533,7 +9547,7 @@ void InitializeSystemResourceNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -9587,7 +9601,7 @@ void InitializeSystemMemoryNode(void)
   void** HashTablePointer;
   code* SystemInitializationCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationCallback = SystemInitializationCallbackB;
@@ -9641,7 +9655,7 @@ void InitializeSystemDataTableNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -9695,7 +9709,7 @@ void InitializeSystemConfigurationNode(void)
   void** HashTablePointer;
   void* SystemConfigurationData;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemConfigurationData = &SystemDataNodeJ;
@@ -9745,7 +9759,7 @@ void InitializeSystemEventNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -9795,7 +9809,7 @@ void InitializeSystemThreadNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -9868,7 +9882,7 @@ void InitializeSystemSecurityNode(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationFunction = SystemInitializationFunction;
@@ -9918,7 +9932,7 @@ void InitializeSystemNetworkNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -9980,7 +9994,7 @@ void InitializeSystemAudioNode(void)
   void** HashTablePointerPointer;
   uint64_t InitializationFlag;
   
-  DataTablePointer = (long long*)GetSystemRootPointer();
+  DataTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*DataTablePointer;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   InitializationFlag = 0;
@@ -10042,7 +10056,7 @@ void InitializeSystemInputNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -10104,7 +10118,7 @@ void InitializeSystemPhysicsNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -10166,7 +10180,7 @@ void InitializeSystemFileSystemNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -10228,7 +10242,7 @@ void InitializeSystemDatabaseNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -10287,7 +10301,7 @@ void InitializeSystemConfigurationManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -10349,7 +10363,7 @@ void InitializeSystemConfigurationManager(void)
   void** SystemHashTablePointerPointer;
   void* SystemEventCallbackPointer;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemDataTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTablePointer;
   SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemEventCallbackPointer = SystemCallbackManager;
@@ -10408,7 +10422,7 @@ void InitializeSystemNetworkConfigurationManager(void)
   void** SystemHashTablePointerPointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemDataTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTablePointer;
   SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -10467,7 +10481,7 @@ void InitializeSystemSearchConfigurationManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionF;
@@ -10778,7 +10792,7 @@ void InitializeSystemStringProcessorE(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -10828,7 +10842,7 @@ void InitializeSystemStringProcessorF(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -10878,7 +10892,7 @@ void InitializeSystemStringProcessorG(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -10928,7 +10942,7 @@ void InitializeSystemStringProcessorH(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -10978,7 +10992,7 @@ void InitializeSystemStringProcessorI(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -11028,7 +11042,7 @@ void InitializeSystemStringProcessorJ(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -11078,7 +11092,7 @@ void InitializeSystemStringProcessorK(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -11128,7 +11142,7 @@ void InitializeSystemStringProcessorL(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -11178,7 +11192,7 @@ void InitializeSystemStringProcessorM(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -11228,7 +11242,7 @@ void InitializeSystemStringProcessorN(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -11290,7 +11304,7 @@ void InitializeSystemStringProcessorO(void)
   void** HashTablePointerPointer;
   void* SystemCallbackFunctionPointer;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemDataTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTablePointer;
   SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackFunctionPointer = SystemInitializationCallbackB;
@@ -11353,7 +11367,7 @@ void InitializeSystemStringProcessorP(void)
   void** HashTablePointerPointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemDataTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTablePointer;
   SystemNodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -11416,7 +11430,7 @@ void InitializeSystemStringProcessorQ(void)
   void** HashTablePointerPointer;
   void** SystemStackPointer;
   
-  SystemDataTablePointer = (long long*)GetSystemRootPointer();
+  SystemDataTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTablePointer;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -11466,7 +11480,7 @@ void InitializeSystemStringProcessorR(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -11516,7 +11530,7 @@ void InitializeSystemStringProcessorS(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -11566,7 +11580,7 @@ void InitializeSystemStringProcessorT(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -11616,7 +11630,7 @@ void InitializeSystemStringProcessorU(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -11666,7 +11680,7 @@ void InitializeSystemStringProcessorV(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -11716,7 +11730,7 @@ void InitializeSystemStringProcessorW(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -11766,7 +11780,7 @@ void InitializeSystemStringProcessorX(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -11816,7 +11830,7 @@ void InitializeSystemStringProcessorY(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -11874,7 +11888,7 @@ void InitializeSystemStringProcessorZ(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -11924,7 +11938,7 @@ void InitializeSystemMemoryManagerA(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -11974,7 +11988,7 @@ void InitializeSystemMemoryManagerB(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12024,7 +12038,7 @@ void InitializeSystemMemoryManagerC(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -12074,7 +12088,7 @@ void InitializeSystemMemoryManagerD(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12124,7 +12138,7 @@ void InitializeSystemMemoryManagerE(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -12174,7 +12188,7 @@ void InitializeSystemMemoryManagerF(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12229,7 +12243,7 @@ void InitializeSystemMemoryAllocatorSetup(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationFunction = SystemInitializationFunction;
@@ -12284,7 +12298,7 @@ void InitializeSystemDataTableConfigurator(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12346,7 +12360,7 @@ void InitializeSystemMemoryManagerG(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12396,7 +12410,7 @@ void InitializeSystemMemoryManagerH(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12446,7 +12460,7 @@ void InitializeSystemMemoryManagerI(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12504,7 +12518,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12562,7 +12576,7 @@ void InitializeSystemEventDataNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12620,7 +12634,7 @@ void InitializeSystemResourceNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12678,7 +12692,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemCallbackManager;
@@ -12736,7 +12750,7 @@ void InitializeSystemDeviceNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12841,7 +12855,7 @@ void InitializeSystemMemoryNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationFunction = SystemInitializationFunction;
@@ -12898,7 +12912,7 @@ void InitializeSystemDeviceNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -12955,7 +12969,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13012,7 +13026,7 @@ void InitializeSystemEventDataNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13069,7 +13083,7 @@ void InitializeSystemMemoryAllocatorNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13126,7 +13140,7 @@ void InitializeSystemConfigurationNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13183,7 +13197,7 @@ void InitializeSystemEventNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13240,7 +13254,7 @@ void InitializeSystemResourceNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13297,7 +13311,7 @@ void InitializeSystemDataNode(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemCallbackManager;
@@ -13354,7 +13368,7 @@ void InitializeSystemStringProcessor(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13469,7 +13483,7 @@ void InitializeSystemConfigurationDataNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -13526,7 +13540,7 @@ void InitializeSystemEventDataNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -13583,7 +13597,7 @@ void InitializeSystemResourceDataNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13640,7 +13654,7 @@ void InitializeSystemDataNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -13697,7 +13711,7 @@ void InitializeSystemStringDataNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13754,7 +13768,7 @@ void InitializeSystemMemoryDataNodeManager(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -13811,7 +13825,7 @@ void InitializeSystemDeviceDataNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -13886,7 +13900,7 @@ void InitializeSystemSearchNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionF;
@@ -13943,7 +13957,7 @@ void InitializeSystemDebugNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -14000,7 +14014,7 @@ void InitializeSystemLoggingNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -14057,7 +14071,7 @@ void InitializeSystemPerformanceNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -14114,7 +14128,7 @@ void InitializeSystemSecurityNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -14171,7 +14185,7 @@ void InitializeSystemNetworkNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -14228,7 +14242,7 @@ void InitializeSystemThreadNodeManager(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -14285,7 +14299,7 @@ void InitializeSystemProcessNodeManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -14343,7 +14357,7 @@ void InitializeSystemEventManagerG(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -14401,7 +14415,7 @@ void InitializeSystemEventManagerH(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -14459,7 +14473,7 @@ void InitializeSystemEventManagerI(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -14511,7 +14525,7 @@ void InitializeSystemEventManagerJ(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -14563,7 +14577,7 @@ void InitializeSystemEventManagerK(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -14615,7 +14629,7 @@ void InitializeSystemEventManagerL(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -14667,7 +14681,7 @@ void InitializeSystemEventManagerM(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -14825,7 +14839,7 @@ void InitializeSystemResourceManagerA(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationFunction = SystemInitializationFunction;
@@ -14877,7 +14891,7 @@ void InitializeSystemResourceManagerB(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -14929,7 +14943,7 @@ void InitializeSystemResourceManagerC(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -14981,7 +14995,7 @@ void InitializeSystemResourceManagerD(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15042,7 +15056,7 @@ void InitializeSystemResourceManagerE(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15104,7 +15118,7 @@ void InitializeSystemResourceManagerF(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15157,7 +15171,7 @@ void InitializeSystemResourceManagerG(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15210,7 +15224,7 @@ void InitializeSystemResourceManagerH(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15263,7 +15277,7 @@ void InitializeSystemResourceManagerI(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemCallbackManager;
@@ -15325,7 +15339,7 @@ void InitializeSystemResourceManagerJ(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15491,7 +15505,7 @@ void InitializeSystemDebugManagerA(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15544,7 +15558,7 @@ void InitializeSystemDebugManagerB(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15597,7 +15611,7 @@ void InitializeSystemDebugManagerC(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationFunction = SystemInitializationFunction;
@@ -15655,7 +15669,7 @@ void InitializeSystemResourceAllocator(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15713,7 +15727,7 @@ void InitializeSystemDataTableAllocator(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15764,7 +15778,7 @@ void InitializeSystemResourceComponent(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15815,7 +15829,7 @@ void InitializeSystemAllocatorComponent(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15866,7 +15880,7 @@ void InitializeSystemConfigurationComponent(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15917,7 +15931,7 @@ void InitializeSystemCoreComponent(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -15968,7 +15982,7 @@ void InitializeSystemMemoryComponent(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16019,7 +16033,7 @@ void InitializeSystemThreadComponent(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemCallbackManager;
@@ -16070,7 +16084,7 @@ void InitializeSystemEventComponent(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16121,7 +16135,7 @@ void InitializeSystemSecurityComponent(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16172,7 +16186,7 @@ void InitializeSystemNetworkComponent(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16223,7 +16237,7 @@ void InitializeSystemDatabaseComponent(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionF;
@@ -16274,7 +16288,7 @@ void InitializeSystemLoggingComponent(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionE;
@@ -16300,7 +16314,7 @@ void InitializeSystemLoggingComponent(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateEId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateEId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeA;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeEventProcessor;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[10] = EventCallbackPointer;
   return;
@@ -16336,7 +16350,7 @@ void InitializeSystemPerformanceComponent(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunction;
@@ -16387,7 +16401,7 @@ void InitializeSystemDiagnosticComponent(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionB;
@@ -16438,7 +16452,7 @@ void InitializeSystemDebugComponent(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -16489,7 +16503,7 @@ void InitializeSystemPluginComponent(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -16541,7 +16555,7 @@ void InitializeSystemSubcomponentA(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16593,7 +16607,7 @@ void InitializeSystemSubcomponentB(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemInitializationCallbackB;
@@ -16645,7 +16659,7 @@ void InitializeSystemSubcomponentC(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16697,7 +16711,7 @@ void InitializeSystemSubcomponentD(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -16749,7 +16763,7 @@ void InitializeSystemSubcomponentE(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16801,7 +16815,7 @@ void InitializeSystemSubcomponentF(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16853,7 +16867,7 @@ void InitializeSystemSubcomponentG(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -16905,7 +16919,7 @@ void InitializeSystemSubcomponentH(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -17030,7 +17044,7 @@ void InitializeSystemSubcomponentI(void)
   void** PerformanceMonitorHashTablePointer;
   uint64_t PerformanceMonitorInitializationStatusFlag;
   
-  PerformanceMonitorSystemDataTable = (long long*)GetSystemRootPointer();
+  PerformanceMonitorSystemDataTable = (long long*)GetSystemRootTable();
   PerformanceMonitorRootNodeReference = (void**)*PerformanceMonitorSystemDataTable;
   PerformanceMonitorNodeActiveFlag = *(char*)((long long)PerformanceMonitorRootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   PerformanceMonitorInitializationStatusFlag = 0;
@@ -17082,7 +17096,7 @@ void InitializeSystemSubcomponentJ(void)
   void** ConfigurationManagerHashTablePointer;
   uint64_t ConfigurationManagerInitializationStatusFlag;
   
-  ConfigurationManagerSystemDataTable = (long long*)GetSystemRootPointer();
+  ConfigurationManagerSystemDataTable = (long long*)GetSystemRootTable();
   ConfigurationManagerRootNodeReference = (void**)*ConfigurationManagerSystemDataTable;
   ConfigurationManagerNodeActiveFlag = *(char*)((long long)ConfigurationManagerRootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   ConfigurationManagerInitializationStatusFlag = 0;
@@ -17134,7 +17148,7 @@ void InitializeSystemSubcomponentK(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -17186,7 +17200,7 @@ void InitializeSystemSubcomponentL(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -17287,7 +17301,7 @@ void InitializeSystemSubcomponentN(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -17343,7 +17357,7 @@ void InitializeSystemNodeManagerPrimary(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -17399,7 +17413,7 @@ void InitializeSystemSearchManager(void)
   void** HashTablePointer;
   code* SystemSearchCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunction;
@@ -17456,7 +17470,7 @@ void InitializeSystemNodeManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionB;
@@ -17515,7 +17529,7 @@ void InitializeSystemSearchManager(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemSearchFunctionPointer = GetSystemSearchFunctionC;
@@ -17573,7 +17587,7 @@ void InitializeSystemEventManager(void)
   void** HashTablePointer;
   code* EventSearchFunctionPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   eventSearchFunctionPointer = GetSystemSearchFunctionD;
@@ -17631,7 +17645,7 @@ void InitializeSystemResourceManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -17689,7 +17703,7 @@ void InitializeSystemDeviceManager(void)
   void** HashTablePointer;
   code* DeviceInitializationCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   deviceInitializationCallback = SystemInitializationCallbackB;
@@ -17747,7 +17761,7 @@ void InitializeSystemMemoryManager(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -17811,7 +17825,7 @@ void SystemDataNodeInitializerM(void)
   void** HashTablePointer;
   void** SystemStackPointer;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemStackPointer = &SystemDataNodeJ;
@@ -17867,7 +17881,7 @@ void InitializeSystemResourceInitializationNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -17923,7 +17937,7 @@ void InitializeGameCoreSystemNode(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   systemInitializationFunction = SystemInitializationFunction;
@@ -17979,7 +17993,7 @@ void InitializeBaseAllocatorNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -18035,7 +18049,7 @@ void InitializeSystemDataTableNode(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -18091,7 +18105,7 @@ void ResourceInitializationCallbackSetter(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -18147,7 +18161,7 @@ void SystemAllocatorNodeInitializer(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -18203,7 +18217,7 @@ void SystemConfigurationNodeInitializer(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -18259,7 +18273,7 @@ void SystemEventNodeInitializer(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -18315,7 +18329,7 @@ void SystemMemoryManagementNodeInitializer(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -18371,7 +18385,7 @@ void SystemThreadManagerInitializer(void)
   void** HashTablePointer;
   void* SystemEventCallback;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemCallbackPointer = SystemCallbackManager;
@@ -18427,7 +18441,7 @@ void SystemResourceTrackerInitializer(void)
   void** HashTablePointer;
   uint64_t SystemInitializationStatusFlag;
   
-  SystemDataTable = (long long*)GetSystemRootPointer();
+  SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
   SystemInitializationStatusFlag = 0;
@@ -22620,12 +22634,12 @@ void ProcessSystemMemoryTimestampHandler(void* SystemResourceManager,void* *Conf
   int SystemInitializationStatus;
   uint resourceCreationFlags;
   long long ResourceMemoryOffset;
-  uint8_t EncryptionBuffer58 [32];
+  uint8_t SystemEncryptionKeyBuffer [32];
   long long SystemTimeoutValue;
   int SystemRemainderValue;
   ulong long EncryptionKeyValue;
   
-  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer58;
+  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)SystemEncryptionKeyBuffer;
   if (*AdditionalParameter < 1) {
     SystemTimeoutValue = 0;
     SystemRemainderValue = 0;
@@ -22644,7 +22658,7 @@ void ProcessSystemMemoryTimestampHandler(void* SystemResourceManager,void* *Conf
   if ((resourceCreationFlags & 0xfffffffd) != 0) {
     ThrowSystemError(resourceCreationFlags);
   }
-    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)EncryptionBuffer58);
+    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)SystemEncryptionKeyBuffer);
 }
 
 
@@ -26991,7 +27005,7 @@ void SystemDataInitializer(void)
   long long SystemMemoryPointer;
   long long *presourceCounter;
   uint32_t *SystemDataBufferPointer;
-  uint8_t SystemSecurityEncryptionBufferA8 [32];
+  uint8_t SystemSecurityEncryptionKeyBuffer [32];
   long long *SystemModuleContextPointerA;
   long long **SystemModuleContextPointerB;
   void* *SystemUnsignedFlagPointer;
@@ -28957,7 +28971,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   void* SystemThreadContext;
   long long SystemThreadFlags;
   ulong long ThreadContextIndicator;
-  uint8_t SystemStackBufferArray [32];
+  uint8_t SystemStackEncryptionBuffer [32];
   uint32_t SystemInitializationStatusExtended;
   void* *systemMemoryPointer;
   long long SystemMemoryAllocationOffset;
@@ -29008,11 +29022,11 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   void* *SystemResourceHandlePrimary;
   uint8_t *SystemDataBufferWorkPointer;
   uint32_t SystemMemoryAllocatorStatus;
-  uint8_t SystemDataBufferDataArray [136];
+  uint8_t SystemDataBufferWorkArray [136];
   ulong long SystemEncryptionKey;
   
   MemoryBufferPointer = 0xfffffffffffffffe;
-  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemStackBufferArray;
+  SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemStackEncryptionBuffer;
   SystemInitializationStatusFlag = 0;
   StackDoublePointerPrimary = &pGlobalDataFlags;
   pGlobalDataFlags = &SystemGlobalDataReference;
@@ -29055,14 +29069,14 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemEncryptionKeyD = 1;
   SystemEncryptionKeyA = 1;
   SystemResourceHandleTableOffset = &SystemResourceTemplatePrimary;
-  SystemDataBufferWorkPointer = SystemDataBufferDataArray;
-  SystemDataBufferDataArray[0] = 0;
+  SystemDataBufferWorkPointer = SystemDataBufferWorkArray;
+  SystemDataBufferWorkArray[0] = 0;
   SystemMemoryAllocatorStatus = *(uint32_t *)(ConfigurationDataPointer + 0x10);
   SystemThreadContext = &SystemStringTemplate;
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
     SystemThreadContext = *(void* **)(ConfigurationDataPointer + 8);
   }
-  strcpy_s(SystemDataBufferDataArray,0x80,SystemThreadContext);
+  strcpy_s(SystemDataBufferWorkArray,0x80,SystemThreadContext);
   InitializeSystemData(&SystemDataPointer,&SystemResourceHandleTableOffset);
   SystemResourceHandleTableOffset = &SystemMemoryAllocatorReference;
   pGlobalDataFlags2 = &SystemGlobalDataReference;
@@ -29151,7 +29165,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemMemoryAllocationOffset = 0;
   SystemResourceCountSecondary = SystemResourceCountSecondary & SystemMemoryAlignmentMask;
   pGlobalDataFlags = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemStackBufferArray);
+    ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemStackEncryptionBuffer);
 }
 
 
@@ -34933,15 +34947,15 @@ void ProcessSystemResourceWithEncryption(long long SystemResourceManager,long lo
   void* *SystemProcessFlagsPointer;
   uint8_t *pSystemEncryptionStatus;
   uint32_t SystemThreadContext;
-  uint8_t EncryptionBuffer58 [16];
+  uint8_t SystemEncryptionStatusBuffer [16];
   ulong long SystemEncryptionKey;
   
   SystemUnsignedFlagSecondary = 0xfffffffffffffffe;
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)asecondarySystemDataBuffer;
   SystemProcessFlagsPointer = &SystemResourceTemplateSecondary;
-  pSystemEncryptionStatus = EncryptionBuffer58;
+  pSystemEncryptionStatus = SystemEncryptionStatusBuffer;
   SystemThreadContext = 0;
-  EncryptionBuffer58[0] = 0;
+  SystemEncryptionStatusBuffer[0] = 0;
   resourceDataIndex = strstr(*(void* *)(SystemResourceManager + 8));
   if (resourceDataIndex != 0) {
     SystemThreadHandle = -1;
@@ -41539,7 +41553,7 @@ void InitializeSystemResource(long long* SystemResourceManager)
   int IdentifierCompareResult;
   void* SystemContextValue;
   long long* SystemResourceManager20;
-  char SystemFlag18;
+  char SystemLockAcquiredFlag;
   
   if ((char)SystemResourceManager[0xb] != '\0') {
     PrimaryResourceHandle = (long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
@@ -41548,12 +41562,12 @@ void InitializeSystemResource(long long* SystemResourceManager)
       if (validationStatusFlag == '\0') {
         ReleaseSystemResourceHandle(*(void* *)(*PrimaryResourceHandle + 0x10),0);
         SystemResourceManager20 = SystemResourceManager + 0x33;
-        SystemFlag18 = 0;
+        SystemLockAcquiredFlag = 0;
         systemCounter = _Mtx_lock();
         if (systemCounter != 0) {
           ThrowSystemError(systemCounter);
         }
-        SystemFlag18 = '\x01';
+        SystemLockAcquiredFlag = '\x01';
         if ((char)SystemResourceManager[0x3d] == '\x01') {
           *(uint8_t *)(SystemResourceManager + 0x3d) = 0;
         }
@@ -41561,7 +41575,7 @@ void InitializeSystemResource(long long* SystemResourceManager)
           SystemContextValue = 0x32;
           ProcessMemorySystemTimestampHandler(SystemResourceManager + 0x2a,&SystemResourceManager20,&SystemContextValue);
           *(uint8_t *)(SystemResourceManager + 0x3d) = 0;
-          if (SystemFlag18 == '\0') goto SystemFlagCheckComplete;
+          if (SystemLockAcquiredFlag == '\0') goto SystemFlagCheckComplete;
         }
         systemCounter = _Mtx_unlock(SystemResourceManager20);
         if (systemCounter != 0) {
@@ -45319,7 +45333,7 @@ SystemCounterCheckPoint:
         *(uint8_t *)SystemThreadContext = 0;
         StackParameterB = SystemThreadContext;
         ResourceAddress = StartSystemThread(SystemThreadContext);
-        SystemFlag88 = ConcatenatedSystemValue(UNION_LOW_PART(SystemFlag88), ResourceAddress);
+        SystemThreadHandle = ConcatenatedSystemValue(UNION_LOW_PART(SystemThreadHandle), ResourceAddress);
         *SystemThreadContext = 0x73656873617263;
         SystemConfigurationValue = 7;
         GetSystemCounter(SystemCounterBuffer80, &SystemParameterPointer);
@@ -45362,7 +45376,7 @@ SystemCounterCheckPoint:
   }
   else {
     StackParameterA = &SystemGlobalDataReference;
-    SystemFlag88 = 0;
+    SystemThreadHandle = 0;
     StackParameterB = (void**)0x0;
     SystemConfigurationValue = 0;
     ResourceDataIndex = -1;
@@ -45379,7 +45393,7 @@ SystemCounterCheckPoint:
       StackParameterB = (void**)CreateSystemThreadObject(SystemMemoryPoolTemplate, (long long)SystemCounter, 0x13);
       *(uint8_t *)StackParameterB = 0;
       ResourceAddress = StartSystemThread(StackParameterB);
-      SystemFlag88 = ConcatenatedSystemValue(UNION_LOW_PART(SystemFlag88), ResourceAddress);
+      SystemThreadHandle = ConcatenatedSystemValue(UNION_LOW_PART(SystemThreadHandle), ResourceAddress);
       memcpy(StackParameterB, &SystemStringBuffer, CalculationFlags);
     }
     SystemConfigurationValue = 0;
