@@ -40024,8 +40024,13 @@ void Unwind_180903580(DataBuffer param_1,int64_t param_2)
   return;
 }
 
-
-
+/**
+ * @brief 销毁条件变量
+ * 
+ * 该函数用于销毁条件变量，释放相关资源
+ * 
+ * @note 原始函数名：Unwind_180903590
+ */
 void DestroyConditionVariable(void)
 
 {
@@ -40035,6 +40040,13 @@ void DestroyConditionVariable(void)
 
 
 
+/**
+ * @brief 销毁互斥锁
+ * 
+ * 该函数用于销毁互斥锁，释放相关资源
+ * 
+ * @note 原始函数名：Unwind_1809035b0
+ */
 void DestroyMutex(void)
 
 {
@@ -40044,6 +40056,16 @@ void DestroyMutex(void)
 
 
 
+/**
+ * @brief 根据上下文销毁条件变量
+ * 
+ * 该函数根据提供的上下文句柄和偏移量销毁条件变量
+ * 
+ * @param contextHandle 上下文句柄
+ * @param contextOffset 上下文偏移量
+ * 
+ * @note 原始函数名：Unwind_1809035d0
+ */
 void DestroyConditionVariableWithContext(DataBuffer contextHandle,int64_t contextOffset)
 
 {
@@ -40053,6 +40075,16 @@ void DestroyConditionVariableWithContext(DataBuffer contextHandle,int64_t contex
 
 
 
+/**
+ * @brief 使用条件变量释放资源
+ * 
+ * 该函数使用条件变量机制来释放资源，处理引用计数和内存管理
+ * 
+ * @param contextHandle 上下文句柄
+ * @param contextOffset 上下文偏移量
+ * 
+ * @note 原始函数名：Unwind_1809035e0
+ */
 void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset)
 
 {
@@ -40061,7 +40093,7 @@ void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset
   int64_t calculatedOffset;
   uint64_t memoryBaseAddress;
   
-  calculatedOffset = *(int64_t *)(param_2 + 0x80);
+  calculatedOffset = *(int64_t *)(contextOffset + 0x80);
   FUN_18005a050();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
@@ -40091,7 +40123,17 @@ void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset
 
 
 
-void Unwind_1809035f0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 使用互斥锁释放资源
+ * 
+ * 该函数使用互斥锁机制来释放资源，处理引用计数和内存管理
+ * 
+ * @param contextHandle 上下文句柄
+ * @param contextOffset 上下文偏移量
+ * 
+ * @note 原始函数名：Unwind_1809035f0
+ */
+void ReleaseResourceWithMutex(DataBuffer contextHandle,int64_t contextOffset)
 
 {
   int *referenceCountPointer;
@@ -40099,7 +40141,7 @@ void Unwind_1809035f0(DataBuffer param_1,int64_t param_2)
   int64_t calculatedOffset;
   uint64_t memoryBaseAddress;
   
-  calculatedOffset = *(int64_t *)(param_2 + 0x80);
+  calculatedOffset = *(int64_t *)(contextOffset + 0x80);
   FUN_18005a050();
   if ((1 < *(uint64_t *)(calculatedOffset + 0x10)) &&
      (resourcePointer = *(DataBuffer **)(calculatedOffset + 8), resourcePointer != (DataBuffer *)0x0)) {
@@ -57133,7 +57175,7 @@ void Unwind_1809079d0(DataBuffer param_1,int64_t param_2)
   int64_t calculatedOffset;
   uint64_t memoryBaseAddress;
   
-  calculatedOffset = *(int64_t *)(param_2 + 0x80);
+  calculatedOffset = *(int64_t *)(contextOffset + 0x80);
   *(uint8_t **)(calculatedOffset + 0xd8) = &DefaultExceptionHandlerB;
   if (*(int64_t *)(calculatedOffset + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
