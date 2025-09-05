@@ -3998,6 +3998,10 @@
 // 原始变量名：SystemBufferConfiguration - 系统缓冲区配置常量
 #define SystemBufferConfiguration 0x180958180
 
+// 原始函数名：FUN_1808db8c0 - 数据处理函数A9
+// 功能：处理数据操作
+#define ProcessDataOperationA9 FUN_1808db8c0
+
 // 函数: void InitializeUtilityModule(void)
 // 
 // 初始化工具模块
@@ -21428,16 +21432,16 @@ void ValidateSystemDataIntegrity(void)
         }
       }
       if ((*(uint *)(registerContext + 4) & 0x800) != 0) {
-        iVar1 = FUN_1808b0010();
+        iVar1 = ValidateSystemStatusAndReturnA0();
         if (iVar1 != 0) {
           return;
         }
-        iVar1 = FUN_1808b0010();
+        iVar1 = ValidateSystemStatusAndReturnA0();
         if (iVar1 != 0) {
           return;
         }
       }
-      FUN_18089a750();
+      ExecuteSystemOperationA0();
     }
   }
   return;
@@ -21684,8 +21688,8 @@ void ProcessComplexDataStructure(longlong systemContext,undefined4 *dataBuffer)
           uStackX_8._0_4_ = param_2[0x65];
           operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                             (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
-          if (((operationResult == 0) && (operationResult = FUN_1808aff40(param_1,param_2 + 0x66), operationResult == 0)) &&
-             (operationResult = FUN_1808aff40(param_1,param_2 + 0x67), operationResult == 0)) {
+          if (((operationResult == 0) && (operationResult = ValidateParametersA1(param_1,param_2 + 0x66), operationResult == 0)) &&
+             (operationResult = ValidateParametersA1(param_1,param_2 + 0x67), operationResult == 0)) {
             uStackX_8._0_4_ = param_2[0x69];
             operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                               (*(undefined8 **)(param_1 + 8),&uStackX_8,4);
@@ -21825,8 +21829,8 @@ void ValidateAndInitializeSystem(undefined4 param_1)
     resourcePointer = *(undefined8 **)(registerContext + 8);
     *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x194);
     iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-    if (((iVar6 == 0) && (iVar6 = FUN_1808aff40(extraout_XMM0_Da_03,unaff_RDI + 0x198), iVar6 == 0))
-       && (iVar6 = FUN_1808aff40(extraout_XMM0_Da_04,unaff_RDI + 0x19c), iVar6 == 0)) {
+    if (((iVar6 == 0) && (iVar6 = ValidateParametersA1(extraout_XMM0_Da_03,unaff_RDI + 0x198), iVar6 == 0))
+       && (iVar6 = ValidateParametersA1(extraout_XMM0_Da_04,unaff_RDI + 0x19c), iVar6 == 0)) {
       resourcePointer = *(undefined8 **)(registerContext + 8);
       *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1a4);
       iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
@@ -21962,7 +21966,7 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
       aiStack_48[0] = CONCAT22(aiStack_48[0]._2_2_,operationResult);
       memoryBaseAddress = (**(code **)**(undefined8 **)(param_1 + 8))
                         (*(undefined8 **)(param_1 + 8),aiStack_48,2);
-      if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808b00b0(param_1,param_2 + 0x24), (int)memoryBaseAddress == 0)) {
+      if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = CheckSystemStatusA1(param_1,param_2 + 0x24), (int)memoryBaseAddress == 0)) {
         if ((operationResult & 1) != 0) {
           aiStack_48[0] = *(int *)(param_2 + 0x28);
           memoryBaseAddress = (**(code **)**(undefined8 **)(param_1 + 8))
@@ -21972,11 +21976,11 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
           }
         }
         if (((((operationResult & 2) == 0) ||
-             ((memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x2c), (int)memoryBaseAddress == 0 &&
-              (memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x30), (int)memoryBaseAddress == 0)))) &&
-            (((operationResult & 4) == 0 || (memoryBaseAddress = FUN_180899d90(param_1,param_2 + 0x48), (int)memoryBaseAddress == 0)))
+             ((memoryBaseAddress = ValidateParametersA1(param_1,param_2 + 0x2c), (int)memoryBaseAddress == 0 &&
+              (memoryBaseAddress = ValidateParametersA1(param_1,param_2 + 0x30), (int)memoryBaseAddress == 0)))) &&
+            (((operationResult & 4) == 0 || (memoryBaseAddress = ValidateDataIntegrityA3(param_1,param_2 + 0x48), (int)memoryBaseAddress == 0)))
             ) && (((operationResult & 8) == 0 ||
-                  (memoryBaseAddress = FUN_180899d90(param_1,param_2 + 0x150), (int)memoryBaseAddress == 0)))) {
+                  (memoryBaseAddress = ValidateDataIntegrityA3(param_1,param_2 + 0x150), (int)memoryBaseAddress == 0)))) {
           if ((operationResult & 0x10) != 0) {
             operationResult = *(int *)(param_2 + 0x260);
             aiStack_48[0] = operationResult;
@@ -22000,7 +22004,7 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
                 if ((int)memoryBaseAddress != 0) {
                   return memoryBaseAddress;
                 }
-                if ((sVar1 != 0) && (memoryBaseAddress = FUN_180899d90(param_1,lVar6 + 0x10), (int)memoryBaseAddress != 0))
+                if ((sVar1 != 0) && (memoryBaseAddress = ValidateDataIntegrityA3(param_1,lVar6 + 0x10), (int)memoryBaseAddress != 0))
                 {
                   return memoryBaseAddress;
                 }
@@ -22010,15 +22014,15 @@ undefined8 ProcessAdvancedDataOperationA0(longlong param_1,longlong param_2)
             }
           }
           if ((((((operationResult & 0x20) == 0) ||
-                (memoryBaseAddress = FUN_1808ac8a0(param_1,param_2 + 0x268), (int)memoryBaseAddress == 0)) &&
+                (memoryBaseAddress = ValidateSystemConfigurationA1(param_1,param_2 + 0x268), (int)memoryBaseAddress == 0)) &&
                (((operationResult & 0x40) == 0 ||
-                ((memoryBaseAddress = FUN_1808affb0(param_1,param_2 + 0x34), (int)memoryBaseAddress == 0 &&
-                 (memoryBaseAddress = FUN_1808affb0(param_1,param_2 + 0x38), (int)memoryBaseAddress == 0)))))) &&
+                ((memoryBaseAddress = ProcessDataOperationA4(param_1,param_2 + 0x34), (int)memoryBaseAddress == 0 &&
+                 (memoryBaseAddress = ProcessDataOperationA4(param_1,param_2 + 0x38), (int)memoryBaseAddress == 0)))))) &&
               ((-1 < (char)operationResult || (memoryBaseAddress = ProcessDataPointerA0(param_1,param_2 + 0x10), (int)memoryBaseAddress == 0)
                ))) && (((operationResult & 0x100) == 0 ||
-                       (((memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x3c), (int)memoryBaseAddress == 0 &&
-                         (memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x40), (int)memoryBaseAddress == 0)) &&
-                        (memoryBaseAddress = FUN_1808aff40(param_1,param_2 + 0x44), (int)memoryBaseAddress == 0)))))) {
+                       (((memoryBaseAddress = ValidateParametersA1(param_1,param_2 + 0x3c), (int)memoryBaseAddress == 0 &&
+                         (memoryBaseAddress = ValidateParametersA1(param_1,param_2 + 0x40), (int)memoryBaseAddress == 0)) &&
+                        (memoryBaseAddress = ValidateParametersA1(param_1,param_2 + 0x44), (int)memoryBaseAddress == 0)))))) {
             memoryBaseAddress = 0;
           }
         }
@@ -22063,7 +22067,7 @@ undefined8 ExecuteDataCleanupA0(void)
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        if ((sVar1 != 0) && (validationStatus = FUN_180899d90(), (int)validationStatus != 0)) {
+        if ((sVar1 != 0) && (validationStatus = ValidateDataIntegrityA3(), (int)validationStatus != 0)) {
           return validationStatus;
         }
         lVar4 = lVar4 + 1;
@@ -22071,13 +22075,13 @@ undefined8 ExecuteDataCleanupA0(void)
       } while (lVar4 < operationResult);
     }
   }
-  if ((((((systemContext & 0x20) == 0) || (validationStatus = FUN_1808ac8a0(), (int)validationStatus == 0)) &&
+  if ((((((systemContext & 0x20) == 0) || (validationStatus = ValidateSystemConfigurationA1(), (int)validationStatus == 0)) &&
        (((systemContext & 0x40) == 0 ||
-        ((validationStatus = FUN_1808affb0(), (int)validationStatus == 0 && (validationStatus = FUN_1808affb0(), (int)validationStatus == 0)))))
+        ((validationStatus = ProcessDataOperationA4(), (int)validationStatus == 0 && (validationStatus = ProcessDataOperationA4(), (int)validationStatus == 0)))))
        ) && ((-1 < (char)systemContext || (validationStatus = ProcessDataPointerA0(), (int)validationStatus == 0)))) &&
      (((systemContext & 0x100) == 0 ||
-      (((validationStatus = FUN_1808aff40(), (int)validationStatus == 0 && (validationStatus = FUN_1808aff40(), (int)validationStatus == 0)) &&
-       (validationStatus = FUN_1808aff40(), (int)validationStatus == 0)))))) {
+      (((validationStatus = ValidateParametersA1(), (int)validationStatus == 0 && (validationStatus = ValidateParametersA1(), (int)validationStatus == 0)) &&
+       (validationStatus = ValidateParametersA1(), (int)validationStatus == 0)))))) {
     validationStatus = 0;
   }
   return validationStatus;
@@ -22119,7 +22123,7 @@ undefined8 ProcessDataStreamA0(longlong param_1,undefined4 *param_2)
         iVar3 = 0;
         if (0 < iVar1) {
           do {
-            uVar2 = FUN_18089a370(param_1,(longlong)iVar3 * 0x278 + *(longlong *)(param_2 + 4));
+            uVar2 = ProcessAdvancedDataOperationA0(param_1,(longlong)iVar3 * 0x278 + *(longlong *)(param_2 + 4));
             if ((int)uVar2 != 0) {
               return uVar2;
             }
@@ -22151,7 +22155,7 @@ undefined8 ValidateDataStreamA0(undefined8 *param_1,undefined8 param_2)
     iVar3 = 0;
     if (0 < iVar1) {
       do {
-        uVar2 = FUN_18089a370();
+        uVar2 = ProcessAdvancedDataOperationA0();
         if ((int)uVar2 != 0) {
           return uVar2;
         }
@@ -22209,7 +22213,7 @@ void ProcessUtilityDataOperation(longlong operationHandle, uint *operationData)
   operationResult = (**(code **)**(undefined8 **)(operationHandle + 8))
                     (*(undefined8 **)(operationHandle + 8),&processedData,processingMode);
   if (operationResult == 0) {
-    FUN_1808aff40(operationHandle,operationData + 1);
+    ValidateParametersA1(operationHandle,operationData + 1);
   }
   return;
 }
@@ -22542,7 +22546,7 @@ undefined8 ValidateSystemStatus(longlong SystemContext, undefined8 *ParameterArr
                         uVar1 = 0x1c;
                       }
                       if ((int)uVar1 == 0) {
-                        FUN_1808db8c0(param_1);
+                        ProcessDataOperationA9(param_1);
                         uVar1 = 0;
                       }
                     }
@@ -90058,36 +90062,39 @@ void ExecuteCallbackFunction(undefined8 *callbackContext)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeUtilityModule(void)
-// 初始化工具模块，设置全局指针和数据结构
+/**
+ * @brief 初始化工具模块
+ * 
+ * 该函数负责初始化工具模块的核心组件，设置全局指针和数据结构。
+ * 它会验证系统状态，初始化异常处理器，并配置必要的数据结构。
+ * 
+ * @note 原始函数名：InitializeUtilityModule
+ */
 void InitializeUtilityModule(void)
 
 {
-  longlong validationContext;
-  longlong dataContext;
+  int64_t systemValidationContext;
+  int64_t systemDataContext;
   
-  _DAT_180bf52c0 = &UNK_180a3c3e0;
-  if (_DAT_180bf52c8 != 0) {
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+  GlobalExceptionHandlerPointer = &TemporaryExceptionHandler;
+  if (SystemInitializationFlag != 0) {
+    SystemEmergencyShutdown();
   }
-  _DAT_180bf52c8 = 0;
-  _DAT_180bf52d8 = 0;
-  _DAT_180bf52c0 = &DefaultExceptionHandlerB;
-  if (_DAT_180bf5288 == 0) {
-    FUN_180048980();
-    validationContext = _DAT_180bf5250;
-    for (dataContext = _DAT_180bf5248; dataContext != validationContext; dataContext = dataContext + 0x100) {
-      FUN_180046b10(dataContext);
+  SystemInitializationFlag = 0;
+  SystemDataPointer = 0;
+  GlobalExceptionHandlerPointer = &DefaultExceptionHandler;
+  if (SystemMemoryManager == 0) {
+    InitializeSystemMemory();
+    systemValidationContext = SystemMemoryEndAddress;
+    for (systemDataContext = SystemMemoryStartAddress; systemDataContext != systemValidationContext; systemDataContext = systemDataContext + 0x100) {
+      InitializeMemoryRegion(systemDataContext);
     }
-    if (_DAT_180bf5248 == 0) {
+    if (SystemMemoryStartAddress == 0) {
       return;
     }
-                    // WARNING: Subroutine does not return
-    TerminateSystemE0();
+    SystemEmergencyShutdown();
   }
-                    // WARNING: Subroutine does not return
-  TerminateSystemE0();
+  SystemEmergencyShutdown();
 }
 
 
@@ -90095,12 +90102,18 @@ void InitializeUtilityModule(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ResetUtilityPointers1(void)
-// 重置工具指针组1，将其指向默认内存位置
+/**
+ * @brief 重置工具指针组1
+ * 
+ * 该函数负责重置工具系统的第一组指针，将其指向默认的异常处理器。
+ * 这是一个初始化辅助函数，用于确保系统处于已知的稳定状态。
+ * 
+ * @note 原始函数名：ResetUtilityPointers1
+ */
 void ResetUtilityPointers1(void)
 
 {
-  _DAT_180bf5320 = &DefaultExceptionHandlerB;
+  UtilitySystemPointer1 = &DefaultExceptionHandler;
   return;
 }
 
