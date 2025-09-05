@@ -1022,7 +1022,7 @@ void* SystemInitializationEntryPointQuaternary;
  */
 void* SystemInitializationEntryPointQuinary;
 // 系统扩展内存区域指针 - 区域七
-void* SystemMemoryRegionExtendedSeven;
+void* SystemMemoryRegionExtendedSeptary;
 // 系统扩展内存区域指针 - 区域八
 void* SystemMemoryRegionExtendedEight;
 // 系统扩展内存区域指针 - 区域九
