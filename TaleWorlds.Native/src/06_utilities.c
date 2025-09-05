@@ -3624,21 +3624,53 @@
  */
 #define ValidateSystemOperationContext ValidateSystemOperationContext
 
-// 原始函数名：func_0x0001808c8710 - 缓冲区处理函数
-// 功能：处理系统缓冲区数据
-#define ProcessSystemBuffer func_0x0001808c8710
+/**
+ * @brief 处理系统缓冲区数据
+ * 
+ * 该函数用于处理系统缓冲区的数据，包括读写操作和数据验证
+ * 
+ * @param bufferPointer 缓冲区指针
+ * @param operationType 操作类型
+ * @param dataSize 数据大小
+ * @return 处理结果状态码
+ */
+#define ProcessSystemBuffer ProcessSystemBuffer
 
-// 原始函数名：func_0x0001808c8700 - 缓冲区处理函数替代版本
-// 功能：处理系统缓冲区数据的替代版本
-#define ProcessSystemBufferAlternative func_0x0001808c8700
+/**
+ * @brief 处理系统缓冲区数据（替代版本）
+ * 
+ * 该函数用于处理系统缓冲区数据的替代版本，提供不同的处理逻辑
+ * 
+ * @param bufferPointer 缓冲区指针
+ * @param operationType 操作类型
+ * @param dataSize 数据大小
+ * @return 处理结果状态码
+ */
+#define ProcessSystemBufferAlternative ProcessSystemBufferAlternative
 
-// 原始函数名：func_0x0001808c8470 - 缓冲区初始化函数
-// 功能：初始化系统缓冲区
-#define InitializeSystemBuffer func_0x0001808c8470
+/**
+ * @brief 初始化系统缓冲区
+ * 
+ * 该函数用于初始化系统缓冲区，设置缓冲区的基本参数和状态
+ * 
+ * @param bufferPointer 缓冲区指针
+ * @param bufferSize 缓冲区大小
+ * @param initializationFlags 初始化标志
+ * @return 初始化结果状态码
+ */
+#define InitializeSystemBuffer InitializeSystemBuffer
 
-// 原始函数名：func_0x0001808c7d30 - 数据验证函数
-// 功能：验证系统数据有效性
-#define ValidateSystemDataIntegrity func_0x0001808c7d30
+/**
+ * @brief 验证系统数据完整性
+ * 
+ * 该函数用于验证系统数据的完整性和有效性，确保数据没有损坏或被篡改
+ * 
+ * @param dataPointer 数据指针
+ * @param dataSize 数据大小
+ * @param validationFlags 验证标志
+ * @return 验证结果状态码
+ */
+#define ValidateSystemDataIntegrity ValidateSystemDataIntegrity
 
 // 原始函数名：func_0x00018076b630 - 资源数据验证函数
 // 功能：验证资源数据完整性
@@ -12980,7 +13012,7 @@ void ProcessUtilitySystemRequest(longlong systemHandle,longlong requestContext)
 
 
 
-undefined8 ValidateAndProcessFloatValue(longlong valueContext,longlong operationContext,undefined8 param_3,undefined8 param_4)
+undefined8 ValidateAndProcessFloatValue(longlong valueContext,longlong operationContext,undefined8 validationContext,undefined8 processingContext)
 
 {
   float floatValue;
@@ -13011,7 +13043,7 @@ undefined8 ValidateAndProcessFloatValue(longlong valueContext,longlong operation
   resultPointer = *(longlong *)(operationContext + 0x98);
   if ((*(int *)(resultPointer + 0x180) != 0) || (*(int *)(resultPointer + 0x184) != 0)) {
     stackValue = 0;
-    InitializeSystemContextA0(&stackValue,valueContext,param_3,param_4,unaff_RDI);
+    InitializeSystemContextA0(&stackValue,valueContext,validationContext,processingContext,unaff_RDI);
     if (stackValue == *(longlong *)((longlong)*(int *)(resultPointer + 0x17c) * 8 + 0x180c4f450)) {
       operationResult = ProcessSystemDataEC0(resultPointer,valueContext);
       if ((int)operationResult == 0) {
@@ -30078,7 +30110,18 @@ void UtilityNoOperationY(void)
 
 
 
-ulonglong FUN_18089e820(longlong param_1,longlong *param_2)
+/**
+ * @brief 处理系统数据验证和内存分配
+ * 
+ * 该函数用于处理系统数据的验证操作，包括数据检查、内存分配和状态验证
+ * 
+ * @param validationContext 验证上下文参数
+ * @param dataContext 数据上下文指针
+ * @return 处理结果状态码
+ * 
+ * @note 原始函数名：FUN_18089e820
+ */
+#define ProcessSystemDataValidationAndAllocation FUN_18089e820
 
 {
   longlong validationContext;
