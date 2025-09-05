@@ -1048,6 +1048,19 @@ uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑�
  * 
  * @return void 无返回值
  */
+/**
+ * @brief 初始化网络连接池
+ * 
+ * 初始化网络连接池的配置参数和状态信息，为后续的网络连接管理做准备。
+ * 该函数负责设置连接池的最大容量、重置计数器、初始化管理器句柄等。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ * 
+ * @note 此函数在系统启动时调用，用于初始化网络连接池的基础设施
+ * @warning 如果初始化失败，可能导致网络连接无法正常建立
+ * @see InitializeNetworkSocket, SetupNetworkConnection
+ */
 void InitializeNetworkConnectionPool(void)
 {
   // 初始化连接池配置参数
@@ -1132,9 +1145,18 @@ uint32_t NetworkConnectionRoutingTertiaryConfig;           // 网络连接路由
 uint32_t NetworkConnectionRoutingQuaternaryConfig;          // 网络连接路由第四配置数据，路由的第四级配置参数
 
 /**
+ /**
  * @brief 初始化网络套接字
  * 
- * 初始化网络套接字，为网络通信做准备。
+ * 初始化网络套接字的基本参数和配置信息，为网络通信做准备。
+ * 该函数负责设置套接字的文件描述符、上下文大小、协议类型等。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ * 
+ * @note 此函数在系统启动时调用，用于初始化网络套接字的基础设施
+ * @warning 如果初始化失败，可能导致网络通信无法正常进行
+ * @see InitializeNetworkConnectionPool, BindNetworkSocket
  */
 void InitializeNetworkSocket(void)
 {
@@ -1169,6 +1191,19 @@ void InitializeNetworkSocket(void)
  * @warning 如果绑定失败，套接字将无法进行网络通信
  * 
  * @return void 无返回值
+ */
+/**
+ * @brief 绑定网络套接字
+ * 
+ * 将网络套接字绑定到本地地址和端口，使其能够接收网络连接。
+ * 该函数负责设置网络地址、端口配置和套接字绑定状态。
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ * 
+ * @note 此函数在套接字初始化后调用，用于绑定套接字到本地地址
+ * @warning 如果绑定失败，可能导致网络服务无法启动
+ * @see InitializeNetworkSocket, StartListeningForConnections
  */
 void BindNetworkSocket(void)
 {
@@ -3477,10 +3512,10 @@ NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContex
   }
   
   // 检查头部格式
-  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
-      NetworkContextProcessingStatus == NetworkValidationSuccess) {
-    NetworkHeaderFormatCheckResult = NetworkValidationSuccess;
+  if (NetworkPacketHeaderValidationResult == NetworkValidationSuccess && 
+      NetworkPacketContextProcessingStatus == NetworkValidationSuccess) {
+    NetworkPacketHeaderFormatCheckResult = NetworkValidationSuccess;
   }
   
-  return NetworkHeaderFormatCheckResult;
+  return NetworkPacketHeaderFormatCheckResult;
 }

@@ -7012,7 +7012,7 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
     for (dataArrayPointer = *(undefined8 **)(dataContextPointer + 0x48);
         (*(undefined8 **)(dataContextPointer + 0x48) <= dataIterator &&
         (dataIterator < *(undefined8 **)(dataContextPointer + 0x48) + *(int *)(dataContextPointer + 0x50))); dataIterator = dataIterator + 1) {
-      operationResult = FUN_1808d73b0(*dataIterator,floatDataValue,0);
+      operationResult = ProcessFloatingPointDataValidationA0(*dataIterator,floatDataValue,0);
       if ((int)operationResult != 0) {
         return operationResult;
       }
