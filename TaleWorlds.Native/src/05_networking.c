@@ -820,6 +820,7 @@ uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文�
 uint32_t NetworkSocketType;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
 uint32_t NetworkSocketProtocol;                       // 网络套接字协议类型，套接字使用的协议类型
 uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
+uint32_t NetworkSocketIndex;                            // 网络套接字索引，套接字的索引位置
 uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据
 uint32_t NetworkSocketRuntimeData;                         // 网络套接字运行时数据指针，指向套接字相关的数据存储
 uint32_t NetworkSocketRuntimeContextPointer;                 // 网络套接字运行时上下文指针，指向套接字的运行时上下文数据
@@ -1080,18 +1081,6 @@ void InitializeNetworkSocket(void)
   NetworkConnectionPriority = NetworkConnectionPriorityMedium;                 // 设置连接优先级为中等
 }
 
-/**
- * @brief 绑定网络套接字到地址
- * 
- * 绑定网络套接字到指定的地址和端口。此函数负责设置网络地址和端口配置，
- * 包括服务器和客户端的IP地址、端口号等。绑定后的套接字可以监听
- * 连接请求或发起连接。
- * 
- * @note 此函数使用全局配置中的IP地址和端口号
- * @warning 如果绑定失败，套接字将无法进行网络通信
- * 
- * @return void 无返回值
- */
 /**
  * @brief 绑定网络套接字
  * 

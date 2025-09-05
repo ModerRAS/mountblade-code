@@ -6433,7 +6433,7 @@ undefined8 ValidateUtilitySystemState(void)
     do {
       if ((*poperationResult != _DAT_180c4eaa0) || (poperationResult[1] != _DAT_180c4eaa4)) {
         lStack0000000000000050 = 0;
-        uVar1 = FUN_1808681d0(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
+        uVar1 = ValidateMemoryAddressA0(uVar6,(int *)(unaff_RBP + 0x20) + (longlong)(int)uVar5 * 2,
                               &stackBuffer50);
         if ((int)uVar1 != 0) {
           return uVar1;
