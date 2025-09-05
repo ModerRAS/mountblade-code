@@ -186,8 +186,8 @@
 #define CheckSystemInitializationStatusA0 FUN_180892974
 #define ProcessSystemDataA0 FUN_180892990
 #define ValidateAndProcessFloatingPointNumberA2 FUN_180892ac0
-#define ProcessSystemDataE3 FUN_180892bd0
-#define ProcessSystemDataE4 FUN_180892cc0
+#define ProcessComplexDataStructureA0 FUN_180892bd0
+#define ProcessFloatingPointArrayA0 FUN_180892cc0
 
 // 请求和数据处理函数宏定义 (F系列)
 #define ProcessRequestF0 FUN_180894dd0
