@@ -148,7 +148,7 @@
 #define SystemDataTemplateGId2   0x2f4bab01d34055a5  // 系统数据模板G标识符2
 #define SystemDataTemplateHId1   0x43330a43fcdb3653  // 系统数据模板H标识符1
 #define SystemDataTemplateHId2   0xdcfdc333a769ec93  // 系统数据模板H标识符2
-#define SystemDataTemplateIId1   0x431d7c8d7c475be2
+#define SystemDataTemplateScriptingId1   0x431d7c8d7c475be2  // 系统数据模板Scripting标识符1
 
 // 资源数据偏移量常量
 #define ResourceDataTransformXOffset        0x130  // 资源数据变换X偏移量
