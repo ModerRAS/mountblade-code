@@ -94514,7 +94514,7 @@ void SetDefaultExceptionHandlerToLocationC(void)
 void ResetUtilitySystem(void)
 
 {
-  UtilitySystemInfoData1 = &UtilityMessageControl1;  // 重置系统信息为消息控制
+  UtilitySystemInformation = &UtilityMessageController;  // 重置系统信息为消息控制
   return;
 }
 

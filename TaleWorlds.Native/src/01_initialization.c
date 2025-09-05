@@ -53821,9 +53821,9 @@ ThreadAllocationContext:
     } while (*(char *)(ConfigurationDataPointer + systemBufferPointer) != '\0');
     SystemInitializationStatus = (int)systemBufferPointer;
     if (0 < SystemInitializationStatus) {
-      SystemOperationStatus1 = threadCreationFlags;
+      SystemPrimaryOperationStatus = threadCreationFlags;
       if (SystemInitializationStatus != -0x13) {
-        SystemOperationStatus2 = SystemInitializationStatus + 0x14;
+        SystemSecondaryOperationStatus = SystemInitializationStatus + 0x14;
         if (threadObjectPointer == (uint8_t *)0x0) {
           if ((int)SystemOperationStatus2 < 0x10) {
             SystemOperationStatus2 = 0x10;
