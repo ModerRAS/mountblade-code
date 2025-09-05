@@ -20567,9 +20567,6 @@ void UtilitySystemNoOperation(void)
 
 
 
-// 原始函数名：FUN_18089a9dd - 返回固定值函数R0
-// 功能：返回固定值0x1c
-#define ReturnFixedValueR0 FUN_18089a9dd
 undefined8 ValidateDataSynchronizationA0(void)
 
 {
