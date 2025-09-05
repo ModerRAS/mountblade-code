@@ -20254,7 +20254,7 @@ MemoryCheckpointB:
                     // WARNING: Subroutine does not return
     FUN_1808ddf80();
   }
-LAB_18089b22a:
+MemoryCheckpointC:
   return (ulonglong)uVar6;
 }
 
