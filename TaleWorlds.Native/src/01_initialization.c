@@ -27841,7 +27841,7 @@ void* SystemResourceAllocator(void* SystemResourceManager,void* ConfigurationDat
 
 
 
-// 函数: void SystemFloatingPointProcessor(long long SystemResourceManager,float parameter2,void* parameter3,void* parameter4)
+// 函数: void SystemFloatingPointProcessor(long long SystemResourceManager,float FloatingPointValue,void* CalculationContext,void* ProcessingFlags)
 /**
  * @brief 系统浮点数处理器
  * 
