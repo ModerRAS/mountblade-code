@@ -8597,7 +8597,7 @@ void InitializeSystemEventHandlerA1(longlong param_1,longlong param_2)
   }
 ValidationCheckpoint:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
 }
 
 
@@ -17727,15 +17727,17 @@ ValidationCheckpointA:
 undefined8 FUN_180898d84(undefined8 param_1,int param_2)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined2 *puVar3;
-  longlong lVar4;
-  undefined2 *puVar5;
-  longlong *registerRBX;
-  int unaff_EDI;
+  // 局部变量定义
+  int DataItemCount;                              // 数据项计数
+  longlong SourceDataPointer;                     // 源数据指针
+  undefined2 *TargetDataBuffer;                    // 目标数据缓冲区
+  longlong LoopCounter;                           // 循环计数器
+  undefined2 *DataCopyPointer;                    // 数据复制指针
+  longlong *DataBlockHandle;                      // 数据块句柄
+  int ValidationFlag;                            // 验证标志
   
-  puVar3 = (undefined2 *)0x0;
+  // 初始化目标数据缓冲区为空
+  TargetDataBuffer = (undefined2 *)0x0;
   if (unaff_EDI == 0) {
 ValidationCheckpointA:
     if ((0 < *(int *)((longlong)registerRBX + 0xc)) && (*registerRBX != 0)) {
