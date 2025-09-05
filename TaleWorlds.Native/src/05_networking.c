@@ -1640,9 +1640,9 @@ void ValidateNetworkPacketSecurity(void)
   NetworkPacketSecurityEncryptionData = NetworkSecurityEnabled;                 // 初始化安全加密数据
   NetworkPacketSecurityAuthenticationData = NetworkSecurityEnabled;              // 初始化安全认证数据
   NetworkPacketSecurityAuthorizationData = NetworkSecurityEnabled;               // 初始化安全授权数据
-  PacketSecurityAuditData = NetworkSecurityEnabled;                       // 初始化安全审计数据
-  PacketSecurityPolicyData = NetworkSecurityEnabled;                      // 初始化安全策略数据
-  PacketSecurityCertificateData = NetworkSecurityEnabled;                 // 初始化安全证书数据
+  NetworkPacketSecurityAuditData = NetworkSecurityEnabled;                       // 初始化安全审计数据
+  NetworkPacketSecurityPolicyData = NetworkSecurityEnabled;                      // 初始化安全策略数据
+  NetworkPacketSecurityCertificateData = NetworkSecurityEnabled;                 // 初始化安全证书数据
   
   // 初始化加密缓冲区
   NetworkPacketEncryptionBuffer = NetworkBufferInitialized;                 // 初始化数据包加密缓冲区
