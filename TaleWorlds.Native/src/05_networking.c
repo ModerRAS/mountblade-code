@@ -270,7 +270,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkValidationSuccess 0x00                          // 验证结果：成功
 #define NetworkValidationFailure 0xFF                          // 验证结果：失败
 
-// 网络操作结果常量 - 操作状态定义
+/**
+ * @brief 网络操作结果常量
+ * 
+ * 定义网络系统操作的状态标志，用于表示系统各组件的运行状态
+ */
 #define NetworkOperationSuccess 0x01                           // 操作结果：成功
 #define NetworkSystemEnabled 0x01                              // 系统状态：已启用
 #define NetworkMonitorActive 0x01                              // 监控器状态：活跃
@@ -393,7 +397,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  */
 #define NetworkFloatMax 0x7f7fffff                            // 最大浮点数值
 
-// 网络协议常量 - 协议类型和端口配置
+/**
+ * @brief 网络协议常量
+ * 
+ * 定义网络通信中使用的协议类型和地址配置
+ */
 #define TcpSocketCategory 0x01                             // TCP套接字类别
 #define NetworkTcpProtocol 0x06                               // TCP协议类型
 #define NetworkLocalhostAddress 0x7F000001                   // 网络本地回环地址127.0.0.1
