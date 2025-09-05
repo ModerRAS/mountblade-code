@@ -5828,16 +5828,18 @@ void InitializeSystemDataManager(void)
   void** CurrentNodePointer;
   void** NextNodePointer;
   void** HashTablePointer;
-  code* SystemInitializationFunction;
+  code* SystemDataManagerInitializationFunction;
+  long long MemoryAllocationSize;
+  void** AllocatedMemoryNode;
   
   SystemDataTable = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodeReference[RootNodeCurrentNodeIndex] + NodeActiveFlagOffset);
-  systemInitializationFunction = GetSystemDataManagerFunction;
+  SystemDataManagerInitializationFunction = GetSystemDataManagerFunction;
   HashTablePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (NodeActiveFlag == '\0') {
-    IdentifierCompareResult = memcmp(CurrentNodePointer + NodeIdentifierOffset,&DATA_MANAGER_ID,0x10);
+    SystemIdentifierCompareResult = memcmp(CurrentNodePointer + NodeIdentifierOffset,&DATA_MANAGER_ID,0x10);
     if (IdentifierCompareResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[SystemNodeNextPointerOffset];
       CurrentNodePointer = HashTablePointer;
@@ -5849,7 +5851,7 @@ void InitializeSystemDataManager(void)
     CurrentNodePointer = NextNodePointer;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTablePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&DATA_MANAGER_ID,HashTablePointer + NodeIdentifierOffset,0x10), IdentifierCompareResult < 0)) {
+  if ((HashTablePointer == RootNodeReference) || (SystemIdentifierCompareResult = memcmp(&DATA_MANAGER_ID,HashTablePointer + NodeIdentifierOffset,0x10), SystemIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
@@ -19683,19 +19685,19 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   char ThreadExecutionState;
   long long* ThreadLocalDataBuffer;
   long long** ThreadManagerPointer;
-  long long performanceCounterValue;
+  long long PerformanceCounterValue;
   void** SystemStackBufferLargePrimary;
   void** SystemStackBufferLargeSecondary;
   uint32_t SystemResourceHandle;
   void** SystemStackBufferMediumPrimary;
   long long SystemMemorySize;
-  uint systemOperationFlag;
+  uint SystemOperationFlag;
   void** SystemStackBufferSmallPrimary;
   void** SystemStackBufferSmallSecondary;
   uint32_t SystemConfigurationFlag;
   void* StackParameter;
   long long **MutexPointer;
-  long long *threadLocalStorageBuffer;
+  long long *ThreadLocalStorageBuffer;
   
   StackParameter = SystemInvalidHandleTemplate;
   systemHandle = GetSystemDebugHandle();
@@ -20310,7 +20312,7 @@ void** ManageSystemMemoryAllocatorReference(void** resourceManager, unsigned lon
  */
 void HandleSystemStringCopy(long long destinationBuffer, long long sourceString)
 {
-  long long stringLength;
+  long long StringLength;
   
   if (sourceString == 0) {
     *(uint32_t *)(destinationBuffer + SystemStringLengthOffset) = 0;
@@ -20417,7 +20419,7 @@ void ResetSystemProcessingBuffer(uint8_t *BufferPointer)
  * 
  * @note 这是一个通用的系统缓冲区处理函数
  */
-void ProcessSystemThreeParameterBuffer(long long MainParameter,long long AuxiliaryParameter,long long ConfigurationParameter)
+void ProcessSystemThreeParameterBuffer(long long PrimaryParameter, long long SecondaryParameter, long long ConfigParameter)
 
 {
   long long StringSearchResult;
@@ -20437,17 +20439,17 @@ void ProcessSystemThreeParameterBuffer(long long MainParameter,long long Auxilia
   SystemBufferReference = SystemDataBuffer;
   SystemBufferLength = 0;
   SystemDataBuffer[0] = 0;
-  StringSearchResult = strstr(*(void* *)(MainParameter + 8));
+  StringSearchResult = strstr(*(void* *)(PrimaryParameter + 8));
   if (StringSearchResult != 0) {
     StringLengthCounter = -1;
     BufferLengthCounter = -1;
     do {
       StringLengthCounter = StringLengthCounter + 1;
-    } while (*(char *)(AuxiliaryParameter + StringLengthCounter) != '\0');
+    } while (*(char *)(SecondaryParameter + StringLengthCounter) != '\0');
     do {
       BufferLengthCounter = BufferLengthCounter + 1;
-    } while (*(char *)(BufferLengthCounter + ConfigurationParameter) != '\0');
-      memcpy(SystemBufferReference,*(long long *)(MainParameter + 8),StringSearchResult - *(long long *)(MainParameter + 8));
+    } while (*(char *)(BufferLengthCounter + ConfigParameter) != '\0');
+      memcpy(SystemBufferReference,*(long long *)(PrimaryParameter + 8),StringSearchResult - *(long long *)(PrimaryParameter + 8));
   }
   SystemMemoryReference = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(SystemChecksumValue ^ (unsigned long long)StackSecurityBuffer);
@@ -20696,7 +20698,7 @@ void* ReleaseSystemMemoryResource(void** resourcePointer, uint64_t freeFlags, ui
 void CopySystemStringWithLengthLimit(long long targetBuffer,long long sourceString)
 
 {
-  long long stringLength;
+  long long StringLength;
   
   if (sourceString == 0) {
     *(uint32_t *)(targetBuffer + 0x10) = 0;
@@ -21405,72 +21407,72 @@ void InitializeSystemCoreEngine(void)
   void* SystemInitializationStatusFlag;
   char InitializationStatus;
   int SystemIdentifierCompareResult;
-  long long ***systemMemoryManager;
+  long long ***SystemMemoryManager;
   ulong long SystemConfigurationValue;
   long long SystemCurrentOperationTimestamp;
   void** CurrentNodePointer;
-  uint32_t *systemParameterPointer;
-  uint8_t *systemDataBuffer;
-  uint32_t systemControlFlag;
+  uint32_t *SystemParameterPointer;
+  uint8_t *SystemDataBuffer;
+  uint32_t SystemControlFlag;
   float SystemPerformanceMetricX;
   float SystemPerformanceMetricY;
-  uint8_t systemSecurityBuffer [32];
-  long long systemMemoryHandle;
+  uint8_t SystemSecurityBuffer [32];
+  long long SystemMemoryHandle;
   long long SystemResourceHandle;
-  int systemInitStatus;
+  int SystemInitStatus;
   void* *SystemCallbackPointer;
-  uint8_t *systemEventBuffer;
-  uint systemEventCounter;
+  uint8_t *SystemEventBuffer;
+  uint SystemEventCounter;
   ulong long SystemCurrentOperationTimestamp;
-  uint32_t systemOperationFlag;
-  long long ***systemMemoryPool;
-  long long **systemMemoryTable;
-  long long ****systemMemoryRoot;
-  void* *systemErrorHandler;
-  void* systemContext;
-  uint32_t systemPriority;
+  uint32_t SystemOperationFlag;
+  long long ***SystemMemoryPool;
+  long long **SystemMemoryTable;
+  long long ****SystemMemoryRoot;
+  void* *SystemErrorHandler;
+  void* SystemContext;
+  uint32_t SystemPriority;
   void* SystemSemaphore;
-  void* *systemLock;
-  long long systemThreadId;
-  int systemThreadStatus;
-  uint32_t systemThreadFlag;
-  void* *systemThreadContext;
-  long long systemHeapHandle;
-  uint32_t systemHeapSize;
-  long long ***systemHeapArray [2];
-  void* *systemHeapManager;
-  code *systemEntryPoint;
-  void* systemEntryPointParam;
+  void* *SystemLock;
+  long long SystemThreadId;
+  int SystemThreadStatus;
+  uint32_t SystemThreadFlag;
+  void* *SystemThreadContext;
+  long long SystemHeapHandle;
+  uint32_t SystemHeapSize;
+  long long ***SystemHeapArray [2];
+  void* *SystemHeapManager;
+  code *SystemEntryPoint;
+  void* SystemEntryPointParam;
   long long **SystemTablePointer;
-  void* *systemTableLock;
-  uint8_t *systemTableBuffer;
-  uint32_t systemTableFlag;
-  uint8_t systemTableData [72];
-  void* *systemCacheManager;
-  uint8_t *systemCacheBuffer;
-  uint32_t systemCacheFlag;
-  uint8_t systemCacheData [72];
-  void* *systemIoManager;
-  uint8_t *systemIoBuffer;
-  uint32_t systemIoFlag;
-  uint8_t systemIoData [72];
-  void* *systemNetworkManager;
-  uint8_t *systemNetworkBuffer;
-  uint32_t systemNetworkFlag;
-  uint8_t systemNetworkData [72];
-  void* *systemRenderManager;
-  uint8_t *systemRenderBuffer;
-  uint32_t systemRenderFlag;
-  uint8_t systemRenderData [72];
-  void* *systemAudioManager;
-  uint8_t *systemAudioBuffer;
-  uint32_t systemAudioFlag;
-  uint8_t systemAudioData [72];
-  void* *systemInputManager;
-  uint8_t *systemInputBuffer;
-  uint32_t systemInputFlag;
-  uint8_t systemInputData [648];
-  ulong long systemSecurityHash;
+  void* *SystemTableLock;
+  uint8_t *SystemTableBuffer;
+  uint32_t SystemTableFlag;
+  uint8_t SystemTableData [72];
+  void* *SystemCacheManager;
+  uint8_t *SystemCacheBuffer;
+  uint32_t SystemCacheFlag;
+  uint8_t SystemCacheData [72];
+  void* *SystemIoManager;
+  uint8_t *SystemIoBuffer;
+  uint32_t SystemIoFlag;
+  uint8_t SystemIoData [72];
+  void* *SystemNetworkManager;
+  uint8_t *SystemNetworkBuffer;
+  uint32_t SystemNetworkFlag;
+  uint8_t SystemNetworkData [72];
+  void* *SystemRenderManager;
+  uint8_t *SystemRenderBuffer;
+  uint32_t SystemRenderFlag;
+  uint8_t SystemRenderData [72];
+  void* *SystemAudioManager;
+  uint8_t *SystemAudioBuffer;
+  uint32_t SystemAudioFlag;
+  uint8_t SystemAudioData [72];
+  void* *SystemInputManager;
+  uint8_t *SystemInputBuffer;
+  uint32_t SystemInputFlag;
+  uint8_t SystemInputData [648];
+  ulong long SystemSecurityHash;
   
   SystemCalculationFlags = SystemInvalidHandleTemplate;
   SystemEncryptionValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer698;
