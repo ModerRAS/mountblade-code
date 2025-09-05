@@ -28254,7 +28254,7 @@ ValidationErrorHandler2:
       return operationResult;
     }
     memoryBaseAddress = *(uint *)(stackFramePointer + 0x7f);
-    operationResult = FUN_1808af8b0(register_R13 + 0x60,memoryBaseAddress >> 1);
+    operationResult = ValidateSystemStatusA0(register_R13 + 0x60,memoryBaseAddress >> 1);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -28512,7 +28512,7 @@ ValidationErrorHandler2:
       return operationResult;
     }
     memoryBaseAddress = *(uint *)(stackFramePointer + 0x7f);
-    operationResult = FUN_1808af8b0(register_R13 + 0x60,memoryBaseAddress >> 1);
+    operationResult = ValidateSystemStatusA0(register_R13 + 0x60,memoryBaseAddress >> 1);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -28727,7 +28727,7 @@ DataProcessingHandler:
     dataFlags = ExecuteDataValidationOperation(dataContext,stackFramePointer + 0x7f);
     if ((int)dataFlags == 0) {
       memoryBaseAddress = *(uint *)(stackFramePointer + 0x7f);
-      dataFlags = FUN_1808af8b0(register_R13 + 0x60,memoryBaseAddress >> 1);
+      dataFlags = ValidateSystemStatusA0(register_R13 + 0x60,memoryBaseAddress >> 1);
       if ((int)dataFlags == 0) {
         *(int *)(stackFramePointer + 0x77) = validationErrorCode;
         dataFlags = destinationIndexRegister & SystemCleanupFlag;
