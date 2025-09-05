@@ -64334,7 +64334,7 @@ void SetSystemDataStructurePointerAtOffset90(uint8_t ObjectContext,int64_t Valid
  * @param CleanupFlag 清理标志，指示是否需要执行清理操作
  * @return 无返回值
  */
-void ExecuteSystemCleanupCallback1(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemCleanupCallbackPrimary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + SystemResourceCleanupOffset) != (code *)0x0) {
@@ -64357,7 +64357,7 @@ void ExecuteSystemCleanupCallback1(uint8_t ObjectContext,int64_t ValidationConte
  * @param CleanupFlag 清理标志，指示是否需要执行清理操作
  * @return 无返回值
  */
-void ExecuteSystemCleanupCallback2(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemCleanupCallbackSecondary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x208) != (code *)0x0) {
@@ -64380,7 +64380,7 @@ void ExecuteSystemCleanupCallback2(uint8_t ObjectContext,int64_t ValidationConte
  * @param CleanupFlag 清理标志，指示是否需要执行清理操作
  * @return 无返回值
  */
-void ExecuteSystemCleanupCallback3(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+void ExecuteSystemCleanupCallbackTertiary(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
 
 {
   code *CallbackFunctionPointer;
@@ -65646,7 +65646,7 @@ void ExecuteSystemResourceCleanupExtended(uint8_t ObjectContext,int64_t Validati
  * @param ValidationContext 验证上下文
  * @return 无返回值
  */
-void RegisterSystemResourceReleaseHandlerExtended2(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterSystemResourceReleaseHandlerExtendedSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x3b0,0x20,0x20,ReleaseSystemResource,0xfffffffffffffffe);
@@ -65680,7 +65680,7 @@ void DestroyMutexResourceExtended(void)
  * @param ValidationContext 验证上下文
  * @return 无返回值
  */
-void RegisterSystemResourceReleaseHandlerExtended3(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterSystemResourceReleaseHandlerExtendedTertiary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + 0x48) + 8,0x20,0x20,ReleaseSystemResource);
@@ -65716,7 +65716,7 @@ void RegisterResourceOperationHandlerSecond(uint8_t ObjectContext,int64_t Valida
  * @param ValidationContext 验证上下文
  * @return 无返回值
  */
-void RegisterSystemResourceReleaseHandlerExtended4(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterSystemResourceReleaseHandlerExtendedQuaternary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x30,0x20,0x50,ReleaseSystemResource);
@@ -65757,7 +65757,7 @@ void ExecuteResourceContextProcessing(uint8_t ObjectContext,int64_t ValidationCo
  * @param ValidationContext 验证上下文
  * @return 无返回值
  */
-void RegisterSystemResourceReleaseHandlerExtended5(uint8_t ObjectContext,int64_t ValidationContext)
+void RegisterSystemResourceReleaseHandlerExtendedQuinary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 8,0x20,0x20,ReleaseSystemResource);
@@ -67058,7 +67058,7 @@ void ExecuteSystemMemoryAccessValidationCallback(uint8_t ObjectContext, int64_t 
  * @note 此函数在资源哈希清理过程中被调用
  * @warning 原始函数名：Unwind_ResourceHashCleanupHandler1
  */
-void ExecuteResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHashCleanupHandlerPrimary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -67112,7 +67112,7 @@ void ExecuteResourceHashCleanupHandler1(uint8_t ObjectContext,int64_t Validation
  * @note 此函数在资源哈希清理过程中被调用
  * @warning 原始函数名：Unwind_ResourceHashCleanupHandler2
  */
-void ExecuteResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHashCleanupHandlerSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -67166,7 +67166,7 @@ void ExecuteResourceHashCleanupHandler2(uint8_t ObjectContext,int64_t Validation
  * @note 此函数在资源哈希清理过程中被调用
  * @warning 原始函数名：Unwind_ResourceHashCleanupHandler3
  */
-void ExecuteResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHashCleanupHandlerTertiary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -67220,7 +67220,7 @@ void ExecuteResourceHashCleanupHandler3(uint8_t ObjectContext,int64_t Validation
  * @note 此函数在资源哈希清理过程中被调用
  * @warning 原始函数名：Unwind_ResourceHashCleanupHandler4
  */
-void ExecuteResourceHashCleanupHandler4(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHashCleanupHandlerQuaternary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -67301,7 +67301,7 @@ void ExecuteSystemMemoryReleaseHandler1(uint8_t ObjectContext,int64_t Validation
  * @note 此函数在资源哈希清理过程中被调用
  * @warning 原始函数名：Unwind_ResourceHashCleanupHandler5
  */
-void ExecuteResourceHashCleanupHandler5(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHashCleanupHandlerQuinary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
@@ -82586,7 +82586,7 @@ void ExecuteSystemCallback0x180(uint8_t ObjectContext, int64_t ValidationContext
  * @param CleanupOption 清理选项参数
  * @param CleanupFlag 清理标志参数
  */
-void ExecuteSystemCleanupCallback0x110(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemCleanupCallbackExtended(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x110) != (code *)0x0) {
