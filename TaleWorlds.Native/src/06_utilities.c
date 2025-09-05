@@ -139,7 +139,7 @@
  * 
  * @note 原始函数名：func_0x000180894c50
  */
-#define CheckSystemStatusA0 func_0x000180894c50
+#define CheckSystemStatus func_0x000180894c50
 
 /**
  * @brief 系统初始化函数A0
@@ -148,7 +148,7 @@
  * 
  * @note 原始函数名：func_0x00018085fa80
  */
-#define InitializeSystemA0 func_0x00018085fa80
+#define InitializeSystem func_0x00018085fa80
 
 /**
  * @brief 参数验证函数A0
@@ -157,7 +157,7 @@
  * 
  * @note 原始函数名：func_0x000180855b70
  */
-#define ValidateParametersA0 func_0x000180855b70
+#define ValidateParameters func_0x000180855b70
 
 /**
  * @brief 上下文验证函数A0
@@ -166,7 +166,7 @@
  * 
  * @note 原始函数名：func_0x0001808675f0
  */
-#define ValidateContextA0 func_0x0001808675f0
+#define ValidateContext func_0x0001808675f0
 
 /**
  * @brief 上下文处理函数A0
@@ -175,7 +175,7 @@
  * 
  * @note 原始函数名：func_0x0001808676a0
  */
-#define ProcessContextA0 func_0x0001808676a0
+#define ProcessContext func_0x0001808676a0
 
 /**
  * @brief 数据转换函数A0
@@ -184,7 +184,7 @@
  * 
  * @note 原始函数名：func_0x0001808aec10
  */
-#define ConvertDataA0 func_0x0001808aec10
+#define ConvertData func_0x0001808aec10
 
 /**
  * @brief 内存管理函数A0
@@ -193,7 +193,7 @@
  * 
  * @note 原始函数名：func_0x00018064e870
  */
-#define ManageMemoryA0 func_0x00018064e870
+#define ManageMemory func_0x00018064e870
 
 /**
  * @brief 系统清理函数A0
@@ -202,7 +202,7 @@
  * 
  * @note 原始函数名：func_0x00018005f320
  */
-#define CleanupSystemA0 func_0x00018005f320
+#define CleanupSystem func_0x00018005f320
 
 /**
  * @brief 系统配置函数A0
@@ -5583,9 +5583,9 @@ void* GlobalDataPointerA48Cache;      // DAT_180bfa960
 // 全局数据指针A49相关变量
 void* GlobalDataPointerA49Storage;    // DAT_180bfa9e0
 void* GlobalDataPointerA49Status;     // DAT_180bfa9e8
-undefined DAT_180bfa9f0;
-undefined DAT_180bfa9f8;
-undefined DAT_180bfaa78;
+void* GlobalDataPointerA49Config;     // DAT_180bfa9f0
+void* GlobalDataPointerA49Cache;      // DAT_180bfa9f8
+void* GlobalDataPointerA50Storage;    // DAT_180bfaa78
 undefined DAT_180bfaa80;
 undefined DAT_180bfaa88;
 undefined DAT_180bfaa90;
