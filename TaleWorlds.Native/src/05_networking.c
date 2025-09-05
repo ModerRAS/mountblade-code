@@ -219,6 +219,10 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 
 // 数据包数组索引常量
 #define PacketDataHeaderIndex 1                                // 数据包头索引
+#define PacketDataSizeIndex 8                                  // 数据包大小索引
+#define ArraySizeIndex 4                                       // 数组大小参数索引
+#define ConnectionDataSizeIndex 1                              // 连接数据大小索引
+#define ConnectionStateDataIndex 1                             // 连接状态数据索引
 
 // 网络验证结果常量 - 验证处理状态定义
 #define NetworkValidationSuccess 0x00                          // 验证结果：成功
