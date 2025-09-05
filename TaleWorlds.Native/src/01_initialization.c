@@ -23955,6 +23955,20 @@ void ExecuteSystemFinalCleanup(void)
 
 
 
+/**
+ * @brief 创建系统路径缓冲区
+ * 
+ * 该函数创建系统路径缓冲区，用于存储和管理系统路径信息。
+ * 它会初始化路径缓冲区的基本结构，并设置相关的系统参数。
+ * 
+ * @param PathBufferReference 路径缓冲区引用，用于存储创建的路径缓冲区
+ * @param UnusedParameter2 未使用的参数2
+ * @param UnusedParameter3 未使用的参数3
+ * @param UnusedParameter4 未使用的参数4
+ * @return void** 返回创建的路径缓冲区引用
+ * 
+ * @note 这是系统路径管理的重要函数，用于创建和管理系统路径缓冲区
+ */
 void* *
 CreateSystemPathBuffers(void** PathBufferReference, void* UnusedParameter2, void* UnusedParameter3, void* UnusedParameter4)
 
@@ -24247,10 +24261,12 @@ void SetSystemThreadId(uint32_t *threadIdPointer)
  * 并根据模板参数进行相应的初始化。
  * 
  * @param SystemResourceHandle 系统资源指针的指针
- * @param templateParameter 模板参数，包含配置信息
- * @param ReservedParameter3 保留参数3
- * @param ReservedParameter4 保留参数4
+ * @param TemplateParameter 模板参数，包含配置信息
+ * @param UnusedParameter3 未使用的参数3
+ * @param UnusedParameter4 未使用的参数4
  * @return 返回初始化后的系统资源指针
+ * 
+ * @note 这是系统资源管理的重要函数，用于从模板创建系统资源
  */
 void* *
 CreateSystemResourceFromTemplate(void** SystemResourceHandle, long long TemplateParameter, void* UnusedParameter3, void* UnusedParameter4)
