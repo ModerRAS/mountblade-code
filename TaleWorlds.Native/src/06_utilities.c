@@ -3757,6 +3757,19 @@
 // 功能：处理操作上下文
 #define ProcessOperationContextA1 FUN_18088c740
 
+// 异常处理和回调函数语义化宏定义
+// 原始函数名：func_0x00018008d310 - 异常处理函数
+// 功能：处理系统异常和错误状态
+#define HandleSystemException func_0x00018008d310
+
+// 原始函数名：func_0x0001808fd8d4 - 操作结果检查函数
+// 功能：检查系统操作结果状态
+#define CheckOperationResult func_0x0001808fd8d4
+
+// 原始函数名：func_0x0001808fd024 - 回调执行函数
+// 功能：执行系统回调函数
+#define ExecuteSystemCallback func_0x0001808fd024
+
 // 原始函数名：FUN_180882c20 - 数据同步函数A0
 // 功能：同步数据
 #define SynchronizeDataA1 FUN_180882c20
@@ -3797,6 +3810,14 @@
 // 功能：处理数据操作
 #define ProcessDataOperationA2 FUN_180895d62
 
+// 原始函数名：FUN_1808b0010 - 系统状态验证函数A0
+// 功能：验证系统状态并返回结果
+#define ValidateSystemStatusAndReturnA0 FUN_1808b0010
+
+// 原始函数名：FUN_18089a750 - 系统操作执行函数A0
+// 功能：执行系统操作
+#define ExecuteSystemOperationA0 FUN_18089a750
+
 // 原始函数名：FUN_180895d9c - 数据验证函数A4
 // 功能：验证数据有效性
 #define ValidateDataA0 FUN_180895d9c
@@ -3816,6 +3837,26 @@
 // 原始函数名：FUN_18089611f - 空操作函数J
 // 功能：空操作函数
 #define UtilityNoOperationJ FUN_18089611f
+
+// 原始函数名：FUN_1808aff40 - 参数验证函数A1
+// 功能：验证参数有效性
+#define ValidateParametersA1 FUN_1808aff40
+
+// 原始函数名：FUN_1808b00b0 - 系统状态检查函数A0
+// 功能：检查系统状态
+#define CheckSystemStatusA1 FUN_1808b00b0
+
+// 原始函数名：FUN_180899d90 - 数据验证函数A5
+// 功能：验证数据完整性
+#define ValidateDataIntegrityA3 FUN_180899d90
+
+// 原始函数名：FUN_1808ac8a0 - 系统配置验证函数A0
+// 功能：验证系统配置
+#define ValidateSystemConfigurationA1 FUN_1808ac8a0
+
+// 原始函数名：FUN_1808affb0 - 数据处理函数A4
+// 功能：处理数据操作
+#define ProcessDataOperationA4 FUN_1808affb0
 
 // 原始函数名：FUN_180896140 - 数据处理函数A4
 // 功能：处理数据操作
@@ -5009,11 +5050,11 @@ undefined UtilityCopyBlockStatus1;
 //   无
 void InitializeUtilitySystem(void);
 // 工具系统初始化数据变量
-int32_t UtilityInitializeData1;
-int32_t UtilityInitializeData2;
-int32_t UtilityInitializeData3;
-int32_t UtilityInitializeData4;
-int32_t UtilityInitializeStatus1;
+int32_t UtilityInitializeErrorCode;
+int32_t UtilityInitializeMemorySize;
+int32_t UtilityInitializeThreadCount;
+int32_t UtilityInitializeBufferCount;
+int32_t UtilityInitializeSuccessFlag;
 
 // 函数: void ConfigureUtilitySystem(void)
 // 
@@ -44886,7 +44927,7 @@ void Catch_180904b50(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x50);
   CleanupSystem(validationContext);
   ConfigureSystemA0(*(longlong *)(param_2 + 0x60) + 8,0);
-  func_0x000180060c10(*(undefined8 *)(validationContext + 0x50),*(undefined8 *)(param_2 + 0x68));
+  ProcessSystemA0(*(undefined8 *)(validationContext + 0x50),*(undefined8 *)(param_2 + 0x68));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
@@ -45005,7 +45046,7 @@ void Catch_180904c60(undefined8 param_1,longlong param_2)
       securityCheckResult = *(ulonglong *)(param_2 + 0x20);
     }
   }
-  func_0x000180060150(*(undefined8 *)(validationContext + 0x50),dataContext);
+  InitializeData(*(undefined8 *)(validationContext + 0x50),dataContext);
   *(undefined8 *)(validationContext + 0x40) = *(undefined8 *)(param_2 + 0xa8);
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
@@ -49091,7 +49132,7 @@ void Catch_180905e00(undefined8 param_1,longlong param_2)
   validationContext = *(longlong *)(param_2 + 0x60);
   CleanupSystem(validationContext);
   ConfigureSystemA0(*(longlong *)(param_2 + 0x70) + 8,0);
-  func_0x00018006d490(*(undefined8 *)(validationContext + 0x50),*(undefined8 *)(param_2 + 0x78));
+  ExecuteSystemOperation(*(undefined8 *)(validationContext + 0x50),*(undefined8 *)(param_2 + 0x78));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }

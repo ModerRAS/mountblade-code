@@ -1353,9 +1353,9 @@ void InitializeNetworkSocket(void)
  * @note 此函数在套接字初始化后调用，用于绑定套接字到本地地址
  * @warning 如果绑定失败，可能导致网络服务无法启动
  * 
- * @see InitializeNetworkSocket, StartListeningForConnections
+ * @see InitializeNetworkSocket, StartNetworkConnectionListening
  */
-void BindNetworkSocket(void)
+void BindNetworkSocketToAddress(void)
 {
   // 设置网络地址和端口配置
   NetworkServerIpAddress = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
@@ -1399,7 +1399,7 @@ void BindNetworkSocket(void)
  * 
  * @return void 无返回值
  * 
- * @see BindNetworkSocket, AcceptNetworkConnection
+ * @see BindNetworkSocketToAddress, AcceptNetworkConnection
  */
 void StartNetworkConnectionListening(void)
 {
