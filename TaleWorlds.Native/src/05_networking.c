@@ -2118,7 +2118,7 @@ PrimaryNetworkProcessingCompleted:
     if (ConnectionStatusPointer != NULL) {
       int32_t OperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t StatusIterator = (long long)OperationProcessingCode;
-      if ((OperationProcessingCode != 0) && (NetworkContextIdentifier = *ConnectionOperationBuffer, 0 < OperationProcessingCode)) {
+      if ((OperationProcessingCode != 0) && (ConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < OperationProcessingCode)) {
         NetworkStatus *ConnectionStatusBuffer = ConnectionStatusPointer;
         do {
           NetworkStatus *ContextStatusPointer = (NetworkStatus *)((NetworkContextIdentifier - (long long)ConnectionStatusPointer) + (long long)ConnectionStatusBuffer);
@@ -2284,8 +2284,8 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
     }
     NetworkStatus PrimaryConnectionState = *(NetworkStatus *)(ConnectionContext + NetworkPacketSecondaryDataOffset);
     ConnectionStateArray[PrimaryStateIndex] = PrimaryConnectionState;
-    NetworkPacketProcessor PacketProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-    PacketValidationResult = PacketProcessorFunction(*(NetworkHandle **)(*PacketData + 8), ConnectionStateArray, 4);
+    NetworkPacketProcessor PrimaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
+    PacketValidationResult = PrimaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), ConnectionStateArray, 4);
     if ((int)PacketValidationResult != 0) {
       return PacketValidationResult;
     }
@@ -2294,8 +2294,8 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
     }
     NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionSecondaryValidationOffset);
     SecurityValidationArray[SecondaryValidationIndex] = SecondaryValidationStatus;
-    NetworkPacketProcessor ValidationProcessorFunction = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-    PacketValidationResult = ValidationProcessorFunction(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
+    NetworkPacketProcessor SecondaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
+    PacketValidationResult = SecondaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
     if ((int)PacketValidationResult != 0) {
       return PacketValidationResult;
     }
@@ -2306,7 +2306,7 @@ NetworkHandle HandleNetworkPacketWithValidation(int64_t ConnectionContext, int64
     }
     NetworkStatus TertiaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
     SecurityValidationArray[TertiaryValidationIndex] = TertiaryValidationStatus;
-    NetworkPacketProcessor TertiaryValidationProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
+    NetworkPacketProcessor TertiaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
     PacketValidationResult = TertiaryValidationProcessor(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
     if ((int)PacketValidationResult != 0) {
       return PacketValidationResult;

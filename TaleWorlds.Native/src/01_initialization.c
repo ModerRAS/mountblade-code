@@ -63864,7 +63864,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   int *piStack_208;
   uint32_t StackAllocationSize;
   int *piStack_1f8;
-  int *piStack_1f0;
+  int *StackRegisterValue1F0;
   int stackVariable1E8;
   uint8_t (*paGlobalDataFlags2) [16];
   ulong long SystemTimeFlag1d8;
@@ -64201,13 +64201,13 @@ ResourceInitializationLoop:
       }
       SystemResourceOffsetPointer9 = (long long *)((SystemParameterPointer + 1) * 0x20 + aSystemResourceSize._0_8_);
       SystemThreadHandleCounter = 0;
-      piStack_1f0 = (int *)0x0;
+      StackRegisterValue1F0 = (int *)0x0;
       if (0 < (long long)resourceCreationFlagsSecondary) {
         piStack_1f8 = (int *)0x0;
         do {
           SystemThreadHandlePrimary = 0;
           ContextManagerPointer = *(long long *)(SystemResourceManager + 0x90) + (long long)piStack_1f8;
-          SystemContextPointer = ResourceBufferPointerSecondary[(long long)piStack_1f0];
+          SystemContextPointer = ResourceBufferPointerSecondary[(long long)StackRegisterValue1F0];
           if (SystemContextPointer == 0) {
             do {
               if (SystemParameterPointer == -1) {
@@ -64432,10 +64432,10 @@ SystemConfigurationAllocation:
               SystemCalculationValue1d0 = SystemCalculationValue1d0 + 1;
             } while (SystemCalculationValue1d0 < 3);
           }
-          piStack_1f0 = (int *)((long long)piStack_1f0 + 1);
+          StackRegisterValue1F0 = (int *)((long long)StackRegisterValue1F0 + 1);
           piStack_1f8 = piStack_1f8 + 3;
           SystemThreadHandleCounter = SystemThreadHandleCounter + 0x10;
-        } while ((long long)piStack_1f0 < (long long)resourceCreationFlagsSecondary);
+        } while ((long long)StackRegisterValue1F0 < (long long)resourceCreationFlagsSecondary);
         SystemThreadHandlePrimary = (long long)IntegerStack1E8;
       }
       ResourceDataCounter = 0;
@@ -64664,14 +64664,14 @@ ThreadContextCleanup:
           else {
             SystemTimeFlag1d8 = (long long)piStack_210 - (long long)pointerToInteger25;
             if ((long long)SystemTimeFlag1d8 >> 2 == 0) {
-              piStack_1f0 = (int *)0x1;
+              StackRegisterValue1F0 = (int *)0x1;
 ThreadHandleValidation:
-              SystemIntegerPointer6 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)piStack_1f0 * 4,
+              SystemIntegerPointer6 = (int *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)StackRegisterValue1F0 * 4,
                                              CONCAT71((int7)(SystemConfigurationPointer >> 8),3));
             }
             else {
-              piStack_1f0 = (int *)(((long long)SystemTimeFlag1d8 >> 2) * 2);
-              if (piStack_1f0 != (int *)0x0) goto ThreadHandleValidation;
+              StackRegisterValue1F0 = (int *)(((long long)SystemTimeFlag1d8 >> 2) * 2);
+              if (StackRegisterValue1F0 != (int *)0x0) goto ThreadHandleValidation;
             }
             if (pointerToInteger25 != pointerToInteger26) {
                 memmove(SystemIntegerPointer6,pointerToInteger25,SystemTimeFlag1d8);
@@ -64680,7 +64680,7 @@ ThreadHandleValidation:
             if (pointerToInteger25 != (int *)0x0) {
                 SystemCleanupFunction(pointerToInteger25);
             }
-            SystemIntegerPointer3 = SystemIntegerPointer6 + (long long)piStack_1f0;
+            SystemIntegerPointer3 = SystemIntegerPointer6 + (long long)StackRegisterValue1F0;
             paResourceAddress2 = paGlobalDataFlags2;
             piStack_218 = SystemIntegerPointer6;
             piStack_208 = SystemIntegerPointer3;
@@ -64714,9 +64714,9 @@ ThreadHandleValidation:
         piStack_1f8 = piStack_210;
         if (ContextManagerPointer != 0) {
           do {
-            piStack_1f0 = SystemIntegerPointer0;
+            StackRegisterValue1F0 = SystemIntegerPointer0;
             SystemIntegerPointer6 = (int *)0x0;
-            systemResult7 = *piStack_1f0;
+            systemResult7 = *StackRegisterValue1F0;
             if ((SystemThreadStackSize & ResourceBufferPointerSecondary[systemResult7]) == 0) {
               if (pointerToInteger26 < SystemIntegerPointer3) {
                 *pointerToInteger26 = systemResult7;
@@ -64737,7 +64737,7 @@ LabelCreateSystemThread:
                 if (pointerToInteger25 != pointerToInteger26) {
                     memmove(SystemIntegerPointer6,pointerToInteger25,SystemTimeFlag1d8);
                 }
-                *SystemIntegerPointer6 = *piStack_1f0;
+                *SystemIntegerPointer6 = *StackRegisterValue1F0;
                 if (pointerToInteger25 != (int *)0x0) {
                     SystemCleanupFunction(pointerToInteger25);
                 }
@@ -64776,7 +64776,7 @@ LabelExpandSystemThread:
                 if (SystemIntegerPointer4 != pointerToInteger20) {
                     memmove(SystemIntegerPointer5,SystemIntegerPointer4,SystemTimeFlag1d8);
                 }
-                *SystemIntegerPointer5 = *piStack_1f0;
+                *SystemIntegerPointer5 = *StackRegisterValue1F0;
                 pointerToInteger20 = SystemIntegerPointer5 + 1;
                 if (SystemIntegerPointer4 != (int *)0x0) {
                     SystemCleanupFunction(SystemIntegerPointer4);
@@ -64791,10 +64791,10 @@ LabelExpandSystemThread:
               }
             }
             ResourceAllocationContextSecondary = ResourceAllocationContextSecondary + 1;
-            piStack_1f0 = piStack_1f0 + 1;
+            StackRegisterValue1F0 = StackRegisterValue1F0 + 1;
             pointerToInteger25 = SystemIntegerPointer6;
             pointerToInteger34 = (int *)(ulong long)ResourceAllocationContextSecondary;
-            SystemIntegerPointer0 = piStack_1f0;
+            SystemIntegerPointer0 = StackRegisterValue1F0;
             SystemIntegerPointer5 = piStack_190;
             isSystemBusy = isResourceAvailable4;
           } while ((ulong long)(long long)(int)ResourceAllocationContextSecondary < ContextManagerPointer);
