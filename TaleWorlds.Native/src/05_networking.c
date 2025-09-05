@@ -380,13 +380,13 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkMemoryValidationMagic 0xCAFEBABE            // 内存验证魔数，用于调试内存检查
 
 // 魔数别名定义，用于保持代码一致性
-#define NetworkMagicLiveConnection NetworkLiveConnectionMagic     // 活跃连接魔数别名
-#define NetworkMagicValidation NetworkValidationMagic             // 验证魔数别名
-#define NetworkMagicBinaryData NetworkBinaryDataMagic             // 二进制数据魔数别名
+#define NetworkMagicLiveConnection NetworkMagicLiveConnection     // 活跃连接魔数别名
+#define NetworkMagicValidation NetworkMagicValidation             // 验证魔数别名
+#define NetworkMagicBinaryData NetworkMagicBinaryData             // 二进制数据魔数别名
 #define NetworkMagicMemoryValidation NetworkMemoryValidationMagic   // 内存验证魔数别名
-#define NetworkMagicEventData NetworkEventDataMagic                 // 事件数据魔数别名
-#define NetworkMagicBatchData NetworkPacketMagicBatchData         // 批处理数据魔数别名
-#define NetworkMagicInvalid NetworkPacketMagicInvalid             // 无效数据包魔数别名
+#define NetworkMagicEventData NetworkMagicEventData                 // 事件数据魔数别名
+#define NetworkMagicBatchData NetworkMagicBatchData         // 批处理数据魔数别名
+#define NetworkMagicInvalid NetworkMagicInvalid             // 无效数据包魔数别名
 /**
  * @brief 调试验证魔数
  * 
