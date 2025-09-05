@@ -97,6 +97,114 @@
 // 功能：设置全局数据指针A23到指定地址
 #define SetGlobalDataPointerA23 FUN_180942260
 
+// 原始函数名：FUN_180893e69 - 浮点数据处理函数D0
+// 功能：处理浮点数据，进行范围检查和验证
+#define ProcessFloatingPointDataD0 FUN_180893e69
+
+// 原始函数名：FUN_180897d20 - 数据验证和处理函数D0
+// 功能：验证数据有效性并执行相应的处理操作
+#define ValidateAndProcessDataD0 FUN_180897d20
+
+// 原始函数名：FUN_180899040 - 数据处理函数D0
+// 功能：处理系统数据并执行相关操作
+#define ProcessSystemDataD0 FUN_180899040
+
+// 原始函数名：FUN_180899090 - 数据处理函数D1
+// 功能：处理系统数据并执行相关操作
+#define ProcessSystemDataD1 FUN_180899090
+
+// 原始函数名：FUN_180899100 - 数据验证函数D0
+// 功能：验证系统数据的有效性
+#define ValidateSystemDataD0 FUN_180899100
+
+// 原始函数名：FUN_1808992c4 - 系统初始化函数D0
+// 功能：初始化系统组件和状态
+#define InitializeSystemComponentD0 FUN_1808992c4
+
+// 原始函数名：FUN_1808995c0 - 数据处理函数D2
+// 功能：处理系统数据并执行相关操作
+#define ProcessSystemDataD2 FUN_1808995c0
+
+// 原始函数名：FUN_180899790 - 系统清理函数D0
+// 功能：清理系统资源和状态
+#define CleanupSystemD0 FUN_180899790
+
+// 原始函数名：FUN_180899799 - 系统重置函数D0
+// 功能：重置系统状态
+#define ResetSystemD0 FUN_180899799
+
+// 原始函数名：FUN_1808997b0 - 数据验证函数D1
+// 功能：验证系统数据的有效性
+#define ValidateSystemDataD1 FUN_1808997b0
+
+// 原始函数名：FUN_180899891 - 系统状态检查函数D0
+// 功能：检查系统状态
+#define CheckSystemStatusD0 FUN_180899891
+
+// 原始函数名：FUN_180892880 - 数据处理函数E0
+// 功能：处理系统数据并返回结果
+#define ProcessSystemDataE0 FUN_180892880
+
+// 原始函数名：FUN_1808928d3 - 系统状态查询函数E0
+// 功能：查询系统状态并返回结果
+#define QuerySystemStatusE0 FUN_1808928d3
+
+// 原始函数名：FUN_1808928f1 - 系统初始化函数E0
+// 功能：初始化系统组件
+#define InitializeSystemE0 FUN_1808928f1
+
+// 原始函数名：FUN_180892909 - 参数验证函数E0
+// 功能：验证系统参数
+#define ValidateParametersE0 FUN_180892909
+
+// 原始函数名：FUN_180892920 - 参数验证函数E1
+// 功能：验证系统参数
+#define ValidateParametersE1 FUN_180892920
+
+// 原始函数名：FUN_180892974 - 系统清理函数E0
+// 功能：清理系统资源
+#define CleanupSystemE0 FUN_180892974
+
+// 原始函数名：FUN_180892990 - 数据处理函数E1
+// 功能：处理系统数据并返回结果
+#define ProcessSystemDataE1 FUN_180892990
+
+// 原始函数名：FUN_180892ac0 - 数据处理函数E2
+// 功能：处理系统数据并返回结果
+#define ProcessSystemDataE2 FUN_180892ac0
+
+// 原始函数名：FUN_180892bd0 - 数据处理函数E3
+// 功能：处理系统数据并返回结果
+#define ProcessSystemDataE3 FUN_180892bd0
+
+// 原始函数名：FUN_180892cc0 - 数据处理函数E4
+// 功能：处理系统数据并返回结果
+#define ProcessSystemDataE4 FUN_180892cc0
+
+// 原始函数名：FUN_180894dd0 - 请求处理函数F0
+// 功能：处理系统请求并返回结果
+#define ProcessRequestF0 FUN_180894dd0
+
+// 原始函数名：FUN_180895ef0 - 数据验证函数F0
+// 功能：验证系统数据并返回结果
+#define ValidateDataF0 FUN_180895ef0
+
+// 原始函数名：FUN_180898b65 - 数据处理函数F0
+// 功能：处理系统数据并返回结果
+#define ProcessDataF0 FUN_180898b65
+
+// 原始函数名：FUN_180898bc0 - 数据处理函数F1
+// 功能：处理系统数据并返回结果
+#define ProcessDataF1 FUN_180898bc0
+
+// 原始函数名：FUN_180898c86 - 系统状态查询函数F0
+// 功能：查询系统状态并返回结果
+#define QuerySystemStatusF0 FUN_180898c86
+
+// 原始函数名：FUN_180898d31 - 数据处理函数F2
+// 功能：处理系统数据并返回结果
+#define ProcessDataF2 FUN_180898d31
+
 // 原始函数名：FUN_180895345 - 错误码返回函数
 // 功能：返回固定错误码0x1c
 #define ReturnErrorCode FUN_180895345
@@ -196,6 +304,95 @@
 // 原始函数名：FUN_1809430b0 - 线程本地存储初始化函数A4
 // 功能：初始化线程本地存储A4
 #define InitializeThreadLocalStorageA4 FUN_1809430b0
+
+// Unwind函数语义化宏定义
+// 原始函数名：Unwind_180901f90 - 异常处理回调函数A0
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA0 Unwind_180901f90
+
+// 原始函数名：Unwind_180901fa0 - 异常处理回调函数A1
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA1 Unwind_180901fa0
+
+// 原始函数名：Unwind_180901fc0 - 异常处理回调函数A2
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA2 Unwind_180901fc0
+
+// 原始函数名：Unwind_180901fe0 - 异常处理回调函数A3
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA3 Unwind_180901fe0
+
+// 原始函数名：Unwind_180902010 - 异常处理回调函数A4
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA4 Unwind_180902010
+
+// 原始函数名：Unwind_180902040 - 异常处理回调函数A5
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA5 Unwind_180902040
+
+// 原始函数名：Unwind_180902070 - 异常处理回调函数A6
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA6 Unwind_180902070
+
+// 原始函数名：Unwind_180902080 - 异常处理回调函数A7
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA7 Unwind_180902080
+
+// 原始函数名：Unwind_180902090 - 异常处理回调函数A8
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA8 Unwind_180902090
+
+// 原始函数名：Unwind_1809020c0 - 异常处理回调函数A9
+// 功能：处理异常情况的回调函数，在系统异常时被调用
+#define ExceptionHandlerCallbackA9 Unwind_1809020c0
+
+// 原始函数名：Unwind_1809020f0 - 异常清理函数A0
+// 功能：清理异常状态和资源
+#define ExceptionCleanupA0 Unwind_1809020f0
+
+// 原始函数名：Unwind_180902100 - 异常清理函数A1
+// 功能：清理异常状态和资源
+#define ExceptionCleanupA1 Unwind_180902100
+
+// 原始函数名：Unwind_180902110 - 异常处理函数A0
+// 功能：处理多参数异常情况
+#define ExceptionHandlerA0 Unwind_180902110
+
+// 原始函数名：Unwind_180902120 - 异常处理函数A1
+// 功能：处理双参数异常情况
+#define ExceptionHandlerA1 Unwind_180902120
+
+// 原始函数名：Unwind_180902130 - 异常处理函数A2
+// 功能：处理多参数异常情况
+#define ExceptionHandlerA2 Unwind_180902130
+
+// 原始函数名：Unwind_180902140 - 异常处理函数A3
+// 功能：处理双参数异常情况
+#define ExceptionHandlerA3 Unwind_180902140
+
+// 原始函数名：Unwind_180902150 - 异常处理函数A4
+// 功能：处理双参数异常情况
+#define ExceptionHandlerA4 Unwind_180902150
+
+// 原始函数名：Unwind_180902160 - 异常处理函数A5
+// 功能：处理双参数异常情况
+#define ExceptionHandlerA5 Unwind_180902160
+
+// 原始函数名：Unwind_180902170 - 异常处理函数A6
+// 功能：处理双参数异常情况
+#define ExceptionHandlerA6 Unwind_180902170
+
+// 原始函数名：Unwind_180902180 - 异常处理函数A7
+// 功能：处理双参数异常情况
+#define ExceptionHandlerA7 Unwind_180902180
+
+// 原始函数名：Unwind_180902190 - 异常处理函数A8
+// 功能：处理双参数异常情况
+#define ExceptionHandlerA8 Unwind_180902190
+
+// 原始函数名：Unwind_18090b7d0 - 资源清理函数A0
+// 功能：清理系统资源，遍历并释放内存块
+#define ResourceCleanupA0 Unwind_18090b7d0
 
 // 原始函数名：FUN_180943140 - 线程本地存储初始化函数A5
 // 功能：初始化线程本地存储A5
@@ -1054,6 +1251,55 @@
 // 原始函数名：FUN_18088ca20 - 上下文处理函数A0
 // 功能：处理系统上下文
 #define ProcessContextA0 FUN_18088ca20
+
+// Unwind函数语义化宏定义
+// 原始函数名：Unwind_180902010 - 异常处理展开函数010
+// 功能：处理标志位0x01的异常展开，清理相关资源
+#define UnwindExceptionHandling010 Unwind_180902010
+
+// 原始函数名：Unwind_180902040 - 异常处理展开函数040
+// 功能：处理标志位0x02的异常展开，清理相关资源
+#define UnwindExceptionHandling040 Unwind_180902040
+
+// 原始函数名：Unwind_180902070 - 异常处理展开函数070
+// 功能：设置异常处理指针并处理系统资源
+#define UnwindExceptionHandling070 Unwind_180902070
+
+// 原始函数名：Unwind_180902080 - 异常处理展开函数080
+// 功能：设置异常处理指针到指定偏移量
+#define UnwindExceptionHandling080 Unwind_180902080
+
+// 原始函数名：Unwind_180902090 - 异常处理展开函数090
+// 功能：处理标志位0x01的异常展开，执行资源清理
+#define UnwindExceptionHandling090 Unwind_180902090
+
+// 原始函数名：Unwind_1809020c0 - 异常处理展开函数0C0
+// 功能：处理标志位0x02的异常展开，执行资源清理
+#define UnwindExceptionHandling0C0 Unwind_1809020c0
+
+// 原始函数名：Unwind_1809020f0 - 异常处理展开函数0F0
+// 功能：执行异常处理展开操作
+#define UnwindExceptionHandling0F0 Unwind_1809020f0
+
+// 原始函数名：Unwind_180902100 - 异常处理展开函数100
+// 功能：执行异常处理展开操作
+#define UnwindExceptionHandling100 Unwind_180902100
+
+// 原始函数名：Unwind_180902110 - 异常处理展开函数110
+// 功能：执行异常处理展开操作，包含参数处理
+#define UnwindExceptionHandling110 Unwind_180902110
+
+// 原始函数名：Unwind_180902120 - 异常处理展开函数120
+// 功能：设置异常处理指针并处理系统资源
+#define UnwindExceptionHandling120 Unwind_180902120
+
+// 原始函数名：Unwind_180902130 - 异常处理展开函数130
+// 功能：执行异常处理展开操作，包含参数处理
+#define UnwindExceptionHandling130 Unwind_180902130
+
+// 原始函数名：Unwind_180902140 - 异常处理展开函数140
+// 功能：设置异常处理指针到指定偏移量
+#define UnwindExceptionHandling140 Unwind_180902140
 
 // 函数: void InitializeUtilityModule(void)
 // 
@@ -4160,19 +4406,19 @@ void ValidateSystemState(void)
 undefined8 RegisterSystemComponent(longlong componentHandle)
 
 {
-  longlong lVar1;
-  longlong lVar2;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 uVar5;
-  longlong *plVar6;
-  int iVar7;
-  ulonglong uVar8;
-  int iVar9;
-  ulonglong uVar10;
-  longlong *plVar11;
-  longlong in_stack_00000008;
-  char acStackX_18 [16];
+  longlong componentData;
+  longlong systemHandle;
+  int bufferSize;
+  undefined8 queryResult;
+  undefined8 processResult;
+  longlong *componentPointer;
+  int componentCount;
+  ulonglong loopIndex;
+  int capacity;
+  ulonglong searchIndex;
+  longlong *componentList;
+  longlong stackBuffer;
+  char processBuffer [16];
   
   uVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&stack0x00000008);
   if ((int)uVar4 != 0) {
@@ -8333,78 +8579,98 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
 // 
 // 返回值:
 //   无 - 验证结果通过系统状态返回
-void ValidateResourceAccess(longlong param_1, longlong param_2)
+void ValidateResourceAccess(longlong ResourceDescriptor, longlong AccessRequest)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 uStackX_8;
+  int QueryResult;
+  longlong ResourcePointer;
+  undefined8 StackData;
   
-  iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10));
-  if (iVar1 == 0) {
-    if (uStackX_8 == 0) {
-      lVar2 = 0;
+  QueryResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(ResourceDescriptor + 0x10));
+  if (QueryResult == 0) {
+    if (StackData == 0) {
+      ResourcePointer = 0;
     }
     else {
-      lVar2 = uStackX_8 + -8;
+      ResourcePointer = StackData + -8;
     }
-    *(undefined4 *)(lVar2 + 0x88) = *(undefined4 *)(param_1 + 0x18);
+    *(undefined4 *)(ResourcePointer + 0x88) = *(undefined4 *)(ResourceDescriptor + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    UpdateSystemResourceState(*(undefined8 *)(AccessRequest + 0x98),ResourceDescriptor);
   }
   return;
 }
 
 
 
-undefined8 FUN_180892780(longlong param_1,longlong param_2)
+// 函数: undefined8 ValidateAndProcessFloatingPointRange(longlong contextPointer, longlong systemDataPointer)
+// 
+// 浮点数范围验证和处理函数
+// 验证输入的浮点数是否在有效范围内，并进行相应的处理操作
+// 
+// 参数:
+//   contextPointer - 上下文指针，包含浮点数数据和相关配置信息
+//   systemDataPointer - 系统数据指针，用于查询和存储处理结果
+// 
+// 返回值:
+//   undefined8 - 处理结果状态码，0表示成功，非零表示各种错误状态
+//     0x1d - 浮点数无效(INF或NaN)
+//     0x4a - 系统数据查询失败
+//     0x1e - 数据指针无效
+//     0x1f - 数据状态验证失败
+// 
+// 注意事项:
+//   - 函数会检查浮点数的有效性，排除INF和NaN值
+//   - 会验证数据指针的状态和权限
+//   - 处理完成后会调用系统回调函数
+undefined8 ValidateAndProcessFloatingPointRange(longlong contextPointer, longlong systemDataPointer)
 
 {
-  float fVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  float fVar4;
-  longlong lStackX_8;
-  longlong alStackX_18 [2];
+  float inputValue;
+  longlong dataPointer;
+  undefined8 result;
+  float rangeValue;
+  longlong stackBuffer;
+  longlong queryBuffer [2];
   
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(param_1 + 0x20));
-  if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
+  stackBuffer = CONCAT44(stackBuffer._4_4_,*(uint *)(contextPointer + 0x20));
+  if ((*(uint *)(contextPointer + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar3 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),alStackX_18);
-  if ((int)uVar3 == 0) {
-    if (alStackX_18[0] == 0) {
-      alStackX_18[0] = 0;
+  result = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextPointer + 0x10),queryBuffer);
+  if ((int)result == 0) {
+    if (queryBuffer[0] == 0) {
+      queryBuffer[0] = 0;
     }
     else {
-      alStackX_18[0] = alStackX_18[0] + -8;
+      queryBuffer[0] = queryBuffer[0] + -8;
     }
-    lStackX_8 = 0;
-    uVar3 = FUN_1808681d0(alStackX_18[0],param_1 + 0x18,&lStackX_8);
-    if ((int)uVar3 == 0) {
-      if (lStackX_8 == 0) {
+    stackBuffer = 0;
+    result = ValidateSystemDataRange(queryBuffer[0],contextPointer + 0x18,&stackBuffer);
+    if ((int)result == 0) {
+      if (stackBuffer == 0) {
         return 0x4a;
       }
-      lVar2 = *(longlong *)(lStackX_8 + 0x10);
-      if (lVar2 == 0) {
+      dataPointer = *(longlong *)(stackBuffer + 0x10);
+      if (dataPointer == 0) {
         return 0x1e;
       }
-      if ((*(byte *)(lVar2 + 0x34) & 0x11) != 0) {
+      if ((*(byte *)(dataPointer + 0x34) & 0x11) != 0) {
         return 0x1f;
       }
-      fVar1 = *(float *)(param_1 + 0x20);
-      fVar4 = *(float *)(lVar2 + 0x38);
-      if ((*(float *)(lVar2 + 0x38) <= fVar1) &&
-         (fVar4 = *(float *)(lVar2 + 0x3c), fVar1 <= *(float *)(lVar2 + 0x3c))) {
-        fVar4 = fVar1;
+      inputValue = *(float *)(contextPointer + 0x20);
+      rangeValue = *(float *)(dataPointer + 0x38);
+      if ((*(float *)(dataPointer + 0x38) <= inputValue) &&
+         (rangeValue = *(float *)(dataPointer + 0x3c), inputValue <= *(float *)(dataPointer + 0x3c))) {
+        rangeValue = inputValue;
       }
-      *(float *)(param_1 + 0x20) = fVar4;
-      *(float *)(lStackX_8 + 4) = fVar4;
+      *(float *)(contextPointer + 0x20) = rangeValue;
+      *(float *)(stackBuffer + 4) = rangeValue;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      UpdateSystemFloatingPointValue(*(undefined8 *)(systemDataPointer + 0x98),contextPointer);
     }
   }
-  return uVar3;
+  return result;
 }
 
 
@@ -27776,12 +28042,28 @@ void Unwind_180901fe0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902010(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理展开函数010
+ * @details 处理标志位0x01的异常展开，清理相关资源
+ * 
+ * 参数:
+ *   param_1 - 异常上下文参数
+ *   param_2 - 展开参数结构体
+ * 
+ * 返回值:
+ *   无
+ */
+void UnwindExceptionHandling010(undefined8 exceptionContext,longlong unwindParam)
 
 {
-  if ((*(uint *)(param_2 + 0x20) & 1) != 0) {
-    *(uint *)(param_2 + 0x20) = *(uint *)(param_2 + 0x20) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x58));
+  uint32_t *statusFlags;
+  undefined8 *resourcePointer;
+  
+  statusFlags = (uint32_t *)(unwindParam + 0x20);
+  if ((*statusFlags & 1) != 0) {
+    *statusFlags = *statusFlags & 0xfffffffe;
+    resourcePointer = *(undefined8 **)(unwindParam + 0x58);
+    FUN_180627b90(*resourcePointer);
   }
   return;
 }
