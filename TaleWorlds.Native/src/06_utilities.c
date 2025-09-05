@@ -512,8 +512,8 @@
 #define ValidationContextSecondaryMethodPointerOffset 0x108
 
 // 系统验证代码常量
-#define SystemValidationCodeA 0x4a4f5250
-#define SystemValidationCodeB 0x4f525443
+#define SystemValidationCodeA 0x4a4f5250  // "JROP" 的十六进制表示
+#define SystemValidationCodeB 0x4f525443  // "ORTC" 的十六进制表示
 
 // 系统执行指针偏移常量
 #define SystemExecutionPointerResourceOffset 0x20
@@ -533,19 +533,19 @@
 #define SystemContextResourceTableLargeOffset 0x40000        // 系统上下文资源表大偏移量
 
 // 校验和种子值常量
-#define ChecksumSeedValueFEFB 0x46464542
-#define ChecksumSeedValueBEFB 0x42464542
-#define ChecksumSeedValueCTRL 0x4c525443
-#define ChecksumSeedValueORTC 0x4f525443
-#define ChecksumSeedValueVIVE 0x54495645
-#define ChecksumSeedValueBIVE 0x42495645
-#define ChecksumSeedValueSINI 0x54534e49
-#define ChecksumSeedValueMAP 0x2050414d
-#define ChecksumSeedValueLOMP 0x4f4c4d50
-#define ChecksumSeedValueBLOMP 0x424c4d50
-#define ChecksumSeedValueTIWS 0x54494157
-#define ChecksumSeedValueBIWS 0x42494157
-#define SystemResourceChecksumSeed 0x4a4f5250
+#define ChecksumSeedValueFEFB 0x46464542  // "FFEB" 的十六进制表示
+#define ChecksumSeedValueBEFB 0x42464542  // "BFEB" 的十六进制表示
+#define ChecksumSeedValueCTRL 0x4c525443  // "LRTC" 的十六进制表示
+#define ChecksumSeedValueORTC 0x4f525443  // "ORTC" 的十六进制表示
+#define ChecksumSeedValueVIVE 0x54495645  // "TIVE" 的十六进制表示
+#define ChecksumSeedValueBIVE 0x42495645  // "BIVE" 的十六进制表示
+#define ChecksumSeedValueSINI 0x54534e49  // "TSNI" 的十六进制表示
+#define ChecksumSeedValueMAP 0x2050414d  // " PAM" 的十六进制表示
+#define ChecksumSeedValueLOMP 0x4f4c4d50  // "OLMP" 的十六进制表示
+#define ChecksumSeedValueBLOMP 0x424c4d50  // "BLMP" 的十六进制表示
+#define ChecksumSeedValueTIWS 0x54494157  // "TIAW" 的十六进制表示
+#define ChecksumSeedValueBIWS 0x42494157  // "BIAW" 的十六进制表示
+#define SystemResourceChecksumSeed 0x4a4f5250  // "JROP" 的十六进制表示
 #define ChecksumSeedValueIKNB 0x494b4e42
 #define ChecksumSeedValueTIPS 0x54495053
 #define ChecksumSeedValueBTIPS 0x42495053
