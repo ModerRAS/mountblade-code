@@ -60033,7 +60033,7 @@ void Unwind_1809089b0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_1809089c0(void)
+void CleanupSystemMutexA(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -60042,7 +60042,7 @@ void Unwind_1809089c0(void)
 
 
 
-void Unwind_1809089d0(void)
+void CleanupSystemMutexB(void)
 
 {
   _Mtx_destroy_in_situ(0x180c91970);
@@ -60053,15 +60053,25 @@ void Unwind_1809089d0(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809089e0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 释放系统互斥锁A10
+ * 
+ * 该函数负责释放系统的互斥锁资源，确保线程同步的正确性。
+ * 如果释放失败，会抛出C标准错误异常。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_1809089e0
+ */
+void ReleaseSystemMutexA10(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  int inputParameter;
+  int mutexUnlockResult;
   
-  ExceptionContextPtr = *(DataBuffer *)(param_2 + 0x70);
-  inputParameter = _Mtx_unlock(0x180c91970);
-  if (inputParameter != 0) {
-    __Throw_C_error_std__YAXH_Z(inputParameter);
+  ExceptionContextPtr = *(DataBuffer *)(stackFrame + 0x70);
+  mutexUnlockResult = _Mtx_unlock(0x180c91970);
+  if (mutexUnlockResult != 0) {
+    __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
   }
   return;
 }
