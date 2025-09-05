@@ -12940,7 +12940,7 @@ undefined8 InitializeSystemDataStructure(longlong *param_1)
     }
     uVar6 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((longlong)param_1 + 0x1c) ^ uVar6) - uVar6) < iVar8) &&
-       (uVar3 = FUN_1807d3f50(param_1 + 2,iVar8), (int)uVar3 != 0)) {
+       (uVar3 = CheckSystemDataA0(param_1 + 2,iVar8), (int)uVar3 != 0)) {
       return uVar3;
     }
     uVar3 = FUN_1807703c0(param_1,iVar8);
@@ -13009,7 +13009,7 @@ undefined8 UtilityNoOperationK(void)
     }
     uVar5 = (int)*(uint *)((longlong)registerRBX + 0x1c) >> 0x1f;
     if (((int)((*(uint *)((longlong)registerRBX + 0x1c) ^ uVar5) - uVar5) < iVar7) &&
-       (uVar2 = FUN_1807d3f50(registerRBX + 2,iVar7), (int)uVar2 != 0)) {
+       (uVar2 = CheckSystemDataA0(registerRBX + 2,iVar7), (int)uVar2 != 0)) {
       return uVar2;
     }
     uVar2 = FUN_1807703c0();
@@ -13553,7 +13553,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
   int iVar12;
   int *piVar13;
   
-  uVar4 = FUN_180895210();
+  uVar4 = InitializeSystemA1();
   if ((int)uVar4 == 0) {
     if ((int)param_1[1] == 0) {
       return 0x1c;
