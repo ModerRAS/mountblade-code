@@ -110,6 +110,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define PrimaryMagicNumberIndex 1                               // 主要魔数索引
 #define SecondaryMagicNumberIndex 2                             // 次要魔数索引
 
+// 连接上下文配置常量
+#define ConnectionContextEntrySize 5                           // 连接上下文状态条目大小
+
 // 安全验证数据索引常量
 #define ConnectionValidationStatusIndex 0                       // 连接验证状态索引
 #define DataIntegrityValidationIndex 1                           // 数据完整性验证索引
@@ -257,7 +260,6 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define ConnectionContextPacketStatusIndex 1                   // 连接上下文数据包状态索引
 #define ConnectionContextDataStatusIndex 2                     // 连接上下文数据状态索引
 #define ConnectionContextValidationStatusIndex 3                // 连接上下文验证状态索引
-#define ConnectionContextEntrySize 5                           // 连接上下文状态条目大小
 #define NetworkOperationBufferSizeIndex 1                      // 网络操作缓冲区大小索引
 #define NetworkStatusValidationIndex 1                         // 网络状态验证索引
 #define NetworkStatusTimeoutIndex 2                            // 网络状态超时索引
