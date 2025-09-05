@@ -8588,7 +8588,7 @@ void InitializeSystemEventHandlerA1(longlong param_1,longlong param_2)
   undefined8 uStackX_8;
   
   if (*(int *)(param_1 + 0x2c) == 0) {
-    iVar1 = FUN_180894b00(param_2,param_1 + 0x1c,&uStackX_8);
+    iVar1 = QuerySystemDataA0(param_2,param_1 + 0x1c,&uStackX_8);
     if (iVar1 == 0) {
       iVar1 = ValidateAndProcessSystemResourceA0(uStackX_8,param_1 + 0x2c);
       if (iVar1 == 0) goto ValidationCheckpoint;
