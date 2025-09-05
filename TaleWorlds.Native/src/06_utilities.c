@@ -20398,7 +20398,7 @@ void ValidateDataBlockA0(int64_t DataBlockContext, DataBuffer ValidationBuffer)
  * @note 原始函数名：FUN_180898790
  */
 #define ProcessDataA0 FUN_180898790
-DataBuffer ProcessDataA0(int64_t *param_1,int param_2)
+DataBuffer ProcessDataA0(int64_t *DataPointer,int ProcessingFlags)
 
 {
   int inputParameter;
@@ -20434,7 +20434,7 @@ DataBuffer ProcessDataA0(int64_t *param_1,int param_2)
  * @note 原始函数名：FUN_1808987e0
  */
 #define ValidateDataA1 FUN_1808987e0
-DataBuffer ValidateDataA1(int64_t *param_1,char param_2)
+DataBuffer ValidateDataA1(int64_t *DataDescriptor,char ValidationType)
 
 {
   int64_t validationContext;
@@ -39089,7 +39089,7 @@ void CleanupDataValuePointer(DataBuffer param_1,int64_t param_2,DataBuffer param
 
 
 
-void Unwind_1809030a0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupExceptionResourceWithValidation(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   DataBuffer *exceptionDataBuffer;
@@ -39462,7 +39462,7 @@ void CleanupMemoryPool1a0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_1809031b0(DataBuffer param_1,int64_t param_2)
+void CleanupSystemMemoryBufferA(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t validationContext;
@@ -39483,7 +39483,7 @@ void Unwind_1809031b0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_1809031c0(DataBuffer param_1,int64_t param_2)
+void CleanupValidationContext(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t *validationContextPointer;
