@@ -7710,7 +7710,7 @@ undefined8 ValidateDataIntegrity(longlong dataStructure,longlong validationConte
   if (0 < *(int *)(param_1 + 0x10)) {
     do {
       if (((*poperationResult != _DAT_180c4eaa0) || (poperationResult[1] != _DAT_180c4eaa4)) &&
-         (uVar1 = FUN_1808678e0(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)iVar4 * 2,*puVar3
+         (uVar1 = ProcessDataIndexA0(param_2 + 0x60,(int *)(param_1 + 0x18) + (longlong)iVar4 * 2,*puVar3
                                 ,*(undefined1 *)(param_1 + 0x14)), (int)uVar1 != 0)) {
         return uVar1;
       }
