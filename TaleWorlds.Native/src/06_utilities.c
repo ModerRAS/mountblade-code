@@ -36047,7 +36047,18 @@ void ExceptionCleanupHandlerValidationContext2(undefined8 param_1,longlong param
 
 
 
-void Unwind_180902a70(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理内存上下文
+ * 
+ * 该函数负责清理内存上下文，包括：
+ * - 遍历内存上下文中的数据
+ * - 调用清理函数处理每个数据项
+ * - 在数据为空时调用系统终止函数
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerMemoryContext(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -36085,7 +36096,18 @@ void Unwind_180902a70(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902a80(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理内存上下文
+ * 
+ * 该函数负责清理内存上下文，包括：
+ * - 遍历内存上下文中的数据
+ * - 调用清理函数处理每个数据项
+ * - 在数据为空时调用系统终止函数
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerMemoryContext2(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -36123,7 +36145,18 @@ void Unwind_180902a80(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902a90(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理内存上下文
+ * 
+ * 该函数负责清理内存上下文，包括：
+ * - 遍历内存上下文中的数据
+ * - 调用清理函数处理每个数据项
+ * - 在数据为空时调用系统终止函数
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerMemoryContext3(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -36161,7 +36194,20 @@ void Unwind_180902a90(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902aa0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * 系统调用处理器 - 调用系统清理函数
+ * 
+ * 该函数作为系统调用的包装器，负责：
+ * - 从异常上下文中提取参数
+ * - 调用底层的系统清理函数
+ * - 传递必要的清理标志
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ * @param param3 额外参数3
+ * @param param4 额外参数4
+ */
+void SystemCallHandlerCleanupFunc4(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058420(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
@@ -36171,7 +36217,18 @@ void Unwind_180902aa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902ab0(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理资源引用计数和异常状态
+ * 
+ * 该函数负责在异常发生时清理资源，包括：
+ * - 管理资源指针的引用计数
+ * - 处理异常列表和内存管理
+ * - 在引用计数为0时调用异常处理
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerResourceRef2(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;

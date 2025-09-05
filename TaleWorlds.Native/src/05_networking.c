@@ -3161,19 +3161,19 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
  */
 void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *ProcessingBuffer)
 {
-  // 数据包处理完成变量
-  uint32_t CompletionStatus;                         // 数据包完成状态
+  // 数据包处理完成状态变量
+  uint32_t ProcessingCompletionStatus;               // 数据包处理完成状态
   uint32_t BufferCleanupStatus;                     // 数据包缓冲区清理状态
-  uint32_t DataValidationStatus;                    // 数据包数据验证状态
+  uint32_t DataValidationResult;                    // 数据包数据验证结果
   
-  // 初始化完成状态
-  CompletionStatus = NetworkValidationFailure;
+  // 初始化处理完成状态
+  ProcessingCompletionStatus = NetworkValidationFailure;
   BufferCleanupStatus = NetworkValidationFailure;
-  DataValidationStatus = NetworkValidationFailure;
+  DataValidationResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
-    DataValidationStatus = NetworkValidationSuccess;  // 数据验证通过
+    DataValidationResult = NetworkValidationSuccess;    // 数据验证通过
   }
   
   // 清理处理缓冲区
@@ -3182,11 +3182,11 @@ void FinalizePacketProcessing(NetworkHandle *PacketData, NetworkByte *Processing
     BufferCleanupStatus = NetworkValidationSuccess;  // 缓冲区清理成功
   }
   
-  // 综合完成状态
-  CompletionStatus = DataValidationStatus & BufferCleanupStatus;
+  // 综合处理完成状态
+  ProcessingCompletionStatus = DataValidationResult & BufferCleanupStatus;
   
-  // 如果完成成功，更新处理状态
-  if (CompletionStatus == NetworkValidationSuccess) {
+  // 如果处理完成成功，更新处理状态
+  if (ProcessingCompletionStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的完成处理逻辑
     // 例如：更新统计信息、通知回调函数等
   }
@@ -3412,15 +3412,15 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
  */
 NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int64_t PacketContextOffset, uint32_t DataProcessingMode, int64_t ConnectionContext)
 {
-  // 数据包数据处理变量
-  uint32_t PacketDataProcessingResult;             // 数据包数据处理结果
-  uint32_t NetworkPacketDataParsingResult;                // 数据包数据解析结果
-  uint32_t NetworkPacketDataValidationResult;             // 数据包数据验证结果
+  // 数据包数据处理状态变量
+  uint32_t PacketProcessingResult;                   // 数据包处理结果
+  uint32_t DataParsingResult;                        // 数据解析结果
+  uint32_t DataValidationResult;                     // 数据验证结果
   
   // 初始化处理状态
-  PacketDataProcessingResult = NetworkValidationFailure;
-  NetworkPacketDataParsingResult = NetworkValidationFailure;
-  NetworkPacketDataValidationResult = NetworkValidationFailure;
+  PacketProcessingResult = NetworkValidationFailure;
+  DataParsingResult = NetworkValidationFailure;
+  DataValidationResult = NetworkValidationFailure;
   
   // 验证数据包数据有效性
   if (PacketData && *PacketData != 0) {
