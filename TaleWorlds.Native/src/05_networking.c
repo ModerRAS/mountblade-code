@@ -1388,6 +1388,10 @@ int32_t ValidateNetworkProtocol(int64_t NetworkData, int64_t PacketData);
  * 此处理器负责管理和响应网络连接过程中的各种事件。
  */
 uint32_t NetworkConnectionEventHandler;                    // 网络连接事件处理器，处理连接相关的事件
+uint32_t NetworkConnectionStateManager;               // 网络连接状态管理器
+uint32_t NetworkEventQueue;                            // 网络事件队列
+uint32_t NetworkCallbackHandler;                        // 网络回调处理器
+uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
 
 // 网络连接状态常量
 #define NetworkConnectionNotFound 0xFFFFFFFF

@@ -8552,7 +8552,7 @@ void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
   if (iVar1 == 0) {
     iVar1 = ProcessDataOperationA0(uStackX_8,param_1 + 0x18);
     if (iVar1 == 0) {
-      FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
+      ProcessSystemEventB0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
   }
   return;
@@ -17711,6 +17711,19 @@ ValidationCheckpointA:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 验证并处理数据块转换D84
+ * 
+ * 该函数负责验证输入参数的有效性，分配内存空间，并执行数据块的转换操作。
+ * 主要处理数据的复制和格式转换，确保数据的完整性和正确性。
+ * 
+ * @param param_1 输入参数1，包含数据块的相关信息
+ * @param param_2 输入参数2，指定数据块的大小或数量
+ * @return 处理结果，0表示成功，其他值表示错误码
+ * 
+ * @note 原始函数名：FUN_180898d84
+ */
+#define ValidateAndProcessDataBlockConversionD84 FUN_180898d84
 undefined8 FUN_180898d84(undefined8 param_1,int param_2)
 
 {
