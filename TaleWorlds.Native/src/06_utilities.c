@@ -18020,7 +18020,7 @@ void ProcessFloatingPointDataA0(void)
   DataWord register_EBX;
   int64_t stackFramePointer;
   int register_R12D;
-  int64_t register_R13;
+  int64_t dataContextPointer;
   char register_R15B;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
