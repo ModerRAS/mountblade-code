@@ -1055,18 +1055,6 @@ uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑�
 /**
  * @brief 初始化网络连接池
  * 
- * 初始化网络连接池，为后续连接做准备。此函数负责设置连接池的基本参数，
- * 包括容量限制、健康状态、性能指标等。初始化后的连接池可以接受
- * 新的连接请求并进行有效的连接管理。
- * 
- * @note 此函数会在系统启动时调用，确保连接池可用
- * @warning 如果初始化失败，系统将无法建立新的网络连接
- * 
- * @return void 无返回值
- */
-/**
- * @brief 初始化网络连接池
- * 
  * 初始化网络连接池的各项参数和配置，为后续的网络连接管理做准备。
  * 此函数负责设置连接池的容量、计数器、健康状态和性能监控参数。
  * 
@@ -1943,9 +1931,8 @@ uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算�
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列管理器
 uint32_t NetworkPendingRequestCount;                // 待处理网络连接请求数量
-uint32_t NetworkConnectionData;                              // 网络连接数据存储
-uint32_t NetworkConnectionSize;                              // 网络连接数据大小
-uint32_t NetworkConnectionIndex;                              // 网络连接索引位置
+uint32_t NetworkConnectionStorage;                              // 网络连接数据存储
+uint32_t NetworkConnectionDataSize;                              // 网络连接数据大小
 uint32_t NetworkThroughputMonitor;                     // 网络吞吐量监控器指针
 uint32_t NetworkLatencyMonitor;                         // 网络延迟监控器指针
 uint32_t NetworkBandwidthMonitor;                        // 网络带宽监控器指针
@@ -1968,18 +1955,10 @@ uint32_t NetworkAuthenticationSecurityLevel;       // 网络认证安全级别
 uint32_t NetworkEncryptionAlgorithmType;            // 网络加密算法类型
 uint32_t NetworkCompressionAlgorithmType;           // 网络压缩算法类型
 uint32_t NetworkConnectionStatistics;               // 网络连接统计信息
-uint32_t NetworkSessionEncryptionKey;               // 网络会话加密密钥
-uint32_t NetworkHandshakeTimeout;                    // 网络握手超时时间
-uint32_t NetworkAuthenticationTimeout;              // 网络认证超时时间
-uint32_t NetworkEncryptionTimeout;                   // 网络加密超时时间
-uint32_t NetworkConnectionReliability;              // 网络连接可靠性
-uint32_t NetworkConnectionPerformance;              // 网络连接性能
 uint32_t NetworkConnectionTableIndex;               // 网络连接表索引
 uint32_t NetworkConnectionTableSize;                 // 网络连接表大小
 uint32_t NetworkPacketQueue;                        // 网络数据包队列
 uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大小
-uint32_t NetworkEventContext;                        // 网络事件上下文
-uint32_t NetworkCallbackContext;                      // 网络回调上下文
 
 /**
  * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据
@@ -3299,7 +3278,7 @@ NetworkHandle ProcessNetworkPacketDataWithContext(NetworkHandle *PacketData, int
  * @note 此函数会更新数据包状态并清理临时资源
  * @warning 如果完成处理失败，可能会导致资源泄漏或状态不一致
  */
-NetworkHandle FinalizePacketProcessingWithCompletion(NetworkHandle *PacketData, int64_t ProcessingCompletionOffset, uint32_t ProcessingCompletionValue)
+NetworkHandle FinalizePacketProcessingWithCompletion(NetworkHandle *PacketData, int64_t ProcessingDataOffset, uint32_t ProcessingCompletionFlag)
 {
   // 数据包完成处理变量
   uint32_t PacketFinalizationResult;              // 数据包完成处理结果
