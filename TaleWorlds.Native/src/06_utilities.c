@@ -13793,7 +13793,10 @@ undefined8 QuerySystemStatus(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180896040(longlong *param_1,int param_2)
+// 原始函数名：FUN_180896040 - 参数验证函数
+// 功能：验证参数的有效性
+#define ValidateParameters FUN_180896040
+undefined8 ValidateParameters(longlong *param_1,int param_2)
 
 {
   longlong validationContext;
@@ -13830,7 +13833,10 @@ DataTransferLabel:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180896064(undefined8 param_1,int param_2)
+// 原始函数名：FUN_180896064 - 数据处理函数
+// 功能：处理输入数据并返回处理结果
+#define ProcessInputData FUN_180896064
+undefined8 ProcessInputData(undefined8 param_1,int param_2)
 
 {
   longlong validationContext;
@@ -13864,7 +13870,10 @@ DataTransferLabel:
 
 
 
-undefined8 FUN_18089611f(void)
+// 原始函数名：FUN_18089611f - 空操作函数
+// 功能：执行空操作，用于系统初始化或清理流程中的占位符
+#define PerformNoOperation FUN_18089611f
+undefined8 PerformNoOperation(void)
 
 {
   return 0x26;
