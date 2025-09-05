@@ -98801,7 +98801,18 @@ void ResetResourceFlagAndReleaseDataOffsetResource(uint8_t ObjectContext,int64_t
 
 
 
-void Unwind_18090ffe0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表清理循环
+ * 
+ * 该函数遍历资源表并执行资源清理操作，如果资源表指针不为零，
+ * 则执行系统紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090ffe0
+ */
+void ExecuteResourceTableCleanupLoop(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -98821,7 +98832,18 @@ void Unwind_18090ffe0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fff0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行数据偏移处的资源表清理循环
+ * 
+ * 该函数遍历数据偏移处的资源表并执行资源清理操作，如果资源表指针不为零，
+ * 则执行系统紧急退出程序
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * 
+ * 原始函数名：Unwind_18090fff0
+ */
+void ExecuteDataOffsetResourceTableCleanupLoop(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
