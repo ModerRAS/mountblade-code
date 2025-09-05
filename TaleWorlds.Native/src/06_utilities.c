@@ -65,6 +65,10 @@
 // 错误码返回函数
 #define ReturnErrorCode FUN_180895345
 
+// 原始函数名：FUN_180895c60 - 数据验证和标志处理函数
+// 功能：验证数据上下文中的标志位，执行哈希查找，并调用相应的回调函数
+#define ValidateAndProcessDataFlags FUN_180895c60
+
 // 原始函数名：FUN_1808947b0 - 数据缓冲区处理函数
 // 功能：处理数据缓冲区并进行验证，返回处理的总字节数
 #define ProcessDataBufferWithValidation FUN_1808947b0
@@ -7062,12 +7066,12 @@ void ProcessUtilityOperation(longlong operationParams,uint64_t systemContext)
   undefined8 ContextPointer;
   undefined4 ParamValue;
   
-  ContextPointer = *(undefined8 *)(param_1 + 0x10);
-  ParamValue = *(undefined4 *)(param_1 + 0x18);
+  ContextPointer = *(undefined8 *)(operationParams + 0x10);
+  ParamValue = *(undefined4 *)(operationParams + 0x18);
   OperationParams[0] = 2;
-  OperationResult = ExecuteSystemOperation(param_2,OperationParams,*(undefined4 *)(resourceDescriptor + 0x1c),CallbackData);
+  OperationResult = ExecuteSystemOperation(systemContext,OperationParams,*(undefined4 *)(resourceDescriptor + 0x1c),CallbackData);
   if (OperationResult == 0) {
-    FUN_180875fc0(param_2,CallbackData[0]);
+    FUN_180875fc0(systemContext,CallbackData[0]);
   }
   return;
 }
@@ -13020,46 +13024,46 @@ void QueryAndRetrieveSystemData(longlong dataStructure, int searchIndex, undefin
 
 
 
-undefined8 FUN_180895c60(longlong param_1,int param_2,uint *param_3)
+undefined8 FUN_180895c60(longlong dataContext,int operationIndex,uint *validationFlags)
 
 {
-  uint uVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 *puVar4;
-  int iVar5;
-  undefined4 uStackX_1c;
+  uint flagValue;
+  longlong tablePointer;
+  longlong currentIndex;
+  undefined8 *functionPointer;
+  int hashIndex;
+  undefined4 resultValue;
   
-  if (param_3 != (uint *)0x0) {
-    uVar1 = *param_3;
-    if (uVar1 != 0) {
-      if (((*(int *)(param_1 + 0x94) != 0) && (*(int *)(param_1 + 0x78) != 0)) &&
-         (iVar5 = *(int *)(*(longlong *)(param_1 + 0x70) +
-                          (longlong)(int)(*(int *)(param_1 + 0x78) - 1U & uVar1) * 4), iVar5 != -1))
+  if (validationFlags != (uint *)0x0) {
+    flagValue = *validationFlags;
+    if (flagValue != 0) {
+      if (((*(int *)(dataContext + 0x94) != 0) && (*(int *)(dataContext + 0x78) != 0)) &&
+         (hashIndex = *(int *)(*(longlong *)(dataContext + 0x70) +
+                          (longlong)(int)(*(int *)(dataContext + 0x78) - 1U & flagValue) * 4), hashIndex != -1))
       {
-        lVar2 = *(longlong *)(param_1 + 0x80);
+        tablePointer = *(longlong *)(dataContext + 0x80);
         do {
-          lVar3 = (longlong)iVar5;
-          if (*(uint *)(lVar2 + lVar3 * 0x10) == uVar1) {
-            uStackX_1c = (uint)((ulonglong)*(undefined8 *)(lVar2 + 8 + lVar3 * 0x10) >> 0x20);
-            if (uStackX_1c != 0) {
-              *param_3 = uStackX_1c;
+          currentIndex = (longlong)hashIndex;
+          if (*(uint *)(tablePointer + currentIndex * 0x10) == flagValue) {
+            resultValue = (uint)((ulonglong)*(undefined8 *)(tablePointer + 8 + currentIndex * 0x10) >> 0x20);
+            if (resultValue != 0) {
+              *validationFlags = resultValue;
               return 0;
             }
             goto LAB_180895ccb;
           }
-          iVar5 = *(int *)(lVar2 + 4 + lVar3 * 0x10);
-        } while (iVar5 != -1);
+          hashIndex = *(int *)(tablePointer + 4 + currentIndex * 0x10);
+        } while (hashIndex != -1);
       }
-      uStackX_1c = 0;
+      resultValue = 0;
 LAB_180895ccb:
-      puVar4 = (undefined8 *)
-               ((longlong)*(int *)(*(longlong *)(param_1 + 0x18) + (longlong)param_2 * 0xc) +
-               *(longlong *)(param_1 + 8));
-      if (puVar4 != (undefined8 *)0x0) {
-        (**(code **)*puVar4)();
+      functionPointer = (undefined8 *)
+               ((longlong)*(int *)(*(longlong *)(dataContext + 0x18) + (longlong)operationIndex * 0xc) +
+               *(longlong *)(dataContext + 8));
+      if (functionPointer != (undefined8 *)0x0) {
+        (**(code **)*functionPointer)();
       }
-      *param_3 = uStackX_1c;
+      *validationFlags = resultValue;
       return 0;
     }
   }
@@ -20424,19 +20428,28 @@ void UtilityNoOperationD(void)
 
 
 
-89b400(longlong param_1,undefined8 param_2)
-void FUN_18089b400(longlong param_1,undefined8 param_2)
-
+/**
+ * 验证并处理端口控制请求
+ * 
+ * 该函数验证端口控制请求的有效性，并在验证通过时执行相应的控制操作。
+ * 如果验证失败，函数会安全返回；如果验证通过但不执行操作，也会安全返回。
+ * 
+ * @param portContext 端口上下文句柄，包含端口相关信息
+ * @param controlRequest 控制请求参数，指定要执行的控制操作
+ */
+void ValidateAndProcessPortControlRequest(longlong portContext, undefined8 controlRequest)
 {
-  int iVar1;
-  undefined1 auStack_28 [32];
+  int validationStatus;
+  undefined1 portBuffer [32];
   
-  iVar1 = FUN_1808ddc20(param_2,auStack_28,0,0x4f525443);
-  if (iVar1 == 0) {
-    iVar1 = FUN_1808a79f0(param_2,param_1 + 8);
-    if (iVar1 == 0) {
+  // 验证控制请求的有效性
+  validationStatus = ValidatePortControlRequest(controlRequest, portBuffer, 0, PORT_CONTROL_FLAG);
+  if (validationStatus == 0) {
+    // 验证端口访问权限
+    validationStatus = ValidatePortAccess(controlRequest, portContext + 8);
+    if (validationStatus == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_28);
+      ExecutePortControlOperation(controlRequest, portBuffer);
     }
   }
   return;
