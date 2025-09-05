@@ -174,26 +174,26 @@
 #define InitializeGlobalDataPointerA1 InitializeGlobalDataPointerMemoryManager
 #define SetGlobalDataPointerA2 InitializeGlobalDataPointerResourceManager
 #define SetGlobalDataPointerA3 InitializeGlobalDataPointerFileSystem
-#define SetGlobalDataPointerA4 InitializeGlobalDataPointerA4
-#define SetGlobalDataPointerA5 InitializeGlobalDataPointerA5
-#define SetGlobalDataPointerA6 InitializeGlobalDataPointerA6
-#define SetGlobalDataPointerA7 InitializeGlobalDataPointerA7
-#define SetGlobalDataPointerA8 InitializeGlobalDataPointerA8
-#define SetGlobalDataPointerA9 InitializeGlobalDataPointerA9
-#define SetGlobalDataPointerA10 InitializeGlobalDataPointerA10
-#define SetGlobalDataPointerA11 InitializeGlobalDataPointerA11
-#define SetGlobalDataPointerA12 InitializeGlobalDataPointerA12
-#define SetGlobalDataPointerA13 InitializeGlobalDataPointerA13
-#define SetGlobalDataPointerA14 InitializeGlobalDataPointerA14
-#define SetGlobalDataPointerA15 InitializeGlobalDataPointerA15
-#define SetGlobalDataPointerA16 InitializeGlobalDataPointerA16
-#define SetGlobalDataPointerA17 InitializeGlobalDataPointerA17
-#define SetGlobalDataPointerA18 InitializeGlobalDataPointerA18
-#define SetGlobalDataPointerA19 InitializeGlobalDataPointerA19
-#define SetGlobalDataPointerA20 InitializeGlobalDataPointerA20
-#define SetGlobalDataPointerA21 InitializeGlobalDataPointerA21
-#define SetGlobalDataPointerA22 InitializeGlobalDataPointerA22
-#define SetGlobalDataPointerA23 InitializeGlobalDataPointerA23
+#define SetGlobalDataPointerA4 InitializeGlobalDataPointerNetworkManager
+#define SetGlobalDataPointerA5 InitializeGlobalDataPointerAudioManager
+#define SetGlobalDataPointerA6 InitializeGlobalDataPointerInputManager
+#define SetGlobalDataPointerA7 InitializeGlobalDataPointerPhysicsManager
+#define SetGlobalDataPointerA8 InitializeGlobalDataPointerAnimationManager
+#define SetGlobalDataPointerA9 InitializeGlobalDataPointerResourceManagerSecondary
+#define SetGlobalDataPointerA10 InitializeGlobalDataPointerSceneManager
+#define SetGlobalDataPointerA11 InitializeGlobalDataPointerUIManager
+#define SetGlobalDataPointerA12 InitializeGlobalDataPointerScriptManager
+#define SetGlobalDataPointerA13 InitializeGlobalDataPointerDatabaseManager
+#define SetGlobalDataPointerA14 InitializeGlobalDataPointerNetworkManagerSecondary
+#define SetGlobalDataPointerA15 InitializeGlobalDataPointerSerializationManager
+#define SetGlobalDataPointerA16 InitializeGlobalDataPointerLocalizationManager
+#define SetGlobalDataPointerA17 InitializeGlobalDataPointerAnalyticsManager
+#define SetGlobalDataPointerA18 InitializeGlobalDataPointerPlatformManager
+#define SetGlobalDataPointerA19 InitializeGlobalDataPointerAchievementManager
+#define SetGlobalDataPointerA20 InitializeGlobalDataPointerDLCManager
+#define SetGlobalDataPointerA21 InitializeGlobalDataPointerModManager
+#define SetGlobalDataPointerA22 InitializeGlobalDataPointerCloudManager
+#define SetGlobalDataPointerA23 InitializeGlobalDataPointerSecurityManager
 
 // 数据处理函数宏定义 (D系列)
 
@@ -18558,9 +18558,9 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                   iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                   if (iterationCount != 0) goto FUN_180897b16;
                 }
-                fVar13 = (float)((int)fVar13 + 1);
-                pfVar15 = pfVar15 + 1;
-              } while ((int)fVar13 < 6);
+                loopCounter = (float)((int)loopCounter + 1);
+                floatArrayPointer = floatArrayPointer + 1;
+              } while ((int)loopCounter < 6);
               validationOutcome = ValidateParameters(param_2 + 200);
               if ((float)(validationOutcome / 0x30) != 0.0) {
                 puStack_1c0 = &UNK_180983be8;

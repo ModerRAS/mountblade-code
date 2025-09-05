@@ -373,6 +373,7 @@
 #define NodeHeadPointerOffset                 6  // 节点头指针偏移量
 #define NodeAllocationExtraSize               0x20  // 节点分配额外大小
 #define IdentifierSize                        SystemIdentifierSize  // 标识符大小（使用系统标识符大小常量）
+#define SYSTEM_IDENTIFIER_SIZE                 SystemIdentifierSize  // 系统标识符大小（兼容性定义）
 
 // 系统控制器相关常量
 #define SystemControllerAllocationSize        0xc0
