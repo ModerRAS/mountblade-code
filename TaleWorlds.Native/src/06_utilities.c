@@ -50060,13 +50060,21 @@ void HandleExceptionA2(undefined8 ContextParameter, longlong SystemContext, unde
 
 
 
-void Unwind_180908030(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理函数A3
+ * 
+ * 处理系统异常和错误恢复操作，包含复杂的内存管理和异常链处理
+ * 
+ * @param ContextParameter 上下文参数，包含异常处理的相关信息
+ * @param SystemContext 系统上下文，包含系统状态信息
+ */
+void HandleExceptionA3(undefined8 ContextParameter, longlong SystemContext)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ReferenceCounter;
+  undefined8 *ExceptionPointer;
+  longlong MemoryAddress;
+  ulonglong MemoryMask;
   
   puVar2 = *(undefined8 **)(param_2 + 0x48);
   if (puVar2 == (undefined8 *)0x0) {
