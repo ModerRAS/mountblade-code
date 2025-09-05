@@ -2555,9 +2555,9 @@
 // 功能：存储异常处理的加密密钥信息
 #define ExceptionEncryptionKey ExceptionEncryptionKey
 
-// 原始变量名：_DAT_180c82250 - 异常偏移量
+// 原始变量名：ExceptionOffsetValue - 异常偏移量
 // 功能：存储异常处理的偏移量信息
-#define ExceptionOffsetValue _DAT_180c82250
+#define ExceptionOffsetValue ExceptionOffsetValue
 
 // 原始变量名：_DAT_180bf9390 - 全局异常处理器指针A1
 // 功能：存储全局异常处理器A1的指针
@@ -32841,8 +32841,8 @@ void ExceptionHandlerA0(void)
   bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
-            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -52012,8 +52012,8 @@ void ResetSystemEventState(void)
   shiftBits = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> shiftBits |
-            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - shiftBits))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBits))(0x180c82238);
   return;
 }
 
@@ -53704,8 +53704,8 @@ void Unwind_180907130(void)
   bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
-            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -57013,8 +57013,8 @@ void Unwind_180908040(void)
   bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
-            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -59383,8 +59383,8 @@ void Unwind_180908d30(void)
   bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
-            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -63958,8 +63958,8 @@ void Unwind_18090a6e0(void)
   bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
-            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
@@ -89475,8 +89475,8 @@ void Unwind_1809127d0(void)
   bVar1 = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((ExceptionEncryptionKey ^ _DAT_180c82250) >> bVar1 |
-            (ExceptionEncryptionKey ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> bVar1 |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - bVar1))(0x180c82238);
   return;
 }
 
