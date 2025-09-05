@@ -5701,7 +5701,7 @@ void UtilityNoOperationE(void)
 // 
 // 返回值:
 //   无
-void ProcessUtilityOperation(longlong param_1,undefined8 param_2)
+void ProcessUtilityOperation(longlong operationParams,undefined8 systemContext)
 
 {
   int OperationResult;
@@ -85678,6 +85678,13 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ExecuteSystemValidationA0 FUN_180894c70
 #define ProcessComplexDataStructureA0 FUN_180896c60
 #define CheckSystemStatusAndExecuteA0 FUN_180896e11
+
+// 浮点数处理相关宏定义
+#define ExecuteSecurityCheckAndTerminateA0 FUN_1808974f4
+#define ProcessDataPointerAndBufferA1 FUN_180897520
+#define ProcessComplexDataBufferA1 FUN_180896c60
+#define ProcessFloatingPointDataA0 FUN_180896e11
+#define ExecuteSecurityCheckJumpA0 FUN_1808974f4
 
 
 
