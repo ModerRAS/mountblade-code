@@ -4071,23 +4071,23 @@
  * @note 原始函数名：InitializeUtilityModule
  */
 void InitializeUtilityModule(void);
-uint32_t UtilityModulePrimaryConfig;
-uint32_t UtilityModuleSecondaryConfig;
-uint32_t UtilityModuleTertiaryConfig;
-uint32_t UtilityModuleQuaternaryConfig;
-uint32_t UtilityModuleQuinaryConfig;
-uint32_t UtilityModuleSenaryConfig;
-bool UtilityModulePrimaryEnabled;
-uint32_t UtilityModuleSeptenaryConfig;
-uint32_t UtilityModuleOctonaryConfig;
-bool UtilityModuleSecondaryEnabled;
+uint32_t UtilityModulePrimaryConfiguration;
+uint32_t UtilityModuleSecondaryConfiguration;
+uint32_t UtilityModuleTertiaryConfiguration;
+uint32_t UtilityModuleQuaternaryConfiguration;
+uint32_t UtilityModuleQuinaryConfiguration;
+uint32_t UtilityModuleSenaryConfiguration;
+bool UtilityModulePrimaryActivationState;
+uint32_t UtilityModuleSeptenaryConfiguration;
+uint32_t UtilityModuleOctonaryConfiguration;
+bool UtilityModuleSecondaryActivationState;
 void* UtilityModulePrimaryResourcePointer;
 void* UtilityModulePrimaryMemoryPointer;
 void* UtilityModuleSecondaryMemoryPointer;
-uint32_t UtilityModuleNonaryConfig;
-uint32_t UtilityModuleDenaryConfig;
-uint32_t UtilityModuleUndenaryConfig;
-uint32_t UtilityModuleDuodenaryConfig;
+uint32_t UtilityModuleNonaryConfiguration;
+uint32_t UtilityModuleDenaryConfiguration;
+uint32_t UtilityModuleUndenaryConfiguration;
+uint32_t UtilityModuleDuodenaryConfiguration;
 void* UtilityModuleSecondaryResourcePointer;
 
 // 函数: void ResetUtilityPointers1(void)
@@ -4101,8 +4101,8 @@ void* UtilityModuleSecondaryResourcePointer;
  * @note 原始函数名：ResetUtilityPointers1
  */
 void ResetUtilityPointers1(void);
-uint32_t PrimaryPointerResetValue;
-uint32_t SecondaryPointerResetValue;
+uint32_t PrimaryPointerResetConfiguration;
+uint32_t SecondaryPointerResetConfiguration;
 uint32_t TertiaryPointerResetValue;
 uint32_t QuaternaryPointerResetValue;
 
@@ -13982,45 +13982,54 @@ void UtilityNoOperationC(void)
 
 
 
-// 配置保存函数A0
-undefined8 SaveSystemConfigurationA0(longlong param_1,longlong param_2)
+// 系统配置保存函数
+/**
+ * @brief 保存系统配置数据
+ * 
+ * 该函数用于保存系统配置信息，包括数据验证和范围检查
+ * 
+ * @param configHandle 配置句柄
+ * @param systemContext 系统上下文
+ * @return 操作结果状态码
+ */
+undefined8 SaveSystemConfigurationA0(longlong configHandle,longlong systemContext)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong calculatedOffset;
-  undefined8 *pmemoryBaseAddress;
-  float fVar5;
-  uint auStackX_8 [2];
-  undefined4 auStackX_18 [2];
+  float inputValue;
+  undefined8 operationResult;
+  longlong dataOffset;
+  undefined8 *memoryBaseAddress;
+  float validatedValue;
+  uint validationBuffer [2];
+  undefined4 securityBuffer [2];
   
-  auStackX_8[0] = *(uint *)(param_1 + 0x10);
-  if ((auStackX_8[0] & FloatInfinityValue) == FloatInfinityValue) {
+  validationBuffer[0] = *(uint *)(configHandle + 0x10);
+  if ((validationBuffer[0] & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  auStackX_18[0] = 0;
-  uVar2 = ExecuteSystemDataProcessingA0(param_2,param_1 + 0x20,auStackX_18);
-  if ((int)uVar2 == 0) {
-    calculatedOffset = GetOperationRangeDataA0(param_2 + 0x60,auStackX_18[0]);
-    if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
+  securityBuffer[0] = 0;
+  operationResult = ExecuteSystemDataProcessingA0(systemContext,configHandle + 0x20,securityBuffer);
+  if ((int)operationResult == 0) {
+    dataOffset = GetOperationRangeDataA0(systemContext + 0x60,securityBuffer[0]);
+    if ((*(uint *)(dataOffset + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    fVar1 = *(float *)(param_1 + 0x10);
-    fVar5 = *(float *)(calculatedOffset + 0x38);
-    if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
-       (fVar5 = *(float *)(calculatedOffset + 0x3c), fVar1 <= *(float *)(calculatedOffset + 0x3c))) {
-      fVar5 = fVar1;
+    inputValue = *(float *)(configHandle + 0x10);
+    validatedValue = *(float *)(dataOffset + 0x38);
+    if ((*(float *)(dataOffset + 0x38) <= inputValue) &&
+       (validatedValue = *(float *)(dataOffset + 0x3c), inputValue <= *(float *)(dataOffset + 0x3c))) {
+      validatedValue = inputValue;
     }
-    *(float *)(param_1 + 0x10) = fVar5;
-    uVar2 = ValidateOperationRangeA0(param_2 + 0x60,auStackX_18[0],fVar5);
-    if ((int)uVar2 == 0) {
-      pmemoryBaseAddress = (undefined8 *)ProcessSystemDataA0(param_2 + 0x60,auStackX_8,auStackX_18[0]);
-      *(undefined8 *)(param_1 + 0x18) = *pmemoryBaseAddress;
+    *(float *)(configHandle + 0x10) = validatedValue;
+    operationResult = ValidateOperationRangeA0(systemContext + 0x60,securityBuffer[0],validatedValue);
+    if ((int)operationResult == 0) {
+      memoryBaseAddress = (undefined8 *)ProcessSystemDataA0(systemContext + 0x60,validationBuffer,securityBuffer[0]);
+      *(undefined8 *)(configHandle + 0x18) = *memoryBaseAddress;
                     // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98),configHandle);
     }
   }
-  return uVar2;
+  return operationResult;
 }
 
 
