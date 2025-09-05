@@ -217,6 +217,9 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkPacketStatusPending 0x02                       // 数据包状态：待处理
 #define NetworkPacketStatusTimeout 0x03                       // 数据包状态：超时
 
+// 数据包数组索引常量
+#define PacketDataHeaderIndex 1                                // 数据包头索引
+
 // 网络验证结果常量 - 验证处理状态定义
 #define NetworkValidationSuccess 0x00                          // 验证结果：成功
 #define NetworkValidationFailure 0xFF                          // 验证结果：失败
@@ -2439,12 +2442,12 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
   NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
   if (((int)SecurityValidationResult == 0) &&
      (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMagicDebugMemory), (int)SecurityValidationResult == 0)) {
-    if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+    if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
     SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
     if ((int)SecurityValidationResult == 0) {
-      if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+      if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }
       SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
@@ -2485,7 +2488,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   
   // 根据数据包大小选择不同的处理路径
   if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
-    if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+    if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
     NetworkStatus PrimaryConnectionState = *(NetworkStatus *)(ConnectionContext + NetworkPacketSecondaryDataOffset);
@@ -2495,7 +2498,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     if ((int)PacketValidationResult != 0) {
       return PacketValidationResult;
     }
-    if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+    if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
     NetworkStatus SecondaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionSecondaryValidationOffset);
@@ -2507,7 +2510,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     }
   }
   else {
-    if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+    if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
     NetworkStatus TertiaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
@@ -2518,7 +2521,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
       return PacketValidationResult;
     }
   }
-  if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+  if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorCodeInvalidPacket;
   }
   NetworkStatus QuaternaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetFourth);
@@ -2528,7 +2531,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   if ((int)PacketValidationResult != 0) {
     return PacketValidationResult;
   }
-  if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+  if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorCodeInvalidPacket;
   }
   NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataPrimaryOffset);
@@ -2537,7 +2540,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   PacketValidationResult = DataPacketProcessor(*(NetworkHandle **)(*PacketData + 8), DataProcessingArray, 4);
   if ((int)PacketValidationResult == 0) {
     if (*(uint *)(PacketData + 8) < NetworkPacketSizeAlternative) {
-      if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+      if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }
       IntermediateValidationResult = ValidateConnectionContext(*PacketData, ConnectionContext + NetworkConnectionValidatorOffset);
@@ -2586,12 +2589,12 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
   PacketValidationStatusCode = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
   if (((int)PacketValidationStatusCode == 0) &&
      (PacketValidationStatusCode = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkMagicBinaryData, NetworkMagicDebugMemory), (int)PacketValidationStatusCode == 0)) {
-    if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+    if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
     PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
     if ((int)PacketValidationStatusCode == 0) {
-      if (*(int *)(PacketData[1] + NetworkPacketHeaderValidationOffset) != 0) {
+      if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }
       PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
