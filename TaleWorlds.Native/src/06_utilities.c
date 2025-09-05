@@ -4103,8 +4103,8 @@ void* UtilityModuleSecondaryResourcePointer;
 void ResetUtilityPointers1(void);
 uint32_t PrimaryPointerResetConfiguration;
 uint32_t SecondaryPointerResetConfiguration;
-uint32_t TertiaryPointerResetValue;
-uint32_t QuaternaryPointerResetValue;
+uint32_t TertiaryPointerResetConfiguration;
+uint32_t QuaternaryPointerResetConfiguration;
 
 // 函数: void ResetUtilityPointers2(void)
 // 
@@ -4117,8 +4117,8 @@ uint32_t QuaternaryPointerResetValue;
 // 返回值:
 //   无
 void ResetUtilityPointers2(void);
-uint32_t UtilityResetPrimaryPointer;
-uint32_t UtilityResetSecondaryPointer;
+uint32_t UtilityResetPrimaryPointerValue;
+uint32_t UtilityResetSecondaryPointerValue;
 uint32_t UtilityResetTertiaryPointer;
 uint32_t UtilityResetQuaternaryPointer;
 uint32_t UtilitySystemPrimaryStatus;
