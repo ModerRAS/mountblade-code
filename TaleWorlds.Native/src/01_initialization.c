@@ -18514,7 +18514,7 @@ void SystemNetworkManagerInitializer(void)
   SystemStackBufferPointer = SystemStackBuffer;
   SystemConfigProcessBuffer[0] = 0;
   SystemMemoryBufferSize = 0x10;
-  strcpy_s(SystemConfigProcessBuffer,SystemMemoryBufferSize,&SystemStringConstantConfigPathC,RegisterR9,InvalidHandleValue);
+  strcpy_s(SystemConfigProcessBuffer,SystemMemoryBufferSize,&SystemStringConstantConfigPathC,RegisterR9Value,InvalidHandleValue);
   SystemMemoryRegionCacheC = SystemMemoryAllocationFunction(&StackPointer);
   return;
 }
@@ -28488,8 +28488,8 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   uint8_t SystemStackBuffer [32];
   void* ThreadParameterPrimary;
   void* ThreadParameterSecondary;
-  void* SystemThreadParameter1;
-  void* SystemThreadParameter2;
+  void* SystemThreadPrimaryParameter;
+  void* SystemThreadSecondaryParameter;
   char processNameBuffer [16];
   ulong long encryptionKey;
   
