@@ -26989,66 +26989,66 @@ uint32_t GetSystemResourceStatus(void)
 void SystemResourceInitializer(void* resourceManagerPointer,void* memoryAllocationFlags,void* systemConfiguration,void* threadParameters)
 
 {
-  uint SystemInitializationStatus;
+  uint systemInitializationStatus;
   uint resourceCreationFlags;
-  long long ResourceMemoryOffset;
-  long long SystemProcessBufferPointer;
-  ulong long CurrentThreadIdentifier;
-  void* *pSystemEncryptionStatus;
-  long long LocalMemoryBuffer;
-  uint SystemProcessFlags;
-  void* ConcatenatedSystemValue;
+  long long resourceMemoryOffset;
+  long long systemProcessBufferPointer;
+  ulong long currentThreadIdentifier;
+  void* *systemEncryptionStatusPointer;
+  long long localMemoryBuffer;
+  uint systemProcessFlags;
+  void* concatenatedSystemValue;
   
-  ResourceMemoryOffset = SystemMemoryManagerPointer;
-  pSystemEncryptionStatus = &SystemGlobalDataReference;
-  ConcatenatedSystemValue = 0;
-  LocalMemoryBuffer = 0;
-  SystemProcessFlags = 0;
+  resourceMemoryOffset = SystemMemoryManagerPointer;
+  systemEncryptionStatusPointer = &SystemGlobalDataReference;
+  concatenatedSystemValue = 0;
+  localMemoryBuffer = 0;
+  systemProcessFlags = 0;
   if (*(int *)(SystemNodeManagerPointer + 0x1ea0) == 0) {
-    SystemInitializationStatus = *(uint *)(SystemMemoryManagerPointer + 0xe40);
-    CurrentThreadIdentifier = (ulong long)SystemInitializationStatus;
+    systemInitializationStatus = *(uint *)(SystemMemoryManagerPointer + 0xe40);
+    currentThreadIdentifier = (ulong long)systemInitializationStatus;
     if (*(long long *)(SystemMemoryManagerPointer + 0xe38) != 0) {
-      ExecuteSystemCommand(&pSystemEncryptionStatus,CurrentThreadIdentifier,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
+      ExecuteSystemCommand(&systemEncryptionStatusPointer,currentThreadIdentifier,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
     }
-    if (SystemInitializationStatus != 0) {
-        memcpy(systemMemoryOffset,*(void* *)(ResourceMemoryOffset + 0xe38),CurrentThreadIdentifier);
+    if (systemInitializationStatus != 0) {
+        memcpy(systemMemoryOffset,*(void* *)(resourceMemoryOffset + 0xe38),currentThreadIdentifier);
     }
     if (systemMemoryOffset != 0) {
-      *(uint8_t *)(CurrentThreadIdentifier + systemMemoryOffset) = 0;
+      *(uint8_t *)(currentThreadIdentifier + systemMemoryOffset) = 0;
     }
-    ConcatenatedSystemValue = ConcatenatedSystemValue(*(uint32_t *)(ResourceMemoryOffset + 0xe4c),(uint32_t)ThreadContext);
+    concatenatedSystemValue = ConcatenatedSystemValue(*(uint32_t *)(resourceMemoryOffset + 0xe4c),(uint32_t)ThreadContext);
   }
-  ResourceMemoryOffset = SystemMemoryManagerPointer;
-  SystemProcessFlags = 0;
-  SystemInitializationStatus = *(uint *)(SystemMemoryManagerPointer + 0xf00);
-  CurrentThreadIdentifier = (ulong long)SystemInitializationStatus;
+  resourceMemoryOffset = SystemMemoryManagerPointer;
+  systemProcessFlags = 0;
+  systemInitializationStatus = *(uint *)(SystemMemoryManagerPointer + 0xf00);
+  currentThreadIdentifier = (ulong long)systemInitializationStatus;
   if (*(long long *)(SystemMemoryManagerPointer + 0xef8) != 0) {
-    ExecuteSystemCommand(&pSystemEncryptionStatus,CurrentThreadIdentifier);
+    ExecuteSystemCommand(&systemEncryptionStatusPointer,currentThreadIdentifier);
   }
-  if (SystemInitializationStatus != 0) {
-      memcpy(systemMemoryOffset,*(void* *)(ResourceMemoryOffset + 0xef8),CurrentThreadIdentifier);
+  if (systemInitializationStatus != 0) {
+      memcpy(systemMemoryOffset,*(void* *)(resourceMemoryOffset + 0xef8),currentThreadIdentifier);
   }
   if (systemMemoryOffset != 0) {
-    *(uint8_t *)(CurrentThreadIdentifier + systemMemoryOffset) = 0;
+    *(uint8_t *)(currentThreadIdentifier + systemMemoryOffset) = 0;
   }
   SystemProcessBufferPtr = SystemMemoryManagerPointer;
-  ConcatenatedSystemValue = ConcatenatedSystemValue(*(uint32_t *)(ResourceMemoryOffset + 0xf0c),(uint32_t)ThreadContext);
+  concatenatedSystemValue = ConcatenatedSystemValue(*(uint32_t *)(resourceMemoryOffset + 0xf0c),(uint32_t)ThreadContext);
   resourceCreationFlags = *(uint *)(SystemMemoryManagerPointer + 0xfc0);
-  CurrentThreadIdentifier = (ulong long)resourceCreationFlags;
-  SystemProcessFlags = SystemInitializationStatus;
+  currentThreadIdentifier = (ulong long)resourceCreationFlags;
+  systemProcessFlags = systemInitializationStatus;
   if (*(long long *)(SystemMemoryManagerPointer + 0xfb8) != 0) {
-    ExecuteSystemCommand(&pSystemEncryptionStatus,CurrentThreadIdentifier);
+    ExecuteSystemCommand(&systemEncryptionStatusPointer,currentThreadIdentifier);
   }
   if (resourceCreationFlags != 0) {
-      memcpy(systemMemoryOffset,*(void* *)(SystemProcessingBufferPointer + 0xfb8),CurrentThreadIdentifier);
+      memcpy(systemMemoryOffset,*(void* *)(SystemProcessingBufferPointer + 0xfb8),currentThreadIdentifier);
   }
   if (systemMemoryOffset != 0) {
-    *(uint8_t *)(CurrentThreadIdentifier + systemMemoryOffset) = 0;
+    *(uint8_t *)(currentThreadIdentifier + systemMemoryOffset) = 0;
   }
-  ConcatenatedSystemValue = ConcatenatedSystemValue(*(uint32_t *)(SystemProcessingBufferPointer + 0xfcc),(uint32_t)ThreadContext);
-  pSystemEncryptionStatus = &SystemGlobalDataReference;
+  concatenatedSystemValue = ConcatenatedSystemValue(*(uint32_t *)(SystemProcessingBufferPointer + 0xfcc),(uint32_t)ThreadContext);
+  systemEncryptionStatusPointer = &SystemGlobalDataReference;
   if (systemMemoryOffset != 0) {
-    SystemProcessFlags = resourceCreationFlags;
+    systemProcessFlags = resourceCreationFlags;
       SystemCleanupFunction();
   }
   return;
@@ -38901,7 +38901,7 @@ void ResumeSystemThreads(long long SystemResourceManager)
 
 
 /**
- * @brief 系统线程恢复函数B
+ * @brief 系统线程恢复函数（带优先级）
  * 
  * 该函数负责恢复系统中暂停的线程，遍历线程池并恢复所有非指定线程的线程
  * 用于系统线程管理和调度
@@ -38910,7 +38910,7 @@ void ResumeSystemThreads(long long SystemResourceManager)
  * 
  ResumeSystemThreadsB
  */
-void ResumeSystemThreadsB(void)
+void ResumeSystemThreadsWithPriority(void)
 
 {
   long long ResourceDataIndex;
