@@ -87211,24 +87211,33 @@ void FUN_180942978(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180942980(void)
-void FUN_180942980(void)
+// 函数: void FreeSystemMemoryBuffer(void)
+// 
+// 释放系统内存缓冲区
+// 清理系统内存缓冲区，释放已分配的内存资源并重置相关状态
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void FreeSystemMemoryBuffer(void)
 
 {
-  longlong validationContext;
-  longlong lVar2;
+  longlong memoryContext;
+  longlong memoryPointer;
   
   if (0xf < _DAT_180bfc188) {
-    validationContext = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
-    lVar2 = validationContext;
+    memoryContext = CONCAT71(uRam0000000180bfc171,DAT_180bfc170);
+    memoryPointer = memoryContext;
     if (0xfff < _DAT_180bfc188 + 1) {
-      lVar2 = *(longlong *)(validationContext + -8);
-      if (0x1f < (validationContext - lVar2) - 8U) {
+      memoryPointer = *(longlong *)(memoryContext + -8);
+      if (0x1f < (memoryContext - memoryPointer) - 8U) {
                     // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(validationContext - lVar2,_DAT_180bfc188 + 0x28);
+        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer,_DAT_180bfc188 + 0x28);
       }
     }
-    free(lVar2);
+    free(memoryPointer);
   }
   _DAT_180bfc180 = 0;
   _DAT_180bfc188 = 0xf;

@@ -1783,35 +1783,35 @@ uint32_t NetworkConnectionAttemptCount;                  // 网络连接尝试�
  * 
  * 记录网络连接失败的次数，用于连接质量评估。
  */
-uint32_t NetworkConnectionFailureCount;
+uint32_t NetworkConnectionFailureCount;                  // 网络连接失败次数，统计连接建立失败的次数
 
 /**
  * @brief 网络发送字节数
  * 
  * 统计通过网络发送的总字节数，用于流量监控。
  */
-uint32_t NetworkTotalBytesSent;
+uint32_t NetworkTotalBytesSent;                          // 网络发送字节数，统计发送的总字节数
 
 /**
  * @brief 网络接收字节数
  * 
  * 统计从网络接收的总字节数，用于流量监控。
  */
-uint32_t NetworkTotalBytesReceived;
+uint32_t NetworkTotalBytesReceived;                       // 网络接收字节数，统计接收的总字节数
 
 /**
  * @brief 网络发送数据包数量
  * 
  * 统计发送的网络数据包数量，用于数据包传输统计。
  */
-uint32_t NetworkTotalPacketsSent;
+uint32_t NetworkTotalPacketsSent;                         // 网络发送数据包数量，统计发送的数据包数量
 
 /**
  * @brief 网络接收数据包数量
  * 
  * 统计接收的网络数据包数量，用于数据包传输统计。
  */
-uint32_t NetworkTotalPacketsReceived;
+uint32_t NetworkTotalPacketsReceived;                      // 网络接收数据包数量，统计接收的数据包数量
 uint32_t NetworkCurrentConnectionTime;                    // 网络当前连接时间
 uint32_t NetworkLastActivityTime;                      // 网络最后活动时间
 uint32_t NetworkCurrentBandwidthUsage;                     // 网络当前带宽使用量

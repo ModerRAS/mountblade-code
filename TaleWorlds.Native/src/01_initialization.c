@@ -59522,7 +59522,7 @@ void SystemNoOperationA(void)
   void* NetworkConnectionFlags;
   void* ResourceCreationFlagsPrimary;
   void* resourceCreationFlagsSecondary;
-  byte isSystemActive9;
+  byte isSystemActive;
   byte isOperationComplete;
   uint32_t resourceAllocationContext1;
   ulong long resourceAllocationContext2;
@@ -59618,15 +59618,15 @@ void SystemNoOperationA(void)
     ResourceMemoryOffset3 = GetSystemThreadHandle(*(void* *)(MemoryBlockAddress + 0x1b0));
   }
   ResourceMemoryOffset4 = *(long long *)(MemoryBlockAddress + 0x1b8);
-  isSystemActive9 = *(byte *)(ResourceMemoryOffset4 + 0x38c);
-  if (isSystemActive9 == 9) {
-    isSystemActive9 = CheckSystemStatus();
-    *(byte *)(ResourceMemoryOffset4 + 0x38c) = isSystemActive9;
+  isSystemActive = *(byte *)(ResourceMemoryOffset4 + 0x38c);
+  if (isSystemActive == 9) {
+    isSystemActive = CheckSystemStatus();
+    *(byte *)(ResourceMemoryOffset4 + 0x38c) = isSystemActive;
   }
   ResourceMemoryOffset4 = ResourceOffset;
   ResourceMemoryOffset3 = *(long long *)(ResourceMemoryOffset3 + 0x1e0);
-  *SystemHashNodeData8 = *(void* *)(ResourceMemoryOffset3 + (ulong long)isSystemActive9 * 0x18);
-  SystemHashNodeData8[1] = *(void* *)(ResourceMemoryOffset3 + 8 + (ulong long)isSystemActive9 * 0x18);
+  *SystemHashNodeData8 = *(void* *)(ResourceMemoryOffset3 + (ulong long)isSystemActive * 0x18);
+  SystemHashNodeData8[1] = *(void* *)(ResourceMemoryOffset3 + 8 + (ulong long)isSystemActive * 0x18);
   *(uint32_t *)(ResourceDataPointer + 2) = *(uint32_t *)(*(long long *)(MemoryBlockAddress + 600) + 0x2c);
   *(uint32_t *)((long long)ResourceDataPointer + 0x14) =
        *(uint32_t *)(*(long long *)(MemoryBlockAddress + 600) + 0x4c);
@@ -59748,14 +59748,14 @@ void SystemNoOperationA(void)
   }
   ConfigureSystemResourceBuffer(&SystemStackBufferPrimary,ResourceMemoryOffset4 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),FloatParameterBuffer39);
   resourceCreationFlagsSecondary = ThreadCreationParameter;
-  resourceCreationFlags7 = FinalParameter;
+  resourceCreationFlagsFinal = FinalParameter;
   NetworkConnectionFlags = DebugInformation;
   SecurityParameter = ConfigurationData;
   ConfigurationData = SecurityContextFlag;
   InitializationFlags = ThreadContextPointer;
   MemoryAllocationFlags = MemoryAllocationSize;
   ThreadCreationFlags = SystemResourceHandle;
-  isSystemActive9 = *(byte *)(ResourceMemoryOffset4 + 0x1bd8);
+  isSystemActive = *(byte *)(ResourceMemoryOffset4 + 0x1bd8);
   systemIndex0 = *(int *)(SystemGlobalStatusFlags + 0x224);
   if (((*(byte *)(MemoryBlockAddress + 0xfd) & 1) == 0) &&
      ((*(int *)(MemoryBlockAddress + 0x1d0) == systemIndex0 || (*(int *)(MemoryBlockAddress + 0x1d0) == systemIndex0 + -1)))) {
@@ -59765,8 +59765,8 @@ void SystemNoOperationA(void)
     isOperationComplete = 1;
   }
   *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | isOperationComplete;
-  isSystemActive9 = isSystemActive9 & 0x20;
-  if ((isSystemActive9 != 0) && (isOperationComplete != 0)) {
+  isSystemActive = isSystemActive & 0x20;
+  if ((isSystemActive != 0) && (isOperationComplete != 0)) {
     *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameterSystemResource;
     *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameterMemorySize;
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
@@ -59779,14 +59779,14 @@ void SystemNoOperationA(void)
   ValidateSystemResourceData(ResourceMemoryOffset4);
   *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe;
   *(int *)(MemoryBlockAddress + 0x1d0) = systemIndex0;
-  if (isSystemActive9 != 0) {
+  if (isSystemActive != 0) {
     *(void* *)(MemoryBlockAddress + 0x160) = ThreadCreationFlags;
     *(void* *)(MemoryBlockAddress + 0x168) = MemoryAllocationFlags;
     *(void* *)(MemoryBlockAddress + 0x170) = InitializationFlags;
     *(void* *)(MemoryBlockAddress + 0x178) = ConfigurationData;
     *(void* *)(MemoryBlockAddress + 0x180) = SecurityParameter;
     *(void* *)(MemoryBlockAddress + 0x188) = NetworkConnectionFlags;
-    *(void* *)(MemoryBlockAddress + 400) = resourceCreationFlags7;
+    *(void* *)(MemoryBlockAddress + 400) = resourceCreationFlagsFinal;
     *(void* *)(MemoryBlockAddress + 0x198) = resourceCreationFlagsSecondary;
   }
   return;
@@ -60018,7 +60018,7 @@ void CleanupGlobalSystemResources(void)
   }
   InitializeSystemThreadBuffer(&SystemStackBufferPrimary,SystemThreadHandle9 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),FloatParameterBuffer36);
   resourceCreationFlagsSecondary = ThreadCreationParameter;
-  resourceCreationFlags7 = InputStackParameterFinalParam;
+  resourceCreationFlagsFinal = InputStackParameterFinalParam;
   NetworkConnectionFlags = InputStackParameterDebugInfo;
   SecurityParameter = InputStackParameterConfigData;
   ConfigurationData = InputStackParameterSecurityFlag;
@@ -60056,7 +60056,7 @@ void CleanupGlobalSystemResources(void)
     *(void* *)(MemoryBlockAddress + 0x178) = ConfigurationData;
     *(void* *)(MemoryBlockAddress + 0x180) = SecurityParameter;
     *(void* *)(MemoryBlockAddress + 0x188) = NetworkConnectionFlags;
-    *(void* *)(MemoryBlockAddress + 400) = resourceCreationFlags7;
+    *(void* *)(MemoryBlockAddress + 400) = resourceCreationFlagsFinal;
     *(void* *)(MemoryBlockAddress + 0x198) = resourceCreationFlagsSecondary;
   }
   return;
