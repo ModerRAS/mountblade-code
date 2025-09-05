@@ -315,7 +315,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  * 
  * 表示无效数据包的魔数值，ASCII码为"DOOF"（反向的"FOOD"），用于标识无效或损坏的数据包
  */
-#define NetworkPacketMagicInvalid 0x464f4f44                   // "DOOF" - 表示无效数据包魔数（反向的"FOOD"）
+#define NetworkPacketMagicInvalid 0x464f4f44                   // "DOOF" - 表示无效数据包魔数
 
 // 网络连接相关偏移量 - 连接处理和数据管理
 #define NetworkConnectionHeaderOffset 0x10                     // 网络连接头部偏移量
@@ -3258,7 +3258,7 @@ NetworkHandle DecodeNetworkPacketStream(int64_t PacketData, NetworkByte *OutputB
     // 在实际实现中，这里应该填充解码后的数据
     // 包括：有效负载数据、元数据、状态信息等
   }
-  return NetworkOperationSuccess;  // 解码成功（简化实现）
+  return NetworkOperationSuccess;
 }
 
 /**
@@ -3293,7 +3293,7 @@ NetworkHandle HandleConnectionPacketData(int64_t ConnectionContext, int64_t Pack
   // 7. 处理连接生命周期管理
   // 8. 触发相应的回调事件
   
-  return NetworkOperationSuccess;  // 处理成功（简化实现）
+  return NetworkOperationSuccess;
 }
 
 /**
