@@ -790,7 +790,7 @@ NetworkHandle RetrieveNetworkConnectionHandle(int64_t *NetworkConnectionContext)
  * 验证网络连接表中的条目是否有效和安全，确保连接数据的完整性
  * 
  * @param NetworkConnectionContext 网络连接上下文，包含连接的配置和状态信息
- * @param NetworkConnectionFlags 网络连接标志，用于指定验证的行为和选项
+ * @param ConnectionValidationFlags 网络连接标志，用于指定验证的行为和选项
  * @return uint32_t 验证结果句柄，0表示验证成功，其他值表示验证失败的具体错误码
  * 
  * @retval 0 验证成功
@@ -803,7 +803,7 @@ NetworkHandle RetrieveNetworkConnectionHandle(int64_t *NetworkConnectionContext)
  * @warning 如果验证失败，相关的连接操作将被拒绝
  * @see InitializeNetworkConnection, ProcessConnectionData
  */
-uint32_t ValidateConnectionEntry(int64_t NetworkConnectionContext, uint32_t NetworkConnectionFlags);
+uint32_t ValidateNetworkConnectionEntry(int64_t NetworkConnectionContext, uint32_t ConnectionValidationFlags);
 
 /**
  * @brief 设置网络上下文
