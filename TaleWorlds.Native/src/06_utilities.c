@@ -87832,10 +87832,18 @@ void CleanupSystemStateAndResourcesH0(void)
     CleanupSystemMemoryA0(0x180c919f0);
 
 941d00(void)
-void FUN_180941d00(void)
+/**
+ * @brief 设置默认异常处理器B到位置1
+ * 
+ * 该函数将默认异常处理器B设置到指定的全局位置，用于处理系统异常。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 此函数会覆盖现有的异常处理器设置
+ */
+void SetDefaultExceptionHandlerB1(void)
 
 {
-  _DAT_180bf90b0 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerLocation1 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -87844,11 +87852,18 @@ void FUN_180941d00(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941d20(void)
-void FUN_180941d20(void)
+/**
+ * @brief 设置默认异常处理器B到位置2
+ * 
+ * 该函数将默认异常处理器B设置到另一个指定的全局位置，用于处理系统异常。
+ * 
+ * @note 此函数没有参数，也不返回值
+ * @warning 此函数会覆盖现有的异常处理器设置
+ */
+void SetDefaultExceptionHandlerB2(void)
 
 {
-  _DAT_180bf5b88 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerLocation2 = &DefaultExceptionHandlerB;
   return;
 }
 
