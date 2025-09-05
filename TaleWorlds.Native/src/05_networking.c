@@ -1071,11 +1071,11 @@ void InitializeNetworkConnectionPool(void)
   
   // 初始化连接池管理器
   NetworkConnectionPoolManagerHandle = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
-  NetworkConnectionPoolCurrentPosition = 0;           // 重置连接池当前索引为0
+  NetworkConnectionPoolCurrentIndex = 0;           // 重置连接池当前索引为0
   
   // 初始化性能监控
   NetworkConnectionPoolPerformanceMetrics = 0;                // 重置连接池性能指标为0
-  NetworkConnectionPoolStatistics = 0;             // 重置连接池统计信息为0
+  NetworkConnectionPoolStatisticsData = 0;             // 重置连接池统计信息为0
 }
 
 /**
