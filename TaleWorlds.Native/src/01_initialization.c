@@ -71478,8 +71478,6 @@ long long GetSystemResourceStatus(void);
  * @brief 初始化系统资源处理器函数
  * 
  * 该函数负责初始化系统资源处理器，设置资源处理环境和参数
- * 
- InitializeSystemResourceHandler
  */
 void InitializeSystemResourceHandler(void);
 
@@ -71487,8 +71485,6 @@ void InitializeSystemResourceHandler(void);
  * @brief 验证系统资源上下文函数
  * 
  * 该函数负责验证系统资源上下文的有效性和完整性
- * 
- ValidateSystemResourceContext
  */
 void ValidateSystemResourceContext(void);
 
@@ -71503,8 +71499,6 @@ void ValidateSystemResourceContext(void);
  * @param configurationFlag 配置标志
  * @param configurationMask 配置掩码
  * @return 配置结果状态
- * 
- ConfigureSystemResourceContext
  */
 char ConfigureSystemResourceContext(void* ResourceHandle, int ConfigFlag, long long AdditionalParameter, long long ConfigurationFlag, long long ConfigurationMask);
 
@@ -71512,8 +71506,6 @@ char ConfigureSystemResourceContext(void* ResourceHandle, int ConfigFlag, long l
  * @brief 完成系统资源配置函数
  * 
  * 该函数负责完成系统资源的配置过程，进行最终的状态设置
- * 
- FinalizeSystemResourceConfiguration
  */
 void FinalizeSystemResourceConfiguration(void);
 
