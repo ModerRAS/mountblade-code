@@ -15351,7 +15351,7 @@ DataBuffer ResetSystemB0(void)
       functionReturnValue = ValidateOperationRangeA0(systemContext + 0x60,InputParam50);
       if ((int)functionReturnValue == 0) {
         validationStatusPointer = (DataBuffer *)
-                 ProcessSystemDataA0(systemContext + 0x60,&stack0x00000040,InputParam50);
+                 ProcessSystemDataA0(systemContext + 0x60,&StackBuffer40,InputParam50);
         *(DataBuffer *)(destinationIndexRegister + 0x18) = *validationStatusPointer;
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
@@ -16045,7 +16045,7 @@ void ExecuteSecurityCheckWrapper(void)
     *targetPointer = stateValue;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityContext ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(securityContext ^ (uint64_t)&StackBuffer00);
 }
 
 
