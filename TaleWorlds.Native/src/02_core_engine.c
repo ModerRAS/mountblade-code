@@ -113155,22 +113155,22 @@ int ProcessSystemContextUtfEncoding(float *SystemContextPointer,int Utf8BufferSi
              double AdditionalParameter2,uint64_t AdditionalParameter3,uint64_t AdditionalParameter4,uint64_t AdditionalParameter5,float *SystemContextPointer0
              
 {
-  float FloatVariable1;
-  float FloatVariable2;
-  double DoubleVariable3;
-  long long ByteCounter;
-  double DoubleValue2;
-  double SystemDoubleValue6;
-  int ProcessIterationCount;
-  uint8_t DataPointer;
-  float InputParameterFloat1;
-  double in_XMM0_Qa;
-  double extraout_XMM0_Qa;
-  float FloatVariable10;
-  float FloatVariable11;
-  uint32_t TertiaryStatusCode;
-  float FloatVariable13;
-  float FloatVariable14;
+  float SystemContextFloat1;
+  float SystemContextFloat2;
+  double CalculatedDifference;
+  long long DataConfigurationCounter;
+  double InputParameterValue1;
+  double InputParameterValue2;
+  int EncodingIterationCount;
+  uint8_t ProcessingStatusFlag;
+  float SystemFloatParameter1;
+  double RegisterXMM0Value;
+  double RegisterXMM0Output;
+  float CalculatedFloatValue1;
+  float CalculatedFloatValue2;
+  uint32_t SystemStatusCode;
+  float ResultFloatValue1;
+  float ResultFloatValue2;
   
   SystemDoubleValue6 = AdditionalParameter2;
   DoubleValue2 = AdditionalParameter1;
