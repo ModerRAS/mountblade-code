@@ -437,39 +437,42 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define CONTEXT_INITIALIZED 0x01                              // 上下文已初始化
 #define RELIABILITY_HIGH 0x01                                // 高可靠性
 #define ENCRYPTION_KEY_DEMO_VALUE 0x12345678                       // 演示加密密钥
-#define FLAGS_RESET 0x00                                      // 重置标志
-#define CONTEXT_RELEASED 0x00                                 // 上下文已释放
-#define SIZE_RESET 0x00                                       // 大小重置
-#define POOL_RELEASED 0x00                                    // 连接池已释放
-#define SECURITY_RESET 0x00                                   // 安全重置
-#define AUTH_RESET 0x00                                       // 认证重置
-#define ENCRYPTION_RESET 0x00                                 // 加密重置
-#define COMPRESSION_RESET 0x00                               // 压缩重置
-#define SOCKET_RESET 0x00                                     // 套接字重置
-#define SOCKET_DATA_RESET 0x00                               // 套接字数据重置
-#define EVENT_RESET 0x00                                      // 事件重置
-#define CALLBACK_RESET 0x00                                    // 回调重置
-#define QUEUE_RESET 0x00                                      // 队列重置
-#define HANDLER_RESET 0x00                                    // 处理器重置
-#define STATS_RESET 0x00                                      // 统计重置
-#define CONNECTION_TIME_RESET 0x00                             // 连接时间重置
-#define ACTIVITY_RESET 0x00                                    // 活动重置
-#define EXTENDED_FLAGS_RESET 0x00                              // 扩展标志重置
+
+// 通用重置常量
+#define NETWORK_RESET_VALUE 0x00                                          // 通用重置值
+#define FLAGS_RESET NETWORK_RESET_VALUE                        // 重置标志
+#define CONTEXT_RELEASED NETWORK_RESET_VALUE                   // 上下文已释放
+#define SIZE_RESET NETWORK_RESET_VALUE                         // 大小重置
+#define POOL_RELEASED NETWORK_RESET_VALUE                      // 连接池已释放
+#define SECURITY_RESET NETWORK_RESET_VALUE                      // 安全重置
+#define AUTH_RESET NETWORK_RESET_VALUE                          // 认证重置
+#define ENCRYPTION_RESET NETWORK_RESET_VALUE                    // 加密重置
+#define COMPRESSION_RESET NETWORK_RESET_VALUE                  // 压缩重置
+#define SOCKET_RESET NETWORK_RESET_VALUE                        // 套接字重置
+#define SOCKET_DATA_RESET NETWORK_RESET_VALUE                  // 套接字数据重置
+#define EVENT_RESET NETWORK_RESET_VALUE                         // 事件重置
+#define CALLBACK_RESET NETWORK_RESET_VALUE                      // 回调重置
+#define QUEUE_RESET NETWORK_RESET_VALUE                         // 队列重置
+#define HANDLER_RESET NETWORK_RESET_VALUE                       // 处理器重置
+#define STATS_RESET NETWORK_RESET_VALUE                         // 统计重置
+#define CONNECTION_TIME_RESET NETWORK_RESET_VALUE               // 连接时间重置
+#define ACTIVITY_RESET NETWORK_RESET_VALUE                      // 活动重置
+#define EXTENDED_FLAGS_RESET NETWORK_RESET_VALUE                // 扩展标志重置
 
 // 网络数据传输常量
 #define NETWORK_SEQUENCE_INITIAL_VALUE 0x01                                  // 初始序列号
 #define NETWORK_ACK_INITIAL_VALUE 0x01                                       // 初始确认号
-#define NETWORK_BYTES_RESET_VALUE 0x00                                      // 字节重置
-#define NETWORK_PACKETS_RESET_VALUE 0x00                                    // 数据包重置
-#define NETWORK_RETRANSMIT_COUNT_RESET_VALUE 0x00                          // 重传计数重置
-#define NETWORK_LOSS_RATE_RESET_VALUE 0x00                                  // 丢包率重置
+#define NETWORK_BYTES_RESET_VALUE NETWORK_RESET_VALUE                       // 字节重置
+#define NETWORK_PACKETS_RESET_VALUE NETWORK_RESET_VALUE                     // 数据包重置
+#define NETWORK_RETRANSMIT_COUNT_RESET_VALUE NETWORK_RESET_VALUE             // 重传计数重置
+#define NETWORK_LOSS_RATE_RESET_VALUE NETWORK_RESET_VALUE                   // 丢包率重置
 #define NetworkMonitorEnabledFlag 0x01                                  // 监控器启用
-#define NETWORK_ROUND_TRIP_TIME_RESET_VALUE 0x00                            // 往返时间重置
+#define NETWORK_ROUND_TRIP_TIME_RESET_VALUE NETWORK_RESET_VALUE             // 往返时间重置
 #define NetworkQueueEnabledFlag 0x01                                    // 队列启用
 #define NetworkBufferEnabledFlag 0x01                                   // 缓冲区启用
-#define NETWORK_INDEX_RESET_VALUE 0x00                                      // 索引重置
-#define NETWORK_PACKET_INDEX_RESET_VALUE 0x00                               // 数据包索引重置
-#define NETWORK_ERROR_RATE_RESET_VALUE 0x00                                 // 错误率重置
+#define NETWORK_INDEX_RESET_VALUE NETWORK_RESET_VALUE                       // 索引重置
+#define NETWORK_PACKET_INDEX_RESET_VALUE NETWORK_RESET_VALUE                // 数据包索引重置
+#define NETWORK_ERROR_RATE_RESET_VALUE NETWORK_RESET_VALUE                  // 错误率重置
 #define NetworkHealthGoodFlag 0x01                                       // 健康状态良好
 #define NetworkStabilityHighFlag 0x01                                    // 稳定性高
 #define NetworkPerformanceGoodFlag 0x01                                  // 性能良好
@@ -484,20 +487,20 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkCertificateEnabledFlag 0x01                    // 证书启用
 
 // 网络连接管理常量
-#define NETWORK_TABLE_INDEX_RESET_VALUE 0x00                      // 表索引重置
+#define NETWORK_TABLE_INDEX_RESET_VALUE NETWORK_RESET_VALUE      // 表索引重置
 #define NetworkConnectionManagerEnabledFlag 0x01              // 连接管理器启用
 #define NetworkConnectionDataEnabledFlag 0x01                // 连接数据启用
 #define NetworkRoutingEnabledFlag 0x01                        // 路由启用
 #define NetworkQueueBufferEnabledFlag 0x01                   // 队列缓冲区启用
 #define NetworkCacheEnabledFlag 0x01                          // 缓存启用
 #define NetworkFilterEnabledFlag 0x01                         // 过滤器启用
-#define NETWORK_BANDWIDTH_RESET_VALUE 0x00                        // 带宽重置
-#define NETWORK_LATENCY_RESET_VALUE 0x00                          // 延迟重置
-#define NETWORK_PACKET_LOSS_RESET_VALUE 0x00                      // 数据包丢失重置
+#define NETWORK_BANDWIDTH_RESET_VALUE NETWORK_RESET_VALUE        // 带宽重置
+#define NETWORK_LATENCY_RESET_VALUE NETWORK_RESET_VALUE          // 延迟重置
+#define NETWORK_PACKET_LOSS_RESET_VALUE NETWORK_RESET_VALUE      // 数据包丢失重置
 
 // 网络错误处理常量
 #define NetworkErrorProcessorEnabledFlag 0x01                 // 错误处理器启用
-#define NetworkErrorCountResetValue 0x00                      // 错误计数重置
+#define NetworkErrorCountResetValue NETWORK_RESET_VALUE        // 错误计数重置
 #define NetworkReportSizeSmall 0x0B                           // 小型报告大小（11字节）
 #define NetworkReportSizeMedium 0x0D                          // 中型报告大小（13字节）
 #define NetworkReportSizeLarge 0x0F                           // 大型报告大小（15字节）
