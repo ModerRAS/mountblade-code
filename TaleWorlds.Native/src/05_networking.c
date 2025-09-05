@@ -1799,12 +1799,6 @@ uint32_t NetworkAuthenticationContext;               // 网络认证上下文
 uint32_t NetworkSecurityContext;                     // 网络安全上下文
 uint32_t NetworkEventContext;                        // 网络事件上下文
 uint32_t NetworkCallbackContext;                      // 网络回调上下文
-uint32_t NetworkSocketSize;                              // 网络套接字大小
-uint32_t NetworkSocketContextSize;                     // 网络套接字上下文大小
-uint32_t NetworkConnectionStateManager;               // 网络连接状态管理器
-uint32_t NetworkEventQueue;                            // 网络事件队列
-uint32_t NetworkCallbackHandler;                        // 网络回调处理器
-uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
 
 /**
  * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据
