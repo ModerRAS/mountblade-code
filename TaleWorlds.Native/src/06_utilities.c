@@ -91088,7 +91088,6 @@ void SetDefaultExceptionHandler16(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942460(void)
 /**
  * @brief 设置默认异常处理器17
  * 
@@ -92091,10 +92090,19 @@ void DestroyMutexLockA0(void)
 
 
 942a60(void)
-void FUN_180942a60(void)
+/**
+ * @brief 设置默认异常处理器函数C0
+ * 
+ * 该函数负责设置默认的异常处理器
+ * 
+ * @note 原始函数名：FUN_180942a60
+ */
+#define SetDefaultExceptionHandlerC0 FUN_180942a60
+
+void SetDefaultExceptionHandlerC0(void)
 
 {
-  _DAT_180bf6048 = &DefaultExceptionHandlerB;
+  ExceptionHandlerAddress0 = &DefaultExceptionHandlerB;
   return;
 }
 
