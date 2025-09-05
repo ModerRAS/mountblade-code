@@ -13313,10 +13313,10 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    resourceIterator = *(int64_t *)(resourceIterator + 0x20);
+    resourceIterator = *(int64_t *)(resourceDataPointer + 0x20);
     calculatedOffset = *(int64_t *)(resourceIterator + 0x10 + (int64_t)(int)stackBuffer[0] * 0x18);
     if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
-      inputValue = *(float *)(param_1 + 0x18);
+      inputValue = *(float *)(dataBuffer + 0x18);
       resultValue = *(float *)(calculatedOffset + 0x38);
       if ((*(float *)(calculatedOffset + 0x38) <= inputValue) &&
          (resultValue = *(float *)(calculatedOffset + 0x3c), inputValue <= *(float *)(calculatedOffset + 0x3c))) {
@@ -14881,6 +14881,9 @@ DataBuffer CleanupSystemB0(void)
   int64_t systemContext;
   int64_t operationContext;
   DataWord stackParameter;
+  int64_t destinationIndexRegister;
+  DataWord operationParameter;
+  DataBuffer systemDataBuffer;
   
   dataContext = GetSystemContextHandle();
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
@@ -14894,7 +14897,7 @@ DataBuffer CleanupSystemB0(void)
       validationStatus = 0x1c;
     }
     else {
-      validationStatus = ValidateOperationRangeA0(systemContext + 0x60,in_stack_00000050);
+      validationStatus = ValidateOperationRangeA0(systemContext + 0x60,operationParameter);
       if ((int)validationStatus == 0) {
         pmemoryBaseAddress = (DataBuffer *)
                  ProcessSystemDataA0(systemContext + 0x60,&stack0x00000040,in_stack_00000050);
@@ -50006,17 +50009,17 @@ void Unwind_180905ab0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180905ad0(DataBuffer param_1,int64_t param_2)
+void CleanupSystemExceptionHandlingA0(DataBuffer systemContext, int64_t executionContext)
 
 {
-  *(DataBuffer *)(param_2 + 0x100) = &UNK_180a3c3e0;
-  if (*(int64_t *)(param_2 + 0x108) != 0) {
+  *(DataBuffer *)(executionContext + 0x100) = &TemporaryExceptionHandler;
+  if (*(int64_t *)(executionContext + 0x108) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(DataBuffer *)(param_2 + 0x108) = 0;
-  *(DataWord *)(param_2 + 0x118) = 0;
-  *(DataBuffer *)(param_2 + 0x100) = &DefaultExceptionHandlerB;
+  *(DataBuffer *)(executionContext + 0x108) = 0;
+  *(DataWord *)(executionContext + 0x118) = 0;
+  *(DataBuffer *)(executionContext + 0x100) = &DefaultExceptionHandlerB;
   return;
 }
 
