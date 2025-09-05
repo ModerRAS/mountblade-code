@@ -1118,6 +1118,10 @@
 // 功能：空函数，用于占位或同步操作
 #define UtilityNoOperationC FUN_18089b26e
 
+// 原始函数名：FUN_180899fe0 - 复杂数据结构处理函数
+// 功能：处理复杂的数据结构，进行多步骤验证和操作
+#define ProcessComplexDataStructure FUN_180899fe0
+
 // 数据处理函数语义化宏定义
 // 原始函数名：FUN_180897d20 - 数据安全处理函数A0
 // 功能：处理数据块并进行安全验证，执行加密操作
@@ -3077,11 +3081,11 @@ undefined DAT_180a22fa8;
 // 返回值：
 //   undefined - 数据处理结果
 undefined ProcessUtilityDataBB0;
-undefined DAT_180bfa290;
-undefined DAT_180bfa298;
-undefined DAT_180bfa2a0;
-undefined DAT_180bfa2a8;
-undefined UNK_180a23068;
+undefined DataTableConfigurationPrimary;
+undefined DataTableConfigurationSecondary;
+undefined DataTableConfigurationTertiary;
+undefined DataTableConfigurationQuaternary;
+undefined SystemConfigurationControlFlag;
 
 // 函数: undefined ValidateUtilityDataBC0;
 // 
@@ -3177,13 +3181,13 @@ undefined DAT_180bfa6e8;
 undefined DAT_180bfa6f0;
 undefined DAT_180bfa6f8;
 undefined UtilitySystemControlFlag600;
-undefined UNK_180a0f168;
-undefined UNK_180a0f178;
-undefined UNK_180a0f188;
-undefined UNK_180a0f190;
-undefined UNK_180a0f5b8;
-undefined UNK_180a24c50;
-undefined UNK_180a24c60;
+undefined SystemStatusControlFlag1;
+undefined SystemStatusControlFlag2;
+undefined SystemStatusControlFlag3;
+undefined SystemStatusControlFlag4;
+undefined SystemStatusControlFlag5;
+undefined SystemDataBufferPrimary;
+undefined SystemDataBufferSecondary;
 undefined DAT_180bfa780;
 undefined DAT_180bfa788;
 undefined DAT_180bfa790;
@@ -3211,10 +3215,10 @@ undefined DAT_180bfaa90;
 undefined UtilitySystemControlFlag620;
 undefined UtilitySystemDataPointerD0;
 undefined UtilitySystemDataPointerF0;
-undefined UNK_180a24c10;
-undefined UNK_180a24c30;
-undefined UNK_180a24d58;
-undefined UNK_180a24d80;
+undefined SystemDataBufferTertiary;
+undefined SystemDataBufferQuaternary;
+undefined SystemDataBufferQuinary;
+undefined SystemDataBufferSenary;
 undefined DAT_180bfab10;
 undefined DAT_180bfab18;
 undefined DAT_180bfab20;
@@ -3240,8 +3244,8 @@ undefined DAT_180bfae10;
 undefined DAT_180bfae18;
 undefined DAT_180bfae20;
 undefined UtilitySystemControlFlag640;
-undefined UNK_180a24da8;
-undefined UNK_180a24dc0;
+undefined SystemDataBufferSeptenary;
+undefined SystemDataBufferOctonary;
 
 // 函数: undefined InitializeUtilitySystemControl;
 #define InitializeUtilitySystemControl FUN_180942660
@@ -3403,9 +3407,9 @@ undefined InitializeThreadLocalStorageA8;
 undefined _tls_index;
 void *ThreadLocalStoragePointer;
 undefined DAT_180c967d4;
-undefined UNK_180a3e3d8;
+undefined MemoryManagementControlFlag;
 undefined DAT_180c967d8;
-undefined UNK_180a3e3f0;
+undefined MemoryManagementDataPointer;
 undefined DAT_180c967e0;
 undefined DAT_180c967e8;
 undefined DAT_180c967f0;
@@ -7108,7 +7112,7 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
   
   currentNodePointer = (longlong *)0x0;
   stackBuffer[0] = 0;
-  validationResult = FUN_18088c740(stackBuffer);
+  validationResult = AllocateSystemBufferCA0(stackBuffer);
   if ((validationResult == 0) && (validationResult = FUN_1808bdd90(*(undefined8 *)(contextPointer + 0x90)), validationResult == 0)) {
     nextNodePointer = (longlong *)(*(longlong *)(contextPointer + 0x50) + -8);
     if (*(longlong *)(contextPointer + 0x50) == 0) {
@@ -7141,10 +7145,10 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
         previousNodePointer = (longlong *)&DAT_00000018;
       }
       dataNodePointer = nextNodePointer;
-    } while ((*previousNodePointer == 0) || (validationResult = FUN_18088aca0(contextPointer), validationResult == 0));
+    } while ((*previousNodePointer == 0) || (validationResult = CheckSystemStateCW0(contextPointer), validationResult == 0));
   }
                     // WARNING: Subroutine does not return
-  FUN_18088c790(stackBuffer);
+  CleanupSystemResourceCA0(stackBuffer);
 }
 
 
@@ -9886,7 +9890,7 @@ void ProcessUtilitySystemRequest(longlong systemHandle,longlong requestContext)
     }
     *(undefined1 *)(memoryPointer + 0xbc) = *(undefined1 *)(systemHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(requestContext + 0x98),systemHandle);
+    ExecuteSystemResourceOperationCB0(*(undefined8 *)(requestContext + 0x98),systemHandle);
   }
   return;
 }
@@ -18316,8 +18320,9 @@ undefined8 FUN_180899dc7(void)
 
 
 
-// 函数: void FUN_180899ed5(void)
-void FUN_180899ed5(void)
+// 函数: void ExecuteNoOperationFunction(void)
+// 功能：空操作函数，不执行任何操作
+void ExecuteNoOperationFunction(void)
 
 {
   return;
@@ -18326,24 +18331,25 @@ void FUN_180899ed5(void)
 
 
 
-// 函数: void FUN_180899ef0(longlong param_1,undefined4 *param_2)
-void FUN_180899ef0(longlong param_1,undefined4 *param_2)
+// 函数: void ProcessDataWithCallback(longlong systemContext, undefined4 *dataBuffer)
+// 功能：处理数据并调用回调函数
+void ProcessDataWithCallback(longlong systemContext, undefined4 *dataBuffer)
 
 {
-  int iVar1;
-  undefined4 auStackX_8 [2];
+  int callbackResult;
+  undefined4 stackBuffer [2];
   
-  auStackX_8[0] = *param_2;
-  iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,4);
-  if (iVar1 == 0) {
-    auStackX_8[0]._0_2_ = *(undefined2 *)(param_2 + 1);
-    iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,2);
-    if (iVar1 == 0) {
-      auStackX_8[0] = CONCAT22(auStackX_8[0]._2_2_,*(undefined2 *)((longlong)param_2 + 6));
-      iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
-                        (*(undefined8 **)(param_1 + 8),auStackX_8,2);
-      if (iVar1 == 0) {
-        (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),param_2 + 2,8);
+  stackBuffer[0] = *dataBuffer;
+  callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,4);
+  if (callbackResult == 0) {
+    stackBuffer[0]._0_2_ = *(undefined2 *)(dataBuffer + 1);
+    callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,2);
+    if (callbackResult == 0) {
+      stackBuffer[0] = CONCAT22(stackBuffer[0]._2_2_,*(undefined2 *)((longlong)dataBuffer + 6));
+      callbackResult = (**(code **)**(undefined8 **)(systemContext + 8))
+                        (*(undefined8 **)(systemContext + 8),stackBuffer,2);
+      if (callbackResult == 0) {
+        (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),dataBuffer + 2,8);
       }
     }
   }
@@ -18353,18 +18359,19 @@ void FUN_180899ef0(longlong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_180899f80(longlong param_1,undefined4 *param_2)
-void FUN_180899f80(longlong param_1,undefined4 *param_2)
+// 函数: void ProcessDataBufferWithValidation(longlong systemContext, undefined4 *dataBuffer)
+// 功能：处理数据缓冲区并进行验证
+void ProcessDataBufferWithValidation(longlong systemContext, undefined4 *dataBuffer)
 
 {
-  int iVar1;
-  undefined4 auStackX_8 [2];
+  int validationStatus;
+  undefined4 stackBuffer [2];
   
-  auStackX_8[0] = *param_2;
-  iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,4);
-  if (iVar1 == 0) {
-    auStackX_8[0] = param_2[1];
-    (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,4);
+  stackBuffer[0] = *dataBuffer;
+  validationStatus = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,4);
+  if (validationStatus == 0) {
+    stackBuffer[0] = dataBuffer[1];
+    (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),stackBuffer,4);
   }
   return;
 }
@@ -18372,21 +18379,21 @@ void FUN_180899f80(longlong param_1,undefined4 *param_2)
 
 
 
-// 函数: void FUN_180899fe0(longlong param_1,undefined4 *param_2)
-void FUN_180899fe0(longlong param_1,undefined4 *param_2)
+// 函数: void ProcessComplexDataStructure(longlong systemContext,undefined4 *dataBuffer)
+void ProcessComplexDataStructure(longlong systemContext,undefined4 *dataBuffer)
 
 {
-  uint uVar1;
+  uint dataField;
   int operationResult;
-  int iVar3;
-  undefined8 uVar4;
-  undefined8 uStackX_8;
+  int validationStatus;
+  undefined8 dataLength;
+  undefined8 workingBuffer;
   
-  uStackX_8 = CONCAT44(uStackX_8._4_4_,*param_2);
-  operationResult = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),&uStackX_8,4);
+  workingBuffer = CONCAT44(workingBuffer._4_4_,*dataBuffer);
+  operationResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),&workingBuffer,4);
   if (operationResult == 0) {
-    uStackX_8 = *(undefined8 *)(param_2 + 2);
-    operationResult = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),&uStackX_8,8);
+    workingBuffer = *(undefined8 *)(dataBuffer + 2);
+    operationResult = (**(code **)**(undefined8 **)(systemContext + 8))(*(undefined8 **)(systemContext + 8),&workingBuffer,8);
     if (operationResult == 0) {
       uStackX_8 = CONCAT71(uStackX_8._1_7_,*(undefined1 *)(param_2 + 0x68));
       operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
@@ -29970,7 +29977,11 @@ void Unwind_1809025b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_1809025c0(void)
+/**
+ * 销毁互斥锁的异常处理函数C
+ * 功能：在异常处理过程中销毁互斥锁资源
+ */
+void DestroyMutexInExceptionC(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -29979,7 +29990,11 @@ void Unwind_1809025c0(void)
 
 
 
-void Unwind_1809025d0(void)
+/**
+ * 销毁互斥锁的异常处理函数D
+ * 功能：在异常处理过程中销毁互斥锁资源
+ */
+void DestroyMutexInExceptionD(void)
 
 {
   _Mtx_destroy_in_situ();
