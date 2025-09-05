@@ -12828,7 +12828,7 @@ undefined8 GetSystemStatusA0(void)
         if ((ArrayIndexCheck < 0) || (operationResult <= ArrayIndexCheck)) {
           return 0x1f;
         }
-        lVar5 = *(longlong *)(dataFlags + 0x20) + (longlong)iVar3 * 0x18;
+        lVar5 = *(longlong *)(dataFlags + 0x20) + (longlong)ArrayIndexCheck * 0x18;
         if (lVar5 == 0) {
           return 0x1c;
         }
