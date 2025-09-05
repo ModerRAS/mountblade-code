@@ -1912,7 +1912,7 @@ NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandl
   int32_t NetworkValidationStatusCode;               // 网络连接验证结果码
   NetworkHandle NetworkConnectionContextId;           // 网络连接上下文标识符
   
-  NetworkConnectionIdentifier = 0;
+  NetworkConnectionContextIdentifier = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
   if (NetworkValidationStatusCode == 0) {
     if ((0 < *(int *)((long long)NetworkConnectionValidationResult + ConnectionParameterOffset)) && (*NetworkConnectionValidationResult != 0)) {
@@ -2129,7 +2129,7 @@ PrimaryNetworkProcessingCompleted:
           ConnectionStatusBuffer[NetworkStatusValidationIndex] = ValidationState;
           ConnectionStatusBuffer[NetworkStatusTimeoutIndex] = TimeoutState;
           ConnectionStatusBuffer[NetworkStatusSecondaryIndex] = SecondaryState;
-          ConnectionStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((NetworkContextIdentifier - (long long)ConnectionStatusPointer) + -4 + (long long)(ConnectionStatusBuffer + ConnectionContextStatusEntrySize));
+          ConnectionStatusBuffer[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)((ConnectionContextIdentifier - (long long)ConnectionStatusPointer) + -4 + (long long)(ConnectionStatusBuffer + ConnectionContextStatusEntrySize));
           StatusIterator = StatusIterator - 1;
           ConnectionStatusBuffer = ConnectionStatusBuffer + ConnectionContextStatusEntrySize;
         } while (StatusIterator != 0);
