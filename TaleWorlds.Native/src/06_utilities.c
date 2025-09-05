@@ -3605,7 +3605,7 @@ undefined UtilitySystemProcessData2;
 undefined UtilitySystemProcessData3;
 undefined UtilitySystemProcessData4;
 
-// 函数: undefined FUN_180942a60;
+942a60;
 #define ConfigureUtilitySystemCallbacks FUN_180942a60
 undefined ConfigureUtilitySystemCallbacks;
 undefined UtilitySystemCallbackData1;
@@ -3613,7 +3613,7 @@ undefined UtilitySystemCallbackData2;
 undefined UtilitySystemCallbackData3;
 undefined UtilitySystemCallbackData4;
 
-// 函数: undefined FUN_180942a80;
+942a80;
 #define SetupUtilitySystemConfiguration FUN_180942a80
 undefined SetupUtilitySystemConfiguration;
 undefined UtilitySystemConfigData1;
@@ -3624,7 +3624,7 @@ undefined UtilitySystemThreadData1;
 undefined UtilitySystemThreadData2;
 undefined UtilitySystemThreadData3;
 
-// 函数: undefined FUN_180942fa0;
+942fa0;
 #define ProcessUtilitySystemFlags FUN_180942fa0
 undefined ProcessUtilitySystemFlags;
 undefined UtilitySystemFlagData1;
@@ -3632,13 +3632,13 @@ undefined UtilitySystemFlagData2;
 undefined UtilitySystemFlagData3;
 undefined UtilitySystemFlagData4;
 
-// 函数: undefined FUN_180942fc0;
+942fc0;
 #define ValidateUtilitySystemFlags FUN_180942fc0
 undefined ValidateUtilitySystemFlags;
 undefined UtilitySystemCleanupData1;
 undefined UtilitySystemCleanupStatus1;
 
-// 函数: undefined FUN_180943070;
+943070;
 #define InitializeUtilitySystemLocalData FUN_180943070
 undefined InitializeUtilitySystemLocalData;
 undefined UtilitySystemLocalData1;
@@ -3646,17 +3646,17 @@ undefined UtilitySystemLocalStatus1;
 undefined UtilitySystemLocalData2;
 undefined UtilitySystemLocalStatus2;
 
-// 函数: undefined FUN_180943140;
+943140;
 #define ConfigureUtilitySystemStorage FUN_180943140
 undefined ConfigureUtilitySystemStorage;
 
-// 函数: undefined FUN_180943160;
+943160;
 #define ValidateUtilitySystemStorage FUN_180943160
 undefined ValidateUtilitySystemStorage;
 undefined UtilitySystemStorageData1;
 undefined UtilitySystemStorageData2;
 
-// 函数: undefined FUN_180943180;
+943180;
 #define ProcessUtilitySystemStorage FUN_180943180
 undefined ProcessUtilitySystemStorage;
 undefined UtilitySystemStorageData3;
@@ -3683,7 +3683,7 @@ undefined DAT_180c967e8;
 undefined DAT_180c967f0;
 undefined DAT_180c967f8;
 
-// 函数: undefined FUN_180943200;
+943200;
 undefined FUN_180943200;
 undefined DAT_180c96800;
 undefined DAT_180c96808;
@@ -4030,7 +4030,7 @@ undefined UNK_180a1b150;
 undefined UNK_180a1b118;
 undefined UNK_18033cd70;
 
-// 函数: undefined FUN_180942830;
+942830;
 undefined FUN_180942830;
 undefined UNK_180a02fc8;
 undefined UNK_180a02fa0;
@@ -4042,7 +4042,7 @@ undefined DAT_180d49c08;
 undefined UNK_18045f200;
 undefined UNK_18045f210;
 
-// 函数: undefined FUN_180942850;
+942850;
 undefined FUN_180942850;
 undefined DAT_180c91038;
 undefined UNK_180a3e440;
@@ -4098,10 +4098,10 @@ undefined DAT_180bfbb60;
 undefined DAT_180bfbb70;
 undefined DAT_180bfbb80;
 
-// 函数: undefined FUN_180942a40;
+942a40;
 undefined FUN_180942a40;
 
-// 函数: undefined FUN_180942aa0;
+942aa0;
 undefined FUN_180942aa0;
 undefined DAT_180a2de40;
 undefined1 DAT_180d49e30;
@@ -4111,7 +4111,7 @@ undefined UNK_180a2e040;
 undefined UNK_180a2e070;
 undefined UNK_180a2e088;
 
-// 函数: undefined FUN_180943020;
+943020;
 undefined FUN_180943020;
 undefined UNK_180a30ce8;
 undefined UNK_180a30d28;
@@ -4126,7 +4126,7 @@ undefined DAT_180d49ec4;
 undefined DAT_180c9642c;
 undefined DAT_180c96430;
 
-// 函数: undefined FUN_180943040;
+943040;
 undefined FUN_180943040;
 undefined DAT_180c963e8;
 undefined DAT_180d49f60;
@@ -4401,11 +4401,11 @@ undefined UNK_180a33ca8;
 undefined UNK_18053eee0;
 undefined UNK_18053efd0;
 
-// 函数: undefined FUN_180943090;
+943090;
 undefined FUN_180943090;
 undefined DAT_180d49ff8;
 
-// 函数: undefined FUN_1809430b0;
+9430b0;
 undefined FUN_1809430b0;
 undefined UNK_180a38958;
 undefined UNK_180a38978;
@@ -4806,7 +4806,7 @@ undefined DAT_180c92510;
 char DAT_180c8aa68;
 undefined UNK_180a3e5e8;
 
-// 函数: undefined FUN_1809430e0;
+9430e0;
 undefined FUN_1809430e0;
 undefined1 DAT_180bf66d8;
 undefined DAT_180c96858;
