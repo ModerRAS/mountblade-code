@@ -214,32 +214,32 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkConnectionDataOffset 0x18                       // 网络连接有效数据偏移量
 #define NetworkConnectionBufferOffset 0x10                     // 网络连接缓冲区数据偏移量
 #define NetworkConnectionExtendedOffset 0x60                   // 网络连接扩展数据偏移量
-#define NetworkTimeoutValueOffset 0x30                         // 网络超时值偏移量
-#define NetworkRetryCountOffset 0x34                           // 网络重试计数偏移量
-#define ConnectionTimeoutFlagsOffset 0x38                      // 连接超时标志偏移量
-#define ConnectionRetryFlagsOffset 0x3c                        // 连接重试标志偏移量
-#define ConnectionTransferFlagsOffset 0x40                    // 连接传输标志偏移量
-#define ConnectionValidationFlagsOffset 0x44                   // 连接验证标志偏移量
-#define NetworkProcessingStepOffset 0x25                       // 网络处理步骤偏移量
-#define NetworkSecondaryProcessingOffset 0x28                  // 网络次级处理偏移量
-#define NetworkExtendedProcessingOffset 0xa8                   // 网络扩展处理偏移量
-#define NetworkConnectionKeyOffset 0x14                        // 网络连接密钥偏移量
-#define NetworkPrimaryStatusOffset 0x4c                        // 网络主状态偏移量
-#define NetworkSecondaryStatusOffset 0x48                      // 网络次级状态偏移量
-#define NetworkQuaternaryHandleOffset 0x40                     // 网络第四级句柄偏移量
-#define NetworkSecurityContextOffset 0x44                      // 网络安全上下文偏移量
-#define NetworkEncryptionKeyOffset 0x50                        // 网络加密密钥偏移量
+#define NetworkTimeoutValueOffset 0x30                         // 网络超时数值偏移量
+#define NetworkRetryCountOffset 0x34                           // 网络重试次数偏移量
+#define ConnectionTimeoutFlagsOffset 0x38                      // 连接超时状态标志偏移量
+#define ConnectionRetryFlagsOffset 0x3c                        // 连接重试状态标志偏移量
+#define ConnectionTransferFlagsOffset 0x40                    // 连接传输状态标志偏移量
+#define ConnectionValidationFlagsOffset 0x44                   // 连接验证状态标志偏移量
+#define NetworkProcessingStepOffset 0x25                       // 网络处理步骤数据偏移量
+#define NetworkSecondaryProcessingOffset 0x28                  // 网络次级处理数据偏移量
+#define NetworkExtendedProcessingOffset 0xa8                   // 网络扩展处理数据偏移量
+#define NetworkConnectionKeyOffset 0x14                        // 网络连接密钥数据偏移量
+#define NetworkPrimaryStatusOffset 0x4c                        // 网络主状态数据偏移量
+#define NetworkSecondaryStatusOffset 0x48                      // 网络次级状态数据偏移量
+#define NetworkQuaternaryHandleOffset 0x40                     // 网络第四级句柄数据偏移量
+#define NetworkSecurityContextOffset 0x44                      // 网络安全上下文数据偏移量
+#define NetworkEncryptionKeyOffset 0x50                        // 网络加密密钥数据偏移量
 
 /**
  * @brief 网络数据包相关偏移量常量
  * 
  * 定义网络数据包处理相关数据结构的内存偏移量，用于访问数据包信息
  */
-#define NetworkPacketTableIndexOffset 0x88                     // 网络数据包表索引偏移量
-#define NetworkPacketTableDataOffset 0x80                     // 网络数据包表数据偏移量
+#define NetworkPacketTableIndexOffset 0x88                     // 网络数据包表索引数据偏移量
+#define NetworkPacketTableDataOffset 0x80                     // 网络数据包表有效数据偏移量
 #define NetworkPacketEntrySize 0x10                           // 网络数据包条目大小
-#define NetworkPacketProcessorOffset 0x270                    // 网络数据包处理器偏移量
-#define NetworkPacketHeaderValidationOffset 0x18              // 网络数据包头验证偏移量
+#define NetworkPacketProcessorOffset 0x270                    // 网络数据包处理器数据偏移量
+#define NetworkPacketHeaderValidationOffset 0x18              // 网络数据包头验证数据偏移量
 
 /**
  * @brief 网络数据包状态常量
@@ -291,10 +291,10 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkStabilityHighFlag 0x02                         // 连接稳定性高标志
 #define NetworkPerformanceGoodFlag 0x04                       // 连接性能良好标志
 #define NetworkQueueEnabledFlag 0x08                          // 队列启用标志别名
-#define NetworkPacketStatusPrimaryOffset 0x38                  // 网络数据包主状态偏移量
-#define NetworkPacketStatusSecondaryOffset 0x3c                // 网络数据包次级状态偏移量
-#define NetworkPacketStatusTertiaryOffset 0x40                 // 网络数据包第三级状态偏移量
-#define NetworkPacketStatusQuaternaryOffset 0x44               // 网络数据包第四级状态偏移量
+#define NetworkPacketStatusPrimaryOffset 0x38                  // 网络数据包主状态数据偏移量
+#define NetworkPacketStatusSecondaryOffset 0x3c                // 网络数据包次级状态数据偏移量
+#define NetworkPacketStatusTertiaryOffset 0x40                 // 网络数据包第三级状态数据偏移量
+#define NetworkPacketStatusQuaternaryOffset 0x44               // 网络数据包第四级状态数据偏移量
 #define ConnectionContextActiveCountIndex 1                     // 连接上下文活跃连接数索引
 #define ConnectionContextPacketStatusIndex 1                   // 连接上下文数据包状态索引
 #define ConnectionContextDataStatusIndex 2                     // 连接上下文数据状态索引
@@ -354,7 +354,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkConnectionCompletionOffset 0x7c                  // 网络连接完成偏移量
 #define NetworkConnectionSecurityContextOffset 0xf8           // 网络连接安全上下文偏移量
 #define NetworkConnectionResultHandleContextOffset 0xe8             // 网络连接句柄上下文偏移量
-#define NetworkPacketSecondaryDataOffset 0x44                  // 网络数据包次数据偏移量
+#define NetworkPacketSecondaryDataOffset 0x44                  // 网络数据包次级数据偏移量
 
 // 网络状态常量 - 系统状态和限制值
 #define NetworkStatusActive 0x01                               // 网络状态：活跃

@@ -10158,8 +10158,8 @@ void InitializeSystemInputNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
-  HashTablePointer[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -12462,8 +12462,8 @@ void InitializeSystemMemoryManagerG(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4666df49b97e0f10;
-  HashTablePointer[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -12512,8 +12512,8 @@ void InitializeSystemMemoryManagerH(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
-  HashTablePointer[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -13071,8 +13071,8 @@ void InitializeSystemConfigurationDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4666df49b97e0f10;
-  HashTablePointer[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -13128,8 +13128,8 @@ void InitializeSystemEventDataNodeManager(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
-  HashTablePointer[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -15045,8 +15045,8 @@ void InitializeSystemResourceManagerC(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4666df49b97e0f10;
-  HashTablePointer[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -15097,8 +15097,8 @@ void InitializeSystemResourceManagerD(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
-  HashTablePointer[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -15829,8 +15829,8 @@ void InitializeSystemDataTableAllocator(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4666df49b97e0f10;
-  HashTablePointer[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -15880,8 +15880,8 @@ void InitializeSystemResourceComponent(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
-  HashTablePointer[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -18151,8 +18151,8 @@ void InitializeSystemDataTableNode(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x4666df49b97e0f10;
-  HashTablePointer[NodeIdentifier2Index] = 0x4e4b0d63a6ad1d8f;
+  HashTablePointer[NodeIdentifier1Index] = SystemAudioModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemAudioModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateB;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
@@ -18207,8 +18207,8 @@ void ResourceInitializationCallbackSetter(void)
     AllocateSystemMemory(SystemDataTable,&AllocatedMemoryNode,HashTablePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
   }
-  HashTablePointer[NodeIdentifier1Index] = 0x46ecbd4daf41613e;
-  HashTablePointer[NodeIdentifier2Index] = 0xdc42c056bbde8482;
+  HashTablePointer[NodeIdentifier1Index] = SystemInputModuleIdentifier1;
+  HashTablePointer[NodeIdentifier2Index] = SystemInputModuleIdentifier2;
   HashTablePointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateC;
   HashTablePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   HashTablePointer[SystemNodeCallbackIndex] = ResourceInitializationCallback;
