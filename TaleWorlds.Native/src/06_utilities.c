@@ -16786,7 +16786,7 @@ DataBuffer QuerySystemStatus(void)
 // 原始函数名：FUN_180896040 - 参数验证函数
 // 功能：验证参数的有效性
 #define ValidateParameters FUN_180896040
-DataBuffer ValidateParameters(int64_t *param_1,int param_2)
+DataBuffer ValidateParameters(int64_t *contextPointer,int validationCount)
 
 {
   int64_t validationContext;
@@ -16826,7 +16826,7 @@ DataTransferLabel:
 // 原始函数名：FUN_180896064 - 数据处理函数
 // 功能：处理输入数据并返回处理结果
 #define ProcessInputData FUN_180896064
-DataBuffer ProcessInputData(DataBuffer param_1,int param_2)
+DataBuffer ProcessInputData(DataBuffer inputData,int processingMode)
 
 {
   int64_t validationContext;
@@ -18440,7 +18440,7 @@ ProcessDataSecurityValidation:
 #define ProcessDataTypesA0 FUN_180897644
 
 {
-  float fVar1;
+  float inputValue1;
   int64_t dataContext;
   int64_t calculatedOffset;
   DataBuffer *pmemoryBaseAddress;
@@ -18703,7 +18703,7 @@ ValidateDataSecurity:
 #define ProcessDataTypesB0 FUN_1808976b0
 
 {
-  float fVar1;
+  float inputDataType1;
   int64_t dataContext;
   int64_t calculatedOffset;
   DataBuffer *pmemoryBaseAddress;
