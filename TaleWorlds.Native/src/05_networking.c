@@ -2984,23 +2984,23 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
           // 循环处理所有连接数据
           do {
             // 计算连接上下文数据位置
-            NetworkConnectionStatus *NetworkConnectionContextDataPtr = (NetworkConnectionStatus *)CalculateConnectionDataAddress(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusIterator);
+            NetworkConnectionStatus *NetworkConnectionContextDataPointer = (NetworkConnectionStatus *)CalculateConnectionDataAddress(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusIterator);
             
             // 提取连接状态信息
-            NetworkConnectionStatus NetworkPacketStatus = NetworkConnectionContextDataPtr[ConnectionContextPacketStatusIndex];
-            NetworkConnectionStatus NetworkDataStatus = NetworkConnectionContextDataPtr[ConnectionContextDataStatusIndex];
-            NetworkConnectionStatus NetworkValidationStatus = NetworkConnectionContextDataPtr[ConnectionContextValidationStatusIndex];
+            NetworkConnectionStatus NetworkConnectionPacketStatus = NetworkConnectionContextDataPointer[ConnectionContextPacketStatusIndex];
+            NetworkConnectionStatus NetworkConnectionDataStatus = NetworkConnectionContextDataPointer[ConnectionContextDataStatusIndex];
+            NetworkConnectionStatus NetworkConnectionValidationStatus = NetworkConnectionContextDataPointer[ConnectionContextValidationStatusIndex];
             
             // 更新数据包缓冲区状态
-            *NetworkConnectionStatusIterator = *NetworkConnectionContextDataPtr;
-            NetworkConnectionStatusIterator[ConnectionContextPacketStatusIndex] = NetworkPacketStatus;
-            NetworkConnectionStatusIterator[ConnectionContextDataStatusIndex] = NetworkDataStatus;
-            NetworkConnectionStatusIterator[ConnectionContextValidationStatusIndex] = NetworkValidationStatus;
+            *NetworkConnectionStatusIterator = *NetworkConnectionContextDataPointer;
+            NetworkConnectionStatusIterator[ConnectionContextPacketStatusIndex] = NetworkConnectionPacketStatus;
+            NetworkConnectionStatusIterator[ConnectionContextDataStatusIndex] = NetworkConnectionDataStatus;
+            NetworkConnectionStatusIterator[ConnectionContextValidationStatusIndex] = NetworkConnectionValidationStatus;
             NetworkConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastConnectionEntryAddress(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusIterator);
             
             // 更新计数器
-            ConnectionIterationCounter = ConnectionIterationCounter - 1;
-            NetworkConnectionStatusIterator = NetworkConnectionStatusIterator + ConnectionContextEntrySize;
+            ConnectionIterationCounter--;
+            NetworkConnectionStatusIterator += ConnectionContextEntrySize;
           } while (ConnectionIterationCounter != 0);
         }
         return NetworkOperationSuccess;
@@ -3106,8 +3106,8 @@ PrimaryNetworkProcessingComplete:
           ConnectionStatusIterator[NetworkStatusTimeoutIndex] = NetworkConnectionTimeoutStatus;
           ConnectionStatusIterator[NetworkStatusSecondaryIndex] = NetworkConnectionSecondaryStatus;
           ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastConnectionStatusEntryAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
-          NetworkStatusIterationCounter = NetworkStatusIterationCounter - 1;
-          ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextEntrySize;
+          NetworkStatusIterationCounter--;
+          ConnectionStatusIterator += ConnectionContextEntrySize;
         } while (NetworkStatusIterationCounter != 0);
       }
 SecondaryNetworkProcessingStageComplete:
