@@ -96968,7 +96968,20 @@ void Unwind_18090f990(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f9a0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文主偏移0x28处的回调函数
+ * 
+ * 该函数从验证上下文主偏移0x28处获取资源上下文指针，
+ * 如果指针有效则调用该资源上下文偏移0x38处的回调函数。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于执行特定资源上下文的回调操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f9a0
+ */
+void ExecuteValidationContextPrimaryOffset28Callback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -96982,7 +96995,20 @@ void Unwind_18090f9a0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f9b0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文主偏移0x30处的回调函数
+ * 
+ * 该函数从验证上下文主偏移0x30处获取资源上下文指针，
+ * 如果指针有效则调用该资源上下文偏移0x38处的回调函数。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于执行特定资源上下文的回调操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f9b0
+ */
+void ExecuteValidationContextPrimaryOffset30Callback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -96996,7 +97022,20 @@ void Unwind_18090f9b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f9c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文主偏移处的次要清理回调函数
+ * 
+ * 该函数从验证上下文主偏移处的次要清理偏移量获取资源上下文指针，
+ * 如果指针有效则调用该资源上下文偏移0x38处的回调函数。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于执行次要清理相关的回调操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f9c0
+ */
+void ExecuteValidationContextSecondaryCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -97010,7 +97049,20 @@ void Unwind_18090f9c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f9d0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行验证上下文主偏移0x40处的回调函数
+ * 
+ * 该函数从验证上下文主偏移0x40处获取资源上下文指针，
+ * 如果指针有效则调用该资源上下文偏移0x38处的回调函数。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于执行特定资源上下文的回调操作
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f9d0
+ */
+void ExecuteValidationContextPrimaryOffset40Callback(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

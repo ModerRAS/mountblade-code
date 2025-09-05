@@ -2010,9 +2010,9 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             NetworkConnectionStatus ValidationStatus = ContextDataPointer[ConnectionContextValidationStatusIndex];
             
             // 更新数据包缓冲区状态
-            *ConnectionStatusPointer = *ContextDataPointer;
+            *NetworkConnectionStatusPointer = *NetworkContextDataPointer;
             ConnectionStatusPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
-            ConnectionStatusPointer[ConnectionContextDataStatusIndex] = DataStatus;
+            NetworkConnectionStatusPointer[ConnectionContextDataStatusIndex] = DataStatus;
             ConnectionStatusPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
             ConnectionStatusPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextBaseAddress - (long long)ConnectionStatusBufferPointer) + -4 + (long long)(ConnectionStatusPointer + ConnectionContextStatusEntrySize));
             
