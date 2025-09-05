@@ -7417,6 +7417,22 @@ uint8_t SystemModuleInitializeComplete(void)
   (**(code **)(*SystemModuleCallbackTable + 0x70))(SystemModuleCallbackTable,&SystemMessageDataStructure);
   return;
 }
+
+/**
+ * @brief 处理字符串缓冲区数据操作
+ * 
+ * 该函数用于处理字符串缓冲区的数据操作，包括数据格式化、网络请求处理和资源清理。
+ * 函数会根据提供的参数处理字符串数据，并通过网络请求状态处理器进行数据传输。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于访问系统模块和回调表
+ * @param BufferSizeParameter 缓冲区大小参数，指定数据处理的缓冲区大小
+ * @param MemoryAddressParameter 内存地址参数，指向待处理的数据内存地址
+ * @param OperationFlags 操作标志，用于控制数据处理的操作类型
+ * @return uint32_t 返回操作结果状态码，成功时返回缓冲区大小
+ * 
+ * @note 原始函数名：ProcessStringBufferDataOperation
+ * @warning 函数内部使用了系统回调表和网络请求处理器，确保系统初始化完成后再调用
+ */
 uint32_t
 ProcessStringBufferDataOperation(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t MemoryAddressParameter,uint64_t OperationFlags)
 {
@@ -7424,16 +7440,32 @@ ProcessStringBufferDataOperation(uint64_t SystemContextPointer,uint64_t BufferSi
   uint32_t BufferSize;
   uint64_t StringProcessingResult;
   void *StackBuffer28;
-  longlong lStack_20;
+  longlong StackCleanupFlag;
   pNetworkRequestStatus = *(code **)(*SystemModuleCallbackTable + 0x70);
   StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatPrimary,MemoryAddressParameter,OperationFlags,0,SystemMutexFlags);
   BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,MemoryAddressParameter,OperationFlags,1);
   StackBuffer28 = &SystemNullPointer;
-  if (lStack_20 != 0) {
+  if (StackCleanupFlag != 0) {
     CleanupSystemResources();
   }
   return BufferSize;
 }
+
+/**
+ * @brief 处理字符串缓冲区次要操作
+ * 
+ * 该函数用于处理字符串缓冲区的次要数据操作，类似于主操作函数但使用次级字符串格式。
+ * 函数会根据提供的参数处理字符串数据，并通过网络请求状态处理器进行数据传输。
+ * 
+ * @param SystemContextPointer 系统上下文指针，用于访问系统模块和回调表
+ * @param BufferSizeParameter 缓冲区大小参数，指定数据处理的缓冲区大小
+ * @param MemoryAddressParameter 内存地址参数，指向待处理的数据内存地址
+ * @param OperationFlags 操作标志，用于控制数据处理的操作类型
+ * @return uint32_t 返回操作结果状态码，成功时返回缓冲区大小
+ * 
+ * @note 原始函数名：ProcessStringBufferSecondaryOperation
+ * @warning 函数内部使用了系统回调表和网络请求处理器，确保系统初始化完成后再调用
+ */
 uint32_t
 ProcessStringBufferSecondaryOperation(uint64_t SystemContextPointer,uint64_t BufferSizeParameter,uint64_t MemoryAddressParameter,uint64_t OperationFlags)
 {
@@ -7441,12 +7473,12 @@ ProcessStringBufferSecondaryOperation(uint64_t SystemContextPointer,uint64_t Buf
   uint32_t BufferSize;
   uint64_t StringProcessingResult;
   void *StackBuffer28;
-  longlong lStack_20;
+  longlong StackCleanupFlag;
   pNetworkRequestStatus = *(code **)(*SystemModuleCallbackTable + 0x70);
   StringProcessingResult = ProcessStringFormatData(&StackBuffer28,&SystemStringFormatSecondary,MemoryAddressParameter,OperationFlags,0,SystemMutexFlags);
   BufferSize = (*pNetworkRequestStatus)(SystemModuleCallbackTable,StringProcessingResult,MemoryAddressParameter,OperationFlags,1);
   StackBuffer28 = &SystemNullPointer;
-  if (lStack_20 != 0) {
+  if (StackCleanupFlag != 0) {
     CleanupSystemResources();
   }
   return BufferSize;
