@@ -12840,7 +12840,7 @@ undefined8 ConfigureSystemParameterDK0(longlong *parameterContext)
   
   // 最终验证和配置操作
   if ((0 < (int)((validationCounter ^ (int)validationCounter >> 0x1f) - ((int)validationCounter >> 0x1f))) &&
-     (operationStatus = FUN_180896040(parameterContext,0), (int)operationStatus != 0)) {
+     (operationStatus = ValidateParametersA2(parameterContext,0), (int)operationStatus != 0)) {
     return operationStatus;
   }
   
