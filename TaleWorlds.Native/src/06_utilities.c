@@ -105,6 +105,10 @@
 // 功能：处理数据缓冲区并进行验证，返回处理的总字节数
 #define ProcessDataBufferWithValidation FUN_1808947b0
 
+// 原始函数名：FUN_180894a07 - 安全验证执行函数
+// 功能：执行安全验证操作，验证系统状态并执行相应处理
+#define ExecuteSecurityValidationOperation FUN_180894a07
+
 // 原始函数名：FUN_180895b89 - 安全检查执行函数
 // 功能：执行安全检查，程序不会返回
 #define ExecuteSecurityCheck FUN_180895b89
