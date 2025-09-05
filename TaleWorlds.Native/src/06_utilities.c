@@ -17085,14 +17085,14 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
     if (operationStatus < iterationCount) {
       primaryInputParameter = (int)((float)operationStatus * 1.5);
       operationStatus = iterationCount;
-      if (iterationCount <= inputParameter0) {
-        operationStatus = inputParameter0;
+      if (iterationCount <= primaryInputParameter) {
+        operationStatus = primaryInputParameter;
       }
       if (operationStatus < 4) {
-        inputParameter0 = 4;
+        primaryInputParameter = 4;
       }
-      else if (inputParameter0 < iterationCount) {
-        inputParameter0 = iterationCount;
+      else if (primaryInputParameter < iterationCount) {
+        primaryInputParameter = iterationCount;
       }
       memoryBaseAddress = CheckSystemDataA0(destinationIndexRegister + 2,inputParameter0);
       if ((int)memoryBaseAddress != 0) {
