@@ -1908,7 +1908,7 @@ void BindNetworkSocketToAddress(void)
 {
   // 设置网络地址和端口配置
   NetworkServerIpAddress = NetworkLocalhostIpAddress;               // 设置为127.0.0.1 (本地回环地址)
-  NetworkServerPortNumber = NetworkPortHttpAlternative;          // 设置端口为8080
+  NetworkServerPortNumber = NetworkHttpAlternativePort;          // 设置端口为8080
   NetworkClientIpAddress = NetworkClientIpAddressAny;            // 客户端IP地址初始化为0.0.0.0
   NetworkClientPortNumber = NetworkClientPortAny;               // 客户端端口初始化为0
   
@@ -2004,8 +2004,8 @@ void AcceptNetworkConnection(void)
   
   // 设置连接参数
   NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
-  NetworkConnectionBandwidth = NetworkBandwidthFourKilobytes;                 // 设置连接带宽为4KB
-  NetworkConnectionLatencyMs = NetworkLatency50Milliseconds;                     // 设置连接延迟为50ms
+  NetworkConnectionBandwidth = Network4KBandwidth;                 // 设置连接带宽为4KB
+  NetworkConnectionLatencyMs = Network50MillisecondsLatency;                     // 设置连接延迟为50ms
   NetworkConnectionReliabilityLevel = NetworkReliabilityLevelHigh;                 // 设置连接可靠性为高
   
   // 初始化安全参数
@@ -2015,7 +2015,7 @@ void AcceptNetworkConnection(void)
   NetworkCompressionMethod = NetworkCompressionMethodZLIB;                      // 设置压缩方法为ZLIB
   
   // 初始化会话参数
-  NetworkSessionEncryptionKey = DefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
+  NetworkSessionEncryptionKey = NetworkDefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
   NetworkSessionTimeoutDuration = Network5MinutesTimeout;              // 设置会话超时时间为300秒
   NetworkHandshakeTimeout = Network5SecondsTimeout;                     // 设置握手超时时间为5秒
   NetworkAuthenticationTimeout = Network5SecondsTimeout;               // 设置认证超时时间为5秒
@@ -2299,7 +2299,7 @@ void InitializeNetworkDataTransmission(void)
   // 初始化数据包参数
   NetworkPacketSequence = NetworkSequenceInitialValue;                         // 初始化数据包序列号
   NetworkAcknowledgeNumber = NetworkAckInitialValue;                      // 初始化确认号
-  NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
+  NetworkWindowScale = Network16WindowScale;                            // 设置窗口缩放为16
   NetworkRetransmitTimer = Network5SecondsTimeout;                       // 设置重传计时器为5秒
   NetworkKeepAliveTime = Network30SecondsHeartbeat;                          // 设置保持连接时间为30秒
   NetworkHeartbeatTimeout = Network60SecondsHeartbeat;                      // 设置心跳超时时间为60秒
@@ -2397,7 +2397,7 @@ void InitializeNetworkPacketSecurityValidation(void)
   // 初始化验证参数
   NetworkPacketHashAlgorithm = NetworkHashAlgorithmSHA256;                         // 设置哈希算法为SHA-256
   NetworkPacketSignatureMethod = NetworkSignatureMethodRSA;                        // 设置签名方法为RSA
-  NetworkPacketEncryptionKeyLength = NetworkEncryptionKeyLength256Bits;                   // 设置加密密钥长度为256位
+  NetworkPacketEncryptionKeyLength = Network256BitEncryptionKeyLength;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
   NetworkPacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
@@ -2450,7 +2450,7 @@ void InitializeNetworkPacketProcessingSystem(void)
   // 初始化连接管理
   NetworkConnectionManager = NetworkConnectionEstablished;             // 初始化连接管理器
   NetworkConnectionData = NetworkConnectionEstablished;                 // 初始化连接数据
-  NetworkConnectionSize = NetworkConnectionSize256Bytes;                // 设置连接大小为256字节
+  NetworkConnectionSize = Network256ByteConnectionSize;                // 设置连接大小为256字节
   NetworkConnectionIndex = NetworkIndexResetValue;               // 重置连接索引
   
   // 初始化路由和过滤缓冲区
@@ -2465,15 +2465,15 @@ void InitializeNetworkPacketProcessingSystem(void)
   NetworkPacketLoss = NetworkPacketsResetValue;                             // 重置数据包丢失率
   
   // 初始化重试机制
-  NetworkRetryInterval = NetworkTimeout1Second;                        // 设置重试间隔为1秒
+  NetworkRetryInterval = Network1SecondTimeout;                        // 设置重试间隔为1秒
   NetworkTimeoutInterval = Network5SecondsTimeout;                     // 设置超时间隔为5秒
-  NetworkConnectionRetryCount = NetworkRetryCountMaximum;             // 设置连接重试次数为3次
-  NetworkConnectionBackoffTime = NetworkBackoffTimeTwoSeconds;           // 设置连接退避时间为2秒
+  NetworkConnectionRetryCount = NetworkMaximumRetryCount;             // 设置连接重试次数为3次
+  NetworkConnectionBackoffTime = Network2SecondBackoffTime;           // 设置连接退避时间为2秒
   
   // 初始化事件处理
-  NetworkEventSize = NetworkEventSize64Bytes;                              // 设置网络事件大小为64字节
+  NetworkEventSize = Network64ByteEventSize;                              // 设置网络事件大小为64字节
   NetworkEventIndex = NetworkIndexResetValue;                            // 重置网络事件索引为0
-  NetworkCallbackSize = NetworkCallbackSize64Bytes;                           // 设置网络回调大小为64字节
+  NetworkCallbackSize = Network64ByteCallbackSize;                           // 设置网络回调大小为64字节
   NetworkCallbackIndex = NetworkIndexResetValue;                          // 重置网络回调索引为0
 }
 
@@ -2516,8 +2516,8 @@ void InitializeNetworkErrorHandlingSystem(void)
   NetworkPacketProcessingSize = 0x100;                         // 设置数据包处理大小为256字节
   
   // 初始化端口范围
-  NetworkPortRangeStart = NetworkPortHttpAlternative;     // 设置端口范围起始值为8080
-  NetworkPortRangeEnd = NetworkPortRangeMaximum;           // 设置端口范围结束值为9999
+  NetworkPortRangeStart = NetworkHttpAlternativePort;     // 设置端口范围起始值为8080
+  NetworkPortRangeEnd = NetworkMaximumPortNumber;           // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
   NetworkConnectionTimeoutMs = Network30SecondsTimeout;                   // 设置连接超时时间为30秒

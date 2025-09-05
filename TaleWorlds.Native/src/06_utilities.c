@@ -7587,13 +7587,13 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
             return 0;
           }
         }
-        *(int64_t *)(*componentList + (int64_t)*(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) * 8) = processBuffer;
+        *(int64_t *)(*componentList + (int64_t)*(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) * 8) = dataValidationBuffer;
         *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) = *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET) + 1;
         *(int32_t *)(componentData + COMPONENT_ACTIVE_OFFSET) = *(int32_t *)(componentData + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
         #define COMPONENT_COMMAND_OFFSET 0x368    // 组件命令偏移量
-        queryResult = ExecuteComponentCommand(componentData + COMPONENT_COMMAND_OFFSET,processBuffer);
+        queryResult = ExecuteComponentCommand(componentData + COMPONENT_COMMAND_OFFSET,dataValidationBuffer);
         if ((int32_t)queryResult != 0) {
           return queryResult;
         }
