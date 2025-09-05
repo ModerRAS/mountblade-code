@@ -49502,7 +49502,6 @@ void ExecuteValidationContextCleanupCallback(uint8_t ObjectContext, int64_t Vali
  * @return 无返回值
  * @note 此函数会调用验证上下文中偏移0xf8处的回调函数
  * @warning 调用此函数前必须确保验证上下文已正确初始化
- * @remark 原始函数名：Unwind_180905410
  */
 void ExecuteValidationContextAlternateCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
@@ -49531,7 +49530,6 @@ void ExecuteValidationContextAlternateCleanupCallback(uint8_t ObjectContext, int
  * @return 无返回值
  * @note 此函数会调用验证上下文中偏移0xf0处的回调函数
  * @warning 调用此函数前必须确保验证上下文已正确初始化
- * @remark 原始函数名：Unwind_180905420
  */
 void ExecuteValidationContextExtendedCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
@@ -49560,7 +49558,6 @@ void ExecuteValidationContextExtendedCleanupCallback(uint8_t ObjectContext, int6
  * @return 无返回值
  * @note 此函数会调用验证上下文中偏移0x100处的回调函数
  * @warning 调用此函数前必须确保验证上下文已正确初始化
- * @remark 原始函数名：Unwind_180905430
  */
 void ExecuteValidationContextPrimaryCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
@@ -49618,7 +49615,6 @@ void ExecuteValidationContextSecondaryCleanupCallback(uint8_t ObjectContext, int
  * @return 无返回值
  * @note 此函数会调用验证上下文中偏移0x100处的回调函数
  * @warning 调用此函数前必须确保验证上下文已正确初始化
- * @remark 原始函数名：Unwind_180905450
  */
 void ExecuteValidationContextCoreCleanupCallback(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
@@ -90824,14 +90820,15 @@ void ExecuteSystemResourceCallbackAtOffset1400(uint8_t ObjectContext, int64_t Va
 
 
 /**
- * @brief 执行资源处理回调函数64
+ * @brief 执行资源处理回调函数（偏移量0x1418）
  * 
- * 该函数从指定的验证上下文中获取资源上下文，并执行资源处理回调函数
- * 通过偏移量0x1418来定位资源上下文，并调用相应的处理函数
+ * 该函数负责在系统资源的指定偏移量处执行资源处理回调。
+ * 从验证上下文中获取资源上下文，并执行相应的资源处理回调。
  * 
- * @param ObjectContext 对象上下文，用于标识操作的对象
- * @param ValidationContext 验证上下文，包含资源处理所需的信息
- * @note 原始函数名：Unwind_18090dfa0
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源处理过程中被调用
  */
 void ExecuteResourceProcessingCallback64(uint8_t ObjectContext, int64_t ValidationContext)
 
@@ -90848,14 +90845,15 @@ void ExecuteResourceProcessingCallback64(uint8_t ObjectContext, int64_t Validati
 
 
 /**
- * @brief 执行资源处理回调函数65
+ * @brief 执行资源处理回调函数（偏移量0x1430）
  * 
- * 该函数从指定的验证上下文中获取资源上下文，并执行资源处理回调函数
- * 通过偏移量0x1430来定位资源上下文，并调用相应的处理函数
+ * 该函数负责在系统资源的指定偏移量处执行资源处理回调。
+ * 从验证上下文中获取资源上下文，并执行相应的资源处理回调。
  * 
- * @param ObjectContext 对象上下文，用于标识操作的对象
- * @param ValidationContext 验证上下文，包含资源处理所需的信息
- * @note 原始函数名：Unwind_18090dfc0
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含验证所需的数据
+ * @return 无返回值
+ * @note 此函数在系统资源处理过程中被调用
  */
 void ExecuteResourceProcessingCallback65(uint8_t ObjectContext, int64_t ValidationContext)
 
@@ -97515,8 +97513,19 @@ void ResetResourceHashTableAndTemplates(uint8_t ObjectContext,int64_t Validation
 
 
 
-void Unwind_18090fa30(uint8_t ObjectContext,int64_t ValidationContext)
-
+/**
+ * @brief 执行资源处理回调函数
+ * 
+ * 该函数负责执行资源处理的回调操作，从验证上下文中提取资源上下文
+ * 并调用相应的回调函数进行处理
+ * 
+ * @param ObjectContext 对象上下文，标识要操作的对象
+ * @param ValidationContext 验证上下文，包含资源上下文指针
+ * @return 无返回值
+ * @note 此函数在资源处理过程中被调用
+ * @warning 如果资源上下文无效，函数将直接返回
+ */
+void ExecuteResourceProcessingCallback(uint8_t ObjectContext, int64_t ValidationContext)
 {
   int64_t *ResourceProcessingPointer;
   
