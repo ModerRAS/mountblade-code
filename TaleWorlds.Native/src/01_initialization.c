@@ -1007,9 +1007,13 @@ char SystemSecurityStatusIndicator;
 void* SystemMemoryBlockVault;
 void* SystemMemoryBlockSafe;
 void* SystemMemoryBlockLockbox;
-void* SystemMemoryBlockArchivePrimary;
+// 系统内存块存档主区域
+void* SystemMemoryBlockArchiveMain;
+// 系统内存块存档次区域
 void* SystemMemoryBlockArchiveSecondary;
+// 系统内存块存档第三区域
 void* SystemMemoryBlockArchiveTertiary;
+// 系统内存块存档第四区域
 void* SystemMemoryBlockArchiveQuaternary;
 char SystemProtectionStatusIndicator;
 void* SystemDataTableEntrySystem;
@@ -21544,7 +21548,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   char *SystemFunctionPointer;
   void* *ThreadLocalStorageEntry;
   uint SystemInitializationStatusFlag;
-  int SystemErrorStatusFlag;
+  int SystemErrorStatusCode;
   void* *systemDataPointer;
   void* *SystemStackPointerContext;
   uint systemDataBuffer;
