@@ -3896,48 +3896,52 @@ void UtilityNoOperation1(void)
 
 
 
-undefined8 FUN_180890650(longlong param_1)
+// 函数: undefined8 ForceResourceRelease(longlong param_1)
+// 功能：强制资源释放，验证资源有效性后无条件执行资源释放操作
+undefined8 ForceResourceRelease(longlong param_1)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 validationStatus;
+  longlong stackPointer;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&stackPointer);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (stackPointer == 0) {
+    stackPointer = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    stackPointer = stackPointer + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(stackPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
 }
 
 
 
-undefined4 FUN_180890673(void)
+// 函数: undefined4 ReleaseStackResource(void)
+// 功能：释放栈资源，从寄存器获取资源指针并执行资源释放操作
+undefined4 ReleaseStackResource(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong registerValue;
+  longlong resourcePointer;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (registerValue == 0) {
+    resourcePointer = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    resourcePointer = registerValue + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) == 0) {
+  if (*(longlong *)(resourcePointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(resourcePointer + 0x10),1);
 }
 
 
