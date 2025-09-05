@@ -13340,7 +13340,7 @@ MemoryCopyLabel:
     else {
       if ((cVar2 != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
       stackParameter40._4_4_ = *(undefined4 *)(lVar8 + 0x20);
-      iVar4 = FUN_180895c60(param_1,unaff_EBX,(longlong)&stack0x00000040 + 4);
+      iVar4 = ValidateAndProcessDataFlags(param_1,unaff_EBX,(longlong)&stack0x00000040 + 4);
       if (iVar4 != 0) goto LAB_180895b69;
       iVar4 = QueryAndRetrieveSystemDataA0(stackParameter40._4_4_,unaff_RBP + -0x78);
       if ((iVar4 != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
