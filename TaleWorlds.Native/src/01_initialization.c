@@ -3,65 +3,65 @@
 
 
 // 系统管理器表偏移量
-#define SystemCompletionPortHandleOffset    0x42686
-#define SystemResourceManagerOffset         0x42687
-#define SystemMemoryFreeSize                0x213458
+#define SystemCompletionPortHandleOffset    0x42686  // 系统完成端口句柄偏移量
+#define SystemResourceManagerOffset         0x42687  // 系统资源管理器偏移量
+#define SystemMemoryFreeSize                0x213458  // 系统内存空闲大小
 
 // 位操作和数学计算相关常量
-#define SystemBitMask32Bit                    0x1f
-#define SystemMaximumUnsigned32BitValue               0xffffffff
-#define SystemSineLookupTableSize            0x7fff
-#define SystemQuadrantShiftBits              0xd
-#define SystemSineTableQuadrant1Offset        0x4cc
-#define SystemSineTableQuadrant2Offset        0x4132
-#define SystemSineTableQuadrant3Offset        0xfb34
-#define SystemSineTableOffset8132            0x8132
-#define SystemTransformContextOffset         0x218
+#define SystemBitMask32Bit                    0x1f  // 32位掩码
+#define SystemMaximumUnsigned32BitValue               0xffffffff  // 最大32位无符号值
+#define SystemSineLookupTableSize            0x7fff  // 正弦查找表大小
+#define SystemQuadrantShiftBits              0xd  // 象限位移位数
+#define SystemSineTableQuadrant1Offset        0x4cc  // 正弦表第一象限偏移量
+#define SystemSineTableQuadrant2Offset        0x4132  // 正弦表第二象限偏移量
+#define SystemSineTableQuadrant3Offset        0xfb34  // 正弦表第三象限偏移量
+#define SystemSineTableOffset8132            0x8132  // 正弦表偏移量8132
+#define SystemTransformContextOffset         0x218  // 系统变换上下文偏移量
 
 // 系统内存对齐和掩码常量
-#define SystemMemoryAlignmentMask           0x00000000
-#define SystemMemoryPageAlignmentMask        0xffc00000
-#define SystemMemoryAllocationAlignmentMask  0xfffffff8
-#define SystemMemoryDataAlignmentMask        0xfffffff0
-#define SystemMemoryAddressAlignmentMask      0xfffffffc
-#define SystemMemoryOperationAlignmentMask    0xffffffe0
-#define SystemMemoryBufferAlignmentMask       0xfffff000
-#define SystemMemoryStatusAlignmentMask       0xffffff00
+#define SystemMemoryAlignmentMask           0x00000000  // 系统内存对齐掩码
+#define SystemMemoryPageAlignmentMask        0xffc00000  // 系统内存页对齐掩码
+#define SystemMemoryAllocationAlignmentMask  0xfffffff8  // 系统内存分配对齐掩码
+#define SystemMemoryDataAlignmentMask        0xfffffff0  // 系统内存数据对齐掩码
+#define SystemMemoryAddressAlignmentMask      0xfffffffc  // 系统内存地址对齐掩码
+#define SystemMemoryOperationAlignmentMask    0xffffffe0  // 系统内存操作对齐掩码
+#define SystemMemoryBufferAlignmentMask       0xfffff000  // 系统内存缓冲区对齐掩码
+#define SystemMemoryStatusAlignmentMask       0xffffff00  // 系统内存状态对齐掩码
 
 // 系统索引和查找表常量
-#define SystemIndexTableSize                 0xffffffffffff
-#define SystemLookupTableSize               0xffff
-#define SystemFullRangeMask                  0xffffffffffffffff
+#define SystemIndexTableSize                 0xffffffffffff  // 系统索引表大小
+#define SystemLookupTableSize               0xffff  // 系统查找表大小
+#define SystemFullRangeMask                  0xffffffffffffffff  // 系统全范围掩码
 
 // 系统地址和偏移量常量
-#define SystemMemoryPageAlignment            0xffc00000
-#define SystemMemoryAllocationAlignment       0xfffffff8
-#define SystemMemoryDataAlignment            0xfffffff0
-#define SystemMemoryAddressAlignment          0xfffffffc
-#define SystemMemoryOperationAlignment        0xffffffe0
-#define SystemMemoryBufferAlignment           0xfffff000
-#define SystemMemoryStatusAlignment           0xffffff00
+#define SystemMemoryPageAlignment            0xffc00000  // 系统内存页对齐
+#define SystemMemoryAllocationAlignment       0xfffffff8  // 系统内存分配对齐
+#define SystemMemoryDataAlignment            0xfffffff0  // 系统内存数据对齐
+#define SystemMemoryAddressAlignment          0xfffffffc  // 系统内存地址对齐
+#define SystemMemoryOperationAlignment        0xffffffe0  // 系统内存操作对齐
+#define SystemMemoryBufferAlignment           0xfffff000  // 系统内存缓冲区对齐
+#define SystemMemoryStatusAlignment           0xffffff00  // 系统内存状态对齐
 
 // 字符串处理相关常量
-#define SystemStringBufferCapacityDefault   0xb
-#define SystemStringBufferCapacityShort     0x7
-#define SystemDataBufferCapacityDefault     0x8
-#define SystemMessageConfigBufferCapacity   0xa
+#define SystemStringBufferCapacityDefault   0xb  // 系统字符串缓冲区默认容量
+#define SystemStringBufferCapacityShort     0x7  // 系统字符串缓冲区短容量
+#define SystemDataBufferCapacityDefault     0x8  // 系统数据缓冲区默认容量
+#define SystemMessageConfigBufferCapacity   0xa  // 系统消息配置缓冲区容量
 
 // 字符串缓冲区偏移量常量
-#define SystemStringLengthOffset        0x10
-#define SystemStringBufferOffset       8
-#define STRING_LENGTH_OFFSET           SystemStringLengthOffset
-#define STRING_DATA_OFFSET             SystemStringBufferOffset
+#define SystemStringLengthOffset        0x10  // 系统字符串长度偏移量
+#define SystemStringBufferOffset       8  // 系统字符串缓冲区偏移量
+#define STRING_LENGTH_OFFSET           SystemStringLengthOffset  // 字符串长度偏移量
+#define STRING_DATA_OFFSET             SystemStringBufferOffset  // 字符串数据偏移量
 
 // 系统节点索引常量
-#define SystemNodeIdentifier1Index           0
-#define SystemNodeIdentifier2Index           1
-#define SystemNodeDataPointerIndex           2
-#define SystemNodeActiveFlagIndex            3
-#define SystemNodeHandlerIndex               4
-#define SystemNodeNextPointerIndex           5
-#define SystemNodeHeadPointerIndex           6
+#define SystemNodeIdentifier1Index           0  // 系统节点标识符1索引
+#define SystemNodeIdentifier2Index           1  // 系统节点标识符2索引
+#define SystemNodeDataPointerIndex           2  // 系统节点数据指针索引
+#define SystemNodeActiveFlagIndex            3  // 系统节点活动标志索引
+#define SystemNodeHandlerIndex               4  // 系统节点处理器索引
+#define SystemNodeNextPointerIndex           5  // 系统节点下一指针索引
+#define SystemNodeHeadPointerIndex           6  // 系统节点头指针索引
 
 // 联合体字段访问宏定义
 #define UNION_LOW_PART(union_var)             (union_var).LowPart
@@ -75,30 +75,30 @@
 #define UNION_HIGH_WORD2(union_var)           (union_var).SecondaryHighWord
 
 // 系统标识符常量
-#define EventSystemIdentifier1          0x45b8d074df27d12f
-#define EventSystemIdentifier2          0x8d98f4c06880eda4
-#define ResourceSystemIdentifier1       0x42d293584c8cf3e5
-#define ResourceSystemIdentifier2       0x355ffeb2d29e668a
-#define DataComparisonTemplateAlphaId1   0x421c3cedd07d816d
-#define DataComparisonTemplateAlphaId2   0xbec25de793b7afa6
-#define DataComparisonTemplateBetaId1   0x4c22bb0c326587ce
-#define DataComparisonTemplateBetaId2   0x5e3cf00ce2978287
-#define DataComparisonTemplateKappaId1   0x4b2d79e470ee4e2c
-#define DataComparisonTemplateKappaId2   0x9c552acd3ed5548d
-#define DataComparisonTemplateLambdaId1   0x49086ba08ab981a7
-#define DataComparisonTemplateLambdaId2   0xa9191d34ad910696
+#define EventSystemIdentifier1          0x45b8d074df27d12f  // 事件系统标识符1
+#define EventSystemIdentifier2          0x8d98f4c06880eda4  // 事件系统标识符2
+#define ResourceSystemIdentifier1       0x42d293584c8cf3e5  // 资源系统标识符1
+#define ResourceSystemIdentifier2       0x355ffeb2d29e668a  // 资源系统标识符2
+#define DataComparisonTemplateAlphaId1   0x421c3cedd07d816d  // 数据比较模板Alpha标识符1
+#define DataComparisonTemplateAlphaId2   0xbec25de793b7afa6  // 数据比较模板Alpha标识符2
+#define DataComparisonTemplateBetaId1   0x4c22bb0c326587ce  // 数据比较模板Beta标识符1
+#define DataComparisonTemplateBetaId2   0x5e3cf00ce2978287  // 数据比较模板Beta标识符2
+#define DataComparisonTemplateKappaId1   0x4b2d79e470ee4e2c  // 数据比较模板Kappa标识符1
+#define DataComparisonTemplateKappaId2   0x9c552acd3ed5548d  // 数据比较模板Kappa标识符2
+#define DataComparisonTemplateLambdaId1   0x49086ba08ab981a7  // 数据比较模板Lambda标识符1
+#define DataComparisonTemplateLambdaId2   0xa9191d34ad910696  // 数据比较模板Lambda标识符2
 
 // 数据比较模板标识符
-#define DataComparisonTemplateDId1   0x406be72011d07d37
-#define DataComparisonTemplateDId2   0x71876af946c867ab
-#define DataComparisonTemplateEId1   0x449bafe9b77ddd3c
-#define DataComparisonTemplateEId2   0xc160408bde99e59f
-#define DataComparisonTemplateFId1   0x45425dc186a5d575
-#define DataComparisonTemplateFId2   0xfab48faa65382fa5
-#define DataComparisonTemplateGId1   0x40afa5469b6ac06d
-#define DataComparisonTemplateGId2   0x2f4bab01d34055a5
-#define DataComparisonTemplateHId1   0x43330a43fcdb3653
-#define DataComparisonTemplateHId2   0xdcfdc333a769ec93
+#define DataComparisonTemplateDId1   0x406be72011d07d37  // 数据比较模板D标识符1
+#define DataComparisonTemplateDId2   0x71876af946c867ab  // 数据比较模板D标识符2
+#define DataComparisonTemplateEId1   0x449bafe9b77ddd3c  // 数据比较模板E标识符1
+#define DataComparisonTemplateEId2   0xc160408bde99e59f  // 数据比较模板E标识符2
+#define DataComparisonTemplateFId1   0x45425dc186a5d575  // 数据比较模板F标识符1
+#define DataComparisonTemplateFId2   0xfab48faa65382fa5  // 数据比较模板F标识符2
+#define DataComparisonTemplateGId1   0x40afa5469b6ac06d  // 数据比较模板G标识符1
+#define DataComparisonTemplateGId2   0x2f4bab01d34055a5  // 数据比较模板G标识符2
+#define DataComparisonTemplateHId1   0x43330a43fcdb3653  // 数据比较模板H标识符1
+#define DataComparisonTemplateHId2   0xdcfdc333a769ec93  // 数据比较模板H标识符2
 #define DataComparisonTemplateIId1   0x431d7c8d7c475be2
 
 // 资源数据偏移量常量
