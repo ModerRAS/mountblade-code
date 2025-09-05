@@ -30142,7 +30142,7 @@ void CleanupThreadResources120(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180903130(undefined8 param_1,longlong param_2)
+void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
@@ -30178,7 +30178,7 @@ void Unwind_180903130(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180903140(undefined8 param_1,longlong param_2)
+void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
@@ -30214,7 +30214,7 @@ void Unwind_180903140(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180903150(undefined8 param_1,longlong param_2)
+void CleanupThreadMemory150(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
