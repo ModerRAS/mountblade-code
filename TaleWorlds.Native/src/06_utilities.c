@@ -32194,11 +32194,30 @@ void ExceptionUnwindHandler2(undefined8 exceptionContext, longlong unwindContext
 
 
 
-void ExceptionUnwindHandler3(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常展开处理器3
+ * 
+ * 该函数用于处理异常展开过程中的第三个阶段，主要负责处理另一种类型的异常清理。
+ * 该函数检查异常上下文中的处理器链并执行相应的清理操作。
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理所需的信息
+ * @param unwindContext 展开上下文，用于管理异常展开过程
+ * 
+ * @note 该函数主要处理偏移量0x48处的异常处理器链
+ * @warning 如果处理器链不存在，函数会直接返回而不执行任何操作
+ */
+void ExceptionUnwindHandler3(undefined8 exceptionContext, longlong unwindContext)
 
 {
-  if ((longlong *)**(longlong **)(param_2 + 0x48) != (longlong *)0x0) {
-    (**(code **)(*(longlong *)**(longlong **)(param_2 + 0x48) + 0x38))();
+  longlong *exceptionHandlerChain;
+  longlong *exceptionHandler;
+  
+  exceptionHandlerChain = *(longlong **)(unwindContext + 0x48);
+  if (exceptionHandlerChain != (longlong *)0x0) {
+    exceptionHandler = (longlong *)*exceptionHandlerChain;
+    if (exceptionHandler != (longlong *)0x0) {
+      (**(code **)(exceptionHandler + 0x38))();
+    }
   }
   return;
 }
