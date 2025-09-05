@@ -1705,13 +1705,13 @@ void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeInitialized;                           // 游戏核心节点是否已初始化
   void** RootNodeReference;                                // 根节点引用
-  int GameCoreIdentifierMatchResult;                       // 游戏核心标识符匹配结果
+  int GameCoreIdentifierComparisonResult;                  // 游戏核心标识符比较结果
   long long* MainSystemTablePointer;                        // 主系统表指针
   long long RequiredMemorySize;                            // 所需内存大小
   void** CurrentNodePointer;                               // 当前节点指针
   void** PreviousNodePointer;                              // 前一个节点指针
   void** NextNodePointer;                                  // 下一个节点指针
-  void** NewNodePointer;                                   // 新节点指针
+  void** AllocatedNodePointer;                             // 已分配节点指针
   void* GameCoreInitializer;                               // 游戏核心初始化器
   
   MainSystemTablePointer = (long long*)GetSystemRootTable();
@@ -1722,8 +1722,8 @@ void InitializeGameCoreSystem(void)
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   
   while (!IsGameCoreNodeInitialized) {
-    GameCoreIdentifierMatchResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, IdentifierSize);
-    if (GameCoreIdentifierMatchResult < 0) {
+    GameCoreIdentifierComparisonResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &GameCoreSystemIdentifier1, IdentifierSize);
+    if (GameCoreIdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
     }
