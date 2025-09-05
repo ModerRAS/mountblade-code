@@ -913,12 +913,12 @@ char SystemConfigStateArray[64];
 // 系统地址常量定义
 #define SystemConditionMutexMainAddress 0x180c911e8
 #define SystemConditionMutexBackupAddress 0x180c91288
-#define SystemMutexMainAddress 0x180c91970
+#define SystemMainMutexAddress 0x180c91970
 #define SystemEventMutexAddress 0x180c91f70
 #define SystemRequestMutexAddress 0x180c91ff0
 #define SystemMutexFlagsMask 0xfffffffffffffffe
 
-// 系统条件变量地址
+// 系统同步对象地址
 #define SystemConditionVariableAddress 0x180c91240
 #define SystemEngineInitializationAddress 0x180c911a0
 #define SystemMutexUnlockAddress 0x180c91148
@@ -930,7 +930,7 @@ char SystemConfigStateArray[64];
 #define SystemModuleMutexAddress 0x180c95d70
 #define SystemModuleDataAddress 0x180c95de0
 
-// 系统颜色处理地址
+// 系统功能模块地址
 #define SystemColorProcessingStartAddress 0x180c2e040
 #define SystemColorProcessingEndAddress 0x180c2e880
 #define SystemNetworkModuleAddress 0x180c2ea70
