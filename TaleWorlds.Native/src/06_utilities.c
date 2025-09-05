@@ -19700,17 +19700,25 @@ void FUN_18089a9f0(longlong param_1,int *param_2)
 
 
 
-undefined8 FUN_18089aa40(longlong param_1,undefined8 *param_2)
-
+/**
+ * @brief 系统状态验证函数
+ * 
+ * 验证系统状态并执行相应的处理逻辑
+ * 
+ * @param SystemContext 系统上下文指针
+ * @param ParameterArray 参数数组指针
+ * @return undefined8 返回状态码，0x1c表示错误，0表示成功
+ */
+undefined8 ValidateSystemStatus(longlong SystemContext, undefined8 *ParameterArray)
 {
-  undefined8 uVar1;
+  undefined8 StatusResult;
   
-  if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(int *)(ParameterArray[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = FUN_1808995c0(*param_2,param_1 + 0x50);
-  if ((int)uVar1 == 0) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
+  StatusResult = ProcessSystemDataD2(*ParameterArray, SystemContext + 0x50);
+  if ((int)StatusResult == 0) {
+    if (*(int *)(ParameterArray[1] + 0x18) != 0) {
       return 0x1c;
     }
     uVar1 = FUN_1808995c0(*param_2,param_1 + 0x54);
