@@ -19512,7 +19512,7 @@ uint32_t FinalSystemInitialization(void)
   long long** SystemControllerInstance;
   uint32_t InitializationStatusCode;
   int WaitOperationResult;
-  long long**** SystemManagerInstance;
+  long long**** SystemCoreManager;
   void* MemoryAllocationFlags;
   long long**** SystemPrimaryMemoryManager;
   long long*** SystemSecondaryMemoryManager;
@@ -19520,10 +19520,10 @@ uint32_t FinalSystemInitialization(void)
   char SystemActiveStatus;
   long long**** SystemStackManager;
   long long*** SystemCallbackManager;
-  long long** SystemStackController;
-  long long*** SystemSecondaryStackManager;
+  long long** SystemMemoryStackController;
+  long long*** SystemSecondaryMemoryStackManager;
   void* CalculationFlags;
-  long long***** SystemGlobalManager;
+  long long***** SystemGlobalMemoryManager;
   long long**** SystemMemoryManager;
   long long SystemValue;
   void* ResourceAddress;
@@ -19541,23 +19541,23 @@ uint32_t FinalSystemInitialization(void)
       Sleep(1);
     }
   }
-  SystemManagerInstance = (long long ****)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,8,3,CalculationFlags);
-  SystemPrimaryManager = SystemManagerInstance;
-  InitializeSystemDataTableManager(SystemManagerInstance);
-  *SystemManagerInstance = (long long ***)&SystemManagerGlobalTable;
-  SystemSecondaryManager = (long long ***)SystemManagerInstance;
-  (*(code *)(*SystemManagerInstance)[5])(SystemManagerInstance);
+  SystemCoreManager = (long long ****)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xc0,8,3,CalculationFlags);
+  SystemPrimaryManager = SystemCoreManager;
+  InitializeSystemDataTableManager(SystemCoreManager);
+  *SystemCoreManager = (long long ***)&SystemManagerGlobalTable;
+  SystemSecondaryManager = (long long ***)SystemCoreManager;
+  (*(code *)(*SystemCoreManager)[5])(SystemCoreManager);
   SystemObjectHandle = SystemAllocationTemplate;
-  SystemGlobalManager = &SystemPrimaryManager;
-  SystemPrimaryManager = SystemManagerInstance;
-  (*(code *)(*SystemManagerInstance)[5])(SystemManagerInstance);
+  SystemGlobalMemoryManager = &SystemPrimaryManager;
+  SystemPrimaryManager = SystemCoreManager;
+  (*(code *)(*SystemCoreManager)[5])(SystemCoreManager);
   SystemManagerInitialize(SystemObjectHandle,&SystemPrimaryManager);
   while( true ) {
-    if (*SystemManagerInstance == (long long ***)&SystemManagerGlobalTable) {
-      SystemActiveStatus = *(char *)(SystemManagerInstance + 2) != '\0';
+    if (*SystemCoreManager == (long long ***)&SystemManagerGlobalTable) {
+      SystemActiveStatus = *(char *)(SystemCoreManager + 2) != '\0';
     }
     else {
-      SystemActiveStatus = (*(code *)(*SystemManagerInstance)[0xd])(SystemManagerInstance);
+      SystemActiveStatus = (*(code *)(*SystemCoreManager)[0xd])(SystemCoreManager);
     }
     if (SystemActiveStatus != '\0') break;
     Sleep(1);
@@ -19578,19 +19578,19 @@ uint32_t FinalSystemInitialization(void)
     (*(code *)(*SystemMemoryManager)[5])(SystemMemoryManager);
   }
   (*SystemCallbackFunction)(SystemInterfacePointer,&StackController);
-  CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemGlobalManager,SystemMemoryManager);
+  CalculationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3,CalculationFlags,SystemGlobalMemoryManager,SystemMemoryManager);
   SystemSecondaryMemoryManager = (long long ***)AllocateSystemMemory(CalculationFlags,0,SystemObjectHandle);
   if (SystemSecondaryMemoryManager != (long long ***)0x0) {
     (*(code *)(*SystemSecondaryMemoryManager)[5])(SystemSecondaryMemoryManager);
   }
   SystemInterfacePointer = *(void* **)(SystemObjectHandle + 400);
   SystemCallbackFunction = *(code **)*SystemInterfacePointer;
-  SystemStackManager = (long long ****)&SystemStackController;
-  SystemStackController = (long long **)SystemSecondaryMemoryManager;
+  SystemStackManager = (long long ****)&SystemMemoryStackController;
+  SystemMemoryStackController = (long long **)SystemSecondaryMemoryManager;
   if (SystemSecondaryMemoryManager != (long long ***)0x0) {
     (*(code *)(*SystemSecondaryMemoryManager)[5])(SystemSecondaryMemoryManager);
   }
-  (*SystemCallbackFunction)(SystemInterfacePointer,&SystemStackController);
+  (*SystemCallbackFunction)(SystemInterfacePointer,&SystemMemoryStackController);
   ProcessSystemCallback(*(void* *)(SystemObjectHandle + 400));
   if (SystemSecondaryMemoryManager != (long long ***)0x0) {
     (*(code *)(*SystemSecondaryMemoryManager)[7])(SystemSecondaryMemoryManager);
@@ -19622,16 +19622,16 @@ uint32_t FinalSystemInitialization(void)
     if ((long long ***)*SystemCleanupFlagPointer != (long long ***)0x0) {
         SystemCleanupFunction();
     }
-    SystemResourceTriplePointer = (long long ***)(SystemMemoryPageBase + 0x4267c);
+    SystemResourceManager = (long long ***)(SystemMemoryPageBase + 0x4267c);
     _Mtx_destroy_in_situ();
-    SystemResourceTriplePointerSecondary = (long long ***)(SystemMemoryPageBase + 0x40070);
+    SystemResourceManagerSecondary = (long long ***)(SystemMemoryPageBase + 0x40070);
     _Mtx_destroy_in_situ();
     ConfigureSystemProcessingBuffer(SystemMemoryPageBase);
     if (MemoryAllocationFlags != 0) {
         SystemCleanupFunction(MemoryAllocationFlags);
     }
   }
-  SystemResourceQuadruplePointer = SystemInitializationFlag;
+  SystemResourceHandler = SystemInitializationFlag;
   MemoryAllocationFlags = SystemAllocationTemplate;
   SystemManagerPointerStorage = (long long ****)0x0;
   if (SystemAllocationTemplate != 0) {
@@ -19640,8 +19640,8 @@ uint32_t FinalSystemInitialization(void)
   }
   SystemAllocationTemplate = 0;
   *(uint32_t *)(SystemInitializationFlag + 0x2d) = 2;
-  SystemResourceQuadruplePointer = SystemResourceQuadruplePointer;
-  if (SystemResourceQuadruplePointer == (long long ****)0x0) {
+  SystemResourceHandler = SystemResourceHandler;
+  if (SystemResourceHandler == (long long ****)0x0) {
     SystemInitializationFlag = (long long ****)0x0;
     WaitForSingleObject(SystemSemaphoreHandle,0xffffffff);
     do {
@@ -19655,10 +19655,10 @@ uint32_t FinalSystemInitialization(void)
     (*(code *)(*ppppSystemThreadFlags)[7])(ppppSystemThreadFlags);
     return ResourceAddress;
   }
-  ReleaseSystemResource(SystemResourceQuadruplePointer + 0x1e);
-  ReleaseSystemResource(SystemResourceQuadruplePointer + 0xf);
-  ReleaseSystemResource(SystemResourceQuadruplePointer);
-    SystemCleanupFunction(SystemResourceQuadruplePointer);
+  ReleaseSystemResource(SystemResourceHandler + 0x1e);
+  ReleaseSystemResource(SystemResourceHandler + 0xf);
+  ReleaseSystemResource(SystemResourceHandler);
+    SystemCleanupFunction(SystemResourceHandler);
 }
 
 
@@ -26924,12 +26924,12 @@ void InitializeSystemDataStructures(void)
     *ppresourceCounter = (long long *)&MemoryAllocationPool;
     *(uint32_t *)(ppresourceCounter + 5) = 4;
     ppresourceCounter[4] = PrimaryResourceHandle;
-    SystemResourceTriplePointer = (long long ***)ppresourceCounter;
+    SystemResourceManager = (long long ***)ppresourceCounter;
     ppsystemMemoryOffset = ppresourceCounter;
     (*(code *)(*ppresourceCounter)[5])(ppresourceCounter);
     ResourceHashEntryPointer = (void* *)PrimaryResourceHandle[0x28];
     pathStringPointer = *(code **)*ResourceHashEntryPointer;
-    SystemResourceTriplePointer = &SystemResourceDoublePointerX;
+    SystemResourceManager = &SystemResourceDoublePointerX;
     SystemResourceDoublePointerX = ppresourceCounter;
     (*(code *)(*ppresourceCounter)[5])(ppresourceCounter);
     (*pathStringPointer)(ResourceHashEntryPointer,&SystemResourceDoublePointerX);
@@ -28166,7 +28166,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   int systemResult;
   int IdentifierCompareResult;
   uint8_t aSystemThreadStackSize [32];
-  void* **SystemResourceTriplePointerA;
+  void* **SystemResourceManagerA;
   void* CalculationFlagsPrimary;
   void* *pSystemStackFlag;
   void* SystemResourceHandlePrimary;
@@ -28218,7 +28218,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   *(void*2 *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
   *(int *)(ConfigurationDataPointer + 0x10) = systemResult + 0xc;
   pSystemStackFlag = &SystemMemoryAllocatorReference;
-  SystemResourceTriplePointerA = &systemDataPointer;
+  SystemResourceManagerA = &systemDataPointer;
   SystemMemoryAllocatorReferencePointer = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(ConcatenatedSystemValue ^ (ulong long)aSystemThreadStackSize);
 }
@@ -28701,7 +28701,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   long long SystemMemoryAllocationOffset188;
   int SystemThreadCount180;
   uint32_t CalculationFlags178;
-  void* **SystemResourceTriplePointer170;
+  void* **SystemResourceManager170;
   void* *SystemResourceHandle168;
   long long SystemMemoryAllocationOffset160;
   uint32_t SystemResourceSize;
