@@ -20478,16 +20478,16 @@ undefined8 ProcessDataCollectionA0(longlong collectionContext,longlong *dataPoin
         itemBuffer[0] = *(int *)(baseAddress + currentOffset + 0x10);
         processResult = (**(code **)**(undefined8 **)(collectionContext + 8))
                           (*(undefined8 **)(collectionContext + 8),itemBuffer,4);
-        if ((int)uVar3 != 0) {
-          return uVar3;
+        if ((int)processResult != 0) {
+          return processResult;
         }
-        lVar4 = lVar4 + 1;
-        lVar5 = lVar5 + 0x14;
-      } while (lVar4 < iVar1);
+        itemIndex = itemIndex + 1;
+        currentOffset = currentOffset + 0x14;
+      } while (itemIndex < itemCount);
     }
-    uVar3 = 0;
+    processResult = 0;
   }
-  return uVar3;
+  return processResult;
 }
 
 
