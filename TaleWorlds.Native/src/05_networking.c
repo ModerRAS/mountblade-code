@@ -115,9 +115,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 
 // 安全验证数据索引常量
 #define NetworkConnectionValidationStatusIndex 0                // 网络连接验证状态索引
-#define DataIntegrityValidationIndex 1                           // 数据完整性验证索引
-#define SecurityComplianceValidationIndex 2                     // 安全合规性验证索引
-#define ValidationModeDataIndex 3                               // 验证模式数据索引
+#define DataIntegrityValidationCheckIndex 1                     // 数据完整性验证检查索引
+#define SecurityComplianceValidationCheckIndex 2                // 安全合规性验证检查索引
+#define NetworkValidationModeDataIndex 3                        // 网络验证模式数据索引
 
 /**
  * @brief 计算连接参数偏移量
