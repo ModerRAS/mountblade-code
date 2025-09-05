@@ -21000,10 +21000,10 @@ ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long Com
   long long DataBlockMemoryOffset;
   uint DataBlockIndexCounter;
   ulong long DataBlockComparisonIndex;
-  ulong long dataBlockLoopCounter;
+  ulong long DataBlockLoopCounter;
   
-  dataBlockComparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
-  dataBlockResourceMemoryOffset = *(long long *)(SystemResourceManager + 8);
+  DataBlockComparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
+  DataBlockResourceMemoryOffset = *(long long *)(SystemResourceManager + 8);
   if (dataBlockComparisonIndex < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - dataBlockResourceMemoryOffset >> 8)) {
     dataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
     dataBlockComparisonResult = *(int *)(dataBlockComparisonIndex * 0x100 + 0x10 + dataBlockResourceMemoryOffset);
