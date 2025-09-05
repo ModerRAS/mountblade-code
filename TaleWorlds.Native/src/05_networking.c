@@ -472,9 +472,17 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 
 // 网络连接验证偏移量常量
 #define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
+#define NetworkConnectionTertiaryValidationOffset 0x56         // 第三级连接验证偏移量
 #define NetworkConnectionQuaternaryValidationOffset 0x58         // 第四级连接验证偏移量
 #define NetworkPacketStatusSizeLimit 0x100                      // 数据包状态大小限制（256字节）
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
+
+// 网络连接完整性偏移量常量
+#define NetworkConnectionPrimaryIntegrityOffset 0x5a           // 主连接完整性偏移量
+#define NetworkConnectionSecondaryIntegrityOffset 0x5c          // 次连接完整性偏移量
+
+// 网络数据包大小限制常量
+#define NetworkPacketSizeAlternative 0x60                      // 替代数据包大小限制（96字节）
 
 // 网络缓冲区对齐和大小常量
 #define NetworkBufferAlignmentMask 0xfffffffc              // 网络缓冲区对齐掩码（4字节对齐）
@@ -555,7 +563,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkMonitorEnabledFlag 0x01                                  // 监控器启用
 #define NETWORK_ROUND_TRIP_TIME_RESET_VALUE NETWORK_RESET_VALUE             // 往返时间重置
 #define NetworkQueueEnabledFlag 0x01                                    // 队列启用
-#define NetworkBufferEnabledFlag 0x01                                   // 缓冲区启用
+#define NetworkBufferInitializationFlag 0x01                                   // 缓冲区初始化标志
 #define NETWORK_INDEX_RESET_VALUE NETWORK_RESET_VALUE                       // 索引重置
 #define NETWORK_PACKET_INDEX_RESET_VALUE NETWORK_RESET_VALUE                // 数据包索引重置
 #define NETWORK_ERROR_RATE_RESET_VALUE NETWORK_RESET_VALUE                  // 错误率重置
@@ -591,6 +599,12 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkReportSizeMediumBytes 0x0D                          // 中型报告大小（13字节）
 #define NetworkReportSizeLargeBytes 0x0F                           // 大型报告大小（15字节）
 #define NetworkReportSizeStandardBytes 0x0C                        // 标准报告大小（12字节）
+
+// 网络报告大小常量（兼容性别名）
+#define NetworkReportSizeSmall NetworkReportSizeSmallBytes         // 小型报告大小别名
+#define NetworkReportSizeMedium NetworkReportSizeMediumBytes       // 中型报告大小别名
+#define NetworkReportSizeLarge NetworkReportSizeLargeBytes         // 大型报告大小别名
+#define NetworkReportSizeStandard NetworkReportSizeStandardBytes   // 标准报告大小别名
 
 // 网络连接状态常量
 #define NetworkProcessingStatusActiveFlag 0x01                // 处理状态活跃
@@ -1530,8 +1544,8 @@ void SendNetworkData(void)
   NetworkHeartbeatTimeout = NetworkHeartbeatSixtySeconds;                      // 设置心跳超时时间为60秒
   
   // 初始化数据包缓冲区
-  NetworkPacketBufferPointer = NetworkBufferEnabledFlag;                     // 初始化数据包缓冲区指针
-  NetworkPacketHeaderPointer = NetworkBufferEnabledFlag;                     // 初始化数据包头指针
+  NetworkPacketBufferPointer = NetworkBufferInitializationFlag;                     // 初始化数据包缓冲区指针
+  NetworkPacketHeaderPointer = NetworkBufferInitializationFlag;                     // 初始化数据包头指针
   NetworkPacketPayloadSize = NetworkPacketPayloadSize1KB;                      // 设置数据包负载大小为1KB
   NetworkMaximumPacketSize = NetworkMaximumPacketSize2KB;                         // 设置最大数据包大小为2KB
   
@@ -1572,24 +1586,24 @@ void ReceiveNetworkPacketData(void)
   NetworkPacketQueueSize = PACKET_QUEUE_SIZE;                       // 设置数据包队列大小为256
   
   // 初始化缓冲区管理
-  NetworkBufferManager = NetworkBufferEnabledFlag;                          // 初始化缓冲区管理器
+  NetworkBufferManager = NetworkBufferInitializationFlag;                          // 初始化缓冲区管理器
   NetworkBufferSize = BufferSize4KB;                            // 设置缓冲区大小为4KB
   NetworkBufferIndex = NetworkIndexResetValue;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
-  NetworkPacketContext = NetworkBufferEnabledFlag;                          // 初始化数据包上下文
+  NetworkPacketContext = NetworkBufferInitializationFlag;                          // 初始化数据包上下文
   NetworkPacketContextSize = ContextSize256Bytes;                    // 设置数据包上下文大小为256字节（标准大小）
-  NetworkPacketData = NetworkBufferEnabledFlag;                             // 初始化数据包数据
+  NetworkPacketData = NetworkBufferInitializationFlag;                             // 初始化数据包数据
   NetworkPacketIndex = NetworkPacketIndexResetValue;                            // 重置数据包索引
   
   // 初始化数据包处理
-  NetworkPacketHeaderData = NetworkBufferEnabledFlag;                       // 初始化数据包包头数据
+  NetworkPacketHeaderData = NetworkBufferInitializationFlag;                       // 初始化数据包包头数据
   NetworkPacketHeaderSize = NetworkPacketHeaderSize32Bytes;                       // 设置数据包头大小为32字节
-  NetworkPacketTrailerData = NetworkBufferEnabledFlag;                      // 初始化数据包尾数据
+  NetworkPacketTrailerData = NetworkBufferInitializationFlag;                      // 初始化数据包尾数据
   NetworkPacketTrailerSize = NetworkPacketTrailerSize16Bytes;                      // 设置数据包尾大小为16字节
   
   // 初始化抖动缓冲区
-  NetworkConnectionJitterBuffer = NetworkBufferEnabledFlag;                // 初始化抖动缓冲区
+  NetworkConnectionJitterBuffer = NetworkBufferInitializationFlag;                // 初始化抖动缓冲区
   NetworkConnectionErrorRate = NetworkErrorRateResetValue;                   // 重置错误率
   
   // 初始化连接健康监控
@@ -1615,17 +1629,17 @@ void ValidateNetworkPacketSecurity(void)
   // 初始化验证参数
   NetworkPacketHashAlgorithm = NetworkHashAlgorithmSHA256;                         // 设置哈希算法为SHA-256
   NetworkPacketSignatureMethod = NetworkSignatureMethodRSA;                        // 设置签名方法为RSA
-  PacketEncryptionKeyLength = NetworkEncryptionKeyLength256Bits;                   // 设置加密密钥长度为256位
+  NetworkPacketEncryptionKeyLength = NetworkEncryptionKeyLength256Bits;                   // 设置加密密钥长度为256位
   
   // 初始化验证缓冲区
-  PacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
-  PacketValidationBufferSize = NetworkValidationBufferSize;                   // 设置验证缓冲区大小为39字节
+  NetworkPacketValidationBufferPool = NetworkBufferInitialized;                   // 初始化验证缓冲池
+  NetworkPacketValidationBufferSize = NetworkValidationBufferSize;                   // 设置验证缓冲区大小为39字节
   
   // 初始化安全验证
-  PacketSecurityValidationData = NetworkSecurityEnabled;                 // 初始化安全验证数据
-  PacketSecurityEncryptionData = NetworkSecurityEnabled;                 // 初始化安全加密数据
-  PacketSecurityAuthenticationData = NetworkSecurityEnabled;              // 初始化安全认证数据
-  PacketSecurityAuthorizationData = NetworkSecurityEnabled;               // 初始化安全授权数据
+  NetworkPacketSecurityValidationData = NetworkSecurityEnabled;                 // 初始化安全验证数据
+  NetworkPacketSecurityEncryptionData = NetworkSecurityEnabled;                 // 初始化安全加密数据
+  NetworkPacketSecurityAuthenticationData = NetworkSecurityEnabled;              // 初始化安全认证数据
+  NetworkPacketSecurityAuthorizationData = NetworkSecurityEnabled;               // 初始化安全授权数据
   PacketSecurityAuditData = NetworkSecurityEnabled;                       // 初始化安全审计数据
   PacketSecurityPolicyData = NetworkSecurityEnabled;                      // 初始化安全策略数据
   PacketSecurityCertificateData = NetworkSecurityEnabled;                 // 初始化安全证书数据
@@ -1838,12 +1852,12 @@ uint32_t NetworkPacketTrailerData;                       // 网络数据包尾�
 uint32_t NetworkPacketTrailerSize;                       // 网络数据包尾大小
 uint32_t NetworkPacketHashAlgorithm;                            // 数据包哈希算法
 uint32_t NetworkPacketSignatureMethod;                         // 数据包签名方法
-uint32_t PacketEncryptionKeyLength;                     // 数据包加密密钥长度
-uint32_t PacketValidationBufferPool;                     // 数据包验证缓冲池
-uint32_t PacketValidationBufferSize;                     // 数据包验证缓冲区大小
-uint32_t PacketSecurityValidationData;                   // 数据包安全验证数据
-uint32_t PacketSecurityValidationInfo;                   // 数据包安全验证信息
-uint32_t PacketSecurityEncryptionData;                   // 数据包安全加密数据
+uint32_t NetworkPacketEncryptionKeyLength;                     // 数据包加密密钥长度
+uint32_t NetworkPacketValidationBufferPool;                     // 数据包验证缓冲池
+uint32_t NetworkPacketValidationBufferSize;                     // 数据包验证缓冲区大小
+uint32_t NetworkPacketSecurityValidationData;                   // 数据包安全验证数据
+uint32_t NetworkPacketSecurityValidationInfo;                   // 数据包安全验证信息
+uint32_t NetworkPacketSecurityEncryptionData;                   // 数据包安全加密数据
 uint32_t PacketSecurityEncryptionInfo;                   // 数据包安全加密信息
 uint32_t PacketSecurityAuthenticationData;              // 数据包安全认证数据
 uint32_t PacketSecurityAuthenticationInfo;              // 数据包安全认证信息
@@ -2495,7 +2509,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
-    NetworkStatus TertiaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionValidationOffsetThird);
+    NetworkStatus TertiaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionTertiaryValidationOffset);
     SecurityValidationArray[TertiaryValidationStateIndex] = TertiaryValidationStatus;
     NetworkPacketProcessor TertiaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
     ValidationResult = TertiaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
@@ -2531,11 +2545,11 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
       }
     }
     else {
-      IntermediateResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetFirst);
+      IntermediateResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionPrimaryIntegrityOffset);
       if ((int)IntermediateResult != 0) {
         return IntermediateResult;
       }
-      IntermediateResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionIntegrityOffsetSecond);
+      IntermediateResult = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecondaryIntegrityOffset);
       if ((int)IntermediateResult != 0) {
         return IntermediateResult;
       }
