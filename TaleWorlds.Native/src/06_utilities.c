@@ -13047,7 +13047,10 @@ LAB_1808974ec:
 
 
 
-// 函数: void FUN_1808974f4(void)
+// 原始函数名：FUN_1808974f4 - 安全检查跳转函数A0
+// 功能：执行安全检查并跳转到错误处理，程序不会返回
+#define ExecuteSecurityCheckJumpA0 FUN_1808974f4
+
 void FUN_1808974f4(void)
 
 {
@@ -13062,7 +13065,10 @@ void FUN_1808974f4(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897520(longlong *param_1,longlong *param_2)
+// 原始函数名：FUN_180897520 - 数据指针处理函数A0
+// 功能：处理长整型数据指针，执行缓冲区操作和验证
+#define ProcessDataPointerOperationsA0 FUN_180897520
+
 void FUN_180897520(longlong *param_1,longlong *param_2)
 
 {
