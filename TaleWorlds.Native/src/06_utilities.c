@@ -1826,11 +1826,11 @@ undefined UtilityDecodeStatus;
 // 返回值:
 //   undefined - 序列化结果状态
 undefined UtilitySerializeData;
-undefined DAT_180bf9b70;
-undefined DAT_180bf9b78;
-undefined DAT_180bf9b80;
-undefined DAT_180bf9b88;
-undefined UNK_180a22e20;
+undefined SerializationDataBuffer;
+undefined SerializationDataSize;
+undefined SerializationDataFlags;
+undefined SerializationDataChecksum;
+undefined SerializationDataHandle;
 
 // 函数: undefined UtilityDeserializeData;
 // 
@@ -1843,7 +1843,7 @@ undefined UNK_180a22e20;
 // 返回值:
 //   undefined - 反序列化结果状态
 undefined UtilityDeserializeData;
-undefined DAT_180bf9bd0;
+undefined DeserializationDataBuffer;
 undefined DAT_180bf9bd8;
 undefined DAT_180bf9be0;
 undefined DAT_180bf9be8;
@@ -2334,27 +2334,32 @@ undefined UtilitySystemFlagData3;
 undefined UtilitySystemFlagData4;
 
 // 函数: undefined FUN_180942fc0;
-undefined FUN_180942fc0;
+#define ValidateUtilitySystemFlags FUN_180942fc0
+undefined ValidateUtilitySystemFlags;
 undefined UtilitySystemCleanupData1;
 undefined UtilitySystemCleanupStatus1;
 
 // 函数: undefined FUN_180943070;
-undefined FUN_180943070;
+#define InitializeUtilitySystemLocalData FUN_180943070
+undefined InitializeUtilitySystemLocalData;
 undefined UtilitySystemLocalData1;
 undefined UtilitySystemLocalStatus1;
 undefined UtilitySystemLocalData2;
 undefined UtilitySystemLocalStatus2;
 
 // 函数: undefined FUN_180943140;
-undefined FUN_180943140;
+#define ConfigureUtilitySystemStorage FUN_180943140
+undefined ConfigureUtilitySystemStorage;
 
 // 函数: undefined FUN_180943160;
-undefined FUN_180943160;
+#define ValidateUtilitySystemStorage FUN_180943160
+undefined ValidateUtilitySystemStorage;
 undefined UtilitySystemStorageData1;
 undefined UtilitySystemStorageData2;
 
 // 函数: undefined FUN_180943180;
-undefined FUN_180943180;
+#define ProcessUtilitySystemStorage FUN_180943180
+undefined ProcessUtilitySystemStorage;
 undefined UtilitySystemStorageData3;
 undefined UtilitySystemStorageData4;
 undefined UtilitySystemStorageData5;
@@ -9721,6 +9726,18 @@ undefined8 FUN_180894300(longlong param_1,longlong param_2)
 
 
 
+// 函数: int ProcessUtilityDataWithCompression(longlong dataContext,longlong dataBuffer,int dataSize)
+//
+// 处理工具系统数据压缩操作
+// 对传入的数据进行压缩处理，返回处理后的数据大小
+//
+// 参数:
+//   dataContext: 数据上下文指针，包含压缩配置信息
+//   dataBuffer: 数据缓冲区指针，指向待压缩的数据
+//   dataSize: 数据大小，指定需要压缩的数据长度
+//
+// 返回值:
+//   int: 处理后的数据大小，如果失败返回错误码
 int ProcessUtilityDataWithCompression(longlong dataContext,longlong dataBuffer,int dataSize)
 
 {
@@ -9746,6 +9763,18 @@ int ProcessUtilityDataWithCompression(longlong dataContext,longlong dataBuffer,i
 
 
 
+// 函数: int ProcessUtilityDataWithEncryption(longlong dataContext,longlong dataBuffer,int dataSize)
+//
+// 处理工具系统数据加密操作
+// 对传入的数据进行加密处理，返回处理后的数据大小
+//
+// 参数:
+//   dataContext: 数据上下文指针，包含加密配置信息
+//   dataBuffer: 数据缓冲区指针，指向待加密的数据
+//   dataSize: 数据大小，指定需要加密的数据长度
+//
+// 返回值:
+//   int: 处理后的数据大小，如果失败返回错误码
 int ProcessUtilityDataWithEncryption(longlong dataContext,longlong dataBuffer,int dataSize)
 
 {
@@ -9860,8 +9889,8 @@ int FUN_1808947b0(longlong *param_1,longlong param_2,int param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
-void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
+// 函数: void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validationFlags,longlong *resultPointer)
+void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validationFlags,longlong *resultPointer)
 
 {
   longlong *plVar1;
