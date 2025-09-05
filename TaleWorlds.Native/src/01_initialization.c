@@ -59505,17 +59505,17 @@ void SystemNoOperationA(void)
   uint *ResourceAddressPointer2;
   bool in_ZF;
   bool isResourceAvailable3;
-  uint32_t InputStackParameter30;
-  ulong long InputStackParameter38;
-  void* *InputStackParameter40;
-  long long InputStackParameter50;
-  void* InputStackParameter60;
-  void* InputStackParameter68;
-  void* InputStackParameter70;
-  void* InputStackParameter78;
-  void* InputStackParameter80;
-  void* InputStackParameter88;
-  void* InputStackParameter90;
+  uint32_t ResourceHashValue;
+  ulong long ResourceAllocationContext;
+  void* *ResourceDataPointer;
+  long long SystemMemoryOffset;
+  void* InputStackParameterSystemResource;
+  void* InputStackParameterMemorySize;
+  void* InputStackParameterThreadContext;
+  void* InputStackParameterSecurityFlag;
+  void* InputStackParameterConfigData;
+  void* InputStackParameterDebugInfo;
+  void* InputStackParameterFinalParam;
   void* ThreadCreationParameter;
   float FloatStackArray[16];
   uint32_t ResourceFlags[8];
@@ -59732,8 +59732,8 @@ void SystemNoOperationA(void)
   *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | isOperationComplete0;
   isSystemActive9 = isSystemActive9 & 0x20;
   if ((isSystemActive9 != 0) && (isOperationComplete0 != 0)) {
-    *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameter60;
-    *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameter68;
+    *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameterSystemResource;
+    *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameterMemorySize;
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
@@ -59983,13 +59983,13 @@ void CleanupGlobalSystemResources(void)
   }
   InitializeSystemThreadBuffer(&SystemStackBuffer60,SystemThreadHandle9 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),pfloatValue36);
   resourceCreationFlagsSecondary = ThreadCreationParameter;
-  resourceCreationFlags7 = InputStackParameter90;
-  NetworkConnectionFlags = InputStackParameter88;
-  SecurityParameter = InputStackParameter80;
-  ConfigurationData = InputStackParameter78;
-  InitializationFlags = InputStackParameter70;
-  MemoryAllocationFlags = InputStackParameter68;
-  ThreadCreationFlags = InputStackParameter60;
+  resourceCreationFlags7 = InputStackParameterFinalParam;
+  NetworkConnectionFlags = InputStackParameterDebugInfo;
+  SecurityParameter = InputStackParameterConfigData;
+  ConfigurationData = InputStackParameterSecurityFlag;
+  InitializationFlags = InputStackParameterThreadContext;
+  MemoryAllocationFlags = InputStackParameterMemorySize;
+  ThreadCreationFlags = InputStackParameterSystemResource;
   isOperationComplete0 = *(byte *)(SystemThreadHandle9 + 0x1bd8);
   CalculationFlags = *(int *)(SystemGlobalStatusFlags + 0x224);
   if (((*(byte *)(MemoryBlockAddress + 0xfd) & 1) == 0) &&
@@ -60002,8 +60002,8 @@ void CleanupGlobalSystemResources(void)
   *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | OperationCompleteFlag;
   isOperationComplete0 = isOperationComplete0 & 0x20;
   if ((isOperationComplete0 != 0) && (OperationCompleteFlag != 0)) {
-    *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameter60;
-    *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameter68;
+    *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameterSystemResource;
+    *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameterMemorySize;
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
@@ -60354,8 +60354,8 @@ void InitializeSystemVectorCalculations(void)
   *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | isSystemActive7;
   IsAudioSystemActive = IsAudioSystemActive & 0x20;
   if ((IsAudioSystemActive != 0) && (isSystemActive7 != 0)) {
-    *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameter60;
-    *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameter68;
+    *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameterSystemResource;
+    *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameterMemorySize;
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
@@ -60400,24 +60400,24 @@ void ExecuteSystemTransformOperations(void)
   long long MemoryBlockAddress;
   byte isByteValid1;
   long long SystemContextPointer;
-  void* InputStackParameter60;
-  void* InputStackParameter68;
-  void* InputStackParameter70;
-  void* InputStackParameter78;
-  void* InputStackParameter80;
-  void* InputStackParameter88;
-  void* InputStackParameter90;
+  void* InputStackParameterSystemResource;
+  void* InputStackParameterMemorySize;
+  void* InputStackParameterThreadContext;
+  void* InputStackParameterSecurityFlag;
+  void* InputStackParameterConfigData;
+  void* InputStackParameterDebugInfo;
+  void* InputStackParameterFinalParam;
   void* ThreadCreationParameter;
   
   FinalizeSystemContextBuffer(&SystemStackBuffer60,SystemContextPointer + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7));
   ThreadContextIndicator = ThreadCreationParameter;
-  SystemOperationCode = InputStackParameter90;
-  ThreadContextIndicator = InputStackParameter88;
-  ResourceHash = InputStackParameter80;
-  CurrentThreadIdentifier = InputStackParameter78;
-  ResourceAddress = InputStackParameter70;
-  resourceAllocationContext = InputStackParameter68;
-  resourceCreationFlags = InputStackParameter60;
+  SystemOperationCode = InputStackParameterFinalParam;
+  ThreadContextIndicator = InputStackParameterDebugInfo;
+  ResourceHash = InputStackParameterConfigData;
+  CurrentThreadIdentifier = InputStackParameterSecurityFlag;
+  ResourceAddress = InputStackParameterThreadContext;
+  resourceAllocationContext = InputStackParameterMemorySize;
+  resourceCreationFlags = InputStackParameterSystemResource;
   isByteValid1 = *(byte *)(SystemContextPointer + 0x1bd8);
   SystemInitializationStatus = *(int *)(SystemGlobalStatusFlags + 0x224);
   if (((*(byte *)(MemoryBlockAddress + 0xfd) & 1) == 0) &&
@@ -60430,8 +60430,8 @@ void ExecuteSystemTransformOperations(void)
   *(byte *)(MemoryBlockAddress + 0xfd) = *(byte *)(MemoryBlockAddress + 0xfd) & 0xfe | isByteValid0;
   isByteValid1 = isByteValid1 & 0x20;
   if ((isByteValid1 != 0) && (isByteValid0 != 0)) {
-    *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameter60;
-    *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameter68;
+    *(void* *)(MemoryBlockAddress + 0x160) = InputStackParameterSystemResource;
+    *(void* *)(MemoryBlockAddress + 0x168) = InputStackParameterMemorySize;
     *(void* )(MemoryBlockAddress + 0x170) = TransformStackParameter;
     *(void* )(MemoryBlockAddress + 0x178) = PhysicsStackParameter;
     *(void* )(MemoryBlockAddress + 0x180) = AudioStackParameter;
@@ -60708,9 +60708,9 @@ void InitializeSystemDataIndexPointer(void)
   uint32_t SystemStackParameter28;
   void* SystemDataBufferPointer;
   ulong long SystemDataPointer1;
-  void* SystemDataPointer2;
-  ulong long SystemDataPointer3;
-  void* SystemDataPointer4;
+  void* SystemDataPointerSecondary;
+  ulong long SystemDataPointerTertiary;
+  void* SystemDataPointerQuaternary;
   ulong long SystemDataPointer5;
   uint32_t SystemDataPointer6;
   uint32_t SystemDataPointer7;
@@ -60720,8 +60720,8 @@ void InitializeSystemDataIndexPointer(void)
   uint32_t InputParameterE8;
   
   SystemDataBufferPointer = *systemDataIndexPtr;
-  SystemDataPointer2 = systemDataIndexPtr[2];
-  SystemDataPointer4 = systemDataIndexPtr[4];
+  SystemDataPointerSecondary = systemDataIndexPtr[2];
+  SystemDataPointerQuaternary = systemDataIndexPtr[4];
   SystemDataPointer6 = *(uint32_t *)(systemDataIndexPtr + 6);
   SystemDataPointer7 = *(uint32_t *)((long long)systemDataIndexPtr + 0x34);
   SystemDataPointer8 = *(uint32_t *)(systemDataIndexPtr + 7);
