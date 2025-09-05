@@ -71970,6 +71970,10 @@ void* SystemDataBufferExperimentalTemplatePrototype;
 void* SystemDataBufferDeprecatedTemplateObsolete;
 void* SystemDataBufferReservedTemplateAllocation;
 void* SystemDataBufferEmergencyTemplateCritical;
+void* SystemDataBufferTemplateSecondary;             // 系统数据缓冲区模板次要
+void* SystemDataBufferTemplateNonary;                // 系统数据缓冲区模板第九
+void* SystemDataBufferTemplateDenary;                // 系统数据缓冲区模板第十
+void* SystemDataBufferTemplateUndenary;              // 系统数据缓冲区模板第十一
 void* SystemDataBufferTemplateMaintenance;
 void* SystemDataBufferTemplateOptimization;
 void* SystemDataBufferTemplateCleanup;
