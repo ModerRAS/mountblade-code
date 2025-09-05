@@ -14345,24 +14345,43 @@ void InitializeUtilitySystemContext(longlong contextHandle, longlong systemData)
 
 
 // 系统验证函数B0 - 验证系统参数并执行相应操作
+/**
+ * @brief 验证系统参数B0
+ * 
+ * 该函数验证系统参数的有效性，检查浮点数是否为无穷大值，并查询系统数据。
+ * 如果验证成功，会设置相应的数据并执行系统事件清理操作。
+ * 
+ * @param validationContext 验证上下文指针，包含系统参数信息
+ * @param systemContext 系统上下文指针，包含系统状态信息
+ * 
+ * @return undefined8 验证结果状态码，0表示成功，非零值表示各种错误状态
+ * 
+ * @note 原始函数名：FUN_1808930a0
+ * @warning 函数包含不返回的子例程调用，确保在调用前系统状态稳定
+ * @see QueryAndRetrieveSystemDataA0, CleanupSystemEventA0
+ */
 undefined8 ValidateSystemB0(longlong validationContext,longlong systemContext)
 
 {
-  undefined8 uVar1;
-  uint uStackX_8;
-  undefined4 uStackX_c;
+  undefined8 ValidationResult;          // 验证结果
+  uint StackParameter8;                 // 栈参数8
+  undefined4 StackParameterC;           // 栈参数C
   
-  uStackX_8 = *(uint *)(param_1 + 0x18);
-  if ((uStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
-    return 0x1d;
+  // 获取系统参数并检查浮点数是否为无穷大
+  StackParameter8 = *(uint *)(validationContext + 0x18);
+  if ((StackParameter8 & FloatInfinityValue) == FloatInfinityValue) {
+    return 0x1d;  // 返回浮点数无穷大错误
   }
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if ((int)uVar1 == 0) {
-    *(undefined4 *)(CONCAT44(uStackX_c,uStackX_8) + 0x18) = *(undefined4 *)(param_1 + 0x18);
+  
+  // 查询系统数据
+  ValidationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(validationContext + 0x10), &StackParameter8);
+  if ((int)ValidationResult == 0) {
+    // 设置系统参数并执行清理操作
+    *(undefined4 *)(CONCAT44(StackParameterC, StackParameter8) + 0x18) = *(undefined4 *)(validationContext + 0x18);
                     // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+    CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98), validationContext);
   }
-  return uVar1;
+  return ValidationResult;
 }
 
 
@@ -60050,6 +60069,15 @@ void ExceptionHandlerSetupRoutine(void* handlerContext, longlong contextData)
 
 
 
+/**
+ * @brief 异常处理器上下文验证器
+ * @details 验证异常处理器的上下文有效性，确保处理器状态正确
+ * 
+ * @param validatorContext 验证器上下文指针
+ * @param contextData 上下文数据，包含需要验证的异常处理信息
+ * 
+ * @return 无返回值
+ */
 void ExceptionHandlerContextValidator(void* validatorContext, longlong contextData)
 
 {
