@@ -13,6 +13,7 @@
 #define SecurityAlignment 0xf
 #define SecurityAlignmentMask 0xfffffff0
 #define SystemCleanupFlag 0x80000000
+#define SystemCleanupFlagfffffffe 0xfffffffe
 #define NegativeZeroFloat 0x80000000
 #define SecurityValidationMask 0x40000000
 #define ThreadLocalStorageOffset 0x17c
@@ -59033,7 +59034,7 @@ void FreeValidationContextPointerArray(void)
 void SystemExceptionHandlerA0(DataBuffer param_1,int64_t param_2)
 
 {
-  func_0x00018008d310(param_1,*(DataBuffer *)(param_2 + 0x40));
+  HandleSystemException(param_1,*(DataBuffer *)(param_2 + 0x40));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
 }
