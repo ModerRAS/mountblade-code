@@ -370,10 +370,10 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 
 // 网络数据包常量
 #define NetworkPacketHeaderSize32 0x20                        // 数据包头大小32字节
-#define NetworkPacketTrailerSize16Bytes 0x10                       // 数据包尾大小16字节
+#define NetworkPacketTrailerSize16 0x10                       // 数据包尾大小16字节
 #define NetworkPacketPayloadSize1KB 0x400                      // 数据包负载大小1KB
 #define NetworkMaximumPacketSize2KB 0x800                     // 最大数据包大小2KB
-#define NetworkPacketProcessingSize256Bytes 0x100                 // 数据包处理大小256字节
+#define NetworkPacketProcessingSize256 0x100                 // 数据包处理大小256字节
 #define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
 #define NetworkConnectionCompletionHandleValue 0x7d                   // 连接完成状态句柄值 (125)
@@ -1622,8 +1622,8 @@ void SendNetworkData(void)
   // 初始化数据包缓冲区
   NetworkPacketBufferPointer = NetworkBufferEnabledFlag;                     // 初始化数据包缓冲区指针
   NetworkPacketHeaderPointer = NetworkBufferEnabledFlag;                     // 初始化数据包头指针
-  NetworkPacketPayloadSize = NetworkPacketPayloadSize1Kilobyte;                      // 设置数据包负载大小为1KB
-  NetworkMaximumPacketSize = NetworkMaximumPacketSize2Kilobytes;                         // 设置最大数据包大小为2KB
+  NetworkPacketPayloadSize = NetworkPacketPayloadSize1KB;                      // 设置数据包负载大小为1KB
+  NetworkMaximumPacketSize = NetworkMaximumPacketSize2KB;                         // 设置最大数据包大小为2KB
   
   // 初始化传输统计
   NetworkBytesSent = 0;                                 // 重置发送字节数
