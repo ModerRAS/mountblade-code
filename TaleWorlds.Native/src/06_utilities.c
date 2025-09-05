@@ -32835,7 +32835,7 @@ void ProcessExceptionStateE2(undefined8 param_1,longlong param_2)
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffe;
     
     // 释放相关资源
-    FUN_180627b90(*(undefined8 *)(param_2 + 0xd8));
+    CleanupResourceHandler(*(undefined8 *)(param_2 + 0xd8));
   }
   return;
 }
@@ -32860,7 +32860,7 @@ void ProcessExceptionStateE3(undefined8 param_1,longlong param_2)
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffd;
     
     // 释放相关资源
-    FUN_180627b90(param_2 + 0x40);
+    CleanupResourceHandler(param_2 + 0x40);
   }
   return;
 }
@@ -33086,7 +33086,7 @@ void ClearStateFlagAndExecuteCallback(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(param_2 + 0x30) & 1) != 0) {
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffe;
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x1c8));
+    CleanupResourceHandler(*(undefined8 *)(param_2 + 0x1c8));
   }
   return;
 }
@@ -33151,7 +33151,7 @@ void ClearStateFlag2AndExecuteCallback(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(param_2 + 0x30) & 2) != 0) {
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffd;
-    FUN_180627b90(param_2 + 0x78);
+    CleanupResourceHandler(param_2 + 0x78);
   }
   return;
 }
@@ -56533,7 +56533,7 @@ void Unwind_180907dd0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(param_2 + 0x30) & 4) != 0) {
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x40);
+    CleanupResourceHandler(param_2 + 0x40);
   }
   return;
 }
@@ -64137,7 +64137,7 @@ void Unwind_18090a720(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(param_2 + 0x30) & 4) != 0) {
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffb;
-    FUN_180627b90(param_2 + 0x78);
+    CleanupResourceHandler(param_2 + 0x78);
   }
   return;
 }
@@ -80560,7 +80560,7 @@ void Unwind_18090feb0(undefined8 param_1,longlong param_2)
 {
   if ((*(uint *)(param_2 + 0x30) & 1) != 0) {
     *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffe;
-    FUN_180627b90(param_2 + 0x40);
+    CleanupResourceHandler(param_2 + 0x40);
   }
   return;
 }
