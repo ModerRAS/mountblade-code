@@ -3667,26 +3667,26 @@ undefined SystemDataBufferOctonary;
 
 // 函数: undefined InitializeUtilitySystemControl;
 #define InitializeUtilitySystemControl FUN_180942660
-undefined InitializeUtilitySystemControl;
-undefined DAT_180bfc150;
-undefined1 DAT_180bfc140;
-undefined DAT_180bfc160;
-undefined DAT_180bfc168;
-uint64_t utilitySystemControlPointer158;
-undefined DAT_180bfaec0;
-undefined DAT_180bfaec8;
-undefined DAT_180bfaed0;
-undefined DAT_180bfaed8;
+void* InitializeUtilitySystemControl;
+void* SystemDataBuffer150;
+uint8_t SystemStatusFlag140;
+void* SystemDataBuffer160;
+void* SystemDataBuffer168;
+uint64_t UtilitySystemControlPointer158;
+void* SystemDataBufferAEC0;
+void* SystemDataBufferAEC8;
+void* SystemDataBufferAED0;
+void* SystemDataBufferAED8;
 
-// 函数: undefined ConfigureUtilitySystemBuffers;
+// 函数: void* ConfigureUtilitySystemBuffers;
 #define ConfigureUtilitySystemBuffers FUN_180942750
-undefined ConfigureUtilitySystemBuffers;
-undefined DAT_180bfaee0;
-undefined DAT_180bfaee8;
-undefined UtilitySystemMemoryData1;
-undefined UtilitySystemMemoryData2;
-undefined UtilitySystemMemoryData3;
-undefined UtilitySystemMemoryData4;
+void* ConfigureUtilitySystemBuffers;
+void* SystemDataBufferAEE0;
+void* SystemDataBufferAEE8;
+void* UtilitySystemMemoryData1;
+void* UtilitySystemMemoryData2;
+void* UtilitySystemMemoryData3;
+void* UtilitySystemMemoryData4;
 
 // 函数: undefined SetupUtilitySystemMemory;
 #define SetupUtilitySystemMemory FUN_180942790
