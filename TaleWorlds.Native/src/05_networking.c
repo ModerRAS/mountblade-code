@@ -84,6 +84,9 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络系统配置常量
 #define NetworkSystemDebugFlag 0x80                           // 网络系统调试标志
 #define NetworkSystemStatusOffset 0x10                        // 网络系统状态偏移量
+#define NetworkConnectionTimeoutDefault 30000                  // 网络连接默认超时时间（30秒）
+#define NetworkDefaultMaxConnections 100                       // 网络默认最大连接数
+#define NetworkMaxInt32Value 0x7fffffff                        // 32位有符号整数最大值
 
 // 网络序列号和确认号常量
 #define NetworkSequenceInitialValue 0                          // 网络序列号初始值
@@ -2342,12 +2345,12 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
     }
     if (ConnectionValidationData) {
         *ConnectionValidationData = ConnectionContextId;
-        *(int *)CalculateConnectionParameterAddress(ConnectionValidationData) = NetworkValidationStatus;
+        *(int *)CalculateConnectionParameterOffset(ConnectionValidationData) = NetworkValidationStatus;
     }
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxInt32Value) {
-    ConnectionRequestResult = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &SecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
+    ConnectionRequestResult = HandleNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &SecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
     if (ConnectionRequestResult != 0) {
       if (ConnectionValidationData && (int)ConnectionValidationData[ConnectionDataSizeIndex] != 0) {
           memcpy((void *)ConnectionRequestResult, *ConnectionValidationData, (int64_t)(int)ConnectionValidationData[ConnectionDataSizeIndex]);
