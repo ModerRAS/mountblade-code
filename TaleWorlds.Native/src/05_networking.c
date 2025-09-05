@@ -3261,7 +3261,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   ValidationStepResult = 0;
   
   // 根据数据包大小选择不同的处理路径
-  if (*(uint *)(PacketData + PacketDataSizeIndex) < NetworkPacketSizeLimit) {
+  if (*(uint32_t *)(PacketData + PacketDataSizeIndex) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -3313,7 +3313,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   NetworkPacketProcessor DataPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
   NetworkPacketValidationResult = DataPacketProcessor(*(NetworkHandle **)(*PacketData + 8), DataProcessingArray, 4);
   if ((int)NetworkPacketValidationResult == 0) {
-    if (*(uint *)(PacketData + PacketDataSizeIndex) < NetworkPacketSizeAlternative) {
+    if (*(uint32_t *)(PacketData + PacketDataSizeIndex) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }
@@ -3402,7 +3402,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
   uint32_t PacketProcessingStatus;                        // 数据包处理状态值，用于确定处理策略
   
   // 获取处理状态值
-  PacketProcessingStatus = *(uint *)(PacketData + NetworkPacketStatusTertiaryOffset);
+  PacketProcessingStatus = *(uint32_t *)(PacketData + NetworkPacketStatusTertiaryOffset);
   
   // 根据数据包状态选择不同的处理路径
   if (PacketProcessingStatus < NetworkPacketStatusLimit) {

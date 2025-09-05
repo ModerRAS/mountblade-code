@@ -8385,33 +8385,46 @@ void InitializeEmptyFunction(void)
 
 
 
-// 函数: DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
-// 
-// 资源验证和处理函数A
-// 验证资源状态并执行相应的处理操作，处理资源描述符中的偏移量数据
-// 
-// 参数:
-//   resourceDescriptor - 资源描述符指针，包含偏移量0x10、0x18、0x20、0x24的信息
-// 
-// 返回值:
-//   成功返回0，失败返回错误代码(如0x1c)
+/**
+ * @brief 验证和处理资源A
+ * 
+ * 该函数负责验证资源状态并执行相应的处理操作，处理资源描述符中的偏移量数据。
+ * 它首先查询系统数据获取资源信息，然后验证资源访问权限，最后进行相应的处理。
+ * 
+ * @param resourceDescriptor 资源描述符指针，包含偏移量0x10、0x18、0x20、0x24的信息
+ * 
+ * @return DataBuffer 操作结果状态码：
+ *         - 0: 操作成功
+ *         - 0x1c: 资源无效或访问失败
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会处理资源描述符中的多个偏移量数据
+ * @warning 确保传入的资源描述符有效，否则可能导致未定义行为
+ */
 DataBuffer ValidateAndProcessResourceA(int64_t resourceDescriptor)
 
 {
   uint64_t validationStatus;
-  int64_t contextData [2];
-  int64_t resourceInfo [2];
+  int64_t contextData[2];
+  int64_t resourceInfo[2];
+  int64_t adjustedResourcePointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + 0x10),resourceInfo);
+  // 查询系统数据以获取资源信息
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceDescriptor + 0x10), resourceInfo);
   if ((int)validationStatus == 0) {
+    // 调整资源指针
     if (resourceInfo[0] == 0) {
-      resourceInfo[0] = 0;
+      adjustedResourcePointer = 0;
     }
     else {
-      resourceInfo[0] = resourceInfo[0] + -8;
+      adjustedResourcePointer = resourceInfo[0] - 8;
     }
+    
+    // 初始化上下文数据
     contextData[0] = 0;
-    validationStatus = ValidateResourceAccess(resourceInfo[0],resourceDescriptor + 0x18,contextData);
+    
+    // 验证资源访问权限
+    validationStatus = ValidateResourceAccess(adjustedResourcePointer, resourceDescriptor + 0x18, contextData);
     if ((int)validationStatus == 0) {
       if (contextData[0] != 0) {
         if (*(int64_t *)(contextData[0] + 8) == 0) {
