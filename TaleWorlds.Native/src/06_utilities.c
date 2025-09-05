@@ -199,7 +199,6 @@
 #define PackageValidationStatusBit 1                      // 包验证状态位
 #define ValidationArraySizeMultiplier 3                    // 验证数组大小乘数
 #define ValidationContextLoopCounterOffset 0x98           // 验证上下文循环计数器偏移量
-#define ValidationContextMethodPointerOffset 0x10         // 验证上下文方法指针偏移量
 #define ValidationContextSecondaryResourceOffset 0x14      // 验证上下文次级资源偏移量
 #define ValidationContextValidationDataOffset 0x220 // 验证上下文验证数据处理偏移量
 #define ValidationContextEntrySize 0xc                    // 验证上下文条目大小
@@ -111329,7 +111328,6 @@ void CleanupSystemResources(uint8_t ResourceType, uint8_t ResourceInstance, uint
 #define ValidationContextPrimaryResourceOffset 0x80
 #define ValidationContextLoopBoundOffset 0x1a8
 #define ValidationContextLoopDataProcessingOffset 0x1a0
-#define ValidationContextMethodPointerOffset 0x10
 #define ValidationContextSecondaryResourceOffset 0x14
 #define ValidationContextValidationDataProcessingOffset 0x220
 
