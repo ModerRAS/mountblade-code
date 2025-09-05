@@ -136,7 +136,7 @@
 #define ResourceTableOffsetSixth 0x68
 #define ResourceTableOffsetSeventh 0x6c
 #define ResourceTableOffsetEighth 0x70
-#define ResourceTableOffsetNonary 0x74
+#define ResourceTableOffsetNinth 0x74
 
 // 安全处理相关常量
 #define SecurityByteHighShift 0x18                    // 安全字节高位位移（24位）
@@ -20225,32 +20225,32 @@ uint8_t ProcessResourceTablePointerEntry(int64_t ResourceContext, uint8_t *Resou
         if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
           return ErrorInvalidObjectHandle;
         }
-        ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetQuaternary);
+        ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetFourth);
         if ((int)ResourceHash == 0) {
           if (*(int *)(ResourceData[1] + 0x18) != 0) {
             return ErrorInvalidObjectHandle;
           }
-          ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetQuinary);
+          ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetFifth);
           if ((int)ResourceHash == 0) {
             if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
               return ErrorInvalidObjectHandle;
             }
-            ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetSenary);
+            ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetSixth);
             if ((int)ResourceHash == 0) {
               if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
                 return ErrorInvalidObjectHandle;
               }
-              ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetSeptenary);
+              ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetSeventh);
               if ((int)ResourceHash == 0) {
                 if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
                   return ErrorInvalidObjectHandle;
                 }
-                ResourceHash = CalculateResourceHash(*ValidationContext,dataContext + ResourceTableOffsetOctonary);
+                ResourceHash = CalculateResourceHash(*ValidationContext,dataContext + ResourceTableOffsetEighth);
                 if ((int)ResourceHash == 0) {
                   if (*(int *)(ResourceData[1] + ResourceTableHeaderValidationOffset) != 0) {
                     return ErrorInvalidObjectHandle;
                   }
-                  ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetNonary);
+                  ResourceHash = CalculateResourceHash(*ResourceData,ResourceContext + ResourceTableOffsetNinth);
                   if ((int)ResourceHash == 0) {
                     if (*(int *)(ResourceData[1] + 0x18) != 0) {
                       return ErrorInvalidObjectHandle;
