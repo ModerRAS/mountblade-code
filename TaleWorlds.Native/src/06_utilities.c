@@ -4992,17 +4992,23 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
 
 
 
-// 函数: ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
-// 
-// 初始化系统模块函数
-// 根据配置和数据初始化系统模块
-// 
-// 参数:
-//   moduleConfig - 模块配置指针
-//   moduleData - 模块数据指针
-// 
-// 返回值:
-//   ulonglong - 初始化结果状态
+/**
+ * @brief 初始化系统模块
+ * 
+ * 根据提供的模块配置和数据初始化系统模块。该函数负责设置模块的上下文环境，
+ * 验证资源配置，并建立必要的组件连接。初始化过程包括数据验证、资源分配
+ * 和组件初始化等步骤。
+ * 
+ * @param moduleConfig 模块配置指针，包含模块的配置参数和初始化信息
+ * @param moduleData 模块数据指针，包含模块运行时所需的数据结构
+ * @return ulonglong 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 0x1c: 模块数据验证失败
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会修改模块数据结构，并在成功时建立组件间的连接关系
+ * @warning 初始化失败时可能需要清理已分配的资源
+ */
 ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
 
 {
@@ -5017,90 +5023,90 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
   #define MODULE_COMPONENT_OFFSET 0x80      // 模块组件偏移量
   #define MODULE_VALIDATION_OFFSET 0x38    // 模块验证偏移量
   
-  longlong *pvalidationContext;
-  longlong *pcomponentData;
-  longlong *pcomponentInfo;
-  int resultStatus;
-  uint messageResult;
-  ulonglong operationResult;
-  longlong *presourceInfo;
-  longlong *pcontextData;
-  longlong *pmoduleData;
-  longlong *pvalidationContext0;
-  longlong stackContext8;
-  longlong stackContext18;
+  longlong *validationContextPtr;
+  longlong *componentDataPtr;
+  longlong *componentInfoPtr;
+  int initializationStatus;
+  uint messageProcessingResult;
+  ulonglong systemOperationResult;
+  longlong *resourceInfoPtr;
+  longlong *contextDataPtr;
+  longlong *moduleDataPtr;
+  longlong *baseValidationContext;
+  longlong localStackContext;
+  longlong tempStackContext;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&stackContext18);
-  resultStatus = (int)operationResult;
-  if (resultStatus == 0) {
-    pvalidationContext0 = (longlong *)0x0;
-    pmoduleData = pvalidationContext0;
-    if (stackContext18 != 0) {
-      pmoduleData = (longlong *)(stackContext18 + -8);
+  systemOperationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
+  initializationStatus = (int)systemOperationResult;
+  if (initializationStatus == 0) {
+    baseValidationContext = (longlong *)0x0;
+    moduleDataPtr = baseValidationContext;
+    if (tempStackContext != 0) {
+      moduleDataPtr = (longlong *)(tempStackContext + -8);
     }
-    operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&stackContext18);
-    resultStatus = (int)operationResult;
-    if (resultStatus == 0) {
-      stackContext8 = 0;
-      messageResult = ProcessGameMessage(*(undefined8 *)(moduleData + MODULE_DATA_OFFSET_1),*(longlong *)(stackContext18 + 8) + MODULE_DATA_OFFSET_3,
-                            &stackContext8);
-      if (messageResult != 0) {
-        CleanupSystemDataStructures(pmoduleData);
-        return (ulonglong)messageResult;
+    systemOperationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&tempStackContext);
+    initializationStatus = (int)systemOperationResult;
+    if (initializationStatus == 0) {
+      localStackContext = 0;
+      messageProcessingResult = ProcessGameMessage(*(undefined8 *)(moduleData + MODULE_DATA_OFFSET_1),*(longlong *)(tempStackContext + 8) + MODULE_DATA_OFFSET_3,
+                            &localStackContext);
+      if (messageProcessingResult != 0) {
+        CleanupSystemDataStructures(moduleDataPtr);
+        return (ulonglong)messageProcessingResult;
       }
-      if (((*(uint *)(*(longlong *)(stackContext18 + 8) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (operationResult = func_0x000180861a30(stackContext8), (int)operationResult != 0)) {
-        return operationResult;
+      if (((*(uint *)(*(longlong *)(tempStackContext + 8) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
+         (systemOperationResult = func_0x000180861a30(localStackContext), (int)systemOperationResult != 0)) {
+        return systemOperationResult;
       }
-      pvalidationContext = (longlong *)(stackContext8 + MODULE_CONTEXT_OFFSET);
-      presourceInfo = (longlong *)(*pvalidationContext + MODULE_RESOURCE_OFFSET);
-      if (*pvalidationContext == 0) {
-        presourceInfo = pvalidationContext0;
+      validationContextPtr = (longlong *)(localStackContext + MODULE_CONTEXT_OFFSET);
+      resourceInfoPtr = (longlong *)(*validationContextPtr + MODULE_RESOURCE_OFFSET);
+      if (*validationContextPtr == 0) {
+        resourceInfoPtr = baseValidationContext;
       }
-      pcontextData = pvalidationContext0;
-      pcomponentData = pvalidationContext0;
-      pcomponentInfo = pvalidationContext0;
-      if (presourceInfo != (longlong *)0x0) {
-        pcontextData = presourceInfo + 3;
+      contextDataPtr = baseValidationContext;
+      componentDataPtr = baseValidationContext;
+      componentInfoPtr = baseValidationContext;
+      if (resourceInfoPtr != (longlong *)0x0) {
+        contextDataPtr = resourceInfoPtr + 3;
       }
       while( true ) {
-        if (pcontextData == pvalidationContext) {
-          *(longlong **)(stackContext8 + MODULE_COMPONENT_OFFSET) = pmoduleData;
-          func_0x00018085eef0(stackContext8,pmoduleData);
-          pmoduleData[2] = stackContext8;
-          operationResult = InitializeSystemComponent(stackContext8);
-          if ((int)operationResult == 0) {
+        if (contextDataPtr == validationContextPtr) {
+          *(longlong **)(localStackContext + MODULE_COMPONENT_OFFSET) = moduleDataPtr;
+          func_0x00018085eef0(localStackContext,moduleDataPtr);
+          moduleDataPtr[2] = localStackContext;
+          systemOperationResult = InitializeSystemComponent(localStackContext);
+          if ((int)systemOperationResult == 0) {
             return 0;
           }
-          return operationResult;
+          return systemOperationResult;
         }
-        if ((int)pmoduleData[5] <= (int)pcomponentInfo) {
+        if ((int)moduleDataPtr[5] <= (int)componentInfoPtr) {
           return 0x1c;
         }
-        presourceInfo = pcontextData + 4;
-        if (pcontextData == (longlong *)0x0) {
-          presourceInfo = (longlong *)MODULE_VALIDATION_OFFSET;
+        resourceInfoPtr = contextDataPtr + 4;
+        if (contextDataPtr == (longlong *)0x0) {
+          resourceInfoPtr = (longlong *)MODULE_VALIDATION_OFFSET;
         }
-        *(longlong *)(pmoduleData[4] + 8 + (longlong)pcomponentData) = *presourceInfo;
-        if (pcontextData == pvalidationContext) break;
-        presourceInfo = (longlong *)(*pcontextData + MODULE_RESOURCE_OFFSET);
-        if (*pcontextData == 0) {
-          presourceInfo = pvalidationContext0;
+        *(longlong *)(moduleDataPtr[4] + 8 + (longlong)componentDataPtr) = *resourceInfoPtr;
+        if (contextDataPtr == validationContextPtr) break;
+        resourceInfoPtr = (longlong *)(*contextDataPtr + MODULE_RESOURCE_OFFSET);
+        if (*contextDataPtr == 0) {
+          resourceInfoPtr = baseValidationContext;
         }
-        pcontextData = pvalidationContext0;
-        if (presourceInfo != (longlong *)0x0) {
-          pcontextData = presourceInfo + 3;
+        contextDataPtr = baseValidationContext;
+        if (resourceInfoPtr != (longlong *)0x0) {
+          contextDataPtr = resourceInfoPtr + 3;
         }
-        pcomponentData = pcomponentData + 3;
-        pcomponentInfo = (longlong *)(ulonglong)((int)pcomponentInfo + 1);
+        componentDataPtr = componentDataPtr + 3;
+        componentInfoPtr = (longlong *)(ulonglong)((int)componentInfoPtr + 1);
       }
       return 0x1c;
     }
   }
-  if (resultStatus == 0x1e) {
+  if (initializationStatus == 0x1e) {
     return 0;
   }
-  return operationResult;
+  return systemOperationResult;
 }
 
 
@@ -5110,31 +5116,31 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
 undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceData)
 
 {
-  longlong resourcePointer;
-  int operationResult;
-  undefined8 validationStatus;
-  longlong stackBuffer [2];
+  longlong resourceHandle;
+  int resourceOperationStatus;
+  undefined8 resourceValidationResult;
+  longlong localResourceBuffer [2];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceConfig + 0x10),stackBuffer);
-  resourcePointer = stackBuffer[0];
-  if ((int)validationStatus != 0) {
-    return validationStatus;
+  resourceValidationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceConfig + 0x10),localResourceBuffer);
+  resourceHandle = localResourceBuffer[0];
+  if ((int)resourceValidationResult != 0) {
+    return resourceValidationResult;
   }
-  *(int *)(stackBuffer[0] + 0x4c) = *(int *)(stackBuffer[0] + 0x4c) + 1;
-  if (*(int *)(stackBuffer[0] + 0x58) + *(int *)(stackBuffer[0] + 0x54) +
-      *(int *)(stackBuffer[0] + 0x4c) == 1) {
-    stackBuffer[0] = 0;
-    operationResult = ValidateResourceHandle(stackBuffer);
-    if (operationResult == 0) {
-      operationResult = ExecuteResourceOperation(resourcePointer,*(undefined8 *)(resourcePointer + 8),*(undefined8 *)(resourceData + 0x90),
+  *(int *)(localResourceBuffer[0] + 0x4c) = *(int *)(localResourceBuffer[0] + 0x4c) + 1;
+  if (*(int *)(localResourceBuffer[0] + 0x58) + *(int *)(localResourceBuffer[0] + 0x54) +
+      *(int *)(localResourceBuffer[0] + 0x4c) == 1) {
+    localResourceBuffer[0] = 0;
+    resourceOperationStatus = ValidateResourceHandle(localResourceBuffer);
+    if (resourceOperationStatus == 0) {
+      resourceOperationStatus = ExecuteResourceOperation(resourceHandle,*(undefined8 *)(resourceHandle + 8),*(undefined8 *)(resourceData + 0x90),
                             *(undefined8 *)(resourceData + 800));
-      if (operationResult == 0) {
+      if (resourceOperationStatus == 0) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemResources(stackBuffer);
+        ReleaseSystemResources(localResourceBuffer);
       }
     }
                     // WARNING: Subroutine does not return
-    ReleaseSystemResources(stackBuffer);
+    ReleaseSystemResources(localResourceBuffer);
   }
   return 0;
 }
@@ -5146,28 +5152,28 @@ undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceD
 undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
 
 {
-  uint *flagPointer;
-  longlong memoryBlock;
-  undefined8 validationStatus;
-  longlong *iterator;
-  longlong stackBuffer [4];
+  uint *memoryFlagPtr;
+  longlong memoryRegionBlock;
+  undefined8 memoryUpdateStatus;
+  longlong *memoryIterator;
+  longlong localMemoryBuffer [4];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(memoryConfig + 0x10),stackBuffer);
-  if ((int)validationStatus == 0) {
-    iterator = *(longlong **)(stackBuffer[0] + 0x20);
-    while ((*(longlong **)(stackBuffer[0] + 0x20) <= iterator &&
-           (iterator < *(longlong **)(stackBuffer[0] + 0x20) + *(int *)(stackBuffer[0] + 0x28)))) {
-      memoryBlock = *iterator;
-      iterator = iterator + 1;
-      if ((*(longlong *)(memoryBlock + 0x18) == *(longlong *)(stackBuffer[0] + 8)) &&
-         (memoryBlock = *(longlong *)(memoryBlock + 0x10), memoryBlock != 0)) {
-        flagPointer = (uint *)(memoryBlock + 0x2d8);
-        *flagPointer = *flagPointer | 4;
+  memoryUpdateStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(memoryConfig + 0x10),localMemoryBuffer);
+  if ((int)memoryUpdateStatus == 0) {
+    memoryIterator = *(longlong **)(localMemoryBuffer[0] + 0x20);
+    while ((*(longlong **)(localMemoryBuffer[0] + 0x20) <= memoryIterator &&
+           (memoryIterator < *(longlong **)(localMemoryBuffer[0] + 0x20) + *(int *)(localMemoryBuffer[0] + 0x28)))) {
+      memoryRegionBlock = *memoryIterator;
+      memoryIterator = memoryIterator + 1;
+      if ((*(longlong *)(memoryRegionBlock + 0x18) == *(longlong *)(localMemoryBuffer[0] + 8)) &&
+         (memoryRegionBlock = *(longlong *)(memoryRegionBlock + 0x10), memoryRegionBlock != 0)) {
+        memoryFlagPtr = (uint *)(memoryRegionBlock + 0x2d8);
+        *memoryFlagPtr = *memoryFlagPtr | 4;
       }
     }
-    validationStatus = 0;
+    memoryUpdateStatus = 0;
   }
-  return validationStatus;
+  return memoryUpdateStatus;
 }
 
 
@@ -5177,38 +5183,38 @@ undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
 undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 decrementValue)
 
 {
-  longlong resourcePointer;
-  undefined8 validationStatus;
-  int operationResult;
-  longlong stackBuffer [2];
+  longlong resourceContextPtr;
+  undefined8 resourceDecrementStatus;
+  int decrementOperationResult;
+  longlong localDecrementBuffer [2];
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),stackBuffer);
-  resourcePointer = stackBuffer[0];
-  if ((int)validationStatus != 0) {
-    return validationStatus;
+  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceContext + 0x10),localDecrementBuffer);
+  resourceContextPtr = localDecrementBuffer[0];
+  if ((int)resourceDecrementStatus != 0) {
+    return resourceDecrementStatus;
   }
-  if (*(int *)(stackBuffer[0] + 0x4c) < 1) {
+  if (*(int *)(localDecrementBuffer[0] + 0x4c) < 1) {
     return 0x1c;
   }
-  operationResult = *(int *)(stackBuffer[0] + 0x4c) + -1;
-  *(int *)(stackBuffer[0] + 0x4c) = operationResult;
-  if (*(int *)(stackBuffer[0] + 0x58) + *(int *)(stackBuffer[0] + 0x54) + operationResult != 0) {
+  decrementOperationResult = *(int *)(localDecrementBuffer[0] + 0x4c) + -1;
+  *(int *)(localDecrementBuffer[0] + 0x4c) = decrementOperationResult;
+  if (*(int *)(localDecrementBuffer[0] + 0x58) + *(int *)(localDecrementBuffer[0] + 0x54) + decrementOperationResult != 0) {
     return 0;
   }
-  stackBuffer[0] = 0;
-  operationResult = ValidateResourceHandle(stackBuffer);
-  if (operationResult == 0) {
-    operationResult = CleanupResourceData(resourcePointer,0);
-    if (operationResult == 0) {
-      operationResult = ValidateSystemParameters(param_2);
-      if (operationResult == 0) {
+  localDecrementBuffer[0] = 0;
+  decrementOperationResult = ValidateResourceHandle(localDecrementBuffer);
+  if (decrementOperationResult == 0) {
+    decrementOperationResult = CleanupResourceData(resourceContextPtr,0);
+    if (decrementOperationResult == 0) {
+      decrementOperationResult = ValidateSystemParameters(decrementValue);
+      if (decrementOperationResult == 0) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemResources(stackBuffer);
+        ReleaseSystemResources(localDecrementBuffer);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  ReleaseSystemResources(stackBuffer);
+  ReleaseSystemResources(localDecrementBuffer);
 }
 
 
@@ -28747,32 +28753,32 @@ void ExceptionUnwindHandlerA0(undefined8 exceptionContext, longlong unwindParam)
 void ExceptionUnwindHandlerA2(undefined8 exceptionContext,longlong unwindParam)
 
 {
-  int *referenceCount;
-  undefined8 *exceptionPointer;
-  longlong exceptionData;
-  ulonglong contextPointer;
+  int *exceptionReferenceCount;
+  undefined8 *exceptionHandlerPointer;
+  longlong exceptionHandlerData;
+  ulonglong exceptionMemoryRegion;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x2b8);
-  if (puVar2 == (undefined8 *)0x0) {
+  exceptionHandlerPointer = *(undefined8 **)(unwindParam + 0x2b8);
+  if (exceptionHandlerPointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  exceptionMemoryRegion = (ulonglong)exceptionHandlerPointer & 0xffffffffffc00000;
+  if (exceptionMemoryRegion != 0) {
+    exceptionHandlerData = exceptionMemoryRegion + 0x80 + ((longlong)exceptionHandlerPointer - exceptionMemoryRegion >> 0x10) * 0x50;
+    exceptionHandlerData = exceptionHandlerData - (ulonglong)*(uint *)(exceptionHandlerData + 4);
+    if ((*(void ***)(exceptionMemoryRegion + 0x70) == &ExceptionList) && (*(char *)(exceptionHandlerData + 0xe) == '\0')) {
+      *exceptionHandlerPointer = *(undefined8 *)(exceptionHandlerData + 0x20);
+      *(undefined8 **)(exceptionHandlerData + 0x20) = exceptionHandlerPointer;
+      exceptionReferenceCount = (int *)(exceptionHandlerData + 0x18);
+      *exceptionReferenceCount = *exceptionReferenceCount + -1;
+      if (*exceptionReferenceCount == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(exceptionMemoryRegion,CONCAT71(0xff000000,*(void ***)(exceptionMemoryRegion + 0x70) == &ExceptionList),
+                          exceptionHandlerPointer,exceptionMemoryRegion,0xfffffffffffffffe);
     }
   }
   return;
