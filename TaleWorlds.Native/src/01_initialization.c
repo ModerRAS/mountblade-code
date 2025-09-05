@@ -611,7 +611,7 @@ void* GetSystemDataPointer(int dataIndex);
  * @param primaryConfigParam 主要配置参数
  * @param secondaryConfigParam 次要配置参数
  */
-void InitializeSystemConfiguration(void* ConfigurationContext, int ConfigurationFlags, int PrimaryConfigParam, int SecondaryConfigParam);
+void InitializeSystemConfiguration(void* configCtx, int configFlags, int primaryConfigParam, int secondaryConfigParam);
 
 /**
  * @brief 系统数据字段设置函数
@@ -623,7 +623,7 @@ void InitializeSystemConfiguration(void* ConfigurationContext, int Configuration
  * @param fieldValue 字段值
  * @param additionalParameter 额外参数
  */
-void SetupSystemDataField(void* DataFieldContext, uint FieldValue, uint AdditionalParameter);
+void SetupSystemDataField(void* dataFieldCtx, uint fieldValue, uint additionalParam);
 
 /**
  * @brief 抛出系统错误
@@ -1682,14 +1682,6 @@ void* GetSystemInitializationFunction;
  * @note 函数使用GameCoreSystemIdentifier进行系统识别。
  * 
  * @return void 无返回值
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 初始化游戏核心系统，包括系统节点的创建、内存分配和配置。
- * 用于游戏核心系统的启动和准备工作。
- * 
- * @return 无返回值
  */
 /**
  * @brief 初始化游戏核心系统
