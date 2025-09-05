@@ -42,14 +42,14 @@
 #define ObjectContextExtendedDataOffset 0x30              // 对象上下文扩展数据偏移量
 #define ObjectContextValidationOffset 0x10                // 对象上下文验证偏移量
 #define ObjectContextHandleDataOffset 0x18                // 对象上下文句柄数据偏移量
-#define ObjectContextConfigDataProcessingOffset 0x1c                // 对象上下文配置数据偏移量
+#define ObjectContextConfigDataOffset 0x1c                // 对象上下文配置数据偏移量
 #define ObjectContextStatusOffset 8                       // 对象上下文状态偏移量
 #define ObjectVirtualMethodTableOffset 800                // 对象虚拟方法表偏移量
-#define ObjectContextMatrixRotationDataProcessingOffset 0x2f0       // 对象上下文矩阵旋转数据偏移量
+#define ObjectContextMatrixRotationDataOffset 0x2f0       // 对象上下文矩阵旋转数据偏移量
 
 // 注册相关常量
 #define RegistrationHandleOffset 0x48                     // 注册句柄偏移量
-#define RegistrationDataProcessingOffset 0x38                        // 注册数据偏移量
+#define RegistrationDataOffset 0x38                        // 注册数据偏移量
 #define RegistrationStatusOffset 0xe4                       // 注册状态偏移量
 #define RegistrationArrayOffset 0x4d8                       // 注册数组偏移量
 #define RegistrationSizeOffset 0x4e4                       // 注册大小偏移量
@@ -217,6 +217,11 @@
 #define SystemSecondaryResourceOffset 0x858
 #define SystemSecondaryCleanupStatusOffset 0x860
 #define SystemSecondaryCleanupCounterOffset 0x870
+
+// 系统上下文资源管理常量
+#define SystemContextResourceTablePointerSecondaryOffset 0xb0   // 系统上下文资源表指针次级偏移量
+#define SystemContextResourceStatusOffset 0xb8                 // 系统上下文资源状态偏移量
+#define SystemContextValidationDataOffset 0xd0                 // 系统上下文验证数据偏移量
 
 // 范围检查相关常量
 #define RangeLowerBoundOffset 0x38
@@ -60010,12 +60015,12 @@ void ReleaseSystemResourceHandleAndCheckEmergencyExit(uint8_t ObjectContext,int6
   int64_t LoopCounter;
   
   LoopCounter = *(int64_t *)(ValidationContext + SystemContextResourceOffset);
-  ReleaseSystemResourceHandle(*(uint8_t *)(SystemContextPointer + 0xb0));
-  *(uint8_t *)(SystemContextPointer + 0xb0) = 0;
-  if (*(int64_t *)(SystemContextPointer + 0xb8) != 0) {
+  ReleaseSystemResourceHandle(*(uint8_t *)(SystemContextPointer + SystemContextResourceTablePointerSecondaryOffset));
+  *(uint8_t *)(SystemContextPointer + SystemContextResourceTablePointerSecondaryOffset) = 0;
+  if (*(int64_t *)(SystemContextPointer + SystemContextResourceStatusOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
-  *(uint8_t *)(SystemContextPointer + 0xb8) = 0;
+  *(uint8_t *)(SystemContextPointer + SystemContextResourceStatusOffset) = 0;
   return;
 }
 
@@ -60033,7 +60038,7 @@ void ReleaseSystemResourceHandleAndCheckEmergencyExit(uint8_t ObjectContext,int6
 void CheckSystemRegistryEmergencyExitCondition(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  if (*(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0xd0) != 0) {
+  if (*(int64_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + SystemContextValidationDataOffset) != 0) {
           ExecuteSystemEmergencyExit();
   }
   return;
