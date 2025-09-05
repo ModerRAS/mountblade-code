@@ -5649,7 +5649,7 @@ void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180891650(longlong param_1,longlong param_2)
+undefined8 ValidateDataIntegrity(longlong param_1,longlong param_2)
 
 {
   undefined8 uVar1;
@@ -6772,16 +6772,18 @@ void UtilityProcessResourceRequest(longlong param_1,longlong param_2)
 
 
 // 函数: void FUN_1808920e0(longlong param_1,longlong param_2)
-void FUN_1808920e0(longlong param_1,longlong param_2)
+// 函数: void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
+// 功能：验证上下文句柄并执行相应操作，如果验证失败则调用错误处理函数
+void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
 
 {
-  int iVar1;
-  undefined1 auStackX_8 [8];
+  int validationResult;
+  unsigned char localBuffer[8];
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),auStackX_8);
-  if (iVar1 == 0) {
+  validationResult = func_0x00018088c530(*(unsigned int *)((unsigned char*)contextHandle + 0x10), localBuffer);
+  if (validationResult == 0) {
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    FUN_18088d720(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
   }
   return;
 }
@@ -8667,8 +8669,8 @@ undefined8 FUN_180893d8f(undefined8 param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180893ddb(void)
-void FUN_180893ddb(void)
+// 函数: void ProcessFloatComparisonAndValidation(void)
+void ProcessFloatComparisonAndValidation(void)
 
 {
   float fVar1;
@@ -10040,39 +10042,42 @@ undefined8 GetSystemConfigurationSize(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180895360(longlong param_1,undefined1 *param_2,int *param_3)
-void FUN_180895360(longlong param_1,undefined1 *param_2,int *param_3)
+// 函数: void ProcessUtilitySystemData(longlong systemContext,undefined1 *dataBuffer,int *resultCounter)
+// 功能：处理工具系统数据，包括数据验证、状态更新和内存管理
+// 参数：systemContext-系统上下文指针，dataBuffer-数据缓冲区，resultCounter-结果计数器
+// 返回值：无
+void ProcessUtilitySystemData(longlong systemContext,undefined1 *dataBuffer,int *resultCounter)
 
 {
-  byte bVar1;
-  longlong lVar2;
-  char cVar3;
-  int iVar4;
-  undefined8 uVar5;
-  longlong lVar6;
-  longlong lVar7;
-  int iVar8;
-  longlong lVar9;
-  float fVar10;
-  float fVar11;
-  undefined1 auStack_738 [68];
-  undefined4 uStack_6f4;
-  int *piStack_6f0;
-  longlong lStack_6e0;
-  longlong lStack_6b8;
-  longlong alStack_6b0 [13];
-  undefined1 auStack_648 [1536];
-  ulonglong uStack_48;
+  byte statusFlag;
+  longlong memoryOffset;
+  char dataType;
+  int currentIndex;
+  undefined8 callbackResult;
+  longlong timeDelta;
+  longlong iterationCount;
+  int maxIndex;
+  longlong dataPointer;
+  float value1;
+  float value2;
+  undefined1 securityBuffer [68];
+  undefined4 checksumValue;
+  int *resultCounterPtr;
+  longlong baseAddress;
+  longlong arrayOffset;
+  longlong tempArray [13];
+  undefined1 dataBuffer [1536];
+  ulonglong securityChecksum;
   
-  uStack_48 = _DAT_180bf00a8 ^ (ulonglong)auStack_738;
-  iVar4 = *(int *)(param_1 + 0xac);
-  lVar7 = (longlong)iVar4;
-  piStack_6f0 = param_3;
-  if (iVar4 < *(int *)(param_1 + 0x20)) {
-    lStack_6e0 = *(longlong *)(param_1 + 0x18);
-    lStack_6b8 = lVar7 * 3;
-    lVar9 = (longlong)*(int *)(lStack_6e0 + lVar7 * 0xc) + *(longlong *)(param_1 + 8);
-    cVar3 = *(char *)(lStack_6e0 + 8 + lVar7 * 0xc);
+  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityBuffer;
+  currentIndex = *(int *)(systemContext + 0xac);
+  iterationCount = (longlong)currentIndex;
+  resultCounterPtr = resultCounter;
+  if (currentIndex < *(int *)(systemContext + 0x20)) {
+    baseAddress = *(longlong *)(systemContext + 0x18);
+    arrayOffset = iterationCount * 3;
+    dataPointer = (longlong)*(int *)(baseAddress + iterationCount * 0xc) + *(longlong *)(systemContext + 8);
+    dataType = *(char *)(baseAddress + 8 + iterationCount * 0xc);
     if (cVar3 == '\x01') {
       iVar8 = *(int *)(param_1 + 0xb0);
       if (iVar4 < iVar8) {
