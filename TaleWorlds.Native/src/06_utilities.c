@@ -9444,14 +9444,16 @@ void ProcessUtilityOperation(longlong operationParams,uint64_t systemContext)
 
 {
   int OperationResult;
-  undefined8 CallbackData[4];
-  undefined4 OperationParams[2];
-  undefined8 ContextPointer;
-  undefined4 ParamValue;
+  uint64_t CallbackData[4];
+  uint32_t OperationParams[2];
+  uint64_t ContextPointer;
+  uint32_t ParamValue;
+  longlong resourceDescriptor;
   
-  ContextPointer = *(undefined8 *)(operationParams + 0x10);
-  ParamValue = *(undefined4 *)(operationParams + 0x18);
+  ContextPointer = *(uint64_t *)(operationParams + 0x10);
+  ParamValue = *(uint32_t *)(operationParams + 0x18);
   OperationParams[0] = 2;
+  resourceDescriptor = operationParams;
   OperationResult = ExecuteSystemOperation(systemContext,OperationParams,*(undefined4 *)(resourceDescriptor + 0x1c),CallbackData);
   if (OperationResult == 0) {
     ExecuteCallbackA0(systemContext,CallbackData[0]);
