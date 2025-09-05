@@ -3547,43 +3547,43 @@ void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t Connec
                            uint32_t ValidationBufferSize, uint32_t ValidationMode)
 {
   // 连接数据验证变量
-  uint32_t ValidationStatus;                             // 连接验证状态
-  uint32_t IntegrityCheckResult;                         // 网络数据完整性验证结果
-  uint32_t SecurityCheckResult;                         // 网络安全合规验证结果
+  uint32_t ConnectionValidationStatus;                   // 连接验证状态
+  uint32_t DataIntegrityValidationResult;             // 网络数据完整性验证结果
+  uint32_t SecurityComplianceValidationResult;        // 网络安全合规验证结果
   
   // 初始化验证状态
-  ValidationStatus = NetworkValidationFailure;
-  IntegrityCheckResult = NetworkValidationFailure;
-  SecurityCheckResult = NetworkValidationFailure;
+  ConnectionValidationStatus = NetworkValidationFailure;
+  DataIntegrityValidationResult = NetworkValidationFailure;
+  SecurityComplianceValidationResult = NetworkValidationFailure;
   
   // 执行数据完整性检查
   if (ConnectionData != 0) {
-    IntegrityCheckResult = NetworkValidationSuccess;      // 数据完整性检查通过
+    DataIntegrityValidationResult = NetworkValidationSuccess;      // 数据完整性检查通过
   }
   
   // 执行安全合规检查
   if (ConnectionTable != 0) {
-    SecurityCheckResult = NetworkValidationSuccess;       // 安全合规检查通过
+    SecurityComplianceValidationResult = NetworkValidationSuccess;       // 安全合规检查通过
   }
   
   // 根据验证模式设置验证结果
   if (ValidationMode == NetworkConnectionBasicValidationMode) {
     // 基本验证模式
-    ValidationStatus = IntegrityCheckResult & SecurityCheckResult;
+    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult;
   } else if (ValidationMode == NetworkConnectionStrictValidationMode) {
     // 严格验证模式
-    ValidationStatus = IntegrityCheckResult & SecurityCheckResult & NetworkValidationSuccessMask;
+    ConnectionValidationStatus = DataIntegrityValidationResult & SecurityComplianceValidationResult & NetworkValidationSuccessMask;
   } else {
     // 默认验证模式
-    ValidationStatus = NetworkValidationSuccess;
+    ConnectionValidationStatus = NetworkValidationSuccess;
   }
   
   // 设置安全验证数据
   if (SecurityValidationData && ValidationBufferSize > 0) {
     memset(SecurityValidationData, 0, ValidationBufferSize);
-    ((uint32_t*)SecurityValidationData)[ConnectionValidationStatusIndex] = ValidationStatus;
-    ((uint32_t*)SecurityValidationData)[DataIntegrityValidationIndex] = IntegrityCheckResult;
-    ((uint32_t*)SecurityValidationData)[SecurityComplianceValidationIndex] = SecurityCheckResult;
+    ((uint32_t*)SecurityValidationData)[ConnectionValidationStatusIndex] = ConnectionValidationStatus;
+    ((uint32_t*)SecurityValidationData)[DataIntegrityValidationIndex] = DataIntegrityValidationResult;
+    ((uint32_t*)SecurityValidationData)[SecurityComplianceValidationIndex] = SecurityComplianceValidationResult;
     ((uint32_t*)SecurityValidationData)[ValidationModeDataIndex] = ValidationMode;
   }
 }
