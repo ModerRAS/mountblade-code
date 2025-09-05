@@ -7459,33 +7459,48 @@ void ResetSystemStateA0(longlong param_1,longlong param_2)
 
 
 
+// 函数: undefined8 ManageResourceState(longlong param_1,longlong param_2)
+// 
+// 管理资源状态，处理资源分配和释放
+// 该函数负责管理系统资源的状态，包括资源的分配、释放和状态检查
+// 
+// 参数:
+//   param_1 - 资源管理上下文
+//   param_2 - 系统参数块
+// 
+// 返回值:
+//   undefined8 - 操作状态码
+//     0x2e - 资源被锁定
+//     0x1c - 资源计数器错误
+//     0x4c - 资源计数器为零
+//     0   - 操作成功
 undefined8 ManageResourceState(longlong param_1,longlong param_2)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  longlong lStackX_8;
+  int resourceCounter;
+  undefined8 operationResult;
+  longlong resourceContext;
   
-  uVar2 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar2 == 0) {
-    if (*(int *)(lStackX_8 + 0x34) != 0) {
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&resourceContext);
+  if ((int)operationResult == 0) {
+    if (*(int *)(resourceContext + 0x34) != 0) {
       return 0x2e;
     }
-    iVar1 = *(int *)(lStackX_8 + 0x28);
-    if (iVar1 < 0) {
+    resourceCounter = *(int *)(resourceContext + 0x28);
+    if (resourceCounter < 0) {
       return 0x1c;
     }
-    if (iVar1 == 0) {
+    if (resourceCounter == 0) {
       return 0x4c;
     }
-    *(int *)(lStackX_8 + 0x28) = iVar1 + -1;
-    if (iVar1 == 1) {
+    *(int *)(resourceContext + 0x28) = resourceCounter + -1;
+    if (resourceCounter == 1) {
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
     }
-    uVar2 = 0;
+    operationResult = 0;
   }
-  return uVar2;
+  return operationResult;
 }
 
 
