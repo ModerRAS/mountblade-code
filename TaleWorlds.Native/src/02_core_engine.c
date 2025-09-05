@@ -175114,9 +175114,10 @@ uint64_t * FUN_1801504b0(uint64_t *SystemContextPointer
 
 
 uint64_t *
-FUN_180150730(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
+// 系统上下文初始化函数 - 初始化系统上下文和状态缓冲区
+uint64_t* InitializeSystemContext(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Utf16InputPointer,uint64_t Utf16EndPointer
 {
-  uint64_t *StatusBuffer;
+  uint64_t *SystemStatusBuffer;
   
   *Utf8BufferSize = &ThreadLocalStorageTemplate;
   Utf8BufferSize[1] = 0;
@@ -175126,10 +175127,10 @@ FUN_180150730(uint64_t SystemContextPointer,uint64_t *Utf8BufferSize,uint64_t Ut
   Utf8BufferSize[1] = 0;
   *(uint32_t *)(Utf8BufferSize + 2) = 0;
   CoreEngineProcessSystemEvent(Utf8BufferSize,0x11,Utf16InputPointer,Utf16EndPointer,0,0xfffffffffffffffe);
-  StatusBuffer = (void *)Utf8BufferSize[1];
-  *StatusBuffer = 0x6c726f57656c6154;
-  StatusBuffer[1] = 0x6e69676e452e7364;
-  *(uint16_t *)(StatusBuffer + 2) = 0x65;
+  SystemStatusBuffer = (void *)Utf8BufferSize[1];
+  *SystemStatusBuffer = 0x6c726f57656c6154;
+  SystemStatusBuffer[1] = 0x6e69676e452e7364;
+  *(uint16_t *)(SystemStatusBuffer + 2) = 0x65;
   *(uint32_t *)(Utf8BufferSize + 2) = 0x11;
   return Utf8BufferSize;
 }
