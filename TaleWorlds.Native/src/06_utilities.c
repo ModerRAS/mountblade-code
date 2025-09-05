@@ -3543,7 +3543,7 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
           else if (iVar9 < iVar7) {
             iVar9 = iVar7;
           }
-          iVar7 = FUN_1808c17c0(plVar11,iVar9);
+          iVar7 = ValidateGameInput(plVar11,iVar9);
           if (iVar7 != 0) {
             return 0;
           }
@@ -5633,6 +5633,135 @@ void FUN_180891970(longlong param_1,longlong param_2)
 // 原始函数名：FUN_180891af0 - 系统重置函数A0
 // 功能：重置系统状态，清理事件处理器
 #define ResetSystemStateA0 FUN_180891af0
+
+// 工具系统函数语义化宏定义补充
+// 原始函数名：FUN_180891090 - 工具数据查询函数A0
+// 功能：查询工具系统数据
+#define QueryUtilityDataA0 FUN_180891090
+
+// 原始函数名：FUN_1808910b3 - 工具状态检查函数B0
+// 功能：检查工具系统状态
+#define CheckUtilityStatusB0 FUN_1808910b3
+
+// 原始函数名：FUN_180891210 - 工具数据处理函数C0
+// 功能：处理工具系统数据
+#define ProcessUtilityDataC0 FUN_180891210
+
+// 原始函数名：FUN_180891280 - 工具数据验证函数D0
+// 功能：验证工具系统数据
+#define ValidateUtilityDataD0 FUN_180891280
+
+// 原始函数名：FUN_180891360 - 工具配置设置函数E0
+// 功能：设置工具系统配置
+#define ConfigureUtilitySystemE0 FUN_180891360
+
+// 原始函数名：FUN_1808913c0 - 工具数据转换函数F0
+// 功能：转换工具系统数据格式
+#define ConvertUtilityDataF0 FUN_1808913c0
+
+// 原始函数名：FUN_1808913ff - 工具权限检查函数G0
+// 功能：检查工具系统权限
+#define CheckUtilityPermissionG0 FUN_1808913ff
+
+// 原始函数名：FUN_180891492 - 工具资源获取函数H0
+// 功能：获取工具系统资源
+#define AcquireUtilityResourceH0 FUN_180891492
+
+// 原始函数名：FUN_1808914ac - 工具资源释放函数I0
+// 功能：释放工具系统资源
+#define ReleaseUtilityResourceI0 FUN_1808914ac
+
+// 原始函数名：FUN_1808914e0 - 工具事件处理函数J0
+// 功能：处理工具系统事件
+#define HandleUtilityEventJ0 FUN_1808914e0
+
+// 原始函数名：FUN_1808915d0 - 工具消息处理函数K0
+// 功能：处理工具系统消息
+#define ProcessUtilityMessageK0 FUN_1808915d0
+
+// 原始函数名：FUN_180891650 - 工具状态更新函数L0
+// 功能：更新工具系统状态
+#define UpdateUtilityStatusL0 FUN_180891650
+
+// 原始函数名：FUN_1808916f0 - 工具同步处理函数M0
+// 功能：处理工具系统同步
+#define SynchronizeUtilitySystemM0 FUN_1808916f0
+
+// 原始函数名：FUN_180891820 - 工具查询函数N0
+// 功能：查询工具系统信息
+#define QueryUtilitySystemN0 FUN_180891820
+
+// 原始函数名：FUN_180891890 - 工具初始化函数O0
+// 功能：初始化工具系统组件
+#define InitializeUtilityComponentO0 FUN_180891890
+
+// 原始函数名：FUN_180891900 - 工具配置函数P0
+// 功能：配置工具系统参数
+#define ConfigureUtilityParameterP0 FUN_180891900
+
+// 原始函数名：FUN_180891970 - 工具数据管理函数Q0
+// 功能：管理工具系统数据
+#define ManageUtilityDataQ0 FUN_180891970
+
+// 原始函数名：FUN_180891b40 - 工具验证函数R0
+// 功能：验证工具系统操作
+#define ValidateUtilityOperationR0 FUN_180891b40
+
+// 原始函数名：FUN_180891bd0 - 工具权限管理函数S0
+// 功能：管理工具系统权限
+#define ManageUtilityPermissionS0 FUN_180891bd0
+
+// 原始函数名：FUN_180891c40 - 工具错误处理函数T0
+// 功能：处理工具系统错误
+#define HandleUtilityErrorT0 FUN_180891c40
+
+// 原始函数名：FUN_180891ca0 - 工具日志记录函数U0
+// 功能：记录工具系统日志
+#define LogUtilityActivityU0 FUN_180891ca0
+
+// 原始函数名：FUN_180891cf0 - 工具统计函数V0
+// 功能：统计工具系统数据
+#define CollectUtilityStatisticsV0 FUN_180891cf0
+
+// 原始函数名：FUN_180891d40 - 工具监控函数W0
+// 功能：监控工具系统状态
+#define MonitorUtilitySystemW0 FUN_180891d40
+
+// 原始函数名：FUN_180891de0 - 工具报告函数X0
+// 功能：生成工具系统报告
+#define GenerateUtilityReportX0 FUN_180891de0
+
+// 原始函数名：FUN_180891e40 - 工具清理函数Y0
+// 功能：清理工具系统资源
+#define CleanupUtilitySystemY0 FUN_180891e40
+
+// 原始函数名：FUN_180891e7d - 工具优化函数Z0
+// 功能：优化工具系统性能
+#define OptimizeUtilitySystemZ0 FUN_180891e7d
+
+// 原始函数名：FUN_180891ea1 - 工具重置函数AA0
+// 功能：重置工具系统状态
+#define ResetUtilitySystemAA0 FUN_180891ea1
+
+// 原始函数名：FUN_180891ec9 - 工具配置验证函数AB0
+// 功能：验证工具系统配置
+#define ValidateUtilityConfigAB0 FUN_180891ec9
+
+// 原始函数名：FUN_180891fd4 - 工具状态检查函数AC0
+// 功能：检查工具系统状态
+#define CheckUtilityStateAC0 FUN_180891fd4
+
+// 原始函数名：FUN_180891fd9 - 工具数据清理函数AD0
+// 功能：清理工具系统数据
+#define ClearUtilityDataAD0 FUN_180891fd9
+
+// 原始函数名：FUN_180891fde - 工具缓存管理函数AE0
+// 功能：管理工具系统缓存
+#define ManageUtilityCacheAE0 FUN_180891fde
+
+// 原始函数名：FUN_180891ff0 - 工具连接管理函数AF0
+// 功能：管理工具系统连接
+#define ManageUtilityConnectionAF0 FUN_180891ff0
 
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 // 功能：初始化系统事件处理器，设置事件处理回调
