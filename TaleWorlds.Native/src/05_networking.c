@@ -823,7 +823,7 @@ uint32_t ValidateNetworkConnectionEntry(int64_t NetworkConnectionContext, uint32
  * @warning 如果初始化失败，可能导致后续的网络操作无法正常进行
  * @see InitializeNetworkConnection, ValidateNetworkConnectionSecurity
  */
-uint32_t SetupNetworkContext(int64_t NetworkContextData);
+uint32_t InitializeNetworkContext(int64_t NetworkContextData);
 
 /**
  * @brief 处理网络上下文条目
@@ -836,7 +836,7 @@ uint32_t SetupNetworkContext(int64_t NetworkContextData);
  * @note 如果条目数据无效，函数会返回相应的错误码
  * @warning 传入的NetworkContextEntryData不能为NULL，否则会导致未定义行为
  */
-uint32_t ProcessContextEntry(int64_t NetworkContextEntryData);
+uint32_t ProcessNetworkContextEntry(int64_t NetworkContextEntryData);
 
 /**
  * @brief 处理网络连接数据
