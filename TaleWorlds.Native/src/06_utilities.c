@@ -7947,20 +7947,20 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
     if ((*(int *)(dataBufferPtr + 0x180) != 0) || (*(int *)(dataBufferPtr + 0x184) != 0)) {
       stackBuffer[0] = 0;
       FUN_180768b50(stackBuffer);
-      if (alStackX_8[0] == *(longlong *)((longlong)*(int *)(lVar10 + 0x17c) * 8 + 0x180c4f450)) {
-        uVar5 = FUN_18088dd60(lVar10,param_1);
-        if ((int)uVar5 == 0) {
+      if (stackBuffer[0] == *(longlong *)((longlong)*(int *)(dataBufferPtr + 0x17c) * 8 + 0x180c4f450)) {
+        result = FUN_18088dd60(dataBufferPtr,dataPtr);
+        if ((int)result == 0) {
           return 0;
         }
-        return uVar5;
+        return result;
       }
     }
-    *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-    uVar5 = func_0x0001808e64d0(*(undefined8 *)(lVar10 + 0x1e0));
-    if ((int)uVar5 == 0) {
+    *(uint *)(dataPtr + 8) = *(int *)(dataPtr + 8) + 0xfU & 0xfffffff0;
+    result = func_0x0001808e64d0(*(undefined8 *)(dataBufferPtr + 0x1e0));
+    if ((int)result == 0) {
       return 0;
     }
-    return uVar5;
+    return result;
   }
   return 0x1f;
 }
