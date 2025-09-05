@@ -4311,7 +4311,11 @@ undefined8 ValidateAndProcessResourceA(longlong param_1)
 
 
 
-undefined8 FUN_180890830(longlong param_1)
+// 原始函数名：FUN_180890830 - 资源指针访问验证函数
+// 功能：验证资源描述符中的指针访问权限，确保安全访问
+#define ValidateResourcePointerAccess FUN_180890830
+
+undefined8 ValidateResourcePointerAccess(longlong resourceDescriptor)
 
 {
   undefined8 uVar1;
@@ -8214,12 +8218,12 @@ void InitializeResourceContext(longlong param_1, undefined8 param_2)
 
 
 // 函数: void FUN_180893080(longlong param_1,longlong param_2)
-void FUN_180893080(longlong param_1,longlong param_2)
+void ProcessUtilitySystemRequest(longlong systemHandle,longlong requestContext)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 uStackX_8;
+  int statusCheck;
+  longlong memoryPointer;
+  undefined8 stackVariable;
   
   iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10));
   if (iVar1 == 0) {
