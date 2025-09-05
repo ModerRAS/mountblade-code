@@ -244,7 +244,7 @@
  * 
  * @return 无返回值
  */
-void HandleSystemMemoryPage(long long MemoryPointer);
+void HandleSystemMemoryPage(long long SystemMemoryPagePointer);
 
 /**
  * @brief 释放系统资源
