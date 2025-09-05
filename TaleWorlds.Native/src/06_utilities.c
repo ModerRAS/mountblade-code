@@ -14344,7 +14344,7 @@ undefined8 CleanupSystemB0(void)
 undefined8 ResetSystemB0(void)
 
 {
-  float fVar1;
+  float comparisonValue;
   undefined8 functionReturnValue;
   undefined8 *pvalidationStatus;
   longlong registerContext;
@@ -14354,9 +14354,9 @@ undefined8 ResetSystemB0(void)
   
   functionReturnValue = ProcessDataValidationA0();
   if ((int)functionReturnValue == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x10);
-    if ((fVar1 < *(float *)(registerContext + 0x38)) ||
-       (*(float *)(registerContext + 0x3c) <= fVar1 && fVar1 != *(float *)(registerContext + 0x3c))) {
+    comparisonValue = *(float *)(unaff_RDI + 0x10);
+    if ((comparisonValue < *(float *)(registerContext + 0x38)) ||
+       (*(float *)(registerContext + 0x3c) <= comparisonValue && comparisonValue != *(float *)(registerContext + 0x3c))) {
       functionReturnValue = 0x1c;
     }
     else {
@@ -18049,11 +18049,11 @@ void ProcessDataPointerOperationsA0(longlong *dataPointer, longlong *resultPoint
 void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
 
 {
-  float fVar1;
+  float inputValue;
   longlong dataContext;
   longlong calculatedOffset;
   longlong calculatedIndex;
-  char cVar5;
+  char statusFlag;
   int iterationCount;
   uint validationOutcome;
   longlong bufferPointer;
@@ -18061,7 +18061,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
   undefined8 loopCounter;
   undefined8 dataValue1;
   undefined *pdataValue2;
-  float fVar13;
+  float processedValue;
   longlong validationContext4;
   float *pfVar15;
   undefined8 *pdataValue6;

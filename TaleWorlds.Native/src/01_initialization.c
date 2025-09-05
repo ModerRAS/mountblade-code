@@ -51,6 +51,7 @@
 #define SystemNodeResourceOffset             0x890  // 系统节点资源偏移量
 #define SystemNodeCalculationOffset          0x888  // 系统节点计算偏移量
 #define SystemNodeFunctionOffset             0x1e0  // 系统节点函数偏移量
+#define SystemManagerStatusOffset            0xd    // 系统管理器状态偏移量
 #define SystemNodeMemoryPoolOffset           0x3f0  // 系统节点内存池偏移量
 #define SystemNodeIntegerOffset              0x3f8  // 系统节点整型偏移量
 
@@ -19793,7 +19794,7 @@ uint32_t FinalSystemInitialization(void)
       SystemActiveStatus = *(char *)(SystemCoreManager + 2) != '\0';
     }
     else {
-      SystemActiveStatus = (*(code *)(*SystemCoreManager)[0xd])(SystemCoreManager);
+      SystemActiveStatus = (*(code *)(*SystemCoreManager)[SystemManagerStatusOffset])(SystemCoreManager);
     }
     if (SystemActiveStatus != '\0') break;
     Sleep(1);
