@@ -46732,7 +46732,7 @@ void CreateSystemIoCompletionPort(long long SystemResourceManager,long long Conf
           SystemOperationCode = (ulong long)ThreadContext;
         } while ((int)ThreadContext < *(int *)(ConfigurationDataPointer + 0x10));
       }
-      lRam0000000000000128 = SystemThreadHandle;
+      SystemThreadHandleBackup = SystemThreadHandle;
       SystemOperationFlag = ResourceHash;
       ConfigureSystemResourceAllocation(SystemResourceManager + 0x330,SystemMemoryAllocationTable,SystemOperationCode,ConfigurationDataPointer);
       *(void* *)(SystemMemoryAllocationTable[0] + 0x118) = 0;

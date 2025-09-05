@@ -16025,13 +16025,13 @@ DataBuffer UtilityNoOperationK(void)
   uint operationResult;
   int *operationResultPointer;
   int64_t *registerContext;
-  int register_EDI;
+  int validationStatus;
   int calculatedValue;
   uint64_t securityCheckResult;
   uint64_t statusCounter;
   
-  if (register_EDI == in_EAX) {
-    calculatedValue = register_EDI * 2;
+  if (validationStatus == in_EAX) {
+    calculatedValue = validationStatus * 2;
     if (calculatedValue < 4) {
       calculatedValue = 4;
     }
