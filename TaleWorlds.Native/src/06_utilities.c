@@ -1147,6 +1147,34 @@
 // 功能：执行栈安全检查和数据验证
 #define ExecuteSecurityCheck FUN_1808fc050
 
+// 原始函数名：FUN_1808997f0 - 数据指针处理函数A0
+// 功能：处理数据指针并执行验证操作
+#define ProcessDataPointerA0 FUN_1808997f0
+
+// 原始函数名：FUN_180899816 - 系统状态获取函数A2
+// 功能：获取系统状态并返回状态码
+#define GetSystemStatusA2 FUN_180899816
+
+// 原始函数名：FUN_1808998a0 - 数据处理函数A3
+// 功能：处理数据并执行相关操作
+#define ProcessDataA3 FUN_1808998a0
+
+// 原始函数名：FUN_180899d90 - 数据验证函数A3
+// 功能：验证数据并返回验证结果
+#define ValidateDataA3 FUN_180899d90
+
+// 原始函数名：FUN_180899dc7 - 系统清理函数A1
+// 功能：清理系统资源并返回状态码
+#define CleanupSystemResourcesA1 FUN_180899dc7
+
+// 原始函数名：FUN_180894b00 - 数据验证函数B0
+// 功能：验证数据并返回验证结果
+#define ValidateDataB0 FUN_180894b00
+
+// 原始函数名：FUN_180895360 - 数据处理函数C0
+// 功能：处理数据并执行相关操作
+#define ProcessDataC0 FUN_180895360
+
 // 原始函数名：FUN_180862e00 - 释放资源
 // 功能：释放系统资源和清理句柄
 #define ReleaseResource FUN_180862e00
@@ -4780,59 +4808,59 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
   }
   if (*(int *)(systemHandle + 0xe4) == -1) {
     queryResult = ProcessInputData(systemHandle,processBuffer);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+    if ((int)queryResult != 0) {
+      return queryResult;
     }
-    uVar5 = func_0x000180851460(lVar2);
-    if ((int)uVar5 != 0) {
-      return uVar5;
+    processResult = ValidateInputData(processBuffer);
+    if ((int)processResult != 0) {
+      return processResult;
     }
-    if ((char)uVar4 == (char)uVar5) {
-      if (acStackX_18[0] == (char)uVar5) {
-        plVar11 = (longlong *)(lVar1 + 0x4d8);
-        uVar8 = 0;
-        iVar7 = *(int *)(lVar1 + 0x4e4);
-        if (0 < iVar7) {
-          plVar6 = (longlong *)*plVar11;
-          uVar10 = uVar8;
+    if ((char)queryResult == (char)processResult) {
+      if (processBuffer[0] == (char)processResult) {
+        componentList = (longlong *)(componentData + 0x4d8);
+        searchIndex = 0;
+        componentCount = *(int *)(componentData + 0x4e4);
+        if (0 < componentCount) {
+          componentPointer = (longlong *)*componentList;
+          loopIndex = searchIndex;
           do {
-            if (*plVar6 == lVar2) {
-              if (-1 < (int)uVar10) {
+            if (*componentPointer == processBuffer) {
+              if (-1 < (int)loopIndex) {
                 return 0;
               }
               break;
             }
-            uVar10 = (ulonglong)((int)uVar10 + 1);
-            uVar8 = uVar8 + 1;
-            plVar6 = plVar6 + 1;
-          } while ((longlong)uVar8 < (longlong)iVar7);
+            loopIndex = (ulonglong)((int)loopIndex + 1);
+            searchIndex = searchIndex + 1;
+            componentPointer = componentPointer + 1;
+          } while ((longlong)searchIndex < (longlong)componentCount);
         }
-        iVar7 = iVar7 + 1;
-        if (*(int *)(lVar1 + 0x4e8) < iVar7) {
-          iVar9 = (int)((float)*(int *)(lVar1 + 0x4e8) * 1.5);
-          iVar3 = iVar7;
-          if (iVar7 <= iVar9) {
-            iVar3 = iVar9;
+        componentCount = componentCount + 1;
+        if (*(int *)(componentData + 0x4e8) < componentCount) {
+          capacity = (int)((float)*(int *)(componentData + 0x4e8) * 1.5);
+          bufferSize = componentCount;
+          if (componentCount <= capacity) {
+            bufferSize = capacity;
           }
-          if (iVar3 < 8) {
-            iVar9 = 8;
+          if (bufferSize < 8) {
+            capacity = 8;
           }
-          else if (iVar9 < iVar7) {
-            iVar9 = iVar7;
+          else if (capacity < componentCount) {
+            capacity = componentCount;
           }
-          iVar7 = ValidateGameInput(plVar11,iVar9);
-          if (iVar7 != 0) {
+          bufferSize = ValidateComponentMemory(componentList,capacity);
+          if (bufferSize != 0) {
             return 0;
           }
         }
-        *(longlong *)(*plVar11 + (longlong)*(int *)(lVar1 + 0x4e4) * 8) = lVar2;
-        *(int *)(lVar1 + 0x4e4) = *(int *)(lVar1 + 0x4e4) + 1;
-        *(int *)(lVar1 + 0x4e0) = *(int *)(lVar1 + 0x4e0) + 1;
+        *(longlong *)(*componentList + (longlong)*(int *)(componentData + 0x4e4) * 8) = processBuffer;
+        *(int *)(componentData + 0x4e4) = *(int *)(componentData + 0x4e4) + 1;
+        *(int *)(componentData + 0x4e0) = *(int *)(componentData + 0x4e0) + 1;
       }
       else {
-        uVar4 = ExecuteGameCommand(lVar1 + 0x368,lVar2);
-        if ((int)uVar4 != 0) {
-          return uVar4;
+        queryResult = ExecuteComponentCommand(componentData + 0x368,processBuffer);
+        if ((int)queryResult != 0) {
+          return queryResult;
         }
       }
     }
@@ -15344,22 +15372,42 @@ LAB_180897ce8:
 // 注意事项:
 //   - 此函数不会返回，执行完成后会调用安全检查函数
 //   - 使用栈数据保护机制防止数据泄露
-void FUN_180897d20(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 安全数据处理函数A0
+ * 
+ * 处理安全相关的数据操作，包括安全密钥验证、数据缓冲区处理和安全校验。
+ * 该函数执行加密数据处理流程，确保数据传输和处理的安全性。
+ * 
+ * @param ContextPointer 上下文指针，指向处理上下文数据
+ * @param DataSource 数据源，包含待处理的数据
+ * @param SecurityParam1 安全参数1，用于安全验证
+ * @param SecurityParam2 安全参数2，用于安全验证
+ * 
+ * @note 这是简化实现，实际应用中需要实现完整的安全数据处理逻辑
+ * @warning 函数包含安全校验和检查，失败时将触发安全检查
+ */
+void ProcessSecureDataA0(longlong *ContextPointer, undefined8 DataSource, undefined8 SecurityParam1, undefined8 SecurityParam2)
 {
-  undefined8 securityParam1;
-  undefined8 securityParam2;
-  undefined1 securityKeyBuffer [32];
-  undefined1 dataProcessingBuffer [1024];
-  ulonglong securityChecksum;
+  undefined8 EncryptedParam1;                                    // 加密参数1
+  undefined8 EncryptedParam2;                                    // 加密参数2
+  undefined1 SecurityKeyBuffer [32];                             // 安全密钥缓冲区（32字节）
+  undefined1 DataProcessingBuffer [1024];                        // 数据处理缓冲区（1KB）
+  ulonglong SecurityChecksum;                                    // 安全校验和
   
-  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityKeyBuffer;
-  securityParam1 = param_3;
-  securityParam2 = param_4;
-  FUN_18076b930(dataProcessingBuffer,0x400,param_2,&securityParam1);
-  (**(code **)(*param_1 + 8))(param_1,dataProcessingBuffer);
+  // 计算安全校验和
+  SecurityChecksum = ExceptionEncryptionKey ^ (ulonglong)SecurityKeyBuffer;
+  EncryptedParam1 = SecurityParam1;
+  EncryptedParam2 = SecurityParam2;
+  
+  // 处理数据缓冲区
+  InitializeDataStructureA0(DataProcessingBuffer,0x400,DataSource,&EncryptedParam1);
+  
+  // 执行上下文处理
+  (**(code **)(*ContextPointer + 8))(ContextPointer,DataProcessingBuffer);
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityChecksum ^ (ulonglong)securityKeyBuffer);
+  
+  // 执行安全检查
+  ExecuteSecurityCheck(SecurityChecksum ^ (ulonglong)SecurityKeyBuffer);
 }
 
 
@@ -86980,6 +87028,7 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ProcessComplexDataBufferA1 FUN_180896c60
 #define ProcessFloatingPointDataA0 FUN_180896e11
 #define ExecuteSecurityCheckJumpA0 FUN_1808974f4
+#define ProcessSecureDataA0 FUN_180897d20
 
 
 
