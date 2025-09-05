@@ -883,7 +883,7 @@ uint32_t NetworkErrorReportTemplate;                        // 网络错误报�
 uint32_t NetworkConnectionProtocol;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本，指定协议的版本号用于兼容性检查
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址，存储服务器的IP地址信息
-uint32_t NetworkServerPort;                         // 网络服务器端口号，服务器监听的端口号
+uint32_t NetworkServerPortNumber;                         // 网络服务器端口号，服务器监听的端口号
 uint32_t NetworkClientIpAddr;                          // 网络客户端IP地址，客户端的IP地址信息
 uint32_t NetworkClientPortNumber;                         // 网络客户端端口号，客户端使用的端口号
 
@@ -2228,7 +2228,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
   }
   
   // 初始化状态缓冲区指针
-  NetworkConnectionStatus *NetworkConnectionStatusBuffer = NULL;
+  NetworkConnectionStatus *ConnectionStatusBuffer = NULL;
   
   // 处理有效的数据包
   if (PacketData != 0) {
