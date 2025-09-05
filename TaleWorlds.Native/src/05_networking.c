@@ -2727,7 +2727,7 @@ uint32_t NetworkConnectionBaseAddress;                  // 连接基地址
 uint32_t NetworkConnectionContextDataArray;                     // 连接上下文数据数组
 uint32_t NetworkConnectionContextDataArraySize;                 // 连接上下文数据数组大小
 uint32_t NetworkConnectionContextDataIndex;                     // 连接上下文数据索引
-uint32_t NetworkConnectionCompletionHandle;                        // 连接完成句柄
+uint32_t NetworkConnectionCompletionHandle;                        // 网络连接完成句柄
 
 /**
  * @brief 网络连接缓冲区管理 - 管理网络连接的缓冲区资源
@@ -2781,7 +2781,7 @@ void InitializeNetworkConnectionState(void)
     if (NetworkInitializationResult == 0) {
       *NetworkStateDataPointer = (uint64_t)*(uint32_t *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateDataOffset);
     }
-    ResetConnectionStack(&PrimaryNetworkConnectionBuffer);
+    ResetConnectionStack(&NetworkPrimaryConnectionBuffer);
   }
   CopyConnectionBuffer(ConnectionStateBuffer);
 }
@@ -2811,7 +2811,7 @@ void ResetNetworkConnectionPointer(void)
   *ResetDataBuffer = (uint64_t)*(uint32_t *)(ResetContextData + NetworkConnectionStateDataOffset);
   
   // 清理连接堆栈
-  ResetConnectionStack(&PrimaryNetworkConnectionBuffer);
+  ResetConnectionStack(&NetworkPrimaryConnectionBuffer);
 }
 
 /**
@@ -3083,7 +3083,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   int32_t NetworkConnectionProcessingCode = 0;                              // 网络连接处理代码
   int64_t NetworkProcessedPacketIdentifier = 0;                                    // 已处理网络数据包标识符
   int32_t NetworkPacketIndex = 0;                                           // 网络数据包索引
-  int32_t NetworkMaximumSignedInt32Value = 0;                                    // 网络最大32位整数值
+  int32_t LocalNetworkMaximumSignedInt32Value = 0;                                    // 本地网络最大32位整数值
   int64_t *ConnectionOperationBuffer = NULL;                               // 连接操作缓冲区
   if (NetworkConnectionProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
@@ -3094,7 +3094,7 @@ PrimaryNetworkProcessingComplete:
     *(int *)CalculateConnectionParameterOffset(NetworkConnectionContextBuffer) = NetworkConnectionProcessingCode;
     return NetworkOperationSuccess;
   }
-  if (NetworkPacketIndex * ConnectionEntrySize - 1U < NetworkMaximumSignedInt32Value) {
+  if (NetworkPacketIndex * ConnectionEntrySize - 1U < LocalNetworkMaximumSignedInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
              ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            NetworkConnectionCompletionHandle, 0);
