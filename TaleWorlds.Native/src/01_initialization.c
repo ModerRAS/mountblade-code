@@ -87,6 +87,12 @@
 #define SystemDataBufferCapacityDefault     0x8  // 系统数据缓冲区默认容量
 #define SystemMessageConfigBufferCapacity   0xa  // 系统消息配置缓冲区容量
 
+// 兼容性常量定义
+#define SYSTEM_STRING_BUFFER_SIZE_DEFAULT   SystemStringBufferCapacityDefault
+#define SYSTEM_STRING_BUFFER_SIZE_SHORT     SystemStringBufferCapacityShort
+#define SYSTEM_DATA_BUFFER_SIZE_DEFAULT     SystemDataBufferCapacityDefault
+#define SYSTEM_MESSAGE_CONFIG_BUFFER_SIZE   SystemMessageConfigBufferCapacity
+
 // 字符串缓冲区偏移量常量
 #define SystemStringLengthOffset        0x10  // 系统字符串长度偏移量
 #define SystemStringBufferOffset       8  // 系统字符串缓冲区偏移量
@@ -232,6 +238,13 @@
 #define SystemNodeNextPointerIndex           5  // 系统节点下一指针索引
 #define SystemNodeHeadPointerIndex           6  // 系统节点头指针索引
 #define SystemNodeCallbackIndex              10  // 系统节点回调函数索引
+
+// 系统节点索引常量兼容性定义
+#define SYSTEM_NODE_IDENTIFIER1_INDEX         SystemNodeIdentifier1Index
+#define SYSTEM_NODE_IDENTIFIER2_INDEX         SystemNodeIdentifier2Index
+#define SYSTEM_NODE_DATA_POINTER_INDEX        SystemNodeDataPointerIndex
+#define SYSTEM_NODE_FLAG_INDEX                SystemNodeActiveFlagIndex
+#define SYSTEM_NODE_HANDLER_INDEX             SystemNodeHandlerIndex
 
 // 系统资源管理器偏移量常量
 #define SystemResourceManagerOperationCodeOffset    0x10  // 系统资源管理器操作码偏移量
