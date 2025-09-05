@@ -1021,7 +1021,6 @@ uint32_t NetworkConnectionPoolDeallocationCounter;       // 网络连接池释�
 uint32_t NetworkConnectionPoolMaximumCapacity;                 // 网络连接池容量，连接池的最大容量
 uint32_t NetworkConnectionPoolCurrentPosition;                    // 网络连接池索引，连接池的索引位置
 uint32_t NetworkConnectionPoolManagerHandle;                  // 网络连接池管理器，连接池的管理器句柄
-uint32_t NetworkConnectionPoolActiveIndex;              // 网络连接池当前索引，连接池当前使用的索引位置
 uint32_t NetworkConnectionPoolUsageStatistics;           // 网络连接池使用统计，连接池的使用统计信息
 
 uint32_t NetworkConnectionTable;                       // 网络连接表管理器，用于管理所有活跃连接的表结构
@@ -1051,7 +1050,7 @@ void InitializeNetworkConnectionPool(void)
   
   // 初始化连接池管理器
   NetworkConnectionPoolManagerHandle = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
-  NetworkConnectionPoolActiveIndex = 0;           // 重置连接池当前索引为0
+  NetworkConnectionPoolCurrentPosition = 0;           // 重置连接池当前索引为0
   
   // 初始化性能监控
   NetworkConnectionPoolPerformanceMetrics = 0;                // 重置连接池性能指标为0
@@ -1402,7 +1401,7 @@ void CloseConnection(void)
   // 释放连接资源
   NetworkConnectionActiveContext = 0x00;                     // 释放连接上下文
   NetworkConnectionContextSize = 0x00;                 // 重置连接上下文大小
-  NetworkConnectionPoolManager = 0x00;                // 释放连接池管理器
+  NetworkConnectionPoolManagerHandle = 0x00;                // 释放连接池管理器
   
   // 清理安全资源
   NetworkSecurityContext = 0x00;                       // 释放安全上下文
@@ -1923,7 +1922,6 @@ uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算�
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列
 uint32_t NetworkPendingRequestCount;                // 待处理网络请求数量
-uint32_t NetworkConnectionPoolManager;                            // 连接池管理器
 uint32_t NetworkConnectionData;                              // 连接数据
 uint32_t NetworkConnectionSize;                              // 连接大小
 uint32_t NetworkConnectionIndex;                              // 连接索引
