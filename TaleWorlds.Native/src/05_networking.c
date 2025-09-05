@@ -336,7 +336,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  * 
  * 用于调试和内存检查的魔数值，帮助识别内存损坏问题
  */
-#define NetworkMagicMemoryValidation 0xdeadf00d            // 内存验证魔数，用于调试内存检查
+#define NetworkMagicMemoryValidation 0xDEADF00D            // 内存验证魔数，用于调试内存检查
 /**
  * @brief 调试验证魔数
  * 
