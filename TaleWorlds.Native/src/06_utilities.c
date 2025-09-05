@@ -4989,7 +4989,7 @@ undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceD
 {
   longlong resourceHandle;
   int resourceOperationStatus;
-  undefined8 resourceValidationResult;
+  uint64_t resourceValidationResult;
   longlong localResourceBuffer [2];
   
   resourceValidationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceConfig + 0x10),localResourceBuffer);
@@ -5037,7 +5037,7 @@ undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
 {
   uint *memoryFlagPtr;
   longlong memoryRegionBlock;
-  undefined8 memoryUpdateStatus;
+  uint64_t memoryUpdateStatus;
   longlong *memoryIterator;
   longlong localMemoryBuffer [4];
   
@@ -5081,7 +5081,7 @@ undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 d
 
 {
   longlong resourceContextPtr;
-  undefined8 resourceDecrementStatus;
+  uint64_t resourceDecrementStatus;
   int decrementOperationResult;
   longlong localDecrementBuffer [2];
   
@@ -5122,7 +5122,7 @@ undefined8 UpdateResourceReferenceCount(longlong resourceHandle)
 
 {
   longlong resourcePointer;
-  undefined8 validationStatus;
+  uint64_t validationStatus;
   longlong stackBuffer [4];
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),stackBuffer);
@@ -5150,7 +5150,7 @@ undefined8 UpdateResourceReferenceCount(longlong resourceHandle)
 undefined8 ReleaseUtilityResource(longlong resourceHandle)
 
 {
-  undefined8 validationStatus;
+  uint64_t validationStatus;
   longlong stackPointer;
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackPointer);
@@ -5226,7 +5226,7 @@ void UtilityNoOperation1(void)
 undefined8 ForceResourceRelease(longlong param_1)
 
 {
-  undefined8 validationStatus;
+  uint64_t validationStatus;
   longlong stackPointer;
   
   validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&stackPointer);
@@ -5433,7 +5433,7 @@ undefined8 ValidateAndProcessResourceA(longlong resourceDescriptor)
 undefined8 ValidateResourcePointerAccess(longlong resourceDescriptor)
 
 {
-  undefined8 validationStatus;
+  uint64_t validationStatus;
   longlong resourceInfo [2];
   longlong accessInfo [2];
   
@@ -5689,7 +5689,7 @@ undefined8 ReturnErrorStatus(void)
 undefined8 ValidateDataArray(longlong arrayDescriptor)
 
 {
-  undefined8 validationStatus;
+  uint64_t validationStatus;
   int *dataComparisonPointer;
   undefined4 *validationDataPointer;
   uint entryCounter;

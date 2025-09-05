@@ -71471,8 +71471,6 @@ void* GetResourceOffsetPointer(void* resourcePointer);
  * 该函数负责获取系统资源的当前状态，用于资源监控和管理
  * 
  * @return 系统资源状态
- * 
- GetSystemResourceStatus
  */
 long long GetSystemResourceStatus(void);
 
