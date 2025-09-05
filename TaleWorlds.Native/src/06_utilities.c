@@ -483,13 +483,13 @@
 #define ExecuteSystemCheckA0 ExecuteSystemCheckA0
 
 /**
- * @brief 处理高级数据操作A0
+ * @brief 处理高级数据操作
  * 
  * 该函数负责处理高级数据操作，包括复杂的数据验证和转换
  * 
  * @note 原始函数名：FUN_18089a370
  */
-#define ProcessAdvancedDataOperationA0 FUN_18089a370
+#define ProcessAdvancedDataOperation ProcessAdvancedDataOperationA0
 
 /**
  * @brief 执行数据清理A0
