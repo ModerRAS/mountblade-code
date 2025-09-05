@@ -2913,19 +2913,19 @@ void InitializeNetworkConnectionState(void)
   int64_t *NetworkContextPointer;                           // 网络连接上下文指针
   
   // 计算连接状态缓冲区位置
-  ConnectionStateBuffer = (uint8_t *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateBufferOffset);
+  ConnectionStateBuffer = (uint8_t *)(GenerateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateBufferOffset);
   
   // 验证会话ID并初始化连接状态
   if (*(int *)(*(int64_t *)(NetworkSystemContextData + NetworkContextSystemOffset) + NetworkSessionDataOffset) == NetworkSessionId) {
     *ConnectionStateBuffer = 0;  // 重置状态缓冲区
     
     // 计算并对齐连接状态数据
-    *(uint32_t *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + MergedConnectionDataOffset) = ((int)ConnectionStateBuffer - NetworkConnectionId) + 4U & NetworkBufferAlignmentMask;
+    *(uint32_t *)(GenerateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + MergedConnectionDataOffset) = ((int)ConnectionStateBuffer - NetworkConnectionId) + 4U & NetworkBufferAlignmentMask;
     
     // 初始化连接上下文
     NetworkInitializationResult = InitializeConnectionContext(*(NetworkHandle *)(NetworkContextPointer + NetworkContextSystemOffset));
     if (NetworkInitializationResult == 0) {
-      *NetworkStateDataPointer = (uint64_t)*(uint32_t *)(CreateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateDataOffset);
+      *NetworkStateDataPointer = (uint64_t)*(uint32_t *)(GenerateConnectionStateUniqueId(NetworkConnectionStateFlags, NetworkConnectionId) + NetworkConnectionStateDataOffset);
     }
     ResetConnectionStack(&PrimaryNetworkConnectionBuffer);
   }
@@ -2951,7 +2951,7 @@ void ResetNetworkConnectionPointer(void)
   int32_t NetworkConnectionResetId;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  NetworkStateResetBuffer = (uint8_t *)(CreateConnectionStateUniqueId(NetworkConnectionResetFlags, NetworkConnectionResetId) + NetworkConnectionStateBufferOffset);
+  NetworkStateResetBuffer = (uint8_t *)(GenerateConnectionStateUniqueId(NetworkConnectionResetFlags, NetworkConnectionResetId) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
   *NetworkDataResetBuffer = (uint64_t)*(uint32_t *)(NetworkContextResetData + NetworkConnectionStateDataOffset);
@@ -3012,13 +3012,13 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle NetworkConnectionCont
   int64_t NetworkContextIdentifier;                                  // 网络连接上下文标识符
   int64_t *NetworkValidationData;                        // 网络连接验证数据指针
   int32_t NetworkConnectionValidationStatus;                          // 网络连接验证状态码
-  int32_t NetworkSecurityValidationStatus;                              // 网络验证状态码
+  int32_t NetworkSecurityValidationResult;                              // 网络验证结果码
   NetworkHandle NetworkRequestResult;                         // 网络连接请求结果句柄
   
   NetworkContextIdentifier = 0;
   NetworkValidationData = NULL;  // 初始化验证数据指针
   NetworkConnectionValidationStatus = 0;  // 初始化验证状态码
-  NetworkSecurityValidationStatus = 0;     // 初始化网络验证状态码
+  NetworkSecurityValidationResult = 0;     // 初始化网络验证结果码
   if (NetworkConnectionValidationStatus == 0) {
     if (NetworkValidationData && (0 < *(int *)CalculateConnectionParameterOffset(NetworkValidationData)) && (*NetworkValidationData != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkValidationData, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
@@ -3261,13 +3261,13 @@ PrimaryNetworkProcessingComplete:
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
           NetworkStatus *ContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
-          NetworkStatus SecurityValidationStatusCode = ContextStatusPointer[NetworkStatusValidationIndex];
-          NetworkStatus ConnectionTimeoutStatusCode = ContextStatusPointer[NetworkStatusTimeoutIndex];
-          NetworkStatus SecondaryConnectionStatus = ContextStatusPointer[NetworkStatusSecondaryIndex];
+          NetworkStatus SecurityValidationResultCode = ContextStatusPointer[NetworkStatusValidationIndex];
+          NetworkStatus ConnectionTimeoutResultCode = ContextStatusPointer[NetworkStatusTimeoutIndex];
+          NetworkStatus SecondaryConnectionStatusCode = ContextStatusPointer[NetworkStatusSecondaryIndex];
           *ConnectionStatusIterator = *ContextStatusPointer;
-          ConnectionStatusIterator[NetworkStatusValidationIndex] = SecurityValidationStatusCode;
-          ConnectionStatusIterator[NetworkStatusTimeoutIndex] = ConnectionTimeoutStatusCode;
-          ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryConnectionStatus;
+          ConnectionStatusIterator[NetworkStatusValidationIndex] = SecurityValidationResultCode;
+          ConnectionStatusIterator[NetworkStatusTimeoutIndex] = ConnectionTimeoutResultCode;
+          ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryConnectionStatusCode;
           ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastConnectionStatusEntryAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           StatusProcessingIterator--;
           ConnectionStatusIterator += ConnectionContextEntrySize;
@@ -3369,9 +3369,9 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
   NetworkByte PacketEncryptionBuffer[32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodeNetworkPacket(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
+  NetworkHandle SecurityValidationResult = DecodeNetworkPacketData(PacketData, PacketEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodeNetworkPacket(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMemoryValidationMagic), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodeNetworkPacketData(PacketData, PacketValidationBuffer, 0, NetworkMagicBinaryData, NetworkMemoryValidationMagic), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -3455,20 +3455,20 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
     return NetworkErrorCodeInvalidPacket;
   }
   NetworkStatus QuaternaryValidationStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionQuaternaryValidationOffset);
-  SecurityValidationArray[QuaternaryValidationStateIndex] = QuaternaryValidationStatus;
+  NetworkSecurityValidationArray[QuaternaryValidationStateIndex] = QuaternaryValidationStatus;
   NetworkPacketProcessor QuaternaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-  PacketValidationResult = QuaternaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), SecurityValidationArray, 4);
-  if ((int)PacketValidationResult != 0) {
-    return PacketValidationResult;
+  NetworkValidationStepResult = QuaternaryPacketProcessor(*(NetworkHandle **)(*PacketData + 8), NetworkSecurityValidationArray, 4);
+  if ((int)NetworkValidationStepResult != 0) {
+    return NetworkValidationStepResult;
   }
   if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
     return NetworkErrorCodeInvalidPacket;
   }
   NetworkStatus PrimaryDataStatus = *(NetworkStatus *)(ConnectionContext + NetworkConnectionDataPrimaryOffset);
-  DataProcessingArray[PrimaryDataProcessingIndex] = PrimaryDataStatus;
+  NetworkDataProcessingArray[PrimaryDataProcessingIndex] = PrimaryDataStatus;
   NetworkPacketProcessor DataPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + 8));
-  PacketValidationResult = DataPacketProcessor(*(NetworkHandle **)(*PacketData + 8), DataProcessingArray, 4);
-  if ((int)PacketValidationResult == 0) {
+  NetworkValidationStepResult = DataPacketProcessor(*(NetworkHandle **)(*PacketData + 8), NetworkDataProcessingArray, 4);
+  if ((int)NetworkValidationStepResult == 0) {
     if (*(uint32_t *)(PacketData + PacketDataSizeIndex) < NetworkPacketSizeAlternative) {
       if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
@@ -3516,9 +3516,9 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t NetworkConnectionContext, Ne
   NetworkByte NetworkConnectionEncryptionBuffer[32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkPacketValidationResult = DecodeNetworkPacket(PacketData, NetworkConnectionEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
+  NetworkPacketValidationResult = DecodeNetworkPacketData(PacketData, NetworkConnectionEncryptionBuffer, 1, NetworkMagicLiveConnection, NetworkMagicValidation);
   if (((int)NetworkPacketValidationResult == 0) &&
-     (NetworkPacketValidationResult = DecodeNetworkPacket(PacketData, NetworkConnectionSecurityBuffer, 0, NetworkMagicBinaryData, NetworkMemoryValidationMagic), (int)NetworkPacketValidationResult == 0)) {
+     (NetworkPacketValidationResult = DecodeNetworkPacketData(PacketData, NetworkConnectionSecurityBuffer, 0, NetworkMagicBinaryData, NetworkMemoryValidationMagic), (int)NetworkPacketValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
@@ -3638,7 +3638,7 @@ NetworkHandle HandleNetworkConnectionPacket(NetworkHandle ConnectionContext, int
  * @warning 调用者需要确保参数的有效性，避免生成重复的标识符
  * @see NetworkConnectionStateFlags, NetworkConnectionIdentifier
  */
-uint64_t CreateConnectionStateUniqueId(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
+uint64_t GenerateConnectionStateUniqueId(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
 {
   return ((uint64_t)ConnectionStateFlags << 32) | ConnectionIdentifier;
 }
@@ -3822,7 +3822,7 @@ void AuthenticateConnectionSecurity(NetworkHandle ConnectionTable, int64_t Conne
  * @note 这是简化实现，实际应用中需要实现完整的数据包解码逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的解码工作
  */
-NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
+NetworkHandle DecodeNetworkPacketData(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                           uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 数据包解码变量
