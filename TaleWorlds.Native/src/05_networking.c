@@ -2551,15 +2551,15 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   if (NetworkConnectionOperationCode == 0) {
 PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)CalculateConnectionParameterOffset(NetworkConnectionOperationBuffer)) && (*NetworkConnectionOperationBuffer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *NetworkConnectionOperationBuffer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionOperationBuffer = (int64_t)NetworkProcessedPacketIdentifier;
+    *NetworkConnectionOperationBuffer = (int64_t)ProcessedPacketIdentifier;
     *(int *)CalculateConnectionParameterOffset(NetworkConnectionOperationBuffer) = NetworkConnectionOperationCode;
     return NetworkOperationSuccess;
   }
   if (NetworkPacketIndex * ConnectionEntrySize - 1U < NetworkMaximumInt32Value) {
     ConnectionStatusPointer = (NetworkStatus *)
-             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkManagerContextPointer + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
+             ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkManagerContext + NetworkConnectionTableOffset), PacketIndex * ConnectionEntrySize, &SecurityValidationBuffer,
                            ConnectionCompletionHandle, 0);
     if (ConnectionStatusPointer != NULL) {
       int32_t NetworkOperationProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
