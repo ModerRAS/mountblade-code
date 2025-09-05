@@ -15285,60 +15285,89 @@ void ExecuteSecurityCheckAndTerminateA(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationFlags,int64_t *resultPointer)
-void ExecuteUtilitySystemOperation(int64_t operationContext,DataWord *operationFlags,int64_t *resultPointer)
-
+/**
+ * @brief 执行工具系统操作
+ * 
+ * 该函数用于执行工具系统的核心操作，包括颜色数据处理、系统验证和安全检查
+ * 
+ * @param operationContext 操作上下文，包含系统操作的相关信息
+ * @param operationFlags 操作标志，用于控制操作的具体行为
+ * @param resultPointer 结果指针，用于存储操作执行的结果
+ * 
+ * @note 原始函数名：ExecuteUtilitySystemOperation
+ * @note 这是一个简化实现，用于处理颜色数据转换和系统验证
+ */
+void ExecuteUtilitySystemOperation(int64_t operationContext, DataWord *operationFlags, int64_t *resultPointer)
 {
   int64_t *validationContextPointer;
   int operationResult;
   int64_t calculatedOffset;
-  ByteFlag securityValidationBuffer [32];
-  uint colorComponentGreenLow;
-  uint colorComponentGreenMid;
-  uint colorComponentBlueMid;
-  uint colorComponentRedHighByte;
-  uint colorComponentBlueLow;
-  uint colorComponentBlueMidByte;
-  uint colorComponentBlueHighByte;
-  uint colorComponentAlphaHighByte;
+  ByteFlag securityValidationBuffer[32];
+  
+  // 颜色分量变量
+  uint colorRedComponentHigh;
+  uint colorGreenComponentLow;
+  uint colorGreenComponentMid;
+  uint colorBlueComponentMid;
+  uint colorRedComponentHighByte;
+  uint colorBlueComponentLow;
+  uint colorBlueComponentMidByte;
+  uint colorBlueComponentHighByte;
+  uint colorAlphaComponentHighByte;
   uint stackOffset58;
   uint blueAlphaComponents;
+  
+  // 数据处理变量
   DataWord inputDataWord;
   uint inputComponent1;
   uint inputComponent2;
   uint inputComponent3;
-  ByteFlag systemBufferA [40];
+  ByteFlag systemBufferA[40];
   uint64_t securityCheckValueA;
   
-  securityCheckValueA = ExceptionEncryptionKey ^ (uint64_t)auStack_b8;
-  validationContextPointer = *(int64_t **)(param_1 + 800);
+  // 栈变量美化
+  uint stackRedComponentHigh;
+  uint stackBlueAlphaHigh;
+  uint stackGreenComponentHigh;
+  uint stackBlueComponentMid;
+  uint stackBlueComponentLow;
+  uint stackBlueComponentLowByte;
+  uint stackGreenComponentMid;
+  uint stackGreenComponentLow;
+  uint stackGreenComponentLowWord;
+  uint stackSecurityGuard;
+  
+  securityCheckValueA = ExceptionEncryptionKey ^ (uint64_t)stackSecurityGuard;
+  validationContextPointer = *(int64_t **)(operationContext + 800);
   if (validationContextPointer != (int64_t *)0x0) {
-    inputDataWord = *param_2;
-    inputComponent1 = param_2[1];
-    inputComponent2 = param_2[2];
-    inputComponent3 = param_2[3];
-    calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x288))(validationContextPointer,&inputDataWord,1);
+    inputDataWord = *operationFlags;
+    inputComponent1 = operationFlags[1];
+    inputComponent2 = operationFlags[2];
+    inputComponent3 = operationFlags[3];
+    calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x288))(validationContextPointer, &inputDataWord, 1);
     if (calculatedOffset == 0) {
-      uStack_70 = inputComponent2 >> 0x18;
+      // 颜色分量提取和处理
+      stackRedComponentHigh = inputComponent2 >> 0x18;
       blueAlphaComponents = inputComponent3 >> 0x18;
-      uStack_90 = inputComponent1 >> 0x10;
+      stackGreenComponentHigh = inputComponent1 >> 0x10;
       colorDataWord = inputComponent3 >> 0x10 & 0xff;
-      uStack_60 = inputComponent3 >> 8 & 0xff;
-      uStack_68 = inputComponent3 & 0xff;
-      uStack_78 = inputComponent2 >> 0x10 & 0xff;
-      uStack_80 = inputComponent2 >> 8 & 0xff;
-      uStack_88 = inputComponent2 & 0xff;
-      uStack_98 = inputComponent1 & 0xffff;
-                    // WARNING: Subroutine does not return
-      InitializeSystemBufferA0(systemBufferA,0x27,&SystemBufferConfiguration,inputDataWord);
+      stackBlueComponentMid = inputComponent3 >> 8 & 0xff;
+      stackBlueComponentLow = inputComponent3 & 0xff;
+      stackGreenComponentMid = inputComponent2 >> 0x10 & 0xff;
+      stackGreenComponentLow = inputComponent2 >> 8 & 0xff;
+      stackGreenComponentLowWord = inputComponent2 & 0xff;
+      stackBlueAlphaHigh = inputComponent1 & 0xffff;
+      
+      // 初始化系统缓冲区
+      InitializeSystemBufferA0(systemBufferA, 0x27, &SystemBufferConfiguration, inputDataWord);
     }
     if ((**(int **)(calculatedOffset + 0xd0) != 0) ||
-       (operationResult = ValidateSystemConfigurationA0(*(DataWord *)(param_1 + 0x18)), operationResult == 0)) {
-      *param_3 = calculatedOffset;
+       (operationResult = ValidateSystemConfigurationA0(*(DataWord *)(operationContext + 0x18)), operationResult == 0)) {
+      *resultPointer = calculatedOffset;
     }
   }
-                    // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityCheckValueA ^ (uint64_t)auStack_b8);
+  // 执行安全检查
+  ExecuteSecurityCheck(securityCheckValueA ^ (uint64_t)stackSecurityGuard);
 }
 
 
@@ -21518,43 +21547,43 @@ DataBuffer ProcessComplexDataStructureA0(int64_t *param_1,int64_t *param_2)
 {
   DataBuffer dataValue;
   int operationResult;
-  int stackContextBuffer [2];
-  unsigned int stackParameterBuffer [2];
+  int stackIntBuffer [2];
+  unsigned int stackUIntBuffer [2];
   
   operationResult = 0;
-  aiStackX_8[0] = 0;
+  stackIntBuffer[0] = 0;
   if (*param_1 == 0) {
     dataValue = 0x1c;
   }
   else {
     if (param_1[2] != 0) {
-      auStackX_10[0] = 0;
-      dataValue = AllocateMemory(*param_1,auStackX_10);
+      stackUIntBuffer[0] = 0;
+      dataValue = AllocateMemory(*param_1,stackUIntBuffer);
       if ((int)dataValue != 0) {
         return dataValue;
       }
-      if ((uint64_t)param_1[2] < (uint64_t)auStackX_10[0] + 4) {
+      if ((uint64_t)param_1[2] < (uint64_t)stackUIntBuffer[0] + 4) {
         dataValue = 0x11;
-        goto LAB_1808996c5;
+        goto ProcessDataCheckpoint;
       }
     }
-    dataValue = ValidateDataAndReturnStatusO3(*param_1,aiStackX_8,1,4,0);
+    dataValue = ValidateDataAndReturnStatusO3(*param_1,stackIntBuffer,1,4,0);
   }
 ProcessCheckpointB:
   if ((int)dataValue == 0) {
-    if (aiStackX_8[0] < 0) {
+    if (stackIntBuffer[0] < 0) {
       return 0xd;
     }
-    dataValue = ProcessDataOperationO0(param_2,aiStackX_8[0]);
+    dataValue = ProcessDataOperationO0(param_2,stackIntBuffer[0]);
     if ((int)dataValue == 0) {
-      if (0 < aiStackX_8[0]) {
+      if (0 < stackIntBuffer[0]) {
         do {
           dataValue = ProcessMultiSegmentDataA0(param_1,*param_2 + (int64_t)operationResult * 0x14);
           if ((int)dataValue != 0) {
             return dataValue;
           }
           operationResult = operationResult + 1;
-        } while (operationResult < aiStackX_8[0]);
+        } while (operationResult < stackIntBuffer[0]);
       }
       dataValue = 0;
     }
@@ -21976,27 +22005,26 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
   uint64_t systemOperationResult;
   int64_t systemMemoryPointer;
   uint64_t validationStatus;
-  int64_t registerR14;
+  int64_t systemContext;
   uint64_t securityValidationResult;
-  DataWord extraout_XMM0_Da;
-  DataWord extraout_XMM0_Da_00;
-  DataWord extraout_XMM0_Da_01;
-  DataWord extraout_XMM0_Da_02;
-  DataWord extraout_XMM0_Da_03;
-  DataWord extraout_XMM0_Da_04;
-  DataWord extraout_XMM0_Da_05;
-  DataWord systemStatusCounter;
+  DataWord floatResultA;
+  DataWord floatResultB;
+  DataWord floatResultC;
+  DataWord floatResultD;
+  DataWord floatResultE;
+  DataWord floatResultF;
+  DataWord statusCounter;
   
-  systemOperationStatus = *(int *)(registerR14 + 0x28);
+  systemOperationStatus = *(int *)(systemContext + 0x28);
   *(int *)(registerBackupPointer + 0x20) = systemOperationStatus;
   pointerOperationResult = (**(FunctionPointer**)*systemDataPointer)(systemDataPointer,operationParameter,4);
   validationStatus = 0;
   if (pointerOperationResult == 0) {
     systemOperationResult = validationStatus;
-    systemStatusCounter = extraout_XMM0_Da;
+    systemStatusCounter = floatResultA;
     if (0 < systemOperationStatus) {
       do {
-        systemOperationResult = ValidateDataParametersA0(systemStatusCounter,(int64_t)(int)systemOperationResult * 0x6c + *(int64_t *)(registerR14 + 0x20));
+        systemOperationResult = ValidateDataParametersA0(systemStatusCounter,(int64_t)(int)systemOperationResult * 0x6c + *(int64_t *)(systemContext + 0x20));
         if (systemOperationResult != 0) {
           return;
         }
