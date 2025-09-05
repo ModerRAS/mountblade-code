@@ -4222,11 +4222,11 @@ void* TemporaryExceptionHandler;           // 临时异常处理器
 // 返回值:
 //   无
 void ResetUtilityPointers3(void);
-uint32_t UtilityCleanupPointer1;
-uint32_t UtilityCleanupPointer2;
-uint32_t UtilityCleanupPointer3;
-uint32_t UtilityCleanupPointer4;
-uint32_t UtilityCleanupStatus1;
+uint32_t UtilityPrimaryCleanupPointer;
+uint32_t UtilitySecondaryCleanupPointer;
+uint32_t UtilityTertiaryCleanupPointer;
+uint32_t UtilityQuaternaryCleanupPointer;
+uint32_t UtilityCleanupStatusIndicator;
 
 // 函数: void ResetUtilityPointers4(void)
 // 
@@ -4239,10 +4239,10 @@ uint32_t UtilityCleanupStatus1;
 // 返回值:
 //   无
 void ResetUtilityPointers4(void);
-uint32_t UtilityFreePointer1;
-uint32_t UtilityFreePointer2;
-uint32_t UtilityFreePointer3;
-uint32_t UtilityFreePointer4;
+uint32_t UtilityPrimaryFreePointer;
+uint32_t UtilitySecondaryFreePointer;
+uint32_t UtilityTertiaryFreePointer;
+uint32_t UtilityQuaternaryFreePointer;
 
 // 函数: uint32_t UtilityInitializeSystem
 // 
@@ -4255,10 +4255,10 @@ uint32_t UtilityFreePointer4;
 // 返回值:
 //   uint32_t - 初始化结果状态
 uint32_t UtilityInitializeSystem;
-uint32_t UtilityInitializationData1;
-uint32_t UtilityInitializationData2;
-uint32_t UtilityInitializationData3;
-uint32_t UtilityInitializationData4;
+uint32_t UtilityPrimaryInitializationData;
+uint32_t UtilitySecondaryInitializationData;
+uint32_t UtilityTertiaryInitializationData;
+uint32_t UtilityQuaternaryInitializationData;
 
 // 函数: uint32_t UtilityValidateSystem(void)
 // 
@@ -4322,9 +4322,9 @@ bool UtilitySystemCleanupEnabled;
 // 
 // 返回值:
 //   uint32_t - 数据处理结果
-uint32_t UtilityDataProcessingStatus1;
-uint32_t UtilityDataProcessingBuffer1;
-void* UtilityDataProcessingPointer1;
+uint32_t UtilityPrimaryDataProcessingStatus;
+uint32_t UtilityPrimaryDataProcessingBuffer;
+void* UtilityPrimaryDataProcessingPointer;
 
 // 函数: uint32_t UtilityProcessData2(void);
 uint32_t UtilityDataProcessingStatus2;
