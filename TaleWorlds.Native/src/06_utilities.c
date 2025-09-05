@@ -8296,13 +8296,13 @@ void ResetUtilitySystemAA0(void)
   flagsValue = (int)*(uint *)(registerRBX + 0x2c) >> 0x1f;
   operationResult = (*(uint *)(registerRBX + 0x2c) ^ flagsValue) - flagsValue;
   validationStatus = *(int *)(registerRBX + 0x28) + 1;
-  if (operationResult < iVar1) {
+  if (operationResult < validationStatus) {
     operationResult = (int)((float)operationResult * 1.5);
-    if (iVar1 <= operationResult) {
-      iVar1 = operationResult;
+    if (validationStatus <= operationResult) {
+      validationStatus = operationResult;
     }
-    if (iVar1 < 8) {
-      iVar1 = 8;
+    if (validationStatus < 8) {
+      validationStatus = 8;
     }
     if (iVar1 < *(int *)(unaff_RBX + 0x28)) goto LAB_180891fc0;
     if (iVar1 != 0) {
