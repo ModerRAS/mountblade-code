@@ -19776,8 +19776,11 @@ LAB_18089ae18:
 
 
 
-// 函数: void FUN_18089ae2d(void)
-void FUN_18089ae2d(void)
+/**
+ * @brief 空操作函数J
+ * @return 无返回值
+ */
+void UtilityNoOperationJ(void)
 
 {
   return;
@@ -19786,8 +19789,11 @@ void FUN_18089ae2d(void)
 
 
 
-// 函数: void FUN_18089ae35(void)
-void FUN_18089ae35(void)
+/**
+ * @brief 空操作函数K
+ * @return 无返回值
+ */
+void UtilityNoOperationK(void)
 
 {
   return;
@@ -19796,8 +19802,11 @@ void FUN_18089ae35(void)
 
 
 
-// 函数: void FUN_18089ae3d(void)
-void FUN_18089ae3d(void)
+/**
+ * @brief 空操作函数L
+ * @return 无返回值
+ */
+void UtilityNoOperationL(void)
 
 {
   return;
