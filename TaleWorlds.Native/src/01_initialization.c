@@ -21004,13 +21004,13 @@ ulong long CompareSystemDataBlocks(long long SystemResourceManager,long long Com
   
   DataBlockComparisonIndex = (ulong long)*(int *)(SystemResourceManager + 0x68);
   DataBlockResourceMemoryOffset = *(long long *)(SystemResourceManager + 8);
-  if (dataBlockComparisonIndex < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - dataBlockResourceMemoryOffset >> 8)) {
-    dataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
-    dataBlockComparisonResult = *(int *)(dataBlockComparisonIndex * 0x100 + 0x10 + dataBlockResourceMemoryOffset);
-    if (dataBlockComparisonResult == dataBlockByteDifference) {
-      if (dataBlockComparisonResult != 0) {
-        dataBlockSourceBytePointer = *(byte **)(dataBlockComparisonIndex * 0x100 + 8 + dataBlockResourceMemoryOffset);
-        dataBlockMemoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)dataBlockSourceBytePointer;
+  if (DataBlockComparisonIndex < (ulong long)(*(long long *)(SystemResourceManager + 0x10) - DataBlockResourceMemoryOffset >> 8)) {
+    DataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
+    DataBlockComparisonResult = *(int *)(DataBlockComparisonIndex * 0x100 + 0x10 + DataBlockResourceMemoryOffset);
+    if (DataBlockComparisonResult == DataBlockByteDifference) {
+      if (DataBlockComparisonResult != 0) {
+        DataBlockSourceBytePointer = *(byte **)(DataBlockComparisonIndex * 0x100 + 8 + DataBlockResourceMemoryOffset);
+        DataBlockMemoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)DataBlockSourceBytePointer;
         do {
           dataBlockComparisonBytePointer = dataBlockSourceBytePointer + dataBlockMemoryOffset;
           dataBlockByteDifference = (uint)*dataBlockSourceBytePointer - (uint)*dataBlockComparisonBytePointer;
@@ -21029,15 +21029,15 @@ ComparisonResultCheck:
   dataBlockComparisonIndex = 0;
   dataBlockSizeLimit = *(long long *)(SystemResourceManager + 0x10) - dataBlockResourceMemoryOffset >> 8;
   if (dataBlockSizeLimit != 0) {
-    dataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
+    DataBlockByteDifference = *(int *)(ComparisonDataPointer + 0x10);
     loopCounterValue = dataBlockComparisonIndex;
     do {
       dataBlockComparisonResult = *(int *)(loopCounter + 0x10 + dataBlockResourceMemoryOffset);
       dataBlockCalculationFlags = dataBlockByteDifference;
-      if (dataBlockComparisonResult == dataBlockByteDifference) {
-        if (dataBlockComparisonResult != 0) {
+      if (DataBlockComparisonResult == DataBlockByteDifference) {
+        if (DataBlockComparisonResult != 0) {
           dataBlockSourceBytePointer = *(byte **)(loopCounter + 8 + dataBlockResourceMemoryOffset);
-          dataBlockMemoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)dataBlockSourceBytePointer;
+          DataBlockMemoryOffset = *(long long *)(ComparisonDataPointer + 8) - (long long)DataBlockSourceBytePointer;
           do {
             dataBlockComparisonBytePointer = dataBlockSourceBytePointer + dataBlockMemoryOffset;
             dataBlockCalculationFlags = (uint)*dataBlockSourceBytePointer - (uint)*dataBlockComparisonBytePointer;
