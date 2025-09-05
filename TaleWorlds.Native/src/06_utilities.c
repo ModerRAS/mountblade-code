@@ -3770,13 +3770,13 @@ void* UtilitySystemConfigData1;
 uint8_t UtilitySystemConfigStatus1;
 void* UtilitySystemConfigData2;
 uint8_t UtilitySystemConfigStatus2;
-undefined UtilitySystemThreadData1;
-undefined UtilitySystemThreadData2;
-undefined UtilitySystemThreadData3;
+void* UtilitySystemThreadData1;
+void* UtilitySystemThreadData2;
+void* UtilitySystemThreadData3;
 
-942fa0;
+// 函数: void ProcessUtilitySystemFlags();
 #define ProcessUtilitySystemFlags FUN_180942fa0
-undefined ProcessUtilitySystemFlags;
+void ProcessUtilitySystemFlags;
 undefined UtilitySystemFlagData1;
 undefined UtilitySystemFlagData2;
 undefined UtilitySystemFlagData3;
