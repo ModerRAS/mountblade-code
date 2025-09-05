@@ -8890,11 +8890,11 @@ void ManageUtilitySystemConnectionsAF0(longlong connectionManager,longlong conne
   if (iVar1 == 0) {
     iVar1 = ProcessSystemBufferA0(uStackX_8);
     if (iVar1 < 1) {
-      iVar1 = func_0x0001808c8700(uStackX_8);
+      iVar1 = ProcessSystemBufferA1(uStackX_8);
       *(uint *)(param_1 + 0x18) = (uint)(iVar1 < 1);
     }
     else {
-      iVar1 = func_0x0001808c8700(uStackX_8);
+      iVar1 = ProcessSystemBufferA1(uStackX_8);
       if (iVar1 < 1) {
         *(undefined4 *)(param_1 + 0x18) = 2;
       }
@@ -8993,7 +8993,7 @@ void UtilityProcessResourceRequest(longlong param_1,longlong param_2)
   
   iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if (iVar1 == 0) {
-    iVar1 = func_0x0001808c8470(uStackX_8);
+    iVar1 = InitializeSystemBufferA0(uStackX_8);
     if (iVar1 == 0) {
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
@@ -9034,7 +9034,7 @@ void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
   
   firstValidationResult = QueryAndRetrieveSystemDataA0(*(unsigned int *)((unsigned char*)contextHandle + 0x10), &validationData);
   if (firstValidationResult == 0) {
-    firstValidationResult = func_0x0001808c7d30(validationData);
+    firstValidationResult = ValidateSystemDataIntegrityA0(validationData);
     if (firstValidationResult == 0) {
                     // WARNING: Subroutine does not return
       FUN_18088d720(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
@@ -9156,7 +9156,7 @@ undefined8 ProcessResourceValidationAndExecution(longlong resourceContext, longl
         else {
           resourceData = *(undefined **)(resourcePointer + 0x50);
         }
-        validationStatus = func_0x00018076b630(resourceData, resourceContext + 0x1c);
+        validationStatus = ValidateResourceDataIntegrityA0(resourceData, resourceContext + 0x1c);
         if (validationStatus == 0) {
           operationResult = ValidateAndProcessSystemResourceA0(listEntry, resourceContext + 0x18);
           if ((int)operationResult != 0) {
@@ -9222,7 +9222,7 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
       else {
         puVar4 = *(undefined **)(validationContext + 0x50);
       }
-      operationResult = func_0x00018076b630(puVar4);
+      operationResult = ValidateResourceDataIntegrityA0(puVar4);
       if (operationResult == 0) {
         uVar3 = ValidateAndProcessSystemResourceA0(lVar7,registerR14 + 0x18);
         if ((int)uVar3 != 0) {
@@ -9311,7 +9311,7 @@ undefined8 ValidateSystemDataIndexAndProcessResource(longlong systemContext,long
     }
   }
   *(uint *)(systemContext + 8) = *(int *)(systemContext + 8) + 0xfU & 0xfffffff0;
-  operationResult = func_0x0001808e64d0(*(undefined8 *)(systemDataPointer + 0x1e0));
+  operationResult = GetSystemCurrentStateA0(*(undefined8 *)(systemDataPointer + 0x1e0));
 OperationComplete:
   if ((int)operationResult == 0) {
     return 0;
@@ -9558,7 +9558,7 @@ undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong context
       }
     }
     *(uint *)(dataPtr + 8) = *(int *)(dataPtr + 8) + 0xfU & 0xfffffff0;
-    result = func_0x0001808e64d0(*(undefined8 *)(dataBufferPtr + 0x1e0));
+    result = GetSystemCurrentStateA0(*(undefined8 *)(dataBufferPtr + 0x1e0));
     if ((int)result == 0) {
       return 0;
     }
@@ -10084,7 +10084,7 @@ undefined8 ProcessComplexDataStructureA0(longlong param_1,longlong param_2,undef
       }
     }
     *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-    uVar4 = func_0x0001808e64d0(*(undefined8 *)(lVar5 + 0x1e0));
+    uVar4 = GetSystemCurrentStateA0(*(undefined8 *)(lVar5 + 0x1e0));
     if ((int)uVar4 == 0) {
       return 0;
     }
@@ -10389,7 +10389,7 @@ undefined8 ValidateAndProcessFloatValue(longlong valueContext,longlong operation
     }
   }
   *(uint *)(valueContext + 8) = *(int *)(valueContext + 8) + 0xfU & 0xfffffff0;
-  operationResult = func_0x0001808e64d0(*(undefined8 *)(resultPointer + 0x1e0));
+  operationResult = GetSystemCurrentStateA0(*(undefined8 *)(resultPointer + 0x1e0));
   if ((int)operationResult == 0) {
     return 0;
   }
@@ -10458,7 +10458,7 @@ code_r0x00018089322c:
     }
   }
   *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar2 = func_0x0001808e64d0(*(undefined8 *)(lVar3 + 0x1e0));
+  uVar2 = GetSystemCurrentStateA0(*(undefined8 *)(lVar3 + 0x1e0));
   if ((int)uVar2 == 0) {
     return 0;
   }
@@ -10507,7 +10507,7 @@ undefined8 ProcessDataTransferA0(longlong param_1,longlong param_2)
     }
   }
   *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar1 = func_0x0001808e64d0(*(undefined8 *)(lVar2 + 0x1e0));
+  uVar1 = GetSystemCurrentStateA0(*(undefined8 *)(lVar2 + 0x1e0));
   if ((int)uVar1 == 0) {
     return 0;
   }
@@ -10715,7 +10715,7 @@ undefined8 ProcessMemoryCopyA0(longlong param_1,longlong param_2)
        (FUN_180768b50(&stack0x00000008),
        *(longlong *)((longlong)*(int *)(validationContext + 0x17c) * 8 + 0x180c4f450) != 0)) {
       *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-      uVar2 = func_0x0001808e64d0(*(undefined8 *)(validationContext + 0x1e0));
+      uVar2 = GetSystemCurrentStateA0(*(undefined8 *)(validationContext + 0x1e0));
     }
     else {
       uVar2 = FUN_18088dd60(validationContext,param_1);
@@ -11063,7 +11063,7 @@ undefined8 ValidateAndProcessFloatValue(longlong dataContext,longlong operationC
   stackBuffer[0] = 0;
   operationResult = FUN_180867600(operationContext + 0x60,dataContext + 0x10,stackBuffer);
   if ((int)operationResult == 0) {
-    rangeData = func_0x000180867680(operationContext + 0x60,stackBuffer[0]);
+    rangeData = GetOperationRangeDataA0(operationContext + 0x60,stackBuffer[0]);
     if ((*(uint *)(rangeData + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
