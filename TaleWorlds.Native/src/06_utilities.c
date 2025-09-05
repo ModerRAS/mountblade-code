@@ -1832,13 +1832,13 @@
 // 功能：空操作函数，不执行任何操作
 #define UtilityNoOperationG FUN_18089233e
 
-// 原始函数名：FUN_180893290 - 数据传输处理函数A0
+// 原始函数名：FUN_180893290 - 数据传输处理函数
 // 功能：处理数据传输操作
-#define ProcessDataTransferA0 FUN_180893290
+#define ProcessDataTransfer FUN_180893290
 
-// 原始函数名：FUN_180893330 - 缓冲区处理函数A0
+// 原始函数名：FUN_180893330 - 缓冲区处理函数
 // 功能：处理缓冲区操作
-#define ProcessBufferA0 FUN_180893330
+#define ProcessBuffer FUN_180893330
 
 // 原始函数名：FUN_180893480 - 内存分配处理函数A0
 // 功能：处理内存分配操作
