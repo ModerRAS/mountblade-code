@@ -124,12 +124,12 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
  * 
  * 计算连接上下文中参数的偏移量，用于访问连接参数
  * 
- * @param Context 连接上下文指针
+ * @param ConnectionContext 连接上下文指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateConnectionParameterOffset(int64_t *Context)
+static int64_t CalculateConnectionParameterOffset(int64_t *ConnectionContext)
 {
-    return (int64_t)Context + ConnectionParameterOffset;
+    return (int64_t)ConnectionContext + ConnectionParameterOffset;
 }
 
 /**
