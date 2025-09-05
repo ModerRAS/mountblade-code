@@ -54,6 +54,15 @@
 #define STRING_LENGTH_OFFSET           SystemStringLengthOffset
 #define STRING_DATA_OFFSET             SystemStringBufferOffset
 
+// 系统节点索引常量
+#define SystemNodeIdentifier1Index           0
+#define SystemNodeIdentifier2Index           1
+#define SystemNodeDataPointerIndex           2
+#define SystemNodeActiveFlagIndex            3
+#define SystemNodeHandlerIndex               4
+#define SystemNodeNextPointerIndex           5
+#define SystemNodeHeadPointerIndex           6
+
 // 系统标识符常量
 #define EventSystemIdentifier1          0x45b8d074df27d12f
 #define EventSystemIdentifier2          0x8d98f4c06880eda4
@@ -1110,7 +1119,7 @@ void* SystemDataNodeNetworkManager;        // 系统数据节点网络管理器
 void* SystemDataNodeAudioManager;           // 系统数据节点音频管理器
 void* SystemDataNodeInputManager;            // 系统数据节点输入管理器
 void* SystemDataNodePhysicsManager;         // 系统数据节点物理管理器
-void* SystemDataNodeOctonary;          // 系统数据节点第八节点
+void* SystemDataNodeAnimationManager;          // 系统数据节点动画管理器
 void* SystemDataNodeNonary;            // 系统数据节点第九节点
 void* SystemDataNodeDenary;            // 系统数据节点第十节点
 void* SystemDataNodeUndenary;          // 系统数据节点第十一节点

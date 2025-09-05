@@ -2482,6 +2482,19 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @param NetworkConnectionIdentifier 连接标识符
  * @return uint64_t 合并后的连接状态和句柄值
  */
+/**
+ * @brief 合并连接状态和标识符
+ * 
+ * 将连接状态标志和连接标识符合并为一个64位整数，便于在系统中传递和处理。
+ * 状态标志存储在高32位，标识符存储在低32位。
+ * 
+ * @param NetworkConnectionStateFlags 连接状态标志位，表示连接的当前状态
+ * @param NetworkConnectionIdentifier 连接标识符，唯一标识一个连接
+ * @return uint64_t 合并后的64位值，高32位为状态标志，低32位为标识符
+ * 
+ * @note 此函数主要用于将连接的两个关键信息合并为一个值，便于传递和存储
+ * @warning 使用时需要确保状态标志和标识符都在32位范围内
+ */
 uint64_t CombineConnectionStateAndHandle(uint32_t NetworkConnectionStateFlags, uint32_t NetworkConnectionIdentifier)
 {
   return ((uint64_t)NetworkConnectionStateFlags << 32) | NetworkConnectionIdentifier;

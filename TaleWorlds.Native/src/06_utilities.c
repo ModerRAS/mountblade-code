@@ -116,15 +116,17 @@
 #define StreamResourceStatusOffset 0x8f8                    // 流资源状态偏移量
 
 // 浮点数相关常量
-#define FloatInfinityMask 0x7f800000                         // 浮点数无穷大掩码
-#define FloatNegativeInfinity 0xbf800000                     // 浮点数负无穷大
+#define FloatNegativeOneValue 0xbf800000                    // 浮点数-1.0的十六进制表示
 #define FloatOneValue 0x3f800000                            // 浮点数1.0的十六进制表示
+#define FloatInfinityMask 0x7f800000                         // 浮点数无穷大掩码
 #define SystemFloatMaxValue 256.0                            // 系统浮点数最大值
 
 // 整数范围常量
 #define Int32MinimumValue -0x80000000                        // 32位有符号整数最小值
+#define Int32MaximumValue 0x7fffffff                        // 32位有符号整数最大值
 #define UInt32MaximumValue 0xffffffff                        // 32位无符号整数最大值
 #define UInt64MaximumValue 0xffffffffffffffff                // 64位无符号整数最大值
+#define Int64MinimumValue -0x8000000000000000                 // 64位有符号整数最小值
 
 // 资源表偏移常量
 #define ResourceTableOffsetPrimary 0x50
@@ -12596,7 +12598,7 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
         ResultFloatValue = *(float *)(ObjectContext + ObjectContextMatrixTranslationOffset);
         MaximumOperationCount = -1;
         *(uint32_t *)(ObjectContext + ObjectContextResourceTotalOffset) = 0xffffffff;
-        *(uint32_t *)(ObjectContext + ObjectContextMatrixTranslationOffset) = 0xbf800000;
+        *(uint32_t *)(ObjectContext + ObjectContextMatrixTranslationOffset) = FloatNegativeOneValue;
       }
       *(float *)(ObjectContext + ObjectContextMatrixFlagsOffset) = CalculatedFloatResult;
       ArrayIterationIndex = 0;
