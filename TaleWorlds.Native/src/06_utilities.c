@@ -7306,14 +7306,14 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + ComponentHandleOffset), SystemContextArray);
   
   // 验证操作结果并处理数据
-  if ((OperationStatus == 0) && (*(int64_t *)(SystemContextArray[0] + 8) != 0)) {
+  if ((OperationStatus == 0) && (*(int64_t *)(SystemContextArray[0] + SystemContextOffset) != 0)) {
     DataProcessingBuffer = WorkingDataBuffer;
     ProcessedItemCount = 0;
     LoopCounter = 0;
     ProcessingFlags = ProcessingFlagMask;
     
     // 执行核心功能
-    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + 0x90), *(int64_t *)(SystemContextArray[0] + 8),
+    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + 0x90), *(int64_t *)(SystemContextArray[0] + SystemContextOffset),
                           &DataProcessingBuffer);
     
     // 处理执行结果
@@ -7379,12 +7379,12 @@ void ProcessResourceCleanup(void)
   uint64_t FunctionCallBuffer;
   uint64_t SecurityValidationBuffer;
   
-  if (*(int64_t *)(SystemContext + 8) != 0) {
+  if (*(int64_t *)(SystemContext + SystemContextOffset) != 0) {
     StackBuffer = (uint8_t *)&ResourceCleanupBuffer;
     CleanupCounter = 0;
     ResourceCount = 0;
     CleanupFlags = ProcessingFlagMask;
-    OperationResult = ExecuteCoreFunction(*(uint64_t *)(SystemRegistry + 0x90),*(int64_t *)(SystemContext + 8),
+    OperationResult = ExecuteCoreFunction(*(uint64_t *)(SystemRegistry + 0x90),*(int64_t *)(SystemContext + SystemContextOffset),
                           &FunctionCallBuffer);
     if (OperationResult == 0) {
       if (0 < ResourceCount) {
@@ -7526,7 +7526,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
   uint64_t searchIndex;
   int64_t *componentList;
   int64_t systemContextBuffer;
-  int8_t processBuffer [16];
+  int8_t dataValidationBuffer [16];
   
   queryResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(componentHandle + COMPONENT_HANDLE_OFFSET),&systemContextBuffer);
   if ((int)queryResult != 0) {
@@ -7541,16 +7541,16 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
     return 0x1f;
   }
   if (*(int32_t *)(systemHandle + COMPONENT_STATUS_OFFSET) == -1) {
-    queryResult = ProcessInputData(systemHandle,processBuffer);
+    queryResult = ProcessInputData(systemHandle,dataValidationBuffer);
     if ((int32_t)queryResult != 0) {
       return queryResult;
     }
-    processResult = ValidateInputData(processBuffer);
+    processResult = ValidateInputData(dataValidationBuffer);
     if ((int32_t)processResult != 0) {
       return processResult;
     }
     if ((int8_t)queryResult == (int8_t)processResult) {
-      if (processBuffer[0] == (int8_t)processResult) {
+      if (dataValidationBuffer[0] == (int8_t)processResult) {
         componentList = (int64_t *)(componentData + COMPONENT_LIST_OFFSET);
         searchIndex = 0;
         componentCount = *(int32_t *)(componentData + COMPONENT_COUNT_OFFSET);
@@ -7558,7 +7558,7 @@ uint64_t RegisterSystemComponent(int64_t componentHandle)
           componentPointer = (int64_t *)*componentList;
           loopIndex = searchIndex;
           do {
-            if (*componentPointer == processBuffer) {
+            if (*componentPointer == dataValidationBuffer) {
               if (-1 < (int32_t)loopIndex) {
                 return 0;
               }
@@ -8429,32 +8429,37 @@ uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
   int64_t contextPointer;
   int64_t validationContext;
   
-  queryStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(batchDataDescriptor + 0x10),&systemContextBuffer);
-  if ((int)queryStatus == 0) {
+  // 查询系统数据并获取上下文
+  queryStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(batchDataDescriptor + 0x10), &systemContextBuffer);
+  if ((int32_t)queryStatus == 0) {
     processedCount = 0;
     contextPointer = systemContextBuffer - 8;
     if (systemContextBuffer == 0) {
       contextPointer = processedCount;
     }
-    dataPointerArray = (undefined4 *)(batchDataDescriptor + 0x20 + (longlong)*(int *)(batchDataDescriptor + 0x18) * 4);
-    if (0 < *(int *)(batchDataDescriptor + 0x18)) {
-      baseAddress = (batchDataDescriptor + 0x20) - (longlong)dataPointerArray;
+    
+    // 设置数据指针数组
+    dataPointerArray = (uint32_t *)(batchDataDescriptor + 0x20 + (int64_t)*(int32_t *)(batchDataDescriptor + 0x18) * 4);
+    if (0 < *(int32_t *)(batchDataDescriptor + 0x18)) {
+      baseAddress = (batchDataDescriptor + 0x20) - (int64_t)dataPointerArray;
+      
+      // 遍历数据项进行处理
       do {
-        operationResult = *(int *)(baseAddress + (longlong)dataPointerArray);
+        operationResult = *(int32_t *)(baseAddress + (int64_t)dataPointerArray);
         if (operationResult != -1) {
-          validationContext = *(longlong *)(contextPointer + 0x20) + (longlong)operationResult * 0x18;
-          if ((validationContext == 0) || (validationContext = *(longlong *)(validationContext + 8), validationContext == 0)) {
+          validationContext = *(int64_t *)(contextPointer + 0x20) + (int64_t)operationResult * 0x18;
+          if ((validationContext == 0) || (validationContext = *(int64_t *)(validationContext + 8), validationContext == 0)) {
             return 0x1c;
           }
-          queryStatus = ProcessFloatingPointDataValidationA0(validationContext,*dataPointerArray,0);
-          if ((int)queryStatus != 0) {
+          queryStatus = ProcessFloatingPointDataValidationA0(validationContext, *dataPointerArray, 0);
+          if ((int32_t)queryStatus != 0) {
             return queryStatus;
           }
         }
-        loopCounter = (int)processedCount + 1;
-        processedCount = (ulonglong)loopCounter;
+        loopCounter = (int32_t)processedCount + 1;
+        processedCount = (uint64_t)loopCounter;
         dataPointerArray = dataPointerArray + 1;
-      } while ((int)loopCounter < *(int *)(batchDataDescriptor + 0x18));
+      } while ((int32_t)loopCounter < *(int32_t *)(batchDataDescriptor + 0x18));
     }
     queryStatus = 0;
   }
@@ -8463,29 +8468,34 @@ uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
 
 
 
-// 函数: undefined8 ProcessUtilitySystemInitialization(void)
-// 
-// 工具系统初始化处理函数
-// 处理工具系统的初始化过程，包括内存分配和数据结构设置
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   成功返回0，失败返回错误代码
-undefined8 ProcessUtilitySystemInitialization(void)
+/**
+ * @brief 处理工具系统初始化
+ * 
+ * 该函数处理工具系统的初始化过程，包括内存分配和数据结构设置。
+ * 函数遍历注册表中的数据项，对每个项进行验证和处理。
+ * 
+ * @return uint64_t 初始化结果状态码：
+ *         - 0: 初始化成功
+ *         - 0x1c: 初始化失败或资源无效
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 原始函数名：FUN_180893720
+ * @warning 该函数依赖于系统上下文和注册表指针的正确性
+ * @see ProcessFloatingPointDataValidationA0
+ */
+uint64_t ProcessUtilitySystemInitialization(void)
 
 {
-  longlong resourceHandle;
-  int entryIndex;
-  longlong systemContext;
+  int64_t resourceHandle;
+  int32_t entryIndex;
+  int64_t systemContext;
   uint64_t operationResult;
-  undefined4 *dataPointer;
-  ulonglong baseAddress;
-  longlong registryPointer;
-  uint iterationCount;
-  ulonglong loopCounter;
-  longlong offsetDelta;
+  uint32_t *dataPointer;
+  uint64_t baseAddress;
+  int64_t registryPointer;
+  uint32_t iterationCount;
+  uint64_t loopCounter;
+  int64_t offsetDelta;
   
   loopCounter = 0;
   baseAddress = systemContext - 8;
