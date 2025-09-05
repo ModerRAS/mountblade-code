@@ -102,34 +102,34 @@
 #define DataComparisonTemplateIId1   0x431d7c8d7c475be2
 
 // 资源数据偏移量常量
-#define ResourceDataTransformXOffset        0x130
-#define ResourceDataTransformYOffset        0x134
-#define ResourceDataTransformZOffset        0x138
-#define ResourceDataScaleXOffset            0x140
-#define ResourceDataScaleYOffset            0x144
-#define ResourceDataScaleZOffset            0x148
-#define ResourceDataRotationOffset           0x120
-#define ResourceDataTranslationXOffset      0x150
-#define ResourceDataTranslationYOffset      0x154
-#define ResourceDataTranslationZOffset      0x158
-#define ResourceDataMatrixOffset             0x234
-#define ResourceDataUniformScaleOffset      0x238
-#define ResourceDataBoneTransformOffset     0x294
-#define ResourceDataBoneRotationOffset      0x298
-#define ResourceDataBoneScaleOffset         0x29c
-#define ResourceDataFinalScaleOffset        0x2a4
-#define DataComparisonTemplateIId2   0xb97f048d2153e1b0
-#define DataComparisonTemplateSystemNodeId1   0x402feffe4481676e
-#define DataComparisonTemplateLId1   0x402feffe4481676e
-#define DataComparisonTemplateLId2   0xd4c2151109de93a0
-#define DataComparisonTemplateMId1   0x4384dcc4b6d3f417
-#define DataComparisonTemplateMId2   0x92a15d52fe2679bd
-#define PerformanceMonitorIdentifier1   0x4384dcc4b6d3f417
-#define PerformanceMonitorIdentifier2   0x92a15d52fe2679bd
-#define DataComparisonTemplateNId1   0x4140994454d56503
-#define DataComparisonTemplateNId2   0x399eced9bb5517ad
-#define DebugManagerIdentifier1   0x4140994454d56503
-#define DebugManagerIdentifier2   0x399eced9bb5517ad
+#define ResourceDataTransformXOffset        0x130  // 资源数据变换X偏移量
+#define ResourceDataTransformYOffset        0x134  // 资源数据变换Y偏移量
+#define ResourceDataTransformZOffset        0x138  // 资源数据变换Z偏移量
+#define ResourceDataScaleXOffset            0x140  // 资源数据缩放X偏移量
+#define ResourceDataScaleYOffset            0x144  // 资源数据缩放Y偏移量
+#define ResourceDataScaleZOffset            0x148  // 资源数据缩放Z偏移量
+#define ResourceDataRotationOffset           0x120  // 资源数据旋转偏移量
+#define ResourceDataTranslationXOffset      0x150  // 资源数据平移X偏移量
+#define ResourceDataTranslationYOffset      0x154  // 资源数据平移Y偏移量
+#define ResourceDataTranslationZOffset      0x158  // 资源数据平移Z偏移量
+#define ResourceDataMatrixOffset             0x234  // 资源数据矩阵偏移量
+#define ResourceDataUniformScaleOffset      0x238  // 资源数据统一缩放偏移量
+#define ResourceDataBoneTransformOffset     0x294  // 资源数据骨骼变换偏移量
+#define ResourceDataBoneRotationOffset      0x298  // 资源数据骨骼旋转偏移量
+#define ResourceDataBoneScaleOffset         0x29c  // 资源数据骨骼缩放偏移量
+#define ResourceDataFinalScaleOffset        0x2a4  // 资源数据最终缩放偏移量
+#define DataComparisonTemplateIId2   0xb97f048d2153e1b0  // 数据比较模板I标识符2
+#define DataComparisonTemplateSystemNodeId1   0x402feffe4481676e  // 数据比较模板系统节点标识符1
+#define DataComparisonTemplateLId1   0x402feffe4481676e  // 数据比较模板L标识符1
+#define DataComparisonTemplateLId2   0xd4c2151109de93a0  // 数据比较模板L标识符2
+#define DataComparisonTemplateMId1   0x4384dcc4b6d3f417  // 数据比较模板M标识符1
+#define DataComparisonTemplateMId2   0x92a15d52fe2679bd  // 数据比较模板M标识符2
+#define PerformanceMonitorIdentifier1   0x4384dcc4b6d3f417  // 性能监控器标识符1
+#define PerformanceMonitorIdentifier2   0x92a15d52fe2679bd  // 性能监控器标识符2
+#define DataComparisonTemplateNId1   0x4140994454d56503  // 数据比较模板N标识符1
+#define DataComparisonTemplateNId2   0x399eced9bb5517ad  // 数据比较模板N标识符2
+#define DebugManagerIdentifier1   0x4140994454d56503  // 调试管理器标识符1
+#define DebugManagerIdentifier2   0x399eced9bb5517ad  // 调试管理器标识符2
 #define DataComparisonTemplateOId1   0x40db4257e97d3df8
 #define DataComparisonTemplateOId2   0x81d539e33614429f
 #define MemoryComparisonTemplateId1   0x4e33c4803e67a08f
