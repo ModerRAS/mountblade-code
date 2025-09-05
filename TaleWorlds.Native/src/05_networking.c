@@ -3088,7 +3088,6 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
 NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
-  NetworkStatus *NetworkContextDataPointer = NULL;                           // 网络上下文数据指针
   int32_t NetworkPacketProcessingStatus = 0;                       // 网络数据包处理状态
   int64_t ContextIdentifier = 0;                               // 网络连接上下文标识符
   NetworkStatus ValidationStatus = 0;                       // 验证状态
