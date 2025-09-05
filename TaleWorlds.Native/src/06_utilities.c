@@ -6801,7 +6801,7 @@ void ProcessUtilityDataRequest(longlong dataHandle,uint64_t requestInfo)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: ulonglong ProcessUtilityDataConversion(longlong contextHandle,undefined8 operationHandle)
+// 函数: ulonglong ProcessUtilityDataConversion(longlong contextHandle,uint64_t operationHandle)
 // 
 // 工具数据转换函数
 // 处理工具数据的转换操作，根据上下文句柄和操作句柄执行相应的数据转换
@@ -6812,7 +6812,7 @@ void ProcessUtilityDataRequest(longlong dataHandle,uint64_t requestInfo)
 // 
 // 返回值:
 //   成功返回0，失败返回错误代码
-ulonglong ProcessUtilityDataConversion(longlong contextHandle,undefined8 operationHandle)
+ulonglong ProcessUtilityDataConversion(longlong contextHandle,uint64_t operationHandle)
 
 {
   uint operationResult;
