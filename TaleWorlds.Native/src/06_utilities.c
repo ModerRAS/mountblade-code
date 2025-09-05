@@ -40087,42 +40087,68 @@ void ExceptionProcessorRegistrar3B0(DataBuffer processorContext, int64_t registr
 
 
 
-void Unwind_1809033f0(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常管理器配置器3F0
+ * 
+ * 配置异常管理器的参数和设置
+ * 
+ * @param managerContext 管理器上下文
+ * @param configurationData 配置数据
+ */
+void ExceptionManagerConfigurator3F0(DataBuffer managerContext, int64_t configurationData)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(param_2 + 0x50) + 1000,0x58,4,FUN_180044a30);
+  ConfigureExceptionManager(*(int64_t *)(configurationData + 0x50) + 1000, 0x58, 4, InitializeExceptionHandlers);
   return;
 }
 
 
 
-void Unwind_180903430(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+/**
+ * @brief 异常数据清理器430
+ * 
+ * 清理异常数据缓冲区并释放相关资源
+ * 
+ * @param cleanupContext 清理上下文
+ * @param dataPointer 数据指针
+ * @param cleanupParameters 清理参数
+ * @param cleanupFlags 清理标志
+ */
+void ExceptionDataCleaner430(DataBuffer cleanupContext, int64_t dataPointer, DataBuffer cleanupParameters, DataBuffer cleanupFlags)
 
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x30);
+  exceptionDataBuffer = *(DataBuffer **)(*(int64_t *)(dataPointer + 0x40) + 0x30);
   if (exceptionDataBuffer != (DataBuffer *)0x0) {
-    FUN_18004b790(*(int64_t *)(param_2 + 0x40) + 0x20,*exceptionDataBuffer,param_3,param_4,SystemCleanupFlagfffffffe);
+    ValidateAndCleanupExceptionData(*(int64_t *)(dataPointer + 0x40) + 0x20, *exceptionDataBuffer, cleanupParameters, cleanupFlags, SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(exceptionDataBuffer);
+    ReleaseExceptionBuffer(exceptionDataBuffer);
   }
   return;
 }
 
 
 
-void Unwind_180903440(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常上下文验证器440
+ * 
+ * 验证异常上下文数据结构的完整性和有效性
+ * 
+ * @param validatorContext 验证器上下文
+ * @param contextData 上下文数据
+ */
+void ExceptionContextValidator440(DataBuffer validatorContext, int64_t contextData)
 
 {
   int64_t validationContext;
   int64_t *pdataContext;
   int64_t calculatedOffset;
   
-  pdataContext = *(int64_t **)(param_2 + 0x40);
+  pdataContext = *(int64_t **)(contextData + 0x40);
   validationContext = pdataContext[1];
   for (calculatedOffset = *pdataContext; calculatedOffset != validationContext; calculatedOffset = calculatedOffset + 0x50) {
-    FUN_1800596a0(calculatedOffset);
+    ValidateExceptionContext(calculatedOffset);
   }
   if (*pdataContext == 0) {
     return;
@@ -40133,10 +40159,15 @@ void Unwind_180903440(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180903450(void)
+/**
+ * @brief 互斥锁销毁器450
+ * 
+ * 销毁系统互斥锁并释放相关资源
+ */
+void MutexDestroyer450(void)
 
 {
-  _Mtx_destroy_in_situ();
+  DestroyMutexInSitu();
   return;
 }
 
