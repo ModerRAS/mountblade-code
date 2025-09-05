@@ -32382,19 +32382,32 @@ void SetExceptionHandlerOffset1a0(undefined8 systemContext, longlong handlerTabl
 
 
 
-void Unwind_1809023d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 处理资源清理链
+ * 
+ * 该函数遍历资源清理链表，调用每个资源的清理回调函数，执行资源释放操作
+ * 如果资源链表为空，则直接返回；否则在清理完成后终止系统
+ * 
+ * @param exceptionContext 异常上下文指针（未使用）
+ * @param resourceManager 资源管理器指针
+ * @param cleanupParam 清理参数
+ * @param callbackData 回调数据
+ * 
+ * @note 原始函数名：Unwind_1809023d0
+ */
+void ProcessResourceCleanupChain(undefined8 exceptionContext, longlong resourceManager, undefined8 cleanupParam, undefined8 callbackData)
 
 {
-  undefined8 *puVar1;
-  undefined8 *resourcePointer;
-  undefined8 uVar3;
+  undefined8 *resourceListEnd;
+  undefined8 *currentResource;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x50);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x48); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
-    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
+  cleanupFlag = 0xfffffffffffffffe;
+  resourceListEnd = *(undefined8 **)(resourceManager + 0x50);
+  for (currentResource = *(undefined8 **)(resourceManager + 0x48); currentResource != resourceListEnd; currentResource = currentResource + 4) {
+    (**(code **)*currentResource)(currentResource, 0, cleanupParam, callbackData, cleanupFlag);
   }
-  if (*(longlong *)(param_2 + 0x48) == 0) {
+  if (*(longlong *)(resourceManager + 0x48) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
