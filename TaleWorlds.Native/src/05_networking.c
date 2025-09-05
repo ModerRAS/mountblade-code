@@ -1906,9 +1906,9 @@ void *NetworkConnectionRoutingSecondaryConfig;
 void *NetworkConnectionRoutingAlternativeConfig;
 
 /**
- * @brief 网络连接路由回退配置指针
+ * @brief 网络连接路由回退配置
  */
-void *NetworkConnectionRoutingFallbackConfigPointer;
+void *NetworkConnectionRoutingFallbackConfig;
 
 /**
  * @brief 网络连接上下文模板数据
@@ -1922,7 +1922,7 @@ uint32_t NetworkConnectionTemplateConfiguration;
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
-uint32_t NetworkConnectionPrimaryConfig;
+uint32_t NetworkConnectionPrimaryConfigData;
 
 /**
  * @brief 网络连接次要配置数据
@@ -1930,7 +1930,7 @@ uint32_t NetworkConnectionPrimaryConfig;
  * 包含网络连接的次要配置参数，作为主要配置的补充和备份配置方案。
  * 当主要配置不可用时，系统会自动切换到次要配置。
  */
-uint32_t NetworkConnectionSecondaryConfig;
+uint32_t NetworkConnectionSecondaryConfigData;
 
 /**
  * @brief 网络连接处理配置数据
