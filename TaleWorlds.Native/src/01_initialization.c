@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-
-
 // 系统管理器表偏移量
 #define SystemCompletionPortHandleOffset    0x42686  // 系统完成端口句柄偏移量
 #define SystemResourceManagerOffset         0x42687  // 系统资源管理器偏移量

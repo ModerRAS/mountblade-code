@@ -92146,8 +92146,14 @@ void DestroyMutex(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ResetSystemDataPointer(void)
-// 功能：重置系统数据指针到默认位置
+/**
+ * @brief 重置系统数据指针
+ * 
+ * 该函数负责重置系统数据指针到默认位置。
+ * 这是一个初始化辅助函数，用于确保系统指针处于已知的稳定状态。
+ * 
+ * @note 原始函数名：ResetSystemDataPointer
+ */
 void ResetSystemDataPointer(void)
 
 {
@@ -92160,10 +92166,14 @@ void ResetSystemDataPointer(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void SetGlobalDataPointerB0(void)
-// 功能：设置全局数据指针B0到指定地址
-// 参数：无
-// 返回值：无
+/**
+ * @brief 设置全局数据指针B0
+ * 
+ * 该函数负责设置全局数据指针B0到指定地址。
+ * 这是一个初始化辅助函数，用于配置系统的全局指针。
+ * 
+ * @note 原始函数名：SetGlobalDataPointerB0
+ */
 void SetGlobalDataPointerB0(void)
 
 {
