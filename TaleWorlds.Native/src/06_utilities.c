@@ -11671,19 +11671,31 @@ int ProcessStringData(longlong stringContext, longlong dataBuffer, int bufferSiz
 
 
 
-int FUN_180896aa0(longlong param_1,longlong param_2,int param_3)
+// 函数: int ProcessEncodedData(longlong encodingContext, longlong dataBuffer, int bufferSize)
+//
+// 编码数据处理函数
+// 处理编码数据，包括解码和转换操作
+// 
+// 参数:
+//   encodingContext - 编码上下文指针，包含编码处理的相关信息
+//   dataBuffer - 数据缓冲区指针，指向要处理的编码数据
+//   bufferSize - 缓冲区大小，指定要处理的数据长度
+// 
+// 返回值:
+//   int - 返回处理后的总字节数
+int ProcessEncodedData(longlong encodingContext, longlong dataBuffer, int bufferSize)
 
 {
-  undefined8 uVar1;
-  int iVar2;
-  int iVar3;
+  undefined8 encodingKey;
+  int processedBytes1;
+  int processedBytes2;
   
-  uVar1 = *(undefined8 *)(param_1 + 0x10);
-  iVar2 = FUN_18074b880(param_2,param_3,&UNK_1809863f8);
-  iVar3 = FUN_18074b880(param_2 + iVar2,param_3 - iVar2,&DAT_180a06434);
-  iVar2 = iVar2 + iVar3;
-  iVar3 = func_0x00018074be80(iVar2 + param_2,param_3 - iVar2,uVar1);
-  return iVar3 + iVar2;
+  encodingKey = *(undefined8 *)(encodingContext + 0x10);
+  processedBytes1 = FUN_18074b880(dataBuffer,bufferSize,&UNK_1809863f8);
+  processedBytes2 = FUN_18074b880(dataBuffer + processedBytes1,bufferSize - processedBytes1,&DAT_180a06434);
+  processedBytes1 = processedBytes1 + processedBytes2;
+  processedBytes2 = func_0x00018074be80(processedBytes1 + dataBuffer,bufferSize - processedBytes1,encodingKey);
+  return processedBytes2 + processedBytes1;
 }
 
 
