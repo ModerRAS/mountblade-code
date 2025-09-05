@@ -2062,18 +2062,18 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *NetworkConnectionParameter
 NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t NetworkConnectionContextIdentifier;      // 网络连接上下文标识符
+  int64_t ConnectionContextIdentifier;      // 网络连接上下文标识符
   int64_t *NetworkValidationDataPointer;           // 网络连接验证结果数据指针
   int32_t NetworkValidationStatusCode;             // 网络连接验证状态码
   NetworkHandle NetworkConnectionHandle;           // 网络连接上下文句柄
   
-  NetworkConnectionContextIdentifier = 0;
+  ConnectionContextIdentifier = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证状态码
   if (NetworkValidationStatusCode == 0) {
     if ((0 < *(int *)CalculateContextParameterOffset(NetworkValidationDataPointer)) && (*NetworkValidationDataPointer != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkValidationDataPointer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkValidationDataPointer = NetworkConnectionContextIdentifier;
+    *NetworkValidationDataPointer = ConnectionContextIdentifier;
     *(int *)CalculateContextParameterOffset(NetworkValidationDataPointer) = NetworkValidationStatusCode;
     return NetworkOperationSuccess;
   }
