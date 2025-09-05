@@ -91966,25 +91966,40 @@ void FreeSystemMemoryBuffer(void)
   _DAT_180bfc188 = 0xf;
 
 9429f0(void)
-void FUN_1809429f0(void)
+/**
+ * @brief 释放数据缓冲区资源
+ * 
+ * 该函数用于释放数据缓冲区相关的内存资源。它会检查数据缓冲区指针，
+ * 验证缓冲区大小，然后释放相应的内存资源。
+ * 
+ * 功能说明：
+ * 1. 检查数据缓冲区指针是否有效
+ * 2. 计算缓冲区大小并验证
+ * 3. 释放主数据缓冲区
+ * 4. 重置相关指针和计数器
+ * 5. 执行额外的清理操作
+ * 
+ * @note 原始函数名：FUN_1809429f0
+ */
+void ReleaseDataBufferResources(void)
 
 {
-  ulonglong uVar1;
-  longlong dataContext;
-  undefined8 in_R9;
+  ulonglong BufferSize;
+  longlong DataBufferPointer;
+  undefined8 SecurityParameter;
   
   if (lRam0000000180d49d68 != 0) {
-    uVar1 = (lRam0000000180d49d78 - lRam0000000180d49d68 >> 3) * 8;
-    dataContext = lRam0000000180d49d68;
-    if (0xfff < uVar1) {
-      dataContext = *(longlong *)(lRam0000000180d49d68 + -8);
-      if (0x1f < (lRam0000000180d49d68 - dataContext) - 8U) {
+    BufferSize = (lRam0000000180d49d78 - lRam0000000180d49d68 >> 3) * 8;
+    DataBufferPointer = lRam0000000180d49d68;
+    if (0xfff < BufferSize) {
+      DataBufferPointer = *(longlong *)(lRam0000000180d49d68 + -8);
+      if (0x1f < (lRam0000000180d49d68 - DataBufferPointer) - 8U) {
                     // WARNING: Subroutine does not return
         _invalid_parameter_noinfo_noreturn
-                  (lRam0000000180d49d68 - dataContext,uVar1 + 0x27,dataContext,in_R9,0xfffffffffffffffe);
+                  (lRam0000000180d49d68 - DataBufferPointer,BufferSize + 0x27,DataBufferPointer,SecurityParameter,0xfffffffffffffffe);
       }
     }
-    free(dataContext);
+    free(DataBufferPointer);
     lRam0000000180d49d68 = 0;
     uRam0000000180d49d70 = 0;
     lRam0000000180d49d78 = 0;
