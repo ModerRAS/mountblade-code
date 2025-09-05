@@ -3703,31 +3703,33 @@ undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180890490(longlong param_1)
+// 函数: undefined8 ProcessMemoryFlagUpdate(longlong param_1)
+// 功能：处理内存标志更新，遍历内存区域并更新特定标志位
+undefined8 ProcessMemoryFlagUpdate(longlong param_1)
 
 {
-  uint *puVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong *plVar4;
-  longlong alStackX_8 [4];
+  uint *flagPointer;
+  longlong memoryBlock;
+  undefined8 validationStatus;
+  longlong *iterator;
+  longlong stackBuffer [4];
   
-  uVar3 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_8);
-  if ((int)uVar3 == 0) {
-    plVar4 = *(longlong **)(alStackX_8[0] + 0x20);
-    while ((*(longlong **)(alStackX_8[0] + 0x20) <= plVar4 &&
-           (plVar4 < *(longlong **)(alStackX_8[0] + 0x20) + *(int *)(alStackX_8[0] + 0x28)))) {
-      lVar2 = *plVar4;
-      plVar4 = plVar4 + 1;
-      if ((*(longlong *)(lVar2 + 0x18) == *(longlong *)(alStackX_8[0] + 8)) &&
-         (lVar2 = *(longlong *)(lVar2 + 0x10), lVar2 != 0)) {
-        puVar1 = (uint *)(lVar2 + 0x2d8);
-        *puVar1 = *puVar1 | 4;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),stackBuffer);
+  if ((int)validationStatus == 0) {
+    iterator = *(longlong **)(stackBuffer[0] + 0x20);
+    while ((*(longlong **)(stackBuffer[0] + 0x20) <= iterator &&
+           (iterator < *(longlong **)(stackBuffer[0] + 0x20) + *(int *)(stackBuffer[0] + 0x28)))) {
+      memoryBlock = *iterator;
+      iterator = iterator + 1;
+      if ((*(longlong *)(memoryBlock + 0x18) == *(longlong *)(stackBuffer[0] + 8)) &&
+         (memoryBlock = *(longlong *)(memoryBlock + 0x10), memoryBlock != 0)) {
+        flagPointer = (uint *)(memoryBlock + 0x2d8);
+        *flagPointer = *flagPointer | 4;
       }
     }
-    uVar3 = 0;
+    validationStatus = 0;
   }
-  return uVar3;
+  return validationStatus;
 }
 
 
@@ -81878,8 +81880,9 @@ void CleanupThreadSyncResources(void)
 
 
 
-// 函数: void FUN_1809416d0(void)
-void FUN_1809416d0(void)
+// 函数: void ReleaseMutexAndCondition(void)
+// 功能：释放互斥锁和条件变量资源
+void ReleaseMutexAndCondition(void)
 
 {
   _Mtx_destroy_in_situ();
