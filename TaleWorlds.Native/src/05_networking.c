@@ -2181,7 +2181,7 @@ uint32_t NetworkConnectionParameters;                     // 网络连接参数
 uint32_t NetworkConnectionOptions;                        // 网络连接选项
 uint32_t NetworkConnectionConfiguration;                         // 网络连接配置
 uint32_t NetworkConnectionGeneralSettings;                       // 网络连接设置
-uint32_t NetworkConnectionContextIdentifier;                 // 网络连接上下文标识符
+uint32_t ConnectionContextIdentifier;                 // 网络连接上下文标识符
 uint32_t NetworkConnectionContextDataPointer;                  // 网络连接上下文数据指针
 uint32_t NetworkConnectionContextConfiguration;                // 网络连接上下文配置
 uint32_t NetworkConnectionValidationStatus;              // 连接验证状态
@@ -2467,7 +2467,7 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
             NetworkConnectionStatusIterator[ConnectionContextPacketStatusIndex] = NetworkPacketStatus;
             NetworkConnectionStatusIterator[ConnectionContextDataStatusIndex] = NetworkDataStatus;
             NetworkConnectionStatusIterator[ConnectionContextValidationStatusIndex] = NetworkValidationStatus;
-            NetworkConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastConnectionEntryOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusIterator);
+            NetworkConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastConnectionEntryAddress(ConnectionContextAddress, NetworkConnectionStatusBuffer, NetworkConnectionStatusIterator);
             
             // 更新计数器
             ConnectionIterationCounter = ConnectionIterationCounter - 1;
@@ -2534,7 +2534,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   // 连接状态处理变量
   NetworkStatus *NetworkContextDataPointer;                           // 网络上下文数据指针
   int32_t NetworkPacketProcessingStatus;                       // 网络数据包处理状态
-  int64_t NetworkConnectionContextIdentifier;                               // 网络连接上下文标识符
+  int64_t ContextIdentifier;                               // 网络连接上下文标识符
   NetworkStatus ValidationStatus;                       // 验证状态
   NetworkStatus TimeoutStatus;                          // 超时状态
   NetworkStatus SecondaryProcessingStatus;              // 次级处理状态
@@ -2564,10 +2564,10 @@ PrimaryNetworkProcessingComplete:
     if (ConnectionStatusPointer != NULL) {
       int32_t ProcessingCode = (int)ConnectionOperationBuffer[NetworkOperationBufferSizeIndex];
       int64_t NetworkStatusIterationCounter = (long long)ProcessingCode;
-      if ((ProcessingCode != 0) && (NetworkConnectionContextIdentifier = *ConnectionOperationBuffer, 0 < ProcessingCode)) {
+      if ((ProcessingCode != 0) && (ContextIdentifier = *ConnectionOperationBuffer, 0 < ProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
-          NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerOffset(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
+          NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerAddress(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           NetworkStatus NetworkValidationState = NetworkContextStatusPointer[NetworkStatusValidationIndex];
           NetworkStatus NetworkTimeoutState = NetworkContextStatusPointer[NetworkStatusTimeoutIndex];
           NetworkStatus NetworkSecondaryState = NetworkContextStatusPointer[NetworkStatusSecondaryIndex];
