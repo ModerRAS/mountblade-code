@@ -58,6 +58,18 @@
 #define SystemIdentifierSize                0x10  // 系统标识符大小
 #define SystemNodeAllocationExtraSize       0x20  // 系统节点分配额外大小
 #define SystemIdentifierComparisonSize      0x10  // 系统标识符比较大小
+#define SystemResourceDataOffset           0x40  // 系统资源数据偏移量
+#define SystemResourceSecondaryOffset       0x48  // 系统资源次要偏移量
+#define SystemResourceTertiaryOffset        0x50  // 系统资源第三偏移量
+#define SystemResourceQuaternaryOffset       0x58  // 系统资源第四偏移量
+#define SystemResourceQuinaryOffset          0x60  // 系统资源第五偏移量
+#define SystemResourceSenaryOffset           0x68  // 系统资源第六偏移量
+#define SystemResourceSeptenaryOffset         0x6c  // 系统资源第七偏移量
+#define SystemResourceOctonaryOffset          0x70  // 系统资源第八偏移量
+#define SystemResourceNonaryOffset           0x78  // 系统资源第九偏移量
+#define SystemResourceDenaryOffset           0x80  // 系统资源第十偏移量
+#define SystemResourceUndenaryOffset          0x88  // 系统资源第十一偏移量
+#define SystemResourceDuodenaryOffset         0x90  // 系统资源第十二偏移量
 
 // 系统状态常量
 #define SystemNodeInactiveFlag              3  // 系统节点非活动标志
@@ -6279,7 +6291,7 @@ void InitializeSystemMemoryNode(void)
     CurrentNodePointer = NextNodePointer;
     IsMemoryNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((PreviousNodePointer == RootNodeReference) || (MemoryIdentifierComparisonResult = memcmp(&SystemDataTemplateL,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),0x10), MemoryIdentifierComparisonResult < 0)) {
+  if ((PreviousNodePointer == RootNodeReference) || (MemoryIdentifierComparisonResult = memcmp(&SystemDataTemplateL,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),SystemIdentifierComparisonSize), MemoryIdentifierComparisonResult < 0)) {
     long long SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** AllocatedNodePointer;
     AllocateSystemMemory(SystemDataTable,&AllocatedNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
@@ -21699,7 +21711,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationWidthTemplate,
                     (double)(float)(scaleFactorValue * 9.5367431640625e-07));
-      SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x40 + SystemOperationFlags);
+      SystemResourceDataIndex = *(long long *)(ResourceDataOffset + SystemResourceDataOffset + SystemOperationFlags);
       scaleFactorValue = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
         scaleFactorValue = scaleFactorValue + 1.8446744073709552e+19;
@@ -22013,23 +22025,23 @@ long long ManageSystemResources(long long SystemResourceManager,long long resour
   *(void* *)(SystemResourceManager + 0x30) = *(void* *)(ConfigurationDataPointer + 0x30);
   *(void* *)(SystemResourceManager + 0x38) = resourceHandle;
   resourceHandle = *(void* *)(ConfigurationDataPointer + 0x48);
-  *(void* *)(SystemResourceManager + 0x40) = *(void* *)(ConfigurationDataPointer + 0x40);
-  *(void* *)(SystemResourceManager + 0x48) = resourceHandle;
+  *(void* *)(SystemResourceManager + SystemResourceDataOffset) = *(void* *)(ConfigurationDataPointer + SystemResourceDataOffset);
+  *(void* *)(SystemResourceManager + SystemResourceSecondaryOffset) = resourceHandle;
   resourceHandle = *(void* *)(ConfigurationDataPointer + 0x58);
-  *(void* *)(SystemResourceManager + 0x50) = *(void* *)(ConfigurationDataPointer + 0x50);
-  *(void* *)(SystemResourceManager + 0x58) = resourceHandle;
+  *(void* *)(SystemResourceManager + SystemResourceTertiaryOffset) = *(void* *)(ConfigurationDataPointer + SystemResourceTertiaryOffset);
+  *(void* *)(SystemResourceManager + SystemResourceQuaternaryOffset) = resourceHandle;
   ResourceStatusFlagPrimary = *(uint32_t *)(ConfigurationDataPointer + 100);
-  ResourceStatusFlagSecondary = *(uint32_t *)(ConfigurationDataPointer + 0x68);
-  ResourceStatusFlagTertiary = *(uint32_t *)(ConfigurationDataPointer + 0x6c);
-  *(uint32_t *)(SystemResourceManager + 0x60) = *(uint32_t *)(ConfigurationDataPointer + 0x60);
+  ResourceStatusFlagSecondary = *(uint32_t *)(ConfigurationDataPointer + SystemResourceSenaryOffset);
+  ResourceStatusFlagTertiary = *(uint32_t *)(ConfigurationDataPointer + SystemResourceSeptenaryOffset);
+  *(uint32_t *)(SystemResourceManager + SystemResourceQuinaryOffset) = *(uint32_t *)(ConfigurationDataPointer + SystemResourceQuinaryOffset);
   *(uint32_t *)(SystemResourceManager + 100) = ResourceStatusFlagPrimary;
-  *(uint32_t *)(SystemResourceManager + 0x68) = ResourceStatusFlagSecondary;
-  *(uint32_t *)(SystemResourceManager + 0x6c) = ResourceStatusFlagTertiary;
-  *(void* *)(SystemResourceManager + 0x70) = *(void* *)(ConfigurationDataPointer + 0x70);
-  *(void* *)(SystemResourceManager + 0x78) = *(void* *)(ConfigurationDataPointer + 0x78);
-  *(void* *)(SystemResourceManager + 0x80) = *(void* *)(ConfigurationDataPointer + 0x80);
-  *(void* *)(SystemResourceManager + 0x88) = *(void* *)(ConfigurationDataPointer + 0x88);
-  *(void* *)(SystemResourceManager + 0x90) = *(void* *)(ConfigurationDataPointer + 0x90);
+  *(uint32_t *)(SystemResourceManager + SystemResourceSenaryOffset) = ResourceStatusFlagSecondary;
+  *(uint32_t *)(SystemResourceManager + SystemResourceSeptenaryOffset) = ResourceStatusFlagTertiary;
+  *(void* *)(SystemResourceManager + SystemResourceOctonaryOffset) = *(void* *)(ConfigurationDataPointer + SystemResourceOctonaryOffset);
+  *(void* *)(SystemResourceManager + SystemResourceNonaryOffset) = *(void* *)(ConfigurationDataPointer + SystemResourceNonaryOffset);
+  *(void* *)(SystemResourceManager + SystemResourceDenaryOffset) = *(void* *)(ConfigurationDataPointer + SystemResourceDenaryOffset);
+  *(void* *)(SystemResourceManager + SystemResourceUndenaryOffset) = *(void* *)(ConfigurationDataPointer + SystemResourceUndenaryOffset);
+  *(void* *)(SystemResourceManager + SystemResourceDuodenaryOffset) = *(void* *)(ConfigurationDataPointer + SystemResourceDuodenaryOffset);
   *(uint32_t *)(SystemResourceManager + 0x98) = *(uint32_t *)(ConfigurationDataPointer + 0x98);
   *(uint32_t *)(SystemResourceManager + 0x9c) = *(uint32_t *)(ConfigurationDataPointer + 0x9c);
   *(void* *)(SystemResourceManager + 0xa0) = *(void* *)(ConfigurationDataPointer + 0xa0);
