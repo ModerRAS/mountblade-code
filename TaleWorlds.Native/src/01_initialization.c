@@ -19622,19 +19622,19 @@ SymbolInitializationCleanup:
     ThrowSystemError(SystemMutexUnLockOperationResult);
   }
 SkipLibraryHandleInitialization:
-  void* SystemDebugMemoryBlockPrimary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
-  *SystemDebugMemoryBlockPrimary = 0;
-  void* SystemDebugMemoryBlockSecondary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
-  *SystemDebugMemoryBlockPrimary = &PrimaryDebugDataBuffer;
-  *SystemDebugMemoryBlockSecondary = &SecondaryDebugDataBuffer;
-  void* SystemDebugMemoryBlockTertiary = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
-  uint8_t* SystemDebugMemoryBlockQuaternary = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
-  *SystemDebugMemoryBlockQuaternary = 0;
-  SystemDebugMemoryBlockTertiary[2] = SystemDebugMemoryBlockQuaternary;
-  SystemMemoryBlockStorage = SystemDebugMemoryBlockTertiary;
-  *SystemDebugMemoryBlockTertiary = SecondaryAllocatedMemoryBlock;
-  SystemDebugMemoryBlockTertiary[1] = SystemDebugMemoryBlockPrimary;
-  SystemDebugMemoryBlockTertiary[3] = timerMemoryBlock;
+  void* PrimaryDebugMemoryBlock = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
+  *PrimaryDebugMemoryBlock = 0;
+  void* SecondaryDebugMemoryBlock = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,8,8,3);
+  *PrimaryDebugMemoryBlock = &PrimaryDebugDataBuffer;
+  *SecondaryDebugMemoryBlock = &SecondaryDebugDataBuffer;
+  void* TertiaryDebugMemoryBlock = (void* *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x20,8,3);
+  uint8_t* QuaternaryDebugMemoryBlock = (uint8_t *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,1,1,3);
+  *QuaternaryDebugMemoryBlock = 0;
+  TertiaryDebugMemoryBlock[2] = QuaternaryDebugMemoryBlock;
+  SystemMemoryBlockStorage = TertiaryDebugMemoryBlock;
+  *TertiaryDebugMemoryBlock = SecondaryAllocatedMemoryBlock;
+  TertiaryDebugMemoryBlock[1] = PrimaryDebugMemoryBlock;
+  TertiaryDebugMemoryBlock[3] = timerMemoryBlock;
   timerMemoryBlock = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x198,8,3);
   SystemTimerStoragePointer = CreateSystemTimer(timerMemoryBlock);
   counterMemoryBlock = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xa8,8,3);
