@@ -3961,7 +3961,7 @@ uint32_t DataProcessingBuffer2;
 void* DataProcessingPointer4;
 
 // 函数: undefined UtilityProcessData4;
-undefined UtilityProcessData4;
+void* UtilityProcessData4;
 undefined UtilityDataProcessor1;
 undefined UtilityDataProcessor2;
 undefined UtilityProcessPointer5;
@@ -90335,7 +90335,15 @@ void SetDefaultExceptionHandler08(void)
 
 
 942240(void)
-void FUN_180942240(void)
+/**
+ * @brief 设置默认异常处理器09
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942240
+ */
+void SetDefaultExceptionHandler09(void)
 
 {
   _DAT_180bf9b70 = &DefaultExceptionHandlerB;

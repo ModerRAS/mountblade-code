@@ -254,6 +254,15 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkSecurityEnabled 0x01                            // 安全功能：已启用
 #define NetworkBufferInitialized 0x01                          // 缓冲区状态：已初始化
 #define NetworkConnectionEstablished 0x01                      // 连接状态：已建立
+
+// 网络缓冲区初始化标志
+#define NetworkBufferInitializationFlag NetworkBufferInitialized // 缓冲区初始化标志别名
+
+// 网络连接状态标志
+#define NetworkHealthGoodFlag NetworkHealthGood                    // 连接健康状态良好标志
+#define NetworkStabilityHighFlag NetworkStabilityHigh             // 连接稳定性高标志  
+#define NetworkPerformanceGoodFlag NetworkPerformanceGood         // 连接性能良好标志
+#define NetworkQueueEnabledFlag NetworkQueueEnabled                // 队列启用标志别名
 #define NetworkPacketStatusPrimaryOffset 0x38                  // 网络数据包主状态偏移量
 #define NetworkPacketStatusSecondaryOffset 0x3c                // 网络数据包次级状态偏移量
 #define NetworkPacketStatusTertiaryOffset 0x40                 // 网络数据包第三级状态偏移量
@@ -900,6 +909,7 @@ uint32_t NetworkErrorReportTemplate;                        // 网络错误报�
 
 // 网络协议和地址配置
 uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）
+uint32_t NetworkConnectionProtocol;                       // 网络连接协议，连接使用的协议配置
 uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本，指定协议的版本号用于兼容性检查
 uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址，存储服务器的IP地址信息
 uint32_t NetworkServerPortNumber;                         // 网络服务器端口号，服务器监听的端口号
@@ -910,6 +920,11 @@ uint32_t NetworkClientPortNumber;                         // 网络客户端端�
 uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符，操作系统分配的套接字标识符
 uint32_t NetworkSocketCategory;                           // 网络套接字类别，套接字的分类信息（流式、数据报等）
 uint32_t NetworkSocketProtocolType;                       // 网络套接字协议类型，套接字使用的协议类型
+uint32_t NetworkSocketType;                               // 网络套接字类型，套接字的类型配置
+uint32_t NetworkSocketProtocol;                           // 网络套接字协议，套接字使用的协议配置
+uint32_t NetworkConnectionPriority;                        // 网络连接优先级，连接的优先级配置
+uint32_t NetworkSocketSize;                                // 网络套接字大小，套接字结构的大小
+uint32_t NetworkSocketContextSize;                         // 网络套接字上下文大小，套接字上下文的大小
 uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
 uint32_t NetworkSocketIndex;                            // 网络套接字索引，套接字的索引位置
 uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据
@@ -1272,7 +1287,7 @@ void StartListeningForConnections(void)
   
   // 设置连接限制参数
   NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;                // 设置最大连接数为100
-  NetworkActiveConnectionsCount = 0;                   // 重置网络活跃连接计数为0
+  NetworkCurrentActiveConnectionsCount = 0;                   // 重置网络活跃连接计数为0
   
   // 初始化连接状态管理器
   NetworkConnectionStateManager = NetworkConnectionStateEnabled;               // 设置状态管理器为启用状态
@@ -1284,7 +1299,7 @@ void StartListeningForConnections(void)
   
   // 初始化连接统计信息
   NetworkTotalConnectionAttempts = 0;                       // 重置网络连接尝试总次数为0
-  NetworkFailedConnectionAttempts = 0;                       // 重置网络连接失败次数为0
+  NetworkTotalFailedConnectionAttempts = 0;                       // 重置网络连接失败次数为0
   NetworkAverageConnectionTime = 0;                           // 重置网络平均连接时间为0
   NetworkLastActivityTimestamp = 0;                             // 重置网络最后活动时间戳为0
 }
@@ -1327,7 +1342,7 @@ void AcceptConnection(void)
   NetworkEncryptionTimeout = NetworkTimeoutFiveSeconds;                   // 设置加密超时时间为5秒
   
   // 更新连接统计
-  NetworkActiveConnectionsCount++;                     // 增加活跃连接计数
+  NetworkCurrentActiveConnectionsCount++;                     // 增加活跃连接计数
   NetworkTotalConnectionAttempts++;                         // 增加连接尝试计数
 }
 
@@ -1367,7 +1382,7 @@ void CloseConnection(void)
   NetworkCallbackHandler = 0x00;                       // 清理回调处理器
   
   // 重置统计信息
-  NetworkActiveConnectionsCount = 0;                   // 重置活跃连接计数
+  NetworkCurrentActiveConnectionsCount = 0;                   // 重置活跃连接计数
   NetworkAverageConnectionTime = 0;                           // 重置连接时间
   NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间
 }
@@ -1872,7 +1887,9 @@ uint32_t NetworkCurrentPacketLossRate;                         // 网络当前�
 uint32_t NetworkCurrentPacketRetransmissionCount;          // 网络当前数据包重传次数
 uint32_t NetworkCurrentActiveConnectionsCount;             // 网络当前活跃连接数量
 uint32_t NetworkTotalConnectionAttempts;            // 网络连接总尝试次数
+uint32_t NetworkFailedConnectionAttempts;            // 网络连接失败次数
 uint32_t NetworkTotalFailedConnectionAttempts;            // 网络连接总失败尝试次数
+uint32_t NetworkAverageConnectionTime;              // 网络平均连接时间
 uint32_t NetworkCurrentAverageConnectionTime;               // 网络当前平均连接时间
 uint32_t NetworkLastActivityTimestamp;              // 网络最后活动时间戳
 uint32_t NetworkPacketBufferPointer;                 // 网络数据包缓冲区指针

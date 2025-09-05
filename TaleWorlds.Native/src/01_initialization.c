@@ -19376,7 +19376,7 @@ HandleMemoryBufferOverflow:
         return;
       }
       UserNameBuffer[(ulong long)MemoryBufferCapacityValue & SystemMaximumUnsigned32BitValue] = 0;
-      (**(code **)(SystemGlobalDataReferencePtr2 + 0x10))(&SystemGlobalDataReferencePtr2,UserNameBuffer);
+      (**(code **)(SystemSecondaryGlobalDataReferencePtr + 0x10))(&SystemSecondaryGlobalDataReferencePtr,UserNameBuffer);
     }
     SystemStringTemplatePointer = &SystemStringTemplate;
     if (SystemTertiaryStringBuffer != (void* *)0x0) {
@@ -44392,7 +44392,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* StackPointerTwoHundredTenth;
   uint32_t SystemMaxOperationCountSecondary;
   void* *pStackAllocationSize;
-  void* *SystemGlobalDataReferencePtr2;
+  void* *SystemSecondaryGlobalDataReferencePtr;
   uint32_t StackMemoryOffset;
   void* *pGlobalDataFlags2;
   void* *SystemGlobalDataReferencePtr;
@@ -44574,8 +44574,8 @@ void ReleaseSystemResource(void* SystemResourceManager)
                 ((double)(ResourceDataLocation - SystemPerformanceCounterStorage) * SystemPerformanceFrequencyStorage - *(double *)(resourceCounter + 0x210));
   ConfigureSystemDataBuffer(&MemoryContextPointer,&SystemConfigBufferTemplate1,&SystemGlobalDataReference,&SystemConfigBufferTemplate2);
   punsignedValue348 = &SystemStringTemplate;
-  if (SystemGlobalDataReferencePtr2 != (void* *)0x0) {
-    punsignedValue348 = SystemGlobalDataReferencePtr2;
+  if (SystemSecondaryGlobalDataReferencePtr != (void* *)0x0) {
+    punsignedValue348 = SystemSecondaryGlobalDataReferencePtr;
   }
   ConfigureSystemDataBuffer(&MemoryContextPointer,&SystemDataBufferConfigTemplate,&SystemGlobalDataReference,&SystemConfigParam3);
   SystemStringTemplatePointer2 = (void* *)0x0;
@@ -44814,11 +44814,11 @@ SystemResultCheckLoop:
       SystemCleanupFunction(SystemDataBufferPointer);
   }
   pStackAllocationSize = &SystemGlobalDataReference;
-  if (SystemGlobalDataReferencePtr2 != (void* *)0x0) {
+  if (SystemSecondaryGlobalDataReferencePtr != (void* *)0x0) {
     SystemStringTemplatePointer = SystemDataResourcePointer;
       SystemCleanupFunction();
   }
-  SystemGlobalDataReferencePtr2 = (void* *)0x0;
+  SystemSecondaryGlobalDataReferencePtr = (void* *)0x0;
   SystemInitializationStatusFlag = 0;
   pStackAllocationSize = &SystemMemoryAllocatorReference;
   MemoryContextPointer = &SystemGlobalDataReference;
@@ -48994,7 +48994,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   int StackVariable210;
   uint32_t SystemMaxOperationCountSecondary;
   void* SystemMaxOperationCountTertiary;
-  void* *SystemGlobalDataReferencePtr2;
+  void* *SystemSecondaryGlobalDataReferencePtr;
   byte *ByteBuffer1F0;
   int IntegerStack1E8;
   byte ArrayBuffer1E0 [256];
