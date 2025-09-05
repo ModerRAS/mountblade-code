@@ -576,6 +576,14 @@
 // 功能：清理系统资源
 #define CleanupSystemResourceE1 FUN_180657620
 
+// 原始函数名：FUN_18064d630 - 异常处理函数E0
+// 功能：处理异常情况
+#define HandleExceptionE0 FUN_18064d630
+
+// 原始函数名：FUN_180639250 - 系统重置函数E0
+// 功能：重置系统状态
+#define ResetSystemStateE0 FUN_180639250
+
 // 函数: void InitializeUtilityModule(void)
 // 
 // 初始化工具模块
@@ -2138,10 +2146,10 @@ undefined DAT_180bfaed8;
 undefined ConfigureUtilitySystemBuffers;
 undefined DAT_180bfaee0;
 undefined DAT_180bfaee8;
-undefined DAT_180c92050;
-undefined DAT_180c92058;
-undefined DAT_180c92060;
-undefined DAT_180c92068;
+undefined UtilitySystemMemoryData1;
+undefined UtilitySystemMemoryData2;
+undefined UtilitySystemMemoryData3;
+undefined UtilitySystemMemoryData4;
 
 // 函数: undefined SetupUtilitySystemMemory;
 #define SetupUtilitySystemMemory FUN_180942790
@@ -2197,18 +2205,18 @@ undefined ProcessUtilitySystemData;
 // 函数: void ValidateUtilitySystemData();
 #define ValidateUtilitySystemData FUN_1809429f0
 undefined ValidateUtilitySystemData;
-undefined DAT_180c924ac;
-undefined UtilitySystemDataPointer10;
-undefined DAT_180c924b0;
-undefined DAT_180a2c1d0;
-undefined DAT_180c924b4;
-undefined DAT_180a2c338;
-undefined DAT_180c924b8;
-undefined DAT_180a2c510;
-undefined DAT_180bf6048;
-undefined DAT_180bf6050;
-undefined DAT_180bf6058;
-undefined DAT_180bf6060;
+undefined UtilitySystemValidateData1;
+undefined UtilitySystemValidateDataPointer1;
+undefined UtilitySystemValidateData2;
+undefined UtilitySystemValidateStatus1;
+undefined UtilitySystemValidateData3;
+undefined UtilitySystemValidateStatus2;
+undefined UtilitySystemValidateData4;
+undefined UtilitySystemValidateStatus3;
+undefined UtilitySystemProcessData1;
+undefined UtilitySystemProcessData2;
+undefined UtilitySystemProcessData3;
+undefined UtilitySystemProcessData4;
 
 // 函数: undefined FUN_180942a60;
 undefined FUN_180942a60;
@@ -50102,32 +50110,32 @@ void Unwind_180908660(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180908670(undefined8 param_1,longlong param_2)
+void CleanupExceptionResourcesA2(undefined8 exceptionContext,longlong unwindInfo)
 
 {
-  longlong *plVar1;
-  longlong lVar2;
-  undefined8 uVar3;
+  longlong *resourcePointer;
+  longlong contextBase;
+  undefined8 cleanupFlag;
   
-  lVar2 = *(longlong *)(param_2 + 0x50);
-  uVar3 = 0xfffffffffffffffe;
-  *(longlong *)(lVar2 + 0x15d8) =
-       *(longlong *)(&DAT_180c8ed30 + (longlong)*(int *)(lVar2 + 0x15e0) * 8) + -100000;
-  FUN_180090b80((longlong *)(lVar2 + 0x8b0));
-  *(undefined4 *)(lVar2 + 0x15e8) = 0;
-  plVar1 = *(longlong **)(lVar2 + 0x15d0);
-  *(undefined8 *)(lVar2 + 0x15d0) = 0;
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  contextBase = *(longlong *)(unwindInfo + 0x50);
+  cleanupFlag = 0xfffffffffffffffe;
+  *(longlong *)(contextBase + 0x15d8) =
+       *(longlong *)(&ExceptionDataTable1 + (longlong)*(int *)(contextBase + 0x15e0) * 8) + -100000;
+  FUN_180090b80((longlong *)(contextBase + 0x8b0));
+  *(undefined4 *)(contextBase + 0x15e8) = 0;
+  resourcePointer = *(longlong **)(contextBase + 0x15d0);
+  *(undefined8 *)(contextBase + 0x15d0) = 0;
+  if (resourcePointer != (longlong *)0x0) {
+    (**(code **)(*resourcePointer + 0x38))();
   }
-  if (*(longlong **)(lVar2 + 0x15d0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(lVar2 + 0x15d0) + 0x38))();
+  if (*(longlong **)(contextBase + 0x15d0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(contextBase + 0x15d0) + 0x38))();
   }
-  FUN_1808fc8a8(lVar2 + 0x8e0,0x20,0x50,FUN_180627b90,uVar3);
-  FUN_1808fc8a8(lVar2 + 0x8b8,8,4,FUN_180045af0);
-  plVar1 = *(longlong **)(lVar2 + 0x8b0);
-  if (plVar1 != (longlong *)0x0) {
-    (**(code **)(*plVar1 + 0x38))();
+  FUN_1808fc8a8(contextBase + 0x8e0,0x20,0x50,FUN_180627b90,cleanupFlag);
+  FUN_1808fc8a8(contextBase + 0x8b8,8,4,FUN_180045af0);
+  resourcePointer = *(longlong **)(contextBase + 0x8b0);
+  if (resourcePointer != (longlong *)0x0) {
+    (**(code **)(*resourcePointer + 0x38))();
   }
   return;
 }
