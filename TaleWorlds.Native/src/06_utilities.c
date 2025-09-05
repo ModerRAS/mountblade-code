@@ -14510,27 +14510,60 @@ int ProcessUtilityDataWithEncryption(longlong dataContext,longlong dataBuffer,in
 
 
 
+/**
+ * @brief 处理带验证的工具系统数据
+ * 
+ * 该函数处理工具系统数据，包含验证步骤，依次执行数据加密、缓冲区处理、
+ * 系统缓冲区处理、验证操作和转换操作。函数通过多个步骤处理数据，
+ * 确保数据处理的正确性和完整性。
+ * 
+ * @param dataContext 数据上下文指针，包含处理配置信息
+ * @param dataBuffer 数据缓冲区指针，指向待处理的数据
+ * @param dataSize 数据大小，指定需要处理的数据长度
+ * 
+ * @return int 处理后的数据大小，如果失败返回错误码
+ * 
+ * @note 原始函数名：FUN_180893180
+ * @warning 函数包含多个处理步骤，确保每个步骤都成功执行
+ * @see ProcessSystemDataWithEncryption, ProcessSystemBufferDataA0, ExecuteSystemBufferProcessingA0
+ * @see ExecuteSystemBufferValidationA0, ProcessSystemBufferConversionA0
+ */
 int ProcessUtilityDataWithValidation(longlong dataContext,longlong dataBuffer,int dataSize)
 
 {
-  int iVar1;
-  int operationResult;
+  int ProcessedBytes;            // 已处理的字节数
+  int OperationResult;           // 操作结果
   
-  iVar1 = ProcessSystemDataWithEncryption(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
-  operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&SystemDataBufferA);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ExecuteSystemBufferProcessingA0(iVar1 + param_2,param_3 - iVar1,param_1 + 0x18,
-                        *(undefined4 *)(param_1 + 0x10));
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&SystemDataBufferA);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ExecuteSystemBufferValidationA0(iVar1 + param_2,param_3 - iVar1,
-                        param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&SystemDataBufferA);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemBufferConversionA0(iVar1 + param_2,param_3 - iVar1,*(undefined1 *)(param_1 + 0x14));
-  return operationResult + iVar1;
+  // 第一步：执行数据加密
+  ProcessedBytes = ProcessSystemDataWithEncryption(dataBuffer, dataSize, *(undefined4 *)(dataContext + 0x10));
+  
+  // 第二步：处理数据缓冲区
+  OperationResult = ProcessSystemBufferDataA0(dataBuffer + ProcessedBytes, dataSize - ProcessedBytes, &SystemDataBufferA);
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第三步：执行系统缓冲区处理
+  OperationResult = ExecuteSystemBufferProcessingA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, dataContext + 0x18,
+                        *(undefined4 *)(dataContext + 0x10));
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第四步：再次处理数据缓冲区
+  OperationResult = ProcessSystemBufferDataA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, &SystemDataBufferA);
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第五步：执行系统缓冲区验证
+  OperationResult = ExecuteSystemBufferValidationA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes,
+                        dataContext + 0x18 + (longlong)*(int *)(dataContext + 0x10) * 8);
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第六步：第三次处理数据缓冲区
+  OperationResult = ProcessSystemBufferDataA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, &SystemDataBufferA);
+  ProcessedBytes = ProcessedBytes + OperationResult;
+  
+  // 第七步：执行数据缓冲区转换
+  OperationResult = ProcessSystemBufferConversionA0(ProcessedBytes + dataBuffer, dataSize - ProcessedBytes, *(undefined1 *)(dataContext + 0x14));
+  
+  // 返回总处理字节数
+  return OperationResult + ProcessedBytes;
 }
 
 
