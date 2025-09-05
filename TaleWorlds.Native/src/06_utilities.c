@@ -5419,26 +5419,36 @@ undefined8 FUN_1808914ac(void)
 
 
 
-// 函数: void FUN_1808914e0(longlong param_1,longlong param_2)
-void FUN_1808914e0(longlong param_1,longlong param_2)
+// 函数: void ValidateAndProcessUtilityData(longlong dataContext,longlong systemContext)
+// 
+// 验证并处理工具数据
+// 对传入的数据上下文和系统上下文进行验证，并在验证通过后处理相关数据
+// 
+// 参数:
+//   dataContext - 数据上下文，包含数据的相关信息和状态
+//   systemContext - 系统上下文，包含系统的运行状态和配置
+// 
+// 返回值:
+//   void - 无返回值
+void ValidateAndProcessUtilityData(longlong dataContext,longlong systemContext)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18073b5f0(*(undefined8 *)(param_2 + 0x78),*(undefined4 *)(param_1 + 0x10),
-                        param_1 + 0x14,param_1 + 0x20,param_1 + 0x2c,param_1 + 0x38);
-  if ((iVar1 == 0) &&
-     (iVar1 = func_0x0001808d2620((longlong)*(int *)(param_1 + 0x10) * 0x44 +
-                                  *(longlong *)(param_2 + 0x90) + 0x554,param_1 + 0x14), iVar1 == 0)
+  validationResult = FUN_18073b5f0(*(undefined8 *)(systemContext + 0x78),*(undefined4 *)(dataContext + 0x10),
+                        dataContext + 0x14,dataContext + 0x20,dataContext + 0x2c,dataContext + 0x38);
+  if ((validationResult == 0) &&
+     (validationResult = func_0x0001808d2620((longlong)*(int *)(dataContext + 0x10) * 0x44 +
+                                  *(longlong *)(systemContext + 0x90) + 0x554,dataContext + 0x14), validationResult == 0)
      ) {
-    if ((*(char *)(param_1 + 0x50) != '\0') &&
-       (iVar1 = func_0x0001808d2660((longlong)*(int *)(param_1 + 0x10) * 0x44 +
-                                    *(longlong *)(param_2 + 0x90) + 0x554,param_1 + 0x44),
-       iVar1 != 0)) {
+    if ((*(char *)(dataContext + 0x50) != '\0') &&
+       (validationResult = func_0x0001808d2660((longlong)*(int *)(dataContext + 0x10) * 0x44 +
+                                    *(longlong *)(systemContext + 0x90) + 0x554,dataContext + 0x44),
+       validationResult != 0)) {
       return;
     }
-    func_0x0001808d2830((longlong)*(int *)(param_1 + 0x10) * 0x44 +
-                        *(longlong *)(param_2 + 0x90) + 0x554,*(undefined1 *)(param_1 + 0x50));
+    func_0x0001808d2830((longlong)*(int *)(dataContext + 0x10) * 0x44 +
+                        *(longlong *)(systemContext + 0x90) + 0x554,*(undefined1 *)(dataContext + 0x50));
   }
   return;
 }
@@ -5446,15 +5456,25 @@ void FUN_1808914e0(longlong param_1,longlong param_2)
 
 
 
-// 函数: void FUN_1808915d0(longlong param_1,longlong param_2)
-void FUN_1808915d0(longlong param_1,longlong param_2)
+// 函数: void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
+// 
+// 执行工具系统清理
+// 根据系统句柄和清理上下文执行工具系统的清理操作
+// 
+// 参数:
+//   systemHandle - 系统句柄，包含系统状态和配置信息
+//   cleanupContext - 清理上下文，包含清理的相关信息
+// 
+// 返回值:
+//   void - 无返回值
+void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
 
 {
-  int iVar1;
+  int cleanupStatus;
   
-  iVar1 = FUN_18073b810(*(undefined8 *)(param_2 + 0x78),*(undefined4 *)(param_1 + 0x10));
-  if (iVar1 == 0) {
-    func_0x0001808c2130(*(undefined8 *)(param_2 + 0x90),*(undefined4 *)(param_1 + 0x10));
+  cleanupStatus = FUN_18073b810(*(undefined8 *)(cleanupContext + 0x78),*(undefined4 *)(systemHandle + 0x10));
+  if (cleanupStatus == 0) {
+    func_0x0001808c2130(*(undefined8 *)(cleanupContext + 0x90),*(undefined4 *)(systemHandle + 0x10));
   }
   return;
 }
@@ -6210,8 +6230,12 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891e7d(undefined8 param_1,undefined8 param_2)
-void FUN_180891e7d(undefined8 param_1,undefined8 param_2)
+// 函数: void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlags)
+// 功能：优化工具系统性能，根据指定的优化标志进行系统优化
+// 参数：
+//   systemHandle - 系统句柄，标识要优化的工具系统实例
+//   optimizationFlags - 优化标志位，指定要执行的优化类型
+void OptimizeUtilitySystemZ0(undefined8 systemHandle,undefined8 optimizationFlags)
 
 {
   int iVar1;
@@ -6282,8 +6306,10 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891ea1(void)
-void FUN_180891ea1(void)
+// 函数: void ResetUtilitySystemAA0(void)
+// 功能：重置工具系统到初始状态，清理所有临时数据和缓存
+// 注意：此函数会清除所有运行时状态，恢复系统到默认配置
+void ResetUtilitySystemAA0(void)
 
 {
   int iVar1;
@@ -81939,8 +81965,9 @@ void FUN_1809417c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1809417e0(void)
-void FUN_1809417e0(void)
+// 函数: void ResetSystemDataPointer(void)
+// 功能：重置系统数据指针到默认位置
+void ResetSystemDataPointer(void)
 
 {
   _DAT_180d49160 = &UNK_18098bcb0;
