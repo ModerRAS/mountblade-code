@@ -21961,7 +21961,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   void* SystemStackFlagPrimary;
   void* *SystemStackFlagSecondary;
   char *CharacterBufferPointer;
-  uint32_t secondarySystemDataBuffer;
+  uint32_t SecondarySystemDataBuffer;
   ulong long StackParameterC;
   void* *systemStackPointer;
   char *CharacterPointer;
@@ -23550,7 +23550,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
   void* SystemDataBuffer;
   void* *SystemDataBufferPointer;
   uint8_t *SystemParameterPointer;
-  uint32_t secondarySystemDataBuffer;
+  uint32_t SecondarySystemDataBuffer;
   uint8_t SystemStackParameterC [72];
   ulong long SystemEncryptionKey;
   
@@ -25737,7 +25737,7 @@ void SystemResourceAllocate(long long SystemResourceManager)
   void** SystemDataPointer;
   uint8_t SystemStackBuffer [8];
   void** SystemDataPointer;
-  uint secondarySystemDataBuffer;
+  uint SecondarySystemDataBuffer;
   void* SystemConfigurationFlag;
   void* SystemFlagTertiary;
   void* SystemUnsignedFlagSecondary;
@@ -26836,22 +26836,22 @@ uint32_t GetSystemResourceStatus(void)
   if ((SystemInitializationStatusArray.TertiaryField != 0) && (SystemInitializationStatusArray.SecondaryField != 0)) {
     SystemDataReference = &SystemGlobalDataReference;
     SystemStackFlagPrimary = 0;
-    systemOffsetCounter = 0;
+    SystemOffsetCounter = 0;
     SystemDataBuffer = 0;
     ProcessSystemData(&SystemDataReference,SystemInitializationStatusArray.PrimaryField);
     CurrentThreadIdentifier = SystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataReference,CurrentThreadIdentifier);
-    *(uint16_t *)((ulong long)SystemDataBuffer + systemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)SystemDataBuffer + SystemOffsetCounter) = 0x2c;
     SystemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataReference,SystemInitializationStatusArray.PrimaryExtended >> 0x20);
     CurrentThreadIdentifier = SystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataReference,CurrentThreadIdentifier);
-    *(uint16_t *)((ulong long)SystemDataBuffer + systemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)SystemDataBuffer + SystemOffsetCounter) = 0x2c;
     SystemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataReference,SystemInitializationStatusArray.SecondaryExtended & SystemMaximumUnsigned32BitValue);
     CalculationFlags = SystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataReference,CalculationFlags);
-    *(uint16_t *)((ulong long)SystemDataBuffer + systemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)SystemDataBuffer + SystemOffsetCounter) = 0x2c;
     SystemDataBuffer = CalculationFlags;
     ProcessSystemData(&SystemDataReference,SystemInitializationStatusArray.SecondaryExtended >> 0x20);
     ResourceAddressPointer = (void* *)CreateSystemObject(SystemCounterBuffer80,&SystemDataReference);
@@ -26864,10 +26864,10 @@ uint32_t GetSystemResourceStatus(void)
     *(uint32_t *)(ResourceAddressPointer + 3) = 0;
     *ResourceAddressPointer = &SystemMemoryAllocatorReference;
     SystemDataReference = &SystemGlobalDataReference;
-    if (systemOffsetCounter != 0) {
+    if (SystemOffsetCounter != 0) {
         SystemCleanupFunction();
     }
-    systemOffsetCounter = 0;
+    SystemOffsetCounter = 0;
     SystemFlagSecondary = SystemFlagSecondary & SystemMemoryAlignmentMask;
     MemoryAllocatorReferencePointer = &SystemMemoryAllocatorReference;
   }
@@ -26879,20 +26879,20 @@ uint32_t GetSystemResourceStatus(void)
     secondarySystemOffsetCounter = 0;
     systemConfigurationValue = 0;
     ProcessSystemData(&SystemDataBufferPointer,SystemInitializationStatusArray.PrimaryField);
-    CurrentThreadIdentifier = secondarySystemDataBuffer + 1;
+    CurrentThreadIdentifier = SecondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
-    *(uint16_t *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
-    secondarySystemDataBuffer = CurrentThreadIdentifier;
+    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    SecondarySystemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.HighPart);
-    CurrentThreadIdentifier = secondarySystemDataBuffer + 1;
+    CurrentThreadIdentifier = SecondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
-    *(uint16_t *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
-    secondarySystemDataBuffer = CurrentThreadIdentifier;
+    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    SecondarySystemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.LowPart);
-    CalculationFlags = secondarySystemDataBuffer + 1;
+    CalculationFlags = SecondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CalculationFlags);
-    *(uint16_t *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
-    secondarySystemDataBuffer = CalculationFlags;
+    *(uint16_t *)((ulong long)SecondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    SecondarySystemDataBuffer = CalculationFlags;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.HighPart);
     ResourceAddressPointer = (void* *)CreateSystemObject(ThreadTitleBuffer,&SystemDataBufferPointer);
     ProcessMemoryManagerOperation(SystemMemoryManagerPointer + 0xef0,ResourceAddressPointer);
@@ -30555,7 +30555,7 @@ void InitializeSystemMemoryResource(long long* SystemResourceManager)
   code *SystemStringPointer;
   long long ResourceMemoryOffset;
   long long* MemorySystemDataPointer;
-  uint8_t asecondarySystemDataBuffer [32];
+  uint8_t aSecondarySystemDataBuffer [32];
   long long SystemResourceOffset;
   long long* SystemResourceManagerPointer;
   long long **ppsystemMemoryOffset;
@@ -30567,7 +30567,7 @@ void InitializeSystemMemoryResource(long long* SystemResourceManager)
   ulong long EncryptionKeyValue;
   
   SystemProcessFlags = SystemInvalidHandleValue;
-  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)asecondarySystemDataBuffer;
+  EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)aSecondarySystemDataBuffer;
   SystemCalculatedBufferPointer = (long long *)SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0xd0,8,3);
   ppsystemMemoryOffset = (long long **)SystemCalculatedBufferPointer;
   InitializeSystemDataTableManager(SystemCalculatedBufferPointer);
@@ -30605,7 +30605,7 @@ void InitializeSystemMemoryResource(long long* SystemResourceManager)
     (**(code **)(*SystemResourceManagerPointer + 0x28))();
   }
   (*SystemStringPointer)(SystemDataPointer,&SystemResourceManagerPointer);
-    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)asecondarySystemDataBuffer);
+    ValidateSystemChecksum(EncryptionKeyValue ^ (ulong long)aSecondarySystemDataBuffer);
 }
 
 
@@ -35314,7 +35314,7 @@ void ProcessSystemResourceWithEncryption(long long SystemResourceManager,long lo
   long long ResourceDataIndex;
   long long SystemThreadHandle;
   long long ResourceMemoryOffset;
-  uint8_t asecondarySystemDataBuffer [32];
+  uint8_t aSecondarySystemDataBuffer [32];
   void* SystemUnsignedFlagSecondary;
   void* *SystemProcessFlagsPointer;
   uint8_t *systemEncryptionStatusPointer;
@@ -35323,7 +35323,7 @@ void ProcessSystemResourceWithEncryption(long long SystemResourceManager,long lo
   ulong long systemEncryptionKey;
   
   SystemUnsignedFlagSecondary = 0xfffffffffffffffe;
-  systemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)asecondarySystemDataBuffer;
+  systemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)aSecondarySystemDataBuffer;
   SystemProcessFlagsPointer = &SystemResourceTemplateSecondary;
   systemEncryptionStatusPointer = systemEncryptionStatusBuffer;
   systemThreadContext = 0;
@@ -35341,7 +35341,7 @@ void ProcessSystemResourceWithEncryption(long long SystemResourceManager,long lo
       memcpy(systemEncryptionStatusPointer,*(long long *)(SystemResourceManager + 8),resourceDataIndex - *(long long *)(SystemResourceManager + 8));
   }
   SystemProcessFlagsPointer = &SystemMemoryAllocatorReference;
-    ValidateSystemChecksum(systemEncryptionKey ^ (ulong long)asecondarySystemDataBuffer);
+    ValidateSystemChecksum(systemEncryptionKey ^ (ulong long)aSecondarySystemDataBuffer);
 }
 
 
@@ -45250,7 +45250,7 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   void* *SystemDataBufferPointer;
   long long SystemMemoryAllocationOffset;
   long long SystemDataBufferOffset;
-  uint secondarySystemDataBuffer;
+  uint SecondarySystemDataBuffer;
   void* *SystemTertiaryStackPointer;
   long long SystemDataSize;
   uint32_t SystemSecondaryProcessFlags;
@@ -45263,10 +45263,10 @@ void InitializeSystemResourceObject(void* SystemResourceManager,long long Config
   SystemEncryptionKey = 0xfffffffffffffffe;
   SystemMemoryManagerPointer = *(long long **)(SystemMemoryBlockStorage + 0x18);
   CreateSystemObject(&SystemDataBufferPointer,SystemGlobalStatusFlags + 0x170,AdditionalParameter,ConfigurationFlag,0);
-  systemValue = secondarySystemDataBuffer + 3;
+  systemValue = SecondarySystemDataBuffer + 3;
   ExecuteSystemCommand(&SystemDataBufferPointer,systemValue);
-  *(uint32_t *)((ulong long)secondarySystemDataBuffer + SystemDataBufferOffset) = 0x706d74;
-  secondarySystemDataBuffer = systemValue;
+  *(uint32_t *)((ulong long)SecondarySystemDataBuffer + SystemDataBufferOffset) = 0x706d74;
+  SecondarySystemDataBuffer = systemValue;
   SystemValidationResult = VerifySystemMemoryAllocation(&SystemDataBufferPointer);
   if (validationStatusFlag == '\0') {
     ReleaseSystemMemoryAllocation(&SystemDataBufferPointer);
@@ -45467,7 +45467,7 @@ void ProcessSystemResourceConfiguration(void* SystemResourceManager,void* Config
   uint32_t SystemDataBuffer;
   void* SystemFlagSecondary;
   void* **ppUnsignedStackFlagQuaternary;
-  uint32_t asecondarySystemDataBuffer [14];
+  uint32_t aSecondarySystemDataBuffer [14];
   ulong long SystemThreadContext;
   ulong long SystemEncryptionKey;
   
@@ -45552,9 +45552,9 @@ SystemIndexCheckPoint:
     SystemSecondaryOperationResult = 0;
     ResourceHash = CalculateResourceHash();
     ConfigureSystemDataBuffer(&pSystemConfigurationPointer,&SystemDataBufferCapacityValueTemplate,ResourceHash / 0x100000 & SystemMaximumUnsigned32BitValue);
-    asecondarySystemDataBuffer[0] = 0x48;
+    aSecondarySystemDataBuffer[0] = 0x48;
     CurrentThreadIdentifier = GetCurrentProcess();
-    systemIndex = K32GetProcessMemoryInfo(CurrentThreadIdentifier,asecondarySystemDataBuffer,0x48);
+    systemIndex = K32GetProcessMemoryInfo(CurrentThreadIdentifier,aSecondarySystemDataBuffer,0x48);
     ResourceHash = 0;
     if (systemIndex != 0) {
       ResourceHash = SystemThreadContext;
@@ -52826,7 +52826,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   void* *AlternateBufferPointer;
   void* *SystemDataBufferPointer;
   uint32_t UnsignedStackFlagSecondary;
-  ulong long secondarySystemDataBuffer;
+  ulong long SecondarySystemDataBuffer;
   void* *PointerStackParameterC;
   void* *SystemTertiaryStackPointer;
   uint32_t SystemFlagTertiary;
@@ -53043,7 +53043,7 @@ SystemMemoryCheck:
         SystemCleanupFunction();
     }
     pUnsignedStackFlagQuaternary = (void* *)0x0;
-    secondarySystemDataBuffer = secondarySystemDataBuffer & SystemMemoryAlignmentMask;
+    SecondarySystemDataBuffer = SecondarySystemDataBuffer & SystemMemoryAlignmentMask;
     AlternateBufferPointer = &SystemMemoryAllocatorReference;
     if (pSystemProcessingResult != (void* *)0x0) {
         SystemCleanupFunction(pSystemProcessingResult);
@@ -53059,7 +53059,7 @@ SystemMemoryCheck:
         SystemCleanupFunction();
     }
     pUnsignedStackFlagQuaternary = (void* *)0x0;
-    secondarySystemDataBuffer = secondarySystemDataBuffer & SystemMemoryAlignmentMask;
+    SecondarySystemDataBuffer = SecondarySystemDataBuffer & SystemMemoryAlignmentMask;
     AlternateBufferPointer = &SystemMemoryAllocatorReference;
     if (pSystemProcessingResult != (void* *)0x0) {
         SystemCleanupFunction(pSystemProcessingResult);
@@ -53241,7 +53241,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   void* *systemDataPointer;
   long long LongStackD0;
   uint32_t UnsignedStackFlagSenary;
-  uint32_t secondarySystemDataBuffer;
+  uint32_t SecondarySystemDataBuffer;
   uint32_t StackUnsignedValue94;
   long long SystemConfigurationFlags;
   long long SystemConfigurationData;
@@ -53260,7 +53260,7 @@ void InitializeSystemDataStructure(void* SystemResourceManager,long long Configu
   SystemCurrentThreadId = 0;
   SystemProcessFlags = 0;
   ConcatenatedSystemValue = 0;
-  secondarySystemDataBuffer = AdditionalParameter;
+  SecondarySystemDataBuffer = AdditionalParameter;
   SystemConfigurationData = ConfigurationFlag;
   FormatSystemResourceString(&SystemProcessFlags,0x10,&SystemDataBufferTemplateNonary,AdditionalParameter);
   resourceCounter = ProcessSystemQueue(&SystemMemoryAllocatorReferencePointer,ConfigurationFlag);
@@ -53466,7 +53466,7 @@ ThreadConfigurationComplete:
   }
   *(uint16_t *)(SystemMemoryContext + StackContextValue) = 0x3a;
   StackContextValue = 3;
-  ProcessSystemData(&pSystemThreadContext,secondarySystemDataBuffer);
+  ProcessSystemData(&pSystemThreadContext,SecondarySystemDataBuffer);
   ResourceHash = StackContextValue;
   CurrentThreadIdentifier = StackContextValue + 1;
   if (CurrentThreadIdentifier != 0) {
@@ -54752,7 +54752,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   void* *AlternateBufferPointer;
   void* *SystemDataBufferPointer;
   uint32_t UnsignedStackFlagSecondary;
-  ulong long secondarySystemDataBuffer;
+  ulong long SecondarySystemDataBuffer;
   void* *PointerStackParameterC;
   uint8_t *SystemTertiaryStackPointer;
   uint32_t SystemFlagTertiary;
@@ -54896,7 +54896,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
       *(uint8_t *)SystemThreadContext = 0;
       pUnsignedStackFlagQuaternary = SystemThreadContext;
       SystemInitializationStatus = StartSystemThread(SystemThreadContext);
-      secondarySystemDataBuffer = ConcatenatedSystemValue(secondarySystemDataBuffer.LowPart,SystemInitializationStatus);
+      SecondarySystemDataBuffer = ConcatenatedSystemValue(SecondarySystemDataBuffer.LowPart,SystemInitializationStatus);
       if (*(int *)(SystemProcessingBufferPointer + 0x158) != 0) {
           memcpy(SystemThreadContext,*(void* *)(SystemProcessingBufferPointer + 0x150),*(int *)(SystemProcessingBufferPointer + 0x158) + 1);
       }
@@ -54906,7 +54906,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
       if (SystemThreadContext != (void* *)0x0) {
         *(uint8_t *)SystemThreadContext = 0;
       }
-      secondarySystemDataBuffer = secondarySystemDataBuffer & SystemMaximumUnsigned32BitValue;
+      SecondarySystemDataBuffer = SecondarySystemDataBuffer & SystemMaximumUnsigned32BitValue;
     }
     SystemOperationResult = 1;
     SystemInitializationStatus = 1;
@@ -54950,7 +54950,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
         SystemCleanupFunction(SystemThreadContext);
     }
     pUnsignedStackFlagQuaternary = (void* *)0x0;
-    secondarySystemDataBuffer = secondarySystemDataBuffer & SystemMemoryAlignmentMask;
+    SecondarySystemDataBuffer = SecondarySystemDataBuffer & SystemMemoryAlignmentMask;
     AlternateBufferPointer = &SystemMemoryAllocatorReference;
   }
   SystemThreadLocalStoragePointer = &SystemStringTemplate;
