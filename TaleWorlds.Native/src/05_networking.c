@@ -1851,19 +1851,19 @@ void InitializeNetworkConnectionPool(void)
  */
 
 /**
- * @brief 网络连接配置数据结构指针
+ * @brief 网络连接配置数据
  */
-void *NetworkConnectionConfigurationDataPointer;
+void *NetworkConnectionConfigurationData;
 
 /**
- * @brief 网络连接模板配置指针
+ * @brief 网络连接模板配置
  */
-void *NetworkConnectionTemplateConfigPointer;
+void *NetworkConnectionTemplateConfig;
 
 /**
- * @brief 网络连接主要配置指针
+ * @brief 网络连接主要配置
  */
-void *NetworkConnectionPrimaryConfigPointer;
+void *NetworkConnectionPrimaryConfig;
 
 /**
  * @brief 网络连接次要配置指针

@@ -29289,7 +29289,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   uint SystemResourceCountSecondary;
   void* SystemResourceHandleTertiary;
   uint32_t SystemConfigPrimaryValue;
-  void* *pGlobalDataFlagsSecondary;
+  void* *SystemGlobalDataFlagsSecondaryPointer;
   long long SystemMemoryAllocationOffsetPrimary;
   uint SystemResourceCountTertiary;
   void* SystemResourceHandleQuaternary;
@@ -29339,8 +29339,8 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   MemoryBufferPointer = 0xfffffffffffffffe;
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)SystemStackEncryptionBuffer;
   SystemInitializationStatusFlag = 0;
-  StackDoublePointerPrimary = &pGlobalDataFlags;
-  pGlobalDataFlags = &SystemGlobalDataReference;
+  SystemPrimaryStackDoublePointer = &SystemGlobalDataFlags;
+  SystemGlobalDataFlags = &SystemGlobalDataReference;
   SystemStackVariableStatus = 0;
   LongStackVariableSecondary = 0;
   SystemStackVariablePrimary = 0;
@@ -29351,11 +29351,11 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   if (*(void* **)(ConfigurationDataPointer + 8) != (void* *)0x0) {
     SystemThreadContext = *(void* **)(ConfigurationDataPointer + 8);
   }
-  SetupSystemDataBuffer(&pGlobalDataFlags,SystemThreadContext);
+  SetupSystemDataBuffer(&SystemGlobalDataFlags,SystemThreadContext);
   CalculationFlagsExtended = 0;
   SystemStackVariableControl = SystemStackVariableControl & 0xffffff00;
   ResourceAllocationContext = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x60d30,0x10,0x1f);
-  SystemCalculatedBufferPointer = (long long *)InitializeSystemMemoryAllocator(ResourceAllocationContext,&pGlobalDataFlags);
+  SystemCalculatedBufferPointer = (long long *)InitializeSystemMemoryAllocator(ResourceAllocationContext,&SystemGlobalDataFlags);
   StackBufferPointer = (void* **)SystemCalculatedBufferPointer;
   if (SystemCalculatedBufferPointer != (long long *)0x0) {
     (**(code **)(*SystemCalculatedBufferPointer + 0x28))(SystemCalculatedBufferPointer);
@@ -29468,14 +29468,14 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   if (SystemCalculatedBufferPointer != (long long *)0x0) {
     (**(code **)(*SystemCalculatedBufferPointer + 0x38))(SystemCalculatedBufferPointer);
   }
-  StackDoublePointerGlobalFlags = &pGlobalDataFlags;
-  pGlobalDataFlags = &SystemGlobalDataReference;
+  SystemGlobalFlagsStackDoublePointer = &SystemGlobalDataFlags;
+  SystemGlobalDataFlags = &SystemGlobalDataReference;
   if (SystemMemoryAllocationOffset != 0) {
       SystemCleanupFunction();
   }
   SystemMemoryAllocationOffset = 0;
   SystemResourceCountSecondary = SystemResourceCountSecondary & SystemMemoryAlignmentMask;
-  pGlobalDataFlags = &SystemMemoryAllocatorReference;
+  SystemGlobalDataFlags = &SystemMemoryAllocatorReference;
     ValidateSystemChecksum(SystemEncryptionKey ^ (ulong long)SystemStackEncryptionBuffer);
 }
 
@@ -44891,13 +44891,13 @@ void ReleaseSystemResource(void* SystemResourceManager)
   SystemDataBufferPointer = pSystemConfigurationPointer;
   SystemDataResourcePointer = SystemResourceHandleSecondary;
   if (1 < (ulong long)((long long)pSystemConfigurationPointer - (long long)SystemResourceHandleSecondary >> 5)) {
-    pUnsignedStackFlagPrimary = &SystemResourceTemplateSecondary;
-    pUnsignedStackFlagSecondary = aEncryptionOffsetSecondary;
-    aEncryptionOffsetSecondary[0] = 0;
+    SystemPrimaryStackFlagPointer = &SystemResourceTemplateSecondary;
+    SystemSecondaryStackFlagPointer = SystemSecondaryEncryptionOffset;
+    SystemSecondaryEncryptionOffset[0] = 0;
     EncryptionOffset = 1;
-    strcpy_s(aEncryptionOffsetSecondary,0x10,&SystemStringConstantG);
-    ProcessSystemResourceTemplate(&SystemStringTemplatePointer.secondary,SystemDataResourcePointer + 4,&pUnsignedStackFlagPrimary);
-    pUnsignedStackFlagPrimary = &SystemMemoryAllocatorReference;
+    strcpy_s(SystemSecondaryEncryptionOffset,0x10,&SystemStringConstantG);
+    ProcessSystemResourceTemplate(&SystemStringTemplatePointer.secondary,SystemDataResourcePointer + 4,&SystemPrimaryStackFlagPointer);
+    SystemPrimaryStackFlagPointer = &SystemMemoryAllocatorReference;
   }
   SystemResourceHandlePrimary = &SystemMemoryAllocatorReference;
   ResourceAddressPointer = SystemStringTemplatePointer.secondary;
