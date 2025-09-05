@@ -6275,6 +6275,16 @@ void InitiateSystemShutdown(void)
  * 该函数是一个空操作函数，不执行任何实际操作
  * 通常用作占位符或默认实现
  */
+/**
+ * @brief 执行空操作
+ * 
+ * 这是一个空操作函数，用于占位或作为默认操作。
+ * 在某些情况下，当不需要执行任何操作时调用此函数。
+ * 
+ * @return void 无返回值
+ * 
+ * @note 这是一个简化的实现，原始函数可能是逆向工程产物
+ */
 void ExecuteNullOperation(void)
 {
   return;
@@ -28939,7 +28949,7 @@ ContextValidationCheck:
     }
     CleanupOption = 0;
     LoopIncrement = (uint64_t)ResourceHashStatus;
-    if (MemorySizeCheck) {
+    if (MemorySizeValidation) {
       LoopIncrement = 0;
     }
   }
