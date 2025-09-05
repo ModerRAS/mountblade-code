@@ -1744,9 +1744,9 @@
 // 功能：处理系统节点
 #define ProcessNodeA0 FUN_18088c7c0
 
-// 原始函数名：FUN_18088f530 - 资源验证函数A0
+// 原始函数名：ProcessNetworkValidationA0 - 资源验证函数A0
 // 功能：验证系统资源
-#define ValidateResourceA0 FUN_18088f530
+#define ValidateResourceA0 ProcessNetworkValidationA0
 
 // 原始函数名：FUN_180895130 - 状态重置函数A0
 // 功能：重置系统状态
@@ -2011,21 +2011,21 @@
 // 功能：验证资源状态
 #define ValidateResourceA1 ValidateNetworkConnectionA0
 
-// 原始函数名：FUN_18088f530 - 资源处理函数A0
+// 原始函数名：ProcessNetworkValidationA0 - 资源处理函数A0
 // 功能：处理资源操作
-#define ProcessResourceA0 FUN_18088f530
+#define ProcessResourceA0 ProcessNetworkValidationA0
 
-// 原始函数名：FUN_18088f5c0 - 资源配置函数A0
+// 原始函数名：ExecuteNetworkOperationA0 - 资源配置函数A0
 // 功能：配置资源参数
-#define ConfigureResourceA0 FUN_18088f5c0
+#define ConfigureResourceA0 ExecuteNetworkOperationA0
 
-// 原始函数名：FUN_18088f620 - 资源处理函数A1
+// 原始函数名：ValidateNetworkConfigurationA0 - 资源处理函数A1
 // 功能：处理资源操作
-#define ProcessResourceA1 FUN_18088f620
+#define ProcessResourceA1 ValidateNetworkConfigurationA0
 
-// 原始函数名：FUN_18088f470 - 资源初始化函数A0
+// 原始函数名：InitializeNetworkConnectionA0 - 资源初始化函数A0
 // 功能：初始化资源
-#define InitializeResourceA0 FUN_18088f470
+#define InitializeResourceA0 InitializeNetworkConnectionA0
 
 // 原始函数名：FUN_18088c740 - 上下文处理函数A0
 // 功能：处理操作上下文
@@ -8318,13 +8318,13 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：清理数据资源
 #define CleanupDataResourceDC0 FUN_1808aef40
 
-// 原始函数名：FUN_18088f5c0 - 字符串处理函数DD0
+// 原始函数名：ExecuteNetworkOperationA0 - 字符串处理函数DD0
 // 功能：处理字符串数据
-#define ProcessStringDataDD0 FUN_18088f5c0
+#define ProcessStringDataDD0 ExecuteNetworkOperationA0
 
-// 原始函数名：FUN_18088f470 - 数据验证函数DE0
+// 原始函数名：InitializeNetworkConnectionA0 - 数据验证函数DE0
 // 功能：验证数据完整性
-#define ValidateDataIntegrityDE0 FUN_18088f470
+#define ValidateDataIntegrityDE0 InitializeNetworkConnectionA0
 
 // 原始函数名：FUN_180882c20 - 数据转换函数DF0
 // 功能：转换数据格式
@@ -12368,8 +12368,8 @@ void ValidateAndCleanupSystemResources(longlong systemContext,undefined8 resourc
   
   validationStatus = ValidateNetworkStatusA0(resourceHandle,systemContext + 0x10);
   if (((validationStatus == 0) && (validationStatus = ValidateNetworkConnectionA0(resourceHandle,systemContext + 0x18), validationStatus == 0)) &&
-     (validationStatus = FUN_18088f530(resourceHandle,systemContext + 0x20,*(undefined4 *)(systemContext + 0x18)), validationStatus == 0)) {
-    FUN_18088f5c0(resourceHandle,systemContext + 0x20 + (longlong)*(int *)(systemContext + 0x18) * 4);
+     (validationStatus = ProcessNetworkValidationA0(resourceHandle,systemContext + 0x20,*(undefined4 *)(systemContext + 0x18)), validationStatus == 0)) {
+    ExecuteNetworkOperationA0(resourceHandle,systemContext + 0x20 + (longlong)*(int *)(systemContext + 0x18) * 4);
   }
   return;
 }
@@ -12385,8 +12385,8 @@ void ValidateAndCleanupSystemResources(longlong systemContext,undefined8 resourc
  * 
  * 验证流程：
  * 1. 调用ValidateNetworkConnectionA0()进行初始验证
- * 2. 如果初始验证通过，调用FUN_18088f530()进行二级验证
- * 3. 如果二级验证也通过，调用FUN_18088f5c0()执行最终操作
+ * 2. 如果初始验证通过，调用ProcessNetworkValidationA0()进行二级验证
+ * 3. 如果二级验证也通过，调用ExecuteNetworkOperationA0()执行最终操作
  */
 void ValidateSystemStateAndExecute(void)
 
@@ -12395,9 +12395,9 @@ void ValidateSystemStateAndExecute(void)
   
   validationResult = ValidateNetworkConnectionA0();
   if (validationResult == 0) {
-    validationResult = FUN_18088f530();
+    validationResult = ProcessNetworkValidationA0();
     if (validationResult == 0) {
-      FUN_18088f5c0();
+      ExecuteNetworkOperationA0();
     }
   }
   return;
@@ -12442,10 +12442,10 @@ void ValidateResourceAndProcess(longlong resourceHandle, undefined8 contextHandl
   validationResult = ValidateNetworkStatusA0(contextHandle, resourceHandle + 0x10);
   if ((((validationResult == 0) && 
         (validationResult = ValidateNetworkConnectionA0(contextHandle, resourceHandle + 0x18), validationResult == 0)) &&
-       (validationResult = FUN_18088f620(contextHandle, resourceHandle + 0x20, *(undefined4 *)(resourceHandle + 0x18)), validationResult == 0))
-      && (validationResult = FUN_18088f5c0(contextHandle, resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8),
+       (validationResult = ValidateNetworkConfigurationA0(contextHandle, resourceHandle + 0x20, *(undefined4 *)(resourceHandle + 0x18)), validationResult == 0))
+      && (validationResult = ExecuteNetworkOperationA0(contextHandle, resourceHandle + 0x20 + (longlong)*(int *)(resourceHandle + 0x18) * 8),
          validationResult == 0)) {
-    FUN_18088f470(contextHandle, resourceHandle + 0x1c);
+    InitializeNetworkConnectionA0(contextHandle, resourceHandle + 0x1c);
   }
   return;
 }
@@ -12459,9 +12459,9 @@ void ValidateResourceAndProcess(longlong resourceHandle, undefined8 contextHandl
  * 
  * 此函数按顺序执行多个系统验证和初始化操作：
  * 1. 调用ValidateNetworkConnectionA0()进行初始验证
- * 2. 如果初始验证通过，调用FUN_18088f620()进行二级验证
- * 3. 如果二级验证通过，调用FUN_18088f5c0()进行三级验证
- * 4. 如果所有验证都通过，调用FUN_18088f470()执行最终初始化
+ * 2. 如果初始验证通过，调用ValidateNetworkConfigurationA0()进行二级验证
+ * 3. 如果二级验证通过，调用ExecuteNetworkOperationA0()进行三级验证
+ * 4. 如果所有验证都通过，调用InitializeNetworkConnectionA0()执行最终初始化
  * 
  * @return 无返回值
  */
@@ -12472,11 +12472,11 @@ void ExecuteSystemValidationAndInitialization(void)
   
   validationResult = ValidateNetworkConnectionA0();
   if (validationResult == 0) {
-    validationResult = FUN_18088f620();
+    validationResult = ValidateNetworkConfigurationA0();
     if (validationResult == 0) {
-      validationResult = FUN_18088f5c0();
+      validationResult = ExecuteNetworkOperationA0();
       if (validationResult == 0) {
-        FUN_18088f470();
+        InitializeNetworkConnectionA0();
       }
     }
   }
@@ -12503,9 +12503,9 @@ void NoOperationB(void)
  * 
  * 此函数根据传入的上下文参数执行系统验证和处理操作：
  * 1. 使用param_2和param_1 + 0x10调用ValidateNetworkConnectionA0()进行初始验证
- * 2. 如果初始验证通过，使用param_2和param_1 + 0x18调用FUN_18088f620()进行二级验证
- * 3. 如果二级验证通过，使用param_2和计算出的地址调用FUN_18088f5c0()进行三级验证
- * 4. 如果所有验证都通过，调用FUN_18088f470()执行最终操作
+ * 2. 如果初始验证通过，使用param_2和param_1 + 0x18调用ValidateNetworkConfigurationA0()进行二级验证
+ * 3. 如果二级验证通过，使用param_2和计算出的地址调用ExecuteNetworkOperationA0()进行三级验证
+ * 4. 如果所有验证都通过，调用InitializeNetworkConnectionA0()执行最终操作
  * 
  * @param contextHandle 上下文句柄，包含系统状态信息
  * @param validationData 验证数据，用于系统验证操作
@@ -12518,11 +12518,11 @@ void ValidateContextAndProcess(longlong contextHandle, undefined8 validationData
   
   validationResult = ValidateNetworkConnectionA0(validationData, contextHandle + 0x10);
   if (validationResult == 0) {
-    validationResult = FUN_18088f620(validationData, contextHandle + 0x18, *(undefined4 *)(contextHandle + 0x10));
+    validationResult = ValidateNetworkConfigurationA0(validationData, contextHandle + 0x18, *(undefined4 *)(contextHandle + 0x10));
     if (validationResult == 0) {
-      validationResult = FUN_18088f5c0(validationData, contextHandle + 0x18 + (longlong)*(int *)(contextHandle + 0x10) * 8);
+      validationResult = ExecuteNetworkOperationA0(validationData, contextHandle + 0x18 + (longlong)*(int *)(contextHandle + 0x10) * 8);
       if (validationResult == 0) {
-        FUN_18088f470(validationData, contextHandle + 0x14);
+        InitializeNetworkConnectionA0(validationData, contextHandle + 0x14);
       }
     }
   }
@@ -88707,13 +88707,13 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 功能：清理数据资源DC0，释放数据内存
 #define CleanupDataResourceDC0 FUN_1808aef40
 
-// 原始函数名：FUN_18088f5c0 - 字符串数据处理函数DD0
+// 原始函数名：ExecuteNetworkOperationA0 - 字符串数据处理函数DD0
 // 功能：处理字符串数据DD0，执行字符串操作
-#define ProcessStringDataDD0 FUN_18088f5c0
+#define ProcessStringDataDD0 ExecuteNetworkOperationA0
 
-// 原始函数名：FUN_18088f470 - 数据完整性验证函数DE0
+// 原始函数名：InitializeNetworkConnectionA0 - 数据完整性验证函数DE0
 // 功能：验证数据完整性DE0，确保数据未损坏
-#define ValidateDataIntegrityDE0 FUN_18088f470
+#define ValidateDataIntegrityDE0 InitializeNetworkConnectionA0
 
 // 数据格式转换相关宏定义
 // 原始函数名：FUN_180882c20 - 数据格式转换函数DF0
@@ -88847,21 +88847,21 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 // 功能：验证资源EI0，进行资源检查
 #define ValidateResourceEI0 ValidateNetworkConnectionA0
 
-// 原始函数名：FUN_18088f530 - 资源处理函数EJ0
+// 原始函数名：ProcessNetworkValidationA0 - 资源处理函数EJ0
 // 功能：处理资源EJ0，执行资源操作
-#define ProcessResourceEJ0 FUN_18088f530
+#define ProcessResourceEJ0 ProcessNetworkValidationA0
 
-// 原始函数名：FUN_18088f5c0 - 资源配置函数EK0
+// 原始函数名：ExecuteNetworkOperationA0 - 资源配置函数EK0
 // 功能：配置资源EK0，设置资源参数
-#define ConfigureResourceEK0 FUN_18088f5c0
+#define ConfigureResourceEK0 ExecuteNetworkOperationA0
 
-// 原始函数名：FUN_18088f620 - 资源处理函数EL0
+// 原始函数名：ValidateNetworkConfigurationA0 - 资源处理函数EL0
 // 功能：处理资源EL0，执行资源管理
-#define ProcessResourceEL0 FUN_18088f620
+#define ProcessResourceEL0 ValidateNetworkConfigurationA0
 
-// 原始函数名：FUN_18088f470 - 资源初始化函数EM0
+// 原始函数名：InitializeNetworkConnectionA0 - 资源初始化函数EM0
 // 功能：初始化资源EM0，设置资源初始状态
-#define InitializeResourceEM0 FUN_18088f470
+#define InitializeResourceEM0 InitializeNetworkConnectionA0
 
 // 原始函数名：FUN_18088c740 - 缓冲区分配函数EN0
 // 功能：分配缓冲区EN0，管理内存缓冲区
