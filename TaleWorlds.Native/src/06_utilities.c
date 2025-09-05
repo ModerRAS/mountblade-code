@@ -90059,7 +90059,7 @@ void UtilityHandleEvent1(void)
 void UtilityHandleEvent2(void)
 
 {
-  _DAT_180bf7250 = &DefaultExceptionHandlerB;
+  UtilityEventHandlerPointer = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90081,7 +90081,7 @@ void UtilityHandleEvent2(void)
 void UtilityInitializePointer1(void)
 
 {
-  _DAT_180bf72b0 = &DefaultExceptionHandlerB;
+  UtilitySystemPointer1 = &DefaultExceptionHandlerB;
   return;
 }
 

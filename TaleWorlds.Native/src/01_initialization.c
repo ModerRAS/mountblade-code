@@ -21686,7 +21686,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   void* *SystemStackFlagSecondary;
   char *CharacterBufferPointer;
   uint32_t secondarySystemDataBuffer;
-  ulong long StackParamC;
+  ulong long StackParameterC;
   void* *systemStackPointer;
   char *CharacterPointer;
   uint32_t SystemUnsignedFlagSecondary;
@@ -44115,7 +44115,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   uint32_t StackValueSecondary;
   uint32_t StackValueTertiary;
   ulong long systemConfigurationValue;
-  ulong long StackParamC;
+  ulong long StackParameterC;
   uint8_t SystemStackStatusFlag;
   void* StackOffsetPointer;
   long long dataBufferLength;
