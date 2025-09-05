@@ -510,6 +510,14 @@
 // 原始函数名：Unwind_180907f70 - 句柄清理函数
 // 功能：安全关闭和清理系统句柄
 #define CleanupSystemHandle Unwind_180907f70
+
+// 原始函数名：Unwind_180907f80 - 指针验证函数
+// 功能：验证指针有效性并执行相应操作
+#define ValidateAndProcessPointer Unwind_180907f80
+
+// 原始函数名：Unwind_180907f90 - 资源重置函数
+// 功能：重置资源状态和清理相关数据
+#define ResetResourceState Unwind_180907f90
 #define ProcessInputData FUN_180853000
 
 // 原始函数名：FUN_180851490 - 执行游戏命令
