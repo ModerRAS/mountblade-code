@@ -10545,16 +10545,16 @@ void InitializeSystemEventHandlerA0(longlong eventHandlerConfig,longlong callbac
 //   - 如果条件不满足，会调用CleanupSystemEventA0函数（该函数不返回）
 //   - 调用前确保参数有效性，避免未定义行为
 //
-void InitializeSystemEventHandlerA1(longlong param_1,longlong param_2)
+void InitializeSystemEventHandlerA1(longlong eventHandlerConfig,longlong callbackTable)
 
 {
   int validationStatus;
   undefined8 systemDataBuffer;
   
-  if (*(int *)(param_1 + 0x2c) == 0) {
-    validationStatus = QuerySystemDataA0(param_2,param_1 + 0x1c,&systemDataBuffer);
+  if (*(int *)(eventHandlerConfig + 0x2c) == 0) {
+    validationStatus = QuerySystemDataA0(callbackTable,eventHandlerConfig + 0x1c,&systemDataBuffer);
     if (validationStatus == 0) {
-      validationStatus = ValidateAndProcessSystemResourceA0(systemDataBuffer,param_1 + 0x2c);
+      validationStatus = ValidateAndProcessSystemResourceA0(systemDataBuffer,eventHandlerConfig + 0x2c);
       if (validationStatus == 0) goto ValidationCheckpoint;
     }
     return;
@@ -10605,17 +10605,17 @@ undefined8 CheckSystemStatusA0(longlong param_1,longlong param_2)
 // 
 // 返回值:
 //   无
-void ResetSystemStateA0(longlong param_1,longlong param_2)
+void ResetSystemStateA0(longlong systemConfig,longlong cleanupContext)
 
 {
   int operationResult;
   longlong systemContext;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContext);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemConfig + 0x10),&systemContext);
   if (operationResult == 0) {
     *(undefined4 *)(systemContext + 0x30) = 0;
                     // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+    CleanupSystemEventA0(*(undefined8 *)(cleanupContext + 0x98),systemConfig);
   }
   return;
 }
@@ -10637,14 +10637,14 @@ void ResetSystemStateA0(longlong param_1,longlong param_2)
 //     0x1c - 资源计数器错误
 //     0x4c - 资源计数器为零
 //     0   - 操作成功
-undefined8 ManageResourceState(longlong param_1,longlong param_2)
+undefined8 ManageResourceState(longlong resourceManager,longlong systemParams)
 
 {
   int resourceCounter;
   uint64_t operationResult;
   longlong resourceContext;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&resourceContext);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceManager + 0x10),&resourceContext);
   if ((int)operationResult == 0) {
     if (*(int *)(resourceContext + 0x34) != 0) {
       return 0x2e;
