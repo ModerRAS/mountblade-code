@@ -8277,8 +8277,8 @@ undefined8 ProcessFloatArrayResource(longlong resourceDescriptor)
     }
     if ((*(char *)(validationContext + 0x34) == '\0') ||
        ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      statusBits = *(uint *)(*(longlong *)(validationContext + 0x18) + 0x34);
-      flagBits = statusBits >> 4;
+      statusRegister = *(uint *)(*(longlong *)(validationContext + 0x18) + 0x34);
+      processingFlags = statusRegister >> 4;
       if ((flagBits & 1) == 0) {
         if ((((statusBits >> 3 & 1) != 0) && (integerConversion = (int)floatValue, integerConversion != -0x80000000)) &&
            ((float)integerConversion != floatValue)) {
