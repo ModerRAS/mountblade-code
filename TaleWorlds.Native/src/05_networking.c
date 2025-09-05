@@ -2486,26 +2486,42 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @note 此函数主要用于将连接的两个关键信息合并为一个值，便于传递和存储
  * @warning 使用时需要确保状态标志和标识符都在32位范围内
  */
-uint64_t CombineConnectionStateAndHandle(uint32_t NetworkConnectionStateFlags, uint32_t NetworkConnectionIdentifier)
+/**
+ * @brief 合并连接状态和标识符
+ * 
+ * 将连接状态标志和连接标识符合并为一个64位值，便于统一处理
+ * 
+ * @param ConnectionStateFlags 连接状态标志
+ * @param ConnectionIdentifier 连接标识符
+ * @return uint64_t 合并后的64位连接状态值
+ */
+uint64_t MergeConnectionStateAndIdentifier(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
 {
-  return ((uint64_t)NetworkConnectionStateFlags << 32) | NetworkConnectionIdentifier;
+  return ((uint64_t)ConnectionStateFlags << 32) | ConnectionIdentifier;
 }
 
 /**
- * @brief 处理连接请求
+ * @brief 处理网络连接请求
  * 
- * 处理网络连接请求，验证连接参数并建立连接
+ * 处理网络连接请求，验证连接参数并建立连接。此函数负责初始化连接上下文，
+ * 设置连接状态，并执行安全验证。
  * 
- * @param ConnectionTable 连接表指针
- * @param RequestData 请求数据
- * @param SecurityValidationData 安全验证数据指针
- * @param FinalizeValue 完成值
- * @param ProcessingFlags 处理标志
- * @param ValidationFlags 验证标志
- * @param ProcessingMode 处理模式
- * @return void* 处理结果指针
+ * @param ConnectionTable 连接表句柄，用于管理所有网络连接
+ * @param RequestData 请求数据，包含连接请求的详细信息
+ * @param SecurityValidationData 安全验证数据指针，用于存储验证结果
+ * @param FinalizeValue 完成值，用于标识连接处理的最终状态
+ * @param ProcessingFlags 处理标志，控制连接处理的各个阶段
+ * @param ValidationFlags 验证标志，指定需要执行的验证类型
+ * @param ProcessingMode 处理模式，定义连接处理的行为模式
+ * @return void* 连接上下文数据指针，包含处理后的连接信息
+ * 
+ * @retval 非NULL 连接上下文数据指针
+ * @retval NULL 处理失败
+ * 
+ * @note 此函数会初始化连接上下文数据并设置连接状态
+ * @warning 调用者需要确保SecurityValidationData有足够的空间存储验证结果
  */
-void* HandleNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int64_t RequestData, void* SecurityValidationData, 
+void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int64_t RequestData, void* SecurityValidationData, 
                              uint32_t FinalizeValue, uint32_t ProcessingFlags, uint32_t ValidationFlags, uint32_t ProcessingMode)
 {
   // 连接请求处理变量
@@ -2541,18 +2557,22 @@ void* HandleNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int6
 }
 
 /**
- * @brief 验证连接数据
+ * @brief 验证网络连接数据完整性和安全性
  * 
- * 验证网络连接的数据完整性和安全性
+ * 验证网络连接的数据完整性和安全性，包括连接状态检查、数据完整性验证
+ * 和安全合规性检查。此函数确保连接数据的有效性和安全性。
  * 
- * @param ConnectionTable 连接表指针
- * @param ConnectionData 连接数据
- * @param SecurityValidationData 安全验证数据指针
- * @param ValidationBufferSize 验证缓冲区大小
- * @param ValidationMode 验证模式
- * @return void 验证结果
+ * @param ConnectionTable 连接表句柄，用于验证连接表的有效性
+ * @param ConnectionData 连接数据，包含待验证的连接信息
+ * @param SecurityValidationData 安全验证数据指针，用于存储验证结果
+ * @param ValidationBufferSize 验证缓冲区大小，指定安全验证数据的大小
+ * @param ValidationMode 验证模式，控制验证的类型和严格程度
+ * 
+ * @note 此函数会执行数据完整性检查和安全合规性检查
+ * @warning 调用者需要确保SecurityValidationData有足够的空间存储验证结果
+ * @see ValidateConnectionSecurity, ProcessNetworkConnectionRequest
  */
-void ValidateConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionData, void* SecurityValidationData, 
+void ValidateNetworkConnectionData(NetworkHandle ConnectionTable, int64_t ConnectionData, void* SecurityValidationData, 
                            uint32_t ValidationBufferSize, uint32_t ValidationMode)
 {
   // 连接数据验证变量

@@ -28652,10 +28652,10 @@ ContextDataValidation:
       if (SystemContextPointer == 0) {
         ValidationStatusCode = ErrorInvalidObjectHandle;
 ResourceAccessCheck:
-        MemorySizeCheck = ValidationStatusCode == 0;
-        if (MemorySizeCheck) {
+        MemorySizeValidation = ValidationStatusCode == 0;
+        if (MemorySizeValidation) {
           ContextValidationStatus = *(char *)(SystemExecutionPointer + -0x49) != '\0';
-          MemorySizeCheck = true;
+          MemorySizeValidation = true;
         }
       }
       else {
@@ -28914,10 +28914,10 @@ ContextValidationContinue:
     if (ResourceTablePointer == 0) {
       ValidationStatusCode = ErrorInvalidObjectHandle;
 ResourceAccessCheck:
-      MemorySizeCheck = ValidationStatusCode == 0;
-      if (MemorySizeCheck) {
+      MemorySizeValidation = ValidationStatusCode == 0;
+      if (MemorySizeValidation) {
         ContextValidationStatus = *(char *)(SystemExecutionPointer + -0x49) != '\0';
-        MemorySizeCheck = true;
+        MemorySizeValidation = true;
       }
     }
     else {
@@ -28928,8 +28928,8 @@ ContextValidationCheck:
       }
       *(int *)(SystemExecutionPointer + -0x45) = (int)CleanupOption;
       ValidationStatusCode = ValidateResourceAccess(ResourceTablePointer,SystemExecutionPointer + -0x45);
-      MemorySizeCheck = ValidationStatusCode == 0;
-      if (MemorySizeCheck) {
+      MemorySizeValidation = ValidationStatusCode == 0;
+      if (MemorySizeValidation) {
         if ((uint64_t)ResourceContext[2] < (uint64_t)*(uint *)(SystemExecutionPointer + -0x45) + 1) {
           ValidationStatusCode = 0x11;
           goto ResourceAccessCheck;
@@ -77807,7 +77807,18 @@ void ExecuteResourceContextCallback4(uint8_t ObjectContext, int64_t ValidationCo
  * @param ObjectContext 对象上下文，包含要清理的资源信息
  * @param ValidationContext 验证上下文，包含系统验证状态信息
  */
-void ExecuteResourceCleanupOperation290(uint8_t ObjectContext, int64_t ValidationContext)
+/**
+ * @brief 执行资源清理操作 - 偏移量290
+ * 
+ * 在指定偏移量(0x398)处执行资源清理操作，处理资源上下文的清理。
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return void 无返回值
+ * 
+ * @note 原始函数名包含十六进制偏移量，现已重命名以更好表达功能
+ */
+void ExecuteResourceCleanupOperationAtOffset290(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;

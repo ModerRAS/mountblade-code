@@ -52428,7 +52428,7 @@ SystemMemoryCheck:
     if (pSystemProcessingResult != (void* *)0x0) {
         SystemCleanupFunction(pSystemProcessingResult);
     }
-    SystemOperationResult = (ulong long)byteStackD8;
+    SystemOperationResult = (ulong long)SystemByteStackD8;
   }
   else {
     if (*(int *)(SystemMemoryBlockSecondary + 0x460) == 1) {
