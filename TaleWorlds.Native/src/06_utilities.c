@@ -497,6 +497,19 @@
 
 // 原始函数名：FUN_180853000 - 处理输入数据
 // 功能：处理用户输入数据
+
+// 额外的Unwind_函数语义化宏定义
+// 原始函数名：Unwind_180908670 - 异常清理函数A6
+// 功能：清理复杂的异常处理状态和资源
+#define CleanupExceptionResourcesA2 Unwind_180908670
+
+// 原始函数名：Unwind_180908690 - 异常清理函数A7
+// 功能：清理特定位置的异常处理指针
+#define CleanupExceptionPointer Unwind_180908690
+
+// 原始函数名：Unwind_180907f70 - 句柄清理函数
+// 功能：安全关闭和清理系统句柄
+#define CleanupSystemHandle Unwind_180907f70
 #define ProcessInputData FUN_180853000
 
 // 原始函数名：FUN_180851490 - 执行游戏命令
@@ -30321,7 +30334,7 @@ void CleanupResourceState170(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180903180(undefined8 param_1,longlong param_2)
+void ResetResourcePointer180(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
@@ -30340,7 +30353,7 @@ void Unwind_180903180(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180903190(undefined8 param_1,longlong param_2)
+void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
 
 {
   int *piVar1;
@@ -30376,7 +30389,7 @@ void Unwind_180903190(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809031a0(undefined8 param_1,longlong param_2)
+void CleanupMemoryPool1a0(undefined8 param_1,longlong param_2)
 
 {
   longlong lVar1;
@@ -49000,10 +49013,17 @@ void Unwind_180907f60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180907f70(undefined8 param_1,longlong param_2)
+/**
+ * @brief 系统句柄清理函数
+ * @details 安全地关闭系统句柄并更新引用计数
+ * @param exceptionContext 异常上下文参数
+ * @param handleContext 句柄上下文指针
+ * @return 无
+ */
+void Unwind_180907f70(undefined8 exceptionContext, longlong handleContext)
 
 {
-  longlong *plVar1;
+  longlong *handlePointer;
   
   plVar1 = (longlong *)(param_2 + 0x38);
   if (*plVar1 != -1) {
