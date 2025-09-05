@@ -40143,12 +40143,12 @@ long long AllocateSystemResourceId(void)
     if (*(int *)(systemDataIndexPtr[1] + ThreadContext * 0x10) == 0) {
       pointerToInteger3 = (int *)(systemDataIndexPtr[1] + ThreadContext * 0x10);
       LOCK();
-      isByteValid0 = *pointerToInteger3 == 0;
-      if (isByteValid0) {
+      IsResourceAvailable = *pointerToInteger3 == 0;
+      if (IsResourceAvailable) {
         *pointerToInteger3 = SystemResourceHandle;
       }
       UNLOCK();
-      if (isByteValid0) {
+      if (IsResourceAvailable) {
         *(long long *)(systemDataIndexPtr[1] + 8 + ThreadContext * 0x10) = localDataIndex;
         return localDataIndex;
       }
@@ -43856,7 +43856,7 @@ void ConfigureSecurityParameters(void* SystemResourceManager,long long Configura
   char *stringPointer;
   void* *dataPointer;
   long long stringLength;
-  long long loopCounter1;
+  long long SystemTimeValue;
   long long SystemCurrentOperationTimestamp;
   long long fileHandle;
   void* stackValue1;
@@ -43876,7 +43876,7 @@ void ConfigureSecurityParameters(void* SystemResourceManager,long long Configura
   fileHandle = outputStream;
   SystemTimeValue = -1;
   stringLength = SystemTimeValue;
-  loopCounter1 = SystemTimeValue;
+  SystemTimeValue = SystemTimeValue;
   if (ConfigurationDataPointer != 0) {
     do {
       stringLength = stringLength + 1;
@@ -65686,6 +65686,7 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   void* ThreadContext;
   long long *PrimaryResourceHandle0;
   long long *PrimaryResourceDataPointer;
+  long long *SecondaryResourceDataPointer;
   long long *PrimaryResourceHandle2;
   uint32_t SystemInitializationStatus;
   long long *PrimaryResourceHandle4;
@@ -65694,9 +65695,9 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   long long *ResourceDataPointerPrimary;
   long long *ResourceHandleSecondary;
   long long *ResourceDataPointerSecondary;
-  long long *StackPointerD0;
-  long long *plongStackC8;
-  long long *plongStackC0;
+  long long *SecondaryResourceHandlePointer;
+  long long *PrimaryResourceHandlePointer;
+  long long *PrimaryResourceDataPointer;
   long long *PointerStackVariableB8;
   uint8_t aSystemFlagSecondary [8];
   long long LocalStackVariableA8;
@@ -65891,11 +65892,11 @@ SystemResourceCleanupPoint:
       ResourceDataPointerSecondary = PrimaryResourceHandle0;
       (**(code **)(*PrimaryResourceHandle0 + 0x28))(PrimaryResourceHandle0);
       ProcessResourceAllocation(SystemResourceManager,AdditionalParameter,&ResourceDataPointerSecondary,&ResourceHandleSecondary);
-      plongStackD0 = PrimaryResourceDataPointer;
+      SecondaryResourceDataPointer = PrimaryResourceDataPointer;
       (**(code **)(*PrimaryResourceDataPointer + 0x28))(PrimaryResourceDataPointer);
-      plongStackC8 = PrimaryResourceHandle0;
+      PrimaryResourceHandlePointer = PrimaryResourceHandle0;
       (**(code **)(*PrimaryResourceHandle0 + 0x28))(PrimaryResourceHandle0);
-      ConfigureResourceAllocation(SystemResourceManager,AdditionalParameter,&plongStackC8,&plongStackD0);
+      ConfigureResourceAllocation(SystemResourceManager,AdditionalParameter,&PrimaryResourceHandlePointer,&SecondaryResourceDataPointer);
       ProcessSystemStatus(&SystemConfigurationFlags);
       if (*(char *)(SystemResourceManager + 0xf4) == '\x01') {
         PointerStackVariableB8 = (long long *)0x0;
@@ -65984,8 +65985,8 @@ void ProcessSystemResourceAllocation(long long* SystemResourceManager)
     (**(code **)(*SecondaryResourceHandle + 0x28))();
   }
   ConfigureResourceAllocation(resourceDataIndex,(char)SystemResourceManager[1],&SecondaryResourceHandle,&PrimaryResourceHandle);
-  longValue38 = *SystemResourceManager;
-  if (*(char *)(longValue38 + 0xf4) == '\x01') {
+  SystemResourceContext = *SystemResourceManager;
+  if (*(char *)(SystemResourceContext + 0xf4) == '\x01') {
     PrimaryResourceHandle = (long long *)0x0;
     pLocalMemoryPointer = (long long *)0x0;
     SystemStackBuffer40[0] = 0;
@@ -68121,7 +68122,7 @@ void ProcessSystemResourceManagerFinal(long long SystemResourceManager,char Conf
   pLocalMemoryPointer = (long long *)0x0;
   SystemStackBuffer40[0] = 0;
   SystemResourceStatusFlag = 1;
-  longValue38 = SystemResourceManager;
+  SystemResourceManagerBackup = SystemResourceManager;
   InitializeSystemResourceEncryption(SystemStackBuffer40);
   if (pLocalMemoryPointer == (long long *)0x0) goto MemoryPointerValidation;
   SystemResourceOffsetPointer = pLocalMemoryPointer;
