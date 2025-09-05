@@ -18137,7 +18137,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
             calculatedIndex = *(longlong *)(validationContext4 + 8 + dataPointer);
             statusFlag = CheckSystemStatus(calculatedOffset,1);
             pdataValue6 = puStack_190;
-            if ((cVar5 == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
+            if ((statusFlag == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
               uStack_f0 = *(undefined4 *)(validationContext4 + 4 + dataPointer);
               puStack_108 = &UNK_180984038;
               uStack_f8 = uStack_1c8;
@@ -50003,7 +50003,7 @@ void Unwind_180905e40(undefined8 param_1,longlong param_2)
   longlong memoryPointer;
   longlong memoryOffset;
   longlong bufferPointer;
-  bool bVar9;
+  bool isPointerMatch;
   
   pcalculatedOffset = (longlong *)(param_2 + 0x28);
   FUN_180069530((ulonglong)(*(uint *)(param_2 + 0x30) & 0x1f) * 0x1a8 + *pcalculatedOffset);
