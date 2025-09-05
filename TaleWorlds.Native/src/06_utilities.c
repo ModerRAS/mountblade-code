@@ -6771,7 +6771,7 @@ int ProcessResourceCopyOperation(longlong param_1)
 
 
 
-// 函数: void ProcessUtilityDataRequest(longlong dataHandle,undefined8 requestInfo)
+// 函数: void ProcessUtilityDataRequest(longlong dataHandle,uint64_t requestInfo)
 // 
 // 处理工具数据请求
 // 根据传入的数据句柄和请求信息，处理相应的工具数据请求
@@ -6782,7 +6782,7 @@ int ProcessResourceCopyOperation(longlong param_1)
 // 
 // 返回值:
 //   void - 无返回值
-void ProcessUtilityDataRequest(longlong dataHandle,undefined8 requestInfo)
+void ProcessUtilityDataRequest(longlong dataHandle,uint64_t requestInfo)
 
 {
   undefined8 resultBuffer;
