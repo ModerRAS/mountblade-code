@@ -343,17 +343,17 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkPacketMagicInvalid 0x464f4f44                   // "DOOF" - 表示无效数据包魔数
 
 // 网络连接相关偏移量 - 连接处理和数据管理
-#define NetworkConnectionHeaderOffset 0x10                     // 网络连接头部偏移量
-#define NetworkConnectionPrimaryValidationOffset 0xd8          // 网络连接主验证偏移量
-#define NetworkConnectionTertiaryValidationOffset 0x78         // 网络连接第三验证偏移量
-#define NetworkConnectionQuaternaryValidationOffset 0x58       // 网络连接第四验证偏移量
+#define NetworkConnectionHeaderOffset 0x10                     // 网络连接头部数据偏移量
+#define NetworkConnectionPrimaryValidationOffset 0xd8          // 网络连接主验证数据偏移量
+#define NetworkConnectionTertiaryValidationOffset 0x78         // 网络连接第三验证数据偏移量
+#define NetworkConnectionQuaternaryValidationOffset 0x58       // 网络连接第四验证数据偏移量
 #define NetworkConnectionDataPrimaryOffset 0x5c                // 网络连接主数据偏移量
-#define NetworkConnectionValidatorOffset 0x60                  // 网络连接验证器偏移量
-#define NetworkConnectionPrimaryIntegrityOffset 0x70          // 网络连接主完整性偏移量
-#define NetworkConnectionSecondaryIntegrityOffset 0x74       // 网络连接次完整性偏移量
-#define NetworkConnectionCompletionOffset 0x7c                  // 网络连接完成偏移量
-#define NetworkConnectionSecurityContextOffset 0xf8           // 网络连接安全上下文偏移量
-#define NetworkConnectionResultHandleContextOffset 0xe8             // 网络连接句柄上下文偏移量
+#define NetworkConnectionValidatorOffset 0x60                  // 网络连接验证器数据偏移量
+#define NetworkConnectionPrimaryIntegrityOffset 0x70          // 网络连接主完整性数据偏移量
+#define NetworkConnectionSecondaryIntegrityOffset 0x74       // 网络连接次完整性数据偏移量
+#define NetworkConnectionCompletionOffset 0x7c                  // 网络连接完成数据偏移量
+#define NetworkConnectionSecurityContextOffset 0xf8           // 网络连接安全上下文数据偏移量
+#define NetworkConnectionResultHandleContextOffset 0xe8             // 网络连接句柄上下文数据偏移量
 #define NetworkPacketSecondaryDataOffset 0x44                  // 网络数据包次级数据偏移量
 
 // 网络状态常量 - 系统状态和限制值
@@ -529,15 +529,15 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkPacketSizeLimit 0x55                          // 数据包大小限制（85字节）
 
 // 网络连接验证偏移量常量
-#define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证偏移量
-#define NetworkConnectionTertiaryValidationOffset 0x56         // 第三级连接验证偏移量
-#define NetworkConnectionQuaternaryValidationOffset 0x58         // 第四级连接验证偏移量
+#define NetworkConnectionSecondaryValidationOffset 0x54         // 第二级连接验证数据偏移量
+#define NetworkConnectionTertiaryValidationOffset 0x56         // 第三级连接验证数据偏移量
+#define NetworkConnectionQuaternaryValidationOffset 0x58         // 第四级连接验证数据偏移量
 #define NetworkPacketStatusSizeLimit 0x100                      // 数据包状态大小限制（256字节）
 #define NetworkPacketStatusLimit NetworkPacketStatusSizeLimit  // 兼容性别名 - 数据包状态大小限制
 
 // 网络连接完整性偏移量常量
-#define NetworkConnectionPrimaryIntegrityOffset 0x5a           // 主连接完整性偏移量
-#define NetworkConnectionSecondaryIntegrityOffset 0x5c          // 次连接完整性偏移量
+#define NetworkConnectionPrimaryIntegrityOffset 0x5a           // 主连接完整性数据偏移量
+#define NetworkConnectionSecondaryIntegrityOffset 0x5c          // 次连接完整性数据偏移量
 
 // 网络数据包大小限制常量
 #define NetworkPacketSizeAlternative 0x60                      // 替代数据包大小限制（96字节）
@@ -547,9 +547,9 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkBitShift31Bits 0x1f                        // 31位偏移值
 #define NetworkByteMaskValue 0xff                           // 字节掩码值
 #define NetworkConnectionAlignmentSize 4                    // 网络连接对齐大小（4字节）
-#define NetworkContextTableOffset 0xb0                      // 网络上下文表偏移量
-#define NetworkConnectionIdOffset 0x98                     // 网络连接ID偏移量
-#define NetworkStatusDataOffset 0x200                       // 网络状态数据偏移量
+#define NetworkContextTableOffset 0xb0                      // 网络上下文表数据偏移量
+#define NetworkConnectionIdOffset 0x98                     // 网络连接ID数据偏移量
+#define NetworkStatusDataOffset 0x200                       // 网络状态有效数据偏移量
 #define NetworkResourceAllocationSize 0x20                  // 网络资源分配大小（32字节）
 #define NetworkResourceAllocationSizeEx 0x28               // 网络资源扩展分配大小（40字节）
 #define NetworkHandleStorageSize 0x30                       // 网络句柄存储大小（48字节）

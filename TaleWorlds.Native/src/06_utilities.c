@@ -6301,62 +6301,58 @@ undefined SystemMemoryManagementBlockD6;
 // 函数: undefined UtilityResizeMemoryHeap;
 // 调整内存堆大小，重新分配内存空间
 undefined UtilityResizeMemoryHeap;
-undefined UNK_180bd8a60;
-undefined UNK_180a185f0;
-undefined UNK_180a18618;
-undefined UNK_180a18630;
-undefined UNK_180a18860;
-undefined UNK_180a18888;
-undefined DAT_180a06b58;
-undefined UNK_180a18870;
-undefined UNK_180a18898;
-undefined UNK_180a06b98;
-undefined UNK_180a18880;
-undefined UNK_180a188a8;
-undefined UNK_180a188c0;
-undefined UNK_180a188d8;
-undefined UNK_180a188e0;
-undefined UNK_180a188f8;
-undefined UNK_180a18908;
-undefined UNK_180a18918;
-undefined UNK_180a1892c;
-undefined UNK_180a18938;
-undefined UNK_180a18980;
-undefined UNK_180a18998;
-undefined UNK_180a18968;
-undefined UNK_180a189b8;
-undefined DAT_180c96830;
-undefined UNK_180a189f8;
-undefined UNK_180a18a98;
-undefined UNK_180a18aa8;
-undefined UNK_180a18ab8;
-undefined UNK_180a18ad0;
-undefined UNK_180a18ae8;
-undefined UNK_180a18af8;
-undefined UNK_180a18b10;
-undefined UNK_180a18b40;
-undefined UNK_180a18b50;
-undefined UNK_180a18b68;
-undefined UNK_180a18b6c;
-undefined UNK_180a18b88;
-undefined UNK_180a18ba0;
-undefined UNK_180a18bb0;
-undefined UNK_180a18bc4;
-undefined UNK_180a18bc8;
-undefined UNK_180a18c08;
-undefined UNK_180a18c20;
-undefined UNK_180a18c78;
-undefined UNK_180a18ca0;
-undefined UNK_180a18cd8;
-undefined UNK_180a18d20;
-undefined UNK_180a18d48;
-undefined UNK_180a18d00;
-undefined UNK_180a18d10;
-undefined UNK_180a18d68;
-undefined UNK_180a18e08;
-undefined UNK_180a18de8;
-undefined UNK_180a18df8;
-undefined UNK_180a18e20;
+// 系统内存管理相关变量
+undefined SystemMemoryManagementTable;
+undefined SystemMemoryAllocationTable;
+undefined SystemMemoryPoolTable;
+undefined SystemMemoryHeapTable;
+undefined SystemMemoryBufferTable;
+undefined SystemMemoryCacheTable;
+undefined SystemMemoryDataBuffer;
+undefined SystemMemoryControlTable;
+undefined SystemMemoryConfigTable;
+undefined SystemMemoryStatusTable;
+undefined SystemMemoryHandleTable;
+undefined SystemMemoryReferenceTable;
+undefined SystemMemoryPointerTable;
+undefined SystemMemorySegmentTable;
+undefined SystemMemoryPageTable;
+undefined SystemMemoryBlockTable;
+undefined SystemMemoryRegionTable;
+undefined SystemMemoryAreaTable;
+undefined SystemMemoryZoneTable;
+undefined SystemMemoryPartitionTable;
+undefined SystemMemorySectionTable;
+undefined SystemMemoryUnitTable;
+undefined SystemMemoryChunkTable;
+undefined SystemMemoryFragmentTable;
+undefined SystemMemorySlotTable;
+undefined SystemMemoryEntryTable;
+undefined SystemMemoryItemTable;
+undefined SystemMemoryElementTable;
+// 系统线程管理相关变量
+undefined SystemThreadManagementTable;
+undefined SystemThreadQueueTable;
+undefined SystemThreadPoolTable;
+undefined SystemThreadStackTable;
+undefined SystemThreadContextTable;
+undefined SystemThreadPriorityTable;
+undefined SystemThreadStatusTable;
+undefined SystemThreadHandleTable;
+undefined SystemThreadIdTable;
+undefined SystemThreadFlagTable;
+undefined SystemThreadLockTable;
+undefined SystemThreadSemaphoreTable;
+undefined SystemThreadMutexTable;
+undefined SystemThreadEventTable;
+undefined SystemThreadTimerTable;
+undefined SystemThreadCounterTable;
+undefined SystemThreadMonitorTable;
+undefined SystemThreadSchedulerTable;
+undefined SystemThreadAllocatorTable;
+undefined SystemThreadCleanerTable;
+undefined SystemThreadManagerTable;
+undefined SystemThreadControllerTable;
 
 // 函数: undefined UtilityCompactMemoryHeap;
 // 压缩内存堆，整理碎片化内存
@@ -50108,6 +50104,21 @@ void SetUnknownHandlerAtOffset60(undefined8 systemContext,longlong contextData)
 
 
 
+/**
+ * @brief 使用掩码和偏移量处理数据
+ * 
+ * 该函数从处理数据中提取掩码值，计算偏移量，然后调用指定的处理函数。
+ * 同时在计算出的内存位置设置标志位，用于标记处理状态。
+ * 
+ * @param systemContext 系统上下文，包含系统状态信息
+ * @param processData 处理数据，包含掩码值和偏移量信息
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数用于数据预处理和状态标记
+ * @warning 掩码值限制为5位(0x1f)，确保数据结构正确
+ * @see FUN_180069530, ProcessDataBuffer
+ */
 void ProcessDataWithMaskAndOffset(undefined8 systemContext,longlong processData)
 
 {
@@ -50123,6 +50134,22 @@ void ProcessDataWithMaskAndOffset(undefined8 systemContext,longlong processData)
 
 
 
+/**
+ * @brief 处理系统异常
+ * 
+ * 该函数是系统异常处理器，负责在发生异常时执行系统清理、
+ * 参数配置和系统操作。函数会调用系统清理函数，配置系统参数，
+ * 执行系统操作，最后抛出C++异常。
+ * 
+ * @param exceptionContext 异常上下文，包含异常相关信息
+ * @param contextData 上下文数据，包含系统配置和操作参数
+ * 
+ * @return void 无返回值（此函数不会正常返回）
+ * 
+ * @note 此函数用于异常处理和系统恢复
+ * @warning 此函数调用_CxxThrowException，不会正常返回
+ * @see CleanupSystem, ConfigureSystemParametersA0, ExecuteSystemOperation
+ */
 void HandleSystemException(undefined8 exceptionContext,longlong contextData)
 
 {
