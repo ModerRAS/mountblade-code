@@ -1609,7 +1609,7 @@ int32_t ClearNetworkConnectionContext(int64_t ConnectionContext);
  * 
  * @note 此函数会考虑网络延迟和时钟漂移因素，确保验证的准确性
  * @warning 如果超时时间设置过短，可能导致正常数据被误判为过期
- * @see SetupNetworkBuffer, ProcessNetworkBufferWithEncryption
+ * @see InitializeNetworkBuffer, ProcessNetworkBufferWithEncryption
  * 
  * @retval 0 验证成功，数据在有效期内
  * @retval 0x1 缓冲区数据无效
