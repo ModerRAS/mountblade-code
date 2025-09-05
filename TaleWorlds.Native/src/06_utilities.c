@@ -184,9 +184,41 @@
  * @note 原始函数名：FUN_180892974
  */
 #define CheckSystemInitializationStatusA0 FUN_180892974
+
+/**
+ * @brief 处理系统数据A0
+ * 
+ * 该函数负责处理系统数据，包括数据转换、验证和存储
+ * 
+ * @note 原始函数名：FUN_180892990
+ */
 #define ProcessSystemDataA0 FUN_180892990
+
+/**
+ * @brief 验证和处理浮点数A2
+ * 
+ * 该函数负责验证浮点数数组的有效性，并执行相应的处理操作
+ * 
+ * @note 原始函数名：FUN_180892ac0
+ */
 #define ValidateAndProcessFloatingPointNumberA2 FUN_180892ac0
+
+/**
+ * @brief 处理复杂数据结构A0
+ * 
+ * 该函数负责处理复杂的数据结构，包括嵌套结构和指针操作
+ * 
+ * @note 原始函数名：FUN_180892bd0
+ */
 #define ProcessComplexDataStructureA0 FUN_180892bd0
+
+/**
+ * @brief 处理浮点数数组A0
+ * 
+ * 该函数负责处理浮点数数组，支持批量浮点数运算和转换
+ * 
+ * @note 原始函数名：FUN_180892cc0
+ */
 #define ProcessFloatingPointArrayA0 FUN_180892cc0
 
 // 请求和数据处理函数宏定义 (F系列)
