@@ -13864,27 +13864,27 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
   float pressureValue;
   uint32_t operationRangeBuffer;
   
-  uStack0000000000000040 = 0;
-  uVar2 = ProcessSystemDataTransferA0(systemContext + 0x60,param_2,&stack0x00000040);
-  if ((int)uVar2 == 0) {
-    calculatedOffset = GetOperationRangeDataA0(systemContext + 0x60,uStack0000000000000040);
+  stackBuffer = 0;
+  operationResult = ProcessSystemDataTransferA0(systemContext + 0x60,param_2,&stackDataBuffer);
+  if ((int)operationResult == 0) {
+    calculatedOffset = GetOperationRangeDataA0(systemContext + 0x60,stackBuffer);
     if ((*(uint *)(calculatedOffset + 0x34) >> 4 & 1) != 0) {
       return 0x1f;
     }
-    fVar1 = *(float *)(registerContext + 0x18);
-    fVar4 = *(float *)(calculatedOffset + 0x38);
-    if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
-       (fVar4 = *(float *)(calculatedOffset + 0x3c), fVar1 <= *(float *)(calculatedOffset + 0x3c))) {
-      fVar4 = fVar1;
+    inputValue = *(float *)(registerContext + 0x18);
+    rangeMin = *(float *)(calculatedOffset + 0x38);
+    if ((*(float *)(calculatedOffset + 0x38) <= inputValue) &&
+       (rangeMax = *(float *)(calculatedOffset + 0x3c), inputValue <= *(float *)(calculatedOffset + 0x3c))) {
+      rangeMax = inputValue;
     }
-    *(float *)(registerContext + 0x18) = fVar4;
-    uVar2 = ValidateOperationRangeA0(systemContext + 0x60,uStack0000000000000040,fVar4);
-    if ((int)uVar2 == 0) {
+    *(float *)(registerContext + 0x18) = rangeMax;
+    operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackBuffer,rangeMax);
+    if ((int)operationResult == 0) {
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98));
     }
   }
-  return uVar2;
+  return operationResult;
 }
 
 
@@ -37669,7 +37669,17 @@ void SetDefaultExceptionHandlerB(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902ee0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 在偏移量0x438处设置默认异常处理器B
+ * 
+ * 该函数用于在指定偏移量位置设置默认异常处理器B
+ * 
+ * @param param_1 系统上下文参数
+ * @param param_2 资源管理参数
+ * 
+ * @note 原始函数名：Unwind_180902ee0
+ */
+void SetDefaultExceptionHandlerBAtOffset438(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(*(longlong *)(param_2 + 0x40) + 0x438) = &DefaultExceptionHandlerB;
@@ -37678,7 +37688,19 @@ void Unwind_180902ee0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902f00(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 执行系统资源清理操作
+ * 
+ * 该函数通过调用系统清理函数来执行资源清理操作
+ * 
+ * @param param_1 系统上下文参数
+ * @param param_2 资源管理参数
+ * @param param_3 清理操作参数1
+ * @param param_4 清理操作参数2
+ * 
+ * @note 原始函数名：Unwind_180902f00
+ */
+void ExecuteSystemResourceCleanup(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058710(*(longlong *)(param_2 + 0x40) + 0x858,
@@ -59975,33 +59997,33 @@ void Unwind_180908ba0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180908bb0(undefined8 param_1,longlong param_2)
+void ExceptionHandlerCleanupRoutine(void* exceptionContext, longlong contextData)
 
 {
-  if (*(longlong **)(param_2 + 0x1b0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x1b0) + 0x38))();
+  if (*(longlong **)(contextData + 0x1b0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(contextData + 0x1b0) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180908bc0(undefined8 param_1,longlong param_2)
+void ExceptionHandlerSetupRoutine(void* handlerContext, longlong contextData)
 
 {
-  if (*(longlong **)(param_2 + 0x78) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x78) + 0x38))();
+  if (*(longlong **)(contextData + 0x78) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(contextData + 0x78) + 0x38))();
   }
-  *(undefined8 *)(param_2 + 0x48) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0x50) != 0) {
+  *(undefined8 *)(contextData + 0x48) = &TemporaryExceptionHandler;
+  if (*(longlong *)(contextData + 0x50) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0x50) = 0;
-  *(undefined4 *)(param_2 + 0x60) = 0;
-  *(undefined8 *)(param_2 + 0x48) = &DefaultExceptionHandlerB;
-  if (*(longlong **)(param_2 + 0x40) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x40) + 0x38))();
+  *(undefined8 *)(contextData + 0x50) = 0;
+  *(undefined4 *)(contextData + 0x60) = 0;
+  *(undefined8 *)(contextData + 0x48) = &DefaultExceptionHandlerB;
+  if (*(longlong **)(contextData + 0x40) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(contextData + 0x40) + 0x38))();
   }
   return;
 }
