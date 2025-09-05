@@ -4588,7 +4588,7 @@ void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
   longlong systemContextArray [2];
   undefined1 *dataProcessingBuffer;
   int iterationCounter;
-  undefined4 operationFlags;
+  uint32_t operationFlags;
   undefined1 workingDataBuffer [512];
   ulonglong stackGuardValue;
   
@@ -4649,7 +4649,7 @@ void ProcessResourceCleanup(void)
   int cleanupCounter;
   undefined1 *stackBuffer;
   int resourceCount;
-  undefined4 cleanupFlags;
+  uint32_t cleanupFlags;
   ulonglong securityParameter;
   
   if (*(longlong *)(systemContext + 8) != 0) {
