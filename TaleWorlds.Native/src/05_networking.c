@@ -1399,9 +1399,9 @@ void BindNetworkSocket(void)
  * 
  * @return void 无返回值
  * 
- * @see BindNetworkSocket, AcceptConnection
+ * @see BindNetworkSocket, AcceptNetworkConnection
  */
-void StartListeningForConnections(void)
+void StartNetworkConnectionListening(void)
 {
   // 设置监听队列参数
   NetworkConnectionRequestQueue = NetworkQueueEnabled;                // 初始化连接请求队列
@@ -1445,9 +1445,9 @@ void StartListeningForConnections(void)
  * 
  * @return void 无返回值
  * 
- * @see StartListeningForConnections, CloseConnection
+ * @see StartNetworkConnectionListening, CloseNetworkConnection
  */
-void AcceptConnection(void)
+void AcceptNetworkConnection(void)
 {
   // 分配新的连接资源
   NetworkConnectionActiveContext = NetworkConnectionContextEnabled;                      // 初始化连接上下文
@@ -1496,14 +1496,14 @@ void AcceptConnection(void)
  * 
  * @return void 无返回值
  * 
- * @see AcceptConnection, InitializeNetworkSocket
+ * @see AcceptNetworkConnection, InitializeNetworkSocket, CloseNetworkConnection
  */
-void CloseConnection(void)
+void CloseNetworkConnection(void)
 {
   // 清理连接状态
   NetworkConnectionStatusFlags = 0x00;                // 重置连接状态标志
   NetworkConnectionStateFlags = 0x00;                 // 重置连接状态标志
-  NetworkConnectionExtendedFlags = NetworkExtendedFlagsResetValue;              // 重置连接扩展标志
+  NetworkConnectionExtendedFlags = NetworkDefaultResetValue;              // 重置连接扩展标志
   
   // 释放连接资源
   NetworkConnectionActiveContext = 0x00;                     // 释放连接上下文
