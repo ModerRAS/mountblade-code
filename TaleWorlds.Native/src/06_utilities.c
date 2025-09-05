@@ -3,8 +3,6 @@
 // 全局数据定义
 #define DefaultDataNodePointer DAT_00000018
 
-// 系统底层函数宏定义
-
 /**
  * @brief 获取系统上下文句柄
  * 
@@ -90316,7 +90314,15 @@ void SetDefaultExceptionHandler07(void)
 
 
 942220(void)
-void FUN_180942220(void)
+/**
+ * @brief 设置默认异常处理器08
+ * 
+ * 该函数负责将默认异常处理器B设置到指定的全局变量中
+ * 用于系统异常处理机制的初始化
+ * 
+ * @note 原始函数名：FUN_180942220
+ */
+void SetDefaultExceptionHandler08(void)
 
 {
   _DAT_180bf9b10 = &DefaultExceptionHandlerB;
