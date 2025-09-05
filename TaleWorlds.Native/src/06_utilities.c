@@ -97627,10 +97627,24 @@ void SetSystemDataStructureAtOffset158(uint8_t ObjectContext,int64_t ValidationC
 
 
 
-void Unwind_18090fab0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置验证上下文扩展数据结构指针
+ * 
+ * 该函数将系统数据结构指针设置到验证上下文的指定偏移量处
+ * 用于在验证过程中访问系统数据结构
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针，用于设置数据结构指针
+ * @return 无返回值
+ * @note 此函数会修改验证上下文中的指针
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * 
+ * 原始函数名为Unwind_18090fab0，现已重命名为SetValidationContextExtendedDataStructurePointer
+ */
+void SetValidationContextExtendedDataStructurePointer(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  *(uint8_t **)(ValidationContext + 0x158) = &SystemDataStructure;
+  *(uint8_t **)(ValidationContext + ValidationContextExtendedDataStructureOffset) = &SystemDataStructure;
   return;
 }
 

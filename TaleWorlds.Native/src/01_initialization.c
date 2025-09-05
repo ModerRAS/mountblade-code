@@ -6505,8 +6505,8 @@ void InitializeSystemStorageManager(void)
     AllocateSystemMemory(SystemDataTableReference,&systemAllocatedStorageNode,SystemPreviousStorageNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     SystemPreviousStorageNode = systemAllocatedStorageNode;
   }
-  SystemCurrentStorageNode[6] = 0x40db4257e97d3df8;
-  SystemCurrentStorageNode[7] = 0x81d539e33614429f;
+  SystemCurrentStorageNode[6] = DataComparisonTemplateOId1;
+  SystemCurrentStorageNode[7] = DataComparisonTemplateOId2;
   SystemCurrentStorageNode[8] = &SystemDataNodeN;
   SystemCurrentStorageNode[9] = 4;
   SystemPreviousStorageNode[10] = SystemStorageManagerCallbackFunction;
@@ -6564,8 +6564,8 @@ void InitializeSystemMemoryManagerNode(void)
     AllocateSystemMemory(SystemDataTableReference,&SystemAllocatedMemoryNode,SystemPreviousMemoryNode,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     SystemPreviousMemoryNode = SystemAllocatedMemoryNode;
   }
-  SystemCurrentMemoryNode[6] = 0x4e33c4803e67a08f;
-  SystemCurrentMemoryNode[7] = 0x703a29a844ce399;
+  SystemCurrentMemoryNode[6] = MemoryComparisonTemplateId1;
+  SystemCurrentMemoryNode[7] = MemoryComparisonTemplateId2;
   SystemCurrentMemoryNode[8] = &SystemDataNodeO;
   SystemCurrentMemoryNode[9] = 3;
   SystemPreviousMemoryNode[10] = MemoryManagerCallbackFunction;

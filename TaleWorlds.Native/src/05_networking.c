@@ -2191,7 +2191,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             ConnectionStatusBufferPointer[ConnectionContextPacketStatusIndex] = PacketStatus;
             ConnectionStatusBufferPointer[ConnectionContextDataStatusIndex] = DataStatus;
             ConnectionStatusBufferPointer[ConnectionContextValidationStatusIndex] = ValidationStatus;
-            ConnectionStatusBufferPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)((ConnectionContextAddress - (long long)NetworkConnectionStatusBuffer) + -4 + (long long)(ConnectionStatusBufferPointer + ConnectionContextStatusEntrySize));
+            ConnectionStatusBufferPointer[ConnectionContextStatusEntrySize - 1] = *(NetworkConnectionStatus *)CalculateLastContextEntryOffset(ConnectionContextAddress, NetworkConnectionStatusBuffer, ConnectionStatusBufferPointer);
             
             // 更新计数器
             ConnectionIterationCounter = ConnectionIterationCounter - 1;
@@ -2204,13 +2204,13 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
     return NetworkErrorConnectionFailed;
   }
   // 验证连接安全性
-  if ((0 < *(int *)((long long)ConnectionContext + ConnectionParameterOffset)) && (*ConnectionContext != 0)) {
+  if ((0 < *(int *)CalculateContextParameterOffset(ConnectionContext)) && (*ConnectionContext != 0)) {
       ValidateConnectionSecurity(*(NetworkResourceHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionContext, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
   }
   
   // 更新连接上下文和参数
-  *ConnectionContext = (long long)NetworkProcessedPacketIdentifier;
-  *(int *)((long long)ConnectionContext + ConnectionParameterOffset) = PacketData;
+  *ConnectionContext = (int64_t)NetworkProcessedPacketIdentifier;
+  *(int *)CalculateContextParameterOffset(ConnectionContext) = PacketData;
   
   return NetworkOperationSuccess;  // 处理成功
 }
