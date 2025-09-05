@@ -3878,6 +3878,34 @@
 // 功能：验证资源有效性
 #define ValidateResourceA2 FUN_180896c10
 
+// 原始函数名：FUN_1808a8620 - 数据查询函数A2
+// 功能：查询系统数据
+#define QuerySystemDataA2 FUN_1808a8620
+
+// 原始函数名：FUN_18089cc80 - 数据处理函数A5
+// 功能：处理数据操作
+#define ProcessDataOperationA5 FUN_18089cc80
+
+// 原始函数名：FUN_1808ddf80 - 系统清理函数A0
+// 功能：清理系统资源
+#define CleanupSystemResourcesA0 FUN_1808ddf80
+
+// 原始函数名：FUN_1808afc70 - 内存管理函数A0
+// 功能：管理系统内存
+#define ManageSystemMemoryA0 FUN_1808afc70
+
+// 原始函数名：FUN_1808a5d60 - 内存分配函数A0
+// 功能：分配系统内存
+#define AllocateSystemMemoryA0 FUN_1808a5d60
+
+// 原始函数名：FUN_18089bd70 - 数据处理函数A6
+// 功能：处理数据操作
+#define ProcessDataOperationA6 FUN_18089bd70
+
+// 原始函数名：FUN_1808a4a20 - 内存管理函数A1
+// 功能：管理系统内存
+#define ManageSystemMemoryA1 FUN_1808a4a20
+
 // 原始函数名：FUN_180897520 - 上下文验证函数A2
 // 功能：验证上下文有效性
 #define ValidateContextA0 FUN_180897520
@@ -32675,7 +32703,7 @@ void CleanupExceptionData(undefined8 param_1,longlong param_2)
     *(uint *)(param_2 + 0x20) = *(uint *)(param_2 + 0x20) & 0xfffffffe;
     
     // 调用清理函数处理资源
-    FUN_180627b90(*(undefined8 *)(param_2 + 0x48));
+    CleanupResourceHandler(*(undefined8 *)(param_2 + 0x48));
   }
   return;
 }
@@ -32703,7 +32731,7 @@ void UnwindExceptionHandling010(undefined8 exceptionContext,longlong unwindParam
   if ((*statusFlags & 1) != 0) {
     *statusFlags = *statusFlags & 0xfffffffe;
     resourcePointer = *(undefined8 **)(unwindParam + 0x58);
-    FUN_180627b90(*resourcePointer);
+    CleanupResourceHandler(*resourcePointer);
   }
   return;
 }
@@ -32731,7 +32759,7 @@ void UnwindExceptionHandling040(undefined8 exceptionContext,longlong unwindParam
   if ((*statusFlags & 2) != 0) {
     *statusFlags = *statusFlags & 0xfffffffd;
     resourceData = (void *)(unwindParam + 0x30);
-    FUN_180627b90(resourceData);
+    CleanupResourceHandler(resourceData);
   }
   return;
 }
