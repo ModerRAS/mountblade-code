@@ -559,34 +559,34 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NETWORK_PACKETS_RESET_VALUE NETWORK_RESET_VALUE                     // 数据包重置
 #define NETWORK_RETRANSMIT_COUNT_RESET_VALUE NETWORK_RESET_VALUE             // 重传计数重置
 #define NETWORK_LOSS_RATE_RESET_VALUE NETWORK_RESET_VALUE                   // 丢包率重置
-#define NetworkMonitorEnabledFlag 0x01                                  // 监控器启用
+#define NetworkMonitorEnabled 0x01                                  // 监控器启用
 #define NETWORK_ROUND_TRIP_TIME_RESET_VALUE NETWORK_RESET_VALUE             // 往返时间重置
-#define NetworkQueueEnabledFlag 0x01                                    // 队列启用
-#define NetworkBufferInitializationFlag 0x01                                   // 缓冲区初始化标志
+#define NetworkQueueEnabled 0x01                                    // 队列启用
+#define NetworkBufferInitialized 0x01                                   // 缓冲区初始化标志
 #define NETWORK_INDEX_RESET_VALUE NETWORK_RESET_VALUE                       // 索引重置
 #define NETWORK_PACKET_INDEX_RESET_VALUE NETWORK_RESET_VALUE                // 数据包索引重置
 #define NETWORK_ERROR_RATE_RESET_VALUE NETWORK_RESET_VALUE                  // 错误率重置
-#define NetworkHealthGoodFlag 0x01                                       // 健康状态良好
-#define NetworkStabilityHighFlag 0x01                                    // 稳定性高
-#define NetworkPerformanceGoodFlag 0x01                                  // 性能良好
+#define NetworkHealthGood 0x01                                       // 健康状态良好
+#define NetworkStabilityHigh 0x01                                    // 稳定性高
+#define NetworkPerformanceGood 0x01                                  // 性能良好
 
 // 网络数据包验证常量
-#define NetworkValidationPoolEnabledFlag 0x01                // 验证池启用
-#define NetworkSecurityDataEnabledFlag 0x01                  // 安全数据启用
-#define NetworkEncryptionEnabledFlag 0x01                     // 加密启用
-#define NetworkCompressionEnabledFlag 0x01                    // 压缩启用
-#define NetworkAuditEnabledFlag 0x01                          // 审计启用
-#define NetworkPolicyEnabledFlag 0x01                         // 策略启用
-#define NetworkCertificateEnabledFlag 0x01                    // 证书启用
+#define NetworkValidationPoolEnabled 0x01                // 验证池启用
+#define NetworkSecurityDataEnabled 0x01                  // 安全数据启用
+#define NetworkEncryptionEnabled 0x01                     // 加密启用
+#define NetworkCompressionEnabled 0x01                    // 压缩启用
+#define NetworkAuditEnabled 0x01                          // 审计启用
+#define NetworkPolicyEnabled 0x01                         // 策略启用
+#define NetworkCertificateEnabled 0x01                    // 证书启用
 
 // 网络连接管理常量
 #define NETWORK_TABLE_INDEX_RESET_VALUE NETWORK_RESET_VALUE      // 表索引重置
-#define NetworkConnectionManagerEnabledFlag 0x01              // 连接管理器启用
-#define NetworkConnectionDataEnabledFlag 0x01                // 连接数据启用
-#define NetworkRoutingEnabledFlag 0x01                        // 路由启用
-#define NetworkQueueBufferEnabledFlag 0x01                   // 队列缓冲区启用
-#define NetworkCacheEnabledFlag 0x01                          // 缓存启用
-#define NetworkFilterEnabledFlag 0x01                         // 过滤器启用
+#define NetworkConnectionManagerEnabled 0x01              // 连接管理器启用
+#define NetworkConnectionDataEnabled 0x01                // 连接数据启用
+#define NetworkRoutingEnabled 0x01                        // 路由启用
+#define NetworkQueueBufferEnabled 0x01                   // 队列缓冲区启用
+#define NetworkCacheEnabled 0x01                          // 缓存启用
+#define NetworkFilterEnabled 0x01                         // 过滤器启用
 #define NETWORK_BANDWIDTH_RESET_VALUE NETWORK_RESET_VALUE        // 带宽重置
 #define NETWORK_LATENCY_RESET_VALUE NETWORK_RESET_VALUE          // 延迟重置
 #define NETWORK_PACKET_LOSS_RESET_VALUE NETWORK_RESET_VALUE      // 数据包丢失重置
@@ -3320,29 +3320,29 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
 void CleanupNetworkConnectionStack(void* ConnectionBuffer)
 {
   // 连接堆栈清理变量
-  uint32_t CleanupStatus;                // 清理操作状态
-  uint32_t MemoryReleaseStatus;                   // 内存释放状态
-  uint32_t ResourceResetStatus;                  // 资源重置状态
+  uint32_t StackCleanupStatus;                // 清理操作状态
+  uint32_t MemoryCleanupStatus;                   // 内存释放状态
+  uint32_t ResourceCleanupStatus;                  // 资源重置状态
   
   // 初始化清理状态
-  CleanupStatus = NetworkValidationFailure;
-  MemoryReleaseStatus = NetworkValidationFailure;
-  ResourceResetStatus = NetworkValidationFailure;
+  StackCleanupStatus = NetworkValidationFailure;
+  MemoryCleanupStatus = NetworkValidationFailure;
+  ResourceCleanupStatus = NetworkValidationFailure;
   
   // 清理连接缓冲区
   if (ConnectionBuffer) {
     memset(ConnectionBuffer, 0, NetworkConnectionBufferSize);  // 清理连接缓冲区
-    MemoryReleaseStatus = NetworkValidationSuccess;  // 内存释放成功
+    MemoryCleanupStatus = NetworkValidationSuccess;  // 内存释放成功
   }
   
   // 重置相关资源
-  ResourceResetStatus = NetworkValidationSuccess;  // 资源重置成功
+  ResourceCleanupStatus = NetworkValidationSuccess;  // 资源重置成功
   
   // 综合清理结果
-  CleanupStatus = MemoryReleaseStatus & ResourceResetStatus;
+  StackCleanupStatus = MemoryCleanupStatus & ResourceCleanupStatus;
   
   // 如果清理成功，更新系统状态
-  if (CleanupStatus == NetworkValidationSuccess) {
+  if (StackCleanupStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的清理后处理逻辑
     // 例如：更新系统统计信息、通知回调函数等
   }
@@ -3365,28 +3365,28 @@ void CleanupNetworkConnectionStack(void* ConnectionBuffer)
 void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
 {
   // 连接缓冲区复制变量
-  uint32_t CopyStatus;                     // 复制操作状态
-  uint32_t DataValidationResult;                    // 数据验证结果
-  uint32_t SecurityCheckResult;                // 安全验证结果
+  uint32_t BufferCopyStatus;                     // 复制操作状态
+  uint32_t BufferDataValidationResult;                    // 数据验证结果
+  uint32_t BufferSecurityCheckResult;                // 安全验证结果
   
   // 初始化复制状态
-  CopyStatus = NetworkValidationFailure;
-  DataValidationResult = NetworkValidationFailure;
-  SecurityCheckResult = NetworkValidationFailure;
+  BufferCopyStatus = NetworkValidationFailure;
+  BufferDataValidationResult = NetworkValidationFailure;
+  BufferSecurityCheckResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
   if (SourceBuffer) {
-    DataValidationResult = NetworkValidationSuccess;  // 数据验证通过
-    SecurityCheckResult = NetworkValidationSuccess;  // 安全验证通过
+    BufferDataValidationResult = NetworkValidationSuccess;  // 数据验证通过
+    BufferSecurityCheckResult = NetworkValidationSuccess;  // 安全验证通过
     
     // 在实际实现中，这里应该实现实际的缓冲区复制逻辑
     // 包括：数据验证、加密复制、完整性检查等
     // 由于这是简化实现，暂时不执行具体操作
-    CopyStatus = DataValidationResult & SecurityCheckResult;
+    BufferCopyStatus = BufferDataValidationResult & BufferSecurityCheckResult;
   }
   
   // 如果复制成功，更新系统状态
-  if (CopyStatus == NetworkValidationSuccess) {
+  if (BufferCopyStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的复制后处理逻辑
     // 例如：更新备份状态、记录日志、触发回调等
   }
@@ -3412,33 +3412,33 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 网络数据包解码变量
-  uint32_t PacketValidationResult;                         // 网络数据包验证结果
-  uint32_t HeaderDecodingStatus;                           // 网络头部解码状态
-  uint32_t PayloadDecodingStatus;                          // 网络负载解码状态
+  uint32_t NetworkPacketValidationResult;                         // 网络数据包验证结果
+  uint32_t NetworkHeaderDecodingStatus;                           // 网络头部解码状态
+  uint32_t NetworkPayloadDecodingStatus;                          // 网络负载解码状态
   
   // 初始化解码状态
-  PacketValidationResult = NetworkValidationFailure;
-  HeaderDecodingStatus = NetworkValidationFailure;
-  PayloadDecodingStatus = NetworkValidationFailure;
+  NetworkPacketValidationResult = NetworkValidationFailure;
+  NetworkHeaderDecodingStatus = NetworkValidationFailure;
+  NetworkPayloadDecodingStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData && OutputBuffer) {
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      HeaderDecodingStatus = NetworkValidationSuccess;
+      NetworkHeaderDecodingStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      PayloadDecodingStatus = NetworkValidationSuccess;
+      NetworkPayloadDecodingStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    PacketValidationResult = HeaderDecodingStatus & PayloadDecodingStatus;
+    NetworkPacketValidationResult = NetworkHeaderDecodingStatus & NetworkPayloadDecodingStatus;
     
     // 初始化输出缓冲区
-    if (PacketValidationResult == NetworkValidationSuccess) {
+    if (NetworkPacketValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
       OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
@@ -3446,7 +3446,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
   }
   
-  return PacketValidationResult;
+  return NetworkPacketValidationResult;
 }
 
 /**
@@ -3465,30 +3465,30 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
 NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
-  uint32_t HeaderValidationResult;                              // 网络头部验证结果
-  uint32_t ContextProcessingStatus;                             // 网络上下文处理状态
-  uint32_t HeaderFormatCheckResult;                             // 网络头部格式检查结果
+  uint32_t NetworkHeaderValidationResult;                              // 网络头部验证结果
+  uint32_t NetworkContextProcessingStatus;                             // 网络上下文处理状态
+  uint32_t NetworkHeaderFormatCheckResult;                             // 网络头部格式检查结果
   
   // 初始化处理状态
-  HeaderValidationResult = NetworkValidationFailure;
-  ContextProcessingStatus = NetworkValidationFailure;
-  HeaderFormatCheckResult = NetworkValidationFailure;
+  NetworkHeaderValidationResult = NetworkValidationFailure;
+  NetworkContextProcessingStatus = NetworkValidationFailure;
+  NetworkHeaderFormatCheckResult = NetworkValidationFailure;
   
   // 验证头部有效性
   if (PacketData != 0) {
-    HeaderValidationResult = NetworkValidationSuccess;
+    NetworkHeaderValidationResult = NetworkValidationSuccess;
   }
   
   // 验证上下文有效性
   if (HeaderContext != 0) {
-    ContextProcessingStatus = NetworkValidationSuccess;
+    NetworkContextProcessingStatus = NetworkValidationSuccess;
   }
   
   // 检查头部格式
-  if (HeaderValidationResult == NetworkValidationSuccess && 
-      ContextProcessingStatus == NetworkValidationSuccess) {
-    HeaderFormatCheckResult = NetworkValidationSuccess;
+  if (NetworkHeaderValidationResult == NetworkValidationSuccess && 
+      NetworkContextProcessingStatus == NetworkValidationSuccess) {
+    NetworkHeaderFormatCheckResult = NetworkValidationSuccess;
   }
   
-  return HeaderFormatCheckResult;
+  return NetworkHeaderFormatCheckResult;
 }
