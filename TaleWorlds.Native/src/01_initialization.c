@@ -6483,7 +6483,7 @@ void InitializeSystemStorageManager(void)
   SystemDataTableReference = (long long*)GetSystemRootPointer();
   SystemRootStorageNode = (void* *)*SystemDataTableReference;
   SystemNodeTraversalFlag = *(char*)((long long)SystemRootStorageNode[1] + NodeActiveFlagOffset);
-  storageManagerCallbackFunction = SystemStorageManagerCallback;
+  SystemStorageManagerCallbackFunction = SystemStorageManagerCallback;
   SystemPreviousStorageNode = SystemRootStorageNode;
   SystemCurrentStorageNode = (void* *)SystemRootStorageNode[1];
   while (SystemNodeTraversalFlag == '\0') {
@@ -6509,7 +6509,7 @@ void InitializeSystemStorageManager(void)
   SystemCurrentStorageNode[7] = 0x81d539e33614429f;
   SystemCurrentStorageNode[8] = &SystemDataNodeN;
   SystemCurrentStorageNode[9] = 4;
-  SystemPreviousStorageNode[10] = storageManagerCallbackFunction;
+  SystemPreviousStorageNode[10] = SystemStorageManagerCallbackFunction;
   return;
 }
 
@@ -7485,7 +7485,7 @@ void InitializeSystemEventManager(void)
   SystemDataTable = (long long*)GetSystemRootPointer();
   RootNodePointer = (void**)*SystemDataTable;
   NodeActiveFlag = *(char*)((long long)RootNodePointer[1] + NodeActiveFlagOffset);
-  eventHandlerFunction = SystemEventDispatcher;
+  SystemEventHandlerFunction = SystemEventDispatcher;
   HashTableNodePointer = RootNodePointer;
   CurrentNodePointer = (void**)RootNodePointer[1];
   while (NodeActiveFlag == '\0') {
@@ -26029,12 +26029,12 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint SystemDataBufferOffset;
   uint32_t SystemThreadStackSize;
   uint32_t SystemResourceCounter;
-  void* *SystemMemoryBufferPointer238;
-  long long SystemCalculationValue230;
+  void* *SystemMemoryBufferPointerPrimary;
+  long long SystemMemoryAlignmentOffset230;
   uint SystemMemoryAlignment;
   uint32_t SystemAllocationSize;
   void* *SystemStringTemplatePtr;
-  long long SystemCalculationValue210;
+  long long SystemMemoryAlignmentOffset210;
   uint SystemMaxOperationCountSecondary;
   uint32_t StackAllocationSize;
   void* *SystemGlobalDataReferencePtr2;
@@ -28765,7 +28765,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   uint32_t SystemEncryptionKeyD;
   void* SystemMemoryBufferPointer;
   void* **SystemDoublePointerF0;
-  void* *SystemResourceHandleE8;
+  void* *SystemResourceHandlePrimary;
   uint8_t *SystemDataBufferE0;
   uint32_t SystemMemoryAllocatorStatus;
   uint8_t SystemDataBufferD0 [136];
