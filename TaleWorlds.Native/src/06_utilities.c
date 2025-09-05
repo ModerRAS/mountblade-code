@@ -26740,7 +26740,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= dataValue5 &&
       (dataValue5 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       dataValue5 = dataValue5 + 0x1c) {
-    fVar21 = (float)FUN_1807d3e20(systemContext + 0x58);
+    fVar21 = (float)GetSystemContextValue(systemContext + 0x58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(destinationIndexRegister + 8)) && (securityCheckResult = 0x1c, *(int *)(destinationIndexRegister[1] + 0x18) == 0)) {
@@ -27000,7 +27000,7 @@ ValidationLabelC:
       (*(uint64_t *)(systemContext + 0x48) <= dataValue5 &&
       (dataValue5 < (int64_t)*(int *)(systemContext + 0x50) * 0x1c + *(uint64_t *)(systemContext + 0x48)));
       dataValue5 = dataValue5 + 0x1c) {
-    fVar21 = (float)FUN_1807d3e20(systemContext + 0x58);
+    fVar21 = (float)GetSystemContextValue(systemContext + 0x58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(destinationIndexRegister + 8)) && (securityCheckResult = 0x1c, *(int *)(destinationIndexRegister[1] + 0x18) == 0)) {
@@ -27077,7 +27077,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   if (inputParameter < 0x6a) {
     *(DataBuffer **)(stackFramePtr + -0x29) = resourcePtr;
     *(DataBuffer **)(stackFramePtr + -0x21) = resourcePtr;
-    statusCounter = FUN_1808a54c0(param_1,stackFramePointer + -0x29,0);
+    statusCounter = ProcessSystemStatusA0(param_1,stackFramePointer + -0x29,0);
     dataValue1 = (uint64_t)statusCounter;
     if (statusCounter != 0) {
 ValidationLabelB:
