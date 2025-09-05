@@ -50052,42 +50052,66 @@ void ValidationContextHandlerA1(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809073c0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 验证上下文处理函数A2
+ * 
+ * 处理验证上下文的单次调用，从偏移量0x88和0x10处获取上下文
+ * 
+ * @param param_1 未使用的参数
+ * @param param_2 包含验证上下文指针的参数结构
+ */
+void ValidationContextHandlerA2(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPtr;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPtr = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x10);
+  if (validationContextPtr != (longlong *)0x0) {
+    (**(code **)(*validationContextPtr + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_1809073d0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 验证上下文处理函数A3
+ * 
+ * 处理验证上下文的单次调用，从偏移量0x88和0x18处获取上下文
+ * 
+ * @param param_1 未使用的参数
+ * @param param_2 包含验证上下文指针的参数结构
+ */
+void ValidationContextHandlerA3(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPtr;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPtr = *(longlong **)(*(longlong *)(param_2 + 0x88) + 0x18);
+  if (validationContextPtr != (longlong *)0x0) {
+    (**(code **)(*validationContextPtr + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_1809073e0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 验证上下文处理函数A4
+ * 
+ * 处理验证上下文的单次调用，从偏移量0x78和0x10处获取上下文
+ * 
+ * @param param_1 未使用的参数
+ * @param param_2 包含验证上下文指针的参数结构
+ */
+void ValidationContextHandlerA4(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPtr;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x78) + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPtr = *(longlong **)(*(longlong *)(param_2 + 0x78) + 0x10);
+  if (validationContextPtr != (longlong *)0x0) {
+    (**(code **)(*validationContextPtr + 0x38))();
   }
   return;
 }
