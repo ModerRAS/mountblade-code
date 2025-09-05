@@ -37151,7 +37151,7 @@ void SystemCallHandlerMemoryCleanup2(DataBuffer param_1,int64_t param_2)
 void SystemCallHandlerMemoryCleanup3(DataBuffer param_1,int64_t param_2)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(param_2 + 0x70) + 0x4a0,0x20,0x10,FUN_18004c090);
+  ExecuteMemoryOperation(*(int64_t *)(param_2 + 0x70) + 0x4a0,0x20,0x10,InitializeSystemMemoryA2);
   return;
 }
 
@@ -45640,7 +45640,7 @@ void Unwind_1809045b0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 void Unwind_1809045c0(DataBuffer param_1,int64_t param_2)
 
 {
-  FUN_1808fc8a8(*(DataBuffer *)(param_2 + 0x50),0x20,0x400,FUN_180046860);
+  ExecuteMemoryOperation(*(DataBuffer *)(param_2 + 0x50),0x20,0x400,InitializeSystemMemoryA0);
   return;
 }
 
@@ -45649,7 +45649,7 @@ void Unwind_1809045c0(DataBuffer param_1,int64_t param_2)
 void Unwind_1809045f0(DataBuffer param_1,int64_t param_2)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(param_2 + 0x50) + 0x8000,0x20,0x400,FUN_180046860);
+  ExecuteMemoryOperation(*(int64_t *)(param_2 + 0x50) + 0x8000,0x20,0x400,InitializeSystemMemoryA0);
   return;
 }
 
