@@ -746,6 +746,10 @@
 // 功能：获取系统状态信息
 #define GetSystemStatusA1 FUN_18089b21d
 
+// 原始函数名：FUN_180894ef0 - 数据清理和验证函数
+// 功能：清理和验证数据结构，返回验证状态码
+#define CleanupAndValidateDataStructure FUN_180894ef0
+
 // 原始函数名：FUN_1808992c4 - 系统初始化函数A0
 // 功能：初始化系统组件和资源
 #define InitializeSystemComponentsA0 FUN_1808992c4
@@ -10240,36 +10244,50 @@ undefined8 FUN_180893e30(longlong param_1,longlong param_2)
 
 
 
-undefined8 FUN_180893e69(void)
+/**
+ * @brief 验证浮点数值范围并处理系统调用
+ * 
+ * 该函数验证浮点数值是否在指定范围内，并根据验证结果执行相应的系统调用
+ * 
+ * @param systemContext 系统上下文指针（通过寄存器传递）
+ * @param resourceDescriptor 资源描述符指针（通过寄存器传递）
+ * @param validationParameter 验证参数（通过栈传递）
+ * 
+ * @return 验证和处理结果状态码
+ *   - 0x1f: 资源状态验证失败
+ *   - 0x1c: 浮点数值超出范围
+ *   - 0: 成功执行系统调用
+ */
+undefined8 ValidateFloatRangeAndProcessSystemCall(void)
 
 {
-  float fVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong unaff_RDI;
-  longlong unaff_R14;
-  undefined4 in_stack_00000048;
+  float floatValue;
+  longlong resourceHandle;
+  undefined8 validationResult;
+  longlong systemContext;
+  longlong resourceDescriptor;
+  undefined4 validationParameter;
   
-  lVar2 = func_0x000180867680();
-  if ((*(uint *)(lVar2 + 0x34) >> 4 & 1) != 0) {
+  resourceHandle = GetSystemResourceHandle();
+  if ((*(uint *)(resourceHandle + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
-  uVar3 = FUN_18084de40(lVar2,unaff_RDI + 0x1d,unaff_RDI + 0x18);
-  if ((int)uVar3 == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x18);
-    if ((fVar1 < *(float *)(lVar2 + 0x38)) ||
-       (*(float *)(lVar2 + 0x3c) <= fVar1 && fVar1 != *(float *)(lVar2 + 0x3c))) {
-      uVar3 = 0x1c;
+  validationResult = ValidateResourceData(resourceHandle,resourceDescriptor + 0x1d,resourceDescriptor + 0x18);
+  if ((int)validationResult == 0) {
+    floatValue = *(float *)(resourceDescriptor + 0x18);
+    if ((floatValue < *(float *)(resourceHandle + 0x38)) ||
+       (*(float *)(resourceHandle + 0x3c) <= floatValue && floatValue != *(float *)(resourceHandle + 0x3c))) {
+      validationResult = 0x1c;
     }
     else {
-      uVar3 = func_0x000180867960(unaff_R14 + 0x60,in_stack_00000048);
-      if ((int)uVar3 == 0) {
+      validationResult = ProcessSystemRequest(systemContext + 0x60,validationParameter);
+      if ((int)validationResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(unaff_R14 + 0x98));
+        ExecuteSystemDispatch(*(undefined8 *)(systemContext + 0x98));
       }
     }
   }
-  return uVar3;
+  return validationResult;
 }
 
 
@@ -11306,38 +11324,58 @@ LAB_180894ebf:
 // WARNING: Removing unreachable block (ram,0x000180896027)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+// 函数: uint CleanupAndValidateDataStructure(longlong *param_1)
+// 
+// 数据清理和验证函数
+// 对传入的数据结构进行清理和验证操作，确保数据结构的完整性和安全性
+// 
+// 参数:
+//   param_1 - 指向要清理和验证的数据结构的指针
+// 
+// 返回值:
+//   uint - 验证状态码：
+//         0x00 - 验证成功，数据已清理
+//         0x1c - 验证失败，数据存在异常
+//         其他 - 数据计数值或错误码
+// 
+// 功能说明:
+//   1. 检查数据结构的计数器值
+//   2. 验证数据结构的有效性
+//   3. 清理无效或损坏的数据
+//   4. 重置数据结构状态
+//   5. 返回验证结果状态码
 uint FUN_180894ef0(longlong *param_1)
 
 {
-  int iVar1;
-  uint uVar2;
-  uint uVar3;
+  int dataCount;
+  uint validationStatus;
+  uint dataCounter;
   
-  uVar3 = *(uint *)((longlong)param_1 + 0xc);
-  uVar2 = uVar3 ^ (int)uVar3 >> 0x1f;
-  if ((int)(uVar2 - ((int)uVar3 >> 0x1f)) < 0) {
+  dataCounter = *(uint *)((longlong)param_1 + 0xc);
+  validationStatus = dataCounter ^ (int)dataCounter >> 0x1f;
+  if ((int)(validationStatus - ((int)dataCounter >> 0x1f)) < 0) {
     if (0 < (int)param_1[1]) {
-      return uVar2;
+      return validationStatus;
     }
-    if ((0 < (int)uVar3) && (*param_1 != 0)) {
+    if ((0 < (int)dataCounter) && (*param_1 != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*param_1,&UNK_180957f70,0x100,1);
     }
     *param_1 = 0;
-    uVar3 = 0;
+    dataCounter = 0;
     *(undefined4 *)((longlong)param_1 + 0xc) = 0;
   }
-  iVar1 = (int)param_1[1];
-  if (iVar1 < 0) {
-    if (iVar1 < 0) {
+  dataCount = (int)param_1[1];
+  if (dataCount < 0) {
+    if (dataCount < 0) {
                     // WARNING: Subroutine does not return
-      memset(*param_1 + (longlong)iVar1 * 0xc,0,(ulonglong)(uint)-iVar1 * 0xc);
+      memset(*param_1 + (longlong)dataCount * 0xc,0,(ulonglong)(uint)-dataCount * 0xc);
     }
   }
   *(undefined4 *)(param_1 + 1) = 0;
-  uVar3 = (uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f);
-  if ((int)uVar3 < 1) {
-    return uVar3;
+  dataCounter = (dataCounter ^ (int)dataCounter >> 0x1f) - ((int)dataCounter >> 0x1f);
+  if ((int)dataCounter < 1) {
+    return dataCounter;
   }
   if (0 < (int)param_1[1]) {
     return 0x1c;
@@ -14923,23 +14961,45 @@ LAB_180897ce8:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180897d20(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void ProcessDataBlockWithSecurityCheck(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 
+// 数据块安全处理函数
+// 对数据块进行安全处理，包括数据加密、验证和安全检查
+// 
+// 参数:
+//   param_1 - 指向数据处理上下文的指针
+//   param_2 - 要处理的数据块指针
+//   param_3 - 处理参数1
+//   param_4 - 处理参数2
+// 
+// 返回值:
+//   void - 无返回值
+// 
+// 功能说明:
+//   1. 初始化安全检查所需的栈数据
+//   2. 处理传入的数据块
+//   3. 执行安全检查验证
+//   4. 确保数据处理的安全性
+// 
+// 注意事项:
+//   - 此函数不会返回，执行完成后会调用安全检查函数
+//   - 使用栈数据保护机制防止数据泄露
 void FUN_180897d20(longlong *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
-  undefined1 auStack_438 [32];
-  undefined1 auStack_418 [1024];
-  ulonglong uStack_18;
+  undefined8 securityParam1;
+  undefined8 securityParam2;
+  undefined1 securityKeyBuffer [32];
+  undefined1 dataProcessingBuffer [1024];
+  ulonglong securityChecksum;
   
-  uStack_18 = _DAT_180bf00a8 ^ (ulonglong)auStack_438;
-  uStackX_18 = param_3;
-  uStackX_20 = param_4;
-  FUN_18076b930(auStack_418,0x400,param_2,&uStackX_18);
-  (**(code **)(*param_1 + 8))(param_1,auStack_418);
+  securityChecksum = _DAT_180bf00a8 ^ (ulonglong)securityKeyBuffer;
+  securityParam1 = param_3;
+  securityParam2 = param_4;
+  FUN_18076b930(dataProcessingBuffer,0x400,param_2,&securityParam1);
+  (**(code **)(*param_1 + 8))(param_1,dataProcessingBuffer);
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_18 ^ (ulonglong)auStack_438);
+  ExecuteSecurityCheck(securityChecksum ^ (ulonglong)securityKeyBuffer);
 }
 
 
