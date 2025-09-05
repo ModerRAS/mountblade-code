@@ -2142,15 +2142,15 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
 {
   // 网络连接请求处理变量
   int64_t ContextId;                                  // 网络连接上下文标识符
-  int64_t *ValidationDataPtr;                        // 网络连接验证结果数据指针
+  int64_t *NetworkValidationDataPointer;                        // 网络连接验证结果数据指针
   int32_t ValidationStatus;                          // 网络连接验证状态码
   NetworkHandle ResultHandle;                         // 网络连接上下文结果句柄
   
   ContextId = 0;
-  ValidationDataPtr = NULL;  // 初始化指针变量
+  NetworkValidationDataPointer = NULL;  // 初始化指针变量
   ValidationStatus = 0;  // 初始化验证状态码
   if (ValidationStatus == 0) {
-    if (ValidationDataPtr && (0 < *(int *)CalculateContextParameterOffset(ValidationDataPtr)) && (*ValidationDataPtr != 0)) {
+    if (NetworkValidationDataPointer && (0 < *(int *)CalculateContextParameterOffset(NetworkValidationDataPointer)) && (*NetworkValidationDataPointer != 0)) {
         AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *ValidationDataPtr, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     if (ValidationDataPtr) {
