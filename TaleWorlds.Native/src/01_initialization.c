@@ -32519,24 +32519,24 @@ void InitializeSystemResourceManager(ulong long* SystemResourceManager)
 {
   int *resourceCounter;
   ulong long SystemResourceValue1;
-  ulong long systemValue2;
+  ulong long SystemResourceValue2;
   void* *resourcePointer;
-  ulong long systemValue3;
+  ulong long SystemResourceValue3;
   long long CalculationFlagss;
   
   SystemResourceManager[1] = *SystemResourceManager;
   SystemResourceValue1 = *SystemResourceManager;
   *SystemResourceManager = 0;
-  systemValue2 = SystemResourceManager[1];
+  SystemResourceValue2 = SystemResourceManager[1];
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
-  systemValue3 = SystemResourceManager[2];
+  SystemResourceValue3 = SystemResourceManager[2];
   SystemResourceManager[2] = 0;
   CalculationFlagss = SystemResourceManager[3];
   *(int *)(SystemResourceManager + 3) = (int)SystemResourceManager[3];
   resourcePointer = (void* *)*SystemResourceManager;
   *SystemResourceManager = SystemResourceValue1;
-  SystemResourceManager[1] = systemValue2;
-  SystemResourceManager[2] = systemValue3;
+  SystemResourceManager[1] = SystemResourceValue2;
+  SystemResourceManager[2] = SystemResourceValue3;
   *(int *)(SystemResourceManager + 3) = (int)CalculationFlagss;
   if (resourcePointer == (void* *)0x0) {
     return;
@@ -32928,7 +32928,7 @@ void SystemResourceArrayManager(long long* SystemResourceManager,long long Confi
   void* *SystemResourceArrayStartPointer;
   long long SystemThreadHandle;
   void* *SystemResourceArrayEndPointer;
-  void* *resourcePointer4;
+  void* *ResourceIteratorPointer;
   ulong long resourceCapacity;
   ulong long requiredCapacity;
   long long resourceOffset;
@@ -32950,15 +32950,15 @@ void SystemResourceArrayManager(long long* SystemResourceManager,long long Confi
     }
     primaryResourcePointer = (void* *)SystemResourceManager[1];
     quaternaryResourcePointer = (void* *)*SystemResourceManager;
-    if (resourcePointer4 != resourcePointer1) {
+    if (ResourceIteratorPointer != ResourceEndPointer) {
       do {
-        (**(code **)*resourcePointer4)(resourcePointer4,0);
-        resourcePointer4 = resourcePointer4 + 4;
-      } while (resourcePointer4 != resourcePointer1);
-      resourcePointer4 = (void* *)*SystemResourceManager;
+        (**(code **)*ResourceIteratorPointer)(ResourceIteratorPointer,0);
+        ResourceIteratorPointer = ResourceIteratorPointer + 4;
+      } while (ResourceIteratorPointer != ResourceEndPointer);
+      ResourceIteratorPointer = (void* *)*SystemResourceManager;
     }
-    if (resourcePointer4 != (void* *)0x0) {
-        SystemCleanupFunction(resourcePointer4);
+    if (ResourceIteratorPointer != (void* *)0x0) {
+        SystemCleanupFunction(ResourceIteratorPointer);
     }
     *SystemResourceManager = SystemThreadHandle;
     SystemThreadHandle = requiredCapacity * 0x20 + SystemThreadHandle;
@@ -32974,12 +32974,12 @@ void SystemResourceArrayManager(long long* SystemResourceManager,long long Confi
       SystemResourceManager[1] = SystemThreadHandle;
     }
     else {
-      resourcePointer3 = (void* *)SetupSystemDataHandler(ConfigurationDataPointer,AdditionalParameter);
-      resourcePointer1 = (void* *)SystemResourceManager[1];
-      for (resourcePointer4 = resourcePointer3; resourcePointer4 != resourcePointer1; resourcePointer4 = resourcePointer4 + 4) {
-        (**(code **)*resourcePointer4)(resourcePointer4,0);
+      ResourceStartPointer = (void* *)SetupSystemDataHandler(ConfigurationDataPointer,AdditionalParameter);
+      ResourceEndPointer = (void* *)SystemResourceManager[1];
+      for (ResourceIteratorPointer = ResourceStartPointer; ResourceIteratorPointer != ResourceEndPointer; ResourceIteratorPointer = ResourceIteratorPointer + 4) {
+        (**(code **)*ResourceIteratorPointer)(ResourceIteratorPointer,0);
       }
-      SystemResourceManager[1] = (long long)resourcePointer3;
+      SystemResourceManager[1] = (long long)ResourceStartPointer;
     }
   }
   return;
@@ -33000,10 +33000,10 @@ void SystemResourceArrayManager(long long* SystemResourceManager,long long Confi
 void SystemResourceArrayCreator(long long SystemResourceManager)
 
 {
-  void* *resourcePointer1;
+  void* *ResourceEndPointer;
   long long SystemThreadHandle;
   long long resourceStartOffset;
-  void* *resourcePointer3;
+  void* *ResourceStartPointer;
   long long resourceSize;
   long long *resourceArrayPointer;
   long long bufferAddress;
@@ -33022,23 +33022,23 @@ void SystemResourceArrayCreator(long long SystemResourceManager)
       resourceStartOffset = resourceStartOffset + 0x20;
     } while (resourceStartOffset != resourceEndOffset);
   }
-  resourcePointer1 = (void* *)resourceArrayPointer[1];
-  resourcePointer3 = (void* *)*resourceArrayPointer;
-  if (resourcePointer3 != resourcePointer1) {
+  ResourceEndPointer = (void* *)resourceArrayPointer[1];
+  ResourceStartPointer = (void* *)*resourceArrayPointer;
+  if (ResourceStartPointer != ResourceEndPointer) {
     do {
-      (**(code **)*resourcePointer3)(resourcePointer3,0);
-      resourcePointer3 = resourcePointer3 + 4;
-    } while (resourcePointer3 != resourcePointer1);
-    resourcePointer3 = (void* *)*resourceArrayPointer;
+      (**(code **)*ResourceStartPointer)(ResourceStartPointer,0);
+      ResourceStartPointer = ResourceStartPointer + 4;
+    } while (ResourceStartPointer != ResourceEndPointer);
+    ResourceStartPointer = (void* *)*resourceArrayPointer;
   }
-  if (resourcePointer3 == (void* *)0x0) {
+  if (ResourceStartPointer == (void* *)0x0) {
     *resourceArrayPointer = SystemThreadHandle;
     SystemThreadHandle = resourceSize * 0x20 + SystemThreadHandle;
     resourceArrayPointer[2] = SystemThreadHandle;
     resourceArrayPointer[1] = SystemThreadHandle;
     return;
   }
-    SystemCleanupFunction(resourcePointer3);
+    SystemCleanupFunction(ResourceStartPointer);
 }
 
 
@@ -33132,11 +33132,11 @@ void FinalizeSystemInitialization(void)
 void SystemResourceProcessor(long long SystemResourceManager,void* ConfigurationDataPointer,long long AdditionalParameter)
 
 {
-  void* *resourcePointer1;
+  void* *ResourceEndPointer;
   void** SystemDataTable;
   void* resourceHandle;
   long long resourceOffset;
-  void* *resourcePointer4;
+  void* *ResourceIteratorPointer;
   ulong long resourceCapacity;
   ulong long requiredSize;
   long long resourceArrayPointer;
@@ -33149,9 +33149,9 @@ void SystemResourceProcessor(long long SystemResourceManager,void* Configuration
   }
   else {
     ResourceHashEntryPointer = (void* *)SetupSystemDataHandler();
-    resourcePointer1 = *(void* **)(resourceArrayPointer + 8);
-    for (resourcePointer4 = ResourceHashEntryPointer; resourcePointer4 != resourcePointer1; resourcePointer4 = resourcePointer4 + 4) {
-      (**(code **)*resourcePointer4)(resourcePointer4,0);
+    ResourceEndPointer = *(void* **)(resourceArrayPointer + 8);
+    for (ResourceIteratorPointer = ResourceHashEntryPointer; ResourceIteratorPointer != ResourceEndPointer; ResourceIteratorPointer = ResourceIteratorPointer + 4) {
+      (**(code **)*ResourceIteratorPointer)(ResourceIteratorPointer,0);
     }
     *(void* **)(resourceArrayPointer + 8) = ResourceHashEntryPointer;
   }

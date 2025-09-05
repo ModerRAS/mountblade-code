@@ -628,6 +628,119 @@
  */
 #define CleanupDataCacheA1 FUN_18089ffe0
 
+// 异常处理函数宏定义 (U系列 - Unwind函数)
+
+/**
+ * @brief 异常处理函数A0
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902100
+ */
+#define ExceptionHandlerA0 Unwind_180902100
+
+/**
+ * @brief 异常处理函数A1
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902110
+ */
+#define ExceptionHandlerA1 Unwind_180902110
+
+/**
+ * @brief 异常处理函数A2
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902150
+ */
+#define ExceptionHandlerA2 Unwind_180902150
+
+/**
+ * @brief 异常处理函数A3
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902160
+ */
+#define ExceptionHandlerA3 Unwind_180902160
+
+/**
+ * @brief 异常处理函数A4
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902170
+ */
+#define ExceptionHandlerA4 Unwind_180902170
+
+/**
+ * @brief 异常处理函数A5
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902180
+ */
+#define ExceptionHandlerA5 Unwind_180902180
+
+/**
+ * @brief 异常处理函数A6
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902190
+ */
+#define ExceptionHandlerA6 Unwind_180902190
+
+/**
+ * @brief 异常处理函数A7
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_1809021c0
+ */
+#define ExceptionHandlerA7 Unwind_1809021c0
+
+/**
+ * @brief 异常处理函数A8
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_1809021d0
+ */
+#define ExceptionHandlerA8 Unwind_1809021d0
+
+/**
+ * @brief 异常处理函数A9
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_1809021e0
+ */
+#define ExceptionHandlerA9 Unwind_1809021e0
+
+/**
+ * @brief 异常处理函数A10
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902210
+ */
+#define ExceptionHandlerA10 Unwind_180902210
+
+/**
+ * @brief 异常处理函数A11
+ * 
+ * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 
+ * @note 原始函数名：Unwind_180902220
+ */
+#define ExceptionHandlerA11 Unwind_180902220
+
+// 注意：由于Unwind函数数量众多，这里只展示了部分示例
+// 其他Unwind函数可以按照相同的模式进行命名和定义
+
 // 系统处理函数宏定义 (E系列)
 
 /**
@@ -31030,7 +31143,7 @@ void ExceptionUnwindHandlerA17(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180902100(void)
+void ExceptionHandlerA0(void)
 
 {
   byte bVar1;
