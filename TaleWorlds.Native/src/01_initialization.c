@@ -59528,8 +59528,8 @@ void SystemNoOperationA(void)
   if (!in_ZF) {
     InitializeSystemEnvironment();
   }
-  InputStackParameter50 = SystemDataMemoryContext + 0x5868;
-  SystemHashNodeData6 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0x6a78) * 0x908 + InputStackParameter50);
+  SystemMemoryOffset = SystemDataMemoryContext + 0x5868;
+  SystemHashNodeData6 = (uint *)((long long)*(int *)(SystemDataMemoryContext + 0x6a78) * 0x908 + SystemMemoryOffset);
   LOCK();
   SystemInitializationStatus = *SystemHashNodeData6;
   *SystemHashNodeData6 = *SystemHashNodeData6 + systemAllocationOffsetD;
@@ -59538,7 +59538,7 @@ void SystemNoOperationA(void)
   ResourceAddressPrimary = (ulong long)(SystemInitializationStatus >> 9);
   pcharFlag7 = (char *)((long long)SystemHashNodeData6 + ResourceAddressPrimary + 0x808);
   ResourceAddressPointer2 = SystemHashNodeData6 + (resourceAllocationContext2 + 1) * 2;
-  InputStackParameter38 = resourceAllocationContext2;
+  ResourceAllocationContext = resourceAllocationContext2;
   do {
     systemIndex0 = (int)ResourceAddressPrimary;
     if (*(long long *)ResourceAddressPointer2 == 0) {
@@ -59554,14 +59554,14 @@ void SystemNoOperationA(void)
         LOCK();
         *(uint8_t *)((long long)SystemHashNodeData6 + (long long)systemIndex0 + 0x808) = 0;
         UNLOCK();
-        resourceAllocationContext2 = InputStackParameter38;
+        resourceAllocationContext2 = ResourceAllocationContext;
       }
       else {
         if (ResourceMemoryOffset3 != 0) {
             SystemCleanupFunction();
         }
         do {
-          resourceAllocationContext2 = InputStackParameter38;
+          resourceAllocationContext2 = ResourceAllocationContext;
         } while (*pcharFlag7 != '\0');
       }
     }
@@ -59578,7 +59578,7 @@ void SystemNoOperationA(void)
               ((long long)*(int *)(InputStackParameter50 + 0x1210) * 0x908 + InputStackParameter50 + 8 +
               resourceAllocationContext2 * 8) + (ulong long)(SystemInitializationStatus - (SystemInitializationStatus & 0xfffffe00)) * 0x60);
   ResourceMemoryOffset3 = MemoryBlockAddress;
-  InputStackParameter40 = SystemHashNodeData8;
+  ResourceDataPointer = SystemHashNodeData8;
   if ((*(byte *)(MemoryBlockAddress + 0xfd) & 0x20) == 0) {
     ResourceMemoryOffset3 = GetSystemThreadHandle(*(void* *)(MemoryBlockAddress + 0x1b0));
   }

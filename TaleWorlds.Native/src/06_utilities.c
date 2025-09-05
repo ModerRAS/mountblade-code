@@ -1041,6 +1041,34 @@
 // 功能：存储异常处理的上下文指针信息
 #define ExceptionContextPtr _DAT_180c8a9b0
 
+// 原始变量名：_DAT_180d49140 - 异常状态标志A0
+// 功能：存储异常处理的状态标志信息
+#define ExceptionStatusFlagA0 _DAT_180d49140
+
+// 原始变量名：_DAT_180d49148 - 异常状态标志A1
+// 功能：存储异常处理的状态标志信息
+#define ExceptionStatusFlagA1 _DAT_180d49148
+
+// 原始变量名：_DAT_180c82240 - 异常事件句柄
+// 功能：存储异常处理的事件句柄信息
+#define ExceptionEventHandle _DAT_180c82240
+
+// 原始变量名：_DAT_180bf00a8 - 异常加密密钥
+// 功能：存储异常处理的加密密钥信息
+#define ExceptionEncryptionKey _DAT_180bf00a8
+
+// 原始变量名：_DAT_180c82250 - 异常偏移量
+// 功能：存储异常处理的偏移量信息
+#define ExceptionOffsetValue _DAT_180c82250
+
+// 原始变量名：0x180c82210 - 异常临界区
+// 功能：异常处理的临界区对象
+#define ExceptionCriticalSection 0x180c82210
+
+// 原始变量名：0x180c82238 - 异常处理参数
+// 功能：异常处理的函数参数
+#define ExceptionProcessParameter 0x180c82238
+
 // FUN_1809414xx函数语义化宏定义
 // 原始函数名：FUN_180941445 - 数据结构初始化函数A0
 // 功能：初始化数据结构并设置指针，包含验证逻辑
@@ -28726,26 +28754,39 @@ void ProcessExceptionStateE3(undefined8 param_1,longlong param_2)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_1809020f0(void)
+/**
+ * @brief 异常状态重置函数A17
+ * @details 重置异常状态标志并处理相关事件，执行加密计算后的函数调用
+ * 
+ * 功能：
+ * - 进入临界区保护共享资源
+ * - 重置异常状态标志A0
+ * - 检查并处理异常事件
+ * - 执行基于加密密钥的函数调用
+ * 
+ * 返回值:
+ *   无
+ */
+void ExceptionUnwindHandlerA17(void)
 
 {
-  byte bVar1;
+  byte shiftBits;
   
-  EnterCriticalSection(0x180c82210);
-  _DAT_180d49140 = 0;
-  LeaveCriticalSection(0x180c82210);
-  if (_DAT_180c82240 != 0) {
+  EnterCriticalSection(ExceptionCriticalSection);
+  ExceptionStatusFlagA0 = 0;
+  LeaveCriticalSection(ExceptionCriticalSection);
+  if (ExceptionEventHandle != 0) {
     SetEvent();
                     // WARNING: Could not recover jumptable at 0x0001808fcc41. Too many branches
                     // WARNING: Treating indirect jump as call
-    ResetEvent(_DAT_180c82240);
+    ResetEvent(ExceptionEventHandle);
     return;
   }
-  bVar1 = (byte)_DAT_180bf00a8 & 0x3f;
+  shiftBits = (byte)ExceptionEncryptionKey & 0x3f;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
-  (*(code *)((_DAT_180bf00a8 ^ _DAT_180c82250) >> bVar1 |
-            (_DAT_180bf00a8 ^ _DAT_180c82250) << 0x40 - bVar1))(0x180c82238);
+  (*(code *)((ExceptionEncryptionKey ^ ExceptionOffsetValue) >> shiftBits |
+            (ExceptionEncryptionKey ^ ExceptionOffsetValue) << 0x40 - shiftBits))(ExceptionProcessParameter);
   return;
 }
 
@@ -84684,8 +84725,11 @@ void SetGlobalDataPointerB0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941820(void)
-void FUN_180941820(void)
+// 函数: void SetGlobalDataPointerB1(void)
+// 功能：设置全局数据指针B1到指定地址
+// 参数：无
+// 返回值：无
+void SetGlobalDataPointerB1(void)
 
 {
   _DAT_180bf6530 = &UNK_18098bcb0;
@@ -84697,8 +84741,11 @@ void FUN_180941820(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941840(void)
-void FUN_180941840(void)
+// 函数: void SetGlobalDataPointerB2(void)
+// 功能：设置全局数据指针B2到指定地址
+// 参数：无
+// 返回值：无
+void SetGlobalDataPointerB2(void)
 
 {
   _DAT_180bf6590 = &UNK_18098bcb0;
@@ -84710,8 +84757,11 @@ void FUN_180941840(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180941860(void)
-void FUN_180941860(void)
+// 函数: void SetGlobalDataPointerB3(void)
+// 功能：设置全局数据指针B3到指定地址
+// 参数：无
+// 返回值：无
+void SetGlobalDataPointerB3(void)
 
 {
   _DAT_180bf65c0 = &UNK_18098bcb0;
