@@ -15709,9 +15709,11 @@ void ExecuteSecurityCheck(void)
 
 {
   longlong securityContext;
+  undefined1 stackBuffer [40];
   
+  securityContext = GetSecurityContext();
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(ulonglong *)(securityContext + 0x5f0) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(securityContext + 0x5f0) ^ (ulonglong)stackBuffer);
 }
 
 
