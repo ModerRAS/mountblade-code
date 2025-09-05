@@ -16569,22 +16569,22 @@ DataBuffer UtilityNoOperationH(void)
 // 原始函数名：FUN_180895d30 - 哈希表数据插入和更新函数
 // 功能：在哈希表中插入或更新数据项，处理哈希冲突和内存分配
 #define ProcessHashTableInsertAndUpdate FUN_180895d30
-DataBuffer ProcessHashTableInsertAndUpdate(int64_t *param_1,uint *param_2,DataBuffer *param_3)
+DataBuffer ProcessHashTableInsertAndUpdate(int64_t *hashTableContext,uint *searchKey,DataBuffer *dataValue)
 
 {
-  uint dataValue;
-  int operationResult;
+  uint keyHash;
+  int chainIndex;
   int operationStatus;
-  DataBuffer memoryBaseAddress;
-  DataBuffer operationResult;
-  DataBuffer *pdataFlags;
-  int calculatedValue;
-  int64_t bufferPointer;
-  int64_t dataPointer;
-  uint *ploopCounter;
-  uint dataValue1;
-  int inputParameter2;
-  int *referenceCountPointer3;
+  DataBuffer systemStatus;
+  DataBuffer hashResult;
+  DataBuffer *dataFlags;
+  int newCapacity;
+  int64_t tableBuffer;
+  int64_t nodeOffset;
+  uint *nextNodePointer;
+  uint capacityMask;
+  int expandedSize;
+  int *currentNodePointer;
   
   memoryBaseAddress = InitializeSystemA1();
   if ((int)memoryBaseAddress == 0) {
@@ -40026,7 +40026,7 @@ void Unwind_180903580(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180903590(void)
+void DestroyConditionVariable(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -40035,7 +40035,7 @@ void Unwind_180903590(void)
 
 
 
-void Unwind_1809035b0(void)
+void DestroyMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -40044,16 +40044,16 @@ void Unwind_1809035b0(void)
 
 
 
-void Unwind_1809035d0(DataBuffer param_1,int64_t param_2)
+void DestroyConditionVariableWithContext(DataBuffer contextHandle,int64_t contextOffset)
 
 {
-  _Cnd_destroy_in_situ(*(DataBuffer *)(param_2 + 0x88));
+  _Cnd_destroy_in_situ(*(DataBuffer *)(contextOffset + 0x88));
   return;
 }
 
 
 
-void Unwind_1809035e0(DataBuffer param_1,int64_t param_2)
+void ReleaseResourceWithCondition(DataBuffer contextHandle,int64_t contextOffset)
 
 {
   int *referenceCountPointer;
