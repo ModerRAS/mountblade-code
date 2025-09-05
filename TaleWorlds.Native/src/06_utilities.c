@@ -4215,10 +4215,10 @@ uint8_t UtilitySystemStatusFlag;
 // 
 // 返回值:
 //   uint32_t - 重置结果状态
-uint32_t SystemResetStatus;
-bool SystemResetEnabled;
+uint32_t UtilitySystemResetStatus;
+bool UtilitySystemResetEnabled;
 
-// 函数: undefined UtilityCleanupSystem(void)
+// 函数: uint32_t UtilityCleanupSystem(void)
 // 
 // 清理工具系统
 // 释放工具系统占用的资源并清理内存
@@ -4227,11 +4227,11 @@ bool SystemResetEnabled;
 //   无
 // 
 // 返回值:
-//   undefined - 清理结果状态
-uint32_t SystemCleanupStatus;
-bool SystemCleanupEnabled;
+//   uint32_t - 清理结果状态
+uint32_t UtilitySystemCleanupStatus;
+bool UtilitySystemCleanupEnabled;
 
-// 函数: undefined UtilityProcessData1(void)
+// 函数: uint32_t UtilityProcessData1(void)
 // 
 // 处理工具数据1
 // 执行第一类工具数据的处理操作
@@ -4240,40 +4240,40 @@ bool SystemCleanupEnabled;
 //   无
 // 
 // 返回值:
-//   undefined - 数据处理结果
-uint32_t DataProcessingStatus1;
-uint32_t DataProcessingBuffer1;
-void* DataProcessingPointer1;
+//   uint32_t - 数据处理结果
+uint32_t UtilityDataProcessingStatus1;
+uint32_t UtilityDataProcessingBuffer1;
+void* UtilityDataProcessingPointer1;
 
-// 函数: undefined UtilityProcessData2;
-uint32_t DataProcessingStatus2;
+// 函数: uint32_t UtilityProcessData2(void);
+uint32_t UtilityDataProcessingStatus2;
 
-// 函数: undefined UtilityProcessData3;
-uint32_t DataProcessingStatus3;
-uint32_t DataProcessingConfig1;
-void* DataProcessingPointer2;
-void* DataProcessingPointer3;
-uint32_t DataProcessingBuffer2;
-void* DataProcessingPointer4;
+// 函数: uint32_t UtilityProcessData3(void);
+uint32_t UtilityDataProcessingStatus3;
+uint32_t UtilityDataProcessingConfig1;
+void* UtilityDataProcessingPointer2;
+void* UtilityDataProcessingPointer3;
+uint32_t UtilityDataProcessingBuffer2;
+void* UtilityDataProcessingPointer4;
 
-// 函数: undefined UtilityProcessData4;
+// 函数: void* UtilityProcessData4(void);
 void* UtilityProcessData4;
-void* UtilityDataProcessor1;
-void* UtilityDataProcessor2;
-void* UtilityProcessPointer5;
-void* UtilityProcessPointer6;
-void* UtilityDataProcessor3;
-void* UtilityDataProcessor4;
-void* UtilityDataProcessor5;
+void* UtilityDataProcessorInstance1;
+void* UtilityDataProcessorInstance2;
+void* UtilityDataProcessorPointer5;
+void* UtilityDataProcessorPointer6;
+void* UtilityDataProcessorInstance3;
+void* UtilityDataProcessorInstance4;
+void* UtilityDataProcessorInstance5;
 
-// 函数: void UtilityProcessData5;
+// 函数: void UtilityProcessData5(void);
 void* UtilityProcessData5;
-void* UtilityDataBuffer1;
-void* UtilityProcessPointer7;
-void* UtilityDataBuffer2;
-void* UtilityDataBuffer3;
-void* UtilityDataBuffer4;
-void* UtilityDataBuffer5;
+void* UtilityDataBufferInstance1;
+void* UtilityDataProcessorPointer7;
+void* UtilityDataBufferInstance2;
+void* UtilityDataBufferInstance3;
+void* UtilityDataBufferInstance4;
+void* UtilityDataBufferInstance5;
 
 // 函数: void UtilityProcessData6;
 void* UtilityProcessData6;
