@@ -150,6 +150,10 @@
 // 功能：验证上下文句柄并执行相应操作，如果验证失败则调用错误处理函数
 #define ValidateAndExecuteOperation FUN_1808920e0
 
+// 原始函数名：FUN_180892120 - 双重验证并执行操作函数
+// 功能：双重验证上下文句柄并执行相应操作，如果任一验证失败则调用错误处理函数
+#define DoubleValidateAndExecuteOperation FUN_180892120
+
 // 原始函数名：FUN_1809424c0 - 数据解密函数A0
 // 功能：解密工具系统数据A0
 #define DecryptUtilityDataA0 FUN_1809424c0
@@ -6794,19 +6798,20 @@ void ValidateAndExecuteOperation(void* contextHandle, void* operationData)
 
 
 
-// 函数: void FUN_180892120(longlong param_1,longlong param_2)
-void FUN_180892120(longlong param_1,longlong param_2)
+// 函数: void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
+// 功能：双重验证上下文句柄并执行相应操作，如果任一验证失败则调用错误处理函数
+void DoubleValidateAndExecuteOperation(void* contextHandle, void* operationData)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int firstValidationResult;
+  unsigned long long validationData;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = func_0x0001808c7d30(uStackX_8);
-    if (iVar1 == 0) {
+  firstValidationResult = func_0x00018088c530(*(unsigned int *)((unsigned char*)contextHandle + 0x10), &validationData);
+  if (firstValidationResult == 0) {
+    firstValidationResult = func_0x0001808c7d30(validationData);
+    if (firstValidationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      FUN_18088d720(*(unsigned long long *)((unsigned char*)operationData + 0x98), contextHandle);
     }
   }
   return;
