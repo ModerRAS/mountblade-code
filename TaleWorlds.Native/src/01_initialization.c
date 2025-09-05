@@ -37926,8 +37926,8 @@ void* * SearchAndCompareSystemResourceString(void* SystemResourceManager,void* *
   char *stringEndPointer;
   char *resourceString;
   long long stringLength;
-  long long searchStringLength = 0;
-  long long stringOffset = 0;
+  long long SearchStringLength = 0;
+  long long StringOffset = 0;
   
   if (ConfigurationDataPointer != (void* *)0x0) {
     do {
@@ -37939,7 +37939,7 @@ void* * SearchAndCompareSystemResourceString(void* SystemResourceManager,void* *
       else {
         stringLength = ConfigurationDataPointer[2];
       }
-      if (stringLength == searchStringLength) {
+      if (stringLength == SearchStringLength) {
         stringEndPointer = resourceString + stringLength;
         if (stringEndPointer <= resourceString) {
           return ConfigurationDataPointer;

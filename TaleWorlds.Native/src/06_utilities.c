@@ -5906,8 +5906,8 @@ undefined UtilitySystemStorageStatus2;
 // 原始函数名：FUN_1809431a0 - 线程本地存储初始化函数A8
 #define InitializeThreadLocalStorageA8 FUN_1809431a0
 
-// 函数: undefined InitializeThreadLocalStorageA8;
-undefined InitializeThreadLocalStorageA8;
+// 函数: void* InitializeThreadLocalStorageA8;
+void* InitializeThreadLocalStorageA8;
 uint32_t _tls_index;
 void *ThreadLocalStoragePointer;
 void* SystemMemoryControlFlag;
