@@ -8550,7 +8550,7 @@ void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
   
   iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
   if (iVar1 == 0) {
-    iVar1 = FUN_1808deb90(uStackX_8,param_1 + 0x18);
+    iVar1 = ProcessDataOperationA0(uStackX_8,param_1 + 0x18);
     if (iVar1 == 0) {
       FUN_18088d7c0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
