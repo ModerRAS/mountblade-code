@@ -3257,15 +3257,15 @@ int32_t SetupNetworkConnectionContext(NetworkHandle ConnectionHandle)
  * @warning 如果清理失败，可能导致内存泄漏或资源残留
  * @see NetworkConnectionBufferSize, NetworkValidationSuccess
  */
-void ClearNetworkConnectionStack(void* ConnectionBuffer)
+void CleanupNetworkConnectionStack(void* ConnectionBuffer)
 {
   // 连接堆栈清理变量
-  uint32_t CleanupOperationStatus;                // 清理操作状态
+  uint32_t CleanupStatus;                // 清理操作状态
   uint32_t MemoryReleaseStatus;                   // 内存释放状态
   uint32_t ResourceResetStatus;                  // 资源重置状态
   
   // 初始化清理状态
-  CleanupOperationStatus = NetworkValidationFailure;
+  CleanupStatus = NetworkValidationFailure;
   MemoryReleaseStatus = NetworkValidationFailure;
   ResourceResetStatus = NetworkValidationFailure;
   
@@ -3279,10 +3279,10 @@ void ClearNetworkConnectionStack(void* ConnectionBuffer)
   ResourceResetStatus = NetworkValidationSuccess;  // 资源重置成功
   
   // 综合清理结果
-  CleanupOperationStatus = MemoryReleaseStatus & ResourceResetStatus;
+  CleanupStatus = MemoryReleaseStatus & ResourceResetStatus;
   
   // 如果清理成功，更新系统状态
-  if (CleanupOperationStatus == NetworkValidationSuccess) {
+  if (CleanupStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的清理后处理逻辑
     // 例如：更新系统统计信息、通知回调函数等
   }
@@ -3302,31 +3302,31 @@ void ClearNetworkConnectionStack(void* ConnectionBuffer)
  * @warning 如果复制失败，可能导致数据不一致或备份缺失
  * @see NetworkValidationSuccess, NetworkConnectionBufferSize
  */
-void CopyNetworkConnectionBufferData(void* SourceBuffer)
+void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
 {
   // 连接缓冲区复制变量
-  uint32_t CopyOperationStatus;                     // 复制操作状态
+  uint32_t CopyStatus;                     // 复制操作状态
   uint32_t DataValidationResult;                    // 数据验证结果
-  uint32_t SecurityValidationResult;                // 安全验证结果
+  uint32_t SecurityCheckResult;                // 安全验证结果
   
   // 初始化复制状态
-  CopyOperationStatus = NetworkValidationFailure;
+  CopyStatus = NetworkValidationFailure;
   DataValidationResult = NetworkValidationFailure;
-  SecurityValidationResult = NetworkValidationFailure;
+  SecurityCheckResult = NetworkValidationFailure;
   
   // 验证源缓冲区有效性
   if (SourceBuffer) {
     DataValidationResult = NetworkValidationSuccess;  // 数据验证通过
-    SecurityValidationResult = NetworkValidationSuccess;  // 安全验证通过
+    SecurityCheckResult = NetworkValidationSuccess;  // 安全验证通过
     
     // 在实际实现中，这里应该实现实际的缓冲区复制逻辑
     // 包括：数据验证、加密复制、完整性检查等
     // 由于这是简化实现，暂时不执行具体操作
-    CopyOperationStatus = DataValidationResult & SecurityValidationResult;
+    CopyStatus = DataValidationResult & SecurityCheckResult;
   }
   
   // 如果复制成功，更新系统状态
-  if (CopyOperationStatus == NetworkValidationSuccess) {
+  if (CopyStatus == NetworkValidationSuccess) {
     // 这里可以添加更多的复制后处理逻辑
     // 例如：更新备份状态、记录日志、触发回调等
   }

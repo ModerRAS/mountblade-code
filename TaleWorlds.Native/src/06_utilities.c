@@ -37,10 +37,10 @@
 #define CleanupSystemResourcesA0 FUN_180899790
 #define ResetSystemStateA0 FUN_180899799
 #define SynchronizeDataA0 FUN_1808997b0
-#define CheckSystemStatusD0 FUN_180899891
+#define ManageMemoryA0 FUN_180899891
 
 // 系统处理函数宏定义 (E系列)
-#define ProcessSystemDataE0 FUN_180892880
+#define ValidateAndProcessFloatingPointNumberA1 FUN_180892880
 #define QuerySystemStatusE0 FUN_1808928d3
 #define InitializeSystemE0 FUN_1808928f1
 #define ValidateParametersE0 FUN_180892909
