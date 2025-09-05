@@ -9445,7 +9445,9 @@ undefined8 CleanupSystemE0(void)
 
 
 
-// 函数: void UtilityNoOperationH(void)
+// 空操作函数H
+// 功能：执行空操作，无任何实际功能
+// 用途：用于占位或测试目的
 void UtilityNoOperationH(void)
 
 {
