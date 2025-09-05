@@ -2535,9 +2535,9 @@
 // 功能：验证配置的有效性并返回验证结果
 #define ValidateConfigurationA1 FUN_180898f40
 
-// 原始变量名：_DAT_180c8a9b0 - 异常上下文指针
+// 原始变量名：ExceptionContextPtr - 异常上下文指针
 // 功能：存储异常处理的上下文指针信息
-#define ExceptionContextPtr _DAT_180c8a9b0
+#define ExceptionContextPtr ExceptionContextPtr
 
 // 原始变量名：_DAT_180d49140 - 异常状态标志A0
 // 功能：存储异常处理的状态标志信息
@@ -3270,9 +3270,9 @@
 #define CleanupExceptionAtOffset2C0 Unwind_18090d0f0
 
 // 全局变量语义化宏定义
-// 原始变量名：_DAT_180c8a9b0 - 异常上下文指针
+// 原始变量名：ExceptionContextPtr - 异常上下文指针
 // 功能：存储异常处理的上下文信息
-#define ExceptionContext _DAT_180c8a9b0
+#define ExceptionContext ExceptionContextPtr
 
 // 原始变量名：_DAT_180c8a9a8 - 异常处理数据指针
 // 功能：存储异常处理的数据指针信息
@@ -57667,7 +57667,7 @@ void Unwind_180908570(undefined8 param_1,longlong param_2)
 void Unwind_1809085a0(void)
 
 {
-  _DAT_180bf52e8 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA9 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -57678,7 +57678,7 @@ void Unwind_1809085a0(void)
 void Unwind_1809085b0(void)
 
 {
-  _DAT_180bf5738 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA10 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -58481,7 +58481,7 @@ void Unwind_1809089e0(undefined8 param_1,longlong param_2)
 {
   int iVar1;
   
-  _DAT_180c8a9b0 = *(undefined8 *)(param_2 + 0x70);
+  ExceptionContextPtr = *(undefined8 *)(param_2 + 0x70);
   iVar1 = _Mtx_unlock(0x180c91970);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -71172,7 +71172,7 @@ void Unwind_18090cfd0(undefined8 param_1,longlong param_2)
 {
   int iVar1;
   
-  _DAT_180c8a9b0 = *(undefined8 *)(param_2 + 0x28);
+  ExceptionContextPtr = *(undefined8 *)(param_2 + 0x28);
   iVar1 = _Mtx_unlock(0x180c91970);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -71189,7 +71189,7 @@ void Unwind_18090cfe0(undefined8 param_1,longlong param_2)
 {
   int iVar1;
   
-  _DAT_180c8a9b0 = *(undefined8 *)(param_2 + 0x90);
+  ExceptionContextPtr = *(undefined8 *)(param_2 + 0x90);
   iVar1 = _Mtx_unlock(0x180c91970);
   if (iVar1 != 0) {
     __Throw_C_error_std__YAXH_Z(iVar1);
@@ -86878,8 +86878,8 @@ void Unwind_180911b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -86898,8 +86898,8 @@ void Unwind_180911b10(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -86918,8 +86918,8 @@ void Unwind_180911b20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x28);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -86938,8 +86938,8 @@ void Unwind_180911b30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x68);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -86958,8 +86958,8 @@ void Unwind_180911b40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x78);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -86978,8 +86978,8 @@ void Unwind_180911b50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x88);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -86998,8 +86998,8 @@ void Unwind_180911b70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xa0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87062,8 +87062,8 @@ void Unwind_180911c30(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1538);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87082,16 +87082,16 @@ void Unwind_180911c40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1620);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1608);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87110,8 +87110,8 @@ void Unwind_180911c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1aa8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87130,8 +87130,8 @@ void Unwind_180911c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ab8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87150,8 +87150,8 @@ void Unwind_180911ca0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ac8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87170,8 +87170,8 @@ void Unwind_180911cc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ad8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87190,8 +87190,8 @@ void Unwind_180911ce0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ae8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87210,8 +87210,8 @@ void Unwind_180911d00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b88);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87230,8 +87230,8 @@ void Unwind_180911d20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1b98);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87250,8 +87250,8 @@ void Unwind_180911d40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ba8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87270,8 +87270,8 @@ void Unwind_180911d60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bb8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87290,8 +87290,8 @@ void Unwind_180911d80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1bc8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87310,8 +87310,8 @@ void Unwind_180911da0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1c70);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87330,8 +87330,8 @@ void Unwind_180911dc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e50);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87364,8 +87364,8 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
       if ((operationResult != -1) &&
          (calculatedOffset = *(longlong *)((longlong)operationResult * 0x60 + *(longlong *)(lVar4 + 0x1e68) + 8),
          calculatedOffset != 0)) {
-        if (_DAT_180c8a9b0 != 0) {
-          *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+        if (ExceptionContextPtr != 0) {
+          *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
         FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87379,8 +87379,8 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   if (calculatedOffset != 0) {
     referenceCountPointer[0] = 0;
     referenceCountPointer[1] = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87390,8 +87390,8 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     *(undefined4 *)(lVar4 + 0x1e80) = 0;
     calculatedOffset = *(longlong *)(lVar4 + 0x1e78);
     if (calculatedOffset != 0) {
-      if (_DAT_180c8a9b0 != 0) {
-        *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+      if (ExceptionContextPtr != 0) {
+        *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
       FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87400,15 +87400,15 @@ void Unwind_180911de0(undefined8 param_1,longlong param_2,undefined8 param_3,und
     if (lVar4 == 0) {
       return;
     }
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(lVar4,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   *(undefined8 *)(lVar4 + 0x1e60) = 0;
-  if (_DAT_180c8a9b0 != 0) {
-    *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  if (ExceptionContextPtr != 0) {
+    *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
   FUN_180059ba0(calculatedOffset,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87425,8 +87425,8 @@ void Unwind_180911e00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1e90);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87445,8 +87445,8 @@ void Unwind_180911e20(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x1ea0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87467,24 +87467,24 @@ void Unwind_180911e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
   dataContext = *(longlong *)(param_2 + 0x70);
   validationContext = *(longlong *)(dataContext + 0x1ed8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1ec8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1eb8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87508,24 +87508,24 @@ void Unwind_180911e60(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_180296b70();
   validationContext = *(longlong *)(dataContext + 0x2d68);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x2d58);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x2d48);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
@@ -87544,8 +87544,8 @@ void Unwind_180911e80(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2dd8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87564,8 +87564,8 @@ void Unwind_180911ea0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e10);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87584,8 +87584,8 @@ void Unwind_180911ec0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e20);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87604,8 +87604,8 @@ void Unwind_180911ee0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e30);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87624,8 +87624,8 @@ void Unwind_180911f00(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2e50);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87654,8 +87654,8 @@ void Unwind_180911f50(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x78) + 200);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87674,8 +87674,8 @@ void Unwind_180911f70(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0xe0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87694,8 +87694,8 @@ void Unwind_180911f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x78) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87714,8 +87714,8 @@ void Unwind_180911fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x18);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87734,8 +87734,8 @@ void Unwind_180911fb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x80) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87754,8 +87754,8 @@ void Unwind_180911fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x10);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87774,8 +87774,8 @@ void Unwind_180911fd0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x20);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87794,8 +87794,8 @@ void Unwind_180911fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x78) + 0x30);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87946,8 +87946,8 @@ void Unwind_180912040(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 200);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87966,8 +87966,8 @@ void Unwind_180912060(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xe0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -87986,8 +87986,8 @@ void Unwind_180912080(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x10);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88006,8 +88006,8 @@ void Unwind_180912090(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x20);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88026,8 +88026,8 @@ void Unwind_1809120a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x30);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88046,8 +88046,8 @@ void Unwind_1809120b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x90);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88066,8 +88066,8 @@ void Unwind_1809120d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xc0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88086,8 +88086,8 @@ void Unwind_1809120f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xd0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88106,8 +88106,8 @@ void Unwind_180912110(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xe0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88126,8 +88126,8 @@ void Unwind_180912130(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0xf0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88146,8 +88146,8 @@ void Unwind_180912150(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x1530);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88166,8 +88166,8 @@ void Unwind_180912170(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x40);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88188,40 +88188,40 @@ void Unwind_180912180(undefined8 param_1,longlong param_2,undefined8 param_3,und
   dataContext = *(longlong *)(param_2 + 0x70);
   validationContext = *(longlong *)(dataContext + 0x1f0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1e0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1d0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1c0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 400);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88240,8 +88240,8 @@ void Unwind_1809121a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x220);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88260,8 +88260,8 @@ void Unwind_1809121c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2c0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88280,8 +88280,8 @@ void Unwind_1809121e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x70) + 0x2d0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88305,56 +88305,56 @@ void Unwind_180912200(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_180291610();
   validationContext = *(longlong *)(dataContext + 0x390);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x378);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x368);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x358);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x318);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x308);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x2f8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
@@ -88373,8 +88373,8 @@ void Unwind_180912220(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x90);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88393,8 +88393,8 @@ void Unwind_180912240(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xc0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88413,8 +88413,8 @@ void Unwind_180912260(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xd0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88433,8 +88433,8 @@ void Unwind_180912280(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0xf0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88455,40 +88455,40 @@ void Unwind_1809122a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   dataContext = *(longlong *)(param_2 + 0x40);
   validationContext = *(longlong *)(dataContext + 0x1f0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1e0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1d0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 0x1c0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(dataContext + 400);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88507,8 +88507,8 @@ void Unwind_1809122c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x220);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88527,8 +88527,8 @@ void Unwind_1809122e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2c0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88547,8 +88547,8 @@ void Unwind_180912300(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x2d0);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88572,56 +88572,56 @@ void Unwind_180912320(undefined8 param_1,longlong param_2,undefined8 param_3,und
   FUN_180291610();
   validationContext = *(longlong *)(dataContext + 0x390);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x378);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x368);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x358);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x318);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x308);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
   }
   validationContext = *(longlong *)(dataContext + 0x2f8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,validationStatus);
@@ -88640,8 +88640,8 @@ void Unwind_180912340(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x38);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88660,8 +88660,8 @@ void Unwind_180912350(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x48) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88680,8 +88680,8 @@ void Unwind_180912360(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x38);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88730,8 +88730,8 @@ void Unwind_180912400(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 200) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88750,8 +88750,8 @@ void Unwind_180912410(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 200) + 0x18);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88770,8 +88770,8 @@ void Unwind_180912420(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 200) + 0x28);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88790,8 +88790,8 @@ void Unwind_180912430(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x28) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88810,8 +88810,8 @@ void Unwind_180912440(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x48);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88830,8 +88830,8 @@ void Unwind_180912450(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x58);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88850,8 +88850,8 @@ void Unwind_180912460(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x60) + 0x68);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88890,8 +88890,8 @@ void Unwind_1809124d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x60);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88910,8 +88910,8 @@ void Unwind_1809124e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x60);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88937,8 +88937,8 @@ void Unwind_1809124f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x10) = 0;
   validationContext = *(longlong *)(validationContext + 0x28);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,uVar2);
@@ -88957,8 +88957,8 @@ void Unwind_180912500(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x58) + 0x28);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88977,8 +88977,8 @@ void Unwind_180912510(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x28);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -88997,8 +88997,8 @@ void Unwind_180912520(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89017,8 +89017,8 @@ void Unwind_180912530(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89037,8 +89037,8 @@ void Unwind_180912540(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x50) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89067,8 +89067,8 @@ void Unwind_180912580(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x48) + 0x28);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89088,8 +89088,8 @@ void Unwind_180912590(undefined8 param_1,longlong param_2,undefined8 param_3,und
   validationContext = *(longlong *)(param_2 + 0x58);
   if (validationContext != 0) {
     *(undefined8 *)(param_2 + 0x50) = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89097,8 +89097,8 @@ void Unwind_180912590(undefined8 param_1,longlong param_2,undefined8 param_3,und
   validationContext = *(longlong *)(param_2 + 0x48);
   if (validationContext != 0) {
     *(undefined8 *)(param_2 + 0x40) = 0;
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89106,16 +89106,16 @@ void Unwind_180912590(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined4 *)(param_2 + 0x60) = 0;
   validationContext = *(longlong *)(param_2 + 0x58);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
   }
   validationContext = *(longlong *)(param_2 + 0x48);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89134,8 +89134,8 @@ void Unwind_1809125a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x48);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89154,8 +89154,8 @@ void Unwind_1809125b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x58);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89174,8 +89174,8 @@ void Unwind_1809125c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0xc0) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89224,8 +89224,8 @@ void Unwind_180912660(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0xa8) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89254,8 +89254,8 @@ void Unwind_1809126a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89313,8 +89313,8 @@ void Unwind_180912770(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(param_2 + 0x30);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89339,8 +89339,8 @@ void Unwind_180912780(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(param_2 + 0x1b0) = 0;
   validationContext = *(longlong *)(param_2 + 0x1c8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,uVar2);
@@ -89365,8 +89365,8 @@ void Unwind_180912790(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(param_2 + 0xa0) = 0;
   validationContext = *(longlong *)(param_2 + 0xb8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,uVar2);
@@ -89391,8 +89391,8 @@ void Unwind_1809127a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(param_2 + 0xa0) = 0;
   validationContext = *(longlong *)(param_2 + 0xb8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,uVar2);
@@ -89417,8 +89417,8 @@ void Unwind_1809127b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(param_2 + 0x1b0) = 0;
   validationContext = *(longlong *)(param_2 + 0x1c8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,uVar2);
@@ -89444,8 +89444,8 @@ void Unwind_1809127c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   *(undefined8 *)(validationContext + 0x10) = 0;
   validationContext = *(longlong *)(validationContext + 0x28);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,uVar2);
@@ -89491,8 +89491,8 @@ void Unwind_1809127e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x18);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89511,8 +89511,8 @@ void Unwind_1809127f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x50) + 0x18);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -89531,8 +89531,8 @@ void Unwind_180912800(undefined8 param_1,longlong param_2,undefined8 param_3,und
   
   validationContext = *(longlong *)(*(longlong *)(param_2 + 0x58) + 8);
   if (validationContext != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+    if (ExceptionContextPtr != 0) {
+      *(int *)(ExceptionContextPtr + 0x3a8) = *(int *)(ExceptionContextPtr + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
     FUN_180059ba0(validationContext,_DAT_180c8a9a8,param_3,param_4,SystemCleanupFlagfffffffe);
@@ -90272,7 +90272,7 @@ void ProcessValidationContextA0(undefined8 param_1,undefined8 param_2,undefined8
 void SetDefaultExceptionHandlerA0(void)
 
 {
-  _DAT_180bf52e8 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA9 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90286,7 +90286,7 @@ void SetDefaultExceptionHandlerA0(void)
 void SetDefaultExceptionHandlerA1(void)
 
 {
-  _DAT_180bf5738 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA10 = &DefaultExceptionHandlerB;
   return;
 }
 

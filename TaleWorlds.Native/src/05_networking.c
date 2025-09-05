@@ -2542,7 +2542,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   if (ConnectionOperationCode == 0) {
 PrimaryNetworkProcessingComplete:
     if ((0 < *(int *)CalculateConnectionParameterOffset(ConnectionOperationBuffer)) && (*ConnectionOperationBuffer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkManagerContextPointer + NetworkConnectionTableOffset), *ConnectionOperationBuffer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     *ConnectionOperationBuffer = (int64_t)ProcessedPacketId;
     *(int *)CalculateConnectionParameterOffset(ConnectionOperationBuffer) = ConnectionOperationCode;
