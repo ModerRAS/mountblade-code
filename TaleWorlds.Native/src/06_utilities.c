@@ -12739,12 +12739,12 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   float TemporaryFloat;
   
   dataBufferPtr = 0;
-  InfinityFlag3 = 0;
-  InfinityFlag4 = InfinityFlag3;
+  tertiaryInfinityFlag = 0;
+  quaternaryInfinityFlag = tertiaryInfinityFlag;
   if ((*(uint *)(dataPtr + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag4 = 0x1d;
+    quaternaryInfinityFlag = 0x1d;
   }
-  InfinityFlag1 = InfinityFlag3;
+  primaryInfinityFlag = tertiaryInfinityFlag;
   if ((*(uint *)(dataPtr + 0x1c) & FloatInfinityValue) == FloatInfinityValue) {
     InfinityFlag1 = 0x1d;
   }
@@ -12779,21 +12779,21 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
     InfinityFlag1 = 0x1d;
   }
   if (((uint)*(float *)(dataPtr + 0x30) & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag4 = 0x1d;
+    quaternaryInfinityFlag = 0x1d;
   }
   if ((InfinityFlag3 != 0 || InfinityFlag1 != 0) || InfinityFlag4 != 0) {
     return 0x1f;
   }
   floatComponentZ = *(float *)(dataPtr + 0x44);
-  InfinityFlag3 = 0;
+  tertiaryInfinityFlag = 0;
   VectorComponentW = *(uint *)(dataPtr + 0x40);
   TemporaryFloat = *(float *)(dataPtr + 0x3c);
   systemContextBuffer[0] = CONCAT44(systemContextBuffer[0]._4_4_,floatComponentZ);
-  InfinityFlag4 = InfinityFlag3;
+  quaternaryInfinityFlag = tertiaryInfinityFlag;
   if (((uint)floatComponentZ & FloatInfinityValue) == FloatInfinityValue) {
-    InfinityFlag4 = 0x1d;
+    quaternaryInfinityFlag = 0x1d;
   }
-  InfinityFlag1 = InfinityFlag3;
+  primaryInfinityFlag = tertiaryInfinityFlag;
   if ((VectorComponentW & FloatInfinityValue) == FloatInfinityValue) {
     InfinityFlag1 = 0x1d;
   }
