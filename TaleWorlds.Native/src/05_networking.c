@@ -1076,14 +1076,18 @@ uint32_t NetworkConnectionStateFlags;
 uint32_t NetworkConnectionTimeoutMilliseconds;
 
 /**
- * @brief 网络最大连接数限制
+ * @brief 网络最大允许连接数
+ * 
+ * 系统允许同时建立的最大网络连接数量
  */
-uint32_t MaxConnectionsAllowed;
+uint32_t NetworkMaximumAllowedConnections;
 
 /**
- * @brief 网络连接属性标志
+ * @brief 网络连接属性标志集合
+ * 
+ * 存储网络连接的各种属性标志位
  */
-uint32_t ConnectionAttributeFlags;
+uint32_t NetworkConnectionAttributeFlags;
 
 /**
  * @brief 网络当前状态标志
