@@ -24663,7 +24663,7 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
 
 {
   long long resourceDataIndex;
-  int SystemOperationResult;
+  int mutexOperationResult;
   ulong long *SystemHashNodeData;
   long long SystemProcessBufferPtr;
   uint64_t SystemInitializationStatusFlag;
@@ -24676,7 +24676,7 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
   void* StackParameterSecondary;
   
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBuffer;
-  StackParamSecondary = AdditionalParameter;
+  StackParameterSecondary = AdditionalParameter;
   ConfigurationParameter = ConfigurationFlag;
   SystemHashNodeData = (ulong long *)SystemGlobalDataAllocate();
   SystemProcessFlags = 0;
@@ -24687,8 +24687,8 @@ void InitializeGameSettings(long long SystemResourceManager,void* ConfigurationD
     SystemProcessBufferPtr = resourceDataIndex;
     resourceDataIndex = SystemProcessingBufferPointer + 1;
   } while (ConfigurationBuffer[SystemProcessingBufferPointer + 1] != '\0');
-  SystemOperationResult = (int)(SystemProcessingBufferPointer + 1);
-  if ((0 < SystemOperationResult) && (*(uint *)(SystemResourceManager + 0x10) + SystemOperationResult < 0x1f)) {
+  mutexOperationResult = (int)(SystemProcessingBufferPointer + 1);
+  if ((0 < mutexOperationResult) && (*(uint *)(SystemResourceManager + 0x10) + mutexOperationResult < 0x1f)) {
       memcpy((ulong long)*(uint *)(SystemResourceManager + 0x10) + *(long long *)(SystemResourceManager + 8),ConfigurationBuffer,
            (long long)((int)SystemProcessingBufferPointer + 2));
   }
