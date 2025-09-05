@@ -2450,6 +2450,7 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
         int64_t ConnectionIterationCounter = (long long)ConnectionCount;
         int64_t ConnectionContextBaseAddress = 0;  // 连接上下文基地址
         NetworkConnectionStatus *NetworkConnectionStatusIterator = NetworkConnectionStatusBuffer;
+        int64_t ConnectionContextAddress = ConnectionContextBaseAddress;  // 连接上下文地址
           
           // 循环处理所有连接数据
           do {
