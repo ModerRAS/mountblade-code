@@ -17939,7 +17939,7 @@ void ValidateDataWithSecurityCheck(longlong *dataHandle,undefined4 *resultBuffer
     }
     validationResult = FUN_180769ed0(*dataHandle,dataBuffer,1,4,0);
   }
-LAB_18089962f:
+ProcessCheckpointA:
   if (validationResult == 0) {
     *resultBuffer = dataBuffer[0];
   }
