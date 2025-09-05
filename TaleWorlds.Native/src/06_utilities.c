@@ -7486,19 +7486,19 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 void ProcessResourceCleanup(void)
 
 {
-  uint64_t ResourceHandle;
-  int OperationResult;
-  int64_t SystemContext;
-  int64_t SystemRegistry;
-  int64_t ResourceOffset;
-  int CleanupCounter;
-  uint8_t *StackBuffer;
-  int ResourceCount;
-  uint32_t CleanupFlags;
-  uint64_t SecurityParameter;
-  uint64_t ResourceCleanupBuffer;
-  uint64_t FunctionCallBuffer;
-  uint64_t SecurityValidationBuffer;
+  uint64_t ResourceHandle;              // 资源句柄
+  int OperationResult;                  // 操作结果
+  int64_t SystemContext;                // 系统上下文
+  int64_t SystemRegistry;               // 系统注册表
+  int64_t ResourceOffset;               // 资源偏移量
+  int CleanupCounter;                    // 清理计数器
+  uint8_t *StackBuffer;                 // 栈缓冲区指针
+  int ResourceCount;                     // 资源数量
+  uint32_t CleanupFlags;                 // 清理标志
+  uint64_t SecurityParameter;            // 安全参数
+  uint64_t ResourceCleanupBuffer;       // 资源清理缓冲区
+  uint64_t FunctionCallBuffer;          // 函数调用缓冲区
+  uint64_t SecurityValidationBuffer;    // 安全验证缓冲区
   
   if (*(int64_t *)(SystemContext + SystemContextOffset) != 0) {
     StackBuffer = (uint8_t *)&ResourceCleanupBuffer;
@@ -8035,28 +8035,50 @@ DataBuffer UpdateResourceReferenceCount(int64_t resourceHandle)
 
 
 
-// 函数: DataBuffer ReleaseUtilityResource(int64_t resourceHandle)
-// 功能：释放工具资源，验证资源有效性并调用资源释放函数
+/**
+ * @brief 释放工具资源
+ * 
+ * 该函数负责释放工具资源，验证资源有效性并调用资源释放函数。
+ * 它首先查询系统数据以验证资源的有效性，然后调用相应的资源释放函数。
+ * 
+ * @param resourceHandle 资源句柄，标识要释放的资源
+ * 
+ * @return DataBuffer 释放操作结果状态码：
+ *         - 0: 资源释放成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 该函数会验证资源的有效性，确保不会释放无效的资源句柄
+ * @warning 如果资源无效，会返回相应的错误代码而不是调用释放函数
+ */
 DataBuffer ReleaseUtilityResource(int64_t resourceHandle)
 
 {
   uint64_t validationStatus;
   int64_t systemContextPointer;
+  int64_t adjustedContextPointer;
+  int64_t* resourceDataPointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset),&systemContextPointer);
+  // 查询系统数据以验证资源有效性
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceHandle + ComponentHandleOffset), &systemContextPointer);
   if ((int)validationStatus == 0) {
+    // 调整系统上下文指针
     if (systemContextPointer == 0) {
-      systemContextPointer = 0;
+      adjustedContextPointer = 0;
     }
     else {
-      systemContextPointer = systemContextPointer + -8;
+      adjustedContextPointer = systemContextPointer - 8;
     }
-    if (*(int64_t *)(systemContextPointer + ResourceDataOffset) != 0) {
-                    // WARNING: Subroutine does not return
-      ReleaseResource(*(int64_t *)(systemContextPointer + ResourceDataOffset),1);
+    
+    // 检查资源数据指针
+    resourceDataPointer = (int64_t *)(adjustedContextPointer + ResourceDataOffset);
+    if (*resourceDataPointer != 0) {
+      // 调用资源释放函数（注意：此函数不会返回）
+      ReleaseResource(*resourceDataPointer, 1);
     }
+    
     validationStatus = 0;
   }
+  
   return validationStatus;
 }
 
@@ -94529,15 +94551,15 @@ void ResetUtilitySystem(void)
 void InitializeUtilitySystem(void)
 
 {
-  UtilitySessionConfig1 = &UtilityEventQueueStatus1;  // 设置会话配置为事件队列状态
-  if (UtilitySessionStatus1 != 0) {
+  UtilitySessionConfiguration = &UtilityEventQueueStatus;  // 设置会话配置为事件队列状态
+  if (UtilitySessionStatus != 0) {
                     // WARNING: Subroutine does not return
     HandleSystemError();  // 处理系统错误
   }
   
-  UtilitySessionStatus1 = 0;  // 重置会话状态
-  UtilitySessionInfo3 = 0;    // 清除会话信息
-  UtilitySessionConfig1 = &UtilityMessageControl1;  // 设置会话配置为消息控制
+  UtilitySessionStatus = 0;  // 重置会话状态
+  UtilitySessionInformation = 0;    // 清除会话信息
+  UtilitySessionConfiguration = &UtilityMessageController;  // 设置会话配置为消息控制
   return;
 }
 

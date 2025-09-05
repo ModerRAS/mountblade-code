@@ -12146,7 +12146,24 @@ void InitializeSystemStringProcessorZ(void)
 
 
 
-// 函数: void InitializeSystemMemoryManagerA(void)
+/**
+ * @brief 初始化系统内存分配器
+ * 
+ * 该函数负责初始化系统的内存分配器，设置内存分配的基础结构和参数。
+ * 它会遍历系统节点树，查找或创建内存分配器节点，并配置相关参数。
+ * 
+ * @details 函数执行以下操作：
+ * 1. 获取系统根节点指针和主系统表指针
+ * 2. 遍历系统节点树，查找内存分配器节点
+ * 3. 如果节点不存在，分配内存并创建新节点
+ * 4. 设置节点的标识符、数据指针、活动标志和回调函数
+ * 
+ * @note 该函数是系统初始化过程中的重要组成部分，确保内存分配系统正确初始化
+ * @note 函数使用SystemDataTemplateQuinarySystem进行系统识别
+ * 
+ * @param void 无参数
+ * @return void 无返回值
+ */
 void InitializeSystemMemoryAllocator(void)
 
 {
