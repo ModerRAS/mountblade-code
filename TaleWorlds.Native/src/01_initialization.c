@@ -28778,7 +28778,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   pGlobalDataFlags = &SystemGlobalDataReference;
   SystemStackVariable1a8 = 0;
   LongStackVariableSecondary = 0;
-  StackVariablePrimary = 0;
+  SystemStackVariablePrimary = 0;
   StackVariableControl = 0x100;
   SystemStackFlag = 0;
   StackProcessingFlag = 0;
