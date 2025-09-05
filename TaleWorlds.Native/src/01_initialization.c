@@ -28985,12 +28985,13 @@ void SystemResourceEnumerator(void)
   void* SystemStackHandleTertiary;
   ulong long StackEncryptionKey;
   
+  int SystemResourceIndex;
   SystemStackHandle38 = 0xfffffffffffffffe;
   StackEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)LocalBufferArray;
-  StackMemoryPointerA8 = SystemGlobalStatusFlags;
+  SystemStatusFlagsPointer = SystemGlobalStatusFlags;
   ResourceDataLocation = *(long long *)(*SystemGlobalStatusFlags + 0x890) - *(long long *)(*SystemGlobalStatusFlags + 0x888) >> 5;
-  SystemIdentifierF8 = 0;
-  ResourceCountA0 = ResourceDataLocation;
+  SystemResourceIndex = 0;
+  SystemResourceCount = ResourceDataLocation;
   if (0 < (int)ResourceDataLocation) {
     do {
       systemId = SystemIdentifierF8;

@@ -96679,7 +96679,20 @@ void ExecuteResourceConfigurationAlternate(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090f810(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 注册资源处理器
+ * 
+ * 该函数负责注册资源处理器。
+ * 调用RegisterResourceHandler函数来注册资源处理程序。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会调用RegisterResourceHandler函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f810
+ */
+void RegisterResourceProcessor(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   RegisterResourceHandler(*(uint8_t *)(ValidationContext + 0x40),8,0xd,ProcessResourceOperation);
@@ -96688,7 +96701,22 @@ void Unwind_18090f810(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f840(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行系统资源优化操作
+ * 
+ * 该函数负责执行系统资源的优化操作。
+ * 调用HandleResourceOptimization函数来处理系统资源优化。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用HandleResourceOptimization函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f840
+ */
+void ExecuteSystemResourceOptimization(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
