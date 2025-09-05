@@ -148,7 +148,7 @@ static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *Conne
 }
 
 /**
- * @brief 计算最后一个上下文条目偏移量
+ * @brief 计算最后一个连接条目偏移量
  * 
  * 计算连接上下文中最后一个条目的偏移量
  * 
@@ -157,13 +157,13 @@ static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *Conne
  * @param NetworkConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的最后一个条目偏移量地址
  */
-static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *NetworkConnectionStatusPointer)
+static int64_t CalculateLastConnectionEntryOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *NetworkConnectionStatusPointer)
 {
-    return CalculateContextDataOffset(ContextAddress, ConnectionContextBuffer, NetworkConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)NetworkConnectionStatusPointer + ConnectionContextEntrySize);
+    return CalculateConnectionDataOffset(ContextAddress, ConnectionContextBuffer, NetworkConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)NetworkConnectionStatusPointer + ConnectionContextEntrySize);
 }
 
 /**
- * @brief 计算状态指针偏移量
+ * @brief 计算连接状态指针偏移量
  * 
  * 计算网络状态指针的偏移量
  * 
@@ -172,7 +172,7 @@ static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *Con
  * @param NetworkConnectionStatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的状态指针偏移量地址
  */
-static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *NetworkConnectionStatusBasePointer, void *NetworkConnectionStatusIteratorPointer)
+static int64_t CalculateConnectionStatusPointerOffset(int64_t ContextIdentifier, void *NetworkConnectionStatusBasePointer, void *NetworkConnectionStatusIteratorPointer)
 {
     return (ContextIdentifier - (int64_t)NetworkConnectionStatusBasePointer) + (int64_t)NetworkConnectionStatusIteratorPointer;
 }
