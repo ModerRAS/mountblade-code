@@ -11206,7 +11206,7 @@ void ResetUtilitySystemAA0(void)
                     &UNK_180957f70,0x100,1);
     }
     *(longlong *)(registerContext + 0x20) = calculatedOffset;
-    *(int *)(registerContext + 0x2c) = iVar1;
+    *(int *)(registerContext + 0x2c) = validationCount;
   }
   *(undefined8 *)(*(longlong *)(registerContext + 0x20) + (longlong)*(int *)(registerContext + 0x28) * 8) =
        in_stack_00000060;
@@ -11229,24 +11229,24 @@ SystemCleanupLabel:
 void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
 
 {
-  int in_EAX;
-  int scaledValue;
+  int systemValue;
+  int adjustedValue;
   longlong registerContext;
   longlong systemContext;
   int operationResult;
   longlong registerR14;
-  undefined8 in_stack_00000060;
+  undefined8 systemParameter;
   
-  operationResult = param_1 + 1;
-  if (in_EAX - param_2 < operationResult) {
-    scaledValue = (int)((float)(in_EAX - param_2) * 1.5);
-    if (operationResult <= scaledValue) {
-      operationResult = scaledValue;
+  operationResult = configId + 1;
+  if (systemValue - validationFlags < operationResult) {
+    adjustedValue = (int)((float)(systemValue - validationFlags) * 1.5);
+    if (operationResult <= adjustedValue) {
+      operationResult = adjustedValue;
     }
     if (operationResult < 8) {
       operationResult = 8;
     }
-    if (operationResult < param_1) goto LAB_180891fc0;
+    if (operationResult < configId) goto LAB_180891fc0;
     if (operationResult != 0) {
       if (0x3ffffffe < operationResult * 8 - 1U) goto LAB_180891fc0;
       systemContext = AllocateSystemMemoryA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),operationResult * 8,&UNK_180957f70,
@@ -11267,7 +11267,7 @@ void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
     *(int *)(registerContext + 0x2c) = operationResult;
   }
   *(undefined8 *)(*(longlong *)(registerContext + 0x20) + (longlong)*(int *)(registerContext + 0x28) * 8) =
-       in_stack_00000060;
+       systemParameter;
   *(int *)(registerContext + 0x28) = *(int *)(registerContext + 0x28) + 1;
 SystemCleanupLabel:
                     // WARNING: Subroutine does not return
@@ -11364,29 +11364,29 @@ void ManageUtilitySystemConnectionsAF0(longlong connectionManager,longlong conne
 void UtilityValidateSystemState(void)
 
 {
-  int iVar1;
-  longlong unaff_RBP;
+  int operationResult;
+  longlong stackFramePointer;
   longlong systemContext;
-  undefined8 in_stack_00000030;
+  undefined8 systemParameter;
   
-  iVar1 = ProcessSystemBufferA0(in_stack_00000030);
-  if (iVar1 < 1) {
-    iVar1 = ProcessSystemBufferA1(in_stack_00000030);
-    *(uint *)(systemContext + 0x18) = (uint)(iVar1 < 1);
+  operationResult = ProcessSystemBufferA0(systemParameter);
+  if (operationResult < 1) {
+    operationResult = ProcessSystemBufferA1(systemParameter);
+    *(uint *)(systemContext + 0x18) = (uint)(operationResult < 1);
   }
   else {
-    iVar1 = ProcessSystemBufferA1(in_stack_00000030);
-    if (iVar1 < 1) {
+    operationResult = ProcessSystemBufferA1(systemParameter);
+    if (operationResult < 1) {
       *(undefined4 *)(systemContext + 0x18) = 2;
     }
     else {
-      iVar1 = ValidateDataIntegrityA0(in_stack_00000030,systemContext + 0x18);
-      if (iVar1 != 0) {
+      operationResult = ValidateDataIntegrityA0(systemParameter,systemContext + 0x18);
+      if (operationResult != 0) {
         return;
       }
     }
   }
-  ProcessSystemEventB0(*(undefined8 *)(unaff_RBP + 0x98));
+  ProcessSystemEventB0(*(undefined8 *)(stackFramePointer + 0x98));
   return;
 }
 
@@ -11635,23 +11635,23 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
   undefined *pmemoryBaseAddress;
   uint operationResult;
   ulonglong dataFlags;
-  longlong lVar7;
+  longlong resourcePointer;
   ulonglong securityCheckResult;
-  ulonglong uVar9;
-  longlong unaff_R13;
+  ulonglong dataOffset;
+  longlong stackFramePointer;
   longlong registerR14;
-  longlong in_stack_00000050;
+  longlong systemParameter;
   
   dataFlags = 0;
   securityCheckResult = dataFlags;
-  if (in_stack_00000050 != 0) {
-    securityCheckResult = in_stack_00000050 - 8;
+  if (systemParameter != 0) {
+    securityCheckResult = systemParameter - 8;
   }
-  uVar9 = dataFlags;
+  dataOffset = dataFlags;
   if (0 < *(int *)(securityCheckResult + 0x28)) {
     do {
-      lVar7 = *(longlong *)(securityCheckResult + 0x20) + uVar9;
-      validationContext = *(longlong *)(lVar7 + 0x10);
+      resourcePointer = *(longlong *)(securityCheckResult + 0x20) + dataOffset;
+      validationContext = *(longlong *)(resourcePointer + 0x10);
       if (validationContext == 0) {
         return 0x1e;
       }
@@ -11663,16 +11663,16 @@ undefined8 ProcessSystemResourceValidationWithStack(void)
       }
       operationResult = ValidateResourceDataIntegrityA0(pmemoryBaseAddress);
       if (operationResult == 0) {
-        validationStatus = ValidateAndProcessSystemResourceA0(lVar7,registerR14 + 0x18);
+        validationStatus = ValidateAndProcessSystemResourceA0(resourcePointer,registerR14 + 0x18);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        validationStatus = ProcessSystemEventB0(*(undefined8 *)(unaff_R13 + 0x98));
+        validationStatus = ProcessSystemEventB0(*(undefined8 *)(stackFramePointer + 0x98));
         return validationStatus;
       }
       operationResult = (int)dataFlags + 1;
       dataFlags = (ulonglong)operationResult;
-      uVar9 = uVar9 + 0x18;
+      dataOffset = dataOffset + 0x18;
     } while ((int)operationResult < *(int *)(securityCheckResult + 0x28));
   }
   return 0x4a;
@@ -11696,12 +11696,12 @@ void UtilityNoOperationF(void)
 void CheckSystemConditionAndExecute(void)
 
 {
-  int iVar1;
-  longlong unaff_R13;
+  int operationResult;
+  longlong stackFramePointer;
   
-  iVar1 = ValidateAndProcessSystemResourceA0();
-  if (iVar1 == 0) {
-    ProcessSystemEventB0(*(undefined8 *)(unaff_R13 + 0x98));
+  operationResult = ValidateAndProcessSystemResourceA0();
+  if (operationResult == 0) {
+    ProcessSystemEventB0(*(undefined8 *)(stackFramePointer + 0x98));
   }
   return;
 }
@@ -11800,8 +11800,8 @@ void ExecuteSecurityValidation(longlong param_1, longlong param_2)
                     // WARNING: Subroutine does not return
         ValidateSystemDataA0(validationContext,auStack_40);
       }
-      plVar4 = (longlong *)(calculatedOffset + 0x58);
-      if (((longlong *)*plVar4 != plVar4) || (*(longlong **)(calculatedOffset + 0x60) != plVar4)) {
+      pointerValidation = (longlong *)(calculatedOffset + 0x58);
+      if (((longlong *)*pointerValidation != pointerValidation) || (*(longlong **)(calculatedOffset + 0x60) != pointerValidation)) {
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
       }
