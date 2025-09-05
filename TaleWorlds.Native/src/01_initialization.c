@@ -2850,7 +2850,7 @@ void InitializeSystemEventManager(void)
   }
   HashTablePointer[NodeIdentifier1Index] = SystemDataTemplateIId1;
   HashTablePointer[NodeIdentifier2Index] = SystemDataTemplateIId2;
-  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeF;
+  HashTablePointer[NodeDataPointerIndex] = &SystemDataNodeMemoryManager;
   HashTablePointer[NodeActiveFlagIndex] = 4;
   HashTablePointer[SystemNodeCallbackIndex] = EventCallbackPointer;
   return;
@@ -2906,7 +2906,7 @@ void InitializeSystemConfigurationNode(void)
   }
   PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID1;
   PreviousNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_J_ID2;
-  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeG;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeResourceHandler;
   PreviousNode[NodeActiveFlagIndex] = NodeInactiveFlag;
   PreviousNode[SystemNodeCallbackIndex] = InitializationFlag;
   return;
