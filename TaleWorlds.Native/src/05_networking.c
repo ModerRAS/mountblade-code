@@ -374,7 +374,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkFloatMax 0x7f7fffff                            // 最大浮点数值
 
 // 网络协议常量 - 协议类型和端口配置
-#define TCP_SOCKET_CATEGORY 0x01                             // TCP套接字类别
+#define TcpSocketCategory 0x01                             // TCP套接字类别
 #define TCP_PROTOCOL 0x06                                    // TCP协议类型
 #define NetworkLocalhostAddress 0x7F000001                   // 网络本地回环地址127.0.0.1
 #define NetworkLoopbackAddress NetworkLocalhostAddress       // 网络回环地址别名
@@ -383,19 +383,19 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  * 
  * 用于HTTP服务的备用端口号8080
  */
-#define PORT_HTTP_ALT 0x1F90                                 // 端口8080
+#define PortHttpAlternative 0x1F90                                 // 端口8080
 /**
  * @brief HTTPS备用端口
  * 
  * 用于HTTPS服务的备用端口号8091
  */
-#define PORT_HTTPS_ALT 0x1FBB                                // 端口8091
+#define PortHttpsAlternative 0x1FBB                                // 端口8091
 /**
  * @brief 端口范围结束值
  * 
  * 网络端口范围的结束值，用于限制端口号的最大值
  */
-#define PORT_RANGE_END 0x270F                                // 端口9999
+#define PortRangeMaximum 0x270F                                // 端口9999
 
 // 网络缓冲区大小常量 - 内存和缓冲区配置
 #define SOCKET_CONTEXT_SIZE 0x100                            // 套接字上下文大小256字节

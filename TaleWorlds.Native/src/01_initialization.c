@@ -19361,7 +19361,7 @@ void InitializeSystemInfoAndUserEnvironment(void)
   uint8_t SystemSecurityBuffer[32];
   unsigned long long SystemEncryptionKey;
   
-  SystemStackFlag = 0xfffffffffffffffe;
+  SystemStackFlag = SystemInvalidHandleTemplate;
   EncryptionKeyValue = SystemEncryptionKeyTemplate ^ (unsigned long long)SystemSecurityEncryptionBuffer;
   GameControllerStatusFlag = 0;
   if (*(char *)(SystemContextManagerPointer + 0x18) == '\0') {
@@ -19521,7 +19521,7 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   long long **MutexPointer;
   long long *threadLocalStorageBuffer;
   
-  StackParameter = 0xfffffffffffffffe;
+  StackParameter = SystemInvalidHandleTemplate;
   systemHandle = GetSystemDebugHandle();
   InitializeSystemCore();
   libraryHandle = (long long *)AllocateSystemMemory(SystemMemoryPoolTemplate,0x68,8,3);
@@ -24139,11 +24139,11 @@ void** CreateSystemPathBuffers(void** pathBufferReference, void* unusedParameter
   systemIndex = systemIndex + 0x2a;
   ExecuteSystemCommand(SystemResourceManager, systemIndex);
   ResourceHashEntryPointer = (void*)((unsigned long long)*(unsigned int*)(SystemResourceManager + 2) + SystemResourceManager[1]);
-  *ResourceHashEntryPointer = 0x736c6f6f542f2e2e;
-  ResourceHashEntryPointer[1] = 0x747541747365542f;
-  ResourceHashEntryPointer[2] = 0x2f6e6f6974616d6f;
-  ResourceHashEntryPointer[3] = 0x656d686361747441;
-  *(uint32_t *)(ResourceHashEntryPointer + 4) = 0x2f73746e;
+  *ResourceHashEntryPointer = SystemPathIdentifierTemplate1;  // "ools"
+  ResourceHashEntryPointer[1] = SystemPathIdentifierTemplate2; // "/TestA"  
+  ResourceHashEntryPointer[2] = SystemPathIdentifierTemplate3; // "omatio"
+  ResourceHashEntryPointer[3] = SystemPathIdentifierTemplate4; // "Atta"
+  *(uint32_t *)(ResourceHashEntryPointer + 4) = SystemPathIdentifierTemplate5; // "nts/"
   *(uint8_t *)((long long)ResourceHashEntryPointer + 0x24) = 0;
   *(int *)(SystemResourceManager + 2) = systemIndex;
   return SystemResourceManager;
@@ -24197,10 +24197,10 @@ void* InitializeSystemResourceValidation(char SystemResourceManager)
   systemValue = SystemMaxOperationCount + 0x11;
   ExecuteSystemCommand(&GlobalDataReferencePointer,systemValue);
   SystemHashNodeData = (uint32_t *)(pEncryptionKeyValue + SystemMaxOperationCount);
-  *SystemHashNodeData = 0x69676e65;
-  SystemHashNodeData[1] = 0x635f656e;
-  SystemHashNodeData[2] = 0x69666e6f;
-  SystemHashNodeData[3] = 0x78742e67;
+  *SystemHashNodeData = SystemStringIdentifierTemplate1;
+  SystemHashNodeData[1] = SystemStringIdentifierTemplate2;
+  SystemHashNodeData[2] = SystemStringIdentifierTemplate3;
+  SystemHashNodeData[3] = SystemStringIdentifierTemplate4;
   *(void*2 *)(SystemHashNodeData + 4) = 0x74;
   SystemEncryptionKey = 0;
   SystemOperationValue = 0;
@@ -65838,7 +65838,7 @@ void CopyGameObjectTransformData(long long targetObjectPointer,long long sourceO
   long long AlignmentValue;
   ulong long ChecksumValue;
   
-  StackParameter = 0xfffffffffffffffe;
+  StackParameter = SystemInvalidHandleTemplate;
   ChecksumValue = SystemSecurityKey ^ (ulong long)SystemStackBuffer;
   if ((ConfigurationDataPointer == 0) ||
      (((*(float *)(SystemResourceManager + 0x238) == *(float *)(ConfigurationDataPointer + 0x44) &&
@@ -66239,7 +66239,7 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
   uint8_t SystemProcessingBuffer2 [16];
   code *SystemFunctionPointer3;
   
-  SystemStackParameter = 0xfffffffffffffffe;
+  SystemStackParameter = SystemInvalidHandleTemplate;
   resourcePoolPointer = (long long *)*ConfigurationFlag;
   if (resourcePoolPointer != (long long *)0x0) {
     (**(code **)(*resourcePoolPointer + 0x28))(resourcePoolPointer);
