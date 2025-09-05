@@ -4276,22 +4276,22 @@ undefined SystemConfigData;
 void* UnknownFunctionPtr1;
 undefined SystemConfigEnd;
 void* UnknownFunctionPtr2;
-undefined UtilityPointerArray1;
-undefined UtilityPointerArray2;
-undefined UtilityPointerArray3;
-undefined UtilityPointerArray4;
-undefined UtilityDataRegion1;
-undefined UtilityDataRegion2;
-undefined UtilityDataRegion3;
-undefined UtilityDataRegion4;
-undefined UtilityBufferRegion1;
-undefined UtilityBufferRegion2;
-undefined UtilityBufferRegion3;
-undefined UtilityBufferRegion4;
-undefined UtilityBufferRegion5;
-undefined UtilityBufferRegion6;
-undefined UtilityBufferRegion7;
-undefined UtilityBufferRegion8;
+undefined UtilityThreadPointerArray;
+undefined UtilityMemoryPointerArray;
+undefined UtilityResourcePointerArray;
+undefined UtilitySecurityPointerArray;
+undefined UtilityInputDataRegion;
+undefined UtilityOutputDataRegion;
+undefined UtilityTempDataRegion;
+undefined UtilityCacheDataRegion;
+undefined UtilityInputBufferRegion;
+undefined UtilityOutputBufferRegion;
+undefined UtilityProcessBufferRegion;
+undefined UtilityResultBufferRegion;
+undefined UtilityNetworkBufferRegion;
+undefined UtilitySecurityBufferRegion;
+undefined UtilityDebugBufferRegion;
+undefined UtilitySystemBufferRegion;
 undefined UtilityBufferRegion9;
 undefined UtilityBufferRegion10;
 undefined UtilityBufferRegion11;
@@ -32428,7 +32428,7 @@ void ExceptionUnwindHandlerA0(undefined8 exceptionContext, longlong unwindParam)
       referenceCounter = (int *)(handlerAddress + 0x18);
       *referenceCounter = *referenceCounter + -1;
       if (*referenceCounter == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -32464,7 +32464,7 @@ void ExceptionUnwindHandlerA2(undefined8 exceptionContext,longlong unwindParam)
       exceptionReferenceCount = (int *)(exceptionHandlerData + 0x18);
       *exceptionReferenceCount = *exceptionReferenceCount + -1;
       if (*exceptionReferenceCount == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -32547,7 +32547,7 @@ void ValidateExceptionDataPointer(undefined8 param_1,longlong param_2)
       referenceCount = (int *)(calculatedOffset + 0x18);
       *referenceCount = *referenceCount + -1;
       if (*referenceCount == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -32601,7 +32601,7 @@ void ResetExceptionState(undefined8 param_1,longlong param_2)
       referenceCount = (int *)(calculatedOffset + 0x18);
       *referenceCount = *referenceCount + -1;
       if (*referenceCount == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -33503,7 +33503,7 @@ void CleanupResourceReference(undefined8 exceptionContext, longlong resourceMana
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -33924,7 +33924,7 @@ void ExceptionRecoveryHandlerB11(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -35094,7 +35094,7 @@ void Unwind_180902880(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -35141,7 +35141,7 @@ void Unwind_1809028a0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -35216,7 +35216,7 @@ void Unwind_1809028f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -35252,7 +35252,7 @@ void Unwind_180902900(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -35336,7 +35336,7 @@ void Unwind_180902950(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar5 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -35391,7 +35391,7 @@ void Unwind_180902960(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar5 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -35494,7 +35494,7 @@ void Unwind_180902a40(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar5 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -35549,7 +35549,7 @@ void Unwind_180902a50(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar5 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -35732,7 +35732,7 @@ void Unwind_180902ab0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -35996,7 +35996,7 @@ void Unwind_180902bb0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36079,7 +36079,7 @@ void Unwind_180902bf0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36115,7 +36115,7 @@ void Unwind_180902c00(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36151,7 +36151,7 @@ void Unwind_180902c10(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36196,7 +36196,7 @@ void Unwind_180902c30(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36232,7 +36232,7 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36398,7 +36398,7 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36434,7 +36434,7 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36719,7 +36719,7 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36755,7 +36755,7 @@ void Unwind_180902e60(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36791,7 +36791,7 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -36832,7 +36832,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar4 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -36894,7 +36894,7 @@ void Unwind_180902eb0(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -36937,7 +36937,7 @@ void Unwind_180902ec0(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar4 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -37050,7 +37050,7 @@ void Unwind_180902f60(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -37421,7 +37421,7 @@ void CleanupExceptionHandlers130(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -37457,7 +37457,7 @@ void CleanupExceptionPointers140(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -37516,7 +37516,7 @@ void CleanupExceptionStack160(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -37594,7 +37594,7 @@ void CleanupExceptionTable190(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -37706,7 +37706,7 @@ void Unwind_1809031f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -37742,7 +37742,7 @@ void Unwind_180903200(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -37913,7 +37913,7 @@ void Unwind_180903310(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38134,7 +38134,7 @@ void Unwind_180903460(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38188,7 +38188,7 @@ void Unwind_1809034b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38224,7 +38224,7 @@ void Unwind_1809034c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38260,7 +38260,7 @@ void Unwind_1809034d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38296,7 +38296,7 @@ void Unwind_1809034e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38332,7 +38332,7 @@ void Unwind_1809034f0(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -38370,7 +38370,7 @@ void Unwind_180903500(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -38435,7 +38435,7 @@ void Unwind_180903510(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38471,7 +38471,7 @@ void Unwind_180903520(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38521,7 +38521,7 @@ void Unwind_180903560(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -38584,7 +38584,7 @@ void Unwind_180903580(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -38647,7 +38647,7 @@ void Unwind_1809035e0(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -38685,7 +38685,7 @@ void Unwind_1809035f0(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -43509,7 +43509,7 @@ void Unwind_180904630(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44071,7 +44071,7 @@ void Unwind_180904920(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44107,7 +44107,7 @@ void Unwind_180904930(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44187,7 +44187,7 @@ void Unwind_180904960(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44249,7 +44249,7 @@ void Unwind_180904970(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44311,7 +44311,7 @@ void Unwind_180904990(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44365,7 +44365,7 @@ void Unwind_1809049d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44401,7 +44401,7 @@ void Unwind_1809049e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44437,7 +44437,7 @@ void Unwind_1809049f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44517,7 +44517,7 @@ void Unwind_180904a20(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44579,7 +44579,7 @@ void Unwind_180904a30(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44641,7 +44641,7 @@ void Unwind_180904a50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44686,7 +44686,7 @@ void Unwind_180904a80(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -44722,7 +44722,7 @@ void Unwind_180904a90(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -45262,7 +45262,7 @@ void Unwind_180904e70(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -45376,7 +45376,7 @@ void Unwind_180904f30(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -45504,7 +45504,7 @@ void Unwind_180904fb0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -45664,7 +45664,7 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -45721,7 +45721,7 @@ void Unwind_180905050(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -46078,7 +46078,7 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -46135,7 +46135,7 @@ void Unwind_180905220(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -46210,7 +46210,7 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -46267,7 +46267,7 @@ void Unwind_180905280(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -46410,7 +46410,7 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -46777,7 +46777,7 @@ void Unwind_180905540(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -46840,7 +46840,7 @@ void Unwind_1809055b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -46876,7 +46876,7 @@ void Unwind_1809055c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -47567,7 +47567,7 @@ void Unwind_180905880(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -47818,7 +47818,7 @@ void Unwind_180905940(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar4 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -48366,7 +48366,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -48730,7 +48730,7 @@ void Unwind_180905c50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -48899,7 +48899,7 @@ void Unwind_180905ca0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -49250,7 +49250,7 @@ void Unwind_180905ea0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -49353,7 +49353,7 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -49565,7 +49565,7 @@ void Unwind_180905fa0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -49647,7 +49647,7 @@ void Unwind_180905fe0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(lVar5 + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -49927,7 +49927,7 @@ void Unwind_180906160(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -49963,7 +49963,7 @@ void Unwind_180906180(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -49999,7 +49999,7 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -50136,7 +50136,7 @@ void Unwind_1809061f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -50495,7 +50495,7 @@ void Unwind_180906470(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -51862,7 +51862,7 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -51997,7 +51997,7 @@ void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cle
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52043,7 +52043,7 @@ void CleanupExceptionHandlingResourcesAlternative(undefined8 exceptionContext, l
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52208,7 +52208,7 @@ void CleanupExceptionListNode(undefined8 exceptionContext, longlong cleanupConte
       referenceCount = (int *)(listOffset + 0x18);
       *referenceCount = *referenceCount + -1;
       if (*referenceCount == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52300,7 +52300,7 @@ void Unwind_180906c80(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52336,7 +52336,7 @@ void Unwind_180906c90(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52372,7 +52372,7 @@ void Unwind_180906ca0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52429,7 +52429,7 @@ void Unwind_180906cc0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52465,7 +52465,7 @@ void Unwind_180906cd0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52522,7 +52522,7 @@ void Unwind_180906cf0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52558,7 +52558,7 @@ void Unwind_180906d00(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52594,7 +52594,7 @@ void Unwind_180906d10(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52651,7 +52651,7 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52687,7 +52687,7 @@ void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
       ReferenceCount = (int *)(BlockOffset + 0x18);
       *ReferenceCount = *ReferenceCount + -1;
       if (*ReferenceCount == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52736,7 +52736,7 @@ void ReleaseExceptionResources(undefined8 ExceptionContext, longlong ResourcePoi
       ReferenceCount = (int *)(BlockOffset + 0x18);
       *ReferenceCount = *ReferenceCount + -1;
       if (*ReferenceCount == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52785,7 +52785,7 @@ void CleanupExceptionMemoryBlock(undefined8 ExceptionContext, longlong MemoryCon
       ReferenceCount = (int *)(MemoryOffset + 0x18);
       *ReferenceCount = *ReferenceCount + -1;
       if (*ReferenceCount == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52821,7 +52821,7 @@ void Unwind_180906d70(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52857,7 +52857,7 @@ void Unwind_180906d80(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52893,7 +52893,7 @@ void Unwind_180906d90(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52929,7 +52929,7 @@ void Unwind_180906da0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -52986,7 +52986,7 @@ void Unwind_180906dc0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -54114,7 +54114,7 @@ void Unwind_180907350(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -54150,7 +54150,7 @@ void Unwind_180907360(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -54186,7 +54186,7 @@ void Unwind_180907370(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -54444,7 +54444,7 @@ void Unwind_1809074d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -54480,7 +54480,7 @@ void Unwind_1809074e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -54516,7 +54516,7 @@ void Unwind_1809074f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -55199,7 +55199,7 @@ void Unwind_180907880(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -55591,7 +55591,7 @@ void Unwind_1809079d0(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -55629,7 +55629,7 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -55683,7 +55683,7 @@ void Unwind_180907a10(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -55762,7 +55762,7 @@ void Unwind_180907a50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -55798,7 +55798,7 @@ void Unwind_180907a60(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56097,7 +56097,7 @@ void Unwind_180907c20(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56177,7 +56177,7 @@ void Unwind_180907c70(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56213,7 +56213,7 @@ void Unwind_180907c80(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56394,7 +56394,7 @@ void Unwind_180907d30(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56577,7 +56577,7 @@ void Unwind_180907e90(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56613,7 +56613,7 @@ void Unwind_180907ea0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56649,7 +56649,7 @@ void Unwind_180907eb0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56685,7 +56685,7 @@ void Unwind_180907ec0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56721,7 +56721,7 @@ void Unwind_180907ed0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -56969,7 +56969,7 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -57065,7 +57065,7 @@ void HandleExceptionA3(undefined8 ContextParameter, longlong SystemContext)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -57838,7 +57838,7 @@ void Unwind_180908650(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58115,7 +58115,7 @@ void Unwind_1809087c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58225,7 +58225,7 @@ void Unwind_180908830(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58261,7 +58261,7 @@ void Unwind_180908840(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58329,7 +58329,7 @@ void Unwind_180908870(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58641,7 +58641,7 @@ void Unwind_180908a20(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58677,7 +58677,7 @@ void Unwind_180908a30(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58713,7 +58713,7 @@ void Unwind_180908a40(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58749,7 +58749,7 @@ void Unwind_180908a50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58785,7 +58785,7 @@ void Unwind_180908a60(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58821,7 +58821,7 @@ void Unwind_180908a70(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58857,7 +58857,7 @@ void Unwind_180908a80(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58893,7 +58893,7 @@ void Unwind_180908a90(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58938,7 +58938,7 @@ void Unwind_180908ab0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -58974,7 +58974,7 @@ void Unwind_180908ac0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -59010,7 +59010,7 @@ void Unwind_180908ad0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -59083,7 +59083,7 @@ void Unwind_180908b10(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -59586,7 +59586,7 @@ void Unwind_180908dd0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -59631,7 +59631,7 @@ void Unwind_180908df0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -59667,7 +59667,7 @@ void Unwind_180908e00(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -59731,7 +59731,7 @@ void Unwind_180908e50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -59767,7 +59767,7 @@ void Unwind_180908e60(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -59803,7 +59803,7 @@ void Unwind_180908e70(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -60187,7 +60187,7 @@ void Unwind_180909090(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -60278,7 +60278,7 @@ void Unwind_1809090b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -60515,7 +60515,7 @@ void Unwind_180909290(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -60572,7 +60572,7 @@ void Unwind_1809092d0(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar4 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -60615,7 +60615,7 @@ void Unwind_1809092e0(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(lVar4 + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -61491,7 +61491,7 @@ void Unwind_180909660(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -61527,7 +61527,7 @@ void Unwind_180909670(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -61563,7 +61563,7 @@ void Unwind_180909680(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -61599,7 +61599,7 @@ void Unwind_180909690(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -61635,7 +61635,7 @@ void Unwind_1809096a0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -62095,7 +62095,7 @@ void Unwind_180909860(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -62302,7 +62302,7 @@ void Unwind_180909a00(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -62370,7 +62370,7 @@ void Unwind_180909a40(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -62406,7 +62406,7 @@ void Unwind_180909a50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -62668,7 +62668,7 @@ void Unwind_180909c20(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -63067,7 +63067,7 @@ void Unwind_180909f60(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -63632,7 +63632,7 @@ void Unwind_18090a450(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -63865,7 +63865,7 @@ void Unwind_18090a5c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -63901,7 +63901,7 @@ void Unwind_18090a5d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -64109,7 +64109,7 @@ void Unwind_18090a780(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -64159,7 +64159,7 @@ void Unwind_18090a7a0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -64338,7 +64338,7 @@ void Unwind_18090a880(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -64374,7 +64374,7 @@ void Unwind_18090a890(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -64598,7 +64598,7 @@ void Unwind_18090a930(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -64636,7 +64636,7 @@ void Unwind_18090a940(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -64674,7 +64674,7 @@ void Unwind_18090a950(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -64712,7 +64712,7 @@ void Unwind_18090a960(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -64750,7 +64750,7 @@ void Unwind_18090a970(undefined8 param_1,longlong param_2)
         referenceCountPointer = (int *)(calculatedOffset + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
-          FUN_18064d630();
+          HandleExceptionE0();
           return;
         }
       }
@@ -67783,7 +67783,7 @@ void Unwind_18090c140(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -67928,7 +67928,7 @@ void Unwind_18090c1c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -68083,7 +68083,7 @@ void Unwind_18090c280(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -68155,7 +68155,7 @@ void Unwind_18090c2d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -68191,7 +68191,7 @@ void Unwind_18090c2e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -68339,7 +68339,7 @@ void Unwind_18090c3b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -68398,7 +68398,7 @@ void Unwind_18090c400(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -68736,7 +68736,7 @@ void Unwind_18090c530(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -69157,7 +69157,7 @@ void Unwind_18090c610(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -69193,7 +69193,7 @@ void Unwind_18090c620(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71318,7 +71318,7 @@ void Unwind_18090d000(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71354,7 +71354,7 @@ void Unwind_18090d010(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71390,7 +71390,7 @@ void Unwind_18090d020(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71426,7 +71426,7 @@ void Unwind_18090d030(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71476,7 +71476,7 @@ void CleanupExceptionAtOffset210(undefined8 ExceptionContext,longlong ExceptionO
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71526,7 +71526,7 @@ void CleanupExceptionAtOffset220(undefined8 ExceptionContext,longlong ExceptionO
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71562,7 +71562,7 @@ void Unwind_18090d060(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71598,7 +71598,7 @@ void Unwind_18090d070(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71634,7 +71634,7 @@ void Unwind_18090d080(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71670,7 +71670,7 @@ void Unwind_18090d090(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71706,7 +71706,7 @@ void Unwind_18090d0a0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71742,7 +71742,7 @@ void Unwind_18090d0b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71778,7 +71778,7 @@ void Unwind_18090d0c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71814,7 +71814,7 @@ void Unwind_18090d0d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71850,7 +71850,7 @@ void Unwind_18090d0e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71886,7 +71886,7 @@ void Unwind_18090d0f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71922,7 +71922,7 @@ void Unwind_18090d100(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71958,7 +71958,7 @@ void Unwind_18090d110(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -71994,7 +71994,7 @@ void Unwind_18090d120(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72030,7 +72030,7 @@ void Unwind_18090d130(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72066,7 +72066,7 @@ void Unwind_18090d140(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72102,7 +72102,7 @@ void Unwind_18090d150(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72138,7 +72138,7 @@ void Unwind_18090d160(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72174,7 +72174,7 @@ void Unwind_18090d170(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72210,7 +72210,7 @@ void Unwind_18090d180(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72257,7 +72257,7 @@ void Unwind_18090d1a0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72293,7 +72293,7 @@ void Unwind_18090d1b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72329,7 +72329,7 @@ void Unwind_18090d1c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72365,7 +72365,7 @@ void Unwind_18090d1d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72401,7 +72401,7 @@ void Unwind_18090d1e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72437,7 +72437,7 @@ void Unwind_18090d1f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72473,7 +72473,7 @@ void Unwind_18090d200(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72509,7 +72509,7 @@ void Unwind_18090d210(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72545,7 +72545,7 @@ void Unwind_18090d220(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72581,7 +72581,7 @@ void Unwind_18090d230(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72617,7 +72617,7 @@ void Unwind_18090d240(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72653,7 +72653,7 @@ void Unwind_18090d250(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72689,7 +72689,7 @@ void Unwind_18090d260(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72725,7 +72725,7 @@ void Unwind_18090d270(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72761,7 +72761,7 @@ void Unwind_18090d280(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72797,7 +72797,7 @@ void Unwind_18090d290(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72833,7 +72833,7 @@ void Unwind_18090d2a0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72869,7 +72869,7 @@ void Unwind_18090d2b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72905,7 +72905,7 @@ void Unwind_18090d2c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72941,7 +72941,7 @@ void Unwind_18090d2d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -72977,7 +72977,7 @@ void Unwind_18090d2e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73013,7 +73013,7 @@ void Unwind_18090d2f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73049,7 +73049,7 @@ void Unwind_18090d300(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73085,7 +73085,7 @@ void Unwind_18090d310(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73177,7 +73177,7 @@ void Unwind_18090d360(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73213,7 +73213,7 @@ void Unwind_18090d370(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73249,7 +73249,7 @@ void Unwind_18090d380(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73285,7 +73285,7 @@ void Unwind_18090d390(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73321,7 +73321,7 @@ void Unwind_18090d3a0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73357,7 +73357,7 @@ void Unwind_18090d3b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73393,7 +73393,7 @@ void Unwind_18090d3c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73429,7 +73429,7 @@ void Unwind_18090d3d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73465,7 +73465,7 @@ void Unwind_18090d3e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73501,7 +73501,7 @@ void Unwind_18090d3f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73537,7 +73537,7 @@ void Unwind_18090d400(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73573,7 +73573,7 @@ void Unwind_18090d410(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73609,7 +73609,7 @@ void Unwind_18090d420(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73645,7 +73645,7 @@ void Unwind_18090d430(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73681,7 +73681,7 @@ void Unwind_18090d440(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73717,7 +73717,7 @@ void Unwind_18090d450(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73753,7 +73753,7 @@ void Unwind_18090d460(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73789,7 +73789,7 @@ void Unwind_18090d470(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73825,7 +73825,7 @@ void Unwind_18090d480(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73861,7 +73861,7 @@ void Unwind_18090d490(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73897,7 +73897,7 @@ void Unwind_18090d4a0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73933,7 +73933,7 @@ void Unwind_18090d4b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -73969,7 +73969,7 @@ void Unwind_18090d4c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -74005,7 +74005,7 @@ void Unwind_18090d4d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -74041,7 +74041,7 @@ void Unwind_18090d4e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -74077,7 +74077,7 @@ void Unwind_18090d4f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -74571,7 +74571,7 @@ void Unwind_18090d7e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -75094,7 +75094,7 @@ void Unwind_18090de40(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -75345,7 +75345,7 @@ void Unwind_18090e000(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -75656,7 +75656,7 @@ void Unwind_18090e3c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -75692,7 +75692,7 @@ void Unwind_18090e3d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -77690,7 +77690,7 @@ void Unwind_18090eeb0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -77735,7 +77735,7 @@ void Unwind_18090eee0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -77785,7 +77785,7 @@ void Unwind_18090ef20(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -77835,7 +77835,7 @@ void Unwind_18090ef50(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -77871,7 +77871,7 @@ void Unwind_18090ef60(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78505,7 +78505,7 @@ void Unwind_18090f1b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78541,7 +78541,7 @@ void Unwind_18090f1d0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78599,7 +78599,7 @@ void Unwind_18090f210(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78635,7 +78635,7 @@ void Unwind_18090f230(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78671,7 +78671,7 @@ void Unwind_18090f250(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78707,7 +78707,7 @@ void Unwind_18090f270(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78743,7 +78743,7 @@ void Unwind_18090f290(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78779,7 +78779,7 @@ void Unwind_18090f2b0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -78836,7 +78836,7 @@ void Unwind_18090f2f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -80634,7 +80634,7 @@ void Unwind_18090ff90(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -81502,7 +81502,7 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -81559,7 +81559,7 @@ void Unwind_180910340(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -81595,7 +81595,7 @@ void Unwind_180910350(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -81670,7 +81670,7 @@ void Unwind_1809103c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -81875,7 +81875,7 @@ void Unwind_1809104f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -81911,7 +81911,7 @@ void Unwind_180910510(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -82096,7 +82096,7 @@ void Unwind_180910640(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -82132,7 +82132,7 @@ void Unwind_180910660(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -82230,7 +82230,7 @@ void Unwind_1809106e0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -82290,7 +82290,7 @@ void Unwind_180910750(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -82348,7 +82348,7 @@ void Unwind_180910770(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -82384,7 +82384,7 @@ void Unwind_180910780(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -82420,7 +82420,7 @@ void Unwind_180910790(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -86574,7 +86574,7 @@ void Unwind_1809118c0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -86640,7 +86640,7 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -86781,7 +86781,7 @@ void Unwind_180911950(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -89760,7 +89760,7 @@ void Unwind_180912930(undefined8 param_1,longlong param_2)
       referenceCountPointer = (int *)(calculatedOffset + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
@@ -90473,7 +90473,7 @@ void ProcessSystemExceptionDataG1(void)
       exceptionDataPointer = (int *)(memoryOffset + 0x18);
       *exceptionDataPointer = *exceptionDataPointer + -1;
       if (*exceptionDataPointer == 0) {
-        FUN_18064d630();
+        HandleExceptionE0();
         return;
       }
     }
