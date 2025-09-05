@@ -37420,7 +37420,7 @@ void CleanupResourcePointer(DataBuffer resourceBuffer,int64_t contextOffset)
 
 
 
-void Unwind_CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandler)
+void CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t ResourceHandler)
 
 {
   int *referenceCountPointer;
@@ -37456,7 +37456,7 @@ void Unwind_CleanupSecondaryResource(DataBuffer ExceptionContext,int64_t Resourc
 
 
 
-void Unwind_ResetDefaultHandler(DataBuffer ExceptionContext,int64_t HandlerAddress)
+void ResetDefaultHandler(DataBuffer ExceptionContext,int64_t HandlerAddress)
 
 {
   **(DataBuffer **)(HandlerAddress + 0xa0) = &DefaultExceptionHandlerB;
@@ -37465,7 +37465,7 @@ void Unwind_ResetDefaultHandler(DataBuffer ExceptionContext,int64_t HandlerAddre
 
 
 
-void Unwind_CleanupMemoryResource(DataBuffer param_1,int64_t param_2)
+void CleanupMemoryResource(DataBuffer param_1,int64_t param_2)
 
 {
   int *referenceCountPointer;
@@ -37501,7 +37501,7 @@ void Unwind_CleanupMemoryResource(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupMemoryBlock(DataBuffer param_1,int64_t param_2)
+void CleanupMemoryBlock(DataBuffer param_1,int64_t param_2)
 
 {
   int *referenceCountPointer;
@@ -37537,7 +37537,7 @@ void Unwind_CleanupMemoryBlock(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupThreadResource(DataBuffer param_1,int64_t param_2)
+void CleanupThreadResource(DataBuffer param_1,int64_t param_2)
 
 {
   DataBuffer *pdataValue;
@@ -37554,7 +37554,7 @@ void Unwind_CleanupThreadResource(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupThreadContext(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupThreadContext(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   DataBuffer *pdataValue;
@@ -37591,7 +37591,7 @@ void Unwind_CleanupThreadContext(DataBuffer param_1,int64_t param_2,DataBuffer p
 
 
 
-void Unwind_CleanupSyncObject(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupSyncObject(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   code *pcVar1;
@@ -37605,7 +37605,7 @@ void Unwind_CleanupSyncObject(DataBuffer param_1,int64_t param_2,DataBuffer para
 
 
 
-void Unwind_CleanupMutexLock(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupMutexLock(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   code *pcVar1;
@@ -37619,7 +37619,7 @@ void Unwind_CleanupMutexLock(DataBuffer param_1,int64_t param_2,DataBuffer param
 
 
 
-void Unwind_CleanupExceptionStack(DataBuffer param_1,int64_t param_2)
+void CleanupExceptionStack(DataBuffer param_1,int64_t param_2)
 
 {
   DataBuffer *pdataValue;
@@ -37638,7 +37638,7 @@ void Unwind_CleanupExceptionStack(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupCallStack(DataBuffer param_1,int64_t param_2)
+void CleanupCallStack(DataBuffer param_1,int64_t param_2)
 
 {
   *(uint8_t **)(param_2 + 0x50) = &DefaultExceptionHandlerB;
@@ -37647,7 +37647,7 @@ void Unwind_CleanupCallStack(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupFrameContext(DataBuffer param_1,int64_t param_2)
+void CleanupFrameContext(DataBuffer param_1,int64_t param_2)
 
 {
   if (*(int64_t **)(param_2 + 0x40) != (int64_t *)0x0) {
@@ -37658,7 +37658,7 @@ void Unwind_CleanupFrameContext(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupLocalVariables(DataBuffer param_1,int64_t param_2)
+void CleanupLocalVariables(DataBuffer param_1,int64_t param_2)
 
 {
   *(uint8_t **)(param_2 + 0x50) = &DefaultExceptionHandlerB;
@@ -37667,7 +37667,7 @@ void Unwind_CleanupLocalVariables(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupTempStorage(DataBuffer param_1,int64_t param_2)
+void CleanupTempStorage(DataBuffer param_1,int64_t param_2)
 
 {
   int *referenceCountPointer;
@@ -37703,7 +37703,7 @@ void Unwind_CleanupTempStorage(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupHeapMemory(DataBuffer param_1,int64_t param_2)
+void CleanupHeapMemory(DataBuffer param_1,int64_t param_2)
 
 {
   int *referenceCountPointer;
@@ -37739,7 +37739,7 @@ void Unwind_CleanupHeapMemory(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupStackMemory(DataBuffer param_1,int64_t param_2)
+void CleanupStackMemory(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t *validationContextPointer;
@@ -37762,7 +37762,7 @@ void Unwind_CleanupStackMemory(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupBufferMemory(DataBuffer param_1,int64_t param_2)
+void CleanupBufferMemory(DataBuffer param_1,int64_t param_2)
 
 {
   FUN_180057010(*(int64_t *)(param_2 + 0x20) + 0x60);
@@ -37771,7 +37771,7 @@ void Unwind_CleanupBufferMemory(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupArrayMemory(DataBuffer param_1,int64_t param_2)
+void CleanupArrayMemory(DataBuffer param_1,int64_t param_2)
 
 {
   FUN_180057010(*(int64_t *)(param_2 + 0x20) + 0x60);
@@ -37780,7 +37780,7 @@ void Unwind_CleanupArrayMemory(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupVectorMemory(DataBuffer param_1,int64_t param_2)
+void CleanupVectorMemory(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t *validationContextPointer;
@@ -37794,7 +37794,7 @@ void Unwind_CleanupVectorMemory(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupStringMemory(DataBuffer param_1,int64_t param_2)
+void CleanupStringMemory(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t *validationContextPointer;
@@ -37808,7 +37808,7 @@ void Unwind_CleanupStringMemory(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_CleanupObjectMemory(DataBuffer param_1,int64_t param_2)
+void CleanupObjectMemory(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t validationContext;
@@ -38400,7 +38400,7 @@ void ExecuteMemoryCleanupChain(DataBuffer exceptionContext, int64_t unwindContex
 
 
 
-void Unwind_180902f60(DataBuffer param_1,int64_t param_2)
+void CleanupResourceReference(DataBuffer param_1,int64_t param_2)
 
 {
   int *referenceCountPointer;
@@ -38436,7 +38436,7 @@ void Unwind_180902f60(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180902f80(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupSystemResource(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   FUN_180058370(*(int64_t *)(param_2 + 0x40) + 0x8e8,
@@ -38447,7 +38447,7 @@ void Unwind_180902f80(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180902fa0(DataBuffer param_1,int64_t param_2)
+void ResetSystemHandler(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t validationContext;
@@ -38466,7 +38466,7 @@ void Unwind_180902fa0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180902fc0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataResourceA(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   DataBuffer *pdataValue;
