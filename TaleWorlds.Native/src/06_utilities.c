@@ -37442,7 +37442,7 @@ void Unwind_CleanupDataMemory(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902e70(undefined8 param_1,longlong param_2)
+void Unwind_CleanupBssMemory(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -37478,7 +37478,7 @@ void Unwind_180902e70(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902e80(undefined8 param_1,longlong param_2)
+void Unwind_CleanupStackFrame(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -37521,7 +37521,7 @@ void Unwind_180902e80(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902e90(undefined8 param_1,longlong param_2)
+void Unwind_CleanupFunctionFrame(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -37540,7 +37540,7 @@ void Unwind_180902e90(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902eb0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupCallFrame(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
