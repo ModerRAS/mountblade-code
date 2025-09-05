@@ -1673,24 +1673,6 @@ void InitializeGameCoreSystem(void)
  * 
  * @return void 无返回值
  */
-/**
- * @brief 初始化系统数据表基础分配器
- * 
- * 该函数负责初始化系统数据表的基础内存分配器，创建数据表分配器节点并设置必要的初始化参数。
- * 它会遍历系统节点树，查找或创建数据表基础分配器节点。
- * 
- * @details 函数执行以下操作：
- * 1. 获取系统根节点指针
- * 2. 遍历系统节点树查找基础分配器节点
- * 3. 如果需要，分配新的系统节点
- * 4. 设置节点的标识符、数据指针和处理函数
- * 5. 配置基础分配器的系统标志
- * 
- * @note 该函数在系统内存管理初始化时调用，确保数据表分配器正确配置。
- * @note 函数使用BaseAllocatorSystemIdentifier进行系统识别。
- * 
- * @return void 无返回值
- */
 void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeActive;
@@ -1746,21 +1728,15 @@ void InitializeSystemDataTableBaseAllocator(void)
 /**
  * @brief 初始化系统数据表分配器
  * 
- * 该函数负责初始化系统数据表的分配器，为系统数据表的内存分配
- * 和管理提供支持。它会遍历系统节点树，查找合适的位置来初始化
- * 数据表分配器功能。
- * 
- * @note 该函数在系统初始化过程中调用，确保数据表的分配功能
- * 正常工作。
- * 
- * @param void 无参数
- * @return void 无返回值
- */
-/**
- * @brief 初始化系统数据表分配器
- * 
  * 该函数负责初始化系统数据表的内存分配器，创建数据表分配器节点并设置必要的初始化参数。
  * 它会遍历系统节点树，查找或创建数据表分配器节点。
+ * 
+ * @details 函数执行以下操作：
+ * 1. 获取系统根节点指针
+ * 2. 遍历系统节点树查找数据表分配器节点
+ * 3. 如果需要，分配新的系统节点
+ * 4. 设置节点的标识符、数据指针和处理函数
+ * 5. 配置数据表分配器的系统标志
  * 
  * @note 该函数在系统内存管理初始化时调用，确保数据表分配器正确配置。
  * @note 函数使用SystemDataTableSystemIdentifier进行系统识别。
@@ -10383,8 +10359,8 @@ void InitializeSystemConfigurationManager(void)
     AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedMemoryNode,SystemHashTableNodePointerPointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
     SystemHashTableNodePointerPointer = SystemAllocatedMemoryNode;
   }
-  SystemHashTableNodePointerPointer[NodeIdentifier1Index] = 0x421c3cedd07d816d;
-  SystemHashTableNodePointerPointer[NodeIdentifier2Index] = 0xbec25de793b7afa6;
+  SystemHashTableNodePointerPointer[NodeIdentifier1Index] = DataComparisonTemplateAlphaId1;
+  SystemHashTableNodePointerPointer[NodeIdentifier2Index] = DataComparisonTemplateAlphaId2;
   SystemHashTableNodePointerPointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateD;
   SystemHashTableNodePointerPointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   SystemHashTableNodePointerPointer[10] = SystemEventCallbackPointer;
@@ -10442,8 +10418,8 @@ void InitializeSystemNetworkConfigurationManager(void)
     AllocateSystemMemory(SystemDataTablePointer,&SystemAllocatedMemoryNode,SystemHashTableNodePointerPointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
     SystemHashTableNodePointerPointer = SystemAllocatedMemoryNode;
   }
-  SystemHashTableNodePointerPointer[NodeIdentifier1Index] = 0x4c22bb0c326587ce;
-  SystemHashTableNodePointerPointer[NodeIdentifier2Index] = 0x5e3cf00ce2978287;
+  SystemHashTableNodePointerPointer[NodeIdentifier1Index] = DataComparisonTemplateBetaId1;
+  SystemHashTableNodePointerPointer[NodeIdentifier2Index] = DataComparisonTemplateBetaId2;
   SystemHashTableNodePointerPointer[NodeDataPointerIndex] = &SystemResourceNodeTemplateE;
   SystemHashTableNodePointerPointer[NodeActiveFlagIndex] = 1;
   SystemHashTableNodePointerPointer[10] = ResourceInitializationCallback;
