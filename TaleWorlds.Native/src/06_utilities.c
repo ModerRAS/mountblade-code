@@ -42,8 +42,8 @@
 // 系统处理函数宏定义 (E系列)
 #define ValidateAndProcessFloatingPointNumberA1 FUN_180892880
 #define QuerySystemStatusA0 FUN_1808928d3
-#define InitializeSystemE0 FUN_1808928f1
-#define ValidateParametersE0 FUN_180892909
+#define GetSystemConfigurationA0 FUN_1808928f1
+#define ValidateSystemParameterA0 FUN_180892909
 #define ValidateParametersE1 FUN_180892920
 #define CleanupSystemE0 FUN_180892974
 #define ProcessSystemDataE1 FUN_180892990
