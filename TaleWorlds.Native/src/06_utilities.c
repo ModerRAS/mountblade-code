@@ -8809,11 +8809,11 @@ void ExecuteSecurityValidation(longlong param_1, longlong param_2)
   stackGuardValue = _DAT_180bf00a8 ^ (ulonglong)securityValidationBuffer;
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContext);
   if (operationResult == 0) {
-    if (lStack_48 != 0) {
-      lStack_48 = lStack_48 + -8;
+    if (systemContext != 0) {
+      systemContext = systemContext + -8;
     }
-    if (*(longlong *)(lStack_48 + 0x18) != 0) {
-      lVar1 = *(longlong *)(lStack_48 + 0x18) + 0x30;
+    if (*(longlong *)(systemContext + 0x18) != 0) {
+      lVar1 = *(longlong *)(systemContext + 0x18) + 0x30;
       lVar3 = (**(code **)(**(longlong **)(param_2 + 800) + 0x2f0))
                         (*(longlong **)(param_2 + 800),lVar1,1);
       if (lVar3 == 0) {
@@ -11215,7 +11215,7 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
   uint uStack_54;
   uint uStack_50;
   uint uStack_4c;
-  longlong lStack_48;
+  longlong systemContext;
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
@@ -11242,9 +11242,9 @@ void ExecuteUtilityDataValidation(longlong validationContext,undefined4 *validat
       FUN_18076b390(auStack_40,0x27,&UNK_180958180,uStack_58);
     }
     if (((*(byte *)(lVar3 + 0xc4) & 1) != 0) &&
-       ((lStack_48 = *(longlong *)(lVar3 + 0x68), lStack_48 != 0 ||
-        (operationResult = FUN_18088c7c0(param_1,lVar3,&lStack_48), operationResult == 0)))) {
-      *param_3 = lStack_48;
+       ((systemContext = *(longlong *)(lVar3 + 0x68), systemContext != 0 ||
+        (operationResult = FUN_18088c7c0(param_1,lVar3,&systemContext), operationResult == 0)))) {
+      *param_3 = systemContext;
     }
   }
                     // WARNING: Subroutine does not return
@@ -11420,7 +11420,7 @@ void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlo
   uint uStack_54;
   uint uStack_50;
   uint uStack_4c;
-  longlong lStack_48;
+  longlong systemContext;
   undefined1 auStack_40 [40];
   ulonglong uStack_18;
   
@@ -11446,9 +11446,9 @@ void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlo
                     // WARNING: Subroutine does not return
       FUN_18076b390(auStack_40,0x27,&UNK_180958180,uStack_58);
     }
-    lStack_48 = *(longlong *)(lVar3 + 0x48);
-    if ((lStack_48 != 0) || (operationResult = FUN_18088ca20(param_1,lVar3,&lStack_48), operationResult == 0)) {
-      *param_3 = lStack_48;
+    systemContext = *(longlong *)(lVar3 + 0x48);
+    if ((systemContext != 0) || (operationResult = FUN_18088ca20(param_1,lVar3,&systemContext), operationResult == 0)) {
+      *param_3 = systemContext;
     }
   }
                     // WARNING: Subroutine does not return
