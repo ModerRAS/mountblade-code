@@ -8304,15 +8304,15 @@ void ResetUtilitySystemAA0(void)
     if (validationStatus < 8) {
       validationStatus = 8;
     }
-    if (iVar1 < *(int *)(unaff_RBX + 0x28)) goto LAB_180891fc0;
-    if (iVar1 != 0) {
-      if (0x3ffffffe < iVar1 * 8 - 1U) goto LAB_180891fc0;
-      lVar3 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,0xf4,0)
+    if (validationStatus < *(int *)(registerRBX + 0x28)) goto LAB_180891fc0;
+    if (validationStatus != 0) {
+      if (0x3ffffffe < validationStatus * 8 - 1U) goto LAB_180891fc0;
+      stackPointer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),validationStatus * 8,&UNK_180957f70,0xf4,0)
       ;
-      if (lVar3 == 0) goto LAB_180891fc0;
-      if (*(int *)(unaff_RBX + 0x28) != 0) {
+      if (stackPointer == 0) goto LAB_180891fc0;
+      if (*(int *)(registerRBX + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar3,*(undefined8 *)(unaff_RBX + 0x20),(longlong)*(int *)(unaff_RBX + 0x28) << 3);
+        memcpy(stackPointer,*(undefined8 *)(registerRBX + 0x20),(longlong)*(int *)(registerRBX + 0x28) << 3);
       }
     }
     if ((0 < *(int *)(unaff_RBX + 0x2c)) && (*(longlong *)(unaff_RBX + 0x20) != 0)) {
