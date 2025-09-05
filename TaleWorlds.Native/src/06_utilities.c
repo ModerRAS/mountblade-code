@@ -32416,19 +32416,32 @@ void ProcessResourceCleanupChain(undefined8 exceptionContext, longlong resourceM
 
 
 
-void Unwind_1809023e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 处理资源清理链（备用版本）
+ * 
+ * 该函数遍历资源清理链表，调用每个资源的清理回调函数，执行资源释放操作
+ * 如果资源链表为空，则直接返回；否则在清理完成后终止系统
+ * 
+ * @param exceptionContext 异常上下文指针（未使用）
+ * @param resourceManager 资源管理器指针
+ * @param cleanupParam 清理参数
+ * @param callbackData 回调数据
+ * 
+ * @note 原始函数名：Unwind_1809023e0
+ */
+void ProcessResourceCleanupChainAlt(undefined8 exceptionContext, longlong resourceManager, undefined8 cleanupParam, undefined8 callbackData)
 
 {
-  undefined8 *puVar1;
-  undefined8 *resourcePointer;
-  undefined8 uVar3;
+  undefined8 *resourceListEnd;
+  undefined8 *currentResource;
+  undefined8 cleanupFlag;
   
-  uVar3 = 0xfffffffffffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x50);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x48); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
-    (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,uVar3);
+  cleanupFlag = 0xfffffffffffffffe;
+  resourceListEnd = *(undefined8 **)(resourceManager + 0x50);
+  for (currentResource = *(undefined8 **)(resourceManager + 0x48); currentResource != resourceListEnd; currentResource = currentResource + 4) {
+    (**(code **)*currentResource)(currentResource, 0, cleanupParam, callbackData, cleanupFlag);
   }
-  if (*(longlong *)(param_2 + 0x48) == 0) {
+  if (*(longlong *)(resourceManager + 0x48) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -32437,7 +32450,18 @@ void Unwind_1809023e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_1809023f0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理资源引用
+ * 
+ * 该函数处理资源的引用计数和内存管理，包括从异常列表中移除资源引用
+ * 如果资源引用计数降为0，则调用相应的清理函数
+ * 
+ * @param exceptionContext 异常上下文指针（未使用）
+ * @param resourceManager 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_1809023f0
+ */
+void CleanupResourceReference(undefined8 exceptionContext, longlong resourceManager)
 
 {
   int *referenceCountPointer;
@@ -32445,7 +32469,7 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
   longlong calculatedOffset;
   ulonglong memoryBaseAddress;
   
-  resourcePointer = *(undefined8 **)(param_2 + 0x48);
+  resourcePointer = *(undefined8 **)(resourceManager + 0x48);
   if (resourcePointer == (undefined8 *)0x0) {
     return;
   }
@@ -32473,53 +32497,95 @@ void Unwind_1809023f0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902400(undefined8 param_1,longlong param_2)
+/**
+ * @brief 初始化异常处理器0x78
+ * 
+ * 该函数初始化指定偏移量处的异常处理器，设置默认异常处理器B
+ * 并清理相关的状态标志
+ * 
+ * @param exceptionContext 异常上下文指针（未使用）
+ * @param handlerTable 处理器表指针
+ * 
+ * @note 原始函数名：Unwind_180902400
+ */
+void InitializeExceptionHandler78(undefined8 exceptionContext, longlong handlerTable)
 
 {
-  *(undefined8 *)(param_2 + 0x78) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0x80) != 0) {
+  *(undefined8 *)(handlerTable + 0x78) = &UNK_180a3c3e0;
+  if (*(longlong *)(handlerTable + 0x80) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0x80) = 0;
-  *(undefined4 *)(param_2 + 0x90) = 0;
-  *(undefined8 *)(param_2 + 0x78) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(handlerTable + 0x80) = 0;
+  *(undefined4 *)(handlerTable + 0x90) = 0;
+  *(undefined8 *)(handlerTable + 0x78) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180902410(undefined8 param_1,longlong param_2)
+/**
+ * @brief 调用析构函数回调
+ * 
+ * 该函数检查并调用指定对象的析构函数回调，用于对象销毁时的清理工作
+ * 
+ * @param exceptionContext 异常上下文指针（未使用）
+ * @param objectContext 对象上下文指针
+ * 
+ * @note 原始函数名：Unwind_180902410
+ */
+void InvokeDestructorCallback(undefined8 exceptionContext, longlong objectContext)
 
 {
-  if (*(longlong **)(param_2 + 200) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 200) + 0x38))();
+  if (*(longlong **)(objectContext + 200) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(objectContext + 200) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180902420(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置偏移量0x150处的异常处理器
+ * 
+ * 该函数在指定的处理器表中设置默认异常处理器B，用于处理特定类型的异常情况
+ * 
+ * @param exceptionContext 异常上下文指针（未使用）
+ * @param handlerTable 处理器表指针
+ * 
+ * @note 原始函数名：Unwind_180902420
+ */
+void SetExceptionHandlerOffset150(undefined8 exceptionContext, longlong handlerTable)
 
 {
-  *(undefined **)(param_2 + 0x150) = &DefaultExceptionHandlerB;
+  *(undefined **)(handlerTable + 0x150) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180902430(undefined8 param_1,longlong param_2)
+/**
+ * @brief 初始化异常处理器0xa8
+ * 
+ * 该函数初始化指定偏移量处的异常处理器，设置默认异常处理器B
+ * 并清理相关的状态标志
+ * 
+ * @param exceptionContext 异常上下文指针（未使用）
+ * @param handlerTable 处理器表指针
+ * 
+ * @note 原始函数名：Unwind_180902430
+ */
+void InitializeExceptionHandlerA8(undefined8 exceptionContext, longlong handlerTable)
 
 {
-  *(undefined8 *)(param_2 + 0xa8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0xb0) != 0) {
+  *(undefined8 *)(handlerTable + 0xa8) = &UNK_180a3c3e0;
+  if (*(longlong *)(handlerTable + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0xb0) = 0;
-  *(undefined4 *)(param_2 + 0xc0) = 0;
-  *(undefined8 *)(param_2 + 0xa8) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(handlerTable + 0xb0) = 0;
+  *(undefined4 *)(handlerTable + 0xc0) = 0;
+  *(undefined8 *)(handlerTable + 0xa8) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -44937,89 +45003,89 @@ void Unwind_180905380(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905390(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExecuteExceptionHandlerAtOffsetD8(undefined8 context,longlong exceptionContext,undefined8 param_3,undefined8 exceptionData)
 
 {
-  code *pcVar1;
+  code *exceptionHandler;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0xd8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xd8),0,0,param_4,0xfffffffffffffffe);
+  exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xd8) + 0x10);
+  if (exceptionHandler != (code *)0x0) {
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xd8),0,0,exceptionData,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExecuteExceptionHandlerAtOffsetD8Alt(undefined8 context,longlong exceptionContext,undefined8 param_3,undefined8 exceptionData)
 
 {
-  code *pcVar1;
+  code *exceptionHandler;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0xd8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xd8),0,0,param_4,0xfffffffffffffffe);
+  exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xd8) + 0x10);
+  if (exceptionHandler != (code *)0x0) {
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xd8),0,0,exceptionData,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExecuteExceptionHandlerAtOffset50(undefined8 context,longlong exceptionContext,undefined8 param_3,undefined8 exceptionData)
 
 {
-  if (*(code **)(param_2 + 0x50) != (code *)0x0) {
-    (**(code **)(param_2 + 0x50))(param_2 + 0x40,0,0,param_4,0xfffffffffffffffe);
+  if (*(code **)(exceptionContext + 0x50) != (code *)0x0) {
+    (**(code **)(exceptionContext + 0x50))(exceptionContext + 0x40,0,0,exceptionData,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExecuteExceptionHandlerAtOffsetF0(undefined8 context,longlong exceptionContext,undefined8 param_3,undefined8 exceptionData)
 
 {
-  code *pcVar1;
+  code *exceptionHandler;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0xf0) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xf0),0,0,param_4,0xfffffffffffffffe);
+  exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xf0) + 0x10);
+  if (exceptionHandler != (code *)0x0) {
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf0),0,0,exceptionData,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053d0(undefined8 param_1,longlong param_2)
+void ExecuteCleanupHandlerAtOffset108(undefined8 context,longlong exceptionContext)
 
 {
-  if (*(longlong **)(param_2 + 0x108) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x108) + 0x38))();
+  if (*(longlong **)(exceptionContext + 0x108) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(exceptionContext + 0x108) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_1809053e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExecuteExceptionHandlerAtOffset50Alt(undefined8 context,longlong exceptionContext,undefined8 param_3,undefined8 exceptionData)
 
 {
-  if (*(code **)(param_2 + 0x50) != (code *)0x0) {
-    (**(code **)(param_2 + 0x50))(param_2 + 0x40,0,0,param_4,0xfffffffffffffffe);
+  if (*(code **)(exceptionContext + 0x50) != (code *)0x0) {
+    (**(code **)(exceptionContext + 0x50))(exceptionContext + 0x40,0,0,exceptionData,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_1809053f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExecuteExceptionHandlerAtOffsetF8(undefined8 context,longlong exceptionContext,undefined8 param_3,undefined8 exceptionData)
 
 {
-  code *pcVar1;
+  code *exceptionHandler;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0xf8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xf8),0,0,param_4,0xfffffffffffffffe);
+  exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xf8) + 0x10);
+  if (exceptionHandler != (code *)0x0) {
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf8),0,0,exceptionData,0xfffffffffffffffe);
   }
   return;
 }
