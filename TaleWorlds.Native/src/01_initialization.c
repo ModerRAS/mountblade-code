@@ -1662,13 +1662,13 @@ long long SystemPerformanceTimestamp;      // 系统性能时间戳
 uint32_t SystemConfigurationSize;          // 系统配置大小
 void* SystemDeviceContextPointer;          // 系统设备上下文指针
 uint32_t SystemDeviceStatusFlag;           // 系统设备状态标志
-void* SystemDisplayContextA;               // 系统显示上下文A
-void* SystemDisplayContextB;               // 系统显示上下文B
-void* SystemAudioContextA;                 // 系统音频上下文A
-void* SystemAudioContextB;                 // 系统音频上下文B
-void* SystemInputContextA;                 // 系统输入上下文A
-void* SystemInputContextB;                 // 系统输入上下文B
-void* SystemNetworkContextA;                // 系统网络上下文A
+void* SystemDisplayContextPrimary;         // 系统显示上下文（主要）
+void* SystemDisplayContextSecondary;       // 系统显示上下文（次要）
+void* SystemAudioContextPrimary;           // 系统音频上下文（主要）
+void* SystemAudioContextSecondary;         // 系统音频上下文（次要）
+void* SystemInputContextPrimary;           // 系统输入上下文（主要）
+void* SystemInputContextSecondary;         // 系统输入上下文（次要）
+void* SystemNetworkContextPrimary;          // 系统网络上下文（主要）
 
 void* SystemStartupValidationHandler;
 
@@ -18885,9 +18885,9 @@ void SetDisplaySystemPrimaryContext(void)
   int SystemInitializationStatus;
   
   SystemInitializationStatus = GetSystemStatus(0);
-  SystemDisplayContextA = DisplayContextPrimaryAddress;
+  SystemDisplayContextPrimary = DisplayContextPrimaryAddress;
   if (SystemInitializationStatus != 0) {
-    SystemDisplayContextA = DisplayContextSecondaryAddress;
+    SystemDisplayContextPrimary = DisplayContextSecondaryAddress;
   }
   return;
 }
@@ -18908,13 +18908,13 @@ void SetDisplaySystemSecondaryContext(void)
   
   SystemInitializationStatus = GetSystemStatus(1);
   if (SystemInitializationStatus != 0) {
-    SystemDisplayContextB = DisplayContextTertiaryAddress;
+    SystemDisplayContextSecondary = DisplayContextTertiaryAddress;
     return;
   }
   SystemInitializationStatus = GetSystemStatus(0);
-  SystemDisplayContextB = DisplayContextQuaternaryAddress;
+  SystemDisplayContextSecondary = DisplayContextQuaternaryAddress;
   if (SystemInitializationStatus != 0) {
-    SystemDisplayContextB = DisplayContextQuinaryAddress;
+    SystemDisplayContextSecondary = DisplayContextQuinaryAddress;
   }
   return;
 }
@@ -18933,9 +18933,9 @@ void SetRenderSystemPointer(void)
   int SystemInitializationStatus;
   
   SystemInitializationStatus = GetSystemStatus(0);
-  SystemAudioContextA = (void*)SystemAudioContextPrimaryAddress;
+  SystemAudioContextPrimary = (void*)SystemAudioContextPrimaryAddress;
   if (SystemInitializationStatus != 0) {
-    SystemAudioContextA = (void*)SystemAudioContextSecondaryAddress;
+    SystemAudioContextPrimary = (void*)SystemAudioContextSecondaryAddress;
   }
   return;
 }
@@ -18954,9 +18954,9 @@ void SetAudioSystemPointer(void)
   int SystemInitializationStatus;
   
   SystemInitializationStatus = GetSystemStatus(0);
-  SystemAudioContextB = 0x180be23a0;
+  SystemAudioContextSecondary = 0x180be23a0;
   if (SystemInitializationStatus != 0) {
-    SystemAudioContextB = 0x180be23c0;
+    SystemAudioContextSecondary = 0x180be23c0;
   }
   return;
 }
@@ -18975,9 +18975,9 @@ void SetInputSystemPointer(void)
   int SystemInitializationStatus;
   
   SystemInitializationStatus = GetSystemStatus(0);
-  SystemInputContextA = 0x180be2ad8;
+  SystemInputContextPrimary = 0x180be2ad8;
   if (SystemInitializationStatus != 0) {
-    SystemInputContextA = 0x180be2af8;
+    SystemInputContextPrimary = 0x180be2af8;
   }
   return;
 }
@@ -44054,7 +44054,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
     }
     LocalSystemProcessingBufferOffset = 0;
     UnsignedStackFlagSecondary = UnsignedStackFlagSecondary & SystemMemoryAlignmentMask;
-    systemGlobalDataPtrB8 = &SystemMemoryAllocatorReference;
+    systemGlobalDataPtrSecondary = &SystemMemoryAllocatorReference;
     memoryAllocationBuffer = &SystemGlobalDataReference;
     if (memoryAllocationEnd != (void* *)0x0) {
         SystemCleanupFunction();

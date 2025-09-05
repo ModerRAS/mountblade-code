@@ -12758,71 +12758,92 @@ undefined8 ValidateAndProcessFloatingPointNumberA2(longlong dataParameter,longlo
 
 
 
-// 复杂数据处理函数A0
+// 复杂数据结构处理函数A0
+/**
+ * @brief 处理复杂数据结构的验证和操作
+ * 
+ * 该函数用于处理复杂数据结构，包括数据验证、浮点数范围检查、
+ * 系统上下文初始化和状态更新。函数会检查数据结构的完整性，
+ * 验证浮点数值的范围，并在必要时更新系统状态。
+ * 
+ * @param DataStructureHandle 数据结构句柄，指向要处理的数据结构
+ * @param ProcessingContext 处理上下文，包含系统状态信息
+ * @param ResourceDescriptor 资源描述符，包含资源相关数据
+ * @param OperationFlags 操作标志，控制处理行为
+ * @return 处理结果状态码：
+ *         - 0: 处理成功
+ *         - 0x1d: 浮点数无限值错误
+ *         - 0x1e: 数据偏移量为空错误
+ *         - 0x1f: 操作索引超出范围错误
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会修改数据结构中的浮点数值和系统状态
+ * @warning 函数包含多个不返回的子例程调用，确保在调用前系统状态稳定
+ */
 undefined8 ProcessComplexDataStructureA0(longlong DataStructureHandle, longlong ProcessingContext, undefined8 ResourceDescriptor, undefined8 OperationFlags)
 
 {
-  float fVar1;
-  int operationResult;
-  longlong calculatedOffset;
-  undefined8 memoryBaseAddress;
-  longlong lVar5;
-  undefined8 unaff_RDI;
-  float fVar6;
-  longlong lStackX_8;
+  float inputFloatValue;
+  int operationIndex;
+  longlong dataOffset;
+  undefined8 validationStatus;
+  longlong dataStructurePointer;
+  undefined8 systemContext;
+  float calculatedFloatValue;
+  longlong stackBuffer;
   
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,*(uint *)(DataStructureHandle + 0x20));
+  stackBuffer = CONCAT44(stackBuffer._4_4_,*(uint *)(DataStructureHandle + 0x20));
   if ((*(uint *)(DataStructureHandle + 0x20) & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  memoryBaseAddress = QueryAndRetrieveSystemDataA0(*(undefined4 *)(DataStructureHandle + 0x10),&lStackX_8);
-  if ((int)memoryBaseAddress != 0) {
-    return memoryBaseAddress;
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(DataStructureHandle + 0x10),&stackBuffer);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  lVar5 = lStackX_8;
-  if (lStackX_8 != 0) {
-    lVar5 = lStackX_8 + -8;
+  dataStructurePointer = stackBuffer;
+  if (stackBuffer != 0) {
+    dataStructurePointer = stackBuffer + -8;
   }
-  operationResult = *(int *)(param_1 + 0x18);
-  if ((operationResult < 0) || (*(int *)(lVar5 + 0x28) <= operationResult)) {
+  operationIndex = *(int *)(DataStructureHandle + 0x18);
+  if ((operationIndex < 0) || (*(int *)(dataStructurePointer + 0x28) <= operationIndex)) {
     return 0x1f;
   }
-  lVar5 = *(longlong *)(lVar5 + 0x20) + (longlong)operationResult * 0x18;
-  calculatedOffset = *(longlong *)(lVar5 + 0x10);
-  if (calculatedOffset == 0) {
+  dataStructurePointer = *(longlong *)(dataStructurePointer + 0x20) + (longlong)operationIndex * 0x18;
+  dataOffset = *(longlong *)(dataStructurePointer + 0x10);
+  if (dataOffset == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
-    fVar1 = *(float *)(resourceDescriptor + 0x20);
-    fVar6 = *(float *)(calculatedOffset + 0x38);
-    if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
-       (fVar6 = *(float *)(calculatedOffset + 0x3c), fVar1 <= *(float *)(calculatedOffset + 0x3c))) {
-      fVar6 = fVar1;
+  if ((*(byte *)(dataOffset + 0x34) & 0x11) == 0) {
+    inputFloatValue = *(float *)(ResourceDescriptor + 0x20);
+    calculatedFloatValue = *(float *)(dataOffset + 0x38);
+    if ((*(float *)(dataOffset + 0x38) <= inputFloatValue) &&
+       (calculatedFloatValue = *(float *)(dataOffset + 0x3c), inputFloatValue <= *(float *)(dataOffset + 0x3c))) {
+      calculatedFloatValue = inputFloatValue;
     }
-    *(float *)(resourceDescriptor + 0x20) = fVar6;
-    *(float *)(lVar5 + 4) = fVar6;
-    memoryBaseAddress = ValidateAndProcessSystemResourceA0(lVar5,param_1 + 0x1c);
-    if ((int)memoryBaseAddress != 0) {
-      return memoryBaseAddress;
+    *(float *)(ResourceDescriptor + 0x20) = calculatedFloatValue;
+    *(float *)(dataStructurePointer + 4) = calculatedFloatValue;
+    validationStatus = ValidateAndProcessSystemResourceA0(dataStructurePointer,DataStructureHandle + 0x1c);
+    if ((int)validationStatus != 0) {
+      return validationStatus;
     }
-    lVar5 = *(longlong *)(param_2 + 0x98);
-    if ((*(int *)(lVar5 + 0x180) != 0) || (*(int *)(lVar5 + 0x184) != 0)) {
-      lStackX_8 = 0;
-      InitializeSystemContextA0(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
-      if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar5 + 0x17c) * 8 + 0x180c4f450)) {
-        memoryBaseAddress = ProcessSystemDataEC0(lVar5,param_1);
-        if ((int)memoryBaseAddress == 0) {
+    dataStructurePointer = *(longlong *)(ProcessingContext + 0x98);
+    if ((*(int *)(dataStructurePointer + 0x180) != 0) || (*(int *)(dataStructurePointer + 0x184) != 0)) {
+      stackBuffer = 0;
+      InitializeSystemContextA0(&stackBuffer,DataStructureHandle,ResourceDescriptor,OperationFlags,systemContext);
+      if (stackBuffer == *(longlong *)((longlong)*(int *)(dataStructurePointer + 0x17c) * 8 + 0x180c4f450)) {
+        validationStatus = ProcessSystemDataEC0(dataStructurePointer,DataStructureHandle);
+        if ((int)validationStatus == 0) {
           return 0;
         }
-        return memoryBaseAddress;
+        return validationStatus;
       }
     }
-    *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-    memoryBaseAddress = GetSystemCurrentStateA0(*(undefined8 *)(lVar5 + 0x1e0));
-    if ((int)memoryBaseAddress == 0) {
+    *(uint *)(DataStructureHandle + 8) = *(int *)(DataStructureHandle + 8) + 0xfU & 0xfffffff0;
+    validationStatus = GetSystemCurrentStateA0(*(undefined8 *)(dataStructurePointer + 0x1e0));
+    if ((int)validationStatus == 0) {
       return 0;
     }
-    return memoryBaseAddress;
+    return validationStatus;
   }
   return 0x1f;
 }
@@ -14473,40 +14494,62 @@ int ProcessUtilityDataWithCallback(longlong *callbackContext,longlong dataBuffer
 
 
 
+/**
+ * @brief 处理带加密B的工具系统数据
+ * 
+ * 该函数用于处理工具系统数据，使用B模式加密并通过回调函数进行后续处理。
+ * 它会依次执行数据缓冲区处理、B模式加密处理和回调函数调用。
+ * 
+ * @param encryptionContext 加密上下文指针，包含加密参数和相关配置
+ * @param dataBuffer 数据缓冲区指针，包含待处理的数据
+ * @param dataSize 数据大小，指定待处理数据的长度
+ * @return 处理结果状态码，成功返回0，失败返回错误代码
+ */
 int ProcessUtilityDataWithEncryptionB(longlong *encryptionContext,longlong dataBuffer,int dataSize)
 
 {
-  int iVar1;
+  int processedBytes;
   int operationResult;
   
-  iVar1 = ProcessSystemBufferDataA0(param_2,param_3,&UNK_180984010);
-  operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemDataWithEncryption(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 0xc + 0x20);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + operationResult;
-  operationResult = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
-  return operationResult + iVar1;
+  processedBytes = ProcessSystemBufferDataA0(dataBuffer,dataSize,&SystemDataBufferC);
+  operationResult = ProcessSystemBufferDataA0(dataBuffer + processedBytes,dataSize - processedBytes,&SystemDataBufferA);
+  processedBytes = processedBytes + operationResult;
+  operationResult = ProcessSystemDataWithEncryption(processedBytes + dataBuffer,dataSize - processedBytes,(int)encryptionContext[3] * 0xc + 0x20);
+  processedBytes = processedBytes + operationResult;
+  operationResult = ProcessSystemBufferDataA0(processedBytes + dataBuffer,dataSize - processedBytes,&SystemDataBufferA);
+  processedBytes = processedBytes + operationResult;
+  operationResult = (**(code **)(*encryptionContext + 8))(encryptionContext,processedBytes + dataBuffer,dataSize - processedBytes);
+  return operationResult + processedBytes;
 }
 
 
 
+/**
+ * @brief 处理带验证的数据缓冲区
+ * 
+ * 该函数用于处理数据缓冲区，进行验证、加密和回调处理。它会依次执行
+ * 数据缓冲区处理、系统数据加密和回调函数调用。
+ * 
+ * @param bufferContext 缓冲区上下文指针，包含缓冲区配置和回调函数
+ * @param dataBuffer 数据缓冲区指针，包含待处理的数据
+ * @param bufferSize 缓冲区大小，指定待处理数据的长度
+ * @return 处理结果状态码，成功返回0，失败返回错误代码
+ */
 int ProcessDataBufferWithValidation(longlong *bufferContext,longlong dataBuffer,int bufferSize)
 
 {
-  int processedBytes1;
-  int processedBytes2;
+  int initialProcessedBytes;
+  int subsequentProcessedBytes;
   
-  processedBytes1 = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&UNK_180982240);
-  processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&DAT_180a06434);
-  processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = EncryptSystemData(processedBytes1 + dataBuffer,bufferSize - processedBytes1,((int)bufferContext[2] + 2) * 0xc);
-  processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = ProcessSystemBufferDataA0(processedBytes1 + dataBuffer,bufferSize - processedBytes1,&DAT_180a06434);
-  processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = (**(code **)(*bufferContext + 8))(bufferContext,processedBytes1 + dataBuffer,bufferSize - processedBytes1);
-  return processedBytes2 + processedBytes1;
+  initialProcessedBytes = ProcessSystemBufferDataA0(dataBuffer,bufferSize,&SystemDataBufferD);
+  subsequentProcessedBytes = ProcessSystemBufferDataA0(dataBuffer + initialProcessedBytes,bufferSize - initialProcessedBytes,&SystemDataBufferA);
+  initialProcessedBytes = initialProcessedBytes + subsequentProcessedBytes;
+  subsequentProcessedBytes = EncryptSystemData(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,((int)bufferContext[2] + 2) * 0xc);
+  initialProcessedBytes = initialProcessedBytes + subsequentProcessedBytes;
+  subsequentProcessedBytes = ProcessSystemBufferDataA0(initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes,&SystemDataBufferA);
+  initialProcessedBytes = initialProcessedBytes + subsequentProcessedBytes;
+  subsequentProcessedBytes = (**(code **)(*bufferContext + 8))(bufferContext,initialProcessedBytes + dataBuffer,bufferSize - initialProcessedBytes);
+  return subsequentProcessedBytes + initialProcessedBytes;
 }
 
 
@@ -25702,11 +25745,17 @@ ValidationLabelD:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
- * @brief 系统数据处理函数B
+ * @brief 系统数据验证处理函数
  * 
- * 该函数用于处理系统数据，执行验证和安全性检查操作
+ * 该函数用于处理系统数据，执行验证和安全性检查操作。函数会分配内存，
+ * 检查系统状态，验证数据完整性，并根据不同的处理标志执行相应的
+ * 验证操作。函数包含多个验证路径，根据输入参数的不同选择不同的
+ * 处理逻辑。
  * 
- * @note 原始函数名：FUN_18089c22e
+ * @return 返回处理结果指针，包含验证状态和错误信息
+ * 
+ * @note 该函数会修改系统状态并执行内存分配操作
+ * @warning 函数包含多个不返回的子例程调用，确保在调用前系统状态稳定
  */
 undefined8 * ProcessSystemDataValidation(void)
 
