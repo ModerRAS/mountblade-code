@@ -3143,9 +3143,9 @@ undefined UtilityEncryptionBufferC;
 undefined UtilityEncryptionBufferD;
 undefined UtilityEncryptionStatusA;
 
-// 原始函数名：FUN_180942300 - 数据解密函数A0
+// 原始函数名：FUN_180942300 - 数据解密函数A1
 // 功能：解密已加密的工具数据
-#define DecryptUtilityDataA0 FUN_180942300
+#define DecryptUtilityDataA1 FUN_180942300
 
 undefined DecryptUtilityDataA0;
 undefined UtilityDecryptionBufferA;

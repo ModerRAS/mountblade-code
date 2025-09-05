@@ -64998,8 +64998,8 @@ MemoryAllocationComplete:
     MemoryBufferPointer = *SystemHashNodeData;
     SystemResourceDataIndex = SystemHashNodeData[1];
     SystemHashNodeData = (void* *)(ResourceMemoryOffset + 0x20 + SystemThreadHandlePrimary);
-    SystemHashNodeData0 = *SystemHashNodeData;
-    SystemHashNodeData0_1 = SystemHashNodeData[1];
+    SystemHashNodeDataPrimary = *SystemHashNodeData;
+    SystemHashNodeDataSecondary = SystemHashNodeData[1];
     SystemHashNodeData = (void* *)(ResourceMemoryOffset + 0x30 + SystemThreadHandlePrimary);
     SystemMemoryAllocatorStatus = *SystemHashNodeData;
     SystemHashNodeData1 = SystemHashNodeData[1];

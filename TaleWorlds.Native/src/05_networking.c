@@ -1866,16 +1866,16 @@ uint32_t PacketCompressionDataLevel;                    // 数据包压缩数据
 uint32_t PacketCompressionLevel;                         // 数据包压缩级别
 uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算法类型
 
-uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列
-uint32_t NetworkPendingRequestCount;                // 待处理网络请求数量
-uint32_t NetworkConnectionData;                              // 连接数据
-uint32_t NetworkConnectionSize;                              // 连接大小
-uint32_t NetworkConnectionIndex;                              // 连接索引
-uint32_t NetworkThroughputMonitor;                     // 网络吞吐量监控器
-uint32_t NetworkLatencyMonitor;                         // 网络延迟监控器
-uint32_t NetworkBandwidthMonitor;                        // 网络带宽监控器
-uint32_t NetworkPacketMonitor;                           // 网络数据包监控器
-uint32_t NetworkRetryInterval;                           // 网络重试间隔
+uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列管理器
+uint32_t NetworkPendingRequestCount;                // 待处理网络连接请求数量
+uint32_t NetworkConnectionData;                              // 网络连接数据存储
+uint32_t NetworkConnectionSize;                              // 网络连接数据大小
+uint32_t NetworkConnectionIndex;                              // 网络连接索引位置
+uint32_t NetworkThroughputMonitor;                     // 网络吞吐量监控器指针
+uint32_t NetworkLatencyMonitor;                         // 网络延迟监控器指针
+uint32_t NetworkBandwidthMonitor;                        // 网络带宽监控器指针
+uint32_t NetworkPacketMonitor;                           // 网络数据包监控器指针
+uint32_t NetworkRetryInterval;                           // 网络重试时间间隔
 uint32_t NetworkTimeoutInterval;                          // 网络超时间隔
 uint32_t NetworkConnectionRetryCount;                    // 网络连接重试次数
 uint32_t NetworkConnectionBackoffTime;                   // 网络连接退避时间
