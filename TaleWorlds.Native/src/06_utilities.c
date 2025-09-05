@@ -3126,6 +3126,9 @@ uint32_t UtilitySystemStatus1;
 #define SystemCleanupHandler _DAT_180c91d18            // 系统清理处理器
 #define SystemCleanupStatus _DAT_180c91cf0             // 系统清理状态
 
+// 异常处理器指针变量宏定义
+#define ExceptionHandlerPointerA _DAT_180bf90b0         // 异常处理器指针A
+
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针
 int SystemExceptionHandlerState;          // 系统异常处理状态
