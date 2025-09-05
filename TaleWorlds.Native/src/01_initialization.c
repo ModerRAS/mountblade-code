@@ -62501,12 +62501,12 @@ void ProcessSystemResourceValidation(long long SystemResourceManager)
   uint *ResourceAddressPointer7;
   ulong long ResourceAddress8;
   ulong long ResourceAddress9;
-  bool in_ZF;
+  bool isZeroFlagSet2;
   bool isMemoryReady0;
   
   ResourceDataCounter = SystemDataMemoryContext;
   ResourceMemoryOffset3 = SystemResourceManager;
-  if (in_ZF) {
+  if (isZeroFlagSet2) {
     ResourceMemoryOffset3 = GetSystemThreadHandle(*(void* *)(SystemResourceManager + 0x1b0));
   }
   LOCK();
@@ -68272,9 +68272,9 @@ void InitializeSystemResourceManagerData(void)
   long long localDataIndex;
   ulong long systemResourceCounter;
   long long SystemMemoryPointer;
-  bool in_ZF;
+  bool isZeroFlagSet3;
   
-  if (in_ZF) {
+  if (isZeroFlagSet3) {
     ResourceHashEntryPointer = (ulong long *)(MemoryBlockAddress & SystemMaximumUnsigned32BitValue);
   }
   else {
