@@ -1578,10 +1578,10 @@ void HandleNetworkErrors(void)
   NetworkRetryCountOffset = NetworkRetryCountOffset;                       // 设置重试计数偏移量
   
   // 初始化超时标志
-  ConnectionTimeoutFlagsOffset = 0x38;                 // 设置连接超时标志偏移量
-  ConnectionRetryFlagsOffset = 0x3C;                   // 设置连接重试标志偏移量
-  ConnectionTransferFlagsOffset = 0x40;                // 设置连接传输标志偏移量
-  ConnectionValidationFlagsOffset = 0x44;              // 设置连接验证标志偏移量
+  ConnectionTimeoutFlagsOffset = ConnectionTimeoutFlagsOffset;                 // 设置连接超时标志偏移量
+  ConnectionRetryFlagsOffset = ConnectionRetryFlagsOffset;                   // 设置连接重试标志偏移量
+  ConnectionTransferFlagsOffset = ConnectionTransferFlagsOffset;                // 设置连接传输标志偏移量
+  ConnectionValidationFlagsOffset = ConnectionValidationFlagsOffset;              // 设置连接验证标志偏移量
 }
 
 // 网络错误和统计变量
