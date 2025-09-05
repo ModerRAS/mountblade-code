@@ -68,19 +68,6 @@
 #define SystemMemoryBufferAlignment           0xfffff000  // 系统内存缓冲区对齐
 #define SystemMemoryStatusAlignment           0xffffff00  // 系统内存状态对齐
 
-// 系统节点偏移量常量
-#define SystemNodeNextPointerOffset           2  // 系统节点下一指针偏移量
-#define SystemNodeHeadPointerOffset           0  // 系统节点头指针偏移量
-#define SystemNodeActiveFlagOffset           0x98  // 系统节点活动标志偏移量
-#define SystemNodeDataPointerOffset           8  // 系统节点数据指针偏移量
-#define SystemNodeHandlerOffset              0x20  // 系统节点处理器偏移量
-#define SystemNodeResourceOffset             0x890  // 系统节点资源偏移量
-#define SystemNodeCalculationOffset          0x888  // 系统节点计算偏移量
-#define SystemNodeFunctionOffset             0x1e0  // 系统节点函数偏移量
-#define SystemManagerStatusOffset            0xd    // 系统管理器状态偏移量
-#define SystemNodeMemoryPoolOffset           0x3f0  // 系统节点内存池偏移量
-#define SystemNodeIntegerOffset              0x3f8  // 系统节点整型偏移量
-
 // 系统标识符大小常量
 #define SystemIdentifierSize                0x10  // 系统标识符大小
 #define SystemNodeAllocationExtraSize       0x20  // 系统节点分配额外大小
@@ -386,9 +373,7 @@
 #define SystemDebugModuleTemplateId2   0x399eced9bb5517ad  // 系统调试模块模板标识符2
 #define SystemSecurityModuleTemplateId1   0x40db4257e97d3df8  // 系统安全模块模板标识符1
 #define SystemSecurityModuleTemplateId2   0x81d539e33614429f  // 系统安全模块模板标识符2
-// 系统内存管理模板标识符
-#define SystemMemoryManagerTemplateId1   0x4e33c4803e67a08f  // 系统内存管理器模板标识符1
-#define SystemMemoryManagerTemplateId2   0x703a29a844ce399  // 系统内存管理器模板标识符2
+// 系统次级节点模板标识符
 #define SystemSecondaryNodeTemplateId1        0x1aa83fc0020dc1b6  // 系统次级节点模板标识符1
 #define SystemSecondaryNodeTemplateId2        0x1aa83fc0020dc1b6  // 系统次级节点模板标识符2
 
@@ -1481,6 +1466,33 @@ void* SystemDataTemplateConfigurationManager;    // 系统数据模板 - 配置�
 void* SystemDataTemplateRenderingSystem;        // 系统数据模板 - 渲染系统
 void* SystemDataTemplateInputSystem;             // 系统数据模板 - 输入系统
 
+// 系统数据模板标识符变量 - 用于系统识别和节点比较
+void* SystemDataTemplateA;                       // 系统数据模板 - 配置管理器标识符
+void* SystemDataTemplateD;                       // 系统数据模板 - 事件管理器标识符
+void* SystemDataTemplateK;                       // 系统数据模板 - 性能监控器标识符
+void* SystemDataTemplateR;                       // 系统数据模板 - 渲染系统标识符
+
+// 系统数据模板标识符对 - 用于节点标识符设置
+void* SystemDataTemplateEId1;                    // 系统数据模板 - 事件处理器标识符1
+void* SystemDataTemplateEId2;                    // 系统数据模板 - 事件处理器标识符2
+void* SystemDataTemplateFId1;                    // 系统数据模板 - 文件系统标识符1
+void* SystemDataTemplateFId2;                    // 系统数据模板 - 文件系统标识符2
+void* SystemDataTemplateGId1;                    // 系统数据模板 - 图形系统标识符1
+void* SystemDataTemplateGId2;                    // 系统数据模板 - 图形系统标识符2
+void* SystemDataTemplateHId1;                    // 系统数据模板 - 硬件管理器标识符1
+void* SystemDataTemplateHId2;                    // 系统数据模板 - 硬件管理器标识符2
+void* SystemDataTemplateIId1;                    // 系统数据模板 - 输入系统标识符1
+void* SystemDataTemplateIId2;                    // 系统数据模板 - 输入系统标识符2
+void* SystemDataTemplateKappaId1;                // 系统数据模板 - 配置组件标识符1
+void* SystemDataTemplateKappaId2;                // 系统数据模板 - 配置组件标识符2
+void* SystemDataTemplateLId1;                    // 系统数据模板 - 日志系统标识符1
+void* SystemDataTemplateLId2;                    // 系统数据模板 - 日志系统标识符2
+void* SystemDataTemplateOId1;                    // 系统数据模板 - 输出系统标识符1
+void* SystemDataTemplateOId2;                    // 系统数据模板 - 输出系统标识符2
+
+// 系统回调管理器变量
+void* SystemCallbackManager;                     // 系统回调管理器指针
+
 // 系统数据节点 - 功能模块专用节点
 void* SystemDataNodeEventProcessor;           // 系统数据节点事件处理器
 void* SystemDataNodeSecondaryRoot;            // 系统数据节点次级根节点
@@ -1883,20 +1895,6 @@ void* GetSystemInitializationFunction;
 /**
  * @brief 初始化游戏核心系统
  * 
- * 该函数负责初始化游戏核心系统节点，在系统节点树中查找或创建游戏核心系统节点。
- * 它会遍历系统节点树，通过比较标识符来定位游戏核心系统节点，如果不存在则创建新节点。
- * 
- * @details 函数执行以下操作：
- * 1. 获取系统根节点指针和主系统表指针
- * 2. 遍历系统节点树，查找游戏核心系统节点
- * 3. 如果节点不存在，分配内存并创建新节点
- * 4. 设置节点的标识符、数据指针、活动标志和处理器
- * 
- * @note 该函数是系统初始化过程中的重要组成部分，确保游戏核心系统正确初始化
- */
-/**
- * @brief 初始化游戏核心系统
- * 
  * 该函数负责初始化游戏的核心系统组件，创建游戏核心节点并设置
  * 必要的系统标识符和回调函数。游戏核心系统是整个游戏的
  * 基础架构，负责管理游戏的核心功能模块。
@@ -1906,7 +1904,6 @@ void* GetSystemInitializationFunction;
  * @note 该函数使用系统根表和节点管理来初始化游戏核心系统
  * @note 游戏核心系统标识符为 GameCoreSystemIdentifier1 和 GameCoreSystemIdentifier2
  * @note 节点状态设置为非活动状态（SystemNodeInactiveFlag）
- */
  */
 void InitializeGameCoreSystem(void)
 {
@@ -1960,24 +1957,6 @@ void InitializeGameCoreSystem(void)
 
 
 
-/**
- * @brief 初始化系统数据表基础分配器
- * 
- * 该函数负责初始化系统数据表的基础内存分配器，创建数据表分配器节点并设置必要的初始化参数。
- * 它会遍历系统节点树，查找或创建数据表基础分配器节点。
- * 
- * @details 函数执行以下操作：
- * 1. 获取系统根节点指针
- * 2. 遍历系统节点树查找基础分配器节点
- * 3. 如果需要，分配新的系统节点
- * 4. 设置节点的标识符、数据指针和处理函数
- * 5. 配置基础分配器的系统标志
- * 
- * @note 该函数在系统内存管理初始化时调用，确保数据表分配器正确配置。
- * @note 函数使用BaseAllocatorSystemIdentifier进行系统识别。
- * 
- * @return void 无返回值
- */
 /**
  * @brief 初始化系统数据表基础分配器
  * 
@@ -2045,31 +2024,23 @@ void InitializeSystemDataTableBaseAllocator(void)
  * 该函数负责初始化系统数据表的内存分配器，创建数据表分配器节点并设置必要的初始化参数。
  * 它会遍历系统节点树，查找或创建数据表分配器节点。
  * 
- * @details 函数执行以下操作：
- * 1. 获取系统根节点指针
- * 2. 遍历系统节点树查找数据表分配器节点
- * 3. 如果需要，分配新的系统节点
- * 4. 设置节点的标识符、数据指针和处理函数
- * 5. 配置数据表分配器的系统标志
- * 
  * @note 该函数在系统内存管理初始化时调用，确保数据表分配器正确配置。
  * @note 函数使用SystemDataTableSystemIdentifier进行系统识别。
  * 
- * @param void 无参数
  * @return void 无返回值
  */
 void InitializeSystemDataTableAllocator(void)
 {
-  bool IsDataTableNodeActive;
-  void** SystemRootNodeReference;
-  int DataTableSystemIdentifierComparisonResult;
-  long long* SystemMainTablePointer;
-  long long DataTableRequiredMemorySize;
-  void** CurrentSystemNodePointer;
-  void** PreviousSystemNodePointer;
-  void** NextSystemNodePointer;
-  void** NewDataTableNodePointer;
-  void* DataTableInitializationHandler;
+  bool IsDataTableNodeInitialized;                              // 数据表节点是否已初始化
+  void** SystemRootNodeReference;                              // 系统根节点引用
+  int DataTableIdentifierComparisonResult;                    // 数据表标识符比较结果
+  long long* SystemMainTablePointer;                          // 系统主表指针
+  long long DataTableRequiredMemorySize;                     // 数据表所需内存大小
+  void** CurrentSystemNodePointer;                           // 当前系统节点指针
+  void** PreviousSystemNodePointer;                          // 前一个系统节点指针
+  void** NextSystemNodePointer;                             // 下一个系统节点指针
+  void** NewDataTableNodePointer;                          // 新数据表节点指针
+  void* DataTableInitializationHandler;                    // 数据表初始化处理器
   
   SystemMainTablePointer = (long long*)GetSystemRootTable();
   SystemRootNodeReference = (void**)*SystemMainTablePointer;
@@ -2128,7 +2099,7 @@ void InitializeSystemCoreConfig(void)
   void** SystemRootNodeReference;
   int MemorySystemIdentifierComparisonResult;
   long long* SystemMainTablePointer;
-  long long SystemSystemMemoryAllocationSize;
+  long long RequiredMemoryAllocationSize;
   void** CurrentSystemNodePointer;
   void** PreviousSystemNodePointer;
   void** NextSystemNodePointer;
@@ -2143,8 +2114,8 @@ void InitializeSystemCoreConfig(void)
   CurrentSystemNodePointer = (void**)SystemRootNodeReference[SystemRootNodeCurrentIndex];
   
   while (!IsMemoryNodeActive) {
-    MemoryIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + SystemNodeIdentifierOffset, &SystemMemorySystemIdentifier1, SystemIdentifierSize);
-    if (MemoryIdentifierComparisonResult < 0) {
+    MemorySystemIdentifierComparisonResult = memcmp(CurrentSystemNodePointer + SystemNodeIdentifierOffset, &SystemMemorySystemIdentifier1, SystemIdentifierSize);
+    if (MemorySystemIdentifierComparisonResult < 0) {
       NextSystemNodePointer = (void**)CurrentSystemNodePointer[NodeNextPointerOffset];
       CurrentSystemNodePointer = PreviousSystemNodePointer;
     }
@@ -2157,7 +2128,7 @@ void InitializeSystemCoreConfig(void)
   }
   
   if ((PreviousSystemNodePointer == SystemRootNodeReference) || 
-      (MemoryIdentifierComparisonResult = memcmp(&SystemMemorySystemIdentifier1, PreviousSystemNodePointer + SystemNodeIdentifierOffset, SystemIdentifierSize), MemoryIdentifierComparisonResult < 0)) {
+      (MemorySystemIdentifierComparisonResult = memcmp(&SystemMemorySystemIdentifier1, PreviousSystemNodePointer + SystemNodeIdentifierOffset, SystemIdentifierSize), MemorySystemIdentifierComparisonResult < 0)) {
     SystemSystemMemoryAllocationSize = GetSystemMemorySize(SystemMainTablePointer);
     AllocateSystemMemory(SystemMainTablePointer, &NewMemoryNodePointer, PreviousSystemNodePointer, SystemSystemMemoryAllocationSize + NodeAllocationExtraSize, SystemSystemMemoryAllocationSize);
     PreviousSystemNodePointer = NewMemoryNodePointer;
@@ -71972,6 +71943,7 @@ void* SystemMemoryPoolTemplateReserved;
 void* SystemMemoryPoolTemplateEmergency;
 
 // 系统数据缓冲区模板
+void* SystemDataBufferMainTemplateA;                 // 系统数据缓冲区主模板A
 void* SystemDataBufferMainTemplateActive;
 void* SystemDataBufferBackupTemplateStandby;
 void* SystemDataBufferCacheTemplateReserved;
