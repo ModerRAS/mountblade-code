@@ -546,18 +546,18 @@
 #define ChecksumSeedValueTIWS 0x54494157  // "TIAW" 的十六进制表示
 #define ChecksumSeedValueBIWS 0x42494157  // "BIAW" 的十六进制表示
 #define SystemResourceChecksumSeed 0x4a4f5250  // "JROP" 的十六进制表示
-#define ChecksumSeedValueIKNB 0x494b4e42
-#define ChecksumSeedValueTIPS 0x54495053
-#define ChecksumSeedValueBTIPS 0x42495053
-#define ChecksumSeedValueFES 0x46464553
-#define ChecksumSeedValueBFES 0x42464553
-#define ChecksumSeedValueFCS 0x46464353
-#define ChecksumSeedValueEFCS 0x46454353
-#define ChecksumSeedValuePANS 0x50414e53
-#define ChecksumSeedValueBPANS 0x42414e53
-#define ChecksumSeedValueSPRP 0x53505250
-#define ChecksumSeedValuePORP 0x504f5250
-#define ChecksumSeedValueNLMT 0x4e4c4d54
+#define ChecksumSeedValueIKNB 0x494b4e42  // "IKNB" 的十六进制表示
+#define ChecksumSeedValueTIPS 0x54495053  // "TIPS" 的十六进制表示
+#define ChecksumSeedValueBTIPS 0x42495053  // "BTIPS" 的十六进制表示
+#define ChecksumSeedValueFES 0x46464553  // "FFES" 的十六进制表示
+#define ChecksumSeedValueBFES 0x42464553  // "BFES" 的十六进制表示
+#define ChecksumSeedValueFCS 0x46464353  // "FFCS" 的十六进制表示
+#define ChecksumSeedValueEFCS 0x46454353  // "FECS" 的十六进制表示
+#define ChecksumSeedValuePANS 0x50414e53  // "PANS" 的十六进制表示
+#define ChecksumSeedValueBPANS 0x42414e53  // "BANS" 的十六进制表示
+#define ChecksumSeedValueSPRP 0x53505250  // "SPRP" 的十六进制表示
+#define ChecksumSeedValuePORP 0x504f5250  // "PORP" 的十六进制表示
+#define ChecksumSeedValueNLMT 0x4e4c4d54  // "NLMT" 的十六进制表示
 #define ChecksumSeedValueBNLMT 0x424e4c54
 #define ChecksumSeedValueNART 0x4e415254
 #define ChecksumSeedValueBNRT 0x424e5254

@@ -52691,7 +52691,7 @@ ResourceAllocationComplete:
   }
   CurrentThreadIdentifier = *(uint *)(resourceCounter + 0x1c);
   EncryptionOffset1 = ResourceHash;
-  EncryptionOffsetSecondary._4_4_ = CurrentThreadIdentifier;
+  EncryptionOffsetSecondary.LowPart = CurrentThreadIdentifier;
   if (ConfigurationDataPointer != 0) {
     resourceCounter = -1;
     do {
@@ -52729,7 +52729,7 @@ MemoryPoolInitialized:
       SystemCleanupFunction(SystemDataBufferPointer);
   }
   pUnsignedStackFlagSecondary = (uint8_t *)0x0;
-  EncryptionOffsetSecondary = (ulong long)EncryptionOffsetSecondary._4_4_ << 0x20;
+  EncryptionOffsetSecondary = (ulong long)EncryptionOffsetSecondary.LowPart << 0x20;
   pUnsignedStackFlagPrimary = &SystemMemoryAllocatorReference;
   SystemMemoryAllocatorReferencePointer = &SystemGlobalDataReference;
   if (longStackD0 != 0) {
@@ -53264,7 +53264,7 @@ void InitializeSystemResourceManager(void* SystemResourceManager,long long Confi
   threadObjectPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x12,0x13);
   *threadObjectPointer = 0;
   threadCreationFlags = StartSystemThread(threadObjectPointer);
-  threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,threadCreationFlags);
+  threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,threadCreationFlags);
   resourceEntryPointer = (uint32_t *)(threadObjectPointer + stackParameterOffset);
   *resourceEntryPointer = 0x65737341;
   resourceEntryPointer[1] = 0x6f697472;
@@ -53278,7 +53278,7 @@ void InitializeSystemResourceManager(void* SystemResourceManager,long long Confi
     *threadObjectPointer = 0;
 ThreadInitialization:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
-    threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
+    threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
   }
   else if (threadCreationFlags < 0x13) {
     stackParameterOffset = 0x11;
@@ -53294,7 +53294,7 @@ ThreadInitialization:
     *threadObjectPointer = 0;
 ThreadAllocationContext:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
-    threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
+    threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
   }
   else if ((uint)threadHandleValue < 0x14) {
     stackParameterOffset = 0x12;
@@ -53329,7 +53329,7 @@ ThreadAllocationContext:
           threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemOperationStatus2,0x10,0x13);
         }
         memoryAllocationContext = StartSystemThread(threadObjectPointer);
-        threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
+        threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
         SystemOperationStatus1 = stackParameterOffset;
       }
 SystemThreadValidation:
@@ -53343,7 +53343,7 @@ SystemThreadValidation:
     *threadObjectPointer = 0;
 SystemThreadOperation:
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
-    threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
+    threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
   }
   else if ((uint)threadHandleValue < 0x15) {
     stackParameterOffset = threadCreationFlags;
@@ -53369,7 +53369,7 @@ SystemThreadOperation:
       threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemOperationStatus2,0x10,0x13);
     }
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
-    threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
+    threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
   }
 SystemThreadConfiguration:
   *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
@@ -53389,7 +53389,7 @@ SystemThreadConfiguration:
       threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,SystemOperationStatus1,0x10,0x13);
     }
     memoryAllocationContext = StartSystemThread(threadObjectPointer);
-    threadHandleValue = ConcatenatedSystemValue(threadHandleValue._4_4_,memoryAllocationContext);
+    threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
   }
 SystemThreadSetup:
   HashTableNodePointer = (void* *)(threadObjectPointer + stackParameterOffset);
@@ -53600,7 +53600,7 @@ SystemResourceHashProcessingStart:
     *SystemDataBufferPointer = 0;
     pEncryptionOffset1 = SystemDataBufferPointer;
     ResourceAddress = StartSystemThread(SystemDataBufferPointer);
-    MemoryBufferPointer = ConcatenatedSystemValue(MemoryBufferPointer._4_4_,ResourceAddress);
+    MemoryBufferPointer = ConcatenatedSystemValue(MemoryBufferPointer.LowPart,ResourceAddress);
     goto SystemOperationSetup;
   }
 SystemOperationSetup:
@@ -53610,7 +53610,7 @@ SystemOperationSetup:
   }
   ResourceAddress = *(uint *)(resourceCounter + 0x1c);
   EncryptionOffsetSecondary = ResourceHash;
-  MemoryBufferPointer._4_4_ = ResourceAddress;
+  MemoryBufferPointer.LowPart = ResourceAddress;
   if (ConfigurationDataPointer != 0) {
     resourceCounter = -1;
     do {
@@ -53648,7 +53648,7 @@ SystemResourceSetup:
       SystemCleanupFunction(SystemDataBufferPointer);
   }
   SystemDataBufferPointer = (uint8_t *)0x0;
-  MemoryBufferPointer = (ulong long)MemoryBufferPointer._4_4_ << 0x20;
+  MemoryBufferPointer = (ulong long)MemoryBufferPointer.LowPart << 0x20;
   SystemMemoryAllocatorReference = &SystemMemoryAllocatorReference;
   SystemGlobalDataReference = &SystemGlobalDataReference;
   if (SystemCleanupFlag != 0) {
@@ -54215,7 +54215,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
         SystemCleanupFunction();
     }
     pEncryptionOffset1 = (void* *)0x0;
-    MemoryBufferPointer = (ulong long)MemoryBufferPointer._4_4_ << 0x20;
+    MemoryBufferPointer = (ulong long)MemoryBufferPointer.LowPart << 0x20;
     pUnsignedStackFlagSecondary = &SystemMemoryAllocatorReference;
   }
   SystemProcessBufferPtr = ProcessSystemMemoryAllocation(&pUnsignedStackFlagSecondary,ConfigurationDataPointer[1]);
@@ -54259,7 +54259,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     *(uint8_t *)resourceEntryPointer = 0;
     pEncryptionOffset1 = resourceEntryPointer;
     SystemInitializationStatus = StartSystemThread(resourceEntryPointer);
-    MemoryBufferPointer = ConcatenatedSystemValue(MemoryBufferPointer._4_4_,SystemInitializationStatus);
+    MemoryBufferPointer = ConcatenatedSystemValue(MemoryBufferPointer.LowPart,SystemInitializationStatus);
     *resourceEntryPointer = 0x7270706d75645c5c;
     resourceEntryPointer[1] = 0x2e726f737365636f;
     resourceEntryPointer[2] = 0x6c726f77656c6174;
