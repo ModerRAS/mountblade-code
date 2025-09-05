@@ -1098,7 +1098,7 @@ void* SystemMemoryAllocationTableEntrySexdenary;     // 系统内存分配表条
 void* SystemMemoryAllocationTableEntrySeptendecenary; // 系统内存分配表条目第十七个
 void* SystemMemoryAllocationTableEntryOctodecenary;  // 系统内存分配表条目第十八个
 
-void* SystemDataNodePrimaryRoot;       // 系统数据节点第一根节点
+void* SystemDataNodeManagerRoot;       // 系统数据节点管理器根节点
 void* SystemDataNodeSecondaryRoot;     // 系统数据节点第二根节点
 void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
 void* SystemDataNodeQuaternaryRoot;    // 系统数据节点第四根节点
