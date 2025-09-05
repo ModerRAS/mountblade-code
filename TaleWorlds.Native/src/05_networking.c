@@ -376,6 +376,12 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
  * 用于调试和内存检查的魔数值，帮助识别内存损坏问题
  */
 #define NetworkMemoryValidationMagic 0xDEADF00D            // 内存验证魔数，用于调试内存检查
+
+// 魔数别名定义，用于保持代码一致性
+#define NetworkMagicLiveConnection NetworkLiveConnectionMagic     // 活跃连接魔数别名
+#define NetworkMagicValidation NetworkValidationMagic             // 验证魔数别名
+#define NetworkMagicBinaryData NetworkBinaryDataMagic             // 二进制数据魔数别名
+#define NetworkMagicMemoryValidation NetworkMemoryValidationMagic   // 内存验证魔数别名
 /**
  * @brief 调试验证魔数
  * 
@@ -3687,7 +3693,7 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
     // 初始化输出缓冲区
     if (SecurityValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
-      OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
+      OutputBuffer[NetworkPacketDecodingModeIndex] = (NetworkByte)DecodingMode;
       OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
       OutputBuffer[SecondaryNetworkMagicNumberIndex] = (NetworkByte)SecondaryMagicNumber;
     }

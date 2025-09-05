@@ -4561,8 +4561,8 @@ bool UtilityValidateMemoryAccess(void);
 // 工具系统内存验证相关变量
 void *UtilityMemoryPointer2;
 int32_t UtilityMemoryValidate1;
-undefined UtilityMemoryValidate2;
-undefined UtilityMemoryValidate3;
+int32_t UtilityMemoryValidate2;
+int32_t UtilityMemoryValidate3;
 undefined UtilityMemoryValidate4;
 undefined UtilityMemoryValidate5;
 undefined UtilityMemoryValidate6;
