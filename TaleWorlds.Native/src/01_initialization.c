@@ -267,7 +267,7 @@ void ReleaseSystemResources(void);
  * @param DataSource 源数据，用于初始化缓冲区的数据源
  * @return 无返回值
  */
-void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferCapacityValue, void* DataSource);
+void InitializeSystemMemoryBuffer(void* SystemMemoryTemplate, long long SystemBufferCapacity, void* SystemDataSource);
 
 /**
  * @brief 写入数据到缓冲区
@@ -280,7 +280,7 @@ void InitializeSystemMemoryBuffer(void* MemoryTemplate, long long BufferCapacity
  * @param ... 可变参数，表示要写入的数据
  * @return 无返回值
  */
-void StoreDataInBuffer(void* Buffer, long long DataSize, ...);
+void StoreDataInBuffer(void* SystemBuffer, long long SystemDataSize, ...);
 
 /**
  * @brief 初始化系统数据表
@@ -312,7 +312,7 @@ void InitializeSystemMemoryManager(void);
  * @param bufferContext 缓冲区上下文，包含缓冲区的相关信息
  * @return 分配器指针，返回初始化后的内存分配器指针
  */
-void* InitializeSystemMemoryAllocator(long long MemoryHandle, void* BufferContext);
+void* InitializeSystemMemoryAllocator(long long SystemMemoryHandle, void* SystemBufferContext);
 
 /**
  * @brief 初始化系统数据
@@ -324,7 +324,7 @@ void* InitializeSystemMemoryAllocator(long long MemoryHandle, void* BufferContex
  * @param TemplateContext 模板上下文，包含数据模板的相关信息
  * @return 无返回值
  */
-void InitializeSystemData(void* DataContext, void* TemplateContext);
+void InitializeSystemData(void* SystemDataContext, void* SystemTemplateContext);
 
 /**
  * @brief 验证系统配置
@@ -336,7 +336,7 @@ void InitializeSystemData(void* DataContext, void* TemplateContext);
  * @param ConfigurationContext 配置上下文，包含配置的相关信息
  * @return 验证结果，返回0表示成功，非0表示失败
  */
-int VerifySystemConfiguration(long long ConfigurationFlags, void* ConfigurationContext);
+int VerifySystemConfiguration(long long SystemConfigurationFlags, void* SystemConfigurationContext);
 
 /**
  * @brief 获取系统状态标志
@@ -368,7 +368,7 @@ long long RetrieveSystemStatusFlags(void);
  * @param ParameterBuffer 参数数组，包含配置参数的相关信息
  * @return 无返回值
  */
-void ConfigureSystemData(void* BufferPointer, void* ConfigurationData, void* ContextPointer, void* ParameterBuffer);
+void ConfigureSystemData(void* SystemBufferPointer, void* SystemConfigurationData, void* SystemContextPointer, void* SystemParameterBuffer);
 
 /**
  * @brief 释放系统资源
