@@ -16431,7 +16431,7 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *param_1,uint *param_2,DataBu
 // 原始函数名：FUN_180895d62 - 数据结构验证和处理函数
 // 功能：验证数据结构的完整性，处理数据项的插入和更新
 #define ValidateAndProcessDataStructure FUN_180895d62
-DataBuffer ValidateAndProcessDataStructure(DataBuffer param_1,int param_2)
+DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMode)
 
 {
   int64_t validationContext;
@@ -16511,7 +16511,7 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer param_1,int param_2)
 // 原始函数名：FUN_180895d9c - 数据块处理和验证函数
 // 功能：处理数据块并进行验证，确保数据完整性
 #define ProcessAndValidateDataBlock FUN_180895d9c
-DataBuffer ProcessAndValidateDataBlock(DataBuffer param_1,DataWord param_2)
+DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validationFlags)
 
 {
   int inputParameter;
@@ -16723,7 +16723,7 @@ CalculationLabel:
  * @param param_2 需要分配的内存大小（以12字节为单位）
  * @return DataBuffer 返回操作状态码：0表示成功，0x26表示失败
  */
-DataBuffer AllocateAndInitializeMemory(DataBuffer param_1,int param_2)
+DataBuffer AllocateAndInitializeMemory(DataBuffer memoryManager,int memorySize)
 
 {
   int itemCount;              // 项目计数器
