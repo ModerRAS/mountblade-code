@@ -92118,11 +92118,19 @@ void SetDefaultExceptionHandlerC0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942a80(void)
-void FUN_180942a80(void)
+/**
+ * @brief 设置默认异常处理器函数A80
+ * 
+ * 该函数负责设置默认的异常处理器，用于处理系统异常情况
+ * 
+ * @note 原始函数名：FUN_180942a80
+ */
+#define SetDefaultExceptionHandlerA80 FUN_180942a80
+
+void SetDefaultExceptionHandlerA80(void)
 
 {
-  _DAT_180bf6498 = &DefaultExceptionHandlerB;
+  DefaultExceptionHandlerBPointer = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -92131,17 +92139,30 @@ void FUN_180942a80(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942aa0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 执行系统资源清理操作
+ * 
+ * 该函数负责执行系统资源的清理操作，包括内存释放和资源回收
+ * 
+ * @param param_1 系统资源句柄
+ * @param param_2 资源管理器指针
+ * @param param_3 清理标志参数
+ * @param param_4 清理超时参数
+ * 
+ * @note 原始函数名：FUN_180942aa0
+ */
+#define ExecuteSystemResourceCleanup FUN_180942aa0
+
+void ExecuteSystemResourceCleanup(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *resourceManagerPtr;
   
-  puVar1 = _DAT_180d49e18;
-  if (_DAT_180d49e18 != (undefined8 *)0x0) {
-    FUN_1804a9b80(param_1,*_DAT_180d49e18,param_3,param_4,SystemCleanupFlagfffffffe);
+  resourceManagerPtr = GlobalResourceManagerPointer;
+  if (GlobalResourceManagerPointer != (undefined8 *)0x0) {
+    ExecuteResourceCleanupOperation(param_1,*GlobalResourceManagerPointer,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    TerminateResourceManager(resourceManagerPtr);
   }
   return;
 }
