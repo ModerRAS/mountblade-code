@@ -5959,14 +5959,14 @@ undefined UtilitySystemStorageStatus2;
 undefined InitializeThreadLocalStorageA8;
 undefined _tls_index;
 void *ThreadLocalStoragePointer;
-undefined DAT_180c967d4;
+undefined SystemMemoryControlFlag;
 undefined MemoryManagementControlFlag;
-undefined DAT_180c967d8;
+undefined SystemMemoryControlData;
 undefined MemoryManagementDataPointer;
-undefined DAT_180c967e0;
-undefined DAT_180c967e8;
-undefined DAT_180c967f0;
-undefined DAT_180c967f8;
+undefined SystemMemoryPoolPointer;
+undefined SystemMemoryStatusFlag;
+undefined SystemMemoryConfigPointer;
+undefined SystemMemoryDataBuffer;
 
 943200;
 undefined FUN_180943200;
@@ -6032,9 +6032,12 @@ undefined SystemResourceManagerA;
 undefined ExceptionConfigManagerA;
 // 系统配置数据表A
 undefined SystemConfigDataTableA;
-undefined UNK_180a3c410;
-undefined UNK_180a3c428;
-undefined DAT_180c8ed08;
+// 异常处理缓存管理器A
+undefined ExceptionCacheManagerA;
+// 异常处理缓存管理器B
+undefined ExceptionCacheManagerB;
+// 系统状态数据表A
+undefined SystemStatusDataTableA;
 undefined DAT_180c8ed68;
 undefined DAT_180c8ed00;
 undefined DAT_180c8ed50;

@@ -1343,7 +1343,7 @@ int InitializeExtendedStringProcessor(void)
   GlobalStringProcessorE_Base = &StringProcessorDataBaseE;
   GlobalStringProcessorE_BufferPtr = &GlobalStringProcessorE_Buffer;
   GlobalStringProcessorE_Buffer = 0;
-  GlobalStringProcessorE_Length = 0xc;
+  GlobalStringProcessorEpsilon_Length = 0xc;
   strcpy_s(&GlobalStringProcessorE_Buffer,16,&StringProcessorDataTemplateE,StringProcessorEFlags,SystemMutexFlags);
   SystemCallbackRegistrationResult = RegisterSystemCallback(InitializeStringProcessorE_Callback);
   return (SystemCallbackRegistrationResult != 0) - 1;
@@ -1918,12 +1918,12 @@ int InitializeMultiStringProcessorSystem(void)
   SystemDataPointer1 = &SystemMemoryPool;
   SystemDataPointer2 = &SystemDataTableEntry1;
   SystemDataTableEntry1 = 0;
-  SystemDataSize1 = 0xf;
+  SystemDataSizeFirst = 0xf;
   strcpy_s(&SystemDataTableEntry1,64,&SystemDataTableTemplate1);
   SystemDataPointer3 = &SystemMemoryPool;
   SystemDataPointer4 = &SystemDataTableEntry2;
   SystemDataTableEntry2 = 0;
-  SystemDataSize2 = 0x16;
+  SystemDataSizeSecond = 0x16;
   strcpy_s(&SystemDataTableEntry2,64,&SystemDataTableTemplate2);
   SystemDataPointer5 = &SystemMemoryPool;
   SystemDataPointer6 = &SystemDataTableEntry3;

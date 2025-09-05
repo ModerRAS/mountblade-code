@@ -1037,7 +1037,7 @@ uint32_t NetworkSocketStructureSize;                     // 网络套接字大�
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
 uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级级别，定义连接在资源竞争中的优先级别
-uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文数据大小，连接上下文数据结构的大小
+uint32_t NetworkConnectionContextSize;              // 网络连接上下文数据大小，连接上下文数据结构的大小
 uint32_t NetworkConnectionQualityLevel;                     // 网络连接质量级别，评估连接质量的质量指标
 uint32_t NetworkConnectionQuality;                         // 网络连接质量，连接的质量等级
 uint32_t NetworkConnectionBandwidth;                    // 网络连接带宽，连接可用的带宽资源
@@ -2142,7 +2142,7 @@ uint32_t NetworkConnectionTargetAddress;                   // 网络连接目标
 uint32_t NetworkConnectionIndexCounter;                    // 网络连接索引计数器
 uint32_t NetworkConnectionLoopCounter;                     // 网络连接循环计数器
 uint32_t NetworkConnectionExtendedFlags;                       // 网络连接扩展标志
-uint32_t NetworkConnectionCurrentContextSize;                        // 网络连接当前上下文大小，连接上下文数据结构的大小
+uint32_t NetworkConnectionActiveContextSize;                        // 网络连接当前上下文大小，连接上下文数据结构的大小
 uint32_t NetworkConnectionPacketProcessingResults;               // 网络连接处理结果
 uint32_t NetworkConnectionProcessedCounts;                  // 网络连接已处理数量
 uint32_t NetworkConnectionJitterBuffer;                   // 网络连接抖动缓冲区
