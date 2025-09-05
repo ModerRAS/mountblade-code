@@ -5323,7 +5323,7 @@ void InitializeSystemEventManager(void)
   void** DataTable;
   int IdentifierCompareResult;
   long long* MemoryPointer;
-  long long TimeValue;
+  long long SystemOperationTimestamp;
   void** RootNode;
   void** CurrentNodePointer;
   void** NextNodePointer;
