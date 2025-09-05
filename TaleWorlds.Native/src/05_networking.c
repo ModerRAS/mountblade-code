@@ -970,17 +970,17 @@ void InitializeNetworkConnectionPool(void)
  */
 
 // 网络连接配置数据结构指针
-void *NetworkConnectionContextTemplatePointer = &NetworkConnectionContextTemplateData;
-void *NetworkConnectionPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;
-void *NetworkConnectionSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;
-void *NetworkConnectionProcessingConfigPointer = &NetworkConnectionProcessingConfig;
-void *NetworkConnectionTransportConfigPointer = &NetworkConnectionTransportConfig;
-void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;
-void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;
-void *NetworkConnectionRoutingPrimaryConfigPointer = &NetworkConnectionRoutingPrimaryConfig;
-void *NetworkConnectionRoutingSecondaryConfigPointer = &NetworkConnectionRoutingSecondaryConfig;
-void *NetworkConnectionRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig;
-void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig;
+void *NetworkContextTemplatePointer = &NetworkConnectionContextTemplateData;
+void *NetworkPrimaryConfigPointer = &NetworkConnectionPrimaryConfig;
+void *NetworkSecondaryConfigPointer = &NetworkConnectionSecondaryConfig;
+void *NetworkProcessingConfigPointer = &NetworkConnectionProcessingConfig;
+void *NetworkTransportConfigPointer = &NetworkConnectionTransportConfig;
+void *NetworkProtocolConfigPointer = &NetworkConnectionProtocolConfig;
+void *NetworkValidationConfigPointer = &NetworkConnectionValidationConfig;
+void *NetworkRoutingPrimaryConfigPointer = &NetworkConnectionRoutingPrimaryConfig;
+void *NetworkRoutingSecondaryConfigPointer = &NetworkConnectionRoutingSecondaryConfig;
+void *NetworkRoutingTertiaryConfigPointer = &NetworkConnectionRoutingTertiaryConfig;
+void *NetworkRoutingQuaternaryConfigPointer = &NetworkConnectionRoutingQuaternaryConfig;
 
 // 网络连接配置数据定义
 
@@ -989,70 +989,70 @@ void *NetworkConnectionRoutingQuaternaryConfigPointer = &NetworkConnectionRoutin
  * 
  * 包含网络连接上下文的默认配置和模板数据，用于初始化新的连接上下文
  */
-uint32_t NetworkConnectionContextTemplateData = 0x00;         // 网络连接上下文模板数据
+uint32_t NetworkContextTemplateData = 0x00;         // 网络连接上下文模板数据
 
 /**
  * @brief 网络连接主要配置数据
  * 
  * 包含网络连接的主要配置参数，如连接模式、协议类型、超时设置等
  */
-uint32_t NetworkConnectionPrimaryConfigData;           // 网络连接主要配置数据
+uint32_t NetworkPrimaryConfigData;           // 网络连接主要配置数据
 
 /**
  * @brief 网络连接次要配置数据
  * 
  * 包含网络连接的次要配置参数，如重试策略、错误处理、日志级别等
  */
-uint32_t NetworkConnectionSecondaryConfigData;         // 网络连接次要配置数据
+uint32_t NetworkSecondaryConfigData;         // 网络连接次要配置数据
 
 /**
  * @brief 网络连接处理配置数据
  * 
  * 包含网络连接处理的配置参数，如数据包处理、缓冲区管理、队列设置等
  */
-uint32_t NetworkConnectionProcessingConfigData;       // 网络连接处理配置数据
+uint32_t NetworkProcessingConfigData;       // 网络连接处理配置数据
 
 /**
  * @brief 网络连接传输配置数据
  * 
  * 包含网络连接传输的配置参数，如传输协议、压缩设置、加密选项等
  */
-uint32_t NetworkConnectionTransportConfigData;        // 网络连接传输配置数据
+uint32_t NetworkTransportConfigData;        // 网络连接传输配置数据
 
 /**
  * @brief 网络连接协议配置数据
  * 
  * 包含网络连接协议的配置参数，如协议版本、握手参数、认证设置等
  */
-uint32_t NetworkConnectionProtocolConfigData;         // 网络连接协议配置数据
+uint32_t NetworkProtocolConfigData;         // 网络连接协议配置数据
 
 /**
  * @brief 网络连接验证配置数据
  * 
  * 包含网络连接验证的配置参数，如验证模式、安全策略、完整性检查等
  */
-uint32_t NetworkConnectionValidationConfigData;        // 网络连接验证配置数据
+uint32_t NetworkValidationConfigData;        // 网络连接验证配置数据
 
 /**
  * @brief 网络连接路由主要配置数据
  * 
  * 包含网络连接路由的主要配置参数，如路由表、网关设置、路径选择等
  */
-uint32_t NetworkConnectionRoutingPrimaryConfigData;    // 网络连接路由主要配置数据
+uint32_t NetworkRoutingPrimaryConfigData;    // 网络连接路由主要配置数据
 
 /**
  * @brief 网络连接路由次要配置数据
  * 
  * 包含网络连接路由的次要配置参数，如负载均衡、故障转移、性能优化等
  */
-uint32_t NetworkConnectionRoutingSecondaryConfigData;  // 网络连接路由次要配置数据
+uint32_t NetworkRoutingSecondaryConfigData;  // 网络连接路由次要配置数据
 
 /**
  * @brief 网络连接路由第三配置数据
  * 
  * 包含网络连接路由的第三级配置参数，如缓存策略、压缩设置、安全过滤等
  */
-uint32_t NetworkConnectionRoutingTertiaryConfigData;   // 网络连接路由第三配置数据
+uint32_t NetworkRoutingTertiaryConfigData;   // 网络连接路由第三配置数据
 
 /**
  * @brief 网络连接路由第四配置数据

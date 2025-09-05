@@ -26363,7 +26363,7 @@ uint32_t GetSystemResourceStatus(void)
 00018004eca3)
 
 
-// 函数: void SystemResourceInitializer(void* SystemResourceManager,void* parameter2,void* parameter3,void* parameter4)
+// 函数: void SystemResourceInitializer(void* SystemResourceManager,void* MemoryAllocationFlags,void* SystemConfiguration,void* ThreadParameters)
 /**
  * @brief 系统资源初始化器
  * 
