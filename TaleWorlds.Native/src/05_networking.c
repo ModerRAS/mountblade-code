@@ -3203,18 +3203,18 @@ NetworkHandle VerifyNetworkPacketSecurity(NetworkHandle *PacketData, int64_t Con
   NetworkByte PacketEncryptionBuffer[32];                    // 数据包加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  NetworkHandle SecurityValidationResult = DecodePacket(PacketData, PacketEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
+  NetworkHandle SecurityValidationResult = DecodeNetworkPacket(PacketData, PacketEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
   if (((int)SecurityValidationResult == 0) &&
-     (SecurityValidationResult = DecodePacket(PacketData, PacketValidationBuffer, 0, NetworkBinaryDataMagic, NetworkMemoryValidationMagic), (int)SecurityValidationResult == 0)) {
+     (SecurityValidationResult = DecodeNetworkPacket(PacketData, PacketValidationBuffer, 0, NetworkBinaryDataMagic, NetworkMemoryValidationMagic), (int)SecurityValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
-    SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
+    SecurityValidationResult = ProcessNetworkPacketHeader(*PacketData, ConnectionContext + NetworkConnectionHeaderOffset);
     if ((int)SecurityValidationResult == 0) {
       if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
         return NetworkErrorCodeInvalidPacket;
       }
-      SecurityValidationResult = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
+      SecurityValidationResult = ProcessNetworkPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
       if ((int)SecurityValidationResult == 0) {
           FinalizePacketProcessing(PacketData, PacketValidationBuffer);
       }
@@ -3350,9 +3350,9 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
   NetworkByte ConnectionEncryptionBuffer[32];                     // 连接加密缓冲区，用于存储加密/解密过程中的临时数据
   
   // 第一层验证：使用活跃连接魔数进行解码验证
-  PacketValidationResult = DecodePacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
+  PacketValidationResult = DecodeNetworkPacket(PacketData, ConnectionEncryptionBuffer, 1, NetworkLiveConnectionMagic, NetworkValidationMagic);
   if (((int)PacketValidationResult == 0) &&
-     (PacketValidationResult = DecodePacket(PacketData, ConnectionSecurityBuffer, 0, NetworkBinaryDataMagic, NetworkMemoryValidationMagic), (int)PacketValidationResult == 0)) {
+     (PacketValidationResult = DecodeNetworkPacket(PacketData, ConnectionSecurityBuffer, 0, NetworkBinaryDataMagic, NetworkMemoryValidationMagic), (int)PacketValidationResult == 0)) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
