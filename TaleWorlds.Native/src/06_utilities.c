@@ -32224,26 +32224,27 @@ void ExceptionUnwindHandler3(undefined8 exceptionContext, longlong unwindContext
 
 
 
-// 函数: void ExceptionUnwindHandlerA0(undefined8 param_1,longlong param_2)
-// 
-// 异常展开处理函数A0
-// 设置异常展开指针链A0，处理异常状态恢复
-// 
-// 参数:
-//   param_1 - 异常处理上下文
-//   param_2 - 异常展开参数
-// 
-// 返回值:
-//   无
-void ExceptionUnwindHandlerA0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常展开处理器A0
+ * 
+ * 该函数用于初始化异常展开过程中的指针链设置。在异常发生时，系统需要
+ * 建立一个异常数据表的链表来管理异常处理过程中的各种数据结构。
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理所需的信息
+ * @param unwindParam 展开参数，用于管理异常展开过程
+ * 
+ * @note 该函数设置三个异常数据表的指针链
+ * @warning 异常数据表的顺序很重要，错误的顺序可能导致异常处理失败
+ */
+void ExceptionUnwindHandlerA0(undefined8 exceptionContext, longlong unwindParam)
 
 {
-  undefined8 *exceptionChainPtr;
+  undefined8 *exceptionChainPointer;
   
-  exceptionChainPtr = *(undefined8 **)(param_2 + 0x48);
-  *exceptionChainPtr = &ExceptionDataTable1;
-  *exceptionChainPtr = &ExceptionDataTable2;
-  *exceptionChainPtr = &ExceptionDataTable3;
+  exceptionChainPointer = *(undefined8 **)(unwindParam + 0x48);
+  *exceptionChainPointer = &ExceptionDataTable1;
+  *exceptionChainPointer = &ExceptionDataTable2;
+  *exceptionChainPointer = &ExceptionDataTable3;
   return;
 }
 
