@@ -6353,57 +6353,72 @@ uint64_t HandleResourceProcessing(int64_t ResourceHandleIdentifier)
 
 
  /**
- * @brief 处理系统资源
+ * @brief 处理系统资源并执行退出操作
  * 
- * 该函数用于处理系统资源操作，包括资源验证和处理
- * 包含系统上下文验证和资源迭代处理
+ * 该函数用于处理系统资源操作，验证系统上下文的有效性，
+ * 并在验证通过后执行系统退出操作。
  * 
- * @return 处理结果状态码，0表示成功，非0表示错误码
+ * @return uint32_t 处理结果状态码，0表示成功，非0表示错误码
+ * @note 使用系统运行时输入参数进行处理
+ * @warning 成功验证后会执行系统退出操作，此操作不可逆
  */
-uint32_t ProcessSystemResource(void) {
+uint32_t ProcessSystemResourceAndExecuteExit(void) {
   int64_t SystemContextToProcess;
-  int64_t ResourceProcessingIndex;
   int64_t AdjustedSystemContextAddress;
   
+  // 获取系统运行时输入参数
   SystemContextToProcess = SystemRuntimeInputParameter;
+  
+  // 调整系统上下文地址
   if (SystemContextToProcess == 0) {
     AdjustedSystemContextAddress = 0;
   }
   else {
     AdjustedSystemContextAddress = SystemContextToProcess - 8;
   }
+  
+  // 验证对象上下文是否有效
   if (*(int64_t *)(AdjustedSystemContextAddress + ObjectContextOffset) == 0) {
     return ErrorInvalidObjectHandle;
   }
+  
+  // 执行系统退出操作
   ExecuteSystemExitOperation(*(int64_t *)(AdjustedSystemContextAddress + ObjectContextOffset), 1);
+  return OperationSuccessCode;
 }
 
 
 
 
  /**
- * @brief 终止系统
+ * @brief 终止系统运行
  * 
- * 该函数用于安全地终止系统运行
- * 执行系统退出操作以确保系统正常关闭
+ * 该函数用于安全地终止系统运行，执行系统退出操作以确保系统正常关闭。
+ * 这是一个终止函数，调用后不会返回。
  * 
- * @return 无返回值
- * @note 此函数不会返回，会直接终止程序
- * @warning 调用此函数将立即终止系统运行
+ * @return void 无返回值
+ * @note 此函数不会返回，会直接终止程序执行
+ * @warning 调用此函数将立即终止系统运行，所有未保存的数据将丢失
+ * @see ExecuteSystemExitOperation, ProcessSystemResourceAndExecuteExit
  */
 void TerminateSystem(void) {
+  // 执行系统退出操作，终止系统运行
   ExecuteSystemExitOperation();
 }
 
 /**
  * @brief 执行系统无操作
  * 
- * 该函数用于执行系统级别的空操作，主要用于系统流程中的占位操作。
- * 在某些需要函数指针但不能执行实际操作的场景中使用。
+ * 该函数用于执行系统级别的空操作（NOP - No Operation）。
+ * 主要用于系统流程中的占位操作，在某些需要函数指针但不能执行实际操作的场景中使用。
  * 
  * @return void 无返回值
+ * @note 这是一个空操作函数，不执行任何实际功能
+ * @usage 主要用于回调函数占位、函数表初始化等场景
+ * @see TerminateSystem, ProcessSystemResourceAndExecuteExit
  */
 void ExecuteSystemNullOperation(void) {
+  // 空操作函数，不执行任何实际功能
   return;
 }
 
