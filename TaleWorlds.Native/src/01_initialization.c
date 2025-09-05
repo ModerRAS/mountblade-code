@@ -36841,7 +36841,7 @@ void* ProcessMemoryManagerOperation(long long SystemResourceManager,void* Config
 void ManageSystemResourceStatus(void* *ResourceHandle,void* ConfigurationDataPointer,int *StatusPointer)
 
 {
-  int resourceStatus;
+  int ResourceStatus;
   bool statusComparisonResult;
   void* *currentResourceNode;
   long long threadObjectAddress;
@@ -36849,15 +36849,15 @@ void ManageSystemResourceStatus(void* *ResourceHandle,void* ConfigurationDataPoi
   void* insertionPosition;
   
   threadObjectAddress = CreateSystemThreadObject(SystemMemoryPoolTemplate,0x28,*(uint8_t *)(ResourceHandle + 5));
-  resourceStatus = *StatusPointer;
+  ResourceStatus = *StatusPointer;
   statusComparisonResult = true;
-  *(int *)(threadObjectAddress + 0x20) = resourceStatus;
+  *(int *)(threadObjectAddress + 0x20) = ResourceStatus;
   nextResourceNode = (void* *)ResourceHandle[2];
   currentResourceNode = ResourceHandle;
   while (nextResourceNode != (void* *)0x0) {
-    statusComparisonResult = resourceStatus < *(int *)(nextResourceNode + 4);
+    statusComparisonResult = ResourceStatus < *(int *)(nextResourceNode + 4);
     currentResourceNode = nextResourceNode;
-    if (resourceStatus < *(int *)(nextResourceNode + 4)) {
+    if (ResourceStatus < *(int *)(nextResourceNode + 4)) {
       nextResourceNode = (void* *)nextResourceNode[1];
     }
     else {
@@ -39136,7 +39136,7 @@ void ProcessSystemResourceAllocationAndCallback(void* SystemResourceManager,long
   ulong long ResourceAddress;
   long long SystemOperationTimestamp;
   long long SystemThreadFlags;
-  char resourceStatusFlag;
+  char ResourceStatusFlag;
   
   SystemThreadFlags = ConfigurationDataPointer[1];
   LocalSystemOffset = *ConfigurationDataPointer;
@@ -39150,21 +39150,21 @@ void ProcessSystemResourceAllocationAndCallback(void* SystemResourceManager,long
       SystemResourceOffsetPointer = *(long long **)(ResourceAddress * 8 + LocalSystemOffset);
       systemFunctionPointer = *(code **)(*SystemResourceOffsetPointer + 0x68);
       if (systemFunctionPointer == (code *)&SystemFunctionPointer1) {
-        resourceStatusFlag = (char)SystemResourceOffsetPointer[2] != '\0';
+        ResourceStatusFlag = (char)SystemResourceOffsetPointer[2] != '\0';
       }
       else {
-        resourceStatusFlag = (*systemFunctionPointer)();
+        ResourceStatusFlag = (*systemFunctionPointer)();
       }
-      if (resourceStatusFlag == '\0') {
+      if (ResourceStatusFlag == '\0') {
         isSystemActive = true;
         SystemResourceOffsetPointer = (long long *)AllocateSystemResourceManager(SystemResourceManager);
         if (AdditionalParameter == '\0') {
-          resourceStatusFlag = (**(code **)(*SystemResourceOffsetPointer + 0x20))(SystemResourceOffsetPointer,0);
+          ResourceStatusFlag = (**(code **)(*SystemResourceOffsetPointer + 0x20))(SystemResourceOffsetPointer,0);
         }
         else {
-          resourceStatusFlag = GetSystemStatusValue();
+          ResourceStatusFlag = GetSystemStatusValue();
         }
-        if (resourceStatusFlag == '\0') {
+        if (ResourceStatusFlag == '\0') {
           SystemResourceOffsetPointer = *(long long **)(ResourceAddress * 8 + *ConfigurationDataPointer);
           systemFunctionPointer = *(code **)(*SystemResourceOffsetPointer + 0x80);
           if (systemFunctionPointer == (code *)&SystemFunctionPointer2) {
@@ -39626,7 +39626,7 @@ long long AllocateSystemResourceId(void)
 void* AllocateSystemResourceAndProcessData(void* SystemResourceManager,void* ConfigurationDataPointer,long long *AdditionalParameter)
 
 {
-  int *resourceStatusPtr;
+  int *ResourceStatusPtr;
   void* allocatedResource;
   long long resourceOffset;
   ulong long stringIterator;
@@ -44131,7 +44131,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* *ResourceAddressPointer;
   void* SystemThreadContext;
   void** RootNodePointer;
-  char resourceStatusFlag;
+  char ResourceStatusFlag;
   int SystemCode;
   long long resourceCounter;
   ulong long SystemOperationFlags;
@@ -58850,7 +58850,7 @@ void* ConfigureSystemResourceData(long long SystemResourceManager,long long Conf
   code *pSystemInitializationStatusFlag;
   bool isMemoryReady;
   byte isThreadActive;
-  char resourceStatusFlag;
+  char ResourceStatusFlag;
   int SystemCode;
   uint SystemOperationCounter;
   long long SystemAllocationFlags;
