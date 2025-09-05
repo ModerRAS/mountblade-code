@@ -49952,15 +49952,15 @@ void Unwind_180906ba0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180906bb0(undefined8 param_1,longlong param_2)
+void CleanupExceptionHandlingResources(undefined8 exceptionContext, longlong cleanupContext)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *referenceCountPointer;
+  undefined8 *resourcePointer;
+  longlong calculatedOffset;
+  ulonglong memoryBaseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x58);
+  resourcePointer = *(undefined8 **)(cleanupContext + 0x58);
   if (puVar2 == (undefined8 *)0x0) {
     return;
   }
