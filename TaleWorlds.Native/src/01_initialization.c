@@ -25141,7 +25141,7 @@ void SystemResourceAllocate(long long SystemResourceManager)
 
 {
   void** SystemDataPointer;
-  uint8_t SystemSystemStackBufferA8 [8];
+  uint8_t SystemSystemStackBuffer [8];
   void** SystemDataPointer;
   uint secondarySystemDataBuffer;
   void* SystemConfigurationFlag;
@@ -26030,19 +26030,19 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint32_t SystemThreadStackSize;
   uint32_t SystemResourceCounter;
   void* *SystemMemoryBufferPointerPrimary;
-  long long SystemMemoryAlignmentOffset230;
+  long long SystemMemoryAlignmentOffsetPrimary;
   uint SystemMemoryAlignment;
   uint32_t SystemAllocationSize;
   void* *SystemStringTemplatePtr;
-  long long SystemMemoryAlignmentOffset210;
+  long long SystemMemoryAlignmentOffsetSecondary;
   uint SystemMaxOperationCountSecondary;
   uint32_t StackAllocationSize;
-  void* *SystemGlobalDataReferencePtr2;
-  long long SystemMemoryAlignmentOffset1F0;
+  void* *SystemGlobalDataReferencePtrSecondary;
+  long long SystemMemoryAlignmentOffsetTertiary;
   uint StackMemoryOffset;
   uint32_t GlobalDataFlagsSecondary;
   void* *SystemGlobalDataReferencePtr;
-  long long SystemMemoryAlignmentOffset1D0;
+  long long SystemMemoryAlignmentOffsetQuaternary;
   uint SystemThreadStackSize;
   uint32_t GlobalDataFlags;
   void* *SystemMemoryBufferPointerSecondary;
@@ -26585,15 +26585,15 @@ void SystemCleanupHandler(void)
   *(void* *)(SystemMemoryPoolHandle + 0x20) = 0;
   *(long long *)(ResourceMemoryOffset + 0xa8) = SystemMemoryPoolHandle;
   SystemResourcePoolPointer = SystemMemoryPoolHandle;
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable1,&SystemCallbackTable1,SystemCallbackHandler1);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable2,&SystemCallbackDataTable2Param,SystemCallbackHandler2);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable3,&SystemCallbackTable3,SystemCallbackHandler3);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable4,&SystemCallbackTable4,SystemCallbackHandler4);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTable5,&SystemCallbackTable5Data,SystemCallbackHandler5);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable6,&SystemCallbackDataTable6Param,SystemCallbackHandler6);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTable7,&SystemCallbackTable7Data,SystemCallbackHandler7);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTable8,&SystemCallbackTable8Data,SystemCallbackHandler8);
-  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTable9,&SystemCallbackTable9Data,SystemCallbackHandler9);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTablePrimary,&SystemCallbackTablePrimary,SystemCallbackHandlerPrimary);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTableSecondary,&SystemCallbackDataTableSecondaryParam,SystemCallbackHandlerSecondary);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTableTertiary,&SystemCallbackTableTertiary,SystemCallbackHandlerTertiary);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTableQuaternary,&SystemCallbackTableQuaternary,SystemCallbackHandlerQuaternary);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTableQuinary,&SystemCallbackTableQuinaryData,SystemCallbackHandlerQuinary);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTableSenary,&SystemCallbackDataTableSenaryParam,SystemCallbackHandlerSenary);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackDataTableSeptenary,&SystemCallbackTableSeptenaryData,SystemCallbackHandlerSeptenary);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTableOctonary,&SystemCallbackTableOctonaryData,SystemCallbackHandlerOctonary);
+  RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemCallbackTableNonary,&SystemCallbackTableNonaryData,SystemCallbackHandlerNonary);
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemEventCallbackDataTable,&SystemEventCallbackTableData,SystemEventCallbackHandler);
   RegisterSystemCallback(*(void* *)(SystemResourceContext + 0xa8),&SystemNetworkCallbackDataTable,&SystemNetworkCallbackTableData,SystemNetworkCallbackHandler);
   HashTableNodePointer = (uint32_t *)CreateSystemNodePointer(ResourceMemoryOffset + 0xe0,&SystemEventCallbackDataTable);
