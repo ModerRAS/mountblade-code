@@ -524,7 +524,7 @@ uint32_t ValidatePacketIntegrity(int64_t PacketData, int64_t ConnectionContext);
  * @param RequestData 请求数据指针
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
+uint32_t ProcessNetworkConnectionRequest(int64_t *ConnectionContext, int64_t *RequestData);
 
 /**
  * @brief 执行网络数据传输
@@ -537,7 +537,7 @@ uint32_t ProcessConnectionRequest(int64_t *ConnectionContext, int64_t *RequestDa
  * @param TransferFlags 传输标志
  * @return uint32_t 传输结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t TransferSecureData(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
+uint32_t TransferNetworkSecureData(int64_t SourceBuffer, uint32_t TransferSize, int64_t *DestinationBuffer, uint32_t TransferFlags);
 
 /**
  * @brief 处理网络数据包
@@ -548,7 +548,7 @@ uint32_t TransferSecureData(int64_t SourceBuffer, uint32_t TransferSize, int64_t
  * @param HasPriorityFlag 是否具有优先级标志
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ProcessPriorityPacket(int64_t PacketBuffer, bool HasPriorityFlag);
+uint32_t ProcessNetworkPriorityPacket(int64_t PacketBuffer, bool HasPriorityFlag);
 
 /**
  * @brief 创建网络迭代上下文
@@ -611,7 +611,7 @@ uint32_t ValidateSecureConnectionHandle(NetworkHandle ConnectionContext, Network
  * @param ConnectionContext 连接上下文指针
  * @return NetworkHandle 连接句柄
  */
-NetworkHandle RetrieveConnectionHandle(int64_t *ConnectionContext);
+NetworkHandle RetrieveNetworkConnectionHandle(int64_t *ConnectionContext);
 
 /**
  * @brief 验证网络连接条目
@@ -637,22 +637,29 @@ uint32_t SetupNetworkContext(int64_t NetworkContext);
 /**
  * @brief 处理网络上下文条目
  * 
- * 处理网络上下文中的条目数据，进行数据验证和处理
+ * 处理网络上下文中的条目数据，进行数据验证和处理。此函数负责验证网络上下文条目的有效性，
+ * 检查条目状态，并执行必要的数据处理操作。
  * 
- * @param NetworkContextEntry 网络上下文条目
+ * @param NetworkContextEntry 网络上下文条目指针，包含需要处理的上下文数据
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
+ * @note 如果条目数据无效，函数会返回相应的错误码
+ * @warning 传入的NetworkContextEntry不能为NULL，否则会导致未定义行为
  */
 uint32_t ProcessContextEntry(int64_t NetworkContextEntry);
 
 /**
  * @brief 处理网络连接数据
  * 
- * 处理网络连接中的数据传输，包括数据验证和状态更新
+ * 处理网络连接中的数据传输，包括数据验证和状态更新。此函数负责处理网络连接中的核心数据传输逻辑，
+ * 验证数据完整性，更新连接状态，并处理各种数据传输异常情况。
  * 
- * @param NetworkContextEntry 网络上下文条目
- * @param NetworkContextArray 网络上下文数组
- * @param ConnectionContext 连接上下文
+ * @param NetworkContextEntry 网络上下文条目指针，包含连接的配置信息
+ * @param NetworkContextArray 网络上下文数组指针，包含多个连接的上下文数据
+ * @param ConnectionContext 连接上下文指针，包含当前连接的状态信息
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
+ * @note 此函数会自动处理数据分包和重组
+ * @warning 如果数据验证失败，会终止当前传输并返回错误码
+ * @see ValidateNetworkConnectionPacket, ProcessNetworkConnectionPacket
  */
 uint32_t ProcessConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
 
