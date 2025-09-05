@@ -3678,6 +3678,16 @@ uint32_t UtilitySystemStatus1;
 #define ExceptionHandlerTablePointer _DAT_180d49240     // 异常处理器表指针
 #define SystemExceptionHandlerState _DAT_180d49248      // 系统异常处理状态
 #define SystemExceptionCleanupFlag _DAT_180d49258       // 系统异常清理标志
+
+// 系统内存管理全局变量宏定义
+#define SystemMemoryManagerPointer _DAT_180be12f0      // 系统内存管理器指针
+#define MemoryValidationConstantA _DAT_180c4eaa0        // 内存验证常量A
+#define MemoryValidationConstantB _DAT_180c4eaa4        // 内存验证常量B
+#define SystemMemoryPoolA _DAT_18095b500               // 系统内存池A
+#define SystemMemoryPoolB _DAT_180957f70               // 系统内存池B
+#define SystemMemoryPoolC _DAT_1809862d0               // 系统内存池C
+#define SystemMemoryPoolD _DAT_1809869a0               // 系统内存池D
+#define SystemMemoryPoolE _DAT_180986e70               // 系统内存池E
 #define TemporaryExceptionHandler UNK_180a3c3e0         // 临时异常处理器
 
 // 系统清理相关变量宏定义
@@ -6704,7 +6714,7 @@ void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
   uint64_t StackGuardValue;
   
   // 执行栈保护检查
-  StackGuardValue = _DAT_180bf00a8 ^ (uint64_t)SecurityValidationBuffer;
+  StackGuardValue = ExceptionEncryptionKey ^ (uint64_t)SecurityValidationBuffer;
   
   // 查询和检索系统数据
   OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + 0x10), SystemContextArray);
@@ -7888,7 +7898,7 @@ undefined8 ValidateDataArray(longlong arrayDescriptor)
     dataComparisonPointer = (int *)(arrayDescriptor + 0x20);
     if (0 < *(int *)(arrayDescriptor + 0x18)) {
       do {
-        if ((*dataComparisonPointer != _DAT_180c4eaa0) || (dataComparisonPointer[1] != _DAT_180c4eaa4)) {
+        if ((*dataComparisonPointer != MemoryValidationConstantA) || (dataComparisonPointer[1] != MemoryValidationConstantB)) {
           dataBuffer = 0;
           validationStatus = ValidateMemoryAddressA0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (longlong)(int)loopIndex * 2,&dataBuffer)
           ;
@@ -7954,7 +7964,7 @@ undefined8 ValidateUtilitySystemState(void)
   poperationResult = (int *)(unaff_RBP + 0x20);
   if (0 < *(int *)(unaff_RBP + 0x18)) {
     do {
-      if ((*poperationResult != _DAT_180c4eaa0) || (poperationResult[1] != _DAT_180c4eaa4)) {
+      if ((*poperationResult != MemoryValidationConstantA) || (poperationResult[1] != MemoryValidationConstantB)) {
         lStack0000000000000050 = 0;
         validationStatus = ValidateMemoryAddressA0(memoryAddress,(int *)(unaff_RBP + 0x20) + (longlong)(int)addressOffset * 2,
                               &stackBuffer50);
@@ -8970,7 +8980,7 @@ int ProcessResourceCopyOperation(longlong ResourceOperationContext)
   }
   if (ResourceTargetPointer != 0) {
                     // WARNING: Subroutine does not return
-    AllocateResourceA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),ResourceTargetPointer,&UNK_18095b500,0xb8,1);
+    AllocateResourceA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),ResourceTargetPointer,&SystemMemoryPoolA,0xb8,1);
   }
   return CopyOperationStatus;
 }
@@ -9050,7 +9060,7 @@ ulonglong ProcessUtilityDataConversion(longlong contextHandle,uint64_t operation
         conversionStatus = 0;
       }
       else if (dataPointer != 0) {
-        CleanupConversionResources(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),dataPointer,&UNK_180957f70,0xe9);
+        CleanupConversionResources(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),dataPointer,&SystemMemoryPoolB,0xe9);
         return conversionStatus;
       }
       return conversionStatus;
@@ -9093,7 +9103,7 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
     operationResult = 0;
   }
   else if (resourcePointer != 0) {
-    InitializeContextA0(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),resourcePointer,&UNK_180957f70,0xe9,operationMode);
+    InitializeContextA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),resourcePointer,&SystemMemoryPoolB,0xe9,operationMode);
     return operationResult;
   }
   return operationResult;
@@ -91647,5 +91657,228 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ValidationExitHandler2 LAB_18089ed1b
 #define ValidationCaseHandler LAB_18089f45f
 #define ValidationDataHandler3 LAB_1801571ef
+
+// 异常恢复处理器宏定义
+// 用于将原始的Unwind_函数名映射为语义化的异常恢复处理器名称
+
+/**
+ * @brief 异常恢复处理器B0
+ * 
+ * 该宏定义将原始的Unwind_180902440函数映射为ExceptionRecoveryHandlerB0
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902440
+ */
+#define ExceptionRecoveryHandlerB0 Unwind_180902440
+
+/**
+ * @brief 异常恢复处理器B1
+ * 
+ * 该宏定义将原始的Unwind_180902450函数映射为ExceptionRecoveryHandlerB1
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902450
+ */
+#define ExceptionRecoveryHandlerB1 Unwind_180902450
+
+/**
+ * @brief 异常恢复处理器B2
+ * 
+ * 该宏定义将原始的Unwind_180902460函数映射为ExceptionRecoveryHandlerB2
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902460
+ */
+#define ExceptionRecoveryHandlerB2 Unwind_180902460
+
+/**
+ * @brief 异常恢复处理器B3
+ * 
+ * 该宏定义将原始的Unwind_180902470函数映射为ExceptionRecoveryHandlerB3
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902470
+ */
+#define ExceptionRecoveryHandlerB3 Unwind_180902470
+
+/**
+ * @brief 异常恢复处理器B4
+ * 
+ * 该宏定义将原始的Unwind_180902480函数映射为ExceptionRecoveryHandlerB4
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902480
+ */
+#define ExceptionRecoveryHandlerB4 Unwind_180902480
+
+/**
+ * @brief 异常恢复处理器B5
+ * 
+ * 该宏定义将原始的Unwind_1809024b0函数映射为ExceptionRecoveryHandlerB5
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809024b0
+ */
+#define ExceptionRecoveryHandlerB5 Unwind_1809024b0
+
+/**
+ * @brief 异常恢复处理器B6
+ * 
+ * 该宏定义将原始的Unwind_1809024c0函数映射为ExceptionRecoveryHandlerB6
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809024c0
+ */
+#define ExceptionRecoveryHandlerB6 Unwind_1809024c0
+
+/**
+ * @brief 异常恢复处理器B7
+ * 
+ * 该宏定义将原始的Unwind_1809024d0函数映射为ExceptionRecoveryHandlerB7
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809024d0
+ */
+#define ExceptionRecoveryHandlerB7 Unwind_1809024d0
+
+/**
+ * @brief 异常恢复处理器B8
+ * 
+ * 该宏定义将原始的Unwind_1809024e0函数映射为ExceptionRecoveryHandlerB8
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809024e0
+ */
+#define ExceptionRecoveryHandlerB8 Unwind_1809024e0
+
+/**
+ * @brief 异常恢复处理器B9
+ * 
+ * 该宏定义将原始的Unwind_1809024f0函数映射为ExceptionRecoveryHandlerB9
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809024f0
+ */
+#define ExceptionRecoveryHandlerB9 Unwind_1809024f0
+
+/**
+ * @brief 异常恢复处理器B10
+ * 
+ * 该宏定义将原始的Unwind_180902500函数映射为ExceptionRecoveryHandlerB10
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902500
+ */
+#define ExceptionRecoveryHandlerB10 Unwind_180902500
+
+/**
+ * @brief 异常恢复处理器B11
+ * 
+ * 该宏定义将原始的Unwind_180902510函数映射为ExceptionRecoveryHandlerB11
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902510
+ */
+#define ExceptionRecoveryHandlerB11 Unwind_180902510
+
+/**
+ * @brief 异常恢复处理器B12
+ * 
+ * 该宏定义将原始的Unwind_180902520函数映射为ExceptionRecoveryHandlerB12
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902520
+ */
+#define ExceptionRecoveryHandlerB12 Unwind_180902520
+
+/**
+ * @brief 异常恢复处理器B13
+ * 
+ * 该宏定义将原始的Unwind_180902530函数映射为ExceptionRecoveryHandlerB13
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902530
+ */
+#define ExceptionRecoveryHandlerB13 Unwind_180902530
+
+/**
+ * @brief 异常恢复处理器B14
+ * 
+ * 该宏定义将原始的Unwind_180902540函数映射为ExceptionRecoveryHandlerB14
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902540
+ */
+#define ExceptionRecoveryHandlerB14 Unwind_180902540
+
+/**
+ * @brief 异常恢复处理器B15
+ * 
+ * 该宏定义将原始的Unwind_180902550函数映射为ExceptionRecoveryHandlerB15
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902550
+ */
+#define ExceptionRecoveryHandlerB15 Unwind_180902550
+
+/**
+ * @brief 异常恢复处理器B16
+ * 
+ * 该宏定义将原始的Unwind_180902570函数映射为ExceptionRecoveryHandlerB16
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902570
+ */
+#define ExceptionRecoveryHandlerB16 Unwind_180902570
+
+/**
+ * @brief 异常恢复处理器B17
+ * 
+ * 该宏定义将原始的Unwind_180902580函数映射为ExceptionRecoveryHandlerB17
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902580
+ */
+#define ExceptionRecoveryHandlerB17 Unwind_180902580
+
+/**
+ * @brief 异常恢复处理器B18
+ * 
+ * 该宏定义将原始的Unwind_180902590函数映射为ExceptionRecoveryHandlerB18
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_180902590
+ */
+#define ExceptionRecoveryHandlerB18 Unwind_180902590
+
+/**
+ * @brief 异常恢复处理器B19
+ * 
+ * 该宏定义将原始的Unwind_1809025a0函数映射为ExceptionRecoveryHandlerB19
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809025a0
+ */
+#define ExceptionRecoveryHandlerB19 Unwind_1809025a0
+
+/**
+ * @brief 异常恢复处理器B20
+ * 
+ * 该宏定义将原始的Unwind_1809025b0函数映射为ExceptionRecoveryHandlerB20
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809025b0
+ */
+#define ExceptionRecoveryHandlerB20 Unwind_1809025b0
+
+/**
+ * @brief 异常恢复处理器B21
+ * 
+ * 该宏定义将原始的Unwind_1809025e0函数映射为ExceptionRecoveryHandlerB21
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809025e0
+ */
+#define ExceptionRecoveryHandlerB21 Unwind_1809025e0
 
 
