@@ -5006,6 +5006,17 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
 ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
 
 {
+  // 模块结构体偏移量定义
+  #define MODULE_CONFIG_OFFSET_1 0x18       // 模块配置偏移量1
+  #define MODULE_CONFIG_OFFSET_2 0x10       // 模块配置偏移量2
+  #define MODULE_DATA_OFFSET_1 0x90         // 模块数据偏移量1
+  #define MODULE_DATA_OFFSET_2 0xf8         // 模块数据偏移量2
+  #define MODULE_DATA_OFFSET_3 0x10         // 模块数据偏移量3
+  #define MODULE_CONTEXT_OFFSET 0x240      // 模块上下文偏移量
+  #define MODULE_RESOURCE_OFFSET -0x18     // 模块资源偏移量
+  #define MODULE_COMPONENT_OFFSET 0x80      // 模块组件偏移量
+  #define MODULE_VALIDATION_OFFSET 0x38    // 模块验证偏移量
+  
   longlong *pvalidationContext;
   longlong *pcomponentData;
   longlong *pcomponentInfo;
@@ -5019,7 +5030,7 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
   longlong stackContext8;
   longlong stackContext18;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x18),&stackContext18);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&stackContext18);
   resultStatus = (int)operationResult;
   if (resultStatus == 0) {
     pvalidationContext0 = (longlong *)0x0;
@@ -5027,22 +5038,22 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
     if (stackContext18 != 0) {
       pmoduleData = (longlong *)(stackContext18 + -8);
     }
-    operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&stackContext18);
+    operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&stackContext18);
     resultStatus = (int)operationResult;
     if (resultStatus == 0) {
       stackContext8 = 0;
-      messageResult = ProcessGameMessage(*(undefined8 *)(param_2 + 0x90),*(longlong *)(stackContext18 + 8) + 0x10,
+      messageResult = ProcessGameMessage(*(undefined8 *)(moduleData + MODULE_DATA_OFFSET_1),*(longlong *)(stackContext18 + 8) + MODULE_DATA_OFFSET_3,
                             &stackContext8);
       if (messageResult != 0) {
         CleanupSystemDataStructures(pmoduleData);
         return (ulonglong)messageResult;
       }
-      if (((*(uint *)(*(longlong *)(stackContext18 + 8) + 0xf8) >> 2 & 1) == 0) &&
+      if (((*(uint *)(*(longlong *)(stackContext18 + 8) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
          (operationResult = func_0x000180861a30(stackContext8), (int)operationResult != 0)) {
         return operationResult;
       }
-      pvalidationContext = (longlong *)(stackContext8 + 0x240);
-      presourceInfo = (longlong *)(*pvalidationContext + -0x18);
+      pvalidationContext = (longlong *)(stackContext8 + MODULE_CONTEXT_OFFSET);
+      presourceInfo = (longlong *)(*pvalidationContext + MODULE_RESOURCE_OFFSET);
       if (*pvalidationContext == 0) {
         presourceInfo = pvalidationContext0;
       }
@@ -5054,7 +5065,7 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
       }
       while( true ) {
         if (pcontextData == pvalidationContext) {
-          *(longlong **)(stackContext8 + 0x80) = pmoduleData;
+          *(longlong **)(stackContext8 + MODULE_COMPONENT_OFFSET) = pmoduleData;
           func_0x00018085eef0(stackContext8,pmoduleData);
           pmoduleData[2] = stackContext8;
           operationResult = InitializeSystemComponent(stackContext8);
@@ -5068,11 +5079,11 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
         }
         presourceInfo = pcontextData + 4;
         if (pcontextData == (longlong *)0x0) {
-          presourceInfo = (longlong *)0x38;
+          presourceInfo = (longlong *)MODULE_VALIDATION_OFFSET;
         }
         *(longlong *)(pmoduleData[4] + 8 + (longlong)pcomponentData) = *presourceInfo;
         if (pcontextData == pvalidationContext) break;
-        presourceInfo = (longlong *)(*pcontextData + -0x18);
+        presourceInfo = (longlong *)(*pcontextData + MODULE_RESOURCE_OFFSET);
         if (*pcontextData == 0) {
           presourceInfo = pvalidationContext0;
         }
