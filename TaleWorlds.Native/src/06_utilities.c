@@ -10213,8 +10213,16 @@ void ExecuteSecurityCheckWrapper(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
-void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
+/**
+ * @brief 数据处理函数B1
+ * 
+ * 处理系统数据操作，包括数据验证、转换和存储
+ * 
+ * @param DataPointer 数据指针，指向待处理的数据
+ * @param DataBuffer 数据缓冲区，用于存储处理结果
+ * @param ResultPointer 结果指针，用于返回处理状态
+ */
+void ProcessDataOperationB1(longlong DataPointer, undefined4 *DataBuffer, longlong *ResultPointer)
 
 {
   longlong *plVar1;
@@ -10333,16 +10341,26 @@ void FUN_180894c70(longlong param_1,undefined8 param_2)
 
 
 
-// 函数: void FUN_180894c94(void)
-void FUN_180894c94(void)
+/**
+ * 系统状态验证函数 - 验证系统状态并执行相应操作
+ * 
+ * 此函数执行系统状态验证，通过一系列检查函数来验证系统状态。
+ * 如果所有验证都通过，则执行相应的清理或初始化操作。
+ * 
+ * 验证流程：
+ * 1. 调用FUN_18088ee20()进行初始验证
+ * 2. 如果初始验证通过，调用FUN_18088f530()进行二级验证
+ * 3. 如果二级验证也通过，调用FUN_18088f5c0()执行最终操作
+ */
+void ValidateSystemStateAndExecute(void)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee20();
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088f530();
-    if (iVar1 == 0) {
+  validationResult = FUN_18088ee20();
+  if (validationResult == 0) {
+    validationResult = FUN_18088f530();
+    if (validationResult == 0) {
       FUN_18088f5c0();
     }
   }
