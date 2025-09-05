@@ -7141,13 +7141,28 @@ undefined SystemBufferDataTableA2;
 // 功能：存储系统配置数据表信息
 #define SystemConfigurationDataTableA1 DAT_180bf7308
 undefined SystemConfigurationDataTableA1;
-undefined DAT_180bfbf78;
-undefined DAT_180bf72a8;
+// 系统缓冲区数据表A3
+// 功能：存储系统缓冲区数据表信息
+#define SystemBufferDataTableA3 DAT_180bfbf78
+undefined SystemBufferDataTableA3;
+// 系统配置数据表A2
+// 功能：存储系统配置数据表信息
+#define SystemConfigurationDataTableA2 DAT_180bf72a8
+undefined SystemConfigurationDataTableA2;
 // 系统辅助缓存状态标志
 char SystemSecondaryCacheStatusFlag;
-undefined UNK_18064ffc0;
-undefined UNK_180a3c8c8;
-undefined UNK_180a3c908;
+// 系统验证指针A0
+// 功能：指向系统验证数据
+#define SystemValidationPointerA0 UNK_18064ffc0
+undefined SystemValidationPointerA0;
+// 系统控制指针A0
+// 功能：指向系统控制数据
+#define SystemControlPointerA0 UNK_180a3c8c8
+undefined SystemControlPointerA0;
+// 系统处理指针A0
+// 功能：指向系统处理数据
+#define SystemProcessingPointerA0 UNK_180a3c908
+undefined SystemProcessingPointerA0;
 undefined UNK_180a3d970;
 undefined UNK_180a3db60;
 undefined DAT_180bfbd80;
