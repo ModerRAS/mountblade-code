@@ -1,6 +1,17 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities.c - 473 个函数
+// 06_utilities.c - 工具系统模块
+// 
+// 本文件包含TaleWorlds引擎的工具系统实现，提供以下功能：
+// - 全局数据指针管理
+// - 工具系统回调执行
+// - 数据验证、压缩、加密等处理
+// - 线程本地存储管理
+// - 内存管理器初始化
+// - 异常处理和清理
+// - 系统状态重置和配置
+// 
+// 总计473个函数，涵盖了引擎核心工具功能的各个方面
 
 // FUN_函数语义化宏定义
 // 原始函数名：FUN_180941f80 - 全局指针设置函数A0
@@ -40046,20 +40057,26 @@ LAB_1801571ef:
 
 
 
-void Unwind_1809057c0(undefined8 param_1,longlong param_2)
+// 函数: void CleanupExceptionResourcesA(undefined8 exceptionContext, longlong unwindParameter)
+// 功能：清理异常资源A，重置异常状态指针并释放相关资源
+// 参数：
+//   exceptionContext - 异常处理上下文
+//   unwindParameter - 展开参数，包含需要清理的资源信息
+// 返回值：无
+void CleanupExceptionResourcesA(undefined8 exceptionContext, longlong unwindParameter)
 
 {
-  longlong lVar1;
+  longlong resourcePointer;
   
-  lVar1 = *(longlong *)(param_2 + 0x40);
-  *(undefined8 *)(lVar1 + 0xc0) = &UNK_180a3c3e0;
-  if (*(longlong *)(lVar1 + 200) != 0) {
+  resourcePointer = *(longlong *)(unwindParameter + 0x40);
+  *(undefined8 *)(resourcePointer + 0xc0) = &ExceptionCleanupFlagA;
+  if (*(longlong *)(resourcePointer + 200) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_18064e900();
+    ResourceCleanupHandler();
   }
-  *(undefined8 *)(lVar1 + 200) = 0;
-  *(undefined4 *)(lVar1 + 0xd8) = 0;
-  *(undefined8 *)(lVar1 + 0xc0) = &UNK_18098bcb0;
+  *(undefined8 *)(resourcePointer + 200) = 0;
+  *(undefined4 *)(resourcePointer + 0xd8) = 0;
+  *(undefined8 *)(resourcePointer + 0xc0) = &ExceptionCleanupFlagB;
   return;
 }
 
