@@ -64,9 +64,9 @@
 #define SystemNodeHeadPointerIndex           6
 
 // 联合体字段访问宏定义
-#define UNION_LOW_PART(union_var)             (union_var)._4_4_
-#define UNION_HIGH_PART(union_var)            (union_var)._0_8_
-#define UNION_LOW_BYTE(union_var)             (union_var)._1_7_
+#define UNION_LOW_PART(union_var)             (union_var).LowPart
+#define UNION_HIGH_PART(union_var)            (union_var).HighPart
+#define UNION_LOW_BYTE(union_var)             (union_var).LowByte
 
 // 系统标识符常量
 #define EventSystemIdentifier1          0x45b8d074df27d12f
@@ -1115,9 +1115,9 @@ void* SystemDataNodeAudioManager;           // 系统数据节点音频管理器
 void* SystemDataNodeInputManager;            // 系统数据节点输入管理器
 void* SystemDataNodePhysicsManager;         // 系统数据节点物理管理器
 void* SystemDataNodeAnimationManager;          // 系统数据节点动画管理器
-void* SystemDataNodeNonary;            // 系统数据节点第九节点
-void* SystemDataNodeDenary;            // 系统数据节点第十节点
-void* SystemDataNodeUndenary;          // 系统数据节点第十一节点
+void* SystemDataNodeNinth;            // 系统数据节点第九节点
+void* SystemDataNodeTenth;            // 系统数据节点第十节点
+void* SystemDataNodeEleventh;          // 系统数据节点第十一节点
 void* SystemDataNodeDuodenary;         // 系统数据节点第十二节点
 void* SystemDataNodeTredecimal;         // 系统数据节点第十三节点
 void* SystemDataNodeQuattuordecimal;    // 系统数据节点第十四节点

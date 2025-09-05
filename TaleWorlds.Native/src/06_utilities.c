@@ -12901,8 +12901,8 @@ uint64_t ProcessParameterizedDataValidationAndOperation(int64_t DataContext, int
   int TableEntryIndex;
   uint32_t ResourceHashStatus;
   
-  if (ValidationStatuss != (uint *)0x0) {
-    ResourceHashValue = *ValidationStatuss;
+  if (ValidationStatus != (uint *)0x0) {
+    ResourceHashValue = *ValidationStatus;
     if (ResourceHashValue != 0) {
       if (((*(int *)(DataContext + 0x94) != 0) && (*(int *)(DataContext + ResourceContextExtendedSecondaryOffset) != 0)) &&
          (TableEntryIndex = *(int *)(*(int64_t *)(DataContext + 0x70) +
@@ -14651,7 +14651,7 @@ void ProcessComplexResourceWithRegisters(void)
   float ResourceFloatValue;
   uint8_t *DataTypeTemplate;
   int ResourceValidationErrorCode;
-  uint32_t ExtendedValidationStatuss;
+  uint32_t ExtendedValidationStatus;
   float TemporaryResourceValue;
   int64_t SystemResourceContext;
   float ResultFloatValue;
