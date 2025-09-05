@@ -1614,11 +1614,25 @@ void ValidateNetworkPacketSecurity(void)
 }
 
 /**
- * @brief 处理网络数据包处理
+ * @brief 初始化网络数据包处理系统
  * 
- * 处理网络数据包的接收和发送逻辑，根据数据包类型调用相应的处理函数。
+ * 初始化网络数据包处理系统的各个组件，包括连接管理、路由缓冲区、过滤系统、
+ * 网络统计、重试机制和事件处理等。此函数负责设置网络数据包处理的基础设施。
+ * 
+ * 该函数执行以下初始化操作：
+ * - 设置连接表索引和大小
+ * - 初始化连接管理器和数据
+ * - 配置路由、队列、缓存和过滤缓冲区
+ * - 重置网络统计信息（带宽、延迟、丢包率）
+ * - 设置重试机制参数（间隔、超时、重试次数、退避时间）
+ * - 初始化事件和回调处理系统
+ * 
+ * @note 此函数在网络系统启动时调用，确保所有数据包处理组件正确初始化
+ * @warning 如果初始化失败，系统可能无法正常处理网络数据包
+ * 
+ * @return void 无返回值
  */
-void ProcessNetworkPacketData(void)
+void InitializeNetworkPacketProcessingSystem(void)
 {
   // 初始化处理参数
   NetworkConnectionTableIndex = NetworkTableIndexResetValue;          // 重置连接表索引
