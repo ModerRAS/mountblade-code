@@ -11719,8 +11719,8 @@ void InitializeSystemStringProcessorQueued(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorR(void)
-void InitializeSystemStringProcessorR(void)
+// 函数: void InitializeSystemStringProcessorResponsive(void)
+void InitializeSystemStringProcessorResponsive(void)
 
 {
   char NodeActiveFlag;
@@ -11769,8 +11769,8 @@ void InitializeSystemStringProcessorR(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorS(void)
-void InitializeSystemStringProcessorS(void)
+// 函数: void InitializeSystemStringProcessorScalable(void)
+void InitializeSystemStringProcessorScalable(void)
 
 {
   char NodeActiveFlag;
@@ -11819,8 +11819,8 @@ void InitializeSystemStringProcessorS(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorT(void)
-void InitializeSystemStringProcessorT(void)
+// 函数: void InitializeSystemStringProcessorThreaded(void)
+void InitializeSystemStringProcessorThreaded(void)
 
 {
   char NodeActiveFlag;
@@ -11869,8 +11869,8 @@ void InitializeSystemStringProcessorT(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorU(void)
-void InitializeSystemStringProcessorU(void)
+// 函数: void InitializeSystemStringProcessorUnified(void)
+void InitializeSystemStringProcessorUnified(void)
 
 {
   char NodeActiveFlag;
@@ -11919,8 +11919,8 @@ void InitializeSystemStringProcessorU(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorV(void)
-void InitializeSystemStringProcessorV(void)
+// 函数: void InitializeSystemStringProcessorVirtual(void)
+void InitializeSystemStringProcessorVirtual(void)
 
 {
   char NodeActiveFlag;
@@ -11969,8 +11969,8 @@ void InitializeSystemStringProcessorV(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorW(void)
-void InitializeSystemStringProcessorW(void)
+// 函数: void InitializeSystemStringProcessorWorker(void)
+void InitializeSystemStringProcessorWorker(void)
 
 {
   char NodeActiveFlag;
@@ -24021,6 +24021,14 @@ SetupDataBufferTemplates(void** dataBufferReference, unsigned long long initiali
 
 
 
+/**
+ * @brief 检查系统节点状态
+ * 
+ * 该函数负责检查系统节点的状态，包括节点活动标志、资源哈希条目
+ * 和系统加密密钥的验证。用于系统运行时的状态监控和管理。
+ * 
+ * @return 返回系统节点状态，true表示节点活跃，false表示节点非活跃
+ */
 bool SystemNodeCheckStatus(void)
 
 {

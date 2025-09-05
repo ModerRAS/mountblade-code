@@ -59910,13 +59910,23 @@ void Unwind_1809088f0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180908900(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 设置验证上下文A0
+ * 
+ * 该函数负责设置验证上下文的相关参数，包括异常处理器和状态标志。
+ * 如果检测到系统终止条件，会调用系统终止函数。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_180908900
+ */
+void SetValidationContextA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x70);
-  *(DataBuffer *)(validationContext + 0x18) = &UNK_180a3c3e0;
+  validationContext = *(int64_t *)(stackFrame + 0x70);
+  *(DataBuffer *)(validationContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -59929,13 +59939,23 @@ void Unwind_180908900(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180908910(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 设置验证上下文A1
+ * 
+ * 该函数负责设置验证上下文的相关参数，与A0版本类似但使用不同的偏移量。
+ * 如果检测到系统终止条件，会调用系统终止函数。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_180908910
+ */
+void SetValidationContextA1(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x20);
-  *(DataBuffer *)(validationContext + 0x18) = &UNK_180a3c3e0;
+  validationContext = *(int64_t *)(stackFrame + 0x20);
+  *(DataBuffer *)(validationContext + 0x18) = &TemporaryExceptionHandler;
   if (*(int64_t *)(validationContext + 0x20) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -59948,12 +59968,22 @@ void Unwind_180908910(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180908920(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 清理系统状态标志A0
+ * 
+ * 该函数负责清理系统的状态标志，当特定标志位被设置时，
+ * 会清除该标志并调用相应的清理函数。
+ * 
+ * @param exceptionContext 异常上下文，用于处理异常情况
+ * @param stackFrame 栈帧参数，包含函数调用的上下文信息
+ * @note 原始函数名：Unwind_180908920
+ */
+void ClearSystemStatusFlagA0(DataBuffer exceptionContext, int64_t stackFrame)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 1) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffffe;
-    FUN_180045af0(*(DataBuffer *)(param_2 + 0x40));
+  if ((*(uint *)(stackFrame + 0x30) & 1) != 0) {
+    *(uint *)(stackFrame + 0x30) = *(uint *)(stackFrame + 0x30) & 0xfffffffe;
+    ProcessSystemResourceCleanup(*(DataBuffer *)(stackFrame + 0x40));
   }
   return;
 }
