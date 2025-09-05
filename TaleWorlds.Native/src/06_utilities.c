@@ -4948,7 +4948,7 @@ undefined SystemConfigurationTableA3;
 undefined SystemConfigurationTableA4;
 undefined1 SystemInitializationFlag;
 undefined1 SystemReadyFlag;
-undefined DAT_180c82864;
+undefined SystemConfigurationData;
 undefined DAT_180c91048;
 undefined DAT_180c8ed18;
 undefined DAT_180c86948;
