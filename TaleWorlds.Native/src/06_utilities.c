@@ -34437,7 +34437,7 @@ void ClearStateFlagAndExecuteCallback(DataBuffer unusedParameter,int64_t targetO
  * @param param_2 参数2（目标对象指针）
  * @note 原始函数名：Unwind_1809021c0
  */
-void SetDefaultExceptionHandlerAtOffset180(DataBuffer param_1,int64_t param_2)
+void SetDefaultExceptionHandlerAtOffset180(DataBuffer unusedParameter,int64_t targetObjectPointer)
 
 {
   *(DataBuffer *)(param_2 + 0x180) = &UNK_180a3c3e0;
