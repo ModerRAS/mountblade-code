@@ -7696,7 +7696,7 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
   int64_t *contextDataPtr;
   int64_t *moduleDataPtr;
   int64_t *baseValidationContext;
-  int64_t localStackContext;
+  int64_t localStackMemoryContext;
   int64_t tempStackContext;
   
   systemOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_1),&tempStackContext);
@@ -7710,18 +7710,18 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
     systemOperationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(moduleConfig + MODULE_CONFIG_OFFSET_2),&tempStackContext);
     initializationStatus = (int32_t)systemOperationResult;
     if (initializationStatus == 0) {
-      localStackContext = 0;
+      localStackMemoryContext = 0;
       messageProcessingResult = ProcessGameMessage(*(uint64_t *)(moduleData + MODULE_DATA_OFFSET_1),*(int64_t *)(tempStackContext + 8) + MODULE_DATA_OFFSET_3,
-                            &localStackContext);
+                            &localStackMemoryContext);
       if (messageProcessingResult != 0) {
         CleanupSystemDataStructures(moduleDataPtr);
         return (uint64_t)messageProcessingResult;
       }
       if (((*(uint32_t *)(*(int64_t *)(tempStackContext + 8) + MODULE_DATA_OFFSET_2) >> 2 & 1) == 0) &&
-         (systemOperationResult = ValidateSystemOperationContextA0(localStackContext), (int32_t)systemOperationResult != 0)) {
+         (systemOperationResult = ValidateSystemOperationContextA0(localStackMemoryContext), (int32_t)systemOperationResult != 0)) {
         return systemOperationResult;
       }
-      validationContextPtr = (int64_t *)(localStackContext + MODULE_CONTEXT_OFFSET);
+      validationContextPtr = (int64_t *)(localStackMemoryContext + MODULE_CONTEXT_OFFSET);
       resourceInfoPtr = (int64_t *)(*validationContextPtr + MODULE_RESOURCE_OFFSET);
       if (*validationContextPtr == 0) {
         resourceInfoPtr = baseValidationContext;
@@ -7734,10 +7734,10 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
       }
       while( true ) {
         if (contextDataPtr == validationContextPtr) {
-          *(int64_t **)(localStackContext + MODULE_COMPONENT_OFFSET) = moduleDataPtr;
-          ExecuteSystemDataProcessing(localStackContext,moduleDataPtr);
-          moduleDataPtr[2] = localStackContext;
-          systemOperationResult = InitializeSystemComponent(localStackContext);
+          *(int64_t **)(localStackMemoryContext + MODULE_COMPONENT_OFFSET) = moduleDataPtr;
+          ExecuteSystemDataProcessing(localStackMemoryContext,moduleDataPtr);
+          moduleDataPtr[2] = localStackMemoryContext;
+          systemOperationResult = InitializeSystemComponent(localStackMemoryContext);
           if ((int32_t)systemOperationResult == 0) {
             return 0;
           }
@@ -7902,35 +7902,35 @@ uint64_t ProcessUtilityResourceDecrement(int64_t resourceContext,uint64_t decrem
   int64_t resourceContextPtr;
   uint64_t resourceDecrementStatus;
   int decrementOperationResult;
-  int64_t localDecrementBuffer [2];
+  int64_t localResourceDecrementBuffer [2];
   
-  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + 0x10),localDecrementBuffer);
-  resourceContextPtr = localDecrementBuffer[0];
+  resourceDecrementStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(resourceContext + 0x10),localResourceDecrementBuffer);
+  resourceContextPtr = localResourceDecrementBuffer[0];
   if ((int)resourceDecrementStatus != 0) {
     return resourceDecrementStatus;
   }
-  if (*(int *)(localDecrementBuffer[0] + 0x4c) < 1) {
+  if (*(int *)(localResourceDecrementBuffer[0] + 0x4c) < 1) {
     return 0x1c;
   }
-  decrementOperationResult = *(int *)(localDecrementBuffer[0] + 0x4c) + -1;
-  *(int *)(localDecrementBuffer[0] + 0x4c) = decrementOperationResult;
-  if (*(int *)(localDecrementBuffer[0] + 0x58) + *(int *)(localDecrementBuffer[0] + 0x54) + decrementOperationResult != 0) {
+  decrementOperationResult = *(int *)(localResourceDecrementBuffer[0] + 0x4c) + -1;
+  *(int *)(localResourceDecrementBuffer[0] + 0x4c) = decrementOperationResult;
+  if (*(int *)(localResourceDecrementBuffer[0] + 0x58) + *(int *)(localResourceDecrementBuffer[0] + 0x54) + decrementOperationResult != 0) {
     return 0;
   }
-  localDecrementBuffer[0] = 0;
-  decrementOperationResult = ValidateResourceHandle(localDecrementBuffer);
+  localResourceDecrementBuffer[0] = 0;
+  decrementOperationResult = ValidateResourceHandle(localResourceDecrementBuffer);
   if (decrementOperationResult == 0) {
     decrementOperationResult = CleanupResourceData(resourceContextPtr,0);
     if (decrementOperationResult == 0) {
       decrementOperationResult = ValidateSystemParameters(decrementValue);
       if (decrementOperationResult == 0) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemResources(localDecrementBuffer);
+        ReleaseSystemResources(localResourceDecrementBuffer);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  ReleaseSystemResources(localDecrementBuffer);
+  ReleaseSystemResources(localResourceDecrementBuffer);
 }
 
 
@@ -7996,14 +7996,14 @@ DataBuffer ReleaseUtilityResource(int64_t resourceHandle)
 DataBuffer CheckNullPointerAccess(void)
 
 {
-  int64_t registerValue;
+  int64_t systemRegisterValue;
   int64_t resourcePointer;
   
-  if (registerValue == 0) {
+  if (systemRegisterValue == 0) {
     resourcePointer = 0;
   }
   else {
-    resourcePointer = registerValue + -8;
+    resourcePointer = systemRegisterValue + -8;
   }
   if (*(int64_t *)(resourcePointer + ResourceDataOffset) != 0) {
                     // WARNING: Subroutine does not return
@@ -8101,14 +8101,14 @@ DataBuffer ForceResourceRelease(int64_t resourceDescriptor)
 DataWord ReleaseStackResource(void)
 
 {
-  int64_t cpuRegisterValue;
+  int64_t processorRegisterValue;
   int64_t stackResourcePointer;
   
-  if (cpuRegisterValue == 0) {
+  if (processorRegisterValue == 0) {
     stackResourcePointer = 0;
   }
   else {
-    stackResourcePointer = cpuRegisterValue + -8;
+    stackResourcePointer = processorRegisterValue + -8;
   }
   if (*(int64_t *)(stackResourcePointer + 0x10) == 0) {
     return 0x1c;
@@ -8670,16 +8670,16 @@ DataBuffer ValidateUtilitySystemState(void)
   
   loopCounter = 0;
   adjustedValue = inputParameter - 8;
-  if (in_RAX == 0) {
+  if (inputAccumulatorRegister == 0) {
     memoryAddress = addressOffset;
   }
-  pvalidationStatus = (DataWord *)(register_RBP + 0x20 + (int64_t)*(int *)(register_RBP + 0x18) * 8);
-  poperationResult = (int *)(register_RBP + 0x20);
-  if (0 < *(int *)(register_RBP + 0x18)) {
+  validationStatusPointer = (DataWord *)(stackFramePointer + 0x20 + (int64_t)*(int *)(stackFramePointer + 0x18) * 8);
+  operationResultPointer = (int *)(stackFramePointer + 0x20);
+  if (0 < *(int *)(stackFramePointer + 0x18)) {
     do {
       if ((*poperationResult != MemoryValidationConstantA) || (poperationResult[1] != MemoryValidationConstantB)) {
         LocalValidationContext = 0;
-        validationStatus = ValidateMemoryAddressA0(memoryAddress,(int *)(register_RBP + 0x20) + (int64_t)(int)addressOffset * 2,
+        validationStatus = ValidateMemoryAddressA0(memoryAddress,(int *)(stackFramePointer + 0x20) + (int64_t)(int)addressOffset * 2,
                               &systemContextBuffer50);
         if ((int)validationStatus != 0) {
           return validationStatus;
@@ -8687,17 +8687,17 @@ DataBuffer ValidateUtilitySystemState(void)
         if (*(int64_t *)(LocalValidationContext + 8) == 0) {
           return 0x1c;
         }
-        validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(LocalValidationContext + 8),*pvalidationStatus,
-                              *(ByteFlag *)(register_RBP + 0x1c));
+        validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(LocalValidationContext + 8),*validationStatusPointer,
+                              *(ByteFlag *)(stackFramePointer + 0x1c));
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
       }
       memoryBaseAddress = (int)addressOffset + 1;
       addressOffset = (uint64_t)memoryBaseAddress;
-      pvalidationStatus = pvalidationStatus + 1;
+      validationStatusPointer = validationStatusPointer + 1;
       poperationResult = poperationResult + 2;
-    } while ((int)memoryBaseAddress < *(int *)(register_RBP + 0x18));
+    } while ((int)memoryBaseAddress < *(int *)(stackFramePointer + 0x18));
   }
   return 0;
 }
@@ -8988,11 +8988,11 @@ DataBuffer ValidateAndTerminateProcess(int64_t contextHandle)
 DataWord ValidateRegisterAndTerminate(void)
 
 {
-  int64_t registerValue;
+  int64_t systemRegisterValue;
   int64_t adjustedPointer;
   
-  adjustedPointer = registerValue + -8;
-  if (registerValue == 0) {
+  adjustedPointer = systemRegisterValue + -8;
+  if (systemRegisterValue == 0) {
     adjustedPointer = 0;
   }
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
@@ -9091,14 +9091,14 @@ DataBuffer ValidateContextAndTerminate(int64_t contextHandle)
 DataWord ValidateRegisterAndTerminateB(void)
 
 {
-  int64_t registerValue;
+  int64_t systemRegisterValue;
   int64_t adjustedPointer;
   
-  if (registerValue == 0) {
+  if (systemRegisterValue == 0) {
     adjustedPointer = 0;
   }
   else {
-    adjustedPointer = registerValue + -8;
+    adjustedPointer = systemRegisterValue + -8;
   }
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
     return 0x1c;
@@ -9281,14 +9281,14 @@ DataBuffer ValidateResourceAndTerminate(int64_t resourceHandle)
 DataWord ValidateRegisterResource(void)
 
 {
-  int64_t registerValue;
+  int64_t systemRegisterValue;
   int64_t adjustedPointer;
   
-  if (registerValue == 0) {
+  if (systemRegisterValue == 0) {
     adjustedPointer = 0;
   }
   else {
-    adjustedPointer = registerValue + -8;
+    adjustedPointer = systemRegisterValue + -8;
   }
   if (*(int64_t *)(adjustedPointer + 0x10) == 0) {
     return 0x1c;
@@ -9800,7 +9800,7 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
 int CheckUtilityPermissionG0(uint32_t permissionFlags)
 
 {
-  int registerValue;
+  int systemRegisterValue;
   int operationResult;
   int64_t resourcePointer;
   int64_t contextPointer;
@@ -9809,7 +9809,7 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
   DataWord parameterBuffer;
   
   resourcePointer = 0;
-  if (registerValue == 0) {
+  if (systemRegisterValue == 0) {
     systemContextBuffer = *(int64_t *)(contextPointer + 0x10);
     operationMode = 1;
     resourcePointer = systemContextBuffer;
@@ -12663,25 +12663,25 @@ DataBuffer QuerySystemStatusE0(void)
   DataBuffer validationStatus;
   int64_t stackFramePointer;
   int64_t dataInputPointer;
-  int64_t stackParameter40;
+  int64_t stackParameterOffset;
   
-  if (stackParameter40 == 0) {
+  if (stackParameterOffset == 0) {
     return 0x4a;
   }
-  dataContext = *(int64_t *)(stackParameter40 + 0x10);
+  dataContext = *(int64_t *)(stackParameterOffset + 0x10);
   if (dataContext == 0) {
     return 0x1e;
   }
   if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  validationStatus = ProcessDataValidationA0(dataContext,register_RDI + 0x25,register_RDI + 0x20);
+  validationStatus = ProcessDataValidationA0(dataContext,destinationIndexRegister + 0x25,destinationIndexRegister + 0x20);
   if ((int)validationStatus == 0) {
-    inputValue = *(float *)(register_RDI + 0x20);
+    inputValue = *(float *)(destinationIndexRegister + 0x20);
     if ((*(float *)(dataContext + 0x38) <= inputValue) &&
        (inputValue < *(float *)(dataContext + 0x3c) || inputValue == *(float *)(dataContext + 0x3c))) {
-      validationStatus = *(DataBuffer *)(register_RBP + 0x98);
-      *(float *)(stackParameter40 + 4) = inputValue;
+      validationStatus = *(DataBuffer *)(stackFramePointer + 0x98);
+      *(float *)(stackParameterOffset + 4) = inputValue;
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(validationStatus);
     }
@@ -12710,13 +12710,13 @@ DataBuffer InitializeSystemE0(void)
   if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  validationStatus = ProcessDataValidationA0(dataContext,register_RDI + 0x25,register_RDI + 0x20);
+  validationStatus = ProcessDataValidationA0(dataContext,destinationIndexRegister + 0x25,destinationIndexRegister + 0x20);
   if ((int)validationStatus == 0) {
-    inputValue = *(float *)(register_RDI + 0x20);
+    inputValue = *(float *)(destinationIndexRegister + 0x20);
     if ((*(float *)(dataContext + 0x38) <= inputValue) &&
        (inputValue < *(float *)(dataContext + 0x3c) || inputValue == *(float *)(dataContext + 0x3c))) {
-      validationStatus = *(DataBuffer *)(register_RBP + 0x98);
-      *(float *)(stackParameter40 + 4) = inputValue;
+      validationStatus = *(DataBuffer *)(stackFramePointer + 0x98);
+      *(float *)(stackParameterOffset + 4) = inputValue;
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(validationStatus);
     }
@@ -12773,7 +12773,7 @@ DataBuffer ValidateParametersE1(DataWord validationFlags)
   int64_t contextHandle;
   int64_t stackFramePointer;
   int64_t dataInputPointer;
-  int64_t stackParameter40;
+  int64_t stackParameterOffset;
   
   validationResult = ProcessDataValidationA0(validationFlags,dataInputPointer + 0x25,dataInputPointer + 0x20);
   if ((int)validationResult == 0) {
@@ -12781,7 +12781,7 @@ DataBuffer ValidateParametersE1(DataWord validationFlags)
     if ((*(float *)(contextHandle + 0x38) <= inputValue) &&
        (floatValue < *(float *)(registerContext + 0x3c) || floatValue == *(float *)(registerContext + 0x3c))) {
       validationResult = *(DataBuffer *)(stackFramePointer + 0x98);
-      *(float *)(stackParameter40 + 4) = floatValue;
+      *(float *)(stackParameterOffset + 4) = floatValue;
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(validationResult);
     }
@@ -13148,8 +13148,8 @@ DataBuffer GetSystemStatusA0(void)
   int64_t systemContext;
   float resultValue;
   
-  systemFlags = in_RAX - 8;
-  if (in_RAX == 0) {
+  systemFlags = inputAccumulatorRegister - 8;
+  if (inputAccumulatorRegister == 0) {
     systemFlags = (uint64_t)in_R9D;
   }
   validationStatus = *(int *)(systemFlags + 0x28);
@@ -13306,7 +13306,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   float floatValue;
   uint64_t operationResult;
   int64_t resultPointer;
-  DataBuffer register_RDI;
+  DataBuffer destinationIndexRegister;
   int64_t stackValue;
   
   floatValue = *(float *)(valueContext + 0x18);
@@ -13331,7 +13331,7 @@ DataBuffer ValidateAndProcessFloatValue(int64_t valueContext,int64_t operationCo
   resultPointer = *(int64_t *)(operationContext + 0x98);
   if ((*(int *)(resultPointer + 0x180) != 0) || (*(int *)(resultPointer + 0x184) != 0)) {
     stackValue = 0;
-    InitializeSystemContextA0(&stackValue,valueContext,validationContext,processingContext,register_RDI);
+    InitializeSystemContextA0(&stackValue,valueContext,validationContext,processingContext,destinationIndexRegister);
     if (stackValue == *(int64_t *)((int64_t)*(int *)(resultPointer + 0x17c) * 8 + 0x180c4f450)) {
       operationResult = ProcessSystemDataEC0(resultPointer,valueContext);
       if ((int)operationResult == 0) {
@@ -14320,10 +14320,10 @@ DataBuffer ValidateSystemConfigurationA0(void)
   *(float *)(registerContext + 0x10) = secondFloatValue;
   validationStatus = ValidateOperationRangeA0(systemContext + 0x60,operationParameter,secondFloatValue);
   if ((int)validationStatus == 0) {
-    pmemoryBaseAddress = (DataBuffer *)ProcessSystemDataA0(register_RDI + 0x60,&stack0x00000030,stackParameter40);
+    pmemoryBaseAddress = (DataBuffer *)ProcessSystemDataA0(destinationIndexRegister + 0x60,&stack0x00000030,stackParameterOffset);
     *(DataBuffer *)(registerContext + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
-    CleanupSystemEventA0(*(DataBuffer *)(register_RDI + 0x98));
+    CleanupSystemEventA0(*(DataBuffer *)(destinationIndexRegister + 0x98));
   }
   return validationStatus;
 }
@@ -14343,7 +14343,7 @@ void ProcessFloatRangeValidation(void)
   int64_t contextPointer;
   int64_t systemHandle;
   float processedValue;
-  DataWord stackParameter40;
+  DataWord stackParameterOffset;
   
   processedValue = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
   currentValue = *(float *)(contextPointer + 0x10);
@@ -14352,9 +14352,9 @@ void ProcessFloatRangeValidation(void)
     processedValue = currentValue;
   }
   *(float *)(contextPointer + 0x10) = processedValue;
-  validationStatus = ValidateFloatValue(systemHandle + 0x60,stackParameter40,processedValue);
+  validationStatus = ValidateFloatValue(systemHandle + 0x60,stackParameterOffset,processedValue);
   if (validationStatus == 0) {
-    resultPointer = (DataBuffer *)ProcessFloatData(systemHandle + 0x60,&stack0x00000030,stackParameter40);
+    resultPointer = (DataBuffer *)ProcessFloatData(systemHandle + 0x60,&stack0x00000030,stackParameterOffset);
     *(DataBuffer *)(contextPointer + 0x18) = *resultPointer;
                     // WARNING: Subroutine does not return
     ExecuteCriticalOperation(*(DataBuffer *)(systemHandle + 0x98));
@@ -14431,9 +14431,9 @@ DataBuffer CleanupSystemB0(void)
   if ((*(uint *)(dataContext + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
-  validationStatus = ProcessDataValidationA0(dataContext,register_RDI + 0xa0,register_RDI + 0x10);
+  validationStatus = ProcessDataValidationA0(dataContext,destinationIndexRegister + 0xa0,destinationIndexRegister + 0x10);
   if ((int)validationStatus == 0) {
-    fVar1 = *(float *)(register_RDI + 0x10);
+    fVar1 = *(float *)(destinationIndexRegister + 0x10);
     if ((fVar1 < *(float *)(dataContext + 0x38)) ||
        (*(float *)(dataContext + 0x3c) <= fVar1 && fVar1 != *(float *)(dataContext + 0x3c))) {
       validationStatus = 0x1c;
@@ -14443,7 +14443,7 @@ DataBuffer CleanupSystemB0(void)
       if ((int)validationStatus == 0) {
         pmemoryBaseAddress = (DataBuffer *)
                  ProcessSystemDataA0(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
-        *(DataBuffer *)(register_RDI + 0x18) = *pmemoryBaseAddress;
+        *(DataBuffer *)(destinationIndexRegister + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(DataBuffer *)(registerR14 + 0x98));
       }
@@ -14475,15 +14475,15 @@ DataBuffer ResetSystemB0(void)
 {
   float comparisonValue;
   DataBuffer functionReturnValue;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   int64_t registerR14;
   DataWord in_stack_00000050;
   
   functionReturnValue = ProcessDataValidationA0();
   if ((int)functionReturnValue == 0) {
-    comparisonValue = *(float *)(register_RDI + 0x10);
+    comparisonValue = *(float *)(destinationIndexRegister + 0x10);
     if ((comparisonValue < *(float *)(registerContext + 0x38)) ||
        (*(float *)(registerContext + 0x3c) <= comparisonValue && comparisonValue != *(float *)(registerContext + 0x3c))) {
       functionReturnValue = 0x1c;
@@ -14491,9 +14491,9 @@ DataBuffer ResetSystemB0(void)
     else {
       functionReturnValue = ValidateOperationRangeA0(registerR14 + 0x60,in_stack_00000050);
       if ((int)functionReturnValue == 0) {
-        pvalidationStatus = (DataBuffer *)
+        validationStatusPointer = (DataBuffer *)
                  ProcessSystemDataA0(registerR14 + 0x60,&stack0x00000040,in_stack_00000050);
-        *(DataBuffer *)(register_RDI + 0x18) = *pvalidationStatus;
+        *(DataBuffer *)(destinationIndexRegister + 0x18) = *validationStatusPointer;
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(DataBuffer *)(registerR14 + 0x98));
       }
@@ -16064,21 +16064,21 @@ void ProcessSystemDataWithValidation(int64_t systemContext,DataBuffer dataHandle
     if ((*(byte *)(dataIterator + 0x6c) & 2) != 0) {
       dataType = typeCheck;
     }
-    if (*(int64_t *)(register_RDI + 0xc0) != 0) {
+    if (*(int64_t *)(destinationIndexRegister + 0xc0) != 0) {
       dataFlags = CleanupAndValidateDataStructure();
-      operationStatus = (**(FunctionPointer**)(register_RDI + 0xc0))
+      operationStatus = (**(FunctionPointer**)(destinationIndexRegister + 0xc0))
                         (dataFlags,register_EBX,*(DataWord *)(bufferPointer + 0x18),
-                         *(DataBuffer *)(register_RDI + 0xb8));
+                         *(DataBuffer *)(destinationIndexRegister + 0xb8));
       param_3 = in_stack_00000048;
       if (operationStatus != 0) goto LAB_180895b69;
     }
     if ((((characterFlag != '\0') && (operationStatus = *param_3, *param_3 = operationStatus + 1, operationStatus < 10)) &&
-        ((*(uint *)(register_RDI + 0x6c) >> 0x18 & 1) == 0)) &&
-       (((*(uint *)(register_RDI + 0x6c) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(register_RDI + 0xb0)))))
+        ((*(uint *)(destinationIndexRegister + 0x6c) >> 0x18 & 1) == 0)) &&
+       (((*(uint *)(destinationIndexRegister + 0x6c) >> 0x19 & 1) != 0 && (arrayIndex == *(int *)(destinationIndexRegister + 0xb0)))))
     {
 MemoryCopyLabel:
                     // WARNING: Subroutine does not return
-      memcpy(register_RBP + -0x10,bufferPointer,(int64_t)*(int *)(bufferPointer + 8));
+      memcpy(stackFramePointer + -0x10,bufferPointer,(int64_t)*(int *)(bufferPointer + 8));
     }
   }
   else {
@@ -16091,7 +16091,7 @@ MemoryCopyLabel:
     if (characterFlag == '\a') {
       characterFlag = ValidateSystemConfiguration(*(DataBuffer *)(param_1 + 0x58));
       if (characterFlag == '\0') {
-        if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(register_RDI + 0x58) + 0x90) + 0x790) +
+        if (*(int *)(*(int64_t *)(*(int64_t *)(*(int64_t *)(destinationIndexRegister + 0x58) + 0x90) + 0x790) +
                     0x1c8) != 0) {
           *register_R13 = 0;
           goto LAB_180895b69;
@@ -16101,18 +16101,18 @@ MemoryCopyLabel:
     }
     else {
       if ((characterFlag != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
-      stackParameter40._4_4_ = *(DataWord *)(bufferPointer + 0x20);
+      stackParameterOffset._4_4_ = *(DataWord *)(bufferPointer + 0x20);
       arrayIndex = ValidateAndProcessDataFlags(param_1,register_EBX,(int64_t)&stack0x00000040 + 4);
       if (arrayIndex != 0) goto LAB_180895b69;
-      arrayIndex = QueryAndRetrieveSystemDataA0(stackParameter40._4_4_,register_RBP + -0x78);
-      if ((arrayIndex != 0) || (*(int *)(*(int64_t *)(register_RBP + -0x78) + 0x30) != 2))
+      arrayIndex = QueryAndRetrieveSystemDataA0(stackParameterOffset._4_4_,stackFramePointer + -0x78);
+      if ((arrayIndex != 0) || (*(int *)(*(int64_t *)(stackFramePointer + -0x78) + 0x30) != 2))
       goto MemoryCopyLabel;
     }
   }
   *register_R13 = 0;
 DataValidationLabel:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(register_RBP + 0x5f0) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x5f0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -16283,7 +16283,7 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
         iStack0000000000000044 = (int)((uint64_t)*(DataBuffer *)(validationContext + 8 + dataContext * 0x10) >> 0x20)
         ;
         if (iStack0000000000000044 != 0) {
-          *register_RDI = iStack0000000000000044;
+          *destinationIndexRegister = iStack0000000000000044;
           return 0;
         }
         goto LAB_180895ccb;
@@ -16293,13 +16293,13 @@ DataBuffer ProcessDataWithHashValidation(int64_t dataContext,DataBuffer systemCo
   }
   iStack0000000000000044 = 0;
 ValidationCompleteLabel:
-  pvalidationStatus = (DataBuffer *)
+  validationStatusPointer = (DataBuffer *)
            ((int64_t)*(int *)(*(int64_t *)(in_R10 + 0x18) + param_3 * 0xc) +
            *(int64_t *)(in_R10 + 8));
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    (**(FunctionPointer**)*pvalidationStatus)();
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    (**(FunctionPointer**)*validationStatusPointer)();
   }
-  *register_RDI = iStack0000000000000044;
+  *destinationIndexRegister = iStack0000000000000044;
   return 0;
 }
 
@@ -16309,16 +16309,16 @@ DataBuffer ValidateDataIntegrityA2(int64_t param_1,DataBuffer param_2,int64_t pa
 
 {
   DataBuffer dataValue;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   DataBuffer *resourcePointer;
-  int *register_RDI;
+  int *destinationIndexRegister;
   int64_t in_R10;
   DataBuffer uStack0000000000000040;
   
-  dataValue = *(DataBuffer *)(param_1 + 8 + in_RAX * 8);
+  dataValue = *(DataBuffer *)(param_1 + 8 + inputAccumulatorRegister * 8);
   uStack0000000000000040._4_4_ = (int)((uint64_t)dataValue >> 0x20);
   if (uStack0000000000000040._4_4_ != 0) {
-    *register_RDI = uStack0000000000000040._4_4_;
+    *destinationIndexRegister = uStack0000000000000040._4_4_;
     return 0;
   }
   resourcePointer = (DataBuffer *)
@@ -16328,7 +16328,7 @@ DataBuffer ValidateDataIntegrityA2(int64_t param_1,DataBuffer param_2,int64_t pa
     uStack0000000000000040 = dataValue;
     (**(FunctionPointer**)*resourcePointer)();
   }
-  *register_RDI = 0;
+  *destinationIndexRegister = 0;
   return 0;
 }
 
@@ -16446,15 +16446,15 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
   uint statusCounter;
   int inputParameter0;
   int *referenceCountPointer1;
-  int64_t *register_RDI;
+  int64_t *destinationIndexRegister;
   DataBuffer *registerR14;
   DataWord *register_R15;
   DataBuffer uStack0000000000000028;
   
-  referenceCountPointer1 = (int *)(*register_RDI + (int64_t)in_EAX * 4);
-  operationResult = *(int *)(*register_RDI + (int64_t)in_EAX * 4);
+  referenceCountPointer1 = (int *)(*destinationIndexRegister + (int64_t)in_EAX * 4);
+  operationResult = *(int *)(*destinationIndexRegister + (int64_t)in_EAX * 4);
   if (operationResult != -1) {
-    validationContext = register_RDI[2];
+    validationContext = destinationIndexRegister[2];
     do {
       memoryOffset = (int64_t)operationResult;
       if (*(int *)(validationContext + memoryOffset * 0x10) == param_2) {
@@ -16465,13 +16465,13 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
       referenceCountPointer1 = (int *)(validationContext + 4 + memoryOffset * 0x10);
     } while (operationResult != -1);
   }
-  operationResult = (int)register_RDI[4];
+  operationResult = (int)destinationIndexRegister[4];
   if (operationResult == -1) {
     uStack0000000000000028 = *registerR14;
-    operationResult = (int)register_RDI[3];
+    operationResult = (int)destinationIndexRegister[3];
     iterationCount = operationResult + 1;
-    statusCounter = (int)*(uint *)((int64_t)register_RDI + 0x1c) >> 0x1f;
-    operationStatus = (*(uint *)((int64_t)register_RDI + 0x1c) ^ statusCounter) - statusCounter;
+    statusCounter = (int)*(uint *)((int64_t)destinationIndexRegister + 0x1c) >> 0x1f;
+    operationStatus = (*(uint *)((int64_t)destinationIndexRegister + 0x1c) ^ statusCounter) - statusCounter;
     if (operationStatus < iterationCount) {
       inputParameter0 = (int)((float)operationStatus * 1.5);
       operationStatus = iterationCount;
@@ -16484,25 +16484,25 @@ DataBuffer ValidateAndProcessDataStructure(DataBuffer inputData,int processingMo
       else if (inputParameter0 < iterationCount) {
         inputParameter0 = iterationCount;
       }
-      memoryBaseAddress = CheckSystemDataA0(register_RDI + 2,inputParameter0);
+      memoryBaseAddress = CheckSystemDataA0(destinationIndexRegister + 2,inputParameter0);
       if ((int)memoryBaseAddress != 0) {
         return memoryBaseAddress;
       }
     }
-    poperationResult = (DataBuffer *)((int64_t)(int)register_RDI[3] * 0x10 + register_RDI[2]);
+    poperationResult = (DataBuffer *)((int64_t)(int)destinationIndexRegister[3] * 0x10 + destinationIndexRegister[2]);
     *poperationResult = CONCAT44(SystemCleanupFlag,param_2);
     poperationResult[1] = uStack0000000000000028;
-    *(int *)(register_RDI + 3) = (int)register_RDI[3] + 1;
+    *(int *)(destinationIndexRegister + 3) = (int)destinationIndexRegister[3] + 1;
   }
   else {
-    psecurityCheckResult = (DataWord *)((int64_t)operationResult * 0x10 + register_RDI[2]);
-    *(DataWord *)(register_RDI + 4) = psecurityCheckResult[1];
+    psecurityCheckResult = (DataWord *)((int64_t)operationResult * 0x10 + destinationIndexRegister[2]);
+    *(DataWord *)(destinationIndexRegister + 4) = psecurityCheckResult[1];
     psecurityCheckResult[1] = SystemCleanupFlag;
     *psecurityCheckResult = *register_R15;
     *(DataBuffer *)(psecurityCheckResult + 2) = *registerR14;
   }
   *referenceCountPointer1 = operationResult;
-  *(int *)((int64_t)register_RDI + 0x24) = *(int *)((int64_t)register_RDI + 0x24) + 1;
+  *(int *)((int64_t)destinationIndexRegister + 0x24) = *(int *)((int64_t)destinationIndexRegister + 0x24) + 1;
   return 0;
 }
 
@@ -16516,25 +16516,25 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validation
 {
   int inputParameter;
   DataBuffer functionReturnValue;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int arrayIndex;
   DataWord *poperationResult;
   uint dataFlags;
   int calculatedValue;
   int *registerContext;
   int calculatedSize;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   DataBuffer *registerR14;
   DataWord *register_R15;
   DataBuffer uStack0000000000000028;
   
-  calculatedSize = *(int *)(register_RDI + 0x20);
+  calculatedSize = *(int *)(destinationIndexRegister + 0x20);
   if (calculatedSize == -1) {
     uStack0000000000000028 = *registerR14;
-    calculatedSize = *(int *)(register_RDI + 0x18);
+    calculatedSize = *(int *)(destinationIndexRegister + 0x18);
     arrayIndex = calculatedSize + 1;
-    dataFlags = (int)*(uint *)(register_RDI + 0x1c) >> 0x1f;
-    inputParameter = (*(uint *)(register_RDI + 0x1c) ^ dataFlags) - dataFlags;
+    dataFlags = (int)*(uint *)(destinationIndexRegister + 0x1c) >> 0x1f;
+    inputParameter = (*(uint *)(destinationIndexRegister + 0x1c) ^ dataFlags) - dataFlags;
     if (inputParameter < arrayIndex) {
       calculatedValue = (int)((float)inputParameter * 1.5);
       inputParameter = arrayIndex;
@@ -16547,26 +16547,26 @@ DataBuffer ProcessAndValidateDataBlock(DataBuffer dataBuffer,DataWord validation
       else if (calculatedValue < arrayIndex) {
         calculatedValue = arrayIndex;
       }
-      functionReturnValue = CheckSystemDataA0(register_RDI + 0x10,calculatedValue);
+      functionReturnValue = CheckSystemDataA0(destinationIndexRegister + 0x10,calculatedValue);
       if ((int)functionReturnValue != 0) {
         return functionReturnValue;
       }
     }
-    pvalidationStatus = (DataBuffer *)
-             ((int64_t)*(int *)(register_RDI + 0x18) * 0x10 + *(int64_t *)(register_RDI + 0x10));
-    *pvalidationStatus = CONCAT44(SystemCleanupFlag,param_2);
-    pvalidationStatus[1] = uStack0000000000000028;
-    *(int *)(register_RDI + 0x18) = *(int *)(register_RDI + 0x18) + 1;
+    validationStatusPointer = (DataBuffer *)
+             ((int64_t)*(int *)(destinationIndexRegister + 0x18) * 0x10 + *(int64_t *)(destinationIndexRegister + 0x10));
+    *validationStatusPointer = CONCAT44(SystemCleanupFlag,param_2);
+    validationStatusPointer[1] = uStack0000000000000028;
+    *(int *)(destinationIndexRegister + 0x18) = *(int *)(destinationIndexRegister + 0x18) + 1;
   }
   else {
-    poperationResult = (DataWord *)((int64_t)calculatedSize * 0x10 + *(int64_t *)(register_RDI + 0x10));
-    *(DataWord *)(register_RDI + 0x20) = poperationResult[1];
+    poperationResult = (DataWord *)((int64_t)calculatedSize * 0x10 + *(int64_t *)(destinationIndexRegister + 0x10));
+    *(DataWord *)(destinationIndexRegister + 0x20) = poperationResult[1];
     poperationResult[1] = SystemCleanupFlag;
     *poperationResult = *register_R15;
     *(DataBuffer *)(poperationResult + 2) = *registerR14;
   }
   *registerContext = calculatedSize;
-  *(int *)(register_RDI + 0x24) = *(int *)(register_RDI + 0x24) + 1;
+  *(int *)(destinationIndexRegister + 0x24) = *(int *)(destinationIndexRegister + 0x24) + 1;
   return 0;
 }
 
@@ -16741,23 +16741,23 @@ CalculationLabel:
                     // WARNING: Subroutine does not return
       ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
     }
-    *registerContext = (int64_t)pvalidationStatus;
+    *registerContext = (int64_t)validationStatusPointer;
     *(int *)((int64_t)registerContext + 0xc) = register_EDI;
     return 0;
   }
   if (param_2 * 0xc - 1U < MaxSafeBufferSize) {
-    pvalidationStatus = (DataBuffer *)
+    validationStatusPointer = (DataBuffer *)
              AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),param_2 * 0xc,&SystemMemoryPoolB,0xf4
                            ,0);
-    if (pvalidationStatus != (DataBuffer *)0x0) {
+    if (validationStatusPointer != (DataBuffer *)0x0) {
       inputParameter = (int)registerContext[1];
       calculatedIndex = (int64_t)inputParameter;
       if ((inputParameter != 0) && (dataContext = *registerContext, 0 < inputParameter)) {
-        poperationResult = pvalidationStatus;
+        poperationResult = validationStatusPointer;
         do {
-          *poperationResult = *(DataBuffer *)((dataContext - (int64_t)pvalidationStatus) + (int64_t)poperationResult);
+          *poperationResult = *(DataBuffer *)((dataContext - (int64_t)validationStatusPointer) + (int64_t)poperationResult);
           *(DataWord *)(poperationResult + 1) =
-               *(DataWord *)((dataContext - (int64_t)pvalidationStatus) + 8 + (int64_t)poperationResult);
+               *(DataWord *)((dataContext - (int64_t)validationStatusPointer) + 8 + (int64_t)poperationResult);
           poperationResult = (DataBuffer *)((int64_t)poperationResult + 0xc);
           calculatedIndex = calculatedIndex + -1;
         } while (calculatedIndex != 0);
@@ -17794,7 +17794,7 @@ void ProcessFloatingPointDataA0(void)
   int calculatedSize;
   int validationErrorCode;
   DataWord register_EBX;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   int register_R12D;
   int64_t register_R13;
   char register_R15B;
@@ -17811,7 +17811,7 @@ void ProcessFloatingPointDataA0(void)
   float fStackX_24;
   uint8_t *in_stack_00000030;
   int in_stack_00000038;
-  DataWord stackParameter40;
+  DataWord stackParameterOffset;
   float in_stack_00000048;
   
   if (((register_R15B != '\0') || (*(int *)(*(int64_t *)(register_R13 + 0x2e8) + 0x34) == register_R12D)) &&
@@ -17827,24 +17827,24 @@ void ProcessFloatingPointDataA0(void)
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
         operationResult = *(DataWord *)(validationContext + 0x18);
         dataFlags = *(DataWord *)(validationContext + 0x1c);
-        *(DataWord *)(register_RBP + -0x78) = 0;
-        *(int *)(register_RBP + -0x68) = register_R12D;
-        *(uint8_t **)(register_RBP + -0x80) = &SystemDataTableReference;
+        *(DataWord *)(stackFramePointer + -0x78) = 0;
+        *(int *)(stackFramePointer + -0x68) = register_R12D;
+        *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
-        *(DataWord *)(register_RBP + -0x70) = register_EBX;
-        *(DataWord *)(register_RBP + -100) = validationStatus;
-        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(DataWord *)(register_RBP + -0x5c) = operationResult;
-        *(DataWord *)(register_RBP + -0x58) = dataFlags;
-        calculatedSize = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
+        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
+        *(DataWord *)(stackFramePointer + -100) = validationStatus;
+        *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
+        *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
+        *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
+        calculatedSize = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
         if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
         goto LAB_1808974ec;
         floatValue = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809842e0;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000038 = calculatedSize;
           calculatedSize = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           floatValue = extraout_XMM0_Da;
@@ -17853,7 +17853,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           floatValue = extraout_XMM0_Da_00;
@@ -17862,7 +17862,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           if (calculatedSize != 0) goto LAB_1808974ec;
@@ -17880,24 +17880,24 @@ void ProcessFloatingPointDataA0(void)
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
         operationResult = *(DataWord *)(validationContext + 0x18);
         dataFlags = *(DataWord *)(validationContext + 0x1c);
-        *(DataWord *)(register_RBP + -0x78) = 0;
-        *(int *)(register_RBP + -0x68) = register_R12D;
-        *(uint8_t **)(register_RBP + -0x80) = &SystemDataTableReference;
+        *(DataWord *)(stackFramePointer + -0x78) = 0;
+        *(int *)(stackFramePointer + -0x68) = register_R12D;
+        *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
-        *(DataWord *)(register_RBP + -0x70) = register_EBX;
-        *(DataWord *)(register_RBP + -100) = validationStatus;
-        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(DataWord *)(register_RBP + -0x5c) = operationResult;
-        *(DataWord *)(register_RBP + -0x58) = dataFlags;
-        calculatedSize = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
+        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
+        *(DataWord *)(stackFramePointer + -100) = validationStatus;
+        *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
+        *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
+        *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
+        calculatedSize = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
         if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
         goto LAB_1808974ec;
         floatValue = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809842e0;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000038 = calculatedSize;
           calculatedSize = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           floatValue = extraout_XMM0_Da_01;
@@ -17906,7 +17906,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           floatValue = extraout_XMM0_Da_02;
@@ -17915,7 +17915,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           if (calculatedSize != 0) goto LAB_1808974ec;
@@ -17933,24 +17933,24 @@ void ProcessFloatingPointDataA0(void)
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
         operationResult = *(DataWord *)(validationContext + 0x18);
         dataFlags = *(DataWord *)(validationContext + 0x1c);
-        *(DataWord *)(register_RBP + -0x78) = 0;
-        *(int *)(register_RBP + -0x68) = register_R12D;
-        *(uint8_t **)(register_RBP + -0x80) = &SystemDataTableReference;
+        *(DataWord *)(stackFramePointer + -0x78) = 0;
+        *(int *)(stackFramePointer + -0x68) = register_R12D;
+        *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
-        *(DataWord *)(register_RBP + -0x70) = register_EBX;
-        *(DataWord *)(register_RBP + -100) = validationStatus;
-        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(DataWord *)(register_RBP + -0x5c) = operationResult;
-        *(DataWord *)(register_RBP + -0x58) = dataFlags;
-        calculatedSize = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
+        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
+        *(DataWord *)(stackFramePointer + -100) = validationStatus;
+        *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
+        *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
+        *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
+        calculatedSize = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
         if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
         goto LAB_1808974ec;
         floatValue = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809842e0;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000038 = calculatedSize;
           calculatedSize = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           floatValue = extraout_XMM0_Da_03;
@@ -17959,7 +17959,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           floatValue = extraout_XMM0_Da_04;
@@ -17968,7 +17968,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           if (calculatedSize != 0) goto LAB_1808974ec;
@@ -17986,24 +17986,24 @@ void ProcessFloatingPointDataA0(void)
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
         operationResult = *(DataWord *)(validationContext + 0x18);
         dataFlags = *(DataWord *)(validationContext + 0x1c);
-        *(DataWord *)(register_RBP + -0x78) = 0;
-        *(int *)(register_RBP + -0x68) = register_R12D;
-        *(uint8_t **)(register_RBP + -0x80) = &SystemDataTableReference;
+        *(DataWord *)(stackFramePointer + -0x78) = 0;
+        *(int *)(stackFramePointer + -0x68) = register_R12D;
+        *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
-        *(DataWord *)(register_RBP + -0x70) = register_EBX;
-        *(DataWord *)(register_RBP + -100) = validationStatus;
-        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(DataWord *)(register_RBP + -0x5c) = operationResult;
-        *(DataWord *)(register_RBP + -0x58) = dataFlags;
-        calculatedSize = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
+        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
+        *(DataWord *)(stackFramePointer + -100) = validationStatus;
+        *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
+        *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
+        *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
+        calculatedSize = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
         if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
         goto LAB_1808974ec;
         floatValue = fStackX_24;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809842e0;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000038 = calculatedSize;
           calculatedSize = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           floatValue = extraout_XMM0_Da_05;
@@ -18012,7 +18012,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           floatValue = extraout_XMM0_Da_06;
@@ -18021,7 +18021,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           if (calculatedSize != 0) goto LAB_1808974ec;
@@ -18042,22 +18042,22 @@ void ProcessFloatingPointDataA0(void)
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
         operationResult = *(DataWord *)(validationContext + 0x18);
         dataFlags = *(DataWord *)(validationContext + 0x1c);
-        *(DataWord *)(register_RBP + -0x78) = 0;
-        *(int *)(register_RBP + -0x68) = calculatedSize;
-        *(uint8_t **)(register_RBP + -0x80) = &SystemDataValidationReference;
+        *(DataWord *)(stackFramePointer + -0x78) = 0;
+        *(int *)(stackFramePointer + -0x68) = calculatedSize;
+        *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataValidationReference;
         calculatedSize = calculatedSize + 1;
-        *(DataWord *)(register_RBP + -0x54) = uStackX_20;
-        *(DataWord *)(register_RBP + -0x70) = register_EBX;
-        *(DataWord *)(register_RBP + -100) = validationStatus;
-        *(DataWord *)(register_RBP + -0x60) = memoryBaseAddress;
-        *(DataWord *)(register_RBP + -0x5c) = operationResult;
-        *(DataWord *)(register_RBP + -0x58) = dataFlags;
-        validationErrorCode = ValidateDataIntegrityA0(validationStatus,register_RBP + -0x80);
+        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
+        *(DataWord *)(stackFramePointer + -100) = validationStatus;
+        *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
+        *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
+        *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
+        validationErrorCode = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
         if ((validationErrorCode != 0) || (validationErrorCode = ValidateDataA2(dataContext,&fStackX_24,0), validationErrorCode != 0)) break;
         if (fStackX_24 != 1.0) {
           in_stack_00000048 = fStackX_24;
           in_stack_00000030 = &UNK_1809844c8;
-          stackParameter40 = uStackX_20;
+          stackParameterOffset = uStackX_20;
           in_stack_00000038 = validationErrorCode;
           validationErrorCode = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
           if (validationErrorCode != 0) break;
@@ -18068,7 +18068,7 @@ void ProcessFloatingPointDataA0(void)
   }
 ProcessCompleteLabel:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(register_RBP + 0x1d0) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -18081,10 +18081,10 @@ ProcessCompleteLabel:
 void ExecuteSecurityCheckJumpA0(void)
 
 {
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(register_RBP + 0x1d0) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x1d0) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -18129,18 +18129,18 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
 
 {
   int inputParameter;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   char register_SIL;
-  int64_t *register_RDI;
+  int64_t *destinationIndexRegister;
   ByteFlag auStackX_20 [8];
   uint64_t in_stack_00000220;
   
-  inputParameter = (**(FunctionPointer**)(in_RAX + 0x10))();
+  inputParameter = (**(FunctionPointer**)(inputAccumulatorRegister + 0x10))();
   ProcessData(auStackX_20 + inputParameter,0x200 - inputParameter,10);
-  inputParameter = (**(FunctionPointer**)(*register_RDI + 8))();
+  inputParameter = (**(FunctionPointer**)(*destinationIndexRegister + 8))();
   if (((inputParameter == 0) && (register_SIL == '\0')) &&
-     (inputParameter = (**(FunctionPointer**)(*register_RDI + 0x18))(), inputParameter == 0)) {
-    *(ByteFlag *)(register_RDI + 4) = 0;
+     (inputParameter = (**(FunctionPointer**)(*destinationIndexRegister + 0x18))(), inputParameter == 0)) {
+    *(ByteFlag *)(destinationIndexRegister + 4) = 0;
   }
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(in_stack_00000220 ^ (uint64_t)&stack0x00000000);
@@ -18156,11 +18156,11 @@ void ProcessDataPointerOperationsA0(int64_t *dataPointer, int64_t *resultPointer
 {
   int inputParameter;
   char register_SIL;
-  int64_t *register_RDI;
+  int64_t *destinationIndexRegister;
   uint64_t in_stack_00000220;
   
-  if ((register_SIL == '\0') && (inputParameter = (**(FunctionPointer**)(*register_RDI + 0x18))(), inputParameter == 0)) {
-    *(ByteFlag *)(register_RDI + 4) = 0;
+  if ((register_SIL == '\0') && (inputParameter = (**(FunctionPointer**)(*destinationIndexRegister + 0x18))(), inputParameter == 0)) {
+    *(ByteFlag *)(destinationIndexRegister + 4) = 0;
   }
                     // WARNING: Subroutine does not return
   ExecuteSecurityCheck(in_stack_00000220 ^ (uint64_t)&stack0x00000000);
@@ -18454,7 +18454,7 @@ ProcessDataSecurityValidation:
   char cVar12;
   int inputParameter3;
   uint dataValue4;
-  DataBuffer *in_RAX;
+  DataBuffer *inputAccumulatorRegister;
   int64_t validationContext5;
   DataBuffer dataValue6;
   DataBuffer dataValue7;
@@ -18462,7 +18462,7 @@ ProcessDataSecurityValidation:
   float calculationResult19;
   uint64_t functionReturnValue0;
   float *poutputValue21;
-  DataBuffer *register_RBP;
+  DataBuffer *stackFramePointer;
   int64_t systemContext;
   DataBuffer *resourcePointer2;
   float register_R13D;
@@ -18503,12 +18503,12 @@ ProcessDataSecurityValidation:
   resourcePointer2 = (DataBuffer *)(registerR14 + 8);
   fStack0000000000000048 = register_R13D;
   puStack0000000000000058 = resourcePointer2;
-  validationContext5 = (*(code *)*in_RAX)(resourcePointer2);
+  validationContext5 = (*(code *)*inputAccumulatorRegister)(resourcePointer2);
   inputParameter3 = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(validationContext5 + 0xd0),&stack0x00000048);
   if (inputParameter3 == 0) {
     in_stack_00000070 = &UNK_1809832b8;
-    *(DataWord *)(register_RBP + -0xf) = uStackX_20;
-    *(float *)(register_RBP + -0x10) = fStack0000000000000048;
+    *(DataWord *)(stackFramePointer + -0xf) = uStackX_20;
+    *(float *)(stackFramePointer + -0x10) = fStack0000000000000048;
     in_stack_00000078 = register_R13D;
     inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da,&stack0x00000070);
     if (inputParameter3 == 0) {
@@ -18524,22 +18524,22 @@ ProcessDataSecurityValidation:
           resourcePointer2 = puStack0000000000000058;
           if ((cVar12 == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
             functionReturnValue4 = *(DataWord *)(functionReturnValue0 + 4 + validationContext5);
-            register_RBP[-4] = &SystemMemoryInitializationReference;
-            *(DataWord *)(register_RBP + -2) = uStackX_20;
+            stackFramePointer[-4] = &SystemMemoryInitializationReference;
+            *(DataWord *)(stackFramePointer + -2) = uStackX_20;
             pmemoryBaseAddress = (DataBuffer *)*puStack0000000000000058;
-            *(DataWord *)(register_RBP + -1) = functionReturnValue4;
-            *(DataWord *)(register_RBP + -3) = 0;
+            *(DataWord *)(stackFramePointer + -1) = functionReturnValue4;
+            *(DataWord *)(stackFramePointer + -3) = 0;
             validationContext5 = (*(code *)*pmemoryBaseAddress)(puStack0000000000000058);
-            *register_RBP = *(DataBuffer *)(*(int64_t *)(validationContext5 + 0x90) + functionReturnValue3 * 8);
-            *(ByteFlag *)((int64_t)register_RBP + -4) = 0;
+            *stackFramePointer = *(DataBuffer *)(*(int64_t *)(validationContext5 + 0x90) + functionReturnValue3 * 8);
+            *(ByteFlag *)((int64_t)stackFramePointer + -4) = 0;
             if (*(int *)(dataContext + 0x58) < 1) {
               pdataValue8 = &DAT_18098bc73;
             }
             else {
               pdataValue8 = *(uint8_t **)(dataContext + 0x50);
             }
-            functionReturnValue4 = InitializeMemory(register_RBP + 1,pdataValue8,0x80);
-            inputParameter3 = ValidateDataIntegrityA0(functionReturnValue4,register_RBP + -4);
+            functionReturnValue4 = InitializeMemory(stackFramePointer + 1,pdataValue8,0x80);
+            inputParameter3 = ValidateDataIntegrityA0(functionReturnValue4,stackFramePointer + -4);
             if (inputParameter3 != 0) goto FUN_180897b0e;
           }
           register_R13D = 0.0;
@@ -18564,24 +18564,24 @@ ProcessDataSecurityValidation:
             operationResult = *(DataWord *)(register_R15 + 0x4c);
             dataFlags = *(DataWord *)(register_R15 + 0x50);
             validationOutcome = *(DataWord *)(register_R15 + 0x54);
-            register_RBP[-0xe] = &SystemSecurityCheckReference;
-            register_RBP[-0xb] = dataValue7;
-            register_RBP[-10] = dataValue6;
-            *(float *)(register_RBP + -0xd) = register_R13D;
+            stackFramePointer[-0xe] = &SystemSecurityCheckReference;
+            stackFramePointer[-0xb] = dataValue7;
+            stackFramePointer[-10] = dataValue6;
+            *(float *)(stackFramePointer + -0xd) = register_R13D;
             securityCheckResult = *(DataWord *)(register_R15 + 0x58);
             statusCounter = *(DataWord *)(register_R15 + 0x5c);
             loopCounter = *(DataWord *)(register_R15 + 0x60);
             dataValue1 = *(DataWord *)(register_R15 + 100);
-            *(DataWord *)(register_RBP + -0xc) = uStackX_20;
-            *(DataWord *)(register_RBP + -9) = functionReturnValue4;
-            *(DataWord *)((int64_t)register_RBP + -0x44) = operationResult;
-            *(DataWord *)(register_RBP + -8) = dataFlags;
-            *(DataWord *)((int64_t)register_RBP + -0x3c) = validationOutcome;
-            *(DataWord *)(register_RBP + -7) = securityCheckResult;
-            *(DataWord *)((int64_t)register_RBP + -0x34) = statusCounter;
-            *(DataWord *)(register_RBP + -6) = loopCounter;
-            *(DataWord *)((int64_t)register_RBP + -0x2c) = dataValue1;
-            inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,register_RBP + -0xe);
+            *(DataWord *)(stackFramePointer + -0xc) = uStackX_20;
+            *(DataWord *)(stackFramePointer + -9) = functionReturnValue4;
+            *(DataWord *)((int64_t)stackFramePointer + -0x44) = operationResult;
+            *(DataWord *)(stackFramePointer + -8) = dataFlags;
+            *(DataWord *)((int64_t)stackFramePointer + -0x3c) = validationOutcome;
+            *(DataWord *)(stackFramePointer + -7) = securityCheckResult;
+            *(DataWord *)((int64_t)stackFramePointer + -0x34) = statusCounter;
+            *(DataWord *)(stackFramePointer + -6) = loopCounter;
+            *(DataWord *)((int64_t)stackFramePointer + -0x2c) = dataValue1;
+            inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,stackFramePointer + -0xe);
             functionReturnValue4 = extraout_XMM0_Da_02;
             if (inputParameter3 != 0) goto FUN_180897b0e;
           }
@@ -18692,7 +18692,7 @@ ProcessDataSecurityValidation:
   }
 ValidateDataSecurity:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(register_RBP[0x12] ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -18717,7 +18717,7 @@ ValidateDataSecurity:
   char cVar12;
   int inputParameter3;
   uint dataValue4;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   int64_t validationContext5;
   DataBuffer dataValue6;
   DataBuffer dataValue7;
@@ -18725,7 +18725,7 @@ ValidateDataSecurity:
   float processingValue19;
   uint64_t functionReturnValue0;
   float *poutputValue21;
-  DataBuffer *register_RBP;
+  DataBuffer *stackFramePointer;
   int64_t systemContext;
   DataBuffer *register_R12;
   float register_R13D;
@@ -18759,10 +18759,10 @@ ValidateDataSecurity:
   DataWord in_stack_000001a0;
   DataWord in_stack_000001a8;
   
-  if (0 < in_RAX) {
+  if (0 < inputAccumulatorRegister) {
     functionReturnValue2 = (uint64_t)(uint)register_R13D;
     functionReturnValue0 = (uint64_t)(uint)register_R13D;
-    lStack0000000000000060 = in_RAX;
+    lStack0000000000000060 = inputAccumulatorRegister;
     do {
       validationContext5 = *(int64_t *)(register_R15 + 0x20);
       dataContext = *(int64_t *)(functionReturnValue0 + 0x10 + validationContext5);
@@ -18771,22 +18771,22 @@ ValidateDataSecurity:
       register_R12 = in_stack_00000058;
       if ((cVar12 == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
         functionReturnValue3 = *(DataWord *)(functionReturnValue0 + 4 + validationContext5);
-        register_RBP[-4] = &SystemMemoryInitializationReference;
-        *(DataWord *)(register_RBP + -2) = uStackX_20;
+        stackFramePointer[-4] = &SystemMemoryInitializationReference;
+        *(DataWord *)(stackFramePointer + -2) = uStackX_20;
         pmemoryBaseAddress = (DataBuffer *)*in_stack_00000058;
-        *(DataWord *)(register_RBP + -1) = functionReturnValue3;
-        *(DataWord *)(register_RBP + -3) = 0;
+        *(DataWord *)(stackFramePointer + -1) = functionReturnValue3;
+        *(DataWord *)(stackFramePointer + -3) = 0;
         validationContext5 = (*(code *)*pmemoryBaseAddress)(in_stack_00000058);
-        *register_RBP = *(DataBuffer *)(*(int64_t *)(validationContext5 + 0x90) + functionReturnValue2 * 8);
-        *(ByteFlag *)((int64_t)register_RBP + -4) = 0;
+        *stackFramePointer = *(DataBuffer *)(*(int64_t *)(validationContext5 + 0x90) + functionReturnValue2 * 8);
+        *(ByteFlag *)((int64_t)stackFramePointer + -4) = 0;
         if (*(int *)(dataContext + 0x58) < 1) {
           pdataValue8 = &DAT_18098bc73;
         }
         else {
           pdataValue8 = *(uint8_t **)(dataContext + 0x50);
         }
-        functionReturnValue3 = InitializeMemory(register_RBP + 1,pdataValue8,0x80);
-        inputParameter3 = ValidateDataIntegrityA0(functionReturnValue3,register_RBP + -4);
+        functionReturnValue3 = InitializeMemory(stackFramePointer + 1,pdataValue8,0x80);
+        inputParameter3 = ValidateDataIntegrityA0(functionReturnValue3,stackFramePointer + -4);
         if (inputParameter3 != 0) goto FUN_180897afe;
       }
       register_R13D = 0.0;
@@ -18811,24 +18811,24 @@ ValidateDataSecurity:
         operationResult = *(DataWord *)(register_R15 + 0x4c);
         dataFlags = *(DataWord *)(register_R15 + 0x50);
         validationOutcome = *(DataWord *)(register_R15 + 0x54);
-        register_RBP[-0xe] = &SystemSecurityCheckReference;
-        register_RBP[-0xb] = dataValue7;
-        register_RBP[-10] = dataValue6;
-        *(float *)(register_RBP + -0xd) = register_R13D;
+        stackFramePointer[-0xe] = &SystemSecurityCheckReference;
+        stackFramePointer[-0xb] = dataValue7;
+        stackFramePointer[-10] = dataValue6;
+        *(float *)(stackFramePointer + -0xd) = register_R13D;
         securityCheckResult = *(DataWord *)(register_R15 + 0x58);
         statusCounter = *(DataWord *)(register_R15 + 0x5c);
         loopCounter = *(DataWord *)(register_R15 + 0x60);
         dataValue1 = *(DataWord *)(register_R15 + 100);
-        *(DataWord *)(register_RBP + -0xc) = uStackX_20;
-        *(DataWord *)(register_RBP + -9) = functionReturnValue3;
-        *(DataWord *)((int64_t)register_RBP + -0x44) = operationResult;
-        *(DataWord *)(register_RBP + -8) = dataFlags;
-        *(DataWord *)((int64_t)register_RBP + -0x3c) = validationOutcome;
-        *(DataWord *)(register_RBP + -7) = securityCheckResult;
-        *(DataWord *)((int64_t)register_RBP + -0x34) = statusCounter;
-        *(DataWord *)(register_RBP + -6) = loopCounter;
-        *(DataWord *)((int64_t)register_RBP + -0x2c) = dataValue1;
-        inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,register_RBP + -0xe);
+        *(DataWord *)(stackFramePointer + -0xc) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -9) = functionReturnValue3;
+        *(DataWord *)((int64_t)stackFramePointer + -0x44) = operationResult;
+        *(DataWord *)(stackFramePointer + -8) = dataFlags;
+        *(DataWord *)((int64_t)stackFramePointer + -0x3c) = validationOutcome;
+        *(DataWord *)(stackFramePointer + -7) = securityCheckResult;
+        *(DataWord *)((int64_t)stackFramePointer + -0x34) = statusCounter;
+        *(DataWord *)(stackFramePointer + -6) = loopCounter;
+        *(DataWord *)((int64_t)stackFramePointer + -0x2c) = dataValue1;
+        inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,stackFramePointer + -0xe);
         functionReturnValue3 = extraout_XMM0_Da_01;
         if (inputParameter3 != 0) goto FUN_180897afe;
       }
@@ -18937,7 +18937,7 @@ ValidateDataSecurity:
   }
 ExecuteFloatingPointSecurityCheck:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(register_RBP[0x12] ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(stackFramePointer[0x12] ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -19079,7 +19079,7 @@ void ProcessFloatingPointDataA0(float inputValue)
   }
 ValidationFailedLabel:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(register_RBP + 0x90) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -19092,10 +19092,10 @@ ValidationFailedLabel:
 void ExecuteSecurityCheckAndTerminateA1(void)
 
 {
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(register_RBP + 0x90) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -19108,10 +19108,10 @@ void ExecuteSecurityCheckAndTerminateA1(void)
 void ExecuteSecurityCheckAndTerminateA2(void)
 
 {
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(register_RBP + 0x90) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -19124,10 +19124,10 @@ void ExecuteSecurityCheckAndTerminateA2(void)
 void ExecuteSecurityCheckAndTerminateA3(void)
 
 {
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(register_RBP + 0x90) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x90) ^ (uint64_t)&stack0x00000000);
 }
 
 
@@ -19580,11 +19580,11 @@ void ProcessFloatingPointDataA1(int64_t *dataContext)
           resourcePointer = (DataBuffer *)(validationContext5 + 0xf0 + (int64_t)validationContextPointer0);
           uStack_2b4 = *resourcePointer;
           uStack_2ac = resourcePointer[1];
-          pvalidationStatus = (DataWord *)(validationContext5 + 0x100 + (int64_t)validationContextPointer0);
-          uStack_2a4 = *pvalidationStatus;
-          uStack_2a0 = pvalidationStatus[1];
-          uStack_29c = pvalidationStatus[2];
-          uStack_298 = pvalidationStatus[3];
+          validationStatusPointer = (DataWord *)(validationContext5 + 0x100 + (int64_t)validationContextPointer0);
+          uStack_2a4 = *validationStatusPointer;
+          uStack_2a0 = validationStatusPointer[1];
+          uStack_29c = validationStatusPointer[2];
+          uStack_298 = validationStatusPointer[3];
           lStack_294 = *(int64_t *)(validationContext5 + 0x260 + (int64_t)validationContextPointer9);
           uStack_28c = *(uint *)(validationContext5 + 0x268 + (int64_t)validationContextPointer9);
           validationContext1 = validationContext1 - lStack_294;
@@ -20205,7 +20205,7 @@ DataWord ProcessDataF0(DataBuffer param_1,int param_2,DataWord *param_3)
   DataBuffer *bufferPointer2;
   uint bufferOffset;
   int bufferIndex;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   ByteFlag *systemContext;
   int64_t validationContext4;
   DataBuffer *bufferPointer3;
@@ -20227,7 +20227,7 @@ DataWord ProcessDataF0(DataBuffer param_1,int param_2,DataWord *param_3)
   }
   inputParameter8 = 0;
   dataValue2 = 0;
-  inputParameter3 = (int)register_RBP;
+  inputParameter3 = (int)stackFramePointer;
   memoryBaseAddress = *(uint3 *)((int64_t)param_2 * 3 + registerR14[6]);
   while (validationOutcome = (uint)memoryBaseAddress, validationOutcome != 0xffffff) {
     validationStatus = *(uint *)(*registerR14 + (uint64_t)validationOutcome * 8);
@@ -20301,7 +20301,7 @@ DataWord ProcessDataF0(DataBuffer param_1,int param_2,DataWord *param_3)
           pdataValue5 = pdataValue5 + -1;
         } while (pdataValue1 < pdataValue5);
       }
-      systemContext[register_RBP + -1] = 0;
+      systemContext[stackFramePointer + -1] = 0;
       dataValue7 = 0x41;
     }
   }
@@ -20327,7 +20327,7 @@ DataWord ProcessDataF1(DataBuffer param_1,uint64_t param_2)
   ByteFlag *pdataFlags;
   uint register_EBX;
   int calculatedValue;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   ByteFlag *systemContext;
   int64_t bufferPointer;
   ByteFlag *pstatusCounter;
@@ -20339,7 +20339,7 @@ DataWord ProcessDataF1(DataBuffer param_1,uint64_t param_2)
   
   do {
     memoryBaseAddress = *(uint *)(*registerR14 + param_2 * 8);
-    calculatedValue = (int)register_RBP;
+    calculatedValue = (int)stackFramePointer;
     if ((memoryBaseAddress & 0xffffff) != 0xffffff) {
       bufferPointer = (uint64_t)(memoryBaseAddress & 0xffffff) + registerR14[4];
       operationResult = ValidateSystemDataIntegrityB0(bufferPointer);
@@ -20409,7 +20409,7 @@ DataWord ProcessDataF1(DataBuffer param_1,uint64_t param_2)
           pstatusCounter = pstatusCounter + -1;
         } while (pdataFlags < pstatusCounter);
       }
-      systemContext[register_RBP + -1] = (char)register_R13D;
+      systemContext[stackFramePointer + -1] = (char)register_R13D;
       register_R13D = 0x41;
     }
   }
@@ -20429,17 +20429,17 @@ DataWord QuerySystemStatusF0(void)
 {
   ByteFlag dataValue;
   ByteFlag *resourcePointer;
-  ByteFlag *pvalidationStatus;
+  ByteFlag *validationStatusPointer;
   int register_EBX;
   int arrayIndex;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   ByteFlag *systemContext;
   ByteFlag *poperationResult;
   DataWord register_R13D;
   int register_R15D;
   int *in_stack_00000078;
   
-  arrayIndex = (int)register_RBP;
+  arrayIndex = (int)stackFramePointer;
   if (arrayIndex != 0) {
     if (register_R15D < arrayIndex) {
       poperationResult = systemContext + register_R15D;
@@ -20456,8 +20456,8 @@ DataWord QuerySystemStatusF0(void)
       *poperationResult = (char)register_R13D;
     }
     else {
-      pvalidationStatus = systemContext + register_EBX;
-      resourcePointer = pvalidationStatus + -1;
+      validationStatusPointer = systemContext + register_EBX;
+      resourcePointer = validationStatusPointer + -1;
       poperationResult = systemContext;
       if (systemContext < resourcePointer) {
         do {
@@ -20468,17 +20468,17 @@ DataWord QuerySystemStatusF0(void)
           resourcePointer = resourcePointer + -1;
         } while (poperationResult < resourcePointer);
       }
-      resourcePointer = pvalidationStatus + (int64_t)(arrayIndex - register_EBX) + -1;
-      if (pvalidationStatus < resourcePointer) {
+      resourcePointer = validationStatusPointer + (int64_t)(arrayIndex - register_EBX) + -1;
+      if (validationStatusPointer < resourcePointer) {
         do {
-          dataValue = *pvalidationStatus;
-          *pvalidationStatus = *resourcePointer;
-          pvalidationStatus = pvalidationStatus + 1;
+          dataValue = *validationStatusPointer;
+          *validationStatusPointer = *resourcePointer;
+          validationStatusPointer = validationStatusPointer + 1;
           *resourcePointer = dataValue;
           resourcePointer = resourcePointer + -1;
-        } while (pvalidationStatus < resourcePointer);
+        } while (validationStatusPointer < resourcePointer);
       }
-      systemContext[register_RBP + -1] = (char)register_R13D;
+      systemContext[stackFramePointer + -1] = (char)register_R13D;
       register_R13D = 0x41;
     }
   }
@@ -20606,23 +20606,23 @@ ValidationCheckpointA:
                     // WARNING: Subroutine does not return
       ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*registerContext,&SystemMemoryPoolB,0x100,1);
     }
-    *registerContext = (int64_t)pvalidationStatus;
+    *registerContext = (int64_t)validationStatusPointer;
     *(int *)((int64_t)registerContext + 0xc) = register_EDI;
     return 0;
   }
   if (param_2 * 3 - 1U < MaxSafeBufferSize) {
-    pvalidationStatus = (BytePair *)
+    validationStatusPointer = (BytePair *)
              AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),param_2 * 3,&SystemMemoryPoolB,0xf4,0
                           );
-    if (pvalidationStatus != (BytePair *)0x0) {
+    if (validationStatusPointer != (BytePair *)0x0) {
       inputParameter = (int)registerContext[1];
       calculatedIndex = (int64_t)inputParameter;
       if ((inputParameter != 0) && (dataContext = *registerContext, 0 < inputParameter)) {
-        poperationResult = pvalidationStatus;
+        poperationResult = validationStatusPointer;
         do {
-          *poperationResult = *(BytePair *)((dataContext - (int64_t)pvalidationStatus) + (int64_t)poperationResult);
+          *poperationResult = *(BytePair *)((dataContext - (int64_t)validationStatusPointer) + (int64_t)poperationResult);
           *(ByteFlag *)(poperationResult + 1) =
-               *(ByteFlag *)((dataContext - (int64_t)pvalidationStatus) + 2 + (int64_t)poperationResult);
+               *(ByteFlag *)((dataContext - (int64_t)validationStatusPointer) + 2 + (int64_t)poperationResult);
           poperationResult = (BytePair *)((int64_t)poperationResult + 3);
           calculatedIndex = calculatedIndex + -1;
         } while (calculatedIndex != 0);
@@ -20952,8 +20952,8 @@ DataBuffer ProcessDataSequenceA0(int64_t *param_1)
 
 {
   DataBuffer dataValue;
-  uint *register_RDI;
-  uint stackParameter40;
+  uint *destinationIndexRegister;
+  uint stackParameterOffset;
   uint in_stack_00000050;
   
   param_1 = (int64_t *)*param_1;
@@ -20962,12 +20962,12 @@ DataBuffer ProcessDataSequenceA0(int64_t *param_1)
   }
   else {
     if (param_1[2] != 0) {
-      stackParameter40 = 0;
+      stackParameterOffset = 0;
       dataValue = AllocateMemory(*param_1,&stack0x00000040);
       if ((int)dataValue != 0) {
         return dataValue;
       }
-      if ((uint64_t)param_1[2] < (uint64_t)stackParameter40 + 4) {
+      if ((uint64_t)param_1[2] < (uint64_t)stackParameterOffset + 4) {
         dataValue = 0x11;
         goto LAB_1808992a5;
       }
@@ -20976,11 +20976,11 @@ DataBuffer ProcessDataSequenceA0(int64_t *param_1)
   }
 ValidationCheckpointB:
   if ((int)dataValue == 0) {
-    *register_RDI = in_stack_00000050;
+    *destinationIndexRegister = in_stack_00000050;
     if (2 < in_stack_00000050) {
       return 0xd;
     }
-    dataValue = OperateDataO0(param_1,register_RDI + 1,4);
+    dataValue = OperateDataO0(param_1,destinationIndexRegister + 1,4);
   }
   return dataValue;
 }
@@ -21054,7 +21054,7 @@ DataBuffer ExecuteDataValidationA0(DataBuffer *param_1,int64_t *param_2)
 {
   DataBuffer dataValue;
   int64_t dataContext;
-  uint *pvalidationStatus;
+  uint *validationStatusPointer;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
   
@@ -21079,13 +21079,13 @@ DataBuffer ExecuteDataValidationA0(DataBuffer *param_1,int64_t *param_2)
 SecurityCheckpointA:
   if ((int)dataValue == 0) {
     UpdateSystemStateO0(param_1,aiStackX_8[0]);
-    pvalidationStatus = (uint *)*param_1;
+    validationStatusPointer = (uint *)*param_1;
     while (0 < aiStackX_8[0]) {
-      dataValue = OperateDataO0(param_2,pvalidationStatus,4);
+      dataValue = OperateDataO0(param_2,validationStatusPointer,4);
       if ((int)dataValue != 0) {
         return dataValue;
       }
-      switch(*pvalidationStatus & 0xff) {
+      switch(*validationStatusPointer & 0xff) {
       case 0:
       case 1:
       case 2:
@@ -21098,7 +21098,7 @@ SecurityCheckpointA:
       default:
         goto LAB_180899546;
       case 0x10:
-        dataValue = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 1);
+        dataValue = ValidateDataWithSecurityCheckA2(param_2,validationStatusPointer + 1);
         if ((int)dataValue != 0) {
           return dataValue;
         }
@@ -21106,7 +21106,7 @@ SecurityCheckpointA:
         aiStackX_8[0] = aiStackX_8[0] + -8;
         break;
       case 0x11:
-        dataValue = ProcessDataBlocksA1(param_2,pvalidationStatus + 1);
+        dataValue = ProcessDataBlocksA1(param_2,validationStatusPointer + 1);
         if ((int)dataValue != 0) {
           return dataValue;
         }
@@ -21114,18 +21114,18 @@ SecurityCheckpointA:
         aiStackX_8[0] = aiStackX_8[0] + -0x14;
         break;
       case 0x20:
-        dataValue = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 1);
+        dataValue = ValidateDataWithSecurityCheckA2(param_2,validationStatusPointer + 1);
         if ((int)dataValue != 0) {
           return dataValue;
         }
-        dataValue = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 2);
+        dataValue = ValidateDataWithSecurityCheckA2(param_2,validationStatusPointer + 2);
         if ((int)dataValue != 0) {
           return dataValue;
         }
         dataContext = 0xc;
         aiStackX_8[0] = aiStackX_8[0] + -0xc;
       }
-      pvalidationStatus = (uint *)((int64_t)pvalidationStatus + dataContext);
+      validationStatusPointer = (uint *)((int64_t)validationStatusPointer + dataContext);
     }
     if (aiStackX_8[0] != 0) {
 SecurityCheckpointB:
@@ -21686,16 +21686,16 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
       }
       pdataValue = *(DataBuffer **)(registerContext + 8);
       operationStatus = *(int *)(registerR14 + 0x48);
-      *(int *)(register_RBP + 0x20) = operationStatus;
-      operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
+      *(int *)(stackFramePointer + 0x20) = operationStatus;
+      operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,stackFramePointer + 0x20,4);
       if (operationResult == 0) {
         operationResult = validationOutcome;
         if (0 < operationStatus) {
           do {
             pdataValue = *(DataBuffer **)(registerContext + 8);
-            *(DataWord *)(register_RBP + 0x20) =
+            *(DataWord *)(stackFramePointer + 0x20) =
                  *(DataWord *)(*(int64_t *)(registerR14 + 0x40) + operationResult * 4);
-            operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
+            operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,stackFramePointer + 0x20,4);
             if (operationResult != 0) {
               return;
             }
@@ -21704,8 +21704,8 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
         }
         pdataValue = *(DataBuffer **)(registerContext + 8);
         operationStatus = *(int *)(registerR14 + 0x58);
-        *(int *)(register_RBP + 0x20) = operationStatus;
-        operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
+        *(int *)(stackFramePointer + 0x20) = operationStatus;
+        operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,stackFramePointer + 0x20,4);
         if (operationResult == 0) {
           operationResult = validationOutcome;
           securityCheckResult = validationOutcome;
@@ -21720,14 +21720,14 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
               memoryBaseAddress = *(uint *)(memoryPointer + 0x10);
               pdataValue = *(DataBuffer **)(registerContext + 8);
               if (memoryBaseAddress < 0x8000) {
-                *(short *)(register_RBP + 0x20) = (short)memoryBaseAddress;
+                *(short *)(stackFramePointer + 0x20) = (short)memoryBaseAddress;
                 statusCounter = 2;
               }
               else {
                 statusCounter = 4;
-                *(uint *)(register_RBP + 0x20) = (memoryBaseAddress & 0xffffc000 | 0x4000) * 2 | memoryBaseAddress & 0x7fff;
+                *(uint *)(stackFramePointer + 0x20) = (memoryBaseAddress & 0xffffc000 | 0x4000) * 2 | memoryBaseAddress & 0x7fff;
               }
-              operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,statusCounter);
+              operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,stackFramePointer + 0x20,statusCounter);
               if (operationResult != 0) {
                 return;
               }
@@ -21744,21 +21744,21 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
           if (operationStatus == 0) {
             pdataValue = *(DataBuffer **)(registerContext + 8);
             operationStatus = *(int *)(registerR14 + 0x78);
-            *(int *)(register_RBP + 0x20) = operationStatus;
-            operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
+            *(int *)(stackFramePointer + 0x20) = operationStatus;
+            operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,stackFramePointer + 0x20,4);
             if (operationResult == 0) {
               if (0 < operationStatus) {
                 do {
                   memoryPointer = *(int64_t *)(registerR14 + 0x70);
                   pdataValue = *(DataBuffer **)(registerContext + 8);
-                  *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(memoryPointer + validationOutcome * 8);
-                  operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
+                  *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(memoryPointer + validationOutcome * 8);
+                  operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,stackFramePointer + 0x20,4);
                   if (operationResult != 0) {
                     return;
                   }
                   pdataValue = *(DataBuffer **)(registerContext + 8);
-                  *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(memoryPointer + 4 + validationOutcome * 8);
-                  operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
+                  *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(memoryPointer + 4 + validationOutcome * 8);
+                  operationResult = (**(FunctionPointer**)*pdataValue)(pdataValue,stackFramePointer + 0x20,4);
                   if (operationResult != 0) {
                     return;
                   }
@@ -21766,8 +21766,8 @@ void ProcessSystemDataPointer(DataBuffer *systemDataPointer,DataBuffer operation
                 } while ((int64_t)validationOutcome < (int64_t)operationStatus);
               }
               pdataValue = *(DataBuffer **)(registerContext + 8);
-              *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(registerR14 + 0x80);
-              (**(FunctionPointer**)*pdataValue)(pdataValue,register_RBP + 0x20,4);
+              *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(registerR14 + 0x80);
+              (**(FunctionPointer**)*pdataValue)(pdataValue,stackFramePointer + 0x20,4);
             }
           }
         }
@@ -21790,10 +21790,10 @@ void InitializeSystemDataStructure(DataBuffer *param_1)
   int operationStatus;
   int arrayIndex;
   int64_t registerContext;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   int64_t systemContext;
   int64_t resourceIterator;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   int64_t memoryPointer;
   int64_t registerR14;
   int64_t memoryOffset;
@@ -21804,8 +21804,8 @@ void InitializeSystemDataStructure(DataBuffer *param_1)
   
   operationStatus = (**(FunctionPointer**)*param_1)();
   if (operationStatus == 0) {
-    memoryPointer = register_RDI;
-    memoryOffset = register_RDI;
+    memoryPointer = destinationIndexRegister;
+    memoryOffset = destinationIndexRegister;
     securityCheckResult = extraout_XMM0_Da;
     if (0 < (int)systemContext) {
       do {
@@ -21817,14 +21817,14 @@ void InitializeSystemDataStructure(DataBuffer *param_1)
         dataValue = *(uint *)(resourceIterator + 0x10);
         resourcePointer = *(DataBuffer **)(registerContext + 8);
         if (dataValue < 0x8000) {
-          *(short *)(register_RBP + 0x20) = (short)dataValue;
+          *(short *)(stackFramePointer + 0x20) = (short)dataValue;
           securityCheckResult = 2;
         }
         else {
           securityCheckResult = 4;
-          *(uint *)(register_RBP + 0x20) = (dataValue & 0xffffc000 | 0x4000) * 2 | dataValue & 0x7fff;
+          *(uint *)(stackFramePointer + 0x20) = (dataValue & 0xffffc000 | 0x4000) * 2 | dataValue & 0x7fff;
         }
-        operationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,securityCheckResult);
+        operationStatus = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,securityCheckResult);
         if (operationStatus != 0) {
           return;
         }
@@ -21841,30 +21841,30 @@ void InitializeSystemDataStructure(DataBuffer *param_1)
     if (operationStatus == 0) {
       resourcePointer = *(DataBuffer **)(registerContext + 8);
       operationStatus = *(int *)(registerR14 + 0x78);
-      *(int *)(register_RBP + 0x20) = operationStatus;
-      arrayIndex = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+      *(int *)(stackFramePointer + 0x20) = operationStatus;
+      arrayIndex = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
       if (arrayIndex == 0) {
         if (0 < operationStatus) {
           do {
             memoryPointer = *(int64_t *)(registerR14 + 0x70);
             resourcePointer = *(DataBuffer **)(registerContext + 8);
-            *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(memoryPointer + register_RDI * 8);
-            arrayIndex = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+            *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(memoryPointer + destinationIndexRegister * 8);
+            arrayIndex = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
             if (arrayIndex != 0) {
               return;
             }
             resourcePointer = *(DataBuffer **)(registerContext + 8);
-            *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(memoryPointer + 4 + register_RDI * 8);
-            arrayIndex = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+            *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(memoryPointer + 4 + destinationIndexRegister * 8);
+            arrayIndex = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
             if (arrayIndex != 0) {
               return;
             }
-            register_RDI = register_RDI + 1;
-          } while (register_RDI < operationStatus);
+            destinationIndexRegister = destinationIndexRegister + 1;
+          } while (destinationIndexRegister < operationStatus);
         }
         resourcePointer = *(DataBuffer **)(registerContext + 8);
-        *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(registerR14 + 0x80);
-        (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+        *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(registerR14 + 0x80);
+        (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
       }
     }
   }
@@ -21942,7 +21942,7 @@ void ValidateSystemDataIntegrity(void)
 {
   int inputParameter;
   int64_t registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   DataWord in_stack_00000030;
   
   inputParameter = CheckSystemStatusAndReturnO0();
@@ -21955,8 +21955,8 @@ void ValidateSystemDataIntegrity(void)
         (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) && (inputParameter = CheckSystemStateAndReturnCodeO1(), inputParameter == 0)) {
       if ((*(uint *)(registerContext + 4) & 0x100) != 0) {
         in_stack_00000030 = *(DataWord *)(registerContext + 0x48);
-        inputParameter = (**(FunctionPointer**)**(DataBuffer **)(register_RDI + 8))
-                          (*(DataBuffer **)(register_RDI + 8),&stack0x00000030,4);
+        inputParameter = (**(FunctionPointer**)**(DataBuffer **)(destinationIndexRegister + 8))
+                          (*(DataBuffer **)(destinationIndexRegister + 8),&stack0x00000030,4);
         if (inputParameter != 0) {
           return;
         }
@@ -22056,7 +22056,7 @@ DataBuffer ExecuteSystemCheckA0(void)
 {
   DataBuffer dataValue;
   float *pfVar2;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   int64_t systemContext;
   int operationStatus;
   float fVar4;
@@ -22076,8 +22076,8 @@ DataBuffer ExecuteSystemCheckA0(void)
         fVar4 = 0.0;
       }
       uStack0000000000000070 = (BytePair)(int)(fVar4 * 65535.0);
-      dataValue = (**(FunctionPointer**)**(DataBuffer **)(register_RBP + 8))
-                        (*(DataBuffer **)(register_RBP + 8),&stack0x00000070,2);
+      dataValue = (**(FunctionPointer**)**(DataBuffer **)(stackFramePointer + 8))
+                        (*(DataBuffer **)(stackFramePointer + 8),&stack0x00000070,2);
       if ((int)dataValue != 0) {
         return dataValue;
       }
@@ -22091,8 +22091,8 @@ DataBuffer ExecuteSystemCheckA0(void)
         fVar4 = 0.0;
       }
       uStack0000000000000070 = (BytePair)(int)(fVar4 * 65535.0);
-      dataValue = (**(FunctionPointer**)**(DataBuffer **)(register_RBP + 8))
-                        (*(DataBuffer **)(register_RBP + 8),&stack0x00000070,2);
+      dataValue = (**(FunctionPointer**)**(DataBuffer **)(stackFramePointer + 8))
+                        (*(DataBuffer **)(stackFramePointer + 8),&stack0x00000070,2);
       if ((int)dataValue != 0) {
         return dataValue;
       }
@@ -22312,9 +22312,9 @@ void ValidateAndInitializeSystem(DataWord param_1)
   DataBuffer *resourcePointer;
   int operationStatus;
   int64_t registerContext;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   int64_t calculatedIndex;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   DataBuffer operationResult;
   int iterationCount;
   DataWord extraout_XMM0_Da;
@@ -22325,9 +22325,9 @@ void ValidateAndInitializeSystem(DataWord param_1)
   DataWord extraout_XMM0_Da_04;
   
   iterationCount = 0;
-  if (0 < *(int *)(register_RDI + 0x1a0)) {
+  if (0 < *(int *)(destinationIndexRegister + 0x1a0)) {
     do {
-      calculatedIndex = (int64_t)iterationCount * 0x30 + register_RDI;
+      calculatedIndex = (int64_t)iterationCount * 0x30 + destinationIndexRegister;
       operationStatus = ValidateAndExecuteOperationsA1(param_1,calculatedIndex + 0x10);
       if (operationStatus != 0) {
         return;
@@ -22346,77 +22346,77 @@ void ValidateAndInitializeSystem(DataWord param_1)
       }
       iterationCount = iterationCount + 1;
       param_1 = extraout_XMM0_Da_02;
-    } while (iterationCount < *(int *)(register_RDI + 0x1a0));
+    } while (iterationCount < *(int *)(destinationIndexRegister + 0x1a0));
   }
-  dataValue = *(uint *)(register_RDI + 400);
+  dataValue = *(uint *)(destinationIndexRegister + 400);
   resourcePointer = *(DataBuffer **)(registerContext + 8);
   if (dataValue < 0x8000) {
-    *(short *)(register_RBP + 0x20) = (short)dataValue;
+    *(short *)(stackFramePointer + 0x20) = (short)dataValue;
     operationResult = 2;
   }
   else {
     operationResult = 4;
-    *(uint *)(register_RBP + 0x20) = (dataValue & 0xffffc000 | 0x4000) * 2 | dataValue & 0x7fff;
+    *(uint *)(stackFramePointer + 0x20) = (dataValue & 0xffffc000 | 0x4000) * 2 | dataValue & 0x7fff;
   }
-  iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,operationResult);
+  iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,operationResult);
   if (iterationCount == 0) {
     resourcePointer = *(DataBuffer **)(registerContext + 8);
-    *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x194);
-    iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
-    if (((iterationCount == 0) && (iterationCount = ValidateParametersA1(extraout_XMM0_Da_03,register_RDI + 0x198), iterationCount == 0))
-       && (iterationCount = ValidateParametersA1(extraout_XMM0_Da_04,register_RDI + 0x19c), iterationCount == 0)) {
+    *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x194);
+    iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
+    if (((iterationCount == 0) && (iterationCount = ValidateParametersA1(extraout_XMM0_Da_03,destinationIndexRegister + 0x198), iterationCount == 0))
+       && (iterationCount = ValidateParametersA1(extraout_XMM0_Da_04,destinationIndexRegister + 0x19c), iterationCount == 0)) {
       resourcePointer = *(DataBuffer **)(registerContext + 8);
-      *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1a4);
-      iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+      *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1a4);
+      iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
       if (iterationCount == 0) {
         resourcePointer = *(DataBuffer **)(registerContext + 8);
-        *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1a8);
-        iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+        *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1a8);
+        iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
         if (iterationCount == 0) {
           resourcePointer = *(DataBuffer **)(registerContext + 8);
-          *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1ac);
-          iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+          *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1ac);
+          iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
           if (iterationCount == 0) {
             resourcePointer = *(DataBuffer **)(registerContext + 8);
-            *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1b4);
-            iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+            *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1b4);
+            iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
             if (iterationCount == 0) {
               resourcePointer = *(DataBuffer **)(registerContext + 8);
-              *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1b8);
-              iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+              *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1b8);
+              iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
               if (iterationCount == 0) {
                 resourcePointer = *(DataBuffer **)(registerContext + 8);
-                *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1b0);
-                iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+                *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1b0);
+                iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
                 if (iterationCount == 0) {
                   resourcePointer = *(DataBuffer **)(registerContext + 8);
-                  *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1bc);
-                  iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+                  *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1bc);
+                  iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
                   if (iterationCount == 0) {
                     resourcePointer = *(DataBuffer **)(registerContext + 8);
-                    *(DataBuffer *)(register_RBP + 0x20) = *(DataBuffer *)(register_RDI + 0x1c0);
-                    iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,8);
+                    *(DataBuffer *)(stackFramePointer + 0x20) = *(DataBuffer *)(destinationIndexRegister + 0x1c0);
+                    iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,8);
                     if (iterationCount == 0) {
                       resourcePointer = *(DataBuffer **)(registerContext + 8);
-                      *(DataBuffer *)(register_RBP + 0x20) = *(DataBuffer *)(register_RDI + 0x1c8);
-                      iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,8);
+                      *(DataBuffer *)(stackFramePointer + 0x20) = *(DataBuffer *)(destinationIndexRegister + 0x1c8);
+                      iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,8);
                       if (iterationCount == 0) {
                         resourcePointer = *(DataBuffer **)(registerContext + 8);
-                        *(DataBuffer *)(register_RBP + 0x20) = *(DataBuffer *)(register_RDI + 0x1d0);
-                        iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,8);
+                        *(DataBuffer *)(stackFramePointer + 0x20) = *(DataBuffer *)(destinationIndexRegister + 0x1d0);
+                        iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,8);
                         if (iterationCount == 0) {
                           resourcePointer = *(DataBuffer **)(registerContext + 8);
-                          *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1dc);
-                          iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+                          *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1dc);
+                          iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
                           if (iterationCount == 0) {
                             resourcePointer = *(DataBuffer **)(registerContext + 8);
-                            *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1d8);
-                            iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+                            *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1d8);
+                            iterationCount = (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
                             if (iterationCount == 0) {
                               resourcePointer = *(DataBuffer **)(registerContext + 8);
-                              *(DataWord *)(register_RBP + 0x20) = *(DataWord *)(register_RDI + 0x1e0)
+                              *(DataWord *)(stackFramePointer + 0x20) = *(DataWord *)(destinationIndexRegister + 0x1e0)
                               ;
-                              (**(FunctionPointer**)*resourcePointer)(resourcePointer,register_RBP + 0x20,4);
+                              (**(FunctionPointer**)*resourcePointer)(resourcePointer,stackFramePointer + 0x20,4);
                             }
                           }
                         }
@@ -22576,13 +22576,13 @@ DataBuffer ExecuteDataCleanupA0(void)
   DataBuffer validationStatus;
   int64_t registerContext;
   uint64_t systemContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   DataBuffer in_R9;
   int64_t registerR14;
   int64_t calculatedIndex;
   
   if ((systemContext & 0x10) != 0) {
-    operationResult = *(int *)(register_RDI + 0x260);
+    operationResult = *(int *)(destinationIndexRegister + 0x260);
     validationStatus = (**(FunctionPointer**)**(DataBuffer **)(registerContext + 8))
                       (*(DataBuffer **)(registerContext + 8),&stack0x00000020,4,in_R9,operationResult);
     if ((int)validationStatus != 0) {
@@ -22591,7 +22591,7 @@ DataBuffer ExecuteDataCleanupA0(void)
     calculatedIndex = registerR14;
     if (0 < operationResult) {
       do {
-        sVar1 = *(short *)(*(int64_t *)(register_RDI + 600) + registerR14 + 0x114);
+        sVar1 = *(short *)(*(int64_t *)(destinationIndexRegister + 600) + registerR14 + 0x114);
         validationStatus = ProcessDataPointerA0();
         if ((int)validationStatus != 0) {
           return validationStatus;
@@ -22878,7 +22878,7 @@ uint64_t ProcessBinaryDataA0(void)
   int operationStatus;
   int register_EBX;
   int64_t systemContext;
-  uint *register_RDI;
+  uint *destinationIndexRegister;
   DataBuffer in_R9;
   DataWord extraout_XMM0_Da;
   uint uStack0000000000000068;
@@ -22887,13 +22887,13 @@ uint64_t ProcessBinaryDataA0(void)
   
   if (0 < register_EBX) {
     do {
-      uStack0000000000000068 = *register_RDI;
+      uStack0000000000000068 = *destinationIndexRegister;
       dataValue = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
                         (*(DataBuffer **)(systemContext + 8),&stack0x00000068,4);
       if ((int)dataValue != 0) {
         return dataValue;
       }
-      switch(*register_RDI & 0xff) {
+      switch(*destinationIndexRegister & 0xff) {
       case 0:
       case 1:
       case 2:
@@ -22906,7 +22906,7 @@ uint64_t ProcessBinaryDataA0(void)
       default:
         return 0x1c;
       case 0x10:
-        in_stack_00000070 = register_RDI[1];
+        in_stack_00000070 = destinationIndexRegister[1];
         dataValue = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
                           (*(DataBuffer **)(systemContext + 8),&stack0x00000070,4);
         if ((int)dataValue != 0) {
@@ -22916,7 +22916,7 @@ uint64_t ProcessBinaryDataA0(void)
         operationStatus = -8;
         break;
       case 0x11:
-        dataValue = ProcessDataPointerA0(extraout_XMM0_Da,register_RDI + 1);
+        dataValue = ProcessDataPointerA0(extraout_XMM0_Da,destinationIndexRegister + 1);
         if ((int)dataValue != 0) {
           return dataValue;
         }
@@ -22924,14 +22924,14 @@ uint64_t ProcessBinaryDataA0(void)
         operationStatus = -0x14;
         break;
       case 0x20:
-        in_stack_00000078 = register_RDI[1];
+        in_stack_00000078 = destinationIndexRegister[1];
         dataValue = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
                           (*(DataBuffer **)(systemContext + 8),&stack0x00000078,4);
         if ((int)dataValue != 0) {
           return dataValue;
         }
         dataValue = (**(FunctionPointer**)**(DataBuffer **)(systemContext + 8))
-                          (*(DataBuffer **)(systemContext + 8),&stack0x00000020,4,in_R9,register_RDI[2]);
+                          (*(DataBuffer **)(systemContext + 8),&stack0x00000020,4,in_R9,destinationIndexRegister[2]);
         if ((int)dataValue != 0) {
           return dataValue;
         }
@@ -22939,7 +22939,7 @@ uint64_t ProcessBinaryDataA0(void)
         operationStatus = -0xc;
       }
       register_EBX = register_EBX + operationStatus;
-      register_RDI = (uint *)((int64_t)register_RDI + dataContext);
+      destinationIndexRegister = (uint *)((int64_t)destinationIndexRegister + dataContext);
     } while (0 < register_EBX);
   }
   return (uint64_t)(-(uint)(register_EBX != 0) & 0x1c);
@@ -23153,19 +23153,19 @@ DataBuffer ProcessDataCacheA0(int64_t param_1,DataBuffer *param_2)
 DataBuffer CleanupDataCacheA0(void)
 
 {
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   DataBuffer dataValue;
   DataBuffer *registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   
-  if (*(int *)(in_RAX + 0x18) == 0) {
-    dataValue = QuerySystemStatusA0(*registerContext,register_RDI + 0x60,0x25);
+  if (*(int *)(inputAccumulatorRegister + 0x18) == 0) {
+    dataValue = QuerySystemStatusA0(*registerContext,destinationIndexRegister + 0x60,0x25);
     if ((int)dataValue == 0) {
       if (*(uint *)(registerContext + 8) < 0x3d) {
         dataValue = 0;
       }
       else if (*(int *)(registerContext[1] + 0x18) == 0) {
-        dataValue = GetMemoryAddressA0(*registerContext,register_RDI + 0x40);
+        dataValue = GetMemoryAddressA0(*registerContext,destinationIndexRegister + 0x40);
       }
       else {
         dataValue = 0x1c;
@@ -23222,10 +23222,10 @@ DataBuffer ResetDataCacheA0(void)
   float fVar1;
   int in_EAX;
   DataBuffer functionReturnValue;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t registerContext;
-  DataBuffer register_RBP;
-  int64_t register_RDI;
+  DataBuffer stackFramePointer;
+  int64_t destinationIndexRegister;
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(registerContext + 0x40) < 0x3b) {
@@ -23233,26 +23233,26 @@ DataBuffer ResetDataCacheA0(void)
       if ((int)functionReturnValue != 0) {
         return functionReturnValue;
       }
-      if (*(int *)(register_RDI + 0x50) == 0x14) {
-        pvalidationStatus = (DataBuffer *)**(int64_t **)(register_RDI + 0x48);
-        if (*(int *)(pvalidationStatus + 2) == (int)register_RBP) {
-          fVar1 = *(float *)(pvalidationStatus + 3);
-          if (pvalidationStatus != (DataBuffer *)0x0) {
-            (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+      if (*(int *)(destinationIndexRegister + 0x50) == 0x14) {
+        validationStatusPointer = (DataBuffer *)**(int64_t **)(destinationIndexRegister + 0x48);
+        if (*(int *)(validationStatusPointer + 2) == (int)stackFramePointer) {
+          fVar1 = *(float *)(validationStatusPointer + 3);
+          if (validationStatusPointer != (DataBuffer *)0x0) {
+            (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),pvalidationStatus,&SystemMemoryPoolD,0x130,1);
+            ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),validationStatusPointer,&SystemMemoryPoolD,0x130,1);
           }
-          pvalidationStatus = (DataBuffer *)
+          validationStatusPointer = (DataBuffer *)
                    AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x20,&SystemMemoryPoolD,0x119);
-          if (pvalidationStatus == (DataBuffer *)0x0) {
+          if (validationStatusPointer == (DataBuffer *)0x0) {
             return 0x26;
           }
-          pvalidationStatus[1] = register_RBP;
-          *pvalidationStatus = &UNK_180986940;
-          *(DataWord *)(pvalidationStatus + 2) = 1;
-          *(int *)(pvalidationStatus + 3) = (int)register_RBP;
-          **(DataBuffer **)(register_RDI + 0x48) = pvalidationStatus;
-          *(int *)(pvalidationStatus + 3) = (int)fVar1;
+          validationStatusPointer[1] = stackFramePointer;
+          *validationStatusPointer = &UNK_180986940;
+          *(DataWord *)(validationStatusPointer + 2) = 1;
+          *(int *)(validationStatusPointer + 3) = (int)stackFramePointer;
+          **(DataBuffer **)(destinationIndexRegister + 0x48) = validationStatusPointer;
+          *(int *)(validationStatusPointer + 3) = (int)fVar1;
           goto LAB_18089ae18;
         }
       }
@@ -23362,7 +23362,7 @@ uint64_t GetSystemValidationContext(void)
   uint64_t contextPointer;
   uint64_t systemHandle;
   int64_t *systemRegister;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   uint register_ESI;
   uint register_EDI;
   uint dataFlags;
@@ -23403,13 +23403,13 @@ DataCheckpointB:
     if (validationStatus != 0) {
       return (uint64_t)validationStatus;
     }
-    *(uint *)(register_RBP + 0xc4) = (*(uint *)(register_RBP + 0xc4) | dataFlags) & ~functionReturnValue;
+    *(uint *)(stackFramePointer + 0xc4) = (*(uint *)(stackFramePointer + 0xc4) | dataFlags) & ~functionReturnValue;
     in_EAX = *(uint *)(registerContext + 8);
   }
   memoryBaseAddress = operationResult;
   if (0x8b < in_EAX) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryBaseAddress = OperateDataO0(*registerContext,register_RBP + 0xc4,4);
+      memoryBaseAddress = OperateDataO0(*registerContext,stackFramePointer + 0xc4,4);
     }
     else {
       memoryBaseAddress = (uint64_t)register_EDI;
@@ -23437,7 +23437,7 @@ DataCheckpointB:
   memoryBaseAddress = operationResult;
   if (0x41 < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryBaseAddress = OperateDataO0(*registerContext,register_RBP + 0xcc,4);
+      memoryBaseAddress = OperateDataO0(*registerContext,stackFramePointer + 0xcc,4);
     }
     else {
       memoryBaseAddress = (uint64_t)register_EDI;
@@ -23449,7 +23449,7 @@ DataCheckpointB:
   memoryBaseAddress = operationResult;
   if (0x41 < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      memoryBaseAddress = OperateDataO0(*registerContext,register_RBP + 0xd0,4);
+      memoryBaseAddress = OperateDataO0(*registerContext,stackFramePointer + 0xd0,4);
     }
     else {
       memoryBaseAddress = (uint64_t)register_EDI;
@@ -23470,7 +23470,7 @@ DataCheckpointB:
   }
   if (0x6e < *(uint *)(registerContext + 8)) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      operationResult = OperateDataO0(*registerContext,register_RBP + 200,4);
+      operationResult = OperateDataO0(*registerContext,stackFramePointer + 200,4);
     }
     else {
       operationResult = (uint64_t)register_EDI;
@@ -23524,7 +23524,7 @@ MemoryCheckpointA:
       dataFlags = 0xd;
       goto LAB_18089b226;
     }
-    *(uint *)(register_RBP + 0xd4) = register_ESI;
+    *(uint *)(stackFramePointer + 0xd4) = register_ESI;
     dataFlags = validationOutcome;
   }
 MemoryCheckpointB:
@@ -24008,42 +24008,42 @@ DataBuffer CleanupDataResourcesA0(void)
 {
   int64_t validationContext;
   int64_t *pdataContext;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   DataBuffer validationStatus;
   int64_t *registerContext;
-  DataBuffer register_RBP;
-  int64_t register_RDI;
+  DataBuffer stackFramePointer;
+  int64_t destinationIndexRegister;
   bool in_CF;
   char cStack0000000000000030;
-  uint stackParameter40;
+  uint stackParameterOffset;
   
   if (in_CF) {
-    if (*(int *)(in_RAX + 0x18) != 0) {
+    if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
       return 0x1c;
     }
     validationContext = *registerContext;
-    _cStack0000000000000030 = register_RBP;
-    validationStatus = OperateDataO0(validationContext,register_RDI + 0x60,4);
-    if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(validationContext,register_RDI + 100,2), (int)validationStatus == 0)) &&
-       (validationStatus = OperateDataO0(validationContext,register_RDI + 0x66,2), (int)validationStatus == 0)) {
-      validationStatus = OperateDataO0(validationContext,register_RDI + 0x68,8);
+    _cStack0000000000000030 = stackFramePointer;
+    validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x60,4);
+    if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 100,2), (int)validationStatus == 0)) &&
+       (validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x66,2), (int)validationStatus == 0)) {
+      validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x68,8);
     }
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
   }
   else {
-    if (*(int *)(in_RAX + 0x18) != 0) {
+    if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
       return 0x1c;
     }
-    validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,register_RDI + 0x70);
+    validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x70);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,register_RDI + 0x74);
+    validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x74);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -24060,12 +24060,12 @@ DataBuffer CleanupDataResourcesA0(void)
   }
   else {
     if (pdataContext[2] != 0) {
-      stackParameter40 = 0;
+      stackParameterOffset = 0;
       validationStatus = AllocateMemory(*pdataContext,&stack0x00000040);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((uint64_t)pdataContext[2] < (uint64_t)stackParameter40 + 1) {
+      if ((uint64_t)pdataContext[2] < (uint64_t)stackParameterOffset + 1) {
         validationStatus = 0x11;
         goto LAB_1808a2e6d;
       }
@@ -24074,7 +24074,7 @@ DataBuffer CleanupDataResourcesA0(void)
   }
 LAB_1808a2e6d:
   if ((int)validationStatus == 0) {
-    *(bool *)(register_RDI + 0x7c) = cStack0000000000000030 != (char)validationStatus;
+    *(bool *)(destinationIndexRegister + 0x7c) = cStack0000000000000030 != (char)validationStatus;
   }
   return validationStatus;
 }
@@ -24089,14 +24089,14 @@ DataBuffer ResetDataProcessorA1(void)
   DataBuffer validationStatus;
   int64_t *registerContext;
   char register_BPL;
-  int64_t register_RDI;
-  uint stackParameter40;
+  int64_t destinationIndexRegister;
+  uint stackParameterOffset;
   
   validationContext = *registerContext;
-  validationStatus = OperateDataO0(validationContext,register_RDI + 0x60);
-  if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(validationContext,register_RDI + 100,2), (int)validationStatus == 0)) &&
-     (validationStatus = OperateDataO0(validationContext,register_RDI + 0x66,2), (int)validationStatus == 0)) {
-    validationStatus = OperateDataO0(validationContext,register_RDI + 0x68,8);
+  validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x60);
+  if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 100,2), (int)validationStatus == 0)) &&
+     (validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x66,2), (int)validationStatus == 0)) {
+    validationStatus = OperateDataO0(validationContext,destinationIndexRegister + 0x68,8);
   }
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -24113,12 +24113,12 @@ DataBuffer ResetDataProcessorA1(void)
   }
   else {
     if (pdataContext[2] != 0) {
-      stackParameter40 = 0;
+      stackParameterOffset = 0;
       validationStatus = AllocateMemory(*pdataContext,&stack0x00000040);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((uint64_t)pdataContext[2] < (uint64_t)stackParameter40 + 1) {
+      if ((uint64_t)pdataContext[2] < (uint64_t)stackParameterOffset + 1) {
         validationStatus = 0x11;
         goto LAB_1808a2e6d;
       }
@@ -24127,7 +24127,7 @@ DataBuffer ResetDataProcessorA1(void)
   }
 LAB_1808a2e6d:
   if ((int)validationStatus == 0) {
-    *(bool *)(register_RDI + 0x7c) = register_BPL != (char)validationStatus;
+    *(bool *)(destinationIndexRegister + 0x7c) = register_BPL != (char)validationStatus;
   }
   return validationStatus;
 }
@@ -24170,7 +24170,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  functionReturnValue = ValidateDataWithSecurityCheckA2(*registerContext,register_RDI + 0x74);
+  functionReturnValue = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x74);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -24201,7 +24201,7 @@ DataBuffer ValidateSystemDataIntegrity(int validationFlag)
   }
 LAB_1808a2e6d:
   if ((int)functionReturnValue == 0) {
-    *(bool *)(register_RDI + 0x7c) = in_stack_00000030 != (char)functionReturnValue;
+    *(bool *)(destinationIndexRegister + 0x7c) = in_stack_00000030 != (char)functionReturnValue;
   }
   return functionReturnValue;
 }
@@ -24242,7 +24242,7 @@ void ValidateContextStatus(void)
   }
 LAB_1808a2e6d:
   if (operationResult == 0) {
-    *(bool *)(register_RDI + 0x7c) = in_stack_00000030 != '\0';
+    *(bool *)(destinationIndexRegister + 0x7c) = in_stack_00000030 != '\0';
   }
   return;
 }
@@ -24590,7 +24590,7 @@ uint64_t ProcessUtilityDataValidation(void)
   int64_t dataContext;
   uint validationStatus;
   uint memoryBaseAddress;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   uint64_t operationResult;
   uint dataFlags;
   int64_t *registerContext;
@@ -24600,7 +24600,7 @@ uint64_t ProcessUtilityDataValidation(void)
   char stackDataBuffer;
   uint stackDataSize;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
   }
   validationStatus = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x90);
@@ -25152,7 +25152,7 @@ void ValidateAndInitializeSystemA0(void)
   int arrayIndex;
   int loopIndex;
   int64_t registerContext;
-  DataBuffer *register_RDI;
+  DataBuffer *destinationIndexRegister;
   uint dataFlags;
   uint uStack0000000000000088;
   
@@ -25170,8 +25170,8 @@ void ValidateAndInitializeSystemA0(void)
           if (loopIndex != 0) {
             return;
           }
-          if (*(int *)(register_RDI[1] + 0x18) == 0) {
-            functionReturnValue = *register_RDI;
+          if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+            functionReturnValue = *destinationIndexRegister;
             validationContext = *(int64_t *)(registerContext + 0x20) + (int64_t)arrayIndex * 8;
             loopIndex = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext);
             if (loopIndex != 0) {
@@ -25842,7 +25842,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   uint securityCheckResult;
   uint statusCounter;
   uint loopCounter;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   DataBuffer *pdataValue1;
   DataWord *pdataValue2;
   DataBuffer *pdataValue3;
@@ -25850,9 +25850,9 @@ uint64_t * ValidateSystemDataProcessing(void)
   uint64_t dataValue5;
   DataBuffer *pdataValue6;
   int64_t validationContext7;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   int64_t systemContext;
-  DataBuffer *register_RDI;
+  DataBuffer *destinationIndexRegister;
   int64_t validationContext8;
   int inputParameter9;
   DataWord extraout_XMM0_Da;
@@ -25864,42 +25864,42 @@ uint64_t * ValidateSystemDataProcessing(void)
   float extraout_XMM0_Da_04;
   float fVar21;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return (DataBuffer *)0x1c;
   }
-  pdataValue1 = (DataBuffer *)ProcessDataBlocksA1(*register_RDI,systemContext + 0x38);
+  pdataValue1 = (DataBuffer *)ProcessDataBlocksA1(*destinationIndexRegister,systemContext + 0x38);
   if ((int)pdataValue1 != 0) {
     return pdataValue1;
   }
   pdataValue2 = (DataWord *)FUN_180847820();
   pdataValue1 = (DataBuffer *)0x0;
-  statusCounter = *(uint *)(register_RDI + 8);
+  statusCounter = *(uint *)(destinationIndexRegister + 8);
   functionReturnValue0 = *pdataValue2;
   functionReturnValue = pdataValue2[1];
   validationStatus = pdataValue2[2];
   memoryBaseAddress = pdataValue2[3];
-  *(DataWord *)(register_RBP + -0x19) = functionReturnValue0;
-  *(DataWord *)(register_RBP + -0x15) = functionReturnValue;
-  *(DataWord *)(register_RBP + -0x11) = validationStatus;
-  *(DataWord *)(register_RBP + -0xd) = memoryBaseAddress;
+  *(DataWord *)(stackFramePointer + -0x19) = functionReturnValue0;
+  *(DataWord *)(stackFramePointer + -0x15) = functionReturnValue;
+  *(DataWord *)(stackFramePointer + -0x11) = validationStatus;
+  *(DataWord *)(stackFramePointer + -0xd) = memoryBaseAddress;
   securityCheckResult = 0;
   pdataValue3 = pdataValue1;
   if (statusCounter < 0x6d) {
-    if (*(int *)(register_RDI[1] + 0x18) == 0) {
-      dataValue = *register_RDI;
-      pdataValue3 = (DataBuffer *)OperateDataO0(dataValue,register_RBP + -0x19,4);
+    if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+      dataValue = *destinationIndexRegister;
+      pdataValue3 = (DataBuffer *)OperateDataO0(dataValue,stackFramePointer + -0x19,4);
       if ((int)pdataValue3 != 0) {
         return pdataValue3;
       }
-      pdataValue3 = (DataBuffer *)OperateDataO0(dataValue,register_RBP + -0x15,2);
+      pdataValue3 = (DataBuffer *)OperateDataO0(dataValue,stackFramePointer + -0x15,2);
       if ((int)pdataValue3 != 0) {
         return pdataValue3;
       }
-      pdataValue3 = (DataBuffer *)OperateDataO0(dataValue,register_RBP + -0x13,2);
+      pdataValue3 = (DataBuffer *)OperateDataO0(dataValue,stackFramePointer + -0x13,2);
       if ((int)pdataValue3 != 0) {
         return pdataValue3;
       }
-      pdataValue3 = (DataBuffer *)OperateDataO0(dataValue,register_RBP + -0x11,8);
+      pdataValue3 = (DataBuffer *)OperateDataO0(dataValue,stackFramePointer + -0x11,8);
       functionReturnValue0 = extraout_XMM0_Da;
     }
     else {
@@ -25909,7 +25909,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   if ((int)pdataValue3 != 0) {
     return pdataValue3;
   }
-  if (0x81 < *(uint *)(register_RDI + 8)) {
+  if (0x81 < *(uint *)(destinationIndexRegister + 8)) {
     pdataValue1 = (DataBuffer *)FUN_1808a79f0(functionReturnValue0,systemContext + 0x58);
     fVar21 = extraout_XMM0_Da_00;
     if ((int)pdataValue1 != 0) {
@@ -25917,34 +25917,34 @@ uint64_t * ValidateSystemDataProcessing(void)
     }
     goto LAB_18089c300;
   }
-  if (*(uint *)(register_RDI + 8) < 0x6a) {
-    *(DataBuffer *)(register_RBP + -0x29) = 0;
-    *(DataBuffer *)(register_RBP + -0x21) = 0;
-    statusCounter = FUN_1808a54c0(functionReturnValue0,register_RBP + -0x29,0);
+  if (*(uint *)(destinationIndexRegister + 8) < 0x6a) {
+    *(DataBuffer *)(stackFramePointer + -0x29) = 0;
+    *(DataBuffer *)(stackFramePointer + -0x21) = 0;
+    statusCounter = FUN_1808a54c0(functionReturnValue0,stackFramePointer + -0x29,0);
     pdataValue3 = (DataBuffer *)(uint64_t)statusCounter;
     if (statusCounter != 0) {
 ValidationLabelB:
-      statusCounter = *(uint *)(register_RBP + -0x1d);
+      statusCounter = *(uint *)(stackFramePointer + -0x1d);
       loopCounter = statusCounter;
       if ((int)statusCounter < 0) {
         loopCounter = -statusCounter;
       }
-      inputParameter9 = *(int *)(register_RBP + -0x21);
+      inputParameter9 = *(int *)(stackFramePointer + -0x21);
       if ((int)loopCounter < 0) {
         if (0 < inputParameter9) {
           return pdataValue3;
         }
-        if ((0 < (int)statusCounter) && (*(int64_t *)(register_RBP + -0x29) != 0)) {
+        if ((0 < (int)statusCounter) && (*(int64_t *)(stackFramePointer + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(register_RBP + -0x29),
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
-        *(DataBuffer *)(register_RBP + -0x29) = 0;
-        *(DataWord *)(register_RBP + -0x1d) = 0;
+        *(DataBuffer *)(stackFramePointer + -0x29) = 0;
+        *(DataWord *)(stackFramePointer + -0x1d) = 0;
         statusCounter = securityCheckResult;
       }
       else {
-        pdataValue1 = *(DataBuffer **)(register_RBP + -0x29);
+        pdataValue1 = *(DataBuffer **)(stackFramePointer + -0x29);
       }
       if (inputParameter9 < 0) {
         validationContext8 = (int64_t)-inputParameter9;
@@ -25963,23 +25963,23 @@ ValidationLabelB:
             validationContext8 = validationContext8 + -1;
             validationContext7 = validationContext7 + 0x18;
           } while (validationContext8 != 0);
-          statusCounter = *(uint *)(register_RBP + -0x1d);
+          statusCounter = *(uint *)(stackFramePointer + -0x1d);
         }
       }
-      *(DataWord *)(register_RBP + -0x21) = 0;
+      *(DataWord *)(stackFramePointer + -0x21) = 0;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
       if (statusCounter == 0) {
         return pdataValue3;
       }
-      FUN_1808aef40(register_RBP + -0x29,0);
+      FUN_1808aef40(stackFramePointer + -0x29,0);
       return pdataValue3;
     }
-    inputParameter9 = *(int *)(register_RBP + -0x21);
+    inputParameter9 = *(int *)(stackFramePointer + -0x21);
     fVar21 = extraout_XMM0_Da_03;
     if (inputParameter9 == 0) {
-      pdataValue3 = *(DataBuffer **)(register_RBP + -0x29);
+      pdataValue3 = *(DataBuffer **)(stackFramePointer + -0x29);
     }
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
@@ -25987,29 +25987,29 @@ ValidationLabelB:
         statusCounter = FUN_180883750(systemContext + 0x48,inputParameter9);
         pdataValue3 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
-        inputParameter9 = *(int *)(register_RBP + -0x21);
+        inputParameter9 = *(int *)(stackFramePointer + -0x21);
         fVar21 = extraout_XMM0_Da_04;
       }
-      pdataValue3 = *(DataBuffer **)(register_RBP + -0x29);
+      pdataValue3 = *(DataBuffer **)(stackFramePointer + -0x29);
       for (pdataValue6 = pdataValue3; (pdataValue3 <= pdataValue6 && (pdataValue6 < pdataValue3 + (int64_t)inputParameter9 * 3));
           pdataValue6 = pdataValue6 + 3) {
-        *(DataBuffer *)(register_RBP + 0x77) = 0;
-        statusCounter = FUN_1808aec50(systemContext + 0x48,register_RBP + 0x77);
+        *(DataBuffer *)(stackFramePointer + 0x77) = 0;
+        statusCounter = FUN_1808aec50(systemContext + 0x48,stackFramePointer + 0x77);
         pdataValue3 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
         dataValue = pdataValue6[1];
-        pdataValue3 = *(DataBuffer **)(register_RBP + 0x77);
+        pdataValue3 = *(DataBuffer **)(stackFramePointer + 0x77);
         *pdataValue3 = *pdataValue6;
         pdataValue3[1] = dataValue;
         *(DataWord *)(pdataValue3 + 2) = *(DataWord *)(pdataValue6 + 2);
         fVar21 = *(float *)((int64_t)pdataValue6 + 0x14) + *(float *)(pdataValue6 + 2);
         *(float *)((int64_t)pdataValue3 + 0x14) = fVar21;
         *(ByteFlag *)(pdataValue3 + 3) = 1;
-        inputParameter9 = *(int *)(register_RBP + -0x21);
-        pdataValue3 = *(DataBuffer **)(register_RBP + -0x29);
+        inputParameter9 = *(int *)(stackFramePointer + -0x21);
+        pdataValue3 = *(DataBuffer **)(stackFramePointer + -0x29);
       }
     }
-    statusCounter = *(uint *)(register_RBP + -0x1d);
+    statusCounter = *(uint *)(stackFramePointer + -0x1d);
     loopCounter = statusCounter;
     if ((int)statusCounter < 0) {
       loopCounter = -statusCounter;
@@ -26020,8 +26020,8 @@ ValidationLabelB:
                     // WARNING: Subroutine does not return
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),pdataValue3,&SystemMemoryPoolB,0x100,1);
       }
-      *(DataBuffer *)(register_RBP + -0x29) = 0;
-      *(DataWord *)(register_RBP + -0x1d) = 0;
+      *(DataBuffer *)(stackFramePointer + -0x29) = 0;
+      *(DataWord *)(stackFramePointer + -0x1d) = 0;
       pdataValue3 = pdataValue1;
       statusCounter = securityCheckResult;
     }
@@ -26043,15 +26043,15 @@ ValidationLabelB:
           validationContext8 = validationContext8 + -1;
           validationContext7 = validationContext7 + 0x18;
         } while (validationContext8 != 0);
-        statusCounter = *(uint *)(register_RBP + -0x1d);
+        statusCounter = *(uint *)(stackFramePointer + -0x1d);
       }
     }
-    *(DataWord *)(register_RBP + -0x21) = 0;
+    *(DataWord *)(stackFramePointer + -0x21) = 0;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar21 = (float)FUN_1808aef40(register_RBP + -0x29,0);
+      fVar21 = (float)FUN_1808aef40(stackFramePointer + -0x29,0);
     }
   }
   else {
@@ -26069,15 +26069,15 @@ ValidationLabelC:
     fVar21 = (float)FUN_1807d3e20(systemContext + 0x58);
   }
 ValidationLabelD:
-  if ((0x70 < *(uint *)(register_RDI + 8)) && (securityCheckResult = 0x1c, *(int *)(register_RDI[1] + 0x18) == 0)) {
-    securityCheckResult = OperateDataO0(*register_RDI,systemContext + 0x68,4);
+  if ((0x70 < *(uint *)(destinationIndexRegister + 8)) && (securityCheckResult = 0x1c, *(int *)(destinationIndexRegister[1] + 0x18) == 0)) {
+    securityCheckResult = OperateDataO0(*destinationIndexRegister,systemContext + 0x68,4);
     fVar21 = extraout_XMM0_Da_01;
   }
   if (securityCheckResult != 0) {
     return (DataBuffer *)(uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,register_RBP + -9);
+  FUN_1808ddf80(fVar21,stackFramePointer + -9);
 }
 
 
@@ -26194,17 +26194,17 @@ ValidationProcessingLabel:
         if (0 < operationCounter) {
           return resultPointer;
         }
-        if ((0 < (int)statusCounter) && (*(int64_t *)(register_RBP + -0x29) != 0)) {
+        if ((0 < (int)statusCounter) && (*(int64_t *)(stackFramePointer + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(register_RBP + -0x29),
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
-        *(DataBuffer *)(register_RBP + -0x29) = 0;
-        *(DataWord *)(register_RBP + -0x1d) = 0;
+        *(DataBuffer *)(stackFramePointer + -0x29) = 0;
+        *(DataWord *)(stackFramePointer + -0x1d) = 0;
         statusCounter = securityCheckResult;
       }
       else {
-        pdataValue3 = *(DataBuffer **)(register_RBP + -0x29);
+        pdataValue3 = *(DataBuffer **)(stackFramePointer + -0x29);
       }
       if (inputParameter9 < 0) {
         validationContext8 = (int64_t)-inputParameter9;
@@ -26223,23 +26223,23 @@ ValidationProcessingLabel:
             validationContext8 = validationContext8 + -1;
             validationContext7 = validationContext7 + 0x18;
           } while (validationContext8 != 0);
-          statusCounter = *(uint *)(register_RBP + -0x1d);
+          statusCounter = *(uint *)(stackFramePointer + -0x1d);
         }
       }
-      *(DataWord *)(register_RBP + -0x21) = 0;
+      *(DataWord *)(stackFramePointer + -0x21) = 0;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
       if (statusCounter == 0) {
         return pdataValue2;
       }
-      FUN_1808aef40(register_RBP + -0x29,0);
+      FUN_1808aef40(stackFramePointer + -0x29,0);
       return pdataValue2;
     }
-    inputParameter9 = *(int *)(register_RBP + -0x21);
+    inputParameter9 = *(int *)(stackFramePointer + -0x21);
     fVar21 = extraout_XMM0_Da_03;
     if (inputParameter9 == 0) {
-      pdataValue2 = *(DataBuffer **)(register_RBP + -0x29);
+      pdataValue2 = *(DataBuffer **)(stackFramePointer + -0x29);
     }
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
@@ -26247,29 +26247,29 @@ ValidationProcessingLabel:
         statusCounter = FUN_180883750(systemContext + 0x48,inputParameter9);
         pdataValue2 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
-        inputParameter9 = *(int *)(register_RBP + -0x21);
+        inputParameter9 = *(int *)(stackFramePointer + -0x21);
         fVar21 = extraout_XMM0_Da_04;
       }
-      pdataValue2 = *(DataBuffer **)(register_RBP + -0x29);
+      pdataValue2 = *(DataBuffer **)(stackFramePointer + -0x29);
       for (pdataValue6 = pdataValue2; (pdataValue2 <= pdataValue6 && (pdataValue6 < pdataValue2 + (int64_t)inputParameter9 * 3));
           pdataValue6 = pdataValue6 + 3) {
-        *(DataBuffer *)(register_RBP + 0x77) = 0;
-        statusCounter = FUN_1808aec50(systemContext + 0x48,register_RBP + 0x77);
+        *(DataBuffer *)(stackFramePointer + 0x77) = 0;
+        statusCounter = FUN_1808aec50(systemContext + 0x48,stackFramePointer + 0x77);
         pdataValue2 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
         dataValue = pdataValue6[1];
-        pdataValue2 = *(DataBuffer **)(register_RBP + 0x77);
+        pdataValue2 = *(DataBuffer **)(stackFramePointer + 0x77);
         *pdataValue2 = *pdataValue6;
         pdataValue2[1] = dataValue;
         *(DataWord *)(pdataValue2 + 2) = *(DataWord *)(pdataValue6 + 2);
         fVar21 = *(float *)((int64_t)pdataValue6 + 0x14) + *(float *)(pdataValue6 + 2);
         *(float *)((int64_t)pdataValue2 + 0x14) = fVar21;
         *(ByteFlag *)(pdataValue2 + 3) = 1;
-        inputParameter9 = *(int *)(register_RBP + -0x21);
-        pdataValue2 = *(DataBuffer **)(register_RBP + -0x29);
+        inputParameter9 = *(int *)(stackFramePointer + -0x21);
+        pdataValue2 = *(DataBuffer **)(stackFramePointer + -0x29);
       }
     }
-    statusCounter = *(uint *)(register_RBP + -0x1d);
+    statusCounter = *(uint *)(stackFramePointer + -0x1d);
     loopCounter = statusCounter;
     if ((int)statusCounter < 0) {
       loopCounter = -statusCounter;
@@ -26280,8 +26280,8 @@ ValidationProcessingLabel:
                     // WARNING: Subroutine does not return
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),pdataValue2,&SystemMemoryPoolB,0x100,1);
       }
-      *(DataBuffer *)(register_RBP + -0x29) = 0;
-      *(DataWord *)(register_RBP + -0x1d) = 0;
+      *(DataBuffer *)(stackFramePointer + -0x29) = 0;
+      *(DataWord *)(stackFramePointer + -0x1d) = 0;
       pdataValue2 = pdataValue3;
       statusCounter = securityCheckResult;
     }
@@ -26303,15 +26303,15 @@ ValidationProcessingLabel:
           validationContext8 = validationContext8 + -1;
           validationContext7 = validationContext7 + 0x18;
         } while (validationContext8 != 0);
-        statusCounter = *(uint *)(register_RBP + -0x1d);
+        statusCounter = *(uint *)(stackFramePointer + -0x1d);
       }
     }
-    *(DataWord *)(register_RBP + -0x21) = 0;
+    *(DataWord *)(stackFramePointer + -0x21) = 0;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar21 = (float)FUN_1808aef40(register_RBP + -0x29,0);
+      fVar21 = (float)FUN_1808aef40(stackFramePointer + -0x29,0);
     }
   }
   else {
@@ -26329,15 +26329,15 @@ ValidationLabelC:
     fVar21 = (float)FUN_1807d3e20(systemContext + 0x58);
   }
 ValidationLabelD:
-  if ((0x70 < *(uint *)(register_RDI + 8)) && (securityCheckResult = 0x1c, *(int *)(register_RDI[1] + 0x18) == 0)) {
-    securityCheckResult = OperateDataO0(*register_RDI,systemContext + 0x68,4);
+  if ((0x70 < *(uint *)(destinationIndexRegister + 8)) && (securityCheckResult = 0x1c, *(int *)(destinationIndexRegister[1] + 0x18) == 0)) {
+    securityCheckResult = OperateDataO0(*destinationIndexRegister,systemContext + 0x68,4);
     fVar21 = extraout_XMM0_Da_01;
   }
   if (securityCheckResult != 0) {
     return (DataBuffer *)(uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,register_RBP + -9);
+  FUN_1808ddf80(fVar21,stackFramePointer + -9);
 }
 
 
@@ -26403,32 +26403,32 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   if (inputParameter < 0x6a) {
     *(DataBuffer **)(stackFramePtr + -0x29) = resourcePtr;
     *(DataBuffer **)(stackFramePtr + -0x21) = resourcePtr;
-    statusCounter = FUN_1808a54c0(param_1,register_RBP + -0x29,0);
+    statusCounter = FUN_1808a54c0(param_1,stackFramePointer + -0x29,0);
     dataValue1 = (uint64_t)statusCounter;
     if (statusCounter != 0) {
 ValidationLabelB:
-      statusCounter = *(uint *)(register_RBP + -0x1d);
+      statusCounter = *(uint *)(stackFramePointer + -0x1d);
       loopCounter = statusCounter;
       if ((int)statusCounter < 0) {
         loopCounter = -statusCounter;
       }
-      inputParameter8 = *(int *)(register_RBP + -0x21);
+      inputParameter8 = *(int *)(stackFramePointer + -0x21);
       if ((int)loopCounter < 0) {
         if (0 < inputParameter8) {
           return dataValue1;
         }
-        if ((0 < (int)statusCounter) && (*(int64_t *)(register_RBP + -0x29) != 0)) {
+        if ((0 < (int)statusCounter) && (*(int64_t *)(stackFramePointer + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
-          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(register_RBP + -0x29),
+          ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),*(int64_t *)(stackFramePointer + -0x29),
                         &SystemMemoryPoolB,0x100,1);
         }
-        *(DataBuffer **)(register_RBP + -0x29) = register_R12;
-        *(uint *)(register_RBP + -0x1d) = securityCheckResult;
+        *(DataBuffer **)(stackFramePointer + -0x29) = register_R12;
+        *(uint *)(stackFramePointer + -0x1d) = securityCheckResult;
         pdataValue4 = register_R12;
         statusCounter = securityCheckResult;
       }
       else {
-        pdataValue4 = *(DataBuffer **)(register_RBP + -0x29);
+        pdataValue4 = *(DataBuffer **)(stackFramePointer + -0x29);
       }
       if (inputParameter8 < 0) {
         validationContext7 = (int64_t)-inputParameter8;
@@ -26447,23 +26447,23 @@ ValidationLabelB:
             validationContext7 = validationContext7 + -1;
             validationContext6 = validationContext6 + 0x18;
           } while (validationContext7 != 0);
-          statusCounter = *(uint *)(register_RBP + -0x1d);
+          statusCounter = *(uint *)(stackFramePointer + -0x1d);
         }
       }
-      *(uint *)(register_RBP + -0x21) = securityCheckResult;
+      *(uint *)(stackFramePointer + -0x21) = securityCheckResult;
       if ((int)statusCounter < 0) {
         statusCounter = -statusCounter;
       }
       if (statusCounter == 0) {
         return dataValue1;
       }
-      FUN_1808aef40(register_RBP + -0x29,0);
+      FUN_1808aef40(stackFramePointer + -0x29,0);
       return dataValue1;
     }
-    inputParameter8 = *(int *)(register_RBP + -0x21);
+    inputParameter8 = *(int *)(stackFramePointer + -0x21);
     fVar20 = extraout_XMM0_Da_02;
     if (inputParameter8 == 0) {
-      pdataValue4 = *(DataBuffer **)(register_RBP + -0x29);
+      pdataValue4 = *(DataBuffer **)(stackFramePointer + -0x29);
     }
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
@@ -26471,29 +26471,29 @@ ValidationLabelB:
         statusCounter = FUN_180883750(systemContext + 0x48,inputParameter8);
         dataValue1 = (uint64_t)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
-        inputParameter8 = *(int *)(register_RBP + -0x21);
+        inputParameter8 = *(int *)(stackFramePointer + -0x21);
         fVar20 = extraout_XMM0_Da_03;
       }
-      pdataValue4 = *(DataBuffer **)(register_RBP + -0x29);
+      pdataValue4 = *(DataBuffer **)(stackFramePointer + -0x29);
       for (pdataValue5 = pdataValue4; (pdataValue4 <= pdataValue5 && (pdataValue5 < pdataValue4 + (int64_t)inputParameter8 * 3));
           pdataValue5 = pdataValue5 + 3) {
-        *(DataBuffer **)(register_RBP + 0x77) = register_R12;
-        statusCounter = FUN_1808aec50(systemContext + 0x48,register_RBP + 0x77);
+        *(DataBuffer **)(stackFramePointer + 0x77) = register_R12;
+        statusCounter = FUN_1808aec50(systemContext + 0x48,stackFramePointer + 0x77);
         dataValue1 = (uint64_t)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
         validationOutcome = pdataValue5[1];
-        pdataValue4 = *(DataBuffer **)(register_RBP + 0x77);
+        pdataValue4 = *(DataBuffer **)(stackFramePointer + 0x77);
         *pdataValue4 = *pdataValue5;
         pdataValue4[1] = validationOutcome;
         *(DataWord *)(pdataValue4 + 2) = *(DataWord *)(pdataValue5 + 2);
         fVar20 = *(float *)((int64_t)pdataValue5 + 0x14) + *(float *)(pdataValue5 + 2);
         *(float *)((int64_t)pdataValue4 + 0x14) = fVar20;
         *(ByteFlag *)(pdataValue4 + 3) = 1;
-        inputParameter8 = *(int *)(register_RBP + -0x21);
-        pdataValue4 = *(DataBuffer **)(register_RBP + -0x29);
+        inputParameter8 = *(int *)(stackFramePointer + -0x21);
+        pdataValue4 = *(DataBuffer **)(stackFramePointer + -0x29);
       }
     }
-    statusCounter = *(uint *)(register_RBP + -0x1d);
+    statusCounter = *(uint *)(stackFramePointer + -0x1d);
     loopCounter = statusCounter;
     if ((int)statusCounter < 0) {
       loopCounter = -statusCounter;
@@ -26504,8 +26504,8 @@ ValidationLabelB:
                     // WARNING: Subroutine does not return
         ReleaseSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),pdataValue4,&SystemMemoryPoolB,0x100,1);
       }
-      *(DataBuffer **)(register_RBP + -0x29) = register_R12;
-      *(uint *)(register_RBP + -0x1d) = securityCheckResult;
+      *(DataBuffer **)(stackFramePointer + -0x29) = register_R12;
+      *(uint *)(stackFramePointer + -0x1d) = securityCheckResult;
       pdataValue4 = register_R12;
       statusCounter = securityCheckResult;
     }
@@ -26527,15 +26527,15 @@ ValidationLabelB:
           validationContext7 = validationContext7 + -1;
           validationContext6 = validationContext6 + 0x18;
         } while (validationContext7 != 0);
-        statusCounter = *(uint *)(register_RBP + -0x1d);
+        statusCounter = *(uint *)(stackFramePointer + -0x1d);
       }
     }
-    *(uint *)(register_RBP + -0x21) = securityCheckResult;
+    *(uint *)(stackFramePointer + -0x21) = securityCheckResult;
     if ((int)statusCounter < 0) {
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar20 = (float)FUN_1808aef40(register_RBP + -0x29,0);
+      fVar20 = (float)FUN_1808aef40(stackFramePointer + -0x29,0);
     }
   }
   else {
@@ -26553,16 +26553,16 @@ ValidationLabelC:
     fVar20 = (float)FUN_1807d3e20(systemContext + 0x58);
   }
 ValidationLabelD:
-  if ((0x70 < *(uint *)(register_RDI + 8)) &&
-     (bVar19 = *(uint *)(register_RDI[1] + 0x18) == securityCheckResult, securityCheckResult = register_R15D, bVar19)) {
-    securityCheckResult = OperateDataO0(*register_RDI,systemContext + 0x68,4);
+  if ((0x70 < *(uint *)(destinationIndexRegister + 8)) &&
+     (bVar19 = *(uint *)(destinationIndexRegister[1] + 0x18) == securityCheckResult, securityCheckResult = register_R15D, bVar19)) {
+    securityCheckResult = OperateDataO0(*destinationIndexRegister,systemContext + 0x68,4);
     fVar20 = extraout_XMM0_Da_00;
   }
   if (securityCheckResult != 0) {
     return (uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar20,register_RBP + -9);
+  FUN_1808ddf80(fVar20,stackFramePointer + -9);
 }
 
 
@@ -27012,7 +27012,7 @@ uint64_t ProcessSystemDataD0(void)
   uint validationStatus;
   uint64_t memoryBaseAddress;
   int64_t *registerContext;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   uint operationResult;
   uint dataFlags;
   uint securityCheckResult;
@@ -27061,24 +27061,24 @@ uint64_t ProcessSystemDataD0(void)
     }
     else if (validationContextPointer[2] == 0) {
 OperationLabelA:
-      securityCheckResult = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D,0);
+      securityCheckResult = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D,0);
     }
     else {
-      *(DataWord *)(register_RBP + 0x7f) = 0;
-      securityCheckResult = AllocateMemory(dataContext,register_RBP + 0x7f);
+      *(DataWord *)(stackFramePointer + 0x7f) = 0;
+      securityCheckResult = AllocateMemory(dataContext,stackFramePointer + 0x7f);
       if (securityCheckResult == 0) {
-        if ((uint64_t)*(uint *)(register_RBP + 0x7f) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089c743;
+        if ((uint64_t)*(uint *)(stackFramePointer + 0x7f) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089c743;
         securityCheckResult = 0x11;
       }
     }
     if (securityCheckResult == 0) {
-      *(uint *)(register_RBP + 0x7f) = (uint)(*(char *)(register_RBP + 0x77) != '\0');
-      *(uint *)(register_RBP + -0x29) = (uint)(*(char *)(register_RBP + 0x77) == '\0');
+      *(uint *)(stackFramePointer + 0x7f) = (uint)(*(char *)(stackFramePointer + 0x77) != '\0');
+      *(uint *)(stackFramePointer + -0x29) = (uint)(*(char *)(stackFramePointer + 0x77) == '\0');
       securityCheckResult = 0;
     }
     else {
-      *(DataWord *)(register_RBP + 0x7f) = 0;
-      *(uint *)(register_RBP + -0x29) = registerR14D;
+      *(DataWord *)(stackFramePointer + 0x7f) = 0;
+      *(uint *)(stackFramePointer + -0x29) = registerR14D;
       if (securityCheckResult == 0) {
         securityCheckResult = dataFlags;
       }
@@ -27086,8 +27086,8 @@ OperationLabelA:
   }
   else {
 OperationLabelB:
-    *(uint *)(register_RBP + -0x29) = registerR14D;
-    *(DataWord *)(register_RBP + 0x7f) = 0;
+    *(uint *)(stackFramePointer + -0x29) = registerR14D;
+    *(DataWord *)(stackFramePointer + 0x7f) = 0;
   }
   if (securityCheckResult != 0) {
     return (uint64_t)securityCheckResult;
@@ -27102,23 +27102,23 @@ OperationLabelB:
   }
   else {
     if (validationContextPointer[2] != 0) {
-      *(DataWord *)(register_RBP + 0x77) = 0;
-      memoryBaseAddress = AllocateMemory(dataContext,register_RBP + 0x77);
+      *(DataWord *)(stackFramePointer + 0x77) = 0;
+      memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + 0x77);
       if ((int)memoryBaseAddress != 0) {
         return memoryBaseAddress;
       }
-      if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(register_RBP + 0x77) + (uint64_t)operationResult) {
+      if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + 0x77) + (uint64_t)operationResult) {
         memoryBaseAddress = 0x11;
         goto LAB_18089c808;
       }
     }
-    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + -0x25,registerR14D,operationResult,0);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x25,registerR14D,operationResult,0);
   }
 OperationLabelC:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  switch(*(DataWord *)(register_RBP + -0x25)) {
+  switch(*(DataWord *)(stackFramePointer + -0x25)) {
   case 0:
     operationResult = 0;
     break;
@@ -27213,15 +27213,15 @@ OperationLabelD:
       }
       else if (validationContextPointer[2] == 0) {
 ValidationContextHandler:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D,0);
         fVar9 = extraout_XMM0_Da_01;
       }
       else {
-        *(DataWord *)(register_RBP + -0x25) = 0;
-        validationStatus = AllocateMemory(dataContext,register_RBP + -0x25);
+        *(DataWord *)(stackFramePointer + -0x25) = 0;
+        validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x25);
         fVar9 = extraout_XMM0_Da_00;
         if (validationStatus == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
           goto LAB_18089c9a8;
           validationStatus = 0x11;
         }
@@ -27229,8 +27229,8 @@ ValidationContextHandler:
       operationResult = 0;
       if (validationStatus == 0) {
         memoryBaseAddress = 0;
-        operationResult = (uint)(*(char *)(register_RBP + 0x77) != '\0');
-        securityCheckResult = (uint)(*(char *)(register_RBP + 0x77) == '\0');
+        operationResult = (uint)(*(char *)(stackFramePointer + 0x77) != '\0');
+        securityCheckResult = (uint)(*(char *)(stackFramePointer + 0x77) == '\0');
       }
       else {
         memoryBaseAddress = (uint64_t)validationStatus;
@@ -27276,22 +27276,22 @@ ValidationContextHandler:
   }
   else if (validationContextPointer[2] == 0) {
 ValidationRetryHandler:
-    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D,0);
     fVar9 = extraout_XMM0_Da_05;
   }
   else {
-    *(DataWord *)(register_RBP + -0x25) = 0;
-    validationStatus = AllocateMemory(dataContext,register_RBP + -0x25);
+    *(DataWord *)(stackFramePointer + -0x25) = 0;
+    validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x25);
     fVar9 = extraout_XMM0_Da_04;
     if (validationStatus == 0) {
-      if ((uint64_t)*(uint *)(register_RBP + -0x25) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089ca9c;
+      if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089ca9c;
       validationStatus = 0x11;
     }
   }
   dataFlags = 0;
   if (validationStatus == 0) {
-    dataFlags = (uint)(*(char *)(register_RBP + 0x77) != '\0');
-    registerR14D = (uint)(*(char *)(register_RBP + 0x77) == '\0');
+    dataFlags = (uint)(*(char *)(stackFramePointer + 0x77) != '\0');
+    registerR14D = (uint)(*(char *)(stackFramePointer + 0x77) == '\0');
   }
   memoryBaseAddress = (uint64_t)validationStatus;
   if (validationStatus == 0) {
@@ -27304,8 +27304,8 @@ ValidationErrorHandler2:
   validationStatus = *(uint *)(registerContext + 8);
   if (validationStatus < 0x70) {
     *(uint *)(register_R13 + 0x34) =
-         (((*(uint *)(register_RBP + 0x7f) | *(uint *)(register_R13 + 0x34)) &
-           ~*(uint *)(register_RBP + -0x29) | operationResult * 2) & ~(securityCheckResult * 2) | dataFlags * 4) &
+         (((*(uint *)(stackFramePointer + 0x7f) | *(uint *)(register_R13 + 0x34)) &
+           ~*(uint *)(stackFramePointer + -0x29) | operationResult * 2) & ~(securityCheckResult * 2) | dataFlags * 4) &
          ~(registerR14D * 4);
     validationStatus = *(uint *)(registerContext + 8);
   }
@@ -27316,17 +27316,17 @@ ValidationErrorHandler2:
   }
   if (0x8a < validationStatus) {
     dataContext = *registerContext;
-    *(DataWord *)(register_RBP + 0x7f) = 0;
-    memoryBaseAddress = FUN_1808afe30(dataContext,register_RBP + 0x7f);
+    *(DataWord *)(stackFramePointer + 0x7f) = 0;
+    memoryBaseAddress = FUN_1808afe30(dataContext,stackFramePointer + 0x7f);
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    operationResult = *(uint *)(register_RBP + 0x7f);
+    operationResult = *(uint *)(stackFramePointer + 0x7f);
     memoryBaseAddress = FUN_1808af8b0(register_R13 + 0x60,operationResult >> 1);
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    *(DataWord *)(register_RBP + 0x77) = 0;
+    *(DataWord *)(stackFramePointer + 0x77) = 0;
     memoryBaseAddress = validationOutcome;
     fVar9 = extraout_XMM0_Da_06;
     if (operationResult >> 1 != 0) {
@@ -27347,21 +27347,21 @@ ValidationErrorHandler2:
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        memoryBaseAddress = FUN_1808de0e0(loopCounter,register_RBP + 0x77);
+        memoryBaseAddress = FUN_1808de0e0(loopCounter,stackFramePointer + 0x77);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
         dataFlags = (int)validationOutcome + 1;
         validationOutcome = (uint64_t)dataFlags;
-        securityCheckResult = *(uint *)(register_RBP + 0x77) & -(operationResult & 1);
+        securityCheckResult = *(uint *)(stackFramePointer + 0x77) & -(operationResult & 1);
         memoryBaseAddress = (uint64_t)securityCheckResult;
-        *(uint *)(register_RBP + 0x77) = securityCheckResult;
+        *(uint *)(stackFramePointer + 0x77) = securityCheckResult;
         fVar9 = extraout_XMM0_Da_09;
       } while ((int)dataFlags < (int)(operationResult >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar9,register_RBP + -0x21);
+  FUN_1808ddf80(fVar9,stackFramePointer + -0x21);
 }
 
 
@@ -27392,7 +27392,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   uint64_t systemFlags;
   int contextStatus;
   int64_t threadContext;
-  int registerValue;
+  int systemRegisterValue;
   int errorCounter;
   float processingValue;
   float tempValue1;
@@ -27409,8 +27409,8 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   float finalValue;
   
   *(DataWord *)(register_R13 + 0x30) = 10;
-  if ((int)register_RDI != 0) {
-    return register_RDI & SystemCleanupFlag;
+  if ((int)destinationIndexRegister != 0) {
+    return destinationIndexRegister & SystemCleanupFlag;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
@@ -27454,7 +27454,7 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  validationStatus = (DataChunk)(register_RDI >> 8);
+  validationStatus = (DataChunk)(destinationIndexRegister >> 8);
   calculatedValue = 0;
   fVar12 = extraout_XMM0_Da;
   inputParameter1 = calculatedValue;
@@ -27466,30 +27466,30 @@ uint64_t ValidateSystemDataSecurityAndStatus(void)
       if (dataContext == 0) {
         memoryBaseAddress = 0x1c;
       }
-      else if (validationContextPointer[2] == register_RDI) {
+      else if (validationContextPointer[2] == destinationIndexRegister) {
 ValidationContextHandler:
-        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
-        *(DataWord *)(register_RBP + -0x25) = 0;
-        memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
+        *(DataWord *)(stackFramePointer + -0x25) = 0;
+        memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (memoryBaseAddress == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
           goto LAB_18089c9a8;
           memoryBaseAddress = 0x11;
         }
       }
       if (memoryBaseAddress == 0) {
-        operationResult = register_RDI & SystemCleanupFlag;
-        inputParameter1 = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) != '\0');
-        inputParameter0 = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) == '\0');
+        operationResult = destinationIndexRegister & SystemCleanupFlag;
+        inputParameter1 = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) != '\0');
+        inputParameter0 = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) == '\0');
       }
       else {
         operationResult = (uint64_t)memoryBaseAddress;
         if (memoryBaseAddress == 0) {
-          operationResult = register_RDI & SystemCleanupFlag;
+          operationResult = destinationIndexRegister & SystemCleanupFlag;
         }
       }
     }
@@ -27498,7 +27498,7 @@ ValidationContextHandler:
     }
   }
   else {
-    operationResult = register_RDI & SystemCleanupFlag;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
   }
   if ((int)operationResult != 0) {
     return operationResult;
@@ -27508,7 +27508,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
-    operationResult = register_RDI & SystemCleanupFlag;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + 0x18) == 0) {
     operationResult = ValidateDataWithSecurityCheckA2(*registerContext,register_R13 + 0x48);
@@ -27521,7 +27521,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if (0x1d < (int)registerContext[8] - 0x52U) {
-    operationResult = register_RDI & SystemCleanupFlag;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
     goto LAB_18089cad8;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
@@ -27533,27 +27533,27 @@ ValidationContextHandler:
   if (dataContext == 0) {
     memoryBaseAddress = 0x1c;
   }
-  else if (validationContextPointer[2] == register_RDI) {
+  else if (validationContextPointer[2] == destinationIndexRegister) {
 ValidationRetryHandler:
-    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
-    *(DataWord *)(register_RBP + -0x25) = 0;
-    memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
+    *(DataWord *)(stackFramePointer + -0x25) = 0;
+    memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (memoryBaseAddress == 0) {
-      if ((uint64_t)*(uint *)(register_RBP + -0x25) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089ca9c;
+      if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089ca9c;
       memoryBaseAddress = 0x11;
     }
   }
   if (memoryBaseAddress == 0) {
-    calculatedValue = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) != '\0');
-    registerR14D = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) == '\0');
+    calculatedValue = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) != '\0');
+    registerR14D = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) == '\0');
   }
   operationResult = (uint64_t)memoryBaseAddress;
   if (memoryBaseAddress == 0) {
-    operationResult = register_RDI & SystemCleanupFlag;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
   }
 ValidationErrorHandler2:
   if ((int)operationResult != 0) {
@@ -27562,8 +27562,8 @@ ValidationErrorHandler2:
   memoryBaseAddress = *(uint *)(registerContext + 8);
   if (memoryBaseAddress < 0x70) {
     *(uint *)(register_R13 + 0x34) =
-         (((*(uint *)(register_RBP + 0x7f) | *(uint *)(register_R13 + 0x34)) &
-           ~*(uint *)(register_RBP + -0x29) | inputParameter1 * 2) & ~(inputParameter0 * 2) | calculatedValue * 4) &
+         (((*(uint *)(stackFramePointer + 0x7f) | *(uint *)(register_R13 + 0x34)) &
+           ~*(uint *)(stackFramePointer + -0x29) | inputParameter1 * 2) & ~(inputParameter0 * 2) | calculatedValue * 4) &
          ~(registerR14D * 4);
     memoryBaseAddress = *(uint *)(registerContext + 8);
   }
@@ -27574,22 +27574,22 @@ ValidationErrorHandler2:
   }
   if (0x8a < memoryBaseAddress) {
     dataContext = *registerContext;
-    *(DataWord *)(register_RBP + 0x7f) = 0;
-    operationResult = FUN_1808afe30(dataContext,register_RBP + 0x7f);
+    *(DataWord *)(stackFramePointer + 0x7f) = 0;
+    operationResult = FUN_1808afe30(dataContext,stackFramePointer + 0x7f);
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    memoryBaseAddress = *(uint *)(register_RBP + 0x7f);
+    memoryBaseAddress = *(uint *)(stackFramePointer + 0x7f);
     operationResult = FUN_1808af8b0(register_R13 + 0x60,memoryBaseAddress >> 1);
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    *(DataWord *)(register_RBP + 0x77) = 0;
-    operationResult = register_RDI & SystemCleanupFlag;
+    *(DataWord *)(stackFramePointer + 0x77) = 0;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
       do {
-        dataFlags = FUN_1808dde10(fVar12,register_RDI & SystemCleanupFlag);
+        dataFlags = FUN_1808dde10(fVar12,destinationIndexRegister & SystemCleanupFlag);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -27605,21 +27605,21 @@ ValidationErrorHandler2:
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
-        dataFlags = FUN_1808de0e0(dataValue3,register_RBP + 0x77);
+        dataFlags = FUN_1808de0e0(dataValue3,stackFramePointer + 0x77);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
         securityCheckResult = (int)operationResult + 1;
         operationResult = (uint64_t)securityCheckResult;
-        statusCounter = *(uint *)(register_RBP + 0x77) & -(memoryBaseAddress & 1);
-        register_RDI = (uint64_t)statusCounter;
-        *(uint *)(register_RBP + 0x77) = statusCounter;
+        statusCounter = *(uint *)(stackFramePointer + 0x77) & -(memoryBaseAddress & 1);
+        destinationIndexRegister = (uint64_t)statusCounter;
+        *(uint *)(stackFramePointer + 0x77) = statusCounter;
         fVar12 = extraout_XMM0_Da_09;
       } while ((int)securityCheckResult < (int)(memoryBaseAddress >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar12,register_RBP + -0x21);
+  FUN_1808ddf80(fVar12,stackFramePointer + -0x21);
 }
 
 
@@ -27643,11 +27643,11 @@ uint64_t FUN_18089c872(void)
   uint64_t dataFlags;
   int calculatedValue;
   int64_t *registerContext;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   DataWord register_ESI;
   uint securityCheckResult;
   uint statusCounter;
-  uint64_t register_RDI;
+  uint64_t destinationIndexRegister;
   int inputParameter0;
   int64_t register_R13;
   int registerR14D;
@@ -27667,8 +27667,8 @@ uint64_t FUN_18089c872(void)
   float extraout_XMM0_Da_09;
   
   *(DataWord *)(register_R13 + 0x30) = register_ESI;
-  if ((int)register_RDI != 0) {
-    return register_RDI & SystemCleanupFlag;
+  if ((int)destinationIndexRegister != 0) {
+    return destinationIndexRegister & SystemCleanupFlag;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
@@ -27712,7 +27712,7 @@ uint64_t FUN_18089c872(void)
   if ((int)operationResult != 0) {
     return operationResult;
   }
-  validationStatus = (DataChunk)(register_RDI >> 8);
+  validationStatus = (DataChunk)(destinationIndexRegister >> 8);
   calculatedValue = 0;
   fVar12 = extraout_XMM0_Da;
   inputParameter1 = calculatedValue;
@@ -27724,30 +27724,30 @@ uint64_t FUN_18089c872(void)
       if (dataContext == 0) {
         memoryBaseAddress = 0x1c;
       }
-      else if (validationContextPointer[2] == register_RDI) {
+      else if (validationContextPointer[2] == destinationIndexRegister) {
 ValidationContextHandler:
-        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D);
         fVar12 = extraout_XMM0_Da_01;
       }
       else {
-        *(DataWord *)(register_RBP + -0x25) = 0;
-        memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
+        *(DataWord *)(stackFramePointer + -0x25) = 0;
+        memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + -0x25);
         fVar12 = extraout_XMM0_Da_00;
         if (memoryBaseAddress == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
           goto LAB_18089c9a8;
           memoryBaseAddress = 0x11;
         }
       }
       if (memoryBaseAddress == 0) {
-        operationResult = register_RDI & SystemCleanupFlag;
-        inputParameter1 = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) != '\0');
-        inputParameter0 = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) == '\0');
+        operationResult = destinationIndexRegister & SystemCleanupFlag;
+        inputParameter1 = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) != '\0');
+        inputParameter0 = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) == '\0');
       }
       else {
         operationResult = (uint64_t)memoryBaseAddress;
         if (memoryBaseAddress == 0) {
-          operationResult = register_RDI & SystemCleanupFlag;
+          operationResult = destinationIndexRegister & SystemCleanupFlag;
         }
       }
     }
@@ -27756,7 +27756,7 @@ ValidationContextHandler:
     }
   }
   else {
-    operationResult = register_RDI & SystemCleanupFlag;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
   }
   if ((int)operationResult != 0) {
     return operationResult;
@@ -27766,7 +27766,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
-    operationResult = register_RDI & SystemCleanupFlag;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + 0x18) == 0) {
     operationResult = ValidateDataWithSecurityCheckA2(*registerContext,register_R13 + 0x48);
@@ -27779,7 +27779,7 @@ ValidationContextHandler:
     return operationResult;
   }
   if (0x1d < (int)registerContext[8] - 0x52U) {
-    operationResult = register_RDI & SystemCleanupFlag;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
     goto LAB_18089cad8;
   }
   if (*(int *)(registerContext[1] + 0x18) != 0) {
@@ -27791,27 +27791,27 @@ ValidationContextHandler:
   if (dataContext == 0) {
     memoryBaseAddress = 0x1c;
   }
-  else if (validationContextPointer[2] == register_RDI) {
+  else if (validationContextPointer[2] == destinationIndexRegister) {
 ValidationRetryHandler:
-    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D);
     fVar12 = extraout_XMM0_Da_05;
   }
   else {
-    *(DataWord *)(register_RBP + -0x25) = 0;
-    memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
+    *(DataWord *)(stackFramePointer + -0x25) = 0;
+    memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + -0x25);
     fVar12 = extraout_XMM0_Da_04;
     if (memoryBaseAddress == 0) {
-      if ((uint64_t)*(uint *)(register_RBP + -0x25) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089ca9c;
+      if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)validationContextPointer[2]) goto LAB_18089ca9c;
       memoryBaseAddress = 0x11;
     }
   }
   if (memoryBaseAddress == 0) {
-    calculatedValue = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) != '\0');
-    registerR14D = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) == '\0');
+    calculatedValue = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) != '\0');
+    registerR14D = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) == '\0');
   }
   operationResult = (uint64_t)memoryBaseAddress;
   if (memoryBaseAddress == 0) {
-    operationResult = register_RDI & SystemCleanupFlag;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
   }
 ValidationErrorHandler2:
   if ((int)operationResult != 0) {
@@ -27820,8 +27820,8 @@ ValidationErrorHandler2:
   memoryBaseAddress = *(uint *)(registerContext + 8);
   if (memoryBaseAddress < 0x70) {
     *(uint *)(register_R13 + 0x34) =
-         (((*(uint *)(register_RBP + 0x7f) | *(uint *)(register_R13 + 0x34)) &
-           ~*(uint *)(register_RBP + -0x29) | inputParameter1 * 2) & ~(inputParameter0 * 2) | calculatedValue * 4) &
+         (((*(uint *)(stackFramePointer + 0x7f) | *(uint *)(register_R13 + 0x34)) &
+           ~*(uint *)(stackFramePointer + -0x29) | inputParameter1 * 2) & ~(inputParameter0 * 2) | calculatedValue * 4) &
          ~(registerR14D * 4);
     memoryBaseAddress = *(uint *)(registerContext + 8);
   }
@@ -27832,22 +27832,22 @@ ValidationErrorHandler2:
   }
   if (0x8a < memoryBaseAddress) {
     dataContext = *registerContext;
-    *(DataWord *)(register_RBP + 0x7f) = 0;
-    operationResult = FUN_1808afe30(dataContext,register_RBP + 0x7f);
+    *(DataWord *)(stackFramePointer + 0x7f) = 0;
+    operationResult = FUN_1808afe30(dataContext,stackFramePointer + 0x7f);
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    memoryBaseAddress = *(uint *)(register_RBP + 0x7f);
+    memoryBaseAddress = *(uint *)(stackFramePointer + 0x7f);
     operationResult = FUN_1808af8b0(register_R13 + 0x60,memoryBaseAddress >> 1);
     if ((int)operationResult != 0) {
       return operationResult;
     }
-    *(DataWord *)(register_RBP + 0x77) = 0;
-    operationResult = register_RDI & SystemCleanupFlag;
+    *(DataWord *)(stackFramePointer + 0x77) = 0;
+    operationResult = destinationIndexRegister & SystemCleanupFlag;
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
       do {
-        dataFlags = FUN_1808dde10(fVar12,register_RDI & SystemCleanupFlag);
+        dataFlags = FUN_1808dde10(fVar12,destinationIndexRegister & SystemCleanupFlag);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -27863,21 +27863,21 @@ ValidationErrorHandler2:
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
-        dataFlags = FUN_1808de0e0(dataValue3,register_RBP + 0x77);
+        dataFlags = FUN_1808de0e0(dataValue3,stackFramePointer + 0x77);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
         securityCheckResult = (int)operationResult + 1;
         operationResult = (uint64_t)securityCheckResult;
-        statusCounter = *(uint *)(register_RBP + 0x77) & -(memoryBaseAddress & 1);
-        register_RDI = (uint64_t)statusCounter;
-        *(uint *)(register_RBP + 0x77) = statusCounter;
+        statusCounter = *(uint *)(stackFramePointer + 0x77) & -(memoryBaseAddress & 1);
+        destinationIndexRegister = (uint64_t)statusCounter;
+        *(uint *)(stackFramePointer + 0x77) = statusCounter;
         fVar12 = extraout_XMM0_Da_09;
       } while ((int)securityCheckResult < (int)(memoryBaseAddress >> 1));
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar12,register_RBP + -0x21);
+  FUN_1808ddf80(fVar12,stackFramePointer + -0x21);
 }
 
 
@@ -27902,11 +27902,11 @@ uint64_t FUN_18089c94a(float param_1)
   uint64_t dataFlags;
   int calculatedValue;
   int64_t *registerContext;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   uint securityCheckResult;
   int validationErrorCode;
   uint loopCounter;
-  uint64_t register_RDI;
+  uint64_t destinationIndexRegister;
   int inputParameter1;
   int64_t register_R13;
   int registerR14D;
@@ -27925,8 +27925,8 @@ uint64_t FUN_18089c94a(float param_1)
   DataWord dataValue4;
   float extraout_XMM0_Da_08;
   
-  validationErrorCode = (int)register_RDI;
-  validationStatus = (DataChunk)(register_RDI >> 8);
+  validationErrorCode = (int)destinationIndexRegister;
+  validationStatus = (DataChunk)(destinationIndexRegister >> 8);
   inputParameter2 = validationErrorCode;
   inputParameter1 = registerR14D;
   if (in_CF) {
@@ -27936,30 +27936,30 @@ uint64_t FUN_18089c94a(float param_1)
       if (dataContext == 0) {
         memoryBaseAddress = 0x1c;
       }
-      else if (validationContextPointer[2] == register_RDI) {
+      else if (validationContextPointer[2] == destinationIndexRegister) {
 ValidationContextHandler:
-        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_00;
       }
       else {
-        *(int *)(register_RBP + -0x25) = validationErrorCode;
-        memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
+        *(int *)(stackFramePointer + -0x25) = validationErrorCode;
+        memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + -0x25);
         param_1 = extraout_XMM0_Da;
         if (memoryBaseAddress == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
           goto LAB_18089c9a8;
           memoryBaseAddress = 0x11;
         }
       }
       if (memoryBaseAddress == 0) {
-        dataFlags = register_RDI & SystemCleanupFlag;
-        inputParameter2 = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) != '\0');
-        inputParameter1 = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) == '\0');
+        dataFlags = destinationIndexRegister & SystemCleanupFlag;
+        inputParameter2 = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) != '\0');
+        inputParameter1 = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) == '\0');
       }
       else {
         dataFlags = (uint64_t)memoryBaseAddress;
         if (memoryBaseAddress == 0) {
-          dataFlags = register_RDI & SystemCleanupFlag;
+          dataFlags = destinationIndexRegister & SystemCleanupFlag;
         }
       }
     }
@@ -27968,7 +27968,7 @@ ValidationContextHandler:
     }
   }
   else {
-    dataFlags = register_RDI & SystemCleanupFlag;
+    dataFlags = destinationIndexRegister & SystemCleanupFlag;
   }
   if ((int)dataFlags != 0) {
     return dataFlags;
@@ -27978,7 +27978,7 @@ ValidationContextHandler:
     return dataFlags;
   }
   if (*(uint *)(registerContext + 8) < 0x52) {
-    dataFlags = register_RDI & SystemCleanupFlag;
+    dataFlags = destinationIndexRegister & SystemCleanupFlag;
   }
   else if (*(int *)(registerContext[1] + 0x18) == validationErrorCode) {
     dataFlags = ValidateDataWithSecurityCheckA2(*registerContext,register_R13 + 0x48);
@@ -27998,28 +27998,28 @@ ValidationContextHandler:
       if (dataContext == 0) {
         memoryBaseAddress = 0x1c;
       }
-      else if (validationContextPointer[2] == register_RDI) {
+      else if (validationContextPointer[2] == destinationIndexRegister) {
 ValidationRetryHandler:
-        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + 0x77,registerR14D,registerR14D);
+        memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + 0x77,registerR14D,registerR14D);
         param_1 = extraout_XMM0_Da_04;
       }
       else {
-        *(int *)(register_RBP + -0x25) = validationErrorCode;
-        memoryBaseAddress = AllocateMemory(dataContext,register_RBP + -0x25);
+        *(int *)(stackFramePointer + -0x25) = validationErrorCode;
+        memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + -0x25);
         param_1 = extraout_XMM0_Da_03;
         if (memoryBaseAddress == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x25) + 1 <= (uint64_t)validationContextPointer[2])
           goto LAB_18089ca9c;
           memoryBaseAddress = 0x11;
         }
       }
       if (memoryBaseAddress == 0) {
-        calculatedValue = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) != '\0');
-        registerR14D = (int)CONCAT71(validationStatus,*(char *)(register_RBP + 0x77) == '\0');
+        calculatedValue = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) != '\0');
+        registerR14D = (int)CONCAT71(validationStatus,*(char *)(stackFramePointer + 0x77) == '\0');
       }
       dataFlags = (uint64_t)memoryBaseAddress;
       if (memoryBaseAddress == 0) {
-        dataFlags = register_RDI & SystemCleanupFlag;
+        dataFlags = destinationIndexRegister & SystemCleanupFlag;
       }
     }
     else {
@@ -28027,14 +28027,14 @@ ValidationRetryHandler:
     }
   }
   else {
-    dataFlags = register_RDI & SystemCleanupFlag;
+    dataFlags = destinationIndexRegister & SystemCleanupFlag;
   }
   if ((int)dataFlags == 0) {
     memoryBaseAddress = *(uint *)(registerContext + 8);
     if (memoryBaseAddress < 0x70) {
       *(uint *)(register_R13 + 0x34) =
-           (((*(uint *)(register_RBP + 0x7f) | *(uint *)(register_R13 + 0x34)) &
-             ~*(uint *)(register_RBP + -0x29) | inputParameter2 * 2) & ~(inputParameter1 * 2) | calculatedValue * 4) &
+           (((*(uint *)(stackFramePointer + 0x7f) | *(uint *)(register_R13 + 0x34)) &
+             ~*(uint *)(stackFramePointer + -0x29) | inputParameter2 * 2) & ~(inputParameter1 * 2) | calculatedValue * 4) &
            ~(registerR14D * 4);
       memoryBaseAddress = *(uint *)(registerContext + 8);
     }
@@ -28046,22 +28046,22 @@ ValidationRetryHandler:
     if (memoryBaseAddress < 0x8b) {
 DataProcessingHandler:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_1,register_RBP + -0x21);
+      FUN_1808ddf80(param_1,stackFramePointer + -0x21);
     }
     dataContext = *registerContext;
-    *(int *)(register_RBP + 0x7f) = validationErrorCode;
-    dataFlags = FUN_1808afe30(dataContext,register_RBP + 0x7f);
+    *(int *)(stackFramePointer + 0x7f) = validationErrorCode;
+    dataFlags = FUN_1808afe30(dataContext,stackFramePointer + 0x7f);
     if ((int)dataFlags == 0) {
-      memoryBaseAddress = *(uint *)(register_RBP + 0x7f);
+      memoryBaseAddress = *(uint *)(stackFramePointer + 0x7f);
       dataFlags = FUN_1808af8b0(register_R13 + 0x60,memoryBaseAddress >> 1);
       if ((int)dataFlags == 0) {
-        *(int *)(register_RBP + 0x77) = validationErrorCode;
-        dataFlags = register_RDI & SystemCleanupFlag;
+        *(int *)(stackFramePointer + 0x77) = validationErrorCode;
+        dataFlags = destinationIndexRegister & SystemCleanupFlag;
         param_1 = extraout_XMM0_Da_05;
         fVar13 = extraout_XMM0_Da_05;
         if (memoryBaseAddress >> 1 != 0) {
           do {
-            operationResult = FUN_1808dde10(fVar13,register_RDI & SystemCleanupFlag);
+            operationResult = FUN_1808dde10(fVar13,destinationIndexRegister & SystemCleanupFlag);
             if ((int)operationResult != 0) {
               return operationResult;
             }
@@ -28077,15 +28077,15 @@ DataProcessingHandler:
             if ((int)operationResult != 0) {
               return operationResult;
             }
-            operationResult = FUN_1808de0e0(dataValue4,register_RBP + 0x77);
+            operationResult = FUN_1808de0e0(dataValue4,stackFramePointer + 0x77);
             if ((int)operationResult != 0) {
               return operationResult;
             }
             securityCheckResult = (int)dataFlags + 1;
             dataFlags = (uint64_t)securityCheckResult;
-            loopCounter = *(uint *)(register_RBP + 0x77) & -(memoryBaseAddress & 1);
-            register_RDI = (uint64_t)loopCounter;
-            *(uint *)(register_RBP + 0x77) = loopCounter;
+            loopCounter = *(uint *)(stackFramePointer + 0x77) & -(memoryBaseAddress & 1);
+            destinationIndexRegister = (uint64_t)loopCounter;
+            *(uint *)(stackFramePointer + 0x77) = loopCounter;
             param_1 = extraout_XMM0_Da_08;
             fVar13 = extraout_XMM0_Da_08;
           } while ((int)securityCheckResult < (int)(memoryBaseAddress >> 1));
@@ -28230,16 +28230,16 @@ uint64_t FUN_18089ccb9(void)
 {
   int64_t *validationContextPointer;
   uint functionReturnValue;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   uint64_t validationStatus;
   int arrayIndex;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   int64_t *systemContext;
   uint in_stack_00000080;
   uint in_stack_00000088;
   
   functionReturnValue = 0x1c;
-  if (*(int *)(in_RAX + 0x18) == 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) == 0) {
     validationContextPointer = (int64_t *)*systemContext;
     if (*validationContextPointer == 0) {
       validationStatus = 0x1c;
@@ -28265,7 +28265,7 @@ ValidationContextHandler2:
     if (0x3ff < in_stack_00000080) {
       return 0xd;
     }
-    validationStatus = FUN_1808af280(register_RBP + 0x48);
+    validationStatus = FUN_1808af280(stackFramePointer + 0x48);
     if ((int)validationStatus == 0) goto LAB_18089cd76;
   }
   else {
@@ -28289,7 +28289,7 @@ ValidationStateHandler:
     functionReturnValue = 0;
   }
   else if (*(int *)(systemContext[1] + 0x18) == 0) {
-    functionReturnValue = GetMemoryAddressA0(*systemContext,register_RBP + 0x5c);
+    functionReturnValue = GetMemoryAddressA0(*systemContext,stackFramePointer + 0x5c);
   }
   if (functionReturnValue != 0) {
     return (uint64_t)functionReturnValue;
@@ -28503,19 +28503,19 @@ uint64_t FUN_18089ce60(void)
 
 {
   int64_t *validationContextPointer;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   uint64_t functionReturnValue;
   uint validationStatus;
-  int64_t *register_RDI;
+  int64_t *destinationIndexRegister;
   int64_t registerR14;
   bool bVar4;
   char cStack0000000000000090;
   uint stackDataSize;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
   }
-  validationContextPointer = (int64_t *)*register_RDI;
+  validationContextPointer = (int64_t *)*destinationIndexRegister;
   validationStatus = 0x1c;
   if (*validationContextPointer == 0) {
     functionReturnValue = 0x1c;
@@ -28546,10 +28546,10 @@ ValidationContextCleanup:
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
-  if (*(int *)(register_RDI[1] + 0x18) != 0) {
+  if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationContextPointer = (int64_t *)*register_RDI;
+  validationContextPointer = (int64_t *)*destinationIndexRegister;
   if (*validationContextPointer == 0) {
     functionReturnValue = 0x1c;
   }
@@ -28583,10 +28583,10 @@ ValidationStateUpdate:
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
-  if (2 < (int)register_RDI[8] - 0x65U) goto LAB_18089d07f;
+  if (2 < (int)destinationIndexRegister[8] - 0x65U) goto LAB_18089d07f;
   bVar4 = false;
-  if (*(int *)(register_RDI[1] + 0x18) != 0) goto LAB_18089d06e;
-  validationContextPointer = (int64_t *)*register_RDI;
+  if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) goto LAB_18089d06e;
+  validationContextPointer = (int64_t *)*destinationIndexRegister;
   if (*validationContextPointer != 0) {
     if (validationContextPointer[2] == 0) {
 ValidationCompleteHandler:
@@ -28634,7 +28634,7 @@ uint64_t FUN_18089cfd6(void)
   uint in_EAX;
   uint functionReturnValue;
   uint64_t registerContext;
-  int64_t *register_RDI;
+  int64_t *destinationIndexRegister;
   int64_t registerR14;
   uint64_t register_R15;
   char stackDataBuffer;
@@ -28642,8 +28642,8 @@ uint64_t FUN_18089cfd6(void)
   
   functionReturnValue = (uint)registerContext;
   if (2 < in_EAX) goto LAB_18089d07f;
-  if (*(uint *)(register_RDI[1] + 0x18) != (uint)register_R15) goto LAB_18089d06e;
-  validationContextPointer = (int64_t *)*register_RDI;
+  if (*(uint *)(destinationIndexRegister[1] + 0x18) != (uint)register_R15) goto LAB_18089d06e;
+  validationContextPointer = (int64_t *)*destinationIndexRegister;
   if (*validationContextPointer != 0) {
     if (validationContextPointer[2] == register_R15) {
 ValidationCompleteHandler:
@@ -28772,13 +28772,13 @@ uint64_t FUN_18089d171(void)
 
 {
   uint dataValue;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   uint64_t functionReturnValue;
   DataBuffer *registerContext;
   int64_t systemContext;
   uint64_t validationStatus;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
   }
   dataValue = FUN_1808a2740(*registerContext,systemContext + 0x60);
@@ -29190,29 +29190,29 @@ void CheckSystemStateC0(DataWord param_1)
 {
   int inputParameter;
   DataBuffer *registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   DataWord extraout_XMM0_Da;
   
   inputParameter = ExecuteSecurityValidation(param_1,&stack0x00000030,0);
   if (inputParameter == 0) {
-    inputParameter = ValidatePortControlRequest(extraout_XMM0_Da,register_RDI + 0x10);
+    inputParameter = ValidatePortControlRequest(extraout_XMM0_Da,destinationIndexRegister + 0x10);
     if (inputParameter == 0) {
       if (*(uint *)(registerContext + 8) < 0x37) {
         inputParameter = 0;
       }
       else if (*(int *)(registerContext[1] + 0x18) == 0) {
-        inputParameter = OperateDataO0(*registerContext,register_RDI + 0x210,8);
+        inputParameter = OperateDataO0(*registerContext,destinationIndexRegister + 0x210,8);
       }
       else {
         inputParameter = 0x1c;
       }
       if (inputParameter == 0) {
-        *(DataWord *)(register_RDI + 0x218) = *(DataWord *)(registerContext + 8);
+        *(DataWord *)(destinationIndexRegister + 0x218) = *(DataWord *)(registerContext + 8);
         if (*(uint *)(registerContext + 8) < 0x41) {
           inputParameter = 0;
         }
         else if (*(int *)(registerContext[1] + 0x18) == 0) {
-          inputParameter = OperateDataO0(*registerContext,register_RDI + 0x2f4,4);
+          inputParameter = OperateDataO0(*registerContext,destinationIndexRegister + 0x2f4,4);
         }
         else {
           inputParameter = 0x1c;
@@ -29222,18 +29222,18 @@ void CheckSystemStateC0(DataWord param_1)
             inputParameter = 0;
           }
           else if (*(int *)(registerContext[1] + 0x18) == 0) {
-            inputParameter = OperateDataO0(*registerContext,register_RDI + 0x21c,4);
+            inputParameter = OperateDataO0(*registerContext,destinationIndexRegister + 0x21c,4);
           }
           else {
             inputParameter = 0x1c;
           }
           if (inputParameter == 0) {
-            *(DataWord *)(register_RDI + 0x200) = *(DataWord *)(register_RDI + 0x10);
-            *(DataWord *)(register_RDI + 0x204) = *(DataWord *)(register_RDI + 0x14);
-            *(DataWord *)(register_RDI + 0x208) = *(DataWord *)(register_RDI + 0x18);
-            *(DataWord *)(register_RDI + 0x20c) = *(DataWord *)(register_RDI + 0x1c);
+            *(DataWord *)(destinationIndexRegister + 0x200) = *(DataWord *)(destinationIndexRegister + 0x10);
+            *(DataWord *)(destinationIndexRegister + 0x204) = *(DataWord *)(destinationIndexRegister + 0x14);
+            *(DataWord *)(destinationIndexRegister + 0x208) = *(DataWord *)(destinationIndexRegister + 0x18);
+            *(DataWord *)(destinationIndexRegister + 0x20c) = *(DataWord *)(destinationIndexRegister + 0x1c);
                     // WARNING: Subroutine does not return
-            FUN_1808ddf80(*(DataWord *)(register_RDI + 0x10),&stack0x00000030);
+            FUN_1808ddf80(*(DataWord *)(destinationIndexRegister + 0x10),&stack0x00000030);
           }
         }
       }
@@ -29347,13 +29347,13 @@ uint64_t FUN_18089dd54(void)
 {
   DataBuffer dataValue;
   uint functionReturnValue;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   uint64_t validationStatus;
   DataBuffer *registerContext;
   int64_t systemContext;
   uint64_t memoryBaseAddress;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
   }
   validationStatus = OperateDataO0(*registerContext,systemContext + 0xf0,4);
@@ -29723,31 +29723,31 @@ DataBuffer ReturnFixedStatusCodeA1(void)
 
 {
   DataBuffer dataValue;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   DataBuffer functionReturnValue;
   DataBuffer *registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
   }
   dataValue = *registerContext;
-  functionReturnValue = OperateDataO0(dataValue,register_RDI + 0x4c,4);
-  if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(dataValue,register_RDI + 0x50,2), (int)functionReturnValue == 0)) &&
-     (functionReturnValue = OperateDataO0(dataValue,register_RDI + 0x52,2), (int)functionReturnValue == 0)) {
-    functionReturnValue = OperateDataO0(dataValue,register_RDI + 0x54,8);
+  functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0x4c,4);
+  if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0x50,2), (int)functionReturnValue == 0)) &&
+     (functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0x52,2), (int)functionReturnValue == 0)) {
+    functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0x54,8);
   }
   if ((int)functionReturnValue == 0) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    functionReturnValue = ValidateDataWithSecurityCheckA2(*registerContext,register_RDI + 0x48);
+    functionReturnValue = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x48);
     if ((int)functionReturnValue == 0) {
       if (*(uint *)(registerContext + 8) < 0x3d) {
         functionReturnValue = 0;
       }
       else if (*(int *)(registerContext[1] + 0x18) == 0) {
-        functionReturnValue = GetMemoryAddressA0(*registerContext,register_RDI + 0x40);
+        functionReturnValue = GetMemoryAddressA0(*registerContext,destinationIndexRegister + 0x40);
       }
       else {
         functionReturnValue = 0x1c;
@@ -29769,16 +29769,16 @@ DataBuffer ValidateSystemStatusA0(void)
   DataBuffer dataValue;
   DataBuffer functionReturnValue;
   DataBuffer *registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   
   dataValue = *registerContext;
-  functionReturnValue = OperateDataO0(dataValue,register_RDI + 0x4c,4);
+  functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0x4c,4);
   if ((int)functionReturnValue == 0) {
-    functionReturnValue = OperateDataO0(dataValue,register_RDI + 0x50,2);
+    functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0x50,2);
     if ((int)functionReturnValue == 0) {
-      functionReturnValue = OperateDataO0(dataValue,register_RDI + 0x52,2);
+      functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0x52,2);
       if ((int)functionReturnValue == 0) {
-        functionReturnValue = OperateDataO0(dataValue,register_RDI + 0x54,8);
+        functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0x54,8);
       }
     }
   }
@@ -29786,13 +29786,13 @@ DataBuffer ValidateSystemStatusA0(void)
     if (*(int *)(registerContext[1] + 0x18) != 0) {
       return 0x1c;
     }
-    functionReturnValue = ValidateDataWithSecurityCheckA2(*registerContext,register_RDI + 0x48);
+    functionReturnValue = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x48);
     if ((int)functionReturnValue == 0) {
       if (*(uint *)(registerContext + 8) < 0x3d) {
         functionReturnValue = 0;
       }
       else if (*(int *)(registerContext[1] + 0x18) == 0) {
-        functionReturnValue = GetMemoryAddressA0(*registerContext,register_RDI + 0x40);
+        functionReturnValue = GetMemoryAddressA0(*registerContext,destinationIndexRegister + 0x40);
       }
       else {
         functionReturnValue = 0x1c;
@@ -29813,18 +29813,18 @@ DataBuffer ExecuteDataSynchronizationA1(void)
 {
   DataBuffer dataValue;
   DataBuffer *registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  dataValue = ValidateDataWithSecurityCheckA2(*registerContext,register_RDI + 0x48);
+  dataValue = ValidateDataWithSecurityCheckA2(*registerContext,destinationIndexRegister + 0x48);
   if ((int)dataValue == 0) {
     if (*(uint *)(registerContext + 8) < 0x3d) {
       dataValue = 0;
     }
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      dataValue = GetMemoryAddressA0(*registerContext,register_RDI + 0x40);
+      dataValue = GetMemoryAddressA0(*registerContext,destinationIndexRegister + 0x40);
     }
     else {
       dataValue = 0x1c;
@@ -30016,7 +30016,7 @@ uint64_t FUN_18089e297(void)
 
 {
   int64_t *validationContextPointer;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   uint64_t functionReturnValue;
   uint64_t validationStatus;
   int64_t *registerContext;
@@ -30028,7 +30028,7 @@ uint64_t FUN_18089e297(void)
   uint in_stack_000000b0;
   uint in_stack_000000b8;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
   }
   functionReturnValue = OperateDataO0(*registerContext,systemContext + 0x44,4);
@@ -30440,9 +30440,9 @@ uint64_t FUN_18089e558(void)
   DataWord *pvalidationOutcome;
   uint64_t securityCheckResult;
   int64_t dataPointer;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   DataWord *ploopCounter;
-  DataBuffer *register_RDI;
+  DataBuffer *destinationIndexRegister;
   int64_t register_R15;
   DataWord extraout_XMM0_Da;
   DataWord extraout_XMM0_Da_00;
@@ -30454,31 +30454,31 @@ uint64_t FUN_18089e558(void)
   
   pvalidationOutcome = (DataWord *)FUN_180847820();
   securityCheckResult = 0;
-  operationResult = *(uint *)(register_RDI + 8);
+  operationResult = *(uint *)(destinationIndexRegister + 8);
   dataValue1 = *pvalidationOutcome;
   functionReturnValue = pvalidationOutcome[1];
   validationStatus = pvalidationOutcome[2];
   memoryBaseAddress = pvalidationOutcome[3];
-  *(DataWord *)(register_RBP + -0x19) = dataValue1;
-  *(DataWord *)(register_RBP + -0x15) = functionReturnValue;
-  *(DataWord *)(register_RBP + -0x11) = validationStatus;
-  *(DataWord *)(register_RBP + -0xd) = memoryBaseAddress;
+  *(DataWord *)(stackFramePointer + -0x19) = dataValue1;
+  *(DataWord *)(stackFramePointer + -0x15) = functionReturnValue;
+  *(DataWord *)(stackFramePointer + -0x11) = validationStatus;
+  *(DataWord *)(stackFramePointer + -0xd) = memoryBaseAddress;
   if (operationResult < 0x6d) {
-    if (*(int *)(register_RDI[1] + 0x18) == 0) {
-      dataValue = *register_RDI;
-      securityCheckResult = OperateDataO0(dataValue,register_RBP + -0x19,4);
+    if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+      dataValue = *destinationIndexRegister;
+      securityCheckResult = OperateDataO0(dataValue,stackFramePointer + -0x19,4);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = OperateDataO0(dataValue,register_RBP + -0x15,2);
+      securityCheckResult = OperateDataO0(dataValue,stackFramePointer + -0x15,2);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = OperateDataO0(dataValue,register_RBP + -0x13,2);
+      securityCheckResult = OperateDataO0(dataValue,stackFramePointer + -0x13,2);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = OperateDataO0(dataValue,register_RBP + -0x11,8);
+      securityCheckResult = OperateDataO0(dataValue,stackFramePointer + -0x11,8);
       dataValue1 = extraout_XMM0_Da;
     }
     else {
@@ -30487,19 +30487,19 @@ uint64_t FUN_18089e558(void)
   }
   if ((((int)securityCheckResult == 0) && (securityCheckResult = ValidateSystemOperationA0(dataValue1,register_R15 + 0x38,0), (int)securityCheckResult == 0)) &&
      (securityCheckResult = ValidateSystemOperationA0(extraout_XMM0_Da_00,register_R15 + 0x48,0), (int)securityCheckResult == 0)) {
-    if (*(uint *)(register_RDI + 8) < 0x84) {
-      *(DataBuffer *)(register_RBP + -0x29) = 0;
-      *(DataBuffer *)(register_RBP + -0x21) = 0;
-      operationResult = InitializeSystemComponentA0(extraout_XMM0_Da_01,register_RBP + -0x29,0);
+    if (*(uint *)(destinationIndexRegister + 8) < 0x84) {
+      *(DataBuffer *)(stackFramePointer + -0x29) = 0;
+      *(DataBuffer *)(stackFramePointer + -0x21) = 0;
+      operationResult = InitializeSystemComponentA0(extraout_XMM0_Da_01,stackFramePointer + -0x29,0);
       securityCheckResult = (uint64_t)operationResult;
       if (operationResult != 0) {
 ValidationErrorHandler5:
-        CleanupSystemResourcesA0(register_RBP + -0x29);
+        CleanupSystemResourcesA0(stackFramePointer + -0x29);
         return securityCheckResult;
       }
-      iterationCount = *(int *)(register_RBP + -0x21);
+      iterationCount = *(int *)(stackFramePointer + -0x21);
       if (iterationCount != 0) {
-        pvalidationOutcome = *(DataWord **)(register_RBP + -0x29);
+        pvalidationOutcome = *(DataWord **)(stackFramePointer + -0x29);
         for (ploopCounter = pvalidationOutcome; (pvalidationOutcome <= ploopCounter && (ploopCounter < pvalidationOutcome + iterationCount));
             ploopCounter = ploopCounter + 1) {
           dataPointer = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
@@ -30517,11 +30517,11 @@ ValidationErrorHandler5:
           operationResult = ConvertData(register_R15 + 0x58,dataPointer);
           securityCheckResult = (uint64_t)operationResult;
           if (operationResult != 0) goto LAB_18089e70b;
-          iterationCount = *(int *)(register_RBP + -0x21);
-          pvalidationOutcome = *(DataWord **)(register_RBP + -0x29);
+          iterationCount = *(int *)(stackFramePointer + -0x21);
+          pvalidationOutcome = *(DataWord **)(stackFramePointer + -0x29);
         }
       }
-      dataValue1 = FUN_18084c150(register_RBP + -0x29);
+      dataValue1 = FUN_18084c150(stackFramePointer + -0x29);
     }
     else {
       securityCheckResult = FUN_1808a71c0(extraout_XMM0_Da_01,register_R15 + 0x58);
@@ -30534,7 +30534,7 @@ ValidationErrorHandler5:
     if (((int)securityCheckResult == 0) &&
        (securityCheckResult = FUN_1808a62d0(extraout_XMM0_Da_03,register_R15 + 0x88,0), (int)securityCheckResult == 0)) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(extraout_XMM0_Da_04,register_RBP + 7);
+      FUN_1808ddf80(extraout_XMM0_Da_04,stackFramePointer + 7);
     }
   }
   return securityCheckResult;
@@ -30554,24 +30554,24 @@ uint64_t FUN_18089e624(void)
   int64_t resourceIterator;
   DataWord *pdataFlags;
   DataBuffer registerContext;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   DataWord *pvalidationOutcome;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   int64_t register_R15;
   
-  if (*(uint *)(register_RDI + 0x40) < 0x84) {
-    *(DataBuffer *)(register_RBP + -0x29) = registerContext;
-    *(DataBuffer *)(register_RBP + -0x21) = registerContext;
+  if (*(uint *)(destinationIndexRegister + 0x40) < 0x84) {
+    *(DataBuffer *)(stackFramePointer + -0x29) = registerContext;
+    *(DataBuffer *)(stackFramePointer + -0x21) = registerContext;
     functionReturnValue = FUN_1808a4a20();
     memoryBaseAddress = (uint64_t)functionReturnValue;
     if (functionReturnValue != 0) {
 ValidationErrorHandler5:
-      FUN_18084c150(register_RBP + -0x29);
+      FUN_18084c150(stackFramePointer + -0x29);
       return memoryBaseAddress;
     }
-    operationStatus = *(int *)(register_RBP + -0x21);
+    operationStatus = *(int *)(stackFramePointer + -0x21);
     if (operationStatus != 0) {
-      pdataFlags = *(DataWord **)(register_RBP + -0x29);
+      pdataFlags = *(DataWord **)(stackFramePointer + -0x29);
       for (pvalidationOutcome = pdataFlags; (pdataFlags <= pvalidationOutcome && (pvalidationOutcome < pdataFlags + operationStatus)); pvalidationOutcome = pvalidationOutcome + 1) {
         resourceIterator = AllocateSystemMemoryA0(*(DataBuffer *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c);
         if (resourceIterator == 0) {
@@ -30587,11 +30587,11 @@ ValidationErrorHandler5:
         functionReturnValue = ConvertData(register_R15 + 0x58,resourceIterator);
         memoryBaseAddress = (uint64_t)functionReturnValue;
         if (functionReturnValue != 0) goto LAB_18089e70b;
-        operationStatus = *(int *)(register_RBP + -0x21);
-        pdataFlags = *(DataWord **)(register_RBP + -0x29);
+        operationStatus = *(int *)(stackFramePointer + -0x21);
+        pdataFlags = *(DataWord **)(stackFramePointer + -0x29);
       }
     }
-    FUN_18084c150(register_RBP + -0x29);
+    FUN_18084c150(stackFramePointer + -0x29);
   }
   else {
     memoryBaseAddress = FUN_1808a71c0();
@@ -30954,21 +30954,21 @@ uint64_t FUN_18089e87d(void)
   int64_t validationContext;
   int64_t *pdataContext;
   uint validationStatus;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   uint64_t memoryBaseAddress;
   uint64_t operationResult;
-  int64_t register_RBP;
-  int64_t *register_RDI;
+  int64_t stackFramePointer;
+  int64_t *destinationIndexRegister;
   int register_R12D;
   int64_t register_R15;
   bool bVar6;
   bool bVar7;
   bool bVar8;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
   }
-  validationContext = *register_RDI;
+  validationContext = *destinationIndexRegister;
   validationStatus = OperateDataO0(validationContext,register_R15 + 0x10,register_R12D + 3);
   memoryBaseAddress = (uint64_t)validationStatus;
   if (validationStatus == 0) {
@@ -30990,17 +30990,17 @@ uint64_t FUN_18089e87d(void)
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if (*(int *)(register_RDI[1] + 0x18) != 0) {
+  if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = OperateDataO0(*register_RDI,register_R15 + 0x30,4);
+  validationStatus = OperateDataO0(*destinationIndexRegister,register_R15 + 0x30,4);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  if (*(int *)(register_RDI[1] + 0x18) != 0) {
+  if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = OperateDataO0(*register_RDI,register_R15 + 0x34);
+  validationStatus = OperateDataO0(*destinationIndexRegister,register_R15 + 0x34);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
@@ -31012,32 +31012,32 @@ uint64_t FUN_18089e87d(void)
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if (*(int *)(register_RDI[1] + 0x18) != 0) {
+  if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationStatus = ValidateDataWithSecurityCheckA2(*register_RDI,register_R15 + 0x58);
+  validationStatus = ValidateDataWithSecurityCheckA2(*destinationIndexRegister,register_R15 + 0x58);
   if (validationStatus != 0) {
     return (uint64_t)validationStatus;
   }
-  validationStatus = *(uint *)(register_RDI + 8);
+  validationStatus = *(uint *)(destinationIndexRegister + 8);
   if (0x7e < validationStatus) goto LAB_18089ed1b;
-  if (*(int *)(register_RDI[1] + 0x18) != 0) {
+  if (*(int *)(destinationIndexRegister[1] + 0x18) != 0) {
     return 0x1c;
   }
-  pdataContext = (int64_t *)*register_RDI;
+  pdataContext = (int64_t *)*destinationIndexRegister;
   validationContext = *pdataContext;
   if (validationContext == 0) {
     memoryBaseAddress = 0x1c;
   }
   else if (pdataContext[2] == 0) {
 ValidationStartHandler:
-    memoryBaseAddress = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x41,register_R12D,4,0);
+    memoryBaseAddress = ValidateDataAndReturnStatusO3(*pdataContext,stackFramePointer + -0x41,register_R12D,4,0);
   }
   else {
-    *(DataWord *)(register_RBP + 0x77) = 0;
-    memoryBaseAddress = AllocateMemory(validationContext,register_RBP + 0x77);
+    *(DataWord *)(stackFramePointer + 0x77) = 0;
+    memoryBaseAddress = AllocateMemory(validationContext,stackFramePointer + 0x77);
     if ((int)memoryBaseAddress == 0) {
-      if ((uint64_t)*(uint *)(register_RBP + 0x77) + 4 <= (uint64_t)pdataContext[2]) goto LAB_18089ea0f;
+      if ((uint64_t)*(uint *)(stackFramePointer + 0x77) + 4 <= (uint64_t)pdataContext[2]) goto LAB_18089ea0f;
       memoryBaseAddress = 0x11;
     }
   }
@@ -31045,34 +31045,34 @@ ValidationStartHandler:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  bVar6 = *(uint *)(register_RDI + 8) < 0x34;
-  *(char *)(register_RBP + 0x77) = (char)memoryBaseAddress;
-  *(char *)(register_RBP + 0x7f) = (char)memoryBaseAddress;
+  bVar6 = *(uint *)(destinationIndexRegister + 8) < 0x34;
+  *(char *)(stackFramePointer + 0x77) = (char)memoryBaseAddress;
+  *(char *)(stackFramePointer + 0x7f) = (char)memoryBaseAddress;
   bVar8 = false;
-  if (0x37 < *(uint *)(register_RDI + 8)) {
-    if (*(int *)(register_RDI[1] + 0x18) == 0) {
-      pdataContext = (int64_t *)*register_RDI;
+  if (0x37 < *(uint *)(destinationIndexRegister + 8)) {
+    if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+      pdataContext = (int64_t *)*destinationIndexRegister;
       validationContext = *pdataContext;
       if (validationContext == 0) {
         validationStatus = 0x1c;
 ValidationErrorHandler6:
         bVar7 = validationStatus == 0;
         if (bVar7) {
-          bVar6 = *(char *)(register_RBP + -0x49) != '\0';
+          bVar6 = *(char *)(stackFramePointer + -0x49) != '\0';
           bVar7 = true;
         }
       }
       else {
         if (pdataContext[2] == 0) {
 ValidationStateHandler2:
-          validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
+          validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,stackFramePointer + -0x49,register_R12D,register_R12D,0);
           goto LAB_18089eaae;
         }
-        *(DataWord *)(register_RBP + -0x45) = 0;
-        validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
+        *(DataWord *)(stackFramePointer + -0x45) = 0;
+        validationStatus = AllocateMemory(validationContext,stackFramePointer + -0x45);
         bVar7 = validationStatus == 0;
         if (bVar7) {
-          if ((uint64_t)pdataContext[2] < (uint64_t)*(uint *)(register_RBP + -0x45) + 1) {
+          if ((uint64_t)pdataContext[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089eaae;
           }
@@ -31092,28 +31092,28 @@ ValidationStateHandler2:
     return operationResult;
   }
   memoryBaseAddress = 0;
-  if (0x66 < *(uint *)(register_RDI + 8)) {
-    if (*(int *)(register_RDI[1] + 0x18) == 0) {
-      pdataContext = (int64_t *)*register_RDI;
+  if (0x66 < *(uint *)(destinationIndexRegister + 8)) {
+    if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+      pdataContext = (int64_t *)*destinationIndexRegister;
       validationContext = *pdataContext;
       if (validationContext == 0) {
         validationStatus = 0x1c;
       }
       else if (pdataContext[2] == 0) {
 ValidationDataHandler2:
-        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,stackFramePointer + -0x49,register_R12D,register_R12D,0);
       }
       else {
-        *(DataWord *)(register_RBP + -0x45) = 0;
-        validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
+        *(DataWord *)(stackFramePointer + -0x45) = 0;
+        validationStatus = AllocateMemory(validationContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x45) + 1 <= (uint64_t)pdataContext[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x45) + 1 <= (uint64_t)pdataContext[2])
           goto LAB_18089eb22;
           validationStatus = 0x11;
         }
       }
       if (validationStatus == 0) {
-        *(bool *)(register_RBP + 0x77) = *(char *)(register_RBP + -0x49) != '\0';
+        *(bool *)(stackFramePointer + 0x77) = *(char *)(stackFramePointer + -0x49) != '\0';
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -31128,28 +31128,28 @@ ValidationDataHandler2:
     return memoryBaseAddress;
   }
   memoryBaseAddress = 0;
-  if (0x78 < *(uint *)(register_RDI + 8)) {
-    if (*(int *)(register_RDI[1] + 0x18) == 0) {
-      pdataContext = (int64_t *)*register_RDI;
+  if (0x78 < *(uint *)(destinationIndexRegister + 8)) {
+    if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+      pdataContext = (int64_t *)*destinationIndexRegister;
       validationContext = *pdataContext;
       if (validationContext == 0) {
         validationStatus = 0x1c;
       }
       else if (pdataContext[2] == 0) {
 ValidationStateHandler3:
-        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,stackFramePointer + -0x49,register_R12D,register_R12D,0);
       }
       else {
-        *(DataWord *)(register_RBP + -0x45) = 0;
-        validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
+        *(DataWord *)(stackFramePointer + -0x45) = 0;
+        validationStatus = AllocateMemory(validationContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x45) + 1 <= (uint64_t)pdataContext[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x45) + 1 <= (uint64_t)pdataContext[2])
           goto LAB_18089ebaa;
           validationStatus = 0x11;
         }
       }
       if (validationStatus == 0) {
-        *(bool *)(register_RBP + 0x7f) = *(char *)(register_RBP + -0x49) != '\0';
+        *(bool *)(stackFramePointer + 0x7f) = *(char *)(stackFramePointer + -0x49) != '\0';
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -31164,28 +31164,28 @@ ValidationStateHandler3:
     return memoryBaseAddress;
   }
   memoryBaseAddress = 0;
-  if (0x79 < *(uint *)(register_RDI + 8)) {
-    if (*(int *)(register_RDI[1] + 0x18) == 0) {
-      pdataContext = (int64_t *)*register_RDI;
+  if (0x79 < *(uint *)(destinationIndexRegister + 8)) {
+    if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+      pdataContext = (int64_t *)*destinationIndexRegister;
       validationContext = *pdataContext;
       if (validationContext == 0) {
         validationStatus = 0x1c;
       }
       else if (pdataContext[2] == 0) {
 LAB_18089ec32:
-        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,stackFramePointer + -0x49,register_R12D,register_R12D,0);
       }
       else {
-        *(DataWord *)(register_RBP + -0x45) = 0;
-        validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
+        *(DataWord *)(stackFramePointer + -0x45) = 0;
+        validationStatus = AllocateMemory(validationContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x45) + 1 <= (uint64_t)pdataContext[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x45) + 1 <= (uint64_t)pdataContext[2])
           goto LAB_18089ec32;
           validationStatus = 0x11;
         }
       }
       if (validationStatus == 0) {
-        bVar8 = *(char *)(register_RBP + -0x49) != '\0';
+        bVar8 = *(char *)(stackFramePointer + -0x49) != '\0';
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -31200,28 +31200,28 @@ LAB_18089ec32:
     return memoryBaseAddress;
   }
   memoryBaseAddress = 0;
-  if (0x7a < *(uint *)(register_RDI + 8)) {
-    if (*(int *)(register_RDI[1] + 0x18) == 0) {
-      pdataContext = (int64_t *)*register_RDI;
+  if (0x7a < *(uint *)(destinationIndexRegister + 8)) {
+    if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+      pdataContext = (int64_t *)*destinationIndexRegister;
       validationContext = *pdataContext;
       if (validationContext == 0) {
         validationStatus = 0x1c;
       }
       else if (pdataContext[2] == 0) {
 LAB_18089ecba:
-        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,register_RBP + -0x49,register_R12D,register_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*pdataContext,stackFramePointer + -0x49,register_R12D,register_R12D,0);
       }
       else {
-        *(DataWord *)(register_RBP + -0x45) = 0;
-        validationStatus = AllocateMemory(validationContext,register_RBP + -0x45);
+        *(DataWord *)(stackFramePointer + -0x45) = 0;
+        validationStatus = AllocateMemory(validationContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
-          if ((uint64_t)*(uint *)(register_RBP + -0x45) + 1 <= (uint64_t)pdataContext[2])
+          if ((uint64_t)*(uint *)(stackFramePointer + -0x45) + 1 <= (uint64_t)pdataContext[2])
           goto LAB_18089ecba;
           validationStatus = 0x11;
         }
       }
       if (validationStatus == 0) {
-        bVar8 = *(char *)(register_RBP + -0x49) != '\0';
+        bVar8 = *(char *)(stackFramePointer + -0x49) != '\0';
       }
       memoryBaseAddress = (uint64_t)validationStatus;
       if (validationStatus == 0) {
@@ -31235,16 +31235,16 @@ LAB_18089ecba:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if ((((!bVar6) && (*(char *)(register_RBP + 0x77) == '\0')) && (*(char *)(register_RBP + 0x7f) == '\0'))
+  if ((((!bVar6) && (*(char *)(stackFramePointer + 0x77) == '\0')) && (*(char *)(stackFramePointer + 0x7f) == '\0'))
      && (!bVar8)) {
     register_R12D = 0;
   }
   *(int *)(register_R15 + 0x38) = register_R12D;
-  validationStatus = *(uint *)(register_RDI + 8);
+  validationStatus = *(uint *)(destinationIndexRegister + 8);
 LAB_18089ed1b:
   memoryBaseAddress = 0;
-  if ((0x7e < validationStatus) && (memoryBaseAddress = 0x1c, *(int *)(register_RDI[1] + 0x18) == 0)) {
-    validationStatus = OperateDataO0(*register_RDI,register_R15 + 0x38,4);
+  if ((0x7e < validationStatus) && (memoryBaseAddress = 0x1c, *(int *)(destinationIndexRegister[1] + 0x18) == 0)) {
+    validationStatus = OperateDataO0(*destinationIndexRegister,register_R15 + 0x38,4);
     memoryBaseAddress = (uint64_t)validationStatus;
   }
   if ((int)memoryBaseAddress == 0) {
@@ -31265,8 +31265,8 @@ uint64_t FUN_18089e9af(DataBuffer param_1,DataBuffer param_2,uint64_t param_3)
   uint validationStatus;
   uint64_t memoryBaseAddress;
   uint64_t operationResult;
-  int64_t register_RBP;
-  int64_t *register_RDI;
+  int64_t stackFramePointer;
+  int64_t *destinationIndexRegister;
   DataWord register_R12D;
   int64_t register_R15;
   bool bVar6;
@@ -31275,10 +31275,10 @@ uint64_t FUN_18089e9af(DataBuffer param_1,DataBuffer param_2,uint64_t param_3)
   
   operationResult = 0x1c;
   if (0x7e < in_EAX) goto LAB_18089ed1b;
-  if (*(int *)(register_RDI[1] + 0x18) != (int)param_3) {
+  if (*(int *)(destinationIndexRegister[1] + 0x18) != (int)param_3) {
     return 0x1c;
   }
-  validationContextPointer = (int64_t *)*register_RDI;
+  validationContextPointer = (int64_t *)*destinationIndexRegister;
   dataContext = *validationContextPointer;
   if (dataContext == 0) {
     memoryBaseAddress = 0x1c;
@@ -31286,14 +31286,14 @@ uint64_t FUN_18089e9af(DataBuffer param_1,DataBuffer param_2,uint64_t param_3)
   else {
     if (validationContextPointer[2] == param_3) {
 ValidationStartHandler:
-      memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + -0x41,register_R12D,4,param_3);
+      memoryBaseAddress = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x41,register_R12D,4,param_3);
     }
     else {
-      *(int *)(register_RBP + 0x77) = (int)param_3;
-      memoryBaseAddress = AllocateMemory(dataContext,register_RBP + 0x77);
+      *(int *)(stackFramePointer + 0x77) = (int)param_3;
+      memoryBaseAddress = AllocateMemory(dataContext,stackFramePointer + 0x77);
       if ((int)memoryBaseAddress == 0) {
         param_3 = 0;
-        if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(register_RBP + 0x77) + 4) {
+        if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + 0x77) + 4) {
           memoryBaseAddress = 0x11;
           goto LAB_18089ea2c;
         }
@@ -31306,36 +31306,36 @@ LAB_18089ea2c:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  bVar6 = *(uint *)(register_RDI + 8) < 0x34;
-  *(char *)(register_RBP + 0x77) = (char)memoryBaseAddress;
-  *(char *)(register_RBP + 0x7f) = (char)memoryBaseAddress;
+  bVar6 = *(uint *)(destinationIndexRegister + 8) < 0x34;
+  *(char *)(stackFramePointer + 0x77) = (char)memoryBaseAddress;
+  *(char *)(stackFramePointer + 0x7f) = (char)memoryBaseAddress;
   bVar8 = false;
-  if (*(uint *)(register_RDI + 8) < 0x38) {
+  if (*(uint *)(destinationIndexRegister + 8) < 0x38) {
     memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
-  else if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    validationContextPointer = (int64_t *)*register_RDI;
+  else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    validationContextPointer = (int64_t *)*destinationIndexRegister;
     dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
 ValidationErrorHandler6:
       bVar7 = validationStatus == 0;
       if (bVar7) {
-        bVar6 = *(char *)(register_RBP + -0x49) != '\0';
+        bVar6 = *(char *)(stackFramePointer + -0x49) != '\0';
         bVar7 = true;
       }
     }
     else {
       if (validationContextPointer[2] == 0) {
 ValidationStateHandler2:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + -0x49,register_R12D,register_R12D,0);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,0);
         goto LAB_18089eaae;
       }
-      *(int *)(register_RBP + -0x45) = (int)param_3;
-      validationStatus = AllocateMemory(dataContext,register_RBP + -0x45);
+      *(int *)(stackFramePointer + -0x45) = (int)param_3;
+      validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
       bVar7 = validationStatus == 0;
       if (bVar7) {
-        if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(register_RBP + -0x45) + 1) {
+        if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
           validationStatus = 0x11;
           goto LAB_18089eaae;
         }
@@ -31354,11 +31354,11 @@ ValidationStateHandler2:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if (*(uint *)(register_RDI + 8) < 0x67) {
+  if (*(uint *)(destinationIndexRegister + 8) < 0x67) {
     memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
-  else if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    validationContextPointer = (int64_t *)*register_RDI;
+  else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    validationContextPointer = (int64_t *)*destinationIndexRegister;
     dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
@@ -31366,14 +31366,14 @@ ValidationStateHandler2:
     else {
       if (validationContextPointer[2] == 0) {
 ValidationDataHandler2:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + -0x49,register_R12D,register_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,param_3);
       }
       else {
-        *(int *)(register_RBP + -0x45) = (int)param_3;
-        validationStatus = AllocateMemory(dataContext,register_RBP + -0x45);
+        *(int *)(stackFramePointer + -0x45) = (int)param_3;
+        validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
-          if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(register_RBP + -0x45) + 1) {
+          if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089eb3c;
           }
@@ -31384,7 +31384,7 @@ ValidationDataHandler2:
     }
 ValidationErrorHandler7:
     if (validationStatus == 0) {
-      *(bool *)(register_RBP + 0x77) = *(char *)(register_RBP + -0x49) != '\0';
+      *(bool *)(stackFramePointer + 0x77) = *(char *)(stackFramePointer + -0x49) != '\0';
     }
     memoryBaseAddress = (uint64_t)validationStatus;
     if (validationStatus == 0) {
@@ -31397,11 +31397,11 @@ ValidationErrorHandler7:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if (*(uint *)(register_RDI + 8) < 0x79) {
+  if (*(uint *)(destinationIndexRegister + 8) < 0x79) {
     memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
-  else if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    validationContextPointer = (int64_t *)*register_RDI;
+  else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    validationContextPointer = (int64_t *)*destinationIndexRegister;
     dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
@@ -31409,14 +31409,14 @@ ValidationErrorHandler7:
     else {
       if (validationContextPointer[2] == 0) {
 ValidationStateHandler3:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + -0x49,register_R12D,register_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,param_3);
       }
       else {
-        *(int *)(register_RBP + -0x45) = (int)param_3;
-        validationStatus = AllocateMemory(dataContext,register_RBP + -0x45);
+        *(int *)(stackFramePointer + -0x45) = (int)param_3;
+        validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
-          if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(register_RBP + -0x45) + 1) {
+          if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089ebc4;
           }
@@ -31427,7 +31427,7 @@ ValidationStateHandler3:
     }
 ValidationErrorHandler8:
     if (validationStatus == 0) {
-      *(bool *)(register_RBP + 0x7f) = *(char *)(register_RBP + -0x49) != '\0';
+      *(bool *)(stackFramePointer + 0x7f) = *(char *)(stackFramePointer + -0x49) != '\0';
     }
     memoryBaseAddress = (uint64_t)validationStatus;
     if (validationStatus == 0) {
@@ -31440,11 +31440,11 @@ ValidationErrorHandler8:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if (*(uint *)(register_RDI + 8) < 0x7a) {
+  if (*(uint *)(destinationIndexRegister + 8) < 0x7a) {
     memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
-  else if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    validationContextPointer = (int64_t *)*register_RDI;
+  else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    validationContextPointer = (int64_t *)*destinationIndexRegister;
     dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
@@ -31452,14 +31452,14 @@ ValidationErrorHandler8:
     else {
       if (validationContextPointer[2] == 0) {
 LAB_18089ec32:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + -0x49,register_R12D,register_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,param_3);
       }
       else {
-        *(int *)(register_RBP + -0x45) = (int)param_3;
-        validationStatus = AllocateMemory(dataContext,register_RBP + -0x45);
+        *(int *)(stackFramePointer + -0x45) = (int)param_3;
+        validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
-          if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(register_RBP + -0x45) + 1) {
+          if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089ec4c;
           }
@@ -31470,7 +31470,7 @@ LAB_18089ec32:
     }
 LAB_18089ec4c:
     if (validationStatus == 0) {
-      bVar8 = *(char *)(register_RBP + -0x49) != '\0';
+      bVar8 = *(char *)(stackFramePointer + -0x49) != '\0';
     }
     memoryBaseAddress = (uint64_t)validationStatus;
     if (validationStatus == 0) {
@@ -31483,11 +31483,11 @@ LAB_18089ec4c:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if (*(uint *)(register_RDI + 8) < 0x7b) {
+  if (*(uint *)(destinationIndexRegister + 8) < 0x7b) {
     memoryBaseAddress = param_3 & SystemCleanupFlag;
   }
-  else if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    validationContextPointer = (int64_t *)*register_RDI;
+  else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    validationContextPointer = (int64_t *)*destinationIndexRegister;
     dataContext = *validationContextPointer;
     if (dataContext == 0) {
       validationStatus = 0x1c;
@@ -31495,14 +31495,14 @@ LAB_18089ec4c:
     else {
       if (validationContextPointer[2] == 0) {
 LAB_18089ecba:
-        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,register_RBP + -0x49,register_R12D,register_R12D,param_3);
+        validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,stackFramePointer + -0x49,register_R12D,register_R12D,param_3);
       }
       else {
-        *(int *)(register_RBP + -0x45) = (int)param_3;
-        validationStatus = AllocateMemory(dataContext,register_RBP + -0x45);
+        *(int *)(stackFramePointer + -0x45) = (int)param_3;
+        validationStatus = AllocateMemory(dataContext,stackFramePointer + -0x45);
         if (validationStatus == 0) {
           param_3 = 0;
-          if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(register_RBP + -0x45) + 1) {
+          if ((uint64_t)validationContextPointer[2] < (uint64_t)*(uint *)(stackFramePointer + -0x45) + 1) {
             validationStatus = 0x11;
             goto LAB_18089ecd4;
           }
@@ -31513,7 +31513,7 @@ LAB_18089ecba:
     }
 LAB_18089ecd4:
     if (validationStatus == 0) {
-      bVar8 = *(char *)(register_RBP + -0x49) != '\0';
+      bVar8 = *(char *)(stackFramePointer + -0x49) != '\0';
     }
     memoryBaseAddress = (uint64_t)validationStatus;
     if (validationStatus == 0) {
@@ -31526,18 +31526,18 @@ LAB_18089ecd4:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  if ((((!bVar6) && (*(char *)(register_RBP + 0x77) == '\0')) && (*(char *)(register_RBP + 0x7f) == '\0'))
+  if ((((!bVar6) && (*(char *)(stackFramePointer + 0x77) == '\0')) && (*(char *)(stackFramePointer + 0x7f) == '\0'))
      && (!bVar8)) {
     register_R12D = (DataWord)param_3;
   }
   *(DataWord *)(register_R15 + 0x38) = register_R12D;
-  in_EAX = *(uint *)(register_RDI + 8);
+  in_EAX = *(uint *)(destinationIndexRegister + 8);
 LAB_18089ed1b:
   if (in_EAX < 0x7f) {
     operationResult = param_3 & SystemCleanupFlag;
   }
-  else if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    validationStatus = OperateDataO0(*register_RDI,register_R15 + 0x38,4);
+  else if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    validationStatus = OperateDataO0(*destinationIndexRegister,register_R15 + 0x38,4);
     operationResult = (uint64_t)validationStatus;
   }
   if ((int)operationResult != 0) {
@@ -31606,22 +31606,22 @@ DataBuffer ReturnFixedStatusCodeA2(void)
 
 {
   DataBuffer dataValue;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   DataBuffer functionReturnValue;
   DataBuffer *registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   
-  if (*(int *)(in_RAX + 0x18) != 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
     return 0x1c;
   }
   dataValue = *registerContext;
-  functionReturnValue = OperateDataO0(dataValue,register_RDI + 0xdc,4);
+  functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0xdc,4);
   if ((int)functionReturnValue == 0) {
-    functionReturnValue = OperateDataO0(dataValue,register_RDI + 0xe0,2);
+    functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0xe0,2);
     if ((int)functionReturnValue == 0) {
-      functionReturnValue = OperateDataO0(dataValue,register_RDI + 0xe2,2);
+      functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0xe2,2);
       if ((int)functionReturnValue == 0) {
-        functionReturnValue = OperateDataO0(dataValue,register_RDI + 0xe4,8);
+        functionReturnValue = OperateDataO0(dataValue,destinationIndexRegister + 0xe4,8);
       }
     }
   }
@@ -31642,16 +31642,16 @@ void ValidateSystemConfigurationC1(void)
   DataBuffer dataValue;
   int operationResult;
   DataBuffer *registerContext;
-  int64_t register_RDI;
+  int64_t destinationIndexRegister;
   
   dataValue = *registerContext;
-  operationResult = OperateDataO0(dataValue,register_RDI + 0xdc,4);
+  operationResult = OperateDataO0(dataValue,destinationIndexRegister + 0xdc,4);
   if (operationResult == 0) {
-    operationResult = OperateDataO0(dataValue,register_RDI + 0xe0,2);
+    operationResult = OperateDataO0(dataValue,destinationIndexRegister + 0xe0,2);
     if (operationResult == 0) {
-      operationResult = OperateDataO0(dataValue,register_RDI + 0xe2,2);
+      operationResult = OperateDataO0(dataValue,destinationIndexRegister + 0xe2,2);
       if (operationResult == 0) {
-        operationResult = OperateDataO0(dataValue,register_RDI + 0xe4,8);
+        operationResult = OperateDataO0(dataValue,destinationIndexRegister + 0xe4,8);
       }
     }
   }
@@ -31888,13 +31888,13 @@ DataBuffer ProcessComplexDataStructureA1(int64_t param_1,int64_t *param_2)
 DataBuffer ReturnFixedStatusCodeA3(void)
 
 {
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   DataBuffer dataValue;
   int64_t *registerContext;
   int64_t systemContext;
   DataWord in_stack_000000b0;
   
-  if (*(int *)(in_RAX + 0x18) == 0) {
+  if (*(int *)(inputAccumulatorRegister + 0x18) == 0) {
     dataValue = ProcessDataPointerA0(*registerContext,systemContext + 0x10);
     if (((int)dataValue == 0) &&
        ((0x5a < *(uint *)(registerContext + 8) || (dataValue = FUN_1808afd90(), (int)dataValue == 0)))) {
@@ -32156,16 +32156,16 @@ uint64_t FUN_18089f571(void)
   uint dataValue;
   uint64_t functionReturnValue;
   DataBuffer *registerContext;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   char in_stack_000000d0;
   
   functionReturnValue = FUN_1808ddd30();
   if ((int)functionReturnValue == 0) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      dataValue = ProcessDataPointerA0(*registerContext,register_RBP + 0x10);
+      dataValue = ProcessDataPointerA0(*registerContext,stackFramePointer + 0x10);
       functionReturnValue = (uint64_t)dataValue;
       if ((dataValue == 0) &&
-         ((in_stack_000000d0 == '\0' || (functionReturnValue = FUN_1808a1870(register_RBP + 0x48), (int)functionReturnValue == 0)))
+         ((in_stack_000000d0 == '\0' || (functionReturnValue = FUN_1808a1870(stackFramePointer + 0x48), (int)functionReturnValue == 0)))
          ) {
                     // WARNING: Subroutine does not return
         FUN_1808de000();
@@ -32235,7 +32235,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
 {
   int64_t validationContext;
   uint functionReturnValue;
-  DataWord *pvalidationStatus;
+  DataWord *validationStatusPointer;
   uint64_t memoryBaseAddress;
   BytePair auStackX_18 [4];
   BytePair auStackX_20 [4];
@@ -32246,11 +32246,11 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
   DataWord uStack_44;
   ByteFlag auStack_40 [40];
   
-  pvalidationStatus = (DataWord *)FUN_180847820();
-  uStack_50 = *pvalidationStatus;
-  uStack_4c = pvalidationStatus[1];
-  uStack_48 = pvalidationStatus[2];
-  uStack_44 = pvalidationStatus[3];
+  validationStatusPointer = (DataWord *)FUN_180847820();
+  uStack_50 = *validationStatusPointer;
+  uStack_4c = validationStatusPointer[1];
+  uStack_48 = validationStatusPointer[2];
+  uStack_44 = validationStatusPointer[3];
   memoryBaseAddress = FUN_1808ddd30(param_2,auStack_40,0,0x4c525443,0);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
@@ -32316,11 +32316,11 @@ uint64_t FUN_18089f9b3(void)
 {
   int64_t validationContext;
   uint functionReturnValue;
-  int64_t in_RAX;
+  int64_t inputAccumulatorRegister;
   uint64_t validationStatus;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   uint register_ESI;
-  int64_t *register_RDI;
+  int64_t *destinationIndexRegister;
   DataWord in_stack_00000030;
   DataWord uStack0000000000000038;
   BytePair uStack000000000000003c;
@@ -32328,24 +32328,24 @@ uint64_t FUN_18089f9b3(void)
   BytePair in_stack_000000a0;
   BytePair in_stack_000000a8;
   
-  if (*(uint *)(in_RAX + 0x18) != register_ESI) {
+  if (*(uint *)(inputAccumulatorRegister + 0x18) != register_ESI) {
     return 0x1c;
   }
-  functionReturnValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x10);
+  functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x10);
   validationStatus = (uint64_t)functionReturnValue;
   if (functionReturnValue == 0) {
-    if (*(uint *)(register_RDI[1] + 0x18) != register_ESI) {
+    if (*(uint *)(destinationIndexRegister[1] + 0x18) != register_ESI) {
       return 0x1c;
     }
-    functionReturnValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x20);
+    functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x20);
     validationStatus = (uint64_t)functionReturnValue;
     if (functionReturnValue == 0) {
       validationStatus = 0x1c;
       functionReturnValue = register_ESI;
-      if ((*(uint *)(register_RDI + 8) < 0x5a) &&
-         (functionReturnValue = 0x1c, *(uint *)(register_RDI[1] + 0x18) == register_ESI)) {
+      if ((*(uint *)(destinationIndexRegister + 8) < 0x5a) &&
+         (functionReturnValue = 0x1c, *(uint *)(destinationIndexRegister[1] + 0x18) == register_ESI)) {
         in_stack_00000030 = uStack0000000000000038;
-        validationContext = *register_RDI;
+        validationContext = *destinationIndexRegister;
         functionReturnValue = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                           (*(DataBuffer **)(validationContext + 8),&stack0x00000030,4);
         if (functionReturnValue == 0) {
@@ -32366,8 +32366,8 @@ uint64_t FUN_18089f9b3(void)
       if (functionReturnValue != 0) {
         return (uint64_t)functionReturnValue;
       }
-      if (*(int *)(register_RDI[1] + 0x18) == 0) {
-        functionReturnValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x30);
+      if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+        functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
         validationStatus = (uint64_t)functionReturnValue;
         if (functionReturnValue == 0) {
           validationStatus = FUN_180898e70();
@@ -32391,9 +32391,9 @@ uint64_t FUN_18089f9f6(void)
   int64_t validationContext;
   uint functionReturnValue;
   uint64_t validationStatus;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   uint register_ESI;
-  int64_t *register_RDI;
+  int64_t *destinationIndexRegister;
   DataWord in_stack_00000030;
   DataWord uStack0000000000000038;
   BytePair uStack000000000000003c;
@@ -32401,15 +32401,15 @@ uint64_t FUN_18089f9f6(void)
   BytePair in_stack_000000a0;
   BytePair in_stack_000000a8;
   
-  functionReturnValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x20);
+  functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x20);
   validationStatus = (uint64_t)functionReturnValue;
   if (functionReturnValue == 0) {
     validationStatus = 0x1c;
     functionReturnValue = register_ESI;
-    if ((*(uint *)(register_RDI + 8) < 0x5a) &&
-       (functionReturnValue = 0x1c, *(uint *)(register_RDI[1] + 0x18) == register_ESI)) {
+    if ((*(uint *)(destinationIndexRegister + 8) < 0x5a) &&
+       (functionReturnValue = 0x1c, *(uint *)(destinationIndexRegister[1] + 0x18) == register_ESI)) {
       in_stack_00000030 = uStack0000000000000038;
-      validationContext = *register_RDI;
+      validationContext = *destinationIndexRegister;
       functionReturnValue = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))
                         (*(DataBuffer **)(validationContext + 8),&stack0x00000030,4);
       if (functionReturnValue == 0) {
@@ -32430,8 +32430,8 @@ uint64_t FUN_18089f9f6(void)
     if (functionReturnValue != 0) {
       return (uint64_t)functionReturnValue;
     }
-    if (*(int *)(register_RDI[1] + 0x18) == 0) {
-      functionReturnValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x30);
+    if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+      functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
       validationStatus = (uint64_t)functionReturnValue;
       if (functionReturnValue == 0) {
         validationStatus = FUN_180898e70();
@@ -32455,13 +32455,13 @@ uint64_t FUN_18089fa3c(void)
   uint functionReturnValue;
   uint64_t validationStatus;
   uint64_t registerContext;
-  int64_t register_RBP;
-  int64_t *register_RDI;
+  int64_t stackFramePointer;
+  int64_t *destinationIndexRegister;
   DataBuffer in_stack_00000038;
   BytePair in_stack_000000a0;
   BytePair in_stack_000000a8;
   
-  validationContext = *register_RDI;
+  validationContext = *destinationIndexRegister;
   functionReturnValue = (**(FunctionPointer**)**(DataBuffer **)(validationContext + 8))();
   if (functionReturnValue == 0) {
     in_stack_000000a0 = in_stack_00000038._4_2_;
@@ -32480,8 +32480,8 @@ uint64_t FUN_18089fa3c(void)
   if (functionReturnValue != 0) {
     return (uint64_t)functionReturnValue;
   }
-  if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    functionReturnValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x30);
+  if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
     registerContext = (uint64_t)functionReturnValue;
     if (functionReturnValue == 0) {
       validationStatus = FUN_180898e70();
@@ -32503,15 +32503,15 @@ uint64_t FUN_18089fac2(void)
   uint dataValue;
   uint64_t functionReturnValue;
   uint64_t registerContext;
-  int64_t register_RBP;
+  int64_t stackFramePointer;
   uint register_ESI;
-  DataBuffer *register_RDI;
+  DataBuffer *destinationIndexRegister;
   
   if (register_ESI != 0) {
     return (uint64_t)register_ESI;
   }
-  if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    dataValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x30);
+  if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    dataValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
     registerContext = (uint64_t)dataValue;
     if (dataValue == 0) {
       functionReturnValue = FUN_180898e70();
@@ -32533,11 +32533,11 @@ uint64_t FUN_18089fad8(void)
   uint dataValue;
   uint64_t functionReturnValue;
   uint64_t registerContext;
-  int64_t register_RBP;
-  DataBuffer *register_RDI;
+  int64_t stackFramePointer;
+  DataBuffer *destinationIndexRegister;
   
-  if (*(int *)(register_RDI[1] + 0x18) == 0) {
-    dataValue = ProcessDataPointerA0(*register_RDI,register_RBP + 0x30);
+  if (*(int *)(destinationIndexRegister[1] + 0x18) == 0) {
+    dataValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
     registerContext = (uint64_t)dataValue;
     if (dataValue == 0) {
       functionReturnValue = FUN_180898e70();
@@ -36163,7 +36163,7 @@ void ExceptionCleanupHandlerDataContext(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   int64_t dataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -36186,14 +36186,14 @@ void ExceptionCleanupHandlerDataContext(DataBuffer param_1,int64_t param_2)
     validationOutcome = *(uint64_t *)(calculatedIndex + 0x10);
   }
   *(DataBuffer *)(calculatedIndex + 0x18) = 0;
-  if ((1 < validationOutcome) && (pvalidationStatus = *(DataBuffer **)(calculatedIndex + 8), pvalidationStatus != (DataBuffer *)0x0)) {
-    validationOutcome = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  if ((1 < validationOutcome) && (validationStatusPointer = *(DataBuffer **)(calculatedIndex + 8), validationStatusPointer != (DataBuffer *)0x0)) {
+    validationOutcome = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
-      resourceIterator = validationOutcome + 0x80 + ((int64_t)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
+      resourceIterator = validationOutcome + 0x80 + ((int64_t)validationStatusPointer - validationOutcome >> 0x10) * 0x50;
       resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
       if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-        *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-        *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+        *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+        *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
         referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
@@ -36203,7 +36203,7 @@ void ExceptionCleanupHandlerDataContext(DataBuffer param_1,int64_t param_2)
       }
       else {
         ManageMemory(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
-                            pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
+                            validationStatusPointer,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -36229,7 +36229,7 @@ void ExceptionCleanupHandlerDataContext2(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   int64_t dataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -36252,14 +36252,14 @@ void ExceptionCleanupHandlerDataContext2(DataBuffer param_1,int64_t param_2)
     validationOutcome = *(uint64_t *)(calculatedIndex + 0x40);
   }
   *(DataBuffer *)(calculatedIndex + 0x48) = 0;
-  if ((1 < validationOutcome) && (pvalidationStatus = *(DataBuffer **)(calculatedIndex + 0x38), pvalidationStatus != (DataBuffer *)0x0)) {
-    validationOutcome = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  if ((1 < validationOutcome) && (validationStatusPointer = *(DataBuffer **)(calculatedIndex + 0x38), validationStatusPointer != (DataBuffer *)0x0)) {
+    validationOutcome = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
-      resourceIterator = validationOutcome + 0x80 + ((int64_t)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
+      resourceIterator = validationOutcome + 0x80 + ((int64_t)validationStatusPointer - validationOutcome >> 0x10) * 0x50;
       resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
       if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-        *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-        *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+        *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+        *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
         referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
@@ -36269,7 +36269,7 @@ void ExceptionCleanupHandlerDataContext2(DataBuffer param_1,int64_t param_2)
       }
       else {
         ManageMemory(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
-                            pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
+                            validationStatusPointer,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -36376,7 +36376,7 @@ void ExceptionCleanupHandlerDataContext3(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   int64_t dataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -36399,14 +36399,14 @@ void ExceptionCleanupHandlerDataContext3(DataBuffer param_1,int64_t param_2)
     validationOutcome = *(uint64_t *)(calculatedIndex + 0x10);
   }
   *(DataBuffer *)(calculatedIndex + 0x18) = 0;
-  if ((1 < validationOutcome) && (pvalidationStatus = *(DataBuffer **)(calculatedIndex + 8), pvalidationStatus != (DataBuffer *)0x0)) {
-    validationOutcome = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  if ((1 < validationOutcome) && (validationStatusPointer = *(DataBuffer **)(calculatedIndex + 8), validationStatusPointer != (DataBuffer *)0x0)) {
+    validationOutcome = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
-      resourceIterator = validationOutcome + 0x80 + ((int64_t)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
+      resourceIterator = validationOutcome + 0x80 + ((int64_t)validationStatusPointer - validationOutcome >> 0x10) * 0x50;
       resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
       if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-        *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-        *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+        *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+        *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
         referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
@@ -36416,7 +36416,7 @@ void ExceptionCleanupHandlerDataContext3(DataBuffer param_1,int64_t param_2)
       }
       else {
         ManageMemory(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
-                            pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
+                            validationStatusPointer,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -36442,7 +36442,7 @@ void ExceptionCleanupHandlerDataContext4(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   int64_t dataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -36465,14 +36465,14 @@ void ExceptionCleanupHandlerDataContext4(DataBuffer param_1,int64_t param_2)
     validationOutcome = *(uint64_t *)(calculatedIndex + 0x10);
   }
   *(DataBuffer *)(calculatedIndex + 0x18) = 0;
-  if ((1 < validationOutcome) && (pvalidationStatus = *(DataBuffer **)(calculatedIndex + 8), pvalidationStatus != (DataBuffer *)0x0)) {
-    validationOutcome = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  if ((1 < validationOutcome) && (validationStatusPointer = *(DataBuffer **)(calculatedIndex + 8), validationStatusPointer != (DataBuffer *)0x0)) {
+    validationOutcome = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
     if (validationOutcome != 0) {
-      resourceIterator = validationOutcome + 0x80 + ((int64_t)pvalidationStatus - validationOutcome >> 0x10) * 0x50;
+      resourceIterator = validationOutcome + 0x80 + ((int64_t)validationStatusPointer - validationOutcome >> 0x10) * 0x50;
       resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
       if ((*(void ***)(validationOutcome + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-        *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-        *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+        *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+        *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
         referenceCountPointer = (int *)(resourceIterator + 0x18);
         *referenceCountPointer = *referenceCountPointer + -1;
         if (*referenceCountPointer == 0) {
@@ -36482,7 +36482,7 @@ void ExceptionCleanupHandlerDataContext4(DataBuffer param_1,int64_t param_2)
       }
       else {
         ManageMemory(validationOutcome,CONCAT71(0xff000000,*(void ***)(validationOutcome + 0x70) == &ExceptionList),
-                            pvalidationStatus,validationOutcome,SystemCleanupFlagfffffffe);
+                            validationStatusPointer,validationOutcome,SystemCleanupFlagfffffffe);
       }
     }
     return;
@@ -37826,17 +37826,17 @@ void Unwind_CleanupStackFrame(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   DataBuffer *resourcePointer;
-  uint64_t *pvalidationStatus;
+  uint64_t *validationStatusPointer;
   int64_t calculatedIndex;
   DataBuffer *poperationResult;
   uint64_t dataFlags;
   
-  pvalidationStatus = (uint64_t *)(*(int64_t *)(param_2 + 0x40) + 0x18);
+  validationStatusPointer = (uint64_t *)(*(int64_t *)(param_2 + 0x40) + 0x18);
   resourcePointer = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x20);
-  for (poperationResult = (DataBuffer *)*pvalidationStatus; poperationResult != resourcePointer; poperationResult = poperationResult + 0xe) {
+  for (poperationResult = (DataBuffer *)*validationStatusPointer; poperationResult != resourcePointer; poperationResult = poperationResult + 0xe) {
     *poperationResult = &DefaultExceptionHandlerB;
   }
-  resourcePointer = (DataBuffer *)*pvalidationStatus;
+  resourcePointer = (DataBuffer *)*validationStatusPointer;
   if (resourcePointer != (DataBuffer *)0x0) {
     dataFlags = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
@@ -38041,47 +38041,85 @@ void ExecuteSystemResourceCleanup(DataBuffer param_1,int64_t param_2,DataBuffer 
 
 
 
-void Unwind_180902f20(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+// 函数: void ExecuteResourceCleanupChain(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParam1, DataBuffer cleanupParam2)
+// 
+// 资源清理链执行函数
+// 在异常展开过程中执行资源清理链，确保系统资源的正确释放
+// 
+// 参数:
+//   exceptionContext - 异常上下文指针
+//   unwindContext - 展开上下文指针
+//   cleanupParam1 - 清理参数1
+//   cleanupParam2 - 清理参数2
+// 
+// 返回值:
+//   void - 无返回值
+// 
+// 功能说明:
+//   1. 遍历资源清理链表
+//   2. 执行每个清理函数
+//   3. 确保系统资源正确释放
+//   4. 处理异常情况
+void ExecuteResourceCleanupChain(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParam1, DataBuffer cleanupParam2)
 
 {
-  DataBuffer *pdataValue;
-  int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
-  DataBuffer memoryBaseAddress;
+  DataBuffer *cleanupChainEnd;
+  int64_t *cleanupChainStart;
+  DataBuffer *currentCleanupEntry;
+  DataBuffer cleanupFlag;
   
-  pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x888);
-  memoryBaseAddress = SystemCleanupFlagfffffffe;
-  pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x890);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  cleanupChainStart = (int64_t *)(*(int64_t *)(unwindContext + 0x40) + 0x888);
+  cleanupFlag = SystemCleanupFlagfffffffe;
+  cleanupChainEnd = *(DataBuffer **)(*(int64_t *)(unwindContext + 0x40) + 0x890);
+  for (currentCleanupEntry = (DataBuffer *)*cleanupChainStart; currentCleanupEntry != cleanupChainEnd; currentCleanupEntry = currentCleanupEntry + 4) {
+    (**(FunctionPointer**)*currentCleanupEntry)(currentCleanupEntry, 0, cleanupParam1, cleanupParam2, cleanupFlag);
   }
-  if (*pdataContext == 0) {
+  if (*cleanupChainStart == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // 系统终止处理，正常情况下不应执行到这里
   TerminateSystemE0();
 }
 
 
 
-void Unwind_180902f40(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+// 函数: void ExecuteMemoryCleanupChain(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParam1, DataBuffer cleanupParam2)
+// 
+// 内存清理链执行函数
+// 在异常展开过程中执行内存清理链，确保内存资源的正确释放
+// 
+// 参数:
+//   exceptionContext - 异常上下文指针
+//   unwindContext - 展开上下文指针
+//   cleanupParam1 - 清理参数1
+//   cleanupParam2 - 清理参数2
+// 
+// 返回值:
+//   void - 无返回值
+// 
+// 功能说明:
+//   1. 遍历内存清理链表
+//   2. 执行每个内存清理函数
+//   3. 确保内存资源正确释放
+//   4. 处理异常情况
+void ExecuteMemoryCleanupChain(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParam1, DataBuffer cleanupParam2)
 
 {
-  DataBuffer *pdataValue;
-  int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
-  DataBuffer memoryBaseAddress;
+  DataBuffer *memoryChainEnd;
+  int64_t *memoryChainStart;
+  DataBuffer *currentMemoryEntry;
+  DataBuffer cleanupFlag;
   
-  pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x8a8);
-  memoryBaseAddress = SystemCleanupFlagfffffffe;
-  pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x8b0);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  memoryChainStart = (int64_t *)(*(int64_t *)(unwindContext + 0x40) + 0x8a8);
+  cleanupFlag = SystemCleanupFlagfffffffe;
+  memoryChainEnd = *(DataBuffer **)(*(int64_t *)(unwindContext + 0x40) + 0x8b0);
+  for (currentMemoryEntry = (DataBuffer *)*memoryChainStart; currentMemoryEntry != memoryChainEnd; currentMemoryEntry = currentMemoryEntry + 4) {
+    (**(FunctionPointer**)*currentMemoryEntry)(currentMemoryEntry, 0, cleanupParam1, cleanupParam2, cleanupFlag);
   }
-  if (*pdataContext == 0) {
+  if (*memoryChainStart == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // 系统终止处理，正常情况下不应执行到这里
   TerminateSystemE0();
 }
 
@@ -39163,20 +39201,20 @@ void Unwind_180903460(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t *contextPointer;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   contextPointer = *(int64_t **)(param_2 + 0x40);
-  pvalidationStatus = (DataBuffer *)*contextPointer;
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = (DataBuffer *)*contextPointer;
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -39191,17 +39229,17 @@ void Unwind_180903460(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (DataBuffer *)contextPointer[3];
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = (DataBuffer *)contextPointer[3];
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -39211,7 +39249,7 @@ void Unwind_180903460(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -39462,7 +39500,7 @@ void Unwind_180903510(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t *contextPointer;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -39470,14 +39508,14 @@ void Unwind_180903510(DataBuffer param_1,int64_t param_2)
   contextPointer = *(int64_t **)(param_2 + 0x70);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = (DataBuffer *)*contextPointer;
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = (DataBuffer *)*contextPointer;
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -39492,17 +39530,17 @@ void Unwind_180903510(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (DataBuffer *)contextPointer[3];
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = (DataBuffer *)contextPointer[3];
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -39512,7 +39550,7 @@ void Unwind_180903510(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -39613,20 +39651,20 @@ void Unwind_180903580(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t *contextPointer;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   contextPointer = *(int64_t **)(param_2 + 0x80);
-  pvalidationStatus = (DataBuffer *)*contextPointer;
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = (DataBuffer *)*contextPointer;
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -39641,17 +39679,17 @@ void Unwind_180903580(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (DataBuffer *)contextPointer[3];
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = (DataBuffer *)contextPointer[3];
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -39661,7 +39699,7 @@ void Unwind_180903580(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -42882,14 +42920,14 @@ void Unwind_180904090(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x1380);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 5000);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -42905,14 +42943,14 @@ void Unwind_1809040b0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x13a0);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x13a8);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -44476,14 +44514,14 @@ void Unwind_180904570(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x80) + 0x1380);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x80) + 5000);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -44499,14 +44537,14 @@ void Unwind_180904590(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x80) + 0x13a0);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x80) + 0x13a8);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -44522,14 +44560,14 @@ void Unwind_1809045b0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = *(int64_t **)(param_2 + 0x88);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -45215,20 +45253,20 @@ void Unwind_180904960(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(param_2 + 0x40);
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x78);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x78);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xa8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xa8) + 0x10) != 0)
      ) {
@@ -45244,17 +45282,17 @@ void Unwind_180904960(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x90);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x90);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -45264,7 +45302,7 @@ void Unwind_180904960(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45277,20 +45315,20 @@ void Unwind_180904970(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(param_2 + 0x40);
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x2e0);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2e0);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x310) + 0x10) != 0)) {
@@ -45306,17 +45344,17 @@ void Unwind_180904970(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x2f8);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2f8);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -45326,7 +45364,7 @@ void Unwind_180904970(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45339,20 +45377,20 @@ void Unwind_180904990(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(param_2 + 0x40);
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x548);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x548);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x578) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x578) + 0x10) != 0)) {
@@ -45368,17 +45406,17 @@ void Unwind_180904990(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x560);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x560);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -45388,7 +45426,7 @@ void Unwind_180904990(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45545,20 +45583,20 @@ void Unwind_180904a20(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(param_2 + 0x70);
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x78);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x78);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xa8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xa8) + 0x10) != 0)
      ) {
@@ -45574,17 +45612,17 @@ void Unwind_180904a20(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x90);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x90);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -45594,7 +45632,7 @@ void Unwind_180904a20(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45607,20 +45645,20 @@ void Unwind_180904a30(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(param_2 + 0x70);
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x2e0);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2e0);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x310) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x310) + 0x10) != 0)) {
@@ -45636,17 +45674,17 @@ void Unwind_180904a30(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x2f8);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x2f8);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -45656,7 +45694,7 @@ void Unwind_180904a30(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -45669,20 +45707,20 @@ void Unwind_180904a50(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   resourceIterator = *(int64_t *)(param_2 + 0x70);
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x548);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x548);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x578) != 0) &&
      (*(int64_t *)(*(int64_t *)(resourceIterator + 0x578) + 0x10) != 0)) {
@@ -45698,17 +45736,17 @@ void Unwind_180904a50(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x560);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x560);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -45718,7 +45756,7 @@ void Unwind_180904a50(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -48179,14 +48217,14 @@ void Unwind_180905770(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = *(int64_t **)(param_2 + 0x28);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 0x13) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 0x13) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -48598,14 +48636,14 @@ void Unwind_180905870(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = *(int64_t **)(param_2 + 0x2e8);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -48685,14 +48723,14 @@ void Unwind_1809058a0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x2e0) + 0x20);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x2e0) + 0x28);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -48708,14 +48746,14 @@ void Unwind_1809058b0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x2e0) + 0x40);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x2e0) + 0x48);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -48810,14 +48848,14 @@ void Unwind_180905910(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x48) + 8);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x48) + 0x10);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -48867,17 +48905,17 @@ void Unwind_180905940(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   DataBuffer *resourcePointer;
-  uint64_t *pvalidationStatus;
+  uint64_t *validationStatusPointer;
   int64_t calculatedIndex;
   DataBuffer *poperationResult;
   uint64_t dataFlags;
   
-  pvalidationStatus = *(uint64_t **)(param_2 + 0x48);
-  resourcePointer = (DataBuffer *)pvalidationStatus[1];
-  for (poperationResult = (DataBuffer *)*pvalidationStatus; poperationResult != resourcePointer; poperationResult = poperationResult + 0xe) {
+  validationStatusPointer = *(uint64_t **)(param_2 + 0x48);
+  resourcePointer = (DataBuffer *)validationStatusPointer[1];
+  for (poperationResult = (DataBuffer *)*validationStatusPointer; poperationResult != resourcePointer; poperationResult = poperationResult + 0xe) {
     *poperationResult = &DefaultExceptionHandlerB;
   }
-  resourcePointer = (DataBuffer *)*pvalidationStatus;
+  resourcePointer = (DataBuffer *)*validationStatusPointer;
   if (resourcePointer != (DataBuffer *)0x0) {
     dataFlags = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
@@ -49037,14 +49075,14 @@ void Unwind_180905960(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x2e8) + 0x260);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x2e8) + 0x268);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 0x13) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 0x13) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -49060,19 +49098,19 @@ void Unwind_180905980(DataBuffer param_1,int64_t param_2)
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x2e8) + 0x280);
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x2e8) + 0x288);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 5) {
-    *pvalidationStatus = &UNK_180a3c3e0;
-    if (pvalidationStatus[1] != 0) {
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 5) {
+    *validationStatusPointer = &UNK_180a3c3e0;
+    if (validationStatusPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    pvalidationStatus[1] = 0;
-    *(DataWord *)(pvalidationStatus + 3) = 0;
-    *pvalidationStatus = &DefaultExceptionHandlerB;
+    validationStatusPointer[1] = 0;
+    *(DataWord *)(validationStatusPointer + 3) = 0;
+    *validationStatusPointer = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
@@ -49088,14 +49126,14 @@ void Unwind_1809059a0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = *(int64_t **)(param_2 + 0x40);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 0x13) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 0x13) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -49392,7 +49430,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -49400,14 +49438,14 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
   resourceIterator = *(int64_t *)(param_2 + 0x58);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x10);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x10);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0x40) + 0x10) != 0)
      ) {
@@ -49423,17 +49461,17 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x28);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x28);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -49443,7 +49481,7 @@ void CleanupExceptionResources(DataBuffer ExceptionContext, int64_t ResourcePoin
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49756,7 +49794,7 @@ void Unwind_180905c50(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -49764,14 +49802,14 @@ void Unwind_180905c50(DataBuffer param_1,int64_t param_2)
   resourceIterator = *(int64_t *)(param_2 + 0x40);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x10);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x10);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0x40) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0x40) + 0x10) != 0)
      ) {
@@ -49787,17 +49825,17 @@ void Unwind_180905c50(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0x28);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x28);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -49807,7 +49845,7 @@ void Unwind_180905c50(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -49928,20 +49966,20 @@ void Unwind_180905ca0(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t *contextPointer;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   contextPointer = *(int64_t **)(param_2 + 0x48);
-  pvalidationStatus = (DataBuffer *)*contextPointer;
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = (DataBuffer *)*contextPointer;
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -49956,17 +49994,17 @@ void Unwind_180905ca0(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (DataBuffer *)contextPointer[3];
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = (DataBuffer *)contextPointer[3];
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -49976,7 +50014,7 @@ void Unwind_180905ca0(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -50357,7 +50395,7 @@ void Unwind_180905ea0(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -50365,14 +50403,14 @@ void Unwind_180905ea0(DataBuffer param_1,int64_t param_2)
   resourceIterator = *(int64_t *)(param_2 + 0x50);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 200);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 200);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xf8) + 0x10) != 0)
      ) {
@@ -50388,17 +50426,17 @@ void Unwind_180905ea0(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0xe0);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0xe0);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -50408,7 +50446,7 @@ void Unwind_180905ea0(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -50502,17 +50540,17 @@ void CleanupSystemResources(DataBuffer systemContext,int64_t contextHandle)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (DataBuffer *)contextPointer[3];
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = (DataBuffer *)contextPointer[3];
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -50522,7 +50560,7 @@ void CleanupSystemResources(DataBuffer systemContext,int64_t contextHandle)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -50704,7 +50742,7 @@ void Unwind_180905fa0(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
@@ -50712,14 +50750,14 @@ void Unwind_180905fa0(DataBuffer param_1,int64_t param_2)
   resourceIterator = *(int64_t *)(param_2 + 0x70);
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 200);
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 200);
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((*(int64_t *)(resourceIterator + 0xf8) != 0) && (*(int64_t *)(*(int64_t *)(resourceIterator + 0xf8) + 0x10) != 0)
      ) {
@@ -50735,17 +50773,17 @@ void Unwind_180905fa0(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = *(DataBuffer **)(resourceIterator + 0xe0);
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = *(DataBuffer **)(resourceIterator + 0xe0);
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -50755,7 +50793,7 @@ void Unwind_180905fa0(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -50789,20 +50827,20 @@ void Unwind_180905fe0(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   char *validationFlag;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t *contextPointer;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
   contextPointer = *(int64_t **)(param_2 + 0x78);
-  pvalidationStatus = (DataBuffer *)*contextPointer;
-  if (pvalidationStatus != (DataBuffer *)0x0) {
-    if ((DataBuffer *)pvalidationStatus[3] != (DataBuffer *)0x0) {
-      *(DataBuffer *)pvalidationStatus[3] = 0;
+  validationStatusPointer = (DataBuffer *)*contextPointer;
+  if (validationStatusPointer != (DataBuffer *)0x0) {
+    if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
+      *(DataBuffer *)validationStatusPointer[3] = 0;
     }
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0);
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    FUN_18064e900(validationStatusPointer);
   }
   if ((contextPointer[6] != 0) && (*(int64_t *)(contextPointer[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
@@ -50817,17 +50855,17 @@ void Unwind_180905fe0(DataBuffer param_1,int64_t param_2)
       TerminateSystemE0();
     }
   }
-  pvalidationStatus = (DataBuffer *)contextPointer[3];
-  if (pvalidationStatus == (DataBuffer *)0x0) {
+  validationStatusPointer = (DataBuffer *)contextPointer[3];
+  if (validationStatusPointer == (DataBuffer *)0x0) {
     return;
   }
-  dataFlags = (uint64_t)pvalidationStatus & SystemCleanupFlagffc00000;
+  dataFlags = (uint64_t)validationStatusPointer & SystemCleanupFlagffc00000;
   if (dataFlags != 0) {
-    resourceIterator = dataFlags + 0x80 + ((int64_t)pvalidationStatus - dataFlags >> 0x10) * 0x50;
+    resourceIterator = dataFlags + 0x80 + ((int64_t)validationStatusPointer - dataFlags >> 0x10) * 0x50;
     resourceIterator = resourceIterator - (uint64_t)*(uint *)(resourceIterator + 4);
     if ((*(void ***)(dataFlags + 0x70) == &ExceptionList) && (*(char *)(resourceIterator + 0xe) == '\0')) {
-      *pvalidationStatus = *(DataBuffer *)(resourceIterator + 0x20);
-      *(DataBuffer **)(resourceIterator + 0x20) = pvalidationStatus;
+      *validationStatusPointer = *(DataBuffer *)(resourceIterator + 0x20);
+      *(DataBuffer **)(resourceIterator + 0x20) = validationStatusPointer;
       referenceCountPointer = (int *)(resourceIterator + 0x18);
       *referenceCountPointer = *referenceCountPointer + -1;
       if (*referenceCountPointer == 0) {
@@ -50837,7 +50875,7 @@ void Unwind_180905fe0(DataBuffer param_1,int64_t param_2)
     }
     else {
       ManageMemory(dataFlags,CONCAT71(0xff000000,*(void ***)(dataFlags + 0x70) == &ExceptionList),
-                          pvalidationStatus,dataFlags,SystemCleanupFlagfffffffe);
+                          validationStatusPointer,dataFlags,SystemCleanupFlagfffffffe);
     }
   }
   return;
@@ -52358,14 +52396,14 @@ void Unwind_180906700(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0xa0) + 0x218);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0xa0) + 0x220);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -52559,14 +52597,14 @@ void Unwind_180906890(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x50) + 0x218);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x50) + 0x220);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -52623,14 +52661,14 @@ void Unwind_180906940(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = *(int64_t **)(param_2 + 0x58);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -53085,19 +53123,19 @@ void Unwind_180906b60(DataBuffer param_1,int64_t param_2)
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   
   pdataContext = *(int64_t **)(param_2 + 0x40);
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 6) {
-    *pvalidationStatus = &UNK_180a3c3e0;
-    if (pvalidationStatus[1] != 0) {
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 6) {
+    *validationStatusPointer = &UNK_180a3c3e0;
+    if (validationStatusPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    pvalidationStatus[1] = 0;
-    *(DataWord *)(pvalidationStatus + 3) = 0;
-    *pvalidationStatus = &DefaultExceptionHandlerB;
+    validationStatusPointer[1] = 0;
+    *(DataWord *)(validationStatusPointer + 3) = 0;
+    *validationStatusPointer = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
@@ -56309,14 +56347,14 @@ void Unwind_180907810(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x20) + 0x28);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x20) + 0x30);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -58817,14 +58855,14 @@ void Unwind_180908340(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x80) + 0x388);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x80) + 0x390);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -58899,14 +58937,14 @@ void Unwind_180908460(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x388);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x390);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -61406,10 +61444,10 @@ void Unwind_180909080(DataBuffer param_1,int64_t param_2)
 {
   DataBuffer dataValue;
   int64_t dataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   
-  pvalidationStatus = (DataBuffer *)(param_2 + 0x88);
-  *pvalidationStatus = &UNK_180a01668;
+  validationStatusPointer = (DataBuffer *)(param_2 + 0x88);
+  *validationStatusPointer = &UNK_180a01668;
   if ((*(int64_t *)(param_2 + 0x108) != 0) && (**(int64_t **)(param_2 + 0xa0) == param_2 + 0xf8))
   {
     dataValue = *(DataBuffer *)(param_2 + 0x118);
@@ -61419,11 +61457,11 @@ void Unwind_180909080(DataBuffer param_1,int64_t param_2)
     **(int **)(param_2 + 0xd8) = (int)dataValue - (int)dataContext;
   }
   if (*(char *)(param_2 + 0x104) != '\0') {
-    FUN_1800a19c0(pvalidationStatus);
+    FUN_1800a19c0(validationStatusPointer);
   }
                     // WARNING: Could not recover jumptable at 0x00018009fbce. Too many branches
                     // WARNING: Treating indirect jump as call
-  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(pvalidationStatus);
+  __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(validationStatusPointer);
   return;
 }
 
@@ -61814,17 +61852,17 @@ void Unwind_1809092d0(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   DataBuffer *resourcePointer;
-  uint64_t *pvalidationStatus;
+  uint64_t *validationStatusPointer;
   int64_t calculatedIndex;
   uint64_t operationResult;
   uint64_t dataFlags;
   
-  pvalidationStatus = *(uint64_t **)(param_2 + 0x48);
-  dataFlags = pvalidationStatus[1];
-  for (operationResult = *pvalidationStatus; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
+  validationStatusPointer = *(uint64_t **)(param_2 + 0x48);
+  dataFlags = validationStatusPointer[1];
+  for (operationResult = *validationStatusPointer; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
     *(uint8_t **)(operationResult + 0x10) = &DefaultExceptionHandlerB;
   }
-  resourcePointer = (DataBuffer *)*pvalidationStatus;
+  resourcePointer = (DataBuffer *)*validationStatusPointer;
   if (resourcePointer != (DataBuffer *)0x0) {
     dataFlags = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
@@ -61857,17 +61895,17 @@ void Unwind_1809092e0(DataBuffer param_1,int64_t param_2)
 {
   int *referenceCountPointer;
   DataBuffer *resourcePointer;
-  uint64_t *pvalidationStatus;
+  uint64_t *validationStatusPointer;
   int64_t calculatedIndex;
   uint64_t operationResult;
   uint64_t dataFlags;
   
-  pvalidationStatus = *(uint64_t **)(param_2 + 0x40);
-  dataFlags = pvalidationStatus[1];
-  for (operationResult = *pvalidationStatus; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
+  validationStatusPointer = *(uint64_t **)(param_2 + 0x40);
+  dataFlags = validationStatusPointer[1];
+  for (operationResult = *validationStatusPointer; operationResult != dataFlags; operationResult = operationResult + 0xd0) {
     *(uint8_t **)(operationResult + 0x10) = &DefaultExceptionHandlerB;
   }
-  resourcePointer = (DataBuffer *)*pvalidationStatus;
+  resourcePointer = (DataBuffer *)*validationStatusPointer;
   if (resourcePointer != (DataBuffer *)0x0) {
     dataFlags = (uint64_t)resourcePointer & SystemCleanupFlagffc00000;
     if (dataFlags != 0) {
@@ -61971,30 +62009,30 @@ void Unwind_180909320(DataBuffer param_1,int64_t param_2)
       *(DataBuffer *)(dataFlags * 8 + *validationContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
       calculatedIndex = *validationContextPointer;
-    } while (dataFlags < (uint64_t)(pvalidationStatus[0x1013] - calculatedIndex >> 3));
+    } while (dataFlags < (uint64_t)(validationStatusPointer[0x1013] - calculatedIndex >> 3));
   }
-  pvalidationStatus[0x1013] = calculatedIndex;
-  resourcePointer = (DataBuffer *)pvalidationStatus[0x1043];
+  validationStatusPointer[0x1013] = calculatedIndex;
+  resourcePointer = (DataBuffer *)validationStatusPointer[0x1043];
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800f74f0(pvalidationStatus + 0x1041,*resourcePointer);
+    FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(pvalidationStatus + 0x103b,pvalidationStatus[0x103d]);
-  FUN_180058370(pvalidationStatus + 0x1035,pvalidationStatus[0x1037]);
-  FUN_180058370(pvalidationStatus + 0x102f,pvalidationStatus[0x1031]);
-  FUN_1808fc8a8(pvalidationStatus + 0x101b,0x20,5,FUN_180046860);
+  FUN_180058370(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
+  FUN_180058370(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
+  FUN_180058370(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
+  FUN_1808fc8a8(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(pvalidationStatus + 0xffd,0x20,5,FUN_180046860);
-  calculatedIndex = pvalidationStatus[0xffa];
-  for (resourceIterator = pvalidationStatus[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
+  FUN_1808fc8a8(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  calculatedIndex = validationStatusPointer[0xffa];
+  for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     FUN_180152b00(resourceIterator);
   }
-  if (pvalidationStatus[0xff9] != 0) {
+  if (validationStatusPointer[0xff9] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -62075,20 +62113,20 @@ void Unwind_1809093b0(DataBuffer param_1,int64_t param_2)
 {
   int64_t *validationContextPointer;
   DataBuffer *resourcePointer;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  pvalidationStatus = *(DataBuffer **)(param_2 + 0x90);
-  *pvalidationStatus = &UNK_180a17010;
-  if ((int64_t *)pvalidationStatus[0x1049] != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*(int64_t *)pvalidationStatus[0x1049] + 0x38))();
+  validationStatusPointer = *(DataBuffer **)(param_2 + 0x90);
+  *validationStatusPointer = &UNK_180a17010;
+  if ((int64_t *)validationStatusPointer[0x1049] != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*(int64_t *)validationStatusPointer[0x1049] + 0x38))();
   }
   dataFlags = 0;
-  validationContextPointer = pvalidationStatus + 0x1012;
+  validationContextPointer = validationStatusPointer + 0x1012;
   calculatedIndex = *validationContextPointer;
-  if (pvalidationStatus[0x1013] - calculatedIndex >> 3 != 0) {
+  if (validationStatusPointer[0x1013] - calculatedIndex >> 3 != 0) {
     do {
       resourcePointer = *(DataBuffer **)(dataFlags * 8 + calculatedIndex);
       if (resourcePointer != (DataBuffer *)0x0) {
@@ -62119,30 +62157,30 @@ void Unwind_1809093b0(DataBuffer param_1,int64_t param_2)
       *(DataBuffer *)(dataFlags * 8 + *validationContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
       calculatedIndex = *validationContextPointer;
-    } while (dataFlags < (uint64_t)(pvalidationStatus[0x1013] - calculatedIndex >> 3));
+    } while (dataFlags < (uint64_t)(validationStatusPointer[0x1013] - calculatedIndex >> 3));
   }
-  pvalidationStatus[0x1013] = calculatedIndex;
-  resourcePointer = (DataBuffer *)pvalidationStatus[0x1043];
+  validationStatusPointer[0x1013] = calculatedIndex;
+  resourcePointer = (DataBuffer *)validationStatusPointer[0x1043];
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800f74f0(pvalidationStatus + 0x1041,*resourcePointer);
+    FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(pvalidationStatus + 0x103b,pvalidationStatus[0x103d]);
-  FUN_180058370(pvalidationStatus + 0x1035,pvalidationStatus[0x1037]);
-  FUN_180058370(pvalidationStatus + 0x102f,pvalidationStatus[0x1031]);
-  FUN_1808fc8a8(pvalidationStatus + 0x101b,0x20,5,FUN_180046860);
+  FUN_180058370(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
+  FUN_180058370(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
+  FUN_180058370(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
+  FUN_1808fc8a8(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(pvalidationStatus + 0xffd,0x20,5,FUN_180046860);
-  calculatedIndex = pvalidationStatus[0xffa];
-  for (resourceIterator = pvalidationStatus[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
+  FUN_1808fc8a8(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  calculatedIndex = validationStatusPointer[0xffa];
+  for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     FUN_180152b00(resourceIterator);
   }
-  if (pvalidationStatus[0xff9] != 0) {
+  if (validationStatusPointer[0xff9] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -62978,20 +63016,20 @@ void Unwind_1809096b0(DataBuffer param_1,int64_t param_2)
 {
   int64_t *validationContextPointer;
   DataBuffer *resourcePointer;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   int64_t calculatedIndex;
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  pvalidationStatus = *(DataBuffer **)(param_2 + 0x40);
-  *pvalidationStatus = &UNK_180a17010;
-  if ((int64_t *)pvalidationStatus[0x1049] != (int64_t *)0x0) {
-    (**(FunctionPointer**)(*(int64_t *)pvalidationStatus[0x1049] + 0x38))();
+  validationStatusPointer = *(DataBuffer **)(param_2 + 0x40);
+  *validationStatusPointer = &UNK_180a17010;
+  if ((int64_t *)validationStatusPointer[0x1049] != (int64_t *)0x0) {
+    (**(FunctionPointer**)(*(int64_t *)validationStatusPointer[0x1049] + 0x38))();
   }
   dataFlags = 0;
-  validationContextPointer = pvalidationStatus + 0x1012;
+  validationContextPointer = validationStatusPointer + 0x1012;
   calculatedIndex = *validationContextPointer;
-  if (pvalidationStatus[0x1013] - calculatedIndex >> 3 != 0) {
+  if (validationStatusPointer[0x1013] - calculatedIndex >> 3 != 0) {
     do {
       resourcePointer = *(DataBuffer **)(dataFlags * 8 + calculatedIndex);
       if (resourcePointer != (DataBuffer *)0x0) {
@@ -63022,30 +63060,30 @@ void Unwind_1809096b0(DataBuffer param_1,int64_t param_2)
       *(DataBuffer *)(dataFlags * 8 + *validationContextPointer) = 0;
       dataFlags = (uint64_t)((int)dataFlags + 1);
       calculatedIndex = *validationContextPointer;
-    } while (dataFlags < (uint64_t)(pvalidationStatus[0x1013] - calculatedIndex >> 3));
+    } while (dataFlags < (uint64_t)(validationStatusPointer[0x1013] - calculatedIndex >> 3));
   }
-  pvalidationStatus[0x1013] = calculatedIndex;
-  resourcePointer = (DataBuffer *)pvalidationStatus[0x1043];
+  validationStatusPointer[0x1013] = calculatedIndex;
+  resourcePointer = (DataBuffer *)validationStatusPointer[0x1043];
   if (resourcePointer != (DataBuffer *)0x0) {
-    FUN_1800f74f0(pvalidationStatus + 0x1041,*resourcePointer);
+    FUN_1800f74f0(validationStatusPointer + 0x1041,*resourcePointer);
     resourcePointer[4] = &DefaultExceptionHandlerB;
                     // WARNING: Subroutine does not return
     FUN_18064e900(resourcePointer);
   }
-  FUN_180058370(pvalidationStatus + 0x103b,pvalidationStatus[0x103d]);
-  FUN_180058370(pvalidationStatus + 0x1035,pvalidationStatus[0x1037]);
-  FUN_180058370(pvalidationStatus + 0x102f,pvalidationStatus[0x1031]);
-  FUN_1808fc8a8(pvalidationStatus + 0x101b,0x20,5,FUN_180046860);
+  FUN_180058370(validationStatusPointer + 0x103b,validationStatusPointer[0x103d]);
+  FUN_180058370(validationStatusPointer + 0x1035,validationStatusPointer[0x1037]);
+  FUN_180058370(validationStatusPointer + 0x102f,validationStatusPointer[0x1031]);
+  FUN_1808fc8a8(validationStatusPointer + 0x101b,0x20,5,FUN_180046860);
   if (*validationContextPointer != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  FUN_1808fc8a8(pvalidationStatus + 0xffd,0x20,5,FUN_180046860);
-  calculatedIndex = pvalidationStatus[0xffa];
-  for (resourceIterator = pvalidationStatus[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
+  FUN_1808fc8a8(validationStatusPointer + 0xffd,0x20,5,FUN_180046860);
+  calculatedIndex = validationStatusPointer[0xffa];
+  for (resourceIterator = validationStatusPointer[0xff9]; resourceIterator != calculatedIndex; resourceIterator = resourceIterator + 0x40) {
     FUN_180152b00(resourceIterator);
   }
-  if (pvalidationStatus[0xff9] != 0) {
+  if (validationStatusPointer[0xff9] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -68803,14 +68841,14 @@ void Unwind_18090bfb0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = *(int64_t **)(param_2 + 0x20);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -76266,19 +76304,19 @@ void Unwind_18090dd00(DataBuffer param_1,int64_t param_2)
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x48);
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x50);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 6) {
-    *pvalidationStatus = &UNK_180a3c3e0;
-    if (pvalidationStatus[1] != 0) {
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 6) {
+    *validationStatusPointer = &UNK_180a3c3e0;
+    if (validationStatusPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    pvalidationStatus[1] = 0;
-    *(DataWord *)(pvalidationStatus + 3) = 0;
-    *pvalidationStatus = &DefaultExceptionHandlerB;
+    validationStatusPointer[1] = 0;
+    *(DataWord *)(validationStatusPointer + 3) = 0;
+    *validationStatusPointer = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
@@ -76294,19 +76332,19 @@ void Unwind_18090dd10(DataBuffer param_1,int64_t param_2)
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   
   pdataContext = *(int64_t **)(param_2 + 0x48);
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 6) {
-    *pvalidationStatus = &UNK_180a3c3e0;
-    if (pvalidationStatus[1] != 0) {
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 6) {
+    *validationStatusPointer = &UNK_180a3c3e0;
+    if (validationStatusPointer[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    pvalidationStatus[1] = 0;
-    *(DataWord *)(pvalidationStatus + 3) = 0;
-    *pvalidationStatus = &DefaultExceptionHandlerB;
+    validationStatusPointer[1] = 0;
+    *(DataWord *)(validationStatusPointer + 3) = 0;
+    *validationStatusPointer = &DefaultExceptionHandlerB;
   }
   if (*pdataContext != 0) {
                     // WARNING: Subroutine does not return
@@ -82786,14 +82824,14 @@ void Unwind_180910310(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = *(int64_t **)(param_2 + 0x150);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = (DataBuffer *)pdataContext[1];
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -85713,14 +85751,14 @@ void Unwind_180910fc0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x80) + 0x2610);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x80) + 0x2618);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -85736,14 +85774,14 @@ void Unwind_180910fe0(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x80) + 0x2630);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x80) + 0x2638);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -87709,14 +87747,14 @@ void Unwind_180911820(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x2610);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x2618);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
@@ -87732,14 +87770,14 @@ void Unwind_180911840(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 {
   DataBuffer *pdataValue;
   int64_t *pdataContext;
-  DataBuffer *pvalidationStatus;
+  DataBuffer *validationStatusPointer;
   DataBuffer memoryBaseAddress;
   
   pdataContext = (int64_t *)(*(int64_t *)(param_2 + 0x40) + 0x2630);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
   pdataValue = *(DataBuffer **)(*(int64_t *)(param_2 + 0x40) + 0x2638);
-  for (pvalidationStatus = (DataBuffer *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
-    (**(FunctionPointer**)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
+  for (validationStatusPointer = (DataBuffer *)*pdataContext; validationStatusPointer != pdataValue; validationStatusPointer = validationStatusPointer + 4) {
+    (**(FunctionPointer**)*validationStatusPointer)(validationStatusPointer,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
     return;
