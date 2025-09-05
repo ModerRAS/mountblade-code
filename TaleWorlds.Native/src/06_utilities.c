@@ -25274,8 +25274,9 @@ LAB_18089d07f:
 
 
 
-89d091(void)
-void FUN_18089d091(void)
+// 原始函数名：FUN_18089d091 - 空操作函数S
+// 功能：空函数，用作占位符或桩函数
+void UtilityNoOperationS(void)
 
 {
   return;
@@ -25284,8 +25285,9 @@ void FUN_18089d091(void)
 
 
 
-89d0a3(void)
-void FUN_18089d0a3(void)
+// 原始函数名：FUN_18089d0a3 - 空操作函数T
+// 功能：空函数，用作占位符或桩函数
+void UtilityNoOperationT(void)
 
 {
   return;
