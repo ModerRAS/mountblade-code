@@ -3514,7 +3514,7 @@ void InitializeSystemStringProcessor(void)
   uint8_t StringDataBuffer [136];
   
   StringProcessCallbackPointer = &SystemStringProcessorNode;
-  StringDataBufferPointer = StringDataBuffer;
+  StringDataBufferReference = StringDataBuffer;
   StringDataBuffer[0] = 0;
   StringDataBufferSize = SYSTEM_STRING_BUFFER_SIZE_DEFAULT;
   strcpy_s(StringDataBuffer,StringDataBufferSize,&SystemStringProcessorTemplate,SystemStringParameter,InvalidHandleValue);
