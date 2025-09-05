@@ -10451,6 +10451,14 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 功能：处理数据并返回结果
 #define ProcessDataAndReturnStatusO6 FUN_1808ac8a0
 
+// 原始函数名：FUN_1808ac750 - 数据验证函数A1
+// 功能：验证数据并返回结果
+#define ValidateDataAndReturnCodeA1 FUN_1808ac750
+
+// 原始函数名：FUN_1808aca30 - 系统状态检查函数A2
+// 功能：检查系统状态并返回结果
+#define CheckSystemStateAndReturnStatusA2 FUN_1808aca30
+
 // 原始函数名：FUN_1808affb0 - 系统状态检查函数O0
 // 功能：检查系统状态并返回结果
 #define CheckSystemStatusAndReturnO0 FUN_1808affb0

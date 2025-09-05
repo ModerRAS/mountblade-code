@@ -23275,7 +23275,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
   void* *SystemDataBufferPointer;
   uint8_t *SystemParameterPointer;
   uint32_t secondarySystemDataBuffer;
-  uint8_t SystemStackParamC [72];
+  uint8_t SystemStackParameterC [72];
   ulong long SystemEncryptionKey;
   
   systemDataBuffer = SystemInvalidHandleTemplate;
@@ -30381,7 +30381,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
   uint8_t UnsignedStackFlagQuaternary;
   uint8_t UnsignedStackFlagSecondary;
   void* *stackParameterB;
-  void* *pStackParamC;
+  void* *PointerStackParameterC;
   uint SystemDebugFlag;
   ulong long SystemResourceFlag;
   long long SystemPerformanceCounter;
@@ -43956,7 +43956,7 @@ ulong long ProcessAndManageSystemResources(void* SystemResourceManager)
   int stackVariableA8;
   ulong long UnsignedStackFlagSecondary;
   void* *stackParameterB;
-  void* *pStackParamC;
+  void* *PointerStackParameterC;
   void* SystemConfigurationFlag;
   uint32_t SystemFlagTertiary;
   void* SystemUnsignedFlagSecondary;
@@ -49051,7 +49051,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   uint8_t SystemFlagArrayB0 [16];
   code *CodePointerA0;
   code *SystemFunctionPointer98;
-  uint8_t SystemStackParamC [16];
+  uint8_t SystemStackParameterC [16];
   code *CodePointer80;
   code *SystemFunctionPointer78;
   void* SystemProcessStatusFlags;
@@ -52546,7 +52546,7 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   void* *SystemDataBufferPointer;
   uint32_t UnsignedStackFlagSecondary;
   ulong long secondarySystemDataBuffer;
-  void* *pStackParamC;
+  void* *PointerStackParameterC;
   void* *SystemTertiaryStackPointer;
   uint32_t SystemFlagTertiary;
   ulong long SystemUnsignedFlagSecondary;
@@ -54472,7 +54472,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   void* *SystemDataBufferPointer;
   uint32_t UnsignedStackFlagSecondary;
   ulong long secondarySystemDataBuffer;
-  void* *pStackParamC;
+  void* *PointerStackParameterC;
   uint8_t *SystemTertiaryStackPointer;
   uint32_t SystemFlagTertiary;
   ulong long SystemUnsignedFlagSecondary;
