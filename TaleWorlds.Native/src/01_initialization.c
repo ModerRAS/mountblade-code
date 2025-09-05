@@ -1402,10 +1402,10 @@ void* SystemDataBufferConfigurationSeptenary;  // 系统配置数据缓冲区第
 void* SystemDataBufferConfigurationOctonary;  // 系统配置数据缓冲区第八个
 
 // 系统核心功能组件
-void* SystemErrorHandler;
-void* SystemLogger;
-void* SystemPerformanceMonitor;
-void* SystemResourceCleaner;
+void* SystemErrorHandler;           // 系统错误处理器
+void* SystemLogger;                  // 系统日志记录器
+void* SystemPerformanceMonitor;     // 系统性能监控器
+void* SystemResourceCleaner;        // 系统资源清理器
 // 系统数据缓冲区 - 核心功能组件使用
 void* SystemDataBufferCorePrimary;
 void* SystemDataBufferCoreSecondary;
@@ -10074,7 +10074,7 @@ void InitializeSystemAudioNode(void)
     CurrentNodePointer = NextNodePointer;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTablePointerPointer == RootNodeReference) || (IdentifierNodeIdentifierComparisonResult = memcmp(&SystemDataTemplateP,HashTablePointerPointer + 4,0x10), IdentifierNodeIdentifierComparisonResult < 0)) {
+  if ((HashTablePointerPointer == RootNodeReference) || (IdentifierComparisonResult = memcmp(&SystemDataTemplateP,HashTablePointerPointer + 4,0x10), IdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(DataTablePointer);
     AllocateSystemMemory(DataTablePointer,&AllocatedMemoryNode,HashTablePointerPointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     HashTablePointerPointer = AllocatedMemoryNode;

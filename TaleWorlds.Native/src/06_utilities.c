@@ -6123,15 +6123,15 @@ undefined SystemGlobalDataPointer;
 // 系统内存管理数据块B
 undefined SystemMemoryManagementBlockB1;
 undefined SystemMemoryManagementBlockB2;
-longlong utilityGlobalDataPointer;
+longlong globalSystemDataPointer;
 uint UtilitySystemHealthIndicator;
-double utilityPerformanceMetric1;
-double utilityPerformanceMetric2;
+double systemPerformanceMetricPrimary;
+double systemPerformanceMetricSecondary;
 // 工具系统错误计数器
 int UtilitySystemErrorCount;
-double utilityTimingValue;
-undefined UtilitySystemState1;
-undefined UtilitySystemState2;
+double systemTimingValue;
+undefined SystemStatePrimary;
+undefined SystemStateSecondary;
 undefined utilitySystemPointerArray1;
 undefined utilitySystemPointerArray2;
 undefined utilitySystemPointerArray3;
@@ -12678,18 +12678,18 @@ undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
       return memoryBaseAddress;
     }
     resourceIterator = *(longlong *)(resourceIterator + 0x20);
-    calculatedOffset = *(longlong *)(resourceIterator + 0x10 + (longlong)(int)auStackX_8[0] * 0x18);
+    calculatedOffset = *(longlong *)(resourceIterator + 0x10 + (longlong)(int)stackBuffer[0] * 0x18);
     if ((*(byte *)(calculatedOffset + 0x34) & 0x11) == 0) {
-      fVar1 = *(float *)(param_1 + 0x18);
-      fVar6 = *(float *)(calculatedOffset + 0x38);
-      if ((*(float *)(calculatedOffset + 0x38) <= fVar1) &&
-         (fVar6 = *(float *)(calculatedOffset + 0x3c), fVar1 <= *(float *)(calculatedOffset + 0x3c))) {
-        fVar6 = fVar1;
+      inputValue = *(float *)(param_1 + 0x18);
+      resultValue = *(float *)(calculatedOffset + 0x38);
+      if ((*(float *)(calculatedOffset + 0x38) <= inputValue) &&
+         (resultValue = *(float *)(calculatedOffset + 0x3c), inputValue <= *(float *)(calculatedOffset + 0x3c))) {
+        resultValue = inputValue;
       }
-      *(float *)(param_1 + 0x18) = fVar6;
+      *(float *)(param_1 + 0x18) = resultValue;
       dataContext = *(longlong *)(dataContext + 0x90);
-      *(float *)(resourceIterator + 4 + (longlong)(int)auStackX_8[0] * 0x18) = fVar6;
-      *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(dataContext + (longlong)(int)auStackX_8[0] * 8);
+      *(float *)(resourceIterator + 4 + (longlong)(int)stackBuffer[0] * 0x18) = resultValue;
+      *(undefined8 *)(param_1 + 0x20) = *(undefined8 *)(dataContext + (longlong)(int)stackBuffer[0] * 8);
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
