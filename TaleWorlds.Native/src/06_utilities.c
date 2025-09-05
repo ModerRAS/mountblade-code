@@ -13148,7 +13148,7 @@ void ProcessDataPointerOperationsA0(longlong *dataPointer, longlong *resultPoint
 // 功能：执行数据类型转换和验证操作，处理浮点和长整型数据
 #define ConvertAndValidateDataA0 FUN_1808975e0
 
-void FUN_1808975e0(longlong param_1,longlong param_2)
+void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
 
 {
   float fVar1;
@@ -14032,8 +14032,11 @@ LAB_180897af6:
 
 
 
-// 函数: void FUN_180897afe(void)
-void FUN_180897afe(void)
+// 原始函数名：FUN_180897afe - 安全检查执行函数A1
+// 功能：执行安全检查并在检查失败时终止程序
+#define ExecuteSecurityCheckAndTerminateA1 FUN_180897afe
+
+void ExecuteSecurityCheckAndTerminateA1(void)
 
 {
   longlong unaff_RBP;
@@ -14045,8 +14048,11 @@ void FUN_180897afe(void)
 
 
 
-// 函数: void FUN_180897b0e(void)
-void FUN_180897b0e(void)
+// 原始函数名：FUN_180897b0e - 安全检查执行函数A2
+// 功能：执行安全检查并在检查失败时终止程序
+#define ExecuteSecurityCheckAndTerminateA2 FUN_180897b0e
+
+void ExecuteSecurityCheckAndTerminateA2(void)
 
 {
   longlong unaff_RBP;
@@ -14058,8 +14064,11 @@ void FUN_180897b0e(void)
 
 
 
-// 函数: void FUN_180897b16(void)
-void FUN_180897b16(void)
+// 原始函数名：FUN_180897b16 - 安全检查执行函数A3
+// 功能：执行安全检查并在检查失败时终止程序
+#define ExecuteSecurityCheckAndTerminateA3 FUN_180897b16
+
+void ExecuteSecurityCheckAndTerminateA3(void)
 
 {
   longlong unaff_RBP;
@@ -14300,8 +14309,11 @@ undefined8 FUN_180897dd3(void)
 
 
 
-// 函数: void FUN_18089802e(void)
-void FUN_18089802e(void)
+// 原始函数名：FUN_18089802e - 空操作函数A0
+// 功能：不执行任何操作，直接返回
+#define ExecuteNoOperationA0 FUN_18089802e
+
+void ExecuteNoOperationA0(void)
 
 {
   return;
