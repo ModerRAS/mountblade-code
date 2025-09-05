@@ -452,6 +452,17 @@
 #define ResourceValidationError90 0x90                      // 资源验证错误偏移量90
 #define ResourceValidationError00 0x00                      // 资源验证错误偏移量00
 
+// 对象上下文数据处理偏移常量
+#define ObjectContextDataProcessingOffset0 0x0               // 对象上下文数据处理偏移量0
+#define ObjectContextDataProcessingOffset1 0x4               // 对象上下文数据处理偏移量1
+#define ObjectContextDataProcessingOffset2 0x8               // 对象上下文数据处理偏移量2
+#define ObjectContextDataProcessingOffset4 0x10              // 对象上下文数据处理偏移量4
+#define ObjectContextDataProcessingOffset8 0x20              // 对象上下文数据处理偏移量8
+
+// 对象上下文验证数据处理偏移常量
+#define ObjectContextValidationDataProcessingOffset0 0x0     // 对象上下文验证数据处理偏移量0
+#define ObjectContextValidationDataProcessingOffset8 0x20    // 对象上下文验证数据处理偏移量8
+
 // 系统回调相关常量
 #define SystemCallbackTableOffset 0x18
 #define SystemCallbackBaseOffset 8
