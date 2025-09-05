@@ -16586,13 +16586,13 @@ DataBuffer ProcessHashTableInsertAndUpdate(int64_t *param_1,uint *param_2,DataBu
         referenceCountPointer3 = (int *)(bufferPointer + 4 + dataPointer * 0x10);
       } while (operationResult != -1);
     }
-    operationResult = (int)param_1[4];
+    operationResult = (int)hashTable[4];
     if (operationResult == -1) {
-      memoryBaseAddress = *param_3;
-      operationResult = (int)param_1[3];
+      memoryBaseAddress = *dataValue;
+      operationResult = (int)hashTable[3];
       calculatedValue = operationResult + 1;
-      dataValue1 = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
-      operationStatus = (*(uint *)((int64_t)param_1 + 0x1c) ^ dataValue1) - dataValue1;
+      dataValue1 = (int)*(uint *)((int64_t)hashTable + 0x1c) >> 0x1f;
+      operationStatus = (*(uint *)((int64_t)hashTable + 0x1c) ^ dataValue1) - dataValue1;
       if (operationStatus < calculatedValue) {
         inputParameter2 = (int)((float)operationStatus * 1.5);
         operationStatus = calculatedValue;
@@ -38534,7 +38534,7 @@ void Unwind_180903010(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180903020(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataResourceE(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   FUN_180058370(*(int64_t *)(param_2 + 0x48),*(DataBuffer *)(*(int64_t *)(param_2 + 0x48) + 0x10),
@@ -38544,7 +38544,7 @@ void Unwind_180903020(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180903030(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataResourceF(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   FUN_180058370(*(int64_t *)(param_2 + 0x48),*(DataBuffer *)(*(int64_t *)(param_2 + 0x48) + 0x10),
@@ -38554,7 +38554,7 @@ void Unwind_180903030(DataBuffer param_1,int64_t param_2,DataBuffer param_3,Data
 
 
 
-void Unwind_180903040(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupDataResourceG(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
 
 {
   FUN_180058710(*(int64_t *)(param_2 + 0x48),*(DataBuffer *)(*(int64_t *)(param_2 + 0x48) + 0x10),
