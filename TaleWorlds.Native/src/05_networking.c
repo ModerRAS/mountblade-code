@@ -2567,7 +2567,7 @@ PrimaryNetworkProcessingComplete:
       if ((ProcessingCode != 0) && (ContextIdentifier = *ConnectionOperationBuffer, 0 < ProcessingCode)) {
         NetworkStatus *ConnectionStatusIterator = ConnectionStatusPointer;
         do {
-          NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerAddress(NetworkConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
+          NetworkStatus *NetworkContextStatusPointer = (NetworkStatus *)CalculateConnectionStatusPointerAddress(ContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           NetworkStatus NetworkValidationState = NetworkContextStatusPointer[NetworkStatusValidationIndex];
           NetworkStatus NetworkTimeoutState = NetworkContextStatusPointer[NetworkStatusTimeoutIndex];
           NetworkStatus NetworkSecondaryState = NetworkContextStatusPointer[NetworkStatusSecondaryIndex];

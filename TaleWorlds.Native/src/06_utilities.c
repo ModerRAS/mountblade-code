@@ -978,13 +978,13 @@
 #define SystemExceptionHandlerA9 Unwind_1809021e0
 
 /**
- * @brief 异常处理函数A10
+ * @brief 系统异常处理器A10
  * 
- * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 该函数负责处理系统异常情况，提供异常恢复和清理机制
  * 
  * @note 原始函数名：Unwind_180902210
  */
-#define ExceptionHandlerA10 Unwind_180902210
+#define SystemExceptionHandlerA10 Unwind_180902210
 
 /**
  * @brief 异常处理函数A11
