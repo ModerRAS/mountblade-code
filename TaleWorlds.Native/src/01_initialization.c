@@ -49399,7 +49399,7 @@ void ConfigureSystemResourceNode(void* SystemResourceManager,void* Configuration
   AdditionalParameter = systemDataIndexPtr[1];
   ResourceConfigurationOffset = *systemDataIndexPtr;
 ResourceCreationComplete:
-  InitializeSystemMemoryAllocatorWithHashNodes(&stackBuffer50,ResourceConfigurationOffset,AdditionalParameter,ResourceMemoryOffset);
+  InitializeSystemMemoryAllocatorWithHashNodes(&SystemStackBuffer50,ResourceConfigurationOffset,AdditionalParameter,ResourceMemoryOffset);
   SystemThreadHandle = SystemMemoryOffset;
   ProcessSystemResourceData(SystemMemoryOffset);
   resourceDataIndex = systemDataIndexPtr[1];
@@ -57801,7 +57801,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
   int systemValue;
   int CalculationFlags;
   long long localDataIndex;
-  float floatValue8;
+  float CalculationResult8;
   float ScaleValue;
   uint8_t SystemStackBuffer2 [8];
   long long *pLocalStackInitializationFlag;
@@ -57825,8 +57825,8 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
   SystemConfigValue = 0xfffffffffffffffe;
   while( true ) {
     if (((int)SystemResourceManager[0x41] != 0) &&
-       ((floatValue8 = *(float *)(SystemResourceManager + 0x5b) - *(float *)((long long)SystemResourceManager + 0x2dc), floatValue8 <= -0.01
-        || (0.01 <= floatValue8)))) {
+       ((CalculationResult8 = *(float *)(SystemResourceManager + 0x5b) - *(float *)((long long)SystemResourceManager + 0x2dc), CalculationResult8 <= -0.01
+        || (0.01 <= CalculationResult8)))) {
       resourcePoolPointer = SystemResourceManager;
       if ((((*(byte *)((long long)SystemResourceManager + 0xfd) & 0x40) == 0) || (SystemResourceManager[0x42] == 0)) &&
          (SystemResourceManager[0x36] != 0)) {
@@ -57841,17 +57841,17 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
         InitializeSystemResourceEncryption(SystemStackBuffer2);
         resourcePoolPointer = SecondaryResourceHandle + 0x16;
         SystemInitializationStatus = *(ushort *)(SecondaryResourceHandle + 0x18);
-        floatValue8 = *(float *)(SecondaryResourceHandle[0x17] + -4 + (ulong long)SystemInitializationStatus * 4);
+        CalculationResult8 = *(float *)(SecondaryResourceHandle[0x17] + -4 + (ulong long)SystemInitializationStatus * 4);
         ScaleValue = *(float *)((long long)SystemResourceManager + 0x2dc);
-        if (floatValue8 < *(float *)((long long)SystemResourceManager + 0x2dc)) {
-          *(float *)((long long)SystemResourceManager + 0x2dc) = floatValue8;
+        if (CalculationResult8 < *(float *)((long long)SystemResourceManager + 0x2dc)) {
+          *(float *)((long long)SystemResourceManager + 0x2dc) = CalculationResult8;
           SystemInitializationStatus = *(ushort *)(SecondaryResourceHandle + 0x18);
-          ScaleValue = floatValue8;
+          ScaleValue = CalculationResult8;
         }
         resourceAllocationContext = (uint)SystemInitializationStatus;
         if (SystemInitializationStatus < 2) {
           CalculationFlags = resourceAllocationContext - 1;
-          floatValue8 = 0.0;
+          CalculationResult8 = 0.0;
           systemValue = CalculationFlags;
         }
         else {
@@ -57866,15 +57866,15 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
               systemValue = systemIndex;
             } while (CalculationFlags < systemValue + -1);
           }
-          floatValue8 = *(float *)(SecondaryResourceHandle[0x17] + (long long)CalculationFlags * 4);
-          floatValue8 = (ScaleValue - floatValue8) / (*(float *)(SecondaryResourceHandle[0x17] + (long long)systemValue * 4) - floatValue8);
-          if (0.0 <= floatValue8) {
-            if (1.0 <= floatValue8) {
-              floatValue8 = 1.0;
+          CalculationResult8 = *(float *)(SecondaryResourceHandle[0x17] + (long long)CalculationFlags * 4);
+          CalculationResult8 = (ScaleValue - CalculationResult8) / (*(float *)(SecondaryResourceHandle[0x17] + (long long)systemValue * 4) - CalculationResult8);
+          if (0.0 <= CalculationResult8) {
+            if (1.0 <= CalculationResult8) {
+              CalculationResult8 = 1.0;
             }
           }
           else {
-            floatValue8 = 0.0;
+            CalculationResult8 = 0.0;
           }
         }
         if (-1 < CalculationFlags) {
@@ -57886,7 +57886,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
           StackPointerF0 = 0;
           InitializeSystemEncryptionContext(&EncryptionOffsetSecondary,SystemResourceManager,0);
           (**(code **)(*SystemResourceManager + 0x38))(SystemResourceManager);
-          ProcessSystemEncryptionCalculation(&EncryptionOffsetSecondary,resourcePoolPointer,systemValue,CalculationFlags,floatValue8);
+          ProcessSystemEncryptionCalculation(&EncryptionOffsetSecondary,resourcePoolPointer,systemValue,CalculationFlags,CalculationResult8);
           FinalizeSystemEncryptionContext(&EncryptionOffsetSecondary);
         }
         CleanupSystemResourceEncryption(SystemStackBuffer2);
@@ -57900,17 +57900,17 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
         InitializeSystemStackContext(&pStackValue3);
         localDataIndex = LocalSystemAddress + 0xb0;
         SystemInitializationStatus = *(ushort *)(LocalSystemAddress + 0xc0);
-        floatValue8 = *(float *)(*(long long *)(LocalSystemAddress + 0xb8) + -4 + (ulong long)SystemInitializationStatus * 4);
+        CalculationResult8 = *(float *)(*(long long *)(LocalSystemAddress + 0xb8) + -4 + (ulong long)SystemInitializationStatus * 4);
         ScaleValue = *(float *)((long long)SystemResourceManager + 0x2dc);
-        if (floatValue8 < *(float *)((long long)SystemResourceManager + 0x2dc)) {
-          *(float *)((long long)SystemResourceManager + 0x2dc) = floatValue8;
+        if (CalculationResult8 < *(float *)((long long)SystemResourceManager + 0x2dc)) {
+          *(float *)((long long)SystemResourceManager + 0x2dc) = CalculationResult8;
           SystemInitializationStatus = *(ushort *)(LocalSystemAddress + 0xc0);
-          ScaleValue = floatValue8;
+          ScaleValue = CalculationResult8;
         }
         resourceAllocationContext = (uint)SystemInitializationStatus;
         if (SystemInitializationStatus < 2) {
           CalculationFlags = resourceAllocationContext - 1;
-          floatValue8 = 0.0;
+          CalculationResult8 = 0.0;
           systemValue = CalculationFlags;
         }
         else {
@@ -57925,16 +57925,16 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
               systemValue = systemIndex;
             } while (CalculationFlags < systemValue + -1);
           }
-          floatValue8 = *(float *)(*(long long *)(LocalSystemAddress + 0xb8) + (long long)CalculationFlags * 4);
-          floatValue8 = (ScaleValue - floatValue8) /
-                  (*(float *)(*(long long *)(LocalSystemAddress + 0xb8) + (long long)systemValue * 4) - floatValue8);
-          if (0.0 <= floatValue8) {
-            if (1.0 <= floatValue8) {
-              floatValue8 = 1.0;
+          CalculationResult8 = *(float *)(*(long long *)(LocalSystemAddress + 0xb8) + (long long)CalculationFlags * 4);
+          CalculationResult8 = (ScaleValue - CalculationResult8) /
+                  (*(float *)(*(long long *)(LocalSystemAddress + 0xb8) + (long long)systemValue * 4) - CalculationResult8);
+          if (0.0 <= CalculationResult8) {
+            if (1.0 <= CalculationResult8) {
+              CalculationResult8 = 1.0;
             }
           }
           else {
-            floatValue8 = 0.0;
+            CalculationResult8 = 0.0;
           }
         }
         if (-1 < CalculationFlags) {
@@ -57946,7 +57946,7 @@ void InitializeSystemResourceManagerExtended(long long* SystemResourceManager)
           systemDataBuffer = 0;
           InitializeSystemDataBuffer(&SystemDataBufferContext,SystemResourceManager,0);
           (**(code **)(*SystemResourceManager + 0x38))(SystemResourceManager);
-          ProcessSystemProcessingBufferData(&SystemDataBufferContext,localDataIndex,systemValue,CalculationFlags,floatValue8);
+          ProcessSystemProcessingBufferData(&SystemDataBufferContext,localDataIndex,systemValue,CalculationFlags,CalculationResult8);
           CleanupSystemDataBuffer(&SystemDataBufferContext);
         }
         ProcessSystemStackContext(&pStackValue3);
@@ -59369,34 +59369,34 @@ SystemResourceProcessingComplete:
       MagnitudeSquared = AdditionalParameter[9];
       ResultValue1 = AdditionalParameter[10];
       ResultValue2 = AdditionalParameter[0xb];
-      floatValue1 = *(float *)(SystemResourceManager + 0x124);
-      floatValue2 = *(float *)(SystemResourceManager + 0x120);
-      floatValue3 = *(float *)(SystemResourceManager + 0x128);
-      floatValue4 = *(float *)(SystemResourceManager + 0x134);
+      MatrixElement1 = *(float *)(SystemResourceManager + 0x124);
+      MatrixElement2 = *(float *)(SystemResourceManager + 0x120);
+      MatrixElement3 = *(float *)(SystemResourceManager + 0x128);
+      MatrixElement4 = *(float *)(SystemResourceManager + 0x134);
       BaseValue = *(float *)(SystemResourceManager + 0x130);
-      MatrixResult1 = floatValue1 * InterpolationFactorY + floatValue2 * ScaleValue + floatValue3 * InterpolationFactorV;
-      MatrixResult2 = floatValue1 * InterpolationFactorZ + floatValue2 * ScalingFactor + floatValue3 * MagnitudeSquared;
-      MatrixResult3 = floatValue1 * InterpolationFactorA + floatValue2 * OffsetValue + floatValue3 * ResultValue1;
-      MatrixResult4 = floatValue1 * InterpolationFactorW + floatValue2 * RatioValue + floatValue3 * ResultValue2;
-      floatValue1 = *(float *)(SystemResourceManager + 0x138);
-      floatValue2 = *(float *)(SystemResourceManager + 0x140);
-      floatValue3 = *(float *)(SystemResourceManager + 0x144);
-      MatrixResult5 = floatValue4 * InterpolationFactorY + BaseValue * ScaleValue + floatValue1 * InterpolationFactorV;
-      MatrixResult6 = floatValue4 * InterpolationFactorZ + BaseValue * ScalingFactor + floatValue1 * MagnitudeSquared;
-      MatrixResult7 = floatValue4 * InterpolationFactorA + BaseValue * OffsetValue + floatValue1 * ResultValue1;
-      MatrixResult8 = floatValue4 * InterpolationFactorW + BaseValue * RatioValue + floatValue1 * ResultValue2;
-      floatValue1 = *(float *)(SystemResourceManager + 0x148);
-      floatValue4 = *(float *)(SystemResourceManager + 0x154);
+      MatrixResult1 = MatrixElement1 * InterpolationFactorY + MatrixElement2 * ScaleValue + MatrixElement3 * InterpolationFactorV;
+      MatrixResult2 = MatrixElement1 * InterpolationFactorZ + MatrixElement2 * ScalingFactor + MatrixElement3 * MagnitudeSquared;
+      MatrixResult3 = MatrixElement1 * InterpolationFactorA + MatrixElement2 * OffsetValue + MatrixElement3 * ResultValue1;
+      MatrixResult4 = MatrixElement1 * InterpolationFactorW + MatrixElement2 * RatioValue + MatrixElement3 * ResultValue2;
+      MatrixElement1 = *(float *)(SystemResourceManager + 0x138);
+      MatrixElement2 = *(float *)(SystemResourceManager + 0x140);
+      MatrixElement3 = *(float *)(SystemResourceManager + 0x144);
+      MatrixResult5 = MatrixElement4 * InterpolationFactorY + BaseValue * ScaleValue + MatrixElement1 * InterpolationFactorV;
+      MatrixResult6 = MatrixElement4 * InterpolationFactorZ + BaseValue * ScalingFactor + MatrixElement1 * MagnitudeSquared;
+      MatrixResult7 = MatrixElement4 * InterpolationFactorA + BaseValue * OffsetValue + MatrixElement1 * ResultValue1;
+      MatrixResult8 = MatrixElement4 * InterpolationFactorW + BaseValue * RatioValue + MatrixElement1 * ResultValue2;
+      MatrixElement1 = *(float *)(SystemResourceManager + 0x148);
+      MatrixElement4 = *(float *)(SystemResourceManager + 0x154);
       BaseValue = *(float *)(SystemResourceManager + 0x150);
-      MatrixResult9 = floatValue3 * InterpolationFactorY + floatValue2 * ScaleValue + floatValue1 * InterpolationFactorV;
-      MatrixResult10 = floatValue3 * InterpolationFactorZ + floatValue2 * ScalingFactor + floatValue1 * MagnitudeSquared;
-      MatrixResult11 = floatValue3 * InterpolationFactorA + floatValue2 * OffsetValue + floatValue1 * ResultValue1;
-      MatrixResult12 = floatValue3 * InterpolationFactorW + floatValue2 * RatioValue + floatValue1 * ResultValue2;
-      floatValue1 = *(float *)(SystemResourceManager + 0x158);
-      MatrixResult13 = floatValue4 * InterpolationFactorY + BaseValue * ScaleValue + floatValue1 * InterpolationFactorV + AdditionalParameter[0xc];
-      MatrixResult14 = floatValue4 * InterpolationFactorZ + BaseValue * ScalingFactor + floatValue1 * MagnitudeSquared + AdditionalParameter[0xd];
-      MatrixResult15 = floatValue4 * InterpolationFactorA + BaseValue * OffsetValue + floatValue1 * ResultValue1 + AdditionalParameter[0xe];
-      MatrixResult16 = floatValue4 * InterpolationFactorW + BaseValue * RatioValue + floatValue1 * ResultValue2 + AdditionalParameter[0xf];
+      MatrixResult9 = MatrixElement3 * InterpolationFactorY + MatrixElement2 * ScaleValue + MatrixElement1 * InterpolationFactorV;
+      MatrixResult10 = MatrixElement3 * InterpolationFactorZ + MatrixElement2 * ScalingFactor + MatrixElement1 * MagnitudeSquared;
+      MatrixResult11 = MatrixElement3 * InterpolationFactorA + MatrixElement2 * OffsetValue + MatrixElement1 * ResultValue1;
+      MatrixResult12 = MatrixElement3 * InterpolationFactorW + MatrixElement2 * RatioValue + MatrixElement1 * ResultValue2;
+      MatrixElement1 = *(float *)(SystemResourceManager + 0x158);
+      MatrixResult13 = MatrixElement4 * InterpolationFactorY + BaseValue * ScaleValue + MatrixElement1 * InterpolationFactorV + AdditionalParameter[0xc];
+      MatrixResult14 = MatrixElement4 * InterpolationFactorZ + BaseValue * ScalingFactor + MatrixElement1 * MagnitudeSquared + AdditionalParameter[0xd];
+      MatrixResult15 = MatrixElement4 * InterpolationFactorA + BaseValue * OffsetValue + MatrixElement1 * ResultValue1 + AdditionalParameter[0xe];
+      MatrixResult16 = MatrixElement4 * InterpolationFactorW + BaseValue * RatioValue + MatrixElement1 * ResultValue2 + AdditionalParameter[0xf];
       AdditionalParameter = &MatrixResult1;
     }
     InitializeSystemEncryptionParameters(&EncryptionOffset1,ConfigurationDataPointer + 0xc,*(uint8_t *)(SystemResourceManager + 0xf7),AdditionalParameter);
@@ -59677,39 +59677,39 @@ void SystemNoOperationA(void)
     MagnitudeSquared = FloatParameterBuffer[8];
     FloatVectorNinthComponent = FloatParameterBuffer[9];
     FloatVectorTenthComponent = FloatParameterBuffer[10];
-    floatValue2 = *(float *)(MemoryBlockAddress + 0x124);
-    floatValue3 = *(float *)(MemoryBlockAddress + 0x120);
-    floatValue4 = *(float *)(MemoryBlockAddress + 0x128);
+    MatrixElement2 = *(float *)(MemoryBlockAddress + 0x124);
+    MatrixElement3 = *(float *)(MemoryBlockAddress + 0x120);
+    MatrixElement4 = *(float *)(MemoryBlockAddress + 0x128);
     BaseValue = *(float *)(MemoryBlockAddress + 0x134);
     floatValue6 = *(float *)(MemoryBlockAddress + 0x130);
-    FloatTransformA0 = floatValue2 * InterpolationFactorX + floatValue3 * FloatVectorFirstComponent + floatValue4 * InterpolationFactorW;
-    FloatTransformA4 = floatValue2 * InterpolationFactorY + floatValue3 * FloatVectorSecondComponent + floatValue4 * MagnitudeSquared;
-    FloatTransformA8 = floatValue2 * InterpolationFactorA + floatValue3 * FloatVectorThirdComponent + floatValue4 * FloatVectorNinthComponent;
-    FloatTransformAC = floatValue2 * InterpolationFactorW + floatValue3 * FloatVectorFourthComponent + floatValue4 * FloatVectorTenthComponent;
-    floatValue2 = *(float *)(MemoryBlockAddress + 0x138);
-    floatValue3 = *(float *)(MemoryBlockAddress + 0x140);
-    floatValue4 = *(float *)(MemoryBlockAddress + 0x144);
-    FloatTransformB0 = BaseValue * InterpolationFactorX + floatValue6 * FloatVectorFirstComponent + floatValue2 * InterpolationFactorW;
-    FloatTransformB4 = BaseValue * InterpolationFactorY + floatValue6 * FloatVectorSecondComponent + floatValue2 * MagnitudeSquared;
-    FloatTransformB8 = BaseValue * InterpolationFactorA + floatValue6 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent;
-    FloatTransformBC = BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent;
-    floatValue2 = *(float *)(MemoryBlockAddress + 0x148);
+    FloatTransformA0 = MatrixElement2 * InterpolationFactorX + MatrixElement3 * FloatVectorFirstComponent + MatrixElement4 * InterpolationFactorW;
+    FloatTransformA4 = MatrixElement2 * InterpolationFactorY + MatrixElement3 * FloatVectorSecondComponent + MatrixElement4 * MagnitudeSquared;
+    FloatTransformA8 = MatrixElement2 * InterpolationFactorA + MatrixElement3 * FloatVectorThirdComponent + MatrixElement4 * FloatVectorNinthComponent;
+    FloatTransformAC = MatrixElement2 * InterpolationFactorW + MatrixElement3 * FloatVectorFourthComponent + MatrixElement4 * FloatVectorTenthComponent;
+    MatrixElement2 = *(float *)(MemoryBlockAddress + 0x138);
+    MatrixElement3 = *(float *)(MemoryBlockAddress + 0x140);
+    MatrixElement4 = *(float *)(MemoryBlockAddress + 0x144);
+    FloatTransformB0 = BaseValue * InterpolationFactorX + floatValue6 * FloatVectorFirstComponent + MatrixElement2 * InterpolationFactorW;
+    FloatTransformB4 = BaseValue * InterpolationFactorY + floatValue6 * FloatVectorSecondComponent + MatrixElement2 * MagnitudeSquared;
+    FloatTransformB8 = BaseValue * InterpolationFactorA + floatValue6 * FloatVectorThirdComponent + MatrixElement2 * FloatVectorNinthComponent;
+    FloatTransformBC = BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + MatrixElement2 * FloatVectorTenthComponent;
+    MatrixElement2 = *(float *)(MemoryBlockAddress + 0x148);
     BaseValue = *(float *)(MemoryBlockAddress + 0x154);
     floatValue6 = *(float *)(MemoryBlockAddress + 0x150);
-    FloatTransformC0 = floatValue4 * InterpolationFactorX + floatValue3 * FloatVectorFirstComponent + floatValue2 * InterpolationFactorW;
-    FloatTransformC4 = floatValue4 * InterpolationFactorY + floatValue3 * FloatVectorSecondComponent + floatValue2 * MagnitudeSquared;
-    FloatTransformC8 = floatValue4 * InterpolationFactorA + floatValue3 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent;
-    FloatTransformCC = floatValue4 * InterpolationFactorW + floatValue3 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent;
-    floatValue2 = *(float *)(MemoryBlockAddress + 0x158);
+    FloatTransformC0 = MatrixElement4 * InterpolationFactorX + MatrixElement3 * FloatVectorFirstComponent + MatrixElement2 * InterpolationFactorW;
+    FloatTransformC4 = MatrixElement4 * InterpolationFactorY + MatrixElement3 * FloatVectorSecondComponent + MatrixElement2 * MagnitudeSquared;
+    FloatTransformC8 = MatrixElement4 * InterpolationFactorA + MatrixElement3 * FloatVectorThirdComponent + MatrixElement2 * FloatVectorNinthComponent;
+    FloatTransformCC = MatrixElement4 * InterpolationFactorW + MatrixElement3 * FloatVectorFourthComponent + MatrixElement2 * FloatVectorTenthComponent;
+    MatrixElement2 = *(float *)(MemoryBlockAddress + 0x158);
     FloatTransformD0 =
-         BaseValue * InterpolationFactorX + floatValue6 * FloatVectorFirstComponent + floatValue2 * InterpolationFactorW + FloatParameterBuffer[0xc];
+         BaseValue * InterpolationFactorX + floatValue6 * FloatVectorFirstComponent + MatrixElement2 * InterpolationFactorW + FloatParameterBuffer[0xc];
     FloatTransformD4 =
-         BaseValue * InterpolationFactorY + floatValue6 * FloatVectorSecondComponent + floatValue2 * MagnitudeSquared + FloatParameterBuffer[0xd];
+         BaseValue * InterpolationFactorY + floatValue6 * FloatVectorSecondComponent + MatrixElement2 * MagnitudeSquared + FloatParameterBuffer[0xd];
     FloatTransformD8 =
-         BaseValue * InterpolationFactorA + floatValue6 * FloatVectorThirdComponent + floatValue2 * FloatVectorNinthComponent + FloatParameterBuffer[0xe];
+         BaseValue * InterpolationFactorA + floatValue6 * FloatVectorThirdComponent + MatrixElement2 * FloatVectorNinthComponent + FloatParameterBuffer[0xe];
     FloatTransformDC =
-         BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + floatValue2 * FloatVectorTenthComponent + FloatParameterBuffer[0xf];
-    FloatParameterBuffer39 = &stackBufferA0;
+         BaseValue * InterpolationFactorW + floatValue6 * FloatVectorFourthComponent + MatrixElement2 * FloatVectorTenthComponent + FloatParameterBuffer[0xf];
+    FloatParameterBuffer39 = &SystemStackBufferA0;
   }
   ConfigureSystemResourceBuffer(&SystemStackBuffer60,ResourceMemoryOffset4 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),FloatParameterBuffer39);
   resourceCreationFlagsSecondary = ThreadCreationParameter;
@@ -59979,7 +59979,7 @@ void CleanupGlobalSystemResources(void)
          FloatTransformValue4 * InterpolationFactorA + FloatTransformValue5 * FloatVectorThirdComponent + FloatTransformValue6 * FloatVectorNinthComponent + FloatParameterBuffer[0xe];
     FloatTransformDC =
          FloatTransformValue4 * InterpolationFactorW + FloatTransformValue5 * FloatVectorFourthComponent + FloatTransformValue6 * FloatVectorTenthComponent + FloatParameterBuffer[0xf];
-    FloatParameterBuffer36 = &stackBufferA0;
+    FloatParameterBuffer36 = &SystemStackBufferA0;
   }
   InitializeSystemThreadBuffer(&SystemStackBuffer60,SystemThreadHandle9 + 0x30,*(uint8_t *)(MemoryBlockAddress + 0xf7),FloatParameterBuffer36);
   resourceCreationFlagsSecondary = ThreadCreationParameter;
@@ -60222,7 +60222,7 @@ void InitializeSystemVectorCalculations(void)
   float BaseValue;
   int CalculationFlags;
   float floatValue7;
-  float floatValue8;
+  float CalculationResult8;
   float ScaleValue;
   float ScalingFactor;
   float OffsetValue;
@@ -60490,7 +60490,7 @@ ulong long ProcessSystemResourceInitialization(long long SystemResourceManager,v
   float BaseValue;
   float floatValue6;
   float floatValue7;
-  float floatValue8;
+  float CalculationResult8;
   float ScaleValue;
   float ScalingFactor;
   float OffsetValue;
@@ -60621,7 +60621,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   float BaseValue;
   float floatValue6;
   float floatValue7;
-  float floatValue8;
+  float CalculationResult8;
   float ScaleValue;
   long long MemoryBlockAddress;
   float *systemDataIndexPtr;
@@ -60652,39 +60652,39 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   uint32_t InputParameterE0;
   uint32_t InputParameterE8;
   
-  floatValue4 = *systemDataIndexPtr;
+  MatrixElement4 = *systemDataIndexPtr;
   BaseValue = systemDataIndexPtr[1];
   floatValue6 = systemDataIndexPtr[2];
   floatValue7 = systemDataIndexPtr[8];
-  floatValue8 = systemDataIndexPtr[9];
+  CalculationResult8 = systemDataIndexPtr[9];
   ScaleValue = systemDataIndexPtr[10];
-  floatValue1 = *(float *)(MemoryBlockAddress + 0x124);
-  floatValue2 = *(float *)(MemoryBlockAddress + 0x130);
-  FloatTransform30 = floatValue1 * InputFloatValue3 + (float)SystemResourceManager * floatValue4 + (float)ConfigurationDataPointer * floatValue7;
+  MatrixElement1 = *(float *)(MemoryBlockAddress + 0x124);
+  MatrixElement2 = *(float *)(MemoryBlockAddress + 0x130);
+  FloatTransform30 = MatrixElement1 * InputFloatValue3 + (float)SystemResourceManager * MatrixElement4 + (float)ConfigurationDataPointer * floatValue7;
   FloatStack34 =
-       floatValue1 * InputFloatValue4 + (float)((ulong long)SystemResourceManager >> 0x20) * BaseValue +
-       (float)((ulong long)ConfigurationDataPointer >> 0x20) * floatValue8;
-  FloatStack38 = floatValue1 * InputFloatValue5 + InputFloatValue1 * floatValue6 + InputFloatValue2 * ScaleValue;
-  floatValue1 = *(float *)(MemoryBlockAddress + 0x138);
-  floatValue3 = *(float *)(MemoryBlockAddress + 0x140);
-  FloatStack40 = AudioInterpolationCoeff1 * InputFloatValue3 + floatValue2 * floatValue4 + floatValue1 * floatValue7;
-  FloatStack44 = AudioInterpolationCoeff1 * InputFloatValue4 + floatValue2 * BaseValue + floatValue1 * floatValue8;
-  FloatStack48 = AudioInterpolationCoeff1 * InputFloatValue5 + floatValue2 * floatValue6 + floatValue1 * ScaleValue;
-  floatValue1 = *(float *)(MemoryBlockAddress + 0x148);
-  floatValue2 = *(float *)(MemoryBlockAddress + 0x150);
-  FloatStack50 = ConfigurationFlag * InputFloatValue3 + floatValue3 * floatValue4 + floatValue1 * floatValue7;
-  FloatStack54 = ConfigurationFlag * InputFloatValue4 + floatValue3 * BaseValue + floatValue1 * floatValue8;
-  FloatStack58 = ConfigurationFlag * InputFloatValue5 + floatValue3 * floatValue6 + floatValue1 * ScaleValue;
-  floatValue1 = *(float *)(MemoryBlockAddress + 0x158);
-  FloatStack60 = AdditionalParameter * InputFloatValue3 + floatValue2 * floatValue4 + floatValue1 * floatValue7 + systemDataIndexPtr[0xc];
-  FloatStack64 = AdditionalParameter * InputFloatValue4 + floatValue2 * BaseValue + floatValue1 * floatValue8 + systemDataIndexPtr[0xd];
-  FloatStack68 = AdditionalParameter * InputFloatValue5 + floatValue2 * floatValue6 + floatValue1 * ScaleValue + systemDataIndexPtr[0xe];
+       MatrixElement1 * InputFloatValue4 + (float)((ulong long)SystemResourceManager >> 0x20) * BaseValue +
+       (float)((ulong long)ConfigurationDataPointer >> 0x20) * CalculationResult8;
+  FloatStack38 = MatrixElement1 * InputFloatValue5 + InputFloatValue1 * floatValue6 + InputFloatValue2 * ScaleValue;
+  MatrixElement1 = *(float *)(MemoryBlockAddress + 0x138);
+  MatrixElement3 = *(float *)(MemoryBlockAddress + 0x140);
+  FloatStack40 = AudioInterpolationCoeff1 * InputFloatValue3 + MatrixElement2 * MatrixElement4 + MatrixElement1 * floatValue7;
+  FloatStack44 = AudioInterpolationCoeff1 * InputFloatValue4 + MatrixElement2 * BaseValue + MatrixElement1 * CalculationResult8;
+  FloatStack48 = AudioInterpolationCoeff1 * InputFloatValue5 + MatrixElement2 * floatValue6 + MatrixElement1 * ScaleValue;
+  MatrixElement1 = *(float *)(MemoryBlockAddress + 0x148);
+  MatrixElement2 = *(float *)(MemoryBlockAddress + 0x150);
+  FloatStack50 = ConfigurationFlag * InputFloatValue3 + MatrixElement3 * MatrixElement4 + MatrixElement1 * floatValue7;
+  FloatStack54 = ConfigurationFlag * InputFloatValue4 + MatrixElement3 * BaseValue + MatrixElement1 * CalculationResult8;
+  FloatStack58 = ConfigurationFlag * InputFloatValue5 + MatrixElement3 * floatValue6 + MatrixElement1 * ScaleValue;
+  MatrixElement1 = *(float *)(MemoryBlockAddress + 0x158);
+  FloatStack60 = AdditionalParameter * InputFloatValue3 + MatrixElement2 * MatrixElement4 + MatrixElement1 * floatValue7 + systemDataIndexPtr[0xc];
+  FloatStack64 = AdditionalParameter * InputFloatValue4 + MatrixElement2 * BaseValue + MatrixElement1 * CalculationResult8 + systemDataIndexPtr[0xd];
+  FloatStack68 = AdditionalParameter * InputFloatValue5 + MatrixElement2 * floatValue6 + MatrixElement1 * ScaleValue + systemDataIndexPtr[0xe];
   SystemStackParameter28 = InputParameterE8;
   SystemDataResourcePointer = 0x3f800000;
   SystemDataFlag2 = 0;
   SystemDataFlag1 = 0;
   SystemDataFlag0 = 0;
-  ProcessSystemFloatingPointCalculation(0x3f800000,floatValue1 * floatValue7,systemResourceCounterD,&SystemStackBuffer30,InputParameterE0);
+  ProcessSystemFloatingPointCalculation(0x3f800000,MatrixElement1 * floatValue7,systemResourceCounterD,&SystemStackBuffer30,InputParameterE0);
   return;
 }
 
@@ -61593,62 +61593,62 @@ void InitializeSystemResourceData(void* *SystemResourceManager,long long Configu
     InterpolationFactorV = pBaseValue[1];
     InterpolationFactorX = pBaseValue[0xe];
     MatrixValue3 = pBaseValue[2];
-    floatValue25 = pBaseValue[10];
-    floatValue28 = pBaseValue[5];
-    floatValue24 = InterpolationFactorA * ScalingFactor - InterpolationFactorW * floatValue25;
-    MatrixValue1 = InterpolationFactorA * floatValue28 - InterpolationFactorW * MagnitudeSquared;
+    MatrixElement25 = pBaseValue[10];
+    MatrixElement28 = pBaseValue[5];
+    MatrixElement24 = InterpolationFactorA * ScalingFactor - InterpolationFactorW * MatrixElement25;
+    MatrixValue1 = InterpolationFactorA * MatrixElement28 - InterpolationFactorW * MagnitudeSquared;
     MatrixValue2 = InterpolationFactorA * InterpolationFactorV - InterpolationFactorW * MatrixValue3;
-    floatValue29 = floatValue28 * floatValue25 - ScalingFactor * MagnitudeSquared;
-    ResultValue2 = InterpolationFactorV * floatValue25 - ScalingFactor * MatrixValue3;
-    *(float *)(SystemResourceManager + 0x18) = floatValue29;
-    ResultValue1 = InterpolationFactorV * MagnitudeSquared - floatValue28 * MatrixValue3;
-    floatValue30 = MatrixValue3 * pBaseValue[9] - floatValue25 * pBaseValue[1];
-    *(float *)((long long)SystemResourceManager + 0xc4) = floatValue30;
+    MatrixElement29 = MatrixElement28 * MatrixElement25 - ScalingFactor * MagnitudeSquared;
+    ResultValue2 = InterpolationFactorV * MatrixElement25 - ScalingFactor * MatrixValue3;
+    *(float *)(SystemResourceManager + 0x18) = MatrixElement29;
+    ResultValue1 = InterpolationFactorV * MagnitudeSquared - MatrixElement28 * MatrixValue3;
+    MatrixElement30 = MatrixValue3 * pBaseValue[9] - MatrixElement25 * pBaseValue[1];
+    *(float *)((long long)SystemResourceManager + 0xc4) = MatrixElement30;
     InterpolationFactorW = pBaseValue[5];
     InterpolationFactorX = pBaseValue[1];
     *(uint32_t *)((long long)SystemResourceManager + 0xcc) = 0;
-    floatValue31 = MagnitudeSquared * InterpolationFactorA - MatrixValue3 * InterpolationFactorW;
-    *(float *)(SystemResourceManager + NodeActiveFlagOffset) = floatValue31;
-    InterpolationFactorZ = MagnitudeSquared * pBaseValue[8] - floatValue25 * pBaseValue[4];
+    MatrixElement31 = MagnitudeSquared * InterpolationFactorA - MatrixValue3 * InterpolationFactorW;
+    *(float *)(SystemResourceManager + NodeActiveFlagOffset) = MatrixElement31;
+    InterpolationFactorZ = MagnitudeSquared * pBaseValue[8] - MatrixElement25 * pBaseValue[4];
     *(float *)(SystemResourceManager + 0x1a) = InterpolationFactorZ;
-    floatValue27 = floatValue25 * *pBaseValue - MatrixValue3 * pBaseValue[8];
-    *(float *)((long long)SystemResourceManager + 0xd4) = floatValue27;
+    MatrixElement27 = MatrixElement25 * *pBaseValue - MatrixValue3 * pBaseValue[8];
+    *(float *)((long long)SystemResourceManager + 0xd4) = MatrixElement27;
     InterpolationFactorW = pBaseValue[4];
     InterpolationFactorX = *pBaseValue;
     *(uint32_t *)((long long)SystemResourceManager + 0xdc) = 0;
-    floatValue26 = MatrixValue3 * InterpolationFactorW - MagnitudeSquared * InterpolationFactorA;
-    *(float *)(SystemResourceManager + 0x1b) = floatValue26;
-    InterpolationFactorX = ScalingFactor * pBaseValue[4] - floatValue28 * pBaseValue[8];
+    MatrixElement26 = MatrixValue3 * InterpolationFactorW - MagnitudeSquared * InterpolationFactorA;
+    *(float *)(SystemResourceManager + 0x1b) = MatrixElement26;
+    InterpolationFactorX = ScalingFactor * pBaseValue[4] - MatrixElement28 * pBaseValue[8];
     *(float *)(SystemResourceManager + 0x1c) = InterpolationFactorA;
     ScalingFactor = InterpolationFactorV * pBaseValue[8] - ScalingFactor * *pBaseValue;
     *(float *)((long long)SystemResourceManager + 0xe4) = ScalingFactor;
     MagnitudeSquared = pBaseValue[4];
     InterpolationFactorW = *pBaseValue;
     *(uint32_t *)((long long)SystemResourceManager + 0xec) = 0;
-    floatValue28 = floatValue28 * InterpolationFactorW - InterpolationFactorV * MagnitudeSquared;
-    *(float *)(SystemResourceManager + 0x1d) = floatValue28;
-    InterpolationFactorW = (MatrixValue1 * pBaseValue[8] - floatValue24 * pBaseValue[4]) - floatValue29 * pBaseValue[0xc];
+    MatrixElement28 = MatrixElement28 * InterpolationFactorW - InterpolationFactorV * MagnitudeSquared;
+    *(float *)(SystemResourceManager + 0x1d) = MatrixElement28;
+    InterpolationFactorW = (MatrixValue1 * pBaseValue[8] - MatrixElement24 * pBaseValue[4]) - MatrixElement29 * pBaseValue[0xc];
     *(float *)(SystemResourceManager + 0x1e) = InterpolationFactorW;
-    floatValue25 = (floatValue24 * *pBaseValue - MatrixValue2 * pBaseValue[8]) + ResultValue2 * pBaseValue[0xc];
-    *(float *)((long long)SystemResourceManager + 0xf4) = floatValue25;
+    MatrixElement25 = (MatrixElement24 * *pBaseValue - MatrixValue2 * pBaseValue[8]) + ResultValue2 * pBaseValue[0xc];
+    *(float *)((long long)SystemResourceManager + 0xf4) = MatrixElement25;
     MatrixValue3 = (MatrixValue2 * pBaseValue[4] - MatrixValue1 * *pBaseValue) - ResultValue1 * pBaseValue[0xc];
     *(float *)(SystemResourceManager + 0x1f) = MatrixValue3;
-    InterpolationFactorV = (floatValue29 * *pBaseValue - ResultValue2 * pBaseValue[4]) + ResultValue1 * pBaseValue[8];
+    InterpolationFactorV = (MatrixElement29 * *pBaseValue - ResultValue2 * pBaseValue[4]) + ResultValue1 * pBaseValue[8];
     *(float *)((long long)SystemResourceManager + 0xfc) = InterpolationFactorV;
-    MagnitudeSquared = floatValue30 * pBaseValue[4] + floatValue29 * *pBaseValue + floatValue31 * pBaseValue[8];
+    MagnitudeSquared = MatrixElement30 * pBaseValue[4] + MatrixElement29 * *pBaseValue + MatrixElement31 * pBaseValue[8];
     if (MagnitudeSquared != 1.0) {
       MagnitudeSquared = 1.0 / MagnitudeSquared;
       *(float *)(SystemResourceManager + 0x1a) = InterpolationFactorZ * MagnitudeSquared;
       *(float *)(SystemResourceManager + 0x1c) = InterpolationFactorA * MagnitudeSquared;
-      *(float *)(SystemResourceManager + 0x18) = floatValue29 * MagnitudeSquared;
-      *(float *)((long long)SystemResourceManager + 0xc4) = floatValue30 * MagnitudeSquared;
-      *(float *)(SystemResourceManager + NodeActiveFlagOffset) = floatValue31 * MagnitudeSquared;
-      *(float *)((long long)SystemResourceManager + 0xd4) = floatValue27 * MagnitudeSquared;
-      *(float *)(SystemResourceManager + 0x1b) = floatValue26 * MagnitudeSquared;
+      *(float *)(SystemResourceManager + 0x18) = MatrixElement29 * MagnitudeSquared;
+      *(float *)((long long)SystemResourceManager + 0xc4) = MatrixElement30 * MagnitudeSquared;
+      *(float *)(SystemResourceManager + NodeActiveFlagOffset) = MatrixElement31 * MagnitudeSquared;
+      *(float *)((long long)SystemResourceManager + 0xd4) = MatrixElement27 * MagnitudeSquared;
+      *(float *)(SystemResourceManager + 0x1b) = MatrixElement26 * MagnitudeSquared;
       *(float *)((long long)SystemResourceManager + 0xe4) = ScalingFactor * MagnitudeSquared;
-      *(float *)(SystemResourceManager + 0x1d) = floatValue28 * MagnitudeSquared;
+      *(float *)(SystemResourceManager + 0x1d) = MatrixElement28 * MagnitudeSquared;
       *(float *)(SystemResourceManager + 0x1e) = InterpolationFactorW * MagnitudeSquared;
-      *(float *)((long long)SystemResourceManager + 0xf4) = floatValue25 * MagnitudeSquared;
+      *(float *)((long long)SystemResourceManager + 0xf4) = MatrixElement25 * MagnitudeSquared;
       *(float *)(SystemResourceManager + 0x1f) = MatrixValue3 * MagnitudeSquared;
       *(float *)((long long)SystemResourceManager + 0xfc) = InterpolationFactorV * MagnitudeSquared;
     }
@@ -61716,39 +61716,39 @@ void ProcessSystemFloatCalculations(long long SystemResourceManager)
   *(uint32_t *)(SystemResourceManager + 0xac) = 0;
   floatValue7 = SystemPrimaryFloatPointer[6];
   BaseValue = SystemPrimaryFloatPointer[0xd];
-  floatValue2 = SystemPrimaryFloatPointer[9];
+  MatrixElement2 = SystemPrimaryFloatPointer[9];
   floatValue6 = SystemPrimaryFloatPointer[1];
-  floatValue4 = SystemPrimaryFloatPointer[0xe];
+  MatrixElement4 = SystemPrimaryFloatPointer[0xe];
   RatioValue = SystemPrimaryFloatPointer[2];
   InterpolationFactorZ = SystemPrimaryFloatPointer[10];
   InterpolationFactorV = SystemPrimaryFloatPointer[5];
-  InterpolationFactorY = floatValue4 * floatValue2 - BaseValue * InterpolationFactorZ;
-  ScalingFactor = floatValue4 * InterpolationFactorV - BaseValue * floatValue7;
-  OffsetValue = floatValue4 * floatValue6 - BaseValue * RatioValue;
-  MagnitudeSquared = InterpolationFactorV * InterpolationFactorZ - floatValue2 * floatValue7;
-  ScaleValue = floatValue6 * InterpolationFactorZ - floatValue2 * RatioValue;
+  InterpolationFactorY = MatrixElement4 * MatrixElement2 - BaseValue * InterpolationFactorZ;
+  ScalingFactor = MatrixElement4 * InterpolationFactorV - BaseValue * floatValue7;
+  OffsetValue = MatrixElement4 * floatValue6 - BaseValue * RatioValue;
+  MagnitudeSquared = InterpolationFactorV * InterpolationFactorZ - MatrixElement2 * floatValue7;
+  ScaleValue = floatValue6 * InterpolationFactorZ - MatrixElement2 * RatioValue;
   *(float *)(SystemResourceManager + 0xc0) = MagnitudeSquared;
-  floatValue8 = floatValue6 * floatValue7 - InterpolationFactorV * RatioValue;
+  CalculationResult8 = floatValue6 * floatValue7 - InterpolationFactorV * RatioValue;
   ResultValue1 = RatioValue * SystemPrimaryFloatPointer[9] - InterpolationFactorZ * SystemPrimaryFloatPointer[1];
   *(float *)(SystemResourceManager + 0xc4) = ResultValue1;
   BaseValue = SystemPrimaryFloatPointer[5];
-  floatValue4 = SystemPrimaryFloatPointer[1];
+  MatrixElement4 = SystemPrimaryFloatPointer[1];
   *(uint32_t *)(SystemResourceManager + 0xcc) = 0;
-  ResultValue2 = floatValue7 * floatValue4 - RatioValue * BaseValue;
+  ResultValue2 = floatValue7 * MatrixElement4 - RatioValue * BaseValue;
   *(float *)(SystemResourceManager + 200) = ResultValue2;
-  floatValue3 = floatValue7 * SystemPrimaryFloatPointer[8] - InterpolationFactorZ * SystemPrimaryFloatPointer[4];
-  *(float *)(SystemResourceManager + 0xd0) = floatValue3;
+  MatrixElement3 = floatValue7 * SystemPrimaryFloatPointer[8] - InterpolationFactorZ * SystemPrimaryFloatPointer[4];
+  *(float *)(SystemResourceManager + 0xd0) = MatrixElement3;
   InterpolationFactorW = InterpolationFactorZ * *SystemPrimaryFloatPointer - RatioValue * SystemPrimaryFloatPointer[8];
   *(float *)(SystemResourceManager + 0xd4) = InterpolationFactorW;
   BaseValue = SystemPrimaryFloatPointer[4];
-  floatValue4 = *SystemPrimaryFloatPointer;
+  MatrixElement4 = *SystemPrimaryFloatPointer;
   *(uint32_t *)(SystemResourceManager + 0xdc) = 0;
-  InterpolationFactorX = RatioValue * BaseValue - floatValue7 * floatValue4;
+  InterpolationFactorX = RatioValue * BaseValue - floatValue7 * MatrixElement4;
   *(float *)(SystemResourceManager + 0xd8) = InterpolationFactorA;
-  floatValue4 = floatValue2 * SystemPrimaryFloatPointer[4] - InterpolationFactorV * SystemPrimaryFloatPointer[8];
-  *(float *)(SystemResourceManager + 0xe0) = floatValue4;
-  floatValue2 = floatValue6 * SystemPrimaryFloatPointer[8] - floatValue2 * *SystemPrimaryFloatPointer;
-  *(float *)(SystemResourceManager + 0xe4) = floatValue2;
+  MatrixElement4 = MatrixElement2 * SystemPrimaryFloatPointer[4] - InterpolationFactorV * SystemPrimaryFloatPointer[8];
+  *(float *)(SystemResourceManager + 0xe0) = MatrixElement4;
+  MatrixElement2 = floatValue6 * SystemPrimaryFloatPointer[8] - MatrixElement2 * *SystemPrimaryFloatPointer;
+  *(float *)(SystemResourceManager + 0xe4) = MatrixElement2;
   floatValue7 = SystemPrimaryFloatPointer[4];
   BaseValue = *SystemPrimaryFloatPointer;
   *(uint32_t *)(SystemResourceManager + 0xec) = 0;
@@ -61758,21 +61758,21 @@ void ProcessSystemFloatCalculations(long long SystemResourceManager)
   *(float *)(SystemResourceManager + 0xf0) = BaseValue;
   InterpolationFactorZ = (InterpolationFactorY * *SystemPrimaryFloatPointer - OffsetValue * SystemPrimaryFloatPointer[8]) + ScaleValue * SystemPrimaryFloatPointer[0xc];
   *(float *)(SystemResourceManager + 0xf4) = InterpolationFactorZ;
-  RatioValue = (OffsetValue * SystemPrimaryFloatPointer[4] - ScalingFactor * *SystemPrimaryFloatPointer) - floatValue8 * SystemPrimaryFloatPointer[0xc];
+  RatioValue = (OffsetValue * SystemPrimaryFloatPointer[4] - ScalingFactor * *SystemPrimaryFloatPointer) - CalculationResult8 * SystemPrimaryFloatPointer[0xc];
   *(float *)(SystemResourceManager + 0xf8) = RatioValue;
-  floatValue6 = (MagnitudeSquared * *SystemPrimaryFloatPointer - ScaleValue * SystemPrimaryFloatPointer[4]) + floatValue8 * SystemPrimaryFloatPointer[8];
+  floatValue6 = (MagnitudeSquared * *SystemPrimaryFloatPointer - ScaleValue * SystemPrimaryFloatPointer[4]) + CalculationResult8 * SystemPrimaryFloatPointer[8];
   *(float *)(SystemResourceManager + 0xfc) = floatValue6;
   floatValue7 = ResultValue1 * SystemPrimaryFloatPointer[4] + MagnitudeSquared * *SystemPrimaryFloatPointer + ResultValue2 * SystemPrimaryFloatPointer[8];
   if (floatValue7 != 1.0) {
     floatValue7 = 1.0 / floatValue7;
-    *(float *)(SystemResourceManager + 0xd0) = floatValue3 * floatValue7;
-    *(float *)(SystemResourceManager + 0xe0) = floatValue4 * floatValue7;
+    *(float *)(SystemResourceManager + 0xd0) = MatrixElement3 * floatValue7;
+    *(float *)(SystemResourceManager + 0xe0) = MatrixElement4 * floatValue7;
     *(float *)(SystemResourceManager + 0xc0) = MagnitudeSquared * floatValue7;
     *(float *)(SystemResourceManager + 0xc4) = ResultValue1 * floatValue7;
     *(float *)(SystemResourceManager + 200) = ResultValue2 * floatValue7;
     *(float *)(SystemResourceManager + 0xd4) = InterpolationFactorW * floatValue7;
     *(float *)(SystemResourceManager + 0xd8) = InterpolationFactorA * floatValue7;
-    *(float *)(SystemResourceManager + 0xe4) = floatValue2 * floatValue7;
+    *(float *)(SystemResourceManager + 0xe4) = MatrixElement2 * floatValue7;
     *(float *)(SystemResourceManager + 0xe8) = InterpolationFactorV * floatValue7;
     *(float *)(SystemResourceManager + 0xf0) = BaseValue * floatValue7;
     *(float *)(SystemResourceManager + 0xf4) = InterpolationFactorZ * floatValue7;
@@ -62067,13 +62067,13 @@ void ProcessSystemResourceConfiguration(long long SystemResourceManager,long lon
   float MatrixValue1;
   float MatrixValue2;
   float MatrixValue3;
-  float floatValue24;
-  float floatValue25;
-  float floatValue26;
-  float floatValue27;
-  float floatValue28;
-  float floatValue29;
-  float floatValue30;
+  float MatrixElement24;
+  float MatrixElement25;
+  float MatrixElement26;
+  float MatrixElement27;
+  float MatrixElement28;
+  float MatrixElement29;
+  float MatrixElement30;
   void* resourceAllocationContext1;
   uint32_t resourceAllocationContext2;
   long long ResourceMemoryOffset3;
@@ -62143,34 +62143,34 @@ void ProcessSystemResourceConfiguration(long long SystemResourceManager,long lon
     MatrixValue1 = pMagnitudeSquared[10];
     MatrixValue2 = pMagnitudeSquared[0xb];
     MatrixValue3 = *pMagnitudeSquared;
-    floatValue24 = pMagnitudeSquared[1];
-    floatValue25 = pMagnitudeSquared[2];
-    floatValue26 = pMagnitudeSquared[3];
-    floatValue27 = pMagnitudeSquared[4];
-    floatValue28 = pMagnitudeSquared[5];
-    floatValue29 = pMagnitudeSquared[6];
-    floatValue30 = pMagnitudeSquared[7];
+    MatrixElement24 = pMagnitudeSquared[1];
+    MatrixElement25 = pMagnitudeSquared[2];
+    MatrixElement26 = pMagnitudeSquared[3];
+    MatrixElement27 = pMagnitudeSquared[4];
+    MatrixElement28 = pMagnitudeSquared[5];
+    MatrixElement29 = pMagnitudeSquared[6];
+    MatrixElement30 = pMagnitudeSquared[7];
     floatValue6 = *(float *)(ResourceDataCounter + 0x374);
     floatValue7 = *(float *)(ResourceDataCounter + 0x370);
-    floatValue8 = *(float *)(ResourceDataCounter + 0x378);
+    CalculationResult8 = *(float *)(ResourceDataCounter + 0x378);
     ScaleValue = *(float *)(ResourceDataCounter + 900);
     ScalingFactor = *(float *)(ResourceDataCounter + 0x394);
     OffsetValue = *(float *)(ResourceDataCounter + 0x380);
     RatioValue = *(float *)(ResourceDataCounter + 0x388);
     InterpolationFactorY = *(float *)(ResourceDataCounter + 0x390);
     InterpolationFactorZ = *(float *)(ResourceDataCounter + 0x398);
-    *pMagnitudeSquared = floatValue6 * floatValue27 + floatValue7 * MatrixValue3 + floatValue8 * ResultValue1;
-    pMagnitudeSquared[1] = floatValue6 * floatValue28 + floatValue7 * floatValue24 + floatValue8 * ResultValue2;
-    pMagnitudeSquared[2] = floatValue6 * floatValue29 + floatValue7 * floatValue25 + floatValue8 * MatrixValue1;
-    pMagnitudeSquared[3] = floatValue6 * floatValue30 + floatValue7 * floatValue26 + floatValue8 * MatrixValue2;
-    pMagnitudeSquared[4] = ScaleValue * floatValue27 + OffsetValue * MatrixValue3 + RatioValue * ResultValue1;
-    pMagnitudeSquared[5] = ScaleValue * floatValue28 + OffsetValue * floatValue24 + RatioValue * ResultValue2;
-    pMagnitudeSquared[6] = ScaleValue * floatValue29 + OffsetValue * floatValue25 + RatioValue * MatrixValue1;
-    pMagnitudeSquared[7] = ScaleValue * floatValue30 + OffsetValue * floatValue26 + RatioValue * MatrixValue2;
-    pMagnitudeSquared[8] = ScalingFactor * floatValue27 + InterpolationFactorY * MatrixValue3 + InterpolationFactorZ * ResultValue1;
-    pMagnitudeSquared[9] = ScalingFactor * floatValue28 + InterpolationFactorY * floatValue24 + InterpolationFactorZ * ResultValue2;
-    pMagnitudeSquared[10] = ScalingFactor * floatValue29 + InterpolationFactorY * floatValue25 + InterpolationFactorZ * MatrixValue1;
-    pMagnitudeSquared[0xb] = ScalingFactor * floatValue30 + InterpolationFactorY * floatValue26 + InterpolationFactorZ * MatrixValue2;
+    *pMagnitudeSquared = floatValue6 * MatrixElement27 + floatValue7 * MatrixValue3 + CalculationResult8 * ResultValue1;
+    pMagnitudeSquared[1] = floatValue6 * MatrixElement28 + floatValue7 * MatrixElement24 + CalculationResult8 * ResultValue2;
+    pMagnitudeSquared[2] = floatValue6 * MatrixElement29 + floatValue7 * MatrixElement25 + CalculationResult8 * MatrixValue1;
+    pMagnitudeSquared[3] = floatValue6 * MatrixElement30 + floatValue7 * MatrixElement26 + CalculationResult8 * MatrixValue2;
+    pMagnitudeSquared[4] = ScaleValue * MatrixElement27 + OffsetValue * MatrixValue3 + RatioValue * ResultValue1;
+    pMagnitudeSquared[5] = ScaleValue * MatrixElement28 + OffsetValue * MatrixElement24 + RatioValue * ResultValue2;
+    pMagnitudeSquared[6] = ScaleValue * MatrixElement29 + OffsetValue * MatrixElement25 + RatioValue * MatrixValue1;
+    pMagnitudeSquared[7] = ScaleValue * MatrixElement30 + OffsetValue * MatrixElement26 + RatioValue * MatrixValue2;
+    pMagnitudeSquared[8] = ScalingFactor * MatrixElement27 + InterpolationFactorY * MatrixValue3 + InterpolationFactorZ * ResultValue1;
+    pMagnitudeSquared[9] = ScalingFactor * MatrixElement28 + InterpolationFactorY * MatrixElement24 + InterpolationFactorZ * ResultValue2;
+    pMagnitudeSquared[10] = ScalingFactor * MatrixElement29 + InterpolationFactorY * MatrixElement25 + InterpolationFactorZ * MatrixValue1;
+    pMagnitudeSquared[0xb] = ScalingFactor * MatrixElement30 + InterpolationFactorY * MatrixElement26 + InterpolationFactorZ * MatrixValue2;
   }
   ResourceDataCounter = *(long long *)(SystemResourceManager + 600);
   if (*(int *)(ResourceDataCounter + 0x28) != *(int *)(SystemGlobalStatusFlags + 0x224)) {
@@ -62365,7 +62365,7 @@ void ProcessSystemResourceValidation(long long SystemResourceManager)
   void* SystemThreadContext;
   float floatValue6;
   float floatValue7;
-  float floatValue8;
+  float CalculationResult8;
   float ScaleValue;
   float ScalingFactor;
   float OffsetValue;
@@ -62381,13 +62381,13 @@ void ProcessSystemResourceValidation(long long SystemResourceManager)
   float MatrixValue1;
   float MatrixValue2;
   float MatrixValue3;
-  float floatValue24;
-  float floatValue25;
-  float floatValue26;
-  float floatValue27;
-  float floatValue28;
-  float floatValue29;
-  float floatValue30;
+  float MatrixElement24;
+  float MatrixElement25;
+  float MatrixElement26;
+  float MatrixElement27;
+  float MatrixElement28;
+  float MatrixElement29;
+  float MatrixElement30;
   void* resourceAllocationContext1;
   uint32_t resourceAllocationContext2;
   long long ResourceMemoryOffset3;
@@ -62459,34 +62459,34 @@ void ProcessSystemResourceValidation(long long SystemResourceManager)
     MatrixValue1 = pMagnitudeSquared[10];
     MatrixValue2 = pMagnitudeSquared[0xb];
     MatrixValue3 = *pMagnitudeSquared;
-    floatValue24 = pMagnitudeSquared[1];
-    floatValue25 = pMagnitudeSquared[2];
-    floatValue26 = pMagnitudeSquared[3];
-    floatValue27 = pMagnitudeSquared[4];
-    floatValue28 = pMagnitudeSquared[5];
-    floatValue29 = pMagnitudeSquared[6];
-    floatValue30 = pMagnitudeSquared[7];
+    MatrixElement24 = pMagnitudeSquared[1];
+    MatrixElement25 = pMagnitudeSquared[2];
+    MatrixElement26 = pMagnitudeSquared[3];
+    MatrixElement27 = pMagnitudeSquared[4];
+    MatrixElement28 = pMagnitudeSquared[5];
+    MatrixElement29 = pMagnitudeSquared[6];
+    MatrixElement30 = pMagnitudeSquared[7];
     floatValue6 = *(float *)(ResourceDataCounter + 0x374);
     floatValue7 = *(float *)(ResourceDataCounter + 0x370);
-    floatValue8 = *(float *)(ResourceDataCounter + 0x378);
+    CalculationResult8 = *(float *)(ResourceDataCounter + 0x378);
     ScaleValue = *(float *)(ResourceDataCounter + 900);
     ScalingFactor = *(float *)(ResourceDataCounter + 0x394);
     OffsetValue = *(float *)(ResourceDataCounter + 0x380);
     RatioValue = *(float *)(ResourceDataCounter + 0x388);
     InterpolationFactorY = *(float *)(ResourceDataCounter + 0x390);
     InterpolationFactorZ = *(float *)(ResourceDataCounter + 0x398);
-    *pMagnitudeSquared = floatValue6 * floatValue27 + floatValue7 * MatrixValue3 + floatValue8 * ResultValue1;
-    pMagnitudeSquared[1] = floatValue6 * floatValue28 + floatValue7 * floatValue24 + floatValue8 * ResultValue2;
-    pMagnitudeSquared[2] = floatValue6 * floatValue29 + floatValue7 * floatValue25 + floatValue8 * MatrixValue1;
-    pMagnitudeSquared[3] = floatValue6 * floatValue30 + floatValue7 * floatValue26 + floatValue8 * MatrixValue2;
-    pMagnitudeSquared[4] = ScaleValue * floatValue27 + OffsetValue * MatrixValue3 + RatioValue * ResultValue1;
-    pMagnitudeSquared[5] = ScaleValue * floatValue28 + OffsetValue * floatValue24 + RatioValue * ResultValue2;
-    pMagnitudeSquared[6] = ScaleValue * floatValue29 + OffsetValue * floatValue25 + RatioValue * MatrixValue1;
-    pMagnitudeSquared[7] = ScaleValue * floatValue30 + OffsetValue * floatValue26 + RatioValue * MatrixValue2;
-    pMagnitudeSquared[8] = ScalingFactor * floatValue27 + InterpolationFactorY * MatrixValue3 + InterpolationFactorZ * ResultValue1;
-    pMagnitudeSquared[9] = ScalingFactor * floatValue28 + InterpolationFactorY * floatValue24 + InterpolationFactorZ * ResultValue2;
-    pMagnitudeSquared[10] = ScalingFactor * floatValue29 + InterpolationFactorY * floatValue25 + InterpolationFactorZ * MatrixValue1;
-    pMagnitudeSquared[0xb] = ScalingFactor * floatValue30 + InterpolationFactorY * floatValue26 + InterpolationFactorZ * MatrixValue2;
+    *pMagnitudeSquared = floatValue6 * MatrixElement27 + floatValue7 * MatrixValue3 + CalculationResult8 * ResultValue1;
+    pMagnitudeSquared[1] = floatValue6 * MatrixElement28 + floatValue7 * MatrixElement24 + CalculationResult8 * ResultValue2;
+    pMagnitudeSquared[2] = floatValue6 * MatrixElement29 + floatValue7 * MatrixElement25 + CalculationResult8 * MatrixValue1;
+    pMagnitudeSquared[3] = floatValue6 * MatrixElement30 + floatValue7 * MatrixElement26 + CalculationResult8 * MatrixValue2;
+    pMagnitudeSquared[4] = ScaleValue * MatrixElement27 + OffsetValue * MatrixValue3 + RatioValue * ResultValue1;
+    pMagnitudeSquared[5] = ScaleValue * MatrixElement28 + OffsetValue * MatrixElement24 + RatioValue * ResultValue2;
+    pMagnitudeSquared[6] = ScaleValue * MatrixElement29 + OffsetValue * MatrixElement25 + RatioValue * MatrixValue1;
+    pMagnitudeSquared[7] = ScaleValue * MatrixElement30 + OffsetValue * MatrixElement26 + RatioValue * MatrixValue2;
+    pMagnitudeSquared[8] = ScalingFactor * MatrixElement27 + InterpolationFactorY * MatrixValue3 + InterpolationFactorZ * ResultValue1;
+    pMagnitudeSquared[9] = ScalingFactor * MatrixElement28 + InterpolationFactorY * MatrixElement24 + InterpolationFactorZ * ResultValue2;
+    pMagnitudeSquared[10] = ScalingFactor * MatrixElement29 + InterpolationFactorY * MatrixElement25 + InterpolationFactorZ * MatrixValue1;
+    pMagnitudeSquared[0xb] = ScalingFactor * MatrixElement30 + InterpolationFactorY * MatrixElement26 + InterpolationFactorZ * MatrixValue2;
   }
   ResourceDataCounter = *(long long *)(SystemResourceManager + 600);
   if (*(int *)(ResourceDataCounter + 0x28) != *(int *)(SystemGlobalStatusFlags + 0x224)) {
@@ -62759,32 +62759,32 @@ void InitializeSystemResourcePool(void)
   MatrixValue1 = *InterpolationFactorXPointer;
   MatrixValue2 = InterpolationFactorXPointer[1];
   MatrixValue3 = InterpolationFactorXPointer[2];
-  floatValue24 = InterpolationFactorXPointer[3];
-  floatValue25 = InterpolationFactorXPointer[4];
-  floatValue26 = InterpolationFactorXPointer[5];
-  floatValue27 = InterpolationFactorXPointer[6];
-  floatValue28 = InterpolationFactorXPointer[7];
+  MatrixElement24 = InterpolationFactorXPointer[3];
+  MatrixElement25 = InterpolationFactorXPointer[4];
+  MatrixElement26 = InterpolationFactorXPointer[5];
+  MatrixElement27 = InterpolationFactorXPointer[6];
+  MatrixElement28 = InterpolationFactorXPointer[7];
   BaseValue = *(float *)(ResourceDataIndex + 0x374);
   floatValue6 = *(float *)(ResourceDataIndex + 0x370);
   floatValue7 = *(float *)(ResourceDataIndex + 0x378);
-  floatValue8 = *(float *)(ResourceDataIndex + 900);
+  CalculationResult8 = *(float *)(ResourceDataIndex + 900);
   ScaleValue = *(float *)(ResourceDataIndex + 0x394);
   ScalingFactor = *(float *)(ResourceDataIndex + 0x380);
   OffsetValue = *(float *)(ResourceDataIndex + 0x388);
   RatioValue = *(float *)(ResourceDataIndex + 0x390);
   InterpolationFactorY = *(float *)(ResourceDataIndex + 0x398);
-  *pInterpolationFactorX = BaseValue * floatValue25 + floatValue6 * MatrixValue1 + floatValue7 * InterpolationFactorV;
-  InterpolationFactorXPointer[1] = BaseValue * floatValue26 + floatValue6 * MatrixValue2 + floatValue7 * MagnitudeSquared;
-  InterpolationFactorXPointer[2] = BaseValue * floatValue27 + floatValue6 * MatrixValue3 + floatValue7 * ResultValue1;
-  InterpolationFactorXPointer[3] = BaseValue * floatValue28 + floatValue6 * floatValue24 + floatValue7 * ResultValue2;
-  InterpolationFactorXPointer[4] = floatValue8 * floatValue25 + ScalingFactor * MatrixValue1 + OffsetValue * InterpolationFactorV;
-  InterpolationFactorXPointer[5] = floatValue8 * floatValue26 + ScalingFactor * MatrixValue2 + OffsetValue * MagnitudeSquared;
-  InterpolationFactorXPointer[6] = floatValue8 * floatValue27 + ScalingFactor * MatrixValue3 + OffsetValue * ResultValue1;
-  InterpolationFactorXPointer[7] = floatValue8 * floatValue28 + ScalingFactor * floatValue24 + OffsetValue * ResultValue2;
-  InterpolationFactorXPointer[8] = ScaleValue * floatValue25 + RatioValue * MatrixValue1 + InterpolationFactorY * InterpolationFactorV;
-  InterpolationFactorXPointer[9] = ScaleValue * floatValue26 + RatioValue * MatrixValue2 + InterpolationFactorY * MagnitudeSquared;
-  InterpolationFactorXPointer[10] = ScaleValue * floatValue27 + RatioValue * MatrixValue3 + InterpolationFactorY * ResultValue1;
-  InterpolationFactorXPointer[0xb] = ScaleValue * floatValue28 + RatioValue * floatValue24 + InterpolationFactorY * ResultValue2;
+  *pInterpolationFactorX = BaseValue * MatrixElement25 + floatValue6 * MatrixValue1 + floatValue7 * InterpolationFactorV;
+  InterpolationFactorXPointer[1] = BaseValue * MatrixElement26 + floatValue6 * MatrixValue2 + floatValue7 * MagnitudeSquared;
+  InterpolationFactorXPointer[2] = BaseValue * MatrixElement27 + floatValue6 * MatrixValue3 + floatValue7 * ResultValue1;
+  InterpolationFactorXPointer[3] = BaseValue * MatrixElement28 + floatValue6 * MatrixElement24 + floatValue7 * ResultValue2;
+  InterpolationFactorXPointer[4] = CalculationResult8 * MatrixElement25 + ScalingFactor * MatrixValue1 + OffsetValue * InterpolationFactorV;
+  InterpolationFactorXPointer[5] = CalculationResult8 * MatrixElement26 + ScalingFactor * MatrixValue2 + OffsetValue * MagnitudeSquared;
+  InterpolationFactorXPointer[6] = CalculationResult8 * MatrixElement27 + ScalingFactor * MatrixValue3 + OffsetValue * ResultValue1;
+  InterpolationFactorXPointer[7] = CalculationResult8 * MatrixElement28 + ScalingFactor * MatrixElement24 + OffsetValue * ResultValue2;
+  InterpolationFactorXPointer[8] = ScaleValue * MatrixElement25 + RatioValue * MatrixValue1 + InterpolationFactorY * InterpolationFactorV;
+  InterpolationFactorXPointer[9] = ScaleValue * MatrixElement26 + RatioValue * MatrixValue2 + InterpolationFactorY * MagnitudeSquared;
+  InterpolationFactorXPointer[10] = ScaleValue * MatrixElement27 + RatioValue * MatrixValue3 + InterpolationFactorY * ResultValue1;
+  InterpolationFactorXPointer[0xb] = ScaleValue * MatrixElement28 + RatioValue * MatrixElement24 + InterpolationFactorY * ResultValue2;
   ResourceDataIndex = *(long long *)(MemoryBlockAddress + 600);
   if (*(int *)(ResourceDataIndex + 0x28) != *(int *)(SystemGlobalStatusFlags + 0x224)) {
     systemIndex0 = *(int *)(ResourceDataIndex + 0x1c) + *(int *)(ResourceDataIndex + 0x18);
@@ -63056,10 +63056,10 @@ void ConfigureSystemResourceParameters(long long SystemResourceManager, uint Con
   MatrixValue1 = ConfigurationFlag[1];
   MatrixValue2 = ConfigurationFlag[2];
   MatrixValue3 = ConfigurationFlag[3];
-  floatValue24 = ConfigurationFlag[4];
-  floatValue25 = ConfigurationFlag[5];
-  floatValue26 = ConfigurationFlag[6];
-  floatValue27 = ConfigurationFlag[7];
+  MatrixElement24 = ConfigurationFlag[4];
+  MatrixElement25 = ConfigurationFlag[5];
+  MatrixElement26 = ConfigurationFlag[6];
+  MatrixElement27 = ConfigurationFlag[7];
   BaseValue = *(float *)(ResourceDataIndex + 0x374);
   SecondaryValue = *(float *)(ResourceDataIndex + 0x370);
   TertiaryValue = *(float *)(ResourceDataIndex + 0x378);
@@ -63938,11 +63938,11 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   uint8_t (*paResourceAddress2) [16];
   long long SystemProcessingBufferPointer3;
   bool isResourceAvailable4;
-  float floatValue45;
-  float floatValue46;
+  float MatrixElement45;
+  float MatrixElement46;
   uint8_t aResourceAddress7 [16];
-  float floatValue48;
-  float floatValue49;
+  float MatrixElement48;
+  float MatrixElement49;
   float BaseValue0;
   float BaseValue1;
   float BaseValue2;
@@ -64095,15 +64095,15 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
           SystemProcessingBufferPointer0 = *(long long *)(SystemResourceManager + 0x18);
           ResourceDataCounter = (long long)*(int *)(ResourceDataCounter + ResourceDataPosition);
           SystemThreadHandlePrimary = (long long)*(int *)((long long)*(int *)(SystemThreadHandlePrimary + ResourceAddressPrimary) * 0x5c + ResourceDataPosition);
-          floatValue48 = *(float *)(SystemProcessingBufferPointer0 + 8 + SystemThreadHandlePrimary * 0x10);
-          floatValue49 = *(float *)(SystemProcessingBufferPointer0 + 8 + ResourceDataCounter * 0x10) - floatValue48;
+          MatrixElement48 = *(float *)(SystemProcessingBufferPointer0 + 8 + SystemThreadHandlePrimary * 0x10);
+          MatrixElement49 = *(float *)(SystemProcessingBufferPointer0 + 8 + ResourceDataCounter * 0x10) - MatrixElement48;
           BaseValue = *(float *)(SystemProcessingBufferPointer0 + 4 + SystemThreadHandlePrimary * 0x10);
           BaseValue2 = *(float *)(SystemProcessingBufferPointer0 + 4 + ResourceDataCounter * 0x10);
           BaseValue1 = *(float *)(SystemProcessingBufferPointer0 + SystemThreadHandlePrimary * 0x10);
           SystemThreadHandlePrimary = (long long)*(int *)(SystemThreadHandleSecondary * 0x5c + ResourceDataPosition);
-          floatValue48 = *(float *)(SystemProcessingBufferPointer0 + 8 + SystemThreadHandlePrimary * 0x10) - floatValue48;
-          floatValue45 = *(float *)(SystemProcessingBufferPointer0 + 4 + SystemThreadHandlePrimary * 0x10);
-          floatValue46 = *(float *)(SystemProcessingBufferPointer0 + ResourceDataCounter * 0x10);
+          MatrixElement48 = *(float *)(SystemProcessingBufferPointer0 + 8 + SystemThreadHandlePrimary * 0x10) - MatrixElement48;
+          MatrixElement45 = *(float *)(SystemProcessingBufferPointer0 + 4 + SystemThreadHandlePrimary * 0x10);
+          MatrixElement46 = *(float *)(SystemProcessingBufferPointer0 + ResourceDataCounter * 0x10);
           BaseValue3 = *(float *)(SystemProcessingBufferPointer0 + SystemThreadHandlePrimary * 0x10);
         }
         else {
@@ -64111,36 +64111,36 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
           SystemProcessingBufferPointer0 = *(long long *)(SystemThreadHandleCounter * 0x50 + *(long long *)(SystemResourceManager + 0xb0) + 8);
           ResourceDataCounter = (long long)*(int *)(ResourceDataCounter + ResourceDataPosition);
           SystemThreadHandlePrimary = (long long)*(int *)((long long)*(int *)(SystemThreadHandlePrimary + ResourceAddressPrimary) * 0x5c + ResourceDataPosition);
-          floatValue48 = *(float *)(SystemProcessingBufferPointer0 + 8 + SystemThreadHandlePrimary * 0x10);
-          floatValue49 = *(float *)(SystemProcessingBufferPointer0 + 8 + ResourceDataCounter * 0x10) - floatValue48;
+          MatrixElement48 = *(float *)(SystemProcessingBufferPointer0 + 8 + SystemThreadHandlePrimary * 0x10);
+          MatrixElement49 = *(float *)(SystemProcessingBufferPointer0 + 8 + ResourceDataCounter * 0x10) - MatrixElement48;
           BaseValue = *(float *)(SystemProcessingBufferPointer0 + 4 + SystemThreadHandlePrimary * 0x10);
           BaseValue2 = *(float *)(SystemProcessingBufferPointer0 + 4 + ResourceDataCounter * 0x10);
           BaseValue1 = *(float *)(SystemProcessingBufferPointer0 + SystemThreadHandlePrimary * 0x10);
           SystemThreadHandlePrimary = (long long)*(int *)(SystemThreadHandleSecondary * 0x5c + ResourceDataPosition);
-          floatValue48 = *(float *)(SystemProcessingBufferPointer0 + 8 + SystemThreadHandlePrimary * 0x10) - floatValue48;
-          floatValue45 = *(float *)(SystemProcessingBufferPointer0 + 4 + SystemThreadHandlePrimary * 0x10);
-          floatValue46 = *(float *)(SystemProcessingBufferPointer0 + ResourceDataCounter * 0x10);
+          MatrixElement48 = *(float *)(SystemProcessingBufferPointer0 + 8 + SystemThreadHandlePrimary * 0x10) - MatrixElement48;
+          MatrixElement45 = *(float *)(SystemProcessingBufferPointer0 + 4 + SystemThreadHandlePrimary * 0x10);
+          MatrixElement46 = *(float *)(SystemProcessingBufferPointer0 + ResourceDataCounter * 0x10);
           BaseValue3 = *(float *)(SystemProcessingBufferPointer0 + SystemThreadHandlePrimary * 0x10);
         }
-        BaseValue0 = (floatValue46 - BaseValue1) * (floatValue45 - BaseValue) - (BaseValue2 - BaseValue) * (BaseValue3 - BaseValue1);
-        BaseValue1 = floatValue49 * (BaseValue3 - BaseValue1) - floatValue48 * (floatValue46 - BaseValue1);
-        floatValue48 = floatValue48 * (BaseValue2 - BaseValue) - floatValue49 * (floatValue45 - BaseValue);
-        VectorMagnitude = SQRT(BaseValue1 * BaseValue1 + floatValue48 * floatValue48 + BaseValue0 * BaseValue0);
+        BaseValue0 = (MatrixElement46 - BaseValue1) * (MatrixElement45 - BaseValue) - (BaseValue2 - BaseValue) * (BaseValue3 - BaseValue1);
+        BaseValue1 = MatrixElement49 * (BaseValue3 - BaseValue1) - MatrixElement48 * (MatrixElement46 - BaseValue1);
+        MatrixElement48 = MatrixElement48 * (BaseValue2 - BaseValue) - MatrixElement49 * (MatrixElement45 - BaseValue);
+        VectorMagnitude = SQRT(BaseValue1 * BaseValue1 + MatrixElement48 * MatrixElement48 + BaseValue0 * BaseValue0);
         if (VectorMagnitude <= 0.0) {
-          floatValue48 = 0.0;
+          MatrixElement48 = 0.0;
           BaseValue1 = 0.0;
           VectorNormalizeFactor = 1.0;
           VectorMagnitude = 1.0;
         }
         else {
           VectorNormalizeFactor = 1.0 / VectorMagnitude;
-          floatValue48 = floatValue48 * VectorNormalizeFactor;
+          MatrixElement48 = MatrixElement48 * VectorNormalizeFactor;
           BaseValue1 = VectorNormalizeFactor * BaseValue1;
           VectorNormalizeFactor = VectorNormalizeFactor * BaseValue0;
         }
-        ContextManagerPointer = ConcatenatedSystemValue(BaseValue1,floatValue48);
+        ContextManagerPointer = ConcatenatedSystemValue(BaseValue1,MatrixElement48);
         pMagnitudeSquared = (float *)(*(long long *)(aSystemResourceSize.HighDword + SystemThreadHandleSecondary) + resourceAllocationContextPrimary);
-        *pMagnitudeSquared = floatValue48;
+        *pMagnitudeSquared = MatrixElement48;
         pMagnitudeSquared[1] = BaseValue1;
         pMagnitudeSquared[2] = VectorNormalizeFactor;
         pMagnitudeSquared[3] = VectorMagnitude;
@@ -64310,26 +64310,26 @@ ResourceInitializationLoop:
                 ResourceHash = ((void* *)(SystemThreadHandleCounter + *SystemResourceOffsetPointer9))[1];
                 *(void* *)(ResourceMemoryOffset + 0x34) = *(void* *)(SystemThreadHandleCounter + *SystemResourceOffsetPointer9);
                 *(void* *)(ResourceMemoryOffset + 0x3c) = ResourceHash;
-                floatValue48 = *(float *)(ResourceMemoryOffset + 8);
+                MatrixElement48 = *(float *)(ResourceMemoryOffset + 8);
                 BaseValue2 = *(float *)(ResourceMemoryOffset + 4);
                 BaseValue1 = *(float *)(ResourceMemoryOffset + 0xc);
-                floatValue45 = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + floatValue48 * floatValue48;
-                aResourceAddress7 = rsqrtss(ZEXT416((uint)floatValue45),ZEXT416((uint)floatValue45));
-                floatValue46 = aResourceAddress7.HighWord;
-                floatValue45 = floatValue46 * 0.5 * (3.0 - floatValue45 * floatValue46 * floatValue46);
-                *(float *)(ResourceMemoryOffset + 4) = floatValue45 * BaseValue2;
-                *(float *)(ResourceMemoryOffset + 8) = floatValue45 * floatValue48;
-                *(float *)(ResourceMemoryOffset + 0xc) = floatValue45 * BaseValue1;
-                floatValue48 = *(float *)(ResourceMemoryOffset + 0x38);
+                MatrixElement45 = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + MatrixElement48 * MatrixElement48;
+                aResourceAddress7 = rsqrtss(ZEXT416((uint)MatrixElement45),ZEXT416((uint)MatrixElement45));
+                MatrixElement46 = aResourceAddress7.HighWord;
+                MatrixElement45 = MatrixElement46 * 0.5 * (3.0 - MatrixElement45 * MatrixElement46 * MatrixElement46);
+                *(float *)(ResourceMemoryOffset + 4) = MatrixElement45 * BaseValue2;
+                *(float *)(ResourceMemoryOffset + 8) = MatrixElement45 * MatrixElement48;
+                *(float *)(ResourceMemoryOffset + 0xc) = MatrixElement45 * BaseValue1;
+                MatrixElement48 = *(float *)(ResourceMemoryOffset + 0x38);
                 BaseValue2 = *(float *)(ResourceMemoryOffset + 0x34);
                 BaseValue1 = *(float *)(ResourceMemoryOffset + 0x3c);
-                floatValue45 = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + floatValue48 * floatValue48;
-                aResourceAddress7 = rsqrtss(ZEXT416((uint)floatValue45),ZEXT416((uint)floatValue45));
-                floatValue46 = aResourceAddress7.HighWord;
-                floatValue45 = floatValue46 * 0.5 * (3.0 - floatValue45 * floatValue46 * floatValue46);
-                *(float *)(ResourceMemoryOffset + 0x34) = BaseValue2 * floatValue45;
-                *(float *)(ResourceMemoryOffset + 0x38) = floatValue48 * floatValue45;
-                *(float *)(ResourceMemoryOffset + 0x3c) = BaseValue1 * floatValue45;
+                MatrixElement45 = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + MatrixElement48 * MatrixElement48;
+                aResourceAddress7 = rsqrtss(ZEXT416((uint)MatrixElement45),ZEXT416((uint)MatrixElement45));
+                MatrixElement46 = aResourceAddress7.HighWord;
+                MatrixElement45 = MatrixElement46 * 0.5 * (3.0 - MatrixElement45 * MatrixElement46 * MatrixElement46);
+                *(float *)(ResourceMemoryOffset + 0x34) = BaseValue2 * MatrixElement45;
+                *(float *)(ResourceMemoryOffset + 0x38) = MatrixElement48 * MatrixElement45;
+                *(float *)(ResourceMemoryOffset + 0x3c) = BaseValue1 * MatrixElement45;
               }
               else {
                 ResourceHash = ((void* *)(SystemThreadHandleCounter + *SystemResourceOffsetPointer9))[1];
@@ -64341,16 +64341,16 @@ ResourceInitializationLoop:
                 pMagnitudeSquared = (float *)((long long)*(int *)(ContextManagerPointer + SystemThreadHandlePrimary * 4) * 0x10 +
                                    *(long long *)
                                     (*(long long *)(SystemResourceManager + 0xb0) + 0x30 + SystemParameterPointer * 0x50));
-                floatValue48 = pMagnitudeSquared[1];
+                MatrixElement48 = pMagnitudeSquared[1];
                 BaseValue2 = *pMagnitudeSquared;
                 BaseValue1 = pMagnitudeSquared[2];
-                floatValue45 = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + floatValue48 * floatValue48;
-                aResourceAddress7 = rsqrtss(ZEXT416((uint)floatValue45),ZEXT416((uint)floatValue45));
-                floatValue46 = aResourceAddress7.HighWord;
-                floatValue45 = floatValue46 * 0.5 * (3.0 - floatValue45 * floatValue46 * floatValue46);
-                *pMagnitudeSquared = BaseValue2 * floatValue45;
-                pMagnitudeSquared[1] = floatValue48 * floatValue45;
-                pMagnitudeSquared[2] = BaseValue1 * floatValue45;
+                MatrixElement45 = BaseValue1 * BaseValue1 + BaseValue2 * BaseValue2 + MatrixElement48 * MatrixElement48;
+                aResourceAddress7 = rsqrtss(ZEXT416((uint)MatrixElement45),ZEXT416((uint)MatrixElement45));
+                MatrixElement46 = aResourceAddress7.HighWord;
+                MatrixElement45 = MatrixElement46 * 0.5 * (3.0 - MatrixElement45 * MatrixElement46 * MatrixElement46);
+                *pMagnitudeSquared = BaseValue2 * MatrixElement45;
+                pMagnitudeSquared[1] = MatrixElement48 * MatrixElement45;
+                pMagnitudeSquared[2] = BaseValue1 * MatrixElement45;
               }
               SystemThreadHandlePrimary = SystemThreadHandlePrimary + 1;
             } while (SystemThreadHandlePrimary < 3);
@@ -64377,13 +64377,13 @@ ResourceInitializationLoop:
                     ResourceHashEntryPointer = (uint *)(ResourceMemoryOffset + *(long long *)(MatrixPointer218 + (ulong long)ResourceAllocationContextSecondary * 8));
                     *ResourceHashEntryPointer = *ResourceHashEntryPointer | SystemContextPointer;
                     SystemThreadHandleSecondary = *SystemResourceOffsetPointer9;
-                    floatValue48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandleSecondary);
+                    MatrixElement48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandleSecondary);
                     BaseValue2 = *(float *)(SystemThreadHandleCounter + 4 + SystemThreadHandleSecondary);
                     ResourceDataPosition = *(long long *)(MatrixPointer218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(ResourceDataPosition + 4 + ResourceMemoryOffset) =
                          *(float *)(ResourceDataPosition + 4 + ResourceMemoryOffset) + *(float *)(SystemThreadHandleCounter + SystemThreadHandleSecondary);
                     *(float *)(ResourceDataPosition + 8 + ResourceMemoryOffset) = BaseValue2 + *(float *)(ResourceDataPosition + 8 + ResourceMemoryOffset);
-                    *(float *)(ResourceDataPosition + 0xc + ResourceMemoryOffset) = floatValue48 + *(float *)(ResourceDataPosition + 0xc + ResourceMemoryOffset);
+                    *(float *)(ResourceDataPosition + 0xc + ResourceMemoryOffset) = MatrixElement48 + *(float *)(ResourceDataPosition + 0xc + ResourceMemoryOffset);
                     isResourceAvailable4 = true;
                     ResourceAllocationContextSecondary = *SystemHashNodeData2;
                   }
@@ -64393,14 +64393,14 @@ ResourceInitializationLoop:
                                      ResourceMemoryOffset);
                     *ResourceHashEntryPointer = *ResourceHashEntryPointer | SystemContextPointer;
                     SystemThreadHandleSecondary = *SystemResourceOffsetPointer9;
-                    floatValue48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandleSecondary);
+                    MatrixElement48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandleSecondary);
                     BaseValue2 = *(float *)(SystemThreadHandleCounter + 4 + SystemThreadHandleSecondary);
                     ResourceDataPosition = *(long long *)(MatrixPointer218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(ResourceDataPosition + 0x18 + ResourceMemoryOffset) =
                          *(float *)(ResourceDataPosition + 0x18 + ResourceMemoryOffset) + *(float *)(SystemThreadHandleCounter + SystemThreadHandleSecondary);
                     *(float *)(ResourceDataPosition + 0x1c + ResourceMemoryOffset) = BaseValue2 + *(float *)(ResourceDataPosition + 0x1c + ResourceMemoryOffset)
                     ;
-                    *(float *)(ResourceDataPosition + 0x20 + ResourceMemoryOffset) = floatValue48 + *(float *)(ResourceDataPosition + 0x20 + ResourceMemoryOffset)
+                    *(float *)(ResourceDataPosition + 0x20 + ResourceMemoryOffset) = MatrixElement48 + *(float *)(ResourceDataPosition + 0x20 + ResourceMemoryOffset)
                     ;
                     isResourceAvailable4 = true;
                     ResourceAllocationContextSecondary = *SystemHashNodeData2;
@@ -64411,14 +64411,14 @@ ResourceInitializationLoop:
                                      ResourceMemoryOffset);
                     *ResourceHashEntryPointer = *ResourceHashEntryPointer | SystemContextPointer;
                     SystemThreadHandleSecondary = *SystemResourceOffsetPointer9;
-                    floatValue48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandleSecondary);
+                    MatrixElement48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandleSecondary);
                     BaseValue2 = *(float *)(SystemThreadHandleCounter + 4 + SystemThreadHandleSecondary);
                     ResourceDataPosition = *(long long *)(MatrixPointer218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(ResourceDataPosition + 0x2c + ResourceMemoryOffset) =
                          *(float *)(ResourceDataPosition + 0x2c + ResourceMemoryOffset) + *(float *)(SystemThreadHandleCounter + SystemThreadHandleSecondary);
                     *(float *)(ResourceDataPosition + 0x30 + ResourceMemoryOffset) = BaseValue2 + *(float *)(ResourceDataPosition + 0x30 + ResourceMemoryOffset)
                     ;
-                    *(float *)(ResourceDataPosition + 0x34 + ResourceMemoryOffset) = floatValue48 + *(float *)(ResourceDataPosition + 0x34 + ResourceMemoryOffset)
+                    *(float *)(ResourceDataPosition + 0x34 + ResourceMemoryOffset) = MatrixElement48 + *(float *)(ResourceDataPosition + 0x34 + ResourceMemoryOffset)
                     ;
                     isResourceAvailable4 = true;
                   }
@@ -64428,14 +64428,14 @@ ResourceInitializationLoop:
                     *(uint *)(*(long long *)(MatrixPointer218 + (ulong long)*SystemHashNodeData2 * 8) + 0x3c + ResourceMemoryOffset)
                          = ResourceAllocationContextSecondary | SystemContextPointer;
                     SystemThreadHandleSecondary = *SystemResourceOffsetPointer9;
-                    floatValue48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandleSecondary);
+                    MatrixElement48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandleSecondary);
                     BaseValue2 = *(float *)(SystemThreadHandleCounter + 4 + SystemThreadHandleSecondary);
                     ResourceDataPosition = *(long long *)(MatrixPointer218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(ResourceDataPosition + 0x40 + ResourceMemoryOffset) =
                          *(float *)(ResourceDataPosition + 0x40 + ResourceMemoryOffset) + *(float *)(SystemThreadHandleCounter + SystemThreadHandleSecondary);
                     *(float *)(ResourceDataPosition + 0x44 + ResourceMemoryOffset) = BaseValue2 + *(float *)(ResourceDataPosition + 0x44 + ResourceMemoryOffset)
                     ;
-                    *(float *)(ResourceDataPosition + 0x48 + ResourceMemoryOffset) = floatValue48 + *(float *)(ResourceDataPosition + 0x48 + ResourceMemoryOffset)
+                    *(float *)(ResourceDataPosition + 0x48 + ResourceMemoryOffset) = MatrixElement48 + *(float *)(ResourceDataPosition + 0x48 + ResourceMemoryOffset)
                     ;
                     isResourceAvailable4 = true;
                   }
@@ -64453,13 +64453,13 @@ ResourceInitializationLoop:
                     *(uint *)(ResourceMemoryOffset + *(long long *)(MatrixPointer218 + (ulong long)*SystemHashNodeData2 * 8)) =
                          ResourceAllocationContextSecondary | SystemContextPointer;
                     SystemThreadHandlePrimary = *SystemResourceOffsetPointer9;
-                    floatValue48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandlePrimary);
+                    MatrixElement48 = *(float *)(SystemThreadHandleCounter + 8 + SystemThreadHandlePrimary);
                     BaseValue2 = *(float *)(SystemThreadHandleCounter + 4 + SystemThreadHandlePrimary);
                     SystemThreadHandleSecondary = *(long long *)(MatrixPointer218 + (ulong long)*SystemHashNodeData2 * 8);
                     *(float *)(ResourceMemoryOffset + 4 + SystemThreadHandleSecondary) =
                          *(float *)(ResourceMemoryOffset + 4 + SystemThreadHandleSecondary) + *(float *)(SystemThreadHandleCounter + SystemThreadHandlePrimary);
                     *(float *)(ResourceMemoryOffset + 8 + SystemThreadHandleSecondary) = BaseValue2 + *(float *)(ResourceMemoryOffset + 8 + SystemThreadHandleSecondary);
-                    *(float *)(ResourceMemoryOffset + 0xc + SystemThreadHandleSecondary) = floatValue48 + *(float *)(ResourceMemoryOffset + 0xc + SystemThreadHandleSecondary);
+                    *(float *)(ResourceMemoryOffset + 0xc + SystemThreadHandleSecondary) = MatrixElement48 + *(float *)(ResourceMemoryOffset + 0xc + SystemThreadHandleSecondary);
                     isResourceAvailable4 = true;
                   }
                   ResourceMemoryOffset = ResourceMemoryOffset + 0x14;
@@ -64470,12 +64470,12 @@ ResourceInitializationLoop:
                 SystemThreadHandlePrimary = *SystemResourceOffsetPointer9;
                 SystemOperationFlag1b8.LowPart = *(uint32_t *)(SystemThreadHandleCounter + 8 + SystemThreadHandlePrimary);
                 SystemOperationFlag1b8._0_4_ = *(uint32_t *)(SystemThreadHandleCounter + 4 + SystemThreadHandlePrimary);
-                uStack_1bc = *(uint32_t *)(SystemThreadHandleCounter + SystemThreadHandlePrimary);
-                CalculationFlagsExtended = (int *)ConcatenatedSystemValue((uint32_t)SystemOperationFlag1b8,uStack_1bc);
+                StackOperationValue = *(uint32_t *)(SystemThreadHandleCounter + SystemThreadHandlePrimary);
+                CalculationFlagsExtended = (int *)ConcatenatedSystemValue((uint32_t)SystemOperationFlag1b8,StackOperationValue);
                 SystemStackFlag = (int *)ConcatenatedSystemValue(0x7f7fffff,SystemOperationFlag1b8.LowPart);
                 MatrixPointer1B0 = (int *)ConcatenatedSystemValue(MatrixPointer1B0.LowPart,0x7f7fffff);
                 ResourceAddressPrimary = (ulong long)*SystemHashNodeData2;
-                paresourceAllocationContext7 = *(uint8_t (**) [16])(MatrixPointer218 + ResourceAddressPrimary * 8 + 2);
+                ResourceAllocationContextPrimary = *(uint8_t (**) [16])(MatrixPointer218 + ResourceAddressPrimary * 8 + 2);
                 GlobalDataFlags = SystemContextPointer;
                 if (paresourceAllocationContext7 < *(uint8_t (**) [16])(MatrixPointer218 + ResourceAddressPrimary * 8 + 4)) {
                   *(uint8_t **)(MatrixPointer218 + ResourceAddressPrimary * 8 + 2) = paresourceAllocationContext7[1] + 4;
@@ -64541,20 +64541,20 @@ SystemConfigurationAllocation:
           if (0 < systemResult7) {
             do {
               ResourceDataPosition = *(long long *)(SystemThreadHandleCounter + (long long)MatrixPointer218);
-              floatValue48 = *(float *)(ResourceDataPosition + 8 + SystemThreadHandleSecondary);
+              MatrixElement48 = *(float *)(ResourceDataPosition + 8 + SystemThreadHandleSecondary);
               BaseValue2 = *(float *)(ResourceDataPosition + 4 + SystemThreadHandleSecondary);
               BaseValue1 = *(float *)(ResourceDataPosition + 0xc + SystemThreadHandleSecondary);
-              floatValue45 = BaseValue2 * BaseValue2 + floatValue48 * floatValue48 + BaseValue1 * BaseValue1;
-              if (SQRT(floatValue45) == 0.0) {
+              MatrixElement45 = BaseValue2 * BaseValue2 + MatrixElement48 * MatrixElement48 + BaseValue1 * BaseValue1;
+              if (SQRT(MatrixElement45) == 0.0) {
                 *(uint8_t (*) [16])(ResourceDataPosition + 4 + SystemThreadHandleSecondary) = SystemZeroVectorData;
               }
               else {
-                aResourceAddress7 = rsqrtss(ZEXT416((uint)floatValue45),ZEXT416((uint)floatValue45));
-                floatValue46 = aResourceAddress7.HighWord;
-                floatValue45 = floatValue46 * 0.5 * (3.0 - floatValue45 * floatValue46 * floatValue46);
-                *(float *)(ResourceDataPosition + 4 + SystemThreadHandleSecondary) = BaseValue2 * floatValue45;
-                *(float *)(ResourceDataPosition + 8 + SystemThreadHandleSecondary) = floatValue45 * floatValue48;
-                *(float *)(ResourceDataPosition + 0xc + SystemThreadHandleSecondary) = BaseValue1 * floatValue45;
+                aResourceAddress7 = rsqrtss(ZEXT416((uint)MatrixElement45),ZEXT416((uint)MatrixElement45));
+                MatrixElement46 = aResourceAddress7.HighWord;
+                MatrixElement45 = MatrixElement46 * 0.5 * (3.0 - MatrixElement45 * MatrixElement46 * MatrixElement46);
+                *(float *)(ResourceDataPosition + 4 + SystemThreadHandleSecondary) = BaseValue2 * MatrixElement45;
+                *(float *)(ResourceDataPosition + 8 + SystemThreadHandleSecondary) = MatrixElement45 * MatrixElement48;
+                *(float *)(ResourceDataPosition + 0xc + SystemThreadHandleSecondary) = BaseValue1 * MatrixElement45;
               }
               SystemThreadHandleSecondary = SystemThreadHandleSecondary + -1;
               SystemThreadHandleSecondary = SystemThreadHandleSecondary + 0x14;
@@ -66362,13 +66362,13 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
   long long SystemThreadHandle5;
   ulong long NetworkConnectionFlags;
   long long ThreadHandle1;
-  float floatValue28;
-  float floatValue29;
-  float floatValue30;
-  float floatValue31;
-  float floatValue32;
-  float floatValue33;
-  float floatValue34;
+  float MatrixElement28;
+  float MatrixElement29;
+  float MatrixElement30;
+  float MatrixElement31;
+  float MatrixElement32;
+  float MatrixElement33;
+  float MatrixElement34;
   long long *pStackResourcePointer;
   uint32_t ResourceAllocationContext;
   float fStack_128;
@@ -66622,12 +66622,12 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         if ((pInterpolationFactorY[-0x2e] * pInterpolationFactorY[-0x29] - pInterpolationFactorY[-0x2d] * pInterpolationFactorY[-0x2a]) * InterpolationFactorXPointer[4] +
             (pInterpolationFactorY[-0x2d] * *InterpolationFactorXPointer - InterpolationFactorXPointer[-4] * pInterpolationFactorY[-0x29]) * pInterpolationFactorY[-0x26] +
             (InterpolationFactorXPointer[-4] * pInterpolationFactorY[-0x2a] - *InterpolationFactorXPointer * pInterpolationFactorY[-0x2e]) * pInterpolationFactorY[-0x25] <= 0.0) {
-          floatValue28 = -1.0;
+          MatrixElement28 = -1.0;
         }
         else {
-          floatValue28 = 1.0;
+          MatrixElement28 = 1.0;
         }
-        pResultValue2[3] = floatValue28;
+        pResultValue2[3] = MatrixElement28;
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandleSecondary);
         *pResultValue2 = InterpolationFactorXPointer[0x17];
         pResultValue2[1] = InterpolationFactorXPointer[0x18];
@@ -66636,12 +66636,12 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
             (InterpolationFactorXPointer[0x17] * pInterpolationFactorY[-0x16] - InterpolationFactorXPointer[0x13] * pInterpolationFactorY[-0x12]) * pInterpolationFactorY[-0xf] +
             (InterpolationFactorXPointer[0x13] * pInterpolationFactorY[-0x13] - InterpolationFactorXPointer[0x17] * pInterpolationFactorY[-0x17]) * pInterpolationFactorY[-0xe] <= 0.0
            ) {
-          floatValue28 = -1.0;
+          MatrixElement28 = -1.0;
         }
         else {
-          floatValue28 = 1.0;
+          MatrixElement28 = 1.0;
         }
-        pResultValue2[3] = floatValue28;
+        pResultValue2[3] = MatrixElement28;
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandleSecondary);
         *pResultValue2 = pInterpolationFactorY[3];
         pResultValue2[1] = pInterpolationFactorY[4];
@@ -66649,12 +66649,12 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         if ((pInterpolationFactorY[1] * pInterpolationFactorY[3] - pInterpolationFactorY[5] * pInterpolationFactorY[-1]) * pInterpolationFactorY[8] +
             (pInterpolationFactorY[5] * *pInterpolationFactorY - pInterpolationFactorY[1] * pInterpolationFactorY[4]) * pInterpolationFactorY[7] +
             (pInterpolationFactorY[4] * pInterpolationFactorY[-1] - *pInterpolationFactorY * pInterpolationFactorY[3]) * pInterpolationFactorY[9] <= 0.0) {
-          floatValue28 = -1.0;
+          MatrixElement28 = -1.0;
         }
         else {
-          floatValue28 = 1.0;
+          MatrixElement28 = 1.0;
         }
-        pResultValue2[3] = floatValue28;
+        pResultValue2[3] = MatrixElement28;
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandleSecondary);
         *pResultValue2 = pInterpolationFactorY[0x1a];
         pResultValue2[1] = pInterpolationFactorY[0x1b];
@@ -66663,12 +66663,12 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
             (pInterpolationFactorY[0x1a] * pInterpolationFactorY[0x18] - pInterpolationFactorY[0x1c] * pInterpolationFactorY[0x16]) * pInterpolationFactorY[0x1f] +
             (pInterpolationFactorY[0x16] * pInterpolationFactorY[0x1b] - pInterpolationFactorY[0x1a] * pInterpolationFactorY[0x17]) * pInterpolationFactorY[0x20] <= 0.0)
         {
-          floatValue28 = -1.0;
+          MatrixElement28 = -1.0;
         }
         else {
-          floatValue28 = 1.0;
+          MatrixElement28 = 1.0;
         }
-        pResultValue2[3] = floatValue28;
+        pResultValue2[3] = MatrixElement28;
         pResultValue2 = (float *)((long long)pResultValue2 + SystemThreadHandleSecondary);
         pInterpolationFactorX = InterpolationFactorXPointer + 0x5c;
         pInterpolationFactorY = pInterpolationFactorY + 0x5c;
@@ -66686,12 +66686,12 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
         if ((InterpolationFactorXPointer[5] * *InterpolationFactorXPointer - InterpolationFactorXPointer[1] * InterpolationFactorXPointer[4]) * InterpolationFactorXPointer[7] +
             (InterpolationFactorXPointer[3] * InterpolationFactorXPointer[1] - InterpolationFactorXPointer[-1] * InterpolationFactorXPointer[5]) * InterpolationFactorXPointer[8] +
             (InterpolationFactorXPointer[-1] * InterpolationFactorXPointer[4] - InterpolationFactorXPointer[3] * *InterpolationFactorXPointer) * InterpolationFactorXPointer[9] <= 0.0) {
-          floatValue28 = -1.0;
+          MatrixElement28 = -1.0;
         }
         else {
-          floatValue28 = 1.0;
+          MatrixElement28 = 1.0;
         }
-        pResultValue2[1] = floatValue28;
+        pResultValue2[1] = MatrixElement28;
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)SystemCode);
         pInterpolationFactorX = InterpolationFactorXPointer + 0x17;
         ThreadHandle1 = ThreadHandle1 + -1;
@@ -66719,17 +66719,17 @@ SystemResourceFinalize:
         ThreadContextIndicator = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(SystemThreadHandlePrimary + SystemProcessingBufferPointer) * 0x14) * 255.0);
         *(char*)((long long)pResultValue2 + 2) = (char)ThreadContextIndicator;
-        floatValue28 = (float)((ThreadContextIndicator & 0xff) + (uint)*(byte *)((long long)pResultValue2 + 1) +
+        MatrixElement28 = (float)((ThreadContextIndicator & 0xff) + (uint)*(byte *)((long long)pResultValue2 + 1) +
                         (uint)*(byte *)pResultValue2);
-        if (0.0 <= floatValue28) {
-          if (1.0 <= floatValue28) {
-            floatValue28 = 1.0;
+        if (0.0 <= MatrixElement28) {
+          if (1.0 <= MatrixElement28) {
+            MatrixElement28 = 1.0;
           }
         }
         else {
-          floatValue28 = 0.0;
+          MatrixElement28 = 0.0;
         }
-        *(char*)((long long)pResultValue2 + 3) = (char)(int)(1.0 - floatValue28);
+        *(char*)((long long)pResultValue2 + 3) = (char)(int)(1.0 - MatrixElement28);
         pisByteValid8 = (byte *)((long long)pResultValue2 + SystemThreadHandleSecondary);
         SystemProcessBufferPtr = *(long long *)(ConfigurationDataPointer + 0x68);
         *pisByteValid8 = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) +
@@ -66740,16 +66740,16 @@ SystemResourceFinalize:
         ThreadContextIndicator = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(SystemThreadHandlePrimary + 0x5c + SystemProcessingBufferPointer) * 0x14) * 255.0);
         pisByteValid8[2] = (byte)ThreadContextIndicator;
-        floatValue28 = (float)((ThreadContextIndicator & 0xff) + (uint)pisByteValid8[1] + (uint)*pisByteValid8);
-        if (0.0 <= floatValue28) {
-          if (1.0 <= floatValue28) {
-            floatValue28 = 1.0;
+        MatrixElement28 = (float)((ThreadContextIndicator & 0xff) + (uint)pisByteValid8[1] + (uint)*pisByteValid8);
+        if (0.0 <= MatrixElement28) {
+          if (1.0 <= MatrixElement28) {
+            MatrixElement28 = 1.0;
           }
         }
         else {
-          floatValue28 = 0.0;
+          MatrixElement28 = 0.0;
         }
-        pisByteValid8[3] = (byte)(int)(1.0 - floatValue28);
+        pisByteValid8[3] = (byte)(int)(1.0 - MatrixElement28);
         pisByteValid8 = pisByteValid8 + SystemThreadHandleSecondary;
         SystemProcessBufferPtr = *(long long *)(ConfigurationDataPointer + 0x68);
         *pisByteValid8 = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) +
@@ -66760,16 +66760,16 @@ SystemResourceFinalize:
         ThreadContextIndicator = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(SystemThreadHandlePrimary + 0xb8 + SystemProcessingBufferPointer) * 0x14) * 255.0);
         pisByteValid8[2] = (byte)ThreadContextIndicator;
-        floatValue28 = (float)((ThreadContextIndicator & 0xff) + (uint)pisByteValid8[1] + (uint)*pisByteValid8);
-        if (0.0 <= floatValue28) {
-          if (1.0 <= floatValue28) {
-            floatValue28 = 1.0;
+        MatrixElement28 = (float)((ThreadContextIndicator & 0xff) + (uint)pisByteValid8[1] + (uint)*pisByteValid8);
+        if (0.0 <= MatrixElement28) {
+          if (1.0 <= MatrixElement28) {
+            MatrixElement28 = 1.0;
           }
         }
         else {
-          floatValue28 = 0.0;
+          MatrixElement28 = 0.0;
         }
-        pisByteValid8[3] = (byte)(int)(1.0 - floatValue28);
+        pisByteValid8[3] = (byte)(int)(1.0 - MatrixElement28);
         pisByteValid8 = pisByteValid8 + SystemThreadHandleSecondary;
         SystemProcessBufferPtr = *(long long *)(ConfigurationDataPointer + 0x68);
         *pisByteValid8 = (byte)(int)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) +
@@ -66781,16 +66781,16 @@ SystemResourceFinalize:
         ThreadContextIndicator = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(SystemThreadHandlePrimary + 0x114 + SystemProcessingBufferPointer) * 0x14) * 255.0);
         pisByteValid8[2] = (byte)ThreadContextIndicator;
-        floatValue28 = (float)((ThreadContextIndicator & 0xff) + (uint)pisByteValid8[1] + (uint)*pisByteValid8);
-        if (0.0 <= floatValue28) {
-          if (1.0 <= floatValue28) {
-            floatValue28 = 1.0;
+        MatrixElement28 = (float)((ThreadContextIndicator & 0xff) + (uint)pisByteValid8[1] + (uint)*pisByteValid8);
+        if (0.0 <= MatrixElement28) {
+          if (1.0 <= MatrixElement28) {
+            MatrixElement28 = 1.0;
           }
         }
         else {
-          floatValue28 = 0.0;
+          MatrixElement28 = 0.0;
         }
-        pisByteValid8[3] = (byte)(int)(1.0 - floatValue28);
+        pisByteValid8[3] = (byte)(int)(1.0 - MatrixElement28);
         pResultValue2 = (float *)(pisByteValid8 + SystemThreadHandleSecondary);
         SystemThreadHandlePrimary = SystemThreadHandlePrimary + 0x170;
         SystemThreadHandleSecondary = SystemThreadHandleSecondary + -1;
@@ -66811,16 +66811,16 @@ SystemResourceFinalize:
         ThreadContextIndicator = (uint)(*(float *)(*(long long *)(ConfigurationDataPointer + 0xd0) + 8 +
                                  (long long)*(int *)(SystemThreadHandlePrimary + SystemThreadHandle5) * 0x14) * 255.0);
         *SystemDataResourcePointer = (char)ThreadContextIndicator;
-        floatValue28 = (float)((ThreadContextIndicator & 0xff) + (SystemOperationCounter & 0xff) + (InitializationFlags & 0xff));
-        if (0.0 <= floatValue28) {
-          if (1.0 <= floatValue28) {
-            floatValue28 = 1.0;
+        MatrixElement28 = (float)((ThreadContextIndicator & 0xff) + (SystemOperationCounter & 0xff) + (InitializationFlags & 0xff));
+        if (0.0 <= MatrixElement28) {
+          if (1.0 <= MatrixElement28) {
+            MatrixElement28 = 1.0;
           }
         }
         else {
-          floatValue28 = 0.0;
+          MatrixElement28 = 0.0;
         }
-        SystemDataResourcePointer[1] = (char)(int)(1.0 - floatValue28);
+        SystemDataResourcePointer[1] = (char)(int)(1.0 - MatrixElement28);
         SystemDataResourcePointer = SystemDataResourcePointer + SystemCode;
         SystemThreadHandlePrimary = SystemThreadHandlePrimary + 0x5c;
         ThreadHandle1 = ThreadHandle1 + -1;
@@ -66854,39 +66854,39 @@ SystemResourceFinalize:
     if (0 < systemResult) {
       do {
         SystemThreadHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
-        floatValue29 = *(float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandle5) * 0.5;
-        floatValue34 = *(float *)(SystemThreadHandlePrimary + 0x38 + SystemThreadHandle5) * 0.5;
-        floatValue28 = *(float *)(SystemThreadHandlePrimary + 0x3c + SystemThreadHandle5) * 0.5;
-        floatValue31 = floatValue29 + 0.5;
-        floatValue32 = floatValue34 + 0.5;
-        floatValue33 = floatValue28 + 0.5;
-        if (-0.5 <= floatValue28) {
-          if (1.0 <= floatValue33) {
-            floatValue33 = 1.0;
+        MatrixElement29 = *(float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandle5) * 0.5;
+        MatrixElement34 = *(float *)(SystemThreadHandlePrimary + 0x38 + SystemThreadHandle5) * 0.5;
+        MatrixElement28 = *(float *)(SystemThreadHandlePrimary + 0x3c + SystemThreadHandle5) * 0.5;
+        MatrixElement31 = MatrixElement29 + 0.5;
+        MatrixElement32 = MatrixElement34 + 0.5;
+        MatrixElement33 = MatrixElement28 + 0.5;
+        if (-0.5 <= MatrixElement28) {
+          if (1.0 <= MatrixElement33) {
+            MatrixElement33 = 1.0;
           }
         }
         else {
-          floatValue33 = 0.0;
+          MatrixElement33 = 0.0;
         }
-        if (-0.5 <= floatValue34) {
-          if (1.0 <= floatValue32) {
-            floatValue32 = 1.0;
+        if (-0.5 <= MatrixElement34) {
+          if (1.0 <= MatrixElement32) {
+            MatrixElement32 = 1.0;
           }
         }
         else {
-          floatValue32 = 0.0;
+          MatrixElement32 = 0.0;
         }
-        if (-0.5 <= floatValue29) {
-          if (1.0 <= floatValue31) {
-            floatValue31 = 1.0;
+        if (-0.5 <= MatrixElement29) {
+          if (1.0 <= MatrixElement31) {
+            MatrixElement31 = 1.0;
           }
         }
         else {
-          floatValue31 = 0.0;
+          MatrixElement31 = 0.0;
         }
-        *pResultValue2 = (float)(((uint)(long long)(floatValue32 * 2047.0) & 0x7ff |
-                           (int)(long long)(floatValue31 * 2047.0) << 0xb) << 10 |
-                          (uint)(long long)(floatValue33 * 1023.0) & 0x3ff);
+        *pResultValue2 = (float)(((uint)(long long)(MatrixElement32 * 2047.0) & 0x7ff |
+                           (int)(long long)(MatrixElement31 * 2047.0) << 0xb) << 10 |
+                          (uint)(long long)(MatrixElement33 * 1023.0) & 0x3ff);
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)SystemCode);
         SystemThreadHandlePrimary = SystemThreadHandlePrimary + 0x5c;
         ThreadHandle1 = ThreadHandle1 + -1;
@@ -66926,49 +66926,49 @@ SystemResourceFinalize:
     if (0 < systemResult) {
       do {
         SystemThreadHandle5 = *(long long *)(ConfigurationDataPointer + 0x68);
-        floatValue28 = *(float *)(SystemThreadHandlePrimary + 0x1c + SystemThreadHandle5);
-        floatValue31 = *(float *)(SystemThreadHandlePrimary + 0x18 + SystemThreadHandle5);
-        floatValue32 = *(float *)(SystemThreadHandlePrimary + 0x14 + SystemThreadHandle5);
-        floatValue33 = *(float *)(SystemThreadHandlePrimary + 4 + SystemThreadHandle5);
-        floatValue34 = floatValue32 * 0.5 + 0.5;
-        floatValue29 = floatValue31 * 0.5 + 0.5;
-        floatValue30 = floatValue28 * 0.5 + 0.5;
-        if (-0.5 <= floatValue28 * 0.5) {
-          if (1.0 <= floatValue30) {
-            floatValue30 = 1.0;
+        MatrixElement28 = *(float *)(SystemThreadHandlePrimary + 0x1c + SystemThreadHandle5);
+        MatrixElement31 = *(float *)(SystemThreadHandlePrimary + 0x18 + SystemThreadHandle5);
+        MatrixElement32 = *(float *)(SystemThreadHandlePrimary + 0x14 + SystemThreadHandle5);
+        MatrixElement33 = *(float *)(SystemThreadHandlePrimary + 4 + SystemThreadHandle5);
+        MatrixElement34 = MatrixElement32 * 0.5 + 0.5;
+        MatrixElement29 = MatrixElement31 * 0.5 + 0.5;
+        MatrixElement30 = MatrixElement28 * 0.5 + 0.5;
+        if (-0.5 <= MatrixElement28 * 0.5) {
+          if (1.0 <= MatrixElement30) {
+            MatrixElement30 = 1.0;
           }
         }
         else {
-          floatValue30 = 0.0;
+          MatrixElement30 = 0.0;
         }
-        if (-0.5 <= floatValue31 * 0.5) {
-          if (1.0 <= floatValue29) {
-            floatValue29 = 1.0;
+        if (-0.5 <= MatrixElement31 * 0.5) {
+          if (1.0 <= MatrixElement29) {
+            MatrixElement29 = 1.0;
           }
         }
         else {
-          floatValue29 = 0.0;
+          MatrixElement29 = 0.0;
         }
-        if (-0.5 <= floatValue32 * 0.5) {
-          if (1.0 <= floatValue34) {
-            floatValue34 = 1.0;
+        if (-0.5 <= MatrixElement32 * 0.5) {
+          if (1.0 <= MatrixElement34) {
+            MatrixElement34 = 1.0;
           }
         }
         else {
-          floatValue34 = 0.0;
+          MatrixElement34 = 0.0;
         }
         ThreadContextIndicator = 0;
-        if ((floatValue32 * *(float *)(SystemThreadHandlePrimary + 0xc + SystemThreadHandle5) - floatValue33 * floatValue28) *
+        if ((MatrixElement32 * *(float *)(SystemThreadHandlePrimary + 0xc + SystemThreadHandle5) - MatrixElement33 * MatrixElement28) *
             *(float *)(SystemThreadHandlePrimary + 0x28 + SystemThreadHandle5) +
-            (floatValue28 * *(float *)(SystemThreadHandlePrimary + 8 + SystemThreadHandle5) - floatValue31 * *(float *)(SystemThreadHandlePrimary + 0xc + SystemThreadHandle5))
+            (MatrixElement28 * *(float *)(SystemThreadHandlePrimary + 8 + SystemThreadHandle5) - MatrixElement31 * *(float *)(SystemThreadHandlePrimary + 0xc + SystemThreadHandle5))
             * *(float *)(SystemThreadHandlePrimary + 0x24 + SystemThreadHandle5) +
-            (floatValue33 * floatValue31 - floatValue32 * *(float *)(SystemThreadHandlePrimary + 8 + SystemThreadHandle5)) *
+            (MatrixElement33 * MatrixElement31 - MatrixElement32 * *(float *)(SystemThreadHandlePrimary + 8 + SystemThreadHandle5)) *
             *(float *)(SystemThreadHandlePrimary + 0x2c + SystemThreadHandle5) < 0.0) {
           ThreadContextIndicator = 0x80000000;
         }
-        *pResultValue2 = (float)((((uint)(long long)(floatValue34 * 1023.0) & 0x3ff) << 0xb |
-                           (uint)(long long)(floatValue29 * 2047.0) & 0x7ff) << 10 |
-                           (uint)(long long)(floatValue30 * 1023.0) & 0x3ff | ThreadContextIndicator);
+        *pResultValue2 = (float)((((uint)(long long)(MatrixElement34 * 1023.0) & 0x3ff) << 0xb |
+                           (uint)(long long)(MatrixElement29 * 2047.0) & 0x7ff) << 10 |
+                           (uint)(long long)(MatrixElement30 * 1023.0) & 0x3ff | ThreadContextIndicator);
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)SystemCode);
         SystemThreadHandlePrimary = SystemThreadHandlePrimary + 0x5c;
         ThreadHandle1 = ThreadHandle1 + -1;
@@ -66979,7 +66979,7 @@ SystemResourceFinalize:
     if (0 < systemResult) {
       SystemThreadHandleSecondary = 0x48;
       SystemThreadHandle5 = *(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8);
-      floatValue28 = fRam0000000180d49154;
+      MatrixElement28 = fRam0000000180d49154;
       do {
         SystemThreadHandleSecondary = *(long long *)(ConfigurationDataPointer + 0x68);
         pInterpolationFactorX = (float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandleSecondary);
@@ -66997,8 +66997,8 @@ SystemResourceFinalize:
         fStack_e4 = InterpolationFactorXPointer[1];
         fStack_e0 = InterpolationFactorXPointer[2];
         fStack_dc = InterpolationFactorXPointer[3];
-        floatValue31 = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
-        if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * floatValue31 +
+        MatrixElement31 = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
+        if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * MatrixElement31 +
             fStack_e0 * (fStack_f4 * fStack_108 - fStack_f8 * fStack_104) < 0.0) {
           fStack_e0 = -fStack_e0;
           fStack_118 = -fStack_e8;
@@ -67009,7 +67009,7 @@ SystemResourceFinalize:
           fStack_dc = 3.4028235e+38;
           fStack_110 = fStack_e0;
         }
-        ProcessFloatCalculation(&fStack_128,&fStack_108,fStack_e0,floatValue31,ResourceAllocationContext);
+        ProcessFloatCalculation(&fStack_128,&fStack_108,fStack_e0,MatrixElement31,ResourceAllocationContext);
         ValidateFloatCalculation(&fStack_128);
         if (fStack_128 < 0.0) {
           fStack_128 = -fStack_128;
@@ -67017,10 +67017,10 @@ SystemResourceFinalize:
           fStack_120 = -fStack_120;
           fStack_11c = -fStack_11c;
         }
-        floatValue34 = fStack_11c;
-        floatValue33 = fStack_120;
-        floatValue32 = fStack_124;
-        floatValue31 = fStack_128;
+        MatrixElement34 = fStack_11c;
+        MatrixElement33 = fStack_120;
+        MatrixElement32 = fStack_124;
+        MatrixElement31 = fStack_128;
         if (*(int *)(SystemThreadHandle5 + SystemThreadHandleSecondary) < iRam0000000180d49150) {
           CheckSystemDataAvailability(0x180d49150);
           if (iRam0000000180d49150 == -1) {
@@ -67028,41 +67028,41 @@ SystemResourceFinalize:
             InitializeSystemDataPointer(0x180d49150);
           }
           SystemThreadHandleSecondary = 0x48;
-          floatValue28 = fRam0000000180d49154;
+          MatrixElement28 = fRam0000000180d49154;
         }
-        if (floatValue31 < 3.051851e-05) {
-          floatValue31 = 3.051851e-05;
+        if (MatrixElement31 < 3.051851e-05) {
+          MatrixElement31 = 3.051851e-05;
           fStack_128 = 3.051851e-05;
-          floatValue32 = floatValue32 * floatValue28;
-          floatValue33 = floatValue33 * floatValue28;
-          floatValue34 = floatValue34 * floatValue28;
-          fStack_124 = floatValue32;
-          fStack_120 = floatValue33;
-          fStack_11c = floatValue34;
+          MatrixElement32 = MatrixElement32 * MatrixElement28;
+          MatrixElement33 = MatrixElement33 * MatrixElement28;
+          MatrixElement34 = MatrixElement34 * MatrixElement28;
+          fStack_124 = MatrixElement32;
+          fStack_120 = MatrixElement33;
+          fStack_11c = MatrixElement34;
         }
-        floatValue29 = *(float *)(SystemThreadHandlePrimary + 0x18 + SystemThreadHandleSecondary);
-        floatValue30 = *(float *)(SystemThreadHandlePrimary + 0x1c + SystemThreadHandleSecondary);
-        floatValue1 = *(float *)(SystemThreadHandlePrimary + 0x14 + SystemThreadHandleSecondary);
-        if ((floatValue30 * *(float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandleSecondary) -
-            floatValue1 * *(float *)(SystemThreadHandlePrimary + 0x3c + SystemThreadHandleSecondary)) * *(float *)(SystemThreadHandlePrimary + 0x28 + SystemThreadHandleSecondary) +
-            (floatValue29 * *(float *)(SystemThreadHandlePrimary + 0x3c + SystemThreadHandleSecondary) -
-            floatValue30 * *(float *)(SystemThreadHandlePrimary + 0x38 + SystemThreadHandleSecondary)) * *(float *)(SystemThreadHandlePrimary + 0x24 + SystemThreadHandleSecondary) +
-            (floatValue1 * *(float *)(SystemThreadHandlePrimary + 0x38 + SystemThreadHandleSecondary) -
-            floatValue29 * *(float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandleSecondary)) * *(float *)(SystemThreadHandlePrimary + 0x2c + SystemThreadHandleSecondary) <= 0.0
+        MatrixElement29 = *(float *)(SystemThreadHandlePrimary + 0x18 + SystemThreadHandleSecondary);
+        MatrixElement30 = *(float *)(SystemThreadHandlePrimary + 0x1c + SystemThreadHandleSecondary);
+        MatrixElement1 = *(float *)(SystemThreadHandlePrimary + 0x14 + SystemThreadHandleSecondary);
+        if ((MatrixElement30 * *(float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandleSecondary) -
+            MatrixElement1 * *(float *)(SystemThreadHandlePrimary + 0x3c + SystemThreadHandleSecondary)) * *(float *)(SystemThreadHandlePrimary + 0x28 + SystemThreadHandleSecondary) +
+            (MatrixElement29 * *(float *)(SystemThreadHandlePrimary + 0x3c + SystemThreadHandleSecondary) -
+            MatrixElement30 * *(float *)(SystemThreadHandlePrimary + 0x38 + SystemThreadHandleSecondary)) * *(float *)(SystemThreadHandlePrimary + 0x24 + SystemThreadHandleSecondary) +
+            (MatrixElement1 * *(float *)(SystemThreadHandlePrimary + 0x38 + SystemThreadHandleSecondary) -
+            MatrixElement29 * *(float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandleSecondary)) * *(float *)(SystemThreadHandlePrimary + 0x2c + SystemThreadHandleSecondary) <= 0.0
            ) {
-          floatValue31 = -floatValue31;
-          floatValue32 = -floatValue32;
-          floatValue33 = -floatValue33;
-          floatValue34 = -floatValue34;
-          fStack_128 = floatValue31;
-          fStack_124 = floatValue32;
-          fStack_120 = floatValue33;
-          fStack_11c = floatValue34;
+          MatrixElement31 = -MatrixElement31;
+          MatrixElement32 = -MatrixElement32;
+          MatrixElement33 = -MatrixElement33;
+          MatrixElement34 = -MatrixElement34;
+          fStack_128 = MatrixElement31;
+          fStack_124 = MatrixElement32;
+          fStack_120 = MatrixElement33;
+          fStack_11c = MatrixElement34;
         }
-        *(short *)pResultValue2 = (short)(int)(floatValue32 * 32767.0);
-        *(short *)((long long)pResultValue2 + 2) = (short)(int)(floatValue33 * 32767.0);
-        *(short *)(pResultValue2 + 1) = (short)(int)(floatValue34 * 32767.0);
-        *(short *)((long long)pResultValue2 + 6) = (short)(int)(floatValue31 * 32767.0);
+        *(short *)pResultValue2 = (short)(int)(MatrixElement32 * 32767.0);
+        *(short *)((long long)pResultValue2 + 2) = (short)(int)(MatrixElement33 * 32767.0);
+        *(short *)(pResultValue2 + 1) = (short)(int)(MatrixElement34 * 32767.0);
+        *(short *)((long long)pResultValue2 + 6) = (short)(int)(MatrixElement31 * 32767.0);
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)SystemCode);
         SystemThreadHandlePrimary = SystemThreadHandlePrimary + 0x5c;
         ThreadHandle1 = ThreadHandle1 + -1;
@@ -70714,26 +70714,26 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   SystemAudioStatusFlags._8_4_ = (float)SystemAudioContext._8_4_;
   SystemAudioStatusFlags._12_4_ = (float)SystemAudioContext._12_4_;
   SystemAudioContext = rcpps(SystemAudioContext,SystemAudioStatusFlags);
-  floatValue24 = 0.0;
-  floatValue28 = 0.0;
-  floatValue30 = 0.0;
+  MatrixElement24 = 0.0;
+  MatrixElement28 = 0.0;
+  MatrixElement30 = 0.0;
   AudioInterpolationFactorV = 0.0;
   AudioMagnitudeSquared = SystemAudioContext._0_4_;
   AudioProcessingResult2 = SystemAudioContext.LowPart;
   AudioSignal21 = SystemAudioContext._8_4_;
   AudioSignal22 = SystemAudioContext._12_4_;
-  floatValue29 = 0.0;
-  floatValue31 = 0.0;
-  floatValue32 = 0.0;
-  floatValue33 = 0.0;
-  floatValue34 = 0.0;
-  floatValue35 = 0.0;
-  floatValue36 = 0.0;
-  floatValue37 = 0.0;
+  MatrixElement29 = 0.0;
+  MatrixElement31 = 0.0;
+  MatrixElement32 = 0.0;
+  MatrixElement33 = 0.0;
+  MatrixElement34 = 0.0;
+  MatrixElement35 = 0.0;
+  MatrixElement36 = 0.0;
+  MatrixElement37 = 0.0;
   MatrixValue3 = 0.0;
-  floatValue25 = 0.0;
-  floatValue26 = 0.0;
-  floatValue27 = 0.0;
+  MatrixElement25 = 0.0;
+  MatrixElement26 = 0.0;
+  MatrixElement27 = 0.0;
   MagnitudeSquared = (MagnitudeSquared + MagnitudeSquared) - MagnitudeSquared * MagnitudeSquared * aSystemInitializationStatusFlags._0_4_;
   ResultValue2 = (ResultValue2 + ResultValue2) - ResultValue2 * ResultValue2 * aSystemInitializationStatusFlags.LowPart;
   MatrixValue1 = (MatrixValue1 + MatrixValue1) - MatrixValue1 * MatrixValue1 * aSystemInitializationStatusFlags._8_4_;
@@ -70741,77 +70741,77 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   pScalingFactor = systemDataIndexPtr;
   do {
     SystemOperationResult = SystemResourceManager;
-    floatValue1 = *pScalingFactor;
-    floatValue2 = pScalingFactor[1];
-    floatValue3 = pScalingFactor[2];
-    floatValue4 = pScalingFactor[3];
-    SystemProcessingResult = -(uint)(0.0001 < floatValue1);
-    SystemInitializationStatus = -(uint)(0.0001 < floatValue2);
-    SystemOperationCounter = -(uint)(0.0001 < floatValue3);
-    SystemInitializationStatus5 = -(uint)(0.0001 < floatValue4);
+    MatrixElement1 = *pScalingFactor;
+    MatrixElement2 = pScalingFactor[1];
+    MatrixElement3 = pScalingFactor[2];
+    MatrixElement4 = pScalingFactor[3];
+    SystemProcessingResult = -(uint)(0.0001 < MatrixElement1);
+    SystemInitializationStatus = -(uint)(0.0001 < MatrixElement2);
+    SystemOperationCounter = -(uint)(0.0001 < MatrixElement3);
+    SystemInitializationStatus5 = -(uint)(0.0001 < MatrixElement4);
     SystemResourceManager = SystemOperationResult + 8;
     BaseValue = pScalingFactor[4];
     floatValue6 = pScalingFactor[5];
     floatValue7 = pScalingFactor[6];
-    floatValue8 = pScalingFactor[7];
+    CalculationResult8 = pScalingFactor[7];
     pScalingFactor = pScalingFactor + 8;
-    floatValue24 = (float)((uint)((float)SystemOperationResult * (float)InterpolationCoefficient1 * 0.5 * MagnitudeSquared * floatValue1 + floatValue24) &
-                     SystemProcessingResult | ~SystemProcessingResult & (uint)floatValue24);
-    floatValue28 = (float)((uint)((float)(SystemOperationResult + 1) * (float)InterpolationCoefficient2 * 0.5 * ResultValue2 * floatValue2 +
-                           floatValue28) & SystemInitializationStatus | ~SystemInitializationStatus & (uint)floatValue28);
-    floatValue30 = (float)((uint)((float)(SystemOperationResult + 2) * (float)InterpolationCoefficient3 * 0.5 * MatrixValue1 * floatValue3 +
-                           floatValue30) & SystemOperationCounter | ~SystemOperationCounter & (uint)floatValue30);
-    InterpolationFactorV = (float)((uint)((float)(SystemOperationResult + 3) * (float)InterpolationCoefficient4 * 0.5 * MatrixValue2 * floatValue4 +
+    MatrixElement24 = (float)((uint)((float)SystemOperationResult * (float)InterpolationCoefficient1 * 0.5 * MagnitudeSquared * MatrixElement1 + MatrixElement24) &
+                     SystemProcessingResult | ~SystemProcessingResult & (uint)MatrixElement24);
+    MatrixElement28 = (float)((uint)((float)(SystemOperationResult + 1) * (float)InterpolationCoefficient2 * 0.5 * ResultValue2 * MatrixElement2 +
+                           MatrixElement28) & SystemInitializationStatus | ~SystemInitializationStatus & (uint)MatrixElement28);
+    MatrixElement30 = (float)((uint)((float)(SystemOperationResult + 2) * (float)InterpolationCoefficient3 * 0.5 * MatrixValue1 * MatrixElement3 +
+                           MatrixElement30) & SystemOperationCounter | ~SystemOperationCounter & (uint)MatrixElement30);
+    InterpolationFactorV = (float)((uint)((float)(SystemOperationResult + 3) * (float)InterpolationCoefficient4 * 0.5 * MatrixValue2 * MatrixElement4 +
                            InterpolationFactorV) & SystemInitializationStatus5 | ~SystemInitializationStatus5 & (uint)InterpolationFactorV);
-    MatrixValue3 = (float)((uint)(floatValue1 + MatrixValue3) & SystemProcessingResult | ~SystemProcessingResult & (uint)MatrixValue3);
-    floatValue25 = (float)((uint)(floatValue2 + floatValue25) & SystemInitializationStatus | ~SystemInitializationStatus & (uint)floatValue25);
-    floatValue26 = (float)((uint)(floatValue3 + floatValue26) & SystemOperationCounter | ~SystemOperationCounter & (uint)floatValue26);
-    floatValue27 = (float)((uint)(floatValue4 + floatValue27) & SystemInitializationStatus5 | ~SystemInitializationStatus5 & (uint)floatValue27);
+    MatrixValue3 = (float)((uint)(MatrixElement1 + MatrixValue3) & SystemProcessingResult | ~SystemProcessingResult & (uint)MatrixValue3);
+    MatrixElement25 = (float)((uint)(MatrixElement2 + MatrixElement25) & SystemInitializationStatus | ~SystemInitializationStatus & (uint)MatrixElement25);
+    MatrixElement26 = (float)((uint)(MatrixElement3 + MatrixElement26) & SystemOperationCounter | ~SystemOperationCounter & (uint)MatrixElement26);
+    MatrixElement27 = (float)((uint)(MatrixElement4 + MatrixElement27) & SystemInitializationStatus5 | ~SystemInitializationStatus5 & (uint)MatrixElement27);
     SystemProcessingResult = -(uint)(0.0001 < BaseValue);
     SystemInitializationStatus = -(uint)(0.0001 < floatValue6);
     SystemOperationCounter = -(uint)(0.0001 < floatValue7);
-    SystemInitializationStatus5 = -(uint)(0.0001 < floatValue8);
-    floatValue29 = (float)((uint)((float)(SystemOperationResult + 4) * (float)AudioChannelCoefficient1 * 0.5 * MagnitudeSquared * BaseValue +
-                           floatValue29) & SystemProcessingResult | ~SystemProcessingResult & (uint)floatValue29);
-    floatValue31 = (float)((uint)((float)(SystemOperationResult + 5) * (float)AudioChannelCoefficient2 * 0.5 * ResultValue2 * floatValue6 +
-                           floatValue31) & SystemInitializationStatus | ~SystemInitializationStatus & (uint)floatValue31);
-    floatValue32 = (float)((uint)((float)(SystemOperationResult + 6) * (float)AudioChannelCoefficient3 * 0.5 * MatrixValue1 * floatValue7 +
-                           floatValue32) & SystemOperationCounter | ~SystemOperationCounter & (uint)floatValue32);
-    floatValue33 = (float)((uint)((float)(SystemOperationResult + 7) * (float)AudioChannelCoefficient4 * 0.5 * MatrixValue2 * floatValue8 +
-                           floatValue33) & SystemInitializationStatus5 | ~SystemInitializationStatus5 & (uint)floatValue33);
-    floatValue34 = (float)((uint)(BaseValue + floatValue34) & SystemProcessingResult | ~SystemProcessingResult & (uint)floatValue34);
-    floatValue35 = (float)((uint)(floatValue6 + floatValue35) & SystemInitializationStatus | ~SystemInitializationStatus & (uint)floatValue35);
-    floatValue36 = (float)((uint)(floatValue7 + floatValue36) & SystemOperationCounter | ~SystemOperationCounter & (uint)floatValue36);
-    floatValue37 = (float)((uint)(floatValue8 + floatValue37) & SystemInitializationStatus5 | ~SystemInitializationStatus5 & (uint)floatValue37);
+    SystemInitializationStatus5 = -(uint)(0.0001 < CalculationResult8);
+    MatrixElement29 = (float)((uint)((float)(SystemOperationResult + 4) * (float)AudioChannelCoefficient1 * 0.5 * MagnitudeSquared * BaseValue +
+                           MatrixElement29) & SystemProcessingResult | ~SystemProcessingResult & (uint)MatrixElement29);
+    MatrixElement31 = (float)((uint)((float)(SystemOperationResult + 5) * (float)AudioChannelCoefficient2 * 0.5 * ResultValue2 * floatValue6 +
+                           MatrixElement31) & SystemInitializationStatus | ~SystemInitializationStatus & (uint)MatrixElement31);
+    MatrixElement32 = (float)((uint)((float)(SystemOperationResult + 6) * (float)AudioChannelCoefficient3 * 0.5 * MatrixValue1 * floatValue7 +
+                           MatrixElement32) & SystemOperationCounter | ~SystemOperationCounter & (uint)MatrixElement32);
+    MatrixElement33 = (float)((uint)((float)(SystemOperationResult + 7) * (float)AudioChannelCoefficient4 * 0.5 * MatrixValue2 * CalculationResult8 +
+                           MatrixElement33) & SystemInitializationStatus5 | ~SystemInitializationStatus5 & (uint)MatrixElement33);
+    MatrixElement34 = (float)((uint)(BaseValue + MatrixElement34) & SystemProcessingResult | ~SystemProcessingResult & (uint)MatrixElement34);
+    MatrixElement35 = (float)((uint)(floatValue6 + MatrixElement35) & SystemInitializationStatus | ~SystemInitializationStatus & (uint)MatrixElement35);
+    MatrixElement36 = (float)((uint)(floatValue7 + MatrixElement36) & SystemOperationCounter | ~SystemOperationCounter & (uint)MatrixElement36);
+    MatrixElement37 = (float)((uint)(CalculationResult8 + MatrixElement37) & SystemInitializationStatus5 | ~SystemInitializationStatus5 & (uint)MatrixElement37);
   } while (SystemResourceManager < (int)(ConfigurationFlag - ThreadContextIndicator));
-  MagnitudeSquared = floatValue26 + floatValue36 + MatrixValue3 + floatValue34 + floatValue27 + floatValue37 + floatValue25 + floatValue35;
-  floatValue24 = floatValue30 + floatValue32 + floatValue24 + floatValue29 + InterpolationFactorV + floatValue33 + floatValue28 + floatValue31;
+  MagnitudeSquared = MatrixElement26 + MatrixElement36 + MatrixValue3 + MatrixElement34 + MatrixElement27 + MatrixElement37 + MatrixElement25 + MatrixElement35;
+  MatrixElement24 = MatrixElement30 + MatrixElement32 + MatrixElement24 + MatrixElement29 + InterpolationFactorV + MatrixElement33 + MatrixElement28 + MatrixElement31;
   if (SystemResourceManager < (int)ConfigurationFlag) {
     if (3 < (int)(ConfigurationFlag - SystemResourceManager)) {
       SystemOperationResult = SystemOperationResult + 10;
-      floatValue28 = (float)systemCounter;
+      MatrixElement28 = (float)systemCounter;
       pScalingFactor = systemDataIndexPtr + (long long)SystemResourceManager + 2;
-      floatValue30 = (float)(int)ConfigurationFlag;
+      MatrixElement30 = (float)(int)ConfigurationFlag;
       do {
         InterpolationFactorV = pScalingFactor[-2];
         if (0.0001 < InterpolationFactorV) {
           MagnitudeSquared = MagnitudeSquared + InterpolationFactorV;
-          floatValue24 = floatValue24 + ((floatValue28 * 0.5 * (float)SystemResourceManager) / floatValue30) * InterpolationFactorV;
+          MatrixElement24 = MatrixElement24 + ((MatrixElement28 * 0.5 * (float)SystemResourceManager) / MatrixElement30) * InterpolationFactorV;
         }
         InterpolationFactorV = pScalingFactor[-1];
         if (0.0001 < InterpolationFactorV) {
           MagnitudeSquared = MagnitudeSquared + InterpolationFactorV;
-          floatValue24 = floatValue24 + (((float)(SystemOperationResult + -1) * floatValue28 * 0.5) / floatValue30) * InterpolationFactorV;
+          MatrixElement24 = MatrixElement24 + (((float)(SystemOperationResult + -1) * MatrixElement28 * 0.5) / MatrixElement30) * InterpolationFactorV;
         }
         InterpolationFactorV = *pScalingFactor;
         if (0.0001 < InterpolationFactorV) {
           MagnitudeSquared = MagnitudeSquared + InterpolationFactorV;
-          floatValue24 = floatValue24 + (((float)SystemOperationResult * floatValue28 * 0.5) / floatValue30) * InterpolationFactorV;
+          MatrixElement24 = MatrixElement24 + (((float)SystemOperationResult * MatrixElement28 * 0.5) / MatrixElement30) * InterpolationFactorV;
         }
         InterpolationFactorV = pScalingFactor[1];
         if (0.0001 < InterpolationFactorV) {
           MagnitudeSquared = MagnitudeSquared + InterpolationFactorV;
-          floatValue24 = floatValue24 + (((float)(SystemOperationResult + 1) * floatValue28 * 0.5) / floatValue30) * InterpolationFactorV;
+          MatrixElement24 = MatrixElement24 + (((float)(SystemOperationResult + 1) * MatrixElement28 * 0.5) / MatrixElement30) * InterpolationFactorV;
         }
         pScalingFactor = pScalingFactor + 4;
         SystemResourceManager = SystemResourceManager + 4;
@@ -70821,11 +70821,11 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
     if (SystemResourceManager < (int)ConfigurationFlag) {
       pScalingFactor = systemDataIndexPtr + SystemResourceManager;
       do {
-        floatValue28 = *pScalingFactor;
-        if (0.0001 < floatValue28) {
-          MagnitudeSquared = MagnitudeSquared + floatValue28;
-          floatValue24 = floatValue24 + (((float)systemCounter * 0.5 * (float)SystemResourceManager) / (float)(int)ConfigurationFlag) *
-                            floatValue28;
+        MatrixElement28 = *pScalingFactor;
+        if (0.0001 < MatrixElement28) {
+          MagnitudeSquared = MagnitudeSquared + MatrixElement28;
+          MatrixElement24 = MatrixElement24 + (((float)systemCounter * 0.5 * (float)SystemResourceManager) / (float)(int)ConfigurationFlag) *
+                            MatrixElement28;
         }
         pScalingFactor = pScalingFactor + 1;
         SystemResourceManager = SystemResourceManager + 1;
@@ -70836,7 +70836,7 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
     *in_R11 = 0.0;
   }
   else {
-    *in_R11 = floatValue24 / MagnitudeSquared;
+    *in_R11 = MatrixElement24 / MagnitudeSquared;
   }
   return 0;
 }
@@ -71244,49 +71244,49 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               CurrentThreadIdentifier = (ulong long)(SystemProcessingResult - 2);
               ThreadContextIndicator = SystemProcessingResult - 3;
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + 4 + (ulong long)ThreadContextIndicator * 8);
-              floatValue1 = *(float *)(SystemProcessingBufferPointer + (ulong long)ThreadContextIndicator * 8);
-              floatValue2 = *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8);
-              floatValue3 = *(float *)(SystemProcessingBufferPointer + 4 + ResourceDataLocation * 8);
-              InterpolationFactorV = floatValue1 * ResultValue2 - MagnitudeSquared * ResultValue1;
-              MagnitudeSquared = MagnitudeSquared * ResultValue2 + floatValue1 * ResultValue1;
-              *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8) = InterpolationFactorV + floatValue2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + floatValue3;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + (ulong long)ThreadContextIndicator * 8) = floatValue2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (ulong long)ThreadContextIndicator * 8) = floatValue3 - MagnitudeSquared;
+              MatrixElement1 = *(float *)(SystemProcessingBufferPointer + (ulong long)ThreadContextIndicator * 8);
+              MatrixElement2 = *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8);
+              MatrixElement3 = *(float *)(SystemProcessingBufferPointer + 4 + ResourceDataLocation * 8);
+              InterpolationFactorV = MatrixElement1 * ResultValue2 - MagnitudeSquared * ResultValue1;
+              MagnitudeSquared = MagnitudeSquared * ResultValue2 + MatrixElement1 * ResultValue1;
+              *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + (ulong long)ThreadContextIndicator * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + (ulong long)ThreadContextIndicator * 8) = MatrixElement3 - MagnitudeSquared;
               SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + 4 + CurrentThreadIdentifier * 8);
-              floatValue1 = *(float *)(SystemProcessingBufferPointer + CurrentThreadIdentifier * 8);
-              floatValue2 = *(float *)(SystemProcessingBufferPointer + 8 + ResourceDataLocation * 8);
-              floatValue3 = *(float *)(SystemProcessingBufferPointer + 0xc + ResourceDataLocation * 8);
-              InterpolationFactorV = floatValue1 * ResultValue2 - MagnitudeSquared * ResultValue1;
-              MagnitudeSquared = MagnitudeSquared * ResultValue2 + floatValue1 * ResultValue1;
-              *(float *)(SystemProcessingBufferPointer + 8 + ResourceDataLocation * 8) = InterpolationFactorV + floatValue2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0xc + ResourceDataLocation * 8) = MagnitudeSquared + floatValue3;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + CurrentThreadIdentifier * 8) = floatValue2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + CurrentThreadIdentifier * 8) = floatValue3 - MagnitudeSquared;
+              MatrixElement1 = *(float *)(SystemProcessingBufferPointer + CurrentThreadIdentifier * 8);
+              MatrixElement2 = *(float *)(SystemProcessingBufferPointer + 8 + ResourceDataLocation * 8);
+              MatrixElement3 = *(float *)(SystemProcessingBufferPointer + 0xc + ResourceDataLocation * 8);
+              InterpolationFactorV = MatrixElement1 * ResultValue2 - MagnitudeSquared * ResultValue1;
+              MagnitudeSquared = MagnitudeSquared * ResultValue2 + MatrixElement1 * ResultValue1;
+              *(float *)(SystemProcessingBufferPointer + 8 + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0xc + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + CurrentThreadIdentifier * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + CurrentThreadIdentifier * 8) = MatrixElement3 - MagnitudeSquared;
               SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + SystemInitializationStatus * 8);
-              floatValue1 = *(float *)(SystemProcessingBufferPointer + 4 + SystemInitializationStatus * 8);
-              floatValue2 = *(float *)(SystemProcessingBufferPointer + 0x10 + ResourceDataLocation * 8);
-              floatValue3 = *(float *)(SystemProcessingBufferPointer + 0x14 + ResourceDataLocation * 8);
-              InterpolationFactorV = MagnitudeSquared * ResultValue2 - floatValue1 * ResultValue1;
-              MagnitudeSquared = floatValue1 * ResultValue2 + MagnitudeSquared * ResultValue1;
-              *(float *)(SystemProcessingBufferPointer + 0x10 + ResourceDataLocation * 8) = InterpolationFactorV + floatValue2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0x14 + ResourceDataLocation * 8) = MagnitudeSquared + floatValue3;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + SystemInitializationStatus * 8) = floatValue2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SystemInitializationStatus * 8) = floatValue3 - MagnitudeSquared;
+              MatrixElement1 = *(float *)(SystemProcessingBufferPointer + 4 + SystemInitializationStatus * 8);
+              MatrixElement2 = *(float *)(SystemProcessingBufferPointer + 0x10 + ResourceDataLocation * 8);
+              MatrixElement3 = *(float *)(SystemProcessingBufferPointer + 0x14 + ResourceDataLocation * 8);
+              InterpolationFactorV = MagnitudeSquared * ResultValue2 - MatrixElement1 * ResultValue1;
+              MagnitudeSquared = MatrixElement1 * ResultValue2 + MagnitudeSquared * ResultValue1;
+              *(float *)(SystemProcessingBufferPointer + 0x10 + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0x14 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + SystemInitializationStatus * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SystemInitializationStatus * 8) = MatrixElement3 - MagnitudeSquared;
               SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + SystemInitializationStatusFlags * 8);
-              floatValue1 = *(float *)(SystemProcessingBufferPointer + 4 + SystemInitializationStatusFlags * 8);
-              floatValue2 = *(float *)(SystemProcessingBufferPointer + 0x18 + ResourceDataLocation * 8);
-              floatValue3 = *(float *)(SystemProcessingBufferPointer + 0x1c + ResourceDataLocation * 8);
-              InterpolationFactorV = MagnitudeSquared * ResultValue2 - floatValue1 * ResultValue1;
-              MagnitudeSquared = floatValue1 * ResultValue2 + MagnitudeSquared * ResultValue1;
-              *(float *)(SystemProcessingBufferPointer + 0x18 + ResourceDataLocation * 8) = InterpolationFactorV + floatValue2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0x1c + ResourceDataLocation * 8) = MagnitudeSquared + floatValue3;
+              MatrixElement1 = *(float *)(SystemProcessingBufferPointer + 4 + SystemInitializationStatusFlags * 8);
+              MatrixElement2 = *(float *)(SystemProcessingBufferPointer + 0x18 + ResourceDataLocation * 8);
+              MatrixElement3 = *(float *)(SystemProcessingBufferPointer + 0x1c + ResourceDataLocation * 8);
+              InterpolationFactorV = MagnitudeSquared * ResultValue2 - MatrixElement1 * ResultValue1;
+              MagnitudeSquared = MatrixElement1 * ResultValue2 + MagnitudeSquared * ResultValue1;
+              *(float *)(SystemProcessingBufferPointer + 0x18 + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 0x1c + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
               ResourceDataLocation = ResourceDataLocation + 4;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + SystemInitializationStatusFlags * 8) = floatValue2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SystemInitializationStatusFlags * 8) = floatValue3 - MagnitudeSquared;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + SystemInitializationStatusFlags * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + SystemInitializationStatusFlags * 8) = MatrixElement3 - MagnitudeSquared;
               SystemProcessingResult = SystemProcessingResult + 4;
             } while (ResourceDataLocation < resourceCounter + -3);
           }
@@ -71296,16 +71296,16 @@ void* FastFourierTransform(void* context, void* dataBuffer, uint dataSize)
               CurrentThreadIdentifier = (ulong long)SystemProcessingResult;
               SystemProcessBufferPtr = *(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218);
               MagnitudeSquared = *(float *)(SystemProcessingBufferPointer + CurrentThreadIdentifier * 8);
-              floatValue1 = *(float *)(SystemProcessingBufferPointer + 4 + CurrentThreadIdentifier * 8);
-              floatValue2 = *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8);
-              floatValue3 = *(float *)(SystemProcessingBufferPointer + 4 + ResourceDataLocation * 8);
-              InterpolationFactorV = MagnitudeSquared * ResultValue2 - floatValue1 * ResultValue1;
-              MagnitudeSquared = floatValue1 * ResultValue2 + MagnitudeSquared * ResultValue1;
-              *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8) = InterpolationFactorV + floatValue2;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + floatValue3;
+              MatrixElement1 = *(float *)(SystemProcessingBufferPointer + 4 + CurrentThreadIdentifier * 8);
+              MatrixElement2 = *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8);
+              MatrixElement3 = *(float *)(SystemProcessingBufferPointer + 4 + ResourceDataLocation * 8);
+              InterpolationFactorV = MagnitudeSquared * ResultValue2 - MatrixElement1 * ResultValue1;
+              MagnitudeSquared = MatrixElement1 * ResultValue2 + MagnitudeSquared * ResultValue1;
+              *(float *)(SystemProcessingBufferPointer + ResourceDataLocation * 8) = InterpolationFactorV + MatrixElement2;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + ResourceDataLocation * 8) = MagnitudeSquared + MatrixElement3;
               ResourceDataLocation = ResourceDataLocation + 1;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + CurrentThreadIdentifier * 8) = floatValue2 - InterpolationFactorV;
-              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + CurrentThreadIdentifier * 8) = floatValue3 - MagnitudeSquared;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + CurrentThreadIdentifier * 8) = MatrixElement2 - InterpolationFactorV;
+              *(float *)(*(long long *)(in_R11 + TRANSFORM_CONTEXT_OFFSET_218) + 4 + CurrentThreadIdentifier * 8) = MatrixElement3 - MagnitudeSquared;
               SystemProcessingResult = SystemProcessingResult + 1;
             } while (ResourceDataLocation < resourceCounter);
           }
