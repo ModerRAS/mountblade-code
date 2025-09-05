@@ -32134,22 +32134,60 @@ void ProcessUtilityCallback(undefined8 *param_1)
 
 
 
-void ExceptionUnwindHandler1(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常展开处理器1
+ * 
+ * 该函数用于处理异常展开过程中的第一个阶段，检查并执行相关的清理操作。
+ * 当异常发生时，系统会调用此函数来确保资源的正确释放和状态的恢复。
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理所需的信息
+ * @param unwindContext 展开上下文，用于管理异常展开过程
+ * 
+ * @note 该函数检查异常处理链中的清理函数并执行相应的清理操作
+ * @warning 如果清理函数不存在，函数会直接返回而不执行任何操作
+ */
+void ExceptionUnwindHandler1(undefined8 exceptionContext, longlong unwindContext)
 
 {
-  if ((longlong *)**(longlong **)(param_2 + 0xc0) != (longlong *)0x0) {
-    (**(code **)(*(longlong *)**(longlong **)(param_2 + 0xc0) + 0x38))();
+  longlong *exceptionHandlerPointer;
+  longlong *exceptionHandlerChain;
+  
+  exceptionHandlerChain = *(longlong **)(unwindContext + 0xc0);
+  if (exceptionHandlerChain != (longlong *)0x0) {
+    exceptionHandlerPointer = (longlong *)*exceptionHandlerChain;
+    if (exceptionHandlerPointer != (longlong *)0x0) {
+      (**(code **)(exceptionHandlerPointer + 0x38))();
+    }
   }
   return;
 }
 
 
 
-void ExceptionUnwindHandler2(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常展开处理器2
+ * 
+ * 该函数用于处理异常展开过程中的第二个阶段，主要负责处理特定类型的异常清理。
+ * 该函数检查异常上下文中的处理器表并执行相应的清理操作。
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理所需的信息
+ * @param unwindContext 展开上下文，用于管理异常展开过程
+ * 
+ * @note 该函数主要处理偏移量0x58处的异常处理器
+ * @warning 如果处理器不存在，函数会直接返回而不执行任何操作
+ */
+void ExceptionUnwindHandler2(undefined8 exceptionContext, longlong unwindContext)
 
 {
-  if (*(longlong **)(param_2 + 0x58) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x58) + 0x38))();
+  longlong *exceptionProcessorTable;
+  longlong *exceptionProcessor;
+  
+  exceptionProcessorTable = *(longlong **)(unwindContext + 0x58);
+  if (exceptionProcessorTable != (longlong *)0x0) {
+    exceptionProcessor = (longlong *)*exceptionProcessorTable;
+    if (exceptionProcessor != (longlong *)0x0) {
+      (**(code **)(exceptionProcessor + 0x38))();
+    }
   }
   return;
 }
