@@ -2531,10 +2531,10 @@ undefined UNK_180a18a78;
 undefined UNK_1801527b4;
 undefined UNK_180a07340;
 undefined UNK_180a07378;
-longlong UNK_180c961a8;
-uint UNK_180d48d44;
-double UNK_180d48d48;
-double UNK_180d48d50;
+longlong SystemGlobalDataPointer;
+uint SystemStatusIndicator;
+double SystemPerformanceMetric1;
+double SystemPerformanceMetric2;
 int UNK_180d49260;
 double UNK_180d49268;
 undefined UNK_180a073d8;
@@ -9718,7 +9718,7 @@ undefined8 FUN_180894300(longlong param_1,longlong param_2)
 
 
 
-int FUN_180894380(longlong param_1,longlong param_2,int param_3)
+int ProcessUtilityDataWithCompression(longlong dataContext,longlong dataBuffer,int dataSize)
 
 {
   int iVar1;
@@ -9743,7 +9743,7 @@ int FUN_180894380(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180894460(longlong param_1,longlong param_2,int param_3)
+int ProcessUtilityDataWithEncryption(longlong dataContext,longlong dataBuffer,int dataSize)
 
 {
   int iVar1;
