@@ -44173,7 +44173,7 @@ void ReleaseSystemResource(void* SystemResourceManager)
   char *StringProcessingBuffer;
   int stackVariable290;
   uint32_t EncryptionKeyValue8;
-  void* EncryptionKeyValue0;
+  void* EncryptionKeyPrimary;
   long long StackInteger278;
   long long StackInteger268;
   void* SystemResourceHandle;
@@ -45163,7 +45163,7 @@ void ConfigureSystemDataProcessing(void* ResourceManager, void* ConfigurationDat
   void** SystemDataPointer;
   void** StackParamB;
   uint32_t SystemConfigValue;
-  void* SystemFlag88;
+  void* SystemDebugStatusFlag;
   uint8_t SystemCounterBuffer80 [72];
   
   SystemOperationResult = (**(code **)**(void* **)(SystemMemoryBlockStorage + 0x18))();
@@ -45174,7 +45174,7 @@ void ConfigureSystemDataProcessing(void* ResourceManager, void* ConfigurationDat
 SystemCounterCheckPoint:
         InitializeSystemCounter(SystemCounterBuffer80);
         StackParameterA = &SystemGlobalDataReference;
-        SystemFlag88 = 0;
+        SystemDebugStatusFlag = 0;
         StackParameterB = (void**)0x0;
         SystemConfigValue = 0;
         SystemThreadContext = (void*)CreateSystemThreadObject(SystemMemoryPoolTemplate, 0x10, 0x13);
@@ -48806,7 +48806,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
   uint8_t SystemStackParamC [16];
   code *CodePointer80;
   code *SystemFunctionPointer78;
-  void* SystemProcessFlags70;
+  void* SystemProcessStatusFlags;
   void* EncryptionValuePrimary;
   void* ThreadContextIndicator;
   void* SystemProcessFlagsPrimary;
@@ -54646,7 +54646,7 @@ void SystemCallbackManager(void* SystemResourceManager,void* ConfigurationDataPo
   void* systemEncryptionKey;
   void* systemOperationCounter;
   void* SystemContextValue;
-  void* systemStackPointer36;
+  void* systemStackPointerContext;
   uint32_t systemStackContextValueE;
   void* systemPointerValue;
   void* systemControlValue;
@@ -57145,7 +57145,7 @@ void ProcessSystemResourceManagerConfiguration(long long SystemResourceManager, 
   uint32_t ResourceAddress;
   uint32_t CurrentThreadIdentifier;
   uint32_t HashValue;
-  void* SystemValue7;
+  void* SystemTemporaryValue;
   char CharacterInput;
   long long ResourceCounter;
   long long* PrimaryResourceHandle0;
@@ -59098,7 +59098,7 @@ ulong long ProcessSystemResourceManagement(long long SystemResourceManager, uint
   void* EncryptionOffsetPrimary;
   void* EncryptionOffsetSecondary;
   void* MemoryBufferPointer;
-  void* StackPointerF0;
+  void* StackPointerFloatingPoint;
   void* StackPointerExtendedPrimary;
   void* StackPointerTertiary;
   void* SystemMemoryAllocatorStatus;
@@ -63988,7 +63988,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   void* EncryptionOffsetPrimary;
   void* EncryptionOffsetSecondary;
   void* MemoryBufferPointer;
-  void* StackPointerF0;
+  void* StackPointerFloatingPoint;
   void* StackPointerExtendedPrimary;
   void* StackPointerTertiary;
   void* SystemMemoryAllocatorStatus;

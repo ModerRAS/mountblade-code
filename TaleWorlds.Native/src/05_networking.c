@@ -2166,10 +2166,10 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
 NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t ConnectionContextId;      // 网络连接上下文标识符
-  int64_t *ValidationDataPointer;                // 网络连接验证结果数据指针
-  int32_t ValidationStatusCode;           // 网络连接验证结果码
-  NetworkHandle ContextHandle;           // 网络连接上下文句柄
+  int64_t NetworkConnectionContextIdentifier;      // 网络连接上下文标识符
+  int64_t *ConnectionValidationData;                // 网络连接验证结果数据指针
+  int32_t ConnectionValidationResultCode;           // 网络连接验证结果码
+  NetworkHandle ConnectionContextHandle;           // 网络连接上下文句柄
   
   NetworkConnectionContextIdentifier = 0;
   ConnectionValidationResultCode = 0;  // 初始化验证结果码
@@ -2185,7 +2185,7 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
     ConnectionContextHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
     if (ConnectionContextHandle != 0) {
       if ((int)ConnectionValidationData[ConnectionDataSizeIndex] != 0) {
-          memcpy(ConnectionContextHandle, *ConnectionValidationData, (int64_t)(int)ConnectionValidationData[ConnectionDataSizeIndex]);
+          memcpy((void *)ConnectionContextHandle, *ConnectionValidationData, (int64_t)(int)ConnectionValidationData[ConnectionDataSizeIndex]);
       }
       return ConnectionContextHandle;
     }

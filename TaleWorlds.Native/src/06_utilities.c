@@ -606,6 +606,127 @@
 // 功能：设置全局数据指针A41到指定地址
 #define SetGlobalDataPointerA41 FUN_1809424a0
 
+// 全局指针设置函数B系列语义化宏定义
+// 原始函数名：FUN_180941820 - 全局指针设置函数B1
+// 功能：设置全局数据指针B1到指定地址
+#define SetGlobalDataPointerB1 FUN_180941820
+
+// 原始函数名：FUN_180941840 - 全局指针设置函数B2
+// 功能：设置全局数据指针B2到指定地址
+#define SetGlobalDataPointerB2 FUN_180941840
+
+// 原始函数名：FUN_180941860 - 全局指针设置函数B3
+// 功能：设置全局数据指针B3到指定地址
+#define SetGlobalDataPointerB3 FUN_180941860
+
+// 原始函数名：FUN_180941880 - 全局指针设置函数B4
+// 功能：设置全局数据指针B4到指定地址
+#define SetGlobalDataPointerB4 FUN_180941880
+
+// 原始函数名：FUN_1809418a0 - 全局指针设置函数B5
+// 功能：设置全局数据指针B5到指定地址
+#define SetGlobalDataPointerB5 FUN_1809418a0
+
+// 原始函数名：FUN_1809418c0 - 全局指针设置函数B6
+// 功能：设置全局数据指针B6到指定地址
+#define SetGlobalDataPointerB6 FUN_1809418c0
+
+// 原始函数名：FUN_1809418e0 - 全局指针设置函数B7
+// 功能：设置全局数据指针B7到指定地址
+#define SetGlobalDataPointerB7 FUN_1809418e0
+
+// 原始函数名：FUN_180941900 - 全局指针设置函数B8
+// 功能：设置全局数据指针B8到指定地址
+#define SetGlobalDataPointerB8 FUN_180941900
+
+// 原始函数名：FUN_180941980 - 全局指针设置函数B9
+// 功能：设置全局数据指针B9到指定地址
+#define SetGlobalDataPointerB9 FUN_180941980
+
+// 原始函数名：FUN_1809419a0 - 全局指针设置函数B10
+// 功能：设置全局数据指针B10到指定地址
+#define SetGlobalDataPointerB10 FUN_1809419a0
+
+// 原始函数名：FUN_1809419c0 - 全局指针设置函数B11
+// 功能：设置全局数据指针B11到指定地址
+#define SetGlobalDataPointerB11 FUN_1809419c0
+
+// 原始函数名：FUN_1809419e0 - 全局指针设置函数B12
+// 功能：设置全局数据指针B12到指定地址
+#define SetGlobalDataPointerB12 FUN_1809419e0
+
+// 原始函数名：FUN_180941a30 - 全局指针设置函数B13
+// 功能：设置全局数据指针B13到指定地址
+#define SetGlobalDataPointerB13 FUN_180941a30
+
+// 原始函数名：FUN_180941ad0 - 全局指针设置函数B14
+// 功能：设置全局数据指针B14到指定地址
+#define SetGlobalDataPointerB14 FUN_180941ad0
+
+// 原始函数名：FUN_180941bf0 - 全局指针设置函数B15
+// 功能：设置全局数据指针B15到指定地址
+#define SetGlobalDataPointerB15 FUN_180941bf0
+
+// 原始函数名：FUN_180941d00 - 全局指针设置函数B16
+// 功能：设置全局数据指针B16到指定地址
+#define SetGlobalDataPointerB16 FUN_180941d00
+
+// 原始函数名：FUN_180941d20 - 全局指针设置函数B17
+// 功能：设置全局数据指针B17到指定地址
+#define SetGlobalDataPointerB17 FUN_180941d20
+
+// 原始函数名：FUN_180941d50 - 全局指针设置函数B18
+// 功能：设置全局数据指针B18到指定地址
+#define SetGlobalDataPointerB18 FUN_180941d50
+
+// 原始函数名：FUN_180941da0 - 全局指针设置函数B19
+// 功能：设置全局数据指针B19到指定地址
+#define SetGlobalDataPointerB19 FUN_180941da0
+
+// 原始函数名：FUN_180941dd0 - 全局指针设置函数B20
+// 功能：设置全局数据指针B20到指定地址
+#define SetGlobalDataPointerB20 FUN_180941dd0
+
+// 原始函数名：FUN_180941e00 - 全局指针设置函数B21
+// 功能：设置全局数据指针B21到指定地址
+#define SetGlobalDataPointerB21 FUN_180941e00
+
+// 原始函数名：FUN_180941e90 - 全局指针设置函数B22
+// 功能：设置全局数据指针B22到指定地址
+#define SetGlobalDataPointerB22 FUN_180941e90
+
+// 原始函数名：FUN_180941f00 - 全局指针设置函数B23
+// 功能：设置全局数据指针B23到指定地址
+#define SetGlobalDataPointerB23 FUN_180941f00
+
+// 原始函数名：FUN_180941f20 - 全局指针设置函数B24
+// 功能：设置全局数据指针B24到指定地址
+#define SetGlobalDataPointerB24 FUN_180941f20
+
+// 原始函数名：FUN_180941f40 - 全局指针设置函数B25
+// 功能：设置全局数据指针B25到指定地址
+#define SetGlobalDataPointerB25 FUN_180941f40
+
+// 原始函数名：FUN_180941f60 - 全局指针设置函数B26
+// 功能：设置全局数据指针B26到指定地址
+#define SetGlobalDataPointerB26 FUN_180941f60
+
+// 原始函数名：FUN_180941f80 - 全局指针设置函数B27
+// 功能：设置全局数据指针B27到指定地址
+#define SetGlobalDataPointerB27 FUN_180941f80
+
+// 原始函数名：FUN_180941fa0 - 全局指针设置函数B28
+// 功能：设置全局数据指针B28到指定地址
+#define SetGlobalDataPointerB28 FUN_180941fa0
+
+// 原始函数名：FUN_180941fc0 - 全局指针设置函数B29
+// 功能：设置全局数据指针B29到指定地址
+#define SetGlobalDataPointerB29 FUN_180941fc0
+
+// 原始函数名：FUN_180941fe0 - 全局指针设置函数B30
+// 功能：设置全局数据指针B30到指定地址
+#define SetGlobalDataPointerB30 FUN_180941fe0
+
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
 // 功能：执行工具回调函数，处理参数传递
 #define ExecuteUtilityCallbackB0 FUN_1809424c0
