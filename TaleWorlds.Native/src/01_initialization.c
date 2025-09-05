@@ -929,7 +929,7 @@ void* SystemMemoryRegionExpansionSierra;
 void* SystemMemoryRegionExpansionTango;
 void* SystemMemoryRegionExpansionUniform;
 void* SystemMemoryRegionExpansionVictor;
-void* SystemMemoryRegionExpansionW;
+void* SystemMemoryRegionExpansionWhiskey;
 /**
  * @brief 系统数据指针主指针
  */
