@@ -2133,6 +2133,14 @@
 // 功能：分配内存并返回分配的地址
 #define AllocateMemoryWithContext FUN_180882f00
 
+// 原始函数名：FUN_1808afc70 - 上下文数据获取函数
+// 功能：根据上下文获取相关数据
+#define GetContextData FUN_1808afc70
+
+// 原始函数名：FUN_1808ddc20 - 安全验证执行函数
+// 功能：执行安全验证操作并返回验证结果
+#define ExecuteSecurityValidation FUN_1808ddc20
+
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
 // 功能：执行工具回调函数，处理参数传递
 #define ExecuteUtilityCallbackB0 FUN_1809424c0
@@ -23408,7 +23416,7 @@ DataCheckpointB:
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  memoryBaseAddress = FUN_1808afc70();
+  memoryBaseAddress = GetContextData();
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -23619,7 +23627,7 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
   uStack_34 = resourcePointer[1];
   uStack_30 = resourcePointer[2];
   uStack_2c = resourcePointer[3];
-  validationStatus = FUN_1808ddc20(param_2,auStack_28,0,0x4c525443);
+  validationStatus = ExecuteSecurityValidation(param_2,auStack_28,0,0x4c525443);
   if ((((int)validationStatus == 0) && (validationStatus = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(param_2,param_1 + 0x20), (int)validationStatus == 0)) {
     memoryBaseAddress = 0x1c;
@@ -24296,9 +24304,9 @@ uint64_t ValidateAndProcessData(longlong dataContext, uint64_t *validationBuffer
   uint8_t validationDataA[32];
   uint8_t validationDataB[32];
   
-  dataValue = FUN_1808ddc20(param_2,auStack_48,1,0x54495645);
+  dataValue = ExecuteSecurityValidation(param_2,auStack_48,1,0x54495645);
   if (((((int)dataValue == 0) &&
-       (dataValue = FUN_1808ddc20(param_2,auStack_68,0,0x42495645), (int)dataValue == 0)) &&
+       (dataValue = ExecuteSecurityValidation(param_2,auStack_68,0,0x42495645), (int)dataValue == 0)) &&
       (dataValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)dataValue == 0)) &&
      (dataValue = ValidatePortControlRequest(param_2,param_1 + 0xd8), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -24418,7 +24426,7 @@ ulonglong ValidateAndProcessDataBlock(longlong dataBlock, longlong *validationCo
   uint auStackX_20 [2];
   undefined1 auStack_48 [32];
   
-  operationResult = FUN_1808ddc20(validationContext,auStack_48,0,0x54534e49);
+  operationResult = ExecuteSecurityValidation(validationContext,auStack_48,0,0x54534e49);
   if ((int)operationResult != 0) {
     return operationResult;
   }
@@ -25071,7 +25079,7 @@ void ValidateAndProcessSystemData(longlong SystemContext, undefined8 *DataArray)
   uint auStackX_20 [2];
   undefined1 auStack_48 [32];
   
-  arrayIndex = FUN_1808ddc20(param_2,auStack_48,0,0x2050414d);
+  arrayIndex = ExecuteSecurityValidation(param_2,auStack_48,0,0x2050414d);
   if ((arrayIndex == 0) && (arrayIndex = ValidatePortControlRequest(param_2,param_1 + 0x10), arrayIndex == 0)) {
     auStackX_20[0] = 0;
     arrayIndex = FUN_1808afe30(*param_2,auStackX_20);
@@ -25602,11 +25610,11 @@ ulonglong ValidateMemoryStatus(longlong ValidationContext, undefined8 *SecurityP
   undefined1 securityBuffer1 [32];
   undefined1 securityBuffer2 [32];
   
-  validationResult = FUN_1808ddc20(SecurityParams,securityBuffer2,1,0x4f4c4d50);
+  validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer2,1,0x4f4c4d50);
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  validationResult = FUN_1808ddc20(SecurityParams,securityBuffer1,0,0x424c4d50);
+  validationResult = ExecuteSecurityValidation(SecurityParams,securityBuffer1,0,0x424c4d50);
   if ((int)validationResult != 0) {
     return validationResult;
   }
@@ -26653,11 +26661,11 @@ ulonglong ProcessSystemDataA0(longlong systemContext, longlong *validationContex
   ulonglong dataFlags;
   
   operationResult = 1;
-  validationStatus = FUN_1808ddc20(validationContext,securityBuffer2,1,0x4d524150);
+  validationStatus = ExecuteSecurityValidation(validationContext,securityBuffer2,1,0x4d524150);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  validationStatus = FUN_1808ddc20(validationContext,securityBuffer1,0,0x424d5250);
+  validationStatus = ExecuteSecurityValidation(validationContext,securityBuffer1,0,0x424d5250);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -28140,7 +28148,7 @@ ulonglong FUN_18089cc80(longlong param_1,longlong *param_2)
   uint auStackX_20 [2];
   undefined1 auStack_38 [32];
   
-  validationStatus = FUN_1808ddc20(param_2,auStack_38,0,0x46454d50);
+  validationStatus = ExecuteSecurityValidation(param_2,auStack_38,0,0x46454d50);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -28370,7 +28378,7 @@ ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
   uint auStackX_20 [2];
   undefined1 auStack_48 [32];
   
-  functionReturnValue = FUN_1808ddc20(param_2,auStack_48,0,0x54534c50);
+  functionReturnValue = ExecuteSecurityValidation(param_2,auStack_48,0,0x54534c50);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -28714,12 +28722,12 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
   
-  functionReturnValue = FUN_1808ddc20(param_2,auStack_28,1,0x46464550);
+  functionReturnValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x46464550);
   if (((((int)functionReturnValue != 0) ||
-       (functionReturnValue = FUN_1808ddc20(param_2,auStack_48,0,0x42464550), (int)functionReturnValue != 0)) ||
+       (functionReturnValue = ExecuteSecurityValidation(param_2,auStack_48,0,0x42464550), (int)functionReturnValue != 0)) ||
       (functionReturnValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)functionReturnValue != 0)) ||
      ((*(uint *)(param_2 + 8) < 0x5b &&
-      (functionReturnValue = FUN_1808afc70(param_2,param_1 + 0x44), (int)functionReturnValue != 0)))) {
+      (functionReturnValue = GetContextData(param_2,param_1 + 0x44), (int)functionReturnValue != 0)))) {
     return functionReturnValue;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -28881,7 +28889,7 @@ undefined8 ValidateDataFormatA1(undefined8 param_1,longlong *param_2)
   undefined1 auStack_58 [32];
   undefined1 auStack_38 [32];
   
-  validationStatus = FUN_1808ddc20(param_2,auStack_38,1,0x53505250);
+  validationStatus = ExecuteSecurityValidation(param_2,auStack_38,1,0x53505250);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -28896,7 +28904,7 @@ ValidationDataHandler:
     return validationStatus;
   }
   if (aiStackX_18[0] < 1) goto LAB_18089d455;
-  validationStatus = FUN_1808ddc20(param_2,auStack_58,0,0x504f5250);
+  validationStatus = ExecuteSecurityValidation(param_2,auStack_58,0,0x504f5250);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -28995,7 +29003,7 @@ ValidationDataHandler:
     return validationStatus;
   }
   if (iStack00000000000000b0 < 1) goto LAB_18089d455;
-  validationStatus = FUN_1808ddc20();
+  validationStatus = ExecuteSecurityValidation();
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -29100,7 +29108,7 @@ undefined8 ValidateDataIntegrityA1(longlong param_1,undefined8 *param_2)
       return 0x1c;
     }
     dataValue = ProcessDataBlocksA1(*param_2,param_1 + 0x10);
-    if (((int)dataValue == 0) && (dataValue = FUN_1808afc70(param_2,param_1 + 8), (int)dataValue == 0)) {
+    if (((int)dataValue == 0) && (dataValue = GetContextData(param_2,param_1 + 8), (int)dataValue == 0)) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
@@ -29124,8 +29132,8 @@ void ValidateDataParametersC0(longlong param_1,undefined8 *param_2)
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
   
-  inputParameter = FUN_1808ddc20(param_2,auStack_28,1,0x4a4f5250);
-  if (((inputParameter == 0) && (inputParameter = FUN_1808ddc20(param_2,auStack_48,0,0x494b4e42), inputParameter == 0)) &&
+  inputParameter = ExecuteSecurityValidation(param_2,auStack_28,1,0x4a4f5250);
+  if (((inputParameter == 0) && (inputParameter = ExecuteSecurityValidation(param_2,auStack_48,0,0x494b4e42), inputParameter == 0)) &&
      (inputParameter = ValidatePortControlRequest(param_2,param_1 + 0x10), inputParameter == 0)) {
     if (*(uint *)(param_2 + 8) < 0x37) {
       inputParameter = 0;
@@ -29183,7 +29191,7 @@ void CheckSystemStateC0(undefined4 param_1)
   longlong unaff_RDI;
   undefined4 extraout_XMM0_Da;
   
-  inputParameter = FUN_1808ddc20(param_1,&stack0x00000030,0);
+  inputParameter = ExecuteSecurityValidation(param_1,&stack0x00000030,0);
   if (inputParameter == 0) {
     inputParameter = ValidatePortControlRequest(extraout_XMM0_Da,unaff_RDI + 0x10);
     if (inputParameter == 0) {
@@ -29256,9 +29264,9 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
   undefined1 auStack_58 [32];
   undefined1 auStack_38 [32];
   
-  validationStatus = FUN_1808ddc20(param_2,auStack_38,1,0x54495053);
+  validationStatus = ExecuteSecurityValidation(param_2,auStack_38,1,0x54495053);
   if ((((int)validationStatus == 0) &&
-      (validationStatus = FUN_1808ddc20(param_2,auStack_58,0,0x42495053), (int)validationStatus == 0)) &&
+      (validationStatus = ExecuteSecurityValidation(param_2,auStack_58,0,0x42495053), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)validationStatus == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -29667,12 +29675,12 @@ undefined8 ExecuteSystemCheckA1(longlong param_1,undefined8 *param_2)
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
   
-  functionReturnValue = FUN_1808ddc20(param_2,auStack_28,1,0x46464553);
+  functionReturnValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x46464553);
   if (((((int)functionReturnValue == 0) &&
-       (functionReturnValue = FUN_1808ddc20(param_2,auStack_48,0,0x42464553), (int)functionReturnValue == 0)) &&
+       (functionReturnValue = ExecuteSecurityValidation(param_2,auStack_48,0,0x42464553), (int)functionReturnValue == 0)) &&
       (functionReturnValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)functionReturnValue == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
-      (functionReturnValue = FUN_1808afc70(param_2,param_1 + 0x44), (int)functionReturnValue == 0)))) {
+      (functionReturnValue = GetContextData(param_2,param_1 + 0x44), (int)functionReturnValue == 0)))) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
@@ -29847,10 +29855,10 @@ undefined8 ProcessDataStreamA1(longlong param_1,undefined8 *param_2)
   undefined1 auStack_28 [32];
   
   if ((0x87 < *(uint *)(param_2 + 8)) &&
-     (dataValue = FUN_1808ddc20(param_2,auStack_28,1,0x46464353), (int)dataValue != 0)) {
+     (dataValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x46464353), (int)dataValue != 0)) {
     return dataValue;
   }
-  dataValue = FUN_1808ddc20(param_2,auStack_48,0,0x46454353);
+  dataValue = ExecuteSecurityValidation(param_2,auStack_48,0,0x46454353);
   if (((int)dataValue == 0) && (dataValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -29858,7 +29866,7 @@ undefined8 ProcessDataStreamA1(longlong param_1,undefined8 *param_2)
     dataValue = GetMemoryAddressA0(*param_2,param_1 + 0x6c);
     if (((int)dataValue == 0) && (dataValue = FUN_1808a5d60(param_2,param_1 + 0x48,0), (int)dataValue == 0)) {
       if ((*(int *)(param_2 + 8) - 0x4aU < 0x11) &&
-         (dataValue = FUN_1808afc70(param_2,param_1 + 0x44), (int)dataValue != 0)) {
+         (dataValue = GetContextData(param_2,param_1 + 0x44), (int)dataValue != 0)) {
         return dataValue;
       }
       if ((0x52 < *(uint *)(param_2 + 8)) &&
@@ -29900,11 +29908,11 @@ ulonglong FUN_18089e230(longlong param_1,longlong *param_2)
   undefined1 auStack_48 [32];
   ulonglong operationResult;
   
-  functionReturnValue = FUN_1808ddc20(param_2,auStack_48,1,0x50414e53);
+  functionReturnValue = ExecuteSecurityValidation(param_2,auStack_48,1,0x50414e53);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
-  functionReturnValue = FUN_1808ddc20(param_2,auStack_68,0,0x42414e53);
+  functionReturnValue = ExecuteSecurityValidation(param_2,auStack_68,0,0x42414e53);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -30332,9 +30340,9 @@ ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
   undefined1 auStack_58 [32];
   undefined1 auStack_38 [32];
   
-  memoryBaseAddress = FUN_1808ddc20(param_2,auStack_38,1,0x4e4c4d54);
+  memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_38,1,0x4e4c4d54);
   if ((((int)memoryBaseAddress == 0) &&
-      (memoryBaseAddress = FUN_1808ddc20(param_2,auStack_58,0,0x424e4c54), (int)memoryBaseAddress == 0)) &&
+      (memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_58,0,0x424e4c54), (int)memoryBaseAddress == 0)) &&
      (memoryBaseAddress = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)memoryBaseAddress == 0)) {
     poperationResult = (undefined4 *)FUN_180847820();
     memoryBaseAddress = 0;
@@ -30652,11 +30660,11 @@ ulonglong ProcessSystemDataValidationAndAllocation(longlong validationContext,lo
   undefined1 stackAllocation3 [32];
   
   dataFlags = 1;
-  memoryBaseAddress = FUN_1808ddc20(param_2,auStack_58,1,0x4e415254);
+  memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_58,1,0x4e415254);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  memoryBaseAddress = FUN_1808ddc20(param_2,auStack_78,0,0x424e5254);
+  memoryBaseAddress = ExecuteSecurityValidation(param_2,auStack_78,0,0x424e5254);
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
@@ -31567,9 +31575,9 @@ undefined8 ProcessDataCollectionA1(longlong param_1,undefined8 *param_2)
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
   
-  functionReturnValue = FUN_1808ddc20(param_2,auStack_28,1,0x54494157);
+  functionReturnValue = ExecuteSecurityValidation(param_2,auStack_28,1,0x54494157);
   if (((((int)functionReturnValue == 0) &&
-       (functionReturnValue = FUN_1808ddc20(param_2,auStack_48,0,0x42494157), (int)functionReturnValue == 0)) &&
+       (functionReturnValue = ExecuteSecurityValidation(param_2,auStack_48,0,0x42494157), (int)functionReturnValue == 0)) &&
       (functionReturnValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)functionReturnValue == 0)) &&
      ((0x45 < *(uint *)(param_2 + 8) ||
       (functionReturnValue = FUN_1808a2d50(param_2,param_1 + 0xd8), (int)functionReturnValue == 0)))) {
