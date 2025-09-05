@@ -49028,7 +49028,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     if ((charOutput == '\0') || (SystemContextReference = 0, *(char *)(SystemResourceManager + 0x400) != '\0')) {
         ValidateSystemChecksum(SystemContextValue ^ (ulong long)SystemMemoryAllocationOffsetBuffer);
     }
-    SystemGlobalDataReferencePtr2 = &SystemMemoryAllocatorTemplate;
+    SystemSecondaryGlobalDataReferencePtr = &SystemMemoryAllocatorTemplate;
     ByteBuffer1F0 = ArrayBuffer1E0;
     IntegerStack1E8 = 0;
     ArrayBuffer1E0[0] = 0;
@@ -49047,7 +49047,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
     ResourceDataIndex4 = *(long long *)(SystemResourceManager + 0x3d0) - resourceDataIndexPrimary;
     SystemAllocationFlags = ResourceDataIndex4 >> 0x3f;
     if (ResourceDataIndex4 / 0x1a8 + SystemAllocationFlags == SystemAllocationFlags) {
-      charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemGlobalDataReferencePtr2);
+      charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
       if (SystemAvailabilityFlag == '\0') {
         resourceDataIndexPrimary = SystemResourceManager + 0x378;
         SystemMemoryAlignment = 0;
@@ -49075,7 +49075,7 @@ void ProcessSystemResourceNodeQueue(long long SystemResourceManager)
         if ((SystemInitializationStatusFlags & 0xfffffffd) != 0) {
           ThrowSystemError(SystemInitializationStatusFlags);
         }
-        charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemGlobalDataReferencePtr2);
+        charOutput = FindMatchingConfigurationResource(SystemResourceManager + 200,&SystemSecondaryGlobalDataReferencePtr);
         if (SystemAvailabilityFlag == '\0') {
           SystemInitializationStatusPrimary = _Mtx_unlock(resourceDataIndexPrimary);
           if (SystemInitializationStatusPrimary != 0) {
@@ -49263,14 +49263,14 @@ StackCheckPoint3:
         }
         if (((SystemHashEntryValue < SystemAllocationFlags + SystemContextReference) ||
             ((ulong long)(long long)*(int *)(SystemResourceManager + 0x3fc) < (long long)SystemInitializationStatusPrimary + 1U)) ||
-           (charOutput = (**(code **)*ResourceHashEntryPointer0)(ResourceHashEntryPointer0,ResourceDataOffset,&SystemGlobalDataReferencePtr2), charOutput == '\0')) {
+           (charOutput = (**(code **)*ResourceHashEntryPointer0)(ResourceHashEntryPointer0,ResourceDataOffset,&SystemSecondaryGlobalDataReferencePtr), charOutput == '\0')) {
           LOCK();
           *(long long *)(SystemResourceManager + 0x3f0) = *(long long *)(SystemResourceManager + 0x3f0) - SystemContextReference;
           UNLOCK();
           LOCK();
           *(int *)(SystemResourceManager + 0x3f8) = *(int *)(SystemResourceManager + 0x3f8) + -1;
           UNLOCK();
-          AllocateSystemResourceNode(SystemResourceManager + 0x3c8,&SystemGlobalDataReferencePtr2);
+          AllocateSystemResourceNode(SystemResourceManager + 0x3c8,&SystemSecondaryGlobalDataReferencePtr);
 StackCheckPoint4:
           pSystemOperationResult2 = *(code **)(**(long long **)(SystemResourceManager + 0xc0) + 0x28);
           if (pSystemOperationResult2 != _guard_check_icall) {
@@ -49340,7 +49340,7 @@ StackCheckPoint4:
         SystemContextReference = *(ulong long *)(SystemResourceManager + 0x3d0);
         if (SystemContextReference < *(ulong long *)(SystemResourceManager + 0x3d8)) {
           *(ulong long *)(SystemResourceManager + 0x3d0) = SystemContextReference + 0x1a8;
-          ProcessSystemResourceData(SystemContextReference,&SystemGlobalDataReferencePtr2);
+          ProcessSystemResourceData(SystemContextReference,&SystemSecondaryGlobalDataReferencePtr);
           goto StackCheckPoint4;
         }
         SystemAllocationFlags = *PrimaryResourceHandle8;
@@ -49358,7 +49358,7 @@ StackCheckPoint6:
         }
         InitializeSystemMemoryAllocatorWithHashNodes(&SystemMemorySize,SystemAllocationFlags,SystemContextReference,ResourceDataOffset);
         SystemMemoryPointer = SystemMemorySize;
-        ProcessSystemResourceData(SystemMemorySize,&SystemGlobalDataReferencePtr2);
+        ProcessSystemResourceData(SystemMemorySize,&SystemSecondaryGlobalDataReferencePtr);
         SystemAllocationFlags = *(long long *)(SystemResourceManager + 0x3d0);
         SystemThreadHandlePrimary = *PrimaryResourceHandle8;
         if (SystemThreadHandlePrimary != SystemAllocationFlags) {
@@ -49377,7 +49377,7 @@ StackCheckPoint6:
         goto StackCheckPoint4;
       }
       *(int *)(resourcePoolPointer3 + 0x65) = (int)resourcePoolPointer3[0x65] + 1;
-      ResourceDataOffset = (**(code **)(*resourcePoolPointer3 + 8))(resourcePoolPointer3,&SystemGlobalDataReferencePtr2);
+      ResourceDataOffset = (**(code **)(*resourcePoolPointer3 + 8))(resourcePoolPointer3,&SystemSecondaryGlobalDataReferencePtr);
       if (ResourceDataOffset != 0) goto StackCheckPoint3;
       (*SystemFunctionPointer78)(SystemStackParameterC);
       ppSystemDataBufferOffset = (void* **)SystemStackParameterC;
@@ -49404,7 +49404,7 @@ StackCheckPoint5:
         (*CharacterBufferPointer)(aSystemFlagSecondary,0,0);
       }
     }
-    ppSystemDataBufferOffset = &SystemGlobalDataReferencePtr2;
+    ppSystemDataBufferOffset = &SystemSecondaryGlobalDataReferencePtr;
     SystemGlobalDataReferencePtrSecondary = &SystemMemoryAllocatorReference;
     charOutput = *(char *)(*(long long *)(SystemResourceManager + 1000) + 0x58);
   } while( true );
