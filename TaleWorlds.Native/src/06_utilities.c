@@ -9304,7 +9304,7 @@ undefined8 ValidateAndProcessFloatingPointNumberA1(longlong param_1,longlong par
 
 
 
-undefined8 FUN_1808928d3(void)
+undefined8 QuerySystemStatusE0(void)
 
 {
   float fVar1;
@@ -9341,7 +9341,7 @@ undefined8 FUN_1808928d3(void)
 
 
 
-undefined8 FUN_1808928f1(void)
+undefined8 InitializeSystemE0(void)
 
 {
   float fVar1;
@@ -9376,37 +9376,37 @@ undefined8 FUN_1808928f1(void)
 
 
 
-undefined8 FUN_180892909(undefined4 param_1)
+undefined8 ValidateParametersE0(undefined4 parameterFlags)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong unaff_RBX;
-  longlong unaff_RBP;
-  longlong unaff_RDI;
-  longlong in_stack_00000040;
+  float floatValue;
+  undefined8 validationResult;
+  longlong contextHandle;
+  longlong basePointer;
+  longlong dataPointer;
+  longlong stackPointer;
   
-  if ((*(byte *)(unaff_RBX + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(contextHandle + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  uVar2 = FUN_18084de40(param_1,unaff_RDI + 0x25,unaff_RDI + 0x20);
-  if ((int)uVar2 == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x20);
-    if ((*(float *)(unaff_RBX + 0x38) <= fVar1) &&
-       (fVar1 < *(float *)(unaff_RBX + 0x3c) || fVar1 == *(float *)(unaff_RBX + 0x3c))) {
-      uVar2 = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(in_stack_00000040 + 4) = fVar1;
+  validationResult = FUN_18084de40(parameterFlags,dataPointer + 0x25,dataPointer + 0x20);
+  if ((int)validationResult == 0) {
+    floatValue = *(float *)(dataPointer + 0x20);
+    if ((*(float *)(contextHandle + 0x38) <= floatValue) &&
+       (floatValue < *(float *)(contextHandle + 0x3c) || floatValue == *(float *)(contextHandle + 0x3c))) {
+      validationResult = *(undefined8 *)(basePointer + 0x98);
+      *(float *)(stackPointer + 4) = floatValue;
                     // WARNING: Subroutine does not return
-      FUN_18088d720(uVar2);
+      FUN_18088d720(validationResult);
     }
-    uVar2 = 0x1c;
+    validationResult = 0x1c;
   }
-  return uVar2;
+  return validationResult;
 }
 
 
 
-undefined8 FUN_180892920(undefined4 param_1)
+undefined8 ValidateParametersE1(undefined4 validationFlags)
 
 {
   float fVar1;
@@ -9433,7 +9433,7 @@ undefined8 FUN_180892920(undefined4 param_1)
 
 
 
-undefined8 FUN_180892974(void)
+undefined8 CleanupSystemE0(void)
 
 {
   return 0x1c;
@@ -9451,36 +9451,36 @@ void UtilityNoOperationH(void)
 
 
 
-undefined8 FUN_180892990(longlong param_1,longlong param_2)
+undefined8 ProcessSystemDataE1(longlong systemContext,longlong dataBuffer)
 
 {
-  float fVar1;
-  longlong lVar2;
-  longlong lVar3;
-  undefined8 uVar4;
-  longlong lVar5;
-  float fVar6;
-  uint auStackX_8 [2];
-  longlong lStackX_18;
+  float floatValue1;
+  longlong pointer1;
+  longlong pointer2;
+  undefined8 operationResult;
+  longlong resourceHandle;
+  float floatValue2;
+  uint validationBuffer [2];
+  longlong stackBuffer;
   
-  auStackX_8[0] = *(uint *)(param_1 + 0x18);
-  if ((auStackX_8[0] & 0x7f800000) == 0x7f800000) {
+  validationBuffer[0] = *(uint *)(systemContext + 0x18);
+  if ((validationBuffer[0] & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  if (param_1 + 0x28 != 0) {
-    uVar4 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
-    if ((int)uVar4 != 0) {
-      return uVar4;
+  if (systemContext + 0x28 != 0) {
+    operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(systemContext + 0x10),&stackBuffer);
+    if ((int)operationResult != 0) {
+      return operationResult;
     }
-    lVar5 = lStackX_18;
-    if (lStackX_18 != 0) {
-      lVar5 = lStackX_18 + -8;
+    resourceHandle = stackBuffer;
+    if (stackBuffer != 0) {
+      resourceHandle = stackBuffer + -8;
     }
-    lVar2 = *(longlong *)(lVar5 + 0x18);
-    if (lVar2 == 0) {
+    pointer1 = *(longlong *)(resourceHandle + 0x18);
+    if (pointer1 == 0) {
       return 0x1e;
     }
-    auStackX_8[0] = 0;
+    validationBuffer[0] = 0;
     uVar4 = FUN_180840950(param_2,lVar5,param_1 + 0x28,auStackX_8);
     if ((int)uVar4 != 0) {
       return uVar4;
