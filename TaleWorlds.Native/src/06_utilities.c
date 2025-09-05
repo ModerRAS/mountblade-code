@@ -18731,7 +18731,7 @@ undefined8 ValidateDataA1(longlong *param_1,char param_2)
   
   *(undefined1 *)(param_1 + 4) = 1;
   uVar2 = FUN_18073a200(*(undefined8 *)(param_1[1] + 0x78),&uStackX_8);
-  if ((((int)uVar2 == 0) && (uVar2 = FUN_18073c4c0(uStackX_8,alStackX_18,0), (int)uVar2 == 0)) &&
+  if ((((int)uVar2 == 0) && (uVar2 = ProcessDataBufferA0(uStackX_8,alStackX_18,0), (int)uVar2 == 0)) &&
      (uVar2 = (**(code **)(*param_1 + 0x10))(param_1), (int)uVar2 == 0)) {
     uVar3 = (ulonglong)(alStackX_18[0] * 48000) / (ulonglong)*(uint *)((longlong)param_1 + 0x1c);
     validationContext = param_1[2];
