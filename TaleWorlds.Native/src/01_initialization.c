@@ -1099,13 +1099,13 @@ void* SystemMemoryAllocationTableEntrySeptendecenary; // 系统内存分配表�
 void* SystemMemoryAllocationTableEntryOctodecenary;  // 系统内存分配表条目第十八个
 
 void* SystemDataNodeManagerRoot;       // 系统数据节点管理器根节点
-void* SystemDataNodeSecondaryRoot;     // 系统数据节点第二根节点
-void* SystemDataNodeTertiaryRoot;      // 系统数据节点第三根节点
-void* SystemDataNodeQuaternaryRoot;    // 系统数据节点第四根节点
-void* SystemDataNodeQuinaryRoot;       // 系统数据节点第五根节点
-void* SystemDataNodePrimary;           // 系统数据节点主节点
-void* SystemDataNodeSecondary;         // 系统数据节点次节点
-void* SystemDataNodeTertiary;          // 系统数据节点第三节点
+void* SystemDataNodeMemoryRoot;     // 系统数据节点内存根节点
+void* SystemDataNodeRenderingRoot;      // 系统数据节点渲染根节点
+void* SystemDataNodeNetworkRoot;    // 系统数据节点网络根节点
+void* SystemDataNodeAudioRoot;       // 系统数据节点音频根节点
+void* SystemDataNodeResourceManager;           // 系统数据节点资源管理器
+void* SystemDataNodeMemoryManager;         // 系统数据节点内存管理器
+void* SystemDataNodeRenderingManager;          // 系统数据节点渲染管理器
 void* SystemDataNodeQuaternary;        // 系统数据节点第四节点
 void* SystemDataNodeQuinary;           // 系统数据节点第五节点
 void* SystemDataNodeSenary;            // 系统数据节点第六节点

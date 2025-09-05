@@ -5443,13 +5443,13 @@ uint8_t ValidateCharacterInput(char CharacterToValidate) {
  * @return uint8_t 验证结果，0表示成功，非0表示失败
  */
 uint8_t ValidateObjectHandleSecurity(int64_t ObjectHandleToValidate) {
-  uint8_t SecurityValidationResult;
+  uint8_t ObjectSecurityValidationCode;
   int64_t ValidatedObjectMemoryLocation;
   
   // 验证对象上下文并获取内存地址
-  SecurityValidationResult = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedObjectMemoryLocation);
-  if ((int)SecurityValidationResult != 0) {
-    return SecurityValidationResult;
+  ObjectSecurityValidationCode = ValidateObjectContext(*(uint32_t *)(ObjectHandleToValidate + ObjectHandleOffset), &ValidatedObjectMemoryLocation);
+  if ((int)ObjectSecurityValidationCode != 0) {
+    return ObjectSecurityValidationCode;
   }
   
   // 调整验证后的内存地址
@@ -97550,7 +97550,7 @@ void ReleaseSharedSRWLockVersion4(uint8_t ObjectContext, int64_t ValidationConte
 
 
 
-void Unwind_18090faa0(uint8_t ObjectContext,int64_t ValidationContext)
+void SetSystemDataStructureAtOffset158(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(ValidationContext + 0x158) = &SystemDataStructure;
