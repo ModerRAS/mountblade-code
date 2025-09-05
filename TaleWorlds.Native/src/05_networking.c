@@ -906,7 +906,7 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
-uint32_t NetworkConnectionManagerContext = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
+uint32_t *NetworkConnectionManagerContext = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
 uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据，存储连接管理的上下文信息和状态数据
 uint32_t NetworkConnectionStateFlags;                 // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
 uint32_t NetworkConnectionTimeoutMs;               // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
@@ -1570,8 +1570,8 @@ void SendNetworkData(void)
   NetworkMaximumPacketSize = NetworkMaximumPacketSize2KB;                         // 设置最大数据包大小为2KB
   
   // 初始化传输统计
-  NetworkBytesSent = 0;                                 // 重置发送字节数
-  NetworkPacketsSent = 0;                               // 重置发送数据包数量
+  NetworkTotalBytesSent = 0;                                 // 重置发送字节数
+  NetworkTotalPacketsSent = 0;                               // 重置发送数据包数量
   NetworkPacketRetransmissionCount = 0;                 // 重置重传计数
   NetworkPacketLossRate = 0x00;                         // 重置丢包率
   
@@ -1597,8 +1597,8 @@ void SendNetworkData(void)
 void ReceiveNetworkPacketData(void)
 {
   // 初始化接收参数
-  NetworkBytesReceived = 0;                             // 重置接收字节数
-  NetworkPacketsReceived = 0;                            // 重置接收数据包数量
+  NetworkTotalBytesReceived = 0;                             // 重置接收字节数
+  NetworkTotalPacketsReceived = 0;                            // 重置接收数据包数量
   NetworkRoundTripTime = NetworkRoundTripTimeResetValue;                          // 重置往返时间
   
   // 初始化数据包队列
@@ -1607,7 +1607,7 @@ void ReceiveNetworkPacketData(void)
   
   // 初始化缓冲区管理
   NetworkBufferManager = NetworkBufferEnabledFlag;                          // 初始化缓冲区管理器
-  NetworkBufferSize = BufferSize4Kilobytes;                            // 设置缓冲区大小为4KB
+  NetworkBufferSize = BufferSize4KB;                            // 设置缓冲区大小为4KB
   NetworkBufferIndex = NetworkIndexResetValue;                            // 重置缓冲区索引
   
   // 初始化数据包上下文
@@ -1741,33 +1741,33 @@ void HandleNetworkErrorManagement(void)
   NetworkErrorCounter = NetworkErrorRateResetValue;                            // 重置错误计数器为0
   
   // 初始化错误报告缓冲区
-  NetworkErrorReportSize = NetworkErrorReportSize;                         // 设置错误报告大小为11字节
-  NetworkSecurityReportSize = NetworkSecurityReportSize;                     // 设置安全报告大小为13字节
-  NetworkConnectionReportSize = NetworkConnectionReportSize;                    // 设置连接报告大小为15字节
-  NetworkPacketReportSize = NetworkPacketReportSize;                       // 设置数据包报告大小为12字节
+  NetworkErrorReportSize = NetworkReportSizeSmall;                         // 设置错误报告大小为11字节
+  NetworkSecurityReportSize = NetworkReportSizeMedium;                     // 设置安全报告大小为13字节
+  NetworkConnectionReportSize = NetworkReportSizeLarge;                    // 设置连接报告大小为15字节
+  NetworkPacketReportSize = NetworkReportSizeStandard;                       // 设置数据包报告大小为12字节
   
   // 初始化资源分配参数
-  NetworkResourceAllocationSize = NetworkResourceAllocationSize;                  // 设置资源分配大小为32字节
-  NetworkResourceAllocationSizeEx = NetworkResourceAllocationSizeEx;               // 设置扩展资源分配大小为40字节
-  NetworkHandleStorageSize = NetworkHandleStorageSize;                      // 设置句柄存储大小为48字节
+  NetworkResourceAllocationSize = 0x20;                  // 设置资源分配大小为32字节
+  NetworkResourceAllocationSizeEx = 0x28;               // 设置扩展资源分配大小为40字节
+  NetworkHandleStorageSize = 0x30;                      // 设置句柄存储大小为48字节
   
   // 初始化处理缓冲区
   PacketProcessingSize = NetworkPacketProcessingSize256Bytes;                  // 设置数据包处理大小为256字节
   
   // 初始化端口范围
-  NetworkPortRangeStart = NetworkPortHttpAlt;                  // 设置端口范围起始值为8080
-  NetworkPortRangeEnd = NetworkPortRangeEnd;                    // 设置端口范围结束值为9999
+  NetworkPortRangeStart = PORT_HTTP_ALT;                  // 设置端口范围起始值为8080
+  NetworkPortRangeEnd = PORT_RANGE_END;                    // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
   NetworkConnectionTimeout = NetworkTimeoutThirtySeconds;                   // 设置连接超时时间为30秒
-  NetworkTimeoutValueOffset = NetworkTimeoutValueOffset;                     // 设置超时值偏移量
-  NetworkRetryCountOffset = NetworkRetryCountOffset;                       // 设置重试计数偏移量
+  NetworkTimeoutValueOffset = 0x30;                         // 设置超时值偏移量
+  NetworkRetryCountOffset = 0x34;                           // 设置重试计数偏移量
   
   // 初始化超时标志
-  ConnectionTimeoutFlagsOffset = ConnectionTimeoutFlagsOffset;                 // 设置连接超时标志偏移量
-  ConnectionRetryFlagsOffset = ConnectionRetryFlagsOffset;                   // 设置连接重试标志偏移量
-  ConnectionTransferFlagsOffset = ConnectionTransferFlagsOffset;                // 设置连接传输标志偏移量
-  ConnectionValidationFlagsOffset = ConnectionValidationFlagsOffset;              // 设置连接验证标志偏移量
+  ConnectionTimeoutFlagsOffset = 0x38;                      // 设置连接超时标志偏移量
+  ConnectionRetryFlagsOffset = 0x3c;                        // 设置连接重试标志偏移量
+  ConnectionTransferFlagsOffset = 0x40;                    // 设置连接传输标志偏移量
+  ConnectionValidationFlagsOffset = 0x44;                   // 设置连接验证标志偏移量
 }
 
 // 网络错误和统计变量
