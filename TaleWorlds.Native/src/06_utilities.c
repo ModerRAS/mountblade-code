@@ -17077,24 +17077,35 @@ void ProcessSystemDataD1(undefined8 SystemContext,longlong DataBuffer)
 
 
 
-// 函数: void FUN_180899100(longlong param_1,undefined4 *param_2)
-void FUN_180899100(longlong param_1,undefined4 *param_2)
+/**
+ * @brief 验证系统数据D0
+ * 
+ * 验证系统数据的有效性，通过调用系统验证函数来检查数据状态。
+ * 此函数会依次验证数据块的各个部分，确保数据的完整性。
+ * 
+ * @param SystemContext 系统上下文指针，包含系统状态和配置信息
+ * @param DataValidationPtr 数据验证指针，指向待验证的数据数组
+ * 
+ * @note 此函数使用系统验证回调函数进行数据验证
+ * @warning 如果验证失败，函数会尝试验证下一个数据块
+ * @see ValidateSystemDataD1, ProcessSystemDataD0
+ */
+void ValidateSystemDataD0(longlong SystemContext,undefined4 *DataValidationPtr)
 
 {
-  int iVar1;
-  undefined4 auStackX_8 [2];
-  undefined4 auStackX_10 [2];
-  undefined4 auStackX_18 [2];
+  int ValidationResult;
+  undefined4 DataChunk1 [2];
+  undefined4 DataChunk2 [2];
+  undefined4 DataChunk3 [2];
   
-  auStackX_8[0] = *param_2;
-  iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,4);
-  if (iVar1 == 0) {
-    auStackX_10[0] = param_2[1];
-    iVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_10,4)
-    ;
-    if (iVar1 == 0) {
-      auStackX_18[0] = param_2[2];
-      (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_18,4);
+  DataChunk1[0] = *DataValidationPtr;
+  ValidationResult = ExecuteSystemValidationCallback(*(undefined8 **)(SystemContext + 8),DataChunk1,4);
+  if (ValidationResult == 0) {
+    DataChunk2[0] = DataValidationPtr[1];
+    ValidationResult = ExecuteSystemValidationCallback(*(undefined8 **)(SystemContext + 8),DataChunk2,4);
+    if (ValidationResult == 0) {
+      DataChunk3[0] = DataValidationPtr[2];
+      ExecuteSystemValidationCallback(*(undefined8 **)(SystemContext + 8),DataChunk3,4);
     }
   }
   return;
