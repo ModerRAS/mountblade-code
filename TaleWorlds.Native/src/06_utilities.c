@@ -17963,18 +17963,18 @@ undefined8 ValidateDataStructureA0(longlong *param_1)
             (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA2,(ulonglong)*(uint *)(validationContext + 0x6d8),
                                    (ulonglong)*(uint *)(validationContext + 0x6dc) /
                                    (ulonglong)*(uint *)(validationContext + 0x6d8),memoryBaseAddress), (int)uVar2 == 0)) &&
-           (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_180986590,*(undefined4 *)(validationContext + 0x6d0),
+           (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA3,*(undefined4 *)(validationContext + 0x6d0),
                                   *(undefined4 *)(validationContext + 0x1193c),*(undefined4 *)(validationContext + 0x6d4)),
            (int)uVar2 == 0)) {
           memoryBaseAddress = *(undefined4 *)(validationContext + 0x11668);
           uVar8 = *(undefined4 *)(validationContext + 0x11624);
           uVar7 = *(undefined4 *)(validationContext + 0x11620);
           uVar6 = *(undefined4 *)(validationContext + 0x1161c);
-          uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_1809865f0,*(undefined4 *)(validationContext + 0x1160c),
+          uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA4,*(undefined4 *)(validationContext + 0x1160c),
                                 *(undefined4 *)(validationContext + 0x11610),*(undefined4 *)(validationContext + 0x11614),
                                 *(undefined4 *)(validationContext + 0x11618),uVar6,uVar7,uVar8,memoryBaseAddress);
           if (((int)uVar2 == 0) &&
-             (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&UNK_1809866c0,*(undefined4 *)(validationContext + 0x11628),
+             (uVar2 = ProcessDataBlockWithConfigurationA0(param_1,&DataConfigurationTableA5,*(undefined4 *)(validationContext + 0x11628),
                                     (double)*(float *)(validationContext + 0x11640),
                                     *(undefined4 *)(validationContext + 0x11644),
                                     *(undefined4 *)(validationContext + 0x1164c),uVar6,uVar7,uVar8,memoryBaseAddress),
