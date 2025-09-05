@@ -92124,16 +92124,20 @@ void CloseSystemHandle(void)
 
 
 
-// 函数: void DestroyMutex(void)
-// 功能：销毁互斥锁对象，释放线程同步资源
-// 参数：无
-// 返回值：无
+/**
+ * @brief 销毁互斥锁对象
+ * 
+ * 该函数负责销毁互斥锁对象，释放线程同步资源。
+ * 这是一个资源清理函数，用于确保互斥锁资源被正确释放。
+ * 
+ * @note 原始函数名：DestroyMutex
+ */
 void DestroyMutex(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809417d8. Too many branches
                     // WARNING: Treating indirect jump as call
-  _Mtx_destroy_in_situ(0x180c91910);
+  _Mtx_destroy_in_situ(MutexObjectPointer);
   return;
 }
 
