@@ -2286,13 +2286,11 @@
 #define ExceptionUnwindHandlerA30 Unwind_1809021e0
 
 // 异常处理数据变量语义化宏定义
-// 原始变量名：UNK_18098bdc8 - 异常数据表1
-// 功能：存储异常处理相关的数据表信息
-#define ExceptionDataTable1 UNK_18098bdc8
+// 异常数据表1地址
+#define ExceptionDataTable1Address 0x18098bdc8
 
-// 原始变量名：UNK_180a21690 - 异常数据表2
-// 功能：存储异常处理相关的数据表信息
-#define ExceptionDataTable2 UNK_180a21690
+// 异常数据表2地址
+#define ExceptionDataTable2Address 0x180a21690
 
 // 原始变量名：UNK_180a21720 - 异常数据表3
 // 功能：存储异常处理相关的数据表信息
@@ -13611,7 +13609,7 @@ undefined8 ValidateSystemConfigurationA0(void)
   float fVar5;
   undefined4 stackParameter40;
   
-  lVar2 = func_0x000180867680();
+  lVar2 = GetSystemContextHandle();
   if ((*(uint *)(lVar2 + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
@@ -13731,7 +13729,7 @@ undefined8 CleanupSystemB0(void)
   longlong registerR14;
   undefined4 in_stack_00000050;
   
-  lVar2 = func_0x000180867680();
+  lVar2 = GetSystemContextHandle();
   if ((*(uint *)(lVar2 + 0x34) >> 4 & 1) != 0) {
     return 0x1f;
   }
@@ -13868,10 +13866,10 @@ int ProcessUtilityDataWithCompression(longlong dataContext,longlong dataBuffer,i
   int iVar1;
   int operationResult;
   
-  iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
+  iVar1 = ProcessSystemDataWithValidation(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
   operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
-  operationResult = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
+  operationResult = ProcessSystemDataWithEncryption(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
   iVar1 = iVar1 + operationResult;
   operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
@@ -13905,10 +13903,10 @@ int ProcessUtilityDataWithEncryption(longlong dataContext,longlong dataBuffer,in
   int iVar1;
   int operationResult;
   
-  iVar1 = func_0x00018074b800(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
+  iVar1 = ProcessSystemDataWithValidation(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
   operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
-  operationResult = func_0x00018074b7d0(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
+  operationResult = ProcessSystemDataWithEncryption(iVar1 + param_2,param_3 - iVar1,*(undefined4 *)(param_1 + 0x18));
   iVar1 = iVar1 + operationResult;
   operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
@@ -13934,7 +13932,7 @@ int ProcessUtilityDataWithValidation(longlong dataContext,longlong dataBuffer,in
   int iVar1;
   int operationResult;
   
-  iVar1 = func_0x00018074b7d0(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
+  iVar1 = ProcessSystemDataWithEncryption(param_2,param_3,*(undefined4 *)(param_1 + 0x10));
   operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
   iVar1 = iVar1 + operationResult;
   operationResult = ExecuteSystemBufferProcessingA0(iVar1 + param_2,param_3 - iVar1,param_1 + 0x18,
@@ -15117,13 +15115,13 @@ MemoryCopyLabel:
     }
     else {
       if (cVar3 == '\x06') {
-        cVar3 = func_0x000180881f80(*(undefined8 *)(param_1 + 0x58));
+        cVar3 = ValidateSystemConfiguration(*(undefined8 *)(param_1 + 0x58));
         if (cVar3 == '\0') goto MemoryCopyLabel;
         *param_2 = 0;
         goto FUN_180895b89;
       }
       if (cVar3 == '\a') {
-        cVar3 = func_0x000180881f80(*(undefined8 *)(param_1 + 0x58));
+        cVar3 = ValidateSystemConfiguration(*(undefined8 *)(param_1 + 0x58));
         if (cVar3 == '\0') {
           if (*(int *)(*(longlong *)(*(longlong *)(*(longlong *)(param_1 + 0x58) + 0x90) + 0x790) +
                       0x1c8) != 0) {
@@ -16106,13 +16104,13 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
             uVar3 = uStackX_18;
             pvalidationContext3 = plStack_108;
             if ((iVar4 == 0) &&
-               (iVar4 = func_0x0001808c7ed0(uStackX_18), pvalidationContext3 = plStack_108, 0 < iVar4)) {
+               (iVar4 = PerformSystemValidationCheck(uStackX_18), pvalidationContext3 = plStack_108, 0 < iVar4)) {
               do {
                 uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
                 uStack_e8 = 0;
                 puStack_f0 = &UNK_180983588;
                 DoubleValidateAndExecuteOperation(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
-                iVar4 = func_0x0001808c7ed0(uVar3);
+                iVar4 = PerformSystemValidationCheck(uVar3);
               } while (0 < iVar4);
               uVar6 = (ulonglong)auStackX_10[0];
               pvalidationContext3 = plStack_108;
@@ -16450,7 +16448,7 @@ undefined8 ProcessResourceData(longlong resourceContext)
   if ((*(longlong *)(resourceContext + 8) != 0) && (dataSize = *(int *)(resourceContext + 0x30), 0 < dataSize)) {
     dataSource = *(longlong *)(resourceContext + 0x28);
     if (0x40000 < dataSize) {
-      adjustedSize = func_0x00018076b3e0(dataSource + 0x40000,10);
+      adjustedSize = CalculateSystemDataSize(dataSource + 0x40000,10);
       if (adjustedSize != 0) {
         dataSize = ((int)adjustedSize - (int)dataSource) + 1;
       }
@@ -16468,7 +16466,7 @@ undefined8 ProcessResourceData(longlong resourceContext)
     *(undefined1 *)((longlong)dataBuffer + 10) = 3;
     dataBuffer[3] = 1;
     adjustedSize = *(longlong *)(*(longlong *)(resourceContext + 8) + 0x90);
-    dataHandle = func_0x0001808e3470(*(undefined8 *)(adjustedSize + 0x4d0),*(undefined4 *)(adjustedSize + 0x774));
+    dataHandle = AcquireSystemDataHandle(*(undefined8 *)(adjustedSize + 0x4d0),*(undefined4 *)(adjustedSize + 0x774));
     *(undefined8 *)(dataBuffer + 4) = dataHandle;
                     // WARNING: Subroutine does not return
     memcpy(dataBuffer + 6,dataSource,(longlong)dataSize);
@@ -16501,7 +16499,7 @@ int ProcessStringData(longlong stringContext, longlong dataBuffer, int bufferSiz
   processedBytes1 = func_0x00018074b7d0(dataBuffer,bufferSize,*(undefined4 *)(stringContext + 0x10));
   processedBytes2 = ProcessSystemBufferDataA0(dataBuffer + processedBytes1,bufferSize - processedBytes1,&DAT_180a06434);
   processedBytes1 = processedBytes1 + processedBytes2;
-  processedBytes2 = func_0x00018074b800(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag);
+  processedBytes2 = ProcessSystemDataWithValidation(processedBytes1 + dataBuffer,bufferSize - processedBytes1,formatFlag);
   return processedBytes2 + processedBytes1;
 }
 
