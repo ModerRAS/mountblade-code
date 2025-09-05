@@ -1705,9 +1705,9 @@ void ValidateNetworkPacketSecurity(void)
   NetworkPacketCompressionBuffer = NetworkBufferInitialized;                // 初始化数据包压缩缓冲区
   
   // 初始化压缩参数
-  PacketDataCompressionLevel = NetworkCompressionLevelDefault;                  // 设置压缩级别为6（默认级别）
-  PacketCompressionLevel = NetworkCompressionLevelDefault;                       // 设置压缩级别为6
-  PacketCompressionAlgorithmType = NetworkCompressionMethodZLIB;               // 设置压缩算法类型为ZLIB
+  NetworkPacketDataCompressionLevel = NetworkCompressionLevelDefault;                  // 设置压缩级别为6（默认级别）
+  NetworkPacketCompressionLevel = NetworkCompressionLevelDefault;                       // 设置压缩级别为6
+  NetworkPacketCompressionAlgorithmType = NetworkCompressionMethodZLIB;               // 设置压缩算法类型为ZLIB
 }
 
 /**
@@ -1925,9 +1925,9 @@ uint32_t NetworkPacketSecurityPolicyData;                       // 数据包安�
 uint32_t NetworkPacketSecurityPolicyInfo;                       // 数据包安全策略信息
 uint32_t NetworkPacketSecurityCertificateData;                  // 数据包安全证书数据
 uint32_t NetworkPacketSecurityCertificateInfo;                  // 数据包安全证书信息
-uint32_t PacketCompressionDataLevel;                    // 数据包压缩数据级别
-uint32_t PacketCompressionLevel;                         // 数据包压缩级别
-uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算法类型
+uint32_t NetworkPacketCompressionDataLevel;                  // 网络数据包压缩数据级别
+uint32_t NetworkPacketCompressionLevel;                       // 网络数据包压缩级别
+uint32_t NetworkPacketCompressionAlgorithmType;               // 网络数据包压缩算法类型
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列管理器
 uint32_t NetworkPendingRequestCount;                // 待处理网络连接请求数量
@@ -3471,33 +3471,33 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 网络数据包解码变量
-  uint32_t SecurityValidationResult;                     // 网络数据包验证结果
-  uint32_t HeaderDecodingStatus;                         // 网络头部解码状态
-  uint32_t PayloadDecodingStatus;                        // 网络负载解码状态
+  uint32_t PacketSecurityValidationResult;                  // 网络数据包安全验证结果
+  uint32_t PacketHeaderDecodingStatus;                      // 网络数据包头部解码状态
+  uint32_t PacketPayloadDecodingStatus;                     // 网络数据包负载解码状态
   
   // 初始化解码状态
-  SecurityValidationResult = NetworkValidationFailure;
-  HeaderDecodingStatus = NetworkValidationFailure;
-  PayloadDecodingStatus = NetworkValidationFailure;
+  PacketSecurityValidationResult = NetworkValidationFailure;
+  PacketHeaderDecodingStatus = NetworkValidationFailure;
+  PacketPayloadDecodingStatus = NetworkValidationFailure;
   
   // 验证数据包有效性
   if (PacketData && OutputBuffer) {
     // 验证魔数
     if (PrimaryMagicNumber == NetworkMagicLiveConnection || 
         PrimaryMagicNumber == NetworkMagicValidation) {
-      HeaderDecodingStatus = NetworkValidationSuccess;
+      PacketHeaderDecodingStatus = NetworkValidationSuccess;
     }
     
     if (SecondaryMagicNumber == NetworkMagicBinaryData || 
         SecondaryMagicNumber == NetworkMagicMemoryValidation) {
-      PayloadDecodingStatus = NetworkValidationSuccess;
+      PacketPayloadDecodingStatus = NetworkValidationSuccess;
     }
     
     // 综合验证结果
-    SecurityValidationResult = HeaderDecodingStatus & PayloadDecodingStatus;
+    PacketSecurityValidationResult = PacketHeaderDecodingStatus & PacketPayloadDecodingStatus;
     
     // 初始化输出缓冲区
-    if (SecurityValidationResult == NetworkValidationSuccess) {
+    if (PacketSecurityValidationResult == NetworkValidationSuccess) {
       memset(OutputBuffer, 0, NetworkStandardBufferSize);
       OutputBuffer[PacketDecodingModeIndex] = (NetworkByte)DecodingMode;
       OutputBuffer[PrimaryNetworkMagicNumberIndex] = (NetworkByte)PrimaryMagicNumber;
@@ -3505,7 +3505,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
     }
   }
   
-  return SecurityValidationResult;
+  return PacketSecurityValidationResult;
 }
 
 /**

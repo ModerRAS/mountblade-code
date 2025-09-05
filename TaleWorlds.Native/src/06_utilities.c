@@ -33735,21 +33735,21 @@ void DestroyMutexInExceptionD(void)
 
 
 
-void Unwind_1809025e0(undefined8 param_1,longlong param_2)
+void ExceptionRecoveryHandlerB21(undefined8 exceptionContext,longlong unwindParam,undefined8 exceptionData,undefined8 exceptionFlags)
 
 {
-  longlong *pvalidationContext;
-  longlong lVar2;
+  longlong *validationContext;
+  longlong contextEntry;
   
-  pvalidationContext = (longlong *)(*(longlong *)(param_2 + 0x70) + 0xa0);
-  for (lVar2 = *pvalidationContext; lVar2 != *(longlong *)(*(longlong *)(param_2 + 0x70) + 0xa8);
-      lVar2 = lVar2 + 0x28) {
-    if (*(longlong *)(lVar2 + 8) != 0) {
+  validationContext = (longlong *)(*(longlong *)(unwindParam + 0x70) + 0xa0);
+  for (contextEntry = *validationContext; contextEntry != *(longlong *)(*(longlong *)(unwindParam + 0x70) + 0xa8);
+      contextEntry = contextEntry + 0x28) {
+    if (*(longlong *)(contextEntry + 8) != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  if (*pvalidationContext == 0) {
+  if (*validationContext == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -59842,16 +59842,16 @@ void Unwind_180909320(undefined8 param_1,longlong param_2)
   ulonglong resourceIndex;
   
   presourceTable = *(undefined8 **)(param_2 + 0x80);
-  *puVar3 = &UNK_180a17010;
-  if ((longlong *)puVar3[0x1049] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)puVar3[0x1049] + 0x38))();
+  *presourceTable = &UNK_180a17010;
+  if ((longlong *)presourceTable[0x1049] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)presourceTable[0x1049] + 0x38))();
   }
-  uVar6 = 0;
-  pvalidationContext = puVar3 + 0x1012;
-  lVar4 = *pvalidationContext;
-  if (puVar3[0x1013] - lVar4 >> 3 != 0) {
+  resourceIndex = 0;
+  pvalidationContext = presourceTable + 0x1012;
+  resourceTableBase = *pvalidationContext;
+  if (presourceTable[0x1013] - resourceTableBase >> 3 != 0) {
     do {
-      resourcePointer = *(undefined8 **)(uVar6 * 8 + lVar4);
+      resourcePointer = *(undefined8 **)(resourceIndex * 8 + resourceTableBase);
       if (resourcePointer != (undefined8 *)0x0) {
         if ((longlong *)resourcePointer[0xd] != (longlong *)0x0) {
           (**(code **)(*(longlong *)resourcePointer[0xd] + 0x10))();
@@ -91014,46 +91014,88 @@ void CleanupSystemMemoryBufferA(void)
 
 
 942690(void)
-void FUN_180942690(void)
+/**
+ * @brief 清理系统内存缓冲区B
+ * 
+ * 该函数负责清理系统内存缓冲区B，释放已分配的内存资源并重置相关状态
+ * 主要用于系统内存管理和资源释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会验证内存块的有效性，确保安全的内存释放操作
+ * @warning 如果内存块大小或偏移量无效，将触发参数验证错误
+ * @see CleanupSystemMemoryBufferA, CleanupSystemMemoryBufferC
+ */
+void CleanupSystemMemoryBufferB(void)
 
 {
-  longlong validationContext;
-  longlong lVar2;
+  longlong memoryContext;
+  longlong memoryPointer;
   
+  // 检查缓冲区大小是否超过阈值
   if (0xf < _DAT_180bfc118) {
-    validationContext = CONCAT71(uRam0000000180bfc101,DAT_180bfc100);
-    lVar2 = validationContext;
+    memoryContext = CONCAT71(uRam0000000180bfc101, DAT_180bfc100);
+    memoryPointer = memoryContext;
+    
+    // 检查内存块大小是否过大
     if (0xfff < _DAT_180bfc118 + 1) {
-      lVar2 = *(longlong *)(validationContext + -8);
-      if (0x1f < (validationContext - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(validationContext - lVar2,_DAT_180bfc118 + 0x28);
+      memoryPointer = *(longlong *)(memoryContext + -8);
+      
+      // 验证内存块偏移量的有效性
+      if (0x1f < (memoryContext - memoryPointer) - 8U) {
+        // 如果偏移量无效，触发参数验证错误
+        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, _DAT_180bfc118 + 0x28);
       }
     }
-    free(lVar2);
+    
+    // 释放内存块
+    free(memoryPointer);
   }
+  
+  // 重置缓冲区状态
   _DAT_180bfc110 = 0;
   _DAT_180bfc118 = 0xf;
 
 942700(void)
-void FUN_180942700(void)
+/**
+ * @brief 清理系统内存缓冲区C
+ * 
+ * 该函数负责清理系统内存缓冲区C，释放已分配的内存资源并重置相关状态
+ * 主要用于系统内存管理和资源释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会验证内存块的有效性，确保安全的内存释放操作
+ * @warning 如果内存块大小或偏移量无效，将触发参数验证错误
+ * @see CleanupSystemMemoryBufferA, CleanupSystemMemoryBufferB
+ */
+void CleanupSystemMemoryBufferC(void)
 
 {
-  longlong validationContext;
-  longlong lVar2;
+  longlong memoryContext;
+  longlong memoryPointer;
   
+  // 检查缓冲区大小是否超过阈值
   if (0xf < uRam0000000180bfc0f0) {
-    validationContext = CONCAT71(uRam0000000180bfc0d9,uRam0000000180bfc0d8);
-    lVar2 = validationContext;
+    memoryContext = CONCAT71(uRam0000000180bfc0d9, uRam0000000180bfc0d8);
+    memoryPointer = memoryContext;
+    
+    // 检查内存块大小是否过大
     if (0xfff < uRam0000000180bfc0f0 + 1) {
-      lVar2 = *(longlong *)(validationContext + -8);
-      if (0x1f < (validationContext - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(validationContext - lVar2,uRam0000000180bfc0f0 + 0x28);
+      memoryPointer = *(longlong *)(memoryContext + -8);
+      
+      // 验证内存块偏移量的有效性
+      if (0x1f < (memoryContext - memoryPointer) - 8U) {
+        // 如果偏移量无效，触发参数验证错误
+        _invalid_parameter_noinfo_noreturn(memoryContext - memoryPointer, uRam0000000180bfc0f0 + 0x28);
       }
     }
-    free(lVar2);
+    
+    // 释放内存块
+    free(memoryPointer);
   }
+  
+  // 重置缓冲区状态
   uRam0000000180bfc0e8 = 0;
   uRam0000000180bfc0f0 = 0xf;
   uRam0000000180bfc0d8 = 0;
@@ -91064,24 +91106,45 @@ void FUN_180942700(void)
 
 
 942720(void)
-void FUN_180942720(void)
+/**
+ * @brief 清理数据缓冲区D
+ * 
+ * 该函数负责清理数据缓冲区D，释放已分配的内存资源并重置相关状态
+ * 主要用于数据管理和资源释放
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数会验证内存块的有效性，确保安全的内存释放操作
+ * @warning 如果内存块大小或偏移量无效，将触发参数验证错误
+ * @see CleanupSystemMemoryBufferA, CleanupSystemMemoryBufferB, CleanupSystemMemoryBufferC
+ */
+void CleanupDataBufferD(void)
 
 {
-  longlong validationContext;
-  longlong lVar2;
+  longlong dataContext;
+  longlong dataPointer;
   
+  // 检查缓冲区大小是否超过阈值
   if (0xf < uRam0000000180d499c0) {
-    validationContext = CONCAT71(uRam0000000180d499a9,uRam0000000180d499a8);
-    lVar2 = validationContext;
+    dataContext = CONCAT71(uRam0000000180d499a9, uRam0000000180d499a8);
+    dataPointer = dataContext;
+    
+    // 检查内存块大小是否过大
     if (0xfff < uRam0000000180d499c0 + 1) {
-      lVar2 = *(longlong *)(validationContext + -8);
-      if (0x1f < (validationContext - lVar2) - 8U) {
-                    // WARNING: Subroutine does not return
-        _invalid_parameter_noinfo_noreturn(validationContext - lVar2,uRam0000000180d499c0 + 0x28);
+      dataPointer = *(longlong *)(dataContext + -8);
+      
+      // 验证内存块偏移量的有效性
+      if (0x1f < (dataContext - dataPointer) - 8U) {
+        // 如果偏移量无效，触发参数验证错误
+        _invalid_parameter_noinfo_noreturn(dataContext - dataPointer, uRam0000000180d499c0 + 0x28);
       }
     }
-    free(lVar2);
+    
+    // 释放内存块
+    free(dataPointer);
   }
+  
+  // 重置缓冲区状态
   uRam0000000180d499b8 = 0;
   uRam0000000180d499c0 = 0xf;
   uRam0000000180d499a8 = 0;
