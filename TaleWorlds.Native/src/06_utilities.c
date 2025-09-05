@@ -1735,7 +1735,7 @@ uint32_t UtilityInitData2;
 uint32_t UtilityInitData3;
 uint32_t UtilityInitData4;
 
-// 函数: undefined UtilityValidateSystem(void)
+// 函数: uint32_t UtilityValidateSystem(void)
 // 
 // 验证工具系统状态
 // 检查工具系统的完整性和有效性
@@ -1744,11 +1744,11 @@ uint32_t UtilityInitData4;
 //   无
 // 
 // 返回值:
-//   undefined - 验证结果状态
-undefined UtilityValidateSystem;
-undefined1 UtilityValidationFlag1;
+//   uint32_t - 验证结果状态
+uint32_t UtilityValidateSystem;
+uint8_t UtilityValidationFlag1;
 
-// 函数: undefined UtilityCheckSystemStatus(void)
+// 函数: uint32_t UtilityCheckSystemStatus(void)
 // 
 // 检查工具系统运行状态
 // 获取工具系统的当前运行状态信息
@@ -1757,9 +1757,9 @@ undefined1 UtilityValidationFlag1;
 //   无
 // 
 // 返回值:
-//   undefined - 系统状态信息
-undefined UtilityCheckSystemStatus;
-undefined1 UtilityStatusFlag1;
+//   uint32_t - 系统状态信息
+uint32_t UtilityCheckSystemStatus;
+uint8_t UtilityStatusFlag1;
 
 // 函数: undefined UtilityResetSystem(void)
 // 
@@ -87076,24 +87076,65 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ProcessDataValidationCZ0 FUN_18084b240
 
 // 系统组件初始化相关宏定义
+// 原始函数名：FUN_1808fd200 - 系统组件初始化函数DA0
+// 功能：初始化系统组件DA0，设置组件初始状态
 #define InitializeSystemComponentDA0 FUN_1808fd200
+// 原始函数名：FUN_18076b390 - 系统资源管理函数DB0
+// 功能：管理系统资源DB0，处理资源分配和释放
 #define ManageSystemResourceDB0 FUN_18076b390
+
+// 原始函数名：FUN_1808aef40 - 数据资源清理函数DC0
+// 功能：清理数据资源DC0，释放数据内存
 #define CleanupDataResourceDC0 FUN_1808aef40
+
+// 原始函数名：FUN_18088f5c0 - 字符串数据处理函数DD0
+// 功能：处理字符串数据DD0，执行字符串操作
 #define ProcessStringDataDD0 FUN_18088f5c0
+
+// 原始函数名：FUN_18088f470 - 数据完整性验证函数DE0
+// 功能：验证数据完整性DE0，确保数据未损坏
 #define ValidateDataIntegrityDE0 FUN_18088f470
 
 // 数据格式转换相关宏定义
+// 原始函数名：FUN_180882c20 - 数据格式转换函数DF0
+// 功能：转换数据格式DF0，执行格式转换操作
 #define ConvertDataFormatDF0 FUN_180882c20
+
+// 原始函数名：FUN_18088c620 - 系统状态重置函数DG0
+// 功能：重置系统状态DG0，恢复系统到初始状态
 #define ResetSystemStateDG0 FUN_18088c620
+
+// 原始函数名：FUN_180840270 - 系统数据处理函数DH0
+// 功能：处理系统数据DH0，执行数据操作
 #define ProcessSystemDataDH0 FUN_180840270
+
+// 原始函数名：FUN_180895130 - 系统状态验证函数DI0
+// 功能：验证系统状态DI0，确保系统状态正确
 #define ValidateSystemStateDI0 FUN_180895130
+
+// 原始函数名：FUN_180744cc0 - 系统资源释放函数DJ0
+// 功能：释放系统资源DJ0，清理资源占用
 #define ReleaseSystemResourceDJ0 FUN_180744cc0
 
 // 系统参数配置相关宏定义
+// 原始函数名：FUN_180895070 - 系统参数配置函数DK0
+// 功能：配置系统参数DK0，设置系统运行参数
 #define ConfigureSystemParameterDK0 FUN_180895070
+
+// 原始函数名：FUN_180894ef0 - 系统组件初始化函数DL0
+// 功能：初始化系统组件DL0，设置组件状态
 #define InitializeSystemComponentDL0 FUN_180894ef0
+
+// 原始函数名：FUN_180741e10 - 系统资源分配函数DM0
+// 功能：分配系统资源DM0，申请资源空间
 #define AllocateSystemResourceDM0 FUN_180741e10
+
+// 原始函数名：FUN_1807d1650 - 数据转换处理函数DN0
+// 功能：处理数据转换DN0，执行数据转换操作
 #define ProcessDataConversionDN0 FUN_1807d1650
+
+// 原始函数名：FUN_180892120 - 双重系统验证函数DO0
+// 功能：双重验证系统DO0，确保系统安全性
 #define DoubleValidateSystemDO0 FUN_180892120
 
 // 系统验证和配置相关宏定义
