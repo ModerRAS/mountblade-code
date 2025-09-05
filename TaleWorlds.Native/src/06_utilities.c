@@ -6190,16 +6190,20 @@ undefined SystemResourceManagementBlock16;
 undefined SystemResourceManagementBlock17;
 undefined SystemResourceManagementBlock18;
 undefined SystemResourceManagementBlock19;
-undefined UNK_180a07cd0;
-undefined UNK_180a1afb8;
-undefined UNK_180a079c0;
-undefined UNK_180a07b48;
-undefined UNK_180a3c313;
-undefined UNK_18098d6d0;
-undefined UNK_180a078fc;
-undefined UNK_180a07804;
-undefined UNK_18098d6b0;
-undefined UNK_18015c090;
+// 系统异常处理数据块
+undefined SystemExceptionHandlerBlock1;
+undefined SystemExceptionHandlerBlock2;
+undefined SystemExceptionHandlerBlock3;
+undefined SystemExceptionHandlerBlock4;
+// 系统临时异常处理器
+undefined SystemTemporaryExceptionHandler;
+// 系统调试数据块
+undefined SystemDebugDataBlock1;
+undefined SystemDebugDataBlock2;
+undefined SystemDebugDataBlock3;
+// 系统调试数据块
+undefined SystemDebugDataBlock4;
+undefined SystemDebugDataBlock5;
 
 // 函数: undefined UtilityHandleEvent1;
 undefined UtilityHandleEvent1;
