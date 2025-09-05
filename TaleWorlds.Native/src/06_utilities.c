@@ -36883,7 +36883,7 @@ void Unwind_CleanupMemoryResource(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902c40(undefined8 param_1,longlong param_2)
+void Unwind_CleanupMemoryBlock(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -36919,7 +36919,7 @@ void Unwind_180902c40(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902c50(undefined8 param_1,longlong param_2)
+void Unwind_CleanupThreadResource(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
@@ -36936,7 +36936,7 @@ void Unwind_180902c50(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902c60(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void Unwind_CleanupThreadContext(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   undefined8 *puVar1;
@@ -36973,7 +36973,7 @@ void Unwind_180902c60(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902c70(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void Unwind_CleanupSyncObject(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   code *pcVar1;
@@ -36987,7 +36987,7 @@ void Unwind_180902c70(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902c80(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void Unwind_CleanupMutexLock(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   code *pcVar1;
@@ -37001,7 +37001,7 @@ void Unwind_180902c80(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902c90(undefined8 param_1,longlong param_2)
+void Unwind_CleanupExceptionStack(undefined8 param_1,longlong param_2)
 
 {
   undefined8 *puVar1;
@@ -37020,7 +37020,7 @@ void Unwind_180902c90(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902ca0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupCallStack(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x50) = &DefaultExceptionHandlerB;
@@ -37029,7 +37029,7 @@ void Unwind_180902ca0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902cb0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupFrameContext(undefined8 param_1,longlong param_2)
 
 {
   if (*(longlong **)(param_2 + 0x40) != (longlong *)0x0) {
@@ -37040,7 +37040,7 @@ void Unwind_180902cb0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902cc0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupLocalVariables(undefined8 param_1,longlong param_2)
 
 {
   *(undefined **)(param_2 + 0x50) = &DefaultExceptionHandlerB;
@@ -37049,7 +37049,7 @@ void Unwind_180902cc0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902cd0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupTempStorage(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -37085,7 +37085,7 @@ void Unwind_180902cd0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902ce0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupHeapMemory(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -37121,7 +37121,7 @@ void Unwind_180902ce0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902cf0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupStackMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37144,7 +37144,7 @@ void Unwind_180902cf0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902d00(undefined8 param_1,longlong param_2)
+void Unwind_CleanupBufferMemory(undefined8 param_1,longlong param_2)
 
 {
   FUN_180057010(*(longlong *)(param_2 + 0x20) + 0x60);
