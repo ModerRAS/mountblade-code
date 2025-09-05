@@ -61139,7 +61139,27 @@ ThreadStatusProcessing:
 
 
 
-// 函数: void ProcessSystemFloatOperations(void* SystemResourceManager,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
+/**
+ * @brief 处理系统浮点运算操作
+ * 
+ * 该函数负责执行复杂的浮点运算，包括矩阵变换、向量点积、插值计算和归一化操作。
+ * 函数使用系统数据索引指针中的数据，结合配置参数进行多重浮点运算，用于系统
+ * 资源的数学处理和变换操作。
+ * 
+ * @param SystemResourceManager 系统资源管理器指针，包含系统资源信息
+ * @param ConfigurationDataPointer 配置数据指针，包含配置参数
+ * @param AdditionalParameter 额外参数，用于附加计算
+ * @param ConfigurationFlag 配置标志，用于控制计算行为
+ * 
+ * 运算流程：
+ * 1. 从系统数据索引指针提取基础数据
+ * 2. 执行矩阵变换和向量点积计算
+ * 3. 进行音频插值和向量缩放操作
+ * 4. 应用配置参数进行变换计算
+ * 5. 使用额外参数进行最终计算
+ * 
+ * 注意：该函数涉及大量浮点运算，对精度要求较高
+ */
 void ProcessSystemFloatOperations(void* SystemResourceManager,void* ConfigurationDataPointer,float AdditionalParameter,float ConfigurationFlag)
 
 {

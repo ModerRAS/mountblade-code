@@ -2191,6 +2191,30 @@
 // 功能：执行安全检查并返回检查结果
 #define GetSecurityCheckResult FUN_1808a71c0
 
+// 原始函数名：FUN_18089dcf0 - 数据验证和安全检查处理函数
+// 功能：执行数据验证和安全检查，处理端口控制和数据操作
+#define ProcessDataValidationAndSecurityCheck FUN_18089dcf0
+
+// 原始函数名：FUN_18089dd54 - 系统上下文处理函数
+// 功能：处理系统上下文和输入寄存器操作
+#define ProcessSystemContext FUN_18089dd54
+
+// 原始函数名：FUN_18089dd78 - 系统状态验证函数
+// 功能：验证系统状态并返回验证结果
+#define ValidateSystemState FUN_18089dd78
+
+// 原始函数名：FUN_18089dda2 - 数据缓冲区处理函数
+// 功能：处理数据缓冲区和内存操作
+#define ProcessDataBuffer FUN_18089dda2
+
+// 原始函数名：FUN_18089de39 - 内存地址验证函数
+// 功能：验证内存地址的有效性
+#define ValidateMemoryAddress FUN_18089de39
+
+// 原始函数名：FUN_18089de72 - 系统配置处理函数
+// 功能：处理系统配置和参数设置
+#define ProcessSystemConfiguration FUN_18089de72
+
 // 原始函数名：FUN_1808ad9d0 - 内存分配验证函数
 // 功能：验证内存分配状态并返回验证结果
 #define ValidateMemoryAllocationStatus FUN_1808ad9d0
