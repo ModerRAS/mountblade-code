@@ -2135,15 +2135,15 @@ void ResetNetworkConnectionPointer(void)
  * @security 该函数是网络安全的第一道防线，确保只有合法的连接参数能够通过验证
  * @see NetworkErrorInvalidHandle, NetworkErrorConnectionFailed
  */
-uint32_t ValidateNetworkConnectionParameters(int64_t *NetworkConnectionParameters)
+uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameters)
 {
   // 检查参数指针是否有效
-  if (NetworkConnectionParameters == NULL) {
+  if (ConnectionParameters == NULL) {
     return NetworkErrorInvalidHandle;
   }
   
   // 检查连接参数的基本结构
-  if (*NetworkConnectionParameters == 0) {
+  if (*ConnectionParameters == 0) {
     return NetworkErrorConnectionFailed;
   }
   
@@ -2169,31 +2169,31 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *NetworkConnectionParameter
 NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t NetworkConnectionContextId;      // 网络连接上下文标识符
-  int64_t *NetworkConnectionValidationDataPtr;           // 网络连接验证结果数据指针
-  int32_t NetworkConnectionValidationStatus;             // 网络连接验证状态码
-  NetworkHandle NetworkConnectionResultHandle;           // 网络连接上下文结果句柄
+  int64_t ContextId;                                  // 网络连接上下文标识符
+  int64_t *ValidationDataPtr;                        // 网络连接验证结果数据指针
+  int32_t ValidationStatus;                          // 网络连接验证状态码
+  NetworkHandle ResultHandle;                         // 网络连接上下文结果句柄
   
-  NetworkConnectionContextId = 0;
-  NetworkConnectionValidationDataPtr = NULL;  // 初始化指针变量
-  NetworkConnectionValidationStatus = 0;  // 初始化验证状态码
-  if (NetworkConnectionValidationStatus == 0) {
-    if (NetworkConnectionValidationDataPtr && (0 < *(int *)CalculateContextParameterOffset(NetworkConnectionValidationDataPtr)) && (*NetworkConnectionValidationDataPtr != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *NetworkConnectionValidationDataPtr, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+  ContextId = 0;
+  ValidationDataPtr = NULL;  // 初始化指针变量
+  ValidationStatus = 0;  // 初始化验证状态码
+  if (ValidationStatus == 0) {
+    if (ValidationDataPtr && (0 < *(int *)CalculateContextParameterOffset(ValidationDataPtr)) && (*ValidationDataPtr != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *ValidationDataPtr, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    if (NetworkConnectionValidationDataPtr) {
-        *NetworkConnectionValidationDataPtr = NetworkConnectionContextId;
-        *(int *)CalculateContextParameterOffset(NetworkConnectionValidationDataPtr) = NetworkConnectionValidationStatus;
+    if (ValidationDataPtr) {
+        *ValidationDataPtr = ContextId;
+        *(int *)CalculateContextParameterOffset(ValidationDataPtr) = ValidationStatus;
     }
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxInt32Value) {
-    NetworkConnectionResultHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
-    if (NetworkConnectionResultHandle != 0) {
-      if (NetworkConnectionValidationDataPtr && (int)NetworkConnectionValidationDataPtr[ConnectionDataSizeIndex] != 0) {
-          memcpy((void *)NetworkConnectionResultHandle, *NetworkConnectionValidationDataPtr, (int64_t)(int)NetworkConnectionValidationDataPtr[ConnectionDataSizeIndex]);
+    ResultHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
+    if (ResultHandle != 0) {
+      if (ValidationDataPtr && (int)ValidationDataPtr[ConnectionDataSizeIndex] != 0) {
+          memcpy((void *)ResultHandle, *ValidationDataPtr, (int64_t)(int)ValidationDataPtr[ConnectionDataSizeIndex]);
       }
-      return NetworkConnectionResultHandle;
+      return ResultHandle;
     }
   }
   return NetworkErrorConnectionFailed;
