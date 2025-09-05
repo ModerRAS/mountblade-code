@@ -68,36 +68,36 @@
 #define ValidateSystemStatus ValidateSystemStatus
 
 /**
- * @brief 系统初始化函数A0
+ * @brief 系统初始化函数
  * @note 原始函数名：InitializeSystem
  */
-#define InitializeSystem InitializeSystem
+#define InitializeSystemCore InitializeSystemCore
 
 /**
- * @brief 参数验证函数A0
+ * @brief 参数验证函数
  * @note 原始函数名：ValidateParameter
  * 
  * @note 原始函数名：ValidateParameters
  */
-#define ValidateParameters ValidateParameters
+#define ValidateSystemParameters ValidateSystemParameters
 
 /**
- * @brief 上下文验证函数A0
+ * @brief 上下文验证函数
  * 
  * 该函数用于验证上下文信息
  * 
  * @note 原始函数名：ValidateContext
  */
-#define ValidateContext ValidateContext
+#define ValidateSystemContext ValidateSystemContext
 
 /**
- * @brief 上下文处理函数A0
+ * @brief 上下文处理函数
  * 
  * 该函数用于处理上下文操作
  * 
  * @note 原始函数名：ProcessContext
  */
-#define ProcessContext ProcessContext
+#define ProcessSystemContext ProcessSystemContext
 
 /**
  * @brief 数据转换函数A0
@@ -37305,7 +37305,7 @@ void Unwind_CleanupThreadLocal(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902e10(undefined8 param_1,longlong param_2)
+void Unwind_CleanupStaticMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37328,7 +37328,7 @@ void Unwind_180902e10(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902e30(undefined8 param_1,longlong param_2)
+void Unwind_CleanupConstantMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37351,7 +37351,7 @@ void Unwind_180902e30(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902e40(undefined8 param_1,longlong param_2)
+void Unwind_CleanupReadOnlyMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -37370,7 +37370,7 @@ void Unwind_180902e40(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902e50(undefined8 param_1,longlong param_2)
+void Unwind_CleanupCodeMemory(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -37406,7 +37406,7 @@ void Unwind_180902e50(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902e60(undefined8 param_1,longlong param_2)
+void Unwind_CleanupDataMemory(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
