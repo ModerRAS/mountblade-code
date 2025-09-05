@@ -14443,21 +14443,32 @@ int ProcessUtilityDataWithValidation(longlong dataContext,longlong dataBuffer,in
 
 
 
+/**
+ * @brief 处理带回调的工具系统数据
+ * 
+ * 该函数用于处理工具系统数据，并通过回调函数进行后续处理。它会依次执行
+ * 数据缓冲区处理、加密处理和回调函数调用。
+ * 
+ * @param callbackContext 回调上下文指针，包含回调函数和相关参数
+ * @param dataBuffer 数据缓冲区指针，包含待处理的数据
+ * @param dataSize 数据大小，指定待处理数据的长度
+ * @return 处理结果状态码，成功返回0，失败返回错误代码
+ */
 int ProcessUtilityDataWithCallback(longlong *callbackContext,longlong dataBuffer,int dataSize)
 
 {
-  int iVar1;
+  int processedBytes;
   int operationResult;
   
-  iVar1 = ProcessSystemBufferDataA0(param_2,param_3,&UNK_180986298);
-  operationResult = ProcessSystemBufferDataA0(param_2 + iVar1,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemDataWithEncryption(iVar1 + param_2,param_3 - iVar1,(int)param_1[3] * 8 + 0x20);
-  iVar1 = iVar1 + operationResult;
-  operationResult = ProcessSystemBufferDataA0(iVar1 + param_2,param_3 - iVar1,&DAT_180a06434);
-  iVar1 = iVar1 + operationResult;
-  operationResult = (**(code **)(*param_1 + 8))(param_1,iVar1 + param_2,param_3 - iVar1);
-  return operationResult + iVar1;
+  processedBytes = ProcessSystemBufferDataA0(dataBuffer,dataSize,&SystemDataBufferB);
+  operationResult = ProcessSystemBufferDataA0(dataBuffer + processedBytes,dataSize - processedBytes,&SystemDataBufferA);
+  processedBytes = processedBytes + operationResult;
+  operationResult = ProcessSystemDataWithEncryption(processedBytes + dataBuffer,dataSize - processedBytes,(int)callbackContext[3] * 8 + 0x20);
+  processedBytes = processedBytes + operationResult;
+  operationResult = ProcessSystemBufferDataA0(processedBytes + dataBuffer,dataSize - processedBytes,&SystemDataBufferA);
+  processedBytes = processedBytes + operationResult;
+  operationResult = (**(code **)(*callbackContext + 8))(callbackContext,processedBytes + dataBuffer,dataSize - processedBytes);
+  return operationResult + processedBytes;
 }
 
 
