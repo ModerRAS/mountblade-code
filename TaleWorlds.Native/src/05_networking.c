@@ -895,7 +895,7 @@ uint32_t NetworkSocketTablePosition;                        // 网络套接字�
 uint32_t NetworkSocketContextData;                                 // 网络套接字上下文，套接字的运行时上下文数据
 uint32_t NetworkSocketRuntimeInformation;                                // 网络套接字运行时数据，套接字相关的数据存储
 uint32_t NetworkSocketRuntimeContextData;                            // 网络套接字运行时上下文，套接字的运行时上下文数据
-uint32_t NetworkSocketStructureSize;                     // 网络套接字大小，套接字结构体的大小
+uint32_t NetworkSocketStructureMemorySize;                     // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
 uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
@@ -1222,7 +1222,7 @@ uint32_t NetworkConnectionRoutingQuaternaryConfig;  // 网络连接路由第四�
 void InitializeNetworkSocket(void)
 {
   // 初始化套接字基本参数
-  NetworkSocketDescriptor = SOCKET_DESCRIPTOR_INVALID;        // 初始化文件描述符为无效值
+  NetworkSocketFileDescriptor = SOCKET_DESCRIPTOR_INVALID;        // 初始化文件描述符为无效值
   NetworkSocketContextSize = SOCKET_CONTEXT_SIZE;                // 设置套接字上下文大小为256字节
   NetworkSocketIndex = 0;                           // 重置网络套接字索引为0
   NetworkSocketSize = SOCKET_SIZE;                         // 设置套接字大小为64字节
