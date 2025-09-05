@@ -1648,18 +1648,27 @@ void* GetSystemInitializationFunction;
  * 
  * @note 该函数是系统初始化过程中的重要组成部分，确保游戏核心系统正确初始化
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 此函数负责初始化游戏的核心系统节点，包括节点查找、内存分配和标识符设置。
+ * 函数会在系统表中查找或创建游戏核心系统节点，并配置其基本属性。
+ * 
+ * @note 此函数假设系统表和标识符已预先定义
+ * @return 无返回值
+ */
 void InitializeGameCoreSystem(void)
 {
-  bool IsGameCoreNodeInitialized;
-  void** RootNodeReference;
-  int GameCoreIdentifierMatchResult;
-  long long* MainSystemTablePointer;
-  long long RequiredMemorySize;
-  void** CurrentNodePointer;
-  void** PreviousNodePointer;
-  void** NextNodePointer;
-  void** NewNodePointer;
-  void* GameCoreInitializer;
+  bool IsGameCoreNodeInitialized;                           // 游戏核心节点是否已初始化
+  void** RootNodeReference;                                // 根节点引用
+  int GameCoreIdentifierMatchResult;                       // 游戏核心标识符匹配结果
+  long long* MainSystemTablePointer;                        // 主系统表指针
+  long long RequiredMemorySize;                            // 所需内存大小
+  void** CurrentNodePointer;                               // 当前节点指针
+  void** PreviousNodePointer;                              // 前一个节点指针
+  void** NextNodePointer;                                  // 下一个节点指针
+  void** NewNodePointer;                                   // 新节点指针
+  void* GameCoreInitializer;                               // 游戏核心初始化器
   
   MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
@@ -1718,18 +1727,27 @@ void InitializeGameCoreSystem(void)
  * 
  * @return void 无返回值
  */
+/**
+ * @brief 初始化系统数据表基础分配器
+ * 
+ * 此函数负责初始化系统数据表的基础分配器节点，包括节点查找、内存分配和标识符设置。
+ * 函数会在系统表中查找或创建基础分配器节点，并配置其基本属性。
+ * 
+ * @note 此函数假设系统表和标识符已预先定义
+ * @return 无返回值
+ */
 void InitializeSystemDataTableBaseAllocator(void)
 {
-  bool IsBaseAllocatorNodeInitialized;
-  void** RootNodeReference;
-  int BaseAllocatorIdentifierMatchResult;
-  long long* MainSystemTablePointer;
-  long long RequiredMemorySize;
-  void** CurrentNodePointer;
-  void** PreviousNodePointer;
-  void** NextNodePointer;
-  void** NewAllocatorNodePointer;
-  void* BaseAllocatorInitializer;
+  bool IsBaseAllocatorNodeInitialized;                     // 基础分配器节点是否已初始化
+  void** RootNodeReference;                                // 根节点引用
+  int BaseAllocatorIdentifierMatchResult;                  // 基础分配器标识符匹配结果
+  long long* MainSystemTablePointer;                        // 主系统表指针
+  long long RequiredMemorySize;                            // 所需内存大小
+  void** CurrentNodePointer;                               // 当前节点指针
+  void** PreviousNodePointer;                              // 前一个节点指针
+  void** NextNodePointer;                                  // 下一个节点指针
+  void** NewAllocatorNodePointer;                          // 新分配器节点指针
+  void* BaseAllocatorInitializer;                          // 基础分配器初始化器
   
   MainSystemTablePointer = (long long*)GetSystemRootTable();
   RootNodeReference = (void**)*MainSystemTablePointer;
@@ -19112,17 +19130,27 @@ void WotsMainSDLL(void* SystemParameter)
  * @note 函数会调用InitializeSystemMemoryPool和InitializeCoreEngine进行基础初始化
  * @note 函数会管理系统全局控制器的生命周期和状态切换
  */
+/**
+ * @brief 初始化主系统控制器
+ * 
+ * 此函数负责初始化游戏主系统控制器，处理系统状态和事件管理。
+ * 函数会创建系统控制器对象，初始化数据表管理器，并设置系统事件分发器。
+ * 
+ * @param SystemParameter 系统参数，用于配置系统控制器的初始化
+ * @note 函数会调用InitializeSystemMemoryPool和InitializeCoreEngine进行基础初始化
+ * @note 函数会管理系统全局控制器的生命周期和状态切换
+ */
 void InitializeMainSystemController(long long SystemParameter)
 {
-  long long SystemHandle;
-  long long *ControllerPointer;
-  bool IsControllerActive;
-  long long *MemoryBlock;
-  long long **VirtualTableReference;
-  long long *GlobalDataReference;
-  long long* InitializationCounter;
-  long long *SystemController;
-  void* AllocationFlags;
+  long long SystemHandle;                                    // 系统句柄
+  long long *ControllerPointer;                              // 控制器指针
+  bool IsControllerActive;                                  // 控制器是否活动
+  long long *MemoryBlock;                                   // 内存块指针
+  long long **VirtualTableReference;                        // 虚表引用
+  long long *GlobalDataReference;                           // 全局数据引用
+  long long* InitializationCounter;                          // 初始化计数器
+  long long *SystemController;                              // 系统控制器
+  void* AllocationFlags;                                    // 分配标志
   
   AllocationFlags = (void*)SystemInvalidHandleValue;
   InitializeSystemMemoryPool();
