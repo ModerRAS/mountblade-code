@@ -2626,16 +2626,16 @@ void InitializeSystemMemoryAllocator(void)
       CurrentNodePointer = PreviousNodePointer;
     }
     else {
-      NextNode = (void**)*CurrentNodePointer;
+      NextNodePointer = (void**)*CurrentNodePointer;
     }
-    PreviousNode = CurrentNode;
-    CurrentNodePointer = NextNode;
+    PreviousNodePointer = CurrentNodePointer;
+    CurrentNodePointer = NextNodePointer;
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((PreviousNode == RootNodeReference) || (IdentifierCompareResult = memcmp(&MEMORY_ALLOCATOR_TEMPLATE_ID, PreviousNode + 4, IdentifierSize), IdentifierCompareResult < 0)) {
+  if ((PreviousNodePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&MemoryAllocatorTemplateId, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), IdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, PreviousNode, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
-    PreviousNode = AllocatedMemoryNode;
+    AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, PreviousNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
+    PreviousNodePointer = AllocatedMemoryNode;
   }
   PreviousNode[NodeIdentifier1Index] = MEMORY_ALLOCATOR_NODE_IDENTIFIER1;
   PreviousNode[NodeIdentifier2Index] = MEMORY_ALLOCATOR_NODE_IDENTIFIER2;

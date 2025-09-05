@@ -27304,7 +27304,7 @@ undefined8 ExecuteSystemCheckA1(longlong param_1,undefined8 *param_2)
 
 
 
-undefined8 FUN_18089dfc1(void)
+undefined8 ReturnFixedStatusCodeA1(void)
 
 {
   undefined8 uVar1;
@@ -27348,7 +27348,7 @@ undefined8 FUN_18089dfc1(void)
 
 
 
-undefined8 FUN_18089dfe4(void)
+undefined8 ValidateSystemStatusA0(void)
 
 {
   undefined8 uVar1;
@@ -27393,7 +27393,7 @@ undefined8 FUN_18089dfe4(void)
 
 
 
-undefined8 FUN_18089e043(void)
+undefined8 ExecuteDataSynchronizationA1(void)
 
 {
   undefined8 uVar1;
@@ -27434,7 +27434,7 @@ void ValidateSystemComponentsC0(void)
 
 
 
-undefined8 FUN_18089e0d0(longlong param_1,undefined8 *param_2)
+undefined8 ProcessDataStreamA1(longlong param_1,undefined8 *param_2)
 
 {
   undefined8 uVar1;
