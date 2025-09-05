@@ -2347,9 +2347,9 @@ PrimaryNetworkProcessingCompleted:
           ConnectionStatusIterator[NetworkStatusValidationIndex] = ValidationState;
           ConnectionStatusIterator[NetworkStatusTimeoutIndex] = TimeoutState;
           ConnectionStatusIterator[NetworkStatusSecondaryIndex] = SecondaryState;
-          ConnectionStatusIterator[ConnectionContextStatusEntrySize - 1] = *(NetworkStatus *)CalculateLastStatusEntryOffset(ConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
+          ConnectionStatusIterator[ConnectionContextEntrySize - 1] = *(NetworkStatus *)CalculateLastStatusEntryOffset(ConnectionContextIdentifier, ConnectionStatusPointer, ConnectionStatusIterator);
           StatusIterationCounter = StatusIterationCounter - 1;
-          ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextStatusEntrySize;
+          ConnectionStatusIterator = ConnectionStatusIterator + ConnectionContextEntrySize;
         } while (StatusIterationCounter != 0);
       }
 SecondaryNetworkProcessingCompleted:
