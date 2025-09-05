@@ -8397,17 +8397,23 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
 
 
 
-// 函数: undefined8 ProcessBatchDataOperations(longlong batchDataDescriptor)
-// 
-// 批量数据处理函数
-// 处理批量数据操作，包括验证和处理多个数据项
-// 
-// 参数:
-//   batchDataDescriptor - 数据处理参数指针
-// 
-// 返回值:
-//   undefined8 - 处理结果状态码
-undefined8 ProcessBatchDataOperations(longlong batchDataDescriptor)
+/**
+ * @brief 处理批量数据操作
+ * 
+ * 该函数处理批量数据操作，包括验证和处理多个数据项。函数遍历数据数组，
+ * 对每个数据项进行验证和处理，确保所有数据都符合系统要求。
+ * 
+ * @param batchDataDescriptor 批量数据描述符，包含数据项信息和处理参数
+ * @return uint64_t 处理结果状态码：
+ *         - 0: 处理成功
+ *         - 0x1c: 数据无效或处理失败
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 原始函数名：FUN_1808936e0
+ * @warning 确保批量数据描述符有效，否则可能导致未定义行为
+ * @see QueryAndRetrieveSystemDataA0, ProcessFloatingPointDataValidationA0
+ */
+uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
 
 {
   longlong dataItemPointer;
@@ -21595,35 +21601,35 @@ void ProcessSystemDataPointer(undefined8 *systemDataPointer,undefined8 operation
   pointerOperationResult = (**(code **)*systemDataPointer)(systemDataPointer,operationParameter,4);
   validationStatus = 0;
   if (pointerOperationResult == 0) {
-    operationResult = validationOutcome;
-    statusCounter = extraout_XMM0_Da;
-    if (0 < operationStatus) {
+    systemOperationResult = validationStatus;
+    systemStatusCounter = extraout_XMM0_Da;
+    if (0 < systemOperationStatus) {
       do {
-        operationResult = ValidateDataParametersA0(statusCounter,(longlong)(int)operationResult * 0x6c + *(longlong *)(registerR14 + 0x20));
-        if (operationResult != 0) {
+        systemOperationResult = ValidateDataParametersA0(systemStatusCounter,(longlong)(int)systemOperationResult * 0x6c + *(longlong *)(registerR14 + 0x20));
+        if (systemOperationResult != 0) {
           return;
         }
-        memoryBaseAddress = (int)operationResult + 1;
-        operationResult = (ulonglong)memoryBaseAddress;
-        statusCounter = extraout_XMM0_Da_00;
-      } while ((int)memoryBaseAddress < operationStatus);
+        memoryBaseAddress = (int)systemOperationResult + 1;
+        systemOperationResult = (ulonglong)memoryBaseAddress;
+        systemStatusCounter = extraout_XMM0_Da_00;
+      } while ((int)memoryBaseAddress < systemOperationStatus);
     }
-    pdataValue = *(undefined8 **)(registerContext + 8);
-    operationStatus = *(int *)(registerR14 + 0x38);
-    *(int *)(unaff_RBP + 0x20) = operationStatus;
-    operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
-    if (operationResult == 0) {
-      operationResult = validationOutcome;
-      statusCounter = extraout_XMM0_Da_01;
-      if (0 < operationStatus) {
+    systemDataValue = *(undefined8 **)(registerContext + 8);
+    systemOperationStatus = *(int *)(registerR14 + 0x38);
+    *(int *)(registerBackupPointer + 0x20) = systemOperationStatus;
+    systemOperationResult = (**(code **)*systemDataValue)(systemDataValue,registerBackupPointer + 0x20,4);
+    if (systemOperationResult == 0) {
+      systemOperationResult = validationStatus;
+      systemStatusCounter = extraout_XMM0_Da_01;
+      if (0 < systemOperationStatus) {
         do {
-          operationResult = ProcessDataPointerA0(statusCounter,(longlong)(int)operationResult * 0x10 + *(longlong *)(registerR14 + 0x30))
+          systemOperationResult = ProcessDataPointerA0(systemStatusCounter,(longlong)(int)systemOperationResult * 0x10 + *(longlong *)(registerR14 + 0x30))
           ;
-          if (operationResult != 0) {
+          if (systemOperationResult != 0) {
             return;
           }
-          memoryBaseAddress = (int)operationResult + 1;
-          operationResult = (ulonglong)memoryBaseAddress;
+          memoryBaseAddress = (int)systemOperationResult + 1;
+          systemOperationResult = (ulonglong)memoryBaseAddress;
           statusCounter = extraout_XMM0_Da_02;
         } while ((int)memoryBaseAddress < operationStatus);
       }

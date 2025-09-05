@@ -2017,9 +2017,9 @@ void AcceptNetworkConnection(void)
   // 初始化会话参数
   NetworkSessionEncryptionKey = DefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
   NetworkSessionTimeoutDuration = NetworkTimeout5Minutes;              // 设置会话超时时间为300秒
-  NetworkHandshakeTimeout = NetworkTimeout5Seconds;                     // 设置握手超时时间为5秒
-  NetworkAuthenticationTimeout = NetworkTimeout5Seconds;               // 设置认证超时时间为5秒
-  NetworkEncryptionTimeout = NetworkTimeout5Seconds;                   // 设置加密超时时间为5秒
+  NetworkHandshakeTimeout = Network5SecondsTimeout;                     // 设置握手超时时间为5秒
+  NetworkAuthenticationTimeout = Network5SecondsTimeout;               // 设置认证超时时间为5秒
+  NetworkEncryptionTimeout = Network5SecondsTimeout;                   // 设置加密超时时间为5秒
   
   // 更新连接统计
   NetworkActiveConnectionCount++;                     // 增加活跃连接计数
@@ -2300,7 +2300,7 @@ void InitializeNetworkDataTransmission(void)
   NetworkPacketSequence = NetworkSequenceInitialValue;                         // 初始化数据包序列号
   NetworkAcknowledgeNumber = NetworkAckInitialValue;                      // 初始化确认号
   NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
-  NetworkRetransmitTimer = NetworkTimeout5Seconds;                       // 设置重传计时器为5秒
+  NetworkRetransmitTimer = Network5SecondsTimeout;                       // 设置重传计时器为5秒
   NetworkKeepAliveTime = NetworkHeartbeat30Seconds;                          // 设置保持连接时间为30秒
   NetworkHeartbeatTimeout = NetworkHeartbeat60Seconds;                      // 设置心跳超时时间为60秒
   
@@ -2308,7 +2308,7 @@ void InitializeNetworkDataTransmission(void)
   NetworkPacketBufferPointer = NetworkBufferInitializationFlag;                     // 初始化数据包缓冲区指针
   NetworkPacketHeaderPointer = NetworkBufferInitializationFlag;                     // 初始化数据包头指针
   NetworkPacketPayloadSize = Network1KBPacketPayloadSize;                      // 设置数据包负载大小为1KB
-  NetworkMaximumPacketSize = NetworkMaximumPacketSize2KB;                         // 设置最大数据包大小为2KB
+  NetworkMaximumPacketSize = Network2KBMaximumPacketSize;                         // 设置最大数据包大小为2KB
   
   // 初始化传输统计
   NetworkTotalBytesSent = 0;                                 // 重置发送字节数
@@ -2466,7 +2466,7 @@ void InitializeNetworkPacketProcessingSystem(void)
   
   // 初始化重试机制
   NetworkRetryInterval = NetworkTimeout1Second;                        // 设置重试间隔为1秒
-  NetworkTimeoutInterval = NetworkTimeout5Seconds;                     // 设置超时间隔为5秒
+  NetworkTimeoutInterval = Network5SecondsTimeout;                     // 设置超时间隔为5秒
   NetworkConnectionRetryCount = NetworkRetryCountMaximum;             // 设置连接重试次数为3次
   NetworkConnectionBackoffTime = NetworkBackoffTimeTwoSeconds;           // 设置连接退避时间为2秒
   
@@ -2520,7 +2520,7 @@ void InitializeNetworkErrorHandlingSystem(void)
   NetworkPortRangeEnd = NetworkPortRangeMaximum;           // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
-  NetworkConnectionTimeoutMs = NetworkTimeout30Seconds;                   // 设置连接超时时间为30秒
+  NetworkConnectionTimeoutMs = Network30SecondsTimeout;                   // 设置连接超时时间为30秒
   NetworkTimeoutValueOffset = 0x30;                         // 设置超时值偏移量
   NetworkRetryCountOffset = 0x34;                           // 设置重试计数偏移量
   
