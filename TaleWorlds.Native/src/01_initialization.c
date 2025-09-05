@@ -915,20 +915,20 @@ void* SystemMemoryRegionExpansionHotel;
  */
 void* SystemMemoryRegionExpansionIndia;
 void* SystemDataTableHotfix;                     // 热修复系统数据表
-void* SystemMemoryRegionExpansionJ;
-void* SystemMemoryRegionExpansionK;
-void* SystemMemoryRegionExpansionL;
-void* SystemMemoryRegionExpansionM;
-void* SystemMemoryRegionExpansionN;
-void* SystemMemoryRegionExpansionO;
-void* SystemMemoryRegionExpansionP;
+void* SystemMemoryRegionExpansionJuliet;
+void* SystemMemoryRegionExpansionKilo;
+void* SystemMemoryRegionExpansionLima;
+void* SystemMemoryRegionExpansionMike;
+void* SystemMemoryRegionExpansionNovember;
+void* SystemMemoryRegionExpansionOscar;
+void* SystemMemoryRegionExpansionPapa;
 void* SystemDataTableLegacy;                     // 遗留系统数据表
-void* SystemMemoryRegionExpansionQ;
-void* SystemMemoryRegionExpansionR;
-void* SystemMemoryRegionExpansionS;
-void* SystemMemoryRegionExpansionT;
-void* SystemMemoryRegionExpansionU;
-void* SystemMemoryRegionExpansionV;
+void* SystemMemoryRegionExpansionQuebec;
+void* SystemMemoryRegionExpansionRomeo;
+void* SystemMemoryRegionExpansionSierra;
+void* SystemMemoryRegionExpansionTango;
+void* SystemMemoryRegionExpansionUniform;
+void* SystemMemoryRegionExpansionVictor;
 void* SystemMemoryRegionExpansionW;
 /**
  * @brief 系统数据指针主指针
