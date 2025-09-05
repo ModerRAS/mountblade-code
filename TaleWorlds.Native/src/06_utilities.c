@@ -24120,7 +24120,7 @@ DataProcessLabelB:
               }
               dataFlags = securityCheckResult;
               if (*(int *)(param_2[1] + 0x18) == 0) {
-                validationStatus = FUN_1808993e0(param_1 + 200,*param_2);
+                validationStatus = ExecuteDataValidationA0(param_1 + 200,*param_2);
                 dataFlags = (ulonglong)validationStatus;
                 if (validationStatus == 0) goto LAB_18089bbcc;
               }
@@ -24235,7 +24235,7 @@ DataProcessLabelA:
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
-           (operationResult = FUN_18089d490(systemContext + 0x30), (int)operationResult == 0)))))))))) {
+           (operationResult = ValidateDataIntegrityA1(systemContext + 0x30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -24284,7 +24284,7 @@ DataProcessLabelB:
               }
               operationResult = securityCheckResult;
               if (*(int *)(registerContext[1] + 0x18) == 0) {
-                validationStatus = FUN_1808993e0(systemContext + 200,*registerContext);
+                validationStatus = ExecuteDataValidationA0(systemContext + 200,*registerContext);
                 operationResult = (ulonglong)validationStatus;
                 if (validationStatus == 0) goto LAB_18089bbcc;
               }
@@ -24389,7 +24389,7 @@ DataProcessSectionA:
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
-           (operationResult = FUN_18089d490(systemContext + 0x30), (int)operationResult == 0)))))))))) {
+           (operationResult = ValidateDataIntegrityA1(systemContext + 0x30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -24438,7 +24438,7 @@ DataProcessLabelB:
               }
               operationResult = securityCheckResult;
               if (*(int *)(registerContext[1] + 0x18) == 0) {
-                validationStatus = FUN_1808993e0(systemContext + 200,*registerContext);
+                validationStatus = ExecuteDataValidationA0(systemContext + 200,*registerContext);
                 operationResult = (ulonglong)validationStatus;
                 if (validationStatus == 0) goto LAB_18089bbcc;
               }
@@ -24539,7 +24539,7 @@ DataProcessLabelA:
           (operationResult = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0x9c), (int)operationResult == 0)) &&
          ((operationResult = securityCheckResult, *(int *)(registerContext[1] + 0x18) == 0 &&
           ((operationResult = OperateDataO0(*registerContext,systemContext + 0xb4,4), (int)operationResult == 0 &&
-           (operationResult = FUN_18089d490(systemContext + 0x30), (int)operationResult == 0)))))))))) {
+           (operationResult = ValidateDataIntegrityA1(systemContext + 0x30), (int)operationResult == 0)))))))))) {
       operationResult = validationOutcome;
       if (0x34 < *(uint *)(registerContext + 8)) {
         if (*(int *)(registerContext[1] + 0x18) == 0) {
@@ -24588,7 +24588,7 @@ DataProcessLabelB:
               }
               operationResult = securityCheckResult;
               if (*(int *)(registerContext[1] + 0x18) == 0) {
-                memoryBaseAddress = FUN_1808993e0(systemContext + 200,*registerContext);
+                memoryBaseAddress = ExecuteDataValidationA0(systemContext + 200,*registerContext);
                 operationResult = (ulonglong)memoryBaseAddress;
                 if (memoryBaseAddress == 0) goto LAB_18089bbcc;
               }
