@@ -50074,7 +50074,12 @@ void ResetSystemEventState(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180906c10(void)
+/**
+ * @brief 设置默认异常处理器B
+ * 
+ * 该函数负责设置默认的异常处理器B，用于处理系统异常
+ */
+void SetDefaultExceptionHandlerB(void)
 
 {
   _DAT_180d49160 = &DefaultExceptionHandlerB;
@@ -50083,69 +50088,100 @@ void Unwind_180906c10(void)
 
 
 
-void Unwind_180906c20(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行异常处理回调A
+ * 
+ * 该函数负责执行异常处理回调函数A，处理异常情况
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackContext 回调上下文指针
+ */
+void ExecuteExceptionCallbackA(undefined8 exceptionContext, longlong callbackContext)
 
 {
   FUN_18007f6a0();
-  if (*(longlong **)(param_2 + 0x60) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x60) + 0x38))();
+  if (*(longlong **)(callbackContext + 0x60) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(callbackContext + 0x60) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180906c30(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行异常处理回调B
+ * 
+ * 该函数负责执行异常处理回调函数B，处理异常情况
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackContext 回调上下文指针
+ */
+void ExecuteExceptionCallbackB(undefined8 exceptionContext, longlong callbackContext)
 
 {
-  if (*(longlong **)(param_2 + 0x60) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x60) + 0x38))();
+  if (*(longlong **)(callbackContext + 0x60) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(callbackContext + 0x60) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180906c40(undefined8 param_1,longlong param_2)
+/**
+ * @brief 执行异常处理回调C
+ * 
+ * 该函数负责执行异常处理回调函数C，处理异常情况
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param callbackContext 回调上下文指针
+ */
+void ExecuteExceptionCallbackC(undefined8 exceptionContext, longlong callbackContext)
 
 {
-  if (*(longlong **)(param_2 + 0x80) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0x80) + 0x38))();
+  if (*(longlong **)(callbackContext + 0x80) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(callbackContext + 0x80) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180906c50(undefined8 param_1,longlong param_2)
-
+/**
+ * @brief 清理异常链表节点
+ * 
+ * 该函数负责清理异常链表中的节点，释放相关资源
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param cleanupContext 清理上下文指针
+ */
+void CleanupExceptionListNode(undefined8 exceptionContext, longlong cleanupContext)
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *referenceCount;
+  undefined8 *nodePointer;
+  longlong listOffset;
+  ulonglong baseAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0x118);
-  if (puVar2 == (undefined8 *)0x0) {
+  nodePointer = *(undefined8 **)(cleanupContext + 0x118);
+  if (nodePointer == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  baseAddress = (ulonglong)nodePointer & 0xffffffffffc00000;
+  if (baseAddress != 0) {
+    listOffset = baseAddress + 0x80 + ((longlong)nodePointer - baseAddress >> 0x10) * 0x50;
+    listOffset = listOffset - (ulonglong)*(uint *)(listOffset + 4);
+    if ((*(void ***)(baseAddress + 0x70) == &ExceptionList) && (*(char *)(listOffset + 0xe) == '\0')) {
+      *nodePointer = *(undefined8 *)(listOffset + 0x20);
+      *(undefined8 **)(listOffset + 0x20) = nodePointer;
+      referenceCount = (int *)(listOffset + 0x18);
+      *referenceCount = *referenceCount + -1;
+      if (*referenceCount == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(baseAddress,CONCAT71(0xff000000,*(void ***)(baseAddress + 0x70) == &ExceptionList),
+                          nodePointer,baseAddress,0xfffffffffffffffe);
     }
   }
   return;
@@ -50153,19 +50189,26 @@ void Unwind_180906c50(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180906c60(undefined8 param_1,longlong param_2)
-
+/**
+ * @brief 验证上下文状态A
+ * 
+ * 该函数负责验证上下文状态A，如果发现异常则终止系统
+ * 
+ * @param validationContext 验证上下文指针
+ * @param validationRange 验证范围指针
+ */
+void ValidateContextStateA(undefined8 validationContext, longlong validationRange)
 {
-  longlong *pvalidationContext;
+  longlong *contextPointer;
   
-  for (pvalidationContext = *(longlong **)(param_2 + 0xf8); pvalidationContext != *(longlong **)(param_2 + 0x100);
-      pvalidationContext = pvalidationContext + 4) {
-    if (*pvalidationContext != 0) {
+  for (contextPointer = *(longlong **)(validationRange + 0xf8); contextPointer != *(longlong **)(validationRange + 0x100);
+      contextPointer = contextPointer + 4) {
+    if (*contextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  if (*(longlong *)(param_2 + 0xf8) == 0) {
+  if (*(longlong *)(validationRange + 0xf8) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
@@ -50174,19 +50217,26 @@ void Unwind_180906c60(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180906c70(undefined8 param_1,longlong param_2)
-
+/**
+ * @brief 验证上下文状态B
+ * 
+ * 该函数负责验证上下文状态B，如果发现异常则终止系统
+ * 
+ * @param validationContext 验证上下文指针
+ * @param validationRange 验证范围指针
+ */
+void ValidateContextStateB(undefined8 validationContext, longlong validationRange)
 {
-  longlong *pvalidationContext;
+  longlong *contextPointer;
   
-  for (pvalidationContext = *(longlong **)(param_2 + 0xd8); pvalidationContext != *(longlong **)(param_2 + 0xe0);
-      pvalidationContext = pvalidationContext + 4) {
-    if (*pvalidationContext != 0) {
+  for (contextPointer = *(longlong **)(validationRange + 0xd8); contextPointer != *(longlong **)(validationRange + 0xe0);
+      contextPointer = contextPointer + 4) {
+    if (*contextPointer != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
   }
-  if (*(longlong *)(param_2 + 0xd8) == 0) {
+  if (*(longlong *)(validationRange + 0xd8) == 0) {
     return;
   }
                     // WARNING: Subroutine does not return
