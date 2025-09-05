@@ -19256,14 +19256,19 @@ SkipControllerInitialization:
 
 
 /**
- * 内存管理器清理函数
- * 清理内存管理器相关的指针和资源
+ * @brief 清理系统内存管理器
  * 
- * @param SystemResourceManager 内存管理器指针
- * @param cleanupFlags 清理标志
- * @param ReservedParameter3 保留参数
- * @param ReservedParameter4 保留参数
+ * 此函数负责清理系统内存管理器相关的资源和指针，释放内存并重置管理器状态。
+ * 函数会按顺序设置不同的内存模板，并根据清理标志决定是否释放内存。
+ * 
+ * @param memoryManager 内存管理器指针的指针
+ * @param cleanupFlags 清理标志，位1表示是否释放内存
+ * @param reservedParameter3 保留参数3
+ * @param reservedParameter4 保留参数4
  * @return 返回内存管理器指针
+ * 
+ * @note 该函数会依次设置四次、三次、二次、一次内存模板
+ * @note 当cleanupFlags的第0位为1时，会释放28字节的内存
  */
 void* CleanupSystemMemoryManager(void** memoryManager, unsigned long long cleanupFlags, void* reservedParameter3, void* reservedParameter4)
 
