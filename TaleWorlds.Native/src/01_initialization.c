@@ -28855,7 +28855,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   uint32_t SystemEncryptionKeyG;
   uint32_t SystemEncryptionKeyD;
   void* SystemMemoryBufferPointer;
-  void* **SystemDoublePointerF0;
+  void* **SystemDoublePointerPrimary;
   void* *SystemResourceHandlePrimary;
   uint8_t *SystemDataBufferWorkPointer;
   uint32_t SystemMemoryAllocatorStatus;
@@ -28898,13 +28898,13 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemStackVariablePrimary = 0;
   SystemStackVariableSecondary = 0x3f800000;
   SystemStackVariableTertiary = 0;
-  UnsignedStackFlagPrimary = 0;
+  SystemUnsignedStackFlagPrimary = 0;
   SystemStackVariableQuaternary = 0;
-  UnsignedStackFlagSecondary = 0;
+  SystemUnsignedStackFlagSecondary = 0;
   SystemEncryptionKeyC = 0x3f800000;
   SystemEncryptionKeyG = 0x1010101;
   SystemEncryptionKeyD = 1;
-  EncryptionKeyA = 1;
+  SystemEncryptionKeyA = 1;
   SystemResourceHandleTableOffset = &SystemResourceTemplatePrimary;
   SystemDataBufferWorkPointer = SystemDataBufferDataArray;
   SystemDataBufferDataArray[0] = 0;
@@ -28918,8 +28918,8 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   SystemResourceHandleTableOffset = &SystemMemoryAllocatorReference;
   pGlobalDataFlags2 = &SystemGlobalDataReference;
   SystemDataProcessingFlag = 0;
-  LongStackVariableSecondary = 0;
-  StackVariableMain = 0;
+  SystemLongStackVariableSecondary = 0;
+  SystemStackVariableMain = 0;
   SystemThreadFlags = *SystemResourceManager;
   SetupSystemMemory(&SystemResourceHandle,ConfigurationDataPointer);
   SystemOperationResult = VerifySystemConfiguration(SystemThreadFlags,&SystemResourceHandle);
