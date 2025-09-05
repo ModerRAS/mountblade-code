@@ -7881,7 +7881,7 @@ undefined8 ConditionalResourceRelease(char shouldRelease)
  * @param void 无参数
  * @return void 无返回值
  */
-// 函数: void UtilityNoOperation1(void)
+// 函数: void SystemNoOperationPrimary(void)
 // 功能：空操作函数，不执行任何操作，直接返回
 // 
 // 这是一个标准的空操作函数，用于占位或作为默认的处理函数。
@@ -7913,7 +7913,7 @@ undefined8 ConditionalResourceRelease(char shouldRelease)
  * 
  * @note 该函数直接返回，不产生任何副作用
  */
-void UtilityNoOperation1(void)
+void SystemNoOperationPrimary(void)
 
 {
   return;
@@ -8008,9 +8008,9 @@ void TriggerSystemShutdown(void)
 
 
 
-// 函数: void ReturnEmptyFunction(void)
+// 函数: void SystemReturnEmptyFunction(void)
 // 功能：空返回函数
-void ReturnEmptyFunction(void)
+void SystemReturnEmptyFunction(void)
 
 {
   return;
@@ -8639,7 +8639,7 @@ void TerminateProcessWithError(void)
 
 
 
-// 函数: void ReturnEmptyFunction(void)
+// 函数: void SystemReturnEmptyFunction(void)
 // 
 // 空返回函数
 // 不执行任何操作直接返回的函数
@@ -8649,7 +8649,7 @@ void TerminateProcessWithError(void)
 // 
 // 返回值:
 //   无
-void ReturnEmptyFunction(void)
+void SystemReturnEmptyFunction(void)
 
 {
   return;
@@ -8744,7 +8744,7 @@ void TerminateProcessWithErrorB(void)
 
 
 
-// 函数: void ReturnEmptyFunctionB(void)
+// 函数: void SystemReturnEmptyFunctionSecondary(void)
 // 
 // 空返回函数B
 // 不执行任何操作直接返回的函数
@@ -8754,7 +8754,7 @@ void TerminateProcessWithErrorB(void)
 // 
 // 返回值:
 //   无
-void ReturnEmptyFunctionB(void)
+void SystemReturnEmptyFunctionSecondary(void)
 
 {
   return;
@@ -8846,7 +8846,7 @@ void TerminateProcessWithErrorC(void)
 
 
 
-// 函数: void ReturnEmptyFunctionC(void)
+// 函数: void SystemReturnEmptyFunctionTertiary(void)
 // 
 // 空返回函数C
 // 不执行任何操作直接返回的函数
@@ -8856,7 +8856,7 @@ void TerminateProcessWithErrorC(void)
 // 
 // 返回值:
 //   无
-void ReturnEmptyFunctionC(void)
+void SystemReturnEmptyFunctionTertiary(void)
 
 {
   return;
@@ -37596,7 +37596,18 @@ void Unwind_CleanupCallFrame(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902ec0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理器资源引用
+ * 
+ * 该函数负责清理异常处理器的资源引用，包括减少引用计数
+ * 和在引用计数归零时调用异常处理函数
+ * 
+ * @param param_1 系统上下文参数
+ * @param param_2 资源管理参数
+ * 
+ * @note 原始函数名：Unwind_180902ec0
+ */
+void CleanupExceptionHandlerReferences(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -49992,6 +50003,17 @@ void Unwind_180905ee0(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 系统资源清理函数
+ * 
+ * 该函数负责清理系统资源，包括验证状态、释放内存和异常处理。
+ * 函数会遍历资源链表，验证每个资源的状态标志，并在必要时调用相应的清理函数。
+ * 
+ * @param systemContext 系统上下文指针，包含系统状态和配置信息
+ * @param contextHandle 上下文句柄，用于访问资源管理器
+ * 
+ * @note 原始函数名：Unwind_180905ef0
+ */
 void CleanupSystemResources(undefined8 systemContext,longlong contextHandle)
 
 {
