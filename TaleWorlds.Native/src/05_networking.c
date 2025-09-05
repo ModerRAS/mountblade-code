@@ -492,9 +492,9 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkAuthenticationTypePassword 0x01                            // 密码认证类型
 #define NetworkEncryptionAlgorithmAES 0x01                               // AES加密算法
 #define NetworkCompressionMethodZLIB 0x01                             // ZLIB压缩方法
-#define NetworkHashAlgorithmSHA256 0x01                        // SHA-256哈希算法
-#define NetworkSignatureMethodRSA 0x01                         // RSA签名方法
-#define Network256BitEncryptionKeyLength 256                  // 256位加密密钥长度
+#define NetworkHashAlgorithmSha256 0x01                        // SHA-256哈希算法
+#define NetworkSignatureMethodRsa 0x01                         // RSA签名方法
+#define NetworkEncryptionKeyLength256Bit 256                  // 256位加密密钥长度
 #define NetworkCompressionLevelDefault 0x06                    // 默认压缩级别
 /**
  * @brief 默认会话加密密钥
@@ -509,16 +509,16 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define NetworkProtocolVersionOne 0x01                // 网络协议版本1.0
 #define NetworkConnectionPoolSize 256             // 连接池大小256
 #define NetworkConnectionStandardSize 256             // 标准连接大小256字节
-#define Network64ByteEventSize 64                    // 事件大小64字节
-#define Network64ByteCallbackSize 64                 // 回调大小64字节
+#define NetworkEventSize64Bytes 64                    // 事件大小64字节
+#define NetworkCallbackSize64Bytes 64                 // 回调大小64字节
 #define NetworkMaximumRetryCount 3               // 最大重试次数3次
 #define NetworkBackoffTimeout 2000          // 退避时间2秒
 
 // 网络数据包常量
 #define NetworkStandardPacketHeaderSize 0x20                        // 标准数据包头大小32字节
 #define Network16BytePacketTrailerSize 0x10                       // 数据包尾大小16字节
-#define Network1KBPacketPayloadSize 0x400                      // 数据包负载大小1KB
-#define Network2KBMaximumPacketSize 0x800                     // 最大数据包大小2KB
+#define NetworkPacketPayloadSize1KB 0x400                      // 数据包负载大小1KB
+#define NetworkMaximumPacketSize2KB 0x800                     // 最大数据包大小2KB
 #define NetworkStandardPacketProcessingSize 0x100                 // 标准数据包处理大小256字节
 #define NetworkValidationBufferSize 0x27                   // 验证缓冲区大小39字节
 #define NetworkErrorCodeInvalidPacket 0x1c                     // 无效数据包错误码
@@ -2078,8 +2078,8 @@ void AcceptNetworkConnection(void)
   
   // 设置连接参数
   NetworkConnectionQuality = NetworkConnectionQualityGood;                     // 设置连接质量为良好
-  NetworkConnectionBandwidth = Network4KBandwidth;                 // 设置连接带宽为4KB
-  NetworkConnectionLatencyMs = Network50MillisecondsLatency;                     // 设置连接延迟为50ms
+  NetworkConnectionBandwidth = NetworkBandwidthFourKB;                 // 设置连接带宽为4KB
+  NetworkConnectionLatencyMs = NetworkLatencyFiftyMilliseconds;                     // 设置连接延迟为50ms
   NetworkConnectionReliabilityLevel = NetworkReliabilityLevelHigh;                 // 设置连接可靠性为高
   
   // 初始化安全参数
@@ -2090,10 +2090,10 @@ void AcceptNetworkConnection(void)
   
   // 初始化会话参数
   NetworkSessionEncryptionKey = NetworkDefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
-  NetworkSessionTimeoutDuration = Network5MinutesTimeout;              // 设置会话超时时间为300秒
-  NetworkHandshakeTimeout = Network5SecondsTimeout;                     // 设置握手超时时间为5秒
-  NetworkAuthenticationTimeout = Network5SecondsTimeout;               // 设置认证超时时间为5秒
-  NetworkEncryptionTimeout = Network5SecondsTimeout;                   // 设置加密超时时间为5秒
+  NetworkSessionTimeoutDuration = NetworkTimeoutFiveMinutes;              // 设置会话超时时间为300秒
+  NetworkHandshakeTimeout = NetworkTimeoutFiveSeconds;                     // 设置握手超时时间为5秒
+  NetworkAuthenticationTimeout = NetworkTimeoutFiveSeconds;               // 设置认证超时时间为5秒
+  NetworkEncryptionTimeout = NetworkTimeoutFiveSeconds;                   // 设置加密超时时间为5秒
   
   // 更新连接统计
   NetworkActiveConnectionCount++;                     // 增加活跃连接计数
@@ -2373,16 +2373,16 @@ void InitializeNetworkDataTransmission(void)
   // 初始化数据包参数
   NetworkPacketSequence = NetworkSequenceInitialValue;                         // 初始化数据包序列号
   NetworkAcknowledgeNumber = NetworkAckInitialValue;                      // 初始化确认号
-  NetworkWindowScale = Network16WindowScale;                            // 设置窗口缩放为16
-  NetworkRetransmitTimer = Network5SecondsTimeout;                       // 设置重传计时器为5秒
-  NetworkKeepAliveTime = Network30SecondsHeartbeat;                          // 设置保持连接时间为30秒
-  NetworkHeartbeatTimeout = Network60SecondsHeartbeat;                      // 设置心跳超时时间为60秒
+  NetworkWindowScale = NetworkWindowScaleSixteen;                            // 设置窗口缩放为16
+  NetworkRetransmitTimer = NetworkTimeoutFiveSeconds;                       // 设置重传计时器为5秒
+  NetworkKeepAliveTime = NetworkHeartbeatThirtySeconds;                          // 设置保持连接时间为30秒
+  NetworkHeartbeatTimeout = NetworkHeartbeatSixtySeconds;                      // 设置心跳超时时间为60秒
   
   // 初始化数据包缓冲区
   NetworkPacketBufferPointer = NetworkBufferInitializationFlag;                     // 初始化数据包缓冲区指针
   NetworkPacketHeaderPointer = NetworkBufferInitializationFlag;                     // 初始化数据包头指针
-  NetworkPacketPayloadSize = Network1KBPacketPayloadSize;                      // 设置数据包负载大小为1KB
-  NetworkMaximumPacketSize = Network2KBMaximumPacketSize;                         // 设置最大数据包大小为2KB
+  NetworkPacketPayloadSize = NetworkPacketPayloadSize1KB;                      // 设置数据包负载大小为1KB
+  NetworkMaximumPacketSize = NetworkMaximumPacketSize2KB;                         // 设置最大数据包大小为2KB
   
   // 初始化传输统计
   NetworkTotalBytesSent = 0;                                 // 重置发送字节数
