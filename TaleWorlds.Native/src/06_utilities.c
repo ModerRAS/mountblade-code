@@ -45092,28 +45092,28 @@ void ExecuteExceptionHandlerAtOffsetF8(undefined8 context,longlong exceptionCont
 
 
 
-void Unwind_180905400(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExecuteExceptionHandlerAtOffset100(undefined8 context,longlong exceptionContext,undefined8 param_3,undefined8 exceptionData)
 
 {
-  code *pcVar1;
+  code *exceptionHandler;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0x100) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0x100),0,0,param_4,0xfffffffffffffffe);
+  exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0x100) + 0x10);
+  if (exceptionHandler != (code *)0x0) {
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0x100),0,0,exceptionData,0xfffffffffffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905410(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+void ExecuteExceptionHandlerAtOffsetF8Alt(undefined8 context,longlong exceptionContext,undefined8 param_3,undefined8 exceptionData)
 
 {
-  code *pcVar1;
+  code *exceptionHandler;
   
-  pcVar1 = *(code **)(*(longlong *)(param_2 + 0xf8) + 0x10);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(longlong *)(param_2 + 0xf8),0,0,param_4,0xfffffffffffffffe);
+  exceptionHandler = *(code **)(*(longlong *)(exceptionContext + 0xf8) + 0x10);
+  if (exceptionHandler != (code *)0x0) {
+    (*exceptionHandler)(*(longlong *)(exceptionContext + 0xf8),0,0,exceptionData,0xfffffffffffffffe);
   }
   return;
 }
