@@ -6286,24 +6286,24 @@ void ReturnEmptyFunctionD(void)
 undefined8 ProcessResourceDescriptorValidation(longlong resourceDescriptor)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 validationStatus;
+  longlong stackPointer;
   
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x10),&stackPointer);
+  if ((int)validationStatus != 0) {
+    return validationStatus;
   }
-  if (lStackX_8 == 0) {
-    lStackX_8 = 0;
+  if (stackPointer == 0) {
+    stackPointer = 0;
   }
   else {
-    lStackX_8 = lStackX_8 + -8;
+    stackPointer = stackPointer + -8;
   }
-  if (*(longlong *)(lStackX_8 + 0x10) == 0) {
+  if (*(longlong *)(stackPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
 }
 
 
