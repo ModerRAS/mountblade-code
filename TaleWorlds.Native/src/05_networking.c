@@ -591,7 +591,7 @@ static int64_t CalculateLastConnectionStatusEntryAddress(int64_t ContextIdentifi
 #define PoolReleased NetworkResetValue                                     // 连接池已释放
 #define SecurityReset NetworkResetValue                                    // 安全重置
 #define AuthReset NetworkResetValue                                        // 认证重置
-#define EncryptionReset NetworkReset_VALUE                                  // 加密重置
+#define EncryptionReset NetworkResetValue                                  // 加密重置
 #define CompressionReset NetworkReset_VALUE                                 // 压缩重置
 #define SocketReset NetworkReset_VALUE                                      // 套接字重置
 #define SocketDataReset NetworkResetValue                                 // 套接字数据重置
@@ -1001,7 +1001,7 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄
 uint32_t NetworkConnectionManager;                         // 网络连接管理器
-uint32_t NetworkManagerContextPointer;     // 网络连接管理器上下文指针
+uint32_t NetworkConnectionManagerContextPointer;     // 网络连接管理器上下文指针
 uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据
 uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志
 uint32_t NetworkConnectionTimeoutMs;                    // 网络连接超时时间（毫秒）
@@ -1554,26 +1554,12 @@ void CloseNetworkConnection(void)
 int32_t VerifyNetworkConnectionIdentifier(int64_t ConnectionContext, int64_t PacketData, int64_t ValidationResult);
 
 /**
- * @brief 网络安全守卫检查
- * 
- * 进行网络安全守卫检查，确保网络连接的安全性。此函数负责验证安全值的有效性，
- * 检查网络连接的安全状态，并根据验证结果采取相应的安全措施。
- * 
- * @param SecurityValue 安全值，包含安全验证所需的信息
- * 
- * @note 此函数是网络安全的重要组成部分，确保连接的安全性
- * @warning 如果安全验证失败，可能会终止连接或触发安全警报
- * 
- * @return void 无返回值
- */
-
-/**
  * @brief 验证网络安全值
  * 
  * 验证网络连接的安全值，确保连接的安全性和完整性。
  * 此函数用于检查网络连接的安全参数，防止未授权访问。
  * 
- * @param SecurityValue 安全验证值，包含连接的安全信息和验证数据
+ * @param SecurityValidationValue 安全验证值，包含连接的安全信息和验证数据
  * @return void 无返回值
  * 
  * @note 此函数在网络连接建立时调用，确保连接的安全性
