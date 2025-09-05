@@ -20351,11 +20351,11 @@ void ResetSystemState(void)
 void SynchronizeData(undefined8 dataHandle,longlong dataOffset)
 
 {
-  int operationResult;
+  int syncResult;
   
-  operationResult = FUN_1808aed00(dataHandle,dataOffset,4);
-  if (operationResult == 0) {
-    FUN_1808aed00(dataHandle,dataOffset + 4,4);
+  syncResult = ValidateSystemMemoryBlock(dataHandle,dataOffset,4);
+  if (syncResult == 0) {
+    ValidateSystemMemoryBlock(dataHandle,dataOffset + 4,4);
   }
   return;
 }
