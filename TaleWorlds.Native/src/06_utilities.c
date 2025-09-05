@@ -3955,7 +3955,7 @@
 
 // 原始函数名：FUN_180897b40 - 系统配置函数A2
 // 功能：配置系统参数
-#define ConfigureSystemA2 FUN_180897b40
+#define ConfigureSystemSecondaryParameters FUN_180897b40
 
 // 原始函数名：FUN_180898040 - 系统完整性检查函数A0
 // 功能：检查系统完整性
@@ -4559,8 +4559,8 @@ uint32_t UtilityMemoryData4;
 //   bool - 验证结果状态
 bool UtilityValidateMemoryAccess(void);
 // 工具系统内存验证相关变量
-undefined UtilityMemoryPointer2;
-undefined UtilityMemoryValidate1;
+void *UtilityMemoryPointer2;
+int32_t UtilityMemoryValidate1;
 undefined UtilityMemoryValidate2;
 undefined UtilityMemoryValidate3;
 undefined UtilityMemoryValidate4;
