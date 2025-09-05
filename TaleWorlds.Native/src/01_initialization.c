@@ -6023,8 +6023,8 @@ void InitializeSystemResourceNode(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNodePointer,SystemPreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
     SystemPreviousNodePointer = SystemAllocatedNodePointer;
   }
-  SystemPreviousNodePointer[NodeIdentifier1Index] = 0x4b2d79e470ee4e2c;
-  SystemPreviousNodePointer[NodeIdentifier2Index] = 0x9c552acd3ed5548d;
+  SystemPreviousNodePointer[NodeIdentifier1Index] = DataComparisonTemplateKappaId1;
+  SystemPreviousNodePointer[NodeIdentifier2Index] = DataComparisonTemplateKappaId2;
   SystemPreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeG;
   SystemPreviousNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   SystemPreviousNodePointer[NodeHandlerIndex] = ResourceInitializationCallback;
@@ -6080,8 +6080,8 @@ void InitializeSystemEventNode(void)
     AllocateSystemMemory(SystemDataTable,&SystemAllocatedNodePointer,SystemPreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
     SystemPreviousNodePointer = SystemAllocatedNodePointer;
   }
-  SystemPreviousNodePointer[NodeIdentifier1Index] = 0x49086ba08ab981a7;
-  SystemPreviousNodePointer[NodeIdentifier2Index] = 0xa9191d34ad910696;
+  SystemPreviousNodePointer[NodeIdentifier1Index] = DataComparisonTemplateLambdaId1;
+  SystemPreviousNodePointer[NodeIdentifier2Index] = DataComparisonTemplateLambdaId2;
   SystemPreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeH;
   SystemPreviousNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   SystemPreviousNodePointer[NodeHandlerIndex] = EventInitializationHandler;
@@ -6138,7 +6138,7 @@ void InitializeSystemMemoryNode(void)
     SystemPreviousNodePointer = SystemAllocatedNodePointer;
   }
   SystemPreviousNodePointer[NodeIdentifier1Index] = DataComparisonTemplateSystemNodeId1;
-  SystemPreviousNodePointer[NodeIdentifier2Index] = 0xd4c2151109de93a0;
+  SystemPreviousNodePointer[NodeIdentifier2Index] = DataComparisonTemplateLId2;
   SystemPreviousNodePointer[NodeDataPointerIndex] = &SystemDataNodeI;
   SystemPreviousNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   SystemPreviousNodePointer[NodeHandlerIndex] = ResourceInitializationCallback;
@@ -6193,8 +6193,8 @@ void InitializeRenderingSystem(void)
     AllocateSystemMemory(RenderingSystemDataTable,&AllocatedMemoryNode,RenderingHashTableNodePointer,MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,MemoryAllocationSize);
     RenderingHashTableNodePointer = AllocatedMemoryNode;
   }
-  RenderingHashTableNodePointer[NodeIdentifier1Index] = 0x4384dcc4b6d3f417;
-  RenderingHashTableNodePointer[NodeIdentifier2Index] = 0x92a15d52fe2679bd;
+  RenderingHashTableNodePointer[NodeIdentifier1Index] = PerformanceMonitorIdentifier1;
+  RenderingHashTableNodePointer[NodeIdentifier2Index] = PerformanceMonitorIdentifier2;
   RenderingHashTableNodePointer[NodeDataPointerIndex] = &SystemDataNodeK;
   RenderingHashTableNodePointer[NodeActiveFlagIndex] = NodeInactiveFlag;
   RenderingHashTableNodePointer[10] = SystemStackPointer;
@@ -19311,14 +19311,14 @@ void InitializeSystemDebugSymbolManager(void* systemContext,long long Initializa
   long long* ThreadLocalDataBuffer;
   long long** ThreadManagerPointer;
   long long performanceCounterValue;
-  void** SystemStackBufferLarge1;
-  void** SystemStackBufferLarge2;
+  void** SystemStackBufferLargePrimary;
+  void** SystemStackBufferLargeSecondary;
   uint32_t SystemResourceHandle;
-  void** SystemStackBufferMedium1;
+  void** SystemStackBufferMediumPrimary;
   long long SystemMemorySize;
   uint systemOperationFlag;
-  void** SystemStackBufferSmall1;
-  void** SystemStackBufferSmall2;
+  void** SystemStackBufferSmallPrimary;
+  void** SystemStackBufferSmallSecondary;
   uint32_t SystemConfigurationFlag;
   void* StackParameter;
   long long **mutexPointer;
@@ -21412,7 +21412,7 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
   uint SystemInitializationStatusFlag;
   int SystemErrorStatusFlag;
   void* *systemDataPointer;
-  void* *SystemStackPointerC0;
+  void* *SystemStackPointerContext;
   uint systemDataBuffer;
   void* SystemStackFlagPrimary;
   void* *SystemStackFlagSecondary;
@@ -27590,7 +27590,7 @@ SystemValidationCheck:
     } while (SystemHashBucket != (void* *)0x0);
     if (SystemDataBufferPointer != SystemDataPointer) {
       if (*(int *)(SystemDataBufferPointer + 6) == 0) goto SystemValueValidation;
-      if (SystemReservedInteger20 != 0) {
+      if (SystemReservedInteger != 0) {
         stringPointer = (byte *)SystemDataBufferPointer[5];
         localDataIndex = (long long)SystemStringBufferPrimary - (long long)stringPointer;
         do {
@@ -27606,7 +27606,7 @@ SystemValidationCheck:
   SystemDataBufferPointer = SystemDataPointer;
 SystemValueValidationCheck:
   GlobalDataReferencePointer = &SystemGlobalDataReference;
-  if (SystemReservedByteArray28 == (byte *)0x0) {
+  if (SystemReservedByteArray == (byte *)0x0) {
     return SystemDataBufferPointer != SystemDataPointer;
   }
     SystemCleanupFunction();
