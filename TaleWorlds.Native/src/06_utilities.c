@@ -755,9 +755,9 @@
 // 功能：验证系统状态
 #define ValidateSystemB0 FUN_180894300
 
-// 原始函数名：FUN_180894fb0 - 资源处理函数B0
-// 功能：处理资源操作
-#define ProcessResourceB0 FUN_180894fb0
+// 原始函数名：FUN_180894fb0 - 系统状态重置函数DX0
+// 功能：重置系统状态DX0，恢复系统到初始状态
+#define ResetSystemStateDX0 FUN_180894fb0
 
 // 原始函数名：FUN_1809425e0 - 工具状态重置函数C0
 // 功能：重置工具系统状态，清理临时数据
@@ -4979,7 +4979,8 @@ undefined8 RegisterSystemComponent(longlong componentHandle)
         *(int *)(componentData + COMPONENT_ACTIVE_OFFSET) = *(int *)(componentData + COMPONENT_ACTIVE_OFFSET) + 1;
       }
       else {
-        queryResult = ExecuteComponentCommand(componentData + 0x368,processBuffer);
+        #define COMPONENT_COMMAND_OFFSET 0x368    // 组件命令偏移量
+        queryResult = ExecuteComponentCommand(componentData + COMPONENT_COMMAND_OFFSET,processBuffer);
         if ((int)queryResult != 0) {
           return queryResult;
         }
