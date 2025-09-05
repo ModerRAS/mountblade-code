@@ -37,6 +37,7 @@
 // 位操作和数学计算相关常量
 #define SystemBitMask32Bit                    0x1f  // 32位掩码
 #define SystemMaximumUnsigned32BitValue               0xffffffff  // 最大32位无符号值
+#define System64BitMaxValue                  1.8446744073709552e+19  // 64位最大值(2^64)，用于负数补码转换
 #define SystemSineLookupTableSize            0x7fff  // 正弦查找表大小
 #define SystemQuadrantShiftBits              0xd  // 象限位移位数
 #define SystemSineTableQuadrant1Offset        0x4cc  // 正弦表第一象限偏移量
@@ -22090,63 +22091,63 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x30 + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationSizeTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x38 + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationWidthTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + SystemResourceDataOffset + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationHeightTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x48 + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationDepthTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x50 + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationFormatTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x58 + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationTypeTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x60 + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationModeTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x68 + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationSpeedTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
       SystemResourceDataIndex = *(long long *)(ResourceDataOffset + 0x70 + SystemOperationFlags);
       SystemScaleFactor = (double)SystemResourceDataIndex;
       if (SystemResourceDataIndex < 0) {
-        SystemScaleFactor = SystemScaleFactor + 1.8446744073709552e+19;
+        SystemScaleFactor = SystemScaleFactor + System64BitMaxValue;
       }
       SetSystemConfigurationNumericValue(SystemThreadContext,&SystemConfigurationTemplate,&SystemConfigurationQualityTemplate,
                     (double)(float)(SystemScaleFactor * 9.5367431640625e-07));
@@ -27066,30 +27067,30 @@ void SystemResourceInitializer(void* resourceManagerPointer,void* memoryAllocati
 void SystemCleanupHandler(void)
 
 {
-  int SystemInitializationStatus;
-  long long SystemThreadHandle;
-  long long ResourceMemoryOffset;
-  long long SystemProcessBufferPointer;
-  int *SystemIntegerPointer;
-  void** RootNodeReference;
-  uint32_t *HashTablePointer;
-  void* *SystemThreadStorage;
+  int systemInitializationStatus;
+  long long systemThreadHandle;
+  long long resourceMemoryOffset;
+  long long systemProcessBufferPointer;
+  int *systemIntegerPointer;
+  void** rootNodeReference;
+  uint32_t *hashTablePointer;
+  void* *systemThreadStorage;
   char systemAvailabilityFlag;
-  float ScalingFactor;
-  uint32_t SystemOperationResult;
-  float RatioValue;
-  uint8_t SystemMaxOperationCountSecondary [32];
-  long long SystemMemoryPoolOffset;
-  long long SystemMemoryPoolHandle;
-  long long SystemResourcePoolPointer;
-  void* *SystemResourceArray [SystemNodeCallbackIndex];
-  void* SystemThreadFlag;
-  uint8_t SystemStackBuffer [8];
-  void* *SystemResourceHandle;
-  uint8_t *SystemResourceBuffer;
-  uint32_t SystemConfigurationId;
-  uint8_t SystemResourceDataBuffer [264];
-  ulong long SystemEncryptionKey;
+  float scalingFactor;
+  uint32_t systemOperationResult;
+  float ratioValue;
+  uint8_t systemMaxOperationCountSecondary [32];
+  long long systemMemoryPoolOffset;
+  long long systemMemoryPoolHandle;
+  long long systemResourcePoolPointer;
+  void* *systemResourceArray [SystemNodeCallbackIndex];
+  void* systemThreadFlag;
+  uint8_t systemStackBuffer [8];
+  void* *systemResourceHandle;
+  uint8_t *systemResourceBuffer;
+  uint32_t systemConfigurationId;
+  uint8_t systemResourceDataBuffer [264];
+  ulong long systemEncryptionKey;
   
   ResourceMemoryOffset = SystemGlobalStatusFlags;
   SystemThreadFlag = SystemInvalidHandleValue;
@@ -38908,7 +38909,7 @@ void ResumeSystemThreads(long long SystemResourceManager)
  * 
  * @note 这是一个系统线程恢复函数，使用寄存器变量进行线程管理
  * 
- ResumeSystemThreadsB
+ ResumeSystemThreadsWithPriority
  */
 void ResumeSystemThreadsWithPriority(void)
 
@@ -38943,7 +38944,7 @@ void ResumeSystemThreadsWithPriority(void)
  * 
  05db99：SystemNoOperationD
  */
-void SystemNoOperationD(void)
+void SystemNoOperationDefault(void)
 
 {
   return;
