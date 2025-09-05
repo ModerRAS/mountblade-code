@@ -4007,10 +4007,10 @@ void* UtilityProcessPointer10;
 // 函数: void* UtilityProcessData9;
 void* UtilityProcessData9;
 void* UtilityProcessConfig1;
-undefined UtilityProcessConfig2;
-undefined UtilityProcessConfig3;
-undefined UtilityProcessConfig4;
-undefined UtilityProcessUnknown1;
+void* UtilityProcessConfig2;
+void* UtilityProcessConfig3;
+void* UtilityProcessConfig4;
+void* UtilityProcessUnknown1;
 
 // 函数: undefined UtilityProcessData10;
 undefined UtilityProcessData10;
@@ -33626,30 +33626,44 @@ void ExceptionContextCleanupHandlerB16(undefined8 ExceptionContext, longlong Con
 
 
 
-void Unwind_180902580(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复处理器B22
+ * 
+ * 该函数负责处理异常恢复操作，包括：
+ * - 销毁互斥锁
+ * - 重置异常处理指针
+ * - 清理异常状态
+ * - 设置默认异常处理器
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 异常处理数据指针
+ * 
+ * @note 原始函数名：Unwind_180902580
+ */
+void ExceptionRecoveryHandlerB22(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *exceptionHandlerPointer;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x78);
+  exceptionHandlerPointer = *(undefined8 **)(param_2 + 0x78);
   _Mtx_destroy_in_situ();
-  *puVar1 = &UNK_180a30778;
-  puVar1[7] = &UNK_180a3c3e0;
-  if (puVar1[8] != 0) {
+  *exceptionHandlerPointer = &UNK_180a30778;
+  exceptionHandlerPointer[7] = &UNK_180a3c3e0;
+  if (exceptionHandlerPointer[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[8] = 0;
-  *(undefined4 *)(puVar1 + 10) = 0;
-  puVar1[7] = &DefaultExceptionHandlerB;
-  puVar1[1] = &UNK_180a3c3e0;
-  if (puVar1[2] != 0) {
+  exceptionHandlerPointer[8] = 0;
+  *(undefined4 *)(exceptionHandlerPointer + 10) = 0;
+  exceptionHandlerPointer[7] = &DefaultExceptionHandlerB;
+  exceptionHandlerPointer[1] = &UNK_180a3c3e0;
+  if (exceptionHandlerPointer[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[2] = 0;
-  *(undefined4 *)(puVar1 + 4) = 0;
-  puVar1[1] = &DefaultExceptionHandlerB;
+  exceptionHandlerPointer[2] = 0;
+  *(undefined4 *)(exceptionHandlerPointer + 4) = 0;
+  exceptionHandlerPointer[1] = &DefaultExceptionHandlerB;
   return;
 }
 
