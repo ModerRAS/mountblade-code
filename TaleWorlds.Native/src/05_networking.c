@@ -328,7 +328,7 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 // 网络连接默认配置
 #define NetworkConnectionTimeoutDefault 30000               // 默认连接超时时间（30秒）
 #define NetworkDefaultMaxConnections 100                    // 默认最大连接数
-#define NetworkOperationSuccessCode 0                              // 网络操作成功状态
+#define NetworkOperationSuccess 0                              // 网络操作成功状态
 #define NetworkStandardBufferSize 256                         // 标准缓冲区大小（256字节）
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
@@ -1698,7 +1698,7 @@ uint32_t PacketCompressionAlgorithmType;                 // 数据包压缩算�
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列
 uint32_t NetworkPendingRequestCount;                // 待处理网络请求数量
-uint32_t NetworkConnectionManager;                            // 连接管理器
+uint32_t NetworkConnectionPoolManager;                            // 连接池管理器
 uint32_t NetworkConnectionData;                              // 连接数据
 uint32_t NetworkConnectionSize;                              // 连接大小
 uint32_t NetworkConnectionIndex;                              // 连接索引
@@ -2073,7 +2073,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
             ConnectionStatusBufferPointer = ConnectionStatusBufferPointer + ConnectionContextStatusEntrySize;
           } while (ConnectionIterationCounter != 0);
         }
-        return NetworkOperationSuccessCode;
+        return NetworkOperationSuccess;
       }
     }
     return NetworkErrorConnectionFailed;
