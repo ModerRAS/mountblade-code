@@ -2397,7 +2397,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
       return NetworkErrorCodeInvalidPacket;
     }
     NetworkStatus PrimaryConnectionState = *(NetworkStatus *)(ConnectionContext + NetworkPacketSecondaryDataOffset);
-    ConnectionStateArray[PrimaryStateIndex] = PrimaryConnectionState;
+    ConnectionStateArray[PrimaryConnectionStateIndex] = PrimaryConnectionState;
     NetworkPacketProcessor PrimaryPacketProcessor = (NetworkPacketProcessor)(**(NetworkHandle **)(*PacketData + PacketDataSizeIndex));
     ValidationResult = PrimaryPacketProcessor(*(NetworkHandle **)(*PacketData + PacketDataSizeIndex), ConnectionStateArray, ArraySizeIndex);
     if ((int)ValidationResult != 0) {
@@ -2665,7 +2665,7 @@ void* ProcessNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int
   ConnectionContextData[FinalizationValueIndex] = FinalizeValue;
   ConnectionContextData[ProcessingStateFlagsIndex] = ProcessingFlags;
   ConnectionContextData[ValidationStateFlagsIndex] = ValidationFlags;
-  ConnectionContextData[ProcessingModeIndex] = ProcessingMode;
+  ConnectionContextData[DataProcessingModeIndex] = ProcessingMode;
   
   return ConnectionContextData;
 }

@@ -89012,24 +89012,24 @@ void FUN_180942720(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
-void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+// 初始化异常处理器表A0
+void InitializeExceptionHandlerTableA0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
-  undefined8 *puVar2;
+  undefined8 *exceptionTableEnd;
+  undefined8 *exceptionTableIterator;
   
   FUN_18005d260(&DAT_180bfaec0,_DAT_180bfaed0,param_3,param_4,0xfffffffffffffffe);
-  puVar1 = _DAT_180bfaea8;
-  for (puVar2 = _DAT_180bfaea0; puVar2 != puVar1; puVar2 = puVar2 + 7) {
-    *puVar2 = &UNK_180a3c3e0;
-    if (puVar2[1] != 0) {
+  exceptionTableEnd = _DAT_180bfaea8;
+  for (exceptionTableIterator = _DAT_180bfaea0; exceptionTableIterator != exceptionTableEnd; exceptionTableIterator = exceptionTableIterator + 7) {
+    *exceptionTableIterator = &UNK_180a3c3e0;
+    if (exceptionTableIterator[1] != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    puVar2[1] = 0;
-    *(undefined4 *)(puVar2 + 3) = 0;
-    *puVar2 = &DefaultExceptionHandlerB;
+    exceptionTableIterator[1] = 0;
+    *(undefined4 *)(exceptionTableIterator + 3) = 0;
+    *exceptionTableIterator = &DefaultExceptionHandlerB;
   }
   if (_DAT_180bfaea0 != (undefined8 *)0x0) {
                     // WARNING: Subroutine does not return
@@ -89043,8 +89043,8 @@ void FUN_180942750(undefined8 param_1,undefined8 param_2,undefined8 param_3,unde
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-942790(void)
-void FUN_180942790(void)
+// 设置默认异常处理器A0
+void SetDefaultExceptionHandlerA0(void)
 
 {
   _DAT_180c92050 = &DefaultExceptionHandlerB;
