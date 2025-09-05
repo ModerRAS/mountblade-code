@@ -94576,11 +94576,11 @@ void CleanupThreadMutex(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void ProcessUtilitySystemData(DataBuffer param_1,DataBuffer param_2,DataBuffer param_3,DataBuffer param_4)
+// 函数: void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
 // 功能：处理工具系统数据，执行数据操作和清理
-// 参数：param_1-系统句柄，param_2-数据指针，param_3-操作类型，param_4-标志位
+// 参数：SystemHandle-系统句柄，DataPointer-数据指针，OperationType-操作类型，Flags-标志位
 // 返回值：无
-void ProcessUtilitySystemData(DataBuffer param_1,DataBuffer param_2,DataBuffer param_3,DataBuffer param_4)
+void ProcessUtilitySystemData(DataBuffer SystemHandle,DataBuffer DataPointer,DataBuffer OperationType,DataBuffer Flags)
 
 {
   SystemDataPtr *systemData;
@@ -94625,11 +94625,11 @@ void ResetThreadLocalStorage(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void CleanupUtilitySystemResources(DataBuffer param_1,DataBuffer param_2,DataBuffer param_3,DataBuffer param_4)
+// 函数: void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePointer,DataBuffer CleanupType,DataBuffer Flags)
 // 功能：清理工具系统资源，释放内存和句柄
-// 参数：param_1-系统句柄，param_2-资源指针，param_3-清理类型，param_4-标志位
+// 参数：SystemHandle-系统句柄，ResourcePointer-资源指针，CleanupType-清理类型，Flags-标志位
 // 返回值：无
-void CleanupUtilitySystemResources(DataBuffer param_1,DataBuffer param_2,DataBuffer param_3,DataBuffer param_4)
+void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePointer,DataBuffer CleanupType,DataBuffer Flags)
 
 {
   ResourceManagerPtr *resourceManager;
