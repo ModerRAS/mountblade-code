@@ -82628,7 +82628,7 @@ void ExecuteSystemCallback0x158(uint8_t ObjectContext, int64_t ValidationContext
  * @param CleanupOption 清理选项参数
  * @param CleanupFlag 清理标志参数
  */
-void ExecuteSystemCleanupCallback0x110V2(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
+void ExecuteSystemCleanupCallbackExtendedAlternative(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   if (*(code **)(ValidationContext + 0x110) != (code *)0x0) {
