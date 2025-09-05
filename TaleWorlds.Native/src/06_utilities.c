@@ -3717,14 +3717,14 @@ void* UtilitySystemValidationPointer70;
 
 // 函数: void InitializeUtilitySystemBuffers();
 #define InitializeUtilitySystemBuffers FUN_180942810
-undefined InitializeUtilitySystemBuffers;
-undefined UtilitySystemConfigBufferA;
-undefined UtilitySystemStatusFlagA;
+void InitializeUtilitySystemBuffers;
+void* UtilitySystemConfigBufferA;
+uint8_t UtilitySystemStatusFlagA;
 
 // 函数: void ConfigureUtilitySystemBufferA();
 #define ConfigureUtilitySystemBufferA FUN_180942890
-undefined ConfigureUtilitySystemBufferA;
-undefined UtilitySystemConfigBufferB;
+void ConfigureUtilitySystemBufferA;
+void* UtilitySystemConfigBufferB;
 
 // 函数: void ConfigureUtilitySystemBufferB();
 #define ConfigureUtilitySystemBufferB FUN_1809428e0
