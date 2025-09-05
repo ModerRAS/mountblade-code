@@ -15589,16 +15589,16 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
               uStack_88 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_90 = 0;
               uStack_80 = 0;
-              FUN_180891cf0(&puStack_98,*(undefined8 *)(param_1 + 0x58));
+              ProcessDataBlockA0(&puStack_98,*(undefined8 *)(param_1 + 0x58));
               puStack_b8 = &UNK_1809843d0;
               uStack_a8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = uStack_a0 & 0xffffff00;
-              FUN_180891ca0(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
+              ProcessDataSetFlagA0(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
               puStack_f0 = &UNK_1809841e0;
               uStack_e0 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_e8 = 0;
-              FUN_180891de0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
+              ProcessSystemEventA0(&puStack_f0,*(undefined8 *)(param_1 + 0x58));
               pvalidationContext3 = plStack_108;
             }
           }
@@ -15610,7 +15610,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
               uStack_a8 = *(undefined4 *)(lVar5 + 0xc + validationContext5 * 0x10);
               uStack_b0 = 0;
               uStack_a0 = 0x3f800000;
-              FUN_180894300(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
+              ValidateSystemA0(&puStack_b8,*(undefined8 *)(param_1 + 0x58));
               pvalidationContext3 = plStack_108;
             }
           }
@@ -15725,7 +15725,7 @@ MemoryAllocationLabel:
         uStack_100 = uStack_100 & 0xffffffff00000000;
         plStack_108 = (longlong *)&UNK_180982dc0;
         aiStack_f8[0] = *(int *)(uVar6 + lVar5 * 4);
-        FUN_180891af0(&plStack_108,*(undefined8 *)(param_1 + 0x58));
+        ResetSystemStateA1(&plStack_108,*(undefined8 *)(param_1 + 0x58));
         lVar5 = lVar5 + -1;
       } while (-1 < lVar5);
     }
