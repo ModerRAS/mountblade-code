@@ -6299,7 +6299,7 @@ SystemFilePointerCleanupLabel:
     NetworkRequestResult = ProcessNetworkRequest(*(uint32_t *)(SystemTertiaryParameter + 0x54));
     strcpy_s(SystemTertiaryParameter + 0x14,64,NetworkRequestResult);
   }
-Label_1802a912b:
+SystemMemoryContextFinalizationLabel:
   FinalizeSystemMemoryContext(auStack_260);
   SystemSecurityCheck(uStack_28 ^ (ulonglong)aStackAlignmentValue);
 }
@@ -6992,10 +6992,10 @@ uint64_t ValidateAndProcessModuleData(longlong ModuleHandle, longlong *DataBuffe
     for (StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemParameterPointer + 0x6c0) +
                             ((ulonglong)SystemSecondaryParameter % (ulonglong)*(uint *)(SystemParameterPointer + 0x6c8)) * 8);
         StringProcessingResultPointer != (uint *)0x0; StringProcessingResultPointer = *(uint **)(StringProcessingResultPointer + 4)) {
-      if (SystemSecondaryParameter == *StringProcessingResultPointer) goto Label_18032b938;
+      if (SystemSecondaryParameter == *StringProcessingResultPointer) goto SystemStringProcessingFoundLabel;
     }
     StringProcessingResultPointer = *(uint **)(*(longlong *)(SystemParameterPointer + 0x6c0) + *(longlong *)(SystemParameterPointer + 0x6c8) * 8);
-Label_18032b938:
+SystemStringProcessingFoundLabel:
     LongValue = *(longlong *)(StringProcessingResultPointer + 2);
     ModuleInitializationResult = *(longlong *)(LongValue + 8);
     for (StringProcessingResultPointer = *(uint **)(ModuleInitializationResult + ((ulonglong)SystemTertiaryParameter % (ulonglong)*(uint *)(LongValue + 0x10)) * 8);
