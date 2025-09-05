@@ -106,7 +106,6 @@
 #define MaximumCapacityLimit 0xffffffc0                      // 最大容量限制
 #define SystemMaxIntValue 0x7fffffff                          // 系统最大整数值
 #define ValidationSizeLimit 0x3fffffff                       // 验证大小限制
-#define ResourceSizeLimit 0x3fffffff                         // 资源大小限制
 
 // 资源清理相关常量
 #define DirectoryResourceTableOffset 0x8a8                  // 目录资源表偏移量
@@ -199,7 +198,6 @@
 #define ValidationContextSecondaryOffset 0x220           // 验证上下文次级偏移量
 #define PackageValidationStatusBit 1                      // 包验证状态位
 #define ValidationArraySizeMultiplier 3                    // 验证数组大小乘数
-#define ValidationSizeLimit 0x3fffffff                    // 验证大小限制
 #define ValidationContextLoopCounterOffset 0x98           // 验证上下文循环计数器偏移量
 #define ValidationContextMethodPointerOffset 0x10         // 验证上下文方法指针偏移量
 #define ValidationContextSecondaryResourceOffset 0x14      // 验证上下文次级资源偏移量
@@ -12211,7 +12209,7 @@ uint64_t ProcessObjectLifecycleManagement(int64_t ObjectHandle)
   FreeMemoryResource((void *)(ObjectContext + ObjectContextMemoryAllocationOffset));
   OperationStatus = ProcessDataContextOperations((void *)(DataContext + ObjectContextDataProcessingOffset));
   if ((OperationStatus == 0) && (OperationStatus = FindEntryInResourcePool((void *)(DataContext + ObjectContextResourceDataProcessingOffset)), OperationStatus == 0)) {
-    *(uint32_t *)(ObjectContext + ObjectContextResourceTotalOffset) = 0xffffffff;
+    *(uint32_t *)(ObjectContext + ObjectContextResourceTotalOffset) = UInt32MaximumValue;
     *(uint32_t *)(DataContext + 0x94) = 0;
   }
   FindEntryInResourcePool((void *)(DataContext + ObjectContextResourceDataProcessingOffset));
@@ -12597,14 +12595,14 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
       if (MaximumOperationCount != -1) {
         ResultFloatValue = *(float *)(ObjectContext + ObjectContextMatrixTranslationOffset);
         MaximumOperationCount = -1;
-        *(uint32_t *)(ObjectContext + ObjectContextResourceTotalOffset) = 0xffffffff;
+        *(uint32_t *)(ObjectContext + ObjectContextResourceTotalOffset) = UInt32MaximumValue;
         *(uint32_t *)(ObjectContext + ObjectContextMatrixTranslationOffset) = FloatNegativeOneValue;
       }
       *(float *)(ObjectContext + ObjectContextMatrixFlagsOffset) = CalculatedFloatResult;
       ArrayIterationIndex = 0;
       CalculatedFloatResult = (float)*(uint *)(ObjectContext + ObjectContextMatrixScaleOffset) * CalculatedFloatResult;
       if ((9.223372e+18 <= CalculatedFloatResult) && (CalculatedFloatResult = CalculatedFloatResult - 9.223372e+18, CalculatedFloatResult < 9.223372e+18)) {
-        ArrayIterationIndex = -0x8000000000000000;
+        ArrayIterationIndex = Int64MinimumValue;
       }
       ResourceTableIterator = *(int64_t *)(ObjectContext + ObjectContextResourceTablePointerOffset);
       int64_t ResourceEntryPointer = *(int64_t *)(ObjectContext + ObjectContextPrimaryDataStorageOffset);
@@ -12612,7 +12610,7 @@ void ProcessResourceCalculationAndValidation(int64_t ObjectContext, uint8_t *Val
         ResultFloatValue = (float)*(uint *)(ObjectContext + ObjectContextMatrixScaleOffset) * ResultFloatValue;
         ResourceEntryPointer = 0;
         if ((9.223372e+18 <= ResultFloatValue) && (ResultFloatValue = ResultFloatValue - 9.223372e+18, ResultFloatValue < 9.223372e+18)) {
-          ResourceEntryPointer = -0x8000000000000000;
+          ResourceEntryPointer = Int64MinimumValue;
         }
         ResourceEntryPointer = ResourceTableIterator - ((int64_t)ResultFloatValue + ResourceEntryPointer);
         *(int64_t *)(ObjectContext + ObjectContextPrimaryDataStorageOffset) = ResourceEntryPointer;
@@ -12724,13 +12722,13 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       CalculatedFloatResult = *(float *)(ObjectContext + ObjectContextFloatDataProcessingOffset);
       OperationStatus = -1;
       *(uint32_t *)(ObjectContext + ObjectContextValidationDataProcessingOffset) = 0xffffffff;
-      *(uint32_t *)(ObjectContext + ObjectContextFloatDataProcessingOffset) = 0xbf800000;
+      *(uint32_t *)(ObjectContext + ObjectContextFloatDataProcessingOffset) = FloatNegativeOneValue;
     }
     *(float *)(ObjectContext + ObjectContextResourceDataProcessingOffset) = calculatedFloatValue;
     ResourceTableIterator = 0;
     FifthMatrixElementResult = (float)*(uint *)(ObjectContext + ObjectContextMatrixScaleOffset) * ComputedFloatValue;
     if ((9.223372e+18 <= calculatedFloatValue) && (FifthFloatResult = ComputedFloatValue - 9.223372e+18, calculatedFloatValue < 9.223372e+18)) {
-      ResourceTableIterator = -0x8000000000000000;
+      ResourceTableIterator = Int64MinimumValue;
     }
     LoopCounter = *(int64_t *)(ObjectContext + ObjectContextResourceTablePointerOffset);
     int64_t ArrayIterationIndex = *(int64_t *)(ObjectContext + ObjectContextPrimaryDataStorageOffset);
@@ -12738,7 +12736,7 @@ void ProcessModuleInitialization(int64_t ModuleHandle, void* ModuleContext, int*
       CalculatedFloatResult = (float)*(uint *)(ObjectContext + ObjectContextMatrixScaleOffset) * CalculatedFloatResult;
       ArrayIterationIndex = 0;
       if ((9.223372e+18 <= CalculatedFloatResult) && (CalculatedFloatResult = CalculatedFloatResult - 9.223372e+18, CalculatedFloatResult < 9.223372e+18)) {
-        ArrayIterationIndex = -0x8000000000000000;
+        ArrayIterationIndex = Int64MinimumValue;
       }
       ArrayIterationIndex = SystemContextPointer - ((int64_t)CalculatedFloatResult + ArrayIterationIndex);
       *(int64_t *)(SystemRegisterContext + 0x98) = ArrayIterationIndex;
@@ -13971,7 +13969,7 @@ ErrorHandler:
   }
   OperationStatus = ProcessDataContextOperations(dataContext + 0x70);
   if ((OperationStatus == 0) && (OperationStatus = FindEntryInResourcePool(dataContext + 0x80), OperationStatus == 0)) {
-    *(uint32_t *)(ObjectContext + ObjectContextResourceTotalOffset) = 0xffffffff;
+    *(uint32_t *)(ObjectContext + ObjectContextResourceTotalOffset) = UInt32MaximumValue;
     *(uint32_t *)(dataContext + 0x94) = 0;
   }
   *(uint *)(ObjectContext + ObjectContextEncryptionOffset) = *(uint *)(ObjectContext + ObjectContextEncryptionOffset) & 0xfbffffff;

@@ -232,15 +232,6 @@
  * 
  * @return 无返回值
  */
-/**
- * @brief 处理系统内存页
- * 
- * 处理系统内存页，包括内存页的分配、释放和管理。
- * 用于系统内存页的管理和维护。
- * 
- * @param MemoryPointer 内存指针，指向需要处理的内存页
- * @return 无返回值
- */
 void HandleSystemMemoryPage(long long MemoryPointer);
 
 /**
@@ -501,15 +492,6 @@ void ExecuteSystemOperation(void* operationContext, void* parameterBuffer, int o
  */
 void ProcessSystemDataTransfer(void* sourceContext, void* targetContext);
 
-/**
- * @brief 系统数据指针获取函数
- * 
- * 该函数负责获取系统数据指针，提供数据访问接口
- * 用于系统数据的访问和管理
- * 
- * @param dataIndex 数据索引
- * @return 数据指针
- */
 /**
  * @brief 获取系统数据指针
  * 
@@ -1548,30 +1530,6 @@ void* GetSystemInitializationFunction;
  * @note 该函数在系统初始化过程中调用，确保游戏核心功能的正常运行
  * 
  * @return void 无返回值
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 该函数负责初始化游戏的核心系统组件，创建游戏核心系统节点并设置必要的初始化参数。
- * 它会遍历系统节点树，查找或创建游戏核心系统节点。
- * 
- * @note 该函数在系统启动时调用，确保游戏核心系统正确初始化。
- * @note 函数使用GameCoreSystemId进行系统识别。
- * 
- * @param void 无参数
- * @return void 无返回值
- */
-/**
- * @brief 初始化游戏核心系统
- * 
- * 该函数负责初始化游戏的核心系统组件，包括游戏引擎的核心功能模块。
- * 它会在系统节点树中查找或创建游戏核心节点，并设置节点的标识符和初始化处理器。
- * 游戏核心系统是整个游戏运行的基础，负责协调各个子系统的运行。
- * 
- * @return 无返回值
- * 
- * @note 该函数使用内存分配和节点比较操作来确保游戏核心节点的正确初始化
- * @note 节点标识符为 GameCoreSystemId
  */
 void InitializeGameCoreSystem(void)
 {
