@@ -1000,7 +1000,7 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄
 uint32_t NetworkConnectionManager;                         // 网络连接管理器
-uint32_t NetworkManagerContextPointer;     // 网络连接管理器上下文指针
+uint32_t NetworkManagerContext;     // 网络连接管理器上下文指针
 uint32_t NetworkManagerContextData;             // 网络连接管理器上下文数据
 uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志
 uint32_t NetworkConnectionTimeoutMs;                    // 网络连接超时时间（毫秒）
@@ -1127,7 +1127,7 @@ uint32_t NetworkPacketFilterBuffer;                        // 网络数据包过
 uint32_t NetworkSecurityContextPrimary;                // 网络安全上下文主要数据，存储主要的安全上下文信息
 uint32_t NetworkSecurityContext;                        // 网络安全上下文，安全相关的上下文信息
 uint32_t NetworkAuthenticationContext;                 // 网络认证上下文，认证相关的上下文信息
-uint32_t NetworkSecurityValidationBuffer;                  // 网络安全验证缓冲区，用于存储安全验证过程中的临时数据
+uint32_t SecurityValidationBuffer;                  // 网络安全验证缓冲区，用于存储安全验证过程中的临时数据
 uint32_t NetworkSecurityEncryptionInfo;                    // 网络安全加密信息，用于安全加密的相关数据
 uint32_t NetworkSecurityAuthenticationInfo;                 // 网络安全认证信息，用于身份认证的相关数据
 uint32_t NetworkSecurityAuthorizationInfo;                  // 网络安全授权信息，用于权限授权的相关数据
@@ -2150,7 +2150,7 @@ uint32_t NetworkPacketQueueSize;                     // 网络数据包队列大
 /**
  * @brief 网络连接处理变量 - 记录连接处理相关的状态和数据
  */
-uint32_t NetworkProcessedPacketIdentifier;          // 已处理的网络连接数据包标识符
+uint32_t ProcessedPacketIdentifier;          // 已处理的网络连接数据包标识符
 uint32_t NetworkBufferTemplate;                     // 网络缓冲区模板
 uint32_t NetworkConnectionDefaultData;                    // 网络连接默认数据
 uint32_t NetworkConnectionSourceAddress;                   // 网络连接源地址
@@ -2338,7 +2338,7 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
   ConnectionValidationStatus = 0;  // 初始化验证状态码
   if (ConnectionValidationStatus == 0) {
     if (ConnectionValidationDataPointer && (0 < *(int *)CalculateConnectionParameterOffset(ConnectionValidationDataPointer)) && (*ConnectionValidationDataPointer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), *ConnectionValidationDataPointer, &NetworkSecurityValidationBuffer, SecurityValidationBufferSize, 1);
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *ConnectionValidationDataPointer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
     if (ConnectionValidationDataPointer) {
         *ConnectionValidationDataPointer = NetworkContextIdentifier;
@@ -2347,7 +2347,7 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
     return NetworkOperationSuccess;
   }
   if ((int)PacketData - 1U < NetworkMaxInt32Value) {
-    ConnectionRequestResultHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContextPointer + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
+    ConnectionRequestResultHandle = ProcessNetworkConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &SecurityValidationBuffer, NetworkConnectionCompletionHandleValue, 0);
     if (ConnectionRequestResultHandle != 0) {
       if (ConnectionValidationDataPointer && (int)ConnectionValidationDataPointer[ConnectionDataSizeIndex] != 0) {
           memcpy((void *)ConnectionRequestResultHandle, *ConnectionValidationDataPointer, (int64_t)(int)ConnectionValidationDataPointer[ConnectionDataSizeIndex]);
@@ -2442,7 +2442,7 @@ NetworkHandle ProcessConnectionPacketData(int64_t *ConnectionContext, int32_t Pa
     if (PacketData * ConnectionEntrySize - 1U < NetworkMaxInt32Value) {
       // 处理连接请求并获取状态缓冲区
       NetworkConnectionStatusBuffer = (NetworkConnectionStatus *)
-               ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkManagerContextPointer + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &NetworkSecurityValidationBuffer,
+               ProcessNetworkConnectionRequest(*(NetworkResourceHandle *)(NetworkManagerContext + NetworkConnectionTableOffset), PacketData * ConnectionEntrySize, &SecurityValidationBuffer,
                              NetworkConnectionCompletionHandleValue, 0, 0, 1);
       
       // 如果状态缓冲区有效，处理连接数据
