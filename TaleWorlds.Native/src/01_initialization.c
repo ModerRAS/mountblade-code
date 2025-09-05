@@ -734,8 +734,8 @@ void* ResourceMemoryRegionUser;                   // 资源内存区域用户分
 void* ResourceMemoryRegionShared;                 // 资源内存区域共享分区
 void* ResourceMemoryRegionProtected;              // 资源内存区域保护分区
 void* ResourceMemoryRegionSecure;                 // 资源内存区域安全分区
-void* ResourceFunctionPointerMain;                // 资源函数指针主入口
-void* ResourceFunctionPointerBackup;              // 资源函数指针备份入口
+void* ResourceFunctionReferenceMain;                // 资源函数引用主入口
+void* ResourceFunctionReferenceBackup;              // 资源函数引用备份入口
 void* ResourceMemoryRegionDebug;                  // 资源内存区域调试分区
 void* ResourceMemoryRegionTest;                   // 资源内存区域测试分区
 void* ResourceMemoryRegionDevelopment;            // 资源内存区域开发分区
@@ -870,7 +870,7 @@ void* SystemMemoryRegionExpansionW;
 /**
  * @brief 系统数据指针主指针
  */
-void* SystemDataPointerMain;
+void* SystemDataReferenceMain;
 
 /**
  * @brief 系统数据指针备份指针
@@ -1228,7 +1228,7 @@ void* SystemNetworkEventHandler;          // SystemNetworkEventHandler
 void* SystemGlobalDataManager;      // SystemGlobalDataManager
 
 // 系统全局数据指针
-void* SystemGlobalDataPointer;        // SystemGlobalDataReference
+void* SystemGlobalDataReference;        // 全局系统数据引用
 void* SystemGlobalDataSecondary;        // SystemGlobalDataSecondary
 void* SystemGlobalDataTertiary;        // SystemGlobalDataTertiary
 void* SystemGlobalDataQuaternary;        // SystemGlobalDataQuaternary
@@ -50958,7 +50958,7 @@ void CleanupSystemStringIteratorResources(void)
 {
   int *resourceReferenceCount;
   char *SystemStringPointer;
-  void* *hashNodePointer;
+  void* *HashNodePointer;
   long long SystemProcessBufferPtr;
   long long StringIteratorPointer;
   ulong long CurrentThreadIdentifier;
@@ -50975,15 +50975,15 @@ void CleanupSystemStringIteratorResources(void)
         SystemCleanupFunction();
     }
   }
-  hashNodePointer = *(void* **)(StringIteratorPointer + 0x18);
-  if (hashNodePointer != (void* *)0x0) {
-    CurrentThreadIdentifier = (ulong long)hashNodePointer & SystemMemoryPageAlignmentMask;
+  HashNodePointer = *(void* **)(StringIteratorPointer + 0x18);
+  if (HashNodePointer != (void* *)0x0) {
+    CurrentThreadIdentifier = (ulong long)HashNodePointer & SystemMemoryPageAlignmentMask;
     if (CurrentThreadIdentifier != 0) {
-      SystemProcessBufferPtr = CurrentThreadIdentifier + 0x80 + ((long long)hashNodePointer - CurrentThreadIdentifier >> 0x10) * 0x50;
+      SystemProcessBufferPtr = CurrentThreadIdentifier + 0x80 + ((long long)HashNodePointer - CurrentThreadIdentifier >> 0x10) * 0x50;
       SystemProcessBufferPtr = SystemProcessingBufferPointer - (ulong long)*(uint *)(SystemProcessingBufferPointer + 4);
       if ((*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList) && (*(char *)(SystemProcessingBufferPointer + 0xe) == '\0')) {
-        *hashNodePointer = *(void* *)(SystemProcessingBufferPointer + 0x20);
-        *(void* **)(SystemProcessingBufferPointer + 0x20) = hashNodePointer;
+        *HashNodePointer = *(void* *)(SystemProcessingBufferPointer + 0x20);
+        *(void* **)(SystemProcessingBufferPointer + 0x20) = HashNodePointer;
         resourceReferenceCount = (int *)(SystemProcessingBufferPointer + 0x18);
         *resourceReferenceCount = *resourceReferenceCount + -1;
         if (*resourceReferenceCount == 0) {
@@ -50993,7 +50993,7 @@ void CleanupSystemStringIteratorResources(void)
       }
       else {
         SystemExceptionCheck(CurrentThreadIdentifier,CONCAT71(0xff000000,*(void ***)(CurrentThreadIdentifier + 0x70) == &ExceptionList),
-                            hashNodePointer,CurrentThreadIdentifier,InvalidHandleValue);
+                            HashNodePointer,CurrentThreadIdentifier,InvalidHandleValue);
       }
     }
     return;
