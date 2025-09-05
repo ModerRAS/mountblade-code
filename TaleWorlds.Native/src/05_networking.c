@@ -889,12 +889,13 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
+uint32_t NetworkConnectionManagerContext = &NetworkConnectionManagerContextData;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
 uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据，存储连接管理的上下文信息和状态数据
 uint32_t NetworkConnectionStateFlags;                 // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
 uint32_t NetworkConnectionTimeoutMs;               // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
 uint32_t NetworkMaxConnectionsAllowed;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
 uint32_t NetworkConnectionAttributeFlags;              // 网络连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
-uint32_t NetworkConnectionCurrentStatusFlags;                // 网络连接状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
+uint32_t NetworkConnectionCurrentStateFlags;                // 网络连接当前状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
 uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板，用于格式化错误报告数据
 
 // 网络协议和地址配置
@@ -924,11 +925,11 @@ uint32_t NetworkConnectionLatency;                      // 网络连接延迟，
 uint32_t NetworkConnectionReliability;                         // 网络连接可靠性，连接的稳定性和可靠性指标
 uint32_t NetworkConnectionSecurityLevel;                       // 网络安全级别，连接的安全保护级别
 uint32_t NetworkConnectionAuthenticationType;                 // 网络认证类型，连接使用的认证机制类型
-uint32_t NetworkAuthenticationType;                          // 网络认证类型，系统使用的认证机制类型
+uint32_t NetworkSystemAuthenticationType;                          // 网络系统认证类型，系统使用的认证机制类型
 uint32_t NetworkConnectionEncryptionAlgorithm;                // 网络加密算法，数据传输使用的加密算法
-uint32_t NetworkEncryptionAlgorithm;                          // 网络加密算法，系统使用的加密算法类型
+uint32_t NetworkSystemEncryptionAlgorithm;                          // 网络系统加密算法，系统使用的加密算法类型
 uint32_t NetworkConnectionCompressionMethod;                  // 网络压缩方法，数据压缩使用的算法方法
-uint32_t NetworkCompressionMethod;                            // 网络压缩方法，系统使用的压缩算法类型
+uint32_t NetworkSystemCompressionMethod;                            // 网络系统压缩方法，系统使用的压缩算法类型
 uint32_t NetworkConnectionSessionTimeoutDuration;             // 网络会话超时持续时间，会话无活动的超时时间
 uint32_t NetworkPacketBuffer;                      // 网络数据包缓冲区，指向数据包缓冲区的内存地址
 uint32_t NetworkPacketHeader;                      // 网络数据包头，指向数据包头部信息的内存地址
@@ -963,7 +964,7 @@ void *NetworkConnectionQuinaryProcessingConfig;   // 网络连接第五处理配
 uint32_t NetworkConnectionActiveContext;                          // 网络连接活动上下文，存储连接的运行时上下文信息
 uint32_t NetworkConnectionActiveContextData;                      // 网络连接活动上下文数据，上下文相关的数据存储
 uint32_t NetworkConnectionSecurityContext;                 // 网络连接安全上下文，安全相关的上下文信息
-uint32_t NetworkSecurityLevel;                             // 网络安全级别，系统的整体安全保护级别
+uint32_t NetworkSystemSecurityLevel;                             // 网络系统安全级别，系统的整体安全保护级别
 uint32_t NetworkConnectionBufferPool;                      // 网络连接缓冲池，用于管理连接的缓冲区资源
 uint32_t NetworkConnectionRequestInfo;                     // 网络连接请求信息，存储连接请求的相关信息
 uint32_t NetworkConnectionResponseInfo;                    // 网络连接响应信息，存储连接响应的相关信息
@@ -1564,7 +1565,7 @@ int32_t ValidateNetworkProtocol(int64_t NetworkData, int64_t PacketData);
  * 处理网络连接相关的事件，包括连接建立、断开、错误处理等。
  * 此处理器负责管理和响应网络连接过程中的各种事件。
  */
-uint32_t NetworkConnectionEventProcessor;
+uint32_t NetworkConnectionEventHandler;
 
 // 网络连接状态常量
 #define NetworkConnectionNotFound 0xFFFFFFFF
@@ -1830,14 +1831,14 @@ uint32_t NetworkErrorCounter;
  * 
  * 记录网络连接的尝试次数，用于连接成功率统计。
  */
-uint32_t NetworkConnectionAttempts;
+uint32_t NetworkConnectionAttemptCount;
 
 /**
  * @brief 网络连接失败次数
  * 
  * 记录网络连接失败的次数，用于连接质量评估。
  */
-uint32_t NetworkConnectionFailures;
+uint32_t NetworkConnectionFailureCount;
 
 /**
  * @brief 网络发送字节数

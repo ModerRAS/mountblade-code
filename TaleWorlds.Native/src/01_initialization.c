@@ -211,28 +211,28 @@
 // 系统配置标识符常量
 #define SystemConfigurationIdentifier         SystemConfigurationSystemIdentifier1
 
-// 系统数据比较模板A常量
-#define SystemDataComparisonTemplateA         DataComparisonTemplateAlphaId1
+// 系统数据比较模板Alpha常量
+#define SystemDataComparisonTemplateAlpha         DataComparisonTemplateAlphaId1
 
 // 系统节点分配额外大小常量
-#define SYSTEM_NODE_ALLOCATION_EXTRA_SIZE     NodeAllocationExtraSize
+#define SystemNodeAllocationExtraSize     NodeAllocationExtraSize
 
 // 系统配置节点标识符常量
-#define SYSTEM_CONFIGURATION_NODE_IDENTIFIER1 SystemConfigurationSystemIdentifier1
-#define SYSTEM_CONFIGURATION_NODE_IDENTIFIER2 SystemConfigurationSystemIdentifier2
-#define SYSTEM_CONFIGURATION_NODE_FLAG        SystemConfigurationSystemFlag
+#define SystemConfigurationNodeIdentifier1 SystemConfigurationSystemIdentifier1
+#define SystemConfigurationNodeIdentifier2 SystemConfigurationSystemIdentifier2
+#define SystemConfigurationNodeFlag        SystemConfigurationSystemFlag
 
 // 系统事件节点标识符常量
-#define SYSTEM_EVENT_NODE_IDENTIFIER1        SystemEventSystemIdentifier1
-#define SYSTEM_EVENT_NODE_IDENTIFIER2        SystemEventSystemIdentifier2
+#define SystemEventNodeIdentifier1        SystemEventSystemIdentifier1
+#define SystemEventNodeIdentifier2        SystemEventSystemIdentifier2
 
 // 系统资源节点标识符常量
-#define SYSTEM_RESOURCE_NODE_IDENTIFIER1     SystemResourceSystemIdentifier1
-#define SYSTEM_RESOURCE_NODE_IDENTIFIER2     SystemResourceSystemIdentifier2
+#define SystemResourceNodeIdentifier1     SystemResourceSystemIdentifier1
+#define SystemResourceNodeIdentifier2     SystemResourceSystemIdentifier2
 
 // 系统数据比较模板标识符常量
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1 DataComparisonTemplateAlphaId1
-#define SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID2 DataComparisonTemplateAlphaId2
+#define SystemDataComparisonTemplateAlphaId1 DataComparisonTemplateAlphaId1
+#define SystemDataComparisonTemplateAlphaId2 DataComparisonTemplateAlphaId2
 
 /**
  * @brief 处理系统内存页
@@ -1088,21 +1088,21 @@ void* SystemInitializationProgressStatus;
 // 系统内存分配器 - 负责动态内存分配和管理
 
 // 系统数据比较模板和节点指针
-void* SystemDataComparisonTemplateAlpha;  // 系统数据比较模板A
-void* SystemDataComparisonTemplateBeta;   // 系统数据比较模板B
-void* SystemDataComparisonTemplateGamma;  // 系统数据比较模板C
-void* SystemDataComparisonTemplateDelta;  // 系统数据比较模板D
-void* SystemDataComparisonTemplateEpsilon; // 系统数据比较模板E
-void* SystemDataComparisonTemplateZeta;   // 系统数据比较模板F
-void* SystemDataComparisonTemplateEta;    // 系统数据比较模板G
-void* SystemDataComparisonTemplateTheta;  // 系统数据比较模板H
-void* SystemDataComparisonTemplateIota;   // 系统数据比较模板I
-void* SystemDataComparisonTemplateKappa;  // 系统数据比较模板J
-void* SystemDataComparisonTemplateLambda; // 系统数据比较模板K
-void* SystemDataComparisonTemplateMu;     // 系统数据比较模板L
-void* SystemDataComparisonTemplateNu;     // 系统数据比较模板M
-void* SystemDataComparisonTemplateXi;     // 系统数据比较模板N
-void* SystemDataComparisonTemplateOmicron; // 系统数据比较模板O
+void* SystemDataComparisonTemplateAlpha;  // 系统数据比较模板Alpha
+void* SystemDataComparisonTemplateBeta;   // 系统数据比较模板Beta
+void* SystemDataComparisonTemplateGamma;  // 系统数据比较模板Gamma
+void* SystemDataComparisonTemplateDelta;  // 系统数据比较模板Delta
+void* SystemDataComparisonTemplateEpsilon; // 系统数据比较模板Epsilon
+void* SystemDataComparisonTemplateZeta;   // 系统数据比较模板Zeta
+void* SystemDataComparisonTemplateEta;    // 系统数据比较模板Eta
+void* SystemDataComparisonTemplateTheta;  // 系统数据比较模板Theta
+void* SystemDataComparisonTemplateIota;   // 系统数据比较模板Iota
+void* SystemDataComparisonTemplateKappa;  // 系统数据比较模板Kappa
+void* SystemDataComparisonTemplateLambda; // 系统数据比较模板Lambda
+void* SystemDataComparisonTemplateMu;     // 系统数据比较模板Mu
+void* SystemDataComparisonTemplateNu;     // 系统数据比较模板Nu
+void* SystemDataComparisonTemplateXi;     // 系统数据比较模板Xi
+void* SystemDataComparisonTemplateOmicron; // 系统数据比较模板Omicron
 
 // 系统内存分配表条目 - 用于存储内存分配的结果
 void* SystemMemoryAllocationPrimaryEntry;    // 系统内存分配表主条目
