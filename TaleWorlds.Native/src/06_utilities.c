@@ -3870,7 +3870,9 @@ undefined8 CheckNullPointerAccess(void)
 
 
 
-undefined8 FUN_18089062a(char param_1)
+// 函数: undefined8 ConditionalResourceRelease(char param_1)
+// 功能：条件性资源释放，根据字符参数决定是否执行资源释放操作
+undefined8 ConditionalResourceRelease(char param_1)
 
 {
   if (param_1 != '\0') {
