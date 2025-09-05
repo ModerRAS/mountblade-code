@@ -706,6 +706,14 @@
 // 功能：调用系统错误处理函数
 #define UtilityErrorHandlerE FUN_180891062
 
+// 原始函数名：FUN_180896040 - 缓冲区重新分配函数
+// 功能：重新分配缓冲区，复制原有数据，更新缓冲区指针和大小
+#define ReallocateBufferWithCopy FUN_180896040
+
+// 原始函数名：FUN_180896064 - 缓冲区释放函数
+// 功能：释放缓冲区并更新指针信息
+#define FreeBufferAndUpdatePointer FUN_180896064
+
 // 原始函数名：FUN_1808910e9 - 错误处理函数F
 // 功能：调用系统错误处理函数
 #define UtilityErrorHandlerF FUN_1808910e9
