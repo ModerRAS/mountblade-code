@@ -1901,7 +1901,6 @@ uint32_t NetworkTotalFailedConnectionAttempts;            // 网络连接总失�
 uint32_t NetworkAverageConnectionTime;              // 网络平均连接时间
 uint32_t NetworkCurrentAverageConnectionTime;               // 网络当前平均连接时间
 uint32_t NetworkLastActivityTimestamp;              // 网络最后活动时间戳
-uint32_t NetworkPacketBufferPointer;                 // 网络数据包缓冲区指针
 uint32_t NetworkPacketHeaderPointer;                 // 网络数据包头指针
 uint32_t NetworkPacketSequence;                     // 网络数据包序列号
 uint32_t NetworkAcknowledgeNumber;                  // 网络确认号
