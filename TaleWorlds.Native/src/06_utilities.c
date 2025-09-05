@@ -341,6 +341,28 @@
 
 // 系统上下文偏移常量
 #define SystemContextAllocationOffset 0x38
+#define SystemContextResourceReleaseOffset 0x98               // 系统上下文资源释放偏移量
+#define SystemContextResourceTableDataOffset 0x48            // 系统上下文资源表数据偏移量
+#define SystemContextNetworkRequestOffset 0x1160c             // 系统上下文网络请求偏移量
+#define SystemContextNetworkDataStreamOffset 0x11628          // 系统上下文网络数据流偏移量
+#define SystemContextSecurityHashOffset 0x11620              // 系统上下文安全哈希偏移量
+#define SystemContextValidationCodeOffset 0x1161c             // 系统上下文验证代码偏移量
+#define SystemContextResourceTotalOffset 0x11624             // 系统上下文资源总数偏移量
+#define SystemContextLoopStepOffset 0x11668                  // 系统上下文循环步长偏移量
+#define SystemContextSecondaryResourceOffset 0x20            // 系统上下文次级资源偏移量
+#define SystemContextTertiaryResourceOffset 0x28             // 系统上下文第三级资源偏移量
+#define SystemContextQuaternaryResourceOffset 0x50           // 系统上下文第四级资源偏移量
+#define SystemContextQuinaryResourceOffset 0x148             // 系统上下文第五级资源偏移量
+#define SystemContextSenaryResourceOffset 0x918              // 系统上下文第六级资源偏移量
+#define SystemContextHandlerTemplateOffset 0x58              // 系统上下文处理器模板偏移量
+#define SystemContextDataStructureOffset 0x60                // 系统上下文数据结构偏移量
+#define SystemContextResourceOperationOffset 0x70            // 系统上下文资源操作偏移量
+#define SystemContextCleanupOptionOffset 0xd8                 // 系统上下文清理选项偏移量
+#define SystemContextSecondaryHandlerOffset 0xe8             // 系统上下文次级处理器偏移量
+#define SystemContextTertiaryHandlerOffset 0x110              // 系统上下文第三级处理器偏移量
+#define SystemContextResourceHashStatusOffset 0x120           // 系统上下文资源哈希状态偏移量
+#define SystemContextResourceCleanupOffset 0x90                // 系统上下文资源清理偏移量
+#define SystemContextResourceHandleOffset 0xc0                // 系统上下文资源句柄偏移量
 
 // 资源分配常量
 #define ResourceAllocationSize 0x100

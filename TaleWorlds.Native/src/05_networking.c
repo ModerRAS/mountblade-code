@@ -740,6 +740,37 @@ uint32_t ProcessNetworkArrayData(int64_t NetworkContextArray, uint32_t ArrayInde
  */
 uint32_t CloseNetworkConnection(int64_t *NetworkConnectionContext, uint32_t ConnectionFlags);
 
+// 网络系统内部辅助函数声明
+/**
+ * @brief 初始化连接上下文
+ * 
+ * 初始化网络连接的上下文数据，设置连接参数和状态
+ * 
+ * @param ConnectionHandle 连接句柄
+ * @return uint32_t 初始化结果，0表示成功，其他值表示错误码
+ */
+uint32_t InitializeConnectionContext(NetworkHandle ConnectionHandle);
+
+/**
+ * @brief 清理连接堆栈
+ * 
+ * 清理网络连接的堆栈数据，释放相关资源
+ * 
+ * @param ConnectionStackPointer 连接堆栈指针
+ * @return void 无返回值
+ */
+void CleanupConnectionStack(uint32_t *ConnectionStackPointer);
+
+/**
+ * @brief 复制连接缓冲区
+ * 
+ * 复制网络连接的缓冲区数据到目标位置
+ * 
+ * @param ConnectionBufferPointer 连接缓冲区指针
+ * @return void 无返回值
+ */
+void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
+
 // 网络系统全局变量
 
 // 网络连接基础配置变量
@@ -2464,7 +2495,7 @@ void* HandleNetworkConnectionRequest(NetworkResourceHandle ConnectionTable, int6
   
   // 设置连接基本信息
   ActiveConnectionState = NetworkStatusActive;                   // 设置连接状态为活跃
-  ConnectionIdentifier = (uint32_t)(RequestData & 0xFFFF);        // 从请求数据提取连接标识符
+  ConnectionIdentifier = (uint32_t)(RequestData & NetworkConnectionIdMaskValue);        // 从请求数据提取连接标识符
   
   // 验证连接安全性
   SecurityValidationStatus = NetworkValidationFailure;

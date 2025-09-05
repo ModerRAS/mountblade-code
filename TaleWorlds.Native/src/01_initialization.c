@@ -25993,7 +25993,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint8_t SystemByteValue;
   char SystemCharValuePrimary;
   char SystemCharValueSecondary;
-  char arrayChar336 [2];
+  char SystemCharacterArrayBuffer [2];
   uint MemoryAllocationSize;
   void* *MemoryContextPointer;
   char *SystemCharacterBufferPointer;
@@ -26051,7 +26051,7 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
   uint32_t calculationFlagsPrimary;
   void* *pSystemStackFlag;
   void* *pointerUnsigned1;
-  int SystemOperationValue188;
+  int SystemOperationValueMax;
   uint32_t concatenatedSystemValue;
   void* *pCalculationFlags1;
   long long SystemCalculationValue1;
@@ -26920,10 +26920,10 @@ void InitializeSystemDataStructures(void)
   long long *stackPointerX10;
   long long *stackPointerX18;
   long long StackRegisterValueX20;
-  long long stackValue90;
-  long long stackValue88;
-  long long stackValue80;
-  long long stackValue78;
+  long long StackRegisterValue90;
+  long long StackRegisterValue88;
+  long long StackRegisterValue80;
+  long long StackRegisterValue78;
   long long ***stackTriplePointer70;
   void* StackHandle;
   long long **stackDoublePointer60;
@@ -27047,15 +27047,15 @@ void InitializeSystemResourceAllocator(long long SystemResourceHandle)
   uint renderItemCounter;
   ulong long renderStride;
   float TransformValue;
-  double doubleValue1;
-  double doubleValue2;
+  double FloatingPointValue1;
+  double FloatingPointValue2;
   long long **systemContextPointer;
   long long *systemContextPointer10;
   long long *systemContextPointer18;
-  long long systemOperationValue20;
-  long long systemOperationValue90;
-  long long systemOperationValue88;
-  long long systemOperationValue80;
+  long long SystemCalculationValue20;
+  long long SystemCalculationValue90;
+  long long SystemCalculationValue88;
+  long long SystemCalculationValue80;
   long long systemOperationValue78;
   long long ***systemContextPointer70;
   void* SystemPrimaryValue;
@@ -28209,7 +28209,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   void* CalculationFlagsPrimary;
   void* *pSystemStackFlag;
   void* SystemResourceHandlePrimary;
-  int SystemOperationValue188;
+  int SystemOperationValueMax;
   uint8_t SystemSystemStackBufferE8 [16];
   void* *systemDataPointer;
   void* SystemResourceHandleSecondary;
@@ -28248,10 +28248,10 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   *SystemDataPointer = 0x3a757063;
   *(void*2 *)(SystemDataPointer + 1) = 0x20;
   *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
-  if (0 < SystemOperationValue188) {
-    ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + SystemOperationValue188);
+  if (0 < SystemOperationValueMax) {
+    ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + SystemOperationValueMax);
       memcpy((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8),SystemResourceHandle190,
-           (long long)(SystemOperationValue188 + 1));
+           (long long)(SystemOperationValueMax + 1));
   }
   ExecuteSystemCommand(ConfigurationDataPointer,systemResult + 0xc);
   *(void*2 *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
