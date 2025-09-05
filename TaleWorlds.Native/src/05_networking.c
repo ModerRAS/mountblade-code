@@ -138,13 +138,13 @@ static int64_t CalculateContextParameterOffset(int64_t *Context)
  * 计算连接上下文数据的偏移量，用于访问上下文数据
  * 
  * @param ContextAddress 上下文地址
- * @param ContextBuffer 上下文缓冲区指针
- * @param StatusPointer 状态指针
+ * @param ConnectionContextBuffer 连接上下文缓冲区指针
+ * @param NetworkConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *ContextBuffer, void *StatusPointer)
+static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *NetworkConnectionStatusPointer)
 {
-    return (ContextAddress - (int64_t)ContextBuffer) + (int64_t)StatusPointer;
+    return (ContextAddress - (int64_t)ConnectionContextBuffer) + (int64_t)NetworkConnectionStatusPointer;
 }
 
 /**
@@ -153,13 +153,13 @@ static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *ContextB
  * 计算连接上下文中最后一个条目的偏移量
  * 
  * @param ContextAddress 上下文地址
- * @param ContextBuffer 上下文缓冲区指针
- * @param StatusPointer 状态指针
+ * @param ConnectionContextBuffer 连接上下文缓冲区指针
+ * @param NetworkConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的最后一个条目偏移量地址
  */
-static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *ContextBuffer, void *StatusPointer)
+static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *NetworkConnectionStatusPointer)
 {
-    return CalculateContextDataOffset(ContextAddress, ContextBuffer, StatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)StatusPointer + ConnectionContextEntrySize);
+    return CalculateContextDataOffset(ContextAddress, ConnectionContextBuffer, NetworkConnectionStatusPointer) - 4 + (int64_t)((NetworkConnectionStatus *)NetworkConnectionStatusPointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -168,13 +168,13 @@ static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *Con
  * 计算网络状态指针的偏移量
  * 
  * @param ContextIdentifier 上下文标识符
- * @param StatusBasePointer 状态基础指针
- * @param StatusIteratorPointer 状态迭代器指针
+ * @param NetworkConnectionStatusBasePointer 网络连接状态基础指针
+ * @param NetworkConnectionStatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的状态指针偏移量地址
  */
-static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
+static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *NetworkConnectionStatusBasePointer, void *NetworkConnectionStatusIteratorPointer)
 {
-    return (ContextIdentifier - (int64_t)StatusBasePointer) + (int64_t)StatusIteratorPointer;
+    return (ContextIdentifier - (int64_t)NetworkConnectionStatusBasePointer) + (int64_t)NetworkConnectionStatusIteratorPointer;
 }
 
 /**
@@ -183,13 +183,13 @@ static int64_t CalculateStatusPointerOffset(int64_t ContextIdentifier, void *Sta
  * 计算网络状态中最后一个条目的偏移量
  * 
  * @param ContextIdentifier 上下文标识符
- * @param StatusBasePointer 状态基础指针
- * @param StatusIteratorPointer 状态迭代器指针
+ * @param NetworkConnectionStatusBasePointer 网络连接状态基础指针
+ * @param NetworkConnectionStatusIteratorPointer 网络连接状态迭代器指针
  * @return int64_t 计算出的最后一个状态条目偏移量地址
  */
-static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *StatusBasePointer, void *StatusIteratorPointer)
+static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *NetworkConnectionStatusBasePointer, void *NetworkConnectionStatusIteratorPointer)
 {
-    return CalculateStatusPointerOffset(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
+    return CalculateStatusPointerOffset(ContextIdentifier, NetworkConnectionStatusBasePointer, NetworkConnectionStatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)NetworkConnectionStatusIteratorPointer + ConnectionContextEntrySize);
 }
 
 // 网络连接相关偏移量 - 连接上下文和状态管理
@@ -234,9 +234,9 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkPacketStatusTimeout 0x03                       // 数据包状态：超时
 
 // 数据包数组索引常量
-#define PacketDataHeaderIndex 1                                // 数据包头索引
-#define PacketDataSizeIndex 8                                  // 数据包大小索引
-#define ArraySizeIndex 4                                       // 数组大小参数索引
+#define PacketHeaderArrayIndex 1                                // 数据包头数组索引
+#define PacketSizeArrayIndex 8                                  // 数据包大小数组索引
+#define NetworkArraySizeIndex 4                                // 网络数组大小索引
 #define ConnectionDataSizeIndex 1                              // 连接数据大小索引
 #define ConnectionStateDataIndex 1                             // 连接状态数据索引
 #define MergedConnectionDataOffset 8                           // 合并连接数据偏移量
@@ -577,53 +577,53 @@ uint32_t InitializeNetworkIterationContext(int64_t ConnectionContext, int64_t Va
  * 
  * 处理网络协议栈中的数据，进行协议解析和数据处理
  * 
- * @param StackBuffer 堆栈缓冲区指针
- * @param ContextData 上下文数据
+ * @param NetworkStackBuffer 网络堆栈缓冲区指针
+ * @param NetworkContextData 网络上下文数据
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t HandleNetworkProtocolStackData(int64_t *StackBuffer, int64_t ContextData);
+uint32_t HandleNetworkProtocolStackData(int64_t *NetworkStackBuffer, int64_t NetworkContextData);
 
 /**
  * @brief 验证网络连接句柄
  * 
  * 验证网络连接句柄的有效性和安全性
  * 
- * @param ConnectionContext 连接上下文句柄
- * @param PacketData 数据包数据句柄
+ * @param NetworkConnectionContext 网络连接上下文句柄
+ * @param NetworkPacketData 网络数据包数据句柄
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidateNetworkConnectionResultHandleSecurity(NetworkHandle ConnectionContext, NetworkHandle PacketData);
+uint32_t ValidateNetworkConnectionResultHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketData);
 
 /**
  * @brief 获取网络连接句柄
  * 
  * 获取网络连接的句柄，用于后续的网络操作
  * 
- * @param ConnectionContext 连接上下文指针
+ * @param NetworkConnectionContext 网络连接上下文指针
  * @return NetworkHandle 连接句柄
  */
-NetworkHandle GetNetworkConnectionResultHandle(int64_t *ConnectionContext);
+NetworkHandle GetNetworkConnectionResultHandle(int64_t *NetworkConnectionContext);
 
 /**
  * @brief 验证网络连接条目
  * 
  * 验证网络连接表中的条目是否有效和安全
  * 
- * @param ConnectionContext 连接上下文
- * @param NetworkFlags 网络标志
+ * @param NetworkConnectionContext 网络连接上下文
+ * @param NetworkConnectionFlags 网络连接标志
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidateConnectionEntry(int64_t ConnectionContext, uint32_t NetworkFlags);
+uint32_t ValidateConnectionEntry(int64_t NetworkConnectionContext, uint32_t NetworkConnectionFlags);
 
 /**
  * @brief 初始化网络上下文
  * 
  * 初始化网络连接的上下文数据和状态信息
  * 
- * @param NetworkContext 网络上下文
+ * @param NetworkContextData 网络上下文数据
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t SetupNetworkContext(int64_t NetworkContext);
+uint32_t SetupNetworkContext(int64_t NetworkContextData);
 
 /**
  * @brief 处理网络上下文条目
@@ -631,12 +631,12 @@ uint32_t SetupNetworkContext(int64_t NetworkContext);
  * 处理网络上下文中的条目数据，进行数据验证和处理。此函数负责验证网络上下文条目的有效性，
  * 检查条目状态，并执行必要的数据处理操作。
  * 
- * @param NetworkContextEntry 网络上下文条目指针，包含需要处理的上下文数据
+ * @param NetworkContextEntryData 网络上下文条目数据指针，包含需要处理的上下文数据
  * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
  * @note 如果条目数据无效，函数会返回相应的错误码
- * @warning 传入的NetworkContextEntry不能为NULL，否则会导致未定义行为
+ * @warning 传入的NetworkContextEntryData不能为NULL，否则会导致未定义行为
  */
-uint32_t ProcessContextEntry(int64_t NetworkContextEntry);
+uint32_t ProcessContextEntry(int64_t NetworkContextEntryData);
 
 /**
  * @brief 处理网络连接数据
@@ -1291,28 +1291,51 @@ void ValidateNetworkSecurity(uint64_t SecurityValidationValue);
 int32_t CleanupNetworkConnectionContext(int64_t ConnectionContext);
 
 /**
- * @brief 验证缓冲区超时
+ * @brief 验证网络缓冲区超时
  * 
- * 验证缓冲区的超时时间，确保连接的时效性
+ * 验证网络缓冲区的超时时间，确保连接的时效性和数据新鲜度。此函数检查缓冲区中的数据是否超过了
+ * 预定的超时时间，防止过期数据的处理，提高网络连接的安全性和可靠性。
  * 
- * @param BufferData 缓冲区数据
- * @param TimeoutValue 超时值
- * @param ValidationResult 验证结果
- * @return int32_t 验证结果，0表示成功，其他值表示错误码
+ * @param NetworkBufferData 网络缓冲区数据，包含需要验证的缓冲区信息
+ * @param TimeoutMilliseconds 超时时间（毫秒），定义数据的有效时间窗口
+ * @param ValidationResult 验证结果上下文，包含之前的验证状态信息
+ * @return int32_t 验证结果，0表示验证成功（数据在有效期内），非0值表示验证失败的具体错误码
+ * 
+ * @note 此函数会考虑网络延迟和时钟漂移因素，确保验证的准确性
+ * @warning 如果超时时间设置过短，可能导致正常数据被误判为过期
+ * @see SetupNetworkBuffer, ProcessNetworkBufferWithEncryption
+ * 
+ * @retval 0 验证成功，数据在有效期内
+ * @retval 0x1 缓冲区数据无效
+ * @retval 0x2 超时时间参数无效
+ * @retval 0x3 数据已过期
+ * @retval 0x4 验证上下文错误
  */
-int32_t ValidateNetworkBufferTimeout(int64_t BufferData, int32_t TimeoutValue, int64_t ValidationResult);
+int32_t ValidateNetworkBufferTimeout(int64_t NetworkBufferData, int32_t TimeoutMilliseconds, int64_t ValidationResult);
 
 /**
- * @brief 使用加密处理缓冲区
+ * @brief 使用加密处理网络缓冲区
  * 
- * 使用加密处理缓冲区数据，确保数据传输的安全性
+ * 使用加密算法处理网络缓冲区数据，确保数据传输的安全性和机密性。此函数支持多种加密算法，
+ * 能够根据网络连接的安全级别要求选择合适的加密方式，保护敏感数据不被未授权访问。
  * 
- * @param EncryptedBuffer 加密缓冲区
- * @param BufferSize 缓冲区大小
- * @param EncryptionKey 加密密钥
- * @return int32_t 处理结果，0表示成功，其他值表示错误码
+ * @param EncryptedNetworkBuffer 加密网络缓冲区，包含需要处理的加密数据
+ * @param BufferSizeBytes 缓冲区大小（字节），指定需要处理的数据量
+ * @param NetworkEncryptionKey 网络加密密钥，用于数据加密和解密的密钥值
+ * @return int32_t 处理结果，0表示加密处理成功，非0值表示处理失败的具体错误码
+ * 
+ * @note 此函数会自动选择最适合当前网络环境的加密算法
+ * @warning 加密密钥必须妥善保管，泄露会导致安全隐患
+ * @see ValidateNetworkBufferTimeout, EncryptNetworkPacket
+ * 
+ * @retval 0 加密处理成功
+ * @retval 0x1 加密缓冲区无效
+ * @retval 0x2 缓冲区大小参数无效
+ * @retval 0x3 加密密钥无效
+ * @retval 0x4 加密算法不支持
+ * @retval 0x5 内存分配失败
  */
-int32_t ProcessNetworkBufferWithEncryption(int64_t EncryptedBuffer, int32_t BufferSize, int64_t EncryptionKey);
+int32_t ProcessNetworkBufferWithEncryption(int64_t EncryptedNetworkBuffer, int32_t BufferSizeBytes, int64_t NetworkEncryptionKey);
 
 /**
  * @brief 管理网络句柄
