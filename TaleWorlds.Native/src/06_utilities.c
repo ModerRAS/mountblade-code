@@ -9636,7 +9636,7 @@ int CheckUtilityPermissionG0(uint32_t permissionFlags)
     systemContextBuffer = *(longlong *)(contextPointer + 0x10);
     operationMode = 2;
   }
-  parameterBuffer = param_1;
+  parameterBuffer = permissionFlags;
   operationResult = ProcessDataRequest();
   if (operationResult == 0) {
     operationResult = 0;
