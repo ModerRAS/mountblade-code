@@ -57032,7 +57032,7 @@ void Unwind_180908050(undefined8 param_1,undefined8 param_2,undefined8 param_3,u
   ValidationContextPointerArray[1] = (longlong)validationContextPointer;
   *ValidationContextPointerArray = (longlong)validationContextPointer;
   ValidationContextPointerArray[2] = (longlong)validationContextPointer;
-  _DAT_180d49208 = 0;
+  ValidationContextStatusFlag = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(ValidationContextPointerArray,0x58);
@@ -90254,7 +90254,7 @@ void ProcessValidationContextA0(undefined8 param_1,undefined8 param_2,undefined8
   ValidationContextPointerArray[1] = (longlong)validationContextPointer;
   *ValidationContextPointerArray = (longlong)validationContextPointer;
   ValidationContextPointerArray[2] = (longlong)validationContextPointer;
-  _DAT_180d49208 = 0;
+  ValidationContextStatusFlag = 0;
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
                     // WARNING: Treating indirect jump as call
   free(ValidationContextPointerArray,0x58);
