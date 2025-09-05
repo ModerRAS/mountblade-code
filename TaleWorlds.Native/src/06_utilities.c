@@ -33388,7 +33388,7 @@ void CleanupSystemFlagBit7(undefined8 context, longlong systemData)
 {
   if ((*(uint *)(systemData + 0x30) & 0x80) != 0) {
     *(uint *)(systemData + 0x30) = *(uint *)(systemData + 0x30) & 0xffffff7f;
-    FUN_180627b90(systemData + 0x98);
+    CleanupResourceHandler(systemData + 0x98);
   }
   return;
 }
