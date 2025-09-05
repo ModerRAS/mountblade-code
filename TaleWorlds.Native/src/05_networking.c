@@ -1725,7 +1725,7 @@ void InitializeNetworkConnectionPool(void)
   
   // 初始化连接池管理器
   NetworkConnectionPoolManagerHandle = NetworkManagerHandleInvalid;
-  NetworkConnectionPoolCurrentIndex = 0;
+  NetworkConnectionPoolCurrentSlot = 0;
   
   // 初始化性能监控
   NetworkConnectionPoolPerformanceMetrics = 0;
