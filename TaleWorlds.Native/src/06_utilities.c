@@ -17195,8 +17195,8 @@ LAB_1808992a5:
 
 
 
-// 函数: void FUN_1808992c4(void)
-void FUN_1808992c4(void)
+// 初始化系统组件
+void InitializeSystemComponents(void)
 
 {
   FUN_1808aed00();
@@ -17205,28 +17205,28 @@ void FUN_1808992c4(void)
 
 
 
-undefined8 FUN_1808992f0(longlong *param_1,undefined4 *param_2)
+undefined8 ValidateAndExecuteOperations(longlong *contextHandle,undefined4 *dataBuffer)
 
 {
   longlong validationContext;
-  undefined8 *puVar2;
-  undefined8 uVar3;
-  undefined4 auStackX_8 [2];
-  undefined4 auStackX_18 [4];
+  undefined8 *functionPointer;
+  undefined8 operationResult;
+  undefined4 firstDataChunk [2];
+  undefined4 secondDataChunk [4];
   
-  if (*(int *)(param_1[1] + 0x18) != 0) {
+  if (*(int *)(contextHandle[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_8[0] = *param_2;
-  validationContext = *param_1;
-  puVar2 = *(undefined8 **)(validationContext + 8);
-  uVar3 = (**(code **)*puVar2)(puVar2,auStackX_8,4);
-  if ((int)uVar3 == 0) {
-    auStackX_18[0] = param_2[1];
-    puVar2 = *(undefined8 **)(validationContext + 8);
-    uVar3 = (**(code **)*puVar2)(puVar2,auStackX_18,4);
+  firstDataChunk[0] = *dataBuffer;
+  validationContext = *contextHandle;
+  functionPointer = *(undefined8 **)(validationContext + 8);
+  operationResult = (**(code **)*functionPointer)(functionPointer,firstDataChunk,4);
+  if ((int)operationResult == 0) {
+    secondDataChunk[0] = dataBuffer[1];
+    functionPointer = *(undefined8 **)(validationContext + 8);
+    operationResult = (**(code **)*functionPointer)(functionPointer,secondDataChunk,4);
   }
-  return uVar3;
+  return operationResult;
 }
 
 
