@@ -113,6 +113,10 @@
 // 功能：包装安全检查函数，执行栈保护验证
 #define ExecuteSecurityCheckWrapper FUN_180894ad2
 
+// 原始函数名：FUN_180894bf5 - 安全检查包装函数B
+// 功能：包装安全检查函数，执行系统状态验证
+#define ExecuteSecurityCheckWrapperB FUN_180894bf5
+
 // 原始函数名：FUN_180895b89 - 安全检查执行函数
 // 功能：执行安全检查，程序不会返回
 #define ExecuteSecurityCheck FUN_180895b89
@@ -10283,21 +10287,30 @@ void TerminateSystemB(void)
 
 
 // 函数: void FUN_180894bf5(void)
-void FUN_180894bf5(void)
+/**
+ * 安全检查包装函数 - 执行系统安全验证并终止进程
+ * 
+ * 此函数包装安全检查功能，验证系统状态并在检查失败时终止进程。
+ * 函数会先检查某个状态值，如果状态值满足条件或验证函数返回成功，
+ * 则将状态值存储到指定位置，然后执行安全检查。
+ * 
+ * @note 这是一个不返回的函数，执行后会终止进程
+ */
+void ExecuteSecurityCheckWrapper(void)
 
 {
-  int iVar1;
-  longlong in_RAX;
-  longlong *unaff_RDI;
-  longlong lStack0000000000000080;
-  ulonglong in_stack_000000b0;
+  int validationResult;
+  longlong contextRegister;
+  longlong *targetPointer;
+  longlong stateValue;
+  ulonglong securityContext;
   
-  lStack0000000000000080 = *(longlong *)(in_RAX + 0x48);
-  if ((lStack0000000000000080 != 0) || (iVar1 = FUN_18088ca20(), iVar1 == 0)) {
-    *unaff_RDI = lStack0000000000000080;
+  stateValue = *(longlong *)(contextRegister + 0x48);
+  if ((stateValue != 0) || (validationResult = FUN_18088ca20(), validationResult == 0)) {
+    *targetPointer = stateValue;
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(securityContext ^ (ulonglong)&stack0x00000000);
 }
 
 
