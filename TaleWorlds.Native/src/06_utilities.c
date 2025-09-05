@@ -35949,7 +35949,18 @@ void ExceptionCleanupHandlerDataContext3(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902a50(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理数据上下文和验证状态
+ * 
+ * 该函数负责清理数据上下文，包括：
+ * - 遍历和清理数据上下文数组
+ * - 处理验证状态和引用计数
+ * - 在引用计数为0时调用异常处理
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerDataContext4(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
@@ -36004,7 +36015,18 @@ void Unwind_180902a50(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902a60(undefined8 param_1,longlong param_2)
+/**
+ * 异常清理处理器 - 清理验证上下文
+ * 
+ * 该函数负责清理验证上下文，包括：
+ * - 遍历验证上下文中的数据
+ * - 调用清理函数处理每个数据项
+ * - 在数据为空时调用系统终止函数
+ * 
+ * @param exceptionContext 异常上下文指针
+ * @param unwindData 解包数据结构
+ */
+void ExceptionCleanupHandlerValidationContext2(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
