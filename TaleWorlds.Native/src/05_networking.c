@@ -1177,190 +1177,267 @@ uint32_t NetworkSocketCategory;                                // 网络套接�
 
 /**
  * @brief 网络套接字协议类型
+ * 
+ * 定义网络套接字使用的协议类型，如TCP、UDP等
  */
 uint32_t NetworkSocketProtocolType;
 
 /**
  * @brief 网络套接字类型
+ * 
+ * 定义网络套接字的类型，如流式套接字、数据报套接字等
  */
 uint32_t NetworkSocketType;
 
 /**
  * @brief 网络套接字协议
+ * 
+ * 存储网络套接字使用的具体协议信息
  */
 uint32_t NetworkSocketProtocol;
 
 /**
  * @brief 网络连接优先级
+ * 
+ * 定义网络连接的优先级，用于调度和资源分配
  */
 uint32_t NetworkConnectionPriority;
 
 /**
  * @brief 网络套接字结构体大小
+ * 
+ * 存储网络套接字结构体的大小信息
  */
 uint32_t NetworkSocketStructureSize;
 
 /**
  * @brief 网络套接字上下文大小
+ * 
+ * 定义网络套接字上下文数据的大小
  */
 uint32_t NetworkSocketContextSize;
 
 /**
  * @brief 网络套接字上下文
+ * 
+ * 存储网络套接字的上下文数据，包括状态和配置信息
  */
 uint32_t NetworkSocketContext;
 
 /**
  * @brief 网络套接字表位置
+ * 
+ * 存储网络套接字在套接字表中的位置信息
  */
 uint32_t NetworkSocketTablePosition;
 
 /**
  * @brief 网络套接字索引位置
+ * 
+ * 存储网络套接字的索引位置，用于快速查找
  */
 uint32_t NetworkSocketIndex;
 
 /**
  * @brief 网络套接字上下文指针
+ * 
+ * 指向网络套接字上下文数据的指针
  */
 uint32_t NetworkSocketContextPointer;
 
 /**
  * @brief 网络套接字运行时数据
+ * 
+ * 存储网络套接字运行时的动态数据，包括连接状态、传输统计等
  */
 uint32_t NetworkSocketRuntimeData;
 
 /**
  * @brief 网络套接字运行时上下文指针
+ * 
+ * 指向网络套接字运行时上下文数据的指针
  */
 uint32_t NetworkSocketRuntimeContextPointer;
+
 /**
  * @brief 网络协议版本
+ * 
+ * 定义网络协议的版本信息，用于协议兼容性检查
  */
 uint32_t NetworkProtocolVersion;
 
 /**
  * @brief 网络连接模式
+ * 
+ * 定义网络连接的模式，如客户端模式、服务器模式等
  */
 uint32_t NetworkConnectionMode;
 
 /**
  * @brief 网络连接优先级级别
+ * 
+ * 定义网络连接的优先级级别，用于资源分配和调度
  */
 uint32_t NetworkConnectionPriorityLevel;
 
 /**
  * @brief 网络连接上下文数据大小
+ * 
+ * 定义网络连接上下文数据的大小
  */
 uint32_t NetworkConnectionContextSize;
 
 /**
  * @brief 网络连接质量级别
+ * 
+ * 定义网络连接的质量级别，如高质量、中等质量、低质量等
  */
 uint32_t NetworkConnectionQualityLevel;
 
 /**
  * @brief 网络连接质量
+ * 
+ * 存储网络连接的质量指标，包括丢包率、延迟等
  */
 uint32_t NetworkConnectionQuality;
 
 /**
  * @brief 网络连接带宽
+ * 
+ * 存储网络连接的带宽信息，单位为bps
  */
 uint32_t NetworkConnectionBandwidth;
 
 /**
  * @brief 网络连接延迟
+ * 
+ * 存储网络连接的延迟信息，单位为毫秒
  */
 uint32_t NetworkConnectionLatency;
 
 /**
  * @brief 网络连接延迟（毫秒）
+ * 
+ * 存储网络连接的延迟时间，单位为毫秒
  */
 uint32_t NetworkConnectionLatencyMs;
 
 /**
  * @brief 网络连接可靠性级别
+ * 
+ * 定义网络连接的可靠性级别，如高可靠性、中等可靠性、低可靠性等
  */
 uint32_t NetworkConnectionReliabilityLevel;
 
 /**
  * @brief 网络安全级别
+ * 
+ * 定义网络连接的安全级别，如高级别、中级别、低级别等
  */
 uint32_t NetworkSecurityLevel;
 
 /**
  * @brief 网络认证类型
+ * 
+ * 定义网络连接使用的认证类型，如密码认证、证书认证等
  */
 uint32_t NetworkAuthenticationType;
 
 /**
  * @brief 网络系统认证类型
+ * 
+ * 定义网络系统使用的认证类型，用于系统级别的认证
  */
 uint32_t NetworkSystemAuthenticationType;
 
 /**
  * @brief 网络加密算法类型
+ * 
+ * 定义网络连接使用的加密算法类型，如对称加密、非对称加密等
  */
 uint32_t NetworkEncryptionAlgorithmType;
 
 /**
  * @brief 网络加密算法
+ * 
+ * 存储网络连接使用的具体加密算法，如AES、RSA等
  */
 uint32_t NetworkEncryptionAlgorithm;
 
 /**
  * @brief 网络系统加密算法
+ * 
+ * 存储网络系统使用的加密算法，用于系统级别的加密
  */
 uint32_t NetworkSystemEncryptionAlgorithm;
 
 /**
  * @brief 网络压缩方法类型
+ * 
+ * 定义网络数据压缩的方法类型，如无损压缩、有损压缩等
  */
 uint32_t NetworkCompressionMethodType;
 
 /**
  * @brief 网络压缩方法
+ * 
+ * 存储网络数据使用的具体压缩方法，如ZLIB、GZIP等
  */
 uint32_t NetworkCompressionMethod;
 
 /**
  * @brief 网络系统压缩方法
+ * 
+ * 存储网络系统使用的压缩方法，用于系统级别的数据压缩
  */
 uint32_t NetworkSystemCompressionMethod;
 
 /**
  * @brief 网络会话超时持续时间
+ * 
+ * 定义网络会话的超时时间，单位为毫秒
  */
 uint32_t NetworkSessionTimeoutMs;
 
 /**
  * @brief 网络数据包缓冲区指针
+ * 
+ * 指向网络数据包缓冲区的指针
  */
 uint32_t NetworkPacketBufferPointer;
 
 /**
  * @brief 网络数据包头指针
+ * 
+ * 指向网络数据包头部的指针
  */
 uint32_t NetworkPacketHeaderPointer;
 
 /**
  * @brief 网络发送缓冲区大小
+ * 
+ * 定义网络发送缓冲区的大小，单位为字节
  */
 uint32_t NetworkSendBufferSize;
 
 /**
  * @brief 网络接收缓冲区大小
+ * 
+ * 定义网络接收缓冲区的大小，单位为字节
  */
 uint32_t NetworkReceiveBufferSize;
 
 /**
  * @brief 网络发送缓冲区容量
+ * 
+ * 定义网络发送缓冲区的最大容量，单位为字节
  */
 uint32_t NetworkSendBufferCapacity;
 
 /**
  * @brief 网络接收缓冲区容量
+ * 
+ * 定义网络接收缓冲区的最大容量，单位为字节
  */
 uint32_t NetworkReceiveBufferCapacity;
 
@@ -1370,6 +1447,8 @@ uint32_t NetworkReceiveBufferCapacity;
 
 /**
  * @brief 网络数据包负载大小
+ * 
+ * 定义网络数据包的负载大小，单位为字节
  */
 uint32_t NetworkPacketPayloadSize;
 
@@ -1751,6 +1830,24 @@ uint32_t NetworkSocketBindingStatus;
  * 
  * @note 此函数在系统启动时调用，确保连接池处于正确的初始状态
  * @warning 调用此函数会重置所有连接池相关的计数器和状态
+ */
+/**
+ * @brief 初始化网络连接池
+ * 
+ * 初始化网络连接池的配置参数、管理器和性能监控。此函数负责设置连接池的
+ * 最大容量、分配计数、健康状态等基本信息，为后续的连接管理做准备。
+ * 
+ * @details 该函数执行以下关键操作：
+ * - 设置连接池最大容量为默认值
+ * - 初始化分配和释放计数器为0
+ * - 设置连接池健康状态为正常
+ * - 初始化连接池管理器句柄和当前槽位
+ * - 重置性能监控和统计数据
+ * 
+ * @note 此函数会在网络系统启动时调用，确保连接池正确初始化
+ * @warning 如果初始化失败，系统将无法管理网络连接
+ * 
+ * @return void 无返回值
  */
 void InitializeNetworkConnectionPool(void)
 {

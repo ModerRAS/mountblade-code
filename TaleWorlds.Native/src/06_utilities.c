@@ -11564,14 +11564,14 @@ DataBuffer CheckSystemStatusA0(int64_t contextHandle,int64_t eventManager)
 
 
 
-// 函数: void ResetSystemStateA0(int64_t param_1,int64_t param_2)
+// 函数: void ResetSystemStateA0(int64_t systemConfig,int64_t cleanupContext)
 // 
 // 重置系统状态，清理事件处理器
 // 该函数负责重置系统状态，包括清理事件处理器和相关数据结构
 // 
 // 参数:
-//   param_1 - 系统上下文句柄
-//   param_2 - 系统参数块
+//   systemConfig - 系统配置指针，包含系统配置信息
+//   cleanupContext - 清理上下文指针，包含清理所需的上下文信息
 // 
 // 返回值:
 //   无
@@ -12729,10 +12729,10 @@ DataBuffer ValidateAndProcessFloatingPointData(int64_t dataPtr,int64_t contextPt
   uint VectorComponentZ;
   uint VectorComponentW;
   DataBuffer result;
-  int InfinityFlag1;
-  int InfinityFlag2;
-  int InfinityFlag3;
-  int InfinityFlag4;
+  int primaryInfinityFlag;
+  int secondaryInfinityFlag;
+  int tertiaryInfinityFlag;
+  int quaternaryInfinityFlag;
   int64_t dataBufferPtr;
   int64_t systemContextBuffer [2];
   uint TemporaryUint;
@@ -16176,21 +16176,21 @@ DataBuffer InitializeSystemDataStructure(int64_t *systemContext)
   if (configurationValue == -1) {
     return 0x1c;
   }
-  inputParameter = (int)param_1[1];
+  inputParameter = (int)systemContext[1];
   if (calculatedSize == inputParameter) {
     calculatedSize = calculatedSize * 2;
     if (calculatedSize < 4) {
       calculatedSize = 4;
     }
-    if (((calculatedSize <= inputParameter) || ((int)param_1[3] != inputParameter)) || ((int)param_1[4] != -1)) {
+    if (((calculatedSize <= inputParameter) || ((int)systemContext[3] != inputParameter)) || ((int)systemContext[4] != -1)) {
       return 0x1c;
     }
-    dataFlags = (int)*(uint *)((int64_t)param_1 + 0x1c) >> 0x1f;
-    if (((int)((*(uint *)((int64_t)param_1 + 0x1c) ^ dataFlags) - dataFlags) < calculatedSize) &&
-       (validationStatus = CheckSystemDataA0(param_1 + 2,calculatedSize), (int)validationStatus != 0)) {
+    dataFlags = (int)*(uint *)((int64_t)systemContext + 0x1c) >> 0x1f;
+    if (((int)((*(uint *)((int64_t)systemContext + 0x1c) ^ dataFlags) - dataFlags) < calculatedSize) &&
+       (validationStatus = CheckSystemDataA0(systemContext + 2,calculatedSize), (int)validationStatus != 0)) {
       return validationStatus;
     }
-    validationStatus = AllocateSystemDataA0(param_1,calculatedSize);
+    validationStatus = AllocateSystemDataA0(systemContext,calculatedSize);
     if ((int)validationStatus != 0) {
       return validationStatus;
     }
@@ -26412,7 +26412,7 @@ ValidationLabelB:
       if (statusCounter == 0) {
         return exceptionDataBuffer3;
       }
-      FUN_1808aef40(stackFramePointer + -0x29,0);
+      CleanupDataResourcesA0(stackFramePointer + -0x29,0);
       return exceptionDataBuffer3;
     }
     inputParameter9 = *(int *)(stackFramePointer + -0x21);
@@ -26423,7 +26423,7 @@ ValidationLabelB:
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
       if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter9) {
-        statusCounter = FUN_180883750(systemContext + 0x48,inputParameter9);
+        statusCounter = CheckSystemStatusA0(systemContext + 0x48,inputParameter9);
         exceptionDataBuffer3 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter9 = *(int *)(stackFramePointer + -0x21);
@@ -26433,7 +26433,7 @@ ValidationLabelB:
       for (exceptionDataBuffer6 = exceptionDataBuffer3; (exceptionDataBuffer3 <= exceptionDataBuffer6 && (exceptionDataBuffer6 < exceptionDataBuffer3 + (int64_t)inputParameter9 * 3));
           exceptionDataBuffer6 = exceptionDataBuffer6 + 3) {
         *(DataBuffer *)(stackFramePointer + 0x77) = 0;
-        statusCounter = FUN_1808aec50(systemContext + 0x48,stackFramePointer + 0x77);
+        statusCounter = ValidateDataSecurityA1(systemContext + 0x48,stackFramePointer + 0x77);
         exceptionDataBuffer3 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         dataValue = exceptionDataBuffer6[1];
@@ -26490,7 +26490,7 @@ ValidationLabelB:
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar21 = (float)FUN_1808aef40(stackFramePointer + -0x29,0);
+      fVar21 = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
     }
   }
   else {
@@ -26672,7 +26672,7 @@ ValidationProcessingLabel:
       if (statusCounter == 0) {
         return exceptionDataBuffer2;
       }
-      FUN_1808aef40(stackFramePointer + -0x29,0);
+      CleanupDataResourcesA0(stackFramePointer + -0x29,0);
       return exceptionDataBuffer2;
     }
     inputParameter9 = *(int *)(stackFramePointer + -0x21);
@@ -26683,7 +26683,7 @@ ValidationProcessingLabel:
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
       if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter9) {
-        statusCounter = FUN_180883750(systemContext + 0x48,inputParameter9);
+        statusCounter = CheckSystemStatusA0(systemContext + 0x48,inputParameter9);
         exceptionDataBuffer2 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         inputParameter9 = *(int *)(stackFramePointer + -0x21);
@@ -26693,7 +26693,7 @@ ValidationProcessingLabel:
       for (exceptionDataBuffer6 = exceptionDataBuffer2; (exceptionDataBuffer2 <= exceptionDataBuffer6 && (exceptionDataBuffer6 < exceptionDataBuffer2 + (int64_t)inputParameter9 * 3));
           exceptionDataBuffer6 = exceptionDataBuffer6 + 3) {
         *(DataBuffer *)(stackFramePointer + 0x77) = 0;
-        statusCounter = FUN_1808aec50(systemContext + 0x48,stackFramePointer + 0x77);
+        statusCounter = ValidateDataSecurityA1(systemContext + 0x48,stackFramePointer + 0x77);
         exceptionDataBuffer2 = (DataBuffer *)(uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         dataValue = exceptionDataBuffer6[1];
@@ -26750,7 +26750,7 @@ ValidationProcessingLabel:
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar21 = (float)FUN_1808aef40(stackFramePointer + -0x29,0);
+      fVar21 = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
     }
   }
   else {
@@ -26896,7 +26896,7 @@ ValidationLabelB:
       if (statusCounter == 0) {
         return dataValue1;
       }
-      FUN_1808aef40(stackFramePointer + -0x29,0);
+      CleanupDataResourcesA0(stackFramePointer + -0x29,0);
       return dataValue1;
     }
     inputParameter8 = *(int *)(stackFramePointer + -0x21);
@@ -26917,7 +26917,7 @@ ValidationLabelB:
       for (exceptionDataBuffer5 = exceptionDataBuffer4; (exceptionDataBuffer4 <= exceptionDataBuffer5 && (exceptionDataBuffer5 < exceptionDataBuffer4 + (int64_t)inputParameter8 * 3));
           exceptionDataBuffer5 = exceptionDataBuffer5 + 3) {
         *(DataBuffer **)(stackFramePointer + 0x77) = register_R12;
-        statusCounter = FUN_1808aec50(systemContext + 0x48,stackFramePointer + 0x77);
+        statusCounter = ValidateDataSecurityA1(systemContext + 0x48,stackFramePointer + 0x77);
         dataValue1 = (uint64_t)statusCounter;
         if (statusCounter != 0) goto ProcessCheckpointStatusValidation;
         validationOutcome = exceptionDataBuffer5[1];
@@ -26974,7 +26974,7 @@ ValidationLabelB:
       statusCounter = -statusCounter;
     }
     if (statusCounter != 0) {
-      fVar20 = (float)FUN_1808aef40(stackFramePointer + -0x29,0);
+      fVar20 = (float)CleanupDataResourcesA0(stackFramePointer + -0x29,0);
     }
   }
   else {
@@ -92762,7 +92762,16 @@ void UtilityHandleEvent1(void)
 
 
 // 函数: void UtilityHandleEventSecond(void)
-void UtilityHandleEvent2(void)
+// 
+// 处理工具系统事件的第二阶段
+// 设置默认的事件处理器并初始化事件处理状态
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void UtilityHandleEventSecond(void)
 
 {
   UtilityEventHandlerPointer = &DefaultExceptionHandlerB;

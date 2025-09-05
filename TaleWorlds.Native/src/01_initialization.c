@@ -29098,52 +29098,52 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   threadHandle = 0;
   threadBufferPointer = (uint8_t *)0x0;
   ThreadStatus = 0;
-  primaryOperationFlags = 2;
-  dataLength = *(uint *)(ThreadParams + 0x10);
-  bufferOffset = (ulong long)dataLength;
-  threadId = 0;
+  PrimaryOperationFlags = 2;
+  DataLength = *(uint *)(ThreadParams + 0x10);
+  BufferOffset = (ulong long)DataLength;
+  ThreadId = 0;
   if (*(long long *)(ThreadParams + 8) == 0) {
 SystemCompletionCheck:
-    threadFlags = threadId;
-    if (dataLength != 0) {
-        memcpy(threadBuffer,*(void* *)(ThreadParams + 8),bufferOffset);
+    ThreadFlags = ThreadId;
+    if (DataLength != 0) {
+        memcpy(ThreadBuffer,*(void* *)(ThreadParams + 8),BufferOffset);
     }
   }
-  else if (dataLength != 0) {
-    bufferSize = dataLength + 1;
-    if (bufferSize < 0x10) {
-      bufferSize = 0x10;
+  else if (DataLength != 0) {
+    BufferSize = DataLength + 1;
+    if (BufferSize < 0x10) {
+      BufferSize = 0x10;
     }
-    threadBuffer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)bufferSize,0x13);
-    *threadBuffer = 0;
-    threadBufferPointer = threadBuffer;
-    threadId = StartSystemThread(threadBuffer);
-    threadHandle = ConcatenatedSystemValue(threadHandle.HighPart,threadId);
+    ThreadBuffer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)BufferSize,0x13);
+    *ThreadBuffer = 0;
+    ThreadBufferPointer = ThreadBuffer;
+    ThreadId = StartSystemThread(ThreadBuffer);
+    ThreadHandle = ConcatenatedSystemValue(ThreadHandle.HighPart,ThreadId);
     goto SystemCompletionCheck;
   }
-  if (threadBuffer != (uint8_t *)0x0) {
-    threadBuffer[bufferOffset] = 0;
+  if (ThreadBuffer != (uint8_t *)0x0) {
+    ThreadBuffer[BufferOffset] = 0;
   }
-  secondaryOperationFlags = *(uint32_t *)(ThreadParams + 0x1c);
-  threadHandle = ConcatenatedSystemValue(secondaryOperationFlags,(uint32_t)threadHandle);
-  ThreadStatus = dataLength;
-  if (dataLength != 0xfffffffa) {
-    dataLength = dataLength + 7;
-    if (threadBuffer == (uint8_t *)0x0) {
-      if ((int)dataLength < 0x10) {
-        dataLength = 0x10;
+  SecondaryOperationFlags = *(uint32_t *)(ThreadParams + 0x1c);
+  ThreadHandle = ConcatenatedSystemValue(SecondaryOperationFlags,(uint32_t)ThreadHandle);
+  ThreadStatus = DataLength;
+  if (DataLength != 0xfffffffa) {
+    DataLength = DataLength + 7;
+    if (ThreadBuffer == (uint8_t *)0x0) {
+      if ((int)DataLength < 0x10) {
+        DataLength = 0x10;
       }
-      threadBuffer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)dataLength,0x13);
-      *threadBuffer = 0;
+      ThreadBuffer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,(long long)(int)DataLength,0x13);
+      *ThreadBuffer = 0;
     }
     else {
-      if (dataLength <= threadFlags) goto ThreadSizeCheck;
-      bufferFlags = 0x13;
-      threadBuffer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadBuffer,dataLength,0x10);
+      if (DataLength <= ThreadFlags) goto ThreadSizeCheck;
+      BufferFlags = 0x13;
+      ThreadBuffer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ThreadBuffer,DataLength,0x10);
     }
-    threadBufferPointer = threadBuffer;
-    processId = StartSystemThread(threadBuffer);
-    threadHandle = ConcatenatedSystemValue(threadHandle.HighPart,processId);
+    ThreadBufferPointer = ThreadBuffer;
+    ProcessId = StartSystemThread(ThreadBuffer);
+    ThreadHandle = ConcatenatedSystemValue(ThreadHandle.HighPart,ProcessId);
   }
 ThreadSizeCheck:
     memcpy(threadBuffer + bufferOffset,memoryBufferPointer,7);
