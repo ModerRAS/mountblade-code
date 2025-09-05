@@ -64,7 +64,6 @@
 
 // 错误码返回函数
 #define ReturnErrorCode FUN_180895345
-#define ReturnErrorCode FUN_180895345
 
 // 原始函数名：FUN_1808947b0 - 数据缓冲区处理函数
 // 功能：处理数据缓冲区并进行验证，返回处理的总字节数
