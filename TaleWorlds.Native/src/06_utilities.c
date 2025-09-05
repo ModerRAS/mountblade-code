@@ -12426,7 +12426,7 @@ uint8_t CleanupResourcePoolAndReleaseMemory(int64_t *ResourcePoolHandle)
       ResourceEntryPointer = (uint32_t *)((int64_t)ResourcePoolCount * 0x10 + *ResourcePoolHandle + 4);
       do {
         ResourceEntryPointer[-1] = 0;
-        *ResourceEntryPointer = 0xffffffff;
+        *ResourceEntryPointer = ResourceInvalidHandleValue;
         *(uint8_t *)(ResourceEntryPointer + 1) = 0;
         ResourceEntryPointer = ResourceEntryPointer + 4;
         LoopCounter = LoopCounter + -1;
