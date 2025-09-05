@@ -741,6 +741,206 @@
 // 注意：由于Unwind函数数量众多，这里只展示了部分示例
 // 其他Unwind函数可以按照相同的模式进行命名和定义
 
+// Unwind_函数宏定义扩展 (180902440-1809025e0系列)
+
+/**
+ * @brief 异常恢复函数B0
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902440
+ */
+#define ExceptionRecoveryHandlerB0 Unwind_180902440
+
+/**
+ * @brief 异常恢复函数B1
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902450
+ */
+#define ExceptionRecoveryHandlerB1 Unwind_180902450
+
+/**
+ * @brief 异常恢复函数B2
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902460
+ */
+#define ExceptionRecoveryHandlerB2 Unwind_180902460
+
+/**
+ * @brief 异常恢复函数B3
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902470
+ */
+#define ExceptionRecoveryHandlerB3 Unwind_180902470
+
+/**
+ * @brief 异常恢复函数B4
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902480
+ */
+#define ExceptionRecoveryHandlerB4 Unwind_180902480
+
+/**
+ * @brief 异常恢复函数B5
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_1809024b0
+ */
+#define ExceptionRecoveryHandlerB5 Unwind_1809024b0
+
+/**
+ * @brief 异常恢复函数B6
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_1809024c0
+ */
+#define ExceptionRecoveryHandlerB6 Unwind_1809024c0
+
+/**
+ * @brief 异常恢复函数B7
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_1809024d0
+ */
+#define ExceptionRecoveryHandlerB7 Unwind_1809024d0
+
+/**
+ * @brief 异常恢复函数B8
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_1809024e0
+ */
+#define ExceptionRecoveryHandlerB8 Unwind_1809024e0
+
+/**
+ * @brief 异常恢复函数B9
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_1809024f0
+ */
+#define ExceptionRecoveryHandlerB9 Unwind_1809024f0
+
+/**
+ * @brief 异常恢复函数B10
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902500
+ */
+#define ExceptionRecoveryHandlerB10 Unwind_180902500
+
+/**
+ * @brief 异常恢复函数B11
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902510
+ */
+#define ExceptionRecoveryHandlerB11 Unwind_180902510
+
+/**
+ * @brief 异常恢复函数B12
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902520
+ */
+#define ExceptionRecoveryHandlerB12 Unwind_180902520
+
+/**
+ * @brief 异常恢复函数B13
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902530
+ */
+#define ExceptionRecoveryHandlerB13 Unwind_180902530
+
+/**
+ * @brief 异常恢复函数B14
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902540
+ */
+#define ExceptionRecoveryHandlerB14 Unwind_180902540
+
+/**
+ * @brief 异常恢复函数B15
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902550
+ */
+#define ExceptionRecoveryHandlerB15 Unwind_180902550
+
+/**
+ * @brief 异常恢复函数B16
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902570
+ */
+#define ExceptionRecoveryHandlerB16 Unwind_180902570
+
+/**
+ * @brief 异常恢复函数B17
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902580
+ */
+#define ExceptionRecoveryHandlerB17 Unwind_180902580
+
+/**
+ * @brief 异常恢复函数B18
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_180902590
+ */
+#define ExceptionRecoveryHandlerB18 Unwind_180902590
+
+/**
+ * @brief 异常恢复函数B19
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_1809025a0
+ */
+#define ExceptionRecoveryHandlerB19 Unwind_1809025a0
+
+/**
+ * @brief 异常恢复函数B20
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_1809025b0
+ */
+#define ExceptionRecoveryHandlerB20 Unwind_1809025b0
+
+/**
+ * @brief 异常恢复函数B21
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 
+ * @note 原始函数名：Unwind_1809025e0
+ */
+#define ExceptionRecoveryHandlerB21 Unwind_1809025e0
+
 // 默认异常处理器设置函数宏定义
 
 /**
@@ -32591,7 +32791,18 @@ void InitializeExceptionHandlerA8(undefined8 exceptionContext, longlong handlerT
 
 
 
-void Unwind_180902440(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常恢复函数B0
+ * 
+ * 该函数负责执行异常恢复操作，处理系统异常状态
+ * 重置异常处理器并清理相关资源
+ * 
+ * @param param_1 异常上下文指针
+ * @param param_2 资源管理器指针
+ * 
+ * @note 原始函数名：Unwind_180902440
+ */
+void ExceptionRecoveryHandlerB0(undefined8 param_1,longlong param_2)
 
 {
   *(undefined8 *)(param_2 + 0xd0) = &UNK_180a3c3e0;

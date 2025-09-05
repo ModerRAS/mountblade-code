@@ -24028,17 +24028,16 @@ void ExecuteSystemFinalCleanup(void)
  * 
  * @note 这是系统路径管理的重要函数，用于创建和管理系统路径缓冲区
  */
-void* *
-CreateSystemPathBuffers(void** PathBufferReference, void* UnusedParameter2, void* UnusedParameter3, void* UnusedParameter4)
+void** CreateSystemPathBuffers(void** pathBufferReference, void* unusedParameter2, void* unusedParameter3, void* unusedParameter4)
 
 {
-  uint32_t *SystemDataPointer;
-  void** SystemDataTable;
-  int IdentifierCompareResult;
+  uint32_t* systemDataPointer;
+  void** systemDataTable;
+  int identifierCompareResult;
   int systemIndex;
-  void* CurrentThreadIdentifier;
+  void* currentThreadIdentifier;
   
-  CurrentThreadIdentifier = 0xfffffffffffffffe;
+  currentThreadIdentifier = 0xfffffffffffffffe;
   *SystemResourceManager = &SystemMemoryAllocatorReference;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
@@ -24046,22 +24045,22 @@ CreateSystemPathBuffers(void** PathBufferReference, void* UnusedParameter2, void
   SystemResourceManager[3] = 0;
   SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   *(uint32_t *)(SystemResourceManager + 2) = 0;
-  ExecuteSystemCommand(SystemResourceManager,0,AdditionalParameter,ConfigurationFlag,0,InvalidHandleValue);
+  ExecuteSystemCommand(SystemResourceManager, 0, AdditionalParameter, ConfigurationFlag, 0, InvalidHandleValue);
   *(uint32_t *)(SystemResourceManager + 2) = 0;
-  if ((uint8_t *)SystemResourceManager[1] != (uint8_t *)0x0) {
-    *(uint8_t *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
+  if ((uint8_t*)SystemResourceManager[1] != (uint8_t*)0x0) {
+    *(uint8_t*)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET] = 0;
   }
   systemIndex = *(int *)(SystemResourceManager + 2);
   systemCounter = systemIndex + 6;
-  ExecuteSystemCommand(SystemResourceManager,systemCounter,AdditionalParameter,ConfigurationFlag,1,CurrentThreadIdentifier);
-  SystemDataPointer = (uint32_t *)((ulong long)*(uint *)(SystemResourceManager + 2) + SystemResourceManager[1]);
-  *SystemDataPointer = 0x2e2f2e2e;
-  *(void*2 *)(SystemDataPointer + 1) = 0x2f2e;
-  *(uint8_t *)((long long)SystemDataPointer + 6) = 0;
+  ExecuteSystemCommand(SystemResourceManager, systemCounter, AdditionalParameter, ConfigurationFlag, 1, currentThreadIdentifier);
+  systemDataPointer = (uint32_t*)((unsigned long long)*(unsigned int*)(SystemResourceManager + 2) + SystemResourceManager[1]);
+  *systemDataPointer = 0x2e2f2e2e;
+  *(void**)(systemDataPointer + 1) = 0x2f2e;
+  *(uint8_t*)((long long)systemDataPointer + 6) = 0;
   *(int *)(SystemResourceManager + 2) = systemCounter;
   systemIndex = systemIndex + 0x2a;
-  ExecuteSystemCommand(SystemResourceManager,systemIndex);
-  ResourceHashEntryPointer = (void* *)((ulong long)*(uint *)(SystemResourceManager + 2) + SystemResourceManager[1]);
+  ExecuteSystemCommand(SystemResourceManager, systemIndex);
+  ResourceHashEntryPointer = (void*)((unsigned long long)*(unsigned int*)(SystemResourceManager + 2) + SystemResourceManager[1]);
   *ResourceHashEntryPointer = 0x736c6f6f542f2e2e;
   ResourceHashEntryPointer[1] = 0x747541747365542f;
   ResourceHashEntryPointer[2] = 0x2f6e6f6974616d6f;
