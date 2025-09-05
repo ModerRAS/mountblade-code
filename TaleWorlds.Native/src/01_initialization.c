@@ -21661,7 +21661,7 @@ SystemNodeTraversalContinue:
   NextNodePointer = (void* *)*NextNodePointer;
 SystemNodeDataValidation:
   SetSystemNodeRuntimeData(NextNodePointer + 8,AdditionalParameter);
-  NextNodePointer[0xc] = ConfigurationFlag;
+  NextNodePointer[0xc] = SystemConfigurationFlag;
   return;
 }
 
@@ -21686,7 +21686,7 @@ SystemNodeDataValidation:
  * - 初始化系统内存分配器
  * - 配置系统缓冲区和数据结构
  */
-void InitializeSystemConfigurationData(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* ConfigurationFlag)
+void InitializeSystemConfigurationData(void* SystemResourceManager,void* ConfigurationDataPointer,void* AdditionalParameter,void* SystemConfigurationFlag)
 
 {
   double SystemScaleFactor;
@@ -23797,10 +23797,10 @@ void* *
 SetupDataBufferTemplates(void** dataBufferReference, unsigned long long initializationFlags, void* unusedParameter3, void* unusedParameter4)
 
 {
-  *dataBufferReference = &SystemDataBufferInputTemplateE;
-  *dataBufferReference = &SystemDataBufferOutputTemplateF;
+  *dataBufferReference = &SystemDataBufferInputTemplate;
+  *dataBufferReference = &SystemDataBufferOutputTemplate;
   if ((initializationFlags & 1) != 0) {
-    free(dataBufferReference, 0x10, ReservedParam3, ReservedParam4, InvalidHandleValue);
+    free(dataBufferReference, 0x10, ReservedParameter3, ReservedParameter4, InvalidHandleValue);
   }
   return dataBufferReference;
 }
@@ -25696,35 +25696,35 @@ SetupSystemResourceBuffer(uint8_t* SystemResourceHandle, void* UnusedParameter2,
   *(void* *)(SystemResourceHandle + 0x70) = 0;
   *(void* *)(SystemResourceHandle + 0x60) = 0;
   *(uint32_t *)(SystemResourceHandle + 0x68) = 0;
-  PrimaryResourceHandle = (long long *)(SystemResourceManager + 0x80);
+  PrimaryResourceHandle = (long long *)(SystemResourceHandle + 0x80);
   *PrimaryResourceHandle = (long long)&SystemMemoryAllocatorReference;
-  *(void* *)(SystemResourceManager + 0x88) = 0;
-  *(uint32_t *)(SystemResourceManager + 0x90) = 0;
+  *(void* *)(SystemResourceHandle + 0x88) = 0;
+  *(uint32_t *)(SystemResourceHandle + 0x90) = 0;
   *PrimaryResourceHandle = (long long)&SystemGlobalDataReference;
-  *(void* *)(SystemResourceManager + 0x98) = 0;
-  *(void* *)(SystemResourceManager + 0x88) = 0;
-  *(uint32_t *)(SystemResourceManager + 0x90) = 0;
-  resourcePoolPointer = (long long *)(SystemResourceManager + 0xa0);
-  *resourcePoolPointer = (long long)&SystemMemoryAllocatorReference;
-  *(void* *)(SystemResourceManager + 0xa8) = 0;
-  *(uint32_t *)(SystemResourceManager + 0xb0) = 0;
-  *resourcePoolPointer = (long long)&SystemGlobalDataReference;
-  *(void* *)(SystemResourceManager + 0xb8) = 0;
-  *(void* *)(SystemResourceManager + 0xa8) = 0;
-  *(uint32_t *)(SystemResourceManager + 0xb0) = 0;
-  *SystemResourceManager = 0;
-  (**(code **)(*SystemResourceOffsetPointer + 0x10))(SystemResourceOffsetPointer,&SystemResourceInitializationData,&SystemMemoryAllocatorReference,ConfigurationFlag,InvalidHandleValue);
-  *(void* *)(SystemResourceManager + 0x28) = 0;
-  *(uint32_t *)(SystemResourceManager + 0x30) = 0;
-  SystemResourceManager[0x7c] = 0;
-  SystemResourceManager[0xc9] = 1;
+  *(void* *)(SystemResourceHandle + 0x98) = 0;
+  *(void* *)(SystemResourceHandle + 0x88) = 0;
+  *(uint32_t *)(SystemResourceHandle + 0x90) = 0;
+  ResourcePoolPointer = (long long *)(SystemResourceHandle + 0xa0);
+  *ResourcePoolPointer = (long long)&SystemMemoryAllocatorReference;
+  *(void* *)(SystemResourceHandle + 0xa8) = 0;
+  *(uint32_t *)(SystemResourceHandle + 0xb0) = 0;
+  *ResourcePoolPointer = (long long)&SystemGlobalDataReference;
+  *(void* *)(SystemResourceHandle + 0xb8) = 0;
+  *(void* *)(SystemResourceHandle + 0xa8) = 0;
+  *(uint32_t *)(SystemResourceHandle + 0xb0) = 0;
+  *SystemResourceHandle = 0;
+  (**(code **)(*SystemResourceOffsetPointer + 0x10))(SystemResourceOffsetPointer,&SystemResourceInitializationData,&SystemMemoryAllocatorReference,SystemConfigurationFlag,InvalidHandleValue);
+  *(void* *)(SystemResourceHandle + 0x28) = 0;
+  *(uint32_t *)(SystemResourceHandle + 0x30) = 0;
+  SystemResourceHandle[0x7c] = 0;
+  SystemResourceHandle[0xc9] = 1;
   (**(code **)(*PrimaryResourceHandle + 0x10))(PrimaryResourceHandle,&SystemResourceTemplate);
-  (**(code **)(*resourcePoolPointer + 0x10))(resourcePoolPointer,&SystemStringTemplate);
-  *(uint32_t *)(SystemResourceManager + 0xc0) = 0x461c4000;
-  *(uint32_t *)(SystemResourceManager + 0xc4) = 0x461c4000;
-  SystemResourceManager[200] = 0;
-  *(void* *)(SystemResourceManager + 0xd0) = 0;
-  return SystemResourceManager;
+  (**(code **)(*ResourcePoolPointer + 0x10))(ResourcePoolPointer,&SystemStringTemplate);
+  *(uint32_t *)(SystemResourceHandle + 0xc0) = 0x461c4000;
+  *(uint32_t *)(SystemResourceHandle + 0xc4) = 0x461c4000;
+  SystemResourceHandle[200] = 0;
+  *(void* *)(SystemResourceHandle + 0xd0) = 0;
+  return SystemResourceHandle;
 }
 
 
