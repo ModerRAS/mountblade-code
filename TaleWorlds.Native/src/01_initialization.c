@@ -28763,7 +28763,7 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   uint8_t SystemEncryptionKeyA;
   uint32_t SystemEncryptionKeyG;
   uint32_t SystemEncryptionKeyD;
-  void* MemoryBufferPointer;
+  void* SystemMemoryBufferPointer;
   void* **SystemDoublePointerF0;
   void* *SystemResourceHandleE8;
   uint8_t *SystemDataBufferE0;
@@ -52221,8 +52221,8 @@ ulong long ConfigureAndManageSystemResources(void* SystemResourceManager,void* C
   
   SystemThreadHandle = SystemAllocationTemplate;
   SystemResourceStatusFlag = 0xfffffffffffffffe;
-  byteStackD8 = 0;
-  resourceEntryPointer = (uint8_t *)register0x00000020;
+  SystemByteStackD8 = 0;
+  resourceEntryPointer = (uint8_t *)SystemRegister20;
   if (((SystemInitializationFlag == '\0') ||
       (resourceEntryPointer = (uint8_t *)GetConfigurationDataStatus(ConfigurationDataPointer), (char)resourceEntryPointer != '\0')) ||
      (resourceEntryPointer = (uint8_t *)WaitForSingleObject(SystemSemaphoreHandle,0), (int)resourceEntryPointer != 0)) {
