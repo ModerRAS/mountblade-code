@@ -43876,7 +43876,7 @@ void ConfigureSecurityParameters(void* SystemResourceManager,long long Configura
   fileHandle = outputStream;
   SystemTimeValue = -1;
   stringLength = SystemTimeValue;
-  SystemTimeValue = SystemTimeValue;
+  SystemTimeValue = GetSystemCurrentTime();
   if (ConfigurationDataPointer != 0) {
     do {
       stringLength = stringLength + 1;
@@ -43886,9 +43886,9 @@ void ConfigureSecurityParameters(void* SystemResourceManager,long long Configura
     }
   }
   do {
-    stringLength = loopCounter1 + 1;
-    stringPointer = (char *)(loopCounter1 + 0x180c84871);
-    loopCounter1 = stringLength;
+    stringLength = SystemTimeValue + 1;
+    stringPointer = (char *)(SystemTimeValue + 0x180c84871);
+    SystemTimeValue = stringLength;
   } while (*stringPointer != '\0');
   if (stringLength != 0) {
     fwrite(&SystemFileTemplateBuffer,0x30,1,fileHandle);
