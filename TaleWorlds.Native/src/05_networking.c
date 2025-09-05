@@ -900,25 +900,25 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 // 网络系统全局变量
 
 // 网络连接基础配置变量
-uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄，用于访问和管理连接表的入口点
-uint32_t NetworkConnectionManager;                         // 网络连接管理器，管理网络连接的核心组件
-uint32_t NetworkConnectionManagerContextPointer;     // 网络连接管理器上下文指针，指向连接管理器的上下文数据
-uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据，存储连接管理的上下文信息和状态数据
-uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志位，表示当前连接的状态信息（活跃、断开、重连等）
-uint32_t NetworkConnectionTimeoutMs;                    // 网络连接超时时间（毫秒），连接无活动时的超时时间阈值
-uint32_t NetworkMaxConnectionsAllowed;                  // 网络最大连接数限制，系统允许同时建立的最大连接数量
-uint32_t NetworkConnectionAttributeFlags;              // 网络连接属性标志位，定义连接的属性特征（加密、压缩、优先级等）
-uint32_t NetworkCurrentStateFlags;                    // 网络当前状态标志位，表示连接的当前状态（初始化、已连接、已断开等）
-uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板，用于格式化错误报告数据
+uint32_t NetworkConnectionManagerHandle;                    // 网络连接管理器句柄
+uint32_t NetworkConnectionManager;                         // 网络连接管理器
+uint32_t NetworkConnectionManagerContextPointer;     // 网络连接管理器上下文指针
+uint32_t NetworkConnectionManagerContextData;             // 网络连接管理器上下文数据
+uint32_t NetworkConnectionStateFlags;                    // 网络连接状态标志
+uint32_t NetworkConnectionTimeoutMs;                    // 网络连接超时时间（毫秒）
+uint32_t NetworkMaxConnectionsAllowed;                  // 网络最大连接数限制
+uint32_t NetworkConnectionAttributeFlags;              // 网络连接属性标志
+uint32_t NetworkCurrentStateFlags;                    // 网络当前状态标志
+uint32_t NetworkErrorReportTemplate;                        // 网络错误报告模板
 
 // 网络协议和地址配置
-uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型，定义连接使用的网络协议（TCP、UDP等）
-uint32_t NetworkConnectionProtocol;                       // 网络连接协议，连接使用的协议配置
-uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本，指定协议的版本号用于兼容性检查
-uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址，存储服务器的IP地址信息
-uint32_t NetworkServerPortNumber;                         // 网络服务器端口号，服务器监听的端口号
-uint32_t NetworkClientIpAddress;                        // 网络客户端IP地址，客户端的IP地址信息
-uint32_t NetworkClientPortNumber;                         // 网络客户端端口号，客户端使用的端口号
+uint32_t NetworkConnectionProtocolType;                   // 网络连接协议类型
+uint32_t NetworkConnectionProtocol;                       // 网络连接协议
+uint32_t NetworkConnectionProtocolVersion;                // 网络连接协议版本
+uint32_t NetworkServerIpAddress;                          // 网络服务器IP地址
+uint32_t NetworkServerPortNumber;                         // 网络服务器端口号
+uint32_t NetworkClientIpAddress;                        // 网络客户端IP地址
+uint32_t NetworkClientPortNumber;                         // 网络客户端端口号
 
 // 网络套接字和缓冲区配置
 uint32_t NetworkSocketFileDescriptor;                     // 网络套接字文件描述符，操作系统分配的套接字标识符
@@ -1593,6 +1593,26 @@ uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
  * @return 无返回值
  * @note 此函数在网络系统初始化时调用，确保数据传输功能的正常运行
  */
+/**
+ * @brief 发送网络数据
+ * 
+ * 初始化网络数据发送的相关参数和配置，包括序列号、确认号、窗口缩放等。
+ * 此函数负责设置数据包传输的基本参数，初始化缓冲区和统计计数器。
+ * 
+ * @details 该函数执行以下关键操作：
+ * - 初始化数据包序列号和确认号
+ * - 设置传输窗口缩放和超时参数
+ * - 配置数据包缓冲区和大小限制
+ * - 重置传输统计计数器
+ * - 初始化性能监控组件
+ * 
+ * @note 此函数通常在网络连接建立后调用，为数据传输做准备
+ * @warning 发送前请确保网络连接已正确建立
+ * 
+ * @return void 无返回值
+ * 
+ * @see ReceiveNetworkPacketData, InitializeNetworkConnection
+ */
 void SendNetworkData(void)
 {
   // 初始化数据包参数
@@ -1623,16 +1643,24 @@ void SendNetworkData(void)
 }
 
 /**
- * @brief 检索网络数据
+ * @brief 接收网络数据包数据
  * 
- * 从网络连接中检索接收到的数据，处理数据包的重组和验证。此函数负责初始化接收参数、
- * 数据包队列、缓冲区管理、数据包上下文、数据包处理、抖动缓冲区等。接收系统会自动
- * 处理数据包的重组、验证、错误恢复和连接健康监控等。
+ * 初始化网络数据包接收的相关参数和配置，包括接收计数器、队列管理、缓冲区设置等。
+ * 此函数负责设置数据包接收的基本参数，初始化接收队列和缓冲区，配置数据包处理组件。
  * 
- * @note 此函数会处理数据包的重组和验证
- * @warning 如果数据包损坏或丢失，系统会尝试进行错误恢复
+ * @details 该函数执行以下关键操作：
+ * - 初始化数据包接收统计计数器
+ * - 设置数据包队列和缓冲区管理
+ * - 配置数据包上下文和处理参数
+ * - 初始化抖动缓冲区和错误处理
+ * - 设置接收性能监控组件
+ * 
+ * @note 此函数通常在网络连接建立后调用，为数据接收做准备
+ * @warning 接收前请确保网络连接已正确建立且监听端口已开启
  * 
  * @return void 无返回值
+ * 
+ * @see SendNetworkData, InitializeNetworkConnection
  */
 void ReceiveNetworkPacketData(void)
 {
