@@ -96317,7 +96317,18 @@ void ExecuteResourceProcessingCallbackNonary(uint8_t ObjectContext, int64_t Vali
 
 
 
-void Unwind_18090f700(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调第十级
+ * 
+ * 该函数负责执行资源处理的第十级回调函数
+ * 通过资源上下文调用相应的处理方法
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f700，现已重命名为ExecuteResourceProcessingCallbackDecenary
+ */
+void ExecuteResourceProcessingCallbackDecenary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -96331,7 +96342,18 @@ void Unwind_18090f700(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f710(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调第十一级
+ * 
+ * 该函数负责执行资源处理的第十一级回调函数
+ * 通过资源上下文调用相应的处理方法
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f710，现已重命名为ExecuteResourceProcessingCallbackUndenary
+ */
+void ExecuteResourceProcessingCallbackUndenary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -96345,7 +96367,18 @@ void Unwind_18090f710(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f720(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源处理回调第十二级
+ * 
+ * 该函数负责执行资源处理的第十二级回调函数
+ * 通过资源上下文调用相应的处理方法
+ * 
+ * @param ObjectContext 对象上下文，包含对象的管理信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * 
+ * @note 原始函数名为Unwind_18090f720，现已重命名为ExecuteResourceProcessingCallbackDuodenary
+ */
+void ExecuteResourceProcessingCallbackDuodenary(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -96359,7 +96392,20 @@ void Unwind_18090f720(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f740(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文清理操作
+ * 
+ * 该函数负责执行资源上下文的清理操作。
+ * 从验证上下文中获取资源上下文，并调用相应的清理函数。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会调用资源上下文中偏移0x38处的清理函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f740
+ */
+void ExecuteResourceContextCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -96373,7 +96419,20 @@ void Unwind_18090f740(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f760(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源上下文扩展清理操作
+ * 
+ * 该函数负责执行资源上下文的扩展清理操作。
+ * 从验证上下文中获取资源上下文，并调用相应的扩展清理函数。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会调用资源上下文中偏移0x38处的清理函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f760
+ */
+void ExecuteResourceContextExtendedCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -96387,7 +96446,22 @@ void Unwind_18090f760(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源优化操作
+ * 
+ * 该函数负责执行资源优化操作。
+ * 调用HandleResourceOptimization函数来处理资源优化。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用HandleResourceOptimization函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f780
+ */
+void ExecuteResourceOptimization(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x10),
@@ -96397,7 +96471,22 @@ void Unwind_18090f780(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f790(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源优化备用操作
+ * 
+ * 该函数负责执行资源优化的备用操作。
+ * 调用HandleResourceOptimization函数来处理资源优化（备用版本）。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用HandleResourceOptimization函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f790
+ */
+void ExecuteResourceOptimizationAlternate(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   HandleResourceOptimization(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x10),
