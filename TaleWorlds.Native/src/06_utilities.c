@@ -20305,8 +20305,17 @@ ulonglong FUN_18089b380(void)
 
 
 
-89b3d4(void)
-void FUN_18089b3d4(void)
+// 函数: void ExecuteSystemTermination(void)
+// 
+// 执行系统终止操作
+// 调用系统终止函数，程序不会返回
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void ExecuteSystemTermination(void)
 
 {
                     // WARNING: Subroutine does not return
