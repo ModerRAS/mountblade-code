@@ -17404,7 +17404,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
         }
         uVar11 = *(undefined8 *)(*(longlong *)(param_1 + 8) + 800);
         uVar10 = (**(code **)*puVar16)(puVar16);
-        iVar6 = FUN_1808479d0(uVar10,uVar11,acStack_1c4);
+        iVar6 = ProcessDataOperationA7(uVar10,uVar11,acStack_1c4);
         if (iVar6 == 0) {
           if (acStack_1c4[0] != '\0') {
             uVar11 = func_0x00018085fa80();
@@ -20362,43 +20362,43 @@ void SynchronizeData(undefined8 dataHandle,longlong dataOffset)
 
 
 
-undefined8 InitializeDataProcessorA0(undefined8 param_1,longlong *param_2)
+undefined8 InitializeDataProcessorA0(undefined8 processorContext,longlong *dataPointer)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  uint uVar3;
-  longlong lVar4;
-  int iVar5;
-  int aiStackX_18 [2];
+  int bufferSize;
+  undefined8 initResult;
+  uint capacityCheck;
+  longlong allocatedSize;
+  int requiredSize;
+  int sizeBuffer [2];
   
-  aiStackX_18[0] = 0;
-  uVar2 = FUN_1808afe30(param_1,aiStackX_18);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  sizeBuffer[0] = 0;
+  initResult = InitializeProcessorMemory(processorContext,sizeBuffer);
+  if ((int)initResult != 0) {
+    return initResult;
   }
-  lVar4 = (longlong)aiStackX_18[0];
-  if (aiStackX_18[0] == 0) {
-    ProcessDataAndPointerA0(param_2);
+  allocatedSize = (longlong)sizeBuffer[0];
+  if (sizeBuffer[0] == 0) {
+    ProcessDataAndPointerA0(dataPointer);
   }
   else {
-    iVar5 = aiStackX_18[0] + 1;
-    uVar3 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)param_2 + 0xc) ^ uVar3) - uVar3) < iVar5) &&
-       (uVar2 = ValidateSystemMemoryA0(param_2,iVar5), (int)uVar2 != 0)) {
-      return uVar2;
+    requiredSize = sizeBuffer[0] + 1;
+    capacityCheck = (int)*(uint *)((longlong)dataPointer + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((longlong)dataPointer + 0xc) ^ capacityCheck) - capacityCheck) < requiredSize) &&
+       (initResult = ValidateSystemMemoryA0(dataPointer,requiredSize), (int)initResult != 0)) {
+      return initResult;
     }
-    iVar1 = (int)param_2[1];
-    if (iVar1 < iVar5) {
+    bufferSize = (int)dataPointer[1];
+    if (bufferSize < requiredSize) {
                     // WARNING: Subroutine does not return
-      memset((longlong)iVar1 + *param_2,0,(longlong)(iVar5 - iVar1));
+      memset((longlong)bufferSize + *dataPointer,0,(longlong)(requiredSize - bufferSize));
     }
-    *(int *)(param_2 + 1) = iVar5;
-    uVar2 = FUN_1808aed00(param_1,*param_2,lVar4);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    *(int *)(dataPointer + 1) = requiredSize;
+    initResult = ValidateSystemMemoryBlock(processorContext,*dataPointer,allocatedSize);
+    if ((int)initResult != 0) {
+      return initResult;
     }
-    *(undefined1 *)(lVar4 + *param_2) = 0;
+    *(undefined1 *)(allocatedSize + *dataPointer) = 0;
   }
   return 0;
 }
@@ -20408,34 +20408,34 @@ undefined8 InitializeDataProcessorA0(undefined8 param_1,longlong *param_2)
 undefined8 CleanupDataProcessorA0(void)
 
 {
-  int iVar1;
-  undefined8 uVar2;
-  uint uVar3;
-  longlong *registerRBX;
-  int iVar4;
-  int stackParameter40;
+  int currentSize;
+  undefined8 cleanupResult;
+  uint capacityCheck;
+  longlong *dataBuffer;
+  int cleanupSize;
+  int bufferSize;
   
-  if (stackParameter40 == 0) {
+  if (bufferSize == 0) {
     ProcessDataAndPointerA0();
   }
   else {
-    iVar4 = stackParameter40 + 1;
-    uVar3 = (int)*(uint *)((longlong)registerRBX + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)registerRBX + 0xc) ^ uVar3) - uVar3) < iVar4) &&
-       (uVar2 = ValidateSystemMemoryA0(), (int)uVar2 != 0)) {
-      return uVar2;
+    cleanupSize = bufferSize + 1;
+    capacityCheck = (int)*(uint *)((longlong)dataBuffer + 0xc) >> 0x1f;
+    if (((int)((*(uint *)((longlong)dataBuffer + 0xc) ^ capacityCheck) - capacityCheck) < cleanupSize) &&
+       (cleanupResult = ValidateSystemMemoryA0(), (int)cleanupResult != 0)) {
+      return cleanupResult;
     }
-    iVar1 = (int)registerRBX[1];
-    if (iVar1 < iVar4) {
+    currentSize = (int)dataBuffer[1];
+    if (currentSize < cleanupSize) {
                     // WARNING: Subroutine does not return
-      memset((longlong)iVar1 + *registerRBX,0,(longlong)(iVar4 - iVar1));
+      memset((longlong)currentSize + *dataBuffer,0,(longlong)(cleanupSize - currentSize));
     }
-    *(int *)(registerRBX + 1) = iVar4;
-    uVar2 = FUN_1808aed00();
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    *(int *)(dataBuffer + 1) = cleanupSize;
+    cleanupResult = ValidateSystemMemoryBlock();
+    if ((int)cleanupResult != 0) {
+      return cleanupResult;
     }
-    *(undefined1 *)((longlong)stackParameter40 + *registerRBX) = 0;
+    *(undefined1 *)((longlong)bufferSize + *dataBuffer) = 0;
   }
   return 0;
 }
@@ -20452,32 +20452,32 @@ void ManageMemory(void)
 
 
 
-undefined8 ProcessDataCollectionA0(longlong param_1,longlong *param_2)
+undefined8 ProcessDataCollectionA0(longlong collectionContext,longlong *dataPointer)
 
 {
-  int iVar1;
-  longlong lVar2;
-  undefined8 uVar3;
-  longlong lVar4;
-  longlong lVar5;
-  int aiStackX_8 [2];
+  int itemCount;
+  longlong baseAddress;
+  undefined8 processResult;
+  longlong itemIndex;
+  longlong currentOffset;
+  int itemBuffer [2];
   
-  iVar1 = (int)param_2[1];
-  aiStackX_8[0] = iVar1;
-  uVar3 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),aiStackX_8,4);
-  if ((int)uVar3 == 0) {
-    if (0 < iVar1) {
-      lVar4 = 0;
-      lVar5 = lVar4;
+  itemCount = (int)dataPointer[1];
+  itemBuffer[0] = itemCount;
+  processResult = (**(code **)**(undefined8 **)(collectionContext + 8))(*(undefined8 **)(collectionContext + 8),itemBuffer,4);
+  if ((int)processResult == 0) {
+    if (0 < itemCount) {
+      itemIndex = 0;
+      currentOffset = itemIndex;
       do {
-        lVar2 = *param_2;
-        uVar3 = ProcessDataPointerA0(param_1,lVar2 + lVar5);
-        if ((int)uVar3 != 0) {
-          return uVar3;
+        baseAddress = *dataPointer;
+        processResult = ProcessDataPointerA0(collectionContext,baseAddress + currentOffset);
+        if ((int)processResult != 0) {
+          return processResult;
         }
-        aiStackX_8[0] = *(int *)(lVar2 + lVar5 + 0x10);
-        uVar3 = (**(code **)**(undefined8 **)(param_1 + 8))
-                          (*(undefined8 **)(param_1 + 8),aiStackX_8,4);
+        itemBuffer[0] = *(int *)(baseAddress + currentOffset + 0x10);
+        processResult = (**(code **)**(undefined8 **)(collectionContext + 8))
+                          (*(undefined8 **)(collectionContext + 8),itemBuffer,4);
         if ((int)uVar3 != 0) {
           return uVar3;
         }
