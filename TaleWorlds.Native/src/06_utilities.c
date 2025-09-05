@@ -12754,7 +12754,7 @@ FUN_1808974f4:
 // 功能：处理和计算浮点数据，执行数学运算
 #define ProcessFloatingPointDataA0 FUN_180896e11
 
-void FUN_180896e11(void)
+void ProcessFloatingPointDataA0(void)
 
 {
   longlong lVar1;
@@ -13051,7 +13051,7 @@ LAB_1808974ec:
 // 功能：执行安全检查并跳转到错误处理，程序不会返回
 #define ExecuteSecurityCheckJumpA0 FUN_1808974f4
 
-void FUN_1808974f4(void)
+void ExecuteSecurityCheckJumpA0(void)
 
 {
   longlong unaff_RBP;
@@ -13069,7 +13069,7 @@ void FUN_1808974f4(void)
 // 功能：处理长整型数据指针，执行缓冲区操作和验证
 #define ProcessDataPointerOperationsA0 FUN_180897520
 
-void FUN_180897520(longlong *param_1,longlong *param_2)
+void ProcessDataPointerOperationsA0(longlong *dataPointer, longlong *resultPointer)
 
 {
   longlong lVar1;
