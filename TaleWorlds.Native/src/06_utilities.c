@@ -5077,7 +5077,7 @@ undefined8 ProcessMemoryFlagUpdate(longlong memoryConfig)
  * @note 该函数会修改资源计数器，并在条件满足时触发资源释放
  * @warning 资源清理操作是不可逆的，确保在调用前资源可以安全释放
  */
-undefined8 ProcessUtilityResourceDecrement(longlong resourceContext,undefined8 decrementValue)
+uint64_t ProcessUtilityResourceDecrement(longlong resourceContext,uint64_t decrementValue)
 
 {
   longlong resourceContextPtr;
@@ -5393,7 +5393,7 @@ void InitializeEmptyFunction(void)
 undefined8 ValidateAndProcessResourceA(longlong resourceDescriptor)
 
 {
-  undefined8 validationResult;
+  uint64_t validationResult;
   longlong contextBuffer [2];
   longlong resourceBuffer [2];
   
@@ -5486,7 +5486,7 @@ undefined8 ProcessFloatArrayResource(longlong param_1)
   longlong resourcePointer;
   uint flagBits;
   uint statusBits;
-  undefined8 operationResult;
+  uint64_t operationResult;
   undefined8 *arrayPointer;
   int integerConversion;
   float floatValue;
@@ -5553,7 +5553,7 @@ undefined8 ProcessBatchDataOperations(longlong param_1)
 {
   longlong dataItemPointer;
   int itemIndex;
-  undefined8 operationResult;
+  uint64_t operationResult;
   undefined4 *dataPointerArray;
   ulonglong stackOffset;
   uint loopCounter;
@@ -5611,7 +5611,7 @@ undefined8 ProcessUtilitySystemInitialization(void)
   longlong resourceHandle;
   int entryIndex;
   longlong systemContext;
-  undefined8 operationResult;
+  uint64_t operationResult;
   undefined4 *dataPointer;
   ulonglong baseAddress;
   longlong registryPointer;
@@ -6042,7 +6042,7 @@ void ReturnEmptyFunctionB(void)
 undefined8 ValidateAndTerminateProcess(longlong contextHandle)
 
 {
-  undefined8 validationResult;
+  uint64_t validationResult;
   longlong adjustedPointer;
   longlong stackBuffer;
   
@@ -6144,7 +6144,7 @@ void ReturnEmptyFunctionC(void)
 undefined8 ValidateContextAndTerminate(longlong contextHandle)
 
 {
-  undefined8 validationResult;
+  uint64_t validationResult;
   longlong stackBuffer;
   
   validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(contextHandle + 0x10),&stackBuffer);
@@ -6340,7 +6340,7 @@ void NoOperation(void)
 undefined8 ValidateResourceAndTerminate(longlong resourceHandle)
 
 {
-  undefined8 validationResult;
+  uint64_t validationResult;
   longlong stackPointer;
   
   validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackPointer);
@@ -6424,7 +6424,7 @@ void NoOperationB(void)
 undefined8 ValidateResourceAndTerminateB(longlong resourceHandle)
 
 {
-  undefined8 validationResult;
+  uint64_t validationResult;
   longlong stackPointer;
   
   validationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceHandle + 0x10),&stackPointer);
@@ -6643,7 +6643,7 @@ void UtilityNoOperationE(void)
 // 
 // 返回值:
 //   无
-void ProcessUtilityOperation(longlong operationParams,undefined8 systemContext)
+void ProcessUtilityOperation(longlong operationParams,uint64_t systemContext)
 
 {
   int OperationResult;
@@ -6684,7 +6684,7 @@ undefined8 ProcessFloatDataResource(longlong resourceHandle)
   longlong dataContextPointer;
   uint resourceFlags;
   uint systemStatus;
-  undefined8 operationResult;
+  uint64_t operationResult;
   undefined8 *dataArrayPointer;
   int integerConversionValue;
   float floatDataValue;
@@ -7121,7 +7121,7 @@ void ProcessUtilityDataStructure(longlong dataStructurePointer,longlong contextP
 undefined8 ProcessUtilitySystemRequest(longlong requestPointer)
 
 {
-  undefined8 operationResult;
+  uint64_t operationResult;
   longlong contextBuffer[4];
   
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(requestPointer + 0x10),contextBuffer);
@@ -7893,7 +7893,7 @@ undefined8 ManageResourceState(longlong param_1,longlong param_2)
 
 {
   int resourceCounter;
-  undefined8 operationResult;
+  uint64_t operationResult;
   longlong resourceContext;
   
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&resourceContext);
@@ -8061,7 +8061,7 @@ undefined8 ValidateDataReturnStatusA2(longlong dataContext,longlong systemContex
 undefined8 ProcessUtilityDataAndExecute(longlong dataContext,longlong systemContext)
 
 {
-  undefined8 operationResult;
+  uint64_t operationResult;
   longlong dataValue;
   
   operationResult = InitializeDataProcessing(*(undefined4 *)(dataContext + 0x10),&dataValue);
@@ -8634,7 +8634,7 @@ undefined8 ProcessResourceValidationAndExecution(longlong resourceContext, longl
 {
   longlong resourcePointer;
   int validationStatus;
-  undefined8 operationResult;
+  uint64_t operationResult;
   undefined *resourceData;
   uint iterationCounter;
   ulonglong baseOffset;
@@ -8786,7 +8786,7 @@ undefined8 ValidateSystemDataIndexAndProcessResource(longlong systemContext,long
 
 {
   int dataEntryIndex;
-  undefined8 operationResult;
+  uint64_t operationResult;
   longlong systemDataPointer;
   longlong dataBufferPointer;
   
@@ -9854,7 +9854,7 @@ undefined8 ValidateAndProcessFloatValue(longlong valueContext,longlong operation
 
 {
   float floatValue;
-  undefined8 operationResult;
+  uint64_t operationResult;
   longlong resultPointer;
   undefined8 unaff_RDI;
   longlong stackValue;
@@ -9904,7 +9904,7 @@ undefined8 ValidateAndProcessFloatRange(longlong rangeContext,longlong validatio
 
 {
   float rangeValue;
-  undefined8 validationResult;
+  uint64_t validationResult;
   longlong resultPointer;
   longlong stackValue;
   
@@ -10551,7 +10551,7 @@ undefined8 ValidateAndProcessFloatValue(longlong dataContext,longlong operationC
 
 {
   float inputValue;
-  undefined8 operationResult;
+  uint64_t operationResult;
   longlong rangeData;
   float minValue;
   float maxValue;
@@ -10708,7 +10708,7 @@ undefined8 ValidateFloatRangeAndProcessSystemCall(void)
 {
   float floatValue;
   longlong resourceHandle;
-  undefined8 validationResult;
+  uint64_t validationResult;
   longlong systemContext;
   longlong resourceDescriptor;
   undefined4 validationParameter;
@@ -10757,7 +10757,7 @@ undefined8 ValidateFloatRangeAndDispatchCall(void)
 
 {
   float floatValue;
-  undefined8 validationResult;
+  uint64_t validationResult;
   longlong resourceHandle;
   longlong dataDescriptor;
   longlong systemContext;
@@ -17210,7 +17210,7 @@ undefined8 ValidateAndExecuteOperations(longlong *contextHandle,undefined4 *data
 {
   longlong validationContext;
   undefined8 *functionPointer;
-  undefined8 operationResult;
+  uint64_t operationResult;
   undefined4 firstDataChunk [2];
   undefined4 secondDataChunk [4];
   
@@ -17235,7 +17235,7 @@ undefined8 ProcessDataWithMultipleAttempts(undefined8 *contextHandle,longlong da
 
 {
   undefined8 contextValue;
-  undefined8 operationResult;
+  uint64_t operationResult;
   
   if (*(int *)(contextHandle[1] + 0x18) != 0) {
     return 0x1c;
