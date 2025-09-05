@@ -28267,14 +28267,14 @@ void SystemFloatingPointProcessor(long long resourceManagerPointer,float floatVa
       }
       scaleFactorY = (float)((int)InterpolationFactorEpsilon + -1);
       if (calculationResult2 <= (float)((int)InterpolationFactorEpsilon + -1)) {
-        scaleFactorY = calculationResult2;
+        ScaleFactorY = CalculationResultSecondary;
       }
       if ((*(int *)(SystemMemoryPointer + 0x48) < SystemDataValueTertiary) &&
          (CheckSystemDataAvailability(&SystemDataValueTertiary), SystemDataValueTertiary == -1)) {
         SystemDataValueQuaternary = scaleFactorY;
         InitializeSystemDataPointer(&SystemDataValueTertiary);
       }
-      SystemDataValueQuaternary = (1.0 - calculationResult1) * SystemDataValueQuaternary + scaleFactorY * calculationResult1;
+      SystemDataValueQuaternary = (1.0 - CalculationResultPrimary) * SystemDataValueQuaternary + ScaleFactorY * CalculationResultPrimary;
       InterpolationFactorZ = ((float)(int)((SystemDataValueSecondary / SystemDataValueQuaternary) / InterpolationFactorY) * InterpolationFactorY - 1.0) * InterpolationFactorZ *
                InterpolationFactorA + InterpolationFactorZ;
       if (InterpolationFactorZ <= InterpolationFactorX) {
@@ -37306,10 +37306,10 @@ void ConfigureSystemResourceAllocation(void* **ResourceHandle,void* Configuratio
   char configurationFlagBuffer [8];
   uint32_t SystemAllocationFlags;
   void* *configurationDataObject;
-  long long stackOffset60;
+  long long StackOffsetPrimary;
   void* *additionalParameterObject;
-  long long stackOffset40;
-  uint32_t stackOffset30;
+  long long StackOffsetSecondary;
+  uint32_t StackOffsetTertiary;
   
   dataManagerOffset = SystemDataManagerPointer;
   configurationFlagBuffer[0] = (char)ConfigurationFlag;
@@ -71700,44 +71700,44 @@ void* SystemVirtualTableAbstractClassBase;
 void* SystemVirtualTableSingletonClassInstance;
 
 // 系统内存管理模板
-void* SystemMemoryPoolTemplatePrimary;
-void* SystemMemoryPoolTemplateSecondary;
-void* SystemMemoryPoolTemplateTertiary;
-void* SystemMemoryPoolTemplateQuaternary;
-void* SystemMemoryPoolTemplateQuinary;
-void* SystemMemoryPoolTemplateSenary;
-void* SystemMemoryPoolTemplateSeptenary;
+void* SystemMemoryPoolTemplateActive;
+void* SystemMemoryPoolTemplateStandby;
+void* SystemMemoryPoolTemplateCache;
+void* SystemMemoryPoolTemplateBackup;
+void* SystemMemoryPoolTemplateTemporary;
+void* SystemMemoryPoolTemplateReserved;
+void* SystemMemoryPoolTemplateEmergency;
 
 // 系统数据缓冲区模板
-void* SystemDataBufferMainTemplatePrimary;
-void* SystemDataBufferBackupTemplateSecondary;
-void* SystemDataBufferCacheTemplateTertiary;
-void* SystemDataBufferTemporaryTemplateQuaternary;
-void* SystemDataBufferInputTemplateQuinary;
-void* SystemDataBufferOutputTemplateSenary;
-void* SystemDataBufferNetworkTemplateSeptenary;
-void* SystemDataBufferFileTemplateOctonary;
-void* SystemDataBufferMemoryTemplateNonary;
-void* SystemDataBufferSystemTemplateDenary;
-void* SystemDataBufferUserTemplateUndenary;
-void* SystemDataBufferSharedTemplateDuodenary;
-void* SystemDataBufferProtectedTemplateTridenary;
-void* SystemDataBufferSecureTemplateQuattuordenary;
-void* SystemDataBufferDebugTemplateQuindenary;
-void* SystemDataBufferTestTemplateSexdenary;
-void* SystemDataBufferProductionTemplateSeptendenary;
-void* SystemDataBufferDevelopmentTemplateOctodenary;
-void* SystemDataBufferStagingTemplateNovendenary;
-void* SystemDataBufferArchiveTemplateVigintenary;
-void* SystemDataBufferLegacyTemplateUnvigintenary;
-void* SystemDataBufferFutureTemplateDuovigintenary;
-void* SystemDataBufferExperimentalTemplateTrevigintenary;
-void* SystemDataBufferDeprecatedTemplateQuattuorvigintenary;
-void* SystemDataBufferReservedTemplateQuinvigintenary;
-void* SystemDataBufferEmergencyTemplateSexvigintenary;
-void* SystemDataBufferTemplateSeptenvigintenary;
-void* SystemDataBufferTemplateOctovigintenary;
-void* SystemDataBufferTemplateNovemvigintenary;
+void* SystemDataBufferMainTemplateActive;
+void* SystemDataBufferBackupTemplateStandby;
+void* SystemDataBufferCacheTemplateReserved;
+void* SystemDataBufferTemporaryTemplateOverflow;
+void* SystemDataBufferInputTemplateStreaming;
+void* SystemDataBufferOutputTemplateRendering;
+void* SystemDataBufferNetworkTemplateCommunication;
+void* SystemDataBufferFileTemplateStorage;
+void* SystemDataBufferMemoryTemplateAllocation;
+void* SystemDataBufferSystemTemplateOperating;
+void* SystemDataBufferUserTemplateApplication;
+void* SystemDataBufferSharedTemplateGlobal;
+void* SystemDataBufferProtectedTemplateSecurity;
+void* SystemDataBufferSecureTemplateEncryption;
+void* SystemDataBufferDebugTemplateDiagnostics;
+void* SystemDataBufferTestTemplateValidation;
+void* SystemDataBufferProductionTemplateRelease;
+void* SystemDataBufferDevelopmentTemplateDebugging;
+void* SystemDataBufferStagingTemplateTesting;
+void* SystemDataBufferArchiveTemplateBackup;
+void* SystemDataBufferLegacyTemplateCompatible;
+void* SystemDataBufferFutureTemplateExperimental;
+void* SystemDataBufferExperimentalTemplatePrototype;
+void* SystemDataBufferDeprecatedTemplateObsolete;
+void* SystemDataBufferReservedTemplateAllocation;
+void* SystemDataBufferEmergencyTemplateCritical;
+void* SystemDataBufferTemplateMaintenance;
+void* SystemDataBufferTemplateOptimization;
+void* SystemDataBufferTemplateCleanup;
 
 /**
  * @brief 获取资源偏移指针函数
