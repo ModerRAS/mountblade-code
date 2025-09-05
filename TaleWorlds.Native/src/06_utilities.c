@@ -97972,23 +97972,23 @@ void ReleaseSystemLockIfActive(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fbb0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseSecondarySystemLockIfActive(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  if (*(char *)(ValidationContext + 0xb8) != '\0') {
-    ReleaseSRWLockExclusive(*(uint8_t *)(ValidationContext + 0xb0));
+  if (*(char *)(ValidationContext + SystemLockStatusOffset) != '\0') {
+    ReleaseSRWLockExclusive(*(uint8_t *)(ValidationContext + SystemLockHandleOffset));
   }
   return;
 }
 
 
 
-void Unwind_18090fbc0(uint8_t ObjectContext,int64_t ValidationContext)
+void ProcessResourceOperationWithCleanup(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
-  if ((*(uint *)(ResourceData + 0x60) & 1) != 0) {
-    *(uint *)(ResourceData + 0x60) = *(uint *)(ResourceData + 0x60) & 0xfffffffe;
-    ProcessResourceOperation(ValidationContext + 0x70);
+  if ((*(uint *)(ResourceData + ResourceStatusFlagsOffset) & ResourceCleanupFlagMask) != 0) {
+    *(uint *)(ResourceData + ResourceStatusFlagsOffset) = *(uint *)(ResourceData + ResourceStatusFlagsOffset) & ResourceCleanupMask;
+    ProcessResourceOperation(ValidationContext + ResourceOperationContextOffset);
   }
   return;
 }

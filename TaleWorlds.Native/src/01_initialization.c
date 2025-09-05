@@ -63,6 +63,11 @@
 #define SystemNodeNextPointerIndex           5
 #define SystemNodeHeadPointerIndex           6
 
+// 联合体字段访问宏定义
+#define UNION_LOW_PART(union_var)             (union_var)._4_4_
+#define UNION_HIGH_PART(union_var)            (union_var)._0_8_
+#define UNION_LOW_BYTE(union_var)             (union_var)._1_7_
+
 // 系统标识符常量
 #define EventSystemIdentifier1          0x45b8d074df27d12f
 #define EventSystemIdentifier2          0x8d98f4c06880eda4
