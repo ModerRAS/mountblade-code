@@ -8416,15 +8416,18 @@ uint64_t ProcessFloatArrayResource(int64_t resourceDescriptor)
 uint64_t ProcessBatchDataOperations(int64_t batchDataDescriptor)
 
 {
-  longlong dataItemPointer;
-  int itemIndex;
+  int64_t dataItemPointer;
+  int32_t itemIndex;
   uint64_t operationResult;
-  undefined4 *dataPointerArray;
-  ulonglong stackOffset;
-  uint loopCounter;
-  ulonglong processedCount;
-  longlong baseAddress;
-  longlong systemContextBuffer;
+  uint32_t *dataPointerArray;
+  uint64_t stackOffset;
+  uint32_t loopCounter;
+  uint64_t processedCount;
+  int64_t baseAddress;
+  int64_t systemContextBuffer;
+  uint64_t queryStatus;
+  int64_t contextPointer;
+  int64_t validationContext;
   
   queryStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(batchDataDescriptor + 0x10),&systemContextBuffer);
   if ((int)queryStatus == 0) {
