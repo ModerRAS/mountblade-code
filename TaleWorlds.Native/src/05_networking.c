@@ -2143,8 +2143,8 @@ NetworkHandle ProcessNetworkRequest(NetworkHandle ConnectionContext, NetworkHand
   if ((int)PacketData - 1U < NetworkMaxIntValue) {
     ConnectionContextHandle = HandleConnectionRequest(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), PacketData, &NetworkSecurityValidationBuffer, NetworkConnectionCompletionHandle, 0);
     if (ConnectionContextHandle != 0) {
-      if ((int)NetworkConnectionValidationData[ConnectionDataSizeIndex] != 0) {
-          memcpy(ConnectionContextHandle, *NetworkConnectionValidationData, (int64_t)(int)NetworkConnectionValidationData[ConnectionDataSizeIndex]);
+      if ((int)ConnectionValidationData[ConnectionDataSizeIndex] != 0) {
+          memcpy(ConnectionContextHandle, *ConnectionValidationData, (int64_t)(int)ConnectionValidationData[ConnectionDataSizeIndex]);
       }
       return ConnectionContextHandle;
     }

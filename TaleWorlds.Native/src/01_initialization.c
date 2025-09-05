@@ -1147,7 +1147,7 @@ void* SystemDataNodeLinkageFifth;               // 系统数据节点链接第�
 void* SystemConfigurationDataPointerTertiary;        // 系统配置数据指针第三
 void* SystemConfigurationDataPointerQuaternary;        // 系统配置数据指针第四
 void* SystemResourceManager;        // 系统资源管理器
-void* SystemDebugStatusFlag;  // 系统调试状态标志
+void* SystemDebugOperationStatusFlag;  // 系统调试操作状态标志
 void* SystemStringBuffer;        // 系统字符串缓冲区
 void* SystemNodeLinkPointerPrimary;        // 系统节点链接指针主表
 void* SystemNodeLinkPointerSecondary;        // 系统节点链接指针次表
@@ -1162,10 +1162,10 @@ uint32_t SystemInitializationThreadStatus;    // 系统初始化线程状态
 uint32_t SystemInitializationResourceStatus; // 系统初始化资源状态
 
 // 系统内存状态标志变量
-uint32_t SystemMemoryStatusFlagPrimary;      // 系统内存状态标志主标志
-uint32_t SystemMemoryStatusFlagSecondary;      // 系统内存状态标志次标志
-uint32_t SystemMemoryStatusFlagTertiary;      // 系统内存状态标志第三标志
-uint32_t SystemMemoryStatusFlagQuaternary;    // 系统内存状态标志第四标志
+uint32_t SystemMemoryOperationStatusFlagPrimary;      // 系统内存操作状态标志主标志
+uint32_t SystemMemoryOperationStatusFlagSecondary;      // 系统内存操作状态标志次标志
+uint32_t SystemMemoryOperationStatusFlagTertiary;      // 系统内存操作状态标志第三标志
+uint32_t SystemMemoryOperationStatusFlagQuaternary;    // 系统内存操作状态标志第四标志
 
 // 系统回调函数指针
 void* SystemEventNotificationHandler;     // SystemEventNotificationHandler
@@ -27078,8 +27078,8 @@ void InitializeSystemResourceAllocator(long long SystemResourceHandle)
   uint renderItemCounter;
   ulong long renderStride;
   float TransformValue;
-  double FloatingPointValue1;
-  double FloatingPointValue2;
+  double FloatingPointValuePrimary;
+  double FloatingPointValueSecondary;
   long long **systemContextPointer;
   long long *systemContextPointer10;
   long long *systemContextPointer18;
