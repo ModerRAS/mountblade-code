@@ -12013,20 +12013,20 @@ void ExecuteSecurityValidation(longlong securityContext, longlong operationDescr
     if (*(longlong *)(systemContext + 0x18) != 0) {
       validationContext = *(longlong *)(systemContext + 0x18) + 0x30;
       securityValidationResult = (**(code **)(**(longlong **)(operationDescriptor + 800) + 0x2f0))
-                        (*(longlong **)(param_2 + 800),validationContext,1);
-      if (calculatedOffset == 0) {
+                        (*(longlong **)(operationDescriptor + 800),validationContext,1);
+      if (securityValidationResult == 0) {
                     // WARNING: Subroutine does not return
-        ValidateSystemDataA0(validationContext,auStack_40);
+        ValidateSystemDataA0(validationContext,authorizationData);
       }
-      pointerValidation = (longlong *)(calculatedOffset + 0x58);
-      if (((longlong *)*pointerValidation != pointerValidation) || (*(longlong **)(calculatedOffset + 0x60) != pointerValidation)) {
+      permissionPointer = (longlong *)(securityValidationResult + 0x58);
+      if (((longlong *)*permissionPointer != permissionPointer) || (*(longlong **)(securityValidationResult + 0x60) != permissionPointer)) {
                     // WARNING: Subroutine does not return
-        CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+        CleanupSystemEventA0(*(undefined8 *)(operationDescriptor + 0x98),securityContext);
       }
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(uStack_18 ^ (ulonglong)auStack_68);
+  ExecuteSecurityCheck(stackGuardValue ^ (ulonglong)securityValidationBuffer);
 }
 
 
