@@ -4318,35 +4318,35 @@ undefined8 ValidateAndProcessResourceA(longlong param_1)
 undefined8 ValidateResourcePointerAccess(longlong resourceDescriptor)
 
 {
-  undefined8 uVar1;
-  longlong alStackX_8 [2];
-  longlong alStackX_18 [2];
+  undefined8 validationStatus;
+  longlong resourceInfo [2];
+  longlong accessInfo [2];
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_18);
-  if ((int)uVar1 == 0) {
-    if (alStackX_18[0] == 0) {
-      alStackX_18[0] = 0;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(resourceDescriptor + 0x10),resourceInfo);
+  if ((int)validationStatus == 0) {
+    if (resourceInfo[0] == 0) {
+      resourceInfo[0] = 0;
     }
     else {
-      alStackX_18[0] = alStackX_18[0] + -8;
+      resourceInfo[0] = resourceInfo[0] + -8;
     }
-    alStackX_8[0] = 0;
-    uVar1 = FUN_1808681d0(alStackX_18[0],param_1 + 0x20,alStackX_8);
-    if ((int)uVar1 == 0) {
-      if (alStackX_8[0] != 0) {
-        if (*(longlong *)(alStackX_8[0] + 8) == 0) {
+    accessInfo[0] = 0;
+    validationStatus = FUN_1808681d0(resourceInfo[0],resourceDescriptor + 0x20,accessInfo);
+    if ((int)validationStatus == 0) {
+      if (accessInfo[0] != 0) {
+        if (*(longlong *)(accessInfo[0] + 8) == 0) {
           return 0x1c;
         }
-        uVar1 = FUN_1808d73b0(*(longlong *)(alStackX_8[0] + 8),*(undefined4 *)(param_1 + 0x18),
-                              *(undefined1 *)(param_1 + 0x1c));
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        validationStatus = FUN_1808d73b0(*(longlong *)(accessInfo[0] + 8),*(undefined4 *)(resourceDescriptor + 0x18),
+                              *(undefined1 *)(resourceDescriptor + 0x1c));
+        if ((int)validationStatus != 0) {
+          return validationStatus;
         }
       }
-      uVar1 = 0;
+      validationStatus = 0;
     }
   }
-  return uVar1;
+  return validationStatus;
 }
 
 
@@ -4543,7 +4543,11 @@ void InitializeMemoryPool(void)
 
 
 
-undefined8 FUN_1808909ba(void)
+// 原始函数名：FUN_1808909ba - 错误状态返回函数
+// 功能：返回固定错误码0x1c
+#define ReturnErrorStatus FUN_1808909ba
+
+undefined8 ReturnErrorStatus(void)
 
 {
   return 0x1c;
@@ -4553,7 +4557,11 @@ undefined8 FUN_1808909ba(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_1808909d0(longlong param_1)
+// 原始函数名：FUN_1808909d0 - 数据数组验证函数
+// 功能：验证数据数组的有效性和完整性
+#define ValidateDataArray FUN_1808909d0
+
+undefined8 ValidateDataArray(longlong arrayDescriptor)
 
 {
   undefined8 uVar1;
@@ -6278,6 +6286,103 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 // 原始函数名：FUN_1809430e0 - 工具系统清理函数BZ0
 // 功能：清理工具系统临时数据
 #define CleanupUtilitySystemBZ0 FUN_1809430e0
+
+// 系统资源管理函数语义化宏定义
+// 原始函数名：FUN_18088c790 - 资源清理函数CA0
+// 功能：清理系统资源并释放内存
+#define CleanupSystemResourceCA0 FUN_18088c790
+
+// 原始函数名：FUN_18088d720 - 资源操作函数CB0
+// 功能：执行系统资源操作
+#define ExecuteSystemResourceOperationCB0 FUN_18088d720
+
+// 原始函数名：FUN_18088d7c0 - 资源管理函数CC0
+// 功能：管理系统资源状态
+#define ManageSystemResourceCC0 FUN_18088d7c0
+
+// 原始函数名：FUN_180867d60 - 数据处理函数CD0
+// 功能：处理系统数据并执行转换
+#define ProcessSystemDataCD0 FUN_180867d60
+
+// 原始函数名：FUN_1808d7020 - 内存操作函数CE0
+// 功能：执行内存操作和管理
+#define ExecuteMemoryOperationCE0 FUN_1808d7020
+
+// 原始函数名：FUN_180875fc0 - 回调执行函数CF0
+// 功能：执行系统回调函数
+#define ExecuteSystemCallbackCF0 FUN_180875fc0
+
+// 原始函数名：FUN_180742250 - 资源分配函数CG0
+// 功能：分配系统资源并初始化
+#define AllocateSystemResourceCG0 FUN_180742250
+
+// 原始函数名：FUN_180894dd0 - 数据处理函数CH0
+// 功能：处理数据并执行验证
+#define ProcessDataValidationCH0 FUN_180894dd0
+
+// 原始函数名：FUN_180741df0 - 资源初始化函数CI0
+// 功能：初始化系统资源
+#define InitializeSystemResourceCI0 FUN_180741df0
+
+// 原始函数名：FUN_1808681d0 - 数据验证函数CJ0
+// 功能：验证数据完整性
+#define ValidateDataIntegrityCJ0 FUN_1808681d0
+
+// 原始函数名：FUN_1808d73b0 - 数据处理函数CK0
+// 功能：处理数据并执行转换
+#define ProcessDataConversionCK0 FUN_1808d73b0
+
+// 原始函数名：FUN_18085ff30 - 内存管理函数CL0
+// 功能：管理内存分配和释放
+#define ManageMemoryAllocationCL0 FUN_18085ff30
+
+// 原始函数名：FUN_1808c7b30 - 资源操作函数CM0
+// 功能：执行资源操作
+#define ExecuteResourceOperationCM0 FUN_1808c7b30
+
+// 原始函数名：FUN_1808c7dc0 - 系统调用函数CN0
+// 功能：执行系统调用
+#define ExecuteSystemCallCN0 FUN_1808c7dc0
+
+// 原始函数名：FUN_18088ac50 - 状态检查函数CO0
+// 功能：检查系统状态
+#define CheckSystemStatusCO0 FUN_18088ac50
+
+// 原始函数名：FUN_1808552c0 - 验证函数CP0
+// 功能：验证系统状态
+#define ValidateSystemStateCP0 FUN_1808552c0
+
+// 原始函数名：FUN_1808c44f0 - 安全检查函数CQ0
+// 功能：执行安全检查
+#define ExecuteSecurityCheckCQ0 FUN_1808c44f0
+
+// 原始函数名：FUN_180894860 - 数据处理函数CR0
+// 功能：处理数据并验证
+#define ProcessDataValidationCR0 FUN_180894860
+
+// 原始函数名：FUN_1808949c0 - 操作执行函数CS0
+// 功能：执行系统操作
+#define ExecuteSystemOperationCS0 FUN_1808949c0
+
+// 原始函数名：FUN_18073b5f0 - 上下文验证函数CT0
+// 功能：验证上下文有效性
+#define ValidateContextCT0 FUN_18073b5f0
+
+// 原始函数名：FUN_18073b810 - 清理函数CU0
+// 功能：清理系统资源
+#define CleanupSystemResourcesCU0 FUN_18073b810
+
+// 原始函数名：FUN_1808678e0 - 数据处理函数CV0
+// 功能：处理数据并转换
+#define ProcessDataConversionCV0 FUN_1808678e0
+
+// 原始函数名：FUN_18088aca0 - 状态检查函数CW0
+// 功能：检查系统状态
+#define CheckSystemStateCW0 FUN_18088aca0
+
+// 原始函数名：FUN_1808bdd90 - 验证函数CX0
+// 功能：验证系统配置
+#define ValidateSystemConfigCX0 FUN_1808bdd90
 
 // 函数: void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 //
@@ -8225,89 +8330,89 @@ void ProcessUtilitySystemRequest(longlong systemHandle,longlong requestContext)
   longlong memoryPointer;
   undefined8 stackVariable;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10));
-  if (iVar1 == 0) {
-    if (uStackX_8 == 0) {
-      lVar2 = 0;
+  statusCheck = func_0x00018088c530(*(undefined4 *)(systemHandle + 0x10));
+  if (statusCheck == 0) {
+    if (stackVariable == 0) {
+      memoryPointer = 0;
     }
     else {
-      lVar2 = uStackX_8 + -8;
+      memoryPointer = stackVariable + -8;
     }
-    *(undefined1 *)(lVar2 + 0xbc) = *(undefined1 *)(param_1 + 0x18);
+    *(undefined1 *)(memoryPointer + 0xbc) = *(undefined1 *)(systemHandle + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    FUN_18088d720(*(undefined8 *)(requestContext + 0x98),systemHandle);
   }
   return;
 }
 
 
 
-undefined8 FUN_1808930e0(longlong param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+undefined8 ValidateAndProcessFloatValue(longlong valueContext,longlong operationContext,undefined8 param_3,undefined8 param_4)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong lVar3;
+  float floatValue;
+  undefined8 operationResult;
+  longlong resultPointer;
   undefined8 unaff_RDI;
-  longlong lStackX_8;
+  longlong stackValue;
   
-  fVar1 = *(float *)(param_1 + 0x18);
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,fVar1);
-  if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
+  floatValue = *(float *)(valueContext + 0x18);
+  stackValue = CONCAT44(stackValue._4_4_,floatValue);
+  if (((uint)floatValue & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  if ((fVar1 < 0.0) || (3.4028235e+38 <= fVar1)) {
+  if ((floatValue < 0.0) || (3.4028235e+38 <= floatValue)) {
     return 0x1f;
   }
-  uVar2 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  operationResult = func_0x00018088c530(*(undefined4 *)(valueContext + 0x10),&stackValue);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (lStackX_8 == 0) {
-    lVar3 = 0;
+  if (stackValue == 0) {
+    resultPointer = 0;
   }
   else {
-    lVar3 = lStackX_8 + -8;
+    resultPointer = stackValue + -8;
   }
-  *(undefined4 *)(lVar3 + 0x90) = *(undefined4 *)(param_1 + 0x18);
-  lVar3 = *(longlong *)(param_2 + 0x98);
-  if ((*(int *)(lVar3 + 0x180) != 0) || (*(int *)(lVar3 + 0x184) != 0)) {
-    lStackX_8 = 0;
-    FUN_180768b50(&lStackX_8,param_1,param_3,param_4,unaff_RDI);
-    if (lStackX_8 == *(longlong *)((longlong)*(int *)(lVar3 + 0x17c) * 8 + 0x180c4f450)) {
-      uVar2 = FUN_18088dd60(lVar3,param_1);
-      if ((int)uVar2 == 0) {
+  *(undefined4 *)(resultPointer + 0x90) = *(undefined4 *)(valueContext + 0x18);
+  resultPointer = *(longlong *)(operationContext + 0x98);
+  if ((*(int *)(resultPointer + 0x180) != 0) || (*(int *)(resultPointer + 0x184) != 0)) {
+    stackValue = 0;
+    FUN_180768b50(&stackValue,valueContext,param_3,param_4,unaff_RDI);
+    if (stackValue == *(longlong *)((longlong)*(int *)(resultPointer + 0x17c) * 8 + 0x180c4f450)) {
+      operationResult = FUN_18088dd60(resultPointer,valueContext);
+      if ((int)operationResult == 0) {
         return 0;
       }
-      return uVar2;
+      return operationResult;
     }
   }
-  *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-  uVar2 = func_0x0001808e64d0(*(undefined8 *)(lVar3 + 0x1e0));
-  if ((int)uVar2 == 0) {
+  *(uint *)(valueContext + 8) = *(int *)(valueContext + 8) + 0xfU & 0xfffffff0;
+  operationResult = func_0x0001808e64d0(*(undefined8 *)(resultPointer + 0x1e0));
+  if ((int)operationResult == 0) {
     return 0;
   }
-  return uVar2;
+  return operationResult;
 }
 
 
 
-undefined8 FUN_180893190(longlong param_1,longlong param_2)
+undefined8 ValidateAndProcessFloatRange(longlong rangeContext,longlong validationContext)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong lVar3;
-  longlong lStackX_8;
+  float rangeValue;
+  undefined8 validationResult;
+  longlong resultPointer;
+  longlong stackValue;
   
-  fVar1 = *(float *)(param_1 + 0x1c);
-  lStackX_8 = CONCAT44(lStackX_8._4_4_,fVar1);
-  if (((uint)fVar1 & 0x7f800000) == 0x7f800000) {
+  rangeValue = *(float *)(rangeContext + 0x1c);
+  stackValue = CONCAT44(stackValue._4_4_,rangeValue);
+  if (((uint)rangeValue & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  switch(*(undefined4 *)(param_1 + 0x18)) {
+  switch(*(undefined4 *)(rangeContext + 0x18)) {
   case 0:
-    if ((0.0 <= fVar1) && (fVar1 <= 256.0)) goto code_r0x00018089322c;
+    if ((0.0 <= rangeValue) && (rangeValue <= 256.0)) goto code_r0x00018089322c;
     goto joined_r0x00018089322a;
   case 1:
   case 2:
@@ -8440,21 +8545,33 @@ undefined8 FUN_180893330(longlong param_1,longlong param_2)
 
 
 // 函数: void FUN_1808933c0(longlong param_1,longlong param_2)
-void FUN_1808933c0(longlong param_1,longlong param_2)
+// 
+// 工具系统状态激活函数
+// 
+// 功能：
+// 激活工具系统状态，设置状态标志并递增引用计数
+// 
+// 参数：
+//   systemHandle - 系统句柄，包含系统状态信息
+//   operationContext - 操作上下文，包含操作相关数据
+// 
+// 返回值：
+//   无
+void ActivateUtilitySystemState(longlong systemHandle,longlong operationContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validationStatus;
+  longlong statePointer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    if (lStackX_8 != 0) {
-      lStackX_8 = lStackX_8 + -8;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(systemHandle + 0x10),&statePointer);
+  if (validationStatus == 0) {
+    if (statePointer != 0) {
+      statePointer = statePointer + -8;
     }
-    *(int *)(lStackX_8 + 0x84) = *(int *)(lStackX_8 + 0x84) + 1;
-    *(undefined1 *)(lStackX_8 + 0xbd) = 1;
+    *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
+    *(undefined1 *)(statePointer + 0xbd) = 1;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    FUN_18088d720(*(undefined8 *)(operationContext + 0x98),systemHandle);
   }
   return;
 }
@@ -8463,21 +8580,33 @@ void FUN_1808933c0(longlong param_1,longlong param_2)
 
 
 // 函数: void FUN_180893420(longlong param_1,longlong param_2)
-void FUN_180893420(longlong param_1,longlong param_2)
+// 
+// 工具系统状态停用函数
+// 
+// 功能：
+// 停用工具系统状态，清除状态标志并递增引用计数
+// 
+// 参数：
+//   systemHandle - 系统句柄，包含系统状态信息
+//   operationContext - 操作上下文，包含操作相关数据
+// 
+// 返回值：
+//   无
+void DeactivateUtilitySystemState(longlong systemHandle,longlong operationContext)
 
 {
-  int iVar1;
-  longlong lStackX_8;
+  int validationStatus;
+  longlong statePointer;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if (iVar1 == 0) {
-    if (lStackX_8 != 0) {
-      lStackX_8 = lStackX_8 + -8;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(systemHandle + 0x10),&statePointer);
+  if (validationStatus == 0) {
+    if (statePointer != 0) {
+      statePointer = statePointer + -8;
     }
-    *(int *)(lStackX_8 + 0x84) = *(int *)(lStackX_8 + 0x84) + 1;
-    *(undefined1 *)(lStackX_8 + 0xbd) = 0;
+    *(int *)(statePointer + 0x84) = *(int *)(statePointer + 0x84) + 1;
+    *(undefined1 *)(statePointer + 0xbd) = 0;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    FUN_18088d720(*(undefined8 *)(operationContext + 0x98),systemHandle);
   }
   return;
 }
