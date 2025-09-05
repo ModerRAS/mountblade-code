@@ -22149,13 +22149,13 @@ void InitializeSystemConfigurationData(void* SystemResourceManager,void* Configu
         SystemStackFlagSecondary = &SystemGlobalDataReference;
         SystemConfigurationValue = 0;
         CharacterBufferPointer = (char *)0x0;
-        systemConfigurationValue = 0;
+        SystemConfigurationValue = 0;
         InitializeSystemDataBuffer(&SystemStackFlagSecondary,*(uint32_t *)(SystemResourceDataIndex + 0x50));
         if (*(int *)(SystemResourceDataIndex + 0x50) != 0) {
             memcpy(CharacterBufferPointer,*(void* *)(SystemResourceDataIndex + 0x48),*(int *)(SystemResourceDataIndex + 0x50) + 1);
         }
         if (*(long long *)(SystemResourceDataIndex + 0x48) != 0) {
-          systemConfigurationValue = 0;
+          SystemConfigurationValue = 0;
           if (CharacterBufferPointer != (char *)0x0) {
             *CharacterBufferPointer = '\0';
           }
@@ -23558,7 +23558,7 @@ void ProcessSystemThreeParameterBuffer(long long SystemResourceManager,long long
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)EncryptionBufferD8;
   UnsignedStackFlagPointer = &SystemDataBufferTemplateSecondary;
   stackParameterA = SystemStackParameterC;
-  systemConfigurationValue = 0;
+  SystemConfigurationValue = 0;
   SystemStackParameterC[0] = 0;
   resourceDataIndex = strstr(*(void* *)(SystemResourceManager + 8));
   if (resourceDataIndex != 0) {
@@ -26877,7 +26877,7 @@ uint32_t GetSystemResourceStatus(void)
     SystemStackFlagSecondary = &SystemGlobalDataReference;
     SystemConfigurationValue = 0;
     SecondarySystemOffsetCounter = 0;
-    systemConfigurationValue = 0;
+    SystemConfigurationValue = 0;
     ProcessSystemData(&SystemDataBufferPointer,SystemInitializationStatusArray.PrimaryField);
     CurrentThreadIdentifier = SecondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
@@ -44395,7 +44395,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   uint32_t StackValuePrimary;
   uint32_t StackValueSecondary;
   uint32_t StackValueTertiary;
-  ulong long systemConfigurationValue;
+  ulong long SystemConfigurationValue;
   ulong long StackParameterC;
   uint8_t SystemStackStatusFlag;
   void* StackOffsetPointer;
@@ -44439,7 +44439,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   ReallocateSystemDataBuffer(&SystemConfigurationFlag,resourceEntryPointer,SystemAllocationFlags);
   ResourceDataPosition = StackInteger78;
   SystemInitializationStatus = UnsignedStackFlagQuaternary;
-  systemConfigurationValue = 0;
+  SystemConfigurationValue = 0;
   SystemConfigurationValue = 0xf;
   UnsignedStackFlagQuaternary = UnsignedStackFlagQuaternary & 0xffffff00;
   SystemAllocationFlags = CombineMemoryFlags(UnsignedStackOffset,SystemConfigurationFlag);
@@ -44464,7 +44464,7 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
       }
       free(SystemInitializationStatus,SystemOperationCode);
     }
-    systemConfigurationValue = 0;
+    SystemConfigurationValue = 0;
     SystemConfigurationValue = 0xf;
     UnsignedStackFlagQuaternary = UnsignedStackFlagQuaternary & 0xffffff00;
     if (0xf < SystemSecondaryProcessFlags) {
@@ -44525,16 +44525,16 @@ void ConfigureAndManageSystemResourceData(long long* SystemResourceManager,long 
   SystemProcessFlags = 0;
   ThreadContext = 0xf;
   SystemEncryptionStatus = SystemEncryptionStatus & 0xffffff00;
-  systemConfigurationValue = ThreadContext;
+  SystemConfigurationValue = ThreadContext;
   if (ThreadContext == 0) goto SystemValueCheckComplete;
   SystemAllocationFlags = 0;
   pEncryptionOffset = &SystemGlobalDataReference;
   StackPointerTemporary = 0;
   pEncryptionOffsetSecondary = (uint8_t *)0x0;
   MemoryBufferPointer = 0;
-  systemConfigurationValue._0_4_ = (int)ThreadContext;
-  SystemOperationResult = (int)systemConfigurationValue;
-  systemConfigurationValue = ThreadContext;
+  SystemConfigurationValue._0_4_ = (int)ThreadContext;
+  SystemOperationResult = (int)SystemConfigurationValue;
+  SystemConfigurationValue = ThreadContext;
   ExecuteSystemCommand(&pEncryptionOffset,ThreadContext & SystemMaximumUnsigned32BitValue);
   if (SystemOperationResult != 0) {
     HashTablePointer = &UnsignedStackFlagQuaternary;
@@ -54884,7 +54884,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   else {
     CharacterBuffer = *(char *)(SystemGlobalStatusFlags + 0x141);
     AlternateBufferPointer = &SystemGlobalDataReference;
-    systemConfigurationValue = 0;
+    SystemConfigurationValue = 0;
     pUnsignedStackFlagQuaternary = (void* *)0x0;
     UnsignedStackFlagSecondary = 0;
     if (*(int *)(SystemGlobalStatusFlags + 0x158) != 0) {
@@ -58104,7 +58104,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
   float maximumFloatValueA0;
   uint32_t systemUnsignedValue9C;
   float *systemFloatPointer;
-  uint32_t systemConfigurationValue;
+  uint32_t SystemConfigurationValue;
   long long systemConfigurationData;
   void* systemUnsignedFlagSecondary;
   void* systemProcessFlagsSecondary;
@@ -58139,7 +58139,7 @@ float * ProcessSystemResourceManagerFloat(float *SystemResourceManager)
     SystemResourceManager[0xa6] = 0.0;
     SystemResourceManager[0xa7] = 0.0;
     SystemResourceManager[0xa8] = 3.4028235e+38;
-    systemConfigurationValue = 0;
+    SystemConfigurationValue = 0;
     systemFloatPointer = systemFloatReference;
     ProcessFloatValue(&systemFloatPointer);
     if (*(int *)(systemConfigurationData + 0x10) != 0) {
