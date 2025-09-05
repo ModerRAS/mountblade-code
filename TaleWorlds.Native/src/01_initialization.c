@@ -1989,7 +1989,7 @@ void InitializeSystemThreadPool(void)
     CurrentNodePointer = NextNodePointer;
     IsCurrentNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((HashTableNodePointer == RootNodePointer) || (NodeIdentifierComparisonResult = memcmp(&SystemConfigurationIdentifier, HashTableNodePointer + 4, IdentifierSize), ComparisonResult < 0)) {
+  if ((HashTableNodePointer == RootNodePointer) || (NodeIdentifierComparisonResult = memcmp(&SystemConfigurationIdentifier, HashTableNodePointer + 4, IdentifierSize), NodeIdentifierComparisonResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTableNodePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTableNodePointer = AllocatedMemoryNode;
@@ -63644,7 +63644,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
   uint32_t StackUnsignedValueAC;
   float ScaleZ;
   float ScaleY;
-  float fStack_a0;
+  float VertexCoordinateZ;
   uint32_t StackUnsignedValue9C;
   float *SystemFloatPointer;
   uint32_t SystemConfigValue;
