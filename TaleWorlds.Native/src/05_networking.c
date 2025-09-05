@@ -2491,7 +2491,7 @@ NetworkHandle ProcessNetworkPacketWithValidation(int64_t ConnectionContext, int6
   IntermediateValidationResult = 0;
   
   // 根据数据包大小选择不同的处理路径
-  if (*(uint *)(PacketData + 8) < NetworkPacketSizeLimit) {
+  if (*(uint *)(PacketData + PacketDataSizeIndex) < NetworkPacketSizeLimit) {
     if (*(int *)(PacketData[PacketDataHeaderIndex] + NetworkPacketHeaderValidationOffset) != 0) {
       return NetworkErrorCodeInvalidPacket;
     }
