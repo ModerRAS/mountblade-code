@@ -4189,6 +4189,12 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define SystemValidationCleanupFlagA1 DAT_180c95fe8       // 系统验证清理标志A1
 #define SystemValidationTerminationFlagA1 _DAT_180c95fc8  // 系统验证终止标志A1
 #define SystemValidationCleanupFlagA2 DAT_180c96210       // 系统验证清理标志A2
+
+// 系统数据缓冲区相关变量宏定义
+#define SystemDataBufferA DAT_180a06434               // 系统数据缓冲区A
+#define SystemDataBufferB UNK_180986298                // 系统数据缓冲区B
+#define SystemDataBufferC UNK_180984010                // 系统数据缓冲区C
+#define SystemDataBufferD UNK_180982240                // 系统数据缓冲区D
 #define DefaultExceptionHandlerBPointer _DAT_180bf64f8     // 默认异常处理器B指针
 
 // 异常处理器指针变量宏定义
@@ -12825,84 +12831,95 @@ undefined8 ProcessComplexDataStructureA0(longlong DataStructureHandle, longlong 
 
 // 浮点数数组处理函数A0
 // 浮点数组处理函数A0 - 处理浮点数组的验证、范围检查和数据更新
+/**
+ * @brief 处理浮点数组的验证、范围检查和数据更新
+ * 
+ * 该函数用于处理浮点数组的验证、范围检查和数据更新操作。它会遍历浮点数组，
+ * 对每个元素进行验证和范围检查，并在必要时更新数据。
+ * 
+ * @param ArrayDescriptor 数组描述符，包含数组信息和配置参数
+ * @param SystemContext 系统上下文，包含系统状态和配置信息
+ * @return 处理结果状态码，成功返回0，失败返回错误代码
+ */
 undefined8 ProcessFloatingPointArrayA0(longlong ArrayDescriptor,longlong SystemContext)
 
 {
-  int ArraySizeCheck;
-  int operationResult;
+  int arraySize;
+  int arrayIndex;
   undefined8 validationStatus;
   float *floatArrayPointer;
-  longlong arrayIndex;
-  ulonglong dataFlags;
-  float *floatDataPointer;
-  ulonglong securityCheckResult;
-  uint iterationCounter;
-  float floatValue;
-  float tempFloatValue;
-  undefined4 tempFlagValue;
+  longlong dataRecordIndex;
+  ulonglong systemDataFlags;
+  float *currentFloatPointer;
+  ulonglong processedCount;
+  uint elementCounter;
+  float currentValue;
+  float rangeMinValue;
+  float rangeMaxValue;
+  undefined4 tempValue;
   ulonglong loopCounter;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&fStackX_8);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(ArrayDescriptor + 0x10),&contextBuffer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  securityCheckResult = 0;
-  dataFlags = CONCAT44(uStackX_c,fStackX_8) - 8;
-  if (CONCAT44(uStackX_c,fStackX_8) == 0) {
-    dataFlags = securityCheckResult;
+  processedCount = 0;
+  systemDataFlags = CONCAT44(contextBufferHigh,contextBuffer) - 8;
+  if (CONCAT44(contextBufferHigh,contextBuffer) == 0) {
+    systemDataFlags = processedCount;
   }
-  ArraySizeCheck = *(int *)(dataFlags + 0x28);
-  pfVar7 = (float *)(param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
-  if (0 < *(int *)(param_1 + 0x18)) {
-    pfVar4 = pfVar7;
-    uVar10 = securityCheckResult;
+  arraySize = *(int *)(systemDataFlags + 0x28);
+  floatArrayPointer = (float *)(ArrayDescriptor + 0x20 + (longlong)*(int *)(ArrayDescriptor + 0x18) * 4);
+  if (0 < *(int *)(ArrayDescriptor + 0x18)) {
+    currentFloatPointer = floatArrayPointer;
+    elementCounter = processedCount;
     do {
-      operationResult = *(int *)(((param_1 + 0x20) - (longlong)pfVar7) + (longlong)pfVar4);
-      if (operationResult != -1) {
-        fStackX_8 = *pfVar4;
-        if (((uint)fStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
+      arrayIndex = *(int *)(((ArrayDescriptor + 0x20) - (longlong)floatArrayPointer) + (longlong)currentFloatPointer);
+      if (arrayIndex != -1) {
+        currentValue = *currentFloatPointer;
+        if (((uint)currentValue & FloatInfinityValue) == FloatInfinityValue) {
           return 0x1d;
         }
-        if ((operationResult < 0) || (ArraySizeCheck <= operationResult)) {
+        if ((arrayIndex < 0) || (arraySize <= arrayIndex)) {
           return 0x1f;
         }
-        lVar5 = *(longlong *)(dataFlags + 0x20) + (longlong)operationResult * 0x18;
-        if (lVar5 == 0) {
+        dataRecordIndex = *(longlong *)(systemDataFlags + 0x20) + (longlong)arrayIndex * 0x18;
+        if (dataRecordIndex == 0) {
           return 0x1c;
         }
-        lVar5 = *(longlong *)(lVar5 + 0x10);
-        if (lVar5 == 0) {
+        dataRecordIndex = *(longlong *)(dataRecordIndex + 0x10);
+        if (dataRecordIndex == 0) {
           return 0x1e;
         }
-        if (*(int *)(lVar5 + 0x30) != 0) {
+        if (*(int *)(dataRecordIndex + 0x30) != 0) {
           return 0x1f;
         }
-        fVar11 = *(float *)(lVar5 + 0x38);
-        if ((*(float *)(lVar5 + 0x38) <= fStackX_8) &&
-           (fVar11 = *(float *)(lVar5 + 0x3c), fStackX_8 <= *(float *)(lVar5 + 0x3c))) {
-          fVar11 = fStackX_8;
+        rangeMinValue = *(float *)(dataRecordIndex + 0x38);
+        if ((*(float *)(dataRecordIndex + 0x38) <= currentValue) &&
+           (rangeMaxValue = *(float *)(dataRecordIndex + 0x3c), currentValue <= *(float *)(dataRecordIndex + 0x3c))) {
+          rangeMaxValue = currentValue;
         }
-        *pfVar4 = fVar11;
+        *currentFloatPointer = rangeMaxValue;
       }
-      uVar9 = (int)uVar10 + 1;
-      uVar10 = (ulonglong)uVar9;
-      pfVar4 = pfVar4 + 1;
-    } while ((int)uVar9 < *(int *)(param_1 + 0x18));
-    if (0 < *(int *)(param_1 + 0x18)) {
-      lVar5 = (param_1 + 0x20) - (longlong)pfVar7;
+      loopCounter = (int)elementCounter + 1;
+      elementCounter = (ulonglong)loopCounter;
+      currentFloatPointer = currentFloatPointer + 1;
+    } while ((int)loopCounter < *(int *)(ArrayDescriptor + 0x18));
+    if (0 < *(int *)(ArrayDescriptor + 0x18)) {
+      dataRecordIndex = (ArrayDescriptor + 0x20) - (longlong)floatArrayPointer;
       do {
-        iVar1 = *(int *)((longlong)pfVar7 + lVar5);
-        if (iVar1 != -1) {
-          *(float *)(*(longlong *)(dataFlags + 0x20) + 4 + (longlong)iVar1 * 0x18) = *pfVar7;
+        arrayIndex = *(int *)((longlong)floatArrayPointer + dataRecordIndex);
+        if (arrayIndex != -1) {
+          *(float *)(*(longlong *)(systemDataFlags + 0x20) + 4 + (longlong)arrayIndex * 0x18) = *floatArrayPointer;
         }
-        uVar9 = (int)securityCheckResult + 1;
-        securityCheckResult = (ulonglong)uVar9;
-        pfVar7 = pfVar7 + 1;
-      } while ((int)uVar9 < *(int *)(param_1 + 0x18));
+        loopCounter = (int)processedCount + 1;
+        processedCount = (ulonglong)loopCounter;
+        floatArrayPointer = floatArrayPointer + 1;
+      } while ((int)loopCounter < *(int *)(ArrayDescriptor + 0x18));
     }
   }
                     // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+  CleanupSystemEventA0(*(undefined8 *)(SystemContext + 0x98),ArrayDescriptor);
 }
 
 
@@ -25680,102 +25697,102 @@ ValidationLabelD:
  * 
  * @note 原始函数名：FUN_18089c22e
  */
-undefined8 * FUN_18089c22e(void)
+undefined8 * ProcessSystemDataValidation(void)
 
 {
-  undefined8 uVar1;
-  undefined4 uVar2;
-  undefined4 validationStatus;
+  undefined8 validationResult;
+  undefined4 operationStatus;
+  undefined4 dataValidationResult;
   undefined4 memoryBaseAddress;
-  float fVar5;
-  float fVar6;
-  float fVar7;
-  uint securityCheckResult;
-  uint uVar9;
-  uint uVar10;
-  undefined4 *puVar11;
-  undefined8 *puVar12;
-  undefined8 *puVar13;
-  float *pfVar14;
-  ulonglong uVar15;
-  undefined8 *puVar16;
-  longlong validationContext7;
-  longlong unaff_RBP;
+  float normalizedValue1;
+  float normalizedValue2;
+  float normalizedValue3;
+  uint securityCheckStatus;
+  uint processingFlags;
+  uint systemFlags;
+  undefined4 *dataPointer;
+  undefined8 *resultPointer;
+  undefined8 *contextPointer;
+  float *floatArrayPointer;
+  ulonglong systemConfiguration;
+  undefined8 *resourcePointer;
+  longlong validationContext1;
+  longlong framePointer;
   longlong systemContext;
-  undefined8 *unaff_RDI;
-  longlong validationContext8;
-  int iVar19;
+  undefined8 *inputParameter;
+  longlong validationContext2;
+  int operationCounter;
   undefined4 extraout_XMM0_Da;
-  undefined4 uVar20;
+  undefined4 systemStatus;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
   float extraout_XMM0_Da_02;
   float extraout_XMM0_Da_03;
   float extraout_XMM0_Da_04;
-  float fVar21;
+  float calculatedFloatValue;
   
-  puVar11 = (undefined4 *)FUN_180847820();
-  puVar13 = (undefined8 *)0x0;
-  uVar9 = *(uint *)(unaff_RDI + 8);
-  uVar20 = *puVar11;
-  uVar2 = puVar11[1];
-  validationStatus = puVar11[2];
-  memoryBaseAddress = puVar11[3];
-  *(undefined4 *)(unaff_RBP + -0x19) = uVar20;
-  *(undefined4 *)(unaff_RBP + -0x15) = uVar2;
-  *(undefined4 *)(unaff_RBP + -0x11) = validationStatus;
-  *(undefined4 *)(unaff_RBP + -0xd) = memoryBaseAddress;
-  securityCheckResult = 0;
-  puVar12 = puVar13;
-  if (uVar9 < 0x6d) {
-    if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-      uVar1 = *unaff_RDI;
-      puVar12 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x19,4);
-      if ((int)puVar12 != 0) {
-        return puVar12;
+  dataPointer = (undefined4 *)AllocateMemoryEX0();
+  contextPointer = (undefined8 *)0x0;
+  processingFlags = *(uint *)(inputParameter + 8);
+  systemStatus = *dataPointer;
+  operationStatus = dataPointer[1];
+  dataValidationResult = dataPointer[2];
+  memoryBaseAddress = dataPointer[3];
+  *(undefined4 *)(framePointer + -0x19) = systemStatus;
+  *(undefined4 *)(framePointer + -0x15) = operationStatus;
+  *(undefined4 *)(framePointer + -0x11) = dataValidationResult;
+  *(undefined4 *)(framePointer + -0xd) = memoryBaseAddress;
+  securityCheckStatus = 0;
+  resultPointer = contextPointer;
+  if (processingFlags < 0x6d) {
+    if (*(int *)(inputParameter[1] + 0x18) == 0) {
+      validationResult = *inputParameter;
+      resultPointer = (undefined8 *)OperateDataO0(validationResult,framePointer + -0x19,4);
+      if ((int)resultPointer != 0) {
+        return resultPointer;
       }
-      puVar12 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x15,2);
-      if ((int)puVar12 != 0) {
-        return puVar12;
+      resultPointer = (undefined8 *)OperateDataO0(validationResult,framePointer + -0x15,2);
+      if ((int)resultPointer != 0) {
+        return resultPointer;
       }
-      puVar12 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x13,2);
-      if ((int)puVar12 != 0) {
-        return puVar12;
+      resultPointer = (undefined8 *)OperateDataO0(validationResult,framePointer + -0x13,2);
+      if ((int)resultPointer != 0) {
+        return resultPointer;
       }
-      puVar12 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x11,8);
-      uVar20 = extraout_XMM0_Da;
+      resultPointer = (undefined8 *)OperateDataO0(validationResult,framePointer + -0x11,8);
+      systemStatus = extraout_XMM0_Da;
     }
     else {
-      puVar12 = (undefined8 *)0x1c;
+      resultPointer = (undefined8 *)0x1c;
     }
   }
-  if ((int)puVar12 != 0) {
-    return puVar12;
+  if ((int)resultPointer != 0) {
+    return resultPointer;
   }
-  if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    puVar13 = (undefined8 *)FUN_1808a79f0(uVar20,systemContext + 0x58);
-    fVar21 = extraout_XMM0_Da_00;
-    if ((int)puVar13 != 0) {
-      return puVar13;
+  if (0x81 < *(uint *)(inputParameter + 8)) {
+    contextPointer = (undefined8 *)ProcessSystemDataA0(systemStatus,systemContext + 0x58);
+    calculatedFloatValue = extraout_XMM0_Da_00;
+    if ((int)contextPointer != 0) {
+      return contextPointer;
     }
-    goto LAB_18089c300;
+    goto ValidationCompleteLabel;
   }
-  if (*(uint *)(unaff_RDI + 8) < 0x6a) {
-    *(undefined8 *)(unaff_RBP + -0x29) = 0;
-    *(undefined8 *)(unaff_RBP + -0x21) = 0;
-    uVar9 = FUN_1808a54c0(uVar20,unaff_RBP + -0x29,0);
-    puVar12 = (undefined8 *)(ulonglong)uVar9;
-    if (uVar9 != 0) {
-ValidationLabelB:
-      uVar9 = *(uint *)(unaff_RBP + -0x1d);
-      uVar10 = uVar9;
-      if ((int)uVar9 < 0) {
-        uVar10 = -uVar9;
+  if (*(uint *)(inputParameter + 8) < 0x6a) {
+    *(undefined8 *)(framePointer + -0x29) = 0;
+    *(undefined8 *)(framePointer + -0x21) = 0;
+    processingFlags = ValidateSystemDataA0(systemStatus,framePointer + -0x29,0);
+    resultPointer = (undefined8 *)(ulonglong)processingFlags;
+    if (processingFlags != 0) {
+ValidationProcessingLabel:
+      processingFlags = *(uint *)(framePointer + -0x1d);
+      systemFlags = processingFlags;
+      if ((int)processingFlags < 0) {
+        systemFlags = -processingFlags;
       }
-      iVar19 = *(int *)(unaff_RBP + -0x21);
-      if ((int)uVar10 < 0) {
-        if (0 < iVar19) {
-          return puVar12;
+      operationCounter = *(int *)(framePointer + -0x21);
+      if ((int)systemFlags < 0) {
+        if (0 < operationCounter) {
+          return resultPointer;
         }
         if ((0 < (int)uVar9) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
