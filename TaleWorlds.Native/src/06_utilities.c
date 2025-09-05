@@ -3820,46 +3820,50 @@ undefined8 UpdateResourceReferenceCount(longlong param_1)
 
 
 
-undefined8 FUN_180890590(longlong param_1)
+// 函数: undefined8 ReleaseUtilityResource(longlong param_1)
+// 功能：释放工具资源，验证资源有效性并调用资源释放函数
+undefined8 ReleaseUtilityResource(longlong param_1)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 validationStatus;
+  longlong stackPointer;
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar1 == 0) {
-    if (lStackX_8 == 0) {
-      lStackX_8 = 0;
+  validationStatus = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&stackPointer);
+  if ((int)validationStatus == 0) {
+    if (stackPointer == 0) {
+      stackPointer = 0;
     }
     else {
-      lStackX_8 = lStackX_8 + -8;
+      stackPointer = stackPointer + -8;
     }
-    if (*(longlong *)(lStackX_8 + 0x10) != 0) {
+    if (*(longlong *)(stackPointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-      ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
+      ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
     }
-    uVar1 = 0;
+    validationStatus = 0;
   }
-  return uVar1;
+  return validationStatus;
 }
 
 
 
-undefined8 FUN_1808905ae(void)
+// 函数: undefined8 CheckNullPointerAccess(void)
+// 功能：检查空指针访问，从寄存器获取资源指针并执行资源释放操作
+undefined8 CheckNullPointerAccess(void)
 
 {
-  longlong in_RAX;
-  longlong lVar1;
+  longlong registerValue;
+  longlong resourcePointer;
   
-  if (in_RAX == 0) {
-    lVar1 = 0;
+  if (registerValue == 0) {
+    resourcePointer = 0;
   }
   else {
-    lVar1 = in_RAX + -8;
+    resourcePointer = registerValue + -8;
   }
-  if (*(longlong *)(lVar1 + 0x10) != 0) {
+  if (*(longlong *)(resourcePointer + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
+    ReleaseResource(*(longlong *)(resourcePointer + 0x10),1);
   }
   return 0;
 }
@@ -6153,24 +6157,24 @@ void ProcessDataSetFlagA1(longlong dataContext,longlong systemContext)
 
 
 
-undefined8 FUN_180891d40(longlong param_1,longlong param_2)
+undefined8 ValidateDataReturnStatusA2(longlong dataContext,longlong systemContext)
 
 {
-  undefined8 uVar1;
-  uint uStackX_8;
-  undefined4 uStackX_c;
+  undefined8 result;
+  uint dataValue;
+  undefined4 tempValue;
   
-  uStackX_8 = *(uint *)(param_1 + 0x18);
-  if ((uStackX_8 & 0x7f800000) == 0x7f800000) {
+  dataValue = *(uint *)(dataContext + 0x18);
+  if ((dataValue & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if ((int)uVar1 == 0) {
-    *(undefined4 *)(CONCAT44(uStackX_c,uStackX_8) + 0x24) = *(undefined4 *)(param_1 + 0x18);
+  result = func_0x00018088c530(*(undefined4 *)(dataContext + 0x10),&dataValue);
+  if ((int)result == 0) {
+    *(undefined4 *)(CONCAT44(tempValue,dataValue) + 0x24) = *(undefined4 *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+    FUN_18088d720(*(undefined8 *)(systemContext + 0x98),dataContext);
   }
-  return uVar1;
+  return result;
 }
 
 
