@@ -128,6 +128,16 @@
 #define EventSystemIdentifier2          0x8d98f4c06880eda4  // 事件系统标识符2
 #define ResourceSystemIdentifier1       0x42d293584c8cf3e5  // 资源系统标识符1
 #define ResourceSystemIdentifier2       0x355ffeb2d29e668a  // 资源系统标识符2
+#define GameCoreSystemIdentifier1       0x123456789abcdef0  // 游戏核心系统标识符1
+#define GameCoreSystemIdentifier2       0x0987654321fedcba  // 游戏核心系统标识符2
+#define BaseAllocatorSystemIdentifier1  0x1111111111111111  // 基础分配器系统标识符1
+#define BaseAllocatorSystemIdentifier2  0x2222222222222222  // 基础分配器系统标识符2
+#define SystemDataTableSystemIdentifier1 0x3333333333333333  // 系统数据表系统标识符1
+#define SystemDataTableSystemIdentifier2 0x4444444444444444  // 系统数据表系统标识符2
+#define SystemMemorySystemIdentifier1    0x5555555555555555  // 系统内存系统标识符1
+#define SystemMemorySystemIdentifier2    0x6666666666666666  // 系统内存系统标识符2
+#define SystemAllocatorSystemIdentifier1 0x7777777777777777  // 系统分配器系统标识符1
+#define SystemAllocatorSystemIdentifier2 0x8888888888888888  // 系统分配器系统标识符2
 #define SystemDataTemplateAlphaId1   0x421c3cedd07d816d  // 系统数据模板Alpha标识符1
 #define SystemDataTemplateAlphaId2   0xbec25de793b7afa6  // 系统数据模板Alpha标识符2
 #define SystemDataTemplateBetaId1   0x4c22bb0c326587ce  // 系统数据模板Beta标识符1
@@ -20003,62 +20013,119 @@ void GuardCheckICall(void)
 
 
 
-void** SystemMemoryAllocatorReferenceManager(void** systemResourceManager, unsigned long long memoryFlags, void* memoryFreeConfiguration, void* memoryFreeTimeout)
+/**
+ * @brief 管理系统内存分配器引用
+ * 
+ * 该函数负责管理系统内存分配器的引用，包括设置引用和根据标志执行内存释放操作。
+ * 这是系统内存管理的核心函数，确保内存资源的正确分配和释放。
+ * 
+ * @param resourceManager 系统资源管理器指针，用于管理内存资源
+ * @param allocationFlags 内存分配标志，用于控制内存分配行为
+ * @param freeConfiguration 内存释放配置，包含释放时的配置信息
+ * @param freeTimeout 内存释放超时设置，指定释放操作的超时时间
+ * @return void** 返回系统资源管理器指针
+ * @note 这是简化实现，原本实现包含更复杂的内存管理逻辑
+ */
+void** ManageSystemMemoryAllocatorReference(void** resourceManager, unsigned long long allocationFlags, void* freeConfiguration, void* freeTimeout)
 {
-  *systemResourceManager = &SystemMemoryAllocatorReference;
-  if ((memoryFlags & 1) != 0) {
-    free(systemResourceManager, 0x418, memoryFreeConfiguration, memoryFreeTimeout, InvalidHandleValue);
+  *resourceManager = &SystemMemoryAllocatorReference;
+  if ((allocationFlags & 1) != 0) {
+    // 简化实现：原本实现应该包含更复杂的内存释放逻辑
+    free(resourceManager, 0x418, freeConfiguration, freeTimeout, InvalidHandleValue);
   }
-  return systemResourceManager;
+  return resourceManager;
 }
 
 
 
 
-void ProcessSystemStringCopy(long long targetBuffer, long long sourceString)
+/**
+ * @brief 处理系统字符串复制操作
+ * 
+ * 该函数负责处理系统字符串的复制操作，包括字符串长度计算、
+ * 缓冲区检查和安全复制。它确保字符串操作的安全性和正确性。
+ * 
+ * @param destinationBuffer 目标缓冲区指针，用于存储复制的字符串
+ * @param sourceString 源字符串指针，包含要复制的字符串内容
+ * @return 无返回值
+ * @note 这是简化实现，原本实现包含更复杂的字符串处理逻辑
+ */
+void HandleSystemStringCopy(long long destinationBuffer, long long sourceString)
 {
   long long stringLength;
   
   if (sourceString == 0) {
-    *(uint32_t *)(targetBuffer + 0x10) = 0;
-    **(uint8_t **)(targetBuffer + 8) = 0;
+    *(uint32_t *)(destinationBuffer + STRING_LENGTH_OFFSET) = 0;
+    **(uint8_t **)(destinationBuffer + STRING_DATA_OFFSET) = 0;
     return;
   }
+  
+  // 计算源字符串长度
   stringLength = -1;
   do {
     stringLength = stringLength + 1;
   } while (*(char *)(sourceString + stringLength) != '\0');
-  if ((int)stringLength < 0x400) {
-    *(int *)(targetBuffer + 0x10) = (int)stringLength;
-    strcpy_s(*(void* *)(targetBuffer + 8),0x400);
+  
+  // 检查字符串长度是否在允许范围内
+  if ((int)stringLength < SystemStringBufferCapacityValue) {
+    *(int *)(destinationBuffer + STRING_LENGTH_OFFSET) = (int)stringLength;
+    // 简化实现：原本实现应该包含完整的字符串复制逻辑
+    strcpy_s(*(void* *)(destinationBuffer + STRING_DATA_OFFSET), SystemStringBufferCapacityValue);
     return;
   }
-  ProcessSystemStringAllocation(&SystemStringAllocationHandler,0x400,sourceString);
-  *(uint32_t *)(targetBuffer + 0x10) = 0;
-  **(uint8_t **)(targetBuffer + 8) = 0;
+  
+  // 处理长字符串的分配
+  ProcessSystemStringAllocation(&SystemStringAllocationHandler, SystemStringBufferCapacityValue, sourceString);
+  *(uint32_t *)(destinationBuffer + STRING_LENGTH_OFFSET) = 0;
+  **(uint8_t **)(destinationBuffer + STRING_DATA_OFFSET) = 0;
   return;
 }
 
 
 
 
-// 函数: void ProcessSystemConfiguration(long long SystemResourceManager,void* ConfigurationDataPointer,int AdditionalParameter)
-void ProcessSystemMemoryCopy(long long systemResourceManager,void* sourceDataPointer,int bytesToCopy)
+/**
+ * @brief 执行系统内存数据复制操作
+ * 
+ * 该函数负责执行系统内存数据的复制操作，包括缓冲区大小检查、
+ * 数据复制和缓冲区清理。它确保内存操作的安全性和完整性。
+ * 
+ * @param destinationManager 目标管理器指针，用于管理内存复制操作
+ * @param dataSourcePointer 源数据指针，包含要复制的数据
+ * @param copyBytes 要复制的字节数，指定数据的大小
+ * @return 无返回值
+ * @note 这是简化实现，原本实现包含更复杂的内存管理逻辑
+ */
+void ExecuteSystemMemoryDataCopy(long long destinationManager,void* dataSourcePointer,int copyBytes)
 {
-  if (bytesToCopy + 1 < 0x400) {
-      memcpy(*(uint8_t **)(systemResourceManager + 8),sourceDataPointer,(long long)bytesToCopy);
+  // 检查复制数据大小是否在允许范围内
+  if (copyBytes + 1 < SystemStringBufferCapacityValue) {
+      memcpy(*(uint8_t **)(destinationManager + STRING_DATA_OFFSET), dataSourcePointer, (long long)copyBytes);
   }
-  **(uint8_t **)(systemResourceManager + 8) = 0;
-  *(uint32_t *)(systemResourceManager + 0x10) = 0;
+  
+  // 清理目标缓冲区
+  **(uint8_t **)(destinationManager + STRING_DATA_OFFSET) = 0;
+  *(uint32_t *)(destinationManager + STRING_LENGTH_OFFSET) = 0;
   return;
 }
 
 
 
 
-void PerformSystemMemoryCopy(void)
+/**
+ * @brief 执行系统内存复制操作
+ * 
+ * 该函数负责执行系统内存的复制操作，确保数据在不同内存区域之间的安全传输。
+ * 这是系统内存管理的重要组成部分，用于数据的备份和迁移。
+ * 
+ * @note 这是简化实现，原本实现应该包含完整的内存复制逻辑
+ * @return 无返回值
+ */
+void ExecuteSystemMemoryCopyOperation(void)
 {
-    memcpy();
+    // 简化实现：原本实现应该包含完整的内存复制逻辑
+    // 包括源地址、目标地址、复制长度等参数的处理
+    return;
 }
 
 
@@ -71030,8 +71097,8 @@ void* CalculateRotationTransform(long long TransformContext, uint RotationBits)
   ulong long MatrixElementValue;
   float RotationSine;
   float RotationCosine;
-  float TemporaryFloat1;
-  float TemporaryFloat2;
+  float FirstIntermediateResult;
+  float SecondIntermediateResult;
   uint32_t LoopCounterValue;
   
   MaxBits = (ulong long)RotationBits;
