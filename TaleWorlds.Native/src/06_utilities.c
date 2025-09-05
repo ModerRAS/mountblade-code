@@ -11653,11 +11653,11 @@ DataBuffer ProcessSystemRequest(int64_t contextHandle,int64_t systemParameters)
 void ProcessDataSetFlagA0(int64_t dataContext,int64_t systemContext)
 
 {
-  int status;
+  int queryStatus;
   int64_t dataPointer;
   
-  status = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&dataPointer);
-  if (status == 0) {
+  queryStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&dataPointer);
+  if (queryStatus == 0) {
     *(ByteFlag *)(dataPointer + 0x29) = *(ByteFlag *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
@@ -11673,11 +11673,11 @@ void ProcessDataSetFlagA0(int64_t dataContext,int64_t systemContext)
 void ProcessDataSetFlagA1(int64_t dataContext,int64_t systemContext)
 
 {
-  int status;
+  int operationStatus;
   int64_t dataPointer;
   
-  status = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&dataPointer);
-  if (status == 0) {
+  operationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(dataContext + 0x10),&dataPointer);
+  if (operationStatus == 0) {
     *(ByteFlag *)(dataPointer + 0x28) = *(ByteFlag *)(dataContext + 0x18);
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),dataContext);
@@ -11748,8 +11748,8 @@ DataBuffer ProcessUtilityDataAndExecute(int64_t dataContext,int64_t systemContex
 void ProcessSystemEventA3(int64_t eventContext,int64_t systemContext)
 
 {
-  int status;
-  int capacity;
+  int eventStatus;
+  int bufferCapacity;
   int64_t newBuffer;
   int64_t bufferPtr;
   uint currentSize;
@@ -18889,9 +18889,9 @@ ProcessDataSecurityValidation:
           validationContext5 = *(int64_t *)(register_R15 + 0x20);
           dataContext = *(int64_t *)(functionReturnValue0 + 0x10 + validationContext5);
           calculatedOffset = *(int64_t *)(functionReturnValue0 + 8 + validationContext5);
-          cVar12 = CheckSystemStatus(dataContext,1);
+          charSystemStatus = CheckSystemStatus(dataContext,1);
           resourcePointer2 = puStack0000000000000058;
-          if ((cVar12 == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
+          if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
             functionReturnValue4 = *(DataWord *)(functionReturnValue0 + 4 + validationContext5);
             stackFramePointer[-4] = &SystemMemoryInitializationReference;
             *(DataWord *)(stackFramePointer + -2) = uStackX_20;
@@ -19136,9 +19136,9 @@ ValidateDataSecurity:
       validationContext5 = *(int64_t *)(register_R15 + 0x20);
       dataContext = *(int64_t *)(functionReturnValue0 + 0x10 + validationContext5);
       calculatedOffset = *(int64_t *)(functionReturnValue0 + 8 + validationContext5);
-      cVar12 = CheckSystemStatus(dataContext,1);
+      charSystemStatus = CheckSystemStatus(dataContext,1);
       register_R12 = in_stack_00000058;
-      if ((cVar12 == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
+      if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
         functionReturnValue3 = *(DataWord *)(functionReturnValue0 + 4 + validationContext5);
         stackFramePointer[-4] = &SystemMemoryInitializationReference;
         *(DataWord *)(stackFramePointer + -2) = uStackX_20;
