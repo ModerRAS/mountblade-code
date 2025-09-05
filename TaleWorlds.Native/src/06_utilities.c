@@ -9098,7 +9098,7 @@ DataBuffer ValidateUtilitySystemState(void)
   DataBuffer operationResult;
   int *operationPointer;
   int64_t basePointer;
-  DataWord *dataPointer3;
+  DataWord *dataProcessingPointer;
   uint counterValue;
   uint64_t adjustedValue;
   int64_t systemContextBuffer;
@@ -12013,7 +12013,7 @@ void ResetUtilitySystemAA0(void)
   uint flagsValue;
   int64_t systemContext;
   int64_t tempRegister;
-  DataBuffer stackParameter60;
+  DataBuffer systemConfigurationParameter;
   
   stackPointer = 0;
   adjustedPointer = inputParameter + 8;
@@ -13322,12 +13322,12 @@ DataBuffer ProcessSystemDataE1(int64_t systemContext,int64_t dataBuffer)
          (resultValue = *(float *)(calculatedOffset + 0x3c), inputValue <= *(float *)(calculatedOffset + 0x3c))) {
         resultValue = inputValue;
       }
-      *(float *)(param_1 + 0x18) = resultValue;
+      *(float *)(dataBuffer + 0x18) = resultValue;
       dataContext = *(int64_t *)(dataContext + 0x90);
       *(float *)(resourceIterator + 4 + (int64_t)(int)stackBuffer[0] * 0x18) = resultValue;
-      *(DataBuffer *)(param_1 + 0x20) = *(DataBuffer *)(dataContext + (int64_t)(int)stackBuffer[0] * 8);
+      *(DataBuffer *)(dataBuffer + 0x20) = *(DataBuffer *)(dataContext + (int64_t)(int)stackBuffer[0] * 8);
                     // WARNING: Subroutine does not return
-      CleanupSystemEventA0(*(DataBuffer *)(param_2 + 0x98),param_1);
+      CleanupSystemEventA0(*(DataBuffer *)(dataBuffer + 0x98),dataBuffer);
     }
   }
   return 0x1f;
@@ -14900,7 +14900,7 @@ DataBuffer CleanupSystemB0(void)
       validationStatus = ValidateOperationRangeA0(systemContext + 0x60,operationParameter);
       if ((int)validationStatus == 0) {
         pmemoryBaseAddress = (DataBuffer *)
-                 ProcessSystemDataA0(systemContext + 0x60,&stack0x00000040,in_stack_00000050);
+                 ProcessSystemDataA0(systemContext + 0x60,&systemDataBuffer,operationParameter);
         *(DataBuffer *)(destinationIndexRegister + 0x18) = *pmemoryBaseAddress;
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
@@ -15563,7 +15563,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
   uint colorBlueLow2;
   uint colorBlueMid2;
   uint colorBlueHigh;
-  uint uStack_60;
+  uint alphaComponent;
   DataWord colorDataWord;
   uint redGreenComponents;
   uint blueAlphaComponents;
@@ -15582,7 +15582,7 @@ void ProcessDataOperationB1(int64_t DataPointer, DataWord *DataBuffer, int64_t *
     calculatedOffset = (**(FunctionPointer**)(*validationContextPointer + 0x2f8))(validationContextPointer,&colorDataWord,1);
     if (calculatedOffset == 0) {
       uStack_80 = blueAlphaComponents >> 0x18;
-      uStack_60 = colorPackedData >> 0x18;
+      alphaComponent = colorPackedData >> 0x18;
       uStack_a0 = redGreenComponents >> 0x10;
       uStack_68 = colorPackedData >> 0x10 & 0xff;
       uStack_70 = colorPackedData >> 8 & 0xff;
@@ -50025,47 +50025,47 @@ void CleanupSystemExceptionHandlingA0(DataBuffer systemContext, int64_t executio
 
 
 
-void Unwind_180905af0(DataBuffer param_1,int64_t param_2)
+void ResetSystemExceptionHandlerA0(DataBuffer systemContext, int64_t executionContext)
 
 {
-  **(DataBuffer **)(param_2 + 0x2e0) = &DefaultExceptionHandlerB;
+  **(DataBuffer **)(executionContext + 0x2e0) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180905b00(DataBuffer param_1,int64_t param_2)
+void CleanupSystemResourcesAndMutexA0(DataBuffer systemContext, int64_t executionContext)
 
 {
   DataBuffer *exceptionDataBuffer;
   
-  exceptionDataBuffer = *(DataBuffer **)(param_2 + 0x50);
-  *exceptionDataBuffer = &UNK_1809fcb90;
+  exceptionDataBuffer = *(DataBuffer **)(executionContext + 0x50);
+  *exceptionDataBuffer = &SystemCleanupExceptionHandler;
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(exceptionDataBuffer + 4);
-  *exceptionDataBuffer = &UNK_18098bdc8;
-  *exceptionDataBuffer = &UNK_180a21720;
-  *exceptionDataBuffer = &UNK_180a21690;
+  *exceptionDataBuffer = &SystemConfigurationTable;
+  *exceptionDataBuffer = &ExceptionDataTable;
+  *exceptionDataBuffer = &ExceptionDataTable2;
   return;
 }
 
 
 
-void Unwind_180905b10(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+void ExecuteSystemCallbackWithCleanupFlags(DataBuffer systemContext, int64_t executionContext, DataBuffer parameter3, DataBuffer parameter4)
 
 {
-  code *pcVar1;
+  code *systemCallback;
   
-  pcVar1 = *(FunctionPointer**)(*(int64_t *)(param_2 + 0x50) + 0xd0);
-  if (pcVar1 != (code *)0x0) {
-    (*pcVar1)(*(int64_t *)(param_2 + 0x50) + 0xc0,0,0,param_4,SystemCleanupFlagfffffffe);
+  systemCallback = *(FunctionPointer**)(*(int64_t *)(executionContext + 0x50) + 0xd0);
+  if (systemCallback != (code *)0x0) {
+    (*systemCallback)(*(int64_t *)(executionContext + 0x50) + 0xc0,0,0,parameter4,SystemCleanupFlagfffffffe);
   }
   return;
 }
 
 
 
-void Unwind_180905b30(void)
+void DestroySystemMutex(void)
 
 {
   _Mtx_destroy_in_situ();
