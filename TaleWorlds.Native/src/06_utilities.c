@@ -91019,7 +91019,7 @@ void SetDefaultExceptionHandler12(void)
 void SetDefaultExceptionHandler13(void)
 
 {
-  _DAT_180bfa050 = &DefaultExceptionHandlerB;
+  ExceptionHandlerTablePointer13 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -91039,7 +91039,7 @@ void SetDefaultExceptionHandler13(void)
 void SetDefaultExceptionHandler14(void)
 
 {
-  _DAT_180bfa0b0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerTablePointer14 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -91059,7 +91059,7 @@ void SetDefaultExceptionHandler14(void)
 void SetDefaultExceptionHandler15(void)
 
 {
-  _DAT_180bfa110 = &DefaultExceptionHandlerB;
+  ExceptionHandlerTablePointer15 = &DefaultExceptionHandlerB;
   return;
 }
 

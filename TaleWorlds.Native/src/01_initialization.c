@@ -22734,7 +22734,7 @@ uint8_t ProcessSystemInitializationData(long long SystemResourceManager,void* Co
 
 {
   uint8_t SystemInitializationStatus;
-  int SystemOperationResult;
+  int mutexOperationResult;
   void* timeoutParameter;
   void* resourceAllocationContext;
   long long mutexAddress;
@@ -22743,9 +22743,9 @@ uint8_t ProcessSystemInitializationData(long long SystemResourceManager,void* Co
   resourceAllocationContext = SystemInvalidHandleTemplate;
   mutexAddress = SystemResourceManager + 0x48;
   lockAcquiredFlag = 0;
-  SystemOperationResult = _Mtx_lock();
-  if (SystemOperationResult != 0) {
-    ThrowSystemError(SystemOperationResult);
+  mutexOperationResult = _Mtx_lock();
+  if (mutexOperationResult != 0) {
+    ThrowSystemError(mutexOperationResult);
   }
   lockAcquiredFlag = '\x01';
   if (*(char *)(SystemResourceManager + 0x98) == '\x01') {
@@ -22758,9 +22758,9 @@ uint8_t ProcessSystemInitializationData(long long SystemResourceManager,void* Co
   }
   *(uint8_t *)(SystemResourceManager + 0x98) = 0;
   if (lockAcquiredFlag != '\0') {
-    SystemOperationResult = _Mtx_unlock(mutexAddress);
-    if (SystemOperationResult != 0) {
-      ThrowSystemError(SystemOperationResult);
+    mutexOperationResult = _Mtx_unlock(mutexAddress);
+    if (mutexOperationResult != 0) {
+      ThrowSystemError(mutexOperationResult);
     }
   }
   return SystemInitializationStatus;
