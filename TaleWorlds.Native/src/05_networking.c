@@ -3089,7 +3089,6 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
 {
   // 连接状态处理变量
   int64_t ContextIdentifier = 0;                               // 网络连接上下文标识符
-  NetworkStatus TimeoutStatus = 0;                          // 超时状态
   NetworkStatus SecondaryProcessingStatus = 0;              // 次级处理状态
   int64_t StatusIterator = 0;                           // 网络状态处理迭代器
   int64_t *ContextBuffer = NULL;                             // 网络连接上下文缓冲区
