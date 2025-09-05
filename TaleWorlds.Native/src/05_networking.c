@@ -2095,9 +2095,9 @@ NetworkHandle HandleNetworkConnectionRequest(NetworkHandle ConnectionContext, Ne
 {
   // 网络连接请求处理变量
   int64_t NetworkConnectionContextIdentifier;      // 网络连接上下文标识符
-  int64_t *NetworkValidationDataPointer;           // 网络连接验证结果数据指针
-  int32_t NetworkValidationStatusCode;             // 网络连接验证状态码
-  NetworkHandle NetworkConnectionHandle;           // 网络连接上下文句柄
+  int64_t *NetworkConnectionValidationDataPointer;           // 网络连接验证结果数据指针
+  int32_t NetworkConnectionValidationStatusCode;             // 网络连接验证状态码
+  NetworkHandle NetworkConnectionResultHandle;           // 网络连接上下文结果句柄
   
   NetworkConnectionContextIdentifier = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证状态码
