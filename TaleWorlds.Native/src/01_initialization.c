@@ -28638,9 +28638,9 @@ void* SystemResourceManagerNodeHandler(void* SystemResourceManager,void* Configu
   SystemAllocationContext = 0;
   StackAllocationFlags = 3;
   InitializeSystemResourceManager(SystemGlobalStatusFlags,&PrimaryResourceHandle,AdditionalParameter,ConfigurationFlag,InvalidHandleValue);
-  ResourceEndPointer = ResourceHandle2;
-  ResourceStartPointer = ResourceHandle1;
-  ResourceCount = (long long)ResourceHandle2 - (long long)ResourceHandle1 >> 5;
+  ResourceEndPointer = SecondaryResourceHandle;
+  ResourceStartPointer = PrimaryResourceHandle;
+  ResourceCount = (long long)SecondaryResourceHandle - (long long)PrimaryResourceHandle >> 5;
   ResourceNodePointer = ResourceStartPointer;
   if (ResourceCount == 0) {
 ResourceSizeCheck:
@@ -28805,9 +28805,9 @@ void SystemResourceDataProcessor(long long* SystemResourceManager,long long Conf
   MemoryBufferPointer = 0xfffffffffffffffe;
   SystemEncryptionKey = SystemEncryptionKeyTemplate ^ (ulong long)StackArray238;
   SystemInitializationStatusFlag = 0;
-  StackDoublePointerF0 = &pGlobalDataFlags;
+  StackDoublePointerPrimary = &pGlobalDataFlags;
   pGlobalDataFlags = &SystemGlobalDataReference;
-  SystemStackVariable1a8 = 0;
+  SystemStackVariableStatus = 0;
   LongStackVariableSecondary = 0;
   SystemStackVariablePrimary = 0;
   SystemStackVariableControl = 0x100;
@@ -51427,7 +51427,7 @@ void InitializeSystemResourceManagerEx(void* SystemResourceManager,void* Configu
     *(uint32_t *)((long long)SystemPointer + 0x14) = ConfigurationParameter;
     *(uint32_t *)(SystemPointer + 3) = ResourceHandleLowPart;
     *(uint32_t *)((long long)SystemPointer + 0x1c) = ResourceHandleHighPart;
-    SystemPointer[4] = (ulong long)SystemStackParameter4 << 8;
+    SystemPointer[4] = (ulong long)ResourceConfigurationFlag << 8;
     *SystemPointer = SystemFlags;
     SystemPointer[1] = *(long long *)(ResourceOffset + 0xf8);
     **(long long **)(ResourceOffset + 0xf8) = (long long)SystemPointer;
