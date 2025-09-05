@@ -29005,74 +29005,83 @@ uint64_t ValidateSystemResourceStatus(void)
   resourceDataValue = FUN_1808a2740(*resourceBufferContext,systemOperationContext + 0x60);
   validationStatusCode = (uint64_t)resourceDataValue;
   if (resourceDataValue == 0) {
-    validationStatus = 0x1c;
-    if (*(uint *)(registerContext + 8) < 0x36) {
-      functionReturnValue = 0;
+    validationStatusCode = 0x1c;
+    if (*(uint *)(resourceBufferContext + 8) < 0x36) {
+      validationResult = 0;
     }
     else {
-      functionReturnValue = validationStatus;
-      if (*(int *)(registerContext[1] + 0x18) == 0) {
-        functionReturnValue = FUN_1808a2740(*registerContext,systemContext + 0x70);
+      validationResult = validationStatusCode;
+      if (*(int *)(resourceBufferContext[1] + 0x18) == 0) {
+        validationResult = FUN_1808a2740(*resourceBufferContext,systemOperationContext + 0x70);
       }
     }
-    if ((int)functionReturnValue != 0) {
-      return functionReturnValue;
+    if ((int)validationResult != 0) {
+      return validationResult;
     }
-    if (*(uint *)(registerContext + 8) < 0x3d) {
-      validationStatus = 0;
+    if (*(uint *)(resourceBufferContext + 8) < 0x3d) {
+      validationStatusCode = 0;
     }
-    else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      dataValue = GetMemoryAddressA0(*registerContext,systemContext + 0x40);
-      validationStatus = (uint64_t)dataValue;
+    else if (*(int *)(resourceBufferContext[1] + 0x18) == 0) {
+      resourceDataValue = GetMemoryAddressA0(*resourceBufferContext,systemOperationContext + 0x40);
+      validationStatusCode = (uint64_t)resourceDataValue;
     }
-    if ((int)validationStatus == 0) {
+    if ((int)validationStatusCode == 0) {
                     // WARNING: Subroutine does not return
       CleanupSystemResourcesA0();
     }
   }
-  return validationStatus;
+  return validationStatusCode;
 }
 
 
 
-uint64_t FUN_18089d193(void)
+/**
+ * @brief 验证系统内存状态
+ * 
+ * 该函数用于验证系统内存的状态，检查内存分配和使用情况
+ * 
+ * @return uint64_t 返回验证状态码，0表示成功，其他值表示错误
+ * 
+ * @note 原始函数名：FUN_18089d193
+ */
+uint64_t ValidateSystemMemoryStatus(void)
 
 {
-  uint dataValue;
-  uint64_t functionReturnValue;
-  DataBuffer *registerContext;
-  int64_t systemContext;
-  uint64_t validationStatus;
+  uint memoryDataValue;
+  uint64_t operationResult;
+  DataBuffer *memoryBufferContext;
+  int64_t memorySystemContext;
+  uint64_t memoryValidationStatus;
   
-  dataValue = FUN_1808a2740(*registerContext,systemContext + 0x60);
-  validationStatus = (uint64_t)dataValue;
-  if (dataValue == 0) {
-    validationStatus = 0x1c;
-    if (*(uint *)(registerContext + 8) < 0x36) {
-      functionReturnValue = 0;
+  memoryDataValue = FUN_1808a2740(*memoryBufferContext,memorySystemContext + 0x60);
+  memoryValidationStatus = (uint64_t)memoryDataValue;
+  if (memoryDataValue == 0) {
+    memoryValidationStatus = 0x1c;
+    if (*(uint *)(memoryBufferContext + 8) < 0x36) {
+      operationResult = 0;
     }
     else {
-      functionReturnValue = validationStatus;
-      if (*(int *)(registerContext[1] + 0x18) == 0) {
-        functionReturnValue = FUN_1808a2740(*registerContext,systemContext + 0x70);
+      operationResult = memoryValidationStatus;
+      if (*(int *)(memoryBufferContext[1] + 0x18) == 0) {
+        operationResult = FUN_1808a2740(*memoryBufferContext,memorySystemContext + 0x70);
       }
     }
-    if ((int)functionReturnValue != 0) {
-      return functionReturnValue;
+    if ((int)operationResult != 0) {
+      return operationResult;
     }
-    if (*(uint *)(registerContext + 8) < 0x3d) {
-      validationStatus = 0;
+    if (*(uint *)(memoryBufferContext + 8) < 0x3d) {
+      memoryValidationStatus = 0;
     }
-    else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      dataValue = GetMemoryAddressA0(*registerContext,systemContext + 0x40);
-      validationStatus = (uint64_t)dataValue;
+    else if (*(int *)(memoryBufferContext[1] + 0x18) == 0) {
+      memoryDataValue = GetMemoryAddressA0(*memoryBufferContext,memorySystemContext + 0x40);
+      memoryValidationStatus = (uint64_t)memoryDataValue;
     }
-    if ((int)validationStatus == 0) {
+    if ((int)memoryValidationStatus == 0) {
                     // WARNING: Subroutine does not return
       CleanupSystemResourcesA0();
     }
   }
-  return validationStatus;
+  return memoryValidationStatus;
 }
 
 
