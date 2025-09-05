@@ -14264,14 +14264,14 @@ void UtilityNoOperationD(void)
 undefined8 InitializeSystemB0(longlong systemContext,longlong operationContext)
 
 {
-  float fVar1;
+  float comparisonValue;
   undefined8 functionReturnValue;
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
-  undefined1 auStackX_8 [8];
-  undefined4 auStackX_18 [2];
+  undefined1 stackBuffer [8];
+  undefined4 operationFlags [2];
   
-  auStackX_18[0] = 0;
+  operationFlags[0] = 0;
   operationResult = ExecuteSystemDataProcessingA0(operationContext,systemContext + 0x20,operationBuffer);
   if ((int)operationResult == 0) {
     calculatedOffset = GetOperationRangeDataA0(operationContext + 0x60,operationBuffer[0]);
