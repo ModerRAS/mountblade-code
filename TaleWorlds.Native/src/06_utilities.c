@@ -98490,7 +98490,21 @@ void ReleaseValidationContextOffsetE8ResourceTableLock(uint8_t ObjectContext, in
 
 
 
-void Unwind_18090fe40(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放验证上下文偏移0xe8处的资源表独占锁（重载版本）
+ * 
+ * 该函数检查验证上下文偏移0xe8处的字符值，如果不为零，
+ * 则释放验证上下文中偏移0xe0处的独占锁。
+ * 这是Unwind_18090fe30的重载版本。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于线程同步和资源表管理
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090fe40
+ */
+void ReleaseValidationContextOffsetE8ResourceTableLock2(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + 0xe8) != '\0') {
@@ -98501,7 +98515,20 @@ void Unwind_18090fe40(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fe50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源表批量清理操作
+ * 
+ * 该函数遍历系统资源表中的所有资源项，并逐个执行清理操作。
+ * 如果资源表指针为空，则直接返回；否则执行系统紧急退出。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和内存管理
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090fe50
+ */
+void ExecuteSystemResourceTableBulkCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -98521,7 +98548,21 @@ void Unwind_18090fe50(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fe60(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统资源表批量清理操作（偏移0x80版本）
+ * 
+ * 该函数遍历系统资源表中的所有资源项，并逐个执行清理操作。
+ * 从验证上下文偏移0x80处获取资源表指针，如果资源表指针为空，
+ * 则直接返回；否则执行系统紧急退出。
+ * 
+ * @param ObjectContext 对象上下文，包含对象的相关信息
+ * @param ValidationContext 验证上下文，包含验证相关的数据结构
+ * @return 无返回值
+ * @note 此函数用于系统资源清理和内存管理
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090fe60
+ */
+void ExecuteSystemResourceTableBulkCleanupOffset80(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
