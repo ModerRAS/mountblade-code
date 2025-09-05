@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 网络系统类型定义
 
 /**
  * @brief 网络状态类型
