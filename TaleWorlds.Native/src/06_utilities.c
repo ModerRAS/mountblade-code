@@ -96797,7 +96797,7 @@ void ExecuteResourceValidationWithCleanupParameters(uint8_t ObjectContext,int64_
 
 
 
-void Unwind_18090f880(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteMutexUnlockAndCheckStatus(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int ProcessingStatusCode;
@@ -96811,7 +96811,7 @@ void Unwind_18090f880(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f890(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteResourceHandlerMethodCall(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x140) != (int64_t *)0x0) {
@@ -96822,7 +96822,7 @@ void Unwind_18090f890(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f8a0(uint8_t ObjectContext,int64_t ValidationContext)
+void ExecuteSecondaryResourceHandlerMethodCall(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if ((int64_t *)**(int64_t **)(ValidationContext + 0x130) != (int64_t *)0x0) {
