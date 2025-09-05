@@ -289,9 +289,9 @@
  * 
  * 处理系统数据A0
  * 
- * @note 原始函数名：FUN_1808a2740
+ * @note 原始函数名：ProcessSystemDataWithValidation
  */
-#define ProcessSystemDataA0 FUN_1808a2740
+#define ProcessSystemDataA0 ProcessSystemDataWithValidation
 
 /**
  * @brief 系统状态验证函数A0
@@ -2401,9 +2401,9 @@
 // 功能：获取系统状态并返回状态码
 #define GetSystemStatusCode FUN_18089e297
 
-// 原始函数名：FUN_1808a79f0 - 数据验证处理函数A0
+// 原始函数名：ValidateDataProcessingA0 - 数据验证处理函数A0
 // 功能：验证数据完整性和处理状态
-#define ValidateDataProcessingA0 FUN_1808a79f0
+#define ValidateDataProcessingA0 ValidateDataProcessingA0
 
 // 原始函数名：FUN_1808a54c0 - 数据标志处理函数A0
 // 功能：处理数据标志并返回处理结果
@@ -2433,9 +2433,9 @@
 // 功能：管理系统内存分配和释放
 #define ManageSystemMemoryAllocation FUN_18089e2be
 
-// 原始函数名：FUN_1808a2740 - 上下文验证函数A0
+// 原始函数名：ProcessSystemDataWithValidation - 上下文验证函数A0
 // 功能：验证上下文数据和状态
-#define ValidateContextDataA0 FUN_1808a2740
+#define ValidateContextDataA0 ProcessSystemDataWithValidation
 
 // 原始函数名：FUN_1808af8b0 - 系统配置验证函数A0
 // 功能：验证系统配置和参数
@@ -2449,17 +2449,17 @@
 // 功能：处理数组数据并返回结果
 #define ProcessArrayDataA0 FUN_1808acb90
 
-// 原始函数名：FUN_1808a5150 - 数据初始化函数A0
+// 原始函数名：InitializeDataStructureA0 - 数据初始化函数A0
 // 功能：初始化数据结构和缓冲区
-#define InitializeDataStructureA0 FUN_1808a5150
+#define InitializeDataStructureA0 InitializeDataStructureA0
 
-// 原始函数名：FUN_1808de650 - 数据验证函数A2
+// 原始函数名：ValidateDataSecurityA0 - 数据验证函数A2
 // 功能：验证数据完整性和安全性
-#define ValidateDataSecurityA0 FUN_1808de650
+#define ValidateDataSecurityA0 ValidateDataSecurityA0
 
-// 原始函数名：FUN_1808b0490 - 数据处理函数A3
+// 原始函数名：ProcessDataWithSecurityA0 - 数据处理函数A3
 // 功能：处理数据并返回处理结果
-#define ProcessDataWithSecurityA0 FUN_1808b0490
+#define ProcessDataWithSecurityA0 ProcessDataWithSecurityA0
 
 // 原始函数名：FUN_180898ef0 - 数据验证函数A3
 // 功能：验证数据完整性和状态
@@ -28223,7 +28223,7 @@ ValidationErrorHandler2:
           return memoryBaseAddress;
         }
         if (*(int *)(registerContext[1] + 0x18) == 0) {
-          memoryBaseAddress = FUN_1808a2740(*registerContext,
+          memoryBaseAddress = ProcessSystemDataWithValidation(*registerContext,
                                 (int64_t)(int)validationOutcome * 0x10 + *(int64_t *)(register_R13 + 0x60));
           loopCounter = floatResultA_08;
         }
@@ -28481,7 +28481,7 @@ ValidationErrorHandler2:
           return dataFlags;
         }
         if (*(int *)(registerContext[1] + 0x18) == 0) {
-          dataFlags = FUN_1808a2740(*registerContext,
+          dataFlags = ProcessSystemDataWithValidation(*registerContext,
                                 (int64_t)(int)operationResult * 0x10 + *(int64_t *)(register_R13 + 0x60));
           dataValue3 = floatResultA_08;
         }
@@ -28739,7 +28739,7 @@ ValidationErrorHandler2:
           return dataFlags;
         }
         if (*(int *)(registerContext[1] + 0x18) == 0) {
-          dataFlags = FUN_1808a2740(*registerContext,
+          dataFlags = ProcessSystemDataWithValidation(*registerContext,
                                 (int64_t)(int)operationResult * 0x10 + *(int64_t *)(register_R13 + 0x60));
           dataValue3 = floatResultA_08;
         }
@@ -28953,7 +28953,7 @@ DataProcessingHandler:
               return operationResult;
             }
             if (*(int *)(registerContext[1] + 0x18) == 0) {
-              operationResult = FUN_1808a2740(*registerContext,
+              operationResult = ProcessSystemDataWithValidation(*registerContext,
                                     (int64_t)(int)dataFlags * 0x10 + *(int64_t *)(register_R13 + 0x60));
               dataValue4 = floatResultA_07;
             }
@@ -29336,7 +29336,7 @@ ValidationStateUpdate:
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
-  functionReturnValue = FUN_1808a5150(param_2,param_1,0);
+  functionReturnValue = InitializeDataStructureA0(param_2,param_1,0);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -29464,7 +29464,7 @@ ValidationStateUpdate:
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
-  functionReturnValue = FUN_1808a5150();
+  functionReturnValue = InitializeDataStructureA0();
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -29630,7 +29630,7 @@ uint64_t QuerySystemDataD(int64_t param_1,DataBuffer *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  dataValue = FUN_1808a2740(*param_2,param_1 + 0x60);
+  dataValue = ProcessSystemDataWithValidation(*param_2,param_1 + 0x60);
   functionReturnValue = (uint64_t)dataValue;
   if (dataValue == 0) {
     functionReturnValue = 0x1c;
@@ -29640,7 +29640,7 @@ uint64_t QuerySystemDataD(int64_t param_1,DataBuffer *param_2)
     else {
       validationStatus = functionReturnValue;
       if (*(int *)(param_2[1] + 0x18) == 0) {
-        validationStatus = FUN_1808a2740(*param_2,param_1 + 0x70);
+        validationStatus = ProcessSystemDataWithValidation(*param_2,param_1 + 0x70);
       }
     }
     if ((int)validationStatus != 0) {
@@ -29685,7 +29685,7 @@ uint64_t ValidateSystemResourceStatus(void)
   if (*(int *)(resourceContextRegister + 0x18) != 0) {
     return 0x1c;
   }
-  resourceDataValue = FUN_1808a2740(*resourceBufferContext,systemOperationContext + 0x60);
+  resourceDataValue = ProcessSystemDataWithValidation(*resourceBufferContext,systemOperationContext + 0x60);
   validationStatusCode = (uint64_t)resourceDataValue;
   if (resourceDataValue == 0) {
     validationStatusCode = 0x1c;
@@ -29695,7 +29695,7 @@ uint64_t ValidateSystemResourceStatus(void)
     else {
       validationResult = validationStatusCode;
       if (*(int *)(resourceBufferContext[1] + 0x18) == 0) {
-        validationResult = FUN_1808a2740(*resourceBufferContext,systemOperationContext + 0x70);
+        validationResult = ProcessSystemDataWithValidation(*resourceBufferContext,systemOperationContext + 0x70);
       }
     }
     if ((int)validationResult != 0) {
@@ -29736,7 +29736,7 @@ uint64_t ValidateSystemMemoryStatus(void)
   int64_t memorySystemContext;
   uint64_t memoryValidationStatus;
   
-  memoryDataValue = FUN_1808a2740(*memoryBufferContext,memorySystemContext + 0x60);
+  memoryDataValue = ProcessSystemDataWithValidation(*memoryBufferContext,memorySystemContext + 0x60);
   memoryValidationStatus = (uint64_t)memoryDataValue;
   if (memoryDataValue == 0) {
     memoryValidationStatus = 0x1c;
@@ -29746,7 +29746,7 @@ uint64_t ValidateSystemMemoryStatus(void)
     else {
       operationResult = memoryValidationStatus;
       if (*(int *)(memoryBufferContext[1] + 0x18) == 0) {
-        operationResult = FUN_1808a2740(*memoryBufferContext,memorySystemContext + 0x70);
+        operationResult = ProcessSystemDataWithValidation(*memoryBufferContext,memorySystemContext + 0x70);
       }
     }
     if ((int)operationResult != 0) {
@@ -29809,7 +29809,7 @@ DataBuffer ValidateDataFormatA1(DataBuffer param_1,int64_t *param_2)
     return validationStatus;
   }
   aiStackX_18[0] = 0;
-  validationStatus = FUN_1808de650(param_2,aiStackX_18);
+  validationStatus = ValidateDataSecurityA0(param_2,aiStackX_18);
   if ((int)validationStatus == 0x12) {
 ValidationDataHandler:
                     // WARNING: Subroutine does not return
@@ -29848,7 +29848,7 @@ ValidationDataHandler:
 ValidationErrorHandler4:
   if ((int)validationStatus == 0) {
     lStack_60 = 0;
-    validationStatus = FUN_1808b0490(param_1,auStack_68[0],&lStack_60);
+    validationStatus = ProcessDataWithSecurityA0(param_1,auStack_68[0],&lStack_60);
     dataContext = lStack_60;
     if ((int)validationStatus != 0) {
       return validationStatus;
@@ -29867,7 +29867,7 @@ ValidationErrorHandler4:
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        validationStatus = FUN_1808a79f0(param_2,dataContext + 0x20);
+        validationStatus = ValidateDataProcessingA0(param_2,dataContext + 0x20);
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -29908,7 +29908,7 @@ DataBuffer GetSystemStatusA2(void)
   unsigned int stackSystemStatus;
   
   iStack00000000000000b0 = 0;
-  validationStatus = FUN_1808de650();
+  validationStatus = ValidateDataSecurityA0();
   if ((int)validationStatus == 0x12) {
 ValidationDataHandler:
                     // WARNING: Subroutine does not return
@@ -29947,7 +29947,7 @@ ValidationDataHandler:
 ValidationErrorHandler4:
   if ((int)validationStatus == 0) {
     in_stack_00000038 = 0;
-    validationStatus = FUN_1808b0490();
+    validationStatus = ProcessDataWithSecurityA0();
     dataContext = in_stack_00000038;
     if ((int)validationStatus != 0) {
       return validationStatus;
@@ -29966,7 +29966,7 @@ ValidationErrorHandler4:
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
-        validationStatus = FUN_1808a79f0();
+        validationStatus = ValidateDataProcessingA0();
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -96617,9 +96617,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
 // 功能：验证端口控制请求的有效性
 #define ValidatePortControlRequest FUN_1808ddc20
 
-// 原始函数名：FUN_1808a79f0 - 验证端口访问权限
+// 原始函数名：ValidateDataProcessingA0 - 验证端口访问权限
 // 功能：验证端口访问权限
-#define ValidatePortAccess FUN_1808a79f0
+#define ValidatePortAccess ValidateDataProcessingA0
 
 // 原始函数名：FUN_1808ddf80 - 执行端口控制操作
 // 功能：执行端口控制操作
@@ -97150,9 +97150,9 @@ void CleanupUtilitySystemResources(DataBuffer SystemHandle,DataBuffer ResourcePo
  * 
  * 该函数负责验证数据的正确性和安全性
  * 
- * @note 原始函数名：FUN_1808a79f0
+ * @note 原始函数名：ValidateDataProcessingA0
  */
-#define ValidateDataSecurityA0 FUN_1808a79f0
+#define ValidateDataSecurityA0 ValidateDataProcessingA0
 
 /**
  * @brief 数据处理函数A1
