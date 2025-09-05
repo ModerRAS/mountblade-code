@@ -19683,13 +19683,16 @@ undefined8 FUN_18089ac64(void)
 
 
 
-// 函数: void FUN_18089ac96(void)
-void FUN_18089ac96(void)
+/**
+ * @brief 执行系统状态检查
+ * @return 检查结果状态码
+ */
+void ExecuteSystemStatusCheck(void)
 
 {
-  int iVar1;
-  undefined8 *registerRBX;
-  longlong unaff_RDI;
+  int statusResult;
+  undefined8 *systemRegister;
+  longlong systemContext;
   
   if (*(uint *)(registerRBX + 8) < 0x3d) {
     iVar1 = 0;
