@@ -11543,7 +11543,8 @@ void InitializeSystemStringProcessorDynamic(void)
  * @return 无返回值
  * @note 该函数在系统初始化阶段调用，确保字符串处理系统的正常运行
  */
-void InitializeSystemStringProcessorO(void)
+// 函数: void InitializeSystemStringProcessorOptimized(void)
+void InitializeSystemStringProcessorOptimized(void)
 
 {
   char SystemNodeActiveFlag;
@@ -11592,7 +11593,7 @@ void InitializeSystemStringProcessorO(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorP(void)
+// 函数: void InitializeSystemStringProcessorParallel(void)
 /**
  * @brief 初始化系统字符串处理器P
  * 
@@ -11606,7 +11607,7 @@ void InitializeSystemStringProcessorO(void)
  * @return 无返回值
  * @note 该函数在系统初始化阶段调用，确保字符串处理系统的正常运行
  */
-void InitializeSystemStringProcessorP(void)
+void InitializeSystemStringProcessorParallel(void)
 
 {
   char SystemNodeActiveFlag;
@@ -11655,7 +11656,7 @@ void InitializeSystemStringProcessorP(void)
 
 
 
-// 函数: void InitializeSystemStringProcessorQ(void)
+// 函数: void InitializeSystemStringProcessorQueued(void)
 /**
  * @brief 初始化系统字符串处理器Q
  * 
@@ -11669,7 +11670,7 @@ void InitializeSystemStringProcessorP(void)
  * @return 无返回值
  * @note 该函数在系统初始化阶段调用，确保字符串处理系统的正常运行
  */
-void InitializeSystemStringProcessorQ(void)
+void InitializeSystemStringProcessorQueued(void)
 
 {
   char SystemNodeActiveFlag;
@@ -41168,8 +41169,8 @@ ulong long ProcessSystemResourceDataExtended(long long SystemResourceManager,lon
       if (charOutput == '\0') goto StringProcessingComplete;
       SystemLocalContextPointer = *(long long **)(SystemResourceManager + 0x60);
       SystemOperationCounter = *SystemLocalContextPointer - 1U & SystemLocalContextPointer[1] + 1U;
-      ResourceHashEntryPointer0 = *(ulong long **)(SystemLocalContextPointer[3] + SystemOperationCounter * 8);
-      *ResourceHashEntryPointer0 = SystemOperationFlags;
+      ResourceHashEntryPointer = *(ulong long **)(SystemLocalContextPointer[3] + SystemOperationCounter * 8);
+      *ResourceHashEntryPointer = SystemOperationFlags;
       SystemLocalContextPointer[1] = SystemOperationCounter;
     }
     SystemThreadFlags = *(long long *)(SystemResourceManager + 0x50);
