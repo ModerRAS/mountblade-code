@@ -1296,6 +1296,74 @@
 // 功能：同步数据并执行验证操作
 #define SynchronizeAndValidateData FUN_1808997b0
 
+// 原始函数名：Unwind_1809078b0 - 异常处理函数B0
+// 功能：处理异常链表并调用清理函数
+#define ProcessExceptionChainAndCleanup Unwind_1809078b0
+
+// 原始函数名：Unwind_1809078c0 - 异常处理函数B1
+// 功能：调用异常处理函数并传递参数
+#define InvokeExceptionHandlerWithParams Unwind_1809078c0
+
+// 原始函数名：Unwind_1809078d0 - 异常处理函数B2
+// 功能：调用异常处理函数并传递参数
+#define InvokeExceptionHandlerWithParamsB Unwind_1809078d0
+
+// 原始函数名：Unwind_1809078e0 - 异常处理函数B3
+// 功能：调用异常处理函数并传递参数
+#define InvokeExceptionHandlerWithParamsC Unwind_1809078e0
+
+// 原始函数名：Unwind_1809078f0 - 异常处理函数B4
+// 功能：调用异常处理函数并传递参数
+#define InvokeExceptionHandlerWithParamsD Unwind_1809078f0
+
+// 原始函数名：Unwind_180907900 - 异常处理函数B5
+// 功能：调用异常处理函数并传递参数
+#define InvokeExceptionHandlerWithParamsE Unwind_180907900
+
+// 原始函数名：Unwind_180907910 - 异常处理函数B6
+// 功能：调用异常处理函数并传递参数
+#define InvokeExceptionHandlerWithParamsF Unwind_180907910
+
+// 原始函数名：Unwind_180902100 - 异常清理函数C0
+// 功能：清理异常处理资源
+#define CleanupExceptionResourcesC0 Unwind_180902100
+
+// 原始函数名：Unwind_180902110 - 异常处理函数C1
+// 功能：处理异常参数并调用清理函数
+#define ProcessExceptionParamsAndCleanup Unwind_180902110
+
+// 原始函数名：Unwind_180902120 - 异常处理函数C2
+// 功能：处理异常参数
+#define ProcessExceptionParams Unwind_180902120
+
+// 原始函数名：Unwind_180902130 - 异常处理函数C3
+// 功能：处理异常参数并调用清理函数
+#define ProcessExceptionParamsAndCleanupB Unwind_180902130
+
+// 原始函数名：Unwind_180902140 - 异常处理函数C4
+// 功能：处理异常参数
+#define ProcessExceptionParamsB Unwind_180902140
+
+// 原始函数名：Unwind_180902150 - 异常处理函数C5
+// 功能：处理异常参数
+#define ProcessExceptionParamsC Unwind_180902150
+
+// 原始函数名：Unwind_180902160 - 异常处理函数C6
+// 功能：处理异常参数
+#define ProcessExceptionParamsD Unwind_180902160
+
+// 原始函数名：Unwind_180902170 - 异常处理函数C7
+// 功能：处理异常参数
+#define ProcessExceptionParamsE Unwind_180902170
+
+// 原始函数名：Unwind_180902180 - 异常处理函数C8
+// 功能：处理异常参数
+#define ProcessExceptionParamsF Unwind_180902180
+
+// 原始函数名：Unwind_180902190 - 异常处理函数C9
+// 功能：处理异常参数
+#define ProcessExceptionParamsG Unwind_180902190
+
 // 原始函数名：Unwind_180907f70 - 句柄清理函数
 // 功能：安全关闭和清理系统句柄
 #define CleanupSystemHandle Unwind_180907f70
@@ -2079,12 +2147,12 @@ undefined UtilityEventData3;
 // 函数: undefined UtilityHandleEvent2;
 undefined UtilityHandleEvent2;
 // 工具系统事件处理相关变量
-undefined UtilityEventVar1;
+undefined UtilityEventStatus;
 undefined UtilitySystemPointer2;
-undefined UtilityEventVar2;
-undefined UtilityEventVar3;
-undefined UtilityEventVar4;
-undefined UtilityEventVar5;
+undefined UtilityEventContext;
+undefined UtilityEventData;
+undefined UtilityEventResult;
+undefined UtilityEventError;
 
 // 函数: undefined UtilityProcessMemoryBlock;
 // 
@@ -2409,11 +2477,11 @@ undefined UtilityFreePoolConfig12;
 undefined UtilityFreePoolPtr10;
 undefined UtilityFreePoolConfig13;
 // 工具系统处理数据
-undefined UtilityProcessDataVar1;
-undefined UtilityProcessDataVar2;
-undefined UtilityProcessDataVar3;
-undefined UtilityProcessDataVar4;
-undefined UtilityProcessDataPtr1;
+undefined UtilityProcessData1Input;
+undefined UtilityProcessData1Output;
+undefined UtilityProcessData1Config;
+undefined UtilityProcessData1Status;
+undefined UtilityProcessData1Pointer;
 
 // 函数: undefined UtilityProcessData1(void)
 // 
@@ -2427,10 +2495,10 @@ undefined UtilityProcessDataPtr1;
 //   undefined - 处理结果状态
 undefined UtilityProcessData1;
 // 工具系统处理数据1相关变量
-undefined UtilityProcessData1Var1;
-undefined UtilityProcessData1Var2;
-undefined UtilityProcessData1Var3;
-undefined UtilityProcessData1Var4;
+undefined UtilityProcessData1Status;
+undefined UtilityProcessData1Context;
+undefined UtilityProcessData1Buffer;
+undefined UtilityProcessData1Result;
 undefined UtilitySystemData1;
 
 // 函数: undefined UtilityProcessData2(void)
@@ -2457,12 +2525,12 @@ undefined UtilityProcessData2;
 //   undefined - 处理结果状态
 undefined UtilityProcessData3;
 // 工具系统处理数据变量
-undefined UtilityProcessDataVar5;
-undefined UtilityProcessDataVar6;
-undefined UtilityProcessDataVar7;
-undefined UtilityProcessDataVar8;
-undefined UtilityProcessDataPtr2;
-undefined UtilityProcessDataVar9;
+undefined UtilityProcessData2Status;
+undefined UtilityProcessData2Context;
+undefined UtilityProcessData2Buffer;
+undefined UtilityProcessData2Result;
+undefined UtilityProcessData2Pointer;
+undefined UtilityProcessData2Error;
 
 // 函数: undefined UtilityCreateMemoryHeap;
 // 
@@ -2798,10 +2866,10 @@ undefined UtilitySyncData4;
 //   undefined - 编码结果状态
 undefined UtilityEncodeData;
 undefined UtilityEncodingBuffer;
-undefined UtilityEncodeParam1;
-undefined UtilityEncodeParam2;
-undefined UtilityEncodeParam3;
-undefined UtilityEncodeParam4;
+undefined UtilityEncodeInputData;
+undefined UtilityEncodeOutputBuffer;
+undefined UtilityEncodeKey;
+undefined UtilityEncodeResult;
 
 // 函数: undefined UtilityDecodeData;
 // 
@@ -2815,10 +2883,10 @@ undefined UtilityEncodeParam4;
 //   undefined - 解码结果状态
 undefined UtilityDecodeData;
 undefined UtilityDecodeBuffer;
-undefined UtilityDecodeParam1;
-undefined UtilityDecodeParam2;
-undefined UtilityDecodeParam3;
-undefined UtilityDecodeParam4;
+undefined UtilityDecodeInputData;
+undefined UtilityDecodeOutputBuffer;
+undefined UtilityDecodeKey;
+undefined UtilityDecodeResult;
 undefined UtilityDecodeStatus;
 
 // 函数: undefined UtilitySerializeData;
@@ -5306,10 +5374,10 @@ void ReturnEmptyFunction(void)
 undefined8 ValidateMemoryAccess(longlong param_1)
 
 {
-  undefined8 uVar1;
-  longlong lStackX_8;
+  undefined8 ValidationStatus;
+  longlong MemoryAccessPointer;
   
-  uVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
+  ValidationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&MemoryAccessPointer);
   if ((int)uVar1 != 0) {
     return uVar1;
   }
@@ -50004,64 +50072,125 @@ void Unwind_1809078a0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809078b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 处理异常链表并调用清理函数
+ * 
+ * 该函数负责遍历异常处理链表，对每个异常处理函数调用清理操作。
+ * 这是一个异常处理系统中的核心函数，确保所有异常处理资源都被正确清理。
+ * 
+ * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
+ * @param handlerTable 处理器表指针，包含异常处理函数的地址信息
+ * @param cleanupParam1 清理参数1，用于传递给异常处理函数
+ * @param cleanupParam2 清理参数2，用于传递给异常处理函数
+ * 
+ * @note 该函数会遍历异常处理链表并调用每个处理器的清理函数
+ * @warning 如果处理器表指针为空，函数会直接返回
+ */
+void ProcessExceptionChainAndCleanup(undefined8 exceptionContext, longlong handlerTable, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
-  undefined8 *puVar1;
-  longlong *plVar2;
-  undefined8 *puVar3;
-  undefined8 uVar4;
+  undefined8 *handlerPointer;
+  longlong *handlerTablePointer;
+  undefined8 *currentHandler;
+  undefined8 cleanupFlags;
   
-  plVar2 = *(longlong **)(param_2 + 0x28);
-  uVar4 = 0xfffffffffffffffe;
-  puVar1 = (undefined8 *)plVar2[1];
-  for (puVar3 = (undefined8 *)*plVar2; puVar3 != puVar1; puVar3 = puVar3 + 4) {
-    (**(code **)*puVar3)(puVar3,0,param_3,param_4,uVar4);
+  handlerTablePointer = *(longlong **)(handlerTable + 0x28);
+  cleanupFlags = 0xfffffffffffffffe;
+  handlerPointer = (undefined8 *)handlerTablePointer[1];
+  for (currentHandler = (undefined8 *)*handlerTablePointer; currentHandler != handlerPointer; currentHandler = currentHandler + 4) {
+    (**(code **)*currentHandler)(currentHandler, 0, cleanupParam1, cleanupParam2, cleanupFlags);
   }
-  if (*plVar2 == 0) {
+  if (*handlerTablePointer == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
+  // WARNING: Subroutine does not return
   FUN_18064e900();
 }
 
 
 
-void Unwind_1809078c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 调用异常处理函数并传递参数
+ * 
+ * 该函数是一个异常处理包装函数，负责调用底层的异常处理函数
+ * 并传递必要的参数。它简化了异常处理函数的调用过程。
+ * 
+ * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
+ * @param handlerData 处理器数据指针，包含处理器相关的数据信息
+ * @param cleanupParam1 清理参数1，用于传递给异常处理函数
+ * @param cleanupParam2 清理参数2，用于传递给异常处理函数
+ * 
+ * @note 该函数会调用底层的异常处理函数FUN_18005d260
+ */
+void InvokeExceptionHandlerWithParams(undefined8 exceptionContext, longlong handlerData, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(*(longlong *)(handlerData + 0x28), *(undefined8 *)(*(longlong *)(handlerData + 0x28) + 0x10),
+                cleanupParam1, cleanupParam2, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809078d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 调用异常处理函数并传递参数
+ * 
+ * 该函数是一个异常处理包装函数，负责调用底层的异常处理函数
+ * 并传递必要的参数。功能与InvokeExceptionHandlerWithParams相同。
+ * 
+ * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
+ * @param handlerData 处理器数据指针，包含处理器相关的数据信息
+ * @param cleanupParam1 清理参数1，用于传递给异常处理函数
+ * @param cleanupParam2 清理参数2，用于传递给异常处理函数
+ * 
+ * @note 该函数会调用底层的异常处理函数FUN_18005d260
+ */
+void InvokeExceptionHandlerWithParamsB(undefined8 exceptionContext, longlong handlerData, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
-  FUN_18005d260(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_18005d260(*(longlong *)(handlerData + 0x28), *(undefined8 *)(*(longlong *)(handlerData + 0x28) + 0x10),
+                cleanupParam1, cleanupParam2, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809078e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 调用异常处理函数并传递参数
+ * 
+ * 该函数是一个异常处理包装函数，负责调用底层的异常处理函数
+ * 并传递必要的参数。使用不同的底层函数FUN_18008d810。
+ * 
+ * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
+ * @param handlerData 处理器数据指针，包含处理器相关的数据信息
+ * @param cleanupParam1 清理参数1，用于传递给异常处理函数
+ * @param cleanupParam2 清理参数2，用于传递给异常处理函数
+ * 
+ * @note 该函数会调用底层的异常处理函数FUN_18008d810
+ */
+void InvokeExceptionHandlerWithParamsC(undefined8 exceptionContext, longlong handlerData, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
-  FUN_18008d810(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_18008d810(*(longlong *)(handlerData + 0x28), *(undefined8 *)(*(longlong *)(handlerData + 0x28) + 0x10),
+                cleanupParam1, cleanupParam2, 0xfffffffffffffffe);
   return;
 }
 
 
 
-void Unwind_1809078f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
-
+/**
+ * @brief 调用异常处理函数并传递参数
+ * 
+ * 该函数是一个异常处理包装函数，负责调用底层的异常处理函数
+ * 并传递必要的参数。使用底层函数FUN_18008d810。
+ * 
+ * @param exceptionContext 异常上下文指针，包含异常处理的相关信息
+ * @param handlerData 处理器数据指针，包含处理器相关的数据信息
+ * @param cleanupParam1 清理参数1，用于传递给异常处理函数
+ * @param cleanupParam2 清理参数2，用于传递给异常处理函数
+ * 
+ * @note 该函数会调用底层的异常处理函数FUN_18008d810
+ */
+void InvokeExceptionHandlerWithParamsD(undefined8 exceptionContext, longlong handlerData, undefined8 cleanupParam1, undefined8 cleanupParam2)
 {
-  FUN_18008d810(*(longlong *)(param_2 + 0x28),*(undefined8 *)(*(longlong *)(param_2 + 0x28) + 0x10),
-                param_3,param_4,0xfffffffffffffffe);
+  FUN_18008d810(*(longlong *)(handlerData + 0x28), *(undefined8 *)(*(longlong *)(handlerData + 0x28) + 0x10),
+                cleanupParam1, cleanupParam2, 0xfffffffffffffffe);
   return;
 }
 
@@ -87122,7 +87251,7 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ConfigureSystemParameterDK0 FUN_180895070
 
 // 原始函数名：FUN_180894ef0 - 系统组件初始化函数DL0
-// 功能：初始化系统组件DL0，设置组件状态
+// 功能：初始化系统组件DL0，设置组件状态，验证数据完整性
 #define InitializeSystemComponentDL0 FUN_180894ef0
 
 // 原始函数名：FUN_180741e10 - 系统资源分配函数DM0
