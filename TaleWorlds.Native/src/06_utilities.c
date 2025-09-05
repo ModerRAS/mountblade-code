@@ -45547,7 +45547,7 @@ void Unwind_180904fe0(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x68) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceCounter = ResourceCounter + -1;
     UNLOCK();
   }
   return;
@@ -45580,7 +45580,7 @@ void Unwind_180905000(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x80) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceCounter = ResourceCounter + -1;
     UNLOCK();
   }
   return;
@@ -45782,7 +45782,7 @@ void Unwind_1809050d0(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0xf0) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceCounter = ResourceCounter + -1;
     UNLOCK();
   }
   return;
@@ -47700,7 +47700,7 @@ void Unwind_1809058f0(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x148) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceCounter = ResourceCounter + -1;
     UNLOCK();
   }
   return;
@@ -52000,7 +52000,7 @@ void ResetSystemEventState(void)
   byte shiftBits;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49158 = 0;
+  ExceptionStatusFlagA2 = 0;
   LeaveCriticalSection(0x180c82210);
   if (_DAT_180c82240 != 0) {
     SetEvent();
@@ -52029,7 +52029,7 @@ void ResetSystemEventState(void)
 void SetDefaultExceptionHandlerB(void)
 
 {
-  _DAT_180d49160 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA0 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -61172,7 +61172,7 @@ void Unwind_180909540(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x268) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceCounter = ResourceCounter + -1;
     UNLOCK();
   }
   return;
@@ -61225,7 +61225,7 @@ void Unwind_180909570(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x2e0) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceCounter = ResourceCounter + -1;
     UNLOCK();
   }
   return;
@@ -61258,7 +61258,7 @@ void Unwind_180909590(undefined8 param_1,longlong param_2)
     fclose();
     *(undefined8 *)(param_2 + 0x2c8) = 0;
     LOCK();
-    _DAT_180c8ed60 = _DAT_180c8ed60 + -1;
+    ResourceCounter = ResourceCounter + -1;
     UNLOCK();
   }
   return;
@@ -90102,7 +90102,7 @@ void DestroyMutex(void)
 void ResetSystemDataPointer(void)
 
 {
-  _DAT_180d49160 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA0 = &DefaultExceptionHandlerB;
   return;
 }
 
