@@ -50006,6 +50006,16 @@ void Unwind_180906060(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 异常清理与互斥体销毁函数A
+ * 
+ * 该函数用于清理异常状态并销毁相关的互斥体资源
+ * 主要用于系统异常处理后的资源清理工作
+ * 
+ * @param exceptionHandlerContext 异常处理上下文句柄
+ * @param systemContext 系统上下文指针
+ * @return 无返回值
+ */
 void ExceptionCleanupWithMutexDestructionA(undefined8 exceptionHandlerContext,longlong systemContext)
 
 {
