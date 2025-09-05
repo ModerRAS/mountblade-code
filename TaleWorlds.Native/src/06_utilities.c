@@ -385,6 +385,19 @@
 // 功能：存储异常处理的上下文指针信息
 #define ExceptionContextPtr _DAT_180c8a9b0
 
+// FUN_1809414xx函数语义化宏定义
+// 原始函数名：FUN_180941445 - 数据结构初始化函数A0
+// 功能：初始化数据结构并设置指针，包含验证逻辑
+#define InitializeDataStructureA0 FUN_180941445
+
+// 原始函数名：FUN_180941486 - 条件执行函数A0
+// 功能：根据条件执行特定的函数调用
+#define ConditionalExecuteFunctionA0 FUN_180941486
+
+// 原始函数名：FUN_1809414b5 - 函数指针调用函数A0
+// 功能：通过函数指针调用指定的函数
+#define InvokeFunctionPointerA0 FUN_1809414b5
+
 // 空操作函数语义化宏定义
 // 原始函数名：FUN_18089107f - 空操作函数D
 // 功能：空函数，用作占位符或桩函数
@@ -410,6 +423,44 @@
 // 原始函数名：FUN_180891185 - 错误处理函数G
 // 功能：调用系统错误处理函数
 #define UtilityErrorHandlerG FUN_180891185
+
+// FUN_1808函数语义化宏定义 - 工具系统函数
+
+// 原始函数名：FUN_1808fc050 - 执行安全检查
+// 功能：执行栈安全检查和数据验证
+#define ExecuteSecurityCheck FUN_1808fc050
+
+// 原始函数名：FUN_180862e00 - 释放资源
+// 功能：释放系统资源和清理句柄
+#define ReleaseResource FUN_180862e00
+
+// 原始函数名：FUN_18085dbf0 - 清理内存
+// 功能：清理内存块和重置内存状态
+#define CleanupMemory FUN_18085dbf0
+
+// 原始函数名：FUN_1808605e0 - 处理工具操作
+// 功能：处理系统工具操作
+#define ProcessUtilityOperation FUN_1808605e0
+
+// 原始函数名：FUN_1808bf350 - 执行核心功能
+// 功能：执行系统核心功能
+#define ExecuteCoreFunction FUN_1808bf350
+
+// 原始函数名：FUN_180853000 - 处理输入数据
+// 功能：处理用户输入数据
+#define ProcessInputData FUN_180853000
+
+// 原始函数名：FUN_180851490 - 执行游戏命令
+// 功能：执行游戏内部命令
+#define ExecuteGameCommand FUN_180851490
+
+// 原始函数名：FUN_1808c17c0 - 验证游戏输入
+// 功能：验证游戏输入有效性
+#define ValidateGameInput FUN_1808c17c0
+
+// 原始函数名：FUN_18088fb40 - 处理游戏消息
+// 功能：处理游戏内部消息
+#define ProcessGameMessage FUN_18088fb40
 
 // 函数: void InitializeUtilityModule(void)
 // 
@@ -1817,8 +1868,17 @@ undefined DAT_180bfa1e0;
 undefined DAT_180bfa1e8;
 undefined DAT_180a22fd0;
 
-// 函数: undefined FUN_180942460;
-undefined FUN_180942460;
+// 函数: undefined UtilityProcessDataA0;
+// 
+// 处理工具数据A0
+// 执行A0类工具数据的处理操作
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   undefined - 数据处理结果
+undefined UtilityProcessDataA0;
 undefined DAT_180bfa230;
 undefined DAT_180bfa238;
 undefined DAT_180bfa240;
@@ -3266,30 +3326,30 @@ void UtilityProcessObjectData(longlong param_1,longlong param_2)
     iVar4 = 0;
     iStack_240 = 0;
     uStack_23c = 0xffffffc0;
-    iVar2 = FUN_1808bf350(*(undefined8 *)(param_2 + 0x90),*(longlong *)(alStack_258[0] + 8),
+    iVar2 = ExecuteCoreFunction(*(undefined8 *)(param_2 + 0x90),*(longlong *)(alStack_258[0] + 8),
                           &puStack_248);
     if (iVar2 == 0) {
       if (0 < iStack_240) {
         lVar3 = 0;
         do {
           uVar1 = *(undefined8 *)(puStack_248 + lVar3);
-          iVar2 = FUN_1808605e0(uVar1);
+          iVar2 = ProcessUtilityOperation(uVar1);
           if (iVar2 != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(uVar1,1);
+            ReleaseResource(uVar1,1);
           }
           iVar4 = iVar4 + 1;
           lVar3 = lVar3 + 8;
         } while (iVar4 < iStack_240);
       }
-      FUN_18085dbf0(&puStack_248);
+      CleanupMemory(&puStack_248);
     }
     else {
-      FUN_18085dbf0(&puStack_248);
+      CleanupMemory(&puStack_248);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_278);
+  ExecuteSecurityCheck(uStack_38 ^ (ulonglong)auStack_278);
 }
 
 
@@ -3324,30 +3384,30 @@ void ProcessResourceCleanup(void)
     iVar4 = 0;
     iStack0000000000000038 = 0;
     uStack000000000000003c = 0xffffffc0;
-    iVar2 = FUN_1808bf350(*(undefined8 *)(unaff_RBX + 0x90),*(longlong *)(in_RAX + 8),
+    iVar2 = ExecuteCoreFunction(*(undefined8 *)(unaff_RBX + 0x90),*(longlong *)(in_RAX + 8),
                           &stack0x00000030);
     if (iVar2 == 0) {
       if (0 < iStack0000000000000038) {
         lVar3 = 0;
         do {
           uVar1 = *(undefined8 *)(in_stack_00000030 + lVar3);
-          iVar2 = FUN_1808605e0(uVar1);
+          iVar2 = ProcessUtilityOperation(uVar1);
           if (iVar2 != 2) {
                     // WARNING: Subroutine does not return
-            FUN_180862e00(uVar1,1);
+            ReleaseResource(uVar1,1);
           }
           iVar4 = iVar4 + 1;
           lVar3 = lVar3 + 8;
         } while (iVar4 < iStack0000000000000038);
       }
-      FUN_18085dbf0(&stack0x00000030);
+      CleanupMemory(&stack0x00000030);
     }
     else {
-      FUN_18085dbf0(&stack0x00000030);
+      CleanupMemory(&stack0x00000030);
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -3369,7 +3429,7 @@ void ExecuteSystemShutdown(void)
   ulonglong in_stack_00000240;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -3393,11 +3453,11 @@ void ValidateSystemState(void)
   
   if ((*(uint *)(unaff_RBX + 0x2d8) >> 7 & 1) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00();
+    ReleaseResource();
   }
-  FUN_18085dbf0(&stack0x00000030);
+  CleanupMemory(&stack0x00000030);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -3752,7 +3812,7 @@ undefined8 FUN_180890590(longlong param_1)
     }
     if (*(longlong *)(lStackX_8 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-      FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+      ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
     }
     uVar1 = 0;
   }
@@ -3775,7 +3835,7 @@ undefined8 FUN_1808905ae(void)
   }
   if (*(longlong *)(lVar1 + 0x10) != 0) {
                     // WARNING: Subroutine does not return
-    FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+    ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
   }
   return 0;
 }
@@ -3787,7 +3847,7 @@ undefined8 FUN_18089062a(char param_1)
 {
   if (param_1 != '\0') {
                     // WARNING: Subroutine does not return
-    FUN_180862e00();
+    ReleaseResource();
   }
   return 0;
 }
@@ -3826,7 +3886,7 @@ undefined8 FUN_180890650(longlong param_1)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
 }
 
 
@@ -3847,7 +3907,7 @@ undefined4 FUN_180890673(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
 }
 
 
@@ -3859,7 +3919,7 @@ void TriggerSystemShutdown(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -3897,7 +3957,7 @@ undefined8 ValidateMemoryAccess(longlong param_1)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
 }
 
 
@@ -3920,7 +3980,7 @@ undefined4 GetSystemStatus(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
 }
 
 
@@ -3932,7 +3992,7 @@ void EmergencyShutdown(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -4377,7 +4437,7 @@ undefined8 ValidateMemoryStructureA0(longlong param_1)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
 }
 
 
@@ -4404,7 +4464,7 @@ undefined4 CheckMemoryStructureA0(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
 }
 
 
@@ -4424,7 +4484,7 @@ void TerminateProcessWithError(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -4468,7 +4528,7 @@ undefined8 FUN_180890b70(longlong param_1)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
 }
 
 
@@ -4489,7 +4549,7 @@ undefined4 FUN_180890b8f(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
 }
 
 
@@ -4509,7 +4569,7 @@ void TerminateProcessWithErrorB(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -4562,7 +4622,7 @@ undefined8 ValidateAndTerminateProcess(longlong contextHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(adjustedPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -4591,7 +4651,7 @@ undefined4 ValidateRegisterAndTerminate(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(adjustedPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -4611,7 +4671,7 @@ void TerminateProcessWithErrorC(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -4665,7 +4725,7 @@ undefined8 ValidateContextAndTerminate(longlong contextHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(stackBuffer + 0x10),1);
+  ReleaseResource(*(longlong *)(stackBuffer + 0x10),1);
 }
 
 
@@ -4696,7 +4756,7 @@ undefined4 ValidateRegisterAndTerminateB(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(adjustedPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -4716,7 +4776,7 @@ void TerminateProcessWithErrorD(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -4760,7 +4820,7 @@ undefined8 FUN_180890e10(longlong param_1)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
 }
 
 
@@ -4781,7 +4841,7 @@ undefined4 FUN_180890e33(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lVar1 + 0x10),1);
+  ReleaseResource(*(longlong *)(lVar1 + 0x10),1);
 }
 
 
@@ -4796,7 +4856,7 @@ void TerminateSystem(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -4840,7 +4900,7 @@ undefined8 ValidateResourceAndTerminate(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(stackPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
 }
 
 
@@ -4866,7 +4926,7 @@ undefined4 ValidateRegisterResource(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(adjustedPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(adjustedPointer + 0x10),1);
 }
 
 
@@ -4880,7 +4940,7 @@ void TerminateSystemB(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -4921,7 +4981,7 @@ undefined8 ValidateResourceAndTerminateB(longlong resourceHandle)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(stackPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
 }
 
 
@@ -4938,7 +4998,7 @@ undefined4 FUN_180890fae(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1);
+  ReleaseResource(*(longlong *)(in_stack_00000040 + 0x10),1);
 }
 
 
@@ -4958,7 +5018,7 @@ void UtilityErrorHandlerD(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -4978,7 +5038,7 @@ void UtilityErrorHandlerE(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -5019,7 +5079,7 @@ undefined8 FUN_180891090(longlong param_1)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(lStackX_8 + 0x10),1);
+  ReleaseResource(*(longlong *)(lStackX_8 + 0x10),1);
 }
 
 
@@ -5036,29 +5096,47 @@ undefined4 FUN_1808910b3(void)
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  FUN_180862e00(*(longlong *)(in_stack_00000040 + 0x10),1);
+  ReleaseResource(*(longlong *)(in_stack_00000040 + 0x10),1);
 }
 
 
 
 
-// 函数: void FUN_1808910e9(void)
-void FUN_1808910e9(void)
+// 函数: void UtilityErrorHandlerF(void)
+// 
+// 调用系统错误处理函数
+// 处理工具系统的错误情况
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void UtilityErrorHandlerF(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
 
 
-// 函数: void FUN_180891185(void)
-void FUN_180891185(void)
+// 函数: void UtilityErrorHandlerG(void)
+// 
+// 调用系统错误处理函数
+// 处理工具系统的错误情况
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void UtilityErrorHandlerG(void)
 
 {
                     // WARNING: Subroutine does not return
-  FUN_180862e00();
+  ReleaseResource();
 }
 
 
@@ -6528,7 +6606,7 @@ void FUN_180892410(longlong param_1,longlong param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+  ExecuteSecurityCheck(uStack_18 ^ (ulonglong)auStack_68);
 }
 
 
@@ -6551,7 +6629,7 @@ void FUN_18089246a(longlong *param_1,longlong param_2)
   plVar2 = (longlong *)(lVar1 + 0x58);
   if (((longlong *)*plVar2 == plVar2) && (*(longlong **)(lVar1 + 0x60) == plVar2)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+    ExecuteSecurityCheck(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(undefined8 *)(unaff_RDI + 0x98));
@@ -6567,7 +6645,7 @@ void FUN_1808924c8(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -7372,7 +7450,7 @@ void FUN_180892e50(longlong param_1,undefined8 param_2)
     FUN_1808fd200(lVar2,uVar3 & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)alStack_58);
+  ExecuteSecurityCheck(uStack_30 ^ (ulonglong)alStack_58);
 }
 
 
@@ -8717,7 +8795,7 @@ void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_c8);
+  ExecuteSecurityCheck(uStack_18 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -8741,7 +8819,7 @@ void FUN_18089494e(void)
   ulonglong in_stack_000000b0;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8802,7 +8880,7 @@ void FUN_1808949c0(longlong param_1,undefined4 *param_2,longlong *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_b8);
+  ExecuteSecurityCheck(uStack_10 ^ (ulonglong)auStack_b8);
 }
 
 
@@ -8834,7 +8912,7 @@ void FUN_180894a07(ulonglong param_1)
   *unaff_RSI = lVar2;
 LAB_180894aca:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8847,7 +8925,7 @@ void FUN_180894ad2(void)
   ulonglong in_stack_000000a8;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8909,7 +8987,7 @@ void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_c8);
+  ExecuteSecurityCheck(uStack_18 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -8941,7 +9019,7 @@ void FUN_180894bf5(void)
     *unaff_RDI = lStack0000000000000080;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -9582,7 +9660,7 @@ LAB_18089555d:
   }
 FUN_180895b89:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_738);
+  ExecuteSecurityCheck(uStack_48 ^ (ulonglong)auStack_738);
 }
 
 
@@ -9699,7 +9777,7 @@ LAB_18089555d:
   *unaff_R13 = 0;
 LAB_180895b69:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -9712,7 +9790,7 @@ void FUN_180895b89(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11205,7 +11283,7 @@ LAB_180896ce3:
   }
 FUN_1808974f4:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_328);
+  ExecuteSecurityCheck(uStack_58 ^ (ulonglong)auStack_328);
 }
 
 
@@ -11499,7 +11577,7 @@ void FUN_180896e11(void)
   }
 LAB_1808974ec:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11512,7 +11590,7 @@ void FUN_1808974f4(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11542,7 +11620,7 @@ void FUN_180897520(longlong *param_1,longlong *param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_248);
+  ExecuteSecurityCheck(uStack_28 ^ (ulonglong)auStack_248);
 }
 
 
@@ -11567,7 +11645,7 @@ void FUN_180897560(void)
     *(undefined1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11586,7 +11664,7 @@ void FUN_1808975a6(void)
     *(undefined1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -11802,7 +11880,7 @@ void FUN_1808975e0(longlong param_1,longlong param_2)
                 iVar6 = FUN_180897520(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
-              iVar6 = FUN_1808605e0(param_2);
+              iVar6 = ProcessUtilityOperation(param_2);
               if (iVar6 != 2) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983ae8;
@@ -11810,7 +11888,7 @@ void FUN_1808975e0(longlong param_1,longlong param_2)
                 iVar6 = FUN_180897520(param_1,&puStack_1c0);
                 if (iVar6 != 0) goto FUN_180897b16;
               }
-              iVar6 = FUN_1808605e0(param_2);
+              iVar6 = ProcessUtilityOperation(param_2);
               if (iVar6 == 4) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983b68;
@@ -11833,7 +11911,7 @@ void FUN_1808975e0(longlong param_1,longlong param_2)
   }
 FUN_180897b16:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1e8);
+  ExecuteSecurityCheck(uStack_58 ^ (ulonglong)auStack_1e8);
 }
 
 
@@ -12063,7 +12141,7 @@ void FUN_180897644(void)
               iVar13 = FUN_180897520(uVar24,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
-            iVar13 = FUN_1808605e0(unaff_R14);
+            iVar13 = ProcessUtilityOperation(unaff_R14);
             if (iVar13 != 2) {
               in_stack_00000028 = &UNK_180983ae8;
               in_stack_00000038 = uStackX_20;
@@ -12071,7 +12149,7 @@ void FUN_180897644(void)
               iVar13 = FUN_180897520(extraout_XMM0_Da_06,&stack0x00000028);
               if (iVar13 != 0) goto FUN_180897b0e;
             }
-            iVar13 = FUN_1808605e0(unaff_R14);
+            iVar13 = ProcessUtilityOperation(unaff_R14);
             uVar24 = extraout_XMM0_Da_07;
             if (iVar13 == 4) {
               in_stack_00000028 = &UNK_180983b68;
@@ -12095,7 +12173,7 @@ void FUN_180897644(void)
   }
 FUN_180897b0e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12309,7 +12387,7 @@ void FUN_1808976b0(void)
           iVar13 = FUN_180897520(uVar23,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
-        iVar13 = FUN_1808605e0(unaff_R14);
+        iVar13 = ProcessUtilityOperation(unaff_R14);
         if (iVar13 != 2) {
           in_stack_00000028 = &UNK_180983ae8;
           in_stack_00000038 = uStackX_20;
@@ -12317,7 +12395,7 @@ void FUN_1808976b0(void)
           iVar13 = FUN_180897520(extraout_XMM0_Da_05,&stack0x00000028);
           if (iVar13 != 0) goto FUN_180897afe;
         }
-        iVar13 = FUN_1808605e0(unaff_R14);
+        iVar13 = ProcessUtilityOperation(unaff_R14);
         uVar23 = extraout_XMM0_Da_06;
         if (iVar13 == 4) {
           in_stack_00000028 = &UNK_180983b68;
@@ -12339,7 +12417,7 @@ void FUN_1808976b0(void)
   }
 FUN_180897afe:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12443,7 +12521,7 @@ void FUN_180897859(float param_1)
       iVar2 = FUN_180897520(uVar6,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
-    iVar2 = FUN_1808605e0();
+    iVar2 = ProcessUtilityOperation();
     if (iVar2 != 2) {
       in_stack_00000028 = &UNK_180983ae8;
       in_stack_00000038 = uStackX_20;
@@ -12451,7 +12529,7 @@ void FUN_180897859(float param_1)
       iVar2 = FUN_180897520(extraout_XMM0_Da_02,&stack0x00000028);
       if (iVar2 != 0) goto LAB_180897af6;
     }
-    iVar2 = FUN_1808605e0();
+    iVar2 = ProcessUtilityOperation();
     uVar6 = extraout_XMM0_Da_03;
     if (iVar2 == 4) {
       in_stack_00000028 = &UNK_180983b68;
@@ -12471,7 +12549,7 @@ void FUN_180897859(float param_1)
   }
 LAB_180897af6:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12484,7 +12562,7 @@ void FUN_180897afe(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12497,7 +12575,7 @@ void FUN_180897b0e(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12510,7 +12588,7 @@ void FUN_180897b16(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -12558,7 +12636,7 @@ void FUN_180897b40(longlong *param_1,longlong param_2,undefined4 param_3)
       if (iVar3 != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_2a8);
+        ExecuteSecurityCheck(uStack_38 ^ (ulonglong)auStack_2a8);
       }
       uStack_24c = *(undefined4 *)(lVar1 + 0x10);
       uStack_248 = *(undefined4 *)(lVar1 + 0x14);
@@ -12622,7 +12700,7 @@ void FUN_180897d20(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
   FUN_18076b930(auStack_418,0x400,param_2,&uStackX_18);
   (**(code **)(*param_1 + 8))(param_1,auStack_418);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_438);
+  ExecuteSecurityCheck(uStack_18 ^ (ulonglong)auStack_438);
 }
 
 
@@ -81342,7 +81420,11 @@ void HandleUtilitySystemRequest(undefined8 param_1,longlong param_2)
 
 
 
-undefined4 FUN_180941445(undefined8 param_1,longlong param_2)
+// 函数: undefined4 InitializeDataStructureA0(undefined8 param_1,longlong param_2)
+// 功能：初始化数据结构并设置指针，包含验证逻辑
+// 参数：param_1-数据值，param_2-目标结构指针
+// 返回值：成功返回0，失败终止程序
+undefined4 InitializeDataStructureA0(undefined8 param_1,longlong param_2)
 
 {
   *(undefined8 *)(param_2 + 0x40) = param_1;
@@ -81359,8 +81441,9 @@ undefined4 FUN_180941445(undefined8 param_1,longlong param_2)
 
 
 
-// 函数: void FUN_180941486(undefined8 param_1,longlong param_2)
-void FUN_180941486(undefined8 param_1,longlong param_2)
+// 函数: void ConditionalExecuteFunctionA0(undefined8 param_1,longlong param_2)
+// 功能：根据条件执行特定的函数调用
+void ConditionalExecuteFunctionA0(undefined8 param_1,longlong param_2)
 
 {
   if (*(char *)(param_2 + 0x20) == '\0') {
