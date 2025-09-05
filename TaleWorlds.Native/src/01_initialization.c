@@ -70,6 +70,7 @@
 #define SystemResourceDenaryOffset           0x80  // 系统资源第十偏移量
 #define SystemResourceUndenaryOffset          0x88  // 系统资源第十一偏移量
 #define SystemResourceDuodenaryOffset         0x90  // 系统资源第十二偏移量
+#define SystemResourceLengthOffset           0x48  // 系统资源长度偏移量
 
 // 系统状态常量
 #define SystemNodeInactiveFlag              3  // 系统节点非活动标志
@@ -2305,7 +2306,7 @@ void InitializeSystemDataTable(void)
   
   SystemDataTablePointer = (long long*)GetSystemRootTable();
   SystemRootPointer = (void**)*SystemDataTablePointer;
-  IsDataTableNodeActive = *(char*)((long long)SystemRootPointer[1] + SYSTEM_NODE_ACTIVE_FLAG_OFFSET);
+  IsDataTableNodeActive = *(char*)((long long)SystemRootPointer[1] + SystemNodeActiveFlagOffset);
   SystemInitializationHandler = 0;
   PreviousSystemNode = SystemRootPointer;
   CurrentSystemNode = (void**)SystemRootPointer[1];
