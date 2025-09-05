@@ -50001,14 +50001,22 @@ void Unwind_180907390(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809073a0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 验证上下文处理函数A0
+ * 
+ * 处理验证上下文的单次调用，从偏移量0x80和0x18处获取上下文
+ * 
+ * @param param_1 未使用的参数
+ * @param param_2 包含验证上下文指针的参数结构
+ */
+void ValidationContextHandlerA0(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
+  longlong *validationContextPtr;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPtr = *(longlong **)(*(longlong *)(param_2 + 0x80) + 0x18);
+  if (validationContextPtr != (longlong *)0x0) {
+    (**(code **)(*validationContextPtr + 0x38))();
   }
   return;
 }
