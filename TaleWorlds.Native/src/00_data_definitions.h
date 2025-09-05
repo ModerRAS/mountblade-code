@@ -229,8 +229,8 @@ void* SystemConfigurationValidationAuditTrails;
 void* SystemConfigurationValidationPerformanceBaseline;
 void* SystemConfigurationValidationServiceLevelAgreements;
 void* SystemConfigurationValidationQualityAssurance;
-void* SystemConfigurationValidationParameter41;
-void* SystemConfigurationValidationParameter42;
+void* SystemConfigurationValidationRedundancyCheck;
+void* SystemConfigurationValidationFailoverMechanism;
 
 // 系统配置数据扩展参数组 - 用于扩展系统配置数据和存储额外配置信息
 // 系统配置扩展数据保留区域 - 用于存储系统配置的扩展数据
@@ -1559,32 +1559,32 @@ int InitializeConfigurationMutex(uint64_t ThreadId,uint64_t SyncPtr,uint64_t Mut
   SystemConfigDataPointerAD = &SystemMemoryPool;
   SystemConfigDataPointerAE = &SystemConfigStringBufferH;
   SystemConfigStringBufferH = 0;
-  SystemConfigDataSizeRho = 0x19;
+  SystemConfigDataSizeEncryption = 0x19;
   strcpy_s(&SystemConfigStringBufferH,64,&SystemConfigStringTemplateN);
   SystemConfigDataPointerAF = &SystemMemoryPool;
   SystemConfigDataPointerAG = &SystemConfigStringBufferI;
   SystemConfigStringBufferI = 0;
-  SystemConfigDataSizeS = 16;
+  SystemConfigDataSizeAuthentication = 16;
   strcpy_s(&SystemConfigStringBufferI,64,&SystemConfigStringTemplateO);
   SystemConfigDataPointerAH = &SystemMemoryPool;
   SystemConfigDataPointerAI = &SystemConfigStringBufferJ;
   SystemConfigStringBufferJ = 0;
-  SystemConfigDataSizeTau = 0x14;
+  SystemConfigDataSizeValidation = 0x14;
   strcpy_s(&SystemConfigStringBufferJ,64,&SystemConfigStringTemplateP);
   SystemConfigDataPointerAJ = &SystemMemoryPool;
   SystemConfigDataPointerAK = &SystemConfigStringBufferK;
   SystemConfigStringBufferK = 0;
-  SystemConfigDataSizeUpsilon = 0xf;
+  SystemConfigDataSizeCompression = 0xf;
   strcpy_s(&SystemConfigStringBufferK,64,&SystemConfigStringTemplateQ);
   SystemConfigDataPointerAL = &SystemMemoryPool;
   SystemConfigDataPointerAM = &SystemConfigStringBufferL;
   SystemConfigStringBufferL = 0;
-  SystemConfigDataSizePhi = 0x16;
+  SystemConfigDataSizeChecksum = 0x16;
   strcpy_s(&SystemConfigStringBufferL,64,&SystemConfigStringTemplateR);
   SystemConfigDataPointerAN = &SystemMemoryPool;
   SystemConfigDataPointerAO = &SystemConfigStringBufferM;
   SystemConfigStringBufferM = 0;
-  SystemConfigDataSizeChi = 0x12;
+  SystemConfigDataSizeSignature = 0x12;
   strcpy_s(&SystemConfigStringBufferM,64,&SystemConfigStringTemplateS);
   SystemConfigDataPointerAP = &SystemMemoryPool;
   SystemConfigDataPointerAQ = &SystemConfigStringBufferN;
@@ -11667,7 +11667,7 @@ longlong SystemBufferCreate(uint64_t bufferId, uint64_t createData, longlong con
     pcVar4 = pcStack_28;
   }
   LoopCounter = ProcessMemoryAllocation(pcVar4,&MemoryAllocationConfigC,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,
-                        (uint32_t *)(SystemTertiaryParameter + 0xc),uVar6);
+                        (uint32_t *)(SystemTertiaryParameter + 0xc),ConsoleWindowHandle);
   if (LoopCounter == 3) {
     *(uint32_t *)(SystemTertiaryParameter + 0xc) = SystemFloatOneValue;
   }
@@ -11793,7 +11793,7 @@ longlong SystemBufferHandle(uint64_t bufferId, uint64_t handleData, longlong con
     ProcessMemoryAllocation(pcVar4,&SystemMemoryAllocationBuffer,SystemTertiaryParameter,SystemTertiaryParameter + 4,SystemTertiaryParameter + 8,SystemTertiaryParameter + 0xc,SystemTertiaryParameter + 0x10
                   ,SystemTertiaryParameter + 0x14,SystemTertiaryParameter + 0x18,SystemTertiaryParameter + 0x1c,SystemTertiaryParameter + 0x20,SystemTertiaryParameter + 0x24,
                   SystemTertiaryParameter + 0x28,SystemTertiaryParameter + 0x2c,SystemTertiaryParameter + 0x30,SystemTertiaryParameter + 0x34,SystemTertiaryParameter + 0x38,
-                  SystemTertiaryParameter + 0x3c,LongCounter,uVar6);
+                  SystemTertiaryParameter + 0x3c,LongCounter,ConsoleWindowHandle);
     pStackCounter3 = &SystemNullPointer;
     if (pcStack_50 != (char *)0x0) {
       CleanupSystemResources();
@@ -12624,7 +12624,7 @@ uint64_t SystemDataInitialize(int initFlags)
       ProcessNetworkOperation(*(uint64_t *)(SystemResultBuffer + 0x170),*(uint32_t *)(SystemResultBuffer + 0x110),0);
       IntegerResult = *(int *)(SystemResultBuffer + 0x1c4);
       UnsignedValue = 0;
-      IntegerCounter = CalculateMemoryOffset(*(uint64_t *)(SystemResultBuffer + 0x170),&stack0x00000050);
+      IntegerCounter = CalculateMemoryOffset(*(uint64_t *)(SystemResultBuffer + 0x170),&MemoryOffsetBuffer);
       if (IntegerCounter == 0) {
         *SystemContextData = 0;
         *(uint32_t *)(*(longlong *)(SystemResultBuffer + 8) + 0x18) = 0;
@@ -12640,7 +12640,7 @@ Label_1807c2a3c:
   while( true ) {
     IntegerCounter = InitializeNetworkSession();
     if ((IntegerCounter == 0) &&
-       (in_stack_00000040._4_4_ + UnsignedValue < *(uint *)(*(longlong *)(SystemResultBuffer + 8) + 0x14))) {
+       (NetworkParameterSize + UnsignedValue < *(uint *)(*(longlong *)(SystemResultBuffer + 8) + 0x14))) {
       if (*SystemContextData <= (uint)unaff_R15) {
         UnsignedSize = *SystemContextData + 1000;
         *SystemContextData = UnsignedSize;
@@ -12654,8 +12654,8 @@ Label_1807c2a3c:
       *(uint *)(*(longlong *)(SystemResultBuffer + 0x1d0) + UnsignedIndex * 4) = UnsignedValue;
       pLoopCounter = (int *)(*(longlong *)(SystemResultBuffer + 8) + 0x18);
       *pLoopCounter = *pLoopCounter + IntegerResult;
-      UnsignedValue = UnsignedValue + 4 + in_stack_00000040._4_4_;
-      IntegerCounter = ProcessNetworkOperation(*(uint64_t *)(SystemResultBuffer + 0x170),in_stack_00000040._4_4_,1);
+      UnsignedValue = UnsignedValue + 4 + NetworkParameterSize;
+      IntegerCounter = ProcessNetworkOperation(*(uint64_t *)(SystemResultBuffer + 0x170),NetworkParameterSize,1);
       if (IntegerCounter != 0) break;
     }
     else {
@@ -12663,11 +12663,11 @@ Label_1807c2a3c:
     }
     if (*(uint *)(*(longlong *)(SystemResultBuffer + 8) + 0x14) <= UnsignedValue) break;
 Label_1807c2d40:
-    IntegerCounter = HandleNetworkConnection(*(uint64_t *)(SystemResultBuffer + 0x170),&stack0x0000004c,1,4,0);
+    IntegerCounter = HandleNetworkConnection(*(uint64_t *)(SystemResultBuffer + 0x170),&NetworkConnectionBuffer,1,4,0);
     if (IntegerCounter != 0) break;
   }
 Label_1807c2e2d:
-  IntegerResult = ProcessNetworkOperation(*(uint64_t *)(SystemResultBuffer + 0x170),in_stack_00000050,0);
+  IntegerResult = ProcessNetworkOperation(*(uint64_t *)(SystemResultBuffer + 0x170),NetworkOperationParameter,0);
   if (IntegerResult == 0) {
     *SystemContextData = (uint)unaff_R15;
     unaff_R15 = 0;
@@ -12688,13 +12688,13 @@ Label_1807c2ec7:
     FinalizeNetworkSession();
   }
 Label_1807c2a43:
-  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 0x4ab0) ^ (ulonglong)&stack0x00000000);
+  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 0x4ab0) ^ (ulonglong)&LocalSecurityStackVariable);
 }
       SystemProcessingStatusFlag = '\x01';
     }
-    if (((in_stack_00000040._4_4_ != unaff_R15D) ||
+    if (((NetworkParameterSize != unaff_R15D) ||
         (IntegerResult = (**(code **)(**(longlong **)(SystemContextPointer + 0x170) + 0x10))
-                           (*(longlong **)(SystemContextPointer + 0x170),(longlong)&stack0x00000040 + 4),
+                           (*(longlong **)(SystemContextPointer + 0x170),(longlong)&ContextDataBuffer + 4),
         IntegerResult == 0)) &&
        (IntegerResult = ProcessNetworkOperation(*(uint64_t *)(SystemContextPointer + 0x170),*(uint32_t *)(SystemContextPointer + 0x110),
                               0), IntegerResult == 0)) {
@@ -12713,7 +12713,7 @@ Label_1807c2a43:
  */
 void SystemSecurityValidationFunction(uint64_t SecurityContext)
 {
-  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 0x218) ^ (ulonglong)&stack0x00000000);
+  SystemSecurityCheck(*(ulonglong *)(SystemStackFrame + 0x218) ^ (ulonglong)&LocalStackVariable);
 }
       SystemMemoryAllocationCounter = 0;
       SystemMemoryAllocationAddress = MemoryAddress;
@@ -13416,8 +13416,8 @@ bool SystemAudioIsInitialized(void)
   longlong SystemRegister12;
   void *pMemoryAddress1;
   bool CharValue2;
-  uint in_stack_00000090;
-  uint in_stack_00000098;
+  uint FileSystemParameter;
+  uint ProcessIdParameter;
   if (SystemContextPointer != 0) {
     LongLoop = -1;
     do {
@@ -13430,12 +13430,12 @@ bool SystemAudioIsInitialized(void)
         pMemoryAddress1 = &SystemCommandBuffer03;
       }
       FileSystemHandle = _wfsopen();
-      if ((1 < FileSystemStatusCounter) && ((uint)SystemRegister12 < in_stack_00000090)) {
+      if ((1 < FileSystemStatusCounter) && ((uint)SystemRegister12 < FileSystemParameter)) {
         uVar6 = GetConsoleWindow();
-        in_stack_00000098 = (uint)SystemRegister12;
-        GetWindowThreadProcessId(uVar6,&stack0x00000098);
+        ProcessIdParameter = (uint)SystemRegister12;
+        GetWindowThreadProcessId(uVar6,&ProcessIdBuffer);
         StringProcessingResult = GetCurrentProcessId();
-        if (StringProcessingResult != in_stack_00000098) {
+        if (StringProcessingResult != ProcessIdParameter) {
           IntegerResult = AllocConsole();
           FileSystemOperationFlag = IntegerResult == 1;
           SetConsoleTitleA(&SystemConsoleTitle);
@@ -13602,7 +13602,7 @@ Label_1808fbebe:
     }
   }
   _set_invalid_parameter_handler(MemoryAddress);
-  SystemSecurityCheck(in_stack_00000230 ^ (ulonglong)&stack0x00000000);
+  SystemSecurityCheck(in_stack_00000230 ^ (ulonglong)&SecurityValidationStackVariable);
 }
     SystemInitializationFlag = 1;
   }

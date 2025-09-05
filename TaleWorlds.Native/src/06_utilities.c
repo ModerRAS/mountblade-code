@@ -44,28 +44,28 @@
 #define ValidateData ValidateData
 
 /**
- * @brief 内存分配处理函数A0
+ * @brief 内存分配处理函数
  * @note 原始函数名：AllocateMemory
  */
-#define AllocateMemory AllocateMemory
+#define AllocateMemoryPool AllocateMemoryPool
 
 /**
- * @brief 内存初始化函数A0
+ * @brief 内存初始化函数
  * @note 原始函数名：func_0x00018076b450
  */
-#define InitializeMemory InitializeMemory
+#define InitializeMemoryPool InitializeMemoryPool
 
 /**
- * @brief 数据处理函数A0
+ * @brief 数据处理函数
  * @note 原始函数名：ProcessData
  */
-#define ProcessData ProcessData
+#define ProcessDataBuffer ProcessDataBuffer
 
 /**
- * @brief 系统状态检查函数A0
+ * @brief 系统状态检查函数
  * @note 原始函数名：CheckSystemStatus
  */
-#define CheckSystemStatus CheckSystemStatus
+#define ValidateSystemStatus ValidateSystemStatus
 
 /**
  * @brief 系统初始化函数A0
@@ -37153,7 +37153,7 @@ void Unwind_CleanupBufferMemory(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902d10(undefined8 param_1,longlong param_2)
+void Unwind_CleanupArrayMemory(undefined8 param_1,longlong param_2)
 
 {
   FUN_180057010(*(longlong *)(param_2 + 0x20) + 0x60);
@@ -37162,7 +37162,7 @@ void Unwind_180902d10(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902d20(undefined8 param_1,longlong param_2)
+void Unwind_CleanupVectorMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37176,7 +37176,7 @@ void Unwind_180902d20(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902d30(undefined8 param_1,longlong param_2)
+void Unwind_CleanupStringMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37190,7 +37190,7 @@ void Unwind_180902d30(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902d40(undefined8 param_1,longlong param_2)
+void Unwind_CleanupObjectMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong validationContext;
@@ -37208,7 +37208,7 @@ void Unwind_180902d40(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902d50(undefined8 param_1,longlong param_2)
+void Unwind_CleanupClassMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37240,7 +37240,7 @@ void Unwind_180902d50(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902d70(undefined8 param_1,longlong param_2)
+void Unwind_CleanupStructMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37254,7 +37254,7 @@ void Unwind_180902d70(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902d90(undefined8 param_1,longlong param_2)
+void Unwind_CleanupUnionMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37268,7 +37268,7 @@ void Unwind_180902d90(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902db0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupEnumMemory(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -37282,7 +37282,7 @@ void Unwind_180902db0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902dd0(void)
+void Unwind_CleanupGlobalMutex(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -37291,7 +37291,7 @@ void Unwind_180902dd0(void)
 
 
 
-void Unwind_180902df0(undefined8 param_1,longlong param_2)
+void Unwind_CleanupThreadLocal(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;

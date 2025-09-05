@@ -2621,7 +2621,7 @@ void CleanupNetworkConnectionResources(NetworkHandle ConnectionContext)
 {
   int32_t NetworkConnectionStatusCode;                         // 网络连接状态码
   int32_t NetworkPacketProcessingResult;                       // 网络数据处理结果
-  NetworkByte CleanupBuffer [48];                     // 清理缓冲区
+  NetworkByte CleanupBuffer[48];                     // 清理缓冲区
   int64_t HandleStorage [2];                           // 句柄存储
   NetworkHandle *HandleBuffer [34];                   // 句柄缓冲区
   uint64_t NetworkValidationKey;                              // 验证密钥
