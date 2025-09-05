@@ -7554,7 +7554,7 @@ ProcessStringBufferTertiaryOperation(uint64_t SystemContextPointer,uint64_t Buff
   SystemModuleConfigPointer9 = 0;
   SystemModuleConfigSize4 = 3;
   SystemAnimationActive = 1;
-  InitializeSystemData(0x180c95de0);
+  InitializeSystemData(SystemModuleDataAddress);
   SystemModuleConfigStatus2 = 1;
   SystemModuleConfigSize5 = 3;
   SystemModuleConfigValue3 = SystemFloatTwoValue;
@@ -12298,8 +12298,8 @@ uint64_t SystemDataInitialize(int initFlags)
     pModuleInitializationResult4 = pModuleInitializationResult4 + 1;
   } while (LoopCounter8 < 5);
   pLoopCounter2 = (int *)0x180be5774;
-  SecondaryColorProcessingPointer = (float *)0x180c2e040;
-  SystemConfigurationDataAddress = 0x180c2e040;
+  SecondaryColorProcessingPointer = (float *)SystemColorProcessingStartAddress;
+  SystemConfigurationDataAddress = SystemColorProcessingStartAddress;
   SystemParameterPointer = -SystemParameterPointer;
   LoopCounter8 = 2;
   LoopCounter7 = 0x100;
@@ -12307,7 +12307,7 @@ uint64_t SystemDataInitialize(int initFlags)
   MemoryAddress3 = 0;
   do {
     MemoryAddress6 = MemoryAddress3;
-    if (SecondaryColorProcessingPointer < (float *)0x180c2e880) {
+    if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
       ColorComponentA = (float)pLoopCounter2[-1] * 1.5258789e-05 * (float)SystemParameterPointer;
       *SecondaryColorProcessingPointer = ColorComponentA;
       SecondaryColorProcessingPointer[16] = ColorComponentA;
@@ -12320,7 +12320,7 @@ uint64_t SystemDataInitialize(int initFlags)
     if (((byte)MemoryAddress6 & 0x3f) != 0x3f) {
       LoopCounterValue = SystemParameterPointer;
     }
-    if (pfVar5 + 0x20 < (float *)0x180c2e880) {
+    if (pfVar5 + 0x20 < (float *)SystemColorProcessingEndAddress) {
       ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)LoopCounterValue;
       pfVar5[32] = ColorComponentA;
       pfVar5[0x30] = ColorComponentA;
@@ -12336,7 +12336,7 @@ uint64_t SystemDataInitialize(int initFlags)
       LongValue = 0x100;
     }
     SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
-    if (SecondaryColorProcessingPointer < (float *)0x180c2e880) {
+    if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
       LongValue = -0xebc;
       if (MemoryAddress3 != 0x1f) {
         LongValue = ModuleInitializationResult5;
@@ -12356,7 +12356,7 @@ uint64_t SystemDataInitialize(int initFlags)
     if ((CharValue & 0x3f) != 0x3f) {
       LoopCounterValue = StringIndex;
     }
-    if (SecondaryColorProcessingPointer + 0x20 < (float *)0x180c2e880) {
+    if (SecondaryColorProcessingPointer + 0x20 < (float *)SystemColorProcessingEndAddress) {
       ColorComponentA = (float)pLoopCounter2[2] * 1.5258789e-05 * (float)LoopCounterValue;
       SecondaryColorProcessingPointer[32] = ColorComponentA;
       SecondaryColorProcessingPointer[0x30] = ColorComponentA;
@@ -12371,7 +12371,7 @@ uint64_t SystemDataInitialize(int initFlags)
       LongValue = 0x100;
     }
     pfVar5 = (float *)(LongValue + (longlong)SecondaryColorProcessingPointer);
-    if (pfVar5 < (float *)0x180c2e880) {
+    if (pfVar5 < (float *)SystemColorProcessingEndAddress) {
       LongValue = -0xebc;
       if (MemoryAddress3 != 0x1f) {
         LongValue = ModuleInitializationResult5;
@@ -12391,7 +12391,7 @@ uint64_t SystemDataInitialize(int initFlags)
     if ((CharValue + 2 & 0x3f) != 0x3f) {
       LoopCounterValue = StringIndex;
     }
-    if (pfVar5 + 0x20 < (float *)0x180c2e880) {
+    if (pfVar5 + 0x20 < (float *)SystemColorProcessingEndAddress) {
       ColorComponentA = (float)pLoopCounter2[4] * 1.5258789e-05 * (float)LoopCounterValue;
       pfVar5[32] = ColorComponentA;
       pfVar5[0x30] = ColorComponentA;
@@ -12406,7 +12406,7 @@ uint64_t SystemDataInitialize(int initFlags)
       LongValue = 0x100;
     }
     SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
-    if (SecondaryColorProcessingPointer < (float *)0x180c2e880) {
+    if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
       LongValue = -0xebc;
       if (MemoryAddress3 != 0x1f) {
         LongValue = ModuleInitializationResult5;
@@ -12426,7 +12426,7 @@ uint64_t SystemDataInitialize(int initFlags)
     if ((CharValue + 4 & 0x3f) != 0x3f) {
       LoopCounterValue = StringIndex;
     }
-    if (SecondaryColorProcessingPointer + 0x20 < (float *)0x180c2e880) {
+    if (SecondaryColorProcessingPointer + 0x20 < (float *)SystemColorProcessingEndAddress) {
       ColorComponentA = (float)pLoopCounter2[6] * 1.5258789e-05 * (float)LoopCounterValue;
       SecondaryColorProcessingPointer[32] = ColorComponentA;
       SecondaryColorProcessingPointer[0x30] = ColorComponentA;
@@ -12450,7 +12450,7 @@ uint64_t SystemDataInitialize(int initFlags)
       pLoopCounter2 = (int *)0x180be5b68;
       LoopCounter7 = (0x3f - (0x1fc - MemoryAddress3 >> 2)) * 4;
       do {
-        if (SecondaryColorProcessingPointer < (float *)0x180c2e880) {
+        if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
           ColorComponentA = (float)pLoopCounter2[2] * 1.5258789e-05 * (float)SystemParameterPointer;
           *SecondaryColorProcessingPointer = ColorComponentA;
           SecondaryColorProcessingPointer[16] = ColorComponentA;
@@ -12471,7 +12471,7 @@ uint64_t SystemDataInitialize(int initFlags)
         if (StringProcessingResult != 0x3f) {
           LoopCounter8 = SystemParameterPointer;
         }
-        if (pfVar5 + 0x20 < (float *)0x180c2e880) {
+        if (pfVar5 + 0x20 < (float *)SystemColorProcessingEndAddress) {
           ColorComponentA = (float)pLoopCounter2[1] * 1.5258789e-05 * (float)LoopCounter8;
           pfVar5[32] = ColorComponentA;
           pfVar5[0x30] = ColorComponentA;
@@ -12493,7 +12493,7 @@ uint64_t SystemDataInitialize(int initFlags)
           LongValue = 0x100;
         }
         SecondaryColorProcessingPointer = (float *)(LongValue + (longlong)pfVar5);
-        if (SecondaryColorProcessingPointer < (float *)0x180c2e880) {
+        if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
           LongValue = -0xebc;
           if (StringProcessingResult != 0x1f) {
             LongValue = ModuleInitializationResult5;
@@ -12521,7 +12521,7 @@ uint64_t SystemDataInitialize(int initFlags)
         if (StringProcessingResult != 0x3f) {
           LoopCounter8 = LoopCounterValue;
         }
-        if (SecondaryColorProcessingPointer + 0x20 < (float *)0x180c2e880) {
+        if (SecondaryColorProcessingPointer + 0x20 < (float *)SystemColorProcessingEndAddress) {
           ColorComponentA = (float)pLoopCounter2[-1] * 1.5258789e-05 * (float)LoopCounter8;
           SecondaryColorProcessingPointer[32] = ColorComponentA;
           SecondaryColorProcessingPointer[0x30] = ColorComponentA;
@@ -12551,7 +12551,7 @@ uint64_t SystemDataInitialize(int initFlags)
     if ((int)MemoryAddress3 < 0x200) {
       pLoopCounter2 = (int *)((longlong)LoopCounter7 * 4 + 0x180be5770);
       do {
-        if (SecondaryColorProcessingPointer < (float *)0x180c2e880) {
+        if (SecondaryColorProcessingPointer < (float *)SystemColorProcessingEndAddress) {
           ColorComponentA = (float)*pLoopCounter2 * 1.5258789e-05 * (float)SystemParameterPointer;
           *SecondaryColorProcessingPointer = ColorComponentA;
           SecondaryColorProcessingPointer[16] = ColorComponentA;

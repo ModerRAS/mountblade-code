@@ -334,9 +334,9 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 // 网络质量常量
 #define NetworkConnectionQualityGood 0x05                       // 良好连接质量
 #define NetworkLatencyFiftyMilliseconds 50                                     // 50毫秒延迟
-#define NetworkBandwidthFourKilobytes 0x1000                                 // 4KB带宽
+#define NetworkBandwidthFourKilobytes 4096                                 // 4KB带宽
 #define NetworkReliabilityLevelHigh 0x01                           // 高可靠性级别
-#define NetworkWindowScaleSixteen 0x10                                 // 窗口缩放16
+#define NetworkWindowScaleSixteen 16                                 // 窗口缩放16
 
 // 网络连接配置常量
 #define NetworkQueueEnabled 0x01                           // 网络队列启用标志
@@ -353,7 +353,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkCompressionMethodZLIB 0x01                             // ZLIB压缩方法
 #define NetworkHashAlgorithmSHA256 0x01                        // SHA-256哈希算法
 #define NetworkSignatureMethodRSA 0x01                         // RSA签名方法
-#define NetworkEncryptionKeyLength256Bits 0x100                  // 256位加密密钥长度
+#define NetworkEncryptionKeyLength256Bits 256                  // 256位加密密钥长度
 #define NetworkCompressionLevelDefault 0x06                    // 默认压缩级别
 #define NetworkDefaultSessionEncryptionKey 0x12345678          // 默认会话加密密钥
 
@@ -361,12 +361,12 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkConnectionModeClient 0x01            // 客户端连接模式
 #define NetworkConnectionPriorityMedium 0x05        // 中等连接优先级
 #define NetworkProtocolVersionOne 0x01                // 协议版本1.0
-#define NetworkConnectionPoolSize 0x100             // 连接池大小256
-#define NetworkConnectionSize256Bytes 0x100             // 连接大小256字节
-#define NetworkEventSize64Bytes 0x40                    // 事件大小64字节
-#define NetworkCallbackSize64Bytes 0x40                 // 回调大小64字节
-#define NetworkRetryCountMaximum 0x03               // 最大重试次数3次
-#define NetworkBackoffTimeTwoSeconds 0x07D0          // 退避时间2秒
+#define NetworkConnectionPoolSize 256             // 连接池大小256
+#define NetworkConnectionSize256Bytes 256             // 连接大小256字节
+#define NetworkEventSize64Bytes 64                    // 事件大小64字节
+#define NetworkCallbackSize64Bytes 64                 // 回调大小64字节
+#define NetworkRetryCountMaximum 3               // 最大重试次数3次
+#define NetworkBackoffTimeTwoSeconds 2000          // 退避时间2秒
 
 // 网络数据包常量
 #define NetworkPacketHeaderSize32Bytes 0x20                        // 数据包头大小32字节
