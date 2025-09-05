@@ -60050,7 +60050,7 @@ void SystemNoOperationA(void)
   ulong long ResourceAddressPrimary;
   uint *ResourceAddressPointer2;
   bool isZeroFlagSet;
-  bool isResourceAvailable3;
+  bool IsResourceAvailable3;
   uint32_t ResourceHashValue;
   ulong long ResourceAllocationContext;
   void* *ResourceDataPointer;
@@ -62639,7 +62639,7 @@ void ProcessSystemResourceConfiguration(long long SystemResourceManager,long lon
   uint *ResourceAddressPointer7;
   ulong long ResourceAddress8;
   ulong long ResourceAddress9;
-  bool isMemoryReady0;
+  bool IsMemoryReady0;
   
   ResourceDataCounter = SystemDataMemoryContext;
   ResourceMemoryOffset = SystemResourceManager;
@@ -62955,7 +62955,7 @@ void ProcessSystemResourceValidation(long long SystemResourceManager)
   ulong long ResourceAddress8;
   ulong long ResourceAddress9;
   bool IsZeroFlagSet2;
-  bool isMemoryReady0;
+  bool IsMemoryReady0;
   
   ResourceDataCounter = SystemDataMemoryContext;
   ResourceMemoryOffset = SystemResourceManager;
@@ -64483,7 +64483,7 @@ void InitializeSystemResourceCache(long long SystemResourceManager)
   ulong long ResourceAddressPrimary;
   uint8_t (*paResourceAddress2) [16];
   long long SystemProcessingBufferPointer3;
-  bool isResourceAvailable4;
+  bool IsResourceAvailable4;
   float matrixElement;
   float MatrixElement46;
   uint8_t resourceAddress [16];
