@@ -18508,7 +18508,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
             if ((char)validationContext1 == '\0') {
               *(undefined1 *)(param_1 + 4) = 1;
               iVar7 = FUN_18073a200(*(undefined8 *)(param_1[1] + 0x78),auStack_2e8);
-              if (((iVar7 != 0) || (iVar7 = FUN_18073c4c0(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
+              if (((iVar7 != 0) || (iVar7 = ProcessDataBufferA0(auStack_2e8[0],&lStack_320,0), iVar7 != 0)
                   ) || (iVar7 = (**(code **)(*param_1 + 0x10))(param_1), iVar7 != 0))
               goto LAB_18089866f;
               uVar9 = (ulonglong)(lStack_320 * 48000) /
@@ -18553,7 +18553,7 @@ void ProcessFloatingPointDataA1(longlong *param_1)
             aplStack_330[0] = (longlong *)CONCAT44(aplStack_330[0]._4_4_,0xffffffff);
             plStack_340 = *(longlong **)(pvalidationContext6[2] + 0x18 + validationContext5);
             lStack_320 = validationContext5;
-            FUN_1807d1650(plStack_340,&uStack_338,aplStack_330);
+            ProcessDataConversionDN0(plStack_340,&uStack_338,aplStack_330);
             pvalidationContext4 = plStack_340;
             if ((int)aplStack_330[0] != -1) {
               iVar6 = (int)aplStack_330[0];
