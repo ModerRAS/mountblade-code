@@ -12768,7 +12768,7 @@ void InitializeSystemMemoryManagerAdvanced(void)
 
 
 // 函数: void InitializeSystemMemoryManagerI(void)
-void InitializeSystemMemoryManagerI(void)
+void InitializeSystemMemoryManagerIota(void)
 
 {
   char NodeActiveFlag;
@@ -14665,7 +14665,7 @@ void InitializeSystemProcessNodeManager(void)
  * 
  * @note 这是系统初始化过程中的重要组成部分，确保事件管理系统的正常运行
  */
-void InitializeSystemEventManagerG(void)
+void InitializeSystemEventManagerGamma(void)
 
 {
   char NodeActiveFlag;
@@ -14723,7 +14723,7 @@ void InitializeSystemEventManagerG(void)
  * 
  * @note 这是系统初始化过程中的重要组成部分，确保事件管理系统的正常运行
  */
-void InitializeSystemEventManagerH(void)
+void InitializeSystemEventManagerHotel(void)
 
 {
   char NodeActiveFlag;
@@ -14781,7 +14781,7 @@ void InitializeSystemEventManagerH(void)
  * 
  * @note 这是系统初始化过程中的重要组成部分，确保事件管理系统的正常运行
  */
-void InitializeSystemEventManagerI(void)
+void InitializeSystemEventManagerIndia(void)
 
 {
   char NodeActiveFlag;
@@ -14833,7 +14833,7 @@ void InitializeSystemEventManagerI(void)
 // 函数: void InitializeSystemEventManagerJ(void)
 // 功能: 初始化系统事件管理器J，用于管理特定类型的事件处理
 // 该函数会创建系统节点并设置事件回调指针
-void InitializeSystemEventManagerJ(void)
+void InitializeSystemEventManagerJuliett(void)
 
 {
   char NodeActiveFlag;
@@ -14885,7 +14885,7 @@ void InitializeSystemEventManagerJ(void)
 // 函数: void InitializeSystemEventManagerK(void)
 // 功能: 初始化系统事件管理器K，用于管理特定类型的事件处理
 // 该函数会创建系统节点并设置资源初始化回调
-void InitializeSystemEventManagerK(void)
+void InitializeSystemEventManagerKilo(void)
 
 {
   char NodeActiveFlag;
