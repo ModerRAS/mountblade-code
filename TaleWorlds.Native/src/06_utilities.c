@@ -64677,7 +64677,18 @@ void ExecuteResourceCommandAndReleaseHandle(uint8_t ObjectContext,int64_t Valida
  * @param ValidationContext 验证上下文，包含验证所需的数据和参数
  * @return 无返回值
  */
-void ValidateResourceHashAndCleanupReferenceCountAtOffset48(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 验证资源哈希并清理引用计数
+ * 
+ * 该函数在偏移量0x48处验证资源哈希值，并清理相关资源的引用计数
+ * 用于系统资源管理和内存回收
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关的状态信息
+ * @param ValidationContext 验证上下文，包含验证所需的数据和参数
+ * @return 无返回值
+ * @note 此函数主要用于资源哈希验证和引用计数管理
+ */
+void ValidateResourceHashAndCleanupReferenceCount(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int32_t *ResourceTablePointerIndexPointer;
