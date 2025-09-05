@@ -4106,7 +4106,7 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
       uVar5 = ProcessGameMessage(*(undefined8 *)(param_2 + 0x90),*(longlong *)(lStackX_18 + 8) + 0x10,
                             &lStackX_8);
       if (uVar5 != 0) {
-        FUN_180867d60(plVar9);
+        CleanupSystemDataStructures(plVar9);
         return (ulonglong)uVar5;
       }
       if (((*(uint *)(*(longlong *)(lStackX_18 + 8) + 0xf8) >> 2 & 1) == 0) &&
@@ -4129,7 +4129,7 @@ ulonglong InitializeSystemModule(longlong moduleConfig, longlong moduleData)
           *(longlong **)(lStackX_8 + 0x80) = plVar9;
           func_0x00018085eef0(lStackX_8,plVar9);
           plVar9[2] = lStackX_8;
-          uVar6 = FUN_18085ff30(lStackX_8);
+          uVar6 = InitializeSystemComponent(lStackX_8);
           if ((int)uVar6 == 0) {
             return 0;
           }
@@ -4185,7 +4185,7 @@ undefined8 ProcessResourceAllocation(longlong param_1,longlong param_2)
   if (*(int *)(stackBuffer[0] + 0x58) + *(int *)(stackBuffer[0] + 0x54) +
       *(int *)(stackBuffer[0] + 0x4c) == 1) {
     stackBuffer[0] = 0;
-    operationResult = FUN_18088c740(stackBuffer);
+    operationResult = ValidateResourceHandle(stackBuffer);
     if (operationResult == 0) {
       operationResult = FUN_1808c7b30(resourcePointer,*(undefined8 *)(resourcePointer + 8),*(undefined8 *)(param_2 + 0x90),
                             *(undefined8 *)(param_2 + 800));
