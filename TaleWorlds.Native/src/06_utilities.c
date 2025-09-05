@@ -96833,7 +96833,7 @@ void ExecuteSecondaryResourceHandlerMethodCall(uint8_t ObjectContext,int64_t Val
 
 
 
-void Unwind_18090f8b0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseExclusiveSRWLockPrimary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + ValidationContextSecondaryOffset) != '\0') {
@@ -96844,7 +96844,7 @@ void Unwind_18090f8b0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f8c0(uint8_t ObjectContext,int64_t ValidationContext)
+void ReleaseExclusiveSRWLockSecondary(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   if (*(char *)(ValidationContext + ValidationContextSecondaryOffset) != '\0') {

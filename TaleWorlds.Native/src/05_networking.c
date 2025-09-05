@@ -926,10 +926,10 @@ void *NetworkConnectionProcessingConfig = &NetworkConnectionProcessingConfig;
 void *NetworkConnectionTransportConfig = &NetworkConnectionTransportConfig;
 void *NetworkConnectionProtocolConfig = &NetworkConnectionProtocolConfig;
 void *NetworkConnectionValidationConfig = &NetworkConnectionValidationConfig;
-void *NetworkConnectionRoutingConfigPrimary = &NetworkConnectionRoutingPrimaryConfig;
-void *NetworkConnectionRoutingConfigSecondary = &NetworkConnectionRoutingSecondaryConfig;
-void *NetworkConnectionRoutingConfigTertiary = &NetworkConnectionRoutingTertiaryConfig;
-void *NetworkConnectionRoutingConfigQuaternary = &NetworkConnectionRoutingQuaternaryConfig;
+void *NetworkConnectionRoutingPrimaryConfig = &NetworkConnectionRoutingPrimaryConfig;
+void *NetworkConnectionRoutingSecondaryConfig = &NetworkConnectionRoutingSecondaryConfig;
+void *NetworkConnectionRoutingTertiaryConfig = &NetworkConnectionRoutingTertiaryConfig;
+void *NetworkConnectionRoutingQuaternaryConfig = &NetworkConnectionRoutingQuaternaryConfig;
 
 // 网络连接配置数据定义
 
