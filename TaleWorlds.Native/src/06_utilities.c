@@ -5530,38 +5530,38 @@ undefined8 ProcessFloatArrayResource(longlong param_1)
   longlong stackBuffer;
   
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x1c),&stackBuffer);
-  if ((int)uVar4 != 0) {
-    return uVar4;
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  validationContext = *(longlong *)(lStackX_8 + 8);
+  validationContext = *(longlong *)(stackBuffer + 8);
   if (validationContext != 0) {
-    fVar7 = *(float *)(param_1 + 0x20);
-    for (puVar5 = *(undefined8 **)(validationContext + 0x48);
-        (*(undefined8 **)(validationContext + 0x48) <= puVar5 &&
-        (puVar5 < *(undefined8 **)(validationContext + 0x48) + *(int *)(validationContext + 0x50))); puVar5 = puVar5 + 1) {
-      uVar4 = FUN_1808d73b0(*puVar5,fVar7,0);
-      if ((int)uVar4 != 0) {
-        return uVar4;
+    floatValue = *(float *)(param_1 + 0x20);
+    for (arrayPointer = *(undefined8 **)(validationContext + 0x48);
+        (*(undefined8 **)(validationContext + 0x48) <= arrayPointer &&
+        (arrayPointer < *(undefined8 **)(validationContext + 0x48) + *(int *)(validationContext + 0x50))); arrayPointer = arrayPointer + 1) {
+      operationResult = FUN_1808d73b0(*arrayPointer,floatValue,0);
+      if ((int)operationResult != 0) {
+        return operationResult;
       }
     }
     if ((*(char *)(validationContext + 0x34) == '\0') ||
        ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) {
-      uVar3 = *(uint *)(*(longlong *)(validationContext + 0x18) + 0x34);
-      uVar2 = uVar3 >> 4;
-      if ((uVar2 & 1) == 0) {
-        if ((((uVar3 >> 3 & 1) != 0) && (iVar6 = (int)fVar7, iVar6 != -0x80000000)) &&
-           ((float)iVar6 != fVar7)) {
-          auVar8._4_4_ = fVar7;
-          auVar8._0_4_ = fVar7;
-          auVar8._8_8_ = 0;
-          uVar3 = movmskps(uVar2,auVar8);
-          fVar7 = (float)(int)(iVar6 - (uVar3 & 1));
+      statusBits = *(uint *)(*(longlong *)(validationContext + 0x18) + 0x34);
+      flagBits = statusBits >> 4;
+      if ((flagBits & 1) == 0) {
+        if ((((statusBits >> 3 & 1) != 0) && (integerConversion = (int)floatValue, integerConversion != -0x80000000)) &&
+           ((float)integerConversion != floatValue)) {
+          simdBuffer._4_4_ = floatValue;
+          simdBuffer._0_4_ = floatValue;
+          simdBuffer._8_8_ = 0;
+          statusBits = movmskps(flagBits,simdBuffer);
+          floatValue = (float)(int)(integerConversion - (statusBits & 1));
         }
-        fVar7 = (float)ConvertFloatingPointDataA0(*(longlong *)(validationContext + 0x18),fVar7);
+        floatValue = (float)ConvertFloatingPointDataA0(*(longlong *)(validationContext + 0x18),floatValue);
         if (((*(char *)(validationContext + 0x34) == '\0') ||
             ((*(uint *)(*(longlong *)(validationContext + 0x18) + 0x34) >> 1 & 1) == 0)) &&
-           (fVar7 != *(float *)(validationContext + 0x20))) {
-          *(float *)(validationContext + 0x20) = fVar7;
+           (floatValue != *(float *)(validationContext + 0x20))) {
+          *(float *)(validationContext + 0x20) = floatValue;
           FUN_1808d7020(validationContext);
           *(undefined1 *)(validationContext + 0x35) = 0;
         }

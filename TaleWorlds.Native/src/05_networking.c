@@ -289,7 +289,8 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 
 // 网络状态常量 - 系统状态和限制值
 #define NetworkStatusActive 0x01                               // 网络状态：活跃
-#define NetworkMaxInt32Value 0x7fffffff             // 最大32位有符号整数值
+#define NetworkMaxInt32Value 0x7fffffff                        // 最大32位有符号整数值
+#define NetworkMaxSignedInt32Value NetworkMaxInt32Value         // 最大32位有符号整数值别名
 #define NetworkExtendedPacketSizeLimit 0x53                // 扩展数据包大小限制（83字节）
 #define NetworkStandardPacketSizeLimit 0x31                       // 标准数据包大小限制（49字节）
 #define NetworkStatusInactive 0x00                          // 网络状态：非活跃
@@ -299,6 +300,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 
 // 网络系统常量 - 调试和数值表示
 #define NetworkMagicMemoryValidation 0xdeadf00d            // 内存验证魔数，用于调试内存检查
+#define NetworkMagicDebugValidation 0xdeadf00d              // 调试验证魔数，用于调试和内存检查
 #define NetworkMaxSignedInt32Value NetworkMaxInt32Value       // 最大32位有符号整数值别名
 #define NetworkFloatOne 0x3f800000                            // 浮点数1.0的十六进制表示
 #define NetworkFloatNegativeOne 0xbf800000                    // 浮点数-1.0的十六进制表示
@@ -308,6 +310,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define TCP_SOCKET_CATEGORY 0x01                             // TCP套接字类别
 #define TCP_PROTOCOL 0x06                                    // TCP协议类型
 #define NetworkLocalhostAddress 0x7F000001                   // 网络本地回环地址127.0.0.1
+#define NetworkLoopbackAddress NetworkLocalhostAddress       // 网络回环地址别名
 #define PORT_HTTP_ALT 0x1F90                                 // 端口8080
 #define PORT_HTTPS_ALT 0x1FBB                                // 端口8091
 #define PORT_RANGE_END 0x270F                                // 端口9999
@@ -344,6 +347,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define NetworkEventQueueEnabled 0x01                             // 事件队列启用标志
 #define NetworkInvalidCallbackHandler 0xFFFFFFFF                  // 无效回调处理器
 #define NetworkInvalidTimeoutProcessor 0xFFFFFFFF                 // 无效超时处理器
+#define NetworkInvalidHandleValue 0xFFFFFFFF                     // 无效句柄值
 #define NetworkConnectionContextEnabled 0x01                       // 连接上下文启用标志
 
 // 网络安全常量
@@ -427,7 +431,9 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define HEALTH_STATUS_NORMAL 0x01                             // 正常健康状态
 #define MANAGER_HANDLE_INVALID 0xFFFFFFFF                     // 无效管理器句柄
 #define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF                  // 无效套接字描述符
+#define INVALID_SOCKET_HANDLE SOCKET_DESCRIPTOR_INVALID       // 无效套接字句柄别名
 #define CLIENT_IP_ANY 0x00000000                            // 任意客户端IP地址
+#define ANY_CLIENT_ADDRESS CLIENT_IP_ANY                      // 任意客户端地址别名
 #define CLIENT_PORT_ANY 0x0000                              // 任意客户端端口
 #define SOCKET_BOUND 0x01                                    // 套接字已绑定标志
 #define ACTIVE_CONNECTIONS_MAX 100                           // 最大活跃连接数
@@ -435,9 +441,12 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define QUEUE_INITIALIZED 0x01                               // 队列已初始化
 #define CALLBACK_INVALID 0xFFFFFFFF                           // 无效回调句柄
 #define TIMEOUT_INVALID 0xFFFFFFFF                            // 无效超时句柄
+#define INVALID_CALLBACK_HANDLE CALLBACK_INVALID              // 无效回调句柄别名
+#define INVALID_TIMEOUT_HANDLE TIMEOUT_INVALID                 // 无效超时句柄别名
 #define CONTEXT_INITIALIZED 0x01                              // 上下文已初始化
 #define RELIABILITY_HIGH 0x01                                // 高可靠性
 #define ENCRYPTION_KEY_DEMO_VALUE 0x12345678                       // 演示加密密钥
+#define DEMO_ENCRYPTION_KEY ENCRYPTION_KEY_DEMO_VALUE             // 演示加密密钥别名
 
 // 通用重置常量
 #define NETWORK_RESET_VALUE 0x00                                          // 通用重置值
