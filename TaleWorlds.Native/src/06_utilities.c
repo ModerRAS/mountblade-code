@@ -512,7 +512,7 @@
  * 
  * 该函数负责验证数据块的状态，确保数据块的完整性
  * 
- * @note 原始函数名：FUN_180898e70
+ * @note 原始函数名：ExecuteDataValidationOperation
  */
 #define ValidateDataBlockStatusA0 ValidateDataBlockStatusA0
 
@@ -2994,9 +2994,9 @@
 // 功能：获取系统状态并返回状态信息
 #define GetSystemStateA0 FUN_180898e56
 
-// 原始函数名：FUN_180898e70 - 配置验证函数A0
+// 原始函数名：ExecuteDataValidationOperation - 配置验证函数A0
 // 功能：验证配置的有效性并返回验证结果
-#define ValidateConfigurationA0 FUN_180898e70
+#define ValidateConfigurationA0 ExecuteDataValidationOperation
 
 // 原始函数名：CheckDataIntegrity - 配置处理函数A0
 // 功能：处理配置数据并返回处理结果
@@ -33088,7 +33088,7 @@ void ConfigureSystemOptionsC1(void)
                     // WARNING: Subroutine does not return
     ExecuteSystemCleanupRoutine();
   }
-  inputParameter = FUN_1808a1090();
+  inputParameter = ProcessSystemInitialization();
   if (inputParameter != 0) {
     return;
   }
@@ -33135,7 +33135,7 @@ uint64_t FUN_18089f530(int64_t param_1,DataBuffer *param_2,DataWord param_3,Data
       dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
       functionReturnValue = (uint64_t)dataValue;
       if ((dataValue == 0) &&
-         ((param_5 == '\0' || (functionReturnValue = FUN_1808a1870(param_1 + 0x48,param_2), (int)functionReturnValue == 0)))) {
+         ((param_5 == '\0' || (functionReturnValue = ValidateDataSecurityContext(param_1 + 0x48,param_2), (int)functionReturnValue == 0)))) {
                     // WARNING: Subroutine does not return
         ExecuteSystemCleanupRoutine(param_2,auStack_70);
       }
@@ -33164,7 +33164,7 @@ uint64_t FUN_18089f571(void)
       dataValue = ProcessDataPointerA0(*registerContext,stackFramePointer + 0x10);
       functionReturnValue = (uint64_t)dataValue;
       if ((dataValue == 0) &&
-         ((in_stack_000000d0 == '\0' || (functionReturnValue = FUN_1808a1870(stackFramePointer + 0x48), (int)functionReturnValue == 0)))
+         ((in_stack_000000d0 == '\0' || (functionReturnValue = ValidateDataSecurityContext(stackFramePointer + 0x48), (int)functionReturnValue == 0)))
          ) {
                     // WARNING: Subroutine does not return
         ExecuteSystemCleanupRoutine();
@@ -33293,7 +33293,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
           functionReturnValue = ProcessDataPointerA0(*param_2,param_1 + 0x30);
           memoryBaseAddress = (uint64_t)functionReturnValue;
           if (functionReturnValue == 0) {
-            memoryBaseAddress = FUN_180898e70(param_2,param_1 + 0x40);
+            memoryBaseAddress = ExecuteDataValidationOperation(param_2,param_1 + 0x40);
             if ((int)memoryBaseAddress != 0) {
               return memoryBaseAddress;
             }
@@ -33369,7 +33369,7 @@ uint64_t FUN_18089f9b3(void)
         functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
         validationStatus = (uint64_t)functionReturnValue;
         if (functionReturnValue == 0) {
-          validationStatus = FUN_180898e70();
+          validationStatus = ExecuteDataValidationOperation();
           if ((int)validationStatus == 0) {
                     // WARNING: Subroutine does not return
             ExecuteSystemCleanupRoutine();
@@ -33433,7 +33433,7 @@ uint64_t FUN_18089f9f6(void)
       functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
       validationStatus = (uint64_t)functionReturnValue;
       if (functionReturnValue == 0) {
-        validationStatus = FUN_180898e70();
+        validationStatus = ExecuteDataValidationOperation();
         if ((int)validationStatus != 0) {
           return validationStatus;
         }
@@ -33483,7 +33483,7 @@ uint64_t FUN_18089fa3c(void)
     functionReturnValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
     registerContext = (uint64_t)functionReturnValue;
     if (functionReturnValue == 0) {
-      validationStatus = FUN_180898e70();
+      validationStatus = ExecuteDataValidationOperation();
       if ((int)validationStatus == 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemCleanupRoutine();
@@ -33513,7 +33513,7 @@ uint64_t FUN_18089fac2(void)
     dataValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
     registerContext = (uint64_t)dataValue;
     if (dataValue == 0) {
-      functionReturnValue = FUN_180898e70();
+      functionReturnValue = ExecuteDataValidationOperation();
       if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemCleanupRoutine();
@@ -33539,7 +33539,7 @@ uint64_t FUN_18089fad8(void)
     dataValue = ProcessDataPointerA0(*destinationIndexRegister,stackFramePointer + 0x30);
     registerContext = (uint64_t)dataValue;
     if (dataValue == 0) {
-      functionReturnValue = FUN_180898e70();
+      functionReturnValue = ExecuteDataValidationOperation();
       if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
         ExecuteSystemCleanupRoutine();
@@ -33559,7 +33559,7 @@ void ProcessSystemDataC1(void)
 {
   int inputParameter;
   
-  inputParameter = FUN_180898e70();
+  inputParameter = ExecuteDataValidationOperation();
   if (inputParameter == 0) {
                     // WARNING: Subroutine does not return
     ExecuteSystemCleanupRoutine();
@@ -33632,7 +33632,7 @@ DataBuffer ValidateDataSynchronizationA1(int64_t param_1,DataBuffer *param_2)
         return 0x1c;
       }
       dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x20);
-      if (((int)dataValue == 0) && (dataValue = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)dataValue == 0))
+      if (((int)dataValue == 0) && (dataValue = ProcessDataValidationWithFlags(param_2,param_1 + 0x30,1,0), (int)dataValue == 0))
       {
                     // WARNING: Subroutine does not return
         ExecuteSystemCleanupRoutine(param_2,auStack_28);
@@ -33774,7 +33774,7 @@ DataBuffer ProcessDataCacheA1(int64_t param_1,DataBuffer *param_2)
       }
       dataValue = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
       if ((((int)dataValue == 0) && (dataValue = CheckDataIntegrity(param_2,param_1 + 0xf8), (int)dataValue == 0)) &&
-         (dataValue = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)dataValue == 0)) {
+         (dataValue = ExecuteDataSecurityOperation(param_2,param_1 + 0xe8,1,param_1), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
         ExecuteSystemCleanupRoutine(param_2,ainputDataWord);
       }
@@ -33792,7 +33792,7 @@ DataBuffer CleanupDataCacheA1(DataBuffer param_1,int64_t param_2)
   ByteFlag auStack_28 [32];
   
   if (*(uint *)(param_2 + 0x40) < 0x31) {
-    dataValue = FUN_1808a3d50(param_1,param_2,0x544e5645);
+    dataValue = ProcessDataConversionOperation(param_1,param_2,0x544e5645);
     if ((int)dataValue == 0) {
       dataValue = 0;
     }
@@ -33800,9 +33800,9 @@ DataBuffer CleanupDataCacheA1(DataBuffer param_1,int64_t param_2)
   else {
     dataValue = ExecuteDataBufferOperation(param_2,auStack_28,1,0x5453494c,0x544e5645);
     if ((int)dataValue == 0) {
-      dataValue = FUN_1808a3d50(param_1,param_2,0x42545645);
+      dataValue = ProcessDataConversionOperation(param_1,param_2,0x42545645);
       if ((int)dataValue == 0) {
-        dataValue = FUN_1808a1610(param_1,param_2);
+        dataValue = ValidateSystemMemoryAccess(param_1,param_2);
         if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
           ExecuteSystemCleanupRoutine(param_2,auStack_28);
