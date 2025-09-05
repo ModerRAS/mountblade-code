@@ -446,6 +446,40 @@
 #define ResetUtilitySystemStateC0 FUN_1809425e0
 
 // 原始函数名：FUN_180899180 - 数据状态检查函数A0
+// 功能：检查数据状态并返回状态码
+#define CheckDataStatusA0 FUN_180899180
+
+// 原始函数名：FUN_180892780 - 浮点数验证和处理函数A0
+// 功能：验证浮点数数据的有效性，处理INF和NaN值，执行数据范围检查和更新操作
+#define ValidateAndProcessFloatingPointNumberA0 FUN_180892780
+
+// 原始函数名：FUN_180892880 - 浮点数验证和处理函数A1
+// 功能：验证浮点数数据的有效性，处理INF和NaN值，执行数据范围检查和更新操作
+#define ValidateAndProcessFloatingPointNumberA1 FUN_180892880
+
+// 原始函数名：FUN_1808928d3 - 系统状态查询函数A0
+// 功能：查询系统状态并返回状态信息
+#define QuerySystemStatusA0 FUN_1808928d3
+
+// 原始函数名：FUN_1808928f1 - 系统配置获取函数A0
+// 功能：获取系统配置信息
+#define GetSystemConfigurationA0 FUN_1808928f1
+
+// 原始函数名：FUN_180892909 - 系统参数验证函数A0
+// 功能：验证系统参数的有效性
+#define ValidateSystemParameterA0 FUN_180892909
+
+// 原始函数名：FUN_180892920 - 系统参数设置函数A0
+// 功能：设置系统参数
+#define SetSystemParameterA0 FUN_180892920
+
+// 原始函数名：FUN_180892974 - 系统初始化状态检查函数A0
+// 功能：检查系统初始化状态
+#define CheckSystemInitializationStatusA0 FUN_180892974
+
+// 原始函数名：FUN_180892990 - 系统数据处理函数A0
+// 功能：处理系统数据，执行验证和更新操作
+#define ProcessSystemDataA0 FUN_180892990
 // 功能：检查数据状态并返回结果
 #define CheckDataStatusA0 FUN_180899180
 
@@ -14746,7 +14780,18 @@ LAB_18089866f:
 
 
 // 函数: void FUN_1808986b0(longlong param_1,undefined8 param_2)
-void FUN_1808986b0(longlong param_1,undefined8 param_2)
+/**
+ * @brief 数据块验证函数A0
+ * @details 验证数据块的完整性和有效性，执行边界检查和大小验证
+ * 
+ * 参数:
+ *   param_1 - 数据块句柄
+ *   param_2 - 验证参数
+ * 
+ * 返回值:
+ *   无 - 验证结果通过内部机制处理
+ */
+void ValidateDataBlockA0(longlong param_1,undefined8 param_2)
 
 {
   int iVar1;
@@ -15621,7 +15666,18 @@ undefined8 FUN_180898f40(longlong *param_1,undefined4 *param_2)
 
 
 // 函数: void FUN_180898fc0(undefined8 param_1,longlong param_2)
-void FUN_180898fc0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 多段数据处理函数A0
+ * @details 处理多段数据，包括不同大小的数据块（4字节、2字节、8字节等）
+ * 
+ * 参数:
+ *   param_1 - 数据处理上下文
+ *   param_2 - 数据起始地址
+ * 
+ * 返回值:
+ *   无 - 处理结果通过返回值机制传递
+ */
+void ProcessMultiSegmentDataA0(undefined8 param_1,longlong param_2)
 
 {
   int iVar1;
