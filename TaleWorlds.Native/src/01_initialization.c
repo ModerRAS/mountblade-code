@@ -1106,8 +1106,8 @@ void* SystemDataNodeAudioRoot;       // 系统数据节点音频根节点
 void* SystemDataNodeResourceManager;           // 系统数据节点资源管理器
 void* SystemDataNodeMemoryManager;         // 系统数据节点内存管理器
 void* SystemDataNodeRenderingManager;          // 系统数据节点渲染管理器
-void* SystemDataNodeQuaternary;        // 系统数据节点第四节点
-void* SystemDataNodeQuinary;           // 系统数据节点第五节点
+void* SystemDataNodeNetworkManager;        // 系统数据节点网络管理器
+void* SystemDataNodeAudioManager;           // 系统数据节点音频管理器
 void* SystemDataNodeSenary;            // 系统数据节点第六节点
 void* SystemDataNodeSeptenary;         // 系统数据节点第七节点
 void* SystemDataNodeOctonary;          // 系统数据节点第八节点
