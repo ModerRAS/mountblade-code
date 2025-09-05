@@ -1791,11 +1791,11 @@ undefined UtilitySyncData4;
 // 返回值:
 //   undefined - 编码结果状态
 undefined UtilityEncodeData;
-undefined UNK_180a22d68;
-undefined DAT_180bf9ab0;
-undefined DAT_180bf9ab8;
-undefined DAT_180bf9ac0;
-undefined DAT_180bf9ac8;
+undefined UtilityEncodingBuffer;
+undefined UtilityEncodeParam1;
+undefined UtilityEncodeParam2;
+undefined UtilityEncodeParam3;
+undefined UtilityEncodeParam4;
 
 // 函数: undefined UtilityDecodeData;
 // 
@@ -1808,12 +1808,12 @@ undefined DAT_180bf9ac8;
 // 返回值:
 //   undefined - 解码结果状态
 undefined UtilityDecodeData;
-undefined DAT_180a22d48;
-undefined DAT_180bf9b10;
-undefined DAT_180bf9b18;
-undefined DAT_180bf9b20;
-undefined DAT_180bf9b28;
-undefined UNK_180a22e40;
+undefined UtilityDecodeBuffer;
+undefined UtilityDecodeParam1;
+undefined UtilityDecodeParam2;
+undefined UtilityDecodeParam3;
+undefined UtilityDecodeParam4;
+undefined UtilityDecodeStatus;
 
 // 函数: undefined UtilitySerializeData;
 // 
@@ -8945,39 +8945,39 @@ void ProcessAlternativeContextValidation(longlong contextHandle,longlong operati
 // WARNING: Removing unreachable block (ram,0x000180893865)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int FUN_180893760(longlong param_1,longlong param_2)
+int ValidateAndProcessSystemOperation(longlong systemContext,longlong operationContext)
 
 {
-  int iVar1;
-  longlong lVar2;
-  longlong lStackX_8;
+  int operationResult;
+  longlong allocatedMemory;
+  longlong operationData;
   
-  if ((((*(longlong *)(param_1 + 0x28) != 0) && (*(longlong *)(param_1 + 0x30) != 0)) &&
-      (*(longlong *)(param_1 + 0x38) != 0)) && (*(longlong *)(param_1 + 0x40) != 0)) {
-    if (*(int *)(param_1 + 0x20) < 1) {
-      iVar1 = FUN_1808de900(param_2,param_1 + 0x4c);
-      if ((iVar1 == 0) &&
-         (iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x4c),&lStackX_8), iVar1 == 0)) {
-        if (*(int *)(lStackX_8 + 0x30) == 1) {
-          *(undefined4 *)(lStackX_8 + 0x30) = 2;
+  if ((((*(longlong *)(systemContext + 0x28) != 0) && (*(longlong *)(systemContext + 0x30) != 0)) &&
+      (*(longlong *)(systemContext + 0x38) != 0)) && (*(longlong *)(systemContext + 0x40) != 0)) {
+    if (*(int *)(systemContext + 0x20) < 1) {
+      operationResult = ValidateSystemOperation(operationContext,systemContext + 0x4c);
+      if ((operationResult == 0) &&
+         (operationResult = ProcessOperationData(*(undefined4 *)(systemContext + 0x4c),&operationData), operationResult == 0)) {
+        if (*(int *)(operationData + 0x30) == 1) {
+          *(undefined4 *)(operationData + 0x30) = 2;
         }
                     // WARNING: Subroutine does not return
-        FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+        ExecuteCriticalOperation(*(undefined8 *)(operationContext + 0x98),systemContext);
       }
     }
-    else if (*(longlong *)(param_1 + 0x18) == 0) {
-      iVar1 = 0x1f;
+    else if (*(longlong *)(systemContext + 0x18) == 0) {
+      operationResult = 0x1f;
     }
     else {
-      lVar2 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(int *)(param_1 + 0x20),
+      allocatedMemory = AllocateSystemMemory(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(int *)(systemContext + 0x20),
                             &UNK_1809862d0,0x315,0,0,1);
-      if (lVar2 != 0) {
+      if (allocatedMemory != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar2,*(undefined8 *)(param_1 + 0x18),(longlong)*(int *)(param_1 + 0x20));
+        memcpy(allocatedMemory,*(undefined8 *)(systemContext + 0x18),(longlong)*(int *)(systemContext + 0x20));
       }
-      iVar1 = 0x26;
+      operationResult = 0x26;
     }
-    return iVar1;
+    return operationResult;
   }
   return 0x1f;
 }
@@ -9348,8 +9348,8 @@ undefined8 FUN_180893e94(void)
 
 
 
-// 函数: void FUN_180893eef(void)
-void FUN_180893eef(void)
+// 函数: void UtilityNoOperationC(void)
+void UtilityNoOperationC(void)
 
 {
   return;
@@ -9435,33 +9435,33 @@ undefined8 FUN_180893f64(void)
 
 
 
-// 函数: void FUN_180893f8e(void)
-void FUN_180893f8e(void)
+// 函数: void ProcessFloatRangeValidation(void)
+void ProcessFloatRangeValidation(void)
 
 {
-  float fVar1;
-  undefined8 *puVar2;
+  float currentValue;
+  undefined8 *resultPointer;
   undefined4 in_EAX;
-  int iVar3;
+  int validationStatus;
   undefined4 in_register_00000004;
-  longlong unaff_RBX;
-  longlong unaff_RDI;
-  float fVar4;
+  longlong contextPointer;
+  longlong systemHandle;
+  float processedValue;
   undefined4 in_stack_00000040;
   
-  fVar4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
-  fVar1 = *(float *)(unaff_RBX + 0x10);
-  if ((fVar4 <= fVar1) &&
-     (fVar4 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), fVar1 <= fVar4)) {
-    fVar4 = fVar1;
+  processedValue = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
+  currentValue = *(float *)(contextPointer + 0x10);
+  if ((processedValue <= currentValue) &&
+     (processedValue = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), currentValue <= processedValue)) {
+    processedValue = currentValue;
   }
-  *(float *)(unaff_RBX + 0x10) = fVar4;
-  iVar3 = func_0x000180867960(unaff_RDI + 0x60,in_stack_00000040,fVar4);
-  if (iVar3 == 0) {
-    puVar2 = (undefined8 *)func_0x000180867660(unaff_RDI + 0x60,&stack0x00000030,in_stack_00000040);
-    *(undefined8 *)(unaff_RBX + 0x18) = *puVar2;
+  *(float *)(contextPointer + 0x10) = processedValue;
+  validationStatus = ValidateFloatValue(systemHandle + 0x60,in_stack_00000040,processedValue);
+  if (validationStatus == 0) {
+    resultPointer = (undefined8 *)ProcessFloatData(systemHandle + 0x60,&stack0x00000030,in_stack_00000040);
+    *(undefined8 *)(contextPointer + 0x18) = *resultPointer;
                     // WARNING: Subroutine does not return
-    FUN_18088d720(*(undefined8 *)(unaff_RDI + 0x98));
+    ExecuteCriticalOperation(*(undefined8 *)(systemHandle + 0x98));
   }
   return;
 }
@@ -9469,8 +9469,8 @@ void FUN_180893f8e(void)
 
 
 
-// 函数: void FUN_180893fed(void)
-void FUN_180893fed(void)
+// 函数: void UtilityNoOperationD(void)
+void UtilityNoOperationD(void)
 
 {
   return;
@@ -9591,8 +9591,8 @@ undefined8 FUN_18089406b(void)
 
 
 
-// 函数: void FUN_1808940e8(void)
-void FUN_1808940e8(void)
+// 函数: void UtilityNoOperationE(void)
+void UtilityNoOperationE(void)
 
 {
   return;
