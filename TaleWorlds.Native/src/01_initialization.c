@@ -2569,7 +2569,7 @@ void InitializeSystemMemoryManager(void)
   }
   
   if ((HashTablePointer == RootNodeReference) || 
-      (MemoryManagerIdentifierCompareResult = memcmp(&SystemDataTemplateD, HashTablePointer + NodeIdentifierOffset, IdentifierSize), MemoryManagerIdentifierCompareResult < 0)) {
+      (MemoryManagerIdentifierCompareResult = memcmp(&SystemMemoryManagerTemplateId, HashTablePointer + NodeIdentifierOffset, IdentifierSize), MemoryManagerIdentifierCompareResult < 0)) {
     MemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     AllocateSystemMemory(SystemDataTable, &AllocatedMemoryNode, HashTablePointer, MemoryAllocationSize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE, MemoryAllocationSize);
     HashTablePointer = AllocatedMemoryNode;
@@ -2620,10 +2620,10 @@ void InitializeSystemMemoryAllocator(void)
   PreviousNode = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (!NodeActiveFlag) {
-    IdentifierCompareResult = memcmp(CurrentNode + 4, &MEMORY_ALLOCATOR_TEMPLATE_ID, IdentifierSize);
+    IdentifierCompareResult = memcmp(CurrentNodePointer + NodeIdentifierOffset, &MemoryAllocatorTemplateId, IdentifierSize);
     if (IdentifierCompareResult < 0) {
-      NextNode = (void**)CurrentNode[NodeNextPointerOffset];
-      CurrentNode = PreviousNode;
+      NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
+      CurrentNodePointer = PreviousNodePointer;
     }
     else {
       NextNode = (void**)*CurrentNodePointer;
