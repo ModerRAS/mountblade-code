@@ -50190,14 +50190,25 @@ void UnwindExceptionHandlerB3(undefined8 ExceptionContext, longlong HandlerConte
 
 
 
-void Unwind_180907080(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常解包装函数B4
+ * 
+ * 该函数负责在异常解包过程中调用指定的验证上下文函数，
+ * 处理异常恢复相关的操作
+ * 
+ * @param ExceptionContext 异常上下文指针
+ * @param HandlerContext 处理器上下文指针
+ * 
+ * @note 原始函数名：Unwind_180907080
+ */
+void UnwindExceptionHandlerB4(undefined8 ExceptionContext, longlong HandlerContext)
 
 {
-  longlong *pvalidationContext;
+  longlong *ValidationContext;
   
-  pvalidationContext = *(longlong **)(*(longlong *)(param_2 + 0xd0) + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  ValidationContext = *(longlong **)(*(longlong *)(HandlerContext + 0xd0) + 0x18);
+  if (ValidationContext != (longlong *)0x0) {
+    (**(code **)(*ValidationContext + 0x38))();
   }
   return;
 }
@@ -65110,7 +65121,15 @@ void Unwind_18090c490(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_18090c4a0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常处理器函数 - 复杂异常处理和系统重置
+ * 
+ * 该函数负责处理复杂的异常情况，包括执行回调、
+ * 设置异常处理器、终止系统、重置状态等操作
+ * 
+ * @note 原始函数名：Unwind_18090c4a0
+ */
+void ComplexExceptionHandlerAndReset(undefined8 param_1,longlong param_2)
 
 {
   if (*(longlong **)(param_2 + 0x108) != (longlong *)0x0) {
