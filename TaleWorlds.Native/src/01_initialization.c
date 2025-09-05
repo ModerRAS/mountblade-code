@@ -20630,14 +20630,14 @@ void InitializeSystemDataPointers(long long* SystemResourceManager)
   void** SystemDataTable;
   
   DataEndPointer = (void* *)SystemResourceManager[SYSTEM_RESOURCE_DATA_POINTER_OFFSET];
-  for (void** ResourceHashEntryPointer = (void* *)*SystemResourceManager; ResourceHashEntryPointer != DataEndPointer; ResourceHashEntryPointer = ResourceHashEntryPointer + 5) {
-    *ResourceHashEntryPointer = &SystemGlobalDataReference;
-    if (ResourceHashEntryPointer[1] != 0) {
+  for (void** ResourceEntryIterator = (void* *)*SystemResourceManager; ResourceEntryIterator != DataEndPointer; ResourceEntryIterator = ResourceEntryIterator + 5) {
+    *ResourceEntryIterator = &SystemGlobalDataReference;
+    if (ResourceEntryIterator[1] != 0) {
         SystemCleanupFunction();
     }
-    ResourceHashEntryPointer[1] = 0;
-    *(uint32_t *)(ResourceHashEntryPointer + 3) = 0;
-    *ResourceHashEntryPointer = &SystemMemoryAllocatorReference;
+    ResourceEntryIterator[1] = 0;
+    *(uint32_t *)(ResourceEntryIterator + 3) = 0;
+    *ResourceEntryIterator = &SystemMemoryAllocatorReference;
   }
   if (*SystemResourceManager != 0) {
       SystemCleanupFunction();
