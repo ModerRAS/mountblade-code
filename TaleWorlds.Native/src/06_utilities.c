@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 美化工作开始：函数名重命名和文档注释添加
-
 // 全局数据定义
 #define DefaultSystemDataAddress 0x18
 
