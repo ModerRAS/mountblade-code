@@ -5571,17 +5571,17 @@ undefined8 ProcessFloatArrayResource(longlong resourceDescriptor)
 
 
 
-// 函数: undefined8 ProcessBatchDataOperations(longlong param_1)
+// 函数: undefined8 ProcessBatchDataOperations(longlong batchDataDescriptor)
 // 
 // 批量数据处理函数
 // 处理批量数据操作，包括验证和处理多个数据项
 // 
 // 参数:
-//   param_1 - 数据处理参数指针
+//   batchDataDescriptor - 数据处理参数指针
 // 
 // 返回值:
 //   undefined8 - 处理结果状态码
-undefined8 ProcessBatchDataOperations(longlong param_1)
+undefined8 ProcessBatchDataOperations(longlong batchDataDescriptor)
 
 {
   longlong dataItemPointer;
@@ -5594,36 +5594,36 @@ undefined8 ProcessBatchDataOperations(longlong param_1)
   longlong baseAddress;
   longlong stackBuffer;
   
-  uVar3 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&lStackX_8);
-  if ((int)uVar3 == 0) {
-    uVar7 = 0;
-    uVar5 = lStackX_8 - 8;
-    if (lStackX_8 == 0) {
-      uVar5 = uVar7;
+  queryStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(batchDataDescriptor + 0x10),&stackBuffer);
+  if ((int)queryStatus == 0) {
+    processedCount = 0;
+    contextPointer = stackBuffer - 8;
+    if (stackBuffer == 0) {
+      contextPointer = processedCount;
     }
-    puVar4 = (undefined4 *)(param_1 + 0x20 + (longlong)*(int *)(param_1 + 0x18) * 4);
-    if (0 < *(int *)(param_1 + 0x18)) {
-      lVar8 = (param_1 + 0x20) - (longlong)puVar4;
+    dataPointerArray = (undefined4 *)(batchDataDescriptor + 0x20 + (longlong)*(int *)(batchDataDescriptor + 0x18) * 4);
+    if (0 < *(int *)(batchDataDescriptor + 0x18)) {
+      baseAddress = (batchDataDescriptor + 0x20) - (longlong)dataPointerArray;
       do {
-        operationResult = *(int *)(lVar8 + (longlong)puVar4);
+        operationResult = *(int *)(baseAddress + (longlong)dataPointerArray);
         if (operationResult != -1) {
-          validationContext = *(longlong *)(uVar5 + 0x20) + (longlong)operationResult * 0x18;
+          validationContext = *(longlong *)(contextPointer + 0x20) + (longlong)operationResult * 0x18;
           if ((validationContext == 0) || (validationContext = *(longlong *)(validationContext + 8), validationContext == 0)) {
             return 0x1c;
           }
-          uVar3 = FUN_1808d73b0(validationContext,*puVar4,0);
-          if ((int)uVar3 != 0) {
-            return uVar3;
+          queryStatus = FUN_1808d73b0(validationContext,*dataPointerArray,0);
+          if ((int)queryStatus != 0) {
+            return queryStatus;
           }
         }
-        uVar6 = (int)uVar7 + 1;
-        uVar7 = (ulonglong)uVar6;
-        puVar4 = puVar4 + 1;
-      } while ((int)uVar6 < *(int *)(param_1 + 0x18));
+        loopCounter = (int)processedCount + 1;
+        processedCount = (ulonglong)loopCounter;
+        dataPointerArray = dataPointerArray + 1;
+      } while ((int)loopCounter < *(int *)(batchDataDescriptor + 0x18));
     }
-    uVar3 = 0;
+    queryStatus = 0;
   }
-  return uVar3;
+  return queryStatus;
 }
 
 
