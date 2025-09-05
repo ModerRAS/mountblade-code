@@ -658,10 +658,10 @@ void* UtilityModuleResourcePointer2;
 // 返回值:
 //   无
 void ResetUtilityPointers1(void);
-undefined ResetPointerData1;
-undefined ResetPointerData2;
-undefined ResetPointerData3;
-undefined ResetPointerData4;
+uint32_t PointerResetValue1;
+uint32_t PointerResetValue2;
+uint32_t PointerResetValue3;
+uint32_t PointerResetValue4;
 
 // 函数: void ResetUtilityPointers2(void)
 // 
@@ -765,8 +765,8 @@ undefined1 UtilityStatusFlag1;
 // 
 // 返回值:
 //   undefined - 重置结果状态
-undefined UtilityResetSystem;
-undefined1 UtilityResetFlag1;
+uint32_t SystemResetStatus;
+bool SystemResetEnabled;
 
 // 函数: undefined UtilityCleanupSystem(void)
 // 
@@ -778,8 +778,8 @@ undefined1 UtilityResetFlag1;
 // 
 // 返回值:
 //   undefined - 清理结果状态
-undefined UtilityCleanupSystem;
-undefined1 UtilityCleanupFlag1;
+uint32_t SystemCleanupStatus;
+bool SystemCleanupEnabled;
 
 // 函数: undefined UtilityProcessData1(void)
 // 
@@ -9675,22 +9675,23 @@ void UtilityNoOperationE(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_1808940f0(longlong param_1,longlong param_2)
-void FUN_1808940f0(longlong param_1,longlong param_2)
+// 函数: void InitializeUtilitySystemContext(longlong contextHandle, longlong systemData)
+// 功能：初始化工具系统上下文，设置系统数据和上下文句柄
+void InitializeUtilitySystemContext(longlong contextHandle, longlong systemData)
 
 {
-  undefined1 auStack_68 [8];
-  longlong lStack_60;
-  longlong lStack_50;
-  longlong lStack_40;
-  ulonglong uStack_38;
+  undefined1 localStackData [8];
+  longlong contextOffset;
+  longlong handlePointer;
+  longlong dataPointer;
+  ulonglong securityHash;
   
-  uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_68;
-  lStack_60 = param_2 + 0x60;
-  lStack_50 = param_1 + 0x18 + (longlong)*(int *)(param_1 + 0x10) * 8;
-  lStack_40 = param_2;
+  securityHash = GlobalSecurityKey ^ (ulonglong)localStackData;
+  contextOffset = systemData + 0x60;
+  handlePointer = contextHandle + 0x18 + (longlong)*(int *)(contextHandle + 0x10) * 8;
+  dataPointer = systemData;
                     // WARNING: Subroutine does not return
-  FUN_1808fd200();
+  ExecuteSystemInitialization();
 }
 
 
