@@ -114,6 +114,7 @@
 #define ResourceDataFinalScaleOffset        0x2a4
 #define DataComparisonTemplateIId2   0xb97f048d2153e1b0
 #define DataComparisonTemplateSystemNodeId1   0x402feffe4481676e
+#define DataComparisonTemplateLId1   0x402feffe4481676e
 #define DataComparisonTemplateLId2   0xd4c2151109de93a0
 #define DataComparisonTemplateMId1   0x4384dcc4b6d3f417
 #define DataComparisonTemplateMId2   0x92a15d52fe2679bd
@@ -2558,6 +2559,15 @@ int InitializeSystemThreadSynchronization(void* ThreadPool, void* SyncConfig, si
  * 
  * @param void 无参数
  * @return void 无返回值
+ */
+/**
+ * @brief 初始化系统字符串处理器
+ * 
+ * 该函数负责初始化系统的字符串处理器，设置字符串缓冲区、
+ * 字符串处理函数和字符串管理机制，为系统提供字符串操作支持。
+ * 
+ * @note 该函数在系统初始化过程中调用，确保字符串处理功能正常工作。
+ * @note 函数会初始化字符串处理器节点和相关回调函数。
  */
 void InitializeSystemStringHandler(void)
 
@@ -53729,7 +53739,7 @@ ResourceAllocationLoop:
       ResourceDataBufferPointer = (uint8_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x15,0x13);
       *ResourceDataBufferPointer = 0;
       ResourceHash = StartSystemThread(ResourceDataBufferPointer);
-      SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ResourceHash);
+      SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ResourceHash);
       pSystemProcessingResult = (uint32_t *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset);
       *pSystemProcessingResult = 0x69746f4e;
       pSystemProcessingResult[1] = 0x61636966;
@@ -53744,7 +53754,7 @@ ResourceAllocationLoop:
         *ResourceDataBufferPointer = 0;
 SystemResourceDataProcessing:
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
       }
       else if (ResourceHash < 0x16) {
         pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
@@ -53761,7 +53771,7 @@ SystemResourceDataProcessing:
         *ResourceDataBufferPointer = 0;
 SystemOperationComplete:
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
       }
       else if ((uint)SystemThreadContextIndicators < 0x17) {
         pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
@@ -53798,7 +53808,7 @@ SystemOperationComplete:
               ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,SystemInitializationStatusFlags,0x10);
             }
             ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-            SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+            SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
             ResourceAddress = SystemMemoryAllocationOffset;
           }
 SystemResourceHashProcessing:
@@ -53812,7 +53822,7 @@ SystemResourceHashProcessing:
         *ResourceDataBufferPointer = 0;
 SystemContextValidation:
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
       }
       else if ((uint)SystemThreadContextIndicators < 0x18) {
         pSystemThreadId148 = (uint8_t *)CONCAT71(UNION_LOW_BYTE(pSystemThreadId148),0x13);
@@ -53840,7 +53850,7 @@ SystemContextValidation:
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,SystemInitializationStatusFlags,0x10);
         }
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
       }
 SystemMemoryAllocationComplete:
       *(void*2 *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 10;
@@ -53861,7 +53871,7 @@ SystemMemoryAllocationComplete:
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,ResourceAddress,0x10);
         }
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
       }
 ResourceAddressValidation:
       SystemDataConfigurationPointer = (void* *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset);
@@ -53892,7 +53902,7 @@ ResourceAddressValidation:
               ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,ResourceHash,0x10);
             }
             ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-            SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+            SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
           }
 ResourceHashValidation:
             memcpy(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset,ConfigurationFlag,(long long)((int)ResourceDataCounter + 2));
@@ -53914,7 +53924,7 @@ ResourceHashValidation:
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,SystemOperationCode,0x10);
         }
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
       }
 SystemResourceOperationFinalize:
       *(void*2 *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 0xa0a;
@@ -53935,7 +53945,7 @@ SystemResourceOperationFinalize:
           ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,ResourceAddress,0x10);
         }
         ThreadContextIndicator = StartSystemThread(ResourceBufferPointerSecondary);
-        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators._4_4_,ThreadContextIndicator);
+        SystemThreadContextIndicators = ConcatenatedSystemValue(SystemThreadContextIndicators.LowPart,ThreadContextIndicator);
       }
 SystemOperationCodeValidation:
       SystemDataConfigurationPointer = (void* *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset);
@@ -53994,7 +54004,7 @@ SystemOperationCodeValidation:
           *(uint8_t *)SystemDataConfigurationPointer = 0;
           MemoryAllocatorReferencePointer = SystemDataConfigurationPointer;
           ThreadContextIndicator = StartSystemThread(SystemDataConfigurationPointer);
-          systemDataBuffer = ConcatenatedSystemValue(systemDataBuffer._4_4_,ThreadContextIndicator);
+          systemDataBuffer = ConcatenatedSystemValue(systemDataBuffer.LowPart,ThreadContextIndicator);
           *SystemDataConfigurationPointer = 0x7270706d75645c5c;
           SystemDataConfigurationPointer[1] = 0x2e726f737365636f;
           SystemDataConfigurationPointer[2] = 0x6c726f77656c6174;
@@ -54173,7 +54183,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   SystemThreadHandle = (void*2 *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
   *(uint8_t *)SystemThreadHandle = 0;
   SystemInitializationStatus = StartSystemThread(SystemThreadHandle);
-  SystemMemoryAllocatorStatus = ConcatenatedSystemValue(SystemMemoryAllocatorStatus._4_4_,SystemInitializationStatus);
+  SystemMemoryAllocatorStatus = ConcatenatedSystemValue(SystemMemoryAllocatorStatus.LowPart,SystemInitializationStatus);
   *SystemThreadHandle = 0xa0a;
   *(uint8_t *)(SystemThreadHandle + 1) = 0;
   SystemThreadState = 2;
@@ -54291,7 +54301,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
       *(uint8_t *)SystemThreadContext = 0;
       pUnsignedStackFlagQuaternary = SystemThreadContext;
       SystemInitializationStatus = StartSystemThread(SystemThreadContext);
-      secondarySystemDataBuffer = ConcatenatedSystemValue(secondarySystemDataBuffer._4_4_,SystemInitializationStatus);
+      secondarySystemDataBuffer = ConcatenatedSystemValue(secondarySystemDataBuffer.LowPart,SystemInitializationStatus);
       if (*(int *)(SystemProcessingBufferPointer + 0x158) != 0) {
           memcpy(SystemThreadContext,*(void* *)(SystemProcessingBufferPointer + 0x150),*(int *)(SystemProcessingBufferPointer + 0x158) + 1);
       }
@@ -58549,8 +58559,8 @@ int SystemResourceManagerConfigurationProcessor(long long SystemResourceManager,
   ProcessResourceAllocationData(resourceCounter + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,&SystemContextValue,*(uint32_t *)(resourceCounter + 0x10),*(uint32_t *)(resourceCounter + 0x18),
                 1);
   if ((char)SystemContextValue != '\0') {
-    SystemOperationCounter = SystemOperationResult % (ulong long)SystemContextValue._4_4_;
-    ProcessResourceIndexData(resourceCounter,SystemContextValue._4_4_);
+    SystemOperationCounter = SystemOperationResult % (ulong long)SystemContextValue.LowPart;
+    ProcessResourceIndexData(resourceCounter,SystemContextValue.LowPart);
   }
   pSystemProcessingResult[1] = *(ulong long *)(*(long long *)(resourceCounter + 8) + SystemOperationCounter * 8);
   *(ulong long **)(*(long long *)(resourceCounter + 8) + SystemOperationCounter * 8) = pSystemProcessingResult;
@@ -61366,9 +61376,9 @@ void InitializeSystemResourceData(void* *SystemResourceManager,long long Configu
   if ((*(char *)(ConfigurationDataPointer + 0x2f0) == '\0') && (*(long long *)(ConfigurationDataPointer + 0x3c8) != 0)) {
     ProcessResourceConfigurationData(*(long long *)(ConfigurationDataPointer + 0x3c8),&processBufferPointer);
     configurationFlags = (uint32_t)processBufferPointer;
-    operationStatusPrimary = processBufferPointer._4_4_;
+    operationStatusPrimary = processBufferPointer.LowPart;
     operationStatusSecondary = (uint32_t)resourceDataBuffer;
-    operationStatusTertiary = resourceDataBuffer._4_4_;
+    operationStatusTertiary = resourceDataBuffer.LowPart;
   }
   else {
     configurationFlags = *(uint32_t *)(ConfigurationDataPointer + 0x2d0);
@@ -63604,7 +63614,7 @@ float * ProcessSystemFloatData(float *SystemResourceManager)
       if (*(void* **)(SystemResourceManager + 6) != (void* *)0x0) {
         pSystemEncryptionKey = *(void* **)(SystemResourceManager + 6);
       }
-      SystemOperationCounter = ConcatenatedSystemValue(SystemOperationCounter._4_4_,*(uint32_t *)(*(long long *)(SystemResourceManager + 0x84) + 0x60));
+      SystemOperationCounter = ConcatenatedSystemValue(SystemOperationCounter.LowPart,*(uint32_t *)(*(long long *)(SystemResourceManager + 0x84) + 0x60));
       memoryAllocationBuffer = &SystemMemoryBufferTemplateA;
       SystemFlagTertiary = 0x18007967a;
       SystemFloatValue3 = SystemTimeFloatValue;
@@ -64392,21 +64402,21 @@ ResourceInitializationLoop:
               }
               if (!isResourceAvailable4) {
                 SystemThreadHandlePrimary = *SystemResourceOffsetPointer9;
-                SystemOperationFlag1b8._4_4_ = *(uint32_t *)(SystemThreadHandleCounter + 8 + SystemThreadHandlePrimary);
+                SystemOperationFlag1b8.LowPart = *(uint32_t *)(SystemThreadHandleCounter + 8 + SystemThreadHandlePrimary);
                 SystemOperationFlag1b8._0_4_ = *(uint32_t *)(SystemThreadHandleCounter + 4 + SystemThreadHandlePrimary);
                 uStack_1bc = *(uint32_t *)(SystemThreadHandleCounter + SystemThreadHandlePrimary);
                 CalculationFlagsExtended = (int *)ConcatenatedSystemValue((uint32_t)SystemOperationFlag1b8,uStack_1bc);
-                SystemStackFlag = (int *)ConcatenatedSystemValue(0x7f7fffff,SystemOperationFlag1b8._4_4_);
-                piStack_1b0 = (int *)ConcatenatedSystemValue(piStack_1b0._4_4_,0x7f7fffff);
+                SystemStackFlag = (int *)ConcatenatedSystemValue(0x7f7fffff,SystemOperationFlag1b8.LowPart);
+                piStack_1b0 = (int *)ConcatenatedSystemValue(piStack_1b0.LowPart,0x7f7fffff);
                 ResourceAddressPrimary = (ulong long)*SystemHashNodeData2;
                 paresourceAllocationContext7 = *(uint8_t (**) [16])(piStack_218 + ResourceAddressPrimary * 8 + 2);
                 GlobalDataFlags = SystemContextPointer;
                 if (paresourceAllocationContext7 < *(uint8_t (**) [16])(piStack_218 + ResourceAddressPrimary * 8 + 4)) {
                   *(uint8_t **)(piStack_218 + ResourceAddressPrimary * 8 + 2) = paresourceAllocationContext7[1] + 4;
-                  aSystemOperationCode._4_4_ = uStack_1bc;
+                  aSystemOperationCode.LowPart = uStack_1bc;
                   aSystemOperationCode._0_4_ = SystemContextPointer;
                   aSystemOperationCode._8_4_ = (uint32_t)SystemOperationFlag1b8;
-                  aSystemOperationCode._12_4_ = SystemOperationFlag1b8._4_4_;
+                  aSystemOperationCode._12_4_ = SystemOperationFlag1b8.LowPart;
                   *paresourceAllocationContext7 = aSystemOperationCode;
                   *(uint32_t *)paresourceAllocationContext7[1] = 0x7f7fffff;
                 }
@@ -64430,10 +64440,10 @@ SystemConfigurationAllocation:
                   if (paResourceAllocationContext != paresourceAllocationContext7) {
                       memmove(paResourceAddress2,paResourceAllocationContext,(long long)paresourceAllocationContext7 - (long long)paResourceAllocationContext);
                   }
-                  aResourceAddress7._4_4_ = uStack_1bc;
+                  aResourceAddress7.LowPart = uStack_1bc;
                   aResourceAddress7._0_4_ = GlobalDataFlags;
                   aResourceAddress7._8_4_ = (uint32_t)SystemOperationFlag1b8;
-                  aResourceAddress7._12_4_ = SystemOperationFlag1b8._4_4_;
+                  aResourceAddress7._12_4_ = SystemOperationFlag1b8.LowPart;
                   *paResourceAddress2 = aResourceAddress7;
                   *(uint32_t *)paResourceAddress2[1] = piStack_1b0._0_4_;
                   if (*(long long *)(SystemIntegerPointer + ResourceAddressPrimary * 8) != 0) {
@@ -64818,7 +64828,7 @@ LabelExpandSystemThread:
         GlobalDataFlags = (uint)piStack_218;
         uStack_1bc = (uint32_t)((ulong long)piStack_218 >> 0x20);
         SystemOperationFlag1b8._0_4_ = SUB84(piStack_1f8,0);
-        SystemOperationFlag1b8._4_4_ = (uint32_t)((ulong long)piStack_1f8 >> 0x20);
+        SystemOperationFlag1b8.LowPart = (uint32_t)((ulong long)piStack_1f8 >> 0x20);
         piStack_1b0 = piStack_208;
         StackAllocationSize = 3;
         uStack_1a8 = 3;
@@ -65931,7 +65941,7 @@ void ConfigureSystemInitializationParameters(long long* SystemResourceManager,by
     SystemFunctionPointer1 = (code *)&SystemCodeEntryPointC;
     SystemNodePointer = &SystemNodeTableA;
     SystemStatusFlag1 = (uint32_t)SystemResourceManager1;
-    SystemStatusFlag2 = SystemResourceManager1._4_4_;
+    SystemStatusFlag2 = SystemResourceManager1.LowPart;
     SystemStatusFlag3 = SystemConfigurationFlag1;
     SystemStatusFlag4 = SystemConfigurationFlag2;
     SystemThreadLocalStoragePointer = SystemResourceManager;
@@ -70201,11 +70211,11 @@ void* NormalizeAudioData(void)
           audioShiftRegister = (audioShiftRegister - 1 | 0xfffffff8) + 1;
         }
         audioInverseCoeffArray._0_4_ = audioWindowOffset1 + -1;
-        audioInverseCoeffArray._4_4_ = audioWindowOffset2 + -1;
+        audioInverseCoeffArray.LowPart = audioWindowOffset2 + -1;
         audioInverseCoeffArray._8_4_ = audioWindowOffset3 + -1;
         audioInverseCoeffArray._12_4_ = audioWindowOffset4 + -1;
         audioCoefficientArray._0_4_ = (float)audioInverseCoeffArray._0_4_;
-        audioCoefficientArray._4_4_ = (float)audioInverseCoeffArray._4_4_;
+        audioCoefficientArray.LowPart = (float)audioInverseCoeffArray.LowPart;
         audioCoefficientArray._8_4_ = (float)audioInverseCoeffArray._8_4_;
         audioCoefficientArray._12_4_ = (float)audioInverseCoeffArray._12_4_;
         audioInverseCoeffArray = rcpps(audioInverseCoeffArray,audioCoefficientArray);
@@ -70214,7 +70224,7 @@ void* NormalizeAudioData(void)
         audioWeightedSum3 = 0.0;
         audioIntermediateResult = 0.0;
         audioFilterCoeff1 = audioInverseCoeffArray._0_4_;
-        audioFilterCoeff2 = audioInverseCoeffArray._4_4_;
+        audioFilterCoeff2 = audioInverseCoeffArray.LowPart;
         audioFilterCoeff3 = audioInverseCoeffArray._8_4_;
         audioFilterCoeff4 = audioInverseCoeffArray._12_4_;
         audioWeightedSum1 = 0.0;
@@ -70229,7 +70239,7 @@ void* NormalizeAudioData(void)
         audioAccumulatedSum3 = 0.0;
         audioAccumulatedSum4 = 0.0;
         audioFilterCoeff1 = (audioFilterCoeff1 + audioFilterCoeff1) - audioFilterCoeff1 * audioFilterCoeff1 * audioCoefficientArray._0_4_;
-        audioFilterCoeff2 = (audioFilterCoeff2 + audioFilterCoeff2) - audioFilterCoeff2 * audioFilterCoeff2 * audioCoefficientArray._4_4_;
+        audioFilterCoeff2 = (audioFilterCoeff2 + audioFilterCoeff2) - audioFilterCoeff2 * audioFilterCoeff2 * audioCoefficientArray.LowPart;
         audioFilterCoeff3 = (audioFilterCoeff3 + audioFilterCoeff3) - audioFilterCoeff3 * audioFilterCoeff3 * audioCoefficientArray._8_4_;
         audioFilterCoeff4 = (audioFilterCoeff4 + audioFilterCoeff4) - audioFilterCoeff4 * audioFilterCoeff4 * audioCoefficientArray._12_4_;
         audioBufferPointer = audioInputData;
@@ -70417,11 +70427,11 @@ void* ProcessAudioSignal(void)
         audioProcessingFlag9 = (audioProcessingFlag9 - 1 | 0xfffffff8) + 1;
       }
       audioCoefficientArray20._0_4_ = audioFilterCoeffA + -1;
-      audioCoefficientArray20._4_4_ = audioFilterCoeffB + -1;
+      audioCoefficientArray20.LowPart = audioFilterCoeffB + -1;
       audioCoefficientArray20._8_4_ = audioFilterCoeffC + -1;
       audioCoefficientArray20._12_4_ = audioFilterCoeffD + -1;
       audioCoefficientArray17._0_4_ = (float)audioCoefficientArray20._0_4_;
-      audioCoefficientArray17._4_4_ = (float)audioCoefficientArray20._4_4_;
+      audioCoefficientArray17.LowPart = (float)audioCoefficientArray20.LowPart;
       audioCoefficientArray17._8_4_ = (float)audioCoefficientArray20._8_4_;
       audioCoefficientArray17._12_4_ = (float)audioCoefficientArray20._12_4_;
       audioCoefficientArray20 = rcpps(audioCoefficientArray20,audioCoefficientArray17);
@@ -70430,7 +70440,7 @@ void* ProcessAudioSignal(void)
       audioSignal31 = 0.0;
       audioSignal18 = 0.0;
       audioSignal19 = audioCoefficientArray20._0_4_;
-      audioSignal21 = audioCoefficientArray20._4_4_;
+      audioSignal21 = audioCoefficientArray20.LowPart;
       audioSignal22 = audioCoefficientArray20._8_4_;
       audioSignal23 = audioCoefficientArray20._12_4_;
       audioSignal30 = 0.0;
@@ -70446,7 +70456,7 @@ void* ProcessAudioSignal(void)
       audioSignal27 = 0.0;
       audioSignal28 = 0.0;
       audioSignal19 = (audioSignal19 + audioSignal19) - audioSignal19 * audioSignal19 * audioCoefficientArray17._0_4_;
-      audioSignal21 = (audioSignal21 + audioSignal21) - audioSignal21 * audioSignal21 * audioCoefficientArray17._4_4_;
+      audioSignal21 = (audioSignal21 + audioSignal21) - audioSignal21 * audioSignal21 * audioCoefficientArray17.LowPart;
       audioSignal22 = (audioSignal22 + audioSignal22) - audioSignal22 * audioSignal22 * audioCoefficientArray17._8_4_;
       audioSignal23 = (audioSignal23 + audioSignal23) - audioSignal23 * audioSignal23 * audioCoefficientArray17._12_4_;
       audioDataPointer11 = audioDataIndexPtr;
@@ -70630,11 +70640,11 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
     ThreadContextIndicator = (ThreadContextIndicator - 1 | 0xfffffff8) + 1;
   }
   SystemAudioContext._0_4_ = AudioInterpolationCoeff1 + -1;
-  SystemAudioContext._4_4_ = AudioInterpolationCoeff2 + -1;
+  SystemAudioContext.LowPart = AudioInterpolationCoeff2 + -1;
   SystemAudioContext._8_4_ = AudioInterpolationCoeff3 + -1;
   SystemAudioContext._12_4_ = AudioInterpolationCoeff4 + -1;
   SystemAudioStatusFlags._0_4_ = (float)SystemAudioContext._0_4_;
-  SystemAudioStatusFlags._4_4_ = (float)SystemAudioContext._4_4_;
+  SystemAudioStatusFlags.LowPart = (float)SystemAudioContext.LowPart;
   SystemAudioStatusFlags._8_4_ = (float)SystemAudioContext._8_4_;
   SystemAudioStatusFlags._12_4_ = (float)SystemAudioContext._12_4_;
   SystemAudioContext = rcpps(SystemAudioContext,SystemAudioStatusFlags);
@@ -70643,7 +70653,7 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   floatValue30 = 0.0;
   AudioInterpolationFactorV = 0.0;
   AudioMagnitudeSquared = SystemAudioContext._0_4_;
-  AudioProcessingResult2 = SystemAudioContext._4_4_;
+  AudioProcessingResult2 = SystemAudioContext.LowPart;
   AudioSignal21 = SystemAudioContext._8_4_;
   AudioSignal22 = SystemAudioContext._12_4_;
   floatValue29 = 0.0;
@@ -70659,7 +70669,7 @@ void* ProcessSystemResourceConfiguration(int SystemResourceManager,void* Configu
   floatValue26 = 0.0;
   floatValue27 = 0.0;
   MagnitudeSquared = (MagnitudeSquared + MagnitudeSquared) - MagnitudeSquared * MagnitudeSquared * aSystemInitializationStatusFlags._0_4_;
-  ResultValue2 = (ResultValue2 + ResultValue2) - ResultValue2 * ResultValue2 * aSystemInitializationStatusFlags._4_4_;
+  ResultValue2 = (ResultValue2 + ResultValue2) - ResultValue2 * ResultValue2 * aSystemInitializationStatusFlags.LowPart;
   MatrixValue1 = (MatrixValue1 + MatrixValue1) - MatrixValue1 * MatrixValue1 * aSystemInitializationStatusFlags._8_4_;
   MatrixValue2 = (MatrixValue2 + MatrixValue2) - MatrixValue2 * MatrixValue2 * aSystemInitializationStatusFlags._12_4_;
   pScalingFactor = systemDataIndexPtr;
