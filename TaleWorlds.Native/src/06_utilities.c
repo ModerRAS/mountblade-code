@@ -7580,24 +7580,24 @@ void UtilityNoOperation1(void)
 undefined8 ForceResourceRelease(longlong resourceDescriptor)
 
 {
-  uint64_t validationStatus;
-  longlong stackPointer;
+  uint64_t resourceValidationStatus;
+  longlong memoryStackPointer;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x10),&stackPointer);
-  if ((int)validationStatus != 0) {
-    return validationStatus;
+  resourceValidationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceDescriptor + 0x10),&memoryStackPointer);
+  if ((int)resourceValidationStatus != 0) {
+    return resourceValidationStatus;
   }
-  if (stackPointer == 0) {
-    stackPointer = 0;
+  if (memoryStackPointer == 0) {
+    memoryStackPointer = 0;
   }
   else {
-    stackPointer = stackPointer + -8;
+    memoryStackPointer = memoryStackPointer + -8;
   }
-  if (*(longlong *)(stackPointer + 0x10) == 0) {
+  if (*(longlong *)(memoryStackPointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(stackPointer + 0x10),1);
+  ReleaseResource(*(longlong *)(memoryStackPointer + 0x10),1);
 }
 
 
