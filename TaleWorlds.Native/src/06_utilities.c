@@ -102,7 +102,7 @@
  * 
  * @note 原始函数名：func_0x00018074be80
  */
-#define EncryptData func_0x00018074be80
+#define EncryptData EncryptData
 
 /**
  * @brief 数据验证处理函数A0
@@ -129,7 +129,7 @@
  * 
  * @note 原始函数名：func_0x00018076b450
  */
-#define InitializeMemory func_0x00018076b450
+#define InitializeMemory InitializeMemory
 
 /**
  * @brief 数据处理函数A0
@@ -228,7 +228,7 @@
  * 
  * @note 原始函数名：func_0x000180060c10
  */
-#define ProcessSystemA0 func_0x000180060c10
+#define ProcessSystemA0 ProcessSystemA0
 
 /**
  * @brief 数据初始化函数A0
