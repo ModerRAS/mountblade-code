@@ -28697,7 +28697,7 @@ void UtilityNoOperationZ(void)
 
 
 89f47c(void)
-void FUN_18089f47c(void)
+void UtilityNoOperationAA(void)
 
 {
   return;
@@ -28767,7 +28767,7 @@ ulonglong FUN_18089f571(void)
 
 
 89f7fd(void)
-void FUN_18089f7fd(void)
+void ValidateSystemStateC2(void)
 
 {
   return;
@@ -29140,7 +29140,7 @@ ulonglong FUN_18089fad8(void)
 
 
 89fb06(void)
-void FUN_18089fb06(void)
+void ProcessSystemDataC1(void)
 
 {
   int iVar1;
