@@ -7445,7 +7445,7 @@ void ExecuteUtilitySystemCleanup(longlong systemHandle, longlong cleanupContext)
 {
   int cleanupStatus;
   
-  cleanupStatus = FUN_18073b810(*(undefined8 *)(cleanupContext + 0x78),*(undefined4 *)(systemHandle + 0x10));
+  cleanupStatus = CleanupSystemResourceA1(*(undefined8 *)(cleanupContext + 0x78),*(undefined4 *)(systemHandle + 0x10));
   if (cleanupStatus == 0) {
     ExecuteCleanupOperation(*(undefined8 *)(cleanupContext + 0x90),*(undefined4 *)(systemHandle + 0x10));
   }
