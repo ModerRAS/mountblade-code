@@ -16114,15 +16114,15 @@ ValidationCompleteLabel:
 undefined8 ValidateDataIntegrityA2(longlong param_1,undefined8 param_2,longlong param_3)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong in_RAX;
   undefined8 *resourcePointer;
   int *unaff_RDI;
   longlong in_R10;
   undefined8 uStack0000000000000040;
   
-  uVar1 = *(undefined8 *)(param_1 + 8 + in_RAX * 8);
-  uStack0000000000000040._4_4_ = (int)((ulonglong)uVar1 >> 0x20);
+  dataValue = *(undefined8 *)(param_1 + 8 + in_RAX * 8);
+  uStack0000000000000040._4_4_ = (int)((ulonglong)dataValue >> 0x20);
   if (uStack0000000000000040._4_4_ != 0) {
     *unaff_RDI = uStack0000000000000040._4_4_;
     return 0;
@@ -16131,7 +16131,7 @@ undefined8 ValidateDataIntegrityA2(longlong param_1,undefined8 param_2,longlong 
            ((longlong)*(int *)(*(longlong *)(in_R10 + 0x18) + param_3 * 0xc) +
            *(longlong *)(in_R10 + 8));
   if (resourcePointer != (undefined8 *)0x0) {
-    uStack0000000000000040 = uVar1;
+    uStack0000000000000040 = dataValue;
     (**(code **)*resourcePointer)();
   }
   *unaff_RDI = 0;
@@ -16154,7 +16154,7 @@ undefined8 UtilityNoOperationH(void)
 undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undefined8 *param_3)
 
 {
-  uint uVar1;
+  uint dataValue;
   int operationResult;
   int operationStatus;
   undefined8 memoryBaseAddress;
@@ -16164,7 +16164,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
   longlong bufferPointer;
   longlong dataPointer;
   uint *ploopCounter;
-  uint uVar11;
+  uint dataValue1;
   int inputParameter2;
   int *referenceCountPointer3;
   
@@ -16173,15 +16173,15 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
     if ((int)param_1[1] == 0) {
       return 0x1c;
     }
-    uVar1 = *param_2;
-    bufferPointer = (longlong)(int)((int)param_1[1] - 1U & uVar1);
+    dataValue = *param_2;
+    bufferPointer = (longlong)(int)((int)param_1[1] - 1U & dataValue);
     referenceCountPointer3 = (int *)(*param_1 + bufferPointer * 4);
     operationResult = *(int *)(*param_1 + bufferPointer * 4);
     if (operationResult != -1) {
       bufferPointer = param_1[2];
       do {
         dataPointer = (longlong)operationResult;
-        if (*(uint *)(bufferPointer + dataPointer * 0x10) == uVar1) {
+        if (*(uint *)(bufferPointer + dataPointer * 0x10) == dataValue) {
           *(undefined8 *)(bufferPointer + 8 + dataPointer * 0x10) = *param_3;
           return 0;
         }
@@ -16194,8 +16194,8 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
       memoryBaseAddress = *param_3;
       operationResult = (int)param_1[3];
       calculatedValue = operationResult + 1;
-      uVar11 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
-      operationStatus = (*(uint *)((longlong)param_1 + 0x1c) ^ uVar11) - uVar11;
+      dataValue1 = (int)*(uint *)((longlong)param_1 + 0x1c) >> 0x1f;
+      operationStatus = (*(uint *)((longlong)param_1 + 0x1c) ^ dataValue1) - dataValue1;
       if (operationStatus < calculatedValue) {
         inputParameter2 = (int)((float)operationStatus * 1.5);
         operationStatus = calculatedValue;
@@ -16214,7 +16214,7 @@ undefined8 ProcessHashTableInsertAndUpdate(longlong *param_1,uint *param_2,undef
         }
       }
       pdataFlags = (undefined8 *)((longlong)(int)param_1[3] * 0x10 + param_1[2]);
-      *pdataFlags = CONCAT44(SystemCleanupFlag,uVar1);
+      *pdataFlags = CONCAT44(SystemCleanupFlag,dataValue);
       pdataFlags[1] = memoryBaseAddress;
       *(int *)(param_1 + 3) = (int)param_1[3] + 1;
     }
@@ -16246,7 +16246,7 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
   int operationStatus;
   undefined8 memoryBaseAddress;
   undefined8 *poperationResult;
-  int iVar6;
+  int iterationCount;
   longlong memoryOffset;
   undefined4 *psecurityCheckResult;
   uint statusCounter;
@@ -16275,20 +16275,20 @@ undefined8 ValidateAndProcessDataStructure(undefined8 param_1,int param_2)
   if (operationResult == -1) {
     uStack0000000000000028 = *registerR14;
     operationResult = (int)unaff_RDI[3];
-    iVar6 = operationResult + 1;
+    iterationCount = operationResult + 1;
     statusCounter = (int)*(uint *)((longlong)unaff_RDI + 0x1c) >> 0x1f;
     operationStatus = (*(uint *)((longlong)unaff_RDI + 0x1c) ^ statusCounter) - statusCounter;
-    if (operationStatus < iVar6) {
+    if (operationStatus < iterationCount) {
       inputParameter0 = (int)((float)operationStatus * 1.5);
-      operationStatus = iVar6;
-      if (iVar6 <= inputParameter0) {
+      operationStatus = iterationCount;
+      if (iterationCount <= inputParameter0) {
         operationStatus = inputParameter0;
       }
       if (operationStatus < 4) {
         inputParameter0 = 4;
       }
-      else if (inputParameter0 < iVar6) {
-        inputParameter0 = iVar6;
+      else if (inputParameter0 < iterationCount) {
+        inputParameter0 = iterationCount;
       }
       memoryBaseAddress = CheckSystemDataA0(unaff_RDI + 2,inputParameter0);
       if ((int)memoryBaseAddress != 0) {
@@ -16693,7 +16693,7 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
   uint statusCounter;
   ulonglong loopCounter;
   int inputParameter1;
-  undefined4 *puVar12;
+  undefined4 *pdataValue2;
   longlong *validationContextPointer3;
   int inputParameter4;
   longlong validationContext5;
@@ -16871,12 +16871,12 @@ ulonglong ProcessDataValidationAndSecurityCheck(longlong param_1)
                   statusCounter = 0;
                 }
                 if (arrayIndex < 0) {
-                  puVar12 = (undefined4 *)(uStack_118 + resourceIterator * 4);
+                  pdataValue2 = (undefined4 *)(uStack_118 + resourceIterator * 4);
                   resourceIterator = (longlong)-arrayIndex;
                   if (arrayIndex < 0) {
                     for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
-                      *puVar12 = 0;
-                      puVar12 = puVar12 + 1;
+                      *pdataValue2 = 0;
+                      pdataValue2 = pdataValue2 + 1;
                     }
                   }
                 }
@@ -16954,11 +16954,11 @@ MemoryAllocationLabel:
     }
     if (inputParameter6 < 0) {
       resourceIterator = (longlong)-inputParameter6;
-      puVar12 = (undefined4 *)(dataFlags + (longlong)inputParameter6 * 4);
+      pdataValue2 = (undefined4 *)(dataFlags + (longlong)inputParameter6 * 4);
       if (inputParameter6 < 0) {
         for (; resourceIterator != 0; resourceIterator = resourceIterator + -1) {
-          *puVar12 = 0;
-          puVar12 = puVar12 + 1;
+          *pdataValue2 = 0;
+          pdataValue2 = pdataValue2 + 1;
         }
       }
     }
@@ -17227,17 +17227,17 @@ int ProcessComplexData(longlong complexContext, longlong dataBuffer, int bufferS
 undefined8 ValidateAndProcessDataOperation(longlong param_1,undefined8 param_2,undefined8 param_3)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   
-  uVar1 = ValidateNetworkConnectionA0(param_3,param_1 + 0x10);
-  if ((int)uVar1 == 0) {
+  dataValue = ValidateNetworkConnectionA0(param_3,param_1 + 0x10);
+  if ((int)dataValue == 0) {
     *(undefined4 *)(param_1 + 0x14) = 0;
-    if ((1 < *(int *)(param_1 + 0x10)) && (uVar1 = ValidateNetworkStatusA0(param_3), (int)uVar1 != 0)) {
-      return uVar1;
+    if ((1 < *(int *)(param_1 + 0x10)) && (dataValue = ValidateNetworkStatusA0(param_3), (int)dataValue != 0)) {
+      return dataValue;
     }
-    uVar1 = 0;
+    dataValue = 0;
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -17989,17 +17989,17 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
   longlong calculatedOffset;
   longlong calculatedIndex;
   char cVar5;
-  int iVar6;
+  int iterationCount;
   uint validationOutcome;
   longlong bufferPointer;
   longlong dataPointer;
   undefined8 loopCounter;
-  undefined8 uVar11;
-  undefined *puVar12;
+  undefined8 dataValue1;
+  undefined *pdataValue2;
   float fVar13;
   longlong validationContext4;
   float *pfVar15;
-  undefined8 *puVar16;
+  undefined8 *pdataValue6;
   undefined1 auStack_1e8 [32];
   undefined4 uStack_1c8;
   char acStack_1c4 [4];
@@ -18049,20 +18049,20 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
     bufferPointer = validationContext4;
   }
   lStack_180 = param_2;
-  iVar6 = ValidateAndProcessSystemResourceA0(bufferPointer,&uStack_1c8);
-  if (iVar6 == 0) {
-    puVar16 = (undefined8 *)(param_2 + 8);
+  iterationCount = ValidateAndProcessSystemResourceA0(bufferPointer,&uStack_1c8);
+  if (iterationCount == 0) {
+    pdataValue6 = (undefined8 *)(param_2 + 8);
     uStack_1a0 = 0;
-    puStack_190 = puVar16;
-    bufferPointer = (*(code *)**(undefined8 **)(param_2 + 8))(puVar16);
-    iVar6 = ValidateAndProcessSystemResourceA0(*(undefined8 *)(bufferPointer + 0xd0),&uStack_1a0);
-    if (iVar6 == 0) {
+    puStack_190 = pdataValue6;
+    bufferPointer = (*(code *)**(undefined8 **)(param_2 + 8))(pdataValue6);
+    iterationCount = ValidateAndProcessSystemResourceA0(*(undefined8 *)(bufferPointer + 0xd0),&uStack_1a0);
+    if (iterationCount == 0) {
       uStack_170 = 0;
       puStack_178 = &UNK_1809832b8;
       uStack_160 = uStack_1c8;
       uStack_168 = uStack_1a0;
-      iVar6 = ValidateDataIntegrityA0(param_1,&puStack_178);
-      if (iVar6 == 0) {
+      iterationCount = ValidateDataIntegrityA0(param_1,&puStack_178);
+      if (iterationCount == 0) {
         lStack_188 = (longlong)*(int *)(dataContext + 0x28);
         bufferPointer = validationContext4;
         if (0 < lStack_188) {
@@ -18071,7 +18071,7 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
             calculatedOffset = *(longlong *)(validationContext4 + 0x10 + dataPointer);
             calculatedIndex = *(longlong *)(validationContext4 + 8 + dataPointer);
             cVar5 = CheckSystemStatus(calculatedOffset,1);
-            puVar16 = puStack_190;
+            pdataValue6 = puStack_190;
             if ((cVar5 == '\0') && (*(float *)(calculatedOffset + 0x4c) != *(float *)(calculatedIndex + 0x28))) {
               uStack_f0 = *(undefined4 *)(validationContext4 + 4 + dataPointer);
               puStack_108 = &UNK_180984038;
@@ -18081,28 +18081,28 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
               uStack_e8 = *(undefined8 *)(*(longlong *)(dataPointer + 0x90) + bufferPointer * 8);
               uStack_ec = 0;
               if (*(int *)(calculatedOffset + 0x58) < 1) {
-                puVar12 = &DAT_18098bc73;
+                pdataValue2 = &DAT_18098bc73;
               }
               else {
-                puVar12 = *(undefined **)(calculatedOffset + 0x50);
+                pdataValue2 = *(undefined **)(calculatedOffset + 0x50);
               }
-              InitializeMemory(auStack_e0,puVar12,0x80);
-              iVar6 = ValidateDataIntegrityA0(param_1,&puStack_108);
-              if (iVar6 != 0) goto FUN_180897b16;
+              InitializeMemory(auStack_e0,pdataValue2,0x80);
+              iterationCount = ValidateDataIntegrityA0(param_1,&puStack_108);
+              if (iterationCount != 0) goto FUN_180897b16;
             }
             bufferPointer = bufferPointer + 1;
             validationContext4 = validationContext4 + 0x18;
             param_2 = lStack_180;
           } while (bufferPointer < lStack_188);
         }
-        uVar11 = *(undefined8 *)(*(longlong *)(param_1 + 8) + 800);
-        loopCounter = (**(code **)*puVar16)(puVar16);
-        iVar6 = ProcessDataOperationA7(loopCounter,uVar11,acStack_1c4);
-        if (iVar6 == 0) {
+        dataValue1 = *(undefined8 *)(*(longlong *)(param_1 + 8) + 800);
+        loopCounter = (**(code **)*pdataValue6)(pdataValue6);
+        iterationCount = ProcessDataOperationA7(loopCounter,dataValue1,acStack_1c4);
+        if (iterationCount == 0) {
           if (acStack_1c4[0] != '\0') {
-            uVar11 = InitializeSystem();
-            iVar6 = memcmp(dataContext + 0x38,uVar11,0x30);
-            if (iVar6 != 0) {
+            dataValue1 = InitializeSystem();
+            iterationCount = memcmp(dataContext + 0x38,dataValue1,0x30);
+            if (iterationCount != 0) {
               uStack_140 = *(undefined8 *)(dataContext + 0x38);
               uStack_138 = *(undefined8 *)(dataContext + 0x40);
               uStack_130 = *(undefined4 *)(dataContext + 0x48);
@@ -18116,29 +18116,29 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
               uStack_118 = *(undefined4 *)(dataContext + 0x60);
               uStack_114 = *(undefined4 *)(dataContext + 100);
               uStack_148 = uStack_1c8;
-              iVar6 = ValidateDataIntegrityA0(param_1,&puStack_158);
-              if (iVar6 != 0) goto FUN_180897b16;
+              iterationCount = ValidateDataIntegrityA0(param_1,&puStack_158);
+              if (iterationCount != 0) goto FUN_180897b16;
             }
           }
-          iVar6 = ConvertDataFormatA2(dataContext,&fStack_19c,0);
-          if (iVar6 == 0) {
+          iterationCount = ConvertDataFormatA2(dataContext,&fStack_19c,0);
+          if (iterationCount == 0) {
             if (fStack_19c != 1.0) {
               fStack_1a8 = fStack_19c;
               puStack_1c0 = &UNK_180983738;
               uStack_1b0 = uStack_1c8;
               uStack_1b8 = 0;
-              iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-              if (iVar6 != 0) goto FUN_180897b16;
+              iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
+              if (iterationCount != 0) goto FUN_180897b16;
             }
-            iVar6 = ValidateDataA3(dataContext,afStack_198,0);
-            if (iVar6 == 0) {
+            iterationCount = ValidateDataA3(dataContext,afStack_198,0);
+            if (iterationCount == 0) {
               if (afStack_198[0] != 1.0) {
                 fStack_1a8 = afStack_198[0];
                 puStack_1c0 = &UNK_1809837c0;
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
-                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
+                if (iterationCount != 0) goto FUN_180897b16;
               }
               fVar13 = 0.0;
               pfVar15 = (float *)(dataContext + 0x94);
@@ -18149,8 +18149,8 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                   puStack_1c0 = &UNK_1809839d8;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = *pfVar15;
-                  iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                  if (iVar6 != 0) goto FUN_180897b16;
+                  iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
+                  if (iterationCount != 0) goto FUN_180897b16;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -18165,8 +18165,8 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                   puStack_1c0 = &UNK_180983950;
                   fStack_1a8 = fVar13;
                   fStack_1a4 = fVar1;
-                  iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                  if (iVar6 != 0) goto FUN_180897b16;
+                  iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
+                  if (iterationCount != 0) goto FUN_180897b16;
                 }
                 fVar13 = (float)((int)fVar13 + 1);
                 pfVar15 = pfVar15 + 1;
@@ -18177,33 +18177,33 @@ void ConvertAndValidateDataA0(longlong dataContext, longlong validationContext)
                 uStack_1b0 = uStack_1c8;
                 uStack_1b8 = 0;
                 fStack_1a8 = (float)(validationOutcome / 0x30);
-                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
+                if (iterationCount != 0) goto FUN_180897b16;
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 1 & 1) != 0) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983a60;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
-                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
+                if (iterationCount != 0) goto FUN_180897b16;
               }
-              iVar6 = ProcessUtilityOperation(param_2);
-              if (iVar6 != 2) {
+              iterationCount = ProcessUtilityOperation(param_2);
+              if (iterationCount != 2) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983ae8;
                 uStack_1b0 = uStack_1c8;
-                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
+                if (iterationCount != 0) goto FUN_180897b16;
               }
-              iVar6 = ProcessUtilityOperation(param_2);
-              if (iVar6 == 4) {
+              iterationCount = ProcessUtilityOperation(param_2);
+              if (iterationCount == 4) {
                 uStack_1b8 = 0;
                 puStack_1c0 = &UNK_180983b68;
                 uStack_1b0 = uStack_1c8;
                 fStack_1a8 = 0.0;
-                iVar6 = ValidateDataIntegrityA0(param_1,&puStack_1c0);
-                if (iVar6 != 0) goto FUN_180897b16;
+                iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
+                if (iterationCount != 0) goto FUN_180897b16;
               }
               if ((*(uint *)(param_2 + 0x2d8) >> 3 & 1) != 0) {
                 uStack_1b8 = 0;
@@ -18240,15 +18240,15 @@ ProcessDataSecurityValidation:
   undefined4 securityCheckResult;
   undefined4 statusCounter;
   undefined4 loopCounter;
-  undefined4 uVar11;
+  undefined4 dataValue1;
   char cVar12;
   int inputParameter3;
-  uint uVar14;
+  uint dataValue4;
   undefined8 *in_RAX;
   longlong validationContext5;
-  undefined8 uVar16;
-  undefined8 uVar17;
-  undefined *puVar18;
+  undefined8 dataValue6;
+  undefined8 dataValue7;
+  undefined *pdataValue8;
   float fVar19;
   ulonglong functionReturnValue0;
   float *pfVar21;
@@ -18323,12 +18323,12 @@ ProcessDataSecurityValidation:
             *unaff_RBP = *(undefined8 *)(*(longlong *)(validationContext5 + 0x90) + functionReturnValue3 * 8);
             *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
             if (*(int *)(dataContext + 0x58) < 1) {
-              puVar18 = &DAT_18098bc73;
+              pdataValue8 = &DAT_18098bc73;
             }
             else {
-              puVar18 = *(undefined **)(dataContext + 0x50);
+              pdataValue8 = *(undefined **)(dataContext + 0x50);
             }
-            functionReturnValue4 = InitializeMemory(unaff_RBP + 1,puVar18,0x80);
+            functionReturnValue4 = InitializeMemory(unaff_RBP + 1,pdataValue8,0x80);
             inputParameter3 = ValidateDataIntegrityA0(functionReturnValue4,unaff_RBP + -4);
             if (inputParameter3 != 0) goto FUN_180897b0e;
           }
@@ -18338,30 +18338,30 @@ ProcessDataSecurityValidation:
           registerR14 = in_stack_00000068;
         } while ((longlong)functionReturnValue3 < in_stack_00000060);
       }
-      uVar17 = *(undefined8 *)(*(longlong *)(systemContext + 8) + 800);
-      uVar16 = (**(code **)*resourcePointer2)(resourcePointer2);
-      inputParameter3 = ProcessDataOperationA7(uVar16,uVar17,acStackX_24);
+      dataValue7 = *(undefined8 *)(*(longlong *)(systemContext + 8) + 800);
+      dataValue6 = (**(code **)*resourcePointer2)(resourcePointer2);
+      inputParameter3 = ProcessDataOperationA7(dataValue6,dataValue7,acStackX_24);
       if (inputParameter3 == 0) {
         functionReturnValue4 = extraout_XMM0_Da_00;
         if (acStackX_24[0] != '\0') {
-          uVar17 = InitializeSystem();
-          inputParameter3 = memcmp(unaff_R15 + 0x38,uVar17,0x30);
+          dataValue7 = InitializeSystem();
+          inputParameter3 = memcmp(unaff_R15 + 0x38,dataValue7,0x30);
           functionReturnValue4 = extraout_XMM0_Da_01;
           if (inputParameter3 != 0) {
-            uVar17 = *(undefined8 *)(unaff_R15 + 0x38);
-            uVar16 = *(undefined8 *)(unaff_R15 + 0x40);
+            dataValue7 = *(undefined8 *)(unaff_R15 + 0x38);
+            dataValue6 = *(undefined8 *)(unaff_R15 + 0x40);
             functionReturnValue4 = *(undefined4 *)(unaff_R15 + 0x48);
             operationResult = *(undefined4 *)(unaff_R15 + 0x4c);
             dataFlags = *(undefined4 *)(unaff_R15 + 0x50);
             validationOutcome = *(undefined4 *)(unaff_R15 + 0x54);
             unaff_RBP[-0xe] = &UNK_180983840;
-            unaff_RBP[-0xb] = uVar17;
-            unaff_RBP[-10] = uVar16;
+            unaff_RBP[-0xb] = dataValue7;
+            unaff_RBP[-10] = dataValue6;
             *(float *)(unaff_RBP + -0xd) = unaff_R13D;
             securityCheckResult = *(undefined4 *)(unaff_R15 + 0x58);
             statusCounter = *(undefined4 *)(unaff_R15 + 0x5c);
             loopCounter = *(undefined4 *)(unaff_R15 + 0x60);
-            uVar11 = *(undefined4 *)(unaff_R15 + 100);
+            dataValue1 = *(undefined4 *)(unaff_R15 + 100);
             *(undefined4 *)(unaff_RBP + -0xc) = uStackX_20;
             *(undefined4 *)(unaff_RBP + -9) = functionReturnValue4;
             *(undefined4 *)((longlong)unaff_RBP + -0x44) = operationResult;
@@ -18370,7 +18370,7 @@ ProcessDataSecurityValidation:
             *(undefined4 *)(unaff_RBP + -7) = securityCheckResult;
             *(undefined4 *)((longlong)unaff_RBP + -0x34) = statusCounter;
             *(undefined4 *)(unaff_RBP + -6) = loopCounter;
-            *(undefined4 *)((longlong)unaff_RBP + -0x2c) = uVar11;
+            *(undefined4 *)((longlong)unaff_RBP + -0x2c) = dataValue1;
             inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,unaff_RBP + -0xe);
             functionReturnValue4 = extraout_XMM0_Da_02;
             if (inputParameter3 != 0) goto FUN_180897b0e;
@@ -18431,13 +18431,13 @@ ProcessDataSecurityValidation:
               fVar19 = (float)((int)fVar19 + 1);
               pfVar21 = pfVar21 + 1;
             } while ((int)fVar19 < 6);
-            uVar14 = ValidateParameters(registerR14 + 200);
+            dataValue4 = ValidateParameters(registerR14 + 200);
             functionReturnValue4 = extraout_XMM0_Da_04;
-            if ((float)(uVar14 / 0x30) != 0.0) {
+            if ((float)(dataValue4 / 0x30) != 0.0) {
               in_stack_00000028 = &UNK_180983be8;
               in_stack_00000038 = uStackX_20;
               in_stack_00000030 = unaff_R13D;
-              fStack0000000000000040 = (float)(uVar14 / 0x30);
+              fStack0000000000000040 = (float)(dataValue4 / 0x30);
               inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da_04,&stack0x00000028);
               functionReturnValue4 = extraout_XMM0_Da_05;
               if (inputParameter3 != 0) goto FUN_180897b0e;
@@ -18503,15 +18503,15 @@ ValidateDataSecurity:
   undefined4 securityCheckResult;
   undefined4 statusCounter;
   undefined4 loopCounter;
-  undefined4 uVar11;
+  undefined4 dataValue1;
   char cVar12;
   int inputParameter3;
-  uint uVar14;
+  uint dataValue4;
   longlong in_RAX;
   longlong validationContext5;
-  undefined8 uVar16;
-  undefined8 uVar17;
-  undefined *puVar18;
+  undefined8 dataValue6;
+  undefined8 dataValue7;
+  undefined *pdataValue8;
   float fVar19;
   ulonglong functionReturnValue0;
   float *pfVar21;
@@ -18570,12 +18570,12 @@ ValidateDataSecurity:
         *unaff_RBP = *(undefined8 *)(*(longlong *)(validationContext5 + 0x90) + functionReturnValue2 * 8);
         *(undefined1 *)((longlong)unaff_RBP + -4) = 0;
         if (*(int *)(dataContext + 0x58) < 1) {
-          puVar18 = &DAT_18098bc73;
+          pdataValue8 = &DAT_18098bc73;
         }
         else {
-          puVar18 = *(undefined **)(dataContext + 0x50);
+          pdataValue8 = *(undefined **)(dataContext + 0x50);
         }
-        functionReturnValue3 = InitializeMemory(unaff_RBP + 1,puVar18,0x80);
+        functionReturnValue3 = InitializeMemory(unaff_RBP + 1,pdataValue8,0x80);
         inputParameter3 = ValidateDataIntegrityA0(functionReturnValue3,unaff_RBP + -4);
         if (inputParameter3 != 0) goto FUN_180897afe;
       }
@@ -18585,30 +18585,30 @@ ValidateDataSecurity:
       registerR14 = in_stack_00000068;
     } while ((longlong)functionReturnValue2 < lStack0000000000000060);
   }
-  uVar17 = *(undefined8 *)(*(longlong *)(systemContext + 8) + 800);
-  uVar16 = (**(code **)*unaff_R12)(unaff_R12);
-  inputParameter3 = ProcessDataOperationA7(uVar16,uVar17,acStackX_24);
+  dataValue7 = *(undefined8 *)(*(longlong *)(systemContext + 8) + 800);
+  dataValue6 = (**(code **)*unaff_R12)(unaff_R12);
+  inputParameter3 = ProcessDataOperationA7(dataValue6,dataValue7,acStackX_24);
   if (inputParameter3 == 0) {
     functionReturnValue3 = extraout_XMM0_Da;
     if (acStackX_24[0] != '\0') {
-      uVar17 = InitializeSystem();
-      inputParameter3 = memcmp(unaff_R15 + 0x38,uVar17,0x30);
+      dataValue7 = InitializeSystem();
+      inputParameter3 = memcmp(unaff_R15 + 0x38,dataValue7,0x30);
       functionReturnValue3 = extraout_XMM0_Da_00;
       if (inputParameter3 != 0) {
-        uVar17 = *(undefined8 *)(unaff_R15 + 0x38);
-        uVar16 = *(undefined8 *)(unaff_R15 + 0x40);
+        dataValue7 = *(undefined8 *)(unaff_R15 + 0x38);
+        dataValue6 = *(undefined8 *)(unaff_R15 + 0x40);
         functionReturnValue3 = *(undefined4 *)(unaff_R15 + 0x48);
         operationResult = *(undefined4 *)(unaff_R15 + 0x4c);
         dataFlags = *(undefined4 *)(unaff_R15 + 0x50);
         validationOutcome = *(undefined4 *)(unaff_R15 + 0x54);
         unaff_RBP[-0xe] = &UNK_180983840;
-        unaff_RBP[-0xb] = uVar17;
-        unaff_RBP[-10] = uVar16;
+        unaff_RBP[-0xb] = dataValue7;
+        unaff_RBP[-10] = dataValue6;
         *(float *)(unaff_RBP + -0xd) = unaff_R13D;
         securityCheckResult = *(undefined4 *)(unaff_R15 + 0x58);
         statusCounter = *(undefined4 *)(unaff_R15 + 0x5c);
         loopCounter = *(undefined4 *)(unaff_R15 + 0x60);
-        uVar11 = *(undefined4 *)(unaff_R15 + 100);
+        dataValue1 = *(undefined4 *)(unaff_R15 + 100);
         *(undefined4 *)(unaff_RBP + -0xc) = uStackX_20;
         *(undefined4 *)(unaff_RBP + -9) = functionReturnValue3;
         *(undefined4 *)((longlong)unaff_RBP + -0x44) = operationResult;
@@ -18617,7 +18617,7 @@ ValidateDataSecurity:
         *(undefined4 *)(unaff_RBP + -7) = securityCheckResult;
         *(undefined4 *)((longlong)unaff_RBP + -0x34) = statusCounter;
         *(undefined4 *)(unaff_RBP + -6) = loopCounter;
-        *(undefined4 *)((longlong)unaff_RBP + -0x2c) = uVar11;
+        *(undefined4 *)((longlong)unaff_RBP + -0x2c) = dataValue1;
         inputParameter3 = ValidateDataIntegrityA0(securityCheckResult,unaff_RBP + -0xe);
         functionReturnValue3 = extraout_XMM0_Da_01;
         if (inputParameter3 != 0) goto FUN_180897afe;
@@ -18678,13 +18678,13 @@ ValidateDataSecurity:
           fVar19 = (float)((int)fVar19 + 1);
           pfVar21 = pfVar21 + 1;
         } while ((int)fVar19 < 6);
-        uVar14 = ValidateParameters(registerR14 + 200);
+        dataValue4 = ValidateParameters(registerR14 + 200);
         functionReturnValue3 = extraout_XMM0_Da_03;
-        if ((float)(uVar14 / 0x30) != 0.0) {
+        if ((float)(dataValue4 / 0x30) != 0.0) {
           in_stack_00000028 = &UNK_180983be8;
           in_stack_00000038 = uStackX_20;
           in_stack_00000030 = unaff_R13D;
-          fStack0000000000000040 = (float)(uVar14 / 0x30);
+          fStack0000000000000040 = (float)(dataValue4 / 0x30);
           inputParameter3 = ValidateDataIntegrityA0(extraout_XMM0_Da_03,&stack0x00000028);
           functionReturnValue3 = extraout_XMM0_Da_04;
           if (inputParameter3 != 0) goto FUN_180897afe;
@@ -19010,9 +19010,9 @@ OperationFailedLabel:
             if (operationStatus != 0) goto LAB_180897ce8;
             *(undefined1 *)(param_1 + 4) = 0;
           }
-          iVar6 = iVar6 + 1;
+          iterationCount = iterationCount + 1;
           operationStatus = PerformSystemValidationCheck(*(undefined8 *)(validationContext + 0xd0));
-        } while (iVar6 < operationStatus);
+        } while (iterationCount < operationStatus);
       }
     }
     calculatedValue = calculatedValue + 1;
@@ -19385,15 +19385,15 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
           uStack_288 = validationContext1 == 0;
           fStack_2c8 = fVar18;
           if (((char)validationContext5 == '\0') &&
-             (iVar6 = ValidateSystemDataA0(param_1,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), iVar6 != 0
+             (iterationCount = ValidateSystemDataA0(param_1,CONCAT71((uint7)(uint3)(uStack_28c >> 8),1)), iterationCount != 0
              )) goto LAB_18089866f;
-          iVar6 = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
-          ProcessData(auStack_238 + iVar6,0x200 - iVar6,10);
-          iVar6 = (**(code **)(*param_1 + 8))(param_1,auStack_238);
-          if (iVar6 != 0) goto LAB_18089866f;
+          iterationCount = (**(code **)(puStack_2d8 + 0x10))(&puStack_2d8,auStack_238,0x200);
+          ProcessData(auStack_238 + iterationCount,0x200 - iterationCount,10);
+          iterationCount = (**(code **)(*param_1 + 8))(param_1,auStack_238);
+          if (iterationCount != 0) goto LAB_18089866f;
           if ((char)validationContext5 == '\0') {
-            iVar6 = (**(code **)(*param_1 + 0x18))(param_1);
-            if (iVar6 != 0) goto LAB_18089866f;
+            iterationCount = (**(code **)(*param_1 + 0x18))(param_1);
+            if (iterationCount != 0) goto LAB_18089866f;
             *(undefined1 *)(param_1 + 4) = 0;
           }
           validationContextPointer4 = (longlong *)((longlong)validationContextPointer4 + 1);
@@ -19403,9 +19403,9 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
         } while ((longlong)validationContextPointer4 < alStack_300[0]);
       }
       validationContext5 = param_1[1] + 0x60;
-      iVar6 = ValidateContext(validationContext5);
+      iterationCount = ValidateContext(validationContext5);
       validationContextPointer4 = validationContextPointer6;
-      if (0 < iVar6) {
+      if (0 < iterationCount) {
         do {
           ProcessSystemDataA0(validationContext5,auStack_2f0,validationContextPointer4);
           ProcessContext(validationContext5,validationContextPointer4,afStack_348,alStack_300);
@@ -19419,12 +19419,12 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
             puStack_2d8 = &UNK_180982260;
             uStack_2c4 = uStack_2c4 & 0xffffff00;
             if (*(int *)(validationContext1 + 0x58) < 1) {
-              puVar12 = &DAT_18098bc73;
+              pdataValue2 = &DAT_18098bc73;
             }
             else {
-              puVar12 = *(undefined **)(validationContext1 + 0x50);
+              pdataValue2 = *(undefined **)(validationContext1 + 0x50);
             }
-            InitializeMemory(&uStack_2b8,puVar12,0x80);
+            InitializeMemory(&uStack_2b8,pdataValue2,0x80);
             validationContext1 = param_1[4];
             if ((char)validationContext1 == '\0') {
               *(undefined1 *)(param_1 + 4) = 1;
@@ -19455,9 +19455,9 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
               *(undefined1 *)(param_1 + 4) = 0;
             }
           }
-          uVar17 = (int)validationContextPointer4 + 1;
-          validationContextPointer4 = (longlong *)(ulonglong)uVar17;
-        } while ((int)uVar17 < iVar6);
+          dataValue7 = (int)validationContextPointer4 + 1;
+          validationContextPointer4 = (longlong *)(ulonglong)dataValue7;
+        } while ((int)dataValue7 < iterationCount);
       }
       uStack_310 = SystemCleanupFlagffffffff;
       afStack_308[0] = -NAN;
@@ -19477,38 +19477,38 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
             ProcessDataConversionDN0(plStack_340,&uStack_338,aplStack_330);
             validationContextPointer4 = plStack_340;
             if ((int)aplStack_330[0] != -1) {
-              iVar6 = (int)aplStack_330[0];
+              iterationCount = (int)aplStack_330[0];
               calculatedValue = (int)uStack_338;
               do {
                 do {
-                  validationContext5 = *(longlong *)(validationContextPointer4[2] + 8 + (longlong)iVar6 * 0x10);
+                  validationContext5 = *(longlong *)(validationContextPointer4[2] + 8 + (longlong)iterationCount * 0x10);
                   if (((*(longlong *)(validationContext5 + 0x80) != 0) && (*(longlong *)(validationContext5 + 0x350) == 0))
                      && (calculatedSize = ConvertAndValidateDataA0(param_1), calculatedSize != 0)) goto LAB_18089866f;
-                } while ((iVar6 != -1) &&
-                        (iVar6 = *(int *)(validationContextPointer4[2] + 4 + (longlong)iVar6 * 0x10), iVar6 != -1));
-                iVar6 = calculatedValue + 1;
+                } while ((iterationCount != -1) &&
+                        (iterationCount = *(int *)(validationContextPointer4[2] + 4 + (longlong)iterationCount * 0x10), iterationCount != -1));
+                iterationCount = calculatedValue + 1;
                 bVar20 = calculatedValue != -1;
                 calculatedValue = 0;
                 if (bVar20) {
-                  calculatedValue = iVar6;
+                  calculatedValue = iterationCount;
                 }
                 if (calculatedValue != (int)validationContextPointer4[1]) {
                   validationContext5 = (longlong)calculatedValue;
                   do {
                     if (*(int *)(*validationContextPointer4 + validationContext5 * 4) != -1) {
-                      iVar6 = *(int *)(*validationContextPointer4 + (longlong)calculatedValue * 4);
+                      iterationCount = *(int *)(*validationContextPointer4 + (longlong)calculatedValue * 4);
                       goto LAB_1808985be;
                     }
                     calculatedValue = calculatedValue + 1;
                     validationContext5 = validationContext5 + 1;
                   } while (validationContext5 != (int)validationContextPointer4[1]);
                 }
-                iVar6 = -1;
-                calculatedValue = iVar6;
+                iterationCount = -1;
+                calculatedValue = iterationCount;
 DataProcessingCheckpoint:
                 validationContext5 = lStack_320;
                 validationContextPointer6 = plStack_318;
-              } while (iVar6 != -1);
+              } while (iterationCount != -1);
             }
           } while ((afStack_348[0] != -NAN) &&
                   (afStack_348[0] = *(float *)(validationContextPointer6[2] + 0x10 + validationContext5), afStack_348[0] != -NAN))
@@ -19536,8 +19536,8 @@ CalculationCheckpoint:
         } while (afStack_348[0] != -NAN);
       }
       (**(code **)(*param_1 + 8))(param_1,&UNK_1809864b0);
-      iVar6 = (**(code **)(*param_1 + 0x18))(param_1);
-      if (iVar6 == 0) {
+      iterationCount = (**(code **)(*param_1 + 0x18))(param_1);
+      if (iterationCount == 0) {
         *(undefined1 *)(param_1 + 4) = 0;
       }
     }
@@ -19570,17 +19570,17 @@ void ValidateDataBlockA0(longlong param_1,undefined8 param_2)
   int operationStatus;
   int arrayIndex;
   uint operationResult;
-  int iVar6;
+  int iterationCount;
   
   operationResult = ValidateSystemDataIntegrityB0(param_2);
   inputParameter = *(int *)(param_1 + 0x30);
   operationResult = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
   operationStatus = (*(uint *)(param_1 + 0x34) ^ operationResult) - operationResult;
-  iVar6 = inputParameter + operationResult;
-  if (operationStatus < iVar6) {
+  iterationCount = inputParameter + operationResult;
+  if (operationStatus < iterationCount) {
     arrayIndex = (int)((float)operationStatus * 1.5);
-    operationStatus = iVar6;
-    if (iVar6 <= arrayIndex) {
+    operationStatus = iterationCount;
+    if (iterationCount <= arrayIndex) {
       operationStatus = arrayIndex;
     }
     if (operationStatus < 0x40) {
@@ -19592,18 +19592,18 @@ void ValidateDataBlockA0(longlong param_1,undefined8 param_2)
     }
   }
   operationResult = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
-  if (((int)((*(uint *)(param_1 + 0x34) ^ operationResult) - operationResult) < iVar6) &&
-     (operationStatus = ValidateSystemMemoryA0(param_1 + 0x28,iVar6), operationStatus != 0)) {
+  if (((int)((*(uint *)(param_1 + 0x34) ^ operationResult) - operationResult) < iterationCount) &&
+     (operationStatus = ValidateSystemMemoryA0(param_1 + 0x28,iterationCount), operationStatus != 0)) {
     return;
   }
   operationStatus = *(int *)(param_1 + 0x30);
-  if (iVar6 <= operationStatus) {
-    *(int *)(param_1 + 0x30) = iVar6;
+  if (iterationCount <= operationStatus) {
+    *(int *)(param_1 + 0x30) = iterationCount;
                     // WARNING: Subroutine does not return
     memcpy((longlong)inputParameter + *(longlong *)(param_1 + 0x28),param_2,(longlong)operationResult);
   }
                     // WARNING: Subroutine does not return
-  memset((longlong)operationStatus + *(longlong *)(param_1 + 0x28),0,(longlong)(iVar6 - operationStatus));
+  memset((longlong)operationStatus + *(longlong *)(param_1 + 0x28),0,(longlong)(iterationCount - operationStatus));
 }
 
 
@@ -19693,32 +19693,32 @@ undefined8 ProcessComplexDataA2(longlong *param_1,char *param_2,undefined8 *para
   uint securityCheckResult;
   char *pcVar9;
   int inputParameter0;
-  uint *puVar11;
+  uint *pdataValue1;
   
-  puVar11 = (uint *)*param_1;
-  if (((puVar11 != (uint *)0x0) && (param_1[4] != 0)) && (param_1[2] != 0)) {
+  pdataValue1 = (uint *)*param_1;
+  if (((pdataValue1 != (uint *)0x0) && (param_1[4] != 0)) && (param_1[2] != 0)) {
     inputParameter0 = 0;
     cVar5 = *param_2;
     while (cVar5 != '\0') {
-      bVar3 = *(byte *)((longlong)puVar11 + 7);
+      bVar3 = *(byte *)((longlong)pdataValue1 + 7);
       if (bVar3 == 0) {
         return 0x4a;
       }
       cVar5 = ProcessCharacterDataA0(cVar5);
-      puVar11 = (uint *)(*param_1 + (ulonglong)(puVar11[1] & 0xffffff) * 8);
+      pdataValue1 = (uint *)(*param_1 + (ulonglong)(pdataValue1[1] & 0xffffff) * 8);
       calculatedValue = 0;
       if (bVar3 == 0) {
         return 0x4a;
       }
-      while (*(char *)((longlong)puVar11 + 3) != cVar5) {
+      while (*(char *)((longlong)pdataValue1 + 3) != cVar5) {
         calculatedValue = calculatedValue + 1;
-        puVar11 = puVar11 + 2;
+        pdataValue1 = pdataValue1 + 2;
         if ((int)(uint)bVar3 <= calculatedValue) {
           return 0x4a;
         }
       }
       param_2 = param_2 + 1;
-      pcVar9 = (char *)(param_1[4] + 1 + (ulonglong)(*puVar11 & 0xffffff));
+      pcVar9 = (char *)(param_1[4] + 1 + (ulonglong)(*pdataValue1 & 0xffffff));
       cVar5 = *param_2;
       while (cVar5 != '\0') {
         if (*pcVar9 == '\0') goto LAB_1808989b1;
@@ -19736,21 +19736,21 @@ undefined8 ProcessComplexDataA2(longlong *param_1,char *param_2,undefined8 *para
 SystemCheckpointA:
       cVar5 = *param_2;
     }
-    bVar3 = *(byte *)((longlong)puVar11 + 7);
+    bVar3 = *(byte *)((longlong)pdataValue1 + 7);
     if (bVar3 != 0) {
-      puVar11 = (uint *)(*param_1 + (ulonglong)(puVar11[1] & 0xffffff) * 8);
+      pdataValue1 = (uint *)(*param_1 + (ulonglong)(pdataValue1[1] & 0xffffff) * 8);
       if (bVar3 != 0) {
         do {
-          if (*(char *)((longlong)puVar11 + 3) == '\0') goto LAB_1808989f7;
+          if (*(char *)((longlong)pdataValue1 + 3) == '\0') goto LAB_1808989f7;
           inputParameter0 = inputParameter0 + 1;
-          puVar11 = puVar11 + 2;
+          pdataValue1 = pdataValue1 + 2;
         } while (inputParameter0 < (int)(uint)bVar3);
       }
       return 0x4a;
     }
 SystemCheckpointB:
-    securityCheckResult = puVar11[1] & 0xffffff;
-    if (((char)(puVar11[1] >> 0x18) == '\0') && ((int)securityCheckResult < (int)param_1[3])) {
+    securityCheckResult = pdataValue1[1] & 0xffffff;
+    if (((char)(pdataValue1[1] >> 0x18) == '\0') && ((int)securityCheckResult < (int)param_1[3])) {
       resourcePointer = (undefined8 *)(param_1[2] + (ulonglong)securityCheckResult * 0x10);
       memoryBaseAddress = resourcePointer[1];
       *param_3 = *resourcePointer;
@@ -19988,15 +19988,15 @@ undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
   if (param_3 != (undefined4 *)0x0) {
     dataBuffer = (undefined4 *)(registerR14[2] + (longlong)param_2 * 0x10);
     finalResult = dataBuffer[1];
-    operationResult = puVar1[2];
-    dataFlags = puVar1[3];
-    *param_3 = *puVar1;
-    param_3[1] = uVar17;
+    operationResult = pdataValue[2];
+    dataFlags = pdataValue[3];
+    *param_3 = *pdataValue;
+    param_3[1] = dataValue7;
     param_3[2] = operationResult;
     param_3[3] = dataFlags;
   }
   inputParameter8 = 0;
-  uVar12 = 0;
+  dataValue2 = 0;
   inputParameter3 = (int)unaff_RBP;
   memoryBaseAddress = *(uint3 *)((longlong)param_2 * 3 + registerR14[6]);
   while (validationOutcome = (uint)memoryBaseAddress, validationOutcome != 0xffffff) {
@@ -20005,80 +20005,80 @@ undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
       validationContext4 = (ulonglong)(validationStatus & 0xffffff) + registerR14[4];
       calculatedSize = ValidateSystemDataIntegrityB0(validationContext4);
       if (inputParameter3 != 0) {
-        puVar15 = (undefined1 *)((calculatedSize + -1) + validationContext4);
+        pdataValue5 = (undefined1 *)((calculatedSize + -1) + validationContext4);
         inputParameter6 = calculatedSize;
         while (0 < inputParameter6) {
           iVar9 = inputParameter6;
-          if ((int)(inputParameter3 - uVar12) <= inputParameter6) {
-            iVar9 = inputParameter3 - uVar12;
+          if ((int)(inputParameter3 - dataValue2) <= inputParameter6) {
+            iVar9 = inputParameter3 - dataValue2;
           }
           inputParameter6 = inputParameter6 - iVar9;
           if (iVar9 != 0) {
-            ploopCounter = systemContext + (int)uVar12;
-            uVar12 = uVar12 + iVar9;
+            ploopCounter = systemContext + (int)dataValue2;
+            dataValue2 = dataValue2 + iVar9;
             do {
-              functionReturnValue = *puVar15;
-              puVar15 = puVar15 + -1;
+              functionReturnValue = *pdataValue5;
+              pdataValue5 = pdataValue5 + -1;
               *ploopCounter = functionReturnValue;
               ploopCounter = ploopCounter + 1;
               iVar9 = iVar9 + -1;
             } while (iVar9 != 0);
           }
-          uVar12 = uVar12 & (int)(uVar12 - inputParameter3) >> 0x1f;
+          dataValue2 = dataValue2 & (int)(dataValue2 - inputParameter3) >> 0x1f;
         }
       }
       inputParameter8 = inputParameter8 + calculatedSize;
     }
     memoryBaseAddress = *(uint3 *)((ulonglong)validationOutcome * 3 + registerR14[8]);
   }
-  uVar17 = 0;
+  dataValue7 = 0;
   if (inputParameter3 != 0) {
     if (inputParameter8 < inputParameter3) {
       ploopCounter = systemContext + inputParameter8;
-      puVar15 = ploopCounter + -1;
-      if (systemContext < puVar15) {
+      pdataValue5 = ploopCounter + -1;
+      if (systemContext < pdataValue5) {
         do {
           functionReturnValue = *systemContext;
-          *systemContext = *puVar15;
+          *systemContext = *pdataValue5;
           systemContext = systemContext + 1;
-          *puVar15 = functionReturnValue;
-          puVar15 = puVar15 + -1;
-        } while (systemContext < puVar15);
+          *pdataValue5 = functionReturnValue;
+          pdataValue5 = pdataValue5 + -1;
+        } while (systemContext < pdataValue5);
       }
       *ploopCounter = 0;
-      uVar17 = 0;
+      dataValue7 = 0;
     }
     else {
-      puVar11 = systemContext + (int)uVar12;
-      puVar15 = puVar11 + -1;
+      pdataValue1 = systemContext + (int)dataValue2;
+      pdataValue5 = pdataValue1 + -1;
       ploopCounter = systemContext;
-      if (systemContext < puVar15) {
+      if (systemContext < pdataValue5) {
         do {
           functionReturnValue = *ploopCounter;
-          *ploopCounter = *puVar15;
+          *ploopCounter = *pdataValue5;
           ploopCounter = ploopCounter + 1;
-          *puVar15 = functionReturnValue;
-          puVar15 = puVar15 + -1;
-        } while (ploopCounter < puVar15);
+          *pdataValue5 = functionReturnValue;
+          pdataValue5 = pdataValue5 + -1;
+        } while (ploopCounter < pdataValue5);
       }
-      puVar15 = puVar11 + (longlong)(int)(inputParameter3 - uVar12) + -1;
-      if (puVar11 < puVar15) {
+      pdataValue5 = pdataValue1 + (longlong)(int)(inputParameter3 - dataValue2) + -1;
+      if (pdataValue1 < pdataValue5) {
         do {
-          functionReturnValue = *puVar11;
-          *puVar11 = *puVar15;
-          puVar11 = puVar11 + 1;
-          *puVar15 = functionReturnValue;
-          puVar15 = puVar15 + -1;
-        } while (puVar11 < puVar15);
+          functionReturnValue = *pdataValue1;
+          *pdataValue1 = *pdataValue5;
+          pdataValue1 = pdataValue1 + 1;
+          *pdataValue5 = functionReturnValue;
+          pdataValue5 = pdataValue5 + -1;
+        } while (pdataValue1 < pdataValue5);
       }
       systemContext[unaff_RBP + -1] = 0;
-      uVar17 = 0x41;
+      dataValue7 = 0x41;
     }
   }
   if (in_stack_00000078 != (int *)0x0) {
     *in_stack_00000078 = inputParameter8 + 1;
   }
-  return uVar17;
+  return dataValue7;
 }
 
 
@@ -20089,7 +20089,7 @@ undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
 undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
 
 {
-  undefined1 uVar1;
+  undefined1 dataValue;
   int operationResult;
   int operationStatus;
   uint memoryBaseAddress;
@@ -20126,9 +20126,9 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
             poperationResult = systemContext + (int)unaff_EBX;
             unaff_EBX = unaff_EBX + operationStatus;
             do {
-              uVar1 = *pstatusCounter;
+              dataValue = *pstatusCounter;
               pstatusCounter = pstatusCounter + -1;
-              *poperationResult = uVar1;
+              *poperationResult = dataValue;
               poperationResult = poperationResult + 1;
               operationStatus = operationStatus + -1;
             } while (operationStatus != 0);
@@ -20147,10 +20147,10 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
       pstatusCounter = poperationResult + -1;
       if (systemContext < pstatusCounter) {
         do {
-          uVar1 = *systemContext;
+          dataValue = *systemContext;
           *systemContext = *pstatusCounter;
           systemContext = systemContext + 1;
-          *pstatusCounter = uVar1;
+          *pstatusCounter = dataValue;
           pstatusCounter = pstatusCounter + -1;
         } while (systemContext < pstatusCounter);
       }
@@ -20162,20 +20162,20 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
       poperationResult = systemContext;
       if (systemContext < pstatusCounter) {
         do {
-          uVar1 = *poperationResult;
+          dataValue = *poperationResult;
           *poperationResult = *pstatusCounter;
           poperationResult = poperationResult + 1;
-          *pstatusCounter = uVar1;
+          *pstatusCounter = dataValue;
           pstatusCounter = pstatusCounter + -1;
         } while (poperationResult < pstatusCounter);
       }
       pstatusCounter = pdataFlags + (longlong)(int)(calculatedValue - unaff_EBX) + -1;
       if (pdataFlags < pstatusCounter) {
         do {
-          uVar1 = *pdataFlags;
+          dataValue = *pdataFlags;
           *pdataFlags = *pstatusCounter;
           pdataFlags = pdataFlags + 1;
-          *pstatusCounter = uVar1;
+          *pstatusCounter = dataValue;
           pstatusCounter = pstatusCounter + -1;
         } while (pdataFlags < pstatusCounter);
       }
@@ -20197,7 +20197,7 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
 undefined4 QuerySystemStatusF0(void)
 
 {
-  undefined1 uVar1;
+  undefined1 dataValue;
   undefined1 *resourcePointer;
   undefined1 *pvalidationStatus;
   int unaff_EBX;
@@ -20216,10 +20216,10 @@ undefined4 QuerySystemStatusF0(void)
       resourcePointer = poperationResult + -1;
       if (systemContext < resourcePointer) {
         do {
-          uVar1 = *systemContext;
+          dataValue = *systemContext;
           *systemContext = *resourcePointer;
           systemContext = systemContext + 1;
-          *resourcePointer = uVar1;
+          *resourcePointer = dataValue;
           resourcePointer = resourcePointer + -1;
         } while (systemContext < resourcePointer);
       }
@@ -20231,20 +20231,20 @@ undefined4 QuerySystemStatusF0(void)
       poperationResult = systemContext;
       if (systemContext < resourcePointer) {
         do {
-          uVar1 = *poperationResult;
+          dataValue = *poperationResult;
           *poperationResult = *resourcePointer;
           poperationResult = poperationResult + 1;
-          *resourcePointer = uVar1;
+          *resourcePointer = dataValue;
           resourcePointer = resourcePointer + -1;
         } while (poperationResult < resourcePointer);
       }
       resourcePointer = pvalidationStatus + (longlong)(arrayIndex - unaff_EBX) + -1;
       if (pvalidationStatus < resourcePointer) {
         do {
-          uVar1 = *pvalidationStatus;
+          dataValue = *pvalidationStatus;
           *pvalidationStatus = *resourcePointer;
           pvalidationStatus = pvalidationStatus + 1;
-          *resourcePointer = uVar1;
+          *resourcePointer = dataValue;
           resourcePointer = resourcePointer + -1;
         } while (pvalidationStatus < resourcePointer);
       }
@@ -20416,15 +20416,15 @@ undefined8 ReturnFixedStatusCodeA0(void)
 undefined8 ValidateDataBlockStatusA0(longlong *param_1,undefined4 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined4 auStackX_8 [8];
   
   if (*(int *)(param_1[1] + 0x18) != 0) {
     return 0x1c;
   }
   auStackX_8[0] = *param_2;
-  uVar1 = (**(code **)**(undefined8 **)(*param_1 + 8))(*(undefined8 **)(*param_1 + 8),auStackX_8,4);
-  return uVar1;
+  dataValue = (**(code **)**(undefined8 **)(*param_1 + 8))(*(undefined8 **)(*param_1 + 8),auStackX_8,4);
+  return dataValue;
 }
 
 
@@ -20432,15 +20432,15 @@ undefined8 ValidateDataBlockStatusA0(longlong *param_1,undefined4 *param_2)
 undefined8 ValidateDataBlockStatusA1(longlong *param_1,undefined4 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined4 auStackX_8 [8];
   
   if (*(int *)(param_1[1] + 0x18) != 0) {
     return 0x1c;
   }
   auStackX_8[0] = *param_2;
-  uVar1 = (**(code **)**(undefined8 **)(*param_1 + 8))(*(undefined8 **)(*param_1 + 8),auStackX_8,4);
-  return uVar1;
+  dataValue = (**(code **)**(undefined8 **)(*param_1 + 8))(*(undefined8 **)(*param_1 + 8),auStackX_8,4);
+  return dataValue;
 }
 
 
@@ -20680,7 +20680,7 @@ undefined8 InitializeSystemComponentD0(undefined8 *SystemComponentPtr,longlong I
 undefined8 ValidateDataSequenceA0(longlong *param_1,uint *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   uint auStackX_8 [2];
   uint auStackX_18 [4];
   
@@ -20689,31 +20689,31 @@ undefined8 ValidateDataSequenceA0(longlong *param_1,uint *param_2)
   }
   param_1 = (longlong *)*param_1;
   if (*param_1 == 0) {
-    uVar1 = 0x1c;
+    dataValue = 0x1c;
   }
   else {
     if (param_1[2] != 0) {
       auStackX_8[0] = 0;
-      uVar1 = ProcessMemoryAllocationA0(*param_1,auStackX_8);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      dataValue = ProcessMemoryAllocationA0(*param_1,auStackX_8);
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       if ((ulonglong)param_1[2] < (ulonglong)auStackX_8[0] + 4) {
-        uVar1 = 0x11;
+        dataValue = 0x11;
         goto LAB_1808992a5;
       }
     }
-    uVar1 = ValidateDataAndReturnStatusO3(*param_1,auStackX_18,1,4,0);
+    dataValue = ValidateDataAndReturnStatusO3(*param_1,auStackX_18,1,4,0);
   }
 ValidationCheckpointB:
-  if ((int)uVar1 == 0) {
+  if ((int)dataValue == 0) {
     *param_2 = auStackX_18[0];
     if (2 < auStackX_18[0]) {
       return 0xd;
     }
-    uVar1 = OperateDataO0(param_1,param_2 + 1,4);
+    dataValue = OperateDataO0(param_1,param_2 + 1,4);
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -20721,38 +20721,38 @@ ValidationCheckpointB:
 undefined8 ProcessDataSequenceA0(longlong *param_1)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   uint *unaff_RDI;
   uint stackParameter40;
   uint in_stack_00000050;
   
   param_1 = (longlong *)*param_1;
   if (*param_1 == 0) {
-    uVar1 = 0x1c;
+    dataValue = 0x1c;
   }
   else {
     if (param_1[2] != 0) {
       stackParameter40 = 0;
-      uVar1 = AllocateMemory(*param_1,&stack0x00000040);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      dataValue = AllocateMemory(*param_1,&stack0x00000040);
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       if ((ulonglong)param_1[2] < (ulonglong)stackParameter40 + 4) {
-        uVar1 = 0x11;
+        dataValue = 0x11;
         goto LAB_1808992a5;
       }
     }
-    uVar1 = ValidateDataAndReturnStatusO3(*param_1,&systemContextBuffer50,1,4,0);
+    dataValue = ValidateDataAndReturnStatusO3(*param_1,&systemContextBuffer50,1,4,0);
   }
 ValidationCheckpointB:
-  if ((int)uVar1 == 0) {
+  if ((int)dataValue == 0) {
     *unaff_RDI = in_stack_00000050;
     if (2 < in_stack_00000050) {
       return 0xd;
     }
-    uVar1 = OperateDataO0(param_1,unaff_RDI + 1,4);
+    dataValue = OperateDataO0(param_1,unaff_RDI + 1,4);
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -20822,7 +20822,7 @@ undefined8 ProcessDataWithMultipleAttempts(undefined8 *contextHandle,longlong da
 undefined8 ExecuteDataValidationA0(undefined8 *param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong dataContext;
   uint *pvalidationStatus;
   int aiStackX_8 [2];
@@ -20830,30 +20830,30 @@ undefined8 ExecuteDataValidationA0(undefined8 *param_1,longlong *param_2)
   
   aiStackX_8[0] = *(int *)(param_1 + 1);
   if (*param_2 == 0) {
-    uVar1 = 0x1c;
+    dataValue = 0x1c;
   }
   else {
     if (param_2[2] != 0) {
       auStackX_10[0] = 0;
-      uVar1 = AllocateMemory(*param_2,auStackX_10);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      dataValue = AllocateMemory(*param_2,auStackX_10);
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       if ((ulonglong)param_2[2] < (ulonglong)auStackX_10[0] + 4) {
-        uVar1 = 0x11;
+        dataValue = 0x11;
         goto LAB_180899456;
       }
     }
-    uVar1 = ValidateDataAndReturnStatusO3(*param_2,aiStackX_8,1,4,0);
+    dataValue = ValidateDataAndReturnStatusO3(*param_2,aiStackX_8,1,4,0);
   }
 SecurityCheckpointA:
-  if ((int)uVar1 == 0) {
+  if ((int)dataValue == 0) {
     UpdateSystemStateO0(param_1,aiStackX_8[0]);
     pvalidationStatus = (uint *)*param_1;
     while (0 < aiStackX_8[0]) {
-      uVar1 = OperateDataO0(param_2,pvalidationStatus,4);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      dataValue = OperateDataO0(param_2,pvalidationStatus,4);
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       switch(*pvalidationStatus & 0xff) {
       case 0:
@@ -20868,29 +20868,29 @@ SecurityCheckpointA:
       default:
         goto LAB_180899546;
       case 0x10:
-        uVar1 = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 1);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        dataValue = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 1);
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 8;
         aiStackX_8[0] = aiStackX_8[0] + -8;
         break;
       case 0x11:
-        uVar1 = ProcessDataBlocksA1(param_2,pvalidationStatus + 1);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        dataValue = ProcessDataBlocksA1(param_2,pvalidationStatus + 1);
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 0x14;
         aiStackX_8[0] = aiStackX_8[0] + -0x14;
         break;
       case 0x20:
-        uVar1 = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 1);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        dataValue = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 1);
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
-        uVar1 = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 2);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        dataValue = ValidateDataWithSecurityCheckA2(param_2,pvalidationStatus + 2);
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 0xc;
         aiStackX_8[0] = aiStackX_8[0] + -0xc;
@@ -20901,9 +20901,9 @@ SecurityCheckpointA:
 SecurityCheckpointB:
       return 0x1c;
     }
-    uVar1 = 0;
+    dataValue = 0;
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -20946,7 +20946,7 @@ ProcessCheckpointA:
 undefined8 ProcessComplexDataStructureA0(longlong *param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   int operationResult;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
@@ -20954,42 +20954,42 @@ undefined8 ProcessComplexDataStructureA0(longlong *param_1,longlong *param_2)
   operationResult = 0;
   aiStackX_8[0] = 0;
   if (*param_1 == 0) {
-    uVar1 = 0x1c;
+    dataValue = 0x1c;
   }
   else {
     if (param_1[2] != 0) {
       auStackX_10[0] = 0;
-      uVar1 = AllocateMemory(*param_1,auStackX_10);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      dataValue = AllocateMemory(*param_1,auStackX_10);
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       if ((ulonglong)param_1[2] < (ulonglong)auStackX_10[0] + 4) {
-        uVar1 = 0x11;
+        dataValue = 0x11;
         goto LAB_1808996c5;
       }
     }
-    uVar1 = ValidateDataAndReturnStatusO3(*param_1,aiStackX_8,1,4,0);
+    dataValue = ValidateDataAndReturnStatusO3(*param_1,aiStackX_8,1,4,0);
   }
 ProcessCheckpointB:
-  if ((int)uVar1 == 0) {
+  if ((int)dataValue == 0) {
     if (aiStackX_8[0] < 0) {
       return 0xd;
     }
-    uVar1 = ProcessDataOperationO0(param_2,aiStackX_8[0]);
-    if ((int)uVar1 == 0) {
+    dataValue = ProcessDataOperationO0(param_2,aiStackX_8[0]);
+    if ((int)dataValue == 0) {
       if (0 < aiStackX_8[0]) {
         do {
-          uVar1 = ProcessMultiSegmentDataA0(param_1,*param_2 + (longlong)operationResult * 0x14);
-          if ((int)uVar1 != 0) {
-            return uVar1;
+          dataValue = ProcessMultiSegmentDataA0(param_1,*param_2 + (longlong)operationResult * 0x14);
+          if ((int)dataValue != 0) {
+            return dataValue;
           }
           operationResult = operationResult + 1;
         } while (operationResult < aiStackX_8[0]);
       }
-      uVar1 = 0;
+      dataValue = 0;
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -21397,7 +21397,7 @@ void ProcessSystemDataOperation(longlong systemContext, undefined4 *operationDat
 void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   int operationResult;
   int operationStatus;
   longlong registerContext;
@@ -21435,10 +21435,10 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
         statusCounter = extraout_XMM0_Da_00;
       } while ((int)memoryBaseAddress < operationStatus);
     }
-    puVar1 = *(undefined8 **)(registerContext + 8);
+    pdataValue = *(undefined8 **)(registerContext + 8);
     operationStatus = *(int *)(registerR14 + 0x38);
     *(int *)(unaff_RBP + 0x20) = operationStatus;
-    operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,4);
+    operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
     if (operationResult == 0) {
       operationResult = validationOutcome;
       statusCounter = extraout_XMM0_Da_01;
@@ -21454,28 +21454,28 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
           statusCounter = extraout_XMM0_Da_02;
         } while ((int)memoryBaseAddress < operationStatus);
       }
-      puVar1 = *(undefined8 **)(registerContext + 8);
+      pdataValue = *(undefined8 **)(registerContext + 8);
       operationStatus = *(int *)(registerR14 + 0x48);
       *(int *)(unaff_RBP + 0x20) = operationStatus;
-      operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,4);
+      operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
       if (operationResult == 0) {
         operationResult = validationOutcome;
         if (0 < operationStatus) {
           do {
-            puVar1 = *(undefined8 **)(registerContext + 8);
+            pdataValue = *(undefined8 **)(registerContext + 8);
             *(undefined4 *)(unaff_RBP + 0x20) =
                  *(undefined4 *)(*(longlong *)(registerR14 + 0x40) + operationResult * 4);
-            operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,4);
+            operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
             if (operationResult != 0) {
               return;
             }
             operationResult = operationResult + 1;
           } while ((longlong)operationResult < (longlong)operationStatus);
         }
-        puVar1 = *(undefined8 **)(registerContext + 8);
+        pdataValue = *(undefined8 **)(registerContext + 8);
         operationStatus = *(int *)(registerR14 + 0x58);
         *(int *)(unaff_RBP + 0x20) = operationStatus;
-        operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,4);
+        operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
         if (operationResult == 0) {
           operationResult = validationOutcome;
           securityCheckResult = validationOutcome;
@@ -21488,7 +21488,7 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
                 return;
               }
               memoryBaseAddress = *(uint *)(memoryPointer + 0x10);
-              puVar1 = *(undefined8 **)(registerContext + 8);
+              pdataValue = *(undefined8 **)(registerContext + 8);
               if (memoryBaseAddress < 0x8000) {
                 *(short *)(unaff_RBP + 0x20) = (short)memoryBaseAddress;
                 statusCounter = 2;
@@ -21497,7 +21497,7 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
                 statusCounter = 4;
                 *(uint *)(unaff_RBP + 0x20) = (memoryBaseAddress & 0xffffc000 | 0x4000) * 2 | memoryBaseAddress & 0x7fff;
               }
-              operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,statusCounter);
+              operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,statusCounter);
               if (operationResult != 0) {
                 return;
               }
@@ -21512,32 +21512,32 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
           }
           operationStatus = CheckSystemStateAndReturnStatusA2(statusCounter,registerR14 + 0x60);
           if (operationStatus == 0) {
-            puVar1 = *(undefined8 **)(registerContext + 8);
+            pdataValue = *(undefined8 **)(registerContext + 8);
             operationStatus = *(int *)(registerR14 + 0x78);
             *(int *)(unaff_RBP + 0x20) = operationStatus;
-            operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,4);
+            operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
             if (operationResult == 0) {
               if (0 < operationStatus) {
                 do {
                   memoryPointer = *(longlong *)(registerR14 + 0x70);
-                  puVar1 = *(undefined8 **)(registerContext + 8);
+                  pdataValue = *(undefined8 **)(registerContext + 8);
                   *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(memoryPointer + validationOutcome * 8);
-                  operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,4);
+                  operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
                   if (operationResult != 0) {
                     return;
                   }
-                  puVar1 = *(undefined8 **)(registerContext + 8);
+                  pdataValue = *(undefined8 **)(registerContext + 8);
                   *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(memoryPointer + 4 + validationOutcome * 8);
-                  operationResult = (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,4);
+                  operationResult = (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
                   if (operationResult != 0) {
                     return;
                   }
                   validationOutcome = validationOutcome + 1;
                 } while ((longlong)validationOutcome < (longlong)operationStatus);
               }
-              puVar1 = *(undefined8 **)(registerContext + 8);
+              pdataValue = *(undefined8 **)(registerContext + 8);
               *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(registerR14 + 0x80);
-              (**(code **)*puVar1)(puVar1,unaff_RBP + 0x20,4);
+              (**(code **)*pdataValue)(pdataValue,unaff_RBP + 0x20,4);
             }
           }
         }
@@ -21555,7 +21555,7 @@ void ProcessSystemDataPointer(undefined8 *param_1,undefined8 param_2)
 void InitializeSystemDataStructure(undefined8 *param_1)
 
 {
-  uint uVar1;
+  uint dataValue;
   undefined8 *resourcePointer;
   int operationStatus;
   int arrayIndex;
@@ -21584,15 +21584,15 @@ void InitializeSystemDataStructure(undefined8 *param_1)
         if (operationStatus != 0) {
           return;
         }
-        uVar1 = *(uint *)(resourceIterator + 0x10);
+        dataValue = *(uint *)(resourceIterator + 0x10);
         resourcePointer = *(undefined8 **)(registerContext + 8);
-        if (uVar1 < 0x8000) {
-          *(short *)(unaff_RBP + 0x20) = (short)uVar1;
+        if (dataValue < 0x8000) {
+          *(short *)(unaff_RBP + 0x20) = (short)dataValue;
           securityCheckResult = 2;
         }
         else {
           securityCheckResult = 4;
-          *(uint *)(unaff_RBP + 0x20) = (uVar1 & 0xffffc000 | 0x4000) * 2 | uVar1 & 0x7fff;
+          *(uint *)(unaff_RBP + 0x20) = (dataValue & 0xffffc000 | 0x4000) * 2 | dataValue & 0x7fff;
         }
         operationStatus = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,securityCheckResult);
         if (operationStatus != 0) {
@@ -21767,15 +21767,15 @@ void NoOperationFunction(void)
 undefined8 ExecuteDataValidationA1(longlong param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   float *pfVar2;
   int operationStatus;
   float fVar4;
   undefined2 auStackX_8 [4];
   
   auStackX_8[0] = CONCAT11(auStackX_8[0]._1_1_,*(undefined1 *)(param_2 + 0x104));
-  uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,1);
-  if ((int)uVar1 == 0) {
+  dataValue = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),auStackX_8,1);
+  if ((int)dataValue == 0) {
     operationStatus = 0;
     if (0 < *(short *)(param_2 + 0x104)) {
       pfVar2 = (float *)(param_2 + 0x84);
@@ -21790,10 +21790,10 @@ undefined8 ExecuteDataValidationA1(longlong param_1,longlong param_2)
           fVar4 = 0.0;
         }
         auStackX_8[0] = (undefined2)(int)(fVar4 * 65535.0);
-        uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
+        dataValue = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),auStackX_8,2);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         fVar4 = *pfVar2 * 0.25;
         if (0.0 <= fVar4) {
@@ -21805,18 +21805,18 @@ undefined8 ExecuteDataValidationA1(longlong param_1,longlong param_2)
           fVar4 = 0.0;
         }
         auStackX_8[0] = (undefined2)(int)(fVar4 * 65535.0);
-        uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
+        dataValue = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),auStackX_8,2);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         operationStatus = operationStatus + 1;
         pfVar2 = pfVar2 + 1;
       } while (operationStatus < *(short *)(param_2 + 0x104));
     }
-    uVar1 = 0;
+    dataValue = 0;
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -21824,7 +21824,7 @@ undefined8 ExecuteDataValidationA1(longlong param_1,longlong param_2)
 undefined8 ExecuteSystemCheckA0(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   float *pfVar2;
   longlong unaff_RBP;
   longlong systemContext;
@@ -21846,10 +21846,10 @@ undefined8 ExecuteSystemCheckA0(void)
         fVar4 = 0.0;
       }
       uStack0000000000000070 = (undefined2)(int)(fVar4 * 65535.0);
-      uVar1 = (**(code **)**(undefined8 **)(unaff_RBP + 8))
+      dataValue = (**(code **)**(undefined8 **)(unaff_RBP + 8))
                         (*(undefined8 **)(unaff_RBP + 8),&stack0x00000070,2);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       fVar4 = *pfVar2 * 0.25;
       if (0.0 <= fVar4) {
@@ -21861,10 +21861,10 @@ undefined8 ExecuteSystemCheckA0(void)
         fVar4 = 0.0;
       }
       uStack0000000000000070 = (undefined2)(int)(fVar4 * 65535.0);
-      uVar1 = (**(code **)**(undefined8 **)(unaff_RBP + 8))
+      dataValue = (**(code **)**(undefined8 **)(unaff_RBP + 8))
                         (*(undefined8 **)(unaff_RBP + 8),&stack0x00000070,2);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       operationStatus = operationStatus + 1;
       pfVar2 = pfVar2 + 1;
@@ -21977,14 +21977,14 @@ void ProcessComplexDataStructure(longlong systemContext,undefined4 *dataBuffer)
             operationResult = operationResult + 1;
           } while (operationResult < (int)param_2[0x68]);
         }
-        uVar1 = param_2[100];
-        if (uVar1 < 0x8000) {
-          uStackX_8 = CONCAT62(uStackX_8._2_6_,(short)uVar1);
+        dataValue = param_2[100];
+        if (dataValue < 0x8000) {
+          uStackX_8 = CONCAT62(uStackX_8._2_6_,(short)dataValue);
           memoryBaseAddress = 2;
         }
         else {
           memoryBaseAddress = 4;
-          uStackX_8 = CONCAT44(uStackX_8._4_4_,(uVar1 & 0xffffc000 | 0x4000) * 2 | uVar1 & 0x7fff);
+          uStackX_8 = CONCAT44(uStackX_8._4_4_,(dataValue & 0xffffc000 | 0x4000) * 2 | dataValue & 0x7fff);
         }
         operationResult = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),&uStackX_8,memoryBaseAddress);
@@ -22078,7 +22078,7 @@ void ProcessComplexDataStructure(longlong systemContext,undefined4 *dataBuffer)
 void ValidateAndInitializeSystem(undefined4 param_1)
 
 {
-  uint uVar1;
+  uint dataValue;
   undefined8 *resourcePointer;
   int operationStatus;
   longlong registerContext;
@@ -22086,7 +22086,7 @@ void ValidateAndInitializeSystem(undefined4 param_1)
   longlong calculatedIndex;
   longlong unaff_RDI;
   undefined8 operationResult;
-  int iVar6;
+  int iterationCount;
   undefined4 extraout_XMM0_Da;
   undefined4 extraout_XMM0_Da_00;
   undefined4 extraout_XMM0_Da_01;
@@ -22094,10 +22094,10 @@ void ValidateAndInitializeSystem(undefined4 param_1)
   undefined4 extraout_XMM0_Da_03;
   undefined4 extraout_XMM0_Da_04;
   
-  iVar6 = 0;
+  iterationCount = 0;
   if (0 < *(int *)(unaff_RDI + 0x1a0)) {
     do {
-      calculatedIndex = (longlong)iVar6 * 0x30 + unaff_RDI;
+      calculatedIndex = (longlong)iterationCount * 0x30 + unaff_RDI;
       operationStatus = ValidateAndExecuteOperationsA1(param_1,calculatedIndex + 0x10);
       if (operationStatus != 0) {
         return;
@@ -22114,75 +22114,75 @@ void ValidateAndInitializeSystem(undefined4 param_1)
       if (operationStatus != 0) {
         return;
       }
-      iVar6 = iVar6 + 1;
+      iterationCount = iterationCount + 1;
       param_1 = extraout_XMM0_Da_02;
-    } while (iVar6 < *(int *)(unaff_RDI + 0x1a0));
+    } while (iterationCount < *(int *)(unaff_RDI + 0x1a0));
   }
-  uVar1 = *(uint *)(unaff_RDI + 400);
+  dataValue = *(uint *)(unaff_RDI + 400);
   resourcePointer = *(undefined8 **)(registerContext + 8);
-  if (uVar1 < 0x8000) {
-    *(short *)(unaff_RBP + 0x20) = (short)uVar1;
+  if (dataValue < 0x8000) {
+    *(short *)(unaff_RBP + 0x20) = (short)dataValue;
     operationResult = 2;
   }
   else {
     operationResult = 4;
-    *(uint *)(unaff_RBP + 0x20) = (uVar1 & 0xffffc000 | 0x4000) * 2 | uVar1 & 0x7fff;
+    *(uint *)(unaff_RBP + 0x20) = (dataValue & 0xffffc000 | 0x4000) * 2 | dataValue & 0x7fff;
   }
-  iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,operationResult);
-  if (iVar6 == 0) {
+  iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,operationResult);
+  if (iterationCount == 0) {
     resourcePointer = *(undefined8 **)(registerContext + 8);
     *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x194);
-    iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-    if (((iVar6 == 0) && (iVar6 = ValidateParametersA1(extraout_XMM0_Da_03,unaff_RDI + 0x198), iVar6 == 0))
-       && (iVar6 = ValidateParametersA1(extraout_XMM0_Da_04,unaff_RDI + 0x19c), iVar6 == 0)) {
+    iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+    if (((iterationCount == 0) && (iterationCount = ValidateParametersA1(extraout_XMM0_Da_03,unaff_RDI + 0x198), iterationCount == 0))
+       && (iterationCount = ValidateParametersA1(extraout_XMM0_Da_04,unaff_RDI + 0x19c), iterationCount == 0)) {
       resourcePointer = *(undefined8 **)(registerContext + 8);
       *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1a4);
-      iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-      if (iVar6 == 0) {
+      iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+      if (iterationCount == 0) {
         resourcePointer = *(undefined8 **)(registerContext + 8);
         *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1a8);
-        iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-        if (iVar6 == 0) {
+        iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+        if (iterationCount == 0) {
           resourcePointer = *(undefined8 **)(registerContext + 8);
           *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1ac);
-          iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-          if (iVar6 == 0) {
+          iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+          if (iterationCount == 0) {
             resourcePointer = *(undefined8 **)(registerContext + 8);
             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b4);
-            iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-            if (iVar6 == 0) {
+            iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+            if (iterationCount == 0) {
               resourcePointer = *(undefined8 **)(registerContext + 8);
               *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b8);
-              iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-              if (iVar6 == 0) {
+              iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+              if (iterationCount == 0) {
                 resourcePointer = *(undefined8 **)(registerContext + 8);
                 *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1b0);
-                iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-                if (iVar6 == 0) {
+                iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+                if (iterationCount == 0) {
                   resourcePointer = *(undefined8 **)(registerContext + 8);
                   *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1bc);
-                  iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-                  if (iVar6 == 0) {
+                  iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+                  if (iterationCount == 0) {
                     resourcePointer = *(undefined8 **)(registerContext + 8);
                     *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1c0);
-                    iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
-                    if (iVar6 == 0) {
+                    iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
+                    if (iterationCount == 0) {
                       resourcePointer = *(undefined8 **)(registerContext + 8);
                       *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1c8);
-                      iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
-                      if (iVar6 == 0) {
+                      iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
+                      if (iterationCount == 0) {
                         resourcePointer = *(undefined8 **)(registerContext + 8);
                         *(undefined8 *)(unaff_RBP + 0x20) = *(undefined8 *)(unaff_RDI + 0x1d0);
-                        iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
-                        if (iVar6 == 0) {
+                        iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,8);
+                        if (iterationCount == 0) {
                           resourcePointer = *(undefined8 **)(registerContext + 8);
                           *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1dc);
-                          iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-                          if (iVar6 == 0) {
+                          iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+                          if (iterationCount == 0) {
                             resourcePointer = *(undefined8 **)(registerContext + 8);
                             *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1d8);
-                            iVar6 = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
-                            if (iVar6 == 0) {
+                            iterationCount = (**(code **)*resourcePointer)(resourcePointer,unaff_RBP + 0x20,4);
+                            if (iterationCount == 0) {
                               resourcePointer = *(undefined8 **)(registerContext + 8);
                               *(undefined4 *)(unaff_RBP + 0x20) = *(undefined4 *)(unaff_RDI + 0x1e0)
                               ;
@@ -22527,7 +22527,7 @@ void ProcessUtilityDataOperation(longlong operationHandle, uint *operationData)
 undefined8 ProcessDataConversionA0(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   uint functionReturnValue;
   uint auStackX_10 [2];
   
@@ -22537,24 +22537,24 @@ undefined8 ProcessDataConversionA0(longlong param_1,undefined8 *param_2)
   }
   if (functionReturnValue < 0x8000) {
     auStackX_10[0] = CONCAT22(auStackX_10[0]._2_2_,(short)functionReturnValue);
-    uVar1 = 2;
+    dataValue = 2;
   }
   else {
-    uVar1 = 4;
+    dataValue = 4;
     auStackX_10[0] = (functionReturnValue & 0xffffc000 | 0x4000) * 2 | functionReturnValue & 0x7fff;
   }
-  uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
-                    (*(undefined8 **)(param_1 + 8),auStackX_10,uVar1);
-  if ((int)uVar1 == 0) {
+  dataValue = (**(code **)**(undefined8 **)(param_1 + 8))
+                    (*(undefined8 **)(param_1 + 8),auStackX_10,dataValue);
+  if ((int)dataValue == 0) {
     if ((functionReturnValue != 0) &&
-       (uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
+       (dataValue = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),*param_2,(longlong)(int)functionReturnValue),
-       (int)uVar1 != 0)) {
-      return uVar1;
+       (int)dataValue != 0)) {
+      return dataValue;
     }
-    uVar1 = 0;
+    dataValue = 0;
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -22562,7 +22562,7 @@ undefined8 ProcessDataConversionA0(longlong param_1,undefined8 *param_2)
 ulonglong ExecuteDataSynchronizationA0(longlong param_1,undefined8 *param_2)
 
 {
-  ulonglong uVar1;
+  ulonglong dataValue;
   longlong dataContext;
   int operationStatus;
   int arrayIndex;
@@ -22575,15 +22575,15 @@ ulonglong ExecuteDataSynchronizationA0(longlong param_1,undefined8 *param_2)
   
   arrayIndex = *(int *)(param_2 + 1);
   aiStackX_8[0] = arrayIndex;
-  uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),aiStackX_8,4);
-  if ((int)uVar1 == 0) {
+  dataValue = (**(code **)**(undefined8 **)(param_1 + 8))(*(undefined8 **)(param_1 + 8),aiStackX_8,4);
+  if ((int)dataValue == 0) {
     poperationResult = (uint *)*param_2;
     for (; 0 < arrayIndex; arrayIndex = arrayIndex + operationStatus) {
       auStackX_10[0] = *poperationResult;
-      uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
+      dataValue = (**(code **)**(undefined8 **)(param_1 + 8))
                         (*(undefined8 **)(param_1 + 8),auStackX_10,4);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       switch(*poperationResult & 0xff) {
       case 0:
@@ -22599,43 +22599,43 @@ ulonglong ExecuteDataSynchronizationA0(longlong param_1,undefined8 *param_2)
         return 0x1c;
       case 0x10:
         auStackX_18[0] = poperationResult[1];
-        uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
+        dataValue = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),auStackX_18,4);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 8;
         operationStatus = -8;
         break;
       case 0x11:
-        uVar1 = ProcessDataPointerA0(param_1,poperationResult + 1);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        dataValue = ProcessDataPointerA0(param_1,poperationResult + 1);
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 0x14;
         operationStatus = -0x14;
         break;
       case 0x20:
         auStackX_20[0] = poperationResult[1];
-        uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
+        dataValue = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),auStackX_20,4);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         auStack_38[0] = poperationResult[2];
-        uVar1 = (**(code **)**(undefined8 **)(param_1 + 8))
+        dataValue = (**(code **)**(undefined8 **)(param_1 + 8))
                           (*(undefined8 **)(param_1 + 8),auStack_38,4);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 0xc;
         operationStatus = -0xc;
       }
       poperationResult = (uint *)((longlong)poperationResult + dataContext);
     }
-    uVar1 = (ulonglong)(-(uint)(arrayIndex != 0) & 0x1c);
+    dataValue = (ulonglong)(-(uint)(arrayIndex != 0) & 0x1c);
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -22643,7 +22643,7 @@ ulonglong ExecuteDataSynchronizationA0(longlong param_1,undefined8 *param_2)
 ulonglong ProcessBinaryDataA0(void)
 
 {
-  ulonglong uVar1;
+  ulonglong dataValue;
   longlong dataContext;
   int operationStatus;
   int unaff_EBX;
@@ -22658,10 +22658,10 @@ ulonglong ProcessBinaryDataA0(void)
   if (0 < unaff_EBX) {
     do {
       uStack0000000000000068 = *unaff_RDI;
-      uVar1 = (**(code **)**(undefined8 **)(systemContext + 8))
+      dataValue = (**(code **)**(undefined8 **)(systemContext + 8))
                         (*(undefined8 **)(systemContext + 8),&stack0x00000068,4);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
       switch(*unaff_RDI & 0xff) {
       case 0:
@@ -22677,33 +22677,33 @@ ulonglong ProcessBinaryDataA0(void)
         return 0x1c;
       case 0x10:
         in_stack_00000070 = unaff_RDI[1];
-        uVar1 = (**(code **)**(undefined8 **)(systemContext + 8))
+        dataValue = (**(code **)**(undefined8 **)(systemContext + 8))
                           (*(undefined8 **)(systemContext + 8),&stack0x00000070,4);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 8;
         operationStatus = -8;
         break;
       case 0x11:
-        uVar1 = ProcessDataPointerA0(extraout_XMM0_Da,unaff_RDI + 1);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        dataValue = ProcessDataPointerA0(extraout_XMM0_Da,unaff_RDI + 1);
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 0x14;
         operationStatus = -0x14;
         break;
       case 0x20:
         in_stack_00000078 = unaff_RDI[1];
-        uVar1 = (**(code **)**(undefined8 **)(systemContext + 8))
+        dataValue = (**(code **)**(undefined8 **)(systemContext + 8))
                           (*(undefined8 **)(systemContext + 8),&stack0x00000078,4);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
-        uVar1 = (**(code **)**(undefined8 **)(systemContext + 8))
+        dataValue = (**(code **)**(undefined8 **)(systemContext + 8))
                           (*(undefined8 **)(systemContext + 8),&stack0x00000020,4,in_R9,unaff_RDI[2]);
-        if ((int)uVar1 != 0) {
-          return uVar1;
+        if ((int)dataValue != 0) {
+          return dataValue;
         }
         dataContext = 0xc;
         operationStatus = -0xc;
@@ -22798,60 +22798,60 @@ undefined8 ValidateSystemStatus(longlong SystemContext, undefined8 *ParameterArr
     if (*(int *)(ParameterArray[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x54);
-    if ((int)uVar1 == 0) {
+    dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x54);
+    if ((int)dataValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x58);
-      if ((int)uVar1 == 0) {
+      dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x58);
+      if ((int)dataValue == 0) {
         if (*(int *)(param_2[1] + 0x18) != 0) {
           return 0x1c;
         }
-        uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x60);
-        if ((int)uVar1 == 0) {
+        dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x60);
+        if ((int)dataValue == 0) {
           if (*(int *)(param_2[1] + 0x18) != 0) {
             return 0x1c;
           }
-          uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 100);
-          if ((int)uVar1 == 0) {
+          dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 100);
+          if ((int)dataValue == 0) {
             if (*(int *)(param_2[1] + 0x18) != 0) {
               return 0x1c;
             }
-            uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x68);
-            if ((int)uVar1 == 0) {
+            dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x68);
+            if ((int)dataValue == 0) {
               if (*(int *)(param_2[1] + 0x18) != 0) {
                 return 0x1c;
               }
-              uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x6c);
-              if ((int)uVar1 == 0) {
+              dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x6c);
+              if ((int)dataValue == 0) {
                 if (*(int *)(param_2[1] + 0x18) != 0) {
                   return 0x1c;
                 }
-                uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x70);
-                if ((int)uVar1 == 0) {
+                dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x70);
+                if ((int)dataValue == 0) {
                   if (*(int *)(param_2[1] + 0x18) != 0) {
                     return 0x1c;
                   }
-                  uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x74);
-                  if ((int)uVar1 == 0) {
+                  dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x74);
+                  if ((int)dataValue == 0) {
                     if (*(int *)(param_2[1] + 0x18) != 0) {
                       return 0x1c;
                     }
-                    uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x78);
-                    if ((int)uVar1 == 0) {
+                    dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x78);
+                    if ((int)dataValue == 0) {
                       if (*(uint *)(param_2 + 8) < 0x74) {
-                        uVar1 = 0;
+                        dataValue = 0;
                       }
                       else if (*(int *)(param_2[1] + 0x18) == 0) {
-                        uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x5c);
+                        dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x5c);
                       }
                       else {
-                        uVar1 = 0x1c;
+                        dataValue = 0x1c;
                       }
-                      if ((int)uVar1 == 0) {
+                      if ((int)dataValue == 0) {
                         ProcessDataOperationA9(param_1);
-                        uVar1 = 0;
+                        dataValue = 0;
                       }
                     }
                   }
@@ -22863,7 +22863,7 @@ undefined8 ValidateSystemStatus(longlong SystemContext, undefined8 *ParameterArr
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -22887,35 +22887,35 @@ undefined8 ProcessDataCacheA0(longlong param_1,undefined8 *param_2)
   undefined1 dataBufferA [32];
   undefined1 dataBufferB [48];
   
-  uVar1 = ValidatePortControlRequest(param_2,auStack_38,1,0x46464542);
-  if (((((int)uVar1 == 0) &&
-       (uVar1 = ValidatePortControlRequest(param_2,auStack_58,0,0x42464542), (int)uVar1 == 0)) &&
-      (uVar1 = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
+  dataValue = ValidatePortControlRequest(param_2,auStack_38,1,0x46464542);
+  if (((((int)dataValue == 0) &&
+       (dataValue = ValidatePortControlRequest(param_2,auStack_58,0,0x42464542), (int)dataValue == 0)) &&
+      (dataValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)dataValue == 0)) &&
      ((0x5a < *(uint *)(param_2 + 8) ||
-      (uVar1 = ManageSystemMemoryA0(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
+      (dataValue = ManageSystemMemoryA0(param_2,param_1 + 0x44), (int)dataValue == 0)))) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = QuerySystemStatusA0(*param_2,param_1 + 0x60,0x25);
-      if ((int)uVar1 == 0) {
+      dataValue = QuerySystemStatusA0(*param_2,param_1 + 0x60,0x25);
+      if ((int)dataValue == 0) {
         if (*(uint *)(param_2 + 8) < 0x3d) {
-          uVar1 = 0;
+          dataValue = 0;
         }
         else if (*(int *)(param_2[1] + 0x18) == 0) {
-          uVar1 = GetMemoryAddressA0(*param_2,param_1 + 0x40);
+          dataValue = GetMemoryAddressA0(*param_2,param_1 + 0x40);
         }
         else {
-          uVar1 = 0x1c;
+          dataValue = 0x1c;
         }
-        if ((int)uVar1 == 0) {
+        if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
           CleanupSystemResourcesA0(param_2,auStack_58);
         }
       }
     }
     else {
-      uVar1 = 0x1c;
+      dataValue = 0x1c;
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -22924,32 +22924,32 @@ undefined8 CleanupDataCacheA0(void)
 
 {
   longlong in_RAX;
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined8 *registerContext;
   longlong unaff_RDI;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
-    uVar1 = QuerySystemStatusA0(*registerContext,unaff_RDI + 0x60,0x25);
-    if ((int)uVar1 == 0) {
+    dataValue = QuerySystemStatusA0(*registerContext,unaff_RDI + 0x60,0x25);
+    if ((int)dataValue == 0) {
       if (*(uint *)(registerContext + 8) < 0x3d) {
-        uVar1 = 0;
+        dataValue = 0;
       }
       else if (*(int *)(registerContext[1] + 0x18) == 0) {
-        uVar1 = GetMemoryAddressA0(*registerContext,unaff_RDI + 0x40);
+        dataValue = GetMemoryAddressA0(*registerContext,unaff_RDI + 0x40);
       }
       else {
-        uVar1 = 0x1c;
+        dataValue = 0x1c;
       }
-      if ((int)uVar1 == 0) {
+      if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
         CleanupSystemResourcesA0();
       }
     }
   }
   else {
-    uVar1 = 0x1c;
+    dataValue = 0x1c;
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -23405,11 +23405,11 @@ ulonglong ValidateAndProcessDataBlock(longlong dataContext, undefined8 *dataBuff
     memoryBaseAddress = 0x1c;
     if (*(uint *)(param_2 + 8) < 0x5a) {
       if (*(int *)(param_2[1] + 0x18) == 0) {
-        uVar1 = *param_2;
-        validationStatus = OperateDataO0(uVar1,&uStack_38,4);
-        if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(uVar1,&uStack_34,2), (int)validationStatus == 0)) &&
-           (validationStatus = OperateDataO0(uVar1,(longlong)&uStack_34 + 2,2), (int)validationStatus == 0)) {
-          validationStatus = OperateDataO0(uVar1,&uStack_30,8);
+        dataValue = *param_2;
+        validationStatus = OperateDataO0(dataValue,&uStack_38,4);
+        if ((((int)validationStatus == 0) && (validationStatus = OperateDataO0(dataValue,&uStack_34,2), (int)validationStatus == 0)) &&
+           (validationStatus = OperateDataO0(dataValue,(longlong)&uStack_34 + 2,2), (int)validationStatus == 0)) {
+          validationStatus = OperateDataO0(dataValue,&uStack_30,8);
         }
       }
       else {
@@ -24076,36 +24076,36 @@ uint64_t ValidateAndProcessData(longlong dataContext, uint64_t *validationBuffer
   uint8_t validationDataA[32];
   uint8_t validationDataB[32];
   
-  uVar1 = FUN_1808ddc20(param_2,auStack_48,1,0x54495645);
-  if (((((int)uVar1 == 0) &&
-       (uVar1 = FUN_1808ddc20(param_2,auStack_68,0,0x42495645), (int)uVar1 == 0)) &&
-      (uVar1 = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)uVar1 == 0)) &&
-     (uVar1 = ValidatePortControlRequest(param_2,param_1 + 0xd8), (int)uVar1 == 0)) {
+  dataValue = FUN_1808ddc20(param_2,auStack_48,1,0x54495645);
+  if (((((int)dataValue == 0) &&
+       (dataValue = FUN_1808ddc20(param_2,auStack_68,0,0x42495645), (int)dataValue == 0)) &&
+      (dataValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)dataValue == 0)) &&
+     (dataValue = ValidatePortControlRequest(param_2,param_1 + 0xd8), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xf8);
-    if ((int)uVar1 == 0) {
+    dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xf8);
+    if ((int)dataValue == 0) {
       auStackX_20[0] = 0;
-      uVar1 = FUN_1808afe30(*param_2,auStackX_20);
-      if ((int)uVar1 == 0) {
+      dataValue = FUN_1808afe30(*param_2,auStackX_20);
+      if ((int)dataValue == 0) {
         operationResult = 0;
         auStackX_18[0] = 0;
         validationStatus = auStackX_20[0] & 1;
         memoryBaseAddress = auStackX_20[0] >> 1;
         if (memoryBaseAddress != 0) {
           do {
-            uVar1 = FUN_1808dde10(param_2,auStackX_18[0]);
-            if ((int)uVar1 != 0) {
-              return uVar1;
+            dataValue = FUN_1808dde10(param_2,auStackX_18[0]);
+            if ((int)dataValue != 0) {
+              return dataValue;
             }
-            uVar1 = FUN_1808a7f40(param_2,param_1 + 0xe8,operationResult,param_1);
-            if ((int)uVar1 != 0) {
-              return uVar1;
+            dataValue = FUN_1808a7f40(param_2,param_1 + 0xe8,operationResult,param_1);
+            if ((int)dataValue != 0) {
+              return dataValue;
             }
-            uVar1 = FUN_1808de0e0(param_2,auStackX_18);
-            if ((int)uVar1 != 0) {
-              return uVar1;
+            dataValue = FUN_1808de0e0(param_2,auStackX_18);
+            if ((int)dataValue != 0) {
+              return dataValue;
             }
             operationResult = operationResult + 1;
             auStackX_18[0] = auStackX_18[0] & -validationStatus;
@@ -24116,7 +24116,7 @@ uint64_t ValidateAndProcessData(longlong dataContext, uint64_t *validationBuffer
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -24992,29 +24992,29 @@ void UtilityNoOperationB0(void)
 undefined8 ProcessDataSequenceA1(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   
-  uVar1 = FUN_1808dde10(param_2,0);
-  if ((int)uVar1 == 0) {
+  dataValue = FUN_1808dde10(param_2,0);
+  if ((int)dataValue == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x30);
-    if ((int)uVar1 == 0) {
+    dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x30);
+    if ((int)dataValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x34);
-      if (((int)uVar1 == 0) && (uVar1 = FUN_1808de0e0(param_2,0), (int)uVar1 == 0)) {
+      dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x34);
+      if (((int)dataValue == 0) && (dataValue = FUN_1808de0e0(param_2,0), (int)dataValue == 0)) {
         if ((0x6b < *(uint *)(param_2 + 8)) &&
-           (uVar1 = FUN_1808a6150(param_2,param_1 + 0x38,0), (int)uVar1 != 0)) {
-          return uVar1;
+           (dataValue = FUN_1808a6150(param_2,param_1 + 0x38,0), (int)dataValue != 0)) {
+          return dataValue;
         }
-        uVar1 = 0;
+        dataValue = 0;
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -25039,7 +25039,7 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
     return;
   }
   operationResult = FUN_1808afe30(*param_2,auStackX_20);
-  uVar1 = auStackX_20[0];
+  dataValue = auStackX_20[0];
   if (operationResult != 0) {
     return;
   }
@@ -25059,7 +25059,7 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
   *(uint *)(param_1 + 0x18) = operationResult;
   auStackX_8[0] = 0;
   operationResult = 0;
-  if (uVar1 >> 1 != 0) {
+  if (dataValue >> 1 != 0) {
     do {
       operationStatus = FUN_1808dde10(param_2,auStackX_8[0]);
       if (operationStatus != 0) {
@@ -25084,7 +25084,7 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
   }
   auStackX_8[0] = 0;
   operationResult = FUN_1808afe30(*param_2,auStackX_8);
-  uVar1 = auStackX_8[0];
+  dataValue = auStackX_8[0];
   if (operationResult != 0) {
     return;
   }
@@ -25095,12 +25095,12 @@ void ValidateAndProcessDataB0(longlong dataContext,undefined8 *dataPointer,int v
     return;
   }
   operationResult = *(int *)(param_1 + 0x28);
-  if (operationResult < (int)uVar1) {
+  if (operationResult < (int)dataValue) {
                     // WARNING: Subroutine does not return
-    memset((longlong)operationResult + *(longlong *)(param_1 + 0x20),0,(longlong)(int)(uVar1 - operationResult));
+    memset((longlong)operationResult + *(longlong *)(param_1 + 0x20),0,(longlong)(int)(dataValue - operationResult));
   }
-  *(uint *)(param_1 + 0x28) = uVar1;
-  if (uVar1 != 0) {
+  *(uint *)(param_1 + 0x28) = dataValue;
+  if (dataValue != 0) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
       operationResult = OperateDataO0(*param_2,*(undefined8 *)(param_1 + 0x20),memoryPointer);
       if (operationResult == 0) goto LAB_18089bfc7;
@@ -25410,20 +25410,20 @@ ulonglong ValidateMemoryStatus(longlong ValidationContext, undefined8 *SecurityP
   processResult = 0;
   if (*(uint *)(param_2 + 8) < 0x6d) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = *param_2;
-      validationOutcome = OperateDataO0(uVar1,&uStack_78,4);
+      dataValue = *param_2;
+      validationOutcome = OperateDataO0(dataValue,&uStack_78,4);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(uVar1,&uStack_74,2);
+      validationOutcome = OperateDataO0(dataValue,&uStack_74,2);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(uVar1,(longlong)&uStack_74 + 2,2);
+      validationOutcome = OperateDataO0(dataValue,(longlong)&uStack_74 + 2,2);
       if ((int)validationOutcome != 0) {
         return validationOutcome;
       }
-      validationOutcome = OperateDataO0(uVar1,&uStack_70,8);
+      validationOutcome = OperateDataO0(dataValue,&uStack_70,8);
     }
     else {
       validationOutcome = 0x1c;
@@ -25512,9 +25512,9 @@ ValidationLabelB:
         dataFlags = FUN_1808aec50(param_1 + 0x48,&puStackX_18);
         validationOutcome = (ulonglong)dataFlags;
         if (dataFlags != 0) goto LAB_18089c40a;
-        uVar1 = ploopCounter[1];
+        dataValue = ploopCounter[1];
         *puStackX_18 = *ploopCounter;
-        puStackX_18[1] = uVar1;
+        puStackX_18[1] = dataValue;
         *(undefined4 *)(puStackX_18 + 2) = *(undefined4 *)(ploopCounter + 2);
         *(float *)((longlong)puStackX_18 + 0x14) =
              *(float *)((longlong)ploopCounter + 0x14) + *(float *)(ploopCounter + 2);
@@ -25602,7 +25602,7 @@ ValidationLabelD:
 uint64_t * ValidateSystemDataProcessing(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined4 functionReturnValue;
   undefined4 validationStatus;
   undefined4 memoryBaseAddress;
@@ -25613,12 +25613,12 @@ uint64_t * ValidateSystemDataProcessing(void)
   uint statusCounter;
   uint loopCounter;
   longlong in_RAX;
-  undefined8 *puVar11;
-  undefined4 *puVar12;
-  undefined8 *puVar13;
+  undefined8 *pdataValue1;
+  undefined4 *pdataValue2;
+  undefined8 *pdataValue3;
   float *pfVar14;
-  ulonglong uVar15;
-  undefined8 *puVar16;
+  ulonglong dataValue5;
+  undefined8 *pdataValue6;
   longlong validationContext7;
   longlong unaff_RBP;
   longlong systemContext;
@@ -25637,53 +25637,53 @@ uint64_t * ValidateSystemDataProcessing(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return (undefined8 *)0x1c;
   }
-  puVar11 = (undefined8 *)ProcessDataBlocksA1(*unaff_RDI,systemContext + 0x38);
-  if ((int)puVar11 != 0) {
-    return puVar11;
+  pdataValue1 = (undefined8 *)ProcessDataBlocksA1(*unaff_RDI,systemContext + 0x38);
+  if ((int)pdataValue1 != 0) {
+    return pdataValue1;
   }
-  puVar12 = (undefined4 *)FUN_180847820();
-  puVar11 = (undefined8 *)0x0;
+  pdataValue2 = (undefined4 *)FUN_180847820();
+  pdataValue1 = (undefined8 *)0x0;
   statusCounter = *(uint *)(unaff_RDI + 8);
-  functionReturnValue0 = *puVar12;
-  functionReturnValue = puVar12[1];
-  validationStatus = puVar12[2];
-  memoryBaseAddress = puVar12[3];
+  functionReturnValue0 = *pdataValue2;
+  functionReturnValue = pdataValue2[1];
+  validationStatus = pdataValue2[2];
+  memoryBaseAddress = pdataValue2[3];
   *(undefined4 *)(unaff_RBP + -0x19) = functionReturnValue0;
   *(undefined4 *)(unaff_RBP + -0x15) = functionReturnValue;
   *(undefined4 *)(unaff_RBP + -0x11) = validationStatus;
   *(undefined4 *)(unaff_RBP + -0xd) = memoryBaseAddress;
   securityCheckResult = 0;
-  puVar13 = puVar11;
+  pdataValue3 = pdataValue1;
   if (statusCounter < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-      uVar1 = *unaff_RDI;
-      puVar13 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x19,4);
-      if ((int)puVar13 != 0) {
-        return puVar13;
+      dataValue = *unaff_RDI;
+      pdataValue3 = (undefined8 *)OperateDataO0(dataValue,unaff_RBP + -0x19,4);
+      if ((int)pdataValue3 != 0) {
+        return pdataValue3;
       }
-      puVar13 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x15,2);
-      if ((int)puVar13 != 0) {
-        return puVar13;
+      pdataValue3 = (undefined8 *)OperateDataO0(dataValue,unaff_RBP + -0x15,2);
+      if ((int)pdataValue3 != 0) {
+        return pdataValue3;
       }
-      puVar13 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x13,2);
-      if ((int)puVar13 != 0) {
-        return puVar13;
+      pdataValue3 = (undefined8 *)OperateDataO0(dataValue,unaff_RBP + -0x13,2);
+      if ((int)pdataValue3 != 0) {
+        return pdataValue3;
       }
-      puVar13 = (undefined8 *)OperateDataO0(uVar1,unaff_RBP + -0x11,8);
+      pdataValue3 = (undefined8 *)OperateDataO0(dataValue,unaff_RBP + -0x11,8);
       functionReturnValue0 = extraout_XMM0_Da;
     }
     else {
-      puVar13 = (undefined8 *)0x1c;
+      pdataValue3 = (undefined8 *)0x1c;
     }
   }
-  if ((int)puVar13 != 0) {
-    return puVar13;
+  if ((int)pdataValue3 != 0) {
+    return pdataValue3;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    puVar11 = (undefined8 *)FUN_1808a79f0(functionReturnValue0,systemContext + 0x58);
+    pdataValue1 = (undefined8 *)FUN_1808a79f0(functionReturnValue0,systemContext + 0x58);
     fVar21 = extraout_XMM0_Da_00;
-    if ((int)puVar11 != 0) {
-      return puVar11;
+    if ((int)pdataValue1 != 0) {
+      return pdataValue1;
     }
     goto LAB_18089c300;
   }
@@ -25691,7 +25691,7 @@ uint64_t * ValidateSystemDataProcessing(void)
     *(undefined8 *)(unaff_RBP + -0x29) = 0;
     *(undefined8 *)(unaff_RBP + -0x21) = 0;
     statusCounter = FUN_1808a54c0(functionReturnValue0,unaff_RBP + -0x29,0);
-    puVar13 = (undefined8 *)(ulonglong)statusCounter;
+    pdataValue3 = (undefined8 *)(ulonglong)statusCounter;
     if (statusCounter != 0) {
 ValidationLabelB:
       statusCounter = *(uint *)(unaff_RBP + -0x1d);
@@ -25702,7 +25702,7 @@ ValidationLabelB:
       inputParameter9 = *(int *)(unaff_RBP + -0x21);
       if ((int)loopCounter < 0) {
         if (0 < inputParameter9) {
-          return puVar13;
+          return pdataValue3;
         }
         if ((0 < (int)statusCounter) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
@@ -25714,18 +25714,18 @@ ValidationLabelB:
         statusCounter = securityCheckResult;
       }
       else {
-        puVar11 = *(undefined8 **)(unaff_RBP + -0x29);
+        pdataValue1 = *(undefined8 **)(unaff_RBP + -0x29);
       }
       if (inputParameter9 < 0) {
         validationContext8 = (longlong)-inputParameter9;
         if (inputParameter9 < 0) {
-          validationContext7 = (longlong)inputParameter9 * 0x18 + 0x14 + (longlong)puVar11;
+          validationContext7 = (longlong)inputParameter9 * 0x18 + 0x14 + (longlong)pdataValue1;
           do {
-            puVar12 = (undefined4 *)FUN_180847820();
-            functionReturnValue0 = puVar12[1];
-            functionReturnValue = puVar12[2];
-            validationStatus = puVar12[3];
-            *(undefined4 *)(validationContext7 + -0x14) = *puVar12;
+            pdataValue2 = (undefined4 *)FUN_180847820();
+            functionReturnValue0 = pdataValue2[1];
+            functionReturnValue = pdataValue2[2];
+            validationStatus = pdataValue2[3];
+            *(undefined4 *)(validationContext7 + -0x14) = *pdataValue2;
             *(undefined4 *)(validationContext7 + -0x10) = functionReturnValue0;
             *(undefined4 *)(validationContext7 + -0xc) = functionReturnValue;
             *(undefined4 *)(validationContext7 + -8) = validationStatus;
@@ -25741,42 +25741,42 @@ ValidationLabelB:
         statusCounter = -statusCounter;
       }
       if (statusCounter == 0) {
-        return puVar13;
+        return pdataValue3;
       }
       FUN_1808aef40(unaff_RBP + -0x29,0);
-      return puVar13;
+      return pdataValue3;
     }
     inputParameter9 = *(int *)(unaff_RBP + -0x21);
     fVar21 = extraout_XMM0_Da_03;
     if (inputParameter9 == 0) {
-      puVar13 = *(undefined8 **)(unaff_RBP + -0x29);
+      pdataValue3 = *(undefined8 **)(unaff_RBP + -0x29);
     }
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
       if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter9) {
         statusCounter = FUN_180883750(systemContext + 0x48,inputParameter9);
-        puVar13 = (undefined8 *)(ulonglong)statusCounter;
+        pdataValue3 = (undefined8 *)(ulonglong)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
         inputParameter9 = *(int *)(unaff_RBP + -0x21);
         fVar21 = extraout_XMM0_Da_04;
       }
-      puVar13 = *(undefined8 **)(unaff_RBP + -0x29);
-      for (puVar16 = puVar13; (puVar13 <= puVar16 && (puVar16 < puVar13 + (longlong)inputParameter9 * 3));
-          puVar16 = puVar16 + 3) {
+      pdataValue3 = *(undefined8 **)(unaff_RBP + -0x29);
+      for (pdataValue6 = pdataValue3; (pdataValue3 <= pdataValue6 && (pdataValue6 < pdataValue3 + (longlong)inputParameter9 * 3));
+          pdataValue6 = pdataValue6 + 3) {
         *(undefined8 *)(unaff_RBP + 0x77) = 0;
         statusCounter = FUN_1808aec50(systemContext + 0x48,unaff_RBP + 0x77);
-        puVar13 = (undefined8 *)(ulonglong)statusCounter;
+        pdataValue3 = (undefined8 *)(ulonglong)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
-        uVar1 = puVar16[1];
-        puVar13 = *(undefined8 **)(unaff_RBP + 0x77);
-        *puVar13 = *puVar16;
-        puVar13[1] = uVar1;
-        *(undefined4 *)(puVar13 + 2) = *(undefined4 *)(puVar16 + 2);
-        fVar21 = *(float *)((longlong)puVar16 + 0x14) + *(float *)(puVar16 + 2);
-        *(float *)((longlong)puVar13 + 0x14) = fVar21;
-        *(undefined1 *)(puVar13 + 3) = 1;
+        dataValue = pdataValue6[1];
+        pdataValue3 = *(undefined8 **)(unaff_RBP + 0x77);
+        *pdataValue3 = *pdataValue6;
+        pdataValue3[1] = dataValue;
+        *(undefined4 *)(pdataValue3 + 2) = *(undefined4 *)(pdataValue6 + 2);
+        fVar21 = *(float *)((longlong)pdataValue6 + 0x14) + *(float *)(pdataValue6 + 2);
+        *(float *)((longlong)pdataValue3 + 0x14) = fVar21;
+        *(undefined1 *)(pdataValue3 + 3) = 1;
         inputParameter9 = *(int *)(unaff_RBP + -0x21);
-        puVar13 = *(undefined8 **)(unaff_RBP + -0x29);
+        pdataValue3 = *(undefined8 **)(unaff_RBP + -0x29);
       }
     }
     statusCounter = *(uint *)(unaff_RBP + -0x1d);
@@ -25786,19 +25786,19 @@ ValidationLabelB:
     }
     if ((int)loopCounter < 0) {
       if (0 < inputParameter9) goto LAB_18089c586;
-      if ((0 < (int)statusCounter) && (puVar13 != (undefined8 *)0x0)) {
+      if ((0 < (int)statusCounter) && (pdataValue3 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),puVar13,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),pdataValue3,&SystemMemoryPoolB,0x100,1);
       }
       *(undefined8 *)(unaff_RBP + -0x29) = 0;
       *(undefined4 *)(unaff_RBP + -0x1d) = 0;
-      puVar13 = puVar11;
+      pdataValue3 = pdataValue1;
       statusCounter = securityCheckResult;
     }
     if (inputParameter9 < 0) {
       validationContext8 = (longlong)-inputParameter9;
       if (inputParameter9 < 0) {
-        validationContext7 = (longlong)inputParameter9 * 0x18 + 0x14 + (longlong)puVar13;
+        validationContext7 = (longlong)inputParameter9 * 0x18 + 0x14 + (longlong)pdataValue3;
         do {
           pfVar14 = (float *)FUN_180847820();
           fVar21 = *pfVar14;
@@ -25825,17 +25825,17 @@ ValidationLabelB:
     }
   }
   else {
-    puVar11 = (undefined8 *)FUN_1808a5780(functionReturnValue0,systemContext + 0x48);
+    pdataValue1 = (undefined8 *)FUN_1808a5780(functionReturnValue0,systemContext + 0x48);
     fVar21 = extraout_XMM0_Da_02;
-    if ((int)puVar11 != 0) {
-      return puVar11;
+    if ((int)pdataValue1 != 0) {
+      return pdataValue1;
     }
   }
 ValidationLabelC:
-  for (uVar15 = *(ulonglong *)(systemContext + 0x48);
-      (*(ulonglong *)(systemContext + 0x48) <= uVar15 &&
-      (uVar15 < (longlong)*(int *)(systemContext + 0x50) * 0x1c + *(ulonglong *)(systemContext + 0x48)));
-      uVar15 = uVar15 + 0x1c) {
+  for (dataValue5 = *(ulonglong *)(systemContext + 0x48);
+      (*(ulonglong *)(systemContext + 0x48) <= dataValue5 &&
+      (dataValue5 < (longlong)*(int *)(systemContext + 0x50) * 0x1c + *(ulonglong *)(systemContext + 0x48)));
+      dataValue5 = dataValue5 + 0x1c) {
     fVar21 = (float)FUN_1807d3e20(systemContext + 0x58);
   }
 ValidationLabelD:
@@ -25974,18 +25974,18 @@ ValidationProcessingLabel:
         statusCounter = securityCheckResult;
       }
       else {
-        puVar13 = *(undefined8 **)(unaff_RBP + -0x29);
+        pdataValue3 = *(undefined8 **)(unaff_RBP + -0x29);
       }
       if (inputParameter9 < 0) {
         validationContext8 = (longlong)-inputParameter9;
         if (inputParameter9 < 0) {
-          validationContext7 = (longlong)inputParameter9 * 0x18 + 0x14 + (longlong)puVar13;
+          validationContext7 = (longlong)inputParameter9 * 0x18 + 0x14 + (longlong)pdataValue3;
           do {
-            puVar11 = (undefined4 *)FUN_180847820();
-            functionReturnValue0 = puVar11[1];
-            functionReturnValue = puVar11[2];
-            validationStatus = puVar11[3];
-            *(undefined4 *)(validationContext7 + -0x14) = *puVar11;
+            pdataValue1 = (undefined4 *)FUN_180847820();
+            functionReturnValue0 = pdataValue1[1];
+            functionReturnValue = pdataValue1[2];
+            validationStatus = pdataValue1[3];
+            *(undefined4 *)(validationContext7 + -0x14) = *pdataValue1;
             *(undefined4 *)(validationContext7 + -0x10) = functionReturnValue0;
             *(undefined4 *)(validationContext7 + -0xc) = functionReturnValue;
             *(undefined4 *)(validationContext7 + -8) = validationStatus;
@@ -26001,42 +26001,42 @@ ValidationProcessingLabel:
         statusCounter = -statusCounter;
       }
       if (statusCounter == 0) {
-        return puVar12;
+        return pdataValue2;
       }
       FUN_1808aef40(unaff_RBP + -0x29,0);
-      return puVar12;
+      return pdataValue2;
     }
     inputParameter9 = *(int *)(unaff_RBP + -0x21);
     fVar21 = extraout_XMM0_Da_03;
     if (inputParameter9 == 0) {
-      puVar12 = *(undefined8 **)(unaff_RBP + -0x29);
+      pdataValue2 = *(undefined8 **)(unaff_RBP + -0x29);
     }
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
       if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter9) {
         statusCounter = FUN_180883750(systemContext + 0x48,inputParameter9);
-        puVar12 = (undefined8 *)(ulonglong)statusCounter;
+        pdataValue2 = (undefined8 *)(ulonglong)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
         inputParameter9 = *(int *)(unaff_RBP + -0x21);
         fVar21 = extraout_XMM0_Da_04;
       }
-      puVar12 = *(undefined8 **)(unaff_RBP + -0x29);
-      for (puVar16 = puVar12; (puVar12 <= puVar16 && (puVar16 < puVar12 + (longlong)inputParameter9 * 3));
-          puVar16 = puVar16 + 3) {
+      pdataValue2 = *(undefined8 **)(unaff_RBP + -0x29);
+      for (pdataValue6 = pdataValue2; (pdataValue2 <= pdataValue6 && (pdataValue6 < pdataValue2 + (longlong)inputParameter9 * 3));
+          pdataValue6 = pdataValue6 + 3) {
         *(undefined8 *)(unaff_RBP + 0x77) = 0;
         statusCounter = FUN_1808aec50(systemContext + 0x48,unaff_RBP + 0x77);
-        puVar12 = (undefined8 *)(ulonglong)statusCounter;
+        pdataValue2 = (undefined8 *)(ulonglong)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
-        uVar1 = puVar16[1];
-        puVar12 = *(undefined8 **)(unaff_RBP + 0x77);
-        *puVar12 = *puVar16;
-        puVar12[1] = uVar1;
-        *(undefined4 *)(puVar12 + 2) = *(undefined4 *)(puVar16 + 2);
-        fVar21 = *(float *)((longlong)puVar16 + 0x14) + *(float *)(puVar16 + 2);
-        *(float *)((longlong)puVar12 + 0x14) = fVar21;
-        *(undefined1 *)(puVar12 + 3) = 1;
+        dataValue = pdataValue6[1];
+        pdataValue2 = *(undefined8 **)(unaff_RBP + 0x77);
+        *pdataValue2 = *pdataValue6;
+        pdataValue2[1] = dataValue;
+        *(undefined4 *)(pdataValue2 + 2) = *(undefined4 *)(pdataValue6 + 2);
+        fVar21 = *(float *)((longlong)pdataValue6 + 0x14) + *(float *)(pdataValue6 + 2);
+        *(float *)((longlong)pdataValue2 + 0x14) = fVar21;
+        *(undefined1 *)(pdataValue2 + 3) = 1;
         inputParameter9 = *(int *)(unaff_RBP + -0x21);
-        puVar12 = *(undefined8 **)(unaff_RBP + -0x29);
+        pdataValue2 = *(undefined8 **)(unaff_RBP + -0x29);
       }
     }
     statusCounter = *(uint *)(unaff_RBP + -0x1d);
@@ -26046,19 +26046,19 @@ ValidationProcessingLabel:
     }
     if ((int)loopCounter < 0) {
       if (0 < inputParameter9) goto LAB_18089c586;
-      if ((0 < (int)statusCounter) && (puVar12 != (undefined8 *)0x0)) {
+      if ((0 < (int)statusCounter) && (pdataValue2 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),puVar12,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),pdataValue2,&SystemMemoryPoolB,0x100,1);
       }
       *(undefined8 *)(unaff_RBP + -0x29) = 0;
       *(undefined4 *)(unaff_RBP + -0x1d) = 0;
-      puVar12 = puVar13;
+      pdataValue2 = pdataValue3;
       statusCounter = securityCheckResult;
     }
     if (inputParameter9 < 0) {
       validationContext8 = (longlong)-inputParameter9;
       if (inputParameter9 < 0) {
-        validationContext7 = (longlong)inputParameter9 * 0x18 + 0x14 + (longlong)puVar12;
+        validationContext7 = (longlong)inputParameter9 * 0x18 + 0x14 + (longlong)pdataValue2;
         do {
           pfVar14 = (float *)FUN_180847820();
           fVar21 = *pfVar14;
@@ -26085,17 +26085,17 @@ ValidationProcessingLabel:
     }
   }
   else {
-    puVar13 = (undefined8 *)FUN_1808a5780(functionReturnValue0,systemContext + 0x48);
+    pdataValue3 = (undefined8 *)FUN_1808a5780(functionReturnValue0,systemContext + 0x48);
     fVar21 = extraout_XMM0_Da_02;
-    if ((int)puVar13 != 0) {
-      return puVar13;
+    if ((int)pdataValue3 != 0) {
+      return pdataValue3;
     }
   }
 ValidationLabelC:
-  for (uVar15 = *(ulonglong *)(systemContext + 0x48);
-      (*(ulonglong *)(systemContext + 0x48) <= uVar15 &&
-      (uVar15 < (longlong)*(int *)(systemContext + 0x50) * 0x1c + *(ulonglong *)(systemContext + 0x48)));
-      uVar15 = uVar15 + 0x1c) {
+  for (dataValue5 = *(ulonglong *)(systemContext + 0x48);
+      (*(ulonglong *)(systemContext + 0x48) <= dataValue5 &&
+      (dataValue5 < (longlong)*(int *)(systemContext + 0x50) * 0x1c + *(ulonglong *)(systemContext + 0x48)));
+      dataValue5 = dataValue5 + 0x1c) {
     fVar21 = (float)FUN_1807d3e20(systemContext + 0x58);
   }
 ValidationLabelD:
@@ -26174,7 +26174,7 @@ ulonglong ValidateAndProcessSystemOperations(undefined8 SystemContext)
     *(undefined8 **)(stackFramePtr + -0x29) = resourcePtr;
     *(undefined8 **)(stackFramePtr + -0x21) = resourcePtr;
     statusCounter = FUN_1808a54c0(param_1,unaff_RBP + -0x29,0);
-    uVar11 = (ulonglong)statusCounter;
+    dataValue1 = (ulonglong)statusCounter;
     if (statusCounter != 0) {
 ValidationLabelB:
       statusCounter = *(uint *)(unaff_RBP + -0x1d);
@@ -26185,7 +26185,7 @@ ValidationLabelB:
       inputParameter8 = *(int *)(unaff_RBP + -0x21);
       if ((int)loopCounter < 0) {
         if (0 < inputParameter8) {
-          return uVar11;
+          return dataValue1;
         }
         if ((0 < (int)statusCounter) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
                     // WARNING: Subroutine does not return
@@ -26194,23 +26194,23 @@ ValidationLabelB:
         }
         *(undefined8 **)(unaff_RBP + -0x29) = unaff_R12;
         *(uint *)(unaff_RBP + -0x1d) = securityCheckResult;
-        puVar14 = unaff_R12;
+        pdataValue4 = unaff_R12;
         statusCounter = securityCheckResult;
       }
       else {
-        puVar14 = *(undefined8 **)(unaff_RBP + -0x29);
+        pdataValue4 = *(undefined8 **)(unaff_RBP + -0x29);
       }
       if (inputParameter8 < 0) {
         validationContext7 = (longlong)-inputParameter8;
         if (inputParameter8 < 0) {
-          validationContext6 = (longlong)inputParameter8 * 0x18 + 0x14 + (longlong)puVar14;
+          validationContext6 = (longlong)inputParameter8 * 0x18 + 0x14 + (longlong)pdataValue4;
           do {
-            puVar12 = (undefined4 *)FUN_180847820();
-            uVar1 = puVar12[1];
-            functionReturnValue = puVar12[2];
-            validationStatus = puVar12[3];
-            *(undefined4 *)(validationContext6 + -0x14) = *puVar12;
-            *(undefined4 *)(validationContext6 + -0x10) = uVar1;
+            pdataValue2 = (undefined4 *)FUN_180847820();
+            dataValue = pdataValue2[1];
+            functionReturnValue = pdataValue2[2];
+            validationStatus = pdataValue2[3];
+            *(undefined4 *)(validationContext6 + -0x14) = *pdataValue2;
+            *(undefined4 *)(validationContext6 + -0x10) = dataValue;
             *(undefined4 *)(validationContext6 + -0xc) = functionReturnValue;
             *(undefined4 *)(validationContext6 + -8) = validationStatus;
             *(undefined8 **)(validationContext6 + -4) = unaff_R12;
@@ -26225,42 +26225,42 @@ ValidationLabelB:
         statusCounter = -statusCounter;
       }
       if (statusCounter == 0) {
-        return uVar11;
+        return dataValue1;
       }
       FUN_1808aef40(unaff_RBP + -0x29,0);
-      return uVar11;
+      return dataValue1;
     }
     inputParameter8 = *(int *)(unaff_RBP + -0x21);
     fVar20 = extraout_XMM0_Da_02;
     if (inputParameter8 == 0) {
-      puVar14 = *(undefined8 **)(unaff_RBP + -0x29);
+      pdataValue4 = *(undefined8 **)(unaff_RBP + -0x29);
     }
     else {
       statusCounter = (int)*(uint *)(systemContext + 0x54) >> 0x1f;
       if ((int)((*(uint *)(systemContext + 0x54) ^ statusCounter) - statusCounter) < inputParameter8) {
         statusCounter = FUN_180883750(systemContext + 0x48,inputParameter8);
-        uVar11 = (ulonglong)statusCounter;
+        dataValue1 = (ulonglong)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
         inputParameter8 = *(int *)(unaff_RBP + -0x21);
         fVar20 = extraout_XMM0_Da_03;
       }
-      puVar14 = *(undefined8 **)(unaff_RBP + -0x29);
-      for (puVar15 = puVar14; (puVar14 <= puVar15 && (puVar15 < puVar14 + (longlong)inputParameter8 * 3));
-          puVar15 = puVar15 + 3) {
+      pdataValue4 = *(undefined8 **)(unaff_RBP + -0x29);
+      for (pdataValue5 = pdataValue4; (pdataValue4 <= pdataValue5 && (pdataValue5 < pdataValue4 + (longlong)inputParameter8 * 3));
+          pdataValue5 = pdataValue5 + 3) {
         *(undefined8 **)(unaff_RBP + 0x77) = unaff_R12;
         statusCounter = FUN_1808aec50(systemContext + 0x48,unaff_RBP + 0x77);
-        uVar11 = (ulonglong)statusCounter;
+        dataValue1 = (ulonglong)statusCounter;
         if (statusCounter != 0) goto LAB_18089c40a;
-        validationOutcome = puVar15[1];
-        puVar14 = *(undefined8 **)(unaff_RBP + 0x77);
-        *puVar14 = *puVar15;
-        puVar14[1] = validationOutcome;
-        *(undefined4 *)(puVar14 + 2) = *(undefined4 *)(puVar15 + 2);
-        fVar20 = *(float *)((longlong)puVar15 + 0x14) + *(float *)(puVar15 + 2);
-        *(float *)((longlong)puVar14 + 0x14) = fVar20;
-        *(undefined1 *)(puVar14 + 3) = 1;
+        validationOutcome = pdataValue5[1];
+        pdataValue4 = *(undefined8 **)(unaff_RBP + 0x77);
+        *pdataValue4 = *pdataValue5;
+        pdataValue4[1] = validationOutcome;
+        *(undefined4 *)(pdataValue4 + 2) = *(undefined4 *)(pdataValue5 + 2);
+        fVar20 = *(float *)((longlong)pdataValue5 + 0x14) + *(float *)(pdataValue5 + 2);
+        *(float *)((longlong)pdataValue4 + 0x14) = fVar20;
+        *(undefined1 *)(pdataValue4 + 3) = 1;
         inputParameter8 = *(int *)(unaff_RBP + -0x21);
-        puVar14 = *(undefined8 **)(unaff_RBP + -0x29);
+        pdataValue4 = *(undefined8 **)(unaff_RBP + -0x29);
       }
     }
     statusCounter = *(uint *)(unaff_RBP + -0x1d);
@@ -26270,19 +26270,19 @@ ValidationLabelB:
     }
     if ((int)loopCounter < 0) {
       if (0 < inputParameter8) goto LAB_18089c586;
-      if ((0 < (int)statusCounter) && (puVar14 != (undefined8 *)0x0)) {
+      if ((0 < (int)statusCounter) && (pdataValue4 != (undefined8 *)0x0)) {
                     // WARNING: Subroutine does not return
-        ReleaseSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),puVar14,&SystemMemoryPoolB,0x100,1);
+        ReleaseSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),pdataValue4,&SystemMemoryPoolB,0x100,1);
       }
       *(undefined8 **)(unaff_RBP + -0x29) = unaff_R12;
       *(uint *)(unaff_RBP + -0x1d) = securityCheckResult;
-      puVar14 = unaff_R12;
+      pdataValue4 = unaff_R12;
       statusCounter = securityCheckResult;
     }
     if (inputParameter8 < 0) {
       validationContext7 = (longlong)-inputParameter8;
       if (inputParameter8 < 0) {
-        validationContext6 = (longlong)inputParameter8 * 0x18 + 0x14 + (longlong)puVar14;
+        validationContext6 = (longlong)inputParameter8 * 0x18 + 0x14 + (longlong)pdataValue4;
         do {
           pfVar13 = (float *)FUN_180847820();
           fVar20 = *pfVar13;
@@ -26309,17 +26309,17 @@ ValidationLabelB:
     }
   }
   else {
-    uVar11 = FUN_1808a5780(param_1,systemContext + 0x48);
+    dataValue1 = FUN_1808a5780(param_1,systemContext + 0x48);
     fVar20 = extraout_XMM0_Da_01;
-    if ((int)uVar11 != 0) {
-      return uVar11;
+    if ((int)dataValue1 != 0) {
+      return dataValue1;
     }
   }
 ValidationLabelC:
-  for (uVar11 = *(ulonglong *)(systemContext + 0x48);
-      (*(ulonglong *)(systemContext + 0x48) <= uVar11 &&
-      (uVar11 < (longlong)*(int *)(systemContext + 0x50) * 0x1c + *(ulonglong *)(systemContext + 0x48)));
-      uVar11 = uVar11 + 0x1c) {
+  for (dataValue1 = *(ulonglong *)(systemContext + 0x48);
+      (*(ulonglong *)(systemContext + 0x48) <= dataValue1 &&
+      (dataValue1 < (longlong)*(int *)(systemContext + 0x50) * 0x1c + *(ulonglong *)(systemContext + 0x48)));
+      dataValue1 = dataValue1 + 0x1c) {
     fVar20 = (float)FUN_1807d3e20(systemContext + 0x58);
   }
 ValidationLabelD:
@@ -27366,16 +27366,16 @@ ValidationErrorHandler2:
         if (*(int *)(registerContext[1] + 0x18) == 0) {
           dataFlags = FUN_1808a2740(*registerContext,
                                 (longlong)(int)operationResult * 0x10 + *(longlong *)(unaff_R13 + 0x60));
-          uVar13 = extraout_XMM0_Da_08;
+          dataValue3 = extraout_XMM0_Da_08;
         }
         else {
           dataFlags = 0x1c;
-          uVar13 = extraout_XMM0_Da_07;
+          dataValue3 = extraout_XMM0_Da_07;
         }
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
-        dataFlags = FUN_1808de0e0(uVar13,unaff_RBP + 0x77);
+        dataFlags = FUN_1808de0e0(dataValue3,unaff_RBP + 0x77);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -27433,7 +27433,7 @@ ulonglong FUN_18089c872(void)
   float extraout_XMM0_Da_06;
   undefined4 extraout_XMM0_Da_07;
   undefined4 extraout_XMM0_Da_08;
-  undefined4 uVar13;
+  undefined4 dataValue3;
   float extraout_XMM0_Da_09;
   
   *(undefined4 *)(unaff_R13 + 0x30) = unaff_ESI;
@@ -27624,16 +27624,16 @@ ValidationErrorHandler2:
         if (*(int *)(registerContext[1] + 0x18) == 0) {
           dataFlags = FUN_1808a2740(*registerContext,
                                 (longlong)(int)operationResult * 0x10 + *(longlong *)(unaff_R13 + 0x60));
-          uVar13 = extraout_XMM0_Da_08;
+          dataValue3 = extraout_XMM0_Da_08;
         }
         else {
           dataFlags = 0x1c;
-          uVar13 = extraout_XMM0_Da_07;
+          dataValue3 = extraout_XMM0_Da_07;
         }
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
-        dataFlags = FUN_1808de0e0(uVar13,unaff_RBP + 0x77);
+        dataFlags = FUN_1808de0e0(dataValue3,unaff_RBP + 0x77);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -27692,7 +27692,7 @@ ulonglong FUN_18089c94a(float param_1)
   float fVar13;
   undefined4 extraout_XMM0_Da_06;
   undefined4 extraout_XMM0_Da_07;
-  undefined4 uVar14;
+  undefined4 dataValue4;
   float extraout_XMM0_Da_08;
   
   iVar9 = (int)unaff_RDI;
@@ -27838,16 +27838,16 @@ DataProcessingHandler:
             if (*(int *)(registerContext[1] + 0x18) == 0) {
               operationResult = FUN_1808a2740(*registerContext,
                                     (longlong)(int)dataFlags * 0x10 + *(longlong *)(unaff_R13 + 0x60));
-              uVar14 = extraout_XMM0_Da_07;
+              dataValue4 = extraout_XMM0_Da_07;
             }
             else {
               operationResult = 0x1c;
-              uVar14 = extraout_XMM0_Da_06;
+              dataValue4 = extraout_XMM0_Da_06;
             }
             if ((int)operationResult != 0) {
               return operationResult;
             }
-            operationResult = FUN_1808de0e0(uVar14,unaff_RBP + 0x77);
+            operationResult = FUN_1808de0e0(dataValue4,unaff_RBP + 0x77);
             if ((int)operationResult != 0) {
               return operationResult;
             }
@@ -28488,7 +28488,7 @@ void ExecuteConditionallyAfterValidation(longlong systemContext, undefined8 oper
 ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
 
 {
-  uint uVar1;
+  uint dataValue;
   ulonglong functionReturnValue;
   ulonglong validationStatus;
   undefined1 auStack_48 [32];
@@ -28505,9 +28505,9 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = FUN_1808a2740(*param_2,param_1 + 0x60);
-  functionReturnValue = (ulonglong)uVar1;
-  if (uVar1 == 0) {
+  dataValue = FUN_1808a2740(*param_2,param_1 + 0x60);
+  functionReturnValue = (ulonglong)dataValue;
+  if (dataValue == 0) {
     functionReturnValue = 0x1c;
     if (*(uint *)(param_2 + 8) < 0x36) {
       validationStatus = 0;
@@ -28525,8 +28525,8 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
       functionReturnValue = 0;
     }
     else if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = GetMemoryAddressA0(*param_2,param_1 + 0x40);
-      functionReturnValue = (ulonglong)uVar1;
+      dataValue = GetMemoryAddressA0(*param_2,param_1 + 0x40);
+      functionReturnValue = (ulonglong)dataValue;
     }
     if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
@@ -28541,7 +28541,7 @@ ulonglong FUN_18089d0f0(longlong param_1,undefined8 *param_2)
 ulonglong FUN_18089d171(void)
 
 {
-  uint uVar1;
+  uint dataValue;
   longlong in_RAX;
   ulonglong functionReturnValue;
   undefined8 *registerContext;
@@ -28551,9 +28551,9 @@ ulonglong FUN_18089d171(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = FUN_1808a2740(*registerContext,systemContext + 0x60);
-  validationStatus = (ulonglong)uVar1;
-  if (uVar1 == 0) {
+  dataValue = FUN_1808a2740(*registerContext,systemContext + 0x60);
+  validationStatus = (ulonglong)dataValue;
+  if (dataValue == 0) {
     validationStatus = 0x1c;
     if (*(uint *)(registerContext + 8) < 0x36) {
       functionReturnValue = 0;
@@ -28571,8 +28571,8 @@ ulonglong FUN_18089d171(void)
       validationStatus = 0;
     }
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      uVar1 = GetMemoryAddressA0(*registerContext,systemContext + 0x40);
-      validationStatus = (ulonglong)uVar1;
+      dataValue = GetMemoryAddressA0(*registerContext,systemContext + 0x40);
+      validationStatus = (ulonglong)dataValue;
     }
     if ((int)validationStatus == 0) {
                     // WARNING: Subroutine does not return
@@ -28587,15 +28587,15 @@ ulonglong FUN_18089d171(void)
 ulonglong FUN_18089d193(void)
 
 {
-  uint uVar1;
+  uint dataValue;
   ulonglong functionReturnValue;
   undefined8 *registerContext;
   longlong systemContext;
   ulonglong validationStatus;
   
-  uVar1 = FUN_1808a2740(*registerContext,systemContext + 0x60);
-  validationStatus = (ulonglong)uVar1;
-  if (uVar1 == 0) {
+  dataValue = FUN_1808a2740(*registerContext,systemContext + 0x60);
+  validationStatus = (ulonglong)dataValue;
+  if (dataValue == 0) {
     validationStatus = 0x1c;
     if (*(uint *)(registerContext + 8) < 0x36) {
       functionReturnValue = 0;
@@ -28613,8 +28613,8 @@ ulonglong FUN_18089d193(void)
       validationStatus = 0;
     }
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      uVar1 = GetMemoryAddressA0(*registerContext,systemContext + 0x40);
-      validationStatus = (ulonglong)uVar1;
+      dataValue = GetMemoryAddressA0(*registerContext,systemContext + 0x40);
+      validationStatus = (ulonglong)dataValue;
     }
     if ((int)validationStatus == 0) {
                     // WARNING: Subroutine does not return
@@ -28872,25 +28872,25 @@ undefined8 ProcessDataBufferA1(void)
 undefined8 ValidateDataIntegrityA1(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   
-  uVar1 = FUN_1808dde10(param_2,0);
-  if ((int)uVar1 == 0) {
+  dataValue = FUN_1808dde10(param_2,0);
+  if ((int)dataValue == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = ProcessDataBlocksA1(*param_2,param_1 + 0x10);
-    if (((int)uVar1 == 0) && (uVar1 = FUN_1808afc70(param_2,param_1 + 8), (int)uVar1 == 0)) {
+    dataValue = ProcessDataBlocksA1(*param_2,param_1 + 0x10);
+    if (((int)dataValue == 0) && (dataValue = FUN_1808afc70(param_2,param_1 + 8), (int)dataValue == 0)) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = OperateDataO0(*param_2,param_1 + 0xc,4);
-      if ((int)uVar1 == 0) {
-        uVar1 = FUN_1808de0e0(param_2,0);
+      dataValue = OperateDataO0(*param_2,param_1 + 0xc,4);
+      if ((int)dataValue == 0) {
+        dataValue = FUN_1808de0e0(param_2,0);
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -29027,7 +29027,7 @@ void CleanupSystemResourcesC0(void)
 ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   uint functionReturnValue;
   ulonglong validationStatus;
   ulonglong memoryBaseAddress;
@@ -29061,10 +29061,10 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
           if (*(uint *)(param_2 + 8) < 0x68) {
             validationStatus = memoryBaseAddress;
             if (*(int *)(param_2[1] + 0x18) == 0) {
-              uVar1 = *param_2;
-              validationStatus = ValidateDataWithSecurityCheckA2(uVar1,auStackX_18);
+              dataValue = *param_2;
+              validationStatus = ValidateDataWithSecurityCheckA2(dataValue,auStackX_18);
               if ((int)validationStatus == 0) {
-                validationStatus = ValidateDataWithSecurityCheckA2(uVar1,auStackX_1c);
+                validationStatus = ValidateDataWithSecurityCheckA2(dataValue,auStackX_1c);
               }
             }
           }
@@ -29115,7 +29115,7 @@ ulonglong FUN_18089dcf0(longlong param_1,undefined8 *param_2)
 ulonglong FUN_18089dd54(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   uint functionReturnValue;
   longlong in_RAX;
   ulonglong validationStatus;
@@ -29142,10 +29142,10 @@ ulonglong FUN_18089dd54(void)
           if (*(uint *)(registerContext + 8) < 0x68) {
             validationStatus = memoryBaseAddress;
             if (*(int *)(registerContext[1] + 0x18) == 0) {
-              uVar1 = *registerContext;
-              validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stackDataBuffer);
+              dataValue = *registerContext;
+              validationStatus = ValidateDataWithSecurityCheckA2(dataValue,&stackDataBuffer);
               if ((int)validationStatus == 0) {
-                validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000094);
+                validationStatus = ValidateDataWithSecurityCheckA2(dataValue,&stack0x00000094);
               }
             }
           }
@@ -29197,7 +29197,7 @@ ulonglong FUN_18089dd54(void)
 ulonglong FUN_18089dd78(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   uint functionReturnValue;
   ulonglong validationStatus;
   undefined8 *registerContext;
@@ -29222,10 +29222,10 @@ ulonglong FUN_18089dd78(void)
         if (*(uint *)(registerContext + 8) < 0x68) {
           validationStatus = memoryBaseAddress;
           if (*(int *)(registerContext[1] + 0x18) == 0) {
-            uVar1 = *registerContext;
-            validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stackDataBuffer);
+            dataValue = *registerContext;
+            validationStatus = ValidateDataWithSecurityCheckA2(dataValue,&stackDataBuffer);
             if ((int)validationStatus == 0) {
-              validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000094);
+              validationStatus = ValidateDataWithSecurityCheckA2(dataValue,&stack0x00000094);
             }
           }
         }
@@ -29274,7 +29274,7 @@ ulonglong FUN_18089dd78(void)
 ulonglong FUN_18089dda2(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   uint functionReturnValue;
   ulonglong validationStatus;
   undefined8 *registerContext;
@@ -29295,10 +29295,10 @@ ulonglong FUN_18089dda2(void)
         if (*(uint *)(registerContext + 8) < 0x68) {
           validationStatus = memoryBaseAddress;
           if (*(int *)(registerContext[1] + 0x18) == 0) {
-            uVar1 = *registerContext;
-            validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stackDataBuffer);
+            dataValue = *registerContext;
+            validationStatus = ValidateDataWithSecurityCheckA2(dataValue,&stackDataBuffer);
             if ((int)validationStatus == 0) {
-              validationStatus = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000094);
+              validationStatus = ValidateDataWithSecurityCheckA2(dataValue,&stack0x00000094);
             }
           }
         }
@@ -29347,16 +29347,16 @@ ulonglong FUN_18089dda2(void)
 ulonglong FUN_18089de39(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   ulonglong functionReturnValue;
   undefined8 *registerContext;
   longlong systemContext;
   uint unaff_EDI;
   
-  uVar1 = *registerContext;
-  functionReturnValue = ValidateDataWithSecurityCheckA2(uVar1,&stackDataBuffer);
+  dataValue = *registerContext;
+  functionReturnValue = ValidateDataWithSecurityCheckA2(dataValue,&stackDataBuffer);
   if ((int)functionReturnValue == 0) {
-    functionReturnValue = ValidateDataWithSecurityCheckA2(uVar1,&stack0x00000094);
+    functionReturnValue = ValidateDataWithSecurityCheckA2(dataValue,&stack0x00000094);
   }
   if ((int)functionReturnValue == 0) {
     if (*(uint *)(registerContext + 8) < 0x39) {
@@ -29393,21 +29393,21 @@ ulonglong FUN_18089de39(void)
 ulonglong FUN_18089de72(void)
 
 {
-  ulonglong uVar1;
+  ulonglong dataValue;
   undefined8 *registerContext;
   longlong systemContext;
   uint unaff_EDI;
   
   if (*(uint *)(registerContext + 8) < 0x39) {
-    uVar1 = 0;
+    dataValue = 0;
   }
   else if (*(int *)(registerContext[1] + 0x18) == 0) {
-    uVar1 = OperateDataO0(*registerContext,systemContext + 0xf4,4);
+    dataValue = OperateDataO0(*registerContext,systemContext + 0xf4,4);
   }
   else {
-    uVar1 = (ulonglong)unaff_EDI;
+    dataValue = (ulonglong)unaff_EDI;
   }
-  if ((int)uVar1 == 0) {
+  if ((int)dataValue == 0) {
     if (*(uint *)(registerContext + 8) < 0x5e) {
       unaff_EDI = 0;
     }
@@ -29415,16 +29415,16 @@ ulonglong FUN_18089de72(void)
       unaff_EDI = ValidateDataWithSecurityCheckA2(*registerContext,systemContext + 0xfc);
     }
     if (unaff_EDI == 0) {
-      if ((*(uint *)(registerContext + 8) < 0x85) || (uVar1 = ValidateDataSequence(), (int)uVar1 == 0)) {
+      if ((*(uint *)(registerContext + 8) < 0x85) || (dataValue = ValidateDataSequence(), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
         CleanupSystemResourcesA0();
       }
     }
     else {
-      uVar1 = (ulonglong)unaff_EDI;
+      dataValue = (ulonglong)unaff_EDI;
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -29442,7 +29442,7 @@ void ResetSystemComponentsC0(void)
 undefined8 ExecuteSystemCheckA1(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined8 functionReturnValue;
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
@@ -29456,11 +29456,11 @@ undefined8 ExecuteSystemCheckA1(longlong param_1,undefined8 *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = *param_2;
-    functionReturnValue = OperateDataO0(uVar1,param_1 + 0x4c,4);
-    if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(uVar1,param_1 + 0x50,2), (int)functionReturnValue == 0)) &&
-       (functionReturnValue = OperateDataO0(uVar1,param_1 + 0x52,2), (int)functionReturnValue == 0)) {
-      functionReturnValue = OperateDataO0(uVar1,param_1 + 0x54,8);
+    dataValue = *param_2;
+    functionReturnValue = OperateDataO0(dataValue,param_1 + 0x4c,4);
+    if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(dataValue,param_1 + 0x50,2), (int)functionReturnValue == 0)) &&
+       (functionReturnValue = OperateDataO0(dataValue,param_1 + 0x52,2), (int)functionReturnValue == 0)) {
+      functionReturnValue = OperateDataO0(dataValue,param_1 + 0x54,8);
     }
     if ((int)functionReturnValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
@@ -29492,7 +29492,7 @@ undefined8 ExecuteSystemCheckA1(longlong param_1,undefined8 *param_2)
 undefined8 ReturnFixedStatusCodeA1(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong in_RAX;
   undefined8 functionReturnValue;
   undefined8 *registerContext;
@@ -29501,11 +29501,11 @@ undefined8 ReturnFixedStatusCodeA1(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = *registerContext;
-  functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0x4c,4);
-  if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0x50,2), (int)functionReturnValue == 0)) &&
-     (functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0x52,2), (int)functionReturnValue == 0)) {
-    functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0x54,8);
+  dataValue = *registerContext;
+  functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0x4c,4);
+  if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0x50,2), (int)functionReturnValue == 0)) &&
+     (functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0x52,2), (int)functionReturnValue == 0)) {
+    functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0x54,8);
   }
   if ((int)functionReturnValue == 0) {
     if (*(int *)(registerContext[1] + 0x18) != 0) {
@@ -29536,19 +29536,19 @@ undefined8 ReturnFixedStatusCodeA1(void)
 undefined8 ValidateSystemStatusA0(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined8 functionReturnValue;
   undefined8 *registerContext;
   longlong unaff_RDI;
   
-  uVar1 = *registerContext;
-  functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0x4c,4);
+  dataValue = *registerContext;
+  functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0x4c,4);
   if ((int)functionReturnValue == 0) {
-    functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0x50,2);
+    functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0x50,2);
     if ((int)functionReturnValue == 0) {
-      functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0x52,2);
+      functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0x52,2);
       if ((int)functionReturnValue == 0) {
-        functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0x54,8);
+        functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0x54,8);
       }
     }
   }
@@ -29581,30 +29581,30 @@ undefined8 ValidateSystemStatusA0(void)
 undefined8 ExecuteDataSynchronizationA1(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined8 *registerContext;
   longlong unaff_RDI;
   
   if (*(int *)(registerContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = ValidateDataWithSecurityCheckA2(*registerContext,unaff_RDI + 0x48);
-  if ((int)uVar1 == 0) {
+  dataValue = ValidateDataWithSecurityCheckA2(*registerContext,unaff_RDI + 0x48);
+  if ((int)dataValue == 0) {
     if (*(uint *)(registerContext + 8) < 0x3d) {
-      uVar1 = 0;
+      dataValue = 0;
     }
     else if (*(int *)(registerContext[1] + 0x18) == 0) {
-      uVar1 = GetMemoryAddressA0(*registerContext,unaff_RDI + 0x40);
+      dataValue = GetMemoryAddressA0(*registerContext,unaff_RDI + 0x40);
     }
     else {
-      uVar1 = 0x1c;
+      dataValue = 0x1c;
     }
-    if ((int)uVar1 == 0) {
+    if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
       CleanupSystemResourcesA0();
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -29622,45 +29622,45 @@ void ValidateSystemComponentsC0(void)
 undefined8 ProcessDataStreamA1(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
   
   if ((0x87 < *(uint *)(param_2 + 8)) &&
-     (uVar1 = FUN_1808ddc20(param_2,auStack_28,1,0x46464353), (int)uVar1 != 0)) {
-    return uVar1;
+     (dataValue = FUN_1808ddc20(param_2,auStack_28,1,0x46464353), (int)dataValue != 0)) {
+    return dataValue;
   }
-  uVar1 = FUN_1808ddc20(param_2,auStack_48,0,0x46454353);
-  if (((int)uVar1 == 0) && (uVar1 = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)uVar1 == 0)) {
+  dataValue = FUN_1808ddc20(param_2,auStack_48,0,0x46454353);
+  if (((int)dataValue == 0) && (dataValue = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = GetMemoryAddressA0(*param_2,param_1 + 0x6c);
-    if (((int)uVar1 == 0) && (uVar1 = FUN_1808a5d60(param_2,param_1 + 0x48,0), (int)uVar1 == 0)) {
+    dataValue = GetMemoryAddressA0(*param_2,param_1 + 0x6c);
+    if (((int)dataValue == 0) && (dataValue = FUN_1808a5d60(param_2,param_1 + 0x48,0), (int)dataValue == 0)) {
       if ((*(int *)(param_2 + 8) - 0x4aU < 0x11) &&
-         (uVar1 = FUN_1808afc70(param_2,param_1 + 0x44), (int)uVar1 != 0)) {
-        return uVar1;
+         (dataValue = FUN_1808afc70(param_2,param_1 + 0x44), (int)dataValue != 0)) {
+        return dataValue;
       }
       if ((0x52 < *(uint *)(param_2 + 8)) &&
-         (uVar1 = FUN_1808a5d60(param_2,param_1 + 0x58,0), (int)uVar1 != 0)) {
-        return uVar1;
+         (dataValue = FUN_1808a5d60(param_2,param_1 + 0x58,0), (int)dataValue != 0)) {
+        return dataValue;
       }
       if (*(uint *)(param_2 + 8) < 0x88) {
-        uVar1 = 0;
+        dataValue = 0;
       }
       else if (*(int *)(param_2[1] + 0x18) == 0) {
-        uVar1 = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x68);
+        dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0x68);
       }
       else {
-        uVar1 = 0x1c;
+        dataValue = 0x1c;
       }
-      if ((int)uVar1 == 0) {
+      if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808ddf80(param_2,auStack_48);
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -30097,7 +30097,7 @@ void ConfigureSystemParametersC0(void)
 ulonglong FUN_18089e4f0(longlong param_1,undefined8 *param_2)
 
 {
-  undefined4 uVar1;
+  undefined4 dataValue;
   undefined8 functionReturnValue;
   uint validationStatus;
   ulonglong memoryBaseAddress;
@@ -30165,10 +30165,10 @@ ValidationErrorHandler5:
               memoryBaseAddress = 0x26;
               goto LAB_18089e70b;
             }
-            uVar1 = *poperationResult;
+            dataValue = *poperationResult;
             *(longlong *)memoryPointer = memoryPointer;
             *(longlong *)(memoryPointer + 8) = memoryPointer;
-            *(undefined4 *)(memoryPointer + 0x10) = uVar1;
+            *(undefined4 *)(memoryPointer + 0x10) = dataValue;
             *(undefined8 *)(memoryPointer + 0x18) = 0;
             *(undefined4 *)(memoryPointer + 0x20) = 0;
             validationStatus = ConvertData(param_1 + 0x58,memoryPointer);
@@ -30201,12 +30201,12 @@ ValidationErrorHandler5:
 ulonglong FUN_18089e558(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined4 functionReturnValue;
   undefined4 validationStatus;
   undefined4 memoryBaseAddress;
   uint operationResult;
-  int iVar6;
+  int iterationCount;
   undefined4 *pvalidationOutcome;
   ulonglong securityCheckResult;
   longlong dataPointer;
@@ -30218,44 +30218,44 @@ ulonglong FUN_18089e558(void)
   undefined4 extraout_XMM0_Da_00;
   undefined4 extraout_XMM0_Da_01;
   undefined4 extraout_XMM0_Da_02;
-  undefined4 uVar11;
+  undefined4 dataValue1;
   undefined4 extraout_XMM0_Da_03;
   undefined4 extraout_XMM0_Da_04;
   
   pvalidationOutcome = (undefined4 *)FUN_180847820();
   securityCheckResult = 0;
   operationResult = *(uint *)(unaff_RDI + 8);
-  uVar11 = *pvalidationOutcome;
+  dataValue1 = *pvalidationOutcome;
   functionReturnValue = pvalidationOutcome[1];
   validationStatus = pvalidationOutcome[2];
   memoryBaseAddress = pvalidationOutcome[3];
-  *(undefined4 *)(unaff_RBP + -0x19) = uVar11;
+  *(undefined4 *)(unaff_RBP + -0x19) = dataValue1;
   *(undefined4 *)(unaff_RBP + -0x15) = functionReturnValue;
   *(undefined4 *)(unaff_RBP + -0x11) = validationStatus;
   *(undefined4 *)(unaff_RBP + -0xd) = memoryBaseAddress;
   if (operationResult < 0x6d) {
     if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-      uVar1 = *unaff_RDI;
-      securityCheckResult = OperateDataO0(uVar1,unaff_RBP + -0x19,4);
+      dataValue = *unaff_RDI;
+      securityCheckResult = OperateDataO0(dataValue,unaff_RBP + -0x19,4);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = OperateDataO0(uVar1,unaff_RBP + -0x15,2);
+      securityCheckResult = OperateDataO0(dataValue,unaff_RBP + -0x15,2);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = OperateDataO0(uVar1,unaff_RBP + -0x13,2);
+      securityCheckResult = OperateDataO0(dataValue,unaff_RBP + -0x13,2);
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
-      securityCheckResult = OperateDataO0(uVar1,unaff_RBP + -0x11,8);
-      uVar11 = extraout_XMM0_Da;
+      securityCheckResult = OperateDataO0(dataValue,unaff_RBP + -0x11,8);
+      dataValue1 = extraout_XMM0_Da;
     }
     else {
       securityCheckResult = 0x1c;
     }
   }
-  if ((((int)securityCheckResult == 0) && (securityCheckResult = ValidateSystemOperationA0(uVar11,unaff_R15 + 0x38,0), (int)securityCheckResult == 0)) &&
+  if ((((int)securityCheckResult == 0) && (securityCheckResult = ValidateSystemOperationA0(dataValue1,unaff_R15 + 0x38,0), (int)securityCheckResult == 0)) &&
      (securityCheckResult = ValidateSystemOperationA0(extraout_XMM0_Da_00,unaff_R15 + 0x48,0), (int)securityCheckResult == 0)) {
     if (*(uint *)(unaff_RDI + 8) < 0x84) {
       *(undefined8 *)(unaff_RBP + -0x29) = 0;
@@ -30267,10 +30267,10 @@ ValidationErrorHandler5:
         CleanupSystemResourcesA0(unaff_RBP + -0x29);
         return securityCheckResult;
       }
-      iVar6 = *(int *)(unaff_RBP + -0x21);
-      if (iVar6 != 0) {
+      iterationCount = *(int *)(unaff_RBP + -0x21);
+      if (iterationCount != 0) {
         pvalidationOutcome = *(undefined4 **)(unaff_RBP + -0x29);
-        for (ploopCounter = pvalidationOutcome; (pvalidationOutcome <= ploopCounter && (ploopCounter < pvalidationOutcome + iVar6));
+        for (ploopCounter = pvalidationOutcome; (pvalidationOutcome <= ploopCounter && (ploopCounter < pvalidationOutcome + iterationCount));
             ploopCounter = ploopCounter + 1) {
           dataPointer = AllocateSystemMemoryA0(*(undefined8 *)(SystemMemoryManagerPointer + 0x1a0),0x28,&UNK_180986e70,0xc1c,0)
           ;
@@ -30278,29 +30278,29 @@ ValidationErrorHandler5:
             securityCheckResult = 0x26;
             goto LAB_18089e70b;
           }
-          uVar11 = *ploopCounter;
+          dataValue1 = *ploopCounter;
           *(longlong *)dataPointer = dataPointer;
           *(longlong *)(dataPointer + 8) = dataPointer;
-          *(undefined4 *)(dataPointer + 0x10) = uVar11;
+          *(undefined4 *)(dataPointer + 0x10) = dataValue1;
           *(undefined8 *)(dataPointer + 0x18) = 0;
           *(undefined4 *)(dataPointer + 0x20) = 0;
           operationResult = ConvertData(unaff_R15 + 0x58,dataPointer);
           securityCheckResult = (ulonglong)operationResult;
           if (operationResult != 0) goto LAB_18089e70b;
-          iVar6 = *(int *)(unaff_RBP + -0x21);
+          iterationCount = *(int *)(unaff_RBP + -0x21);
           pvalidationOutcome = *(undefined4 **)(unaff_RBP + -0x29);
         }
       }
-      uVar11 = FUN_18084c150(unaff_RBP + -0x29);
+      dataValue1 = FUN_18084c150(unaff_RBP + -0x29);
     }
     else {
       securityCheckResult = FUN_1808a71c0(extraout_XMM0_Da_01,unaff_R15 + 0x58);
-      uVar11 = extraout_XMM0_Da_02;
+      dataValue1 = extraout_XMM0_Da_02;
       if ((int)securityCheckResult != 0) {
         return securityCheckResult;
       }
     }
-    securityCheckResult = FUN_1808ad9d0(uVar11,unaff_R15 + 0x78,0);
+    securityCheckResult = FUN_1808ad9d0(dataValue1,unaff_R15 + 0x78,0);
     if (((int)securityCheckResult == 0) &&
        (securityCheckResult = FUN_1808a62d0(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)securityCheckResult == 0)) {
                     // WARNING: Subroutine does not return
@@ -30317,7 +30317,7 @@ ValidationErrorHandler5:
 ulonglong FUN_18089e624(void)
 
 {
-  undefined4 uVar1;
+  undefined4 dataValue;
   uint functionReturnValue;
   int operationStatus;
   ulonglong memoryBaseAddress;
@@ -30348,10 +30348,10 @@ ValidationErrorHandler5:
           memoryBaseAddress = 0x26;
           goto LAB_18089e70b;
         }
-        uVar1 = *pvalidationOutcome;
+        dataValue = *pvalidationOutcome;
         *(longlong *)resourceIterator = resourceIterator;
         *(longlong *)(resourceIterator + 8) = resourceIterator;
-        *(undefined4 *)(resourceIterator + 0x10) = uVar1;
+        *(undefined4 *)(resourceIterator + 0x10) = dataValue;
         *(undefined8 *)(resourceIterator + 0x18) = registerContext;
         *(int *)(resourceIterator + 0x20) = (int)registerContext;
         functionReturnValue = ConvertData(unaff_R15 + 0x58,resourceIterator);
@@ -31342,7 +31342,7 @@ void CheckSystemStateAndReturnC0(void)
 undefined8 ProcessDataCollectionA1(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined8 functionReturnValue;
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
@@ -31356,11 +31356,11 @@ undefined8 ProcessDataCollectionA1(longlong param_1,undefined8 *param_2)
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = *param_2;
-    functionReturnValue = OperateDataO0(uVar1,param_1 + 0xdc,4);
-    if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(uVar1,param_1 + 0xe0,2), (int)functionReturnValue == 0)) &&
-       (functionReturnValue = OperateDataO0(uVar1,param_1 + 0xe2,2), (int)functionReturnValue == 0)) {
-      functionReturnValue = OperateDataO0(uVar1,param_1 + 0xe4,8);
+    dataValue = *param_2;
+    functionReturnValue = OperateDataO0(dataValue,param_1 + 0xdc,4);
+    if ((((int)functionReturnValue == 0) && (functionReturnValue = OperateDataO0(dataValue,param_1 + 0xe0,2), (int)functionReturnValue == 0)) &&
+       (functionReturnValue = OperateDataO0(dataValue,param_1 + 0xe2,2), (int)functionReturnValue == 0)) {
+      functionReturnValue = OperateDataO0(dataValue,param_1 + 0xe4,8);
     }
     if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
@@ -31375,7 +31375,7 @@ undefined8 ProcessDataCollectionA1(longlong param_1,undefined8 *param_2)
 undefined8 ReturnFixedStatusCodeA2(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong in_RAX;
   undefined8 functionReturnValue;
   undefined8 *registerContext;
@@ -31384,14 +31384,14 @@ undefined8 ReturnFixedStatusCodeA2(void)
   if (*(int *)(in_RAX + 0x18) != 0) {
     return 0x1c;
   }
-  uVar1 = *registerContext;
-  functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0xdc,4);
+  dataValue = *registerContext;
+  functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0xdc,4);
   if ((int)functionReturnValue == 0) {
-    functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0xe0,2);
+    functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0xe0,2);
     if ((int)functionReturnValue == 0) {
-      functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0xe2,2);
+      functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0xe2,2);
       if ((int)functionReturnValue == 0) {
-        functionReturnValue = OperateDataO0(uVar1,unaff_RDI + 0xe4,8);
+        functionReturnValue = OperateDataO0(dataValue,unaff_RDI + 0xe4,8);
       }
     }
   }
@@ -31409,19 +31409,19 @@ undefined8 ReturnFixedStatusCodeA2(void)
 void ValidateSystemConfigurationC1(void)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   int operationResult;
   undefined8 *registerContext;
   longlong unaff_RDI;
   
-  uVar1 = *registerContext;
-  operationResult = OperateDataO0(uVar1,unaff_RDI + 0xdc,4);
+  dataValue = *registerContext;
+  operationResult = OperateDataO0(dataValue,unaff_RDI + 0xdc,4);
   if (operationResult == 0) {
-    operationResult = OperateDataO0(uVar1,unaff_RDI + 0xe0,2);
+    operationResult = OperateDataO0(dataValue,unaff_RDI + 0xe0,2);
     if (operationResult == 0) {
-      operationResult = OperateDataO0(uVar1,unaff_RDI + 0xe2,2);
+      operationResult = OperateDataO0(dataValue,unaff_RDI + 0xe2,2);
       if (operationResult == 0) {
-        operationResult = OperateDataO0(uVar1,unaff_RDI + 0xe4,8);
+        operationResult = OperateDataO0(dataValue,unaff_RDI + 0xe4,8);
       }
     }
   }
@@ -31458,48 +31458,48 @@ void CleanupSystemStateC1(void)
 undefined8 ExecuteDataValidationA2(longlong param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined4 auStackX_10 [6];
   
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
   auStackX_10[0] = *(undefined4 *)(param_1 + 0x50);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
+  dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
   ;
-  if ((int)uVar1 == 0) {
+  if ((int)dataValue == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
     auStackX_10[0] = *(undefined4 *)(param_1 + 0x54);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
+    dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))
                       (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-    if ((int)uVar1 == 0) {
+    if ((int)dataValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
       auStackX_10[0] = *(undefined4 *)(param_1 + 0x58);
-      uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
+      dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))
                         (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-      if ((int)uVar1 == 0) {
+      if ((int)dataValue == 0) {
         if (*(int *)(param_2[1] + 0x18) != 0) {
           return 0x1c;
         }
         auStackX_10[0] = *(undefined4 *)(param_1 + 0x60);
-        uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
+        dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))
                           (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-        if (((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 100), (int)uVar1 == 0))
-            && (uVar1 = FUN_180898eb0(param_2,param_1 + 0x68), (int)uVar1 == 0)) &&
-           (((uVar1 = FUN_180898eb0(param_2,param_1 + 0x6c), (int)uVar1 == 0 &&
-             (uVar1 = FUN_180898eb0(param_2,param_1 + 0x70), (int)uVar1 == 0)) &&
-            ((uVar1 = FUN_180898eb0(param_2,param_1 + 0x74), (int)uVar1 == 0 &&
-             (uVar1 = FUN_180898eb0(param_2,param_1 + 0x78), (int)uVar1 == 0)))))) {
-          uVar1 = FUN_1808a7c40(param_2,param_1 + 0x5c,0x74);
+        if (((((int)dataValue == 0) && (dataValue = FUN_180898eb0(param_2,param_1 + 100), (int)dataValue == 0))
+            && (dataValue = FUN_180898eb0(param_2,param_1 + 0x68), (int)dataValue == 0)) &&
+           (((dataValue = FUN_180898eb0(param_2,param_1 + 0x6c), (int)dataValue == 0 &&
+             (dataValue = FUN_180898eb0(param_2,param_1 + 0x70), (int)dataValue == 0)) &&
+            ((dataValue = FUN_180898eb0(param_2,param_1 + 0x74), (int)dataValue == 0 &&
+             (dataValue = FUN_180898eb0(param_2,param_1 + 0x78), (int)dataValue == 0)))))) {
+          dataValue = FUN_1808a7c40(param_2,param_1 + 0x5c,0x74);
         }
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -31507,19 +31507,19 @@ undefined8 ExecuteDataValidationA2(longlong param_1,longlong *param_2)
 undefined8 ProcessComplexDataStructureA1(longlong param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined4 auStackX_18 [2];
   undefined1 auStack_68 [64];
   undefined1 auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x46464542);
-  if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)uVar1 == 0)) {
+  dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x46464542);
+  if (((int)dataValue == 0) &&
+     (dataValue = FUN_1808ddd30(param_2,auStack_68,0,0x42464542,0), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
-      if (((int)uVar1 == 0) &&
+      dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
+      if (((int)dataValue == 0) &&
          ((0x5a < *(uint *)(param_2 + 8) ||
-          (uVar1 = FUN_1808afd90(param_2,param_1 + 0x44), (int)uVar1 == 0)))) {
+          (dataValue = FUN_1808afd90(param_2,param_1 + 0x44), (int)dataValue == 0)))) {
         if (*(int *)(param_2[1] + 0x18) == 0) {
           switch(*(undefined4 *)(param_1 + 0x60)) {
           default:
@@ -31633,24 +31633,24 @@ undefined8 ProcessComplexDataStructureA1(longlong param_1,longlong *param_2)
           case 0x24:
             auStackX_18[0] = 0x24;
           }
-          uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
+          dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))
                             (*(undefined8 **)(*param_2 + 8),auStackX_18,4);
-          if (((int)uVar1 == 0) &&
-             (uVar1 = FUN_1808a7c90(param_2,param_1 + 0x40,0x3d), (int)uVar1 == 0)) {
+          if (((int)dataValue == 0) &&
+             (dataValue = FUN_1808a7c90(param_2,param_1 + 0x40,0x3d), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
             FUN_1808de000(param_2,auStack_68);
           }
         }
         else {
-          uVar1 = 0x1c;
+          dataValue = 0x1c;
         }
       }
     }
     else {
-      uVar1 = 0x1c;
+      dataValue = 0x1c;
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -31659,15 +31659,15 @@ undefined8 ReturnFixedStatusCodeA3(void)
 
 {
   longlong in_RAX;
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong *registerContext;
   longlong systemContext;
   undefined4 in_stack_000000b0;
   
   if (*(int *)(in_RAX + 0x18) == 0) {
-    uVar1 = ProcessDataPointerA0(*registerContext,systemContext + 0x10);
-    if (((int)uVar1 == 0) &&
-       ((0x5a < *(uint *)(registerContext + 8) || (uVar1 = FUN_1808afd90(), (int)uVar1 == 0)))) {
+    dataValue = ProcessDataPointerA0(*registerContext,systemContext + 0x10);
+    if (((int)dataValue == 0) &&
+       ((0x5a < *(uint *)(registerContext + 8) || (dataValue = FUN_1808afd90(), (int)dataValue == 0)))) {
       if (*(int *)(registerContext[1] + 0x18) == 0) {
         switch(*(undefined4 *)(systemContext + 0x60)) {
         default:
@@ -31781,22 +31781,22 @@ undefined8 ReturnFixedStatusCodeA3(void)
         case 0x24:
           in_stack_000000b0 = 0x24;
         }
-        uVar1 = (**(code **)**(undefined8 **)(*registerContext + 8))
+        dataValue = (**(code **)**(undefined8 **)(*registerContext + 8))
                           (*(undefined8 **)(*registerContext + 8),&stack0x000000b0,4);
-        if (((int)uVar1 == 0) && (uVar1 = FUN_1808a7c90(), (int)uVar1 == 0)) {
+        if (((int)dataValue == 0) && (dataValue = FUN_1808a7c90(), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
           FUN_1808de000();
         }
       }
       else {
-        uVar1 = 0x1c;
+        dataValue = 0x1c;
       }
     }
   }
   else {
-    uVar1 = 0x1c;
+    dataValue = 0x1c;
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -31894,7 +31894,7 @@ ulonglong FUN_18089f530(longlong param_1,undefined8 *param_2,undefined4 param_3,
                        char param_5)
 
 {
-  uint uVar1;
+  uint dataValue;
   ulonglong functionReturnValue;
   undefined1 auStack_70 [64];
   undefined1 auStack_30 [40];
@@ -31903,9 +31903,9 @@ ulonglong FUN_18089f530(longlong param_1,undefined8 *param_2,undefined4 param_3,
   if (((int)functionReturnValue == 0) && (functionReturnValue = FUN_1808ddd30(param_2,auStack_70,0,param_4,0), (int)functionReturnValue == 0))
   {
     if (*(int *)(param_2[1] + 0x18) == 0) {
-      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
-      functionReturnValue = (ulonglong)uVar1;
-      if ((uVar1 == 0) &&
+      dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
+      functionReturnValue = (ulonglong)dataValue;
+      if ((dataValue == 0) &&
          ((param_5 == '\0' || (functionReturnValue = FUN_1808a1870(param_1 + 0x48,param_2), (int)functionReturnValue == 0)))) {
                     // WARNING: Subroutine does not return
         FUN_1808de000(param_2,auStack_70);
@@ -31923,7 +31923,7 @@ ulonglong FUN_18089f530(longlong param_1,undefined8 *param_2,undefined4 param_3,
 ulonglong FUN_18089f571(void)
 
 {
-  uint uVar1;
+  uint dataValue;
   ulonglong functionReturnValue;
   undefined8 *registerContext;
   longlong unaff_RBP;
@@ -31932,9 +31932,9 @@ ulonglong FUN_18089f571(void)
   functionReturnValue = FUN_1808ddd30();
   if ((int)functionReturnValue == 0) {
     if (*(int *)(registerContext[1] + 0x18) == 0) {
-      uVar1 = ProcessDataPointerA0(*registerContext,unaff_RBP + 0x10);
-      functionReturnValue = (ulonglong)uVar1;
-      if ((uVar1 == 0) &&
+      dataValue = ProcessDataPointerA0(*registerContext,unaff_RBP + 0x10);
+      functionReturnValue = (ulonglong)dataValue;
+      if ((dataValue == 0) &&
          ((in_stack_000000d0 == '\0' || (functionReturnValue = FUN_1808a1870(unaff_RBP + 0x48), (int)functionReturnValue == 0)))
          ) {
                     // WARNING: Subroutine does not return
@@ -31963,39 +31963,39 @@ void ValidateSystemStateC2(void)
 undefined8 ProcessDataConversionA1(longlong param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined4 auStackX_18 [4];
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x49444d43);
-  if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,0x42444d43,0), (int)uVar1 == 0)) {
+  dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x49444d43);
+  if (((int)dataValue == 0) &&
+     (dataValue = FUN_1808ddd30(param_2,auStack_48,0,0x42444d43,0), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
-    if ((int)uVar1 == 0) {
+    dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
+    if ((int)dataValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
       auStackX_18[0] = *(undefined4 *)(param_1 + 0xd8);
-      uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
+      dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))
                         (*(undefined8 **)(*param_2 + 8),auStackX_18,4);
-      if ((int)uVar1 == 0) {
+      if ((int)dataValue == 0) {
         if (*(int *)(param_2[1] + 0x18) != 0) {
           return 0x1c;
         }
-        uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0xdc);
-        if (((int)uVar1 == 0) &&
-           (uVar1 = FUN_1808a7c40(param_2,param_1 + 0xec,0x80), (int)uVar1 == 0)) {
+        dataValue = ProcessDataPointerA0(*param_2,param_1 + 0xdc);
+        if (((int)dataValue == 0) &&
+           (dataValue = FUN_1808a7c40(param_2,param_1 + 0xec,0x80), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
           FUN_1808de000(param_2,auStack_48);
         }
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -32270,7 +32270,7 @@ ulonglong FUN_18089fa3c(void)
 ulonglong FUN_18089fac2(void)
 
 {
-  uint uVar1;
+  uint dataValue;
   ulonglong functionReturnValue;
   ulonglong registerContext;
   longlong unaff_RBP;
@@ -32281,9 +32281,9 @@ ulonglong FUN_18089fac2(void)
     return (ulonglong)unaff_ESI;
   }
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar1 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
-    registerContext = (ulonglong)uVar1;
-    if (uVar1 == 0) {
+    dataValue = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
+    registerContext = (ulonglong)dataValue;
+    if (dataValue == 0) {
       functionReturnValue = FUN_180898e70();
       if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
@@ -32300,16 +32300,16 @@ ulonglong FUN_18089fac2(void)
 ulonglong FUN_18089fad8(void)
 
 {
-  uint uVar1;
+  uint dataValue;
   ulonglong functionReturnValue;
   ulonglong registerContext;
   longlong unaff_RBP;
   undefined8 *unaff_RDI;
   
   if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
-    uVar1 = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
-    registerContext = (ulonglong)uVar1;
-    if (uVar1 == 0) {
+    dataValue = ProcessDataPointerA0(*unaff_RDI,unaff_RBP + 0x30);
+    registerContext = (ulonglong)dataValue;
+    if (dataValue == 0) {
       functionReturnValue = FUN_180898e70();
       if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
@@ -32389,28 +32389,28 @@ void ProcessPortControlRequestB(longlong portContext, undefined8 controlRequest)
 undefined8 ValidateDataSynchronizationA1(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined1 auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,0,0x56525543,0);
-  if ((int)uVar1 == 0) {
+  dataValue = FUN_1808ddd30(param_2,auStack_28,0,0x56525543,0);
+  if ((int)dataValue == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
-    if ((int)uVar1 == 0) {
+    dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
+    if ((int)dataValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x20);
-      if (((int)uVar1 == 0) && (uVar1 = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)uVar1 == 0))
+      dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x20);
+      if (((int)dataValue == 0) && (dataValue = FUN_1808a4fb0(param_2,param_1 + 0x30,1,0), (int)dataValue == 0))
       {
                     // WARNING: Subroutine does not return
         FUN_1808de000(param_2,auStack_28);
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -32418,29 +32418,29 @@ undefined8 ValidateDataSynchronizationA1(longlong param_1,undefined8 *param_2)
 undefined8 ExecuteDataCleanupA1(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54494645);
-  if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,0x42494645,0), (int)uVar1 == 0)) {
+  dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54494645);
+  if (((int)dataValue == 0) &&
+     (dataValue = FUN_1808ddd30(param_2,auStack_48,0,0x42494645,0), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
-    if ((int)uVar1 == 0) {
+    dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
+    if ((int)dataValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
-      if ((int)uVar1 == 0) {
+      dataValue = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
+      if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
         FUN_1808de000(param_2,auStack_48);
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -32448,7 +32448,7 @@ undefined8 ExecuteDataCleanupA1(longlong param_1,undefined8 *param_2)
 undefined8 InitializeDataProcessorA1(longlong param_1,longlong *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined4 auStackX_10 [6];
   
   if (*(uint *)(param_2 + 8) < 0x55) {
@@ -32456,19 +32456,19 @@ undefined8 InitializeDataProcessorA1(longlong param_1,longlong *param_2)
       return 0x1c;
     }
     auStackX_10[0] = *(undefined4 *)(param_1 + 0x50);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
+    dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))
                       (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-    if ((int)uVar1 != 0) {
-      return uVar1;
+    if ((int)dataValue != 0) {
+      return dataValue;
     }
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
     auStackX_10[0] = *(undefined4 *)(param_1 + 0x54);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
+    dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))
                       (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-    if ((int)uVar1 != 0) {
-      return uVar1;
+    if ((int)dataValue != 0) {
+      return dataValue;
     }
   }
   else {
@@ -32476,51 +32476,51 @@ undefined8 InitializeDataProcessorA1(longlong param_1,longlong *param_2)
       return 0x1c;
     }
     auStackX_10[0] = *(undefined4 *)(param_1 + 0x78);
-    uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))
+    dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))
                       (*(undefined8 **)(*param_2 + 8),auStackX_10,4);
-    if ((int)uVar1 != 0) {
-      return uVar1;
+    if ((int)dataValue != 0) {
+      return dataValue;
     }
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
   auStackX_10[0] = *(undefined4 *)(param_1 + 0x58);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
+  dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
   ;
-  if ((int)uVar1 != 0) {
-    return uVar1;
+  if ((int)dataValue != 0) {
+    return dataValue;
   }
   if (*(int *)(param_2[1] + 0x18) != 0) {
     return 0x1c;
   }
   auStackX_10[0] = *(undefined4 *)(param_1 + 0x5c);
-  uVar1 = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
+  dataValue = (**(code **)**(undefined8 **)(*param_2 + 8))(*(undefined8 **)(*param_2 + 8),auStackX_10,4)
   ;
-  if ((int)uVar1 == 0) {
+  if ((int)dataValue == 0) {
     if (*(uint *)(param_2 + 8) < 0x53) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x60);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x60);
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
     }
     else {
-      uVar1 = FUN_180898eb0(param_2,param_1 + 0x70);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      dataValue = FUN_180898eb0(param_2,param_1 + 0x70);
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
-      uVar1 = FUN_180898eb0(param_2,param_1 + 0x74);
-      if ((int)uVar1 != 0) {
-        return uVar1;
+      dataValue = FUN_180898eb0(param_2,param_1 + 0x74);
+      if ((int)dataValue != 0) {
+        return dataValue;
       }
     }
-    uVar1 = FUN_1808a7c90(param_2,param_1 + 0x7c,0x7d);
-    return uVar1;
+    dataValue = FUN_1808a7c90(param_2,param_1 + 0x7c,0x7d);
+    return dataValue;
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -32528,30 +32528,30 @@ undefined8 InitializeDataProcessorA1(longlong param_1,longlong *param_2)
 undefined8 ProcessDataCacheA1(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined1 auStack_48 [32];
   undefined1 auStack_28 [32];
   
-  uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54495645);
-  if (((int)uVar1 == 0) &&
-     (uVar1 = FUN_1808ddd30(param_2,auStack_48,0,0x42495645,0), (int)uVar1 == 0)) {
+  dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x54495645);
+  if (((int)dataValue == 0) &&
+     (dataValue = FUN_1808ddd30(param_2,auStack_48,0,0x42495645,0), (int)dataValue == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
     }
-    uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0x10);
-    if ((int)uVar1 == 0) {
+    dataValue = ProcessDataPointerA0(*param_2,param_1 + 0x10);
+    if ((int)dataValue == 0) {
       if (*(int *)(param_2[1] + 0x18) != 0) {
         return 0x1c;
       }
-      uVar1 = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
-      if ((((int)uVar1 == 0) && (uVar1 = FUN_180898eb0(param_2,param_1 + 0xf8), (int)uVar1 == 0)) &&
-         (uVar1 = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)uVar1 == 0)) {
+      dataValue = ProcessDataPointerA0(*param_2,param_1 + 0xd8);
+      if ((((int)dataValue == 0) && (dataValue = FUN_180898eb0(param_2,param_1 + 0xf8), (int)dataValue == 0)) &&
+         (dataValue = FUN_1808a6e50(param_2,param_1 + 0xe8,1,param_1), (int)dataValue == 0)) {
                     // WARNING: Subroutine does not return
         FUN_1808de000(param_2,auStack_48);
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -32559,29 +32559,29 @@ undefined8 ProcessDataCacheA1(longlong param_1,undefined8 *param_2)
 undefined8 CleanupDataCacheA1(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   undefined1 auStack_28 [32];
   
   if (*(uint *)(param_2 + 0x40) < 0x31) {
-    uVar1 = FUN_1808a3d50(param_1,param_2,0x544e5645);
-    if ((int)uVar1 == 0) {
-      uVar1 = 0;
+    dataValue = FUN_1808a3d50(param_1,param_2,0x544e5645);
+    if ((int)dataValue == 0) {
+      dataValue = 0;
     }
   }
   else {
-    uVar1 = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x544e5645);
-    if ((int)uVar1 == 0) {
-      uVar1 = FUN_1808a3d50(param_1,param_2,0x42545645);
-      if ((int)uVar1 == 0) {
-        uVar1 = FUN_1808a1610(param_1,param_2);
-        if ((int)uVar1 == 0) {
+    dataValue = FUN_1808ddd30(param_2,auStack_28,1,0x5453494c,0x544e5645);
+    if ((int)dataValue == 0) {
+      dataValue = FUN_1808a3d50(param_1,param_2,0x42545645);
+      if ((int)dataValue == 0) {
+        dataValue = FUN_1808a1610(param_1,param_2);
+        if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
           FUN_1808de000(param_2,auStack_28);
         }
       }
     }
   }
-  return uVar1;
+  return dataValue;
 }
 
 
@@ -34206,13 +34206,13 @@ void ExceptionRecoveryHandlerB6(undefined8 param_1,longlong param_2)
 void ExceptionRecoveryHandlerB7(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x128);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x120); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x128);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x120); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x120) == 0) {
@@ -34294,13 +34294,13 @@ void ExceptionRecoveryHandlerB9(undefined8 param_1,longlong param_2)
 void ExceptionRecoveryHandlerB10(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x128);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x120); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x128);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x120); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x120) == 0) {
@@ -35159,13 +35159,13 @@ void DestroyMutexResources2(void)
 void CallCleanupFunctionForOffset78WithCheck(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x78),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -36808,17 +36808,17 @@ void SetDefaultExceptionHandlerB(undefined8 param_1,longlong param_2)
 void Unwind_ResetExceptionHandler(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x90);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x90);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -37035,15 +37035,15 @@ void Unwind_CleanupMemoryBlock(undefined8 param_1,longlong param_2)
 void Unwind_CleanupThreadResource(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x38);
-  *puVar1 = &UNK_1809fcb90;
+  pdataValue = *(undefined8 **)(param_2 + 0x38);
+  *pdataValue = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  _Cnd_destroy_in_situ(pdataValue + 4);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -37052,31 +37052,31 @@ void Unwind_CleanupThreadResource(undefined8 param_1,longlong param_2)
 void Unwind_CleanupThreadContext(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   char characterFlag;
   undefined8 validationStatus;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x38);
+  pdataValue = *(undefined8 **)(param_2 + 0x38);
   validationStatus = SystemCleanupFlagfffffffe;
-  *puVar1 = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(puVar1,1,param_3,param_4,SystemCleanupFlagfffffffe);
+  *pdataValue = &UNK_180a10098;
+  characterFlag = FUN_18020eba0(pdataValue,1,param_3,param_4,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(puVar1,1,param_3,param_4,validationStatus);
+    characterFlag = FUN_18020eba0(pdataValue,1,param_3,param_4,validationStatus);
   }
-  if (puVar1[1] == 0) {
-    puVar1[1] = 0;
+  if (pdataValue[1] == 0) {
+    pdataValue[1] = 0;
     _Mtx_destroy_in_situ();
-    _Cnd_destroy_in_situ(puVar1 + 0x2a);
+    _Cnd_destroy_in_situ(pdataValue + 0x2a);
     _Mtx_destroy_in_situ();
     FUN_18020f530();
-    if (puVar1[0xe] != 0) {
-      *(undefined8 *)(puVar1[0xe] + 0x10) = 0;
-      *(undefined1 *)(puVar1[0xe] + 8) = 1;
+    if (pdataValue[0xe] != 0) {
+      *(undefined8 *)(pdataValue[0xe] + 0x10) = 0;
+      *(undefined1 *)(pdataValue[0xe] + 8) = 1;
     }
-    puVar1[2] = &DefaultExceptionHandlerB;
+    pdataValue[2] = &DefaultExceptionHandlerB;
     return;
   }
-  if (*(int *)(puVar1[1] + 8) == 0) {
+  if (*(int *)(pdataValue[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -37117,17 +37117,17 @@ void Unwind_CleanupMutexLock(undefined8 param_1,longlong param_2,undefined8 para
 void Unwind_CleanupExceptionStack(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x38);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x38);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -37814,15 +37814,15 @@ void ExecuteSystemResourceCleanup(undefined8 param_1,longlong param_2,undefined8
 void Unwind_180902f20(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x888);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x890);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x890);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -37837,15 +37837,15 @@ void Unwind_180902f20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902f40(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x8a8);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8b0);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x8b0);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -37926,14 +37926,14 @@ void Unwind_180902fa0(undefined8 param_1,longlong param_2)
 void Unwind_180902fc0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x948);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x938,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x948);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x938,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18005cb60(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -37943,14 +37943,14 @@ void Unwind_180902fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180902fe0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x978);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x968,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x978);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800587d0(*(longlong *)(param_2 + 0x40) + 0x968,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18005cb60(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -37960,14 +37960,14 @@ void Unwind_180902fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180903000(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800587d0(*(longlong *)(param_2 + 0x48),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18005cb60(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -37977,14 +37977,14 @@ void Unwind_180903000(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180903010(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800587d0(*(longlong *)(param_2 + 0x48),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18005cb60(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -38054,14 +38054,14 @@ void Unwind_180903070(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180903080(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800587d0(*(longlong *)(param_2 + 0x40),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18005cb60(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -38071,14 +38071,14 @@ void Unwind_180903080(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180903090(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800587d0(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18005cb60(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800587d0(*(longlong *)(param_2 + 0x40),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_18005cb60(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -38088,13 +38088,13 @@ void Unwind_180903090(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809030a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x30);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x28); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x30);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x28); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x28) == 0) {
@@ -38385,17 +38385,17 @@ void CleanupResourceState170(undefined8 param_1,longlong param_2)
 void ResetResourcePointer180(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x48);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x48);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -38779,13 +38779,13 @@ void Unwind_180903320(undefined8 param_1,longlong param_2)
 void Unwind_180903330(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x30);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x80) + 0x20,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x30);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x80) + 0x20,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -38795,13 +38795,13 @@ void Unwind_180903330(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180903340(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x88),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x88),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -38811,13 +38811,13 @@ void Unwind_180903340(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180903350(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x88),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x88) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x88),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -38873,13 +38873,13 @@ void Unwind_1809033f0(undefined8 param_1,longlong param_2)
 void Unwind_180903430(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x30);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0x20,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x30);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0x20,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -39544,32 +39544,32 @@ void Unwind_180903600(undefined8 param_1,longlong param_2)
 void Unwind_180903610(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x40);
-  *puVar1 = &UNK_180a02968;
-  puVar1[0x18] = &UNK_180a3c3e0;
-  if (puVar1[0x19] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x40);
+  *pdataValue = &UNK_180a02968;
+  pdataValue[0x18] = &UNK_180a3c3e0;
+  if (pdataValue[0x19] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[0x19] = 0;
-  *(undefined4 *)(puVar1 + 0x1b) = 0;
-  puVar1[0x18] = &DefaultExceptionHandlerB;
-  FUN_18005d260(puVar1 + 0x12,puVar1[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
-  if (puVar1[0xd] != 0) {
+  pdataValue[0x19] = 0;
+  *(undefined4 *)(pdataValue + 0x1b) = 0;
+  pdataValue[0x18] = &DefaultExceptionHandlerB;
+  FUN_18005d260(pdataValue + 0x12,pdataValue[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
+  if (pdataValue[0xd] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  if (puVar1[9] != 0) {
+  if (pdataValue[9] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  if (puVar1[5] != 0) {
+  if (pdataValue[5] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  if (puVar1[1] != 0) {
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -39905,32 +39905,32 @@ void Unwind_180903740(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180903760(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x80);
-  *puVar1 = &UNK_180a02968;
-  puVar1[0x18] = &UNK_180a3c3e0;
-  if (puVar1[0x19] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x80);
+  *pdataValue = &UNK_180a02968;
+  pdataValue[0x18] = &UNK_180a3c3e0;
+  if (pdataValue[0x19] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[0x19] = 0;
-  *(undefined4 *)(puVar1 + 0x1b) = 0;
-  puVar1[0x18] = &DefaultExceptionHandlerB;
-  FUN_18005d260(puVar1 + 0x12,puVar1[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
-  if (puVar1[0xd] != 0) {
+  pdataValue[0x19] = 0;
+  *(undefined4 *)(pdataValue + 0x1b) = 0;
+  pdataValue[0x18] = &DefaultExceptionHandlerB;
+  FUN_18005d260(pdataValue + 0x12,pdataValue[0x14],param_3,param_4,SystemCleanupFlagfffffffe);
+  if (pdataValue[0xd] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  if (puVar1[9] != 0) {
+  if (pdataValue[9] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  if (puVar1[5] != 0) {
+  if (pdataValue[5] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  if (puVar1[1] != 0) {
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -42638,15 +42638,15 @@ void Unwind_180904070(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904090(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x1380);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 5000);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 5000);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -42661,15 +42661,15 @@ void Unwind_180904090(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809040b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x13a0);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x13a8);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x13a8);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -42764,17 +42764,17 @@ void Unwind_180904110(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904120(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x20);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x20);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -44232,15 +44232,15 @@ void Unwind_180904550(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904570(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x1380);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 5000);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 5000);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -44255,15 +44255,15 @@ void Unwind_180904570(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904590(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x13a0);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x13a8);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x13a8);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -44278,15 +44278,15 @@ void Unwind_180904590(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809045b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x88);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -44397,12 +44397,12 @@ void Unwind_180904670(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904680(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x50);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x50);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -44425,11 +44425,11 @@ void Unwind_180904690(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809046a0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x50);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x50);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -44777,12 +44777,12 @@ void Unwind_180904890(undefined8 param_1,longlong param_2)
 void Unwind_1809048a0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x20);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x20);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -45577,31 +45577,31 @@ void Unwind_180904aa0(undefined8 param_1,longlong param_2)
 void Unwind_180904ab0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   char characterFlag;
   undefined8 validationStatus;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x160);
+  pdataValue = *(undefined8 **)(param_2 + 0x160);
   validationStatus = SystemCleanupFlagfffffffe;
-  *puVar1 = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(puVar1,1,param_3,param_4,SystemCleanupFlagfffffffe);
+  *pdataValue = &UNK_180a10098;
+  characterFlag = FUN_18020eba0(pdataValue,1,param_3,param_4,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(puVar1,1,param_3,param_4,validationStatus);
+    characterFlag = FUN_18020eba0(pdataValue,1,param_3,param_4,validationStatus);
   }
-  if (puVar1[1] == 0) {
-    puVar1[1] = 0;
+  if (pdataValue[1] == 0) {
+    pdataValue[1] = 0;
     _Mtx_destroy_in_situ();
-    _Cnd_destroy_in_situ(puVar1 + 0x2a);
+    _Cnd_destroy_in_situ(pdataValue + 0x2a);
     _Mtx_destroy_in_situ();
     FUN_18020f530();
-    if (puVar1[0xe] != 0) {
-      *(undefined8 *)(puVar1[0xe] + 0x10) = 0;
-      *(undefined1 *)(puVar1[0xe] + 8) = 1;
+    if (pdataValue[0xe] != 0) {
+      *(undefined8 *)(pdataValue[0xe] + 0x10) = 0;
+      *(undefined1 *)(pdataValue[0xe] + 8) = 1;
     }
-    puVar1[2] = &DefaultExceptionHandlerB;
+    pdataValue[2] = &DefaultExceptionHandlerB;
     return;
   }
-  if (*(int *)(puVar1[1] + 8) == 0) {
+  if (*(int *)(pdataValue[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -45645,31 +45645,31 @@ void Unwind_180904ae0(undefined8 param_1,longlong param_2)
 void Unwind_180904af0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   char characterFlag;
   undefined8 validationStatus;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x50);
+  pdataValue = *(undefined8 **)(param_2 + 0x50);
   validationStatus = SystemCleanupFlagfffffffe;
-  *puVar1 = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(puVar1,1,param_3,param_4,SystemCleanupFlagfffffffe);
+  *pdataValue = &UNK_180a10098;
+  characterFlag = FUN_18020eba0(pdataValue,1,param_3,param_4,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(puVar1,1,param_3,param_4,validationStatus);
+    characterFlag = FUN_18020eba0(pdataValue,1,param_3,param_4,validationStatus);
   }
-  if (puVar1[1] == 0) {
-    puVar1[1] = 0;
+  if (pdataValue[1] == 0) {
+    pdataValue[1] = 0;
     _Mtx_destroy_in_situ();
-    _Cnd_destroy_in_situ(puVar1 + 0x2a);
+    _Cnd_destroy_in_situ(pdataValue + 0x2a);
     _Mtx_destroy_in_situ();
     FUN_18020f530();
-    if (puVar1[0xe] != 0) {
-      *(undefined8 *)(puVar1[0xe] + 0x10) = 0;
-      *(undefined1 *)(puVar1[0xe] + 8) = 1;
+    if (pdataValue[0xe] != 0) {
+      *(undefined8 *)(pdataValue[0xe] + 0x10) = 0;
+      *(undefined1 *)(pdataValue[0xe] + 8) = 1;
     }
-    puVar1[2] = &DefaultExceptionHandlerB;
+    pdataValue[2] = &DefaultExceptionHandlerB;
     return;
   }
-  if (*(int *)(puVar1[1] + 8) == 0) {
+  if (*(int *)(pdataValue[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -45725,7 +45725,7 @@ void Catch_180904b50(undefined8 param_1,longlong param_2)
 void Catch_180904b90(undefined8 param_1,longlong param_2)
 
 {
-  ulonglong uVar1;
+  ulonglong dataValue;
   longlong dataContext;
   longlong calculatedOffset;
   longlong calculatedIndex;
@@ -45734,7 +45734,7 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
   longlong memoryOffset;
   ulonglong securityCheckResult;
   
-  uVar1 = *(ulonglong *)(param_2 + 0x20);
+  dataValue = *(ulonglong *)(param_2 + 0x20);
   dataContext = *(longlong *)(param_2 + 0xa0);
   calculatedOffset = *(longlong *)(dataContext + 0x40);
   *(undefined8 *)(dataContext + 0x70) = *(undefined8 *)(param_2 + 0x30);
@@ -45752,8 +45752,8 @@ void Catch_180904b90(undefined8 param_1,longlong param_2)
   *(ulonglong *)(param_2 + 0x20) = operationResult;
   while( true ) {
     securityCheckResult = (operationResult & SystemCleanupFlagffffffe0) + 0x20;
-    if (0x8000000000000000 < uVar1 - securityCheckResult) {
-      securityCheckResult = uVar1;
+    if (0x8000000000000000 < dataValue - securityCheckResult) {
+      securityCheckResult = dataValue;
     }
     dataFlags = operationResult;
     if (operationResult != securityCheckResult) {
@@ -45865,31 +45865,31 @@ void Unwind_180904dc0(undefined8 param_1,longlong param_2)
 void Unwind_180904dd0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x40);
-  *puVar1 = &UNK_180a3cf50;
-  if (*(char *)((longlong)puVar1 + 0xb1) != '\0') {
+  pdataValue = *(undefined8 **)(param_2 + 0x40);
+  *pdataValue = &UNK_180a3cf50;
+  if (*(char *)((longlong)pdataValue + 0xb1) != '\0') {
     FUN_180639250();
   }
   _Mtx_destroy_in_situ();
-  *puVar1 = &UNK_180a30778;
-  puVar1[7] = &UNK_180a3c3e0;
-  if (puVar1[8] != 0) {
+  *pdataValue = &UNK_180a30778;
+  pdataValue[7] = &UNK_180a3c3e0;
+  if (pdataValue[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[8] = 0;
-  *(undefined4 *)(puVar1 + 10) = 0;
-  puVar1[7] = &DefaultExceptionHandlerB;
-  puVar1[1] = &UNK_180a3c3e0;
-  if (puVar1[2] != 0) {
+  pdataValue[8] = 0;
+  *(undefined4 *)(pdataValue + 10) = 0;
+  pdataValue[7] = &DefaultExceptionHandlerB;
+  pdataValue[1] = &UNK_180a3c3e0;
+  if (pdataValue[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[2] = 0;
-  *(undefined4 *)(puVar1 + 4) = 0;
-  puVar1[1] = &DefaultExceptionHandlerB;
+  pdataValue[2] = 0;
+  *(undefined4 *)(pdataValue + 4) = 0;
+  pdataValue[1] = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -45898,27 +45898,27 @@ void Unwind_180904dd0(undefined8 param_1,longlong param_2)
 void Unwind_180904de0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x40);
+  pdataValue = *(undefined8 **)(param_2 + 0x40);
   _Mtx_destroy_in_situ();
-  *puVar1 = &UNK_180a30778;
-  puVar1[7] = &UNK_180a3c3e0;
-  if (puVar1[8] != 0) {
+  *pdataValue = &UNK_180a30778;
+  pdataValue[7] = &UNK_180a3c3e0;
+  if (pdataValue[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[8] = 0;
-  *(undefined4 *)(puVar1 + 10) = 0;
-  puVar1[7] = &DefaultExceptionHandlerB;
-  puVar1[1] = &UNK_180a3c3e0;
-  if (puVar1[2] != 0) {
+  pdataValue[8] = 0;
+  *(undefined4 *)(pdataValue + 10) = 0;
+  pdataValue[7] = &DefaultExceptionHandlerB;
+  pdataValue[1] = &UNK_180a3c3e0;
+  if (pdataValue[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[2] = 0;
-  *(undefined4 *)(puVar1 + 4) = 0;
-  puVar1[1] = &DefaultExceptionHandlerB;
+  pdataValue[2] = 0;
+  *(undefined4 *)(pdataValue + 4) = 0;
+  pdataValue[1] = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -45927,26 +45927,26 @@ void Unwind_180904de0(undefined8 param_1,longlong param_2)
 void Unwind_180904df0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x40);
-  *puVar1 = &UNK_180a30778;
-  puVar1[7] = &UNK_180a3c3e0;
-  if (puVar1[8] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x40);
+  *pdataValue = &UNK_180a30778;
+  pdataValue[7] = &UNK_180a3c3e0;
+  if (pdataValue[8] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[8] = 0;
-  *(undefined4 *)(puVar1 + 10) = 0;
-  puVar1[7] = &DefaultExceptionHandlerB;
-  puVar1[1] = &UNK_180a3c3e0;
-  if (puVar1[2] != 0) {
+  pdataValue[8] = 0;
+  *(undefined4 *)(pdataValue + 10) = 0;
+  pdataValue[7] = &DefaultExceptionHandlerB;
+  pdataValue[1] = &UNK_180a3c3e0;
+  if (pdataValue[2] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[2] = 0;
-  *(undefined4 *)(puVar1 + 4) = 0;
-  puVar1[1] = &DefaultExceptionHandlerB;
+  pdataValue[2] = 0;
+  *(undefined4 *)(pdataValue + 4) = 0;
+  pdataValue[1] = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -45993,31 +45993,31 @@ void Unwind_180904e30(undefined8 param_1,longlong param_2)
 void Unwind_180904e40(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   char characterFlag;
   undefined8 validationStatus;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x30);
+  pdataValue = *(undefined8 **)(param_2 + 0x30);
   validationStatus = SystemCleanupFlagfffffffe;
-  *puVar1 = &UNK_180a10098;
-  characterFlag = FUN_18020eba0(puVar1,1,param_3,param_4,SystemCleanupFlagfffffffe);
+  *pdataValue = &UNK_180a10098;
+  characterFlag = FUN_18020eba0(pdataValue,1,param_3,param_4,SystemCleanupFlagfffffffe);
   while (characterFlag != '\0') {
-    characterFlag = FUN_18020eba0(puVar1,1,param_3,param_4,validationStatus);
+    characterFlag = FUN_18020eba0(pdataValue,1,param_3,param_4,validationStatus);
   }
-  if (puVar1[1] == 0) {
-    puVar1[1] = 0;
+  if (pdataValue[1] == 0) {
+    pdataValue[1] = 0;
     _Mtx_destroy_in_situ();
-    _Cnd_destroy_in_situ(puVar1 + 0x2a);
+    _Cnd_destroy_in_situ(pdataValue + 0x2a);
     _Mtx_destroy_in_situ();
     FUN_18020f530();
-    if (puVar1[0xe] != 0) {
-      *(undefined8 *)(puVar1[0xe] + 0x10) = 0;
-      *(undefined1 *)(puVar1[0xe] + 8) = 1;
+    if (pdataValue[0xe] != 0) {
+      *(undefined8 *)(pdataValue[0xe] + 0x10) = 0;
+      *(undefined1 *)(pdataValue[0xe] + 8) = 1;
     }
-    puVar1[2] = &DefaultExceptionHandlerB;
+    pdataValue[2] = &DefaultExceptionHandlerB;
     return;
   }
-  if (*(int *)(puVar1[1] + 8) == 0) {
+  if (*(int *)(pdataValue[1] + 8) == 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
@@ -46030,13 +46030,13 @@ void Unwind_180904e40(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904e50(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 200);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xc0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 200);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xc0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xc0) == 0) {
@@ -46051,13 +46051,13 @@ void Unwind_180904e50(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904e60(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 200);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xc0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 200);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xc0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xc0) == 0) {
@@ -46144,13 +46144,13 @@ void Unwind_180904ee0(undefined8 param_1,longlong param_2)
 void Unwind_180904f10(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x98);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x90); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x98);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x90); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x90) == 0) {
@@ -46165,13 +46165,13 @@ void Unwind_180904f10(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904f20(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x98);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x90); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x98);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x90); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x90) == 0) {
@@ -46253,17 +46253,17 @@ void Unwind_180904f70(undefined8 param_1,longlong param_2)
 void Unwind_180904f80(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0xa8);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0xa8);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -46272,13 +46272,13 @@ void Unwind_180904f80(undefined8 param_1,longlong param_2)
 void Unwind_180904f90(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x28);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x20); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x28);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x20); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x20) == 0) {
@@ -46293,13 +46293,13 @@ void Unwind_180904f90(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180904fa0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x28);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x20); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x28);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x20); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x20) == 0) {
@@ -46366,13 +46366,13 @@ void Unwind_180904fc0(undefined8 param_1,longlong param_2)
 void Unwind_180904fd0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xa0);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x98); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xa0);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x98); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x98) == 0) {
@@ -46453,13 +46453,13 @@ void Unwind_180905010(undefined8 param_1,longlong param_2)
 void Unwind_180905020(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x48);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x40); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x48);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x40); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x40) == 0) {
@@ -46510,13 +46510,13 @@ void Unwind_180905030(undefined8 param_1,longlong param_2)
 void Unwind_180905040(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xa0);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x98); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xa0);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x98); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x98) == 0) {
@@ -46687,13 +46687,13 @@ void Unwind_180905100(undefined8 param_1,longlong param_2)
 void Unwind_180905110(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x150);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x148); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x150);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x148); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x148) == 0) {
@@ -46708,13 +46708,13 @@ void Unwind_180905110(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905120(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x210);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x208); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x210);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x208); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x208) == 0) {
@@ -46763,13 +46763,13 @@ void Unwind_180905150(undefined8 param_1,longlong param_2)
 void Unwind_180905160(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x110);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x108); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x110);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x108); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x108) == 0) {
@@ -46784,13 +46784,13 @@ void Unwind_180905160(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905170(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x230);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x228); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x230);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x228); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x228) == 0) {
@@ -46867,13 +46867,13 @@ void Unwind_1809051e0(undefined8 param_1,longlong param_2)
 void Unwind_1809051f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x150);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x148); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x150);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x148); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x148) == 0) {
@@ -46924,13 +46924,13 @@ void Unwind_180905200(undefined8 param_1,longlong param_2)
 void Unwind_180905210(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x210);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x208); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x210);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x208); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x208) == 0) {
@@ -46999,13 +46999,13 @@ void Unwind_180905240(undefined8 param_1,longlong param_2)
 void Unwind_180905250(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x110);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x108); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x110);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x108); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x108) == 0) {
@@ -47056,13 +47056,13 @@ void Unwind_180905260(undefined8 param_1,longlong param_2)
 void Unwind_180905270(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x230);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x228); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x230);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x228); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x228) == 0) {
@@ -47176,17 +47176,17 @@ void Unwind_180905320(undefined8 param_1,longlong param_2)
 void Unwind_180905350(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x150);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x150);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -47550,16 +47550,16 @@ void Unwind_1809054e0(undefined8 param_1,longlong param_2)
 void Unwind_1809054f0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x50);
-  *puVar1 = &UNK_1809ff498;
+  pdataValue = *(undefined8 **)(param_2 + 0x50);
+  *pdataValue = &UNK_1809ff498;
   FUN_18006cb90();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  FUN_180059ee0(puVar1 + 2);
-  if ((longlong *)puVar1[1] != (longlong *)0x0) {
-    (**(code **)(*(longlong *)puVar1[1] + 0x38))();
+  FUN_180059ee0(pdataValue + 2);
+  if ((longlong *)pdataValue[1] != (longlong *)0x0) {
+    (**(code **)(*(longlong *)pdataValue[1] + 0x38))();
   }
   return;
 }
@@ -47935,15 +47935,15 @@ void Unwind_180905740(undefined8 param_1,uint *param_2)
 void Unwind_180905770(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x28);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 0x13) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 0x13) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -47977,12 +47977,12 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
   longlong *pcalculatedOffset;
   longlong *contextPointer;
   undefined8 *poperationResult;
-  int iVar6;
+  int iterationCount;
   int *pcalculatedValue;
   longlong *pbufferPointer;
   uint statusCounter;
-  ulonglong uVar11;
-  ulonglong uVar12;
+  ulonglong dataValue1;
+  ulonglong dataValue2;
   longlong *plStackX_10;
   longlong *plStackX_18;
   longlong *plStackX_20;
@@ -47993,19 +47993,19 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
   *(undefined1 *)((longlong)poperationResult + 0x162) = 1;
   pdataContext = poperationResult + 0x1a;
   plStackX_20 = pdataContext;
-  iVar6 = _Mtx_lock(pdataContext);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
+  iterationCount = _Mtx_lock(pdataContext);
+  if (iterationCount != 0) {
+    __Throw_C_error_std__YAXH_Z(iterationCount);
   }
   loopCounter = 0;
-  uVar11 = loopCounter;
+  dataValue1 = loopCounter;
   if (poperationResult[9] != 0) {
     do {
-      uVar12 = uVar11 % (ulonglong)*(uint *)(poperationResult + 8);
-      iVar6 = (int)loopCounter;
-      for (pcalculatedValue = *(int **)(poperationResult[7] + uVar12 * 8); pcalculatedValue != (int *)0x0;
+      dataValue2 = dataValue1 % (ulonglong)*(uint *)(poperationResult + 8);
+      iterationCount = (int)loopCounter;
+      for (pcalculatedValue = *(int **)(poperationResult[7] + dataValue2 * 8); pcalculatedValue != (int *)0x0;
           pcalculatedValue = *(int **)(pcalculatedValue + 4)) {
-        if (iVar6 == *pcalculatedValue) {
+        if (iterationCount == *pcalculatedValue) {
           if (pcalculatedValue != (int *)0x0) goto LAB_1801571ef;
           break;
         }
@@ -48013,17 +48013,17 @@ void Unwind_1809057b0(undefined8 param_1,longlong param_2)
       FUN_18066c220(poperationResult + 10,&plStackX_10,(ulonglong)*(uint *)(poperationResult + 8),
                     *(undefined4 *)(poperationResult + 9),1);
       pcalculatedValue = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(undefined1 *)((longlong)poperationResult + 0x5c));
-      *pcalculatedValue = iVar6;
+      *pcalculatedValue = iterationCount;
       pcalculatedValue[2] = 0;
       pcalculatedValue[3] = 0;
       pcalculatedValue[4] = 0;
       pcalculatedValue[5] = 0;
       if ((char)plStackX_10 != '\0') {
-        uVar12 = uVar11 % ((ulonglong)plStackX_10 >> 0x20);
+        dataValue2 = dataValue1 % ((ulonglong)plStackX_10 >> 0x20);
         FUN_18015bdc0(poperationResult + 6);
       }
-      *(undefined8 *)(pcalculatedValue + 4) = *(undefined8 *)(poperationResult[7] + uVar12 * 8);
-      *(int **)(poperationResult[7] + uVar12 * 8) = pcalculatedValue;
+      *(undefined8 *)(pcalculatedValue + 4) = *(undefined8 *)(poperationResult[7] + dataValue2 * 8);
+      *(int **)(poperationResult[7] + dataValue2 * 8) = pcalculatedValue;
       poperationResult[9] = poperationResult[9] + 1;
 LAB_1801571ef:
       plStackX_18 = *(longlong **)(pcalculatedValue + 2);
@@ -48032,9 +48032,9 @@ LAB_1801571ef:
       if (plStackX_18 != (longlong *)0x0) {
         (**(code **)(*plStackX_18 + 0x38))();
       }
-      statusCounter = iVar6 + 1;
+      statusCounter = iterationCount + 1;
       loopCounter = (ulonglong)statusCounter;
-      uVar11 = (longlong)(int)statusCounter;
+      dataValue1 = (longlong)(int)statusCounter;
     } while ((ulonglong)(longlong)(int)statusCounter < (ulonglong)poperationResult[9]);
   }
   validationContextPointer = poperationResult + 6;
@@ -48052,9 +48052,9 @@ LAB_1801571ef:
     pbufferPointer = (longlong *)*pcalculatedOffset;
   }
   poperationResult[0x2e] = pbufferPointer;
-  iVar6 = _Mtx_unlock(pdataContext);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
+  iterationCount = _Mtx_unlock(pdataContext);
+  if (iterationCount != 0) {
+    __Throw_C_error_std__YAXH_Z(iterationCount);
   }
   if (poperationResult[0x4a] != 0) {
     free();
@@ -48354,15 +48354,15 @@ void ExecuteExceptionCallbackChain(undefined8 chainContext, longlong callbackCha
 void Unwind_180905870(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x2e8);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -48441,15 +48441,15 @@ void Unwind_180905890(undefined8 param_1,longlong param_2)
 void Unwind_1809058a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 0x20);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x28);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x28);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -48464,15 +48464,15 @@ void Unwind_1809058a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809058b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x2e0) + 0x40);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x48);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x2e0) + 0x48);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -48566,15 +48566,15 @@ void Unwind_180905900(undefined8 param_1,longlong param_2)
 void Unwind_180905910(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x48) + 8);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -48589,13 +48589,13 @@ void Unwind_180905910(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905920(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = (undefined8 *)**(longlong **)(param_2 + 0x40);
-  if (puVar1 != (undefined8 *)0x0) {
+  pdataValue = (undefined8 *)**(longlong **)(param_2 + 0x40);
+  if (pdataValue != (undefined8 *)0x0) {
                     // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
                     // WARNING: Treating indirect jump as call
-    (**(code **)*puVar1)(puVar1,1);
+    (**(code **)*pdataValue)(pdataValue,1);
     return;
   }
   return;
@@ -48606,13 +48606,13 @@ void Unwind_180905920(undefined8 param_1,longlong param_2)
 void Unwind_180905930(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 8);
-  if (puVar1 != (undefined8 *)0x0) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 8);
+  if (pdataValue != (undefined8 *)0x0) {
                     // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
                     // WARNING: Treating indirect jump as call
-    (**(code **)*puVar1)(puVar1,1);
+    (**(code **)*pdataValue)(pdataValue,1);
     return;
   }
   return;
@@ -48673,12 +48673,12 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
   longlong *pcalculatedOffset;
   longlong *contextPointer;
   undefined8 *poperationResult;
-  int iVar6;
+  int iterationCount;
   int *pcalculatedValue;
   longlong *pbufferPointer;
   uint statusCounter;
-  ulonglong uVar11;
-  ulonglong uVar12;
+  ulonglong dataValue1;
+  ulonglong dataValue2;
   longlong *plStackX_10;
   longlong *plStackX_18;
   longlong *plStackX_20;
@@ -48689,19 +48689,19 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
   *(undefined1 *)((longlong)poperationResult + 0x162) = 1;
   pdataContext = poperationResult + 0x1a;
   plStackX_20 = pdataContext;
-  iVar6 = _Mtx_lock(pdataContext);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
+  iterationCount = _Mtx_lock(pdataContext);
+  if (iterationCount != 0) {
+    __Throw_C_error_std__YAXH_Z(iterationCount);
   }
   loopCounter = 0;
-  uVar11 = loopCounter;
+  dataValue1 = loopCounter;
   if (poperationResult[9] != 0) {
     do {
-      uVar12 = uVar11 % (ulonglong)*(uint *)(poperationResult + 8);
-      iVar6 = (int)loopCounter;
-      for (pcalculatedValue = *(int **)(poperationResult[7] + uVar12 * 8); pcalculatedValue != (int *)0x0;
+      dataValue2 = dataValue1 % (ulonglong)*(uint *)(poperationResult + 8);
+      iterationCount = (int)loopCounter;
+      for (pcalculatedValue = *(int **)(poperationResult[7] + dataValue2 * 8); pcalculatedValue != (int *)0x0;
           pcalculatedValue = *(int **)(pcalculatedValue + 4)) {
-        if (iVar6 == *pcalculatedValue) {
+        if (iterationCount == *pcalculatedValue) {
           if (pcalculatedValue != (int *)0x0) goto LAB_1801571ef;
           break;
         }
@@ -48709,17 +48709,17 @@ void Unwind_180905950(undefined8 param_1,longlong param_2)
       FUN_18066c220(poperationResult + 10,&plStackX_10,(ulonglong)*(uint *)(poperationResult + 8),
                     *(undefined4 *)(poperationResult + 9),1);
       pcalculatedValue = (int *)FUN_18062b420(_DAT_180c8ed18,0x18,*(undefined1 *)((longlong)poperationResult + 0x5c));
-      *pcalculatedValue = iVar6;
+      *pcalculatedValue = iterationCount;
       pcalculatedValue[2] = 0;
       pcalculatedValue[3] = 0;
       pcalculatedValue[4] = 0;
       pcalculatedValue[5] = 0;
       if ((char)plStackX_10 != '\0') {
-        uVar12 = uVar11 % ((ulonglong)plStackX_10 >> 0x20);
+        dataValue2 = dataValue1 % ((ulonglong)plStackX_10 >> 0x20);
         FUN_18015bdc0(poperationResult + 6);
       }
-      *(undefined8 *)(pcalculatedValue + 4) = *(undefined8 *)(poperationResult[7] + uVar12 * 8);
-      *(int **)(poperationResult[7] + uVar12 * 8) = pcalculatedValue;
+      *(undefined8 *)(pcalculatedValue + 4) = *(undefined8 *)(poperationResult[7] + dataValue2 * 8);
+      *(int **)(poperationResult[7] + dataValue2 * 8) = pcalculatedValue;
       poperationResult[9] = poperationResult[9] + 1;
 LAB_1801571ef:
       plStackX_18 = *(longlong **)(pcalculatedValue + 2);
@@ -48728,9 +48728,9 @@ LAB_1801571ef:
       if (plStackX_18 != (longlong *)0x0) {
         (**(code **)(*plStackX_18 + 0x38))();
       }
-      statusCounter = iVar6 + 1;
+      statusCounter = iterationCount + 1;
       loopCounter = (ulonglong)statusCounter;
-      uVar11 = (longlong)(int)statusCounter;
+      dataValue1 = (longlong)(int)statusCounter;
     } while ((ulonglong)(longlong)(int)statusCounter < (ulonglong)poperationResult[9]);
   }
   validationContextPointer = poperationResult + 6;
@@ -48748,9 +48748,9 @@ LAB_1801571ef:
     pbufferPointer = (longlong *)*pcalculatedOffset;
   }
   poperationResult[0x2e] = pbufferPointer;
-  iVar6 = _Mtx_unlock(pdataContext);
-  if (iVar6 != 0) {
-    __Throw_C_error_std__YAXH_Z(iVar6);
+  iterationCount = _Mtx_unlock(pdataContext);
+  if (iterationCount != 0) {
+    __Throw_C_error_std__YAXH_Z(iterationCount);
   }
   if (poperationResult[0x4a] != 0) {
     free();
@@ -48793,15 +48793,15 @@ LAB_1801571ef:
 void Unwind_180905960(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x2e8) + 0x260);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e8) + 0x268);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 0x13) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x2e8) + 0x268);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 0x13) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -48816,13 +48816,13 @@ void Unwind_180905960(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180905980(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x2e8) + 0x280);
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x2e8) + 0x288);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 5) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x2e8) + 0x288);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 5) {
     *pvalidationStatus = &UNK_180a3c3e0;
     if (pvalidationStatus[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -48844,15 +48844,15 @@ void Unwind_180905980(undefined8 param_1,longlong param_2)
 void Unwind_1809059a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x40);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 0x13) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 0x13) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -49063,15 +49063,15 @@ void Unwind_180905af0(undefined8 param_1,longlong param_2)
 void Unwind_180905b00(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x50);
-  *puVar1 = &UNK_1809fcb90;
+  pdataValue = *(undefined8 **)(param_2 + 0x50);
+  *pdataValue = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  _Cnd_destroy_in_situ(pdataValue + 4);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -50362,15 +50362,15 @@ void UnwindCleanupThreadResourceQueue(undefined8 exceptionContext, longlong thre
 void Unwind_180905f90(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x70);
-  *puVar1 = &UNK_1809fcb90;
+  pdataValue = *(undefined8 **)(param_2 + 0x70);
+  *pdataValue = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  _Cnd_destroy_in_situ(pdataValue + 4);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -51291,13 +51291,13 @@ void Unwind_1809063c0(undefined8 param_1,longlong param_2)
 void Unwind_1809063f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xe8);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xe0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xe8);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xe0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xe0) == 0) {
@@ -51336,13 +51336,13 @@ void Unwind_180906430(undefined8 param_1,longlong param_2)
 void Unwind_180906460(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xe8);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xe0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xe8);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xe0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xe0) == 0) {
@@ -51730,13 +51730,13 @@ void Unwind_180906520(undefined8 param_1,longlong param_2)
 void Unwind_180906530(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x48);
-  *puVar1 = &UNK_180a02e68;
-  puVar1[2] = &DefaultExceptionHandlerB;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x48);
+  *pdataValue = &UNK_180a02e68;
+  pdataValue[2] = &DefaultExceptionHandlerB;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -51937,13 +51937,13 @@ void Unwind_180906600(undefined8 param_1,longlong param_2)
 void Unwind_180906630(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0xa0);
-  *puVar1 = &UNK_180a02e68;
-  puVar1[2] = &DefaultExceptionHandlerB;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0xa0);
+  *pdataValue = &UNK_180a02e68;
+  pdataValue[2] = &DefaultExceptionHandlerB;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -52033,15 +52033,15 @@ void Unwind_1809066e0(undefined8 param_1,longlong param_2)
 void Unwind_180906700(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0xa0) + 0x218);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0xa0) + 0x220);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0xa0) + 0x220);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -52088,11 +52088,11 @@ void Unwind_180906760(undefined8 param_1,longlong param_2)
 void Unwind_180906780(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0xa0);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0xa0);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -52138,13 +52138,13 @@ void Unwind_1809067b0(undefined8 param_1,longlong param_2)
 void Unwind_1809067c0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x50);
-  *puVar1 = &UNK_180a02e68;
-  puVar1[2] = &DefaultExceptionHandlerB;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x50);
+  *pdataValue = &UNK_180a02e68;
+  pdataValue[2] = &DefaultExceptionHandlerB;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -52234,15 +52234,15 @@ void Unwind_180906870(undefined8 param_1,longlong param_2)
 void Unwind_180906890(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x50) + 0x218);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x220);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x50) + 0x220);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -52298,15 +52298,15 @@ void Unwind_180906910(undefined8 param_1,longlong param_2)
 void Unwind_180906940(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x58);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -52650,11 +52650,11 @@ void Unwind_180906b00(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180906b10(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x90);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x88); resourcePointer != puVar1; resourcePointer = resourcePointer + 6) {
+  pdataValue = *(undefined8 **)(param_2 + 0x90);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x88); resourcePointer != pdataValue; resourcePointer = resourcePointer + 6) {
     *resourcePointer = &UNK_180a3c3e0;
     if (resourcePointer[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -52698,11 +52698,11 @@ void Unwind_180906b30(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180906b40(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x90);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x88); resourcePointer != puVar1; resourcePointer = resourcePointer + 6) {
+  pdataValue = *(undefined8 **)(param_2 + 0x90);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x88); resourcePointer != pdataValue; resourcePointer = resourcePointer + 6) {
     *resourcePointer = &UNK_180a3c3e0;
     if (resourcePointer[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -52760,13 +52760,13 @@ void Unwind_180906b50(undefined8 param_1,longlong param_2)
 void Unwind_180906b60(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   
   pdataContext = *(longlong **)(param_2 + 0x40);
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 6) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 6) {
     *pvalidationStatus = &UNK_180a3c3e0;
     if (pvalidationStatus[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -54018,11 +54018,11 @@ void Unwind_180906e60(undefined8 param_1,longlong param_2)
 void Unwind_180906e70(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x178);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x178);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -55426,11 +55426,11 @@ void Unwind_180907500(undefined8 param_1,longlong param_2)
 void Unwind_180907530(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x30);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x30);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -55439,11 +55439,11 @@ void Unwind_180907530(undefined8 param_1,longlong param_2)
 void Unwind_180907540(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x30);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x30);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -55500,11 +55500,11 @@ void Unwind_180907580(undefined8 param_1,longlong param_2)
 void Unwind_180907590(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x40);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x40);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -55671,11 +55671,11 @@ void Unwind_180907670(undefined8 param_1,longlong param_2)
 void Unwind_1809076a0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x38);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x38);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -55760,16 +55760,16 @@ void Unwind_180907700(undefined8 param_1,longlong param_2)
 void Unwind_180907710(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   longlong calculatedOffset;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x50);
   *resourcePointer = &UNK_180a14bb8;
-  puVar1 = (undefined8 *)resourcePointer[0x11];
-  if (puVar1 != (undefined8 *)0x0) {
-    calculatedOffset = __RTCastToVoid(puVar1);
-    (**(code **)*puVar1)(puVar1,0);
+  pdataValue = (undefined8 *)resourcePointer[0x11];
+  if (pdataValue != (undefined8 *)0x0) {
+    calculatedOffset = __RTCastToVoid(pdataValue);
+    (**(code **)*pdataValue)(pdataValue,0);
     if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(calculatedOffset);
@@ -55812,16 +55812,16 @@ void Unwind_180907720(undefined8 param_1,longlong param_2)
 void Unwind_180907740(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   longlong calculatedOffset;
   
   resourcePointer = *(undefined8 **)(param_2 + 0x40);
   *resourcePointer = &UNK_180a14bb8;
-  puVar1 = (undefined8 *)resourcePointer[0x11];
-  if (puVar1 != (undefined8 *)0x0) {
-    calculatedOffset = __RTCastToVoid(puVar1);
-    (**(code **)*puVar1)(puVar1,0);
+  pdataValue = (undefined8 *)resourcePointer[0x11];
+  if (pdataValue != (undefined8 *)0x0) {
+    calculatedOffset = __RTCastToVoid(pdataValue);
+    (**(code **)*pdataValue)(pdataValue,0);
     if (calculatedOffset != 0) {
                     // WARNING: Subroutine does not return
       FUN_18064e900(calculatedOffset);
@@ -55984,15 +55984,15 @@ void Unwind_180907800(undefined8 param_1,longlong param_2)
 void Unwind_180907810(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x20) + 0x28);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x30);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x30);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -56029,13 +56029,13 @@ void Unwind_180907830(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907840(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0xc0);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x20) + 0xb0,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0xc0);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x20) + 0xb0,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -56045,13 +56045,13 @@ void Unwind_180907840(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907860(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0xf0);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x20) + 0xe0,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0xf0);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x20) + 0xe0,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -56242,13 +56242,13 @@ void InvokeExceptionHandlerWithParamsD(undefined8 exceptionContext, longlong han
 void Unwind_180907900(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x28) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x28),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x28) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x28),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -56258,13 +56258,13 @@ void Unwind_180907900(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907910(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x28) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x28),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x28) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x28),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -56315,17 +56315,17 @@ void Unwind_180907940(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907950(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0xb8);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0xb8);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -56334,17 +56334,17 @@ void Unwind_180907950(undefined8 param_1,longlong param_2)
 void Unwind_180907960(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0xb0);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0xb0);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -56527,16 +56527,16 @@ void Unwind_1809079e0(undefined8 param_1,longlong param_2)
 void Unwind_180907a00(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x70);
-  *puVar1 = &UNK_180a14d00;
-  if (puVar1[3] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x70);
+  *pdataValue = &UNK_180a14d00;
+  if (pdataValue[3] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined4 *)(puVar1 + 4) = 0;
-  puVar1[3] = 0;
+  *(undefined4 *)(pdataValue + 4) = 0;
+  pdataValue[3] = 0;
   return;
 }
 
@@ -56940,17 +56940,17 @@ void Unwind_180907c00(undefined8 param_1,longlong param_2)
 void Unwind_180907c10(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 600);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 600);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -57144,13 +57144,13 @@ void Unwind_180907cb0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907cc0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x170);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x168); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x170);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x168); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x168) == 0) {
@@ -57199,17 +57199,17 @@ void Unwind_180907cf0(undefined8 param_1,longlong param_2)
 void Unwind_180907d00(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x1e8);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x1e8);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -57235,13 +57235,13 @@ void Unwind_180907d10(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907d20(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x170);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x168); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x170);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x168); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x168) == 0) {
@@ -57418,13 +57418,13 @@ void Unwind_180907e70(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180907e80(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x30);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x28); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x30);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x28); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x28) == 0) {
@@ -57815,13 +57815,13 @@ void Unwind_180907fe0(undefined8 param_1,longlong param_2)
 void Unwind_180907ff0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x78);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(param_2 + 0x68,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(param_2 + 0x78);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(param_2 + 0x68,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58049,7 +58049,7 @@ void SystemExceptionHandlerA0(undefined8 param_1,longlong param_2)
 void Unwind_1809080a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong dataContext;
   undefined8 validationStatus;
   
@@ -58057,11 +58057,11 @@ void Unwind_1809080a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
   FUN_180058370(dataContext + 0x60,*(undefined8 *)(dataContext + 0x70),param_3,param_4,validationStatus);
-  puVar1 = *(undefined8 **)(dataContext + 0x40);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(dataContext + 0x30,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(dataContext + 0x40);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(dataContext + 0x30,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58071,7 +58071,7 @@ void Unwind_1809080a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809080b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong dataContext;
   undefined8 validationStatus;
   
@@ -58079,11 +58079,11 @@ void Unwind_1809080b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
   FUN_180058370(dataContext + 0x40,*(undefined8 *)(dataContext + 0x50),param_3,param_4,validationStatus);
-  puVar1 = *(undefined8 **)(dataContext + 0x20);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(dataContext + 0x20);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(dataContext + 0x10,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58093,13 +58093,13 @@ void Unwind_1809080b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809080c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x78),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x78),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58120,13 +58120,13 @@ void Unwind_1809080d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809080e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x70);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x78) + 0x60,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x78) + 0x70);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x78) + 0x60,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58156,13 +58156,13 @@ void Unwind_180908100(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908110(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x68),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58172,13 +58172,13 @@ void Unwind_180908110(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908120(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x68),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58188,17 +58188,17 @@ void Unwind_180908120(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908130(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x98);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x98);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -58225,7 +58225,7 @@ void Unwind_180908150(undefined8 param_1,longlong param_2)
 void Unwind_180908160(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong dataContext;
   undefined8 validationStatus;
   
@@ -58233,11 +58233,11 @@ void Unwind_180908160(undefined8 param_1,longlong param_2,undefined8 param_3,und
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
   FUN_180058370(dataContext + 0x40,*(undefined8 *)(dataContext + 0x50),param_3,param_4,validationStatus);
-  puVar1 = *(undefined8 **)(dataContext + 0x20);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(dataContext + 0x20);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(dataContext + 0x10,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58247,13 +58247,13 @@ void Unwind_180908160(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908170(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x60),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x60),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58274,13 +58274,13 @@ void Unwind_180908180(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180908190(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x70);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x60) + 0x60,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x70);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x60) + 0x60,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58310,7 +58310,7 @@ void Unwind_1809081b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809081c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong dataContext;
   undefined8 validationStatus;
   
@@ -58318,11 +58318,11 @@ void Unwind_1809081c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
   validationStatus = SystemCleanupFlagfffffffe;
   FUN_18004b730();
   FUN_180058370(dataContext + 0x40,*(undefined8 *)(dataContext + 0x50),param_3,param_4,validationStatus);
-  puVar1 = *(undefined8 **)(dataContext + 0x20);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(dataContext + 0x10,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(dataContext + 0x20);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(dataContext + 0x10,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58332,13 +58332,13 @@ void Unwind_1809081c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809081d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x40),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58359,13 +58359,13 @@ void Unwind_1809081e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809081f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x70);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0x60,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x70);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0x60,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -58461,15 +58461,15 @@ void Unwind_180908300(undefined8 param_1,longlong param_2)
 void Unwind_180908340(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x388);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x390);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x390);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -58543,15 +58543,15 @@ void Unwind_180908420(undefined8 param_1,longlong param_2)
 void Unwind_180908460(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x388);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x390);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x390);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -59269,12 +59269,12 @@ void Unwind_1809088a0(undefined8 param_1,longlong param_2)
 void Unwind_1809088d0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x28);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x28);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -59283,11 +59283,11 @@ void Unwind_1809088d0(undefined8 param_1,longlong param_2)
 void Unwind_1809088e0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x28);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x28);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -60439,17 +60439,17 @@ void Unwind_180908d80(undefined8 param_1,longlong param_2)
 void Unwind_180908db0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x108);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x108);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -60606,13 +60606,13 @@ void Unwind_180908e10(undefined8 param_1,longlong param_2)
 void Unwind_180908e40(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x30);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x60) + 0x20,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0x30);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x60) + 0x20,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -60780,14 +60780,14 @@ void Unwind_180908ea0(undefined8 param_1,longlong param_2)
 void Unwind_180908eb0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
   if (*(longlong **)(param_2 + 0x30) != (longlong *)0x0) {
-    puVar1 = (undefined8 *)(**(code **)(**(longlong **)(param_2 + 0x30) + 0x10))();
-    if (puVar1 != (undefined8 *)0x0) {
+    pdataValue = (undefined8 *)(**(code **)(**(longlong **)(param_2 + 0x30) + 0x10))();
+    if (pdataValue != (undefined8 *)0x0) {
                     // WARNING: Could not recover jumptable at 0x00018009fb51. Too many branches
                     // WARNING: Treating indirect jump as call
-      (**(code **)*puVar1)(puVar1,1);
+      (**(code **)*pdataValue)(pdataValue,1);
       return;
     }
   }
@@ -60808,11 +60808,11 @@ void Unwind_180908ec0(undefined8 param_1,longlong param_2)
 void Unwind_180908ed0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x20);
-  *puVar1 = &UNK_18098b928;
-  __std_exception_destroy(puVar1 + 1);
+  pdataValue = *(undefined8 **)(param_2 + 0x20);
+  *pdataValue = &UNK_18098b928;
+  __std_exception_destroy(pdataValue + 1);
   return;
 }
 
@@ -60821,11 +60821,11 @@ void Unwind_180908ed0(undefined8 param_1,longlong param_2)
 void Unwind_180908ee0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x40);
-  *puVar1 = &UNK_18098b928;
-  __std_exception_destroy(puVar1 + 1);
+  pdataValue = *(undefined8 **)(param_2 + 0x40);
+  *pdataValue = &UNK_18098b928;
+  __std_exception_destroy(pdataValue + 1);
   return;
 }
 
@@ -60845,13 +60845,13 @@ void Unwind_180908ef0(undefined8 param_1,longlong param_2)
 void Unwind_180908f00(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x70);
-  if (puVar1 != (undefined8 *)0x0) {
+  pdataValue = *(undefined8 **)(param_2 + 0x70);
+  if (pdataValue != (undefined8 *)0x0) {
                     // WARNING: Could not recover jumptable at 0x00018009f9c0. Too many branches
                     // WARNING: Treating indirect jump as call
-    (**(code **)*puVar1)(puVar1,1);
+    (**(code **)*pdataValue)(pdataValue,1);
     return;
   }
   return;
@@ -60873,7 +60873,7 @@ void Unwind_180908f10(undefined8 param_1,longlong param_2)
 void Unwind_180908f30(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong dataContext;
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
@@ -60882,11 +60882,11 @@ void Unwind_180908f30(undefined8 param_1,longlong param_2)
   pmemoryBaseAddress = (undefined8 *)(calculatedOffset + -0xa0);
   *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(calculatedOffset + -0x20) != 0) && (**(longlong **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
-    uVar1 = *(undefined8 *)(calculatedOffset + -0x10);
+    dataValue = *(undefined8 *)(calculatedOffset + -0x10);
     dataContext = *(longlong *)(calculatedOffset + -0x18);
     **(longlong **)(calculatedOffset + -0x88) = dataContext;
     **(longlong **)(calculatedOffset + -0x68) = dataContext;
-    **(int **)(calculatedOffset + -0x50) = (int)uVar1 - (int)dataContext;
+    **(int **)(calculatedOffset + -0x50) = (int)dataValue - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
@@ -61050,7 +61050,7 @@ void Unwind_180909060(undefined8 param_1,longlong param_2)
 void Unwind_180909080(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong dataContext;
   undefined8 *pvalidationStatus;
   
@@ -61058,11 +61058,11 @@ void Unwind_180909080(undefined8 param_1,longlong param_2)
   *pvalidationStatus = &UNK_180a01668;
   if ((*(longlong *)(param_2 + 0x108) != 0) && (**(longlong **)(param_2 + 0xa0) == param_2 + 0xf8))
   {
-    uVar1 = *(undefined8 *)(param_2 + 0x118);
+    dataValue = *(undefined8 *)(param_2 + 0x118);
     dataContext = *(longlong *)(param_2 + 0x110);
     **(longlong **)(param_2 + 0xa0) = dataContext;
     **(longlong **)(param_2 + 0xc0) = dataContext;
-    **(int **)(param_2 + 0xd8) = (int)uVar1 - (int)dataContext;
+    **(int **)(param_2 + 0xd8) = (int)dataValue - (int)dataContext;
   }
   if (*(char *)(param_2 + 0x104) != '\0') {
     FUN_1800a19c0(pvalidationStatus);
@@ -62932,13 +62932,13 @@ void Unwind_1809097a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809097b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x20),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x20),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -62948,13 +62948,13 @@ void Unwind_1809097b0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809097c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x20),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x20) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x20),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -62994,13 +62994,13 @@ void Unwind_1809097f0(void)
 void Unwind_180909800(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 200);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0xb8,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 200);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0xb8,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -63010,13 +63010,13 @@ void Unwind_180909800(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180909820(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0xf8);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0xe8,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0xf8);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_18004b790(*(longlong *)(param_2 + 0x40) + 0xe8,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -63201,11 +63201,11 @@ void Unwind_180909980(undefined8 param_1,longlong param_2)
 void Unwind_180909990(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0xe0);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0xe0);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -63536,15 +63536,15 @@ void Unwind_180909b60(undefined8 param_1,longlong param_2)
 void Unwind_180909b70(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x28);
-  *puVar1 = &UNK_1809fcb90;
+  pdataValue = *(undefined8 **)(param_2 + 0x28);
+  *pdataValue = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  _Cnd_destroy_in_situ(pdataValue + 4);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -63996,14 +63996,14 @@ void Unwind_180909f20(void)
 void Unwind_180909f40(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0xaa0);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x40) + 0xa90,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0xaa0);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x40) + 0xa90,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b94f0(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -64171,14 +64171,14 @@ void Unwind_18090a0c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a0d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b94f0(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -64188,14 +64188,14 @@ void Unwind_18090a0d0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a0e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x48) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x48),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b94f0(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -64245,14 +64245,14 @@ void Unwind_18090a120(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a130(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x40),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b94f0(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -64262,14 +64262,14 @@ void Unwind_18090a130(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a140(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x40),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x40),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b94f0(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -64561,14 +64561,14 @@ void Unwind_18090a410(void)
 void Unwind_18090a430(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xaa0);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x60) + 0xa90,*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x60) + 0xaa0);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x60) + 0xa90,*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b94f0(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -64782,14 +64782,14 @@ void Unwind_18090a590(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a5a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x68),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b94f0(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -64799,14 +64799,14 @@ void Unwind_18090a5a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090a5b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
-  if (puVar1 != (undefined8 *)0x0) {
-    FUN_1800b9210(*(longlong *)(param_2 + 0x68),*puVar1,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_1800b94f0(puVar1);
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x68) + 0x10);
+  if (pdataValue != (undefined8 *)0x0) {
+    FUN_1800b9210(*(longlong *)(param_2 + 0x68),*pdataValue,param_3,param_4,SystemCleanupFlagfffffffe);
+    FUN_1800b94f0(pdataValue);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(puVar1);
+    FUN_18064e900(pdataValue);
   }
   return;
 }
@@ -65176,17 +65176,17 @@ void Unwind_18090a7c0(undefined8 param_1,longlong param_2)
 void Unwind_18090a7d0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0xa0);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0xa0);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -68447,15 +68447,15 @@ void Unwind_18090bfa0(undefined8 param_1,longlong param_2)
 void Unwind_18090bfb0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x20);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -68947,7 +68947,7 @@ void Unwind_18090c1e0(undefined8 param_1,longlong param_2)
 void Unwind_18090c200(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong dataContext;
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
@@ -68956,11 +68956,11 @@ void Unwind_18090c200(undefined8 param_1,longlong param_2)
   pmemoryBaseAddress = (undefined8 *)(calculatedOffset + -0xa0);
   *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(calculatedOffset + -0x20) != 0) && (**(longlong **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
-    uVar1 = *(undefined8 *)(calculatedOffset + -0x10);
+    dataValue = *(undefined8 *)(calculatedOffset + -0x10);
     dataContext = *(longlong *)(calculatedOffset + -0x18);
     **(longlong **)(calculatedOffset + -0x88) = dataContext;
     **(longlong **)(calculatedOffset + -0x68) = dataContext;
-    **(int **)(calculatedOffset + -0x50) = (int)uVar1 - (int)dataContext;
+    **(int **)(calculatedOffset + -0x50) = (int)dataValue - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
@@ -68987,7 +68987,7 @@ void Unwind_18090c220(undefined8 param_1,longlong param_2)
 void Unwind_18090c240(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong dataContext;
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
@@ -68996,11 +68996,11 @@ void Unwind_18090c240(undefined8 param_1,longlong param_2)
   pmemoryBaseAddress = (undefined8 *)(calculatedOffset + -0xa0);
   *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(calculatedOffset + -0x20) != 0) && (**(longlong **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
-    uVar1 = *(undefined8 *)(calculatedOffset + -0x10);
+    dataValue = *(undefined8 *)(calculatedOffset + -0x10);
     dataContext = *(longlong *)(calculatedOffset + -0x18);
     **(longlong **)(calculatedOffset + -0x88) = dataContext;
     **(longlong **)(calculatedOffset + -0x68) = dataContext;
-    **(int **)(calculatedOffset + -0x50) = (int)uVar1 - (int)dataContext;
+    **(int **)(calculatedOffset + -0x50) = (int)dataValue - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
@@ -69247,7 +69247,7 @@ void Unwind_18090c360(undefined8 param_1,longlong param_2)
 void Unwind_18090c380(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong dataContext;
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
@@ -69256,11 +69256,11 @@ void Unwind_18090c380(undefined8 param_1,longlong param_2)
   pmemoryBaseAddress = (undefined8 *)(calculatedOffset + 0x18);
   *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(calculatedOffset + 0x98) != 0) && (**(longlong **)(calculatedOffset + 0x30) == calculatedOffset + 0x88)) {
-    uVar1 = *(undefined8 *)(calculatedOffset + 0xa8);
+    dataValue = *(undefined8 *)(calculatedOffset + 0xa8);
     dataContext = *(longlong *)(calculatedOffset + 0xa0);
     **(longlong **)(calculatedOffset + 0x30) = dataContext;
     **(longlong **)(calculatedOffset + 0x50) = dataContext;
-    **(int **)(calculatedOffset + 0x68) = (int)uVar1 - (int)dataContext;
+    **(int **)(calculatedOffset + 0x68) = (int)dataValue - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + 0x94) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
@@ -75910,13 +75910,13 @@ void Unwind_18090dcd0(undefined8 param_1,longlong param_2)
 void Unwind_18090dd00(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x48);
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x50);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 6) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x50);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 6) {
     *pvalidationStatus = &UNK_180a3c3e0;
     if (pvalidationStatus[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -75938,13 +75938,13 @@ void Unwind_18090dd00(undefined8 param_1,longlong param_2)
 void Unwind_18090dd10(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   
   pdataContext = *(longlong **)(param_2 + 0x48);
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 6) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 6) {
     *pvalidationStatus = &UNK_180a3c3e0;
     if (pvalidationStatus[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -77761,13 +77761,13 @@ void Unwind_18090e9b0(void)
 void Unwind_18090e9c0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x40);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x38); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x40);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x38); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x38) == 0) {
@@ -77782,13 +77782,13 @@ void Unwind_18090e9c0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090e9d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x40);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x38); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x40);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x38); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x38) == 0) {
@@ -78431,11 +78431,11 @@ void Unwind_18090eda0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090edb0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x150);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x150);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -78453,12 +78453,12 @@ void Unwind_18090edc0(undefined8 param_1,longlong param_2)
 void Unwind_18090edd0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x88);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x88);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -78495,11 +78495,11 @@ void Unwind_18090edf0(undefined8 param_1,longlong param_2)
 void Unwind_18090ee00(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x88);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x88);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -78531,12 +78531,12 @@ void Unwind_18090ee20(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_18090ee30(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x98);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x98);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -78573,11 +78573,11 @@ void Unwind_18090ee50(undefined8 param_1,longlong param_2)
 void Unwind_18090ee60(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x98);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x98);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -80802,15 +80802,15 @@ void Unwind_18090fa10(undefined8 param_1,longlong param_2)
 void Unwind_18090fa20(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x130);
-  *puVar1 = &UNK_1809fcb90;
+  pdataValue = *(undefined8 **)(param_2 + 0x130);
+  *pdataValue = &UNK_1809fcb90;
   _Mtx_destroy_in_situ();
-  _Cnd_destroy_in_situ(puVar1 + 4);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  _Cnd_destroy_in_situ(pdataValue + 4);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -81041,17 +81041,17 @@ void Unwind_18090fb60(undefined8 param_1,longlong param_2)
 void Unwind_18090fb70(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0xd0);
-  *puVar1 = &UNK_180a3c3e0;
-  if (puVar1[1] != 0) {
+  pdataValue = *(undefined8 **)(param_2 + 0xd0);
+  *pdataValue = &UNK_180a3c3e0;
+  if (pdataValue[1] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[1] = 0;
-  *(undefined4 *)(puVar1 + 3) = 0;
-  *puVar1 = &DefaultExceptionHandlerB;
+  pdataValue[1] = 0;
+  *(undefined4 *)(pdataValue + 3) = 0;
+  *pdataValue = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -81489,11 +81489,11 @@ void Unwind_18090fef0(undefined8 param_1,longlong param_2)
 void Unwind_18090ff00(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x100);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x100);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -82367,13 +82367,13 @@ void Unwind_1809102b0(undefined8 param_1,longlong param_2)
 void Unwind_1809102e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xf0);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xe8); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xf0);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xe8); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xe8) == 0) {
@@ -82388,13 +82388,13 @@ void Unwind_1809102e0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809102f0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xd0);
-  for (resourcePointer = *(undefined8 **)(param_2 + 200); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xd0);
+  for (resourcePointer = *(undefined8 **)(param_2 + 200); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 200) == 0) {
@@ -82409,13 +82409,13 @@ void Unwind_1809102f0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180910300(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xf0);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xe8); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xf0);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xe8); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xe8) == 0) {
@@ -82430,15 +82430,15 @@ void Unwind_180910300(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180910310(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = *(longlong **)(param_2 + 0x150);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = (undefined8 *)pdataContext[1];
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = (undefined8 *)pdataContext[1];
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -82489,13 +82489,13 @@ void Unwind_180910320(undefined8 param_1,longlong param_2)
 void Unwind_180910330(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xd0);
-  for (resourcePointer = *(undefined8 **)(param_2 + 200); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xd0);
+  for (resourcePointer = *(undefined8 **)(param_2 + 200); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 200) == 0) {
@@ -82684,12 +82684,12 @@ void Unwind_1809103f0(undefined8 param_1,longlong param_2)
 void Unwind_180910400(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x60);
-  *puVar1 = &UNK_18098bdc8;
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x60);
+  *pdataValue = &UNK_18098bdc8;
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -82698,11 +82698,11 @@ void Unwind_180910400(undefined8 param_1,longlong param_2)
 void Unwind_180910410(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   
-  puVar1 = *(undefined8 **)(param_2 + 0x60);
-  *puVar1 = &UNK_180a21720;
-  *puVar1 = &UNK_180a21690;
+  pdataValue = *(undefined8 **)(param_2 + 0x60);
+  *pdataValue = &UNK_180a21720;
+  *pdataValue = &UNK_180a21690;
   return;
 }
 
@@ -82921,7 +82921,7 @@ void Unwind_180910560(undefined8 param_1,longlong param_2)
 void Unwind_180910580(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong dataContext;
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
@@ -82930,11 +82930,11 @@ void Unwind_180910580(undefined8 param_1,longlong param_2)
   pmemoryBaseAddress = (undefined8 *)(calculatedOffset + 0x10);
   *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(calculatedOffset + 0x90) != 0) && (**(longlong **)(calculatedOffset + 0x28) == calculatedOffset + 0x80)) {
-    uVar1 = *(undefined8 *)(calculatedOffset + 0xa0);
+    dataValue = *(undefined8 *)(calculatedOffset + 0xa0);
     dataContext = *(longlong *)(calculatedOffset + 0x98);
     **(longlong **)(calculatedOffset + 0x28) = dataContext;
     **(longlong **)(calculatedOffset + 0x48) = dataContext;
-    **(int **)(calculatedOffset + 0x60) = (int)uVar1 - (int)dataContext;
+    **(int **)(calculatedOffset + 0x60) = (int)dataValue - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + 0x8c) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
@@ -83130,7 +83130,7 @@ void Unwind_180910680(undefined8 param_1,longlong param_2)
 void Unwind_1809106a0(undefined8 param_1,longlong param_2)
 
 {
-  undefined8 uVar1;
+  undefined8 dataValue;
   longlong dataContext;
   longlong calculatedOffset;
   undefined8 *pmemoryBaseAddress;
@@ -83139,11 +83139,11 @@ void Unwind_1809106a0(undefined8 param_1,longlong param_2)
   pmemoryBaseAddress = (undefined8 *)(calculatedOffset + -0xa0);
   *pmemoryBaseAddress = &UNK_180a01668;
   if ((*(longlong *)(calculatedOffset + -0x20) != 0) && (**(longlong **)(calculatedOffset + -0x88) == calculatedOffset + -0x30)) {
-    uVar1 = *(undefined8 *)(calculatedOffset + -0x10);
+    dataValue = *(undefined8 *)(calculatedOffset + -0x10);
     dataContext = *(longlong *)(calculatedOffset + -0x18);
     **(longlong **)(calculatedOffset + -0x88) = dataContext;
     **(longlong **)(calculatedOffset + -0x68) = dataContext;
-    **(int **)(calculatedOffset + -0x50) = (int)uVar1 - (int)dataContext;
+    **(int **)(calculatedOffset + -0x50) = (int)dataValue - (int)dataContext;
   }
   if (*(char *)(calculatedOffset + -0x24) != '\0') {
     FUN_1800a19c0(pmemoryBaseAddress);
@@ -85357,15 +85357,15 @@ void Unwind_180910fa0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180910fc0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x2610);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x2618);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x2618);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -85380,15 +85380,15 @@ void Unwind_180910fc0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180910fe0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x80) + 0x2630);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x2638);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x80) + 0x2638);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -87353,15 +87353,15 @@ void Unwind_180911800(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911820(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x2610);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x2618);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x2618);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -87376,15 +87376,15 @@ void Unwind_180911820(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911840(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   longlong *pdataContext;
   undefined8 *pvalidationStatus;
   undefined8 memoryBaseAddress;
   
   pdataContext = (longlong *)(*(longlong *)(param_2 + 0x40) + 0x2630);
   memoryBaseAddress = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x2638);
-  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != puVar1; pvalidationStatus = pvalidationStatus + 4) {
+  pdataValue = *(undefined8 **)(*(longlong *)(param_2 + 0x40) + 0x2638);
+  for (pvalidationStatus = (undefined8 *)*pdataContext; pvalidationStatus != pdataValue; pvalidationStatus = pvalidationStatus + 4) {
     (**(code **)*pvalidationStatus)(pvalidationStatus,0,param_3,param_4,memoryBaseAddress);
   }
   if (*pdataContext == 0) {
@@ -87399,13 +87399,13 @@ void Unwind_180911840(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911860(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x78);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x70); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x78);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x70); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x70) == 0) {
@@ -87420,13 +87420,13 @@ void Unwind_180911860(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911870(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x118);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x110); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x118);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x110); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x110) == 0) {
@@ -87441,13 +87441,13 @@ void Unwind_180911870(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911880(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xf8);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xf0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xf8);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xf0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xf0) == 0) {
@@ -87462,13 +87462,13 @@ void Unwind_180911880(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911890(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xd8);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xd0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xd8);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xd0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xd0) == 0) {
@@ -87483,13 +87483,13 @@ void Unwind_180911890(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809118a0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xb8);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xb0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xb8);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xb0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xb0) == 0) {
@@ -87504,13 +87504,13 @@ void Unwind_1809118a0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_1809118b0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x138);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x130); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x138);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x130); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x130) == 0) {
@@ -87570,13 +87570,13 @@ void Unwind_1809118d0(undefined8 param_1,longlong param_2)
 void Unwind_1809118e0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x78);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x70); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x78);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x70); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x70) == 0) {
@@ -87627,13 +87627,13 @@ void Unwind_1809118f0(undefined8 param_1,longlong param_2)
 void Unwind_180911900(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x118);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x110); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x118);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x110); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x110) == 0) {
@@ -87648,13 +87648,13 @@ void Unwind_180911900(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911910(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xf8);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xf0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xf8);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xf0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xf0) == 0) {
@@ -87669,13 +87669,13 @@ void Unwind_180911910(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911920(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xd8);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xd0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xd8);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xd0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xd0) == 0) {
@@ -87690,13 +87690,13 @@ void Unwind_180911920(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911930(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0xb8);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0xb0); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0xb8);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0xb0); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0xb0) == 0) {
@@ -87711,13 +87711,13 @@ void Unwind_180911930(undefined8 param_1,longlong param_2,undefined8 param_3,und
 void Unwind_180911940(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  undefined8 *pdataValue;
   undefined8 *resourcePointer;
   undefined8 validationStatus;
   
   validationStatus = SystemCleanupFlagfffffffe;
-  puVar1 = *(undefined8 **)(param_2 + 0x138);
-  for (resourcePointer = *(undefined8 **)(param_2 + 0x130); resourcePointer != puVar1; resourcePointer = resourcePointer + 4) {
+  pdataValue = *(undefined8 **)(param_2 + 0x138);
+  for (resourcePointer = *(undefined8 **)(param_2 + 0x130); resourcePointer != pdataValue; resourcePointer = resourcePointer + 4) {
     (**(code **)*resourcePointer)(resourcePointer,0,param_3,param_4,validationStatus);
   }
   if (*(longlong *)(param_2 + 0x130) == 0) {

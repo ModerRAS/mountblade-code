@@ -412,7 +412,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define TcpSocketCategory 0x01                             // TCP套接字类别
 #define NetworkTcpProtocol 0x06                               // TCP协议类型
 #define NetworkLocalhostIpAddress 0x7F000001                   // 网络本地回环地址127.0.0.1
-#define NetworkLoopbackAddress NetworkLocalhostAddress       // 网络回环地址别名
+#define NetworkLoopbackAddress NetworkLocalhostIpAddress       // 网络回环地址别名
 /**
  * @brief HTTP备用端口
  * 
@@ -1387,7 +1387,7 @@ void InitializeNetworkSocket(void)
 void BindNetworkSocketToAddress(void)
 {
   // 设置网络地址和端口配置
-  NetworkServerIpAddress = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
+  NetworkServerIpAddress = NetworkLocalhostIpAddress;               // 设置为127.0.0.1 (本地回环地址)
   NetworkServerPortNumber = NetworkPortHttpAlternative;          // 设置端口为8080
   NetworkClientIpAddress = NetworkClientIpAddressAny;            // 客户端IP地址初始化为0.0.0.0
   NetworkClientPortNumber = NetworkClientPortAny;               // 客户端端口初始化为0
