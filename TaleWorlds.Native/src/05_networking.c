@@ -120,20 +120,20 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 #define ValidationModeDataIndex 3                               // 验证模式数据索引
 
 /**
- * @brief 计算上下文参数偏移量
+ * @brief 计算连接参数偏移量
  * 
  * 计算连接上下文中参数的偏移量，用于访问连接参数
  * 
  * @param Context 连接上下文指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateContextParameterOffset(int64_t *Context)
+static int64_t CalculateConnectionParameterOffset(int64_t *Context)
 {
     return (int64_t)Context + ConnectionParameterOffset;
 }
 
 /**
- * @brief 计算上下文数据偏移量
+ * @brief 计算连接数据偏移量
  * 
  * 计算连接上下文数据的偏移量，用于访问上下文数据
  * 
@@ -142,7 +142,7 @@ static int64_t CalculateContextParameterOffset(int64_t *Context)
  * @param NetworkConnectionStatusPointer 网络连接状态指针
  * @return int64_t 计算出的偏移量地址
  */
-static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *NetworkConnectionStatusPointer)
+static int64_t CalculateConnectionDataOffset(int64_t ContextAddress, void *ConnectionContextBuffer, void *NetworkConnectionStatusPointer)
 {
     return (ContextAddress - (int64_t)ConnectionContextBuffer) + (int64_t)NetworkConnectionStatusPointer;
 }
