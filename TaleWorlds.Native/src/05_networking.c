@@ -517,9 +517,9 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkConnectionBufferSize 48                       // 连接缓冲区大小
 
 // 网络连接配置常量
-#define CONNECTION_POOL_CAPACITY 1000                       // 连接池容量
-#define HEALTH_STATUS_NORMAL 0x01                             // 正常健康状态
-#define MANAGER_HANDLE_INVALID 0xFFFFFFFF                     // 无效管理器句柄
+#define NetworkConnectionPoolCapacity 1000                       // 网络连接池容量
+#define NetworkHealthStatusNormal 0x01                             // 网络健康状态：正常
+#define NetworkManagerHandleInvalid 0xFFFFFFFF                     // 网络管理器句柄：无效
 #define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF                  // 无效套接字描述符
 #define INVALID_SOCKET_HANDLE SOCKET_DESCRIPTOR_INVALID       // 无效套接字句柄别名
 #define CLIENT_IP_ANY 0x00000000                            // 任意客户端IP地址
@@ -1066,13 +1066,13 @@ uint32_t NetworkSocketBindingStatus;                     // 网络套接字绑�
 void InitializeNetworkConnectionPool(void)
 {
   // 初始化连接池配置参数
-  NetworkConnectionPoolMaximumCapacity = CONNECTION_POOL_CAPACITY;           // 设置连接池最大容量
+  NetworkConnectionPoolMaximumCapacity = NetworkConnectionPoolCapacity;           // 设置连接池最大容量
   NetworkConnectionPoolAllocationCounter = 0;        // 重置连接池分配计数器为0
   NetworkConnectionPoolDeallocationCounter = 0;      // 重置连接池释放计数器为0
-  NetworkConnectionPoolHealthIndicator = HEALTH_STATUS_NORMAL;         // 设置健康状态为正常
+  NetworkConnectionPoolHealthIndicator = NetworkHealthStatusNormal;         // 设置健康状态为正常
   
   // 初始化连接池管理器
-  NetworkConnectionPoolManagerHandle = MANAGER_HANDLE_INVALID;      // 初始化管理器句柄
+  NetworkConnectionPoolManagerHandle = NetworkManagerHandleInvalid;      // 初始化管理器句柄
   NetworkConnectionPoolCurrentIndex = 0;           // 重置连接池当前索引为0
   
   // 初始化性能监控
