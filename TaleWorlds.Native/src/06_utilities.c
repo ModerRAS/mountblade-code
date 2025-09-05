@@ -106,7 +106,7 @@
  * 
  * @note 原始函数名：ConvertData
  */
-#define ConvertData ConvertData
+#define ConvertDataType ConvertDataType
 
 /**
  * @brief 内存管理函数A0
@@ -115,7 +115,7 @@
  * 
  * @note 原始函数名：ManageMemory
  */
-#define ManageMemory ManageMemory
+#define ManageSystemMemory ManageSystemMemory
 
 /**
  * @brief 系统清理函数A0
@@ -124,7 +124,7 @@
  * 
  * @note 原始函数名：CleanupSystem
  */
-#define CleanupSystem CleanupSystem
+#define CleanupSystemResources CleanupSystemResources
 
 /**
  * @brief 系统配置函数A0
@@ -133,7 +133,7 @@
  * 
  * @note 原始函数名：ConfigureSystemA0
  */
-#define ConfigureSystemA0 ConfigureSystemA0
+#define ConfigureSystemParameters ConfigureSystemParameters
 
 /**
  * @brief 系统处理函数A0
@@ -142,7 +142,7 @@
  * 
  * @note 原始函数名：func_0x000180060c10
  */
-#define ProcessSystemA0 ProcessSystemA0
+#define ProcessSystemOperations ProcessSystemOperations
 
 /**
  * @brief 数据初始化函数A0
@@ -151,7 +151,7 @@
  * 
  * @note 原始函数名：func_0x000180060150
  */
-#define InitializeData InitializeData
+#define InitializeDataBuffer InitializeDataBuffer
 
 /**
  * @brief 系统操作函数A0
@@ -160,11 +160,11 @@
  * 
  * @note 原始函数名：func_0x00018006d490
  */
-#define ExecuteSystemOperation ExecuteSystemOperation
+#define ExecuteSystemCommand ExecuteSystemCommand
 
 // 全局指针设置函数宏定义
-#define SetGlobalDataPointerA0 InitializeGlobalDataPointerA0
-#define SetGlobalDataPointerA1 InitializeGlobalDataPointerA1
+#define InitializeGlobalDataPointerA0 InitializeGlobalDataPointerA0
+#define InitializeGlobalDataPointerA1 InitializeGlobalDataPointerA1
 #define SetGlobalDataPointerA2 InitializeGlobalDataPointerA2
 #define SetGlobalDataPointerA3 InitializeGlobalDataPointerA3
 #define SetGlobalDataPointerA4 InitializeGlobalDataPointerA4
@@ -1840,13 +1840,13 @@
 // 功能：处理缓冲区操作
 #define ProcessBuffer FUN_180893330
 
-// 原始函数名：FUN_180893480 - 内存分配处理函数A0
+// 原始函数名：FUN_180893480 - 内存分配处理函数
 // 功能：处理内存分配操作
-#define ProcessMemoryAllocationA0 FUN_180893480
+#define ProcessMemoryAllocation FUN_180893480
 
-// 原始函数名：FUN_180893540 - 内存释放处理函数A0
+// 原始函数名：FUN_180893540 - 内存释放处理函数
 // 功能：处理内存释放操作
-#define ProcessMemoryReleaseA0 FUN_180893540
+#define ProcessMemoryRelease FUN_180893540
 
 // 原始函数名：FUN_1808935c0 - 内存复制处理函数A0
 // 功能：处理内存复制操作
@@ -20362,7 +20362,7 @@ undefined8 ProcessDataBlockOperationA0(undefined8 *SystemContext,longlong DataBu
 
 
 
-undefined8 ProcessDataBlockOperationA1(longlong *param_1,undefined4 *param_2)
+undefined8 ProcessDataBlockOperationA1(longlong *systemContext,undefined4 *dataBuffer)
 
 {
   longlong validationContext;
@@ -20371,11 +20371,11 @@ undefined8 ProcessDataBlockOperationA1(longlong *param_1,undefined4 *param_2)
   undefined4 auStackX_8 [2];
   undefined4 auStackX_18 [4];
   
-  if (*(int *)(param_1[1] + 0x18) != 0) {
+  if (*(int *)(systemContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  auStackX_8[0] = *param_2;
-  validationContext = *param_1;
+  dataBufferCopy[0] = *dataBuffer;
+  validationContext = *systemContext;
   resourcePointer = *(undefined8 **)(validationContext + 8);
   validationStatus = (**(code **)*resourcePointer)(resourcePointer,auStackX_8,4);
   if ((int)validationStatus == 0) {
@@ -49774,7 +49774,7 @@ void Catch_180905e00(undefined8 param_1,longlong param_2)
   
   validationContext = *(longlong *)(param_2 + 0x60);
   CleanupSystem(validationContext);
-  ConfigureSystemA0(*(longlong *)(param_2 + 0x70) + 8,0);
+  ConfigureSystemParametersA0(*(longlong *)(param_2 + 0x70) + 8,0);
   ExecuteSystemOperation(*(undefined8 *)(validationContext + 0x50),*(undefined8 *)(param_2 + 0x78));
                     // WARNING: Subroutine does not return
   _CxxThrowException(0,0);
