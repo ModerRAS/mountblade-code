@@ -5939,11 +5939,11 @@ undefined SystemMemoryConfigPointer;
 undefined SystemMemoryDataBuffer;
 
 943200;
-undefined FUN_180943200;
-undefined DAT_180c96800;
-undefined DAT_180c96808;
-undefined DAT_180c0c6c0;
-undefined DAT_180be14a0;
+undefined UtilitySystemFunctionPointer;
+undefined SystemConfigurationData;
+undefined SystemConfigurationStatus;
+undefined MemoryHeapControlData;
+undefined ThreadLocalStoragePointer;
 // 系统状态标志
 undefined SystemStatusFlag1;
 // 系统配置表A0
@@ -5954,11 +5954,11 @@ undefined SystemConfigurationTableA1;
 undefined SystemDataPointerA0;
 // 系统数据指针A1
 undefined SystemDataPointerA1;
-undefined DAT_180c0d100;
-undefined DAT_180c0e170;
-undefined DAT_180c108d0;
-undefined DAT_180c2bca0;
-undefined DAT_180c31148;
+undefined ExceptionHandlerTable;
+undefined SecurityValidationData;
+undefined ResourceAllocationTable;
+undefined SystemStatusFlags;
+undefined MemoryManagementData;
 // 系统配置表A2
 undefined SystemConfigurationTableA2;
 // 系统状态表A0
@@ -5984,8 +5984,8 @@ undefined SystemBufferData;
 undefined SystemMemoryManager;
 undefined SystemResourceManager;
 undefined SystemThreadManager;
-undefined DAT_180bf00a8;
-undefined DAT_180c86928;
+undefined ThreadSynchronizationData;
+undefined SystemPerformanceMetrics;
 // 系统网络管理器
 undefined SystemNetworkManager;
 // 系统图形管理器
@@ -6016,30 +6016,30 @@ undefined SystemConfigDataTableB;
 undefined SystemCacheDataTableA;
 // 系统状态标志变量A
 char SystemStatusFlagA;
-undefined DAT_180c8ed58;
-undefined DAT_180c8ed48;
-undefined DAT_180c8ed40;
-undefined DAT_180c86940;
-undefined UNK_18098bae0;
-undefined UNK_18098bb60;
-undefined UNK_18098bb88;
-undefined UNK_1809fee70;
-undefined UNK_1809ff2f8;
-undefined UNK_1809ff3f8;
-undefined DAT_180c82854;
-undefined UNK_18098bc48;
+undefined NetworkConnectionData;
+undefined NetworkStatusData;
+undefined NetworkProtocolData;
+undefined NetworkConfigurationData;
+undefined UnknownSystemDataA;
+undefined UnknownSystemDataB;
+undefined UnknownSystemDataC;
+undefined UnknownSystemDataD;
+undefined UnknownSystemDataE;
+undefined UnknownSystemDataF;
+undefined SystemDataBufferA;
+undefined UnknownSystemDataG;
 // 系统状态标志变量B
 char SystemStatusFlagB;
 // 系统异常处理状态表A3
 undefined SystemExceptionHandlerStatusA3;
-undefined DAT_180c86920;
+undefined SystemPerformanceCounterA;
 // 异常处理列表
 void *ExceptionHandlerList;
 // 系统内存管理表A0
 undefined SystemMemoryManagementTableA0;
 // 系统资源管理表A0
 undefined SystemResourceManagerTableA0;
-undefined DAT_180c86960;
+undefined SystemPerformanceCounterB;
 undefined DAT_180bf52b8;
 undefined DAT_180bf52bc;
 undefined DAT_180bf5248;
@@ -7636,34 +7636,47 @@ uint64_t InitializeSystemModule(int64_t moduleConfig, int64_t moduleData)
  * @note 该函数会修改资源计数器状态，并在特定条件下触发资源释放
  * @warning 资源释放操作是不可逆的，调用前需确保资源可以安全释放
  */
-undefined8 ProcessResourceAllocation(longlong resourceConfig, longlong resourceData)
-
+/**
+ * @brief 处理资源分配操作
+ * 
+ * 该函数负责处理系统资源的分配操作，包括资源验证、计数器管理和状态检查。
+ * 函数会验证资源的有效性，增加资源计数器，并在特定条件下执行资源分配操作。
+ * 
+ * @param ResourceConfiguration 资源配置参数指针
+ * @param ResourceData 资源数据指针
+ * @return uint64_t 操作结果状态码
+ *         - 0: 操作成功
+ *         - 0x1c: 资源验证失败
+ *         - 其他值: 具体的错误代码
+ * 
+ * @note 该函数会修改资源计数器状态，并在特定条件下触发资源分配
+ * @warning 资源分配操作需要确保系统有足够的内存空间
+ */
+uint64_t ProcessResourceAllocation(int64_t ResourceConfiguration, int64_t ResourceData)
 {
-  longlong resourceHandle;
-  int resourceOperationStatus;
-  uint64_t resourceValidationResult;
-  longlong localResourceBuffer [2];
+  int64_t AllocatedResourceHandle;
+  int32_t AllocationStatus;
+  uint64_t ValidationResult;
+  int64_t LocalResourceBuffer[2];
   
-  resourceValidationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(resourceConfig + 0x10),localResourceBuffer);
-  resourceHandle = localResourceBuffer[0];
-  if ((int)resourceValidationResult != 0) {
-    return resourceValidationResult;
+  ValidationResult = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ResourceConfiguration + 0x10), LocalResourceBuffer);
+  AllocatedResourceHandle = LocalResourceBuffer[0];
+  if ((int32_t)ValidationResult != 0) {
+    return ValidationResult;
   }
-  *(int *)(localResourceBuffer[0] + 0x4c) = *(int *)(localResourceBuffer[0] + 0x4c) + 1;
-  if (*(int *)(localResourceBuffer[0] + 0x58) + *(int *)(localResourceBuffer[0] + 0x54) +
-      *(int *)(localResourceBuffer[0] + 0x4c) == 1) {
-    localResourceBuffer[0] = 0;
-    resourceOperationStatus = ValidateResourceHandle(localResourceBuffer);
-    if (resourceOperationStatus == 0) {
-      resourceOperationStatus = ExecuteResourceOperation(resourceHandle,*(undefined8 *)(resourceHandle + 8),*(undefined8 *)(resourceData + 0x90),
-                            *(undefined8 *)(resourceData + 800));
-      if (resourceOperationStatus == 0) {
-                    // WARNING: Subroutine does not return
-        ReleaseSystemResources(localResourceBuffer);
+  *(int32_t *)(LocalResourceBuffer[0] + 0x4c) = *(int32_t *)(LocalResourceBuffer[0] + 0x4c) + 1;
+  if (*(int32_t *)(LocalResourceBuffer[0] + 0x58) + *(int32_t *)(LocalResourceBuffer[0] + 0x54) +
+      *(int32_t *)(LocalResourceBuffer[0] + 0x4c) == 1) {
+    LocalResourceBuffer[0] = 0;
+    AllocationStatus = ValidateResourceHandle(LocalResourceBuffer);
+    if (AllocationStatus == 0) {
+      AllocationStatus = ExecuteResourceOperation(AllocatedResourceHandle, *(uint64_t *)(AllocatedResourceHandle + 8), *(uint64_t *)(ResourceData + 0x90),
+                            *(uint64_t *)(ResourceData + 800));
+      if (AllocationStatus == 0) {
+        ReleaseSystemResources(LocalResourceBuffer);
       }
     }
-                    // WARNING: Subroutine does not return
-    ReleaseSystemResources(localResourceBuffer);
+    ReleaseSystemResources(LocalResourceBuffer);
   }
   return 0;
 }
@@ -50040,7 +50053,14 @@ void Unwind_180905ef0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180905f00(void)
+/**
+ * @brief 条件变量销毁函数
+ * 
+ * 该函数用于销毁条件变量，清理相关资源
+ * 
+ * @note 原始函数名：Unwind_180905f00
+ */
+void DestroyConditionVariable(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -50049,7 +50069,14 @@ void Unwind_180905f00(void)
 
 
 
-void Unwind_180905f20(void)
+/**
+ * @brief 互斥锁销毁函数A
+ * 
+ * 该函数用于销毁互斥锁，清理相关资源
+ * 
+ * @note 原始函数名：Unwind_180905f20
+ */
+void DestroyMutexA(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -50058,7 +50085,14 @@ void Unwind_180905f20(void)
 
 
 
-void Unwind_180905f40(void)
+/**
+ * @brief 互斥锁销毁函数B
+ * 
+ * 该函数用于销毁互斥锁，清理相关资源
+ * 
+ * @note 原始函数名：Unwind_180905f40
+ */
+void DestroyMutexB(void)
 
 {
   _Mtx_destroy_in_situ();
