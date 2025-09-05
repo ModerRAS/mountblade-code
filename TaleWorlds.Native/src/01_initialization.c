@@ -27408,7 +27408,7 @@ void InitializeSystemResourceAllocator(long long SystemResourceHandle)
   long long SystemOperationValue78;
   long long ***SystemContextTriplePointer;
   void* SystemPrimaryValue;
-  long long **systemContextPointer60;
+  long long **SystemContextDoublePointer;
   void* SystemSecondaryValue;
   ulong long loopCounter;
   
@@ -27525,7 +27525,7 @@ void InitializeSystemDataSynchronizer(long long SystemResourceHandle,void* dataS
   uint systemThreadCounter;
   long long resourceDataPosition;
   ulong long systemMemorySize;
-  long long *primaryResourceHandle4;
+  long long *PrimaryResourceHandleExtended;
   float transformValueC;
   void* systemStatusPointer;
   float transformValueB;
