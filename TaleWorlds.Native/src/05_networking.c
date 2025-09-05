@@ -1332,7 +1332,7 @@ void AcceptConnection(void)
   
   // 初始化会话参数
   NetworkSessionEncryptionKey = DefaultSessionEncryptionKey;    // 设置会话加密密钥为默认值
-  NetworkSessionTimeoutDuration = NetworkTimeoutFiveMinutes;              // 设置会话超时时间为300秒
+  NetworkSessionTimeoutDuration = NetworkTimeout5Minutes;              // 设置会话超时时间为300秒
   NetworkHandshakeTimeout = NetworkTimeout5Seconds;                     // 设置握手超时时间为5秒
   NetworkAuthenticationTimeout = NetworkTimeout5Seconds;               // 设置认证超时时间为5秒
   NetworkEncryptionTimeout = NetworkTimeout5Seconds;                   // 设置加密超时时间为5秒
@@ -1808,7 +1808,7 @@ void InitializeNetworkErrorHandlingSystem(void)
   NetworkPortRangeEnd = PORT_RANGE_END;                    // 设置端口范围结束值为9999
   
   // 初始化连接超时参数
-  NetworkConnectionTimeout = NetworkTimeoutThirtySeconds;                   // 设置连接超时时间为30秒
+  NetworkConnectionTimeout = NetworkTimeout30Seconds;                   // 设置连接超时时间为30秒
   NetworkTimeoutValueOffset = 0x30;                         // 设置超时值偏移量
   NetworkRetryCountOffset = 0x34;                           // 设置重试计数偏移量
   
