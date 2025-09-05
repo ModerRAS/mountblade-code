@@ -33823,6 +33823,17 @@ void DestroyMutexInPlace(void)
 
 
 
+/**
+ * @brief 在指定偏移处销毁互斥锁
+ * 
+ * 该函数负责在指定的偏移位置销毁互斥锁资源，
+ * 释放系统资源。
+ * 
+ * @param mutexContext 互斥锁上下文
+ * @param mutexParam 互斥锁参数，包含偏移信息
+ * 
+ * @note 原始函数名：DestroyMutexAtOffset
+ */
 void DestroyMutexAtOffset(undefined8 mutexContext,longlong mutexParam)
 
 {
@@ -90059,9 +90070,6 @@ void InitializeExceptionHandlerC(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941fa0(void)
-// 全局数据指针设置函数A1
-// 功能：设置全局数据指针A1，初始化异常处理器B
 void InitializeGlobalDataPointerA1(void)
 
 {
@@ -90074,9 +90082,6 @@ void InitializeGlobalDataPointerA1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941fc0(void)
-// 全局数据指针设置函数A2
-// 功能：设置全局数据指针A2，初始化异常处理器B
 void InitializeGlobalDataPointerA2(void)
 
 {
@@ -90089,9 +90094,6 @@ void InitializeGlobalDataPointerA2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941fe0(void)
-// 全局数据指针设置函数A3
-// 功能：设置全局数据指针A3，初始化异常处理器B
 void InitializeGlobalDataPointerA3(void)
 
 {
@@ -92827,5 +92829,35 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
  * @note 原始函数名：Unwind_180906060
  */
 #define CleanupValidationContextA Unwind_180906060
+
+/**
+ * @brief 销毁互斥体D
+ * 
+ * 该宏定义将原始的Unwind_1809060c0函数映射为DestroyMutexD
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809060c0
+ */
+#define DestroyMutexD Unwind_1809060c0
+
+/**
+ * @brief 验证上下文清理器A
+ * 
+ * 该宏定义将原始的Unwind_1809060d0函数映射为ValidationContextCleanerA
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809060d0
+ */
+#define ValidationContextCleanerA Unwind_1809060d0
+
+/**
+ * @brief 销毁互斥体E
+ * 
+ * 该宏定义将原始的Unwind_1809060e0函数映射为DestroyMutexE
+ * 提供更语义化的函数名称，便于理解和维护
+ * 
+ * @note 原始函数名：Unwind_1809060e0
+ */
+#define DestroyMutexE Unwind_1809060e0
 
 
