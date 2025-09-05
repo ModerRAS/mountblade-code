@@ -70186,28 +70186,28 @@ void UnwindSystemResourceHandlerC(uint8_t ObjectContext,int64_t ValidationContex
       *(uint8_t *)(ResourceHashValidationStatus * 8 + *ResourceContext) = 0;
       ContextValidationStatusCode = (uint64_t)((int)ResourceHashValidationStatus + 1);
       ResourceLoopIndex = *ResourceContext;
-    } while (ResourceHashValidationStatus < (uint64_t)(ResourceHashStatusAddress[0x1013] - ResourceLoopIndex >> 3));
+    } while (ResourceHashValidationStatus < (uint64_t)(ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] - ResourceLoopIndex >> ResourceHashTableShiftAmount));
   }
-  ResourceHashStatusAddress[0x1013] = ResourceLoopIndex;
-  ValidationStatusCodeAddress = (uint8_t *)ResourceHashStatusAddress[0x1043];
+  ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] = ResourceLoopIndex;
+  ValidationStatusCodeAddress = (uint8_t *)ResourceHashStatusAddress[ResourceHashTableLoopEndOffset];
   if (ValidationStatusCodeAddress != (uint8_t *)0x0) {
     ProcessResourceValidation(ResourceHashStatusAddress + 0x1041,*ResourceHashStatusAddress);
     ResourceHashStatusAddress[4] = &SystemDataStructure;
           ReleaseResourceHandle(ResourceHashStatusAddress);
   }
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x103b,ResourceHashStatusAddress[0x103d]);
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x1035,ResourceHashStatusAddress[0x1037]);
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x102f,ResourceHashStatusAddress[0x1031]);
-  RegisterResourceHandler(ResourceHashStatusAddress + 0x101b,0x20,5,SystemResourceHandler);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset5,ResourceHashStatusAddress[ResourceHashTableOperationOffset6]);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset3,ResourceHashStatusAddress[ResourceHashTableOperationOffset4]);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset1,ResourceHashStatusAddress[ResourceHashTableOperationOffset2]);
+  RegisterResourceHandler(ResourceHashStatusAddress + ResourceHashTableResourceOffset,ResourceHashTableResourceSize,ResourceHashTableResourceType,SystemResourceHandler);
   if (*ResourceContext != 0) {
           ExecuteSystemEmergencyExit();
   }
-  RegisterResourceHandler(ResourceHashStatusAddress + 0xffd,0x20,5,SystemResourceHandler);
-  ResourceLoopIndex = ResourceHashStatusAddress[0xffa];
-  for (ResourceTableIterator = ResourceHashStatusAddress[0xff9]; ResourceTableIterator != ResourceLoopIndex; ResourceTableIterator = ResourceTableIterator + 0x40) {
+  RegisterResourceHandler(ResourceHashStatusAddress + ResourceHashTableTertiaryOffset,ResourceHashTableResourceSize,ResourceHashTableResourceType,SystemResourceHandler);
+  ResourceLoopIndex = ResourceHashStatusAddress[ResourceHashTableSecondaryOffset];
+  for (ResourceTableIterator = ResourceHashStatusAddress[ResourceHashTablePrimaryOffset]; ResourceTableIterator != ResourceLoopIndex; ResourceTableIterator = ResourceTableIterator + ResourceHashTableSize) {
     ProcessMemoryAllocation(ResourceTableIterator);
   }
-  if (ResourceHashStatusAddress[0xff9] != 0) {
+  if (ResourceHashStatusAddress[ResourceHashTablePrimaryOffset] != 0) {
           ExecuteSystemEmergencyExit();
   }
   return;
@@ -70350,13 +70350,13 @@ void ProcessSystemResourceHashValidationCleanup(uint8_t ObjectContext,int64_t Va
   
   PackageValidationStatusCodePointer = *(uint8_t **)(ValidationContext + 0x90);
   *PackageValidationStatusCodePointer = &SystemDataStructureReference004;
-  if ((int64_t *)ResourceHashStatusAddress[0x1049] != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ResourceHashStatusAddress[0x1049] + 0x38))();
+  if ((int64_t *)ResourceHashStatusAddress[ResourceHashTableCallbackOffset] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ResourceHashStatusAddress[ResourceHashTableCallbackOffset] + 0x38))();
   }
   ContextProcessingStatusCode = 0;
-  ResourceContext = ResourceHashStatusAddress + 0x1012;
+  ResourceContext = ResourceHashStatusAddress + ResourceHashTableValidationOffset;
   ResourceLoopIndex = *ResourceContext;
-  if (ResourceHashStatusAddress[0x1013] - ResourceLoopIndex >> 3 != 0) {
+  if (ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] - ResourceLoopIndex >> ResourceHashTableShiftAmount != 0) {
     do {
       ValidationStatusCodeAddress = *(uint8_t **)(ResourceHashValidationStatus * 8 + ResourceLoopIndex);
       if (ValidationStatusCodeAddress != (uint8_t *)0x0) {
@@ -70386,28 +70386,28 @@ void ProcessSystemResourceHashValidationCleanup(uint8_t ObjectContext,int64_t Va
       *(uint8_t *)(ResourceHashValidationStatus * 8 + *ResourceContext) = 0;
       ContextValidationStatusCode = (uint64_t)((int)ResourceHashValidationStatus + 1);
       ResourceLoopIndex = *ResourceContext;
-    } while (ResourceHashValidationStatus < (uint64_t)(ResourceHashStatusAddress[0x1013] - ResourceLoopIndex >> 3));
+    } while (ResourceHashValidationStatus < (uint64_t)(ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] - ResourceLoopIndex >> ResourceHashTableShiftAmount));
   }
-  ResourceHashStatusAddress[0x1013] = ResourceLoopIndex;
-  ValidationStatusCodeAddress = (uint8_t *)ResourceHashStatusAddress[0x1043];
+  ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] = ResourceLoopIndex;
+  ValidationStatusCodeAddress = (uint8_t *)ResourceHashStatusAddress[ResourceHashTableLoopEndOffset];
   if (ValidationStatusCodeAddress != (uint8_t *)0x0) {
     ProcessResourceValidation(ResourceHashStatusAddress + 0x1041,*ResourceHashStatusAddress);
     ResourceHashStatusAddress[4] = &SystemDataStructure;
           ReleaseResourceHandle(ResourceHashStatusAddress);
   }
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x103b,ResourceHashStatusAddress[0x103d]);
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x1035,ResourceHashStatusAddress[0x1037]);
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x102f,ResourceHashStatusAddress[0x1031]);
-  RegisterResourceHandler(ResourceHashStatusAddress + 0x101b,0x20,5,SystemResourceHandler);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset5,ResourceHashStatusAddress[ResourceHashTableOperationOffset6]);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset3,ResourceHashStatusAddress[ResourceHashTableOperationOffset4]);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset1,ResourceHashStatusAddress[ResourceHashTableOperationOffset2]);
+  RegisterResourceHandler(ResourceHashStatusAddress + ResourceHashTableResourceOffset,ResourceHashTableResourceSize,ResourceHashTableResourceType,SystemResourceHandler);
   if (*ResourceContext != 0) {
           ExecuteSystemEmergencyExit();
   }
-  RegisterResourceHandler(ResourceHashStatusAddress + 0xffd,0x20,5,SystemResourceHandler);
-  ResourceLoopIndex = ResourceHashStatusAddress[0xffa];
-  for (ResourceTableIterator = ResourceHashStatusAddress[0xff9]; ResourceTableIterator != ResourceLoopIndex; ResourceTableIterator = ResourceTableIterator + 0x40) {
+  RegisterResourceHandler(ResourceHashStatusAddress + ResourceHashTableTertiaryOffset,ResourceHashTableResourceSize,ResourceHashTableResourceType,SystemResourceHandler);
+  ResourceLoopIndex = ResourceHashStatusAddress[ResourceHashTableSecondaryOffset];
+  for (ResourceTableIterator = ResourceHashStatusAddress[ResourceHashTablePrimaryOffset]; ResourceTableIterator != ResourceLoopIndex; ResourceTableIterator = ResourceTableIterator + ResourceHashTableSize) {
     ProcessMemoryAllocation(ResourceTableIterator);
   }
-  if (ResourceHashStatusAddress[0xff9] != 0) {
+  if (ResourceHashStatusAddress[ResourceHashTablePrimaryOffset] != 0) {
           ExecuteSystemEmergencyExit();
   }
   return;
@@ -71626,13 +71626,13 @@ void UnwindSystemResourceProcessingF(uint8_t ObjectContext,int64_t ValidationCon
   
   PackageValidationStatusCodePointer = *(uint8_t **)(ValidationContext + 0x40);
   *PackageValidationStatusCodePointer = &SystemDataStructureReference004;
-  if ((int64_t *)ResourceHashStatusAddress[0x1049] != (int64_t *)0x0) {
-    (**(code **)(*(int64_t *)ResourceHashStatusAddress[0x1049] + 0x38))();
+  if ((int64_t *)ResourceHashStatusAddress[ResourceHashTableCallbackOffset] != (int64_t *)0x0) {
+    (**(code **)(*(int64_t *)ResourceHashStatusAddress[ResourceHashTableCallbackOffset] + 0x38))();
   }
   ContextProcessingStatusCode = 0;
-  ResourceContext = ResourceHashStatusAddress + 0x1012;
+  ResourceContext = ResourceHashStatusAddress + ResourceHashTableValidationOffset;
   ResourceLoopIndex = *ResourceContext;
-  if (ResourceHashStatusAddress[0x1013] - ResourceLoopIndex >> 3 != 0) {
+  if (ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] - ResourceLoopIndex >> ResourceHashTableShiftAmount != 0) {
     do {
       ValidationStatusCodeAddress = *(uint8_t **)(ResourceHashValidationStatus * 8 + ResourceLoopIndex);
       if (ValidationStatusCodeAddress != (uint8_t *)0x0) {
@@ -71662,28 +71662,28 @@ void UnwindSystemResourceProcessingF(uint8_t ObjectContext,int64_t ValidationCon
       *(uint8_t *)(ResourceHashValidationStatus * 8 + *ResourceContext) = 0;
       ContextValidationStatusCode = (uint64_t)((int)ResourceHashValidationStatus + 1);
       ResourceLoopIndex = *ResourceContext;
-    } while (ResourceHashValidationStatus < (uint64_t)(ResourceHashStatusAddress[0x1013] - ResourceLoopIndex >> 3));
+    } while (ResourceHashValidationStatus < (uint64_t)(ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] - ResourceLoopIndex >> ResourceHashTableShiftAmount));
   }
-  ResourceHashStatusAddress[0x1013] = ResourceLoopIndex;
-  ValidationStatusCodeAddress = (uint8_t *)ResourceHashStatusAddress[0x1043];
+  ResourceHashStatusAddress[ResourceHashTableLoopStartOffset] = ResourceLoopIndex;
+  ValidationStatusCodeAddress = (uint8_t *)ResourceHashStatusAddress[ResourceHashTableLoopEndOffset];
   if (ValidationStatusCodeAddress != (uint8_t *)0x0) {
     ProcessResourceValidation(ResourceHashStatusAddress + 0x1041,*ResourceHashStatusAddress);
     ResourceHashStatusAddress[4] = &SystemDataStructure;
           ReleaseResourceHandle(ResourceHashStatusAddress);
   }
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x103b,ResourceHashStatusAddress[0x103d]);
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x1035,ResourceHashStatusAddress[0x1037]);
-  ProcessResourceOperation(ResourceHashStatusAddress + 0x102f,ResourceHashStatusAddress[0x1031]);
-  RegisterResourceHandler(ResourceHashStatusAddress + 0x101b,0x20,5,SystemResourceHandler);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset5,ResourceHashStatusAddress[ResourceHashTableOperationOffset6]);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset3,ResourceHashStatusAddress[ResourceHashTableOperationOffset4]);
+  ProcessResourceOperation(ResourceHashStatusAddress + ResourceHashTableOperationOffset1,ResourceHashStatusAddress[ResourceHashTableOperationOffset2]);
+  RegisterResourceHandler(ResourceHashStatusAddress + ResourceHashTableResourceOffset,ResourceHashTableResourceSize,ResourceHashTableResourceType,SystemResourceHandler);
   if (*ResourceContext != 0) {
           ExecuteSystemEmergencyExit();
   }
-  RegisterResourceHandler(ResourceHashStatusAddress + 0xffd,0x20,5,SystemResourceHandler);
-  ResourceLoopIndex = ResourceHashStatusAddress[0xffa];
-  for (ResourceTableIterator = ResourceHashStatusAddress[0xff9]; ResourceTableIterator != ResourceLoopIndex; ResourceTableIterator = ResourceTableIterator + 0x40) {
+  RegisterResourceHandler(ResourceHashStatusAddress + ResourceHashTableTertiaryOffset,ResourceHashTableResourceSize,ResourceHashTableResourceType,SystemResourceHandler);
+  ResourceLoopIndex = ResourceHashStatusAddress[ResourceHashTableSecondaryOffset];
+  for (ResourceTableIterator = ResourceHashStatusAddress[ResourceHashTablePrimaryOffset]; ResourceTableIterator != ResourceLoopIndex; ResourceTableIterator = ResourceTableIterator + ResourceHashTableSize) {
     ProcessMemoryAllocation(ResourceTableIterator);
   }
-  if (ResourceHashStatusAddress[0xff9] != 0) {
+  if (ResourceHashStatusAddress[ResourceHashTablePrimaryOffset] != 0) {
           ExecuteSystemEmergencyExit();
   }
   return;
