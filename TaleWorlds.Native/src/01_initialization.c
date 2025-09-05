@@ -19507,25 +19507,64 @@ void InitializeSystemThreadManager(void)
  */
 uint32_t FinalSystemInitialization(void)
 {
+  // 系统接口指针，用于指向系统接口对象
   void* SystemInterfacePointer;
+  
+  // 系统回调函数，用于处理系统事件
   void* SystemCallbackFunction;
+  
+  // 系统控制器实例，用于管理系统控制器
   long long** SystemControllerInstance;
+  
+  // 初始化状态码，用于返回初始化结果
   uint32_t InitializationStatusCode;
+  
+  // 等待操作结果，用于同步操作
   int WaitOperationResult;
+  
+  // 系统核心管理器，用于管理核心系统组件
   long long**** SystemCoreManager;
+  
+  // 内存分配标志，用于控制内存分配
   void* MemoryAllocationFlags;
+  
+  // 系统主内存管理器，用于管理主要内存资源
   long long**** SystemPrimaryMemoryManager;
+  
+  // 系统次级内存管理器，用于管理次要内存资源
   long long*** SystemSecondaryMemoryManager;
+  
+  // 系统对象句柄，用于标识系统对象
   long long SystemObjectHandle;
+  
+  // 系统活动状态，用于表示系统是否活动
   char SystemActiveStatus;
+  
+  // 系统堆栈管理器，用于管理系统堆栈
   long long**** SystemStackManager;
+  
+  // 系统回调管理器，用于管理回调函数
   long long*** SystemCallbackManager;
+  
+  // 系统内存堆栈控制器，用于控制内存堆栈操作
   long long** SystemMemoryStackController;
+  
+  // 系统次级内存堆栈管理器，用于管理次要内存堆栈
   long long*** SystemSecondaryMemoryStackManager;
+  
+  // 计算标志，用于控制计算过程
   void* CalculationFlags;
+  
+  // 系统全局内存管理器，用于管理全局内存资源
   long long***** SystemGlobalMemoryManager;
+  
+  // 系统内存管理器，用于管理内存资源
   long long**** SystemMemoryManager;
+  
+  // 系统值，用于存储临时数据
   long long SystemValue;
+  
+  // 资源地址，用于指向资源位置
   void* ResourceAddress;
   
   CalculationFlags = 0xfffffffffffffffe;
