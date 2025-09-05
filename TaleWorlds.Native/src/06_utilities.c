@@ -5340,8 +5340,8 @@ uint8_t IncrementObjectReferenceCount(int64_t ObjectContext) {
     *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) = *(int *)(ValidatedObjectMemoryAddress + ObjectReferenceCountOffset) + 1;
     
     // 检查系统状态
-    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ValidationResult = CheckSystemStatus(), (int)ValidationResult != 0)) {
-      return ValidationResult;
+    if ((*(char *)(ValidatedObjectMemoryAddress + ObjectSystemStatusOffset) != '\0') && (ObjectValidationStatusCode = CheckSystemStatus(), (int)ObjectValidationStatusCode != 0)) {
+      return ObjectValidationStatusCode;
     }
     return OperationSuccessCode;
   }
