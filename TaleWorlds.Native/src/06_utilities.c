@@ -4119,8 +4119,8 @@ uint32_t QuaternaryPointerResetConfiguration;
 void ResetUtilityPointers2(void);
 uint32_t UtilityResetPrimaryPointerValue;
 uint32_t UtilityResetSecondaryPointerValue;
-uint32_t UtilityResetTertiaryPointer;
-uint32_t UtilityResetQuaternaryPointer;
+uint32_t UtilityResetTertiaryPointerValue;
+uint32_t UtilityResetQuaternaryPointerValue;
 uint32_t UtilitySystemPrimaryStatus;
 
 // 异常处理系统全局变量宏定义
