@@ -25982,7 +25982,7 @@ ValidationContextHandler2:
   if ((int)uVar3 != 0) {
     return uVar3;
   }
-LAB_18089cd76:
+ValidationStateHandler:
   iVar4 = 0;
   if (0 < (int)auStackX_18[0]) {
     do {
@@ -26057,7 +26057,7 @@ ValidationContextHandler2:
   if ((int)uVar3 != 0) {
     return uVar3;
   }
-LAB_18089cd76:
+ValidationStateHandler:
   iVar4 = 0;
   if (0 < (int)in_stack_00000080) {
     do {
@@ -26179,7 +26179,7 @@ ulonglong FUN_18089ce30(longlong param_1,longlong *param_2)
     }
     uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_20,1,4,0);
   }
-LAB_18089cef2:
+ValidationContextCleanup:
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -26212,7 +26212,7 @@ LAB_18089cef2:
     }
     uVar2 = FUN_180769ed0(*pvalidationContext,auStackX_20,1,4,0);
   }
-LAB_18089cf93:
+ValidationStateUpdate:
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -26299,7 +26299,7 @@ ulonglong FUN_18089ce60(void)
     }
     uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x00000098,1,4,0);
   }
-LAB_18089cef2:
+ValidationContextCleanup:
   if ((int)uVar2 != 0) {
     return uVar2;
   }
@@ -26332,7 +26332,7 @@ LAB_18089cef2:
     }
     uVar2 = FUN_180769ed0(*pvalidationContext,&stack0x00000098,1,4,0);
   }
-LAB_18089cf93:
+ValidationStateUpdate:
   if ((int)uVar2 != 0) {
     return uVar2;
   }
