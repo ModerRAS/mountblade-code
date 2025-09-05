@@ -27273,9 +27273,9 @@ void InitializeSystemDataStructures(void)
   long long SystemStackRegisterValue88;
   long long SystemStackRegisterValue80;
   long long SystemStackRegisterValue78;
-  long long ***stackTriplePointer70;
+  long long ***SystemTriplePointerPrimary;
   void* StackHandle;
-  long long **stackDoublePointer60;
+  long long **SystemDoublePointerSecondary;
   void* StackHandlePrimary;
   ulong long loopCounter;
   
