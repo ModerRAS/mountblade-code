@@ -54739,7 +54739,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   void* **pHashTablePointer;
   uint8_t *SystemThreadStorage;
   void* ThreadContext;
-  void*2 *SystemDataBufferPointer;
+  uint16_t *SystemDataBufferPointer;
   uint SystemOperationResult;
   void* *pSystemProcessingResult;
   void* *SystemDataConfigurationPointer;
@@ -54751,7 +54751,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   int LocalIndexCounter;
   void* MemoryBufferPointer;
   void* *SystemResourceHandlePrimary;
-  void*2 *pointerUnsignedE8;
+  uint16_t *pointerUnsignedE8;
   uint32_t SystemMemoryStatusFlag;
   void* SystemMemoryAllocatorStatus;
   void* *dataBufferContext;
@@ -54996,7 +54996,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     systemDataBuffer = systemDataBuffer & SystemMemoryAlignmentMask;
     dataBufferContext = &SystemMemoryAllocatorReference;
     SystemResourceHandlePrimary = &SystemGlobalDataReference;
-    if (pointerUnsignedE8 == (void*2 *)0x0) {
+    if (pointerUnsignedE8 == (uint16_t *)0x0) {
       return CharacterBuffer != '\0';
     }
       SystemCleanupFunction();
