@@ -16990,7 +16990,7 @@ MemoryCopyLabel:
     else {
       if ((characterFlag != '\x02') || ((*(byte *)(param_1 + 0x6c) & 4) != 0)) goto MemoryCopyLabel;
       stackParameterOffset._4_4_ = *(DataWord *)(bufferPointer + 0x20);
-      arrayIndex = ValidateAndProcessDataFlags(param_1,register_EBX,(int64_t)&stack0x00000040 + 4);
+      arrayIndex = ValidateAndProcessDataFlags(param_1,register_EBX,(int64_t)&StackBuffer40 + 4);
       if (arrayIndex != 0) goto ValidationSuccessLabel;
       arrayIndex = QueryAndRetrieveSystemDataA0(stackParameterOffset._4_4_,stackFramePointer + -0x78);
       if ((arrayIndex != 0) || (*(int *)(*(int64_t *)(stackFramePointer + -0x78) + 0x30) != 2))
@@ -17000,7 +17000,7 @@ MemoryCopyLabel:
   *register_R13 = 0;
 DataValidationLabel:
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x5f0) ^ (uint64_t)&stack0x00000000);
+  ExecuteSecurityCheck(*(uint64_t *)(stackFramePointer + 0x5f0) ^ (uint64_t)&StackBuffer00);
 }
 
 
@@ -18669,6 +18669,13 @@ ExecuteSystemSecurityCheck:
 // 功能：处理和计算浮点数据，执行数学运算
 #define ProcessFloatingPointDataA0 FUN_180896e11
 
+/**
+ * @brief 浮点数据处理函数A0
+ * 
+ * 处理浮点数据的验证、转换和操作，包括系统资源配置和数据完整性检查
+ * 
+ * @return 无 - 处理结果通过系统状态返回
+ */
 void ProcessFloatingPointDataA0(void)
 
 {
@@ -18695,12 +18702,12 @@ void ProcessFloatingPointDataA0(void)
   float floatResultA_05;
   float floatResultA_06;
   float floatValue;
-  DataWord uStackX_20;
-  float fStackX_24;
-  uint8_t *InputParam30;
+  DataWord StackParameter20;
+  float StackFloat24;
+  uint8_t *StackBuffer30;
   int stackContextParameter;
   DataWord stackParameterOffset;
-  float InputParam48;
+  float StackParameter48;
   
   if (((register_R15B != '\0') || (*(int *)(*(int64_t *)(register_R13 + 0x2e8) + 0x34) == register_R12D)) &&
      (calculatedValue = ConfigureSystemParametersA0(), calculatedValue == 0)) {
@@ -18708,8 +18715,8 @@ void ProcessFloatingPointDataA0(void)
       validationContext = *(int64_t *)(*(int64_t *)(register_R13 + 0x40) + (int64_t)calculatedValue * 8);
       dataContext = *(int64_t *)(validationContext + 0x68);
       if (((*(byte *)(validationContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
-        uStackX_20 = 0;
-        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
+        StackParameter20 = 0;
+        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&StackParameter20);
         if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         validationStatus = *(DataWord *)(validationContext + 0x10);
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
@@ -18719,29 +18726,29 @@ void ProcessFloatingPointDataA0(void)
         *(int *)(stackFramePointer + -0x68) = register_R12D;
         *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x54) = StackParameter20;
         *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
         *(DataWord *)(stackFramePointer + -100) = validationStatus;
         *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
         *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
         *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
         calculatedSize = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
-        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
+        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&StackFloat24), calculatedSize != 0))
         goto ProcessCheckpointSizeValidation;
-        floatValue = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
+        floatValue = StackFloat24;
+        if (StackFloat24 != 1.0) {
+          in_stack_00000048 = StackFloat24;
           in_stack_00000030 = &UNK_1809842e0;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000038 = calculatedSize;
-          calculatedSize = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
+          calculatedSize = ValidateDataIntegrityA0(StackFloat24,&stack0x00000030);
           floatValue = floatResultA;
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           floatValue = floatResultA_00;
@@ -18750,7 +18757,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
@@ -18761,8 +18768,8 @@ void ProcessFloatingPointDataA0(void)
       validationContext = *(int64_t *)(*(int64_t *)(register_R13 + 0x50) + (int64_t)calculatedValue * 8);
       dataContext = *(int64_t *)(validationContext + 0x68);
       if (((*(byte *)(validationContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
-        uStackX_20 = 0;
-        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
+        StackParameter20 = 0;
+        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&StackParameter20);
         if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         validationStatus = *(DataWord *)(validationContext + 0x10);
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
@@ -18772,29 +18779,29 @@ void ProcessFloatingPointDataA0(void)
         *(int *)(stackFramePointer + -0x68) = register_R12D;
         *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x54) = StackParameter20;
         *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
         *(DataWord *)(stackFramePointer + -100) = validationStatus;
         *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
         *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
         *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
         calculatedSize = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
-        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
+        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&StackFloat24), calculatedSize != 0))
         goto ProcessCheckpointSizeValidation;
-        floatValue = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
+        floatValue = StackFloat24;
+        if (StackFloat24 != 1.0) {
+          in_stack_00000048 = StackFloat24;
           in_stack_00000030 = &UNK_1809842e0;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000038 = calculatedSize;
-          calculatedSize = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
+          calculatedSize = ValidateDataIntegrityA0(StackFloat24,&stack0x00000030);
           floatValue = floatResultA_01;
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           floatValue = floatResultA_02;
@@ -18803,7 +18810,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
@@ -18814,8 +18821,8 @@ void ProcessFloatingPointDataA0(void)
       validationContext = *(int64_t *)(*(int64_t *)(register_R13 + 0x60) + (int64_t)calculatedValue * 8);
       dataContext = *(int64_t *)(validationContext + 0x68);
       if (((*(byte *)(validationContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
-        uStackX_20 = 0;
-        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
+        StackParameter20 = 0;
+        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&StackParameter20);
         if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         validationStatus = *(DataWord *)(validationContext + 0x10);
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
@@ -18825,29 +18832,29 @@ void ProcessFloatingPointDataA0(void)
         *(int *)(stackFramePointer + -0x68) = register_R12D;
         *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x54) = StackParameter20;
         *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
         *(DataWord *)(stackFramePointer + -100) = validationStatus;
         *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
         *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
         *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
         calculatedSize = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
-        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
+        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&StackFloat24), calculatedSize != 0))
         goto ProcessCheckpointSizeValidation;
-        floatValue = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
+        floatValue = StackFloat24;
+        if (StackFloat24 != 1.0) {
+          in_stack_00000048 = StackFloat24;
           in_stack_00000030 = &UNK_1809842e0;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000038 = calculatedSize;
-          calculatedSize = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
+          calculatedSize = ValidateDataIntegrityA0(StackFloat24,&stack0x00000030);
           floatValue = floatResultA_03;
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           floatValue = floatResultA_04;
@@ -18856,7 +18863,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
@@ -18867,8 +18874,8 @@ void ProcessFloatingPointDataA0(void)
       validationContext = *(int64_t *)(*(int64_t *)(register_R13 + 0x70) + (int64_t)calculatedValue * 8);
       dataContext = *(int64_t *)(validationContext + 0x68);
       if (((*(byte *)(validationContext + 0xc4) & 1) != 0) && (dataContext != 0)) {
-        uStackX_20 = 0;
-        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
+        StackParameter20 = 0;
+        calculatedSize = ValidateAndProcessSystemResourceA0(dataContext,&StackParameter20);
         if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         validationStatus = *(DataWord *)(validationContext + 0x10);
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
@@ -18878,29 +18885,29 @@ void ProcessFloatingPointDataA0(void)
         *(int *)(stackFramePointer + -0x68) = register_R12D;
         *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataTableReference;
         register_R12D = register_R12D + 1;
-        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x54) = StackParameter20;
         *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
         *(DataWord *)(stackFramePointer + -100) = validationStatus;
         *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
         *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
         *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
         calculatedSize = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
-        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&fStackX_24), calculatedSize != 0))
+        if ((calculatedSize != 0) || (calculatedSize = SynchronizeDataEQ0(dataContext,&StackFloat24), calculatedSize != 0))
         goto ProcessCheckpointSizeValidation;
-        floatValue = fStackX_24;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
+        floatValue = StackFloat24;
+        if (StackFloat24 != 1.0) {
+          in_stack_00000048 = StackFloat24;
           in_stack_00000030 = &UNK_1809842e0;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000038 = calculatedSize;
-          calculatedSize = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
+          calculatedSize = ValidateDataIntegrityA0(StackFloat24,&stack0x00000030);
           floatValue = floatResultA_05;
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_180984358;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           floatValue = floatResultA_06;
@@ -18909,7 +18916,7 @@ void ProcessFloatingPointDataA0(void)
         if (*(char *)(dataContext + 0x29) != '\0') {
           in_stack_00000038 = 0;
           in_stack_00000030 = &UNK_1809843d0;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000048 = (float)CONCAT31(in_stack_00000048._1_3_,1);
           calculatedSize = ValidateDataIntegrityA0(floatValue,&stack0x00000030);
           if (calculatedSize != 0) goto ProcessCheckpointSizeValidation;
@@ -18923,8 +18930,8 @@ void ProcessFloatingPointDataA0(void)
       validationContext = *(int64_t *)(*(int64_t *)(register_R13 + 0xc0) + (int64_t)calculatedValue * 8);
       dataContext = *(int64_t *)(validationContext + 0x48);
       if (dataContext != 0) {
-        uStackX_20 = 0;
-        validationErrorCode = ValidateAndProcessSystemResourceA0(dataContext,&uStackX_20);
+        StackParameter20 = 0;
+        validationErrorCode = ValidateAndProcessSystemResourceA0(dataContext,&StackParameter20);
         if (validationErrorCode != 0) break;
         validationStatus = *(DataWord *)(validationContext + 0x10);
         memoryBaseAddress = *(DataWord *)(validationContext + 0x14);
@@ -18934,20 +18941,20 @@ void ProcessFloatingPointDataA0(void)
         *(int *)(stackFramePointer + -0x68) = calculatedSize;
         *(uint8_t **)(stackFramePointer + -0x80) = &SystemDataValidationReference;
         calculatedSize = calculatedSize + 1;
-        *(DataWord *)(stackFramePointer + -0x54) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0x54) = StackParameter20;
         *(DataWord *)(stackFramePointer + -0x70) = register_EBX;
         *(DataWord *)(stackFramePointer + -100) = validationStatus;
         *(DataWord *)(stackFramePointer + -0x60) = memoryBaseAddress;
         *(DataWord *)(stackFramePointer + -0x5c) = operationResult;
         *(DataWord *)(stackFramePointer + -0x58) = dataFlags;
         validationErrorCode = ValidateDataIntegrityA0(validationStatus,stackFramePointer + -0x80);
-        if ((validationErrorCode != 0) || (validationErrorCode = ValidateDataA2(dataContext,&fStackX_24,0), validationErrorCode != 0)) break;
-        if (fStackX_24 != 1.0) {
-          in_stack_00000048 = fStackX_24;
+        if ((validationErrorCode != 0) || (validationErrorCode = ValidateDataA2(dataContext,&StackFloat24,0), validationErrorCode != 0)) break;
+        if (StackFloat24 != 1.0) {
+          in_stack_00000048 = StackFloat24;
           in_stack_00000030 = &UNK_1809844c8;
-          stackParameterOffset = uStackX_20;
+          stackParameterOffset = StackParameter20;
           in_stack_00000038 = validationErrorCode;
-          validationErrorCode = ValidateDataIntegrityA0(fStackX_24,&stack0x00000030);
+          validationErrorCode = ValidateDataIntegrityA0(StackFloat24,&stack0x00000030);
           if (validationErrorCode != 0) break;
         }
       }
@@ -19370,7 +19377,7 @@ ProcessDataSecurityValidation:
   DataWord floatResultA_08;
   DataWord register_XMM6_Da;
   DataWord register_XMM6_Dc;
-  DataWord uStackX_20;
+  DataWord StackParameter20;
   char acStackX_24 [4];
   uint8_t *InputParam28;
   float InputParam30;
@@ -19395,7 +19402,7 @@ ProcessDataSecurityValidation:
   inputParameter3 = ValidateAndProcessSystemResourceA0(*(DataBuffer *)(validationContext5 + 0xd0),&stack0x00000048);
   if (inputParameter3 == 0) {
     in_stack_00000070 = &UNK_1809832b8;
-    *(DataWord *)(stackFramePointer + -0xf) = uStackX_20;
+    *(DataWord *)(stackFramePointer + -0xf) = StackParameter20;
     *(float *)(stackFramePointer + -0x10) = fStack0000000000000048;
     in_stack_00000078 = register_R13D;
     inputParameter3 = ValidateDataIntegrityA0(floatResultA,&stack0x00000070);
@@ -19413,7 +19420,7 @@ ProcessDataSecurityValidation:
           if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
             functionReturnValue4 = *(DataWord *)(functionReturnValue0 + 4 + validationContext5);
             stackFramePointer[-4] = &SystemMemoryInitializationReference;
-            *(DataWord *)(stackFramePointer + -2) = uStackX_20;
+            *(DataWord *)(stackFramePointer + -2) = StackParameter20;
             pmemoryBaseAddress = (DataBuffer *)*puStack0000000000000058;
             *(DataWord *)(stackFramePointer + -1) = functionReturnValue4;
             *(DataWord *)(stackFramePointer + -3) = 0;
@@ -19460,7 +19467,7 @@ ProcessDataSecurityValidation:
             statusCounter = *(DataWord *)(register_R15 + 0x5c);
             loopCounter = *(DataWord *)(register_R15 + 0x60);
             dataValue1 = *(DataWord *)(register_R15 + 100);
-            *(DataWord *)(stackFramePointer + -0xc) = uStackX_20;
+            *(DataWord *)(stackFramePointer + -0xc) = StackParameter20;
             *(DataWord *)(stackFramePointer + -9) = functionReturnValue4;
             *(DataWord *)((int64_t)stackFramePointer + -0x44) = operationResult;
             *(DataWord *)(stackFramePointer + -8) = dataFlags;
@@ -19481,7 +19488,7 @@ ProcessDataSecurityValidation:
           if (fStack000000000000004c != 1.0) {
             fStack0000000000000040 = fStack000000000000004c;
             in_stack_00000028 = &UNK_180983738;
-            in_stack_00000038 = uStackX_20;
+            in_stack_00000038 = StackParameter20;
             in_stack_00000030 = register_R13D;
             inputParameter3 = ValidateDataIntegrityA0(fStack000000000000004c,&stack0x00000028);
             fStack000000000000004c = floatResultA_03;
@@ -19492,7 +19499,7 @@ ProcessDataSecurityValidation:
             if (in_stack_00000050 != 1.0) {
               fStack0000000000000040 = in_stack_00000050;
               in_stack_00000028 = &UNK_1809837c0;
-              in_stack_00000038 = uStackX_20;
+              in_stack_00000038 = StackParameter20;
               in_stack_00000030 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
               if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
@@ -19502,7 +19509,7 @@ ProcessDataSecurityValidation:
             do {
               fVar1 = *pfVar21;
               if (fVar1 != 0.0) {
-                in_stack_00000038 = uStackX_20;
+                in_stack_00000038 = StackParameter20;
                 in_stack_00000028 = &UNK_1809839d8;
                 in_stack_00000030 = register_R13D;
                 fStack0000000000000040 = fVar19;
@@ -19518,7 +19525,7 @@ ProcessDataSecurityValidation:
             do {
               fVar1 = *(float *)(register_R15 + -0x180985054 + (int64_t)pfVar21);
               if (fVar1 != *pfVar21) {
-                in_stack_00000038 = uStackX_20;
+                in_stack_00000038 = StackParameter20;
                 in_stack_00000028 = &UNK_180983950;
                 in_stack_00000030 = register_R13D;
                 fStack0000000000000040 = fVar19;
@@ -19533,7 +19540,7 @@ ProcessDataSecurityValidation:
             functionReturnValue4 = floatResultA_04;
             if ((float)(dataValue4 / 0x30) != 0.0) {
               in_stack_00000028 = &UNK_180983be8;
-              in_stack_00000038 = uStackX_20;
+              in_stack_00000038 = StackParameter20;
               in_stack_00000030 = register_R13D;
               fStack0000000000000040 = (float)(dataValue4 / 0x30);
               inputParameter3 = ValidateDataIntegrityA0(floatResultA_04,&stack0x00000028);
@@ -19542,7 +19549,7 @@ ProcessDataSecurityValidation:
             }
             if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
               in_stack_00000028 = &UNK_180983a60;
-              in_stack_00000038 = uStackX_20;
+              in_stack_00000038 = StackParameter20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               in_stack_00000030 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(functionReturnValue4,&stack0x00000028);
@@ -19551,7 +19558,7 @@ ProcessDataSecurityValidation:
             inputParameter3 = ProcessUtilityOperation(systemContext);
             if (inputParameter3 != 2) {
               in_stack_00000028 = &UNK_180983ae8;
-              in_stack_00000038 = uStackX_20;
+              in_stack_00000038 = StackParameter20;
               in_stack_00000030 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(floatResultA_06,&stack0x00000028);
               if (inputParameter3 != 0) GOTO_SecurityTerminationA2;
@@ -19560,7 +19567,7 @@ ProcessDataSecurityValidation:
             functionReturnValue4 = floatResultA_07;
             if (inputParameter3 == 4) {
               in_stack_00000028 = &UNK_180983b68;
-              in_stack_00000038 = uStackX_20;
+              in_stack_00000038 = StackParameter20;
               in_stack_00000030 = register_R13D;
               fStack0000000000000040 = register_R13D;
               inputParameter3 = ValidateDataIntegrityA0(floatResultA_07,&stack0x00000028);
@@ -19569,7 +19576,7 @@ ProcessDataSecurityValidation:
             }
             if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
               in_stack_00000028 = &UNK_180983cf8;
-              in_stack_00000038 = uStackX_20;
+              in_stack_00000038 = StackParameter20;
               in_stack_00000030 = register_R13D;
               ValidateDataIntegrityA0(functionReturnValue4,&stack0x00000028);
             }
@@ -19632,7 +19639,7 @@ ValidateDataSecurity:
   DataWord floatResultA_07;
   DataWord register_XMM6_Da;
   DataWord register_XMM6_Dc;
-  DataWord uStackX_20;
+  DataWord StackParameter20;
   char acStackX_24 [4];
   uint8_t *InputParam28;
   float InputParam30;
@@ -19660,7 +19667,7 @@ ValidateDataSecurity:
       if ((charSystemStatus == '\0') && (*(float *)(dataContext + 0x4c) != *(float *)(calculatedOffset + 0x28))) {
         functionReturnValue3 = *(DataWord *)(functionReturnValue0 + 4 + validationContext5);
         stackFramePointer[-4] = &SystemMemoryInitializationReference;
-        *(DataWord *)(stackFramePointer + -2) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -2) = StackParameter20;
         pmemoryBaseAddress = (DataBuffer *)*in_stack_00000058;
         *(DataWord *)(stackFramePointer + -1) = functionReturnValue3;
         *(DataWord *)(stackFramePointer + -3) = 0;
@@ -19707,7 +19714,7 @@ ValidateDataSecurity:
         statusCounter = *(DataWord *)(register_R15 + 0x5c);
         loopCounter = *(DataWord *)(register_R15 + 0x60);
         dataValue1 = *(DataWord *)(register_R15 + 100);
-        *(DataWord *)(stackFramePointer + -0xc) = uStackX_20;
+        *(DataWord *)(stackFramePointer + -0xc) = StackParameter20;
         *(DataWord *)(stackFramePointer + -9) = functionReturnValue3;
         *(DataWord *)((int64_t)stackFramePointer + -0x44) = operationResult;
         *(DataWord *)(stackFramePointer + -8) = dataFlags;
@@ -19728,7 +19735,7 @@ ValidateDataSecurity:
       if (in_stack_00000048._4_4_ != 1.0) {
         fStack0000000000000040 = in_stack_00000048._4_4_;
         in_stack_00000028 = &UNK_180983738;
-        in_stack_00000038 = uStackX_20;
+        in_stack_00000038 = StackParameter20;
         in_stack_00000030 = register_R13D;
         inputParameter3 = ValidateDataIntegrityA0(in_stack_00000048._4_4_,&stack0x00000028);
         in_stack_00000048._4_4_ = floatResultA_02;
@@ -19739,7 +19746,7 @@ ValidateDataSecurity:
         if (in_stack_00000050 != 1.0) {
           fStack0000000000000040 = in_stack_00000050;
           in_stack_00000028 = &UNK_1809837c0;
-          in_stack_00000038 = uStackX_20;
+          in_stack_00000038 = StackParameter20;
           in_stack_00000030 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(in_stack_00000050,&stack0x00000028);
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
@@ -19749,7 +19756,7 @@ ValidateDataSecurity:
         do {
           fVar1 = *pfVar21;
           if (fVar1 != 0.0) {
-            in_stack_00000038 = uStackX_20;
+            in_stack_00000038 = StackParameter20;
             in_stack_00000028 = &UNK_1809839d8;
             in_stack_00000030 = register_R13D;
             fStack0000000000000040 = fVar19;
@@ -19765,7 +19772,7 @@ ValidateDataSecurity:
         do {
           fVar1 = *(float *)(register_R15 + -0x180985054 + (int64_t)pfVar21);
           if (fVar1 != *pfVar21) {
-            in_stack_00000038 = uStackX_20;
+            in_stack_00000038 = StackParameter20;
             in_stack_00000028 = &UNK_180983950;
             in_stack_00000030 = register_R13D;
             fStack0000000000000040 = fVar19;
@@ -19780,7 +19787,7 @@ ValidateDataSecurity:
         functionReturnValue3 = floatResultA_03;
         if ((float)(dataValue4 / 0x30) != 0.0) {
           in_stack_00000028 = &UNK_180983be8;
-          in_stack_00000038 = uStackX_20;
+          in_stack_00000038 = StackParameter20;
           in_stack_00000030 = register_R13D;
           fStack0000000000000040 = (float)(dataValue4 / 0x30);
           inputParameter3 = ValidateDataIntegrityA0(floatResultA_03,&stack0x00000028);
@@ -19789,7 +19796,7 @@ ValidateDataSecurity:
         }
         if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
           in_stack_00000028 = &UNK_180983a60;
-          in_stack_00000038 = uStackX_20;
+          in_stack_00000038 = StackParameter20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           in_stack_00000030 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(functionReturnValue3,&stack0x00000028);
@@ -19798,7 +19805,7 @@ ValidateDataSecurity:
         inputParameter3 = ProcessUtilityOperation(systemContext);
         if (inputParameter3 != 2) {
           in_stack_00000028 = &UNK_180983ae8;
-          in_stack_00000038 = uStackX_20;
+          in_stack_00000038 = StackParameter20;
           in_stack_00000030 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(floatResultA_05,&stack0x00000028);
           if (inputParameter3 != 0) GOTO_SecurityTerminationA1;
@@ -19807,7 +19814,7 @@ ValidateDataSecurity:
         functionReturnValue3 = floatResultA_06;
         if (inputParameter3 == 4) {
           in_stack_00000028 = &UNK_180983b68;
-          in_stack_00000038 = uStackX_20;
+          in_stack_00000038 = StackParameter20;
           in_stack_00000030 = register_R13D;
           fStack0000000000000040 = register_R13D;
           inputParameter3 = ValidateDataIntegrityA0(floatResultA_06,&stack0x00000028);
@@ -19816,7 +19823,7 @@ ValidateDataSecurity:
         }
         if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
           in_stack_00000028 = &UNK_180983cf8;
-          in_stack_00000038 = uStackX_20;
+          in_stack_00000038 = StackParameter20;
           in_stack_00000030 = register_R13D;
           ValidateDataIntegrityA0(functionReturnValue3,&stack0x00000028);
         }
@@ -19893,7 +19900,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     do {
       processedValue = *dataPointer;
       if (fVar1 != 0.0) {
-        in_stack_00000038 = uStackX_20;
+        in_stack_00000038 = StackParameter20;
         in_stack_00000028 = &UNK_1809839d8;
         in_stack_00000030 = register_R13D;
         fStack0000000000000040 = fVar4;
@@ -19909,7 +19916,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     do {
       fVar1 = *(float *)(register_R15 + -0x180985054 + (int64_t)pfVar5);
       if (fVar1 != *pfVar5) {
-        in_stack_00000038 = uStackX_20;
+        in_stack_00000038 = StackParameter20;
         in_stack_00000028 = &UNK_180983950;
         in_stack_00000030 = register_R13D;
         fStack0000000000000040 = fVar4;
@@ -19924,7 +19931,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     dataFlags = floatResultA_00;
     if ((float)(validationStatus / 0x30) != 0.0) {
       in_stack_00000028 = &UNK_180983be8;
-      in_stack_00000038 = uStackX_20;
+      in_stack_00000038 = StackParameter20;
       in_stack_00000030 = register_R13D;
       fStack0000000000000040 = (float)(validationStatus / 0x30);
       operationResult = ValidateDataIntegrityA0(floatResultA_00,&stack0x00000028);
@@ -19933,7 +19940,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     }
     if ((*(uint *)(systemContext + 0x2d8) >> 1 & 1) != 0) {
       in_stack_00000028 = &UNK_180983a60;
-      in_stack_00000038 = uStackX_20;
+      in_stack_00000038 = StackParameter20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       in_stack_00000030 = register_R13D;
       operationResult = ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
@@ -19942,7 +19949,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     operationResult = ProcessUtilityOperation();
     if (operationResult != 2) {
       in_stack_00000028 = &UNK_180983ae8;
-      in_stack_00000038 = uStackX_20;
+      in_stack_00000038 = StackParameter20;
       in_stack_00000030 = register_R13D;
       operationResult = ValidateDataIntegrityA0(floatResultA_02,&stack0x00000028);
       if (operationResult != 0) GOTO_ValidationFailure;
@@ -19951,7 +19958,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     dataFlags = floatResultA_03;
     if (operationResult == 4) {
       in_stack_00000028 = &UNK_180983b68;
-      in_stack_00000038 = uStackX_20;
+      in_stack_00000038 = StackParameter20;
       in_stack_00000030 = register_R13D;
       fStack0000000000000040 = register_R13D;
       operationResult = ValidateDataIntegrityA0(floatResultA_03,&stack0x00000028);
@@ -19960,7 +19967,7 @@ void ProcessFloatingPointDataA0(float inputValue)
     }
     if ((*(uint *)(systemContext + 0x2d8) >> 3 & 1) != 0) {
       in_stack_00000028 = &UNK_180983cf8;
-      in_stack_00000038 = uStackX_20;
+      in_stack_00000038 = StackParameter20;
       in_stack_00000030 = register_R13D;
       ValidateDataIntegrityA0(dataFlags,&stack0x00000028);
     }
