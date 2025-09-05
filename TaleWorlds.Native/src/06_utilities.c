@@ -96546,7 +96546,22 @@ void ExecuteResourceValidationAlternate(uint8_t ObjectContext, int64_t Validatio
 
 
 
-void Unwind_18090f7c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源请求处理操作
+ * 
+ * 该函数负责执行资源请求处理操作。
+ * 调用ProcessResourceRequest函数来处理资源请求。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceRequest函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f7c0
+ */
+void ExecuteResourceRequestProcessing(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceRequest(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x10),
@@ -96556,7 +96571,22 @@ void Unwind_18090f7c0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f7d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源请求处理备用操作
+ * 
+ * 该函数负责执行资源请求处理的备用操作。
+ * 调用ProcessResourceRequest函数来处理资源请求（备用版本）。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceRequest函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f7d0
+ */
+void ExecuteResourceRequestProcessingAlternate(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceRequest(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + ValidationContextTertiaryCountOffset) + 0x10),
@@ -96566,7 +96596,20 @@ void Unwind_18090f7d0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f7e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行资源表遍历和清理操作
+ * 
+ * 该函数负责遍历资源表并执行清理操作。
+ * 从验证上下文中获取资源表指针，遍历所有资源并执行清理。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @return 无返回值
+ * @note 此函数会遍历资源表并调用ExecuteResourceFinalization函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f7e0
+ */
+void ExecuteResourceTableTraversalAndCleanup(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -96586,7 +96629,22 @@ void Unwind_18090f7e0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090f7f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源配置操作
+ * 
+ * 该函数负责执行资源配置操作。
+ * 调用ProcessResourceConfiguration函数来处理资源配置。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceConfiguration函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f7f0
+ */
+void ExecuteResourceConfiguration(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceConfiguration(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
@@ -96596,7 +96654,22 @@ void Unwind_18090f7f0(uint8_t ObjectContext,int64_t ValidationContext,uint8_t Cl
 
 
 
-void Unwind_18090f800(uint8_t ObjectContext,int64_t ValidationContext,uint8_t CleanupOption,uint8_t CleanupFlag)
+/**
+ * @brief 执行资源配置备用操作
+ * 
+ * 该函数负责执行资源配置的备用操作。
+ * 调用ProcessResourceConfiguration函数来处理资源配置（备用版本）。
+ * 
+ * @param ObjectContext 对象上下文，包含系统对象的相关信息
+ * @param ValidationContext 验证上下文，用于验证操作的合法性
+ * @param CleanupOption 清理选项，控制清理行为的具体参数
+ * @param CleanupFlag 清理标志，指定清理操作的标志位
+ * @return 无返回值
+ * @note 此函数会调用ProcessResourceConfiguration函数
+ * @warning 调用此函数前必须确保验证上下文已正确初始化
+ * @remark 原始函数名：Unwind_18090f800
+ */
+void ExecuteResourceConfigurationAlternate(uint8_t ObjectContext, int64_t ValidationContext, uint8_t CleanupOption, uint8_t CleanupFlag)
 
 {
   ProcessResourceConfiguration(*(int64_t *)(ValidationContext + SystemContextResourceOffset),*(uint8_t *)(*(int64_t *)(ValidationContext + SystemContextResourceOffset) + 0x10),
