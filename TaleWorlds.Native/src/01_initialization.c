@@ -30072,9 +30072,9 @@ SystemResourceCounterContinue:
             *(void* *)(*SystemMemoryPointer + 0x68) = *(void* *)(SystemOperationResult + ResourceDataPosition);
             SystemMemoryPointer = SystemMemoryPointer + 1;
             ResourceDataPosition = *(long long *)(SystemResourceManager + 0x48);
-          } while (pSystemMemoryPointer != *(long long **)(*(long long *)(ResourceDataPosition + ResourceDataLocation * 8) + 0x50));
+          } while (SystemMemoryPointer != *(long long **)(*(long long *)(ResourceDataPosition + ResourceDataLocation * 8) + 0x50));
         }
-        resourceCounter = *(long long *)(ResourceDataPosition + ResourceDataLocation * 8);
+        ResourceCount = *(long long *)(ResourceDataPosition + ResourceDataLocation * 8);
         ProcessSystemParameters(*(long long *)(SystemOperationResult + ResourceDataPosition) + 0x48,
                       *(void* *)(*(long long *)(SystemOperationResult + ResourceDataPosition) + 0x50),
                       *(void* *)(resourceCounter + 0x48),*(void* *)(resourceCounter + 0x50));
