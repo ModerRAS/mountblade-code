@@ -5195,12 +5195,12 @@ undefined8 CheckNullPointerAccess(void)
 
 
 
-// 函数: undefined8 ConditionalResourceRelease(char param_1)
+// 函数: undefined8 ConditionalResourceRelease(char shouldRelease)
 // 功能：条件性资源释放，根据字符参数决定是否执行资源释放操作
-undefined8 ConditionalResourceRelease(char param_1)
+undefined8 ConditionalResourceRelease(char shouldRelease)
 
 {
-  if (param_1 != '\0') {
+  if (shouldRelease != '\0') {
                     // WARNING: Subroutine does not return
     ReleaseResource();
   }
