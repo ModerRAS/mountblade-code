@@ -6165,7 +6165,7 @@ void InitializeSystemResourceNode(void)
     CurrentNodePointer = NextNodePointer;
     IsResourceNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((PreviousNodePointer == RootNodeReference) || (ResourceIdentifierComparisonResult = memcmp(&SystemDataTemplateJ,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),0x10), ResourceIdentifierComparisonResult < 0)) {
+  if ((PreviousNodePointer == RootNodeReference) || (ResourceIdentifierComparisonResult = memcmp(&SystemDataTemplateJ,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),SystemIdentifierComparisonSize), ResourceIdentifierComparisonResult < 0)) {
     long long SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** AllocatedNodePointer;
     AllocateSystemMemory(SystemDataTable,&AllocatedNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
@@ -6210,7 +6210,7 @@ void InitializeSystemEventNode(void)
   PreviousNodePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (!IsEventNodeActive) {
-    EventIdentifierComparisonResult = memcmp((void*)((long long)CurrentNodePointer + NodeIdentifierOffset),&SystemDataTemplateK,0x10);
+    EventIdentifierComparisonResult = memcmp((void*)((long long)CurrentNodePointer + NodeIdentifierOffset),&SystemDataTemplateK,SystemIdentifierComparisonSize);
     if (EventIdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
@@ -6222,7 +6222,7 @@ void InitializeSystemEventNode(void)
     CurrentNodePointer = NextNodePointer;
     IsEventNodeActive = *(bool*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
-  if ((PreviousNodePointer == RootNodeReference) || (EventIdentifierComparisonResult = memcmp(&SystemDataTemplateK,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),0x10), EventIdentifierComparisonResult < 0)) {
+  if ((PreviousNodePointer == RootNodeReference) || (EventIdentifierComparisonResult = memcmp(&SystemDataTemplateK,(void*)((long long)PreviousNodePointer + NodeIdentifierOffset),SystemIdentifierComparisonSize), EventIdentifierComparisonResult < 0)) {
     long long SystemMemoryAllocationSize = GetSystemMemorySize(SystemDataTable);
     void** AllocatedNodePointer;
     AllocateSystemMemory(SystemDataTable,&AllocatedNodePointer,PreviousNodePointer,SystemMemoryAllocationSize + NodeAllocationExtraSize,SystemMemoryAllocationSize);
@@ -6267,7 +6267,7 @@ void InitializeSystemMemoryNode(void)
   PreviousNodePointer = RootNodeReference;
   CurrentNodePointer = (void**)RootNodeReference[RootNodeCurrentNodeIndex];
   while (!IsMemoryNodeActive) {
-    MemoryIdentifierComparisonResult = memcmp((void*)((long long)CurrentNodePointer + NodeIdentifierOffset),&SystemDataTemplateL,0x10);
+    MemoryIdentifierComparisonResult = memcmp((void*)((long long)CurrentNodePointer + NodeIdentifierOffset),&SystemDataTemplateL,SystemIdentifierComparisonSize);
     if (MemoryIdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;

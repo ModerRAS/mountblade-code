@@ -2284,6 +2284,14 @@
 // 功能：验证内存状态并执行清理操作
 #define ValidateAndCleanMemoryL0 FUN_180941e90
 
+// 原始函数名：FUN_18005a050 - 系统数据清理函数A0
+// 功能：清理系统数据和临时资源
+#define CleanupSystemDataA0 FUN_18005a050
+
+// 原始函数名：FUN_180059ee0 - 系统内存清理函数A0
+// 功能：清理系统内存和重置内存状态
+#define CleanupSystemMemoryA0 FUN_180059ee0
+
 // 原始函数名：Unwind_180907900 - 异常处理函数B5
 // 功能：调用异常处理函数并传递参数
 #define InvokeExceptionHandlerWithParamsE Unwind_180907900
@@ -3110,6 +3118,13 @@ uint32_t UtilitySystemStatus1;
 #define SystemExceptionHandlerState _DAT_180d49248      // 系统异常处理状态
 #define SystemExceptionCleanupFlag _DAT_180d49258       // 系统异常清理标志
 #define TemporaryExceptionHandler UNK_180a3c3e0         // 临时异常处理器
+
+// 系统清理相关变量宏定义
+#define SystemCleanupFlag DAT_180c91d50               // 系统清理标志
+#define SystemCleanupCounter _DAT_180c91d30            // 系统清理计数器
+#define SystemCleanupPointer _DAT_180c91d28            // 系统清理指针
+#define SystemCleanupHandler _DAT_180c91d18            // 系统清理处理器
+#define SystemCleanupStatus _DAT_180c91cf0             // 系统清理状态
 
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针
@@ -87793,26 +87808,25 @@ void UtilityInitializePointer2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-941bf0(void)
-void FUN_180941bf0(void)
+void CleanupSystemStateAndResourcesH0(void)
 
 {
-  if (DAT_180c91d50 != '\0') {
-    FUN_18005a050();
-    if ((1 < _DAT_180c91d30) && (_DAT_180c91d28 != 0)) {
+  if (SystemCleanupFlag != '\0') {
+    CleanupSystemDataA0();
+    if ((1 < SystemCleanupCounter) && (SystemCleanupPointer != 0)) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
-    if (_DAT_180c91d18 != (longlong *)0x0) {
-      (**(code **)(*_DAT_180c91d18 + 0x38))();
+    if (SystemCleanupHandler != (longlong *)0x0) {
+      (**(code **)(*SystemCleanupHandler + 0x38))();
     }
-    if (_DAT_180c91cf0 != 0) {
+    if (SystemCleanupStatus != 0) {
                     // WARNING: Subroutine does not return
       TerminateSystemE0();
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
-    FUN_180059ee0(0x180c919f0);
+    CleanupSystemMemoryA0(0x180c919f0);
 
 941d00(void)
 void FUN_180941d00(void)
