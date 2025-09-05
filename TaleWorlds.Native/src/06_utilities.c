@@ -9005,16 +9005,16 @@ undefined8 ValidateResourceAndTerminateB(longlong resourceHandle)
 undefined4 NoOperationC(void)
 
 {
-  longlong stackParameter40;
+  longlong ResourceHandlePointer;
   
-  if (stackParameter40 != 0) {
-    stackParameter40 = stackParameter40 + -8;
+  if (ResourceHandlePointer != 0) {
+    ResourceHandlePointer = ResourceHandlePointer + -8;
   }
-  if (*(longlong *)(stackParameter40 + 0x10) == 0) {
+  if (*(longlong *)(ResourceHandlePointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(stackParameter40 + 0x10),1);
+  ReleaseResource(*(longlong *)(ResourceHandlePointer + 0x10),1);
 }
 
 
@@ -9113,16 +9113,16 @@ undefined8 ValidateResourceAndReleaseA(longlong resourceParam)
 undefined4 NoOperationH(void)
 
 {
-  longlong stackParameter40;
+  longlong ResourceHandlePointer;
   
-  if (stackParameter40 != 0) {
-    stackParameter40 = stackParameter40 + -8;
+  if (ResourceHandlePointer != 0) {
+    ResourceHandlePointer = ResourceHandlePointer + -8;
   }
-  if (*(longlong *)(stackParameter40 + 0x10) == 0) {
+  if (*(longlong *)(ResourceHandlePointer + 0x10) == 0) {
     return 0x1c;
   }
                     // WARNING: Subroutine does not return
-  ReleaseResource(*(longlong *)(stackParameter40 + 0x10),1);
+  ReleaseResource(*(longlong *)(ResourceHandlePointer + 0x10),1);
 }
 
 
@@ -25158,6 +25158,13 @@ ValidationLabelD:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 系统数据验证处理函数
+ * 
+ * 该函数用于处理系统数据的验证操作，包括内存分配、数据处理和安全性检查
+ * 
+ * @note 原始函数名：FUN_18089c1fb
+ */
 undefined8 * FUN_18089c1fb(void)
 
 {
@@ -25413,6 +25420,13 @@ ValidationLabelD:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 系统数据处理函数B
+ * 
+ * 该函数用于处理系统数据，执行验证和安全性检查操作
+ * 
+ * @note 原始函数名：FUN_18089c22e
+ */
 undefined8 * FUN_18089c22e(void)
 
 {
@@ -25660,6 +25674,14 @@ ValidationLabelD:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 系统数据处理函数C
+ * 
+ * 该函数用于处理系统数据，执行验证和安全性检查操作
+ * 
+ * @param param_1 输入参数，包含系统上下文信息
+ * @note 原始函数名：FUN_18089c2d8
+ */
 ulonglong FUN_18089c2d8(undefined8 param_1)
 
 {
@@ -25928,6 +25950,16 @@ void UtilityNoOperationO(void)
 
 
 
+/**
+ * @brief 内存查找函数A0
+ * 
+ * 该函数用于在内存中查找指定数据并返回查找结果
+ * 
+ * @param param_1 输入参数，包含查找条件
+ * @param param_2 指向内存区域的指针
+ * @return 查找结果状态码
+ * @note 原始函数名：FUN_18089c630
+ */
 ulonglong FUN_18089c630(longlong param_1,longlong *param_2)
 
 {
@@ -26280,6 +26312,14 @@ DataProcessingHandler:
 
 
 
+/**
+ * @brief 系统数据处理函数D
+ * 
+ * 该函数用于处理系统数据，执行验证和安全性检查操作
+ * 
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089c69d
+ */
 ulonglong FUN_18089c69d(void)
 
 {
@@ -26643,6 +26683,14 @@ ValidationErrorHandler2:
 
 
 
+/**
+ * @brief 系统数据处理函数E
+ * 
+ * 该函数用于处理系统数据，执行验证和安全性检查操作
+ * 
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089c86d
+ */
 ulonglong FUN_18089c86d(void)
 
 {
@@ -26892,6 +26940,14 @@ ValidationErrorHandler2:
 
 
 
+/**
+ * @brief 系统数据处理函数F
+ * 
+ * 该函数用于处理系统数据，执行验证和安全性检查操作
+ * 
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089c872
+ */
 ulonglong FUN_18089c872(void)
 
 {
@@ -27142,6 +27198,15 @@ ValidationErrorHandler2:
 
 
 
+/**
+ * @brief 浮点数据处理函数
+ * 
+ * 该函数用于处理浮点数据，执行验证和安全性检查操作
+ * 
+ * @param param_1 输入的浮点参数
+ * @return 处理结果状态码
+ * @note 原始函数名：FUN_18089c94a
+ */
 ulonglong FUN_18089c94a(float param_1)
 
 {
