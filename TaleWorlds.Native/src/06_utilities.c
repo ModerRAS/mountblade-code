@@ -16874,7 +16874,10 @@ undefined8 ValidateDataA1(longlong *param_1,char param_2)
 
 
 
-undefined8 FUN_1808988b0(longlong *param_1,char *param_2,undefined8 *param_3)
+// 原始函数名：FUN_1808988b0 - 数据处理函数A2
+// 功能：处理复杂数据结构并执行相应操作
+#define ProcessComplexDataA2 FUN_1808988b0
+undefined8 ProcessComplexDataA2(longlong *param_1,char *param_2,undefined8 *param_3)
 
 {
   char *pcVar1;
@@ -17150,7 +17153,10 @@ undefined4 ProcessDataItem(longlong *dataContext,int itemIndex,undefined4 *outpu
 // 功能：处理系统数据B，执行数据验证和转换操作
 // 参数：systemHandle-系统句柄，operationIndex-操作索引，outputBuffer-输出缓冲区
 // 返回值：操作结果状态码
-undefined4 FUN_180898b65(undefined8 param_1,int param_2,undefined4 *param_3)
+// 原始函数名：FUN_180898b65 - 数据处理函数F0
+// 功能：处理输入数据并返回32位结果
+#define ProcessDataF0 FUN_180898b65
+undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
 
 {
   DataBuffer *dataBuffer;
