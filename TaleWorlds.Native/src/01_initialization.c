@@ -33893,7 +33893,7 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   void* localStackPointerTertiary;
   uint32_t globalStatusFlags;
   uint32_t stackIterationCount;
-  long long stackValue16;
+  long long StackRegisterValuePrimary;
   uint32_t stackOperationIndex;
   void* ******StackPointer1;
   uint64_t SystemContextValueSecondary;

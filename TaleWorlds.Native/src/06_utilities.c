@@ -3988,16 +3988,6 @@
 // 功能：处理数据操作
 #define ProcessDataOperationA9 FUN_1808db8c0
 
-// 函数: void InitializeUtilityModule(void)
-// 
-// 初始化工具模块
-// 设置全局指针和初始化内部数据结构
-// 
-// 参数:
-//   无
-// 
-// 返回值:
-//   无
 /**
  * @brief 初始化工具模块
  * 
