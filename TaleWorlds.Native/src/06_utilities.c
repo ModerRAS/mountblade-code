@@ -26323,15 +26323,15 @@ ulonglong ProcessSystemDataA0(longlong systemContext, longlong *validationContex
   ulonglong dataFlags;
   
   operationResult = 1;
-  validationStatus = FUN_1808ddc20(param_2,auStack_60,1,0x4d524150);
+  validationStatus = FUN_1808ddc20(validationContext,securityBuffer2,1,0x4d524150);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  validationStatus = FUN_1808ddc20(param_2,auStack_80,0,0x424d5250);
+  validationStatus = FUN_1808ddc20(validationContext,securityBuffer1,0,0x424d5250);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  validationStatus = FUN_180899360(param_2,param_1 + 0x10);
+  validationStatus = FUN_180899360(validationContext,systemContext + 0x10);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
@@ -26339,9 +26339,9 @@ ulonglong ProcessSystemDataA0(longlong systemContext, longlong *validationContex
   dataFlags = 0;
   securityCheckResult = 0;
   validationStatus = dataFlags;
-  if (0x6f < *(uint *)(param_2 + 8)) {
-    if (*(int *)(param_2[1] + 0x18) == 0) {
-      validationStatus = OperateDataO0(*param_2,param_1 + 0x34,4);
+  if (0x6f < *(uint *)(validationContext + 8)) {
+    if (*(int *)(validationContext[1] + 0x18) == 0) {
+      validationStatus = OperateDataO0(*validationContext,systemContext + 0x34,4);
     }
     else {
       validationStatus = 0x1c;
@@ -26350,59 +26350,59 @@ ulonglong ProcessSystemDataA0(longlong systemContext, longlong *validationContex
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  uVar9 = securityCheckResult;
-  if (*(uint *)(param_2 + 8) < 0x70) {
-    if (*(int *)(param_2[1] + 0x18) != 0) {
-      uVar9 = 0x1c;
+  dataFlags1 = securityCheckResult;
+  if (*(uint *)(validationContext + 8) < 0x70) {
+    if (*(int *)(validationContext[1] + 0x18) != 0) {
+      dataFlags1 = 0x1c;
       goto LAB_18089c78f;
     }
-    validationContextPointer = (longlong *)*param_2;
+    validationContextPointer = (longlong *)*validationContext;
     if (*validationContextPointer == 0) {
-      uVar9 = 0x1c;
+      dataFlags1 = 0x1c;
     }
     else if (validationContextPointer[2] == 0) {
 OperationLabelA:
-      uVar9 = ValidateDataAndReturnStatusO3(*validationContextPointer,auStackX_18,1,1,0);
+      dataFlags1 = ValidateDataAndReturnStatusO3(*validationContextPointer,validationBuffer1,1,1,0);
     }
     else {
-      auStackX_20[0] = 0;
-      uVar9 = AllocateMemory(*validationContextPointer,auStackX_20);
-      if (uVar9 == 0) {
-        if ((ulonglong)auStackX_20[0] + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089c743;
-        uVar9 = 0x11;
+      validationBuffer2[0] = 0;
+      dataFlags1 = AllocateMemory(*validationContextPointer,validationBuffer2);
+      if (dataFlags1 == 0) {
+        if ((ulonglong)validationBuffer2[0] + 1 <= (ulonglong)validationContextPointer[2]) goto LAB_18089c743;
+        dataFlags1 = 0x11;
       }
     }
-    if (uVar9 == 0) {
-      auStackX_20[0] = (uint)((char)auStackX_18[0] != '\0');
-      uStack_88 = (uint)((char)auStackX_18[0] == '\0');
-      uVar9 = 0;
+    if (dataFlags1 == 0) {
+      validationBuffer2[0] = (uint)((char)validationBuffer1[0] != '\0');
+      stackData1 = (uint)((char)validationBuffer1[0] == '\0');
+      dataFlags1 = 0;
     }
     else {
-      auStackX_20[0] = 0;
-      uStack_88 = 1;
-      if (uVar9 == 0) {
-        uVar9 = securityCheckResult;
+      validationBuffer2[0] = 0;
+      stackData1 = 1;
+      if (dataFlags1 == 0) {
+        dataFlags1 = securityCheckResult;
       }
     }
   }
   else {
 OperationLabelB:
-    uStack_88 = 1;
-    auStackX_20[0] = 0;
+    stackData1 = 1;
+    validationBuffer2[0] = 0;
   }
-  if (uVar9 != 0) {
-    return (ulonglong)uVar9;
+  if (dataFlags1 != 0) {
+    return (ulonglong)dataFlags1;
   }
-  if (*(int *)(param_2[1] + 0x18) != 0) {
+  if (*(int *)(validationContext[1] + 0x18) != 0) {
     return 0x1c;
   }
-  validationContextPointer = (longlong *)*param_2;
+  validationContextPointer = (longlong *)*validationContext;
   if (*validationContextPointer == 0) {
     validationStatus = 0x1c;
   }
   else {
     if (validationContextPointer[2] != 0) {
-      auStackX_18[0] = 0;
+      validationBuffer1[0] = 0;
       validationStatus = AllocateMemory(*validationContextPointer,auStackX_18);
       if ((int)validationStatus != 0) {
         return validationStatus;
