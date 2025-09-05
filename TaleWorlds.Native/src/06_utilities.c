@@ -5145,24 +5145,24 @@ void ProcessResourceCleanup(void)
       if (0 < ResourceCount) {
         ResourceOffset = 0;
         do {
-          resourceHandle = *(undefined8 *)(stackBuffer + resourceOffset);
-          operationResult = ProcessUtilityOperation(resourceHandle);
-          if (operationResult != 2) {
+          ResourceHandle = *(uint64_t *)(StackBuffer + ResourceOffset);
+          OperationResult = ProcessUtilityOperation(ResourceHandle);
+          if (OperationResult != 2) {
                     // WARNING: Subroutine does not return
-            ReleaseResource(resourceHandle,1);
+            ReleaseResource(ResourceHandle,1);
           }
-          cleanupCounter = cleanupCounter + 1;
-          resourceOffset = resourceOffset + 8;
-        } while (cleanupCounter < resourceCount);
+          CleanupCounter = CleanupCounter + 1;
+          ResourceOffset = ResourceOffset + 8;
+        } while (CleanupCounter < ResourceCount);
       }
-      CleanupMemory(&functionCallBuffer);
+      CleanupMemory(&FunctionCallBuffer);
     }
     else {
-      CleanupMemory(&functionCallBuffer);
+      CleanupMemory(&FunctionCallBuffer);
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityParameter ^ (ulonglong)&securityValidationBuffer);
+  ExecuteSecurityCheck(SecurityParameter ^ (uint64_t)&SecurityValidationBuffer);
 }
 
 
