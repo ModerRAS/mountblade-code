@@ -12945,23 +12945,30 @@ undefined8 ProcessFloatingPointArrayA0(longlong ArrayDescriptor,longlong SystemC
 
 
 
-// 系统状态获取函数A0
+/**
+ * @brief 获取系统状态信息
+ * 
+ * 该函数用于获取系统状态信息，包括数据验证、浮点数处理和数组操作
+ * 主要用于系统监控和状态检查
+ * 
+ * @return 系统状态码，成功时返回0，失败时返回错误码
+ */
 undefined8 GetSystemStatusA0(void)
 
 {
-  float fVar1;
-  int operationResult;
-  int ArrayIndexCheck;
-  longlong in_RAX;
-  float *pfVar4;
-  longlong registerContext;
-  longlong lVar5;
-  ulonglong dataFlags;
-  float *pfVar7;
-  uint in_R9D;
-  uint securityCheckResult;
-  longlong unaff_R15;
-  float fVar9;
+  float inputValue;
+  int validationStatus;
+  int arrayIndex;
+  longlong dataPointer;
+  float *floatArrayPointer;
+  longlong contextRegister;
+  longlong dataNodePointer;
+  ulonglong systemFlags;
+  float *floatArrayBase;
+  uint validationParameter;
+  uint securityCheckStatus;
+  longlong systemContext;
+  float resultValue;
   
   dataFlags = in_RAX - 8;
   if (in_RAX == 0) {
@@ -26413,18 +26420,18 @@ OperationLabelB:
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      if ((ulonglong)validationContextPointer[2] < (ulonglong)auStackX_18[0] + 4) {
+      if ((ulonglong)validationContextPointer[2] < (ulonglong)validationBuffer1[0] + 4) {
         validationStatus = 0x11;
         goto LAB_18089c808;
       }
     }
-    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&uStack_84,1,4,0);
+    validationStatus = ValidateDataAndReturnStatusO3(*validationContextPointer,&stackData2,1,4,0);
   }
 OperationLabelC:
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  switch(uStack_84) {
+  switch(stackData2) {
   case 0:
     memoryBaseAddress = 0;
     break;
