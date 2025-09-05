@@ -5707,9 +5707,9 @@ void* GlobalDataPointerA49Status;     // DAT_180bfa9e8
 void* GlobalDataPointerA49Config;     // DAT_180bfa9f0
 void* GlobalDataPointerA49Cache;      // DAT_180bfa9f8
 void* GlobalDataPointerA50Storage;    // DAT_180bfaa78
-undefined DAT_180bfaa80;
-undefined DAT_180bfaa88;
-undefined DAT_180bfaa90;
+undefined SystemDataBufferA80;
+undefined SystemDataBufferA88;
+undefined SystemDataBufferA90;
 undefined UtilitySystemControlFlag620;
 undefined UtilitySystemDataPointerD0;
 undefined UtilitySystemDataPointerF0;
@@ -5717,14 +5717,14 @@ undefined SystemDataBufferTertiary;
 undefined SystemDataBufferQuaternary;
 undefined SystemDataBufferQuinary;
 undefined SystemDataBufferSenary;
-undefined DAT_180bfab10;
-undefined DAT_180bfab18;
-undefined DAT_180bfab20;
-undefined DAT_180bfab28;
-undefined DAT_180bfaba8;
-undefined DAT_180bfabb0;
-undefined DAT_180bfabb8;
-undefined DAT_180bfabc0;
+undefined SystemDataBufferB10;
+undefined SystemDataBufferB18;
+undefined SystemDataBufferB20;
+undefined SystemDataBufferB28;
+undefined SystemDataBufferBA8;
+undefined SystemDataBufferBB0;
+undefined SystemDataBufferBB8;
+undefined SystemDataBufferBC0;
 undefined DAT_180bfac40;
 undefined DAT_180bfac48;
 undefined DAT_180bfac50;
