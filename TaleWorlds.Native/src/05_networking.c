@@ -1349,11 +1349,11 @@ void StartListeningForConnections(void)
 {
   // 设置监听队列参数
   NetworkConnectionRequestQueue = NetworkQueueEnabled;                // 初始化连接请求队列
-  NetworkPendingRequestCount = 0;                     // 重置网络待处理请求数量为0
+  NetworkPendingConnectionCount = 0;                     // 重置网络待处理请求数量为0
   
   // 设置连接限制参数
-  NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;                // 设置最大连接数为100
-  NetworkCurrentActiveConnectionsCount = 0;                   // 重置网络活跃连接计数为0
+  NetworkMaxConnectionLimit = NetworkDefaultMaxConnections;                // 设置最大连接数为100
+  NetworkActiveConnectionCount = 0;                   // 重置网络活跃连接计数为0
   
   // 初始化连接状态管理器
   NetworkConnectionStateManager = NetworkConnectionStateEnabled;               // 设置状态管理器为启用状态
@@ -1365,9 +1365,9 @@ void StartListeningForConnections(void)
   
   // 初始化连接统计信息
   NetworkTotalConnectionAttempts = 0;                       // 重置网络连接尝试总次数为0
-  NetworkTotalFailedConnectionAttempts = 0;                       // 重置网络连接失败次数为0
-  NetworkAverageConnectionTime = 0;                           // 重置网络平均连接时间为0
-  NetworkLastActivityTimestamp = 0;                             // 重置网络最后活动时间戳为0
+  NetworkFailedConnectionAttempts = 0;                       // 重置网络连接失败次数为0
+  NetworkAverageConnectionTimeMs = 0;                           // 重置网络平均连接时间为0
+  NetworkLastActivityTimeMs = 0;                             // 重置网络最后活动时间戳为0
 }
 
 /**
@@ -1408,7 +1408,7 @@ void AcceptConnection(void)
   NetworkEncryptionTimeout = NetworkTimeout5Seconds;                   // 设置加密超时时间为5秒
   
   // 更新连接统计
-  NetworkCurrentActiveConnectionsCount++;                     // 增加活跃连接计数
+  NetworkActiveConnectionCount++;                     // 增加活跃连接计数
   NetworkTotalConnectionAttempts++;                         // 增加连接尝试计数
 }
 
@@ -1448,9 +1448,9 @@ void CloseConnection(void)
   NetworkCallbackHandler = 0x00;                       // 清理回调处理器
   
   // 重置统计信息
-  NetworkCurrentActiveConnectionsCount = 0;                   // 重置活跃连接计数
+  NetworkActiveConnectionCount = 0;                   // 重置活跃连接计数
   NetworkCurrentAverageConnectionTime = 0;                           // 重置连接时间
-  NetworkLastActivityTimestamp = 0;                             // 重置最后活动时间
+  NetworkLastActivityTimeMs = 0;                             // 重置最后活动时间
 }
 
 // 网络安全和验证函数
@@ -1978,13 +1978,12 @@ uint32_t NetworkCurrentBandwidthUsage;                     // 网络当前带宽
 uint32_t NetworkCurrentLatency;                            // 网络当前延迟
 uint32_t NetworkCurrentPacketLossRate;                         // 网络当前数据包丢失率
 uint32_t NetworkCurrentPacketRetransmissionCount;          // 网络当前数据包重传次数
-uint32_t NetworkCurrentActiveConnectionsCount;             // 网络当前活跃连接数量
+uint32_t NetworkActiveConnectionCount;             // 网络当前活跃连接数量
 uint32_t NetworkTotalConnectionAttempts;            // 网络连接总尝试次数
-uint32_t NetworkFailedConnectionAttempts;            // 网络连接失败次数
-uint32_t NetworkTotalFailedConnectionAttempts;            // 网络连接总失败尝试次数
-uint32_t NetworkAverageConnectionTime;              // 网络平均连接时间
+uint32_t NetworkFailedConnectionAttempts;            // 网络连接总失败尝试次数
+uint32_t NetworkAverageConnectionTimeMs;              // 网络平均连接时间
 uint32_t NetworkCurrentAverageConnectionTime;               // 网络当前平均连接时间
-uint32_t NetworkLastActivityTimestamp;              // 网络最后活动时间戳
+uint32_t NetworkLastActivityTimeMs;              // 网络最后活动时间戳
 uint32_t NetworkPacketSequence;                     // 网络数据包序列号
 uint32_t NetworkAcknowledgeNumber;                  // 网络确认号
 uint32_t NetworkWindowScale;                         // 网络窗口缩放
@@ -2028,7 +2027,7 @@ uint32_t NetworkPacketCompressionLevel;                       // 网络数据包
 uint32_t NetworkPacketCompressionAlgorithmType;               // 网络数据包压缩算法类型
 
 uint32_t NetworkConnectionRequestQueue;               // 网络连接请求队列管理器
-uint32_t NetworkPendingRequestCount;                // 待处理网络连接请求数量
+uint32_t NetworkPendingConnectionCount;                // 待处理网络连接请求数量
 uint32_t NetworkConnectionStorage;                              // 网络连接数据存储
 uint32_t NetworkConnectionDataSize;                              // 网络连接数据大小
 uint32_t NetworkThroughputMonitor;                     // 网络吞吐量监控器指针
@@ -2046,7 +2045,7 @@ uint32_t NetworkCallbackIndex;                             // 网络回调索引
 uint32_t NetworkPortRangeStart;                            // 网络端口范围起始值
 uint32_t NetworkPortRangeEnd;                              // 网络端口范围结束值
 uint32_t NetworkConnectionTimeoutDuration;                 // 网络连接超时持续时间，用于管理连接的生命周期
-uint32_t NetworkMaximumConnectionsLimit;                   // 网络最大连接数限制，控制同时连接的数量
+uint32_t NetworkMaxConnectionLimit;                   // 网络最大连接数限制，控制同时连接的数量
 uint32_t NetworkConnectionStatusFlags;                     // 网络连接状态标志，记录连接的各种状态信息
 uint32_t NetworkSecurityConfigurationFlags;          // 网络安全配置标志
 uint32_t NetworkAuthenticationSecurityLevel;       // 网络认证安全级别
@@ -2295,7 +2294,7 @@ NetworkHandle InitializeNetworkConnectionResultHandler(void)
   NetworkConnectionTimeoutDuration = NetworkConnectionTimeout;        // 统一超时设置
   
   // 初始化最大连接数
-  NetworkMaximumConnectionsLimit = NetworkDefaultMaxConnections;
+  NetworkMaxConnectionLimit = NetworkDefaultMaxConnections;
   
   // 这里可以添加更多的初始化逻辑
   // 例如：初始化套接字、设置协议栈、分配缓冲区等
