@@ -28936,7 +28936,7 @@ ulonglong FUN_18089dd54(void)
                 }
               }
               if (((int)validationStatus == 0) &&
-                 ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = FUN_180899220(), (int)validationStatus == 0))))
+                 ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0))))
               {
                     // WARNING: Subroutine does not return
                 FUN_1808ddf80();
@@ -29016,7 +29016,7 @@ ulonglong FUN_18089dd78(void)
               }
             }
             if (((int)validationStatus == 0) &&
-               ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = FUN_180899220(), (int)validationStatus == 0)))) {
+               ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0)))) {
                     // WARNING: Subroutine does not return
               FUN_1808ddf80();
             }
@@ -29089,7 +29089,7 @@ ulonglong FUN_18089dda2(void)
               }
             }
             if (((int)validationStatus == 0) &&
-               ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = FUN_180899220(), (int)validationStatus == 0)))) {
+               ((*(uint *)(registerContext + 8) < 0x85 || (validationStatus = ValidateDataSequence(), (int)validationStatus == 0)))) {
                     // WARNING: Subroutine does not return
               FUN_1808ddf80();
             }
