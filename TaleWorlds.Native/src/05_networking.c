@@ -1041,11 +1041,11 @@ void CopyConnectionBuffer(uint8_t *ConnectionBufferPointer);
 // 网络连接基础配置变量
 uint32_t NetworkConnectionManagerContext;                    // 网络连接管理器上下文
 /**
- * @brief 网络连接池管理器
+ * @brief 网络连接池管理器状态
  * 
- * 管理网络连接池的分配、回收和维护操作
+ * 管理网络连接池的分配、回收和维护操作的状态信息
  */
-uint32_t NetworkConnectionPoolManager;
+uint32_t NetworkConnectionPoolManagerStatus;
 
 /**
  * @brief 网络管理器上下文指针
@@ -1064,7 +1064,7 @@ uint32_t NetworkManagerContextData;
 /**
  * @brief 网络连接状态标志集合
  * 
- * 存储网络连接的各种状态标志位
+ * 存储网络连接的各种状态标志位，包括连接建立、断开、错误等状态
  */
 uint32_t NetworkConnectionStateFlags;
 
@@ -1073,14 +1073,14 @@ uint32_t NetworkConnectionStateFlags;
  * 
  * 定义网络连接的超时时间，单位为毫秒
  */
-uint32_t NetworkConnectionTimeoutMilliseconds;
+uint32_t NetworkConnectionTimeoutMs;
 
 /**
  * @brief 网络最大允许连接数
  * 
  * 系统允许同时建立的最大网络连接数量
  */
-uint32_t NetworkMaximumAllowedConnections;
+uint32_t NetworkMaxAllowedConnections;
 
 /**
  * @brief 网络连接属性标志集合
@@ -1091,13 +1091,15 @@ uint32_t NetworkConnectionAttributeFlags;
 
 /**
  * @brief 网络当前状态标志
+ * 
+ * 记录网络系统当前的运行状态，包括初始化、运行、错误等状态
  */
 uint32_t NetworkCurrentStateFlags;
 
 /**
  * @brief 网络错误报告模板
  */
-uint32_t NetworkErrorReportingTemplate;
+uint32_t NetworkErrorReportTemplate;
 
 /**
  * @brief 网络协议和地址配置
@@ -1105,13 +1107,17 @@ uint32_t NetworkErrorReportingTemplate;
 
 /**
  * @brief 网络连接协议类型
+ * 
+ * 定义网络连接使用的协议类型，如TCP、UDP等
  */
 uint32_t NetworkConnectionProtocolType;
 
 /**
- * @brief 网络连接协议
+ * @brief 网络连接协议实例
+ * 
+ * 存储当前网络连接使用的具体协议实例
  */
-uint32_t NetworkConnectionProtocol;
+uint32_t NetworkConnectionProtocolInstance;
 
 /**
  * @brief 网络连接协议版本
@@ -1120,13 +1126,15 @@ uint32_t NetworkConnectionProtocolVersion;
 
 /**
  * @brief 网络服务器IP地址
+ * 
+ * 存储网络服务器的IP地址信息
  */
 uint32_t NetworkServerIpAddress;
 
 /**
  * @brief 网络服务器端口号
  */
-uint32_t NetworkServerPortNumber;
+uint32_t NetworkServerPort;
 
 /**
  * @brief 网络客户端IP地址
@@ -1136,7 +1144,7 @@ uint32_t NetworkClientIpAddress;
 /**
  * @brief 网络客户端端口号
  */
-uint32_t NetworkClientPortNumber;
+uint32_t NetworkClientPort;
 
 /**
  * @brief 网络套接字和缓冲区配置
@@ -1144,6 +1152,8 @@ uint32_t NetworkClientPortNumber;
 
 /**
  * @brief 网络套接字文件描述符
+ * 
+ * 存储网络套接字的文件描述符，用于套接字操作
  */
 uint32_t NetworkSocketFileDescriptor;
 
