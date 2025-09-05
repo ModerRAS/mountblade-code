@@ -2825,10 +2825,10 @@ void ResetNetworkConnectionPointer(void)
   int32_t NetworkConnectionResetId;                             // 连接标识符
   
   // 计算连接状态缓冲区位置
-  ResetStateBuffer = (uint8_t *)(CreateConnectionStateUniqueId(ResetStateFlags, ResetConnectionId) + NetworkConnectionStateBufferOffset);
+  NetworkStateResetBuffer = (uint8_t *)(CreateConnectionStateUniqueId(NetworkConnectionResetFlags, NetworkConnectionResetId) + NetworkConnectionStateBufferOffset);
   
   // 重置连接数据缓冲区指针
-  *ResetDataBuffer = (uint64_t)*(uint32_t *)(ResetContextData + NetworkConnectionStateDataOffset);
+  *NetworkDataResetBuffer = (uint64_t)*(uint32_t *)(NetworkContextResetData + NetworkConnectionStateDataOffset);
   
   // 清理连接堆栈
   ResetConnectionStack(&NetworkPrimaryConnectionBuffer);
