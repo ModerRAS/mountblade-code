@@ -1761,7 +1761,7 @@ uint8_t UtilityValidationFlag1;
 uint32_t UtilityCheckSystemStatus;
 uint8_t UtilityStatusFlag1;
 
-// 函数: undefined UtilityResetSystem(void)
+// 函数: uint32_t UtilityResetSystem(void)
 // 
 // 重置工具系统
 // 将工具系统恢复到初始状态
@@ -1770,7 +1770,7 @@ uint8_t UtilityStatusFlag1;
 //   无
 // 
 // 返回值:
-//   undefined - 重置结果状态
+//   uint32_t - 重置结果状态
 uint32_t SystemResetStatus;
 bool SystemResetEnabled;
 
@@ -87138,19 +87138,46 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define DoubleValidateSystemDO0 FUN_180892120
 
 // 系统验证和配置相关宏定义
+// 原始函数名：FUN_180893420 - 系统配置验证函数DP0
+// 功能：验证系统配置DP0，确保配置正确性
 #define ValidateSystemConfigDP0 FUN_180893420
+
+// 原始函数名：FUN_1808920e0 - 系统操作执行函数DQ0
+// 功能：执行系统操作DQ0，处理系统级操作
 #define ExecuteSystemOperationDQ0 FUN_1808920e0
+
+// 原始函数名：FUN_180891d40 - 数据完整性验证函数DR0
+// 功能：验证数据完整性DR0，确保数据未损坏
 #define ValidateDataIntegrityDR0 FUN_180891d40
+
+// 原始函数名：FUN_180891cf0 - 系统数据处理函数DS0
+// 功能：处理系统数据DS0，执行数据操作
 #define ProcessSystemDataDS0 FUN_180891cf0
+
+// 原始函数名：FUN_180891ca0 - 系统状态检查函数DT0
+// 功能：检查系统状态DT0，监控系统运行状态
 #define CheckSystemStatusDT0 FUN_180891ca0
 
 // 系统事件处理相关宏定义
+// 原始函数名：FUN_180891de0 - 系统事件处理函数DU0
+// 功能：处理系统事件DU0，响应系统事件
 #define HandleSystemEventDU0 FUN_180891de0
+
+// 原始函数名：FUN_180894300 - 数据验证处理函数DV0
+// 功能：处理数据验证DV0，确保数据有效性
 #define ProcessDataValidationDV0 FUN_180894300
+
+// 原始函数名：FUN_18084c470 - 系统资源清理函数DW0
+// 功能：清理系统资源DW0，释放资源占用
 #define CleanupSystemResourceDW0 FUN_18084c470
+
+// 原始函数名：FUN_180891af0 - 系统状态重置函数DX0
+// 功能：重置系统状态DX0，恢复系统到初始状态
 #define ResetSystemStateDX0 FUN_180891af0
 
 // 复杂数据处理和验证相关宏定义
+// 原始函数名：FUN_18089379d - 数据验证和处理操作函数
+// 功能：验证并处理数据操作，确保数据正确性
 #define ValidateAndProcessDataOperation FUN_18089379d
 #define ReturnFixedErrorCode FUN_1808938ab
 #define ValidateContextAndUpdateState FUN_1808938c0
