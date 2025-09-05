@@ -10130,14 +10130,14 @@ LAB_180894aca:
 
 
 
-// 函数: void FUN_180894ad2(void)
-void FUN_180894ad2(void)
+// 函数: void ExecuteSecurityCheckWrapper(void)
+void ExecuteSecurityCheckWrapper(void)
 
 {
-  ulonglong in_stack_000000a8;
+  ulonglong stackGuardValue;
   
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  ExecuteSecurityCheck(stackGuardValue ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50008,10 +50008,20 @@ void Unwind_180908000(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180908010(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常处理函数A1
+ * 
+ * 处理系统异常和错误恢复操作，确保系统稳定性
+ * 
+ * @param ContextParameter 上下文参数，包含异常处理的相关信息
+ * @param SystemContext 系统上下文，包含系统状态信息
+ * @param ExceptionHandler 异常处理器，用于处理特定类型的异常
+ * @param RecoveryHandler 恢复处理器，用于系统恢复操作
+ */
+void HandleExceptionA1(undefined8 ContextParameter, longlong SystemContext, undefined8 ExceptionHandler, undefined8 RecoveryHandler)
 
 {
-  undefined8 *puVar1;
+  undefined8 *ExceptionHandlerPointer;
   
   puVar1 = *(undefined8 **)(param_2 + 0x78);
   if (puVar1 != (undefined8 *)0x0) {
