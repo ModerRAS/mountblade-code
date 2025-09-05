@@ -49046,37 +49046,51 @@ void Unwind_180907f70(undefined8 exceptionContext, longlong handleContext)
 
 
 
-void Unwind_180907f80(undefined8 param_1,longlong param_2)
+/**
+ * @brief 指针验证和清理函数
+ * @details 验证指针的有效性并根据状态执行相应的清理操作
+ * @param cleanupContext 清理上下文参数
+ * @param pointerContext 指针上下文信息
+ * @return 无
+ */
+void Unwind_180907f80(undefined8 cleanupContext, longlong pointerContext)
 
 {
-  longlong *plVar1;
+  longlong *pointerToCheck;
   
-  plVar1 = *(longlong **)(param_2 + 0x58);
-  if (plVar1 == (longlong *)0x0) {
-    *(longlong *)(param_2 + 0x58) = 0;
+  pointerToCheck = *(longlong **)(pointerContext + 0x58);
+  if (pointerToCheck == (longlong *)0x0) {
+    *(longlong *)(pointerContext + 0x58) = 0;
     return;
   }
-  if (((char)plVar1[3] == '\0') && (*plVar1 != 0)) {
+  if (((char)pointerToCheck[3] == '\0') && (*pointerToCheck != 0)) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
                     // WARNING: Subroutine does not return
-  FUN_18064e900(plVar1);
+  FUN_18064e900(pointerToCheck);
 }
 
 
 
-void Unwind_180907f90(undefined8 param_1,longlong param_2)
+/**
+ * @brief 资源状态重置函数
+ * @details 重置资源状态并清理相关的数据结构
+ * @param resetContext 重置上下文参数
+ * @param resourceContext 资源上下文指针
+ * @return 无
+ */
+void Unwind_180907f90(undefined8 resetContext, longlong resourceContext)
 
 {
-  *(undefined8 *)(param_2 + 0xa0) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0xa8) != 0) {
+  *(undefined8 *)(resourceContext + 0xa0) = &UNK_180a3c3e0;
+  if (*(longlong *)(resourceContext + 0xa8) != 0) {
                     // WARNING: Subroutine does not return
     FUN_18064e900();
   }
-  *(undefined8 *)(param_2 + 0xa8) = 0;
-  *(undefined4 *)(param_2 + 0xb8) = 0;
-  *(undefined8 *)(param_2 + 0xa0) = &UNK_18098bcb0;
+  *(undefined8 *)(resourceContext + 0xa8) = 0;
+  *(undefined4 *)(resourceContext + 0xb8) = 0;
+  *(undefined8 *)(resourceContext + 0xa0) = &UNK_18098bcb0;
   return;
 }
 
