@@ -1,21 +1,4 @@
-/**
- * @file 06_utilities.c
- * @brief 系统工具函数库
- * 
- * 该文件包含了Mount & Blade游戏引擎的核心工具函数和实用程序。
- * 提供了内存管理、资源处理、系统初始化、验证等功能。
- * 
- * 主要功能：
- * - 内存分配和管理
- * - 资源表操作
- * - 系统状态验证
- * - 异常处理
- * - 数据处理和转换
- * 
- * @author Mount & Blade 开发团队
- * @version 1.0
- * @date 2024
- */
+// Mount & Blade 系统工具函数库
 
 #include "TaleWorlds.Native.Split.h"
 
