@@ -628,24 +628,24 @@
 // 返回值:
 //   无
 void InitializeUtilityModule(void);
-undefined GlobalUtilityData1;
-undefined GlobalUtilityData2;
-undefined GlobalUtilityData3;
-undefined GlobalUtilityData4;
-undefined GlobalUtilityData5;
-undefined GlobalUtilityData6;
-undefined1 GlobalUtilityFlag1;
-undefined GlobalUtilityData7;
-undefined GlobalUtilityData8;
-undefined1 GlobalUtilityFlag2;
-undefined UnknownUtilityPointer1;
-undefined8 GlobalUtilityPointer1;
-undefined8 GlobalUtilityPointer2;
-undefined GlobalUtilityData9;
-undefined GlobalUtilityData10;
-undefined GlobalUtilityData11;
-undefined GlobalUtilityData12;
-undefined UnknownUtilityPointer2;
+uint32_t UtilityModuleConfiguration1;
+uint32_t UtilityModuleConfiguration2;
+uint32_t UtilityModuleConfiguration3;
+uint32_t UtilityModuleConfiguration4;
+uint32_t UtilityModuleConfiguration5;
+uint32_t UtilityModuleConfiguration6;
+bool UtilityModuleEnabledFlag1;
+uint32_t UtilityModuleConfiguration7;
+uint32_t UtilityModuleConfiguration8;
+bool UtilityModuleEnabledFlag2;
+void* UtilityModuleResourcePointer1;
+void* UtilityModuleMemoryPointer1;
+void* UtilityModuleMemoryPointer2;
+uint32_t UtilityModuleConfiguration9;
+uint32_t UtilityModuleConfiguration10;
+uint32_t UtilityModuleConfiguration11;
+uint32_t UtilityModuleConfiguration12;
+void* UtilityModuleResourcePointer2;
 
 // 函数: void ResetUtilityPointers1(void)
 // 
