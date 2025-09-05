@@ -99936,7 +99936,16 @@ void ExecuteQuaternaryResourceCleanupCallback(uint8_t ObjectContext, int64_t Val
 
 
 
-void Unwind_180910230(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源上下文 (偏移量0x40)
+ * 
+ * 该函数用于释放位于偏移量0x40处的资源上下文
+ * 执行资源清理和内存释放操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ReleaseResourceContextOffset0x40(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -99950,7 +99959,16 @@ void Unwind_180910230(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910240(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源上下文 (偏移量0x48)
+ * 
+ * 该函数用于释放位于偏移量0x48处的资源上下文
+ * 执行资源清理和内存释放操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ReleaseResourceContextOffset0x48(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -99964,7 +99982,16 @@ void Unwind_180910240(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910250(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源上下文 (偏移量0x50)
+ * 
+ * 该函数用于释放位于偏移量0x50处的资源上下文
+ * 执行资源清理和内存释放操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ReleaseResourceContextOffset0x50(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
@@ -99978,7 +100005,16 @@ void Unwind_180910250(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_180910260(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 释放资源上下文 (偏移量0x60)
+ * 
+ * 该函数用于释放位于偏移量0x60处的资源上下文
+ * 执行资源清理和内存释放操作
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ */
+void ReleaseResourceContextOffset0x60(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   int64_t *ResourceProcessingPointer;
