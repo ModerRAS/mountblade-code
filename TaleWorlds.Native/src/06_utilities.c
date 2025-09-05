@@ -3755,21 +3755,21 @@ void* UtilitySystemProcessData2;
 void* UtilitySystemProcessData3;
 void* UtilitySystemProcessData4;
 
-942a60;
+// 函数: void ConfigureUtilitySystemCallbacks();
 #define ConfigureUtilitySystemCallbacks FUN_180942a60
-undefined ConfigureUtilitySystemCallbacks;
-undefined UtilitySystemCallbackData1;
-undefined UtilitySystemCallbackData2;
-undefined UtilitySystemCallbackData3;
-undefined UtilitySystemCallbackData4;
+void ConfigureUtilitySystemCallbacks;
+void* UtilitySystemCallbackData1;
+void* UtilitySystemCallbackData2;
+void* UtilitySystemCallbackData3;
+void* UtilitySystemCallbackData4;
 
-942a80;
+// 函数: void SetupUtilitySystemConfiguration();
 #define SetupUtilitySystemConfiguration FUN_180942a80
-undefined SetupUtilitySystemConfiguration;
-undefined UtilitySystemConfigData1;
-undefined UtilitySystemConfigStatus1;
-undefined UtilitySystemConfigData2;
-undefined UtilitySystemConfigStatus2;
+void SetupUtilitySystemConfiguration;
+void* UtilitySystemConfigData1;
+uint8_t UtilitySystemConfigStatus1;
+void* UtilitySystemConfigData2;
+uint8_t UtilitySystemConfigStatus2;
 undefined UtilitySystemThreadData1;
 undefined UtilitySystemThreadData2;
 undefined UtilitySystemThreadData3;
