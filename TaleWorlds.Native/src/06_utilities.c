@@ -3542,26 +3542,26 @@ void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
   
   uStack_38 = _DAT_180bf00a8 ^ (ulonglong)auStack_278;
   operationResult = func_0x00018088c530(*(undefined4 *)(objectHandle + 0x10),alStack_258);
-  if ((iVar2 == 0) && (*(longlong *)(alStack_258[0] + 8) != 0)) {
+  if ((operationResult == 0) && (*(longlong *)(alStack_258[0] + 8) != 0)) {
     puStack_248 = auStack_238;
-    iVar4 = 0;
+    processedCount = 0;
     iStack_240 = 0;
     uStack_23c = 0xffffffc0;
-    iVar2 = ExecuteCoreFunction(*(undefined8 *)(param_2 + 0x90),*(longlong *)(alStack_258[0] + 8),
+    operationResult = ExecuteCoreFunction(*(undefined8 *)(dataContext + 0x90),*(longlong *)(alStack_258[0] + 8),
                           &puStack_248);
-    if (iVar2 == 0) {
+    if (operationResult == 0) {
       if (0 < iStack_240) {
-        lVar3 = 0;
+        arrayIndex = 0;
         do {
-          uVar1 = *(undefined8 *)(puStack_248 + lVar3);
-          iVar2 = ProcessUtilityOperation(uVar1);
-          if (iVar2 != 2) {
+          resourceHandle = *(undefined8 *)(puStack_248 + arrayIndex);
+          operationResult = ProcessUtilityOperation(resourceHandle);
+          if (operationResult != 2) {
                     // WARNING: Subroutine does not return
-            ReleaseResource(uVar1,1);
+            ReleaseResource(resourceHandle,1);
           }
-          iVar4 = iVar4 + 1;
-          lVar3 = lVar3 + 8;
-        } while (iVar4 < iStack_240);
+          processedCount = processedCount + 1;
+          arrayIndex = arrayIndex + 8;
+        } while (processedCount < iStack_240);
       }
       CleanupMemory(&puStack_248);
     }
