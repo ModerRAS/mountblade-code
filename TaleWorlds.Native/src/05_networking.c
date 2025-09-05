@@ -954,7 +954,7 @@ void InitializeNetworkConnectionPool(void)
   
   // 初始化性能监控
   NetworkConnectionPoolMetrics = 0;                // 重置连接池性能指标为0
-  NetworkConnectionPoolStatistics = 0;             // 重置连接池统计信息为0
+  NetworkConnectionPoolStats = 0;             // 重置连接池统计信息为0
 }
 
 /**
@@ -1110,9 +1110,9 @@ void InitializeNetworkSocket(void)
 void BindNetworkSocket(void)
 {
   // 设置网络地址和端口配置
-  NetworkServerIpAddress = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
-  NetworkServerPortNumber = PORT_HTTP_ALT;                   // 设置端口为8080
-  NetworkClientIpAddress = CLIENT_IP_ANY;               // 客户端IP地址初始化为0.0.0.0
+  NetworkServerIpAddr = NetworkLocalhostAddress;               // 设置为127.0.0.1 (本地回环地址)
+  NetworkServerPort = PORT_HTTP_ALT;                   // 设置端口为8080
+  NetworkClientIpAddr = CLIENT_IP_ANY;               // 客户端IP地址初始化为0.0.0.0
   NetworkClientPortNumber = CLIENT_PORT_ANY;                   // 客户端端口初始化为0
   
   // 设置套接字绑定状态
@@ -1388,7 +1388,12 @@ int64_t GetNetworkConnectionByIndex(int64_t ConnectionContext, int32_t Connectio
  */
 int32_t ValidateNetworkProtocol(int64_t NetworkData, int64_t PacketData);
 
-// 网络连接事件处理器
+/**
+ * @brief 网络连接事件处理器
+ * 
+ * 处理网络连接相关的事件，包括连接建立、断开、错误处理等。
+ * 此处理器负责管理和响应网络连接过程中的各种事件。
+ */
 uint32_t NetworkConnectionEventProcessor;
 
 // 网络连接状态常量
@@ -1636,14 +1641,61 @@ void HandleNetworkErrorManagement(void)
 }
 
 // 网络错误和统计变量
-uint32_t NetworkErrorProcessor;                    // 网络错误处理器句柄
-uint32_t NetworkErrorCounter;                      // 网络错误计数器
-uint32_t NetworkConnectionAttempts;                // 网络连接尝试次数
-uint32_t NetworkConnectionFailures;                // 网络连接失败次数
-uint32_t NetworkBytesSent;                          // 网络发送字节数
-uint32_t NetworkBytesReceived;                      // 网络接收字节数
-uint32_t NetworkPacketsSent;                        // 网络发送数据包数量
-uint32_t NetworkPacketsReceived;                    // 网络接收数据包数量
+/**
+ * @brief 网络错误处理器句柄
+ * 
+ * 处理网络系统中的各种错误，包括连接错误、传输错误、验证错误等。
+ * 此处理器负责错误检测、错误报告和错误恢复等功能。
+ */
+uint32_t NetworkErrorProcessor;
+/**
+ * @brief 网络错误计数器
+ * 
+ * 统计网络系统中发生的错误次数，用于错误监控和分析。
+ */
+uint32_t NetworkErrorCounter;
+
+/**
+ * @brief 网络连接尝试次数
+ * 
+ * 记录网络连接的尝试次数，用于连接成功率统计。
+ */
+uint32_t NetworkConnectionAttempts;
+
+/**
+ * @brief 网络连接失败次数
+ * 
+ * 记录网络连接失败的次数，用于连接质量评估。
+ */
+uint32_t NetworkConnectionFailures;
+
+/**
+ * @brief 网络发送字节数
+ * 
+ * 统计通过网络发送的总字节数，用于流量监控。
+ */
+uint32_t NetworkBytesSent;
+
+/**
+ * @brief 网络接收字节数
+ * 
+ * 统计从网络接收的总字节数，用于流量监控。
+ */
+uint32_t NetworkBytesReceived;
+
+/**
+ * @brief 网络发送数据包数量
+ * 
+ * 统计发送的网络数据包数量，用于数据包传输统计。
+ */
+uint32_t NetworkPacketsSent;
+
+/**
+ * @brief 网络接收数据包数量
+ * 
+ * 统计接收的网络数据包数量，用于数据包传输统计。
+ */
+uint32_t NetworkPacketsReceived;
 uint32_t NetworkConnectionTime;                    // 网络连接时间
 uint32_t NetworkLastActivity;                      // 网络最后活动时间
 uint32_t NetworkBandwidthUsage;                     // 网络带宽使用量
