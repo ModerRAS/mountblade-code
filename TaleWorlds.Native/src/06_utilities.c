@@ -7121,8 +7121,14 @@ undefined ProcessSystemDataA0;
 // 功能：存储系统状态标志
 #define SystemFlagA0 DAT_180bf66d8
 undefined1 SystemFlagA0;
-undefined DAT_180c96858;
-undefined DAT_180bfbf64;
+// 系统数据表A1
+// 功能：存储系统数据表信息
+#define SystemDataTableA1 DAT_180c96858
+undefined SystemDataTableA1;
+// 系统缓冲区数据表A0
+// 功能：存储系统缓冲区数据表信息
+#define SystemBufferDataTableA0 DAT_180bfbf64
+undefined SystemBufferDataTableA0;
 undefined DAT_180bfbf7c;
 undefined DAT_180bfbf60;
 undefined DAT_180bf7308;
