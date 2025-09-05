@@ -54899,7 +54899,7 @@ void Unwind_180907750(undefined8 param_1,longlong param_2)
 void Unwind_180907770(void)
 
 {
-  _DAT_180bf64d0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA0 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90118,7 +90118,7 @@ void ResetSystemDataPointer(void)
 void SetGlobalDataPointerB0(void)
 
 {
-  _DAT_180bf64d0 = &DefaultExceptionHandlerB;
+  ExceptionHandlerPointerA0 = &DefaultExceptionHandlerB;
   return;
 }
 
