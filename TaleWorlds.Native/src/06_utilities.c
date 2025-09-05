@@ -8084,38 +8084,69 @@ DataBuffer ReleaseUtilityResource(int64_t resourceHandle)
 
 
 
-// 函数: DataBuffer CheckNullPointerAccess(void)
-// 功能：检查空指针访问，从寄存器获取资源指针并执行资源释放操作
+/**
+ * @brief 检查空指针访问并释放资源
+ * 
+ * 该函数负责检查空指针访问，从系统寄存器获取资源指针并执行资源释放操作。
+ * 它会根据寄存器值计算资源指针，如果资源有效则调用资源释放函数。
+ * 
+ * @return DataBuffer 操作结果状态码：
+ *         - 0: 操作成功完成
+ *         - 其他值：可能由资源释放函数返回的错误代码
+ * 
+ * @note 该函数主要用于异常处理过程中的资源清理
+ * @warning 如果资源有效，会调用ReleaseResource函数，该函数不会返回
+ */
 DataBuffer CheckNullPointerAccess(void)
 
 {
   int64_t systemRegisterValue;
   int64_t resourcePointer;
+  int64_t* resourceDataPointer;
   
+  // 根据系统寄存器值计算资源指针
   if (systemRegisterValue == 0) {
     resourcePointer = 0;
   }
   else {
-    resourcePointer = systemRegisterValue + -8;
+    resourcePointer = systemRegisterValue - 8;
   }
-  if (*(int64_t *)(resourcePointer + ResourceDataOffset) != 0) {
-                    // WARNING: Subroutine does not return
-    ReleaseResource(*(int64_t *)(resourcePointer + ResourceDataOffset),1);
+  
+  // 检查资源数据指针
+  resourceDataPointer = (int64_t *)(resourcePointer + ResourceDataOffset);
+  if (*resourceDataPointer != 0) {
+    // 调用资源释放函数（注意：此函数不会返回）
+    ReleaseResource(*resourceDataPointer, 1);
   }
+  
   return 0;
 }
 
 
 
-// 函数: DataBuffer ConditionalResourceRelease(char shouldRelease)
-// 功能：条件性资源释放，根据字符参数决定是否执行资源释放操作
-DataBuffer ConditionalResourceRelease(char shouldRelease)
+/**
+ * @brief 条件性资源释放
+ * 
+ * 该函数根据字符参数决定是否执行资源释放操作。
+ * 如果参数不为空字符，则调用资源释放函数进行资源清理。
+ * 
+ * @param releaseFlag 释放标志，非空字符表示需要释放资源
+ * 
+ * @return DataBuffer 操作结果状态码：
+ *         - 0: 操作成功完成（未执行释放）
+ *         - 其他值：可能由资源释放函数返回的错误代码
+ * 
+ * @note 该函数用于在特定条件下执行资源释放操作
+ * @warning 如果执行资源释放，ReleaseResource函数不会返回
+ */
+DataBuffer ConditionalResourceRelease(char releaseFlag)
 
 {
-  if (shouldRelease != '\0') {
-                    // WARNING: Subroutine does not return
+  if (releaseFlag != '\0') {
+    // 调用资源释放函数（注意：此函数不会返回）
     ReleaseResource();
   }
+  
   return 0;
 }
 
@@ -8213,8 +8244,15 @@ DataWord ReleaseStackResource(void)
 
 
 
-// 函数: void TriggerSystemShutdown(void)
-// 功能：触发系统关闭程序
+/**
+ * @brief 触发系统关闭程序
+ * 
+ * 该函数负责触发系统关闭流程，释放所有系统资源并终止系统运行。
+ * 这是一个关键的安全函数，确保系统能够安全地关闭。
+ * 
+ * @note 原始函数名：TriggerSystemShutdown
+ * @warning 函数执行过程中不会返回，会直接终止系统
+ */
 void TriggerSystemShutdown(void)
 
 {
