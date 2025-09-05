@@ -10418,17 +10418,28 @@ void ValidateResourceAndProcess(longlong resourceHandle, undefined8 contextHandl
 
 
 // 函数: void FUN_180894d04(void)
-void FUN_180894d04(void)
+/**
+ * 系统验证和初始化函数 - 执行系统验证和初始化操作
+ * 
+ * 此函数按顺序执行多个系统验证和初始化操作：
+ * 1. 调用FUN_18088ee20()进行初始验证
+ * 2. 如果初始验证通过，调用FUN_18088f620()进行二级验证
+ * 3. 如果二级验证通过，调用FUN_18088f5c0()进行三级验证
+ * 4. 如果所有验证都通过，调用FUN_18088f470()执行最终初始化
+ * 
+ * @return 无返回值
+ */
+void ExecuteSystemValidationAndInitialization(void)
 
 {
-  int iVar1;
+  int validationResult;
   
-  iVar1 = FUN_18088ee20();
-  if (iVar1 == 0) {
-    iVar1 = FUN_18088f620();
-    if (iVar1 == 0) {
-      iVar1 = FUN_18088f5c0();
-      if (iVar1 == 0) {
+  validationResult = FUN_18088ee20();
+  if (validationResult == 0) {
+    validationResult = FUN_18088f620();
+    if (validationResult == 0) {
+      validationResult = FUN_18088f5c0();
+      if (validationResult == 0) {
         FUN_18088f470();
       }
     }
