@@ -981,7 +981,7 @@ void* SystemFunctionPointerEmergency;
  * 该函数是系统初始化的主要入口点之一，负责初始化系统的核心组件
  * 和数据结构，为后续的系统启动做准备
  */
-void* SystemInitializationEntryPointAlpha;
+void* SystemInitializationEntryPointPrimary;
 void* SystemMemoryRegionReservedAlpha;
 void* SystemMemoryRegionReservedBeta;
 void* SystemMemoryRegionReservedGamma;
@@ -996,7 +996,7 @@ void* SystemDataTableEntryFirmware;
  * 该函数是系统初始化的另一个入口点，负责处理特定的系统组件
  * 初始化任务，与入口点A协同工作
  */
-void* SystemInitializationEntryPointBeta;
+void* SystemInitializationEntryPointSecondary;
 // 系统扩展内存区域指针 - 区域六
 void* SystemMemoryRegionExtendedSix;
 
@@ -1006,21 +1006,21 @@ void* SystemMemoryRegionExtendedSix;
  * 该函数负责系统初始化过程中的特定任务，通常与内存管理
  * 或资源分配相关
  */
-void* SystemInitializationEntryPointGamma;
+void* SystemInitializationEntryPointTertiary;
 
 /**
  * @brief 系统初始化入口点D
  * 
  * 该函数负责系统初始化过程中的设备检测和配置
  */
-void* SystemInitializationEntryPointDelta;
+void* SystemInitializationEntryPointQuaternary;
 
 /**
  * @brief 系统初始化入口点E
  * 
  * 该函数负责系统初始化过程中的网络组件配置
  */
-void* SystemInitializationEntryPointEpsilon;
+void* SystemInitializationEntryPointQuinary;
 // 系统扩展内存区域指针 - 区域七
 void* SystemMemoryRegionExtendedSeven;
 // 系统扩展内存区域指针 - 区域八
@@ -1028,23 +1028,23 @@ void* SystemMemoryRegionExtendedEight;
 // 系统扩展内存区域指针 - 区域九
 void* SystemMemoryRegionExtendedNine;
 // 系统大容量内存区域指针 - 区域二百
-void* SystemMemoryRegionExtendedTwoHundred;
+void* SystemMemoryRegionExtendedPrimary;
 // 系统大容量内存区域指针 - 区域二百零一
-void* SystemMemoryRegionExtendedTwoHundredOne;
+void* SystemMemoryRegionExtendedSecondary;
 // 系统大容量内存区域指针 - 区域二百零二
-void* SystemMemoryRegionExtendedTwoHundredTwo;
+void* SystemMemoryRegionExtendedTertiary;
 
 /**
  * @brief 系统初始化入口点F
  * 
  * 该函数负责系统初始化过程中的音频组件配置
  */
-void* SystemInitializationEntryPointZeta;
-void* SystemMemoryRegionTwoHundredThree;
-void* SystemMemoryRegionTwoHundredFour;
-void* SystemMemoryRegionTwoHundredFive;
+void* SystemInitializationEntryPointSenary;
+void* SystemMemoryRegionQuaternary;
+void* SystemMemoryRegionQuinary;
+void* SystemMemoryRegionSenary;
 // 系统辅助内存区域指针 - 区域二百零六
-void* SystemMemoryRegionExtendedTwoHundredSix;
+void* SystemMemoryRegionExtendedQuaternary;
 // 系统状态指示器 - 用于表示系统运行状态
 char SystemAdditionalStatusIndicator;
 // 系统辅助内存区域指针 - 区域二百零七

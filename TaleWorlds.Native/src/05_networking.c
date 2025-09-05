@@ -976,14 +976,20 @@ uint32_t NetworkConnectionStatusInfo;                      // 网络连接状态
 uint32_t NetworkConnectionTimeoutInfo;                     // 网络连接超时信息，存储连接超时的相关信息
 /**
  * @brief 网络连接验证上下文信息，存储连接验证的相关信息
+ * 
+ * 用于存储网络连接验证过程中的状态信息和验证结果
  */
 uint32_t NetworkConnectionVerificationInfo;
 /**
  * @brief 网络连接加密上下文信息，存储连接加密的相关信息
+ * 
+ * 用于管理网络连接的加密状态、加密算法和加密密钥等信息
  */
 uint32_t NetworkConnectionEncryptionContext;
 /**
  * @brief 网络连接压缩上下文信息，存储连接压缩的相关信息
+ * 
+ * 用于管理网络连接的压缩状态、压缩算法和压缩级别等信息
  */
 uint32_t NetworkConnectionCompressionContext;
 
