@@ -19246,10 +19246,10 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
       contextArray300[0] = (longlong)operationResult;
       if (0 < operationResult) {
         do {
-          validationContext5 = param_1[1];
-          uStack_2d0 = 0;
-          puStack_2d8 = &UNK_1809823f8;
-          fVar18 = SUB84(validationContextPointer3,0);
+          currentResource = dataContext[1];
+          validationStack2d0 = 0;
+          pointerStack2d8 = &UNK_1809823f8;
+          processedValue = SUB84(resourceIterator,0);
           validationContextPointer3 = (longlong *)(validationContext5 + 0xe0 + (longlong)validationContextPointer0);
           validationContext1 = *validationContextPointer3;
           uVar9 = validationContextPointer3[1];
