@@ -2823,10 +2823,10 @@ NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *Output
   // 设置输出缓冲区
   if (OutputBuffer) {
     memset(OutputBuffer, 0, NetworkStandardBufferSize);
-    OutputBuffer[DecodingStatusIndex] = (NetworkByte)DecodingStatus;
-    OutputBuffer[MagicValidationIndex] = (NetworkByte)MagicValidationResult;
-    OutputBuffer[DataIntegrityIndex] = (NetworkByte)DataIntegrityStatus;
-    OutputBuffer[DecodingModeIndex] = (NetworkByte)DecodingMode;
+    OutputBuffer[PacketDecodingStatusIndex] = (NetworkByte)DecodingStatus;
+    OutputBuffer[MagicNumberValidationIndex] = (NetworkByte)MagicValidationResult;
+    OutputBuffer[DataIntegrityCheckIndex] = (NetworkByte)DataIntegrityStatus;
+    OutputBuffer[DataPacketDecodingModeIndex] = (NetworkByte)DecodingMode;
   }
   
   return DecodingStatus;  // 返回解码状态

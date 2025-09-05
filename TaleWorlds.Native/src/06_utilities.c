@@ -21726,54 +21726,54 @@ ulonglong ProcessDataWithValidation(void)
   undefined1 tempBuffer2 [2];
   undefined1 tempBuffer3 [2];
   
-  uVar3 = in_EAX + 0x1c;
-  if (in_CF) {
-    if (*(int *)(registerRBX[1] + 0x18) == 0) {
-      uVar1 = *registerRBX;
-      uVar2 = FUN_1808aed00(uVar1,auStackX_20,4);
-      if ((((int)uVar2 == 0) && (uVar2 = FUN_1808aed00(uVar1,auStackX_24,2), (int)uVar2 == 0)) &&
-         (uVar2 = FUN_1808aed00(uVar1,auStackX_26,2), (int)uVar2 == 0)) {
-        uVar2 = FUN_1808aed00(uVar1,&stack0x00000028,8);
+  validationFlag = registerEAX + 0x1c;
+  if (carryFlag) {
+    if (*(int *)(dataBuffer[1] + 0x18) == 0) {
+      dataHandle = *dataBuffer;
+      operationResult = ProcessDataElement(dataHandle, tempBuffer1, 4);
+      if ((((int)operationResult == 0) && (operationResult = ProcessDataElement(dataHandle, tempBuffer2, 2), (int)operationResult == 0)) &&
+         (operationResult = ProcessDataElement(dataHandle, tempBuffer3, 2), (int)operationResult == 0)) {
+        operationResult = ProcessDataElement(dataHandle, &stackBuffer, 8);
       }
     }
     else {
-      uVar2 = (ulonglong)uVar3;
+      operationResult = (ulonglong)validationFlag;
     }
   }
   else {
-    uVar2 = 0;
+    operationResult = 0;
   }
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  if (*(int *)(registerRBX[1] + 0x18) == 0) {
-    uVar2 = FUN_180899090(*registerRBX,unaff_RBP + 0x30);
-    if ((int)uVar2 != 0) {
-      return uVar2;
+  if (*(int *)(dataBuffer[1] + 0x18) == 0) {
+    operationResult = ProcessDataBlocks(*dataBuffer, contextPointer + 0x30);
+    if ((int)operationResult != 0) {
+      return operationResult;
     }
-    if ((*(int *)(registerRBX[1] + 0x18) == 0) &&
-       (uVar3 = FUN_1808aed00(*registerRBX,unaff_RBP + 0x40,4), uVar3 == 0)) {
+    if ((*(int *)(dataBuffer[1] + 0x18) == 0) &&
+       (validationFlag = ProcessDataElement(*dataBuffer, contextPointer + 0x40, 4), validationFlag == 0)) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80();
+      ExecuteDataProcessing();
     }
   }
-  return (ulonglong)uVar3;
+  return (ulonglong)validationFlag;
 }
 
 
 
-ulonglong FUN_18089b31f(void)
+ulonglong ProcessDataStream(void)
 
 {
-  undefined8 uVar1;
-  uint uVar2;
-  ulonglong uVar3;
-  undefined8 *registerRBX;
-  longlong unaff_RBP;
-  ulonglong unaff_RDI;
-  undefined1 auStackX_20 [4];
-  undefined1 auStackX_24 [2];
-  undefined1 auStackX_26 [2];
+  undefined8 dataHandle;
+  uint processStatus;
+  ulonglong operationResult;
+  undefined8 *dataBuffer;
+  longlong contextPointer;
+  ulonglong dataLength;
+  undefined1 tempBuffer1 [4];
+  undefined1 tempBuffer2 [2];
+  undefined1 tempBuffer3 [2];
   
   uVar1 = *registerRBX;
   uVar3 = FUN_1808aed00(uVar1,auStackX_20,4);
