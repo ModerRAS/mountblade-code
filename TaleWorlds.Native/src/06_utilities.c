@@ -26655,13 +26655,13 @@ void Unwind_180901f60(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180901f70(undefined8 param_1,longlong param_2)
+void ExceptionUnwindHandlerA2(undefined8 exceptionContext,longlong unwindParam)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *referenceCount;
+  undefined8 *exceptionPointer;
+  longlong exceptionData;
+  ulonglong contextPointer;
   
   puVar2 = *(undefined8 **)(param_2 + 0x2b8);
   if (puVar2 == (undefined8 *)0x0) {
