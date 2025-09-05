@@ -44,8 +44,8 @@
 #define QuerySystemStatusA0 FUN_1808928d3
 #define GetSystemConfigurationA0 FUN_1808928f1
 #define ValidateSystemParameterA0 FUN_180892909
-#define ValidateParametersE1 FUN_180892920
-#define CleanupSystemE0 FUN_180892974
+#define SetSystemParameterA0 FUN_180892920
+#define CheckSystemInitializationStatusA0 FUN_180892974
 #define ProcessSystemDataE1 FUN_180892990
 #define ProcessSystemDataE2 FUN_180892ac0
 #define ProcessSystemDataE3 FUN_180892bd0
