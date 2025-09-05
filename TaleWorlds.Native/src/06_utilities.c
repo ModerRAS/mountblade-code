@@ -35202,7 +35202,17 @@ void ExceptionCleanupHandler860(undefined8 param_1,longlong param_2,undefined8 p
 
 
 
-void Unwind_180902870(undefined8 param_1,longlong param_2)
+/**
+ * @brief 异常验证处理器870
+ * 
+ * 该函数用于验证异常处理上下文，执行相应的异常处理回调函数
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含验证上下文信息
+ * 
+ * @note 原始函数名：Unwind_180902870
+ */
+void ExceptionValidationHandler870(undefined8 param_1,longlong param_2)
 
 {
   longlong *validationContextPointer;
@@ -35216,7 +35226,17 @@ void Unwind_180902870(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902880(undefined8 param_1,longlong param_2)
+/**
+ * @brief 资源引用计数管理器880
+ * 
+ * 该函数用于管理资源的引用计数，处理资源的释放和内存清理
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含资源管理信息
+ * 
+ * @note 原始函数名：Unwind_180902880
+ */
+void ResourceReferenceManager880(undefined8 param_1,longlong param_2)
 
 {
   int *referenceCountPointer;
