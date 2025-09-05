@@ -6587,56 +6587,53 @@ undefined SystemDataChannelTable;
 undefined SystemDataStreamTable;
 undefined SystemDataFlowTable;
 undefined SystemDataPipeTable;
-undefined UNK_180a31a00;
-undefined UNK_180a31a30;
-undefined UNK_180a31a60;
-undefined UNK_180a31a80;
-undefined UNK_180a31ab8;
-undefined UNK_180a31af0;
-undefined UNK_180a31b10;
-undefined UNK_180a31b48;
-undefined UNK_180a31b80;
-undefined UNK_180a31bb0;
-undefined UNK_180a31bd8;
-undefined UNK_180a31c08;
-undefined UNK_180a31c40;
-undefined UNK_180a31c70;
-undefined UNK_180a31ca0;
-undefined UNK_180a31cd0;
-undefined UNK_180a31cf8;
-undefined UNK_180a31d18;
-undefined UNK_180a31d40;
-undefined UNK_180a31d58;
-undefined UNK_180a31d80;
-undefined UNK_180a31da8;
-undefined UNK_180a31dc8;
-undefined UNK_180a31de8;
-undefined UNK_180a31e08;
-undefined UNK_180a31e28;
-undefined UNK_180a31e48;
-undefined UNK_180a31e68;
-undefined UNK_180a31e88;
-undefined UNK_180a31eb0;
-undefined UNK_180a31ed0;
-undefined UNK_180a31ef0;
-undefined UNK_180a31f38;
-undefined UNK_180a31f58;
-undefined UNK_180a31f80;
-undefined UNK_180a31fc8;
-undefined UNK_180a31ff0;
-undefined UNK_180a32010;
-undefined UNK_180a32040;
-undefined UNK_180a32070;
-undefined UNK_180a320b0;
-undefined UNK_180a320d8;
-undefined UNK_180a32120;
-undefined UNK_180a32168;
-undefined UNK_180a32180;
-undefined UNK_180a32198;
-undefined UNK_180a321c8;
-undefined UNK_180a321f8;
-undefined UNK_180a32240;
-undefined UNK_180a32288;
+// 系统通信管理相关变量
+undefined SystemCommunicationManagerTable;
+undefined SystemCommunicationBufferTable;
+undefined SystemCommunicationQueueTable;
+undefined SystemCommunicationPoolTable;
+undefined SystemCommunicationStackTable;
+undefined SystemCommunicationHeapTable;
+undefined SystemCommunicationArrayTable;
+undefined SystemCommunicationListTable;
+undefined SystemCommunicationHandleTable;
+undefined SystemCommunicationReferenceTable;
+undefined SystemCommunicationPointerTable;
+undefined SystemCommunicationSegmentTable;
+undefined SystemCommunicationPageTable;
+undefined SystemCommunicationBlockTable;
+undefined SystemCommunicationRegionTable;
+undefined SystemCommunicationAreaTable;
+undefined SystemCommunicationZoneTable;
+undefined SystemCommunicationPartitionTable;
+undefined SystemCommunicationSectionTable;
+undefined SystemCommunicationUnitTable;
+undefined SystemCommunicationChunkTable;
+undefined SystemCommunicationFragmentTable;
+undefined SystemCommunicationSlotTable;
+undefined SystemCommunicationEntryTable;
+undefined SystemCommunicationItemTable;
+undefined SystemCommunicationElementTable;
+undefined SystemCommunicationNodeTable;
+undefined SystemCommunicationLeafTable;
+undefined SystemCommunicationBranchTable;
+undefined SystemCommunicationRootTable;
+undefined SystemCommunicationTreeTable;
+undefined SystemCommunicationGraphTable;
+undefined SystemCommunicationNetworkTable;
+undefined SystemCommunicationLinkTable;
+undefined SystemCommunicationPathTable;
+undefined SystemCommunicationRouteTable;
+undefined SystemCommunicationChannelTable;
+undefined SystemCommunicationStreamTable;
+undefined SystemCommunicationFlowTable;
+undefined SystemCommunicationPipeTable;
+undefined SystemConnectionManagerTable;
+undefined SystemConnectionBufferTable;
+undefined SystemConnectionQueueTable;
+undefined SystemConnectionPoolTable;
+undefined SystemConnectionStackTable;
+undefined SystemConnectionHeapTable;
 undefined UNK_180a322d0;
 undefined UNK_180a32318;
 undefined UNK_180a32350;
@@ -6739,9 +6736,10 @@ undefined UNK_18053f090;
 byte DAT_180c91d14;
 // 系统清理处理器数据存储
 undefined SystemCleanupHandlerDataStore;
-undefined UNK_180a33ca8;
-undefined UNK_18053eee0;
-undefined UNK_18053efd0;
+// 系统异常处理相关变量
+undefined SystemExceptionHandlerTable;
+undefined SystemExceptionQueueTable;
+undefined SystemExceptionStackTable;
 
 // 系统状态验证函数A0
 // 功能：验证系统状态完整性
@@ -8520,50 +8518,57 @@ undefined8 ReturnErrorStatus(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 原始函数名：FUN_1808909d0 - 数据数组验证函数
-// 功能：验证数据数组的有效性和完整性
+/**
+ * @brief 验证数据数组的有效性和完整性
+ * 
+ * 对数据数组进行全面验证，包括内存地址验证、数据完整性检查和浮点数验证
+ * 
+ * @param arrayDescriptor 数组描述符，包含数组信息和验证参数
+ * 
+ * @return 验证状态码，0表示成功，非0表示错误
+ */
 #define ValidateDataArray FUN_1808909d0
 
-undefined8 ValidateDataArray(longlong arrayDescriptor)
+uint64_t ValidateDataArray(int64_t arrayDescriptor)
 
 {
   uint64_t validationStatus;
   int *dataComparisonPointer;
-  undefined4 *validationDataPointer;
-  uint entryCounter;
-  ulonglong adjustedAddress;
-  longlong dataBuffer;
-  ulonglong loopIndex;
+  uint32_t *validationDataPointer;
+  uint32_t entryCounter;
+  uint64_t adjustedAddress;
+  int64_t dataBuffer;
+  uint64_t loopIndex;
   
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(arrayDescriptor + 0x10),&dataBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(arrayDescriptor + 0x10),&dataBuffer);
   if ((int)validationStatus == 0) {
     loopIndex = 0;
     adjustedAddress = dataBuffer - 8;
     if (dataBuffer == 0) {
       adjustedAddress = loopIndex;
     }
-    validationDataPointer = (undefined4 *)(arrayDescriptor + 0x20 + (longlong)*(int *)(arrayDescriptor + 0x18) * 8);
+    validationDataPointer = (uint32_t *)(arrayDescriptor + 0x20 + (int64_t)*(int *)(arrayDescriptor + 0x18) * 8);
     dataComparisonPointer = (int *)(arrayDescriptor + 0x20);
     if (0 < *(int *)(arrayDescriptor + 0x18)) {
       do {
         if ((*dataComparisonPointer != MemoryValidationConstantA) || (dataComparisonPointer[1] != MemoryValidationConstantB)) {
           dataBuffer = 0;
-          validationStatus = ValidateMemoryAddressA0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (longlong)(int)loopIndex * 2,&dataBuffer)
+          validationStatus = ValidateMemoryAddressA0(adjustedAddress,(int *)(arrayDescriptor + 0x20) + (int64_t)(int)loopIndex * 2,&dataBuffer)
           ;
           if ((int)validationStatus != 0) {
             return validationStatus;
           }
-          if (*(longlong *)(dataBuffer + 8) == 0) {
+          if (*(int64_t *)(dataBuffer + 8) == 0) {
             return 0x1c;
           }
-          validationStatus = ProcessFloatingPointDataValidationA0(*(longlong *)(dataBuffer + 8),*validationDataPointer,*(undefined1 *)(arrayDescriptor + 0x1c)
+          validationStatus = ProcessFloatingPointDataValidationA0(*(int64_t *)(dataBuffer + 8),*validationDataPointer,*(uint8_t *)(arrayDescriptor + 0x1c)
                                );
           if ((int)validationStatus != 0) {
             return validationStatus;
           }
         }
         entryCounter = (int)loopIndex + 1;
-        loopIndex = (ulonglong)entryCounter;
+        loopIndex = (uint64_t)entryCounter;
         validationDataPointer = validationDataPointer + 1;
         dataComparisonPointer = dataComparisonPointer + 2;
       } while ((int)entryCounter < *(int *)(arrayDescriptor + 0x18));
