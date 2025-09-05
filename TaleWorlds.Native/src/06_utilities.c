@@ -19064,7 +19064,7 @@ undefined8 ProcessComplexDataA2(longlong *param_1,char *param_2,undefined8 *para
       while (cVar5 != '\0') {
         if (*pcVar9 == '\0') goto LAB_1808989b1;
         cVar5 = ProcessCharacterDataA0(cVar5);
-        cVar6 = func_0x00018076b8a0(*pcVar9);
+        cVar6 = ProcessCharacterDataA0(*pcVar9);
         if (cVar5 != cVar6) break;
         pcVar1 = param_2 + 1;
         param_2 = param_2 + 1;
@@ -19344,7 +19344,7 @@ undefined4 ProcessDataF0(undefined8 param_1,int param_2,undefined4 *param_3)
     uVar3 = *(uint *)(*registerR14 + (ulonglong)uVar7 * 8);
     if ((uVar3 & 0xffffff) != 0xffffff) {
       validationContext4 = (ulonglong)(uVar3 & 0xffffff) + registerR14[4];
-      iVar8 = func_0x00018076b690(validationContext4);
+      iVar8 = ValidateSystemDataIntegrityB0(validationContext4);
       if (iVar13 != 0) {
         puVar15 = (undefined1 *)((iVar8 + -1) + validationContext4);
         iVar16 = iVar8;
