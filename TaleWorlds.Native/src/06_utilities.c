@@ -472,6 +472,15 @@
 #define ProcessDataSequence FUN_18089923e
 
 /**
+ * @brief 验证端口控制请求A0
+ * 
+ * 该函数负责验证端口控制请求的有效性和安全性
+ * 
+ * @note 原始函数名：FUN_180899360
+ */
+#define ValidatePortControlRequest FUN_180899360
+
+/**
  * @brief 执行数据验证A0
  * 
  * 该函数负责执行数据的验证操作，确保数据的有效性
@@ -3928,6 +3937,14 @@
 // 原始函数名：FUN_180896c10 - 资源验证函数A2
 // 功能：验证资源有效性
 #define ValidateResourceA2 FUN_180896c10
+
+// 原始函数名：FUN_1808a2890 - 系统状态查询函数A0
+// 功能：查询系统状态信息
+#define QuerySystemStatusA0 FUN_1808a2890
+
+// 原始函数名：FUN_1808a2e00 - 内存地址获取函数A0
+// 功能：获取内存地址
+#define GetMemoryAddressA0 FUN_1808a2e00
 
 // 原始函数名：FUN_1808a8620 - 数据查询函数A2
 // 功能：查询系统数据
@@ -12393,7 +12410,7 @@ undefined8 ValidateAndProcessFloatingPointNumberA1(longlong DataHandle,longlong 
       SystemDataArray[0] = SystemDataArray[0] + -8;
     }
     StackBuffer = 0;
-    OperationResult = ValidateSystemDataStructureA0(SystemDataArray[0],param_1 + 0x18,&StackBuffer);
+    OperationResult = ValidateSystemDataStructureA0(SystemDataArray[0],DataHandle + 0x18,&StackBuffer);
     if ((int)OperationResult == 0) {
       // 验证数据指针有效性
       if (StackBuffer == 0) {
@@ -12408,16 +12425,16 @@ undefined8 ValidateAndProcessFloatingPointNumberA1(longlong DataHandle,longlong 
         return 0x1f;
       }
       // 执行数据验证操作
-      OperationResult = ValidateDataRangeAndFlagsA0(DataPointer,param_1 + 0x25,param_1 + 0x20);
+      OperationResult = ValidateDataRangeAndFlagsA0(DataPointer,DataHandle + 0x25,DataHandle + 0x20);
       if ((int)OperationResult == 0) {
-        InputFloatValue = *(float *)(resourceDescriptor + 0x20);
+        InputFloatValue = *(float *)(DataHandle + 0x20);
         // 验证浮点数范围
         if ((*(float *)(DataPointer + 0x38) <= InputFloatValue) &&
            (InputFloatValue < *(float *)(DataPointer + 0x3c) || InputFloatValue == *(float *)(DataPointer + 0x3c))) {
-          OperationResult = *(undefined8 *)(param_2 + 0x98);
+          OperationResult = *(undefined8 *)(ContextHandle + 0x98);
           *(float *)(StackBuffer + 4) = InputFloatValue;
                     // WARNING: Subroutine does not return
-          ExecuteSystemContextOperationA0(OperationResult,param_1);
+          ExecuteSystemContextOperationA0(OperationResult,DataHandle);
         }
         OperationResult = 0x1c;
       }
@@ -12438,7 +12455,7 @@ undefined8 ValidateAndProcessFloatingPointNumberA1(longlong DataHandle,longlong 
 undefined8 QuerySystemStatusE0(void)
 
 {
-  float floatValue;
+  float inputValue;
   longlong dataContext;
   undefined8 validationStatus;
   longlong stackFramePointer;
@@ -12457,11 +12474,11 @@ undefined8 QuerySystemStatusE0(void)
   }
   validationStatus = ProcessDataValidationA0(dataContext,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)validationStatus == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x20);
-    if ((*(float *)(dataContext + 0x38) <= fVar1) &&
-       (fVar1 < *(float *)(dataContext + 0x3c) || fVar1 == *(float *)(dataContext + 0x3c))) {
+    inputValue = *(float *)(unaff_RDI + 0x20);
+    if ((*(float *)(dataContext + 0x38) <= inputValue) &&
+       (inputValue < *(float *)(dataContext + 0x3c) || inputValue == *(float *)(dataContext + 0x3c))) {
       validationStatus = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(stackParameter40 + 4) = fVar1;
+      *(float *)(stackParameter40 + 4) = inputValue;
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(validationStatus);
     }
@@ -12475,7 +12492,7 @@ undefined8 QuerySystemStatusE0(void)
 undefined8 InitializeSystemE0(void)
 
 {
-  float fVar1;
+  float inputValue;
   longlong dataContext;
   undefined8 validationStatus;
   longlong registerContext;
@@ -12492,11 +12509,11 @@ undefined8 InitializeSystemE0(void)
   }
   validationStatus = ProcessDataValidationA0(dataContext,unaff_RDI + 0x25,unaff_RDI + 0x20);
   if ((int)validationStatus == 0) {
-    fVar1 = *(float *)(unaff_RDI + 0x20);
-    if ((*(float *)(dataContext + 0x38) <= fVar1) &&
-       (fVar1 < *(float *)(dataContext + 0x3c) || fVar1 == *(float *)(dataContext + 0x3c))) {
+    inputValue = *(float *)(unaff_RDI + 0x20);
+    if ((*(float *)(dataContext + 0x38) <= inputValue) &&
+       (inputValue < *(float *)(dataContext + 0x3c) || inputValue == *(float *)(dataContext + 0x3c))) {
       validationStatus = *(undefined8 *)(unaff_RBP + 0x98);
-      *(float *)(stackParameter40 + 4) = fVar1;
+      *(float *)(stackParameter40 + 4) = inputValue;
                     // WARNING: Subroutine does not return
       CleanupSystemEventA0(validationStatus);
     }
@@ -30540,7 +30557,7 @@ ulonglong FUN_18089e87d(void)
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }
-  memoryBaseAddress = FUN_180899220();
+  memoryBaseAddress = ValidateDataSequence();
   if ((int)memoryBaseAddress != 0) {
     return memoryBaseAddress;
   }

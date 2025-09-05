@@ -3609,7 +3609,7 @@ void CleanupNetworkConnectionStack(void* ConnectionBuffer)
  * @warning 如果复制失败，可能导致数据不一致或备份缺失
  * @see NetworkValidationSuccess, NetworkConnectionBufferSize
  */
-void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
+void CopyNetworkConnectionBuffer(void* SourceBuffer)
 {
   // 连接缓冲区复制状态变量
   uint32_t CopyOperationStatus;                       // 复制操作状态
@@ -3655,7 +3655,7 @@ void DuplicateNetworkConnectionBuffer(void* SourceBuffer)
  * @note 这是简化实现，实际应用中需要实现完整的数据包解码逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的解码工作
  */
-NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
+NetworkHandle DecodeNetworkPacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer, uint32_t DecodingMode, 
                          uint32_t PrimaryMagicNumber, uint32_t SecondaryMagicNumber)
 {
   // 网络数据包解码变量
@@ -3709,7 +3709,7 @@ NetworkHandle DecodePacket(NetworkHandle *PacketData, NetworkByte *OutputBuffer,
  * @note 这是简化实现，实际应用中需要实现完整的头部处理逻辑
  * @warning 简化实现仅执行基本的验证，不进行实际的头部解析工作
  */
-NetworkHandle ProcessPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
+NetworkHandle ProcessNetworkPacketHeader(NetworkHandle PacketData, int64_t HeaderContext)
 {
   // 网络数据包头部处理变量
   uint32_t NetworkHeaderValidationResult;                  // 网络头部验证结果
