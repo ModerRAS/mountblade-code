@@ -26729,7 +26729,7 @@ ValidationLabelB:
     }
   }
   else {
-    exceptionDataBuffer1 = (DataBuffer *)FUN_1808a5780(functionReturnValue0,systemContext + 0x48);
+    exceptionDataBuffer1 = (DataBuffer *)CreateExceptionDataBuffer(functionReturnValue0,systemContext + 0x48);
     fVar21 = floatResultA_02;
     if ((int)exceptionDataBuffer1 != 0) {
       return exceptionDataBuffer1;
@@ -26989,7 +26989,7 @@ ValidationProcessingLabel:
     }
   }
   else {
-    exceptionDataBuffer3 = (DataBuffer *)FUN_1808a5780(functionReturnValue0,systemContext + 0x48);
+    exceptionDataBuffer3 = (DataBuffer *)CreateExceptionDataBuffer(functionReturnValue0,systemContext + 0x48);
     fVar21 = floatResultA_02;
     if ((int)exceptionDataBuffer3 != 0) {
       return exceptionDataBuffer3;
@@ -32683,7 +32683,7 @@ DataBuffer ReturnFixedStatusCodeA3(void)
   if (*(int *)(inputAccumulatorRegister + 0x18) == 0) {
     dataValue = ProcessDataPointerA0(*registerContext,systemContext + 0x10);
     if (((int)dataValue == 0) &&
-       ((0x5a < *(uint *)(registerContext + 8) || (dataValue = FUN_1808afd90(), (int)dataValue == 0)))) {
+       ((0x5a < *(uint *)(registerContext + 8) || (dataValue = GetSystemSecurityStatus(), (int)dataValue == 0)))) {
       if (*(int *)(registerContext[1] + 0x18) == 0) {
         switch(*(DataWord *)(systemContext + 0x60)) {
         default:
@@ -37122,7 +37122,7 @@ void ExceptionCleanupHandlerValidationContext(DataBuffer param_1,int64_t param_2
 void SystemCallHandlerMemoryCleanup(DataBuffer param_1,int64_t param_2)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(param_2 + 0x70) + 0x98,0x20,0x10,FUN_180046860);
+  ExecuteMemoryOperation(*(int64_t *)(param_2 + 0x70) + 0x98,0x20,0x10,InitializeSystemMemoryA0);
   return;
 }
 
@@ -37131,7 +37131,7 @@ void SystemCallHandlerMemoryCleanup(DataBuffer param_1,int64_t param_2)
 void SystemCallHandlerMemoryCleanup2(DataBuffer param_1,int64_t param_2)
 
 {
-  FUN_1808fc8a8(*(int64_t *)(param_2 + 0x70) + 0x2a0,0x20,0x10,FUN_18004c030);
+  ExecuteMemoryOperation(*(int64_t *)(param_2 + 0x70) + 0x2a0,0x20,0x10,InitializeSystemMemoryA1);
   return;
 }
 
