@@ -10506,17 +10506,17 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 //   - 函数内部会进行错误检查，初始化失败时会安全返回
 //   - 该函数是系统初始化的重要组成部分
 //
-void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
+void InitializeSystemEventHandlerA0(longlong eventHandlerConfig,longlong callbackTable)
 
 {
   int operationResult;
   undefined8 systemContextBuffer;
   
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContextBuffer);
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(eventHandlerConfig + 0x10),&systemContextBuffer);
   if (operationResult == 0) {
-    operationResult = ProcessDataOperationA0(systemContextBuffer,param_1 + 0x18);
+    operationResult = ProcessDataOperationA0(systemContextBuffer,eventHandlerConfig + 0x18);
     if (operationResult == 0) {
-      ProcessSystemEventB0(*(undefined8 *)(param_2 + 0x98),param_1);
+      ProcessSystemEventB0(*(undefined8 *)(callbackTable + 0x98),eventHandlerConfig);
     }
   }
   return;
