@@ -215,6 +215,14 @@
 // 功能：处理系统事件并执行相应操作
 #define ProcessSystemEventA3 FUN_180891e40
 
+// 原始函数名：FUN_180892333 - 空操作函数F
+// 功能：空操作函数，不执行任何操作
+#define UtilityNoOperationF FUN_180892333
+
+// 原始函数名：FUN_18089233e - 空操作函数G
+// 功能：空操作函数，不执行任何操作
+#define UtilityNoOperationG FUN_18089233e
+
 // 原始函数名：FUN_180942280 - 全局指针设置函数A24
 // 功能：设置全局数据指针A24到指定地址
 #define SetGlobalDataPointerA24 FUN_180942280
@@ -4060,14 +4068,24 @@ void InitializeEmptyFunction(void)
 
 
 
-undefined8 FUN_1808907b0(longlong param_1)
+// 函数: undefined8 ValidateAndProcessResourceA(longlong param_1)
+// 
+// 资源验证和处理函数A
+// 验证资源状态并执行相应的处理操作，处理资源描述符中的偏移量数据
+// 
+// 参数:
+//   param_1 - 资源描述符指针，包含偏移量0x10、0x18、0x20、0x24的信息
+// 
+// 返回值:
+//   成功返回0，失败返回错误代码(如0x1c)
+undefined8 ValidateAndProcessResourceA(longlong param_1)
 
 {
-  undefined8 uVar1;
-  longlong alStackX_8 [2];
-  longlong alStackX_18 [2];
+  undefined8 operationResult;
+  longlong stackBufferA [2];
+  longlong stackBufferB [2];
   
-  uVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),alStackX_18);
+  operationResult = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),stackBufferB);
   if ((int)uVar1 == 0) {
     if (alStackX_18[0] == 0) {
       alStackX_18[0] = 0;
@@ -6208,67 +6226,68 @@ undefined8 FUN_180891de0(longlong param_1,longlong param_2)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891e40(longlong param_1,longlong param_2)
-void FUN_180891e40(longlong param_1,longlong param_2)
+// 函数: void ProcessSystemEventA3(longlong eventContext,longlong systemContext)
+// 功能：处理系统事件，管理事件队列和内存分配，调用系统处理函数
+void ProcessSystemEventA3(longlong eventContext,longlong systemContext)
 
 {
-  int iVar1;
-  int iVar2;
-  longlong lVar3;
-  longlong lVar4;
-  uint uVar5;
-  longlong lStackX_8;
-  longlong lStackX_18;
+  int status;
+  int capacity;
+  longlong newBuffer;
+  longlong bufferPtr;
+  uint currentSize;
+  longlong eventHandle;
+  longlong queueInfo;
   
-  iVar1 = func_0x00018088c530(*(undefined4 *)(param_1 + 0x10),&lStackX_18);
-  if (((iVar1 != 0) || (iVar1 = FUN_180867bc0(&lStackX_8), iVar1 != 0)) ||
-     (iVar1 = FUN_180868490(lStackX_8,param_2,*(undefined8 *)(lStackX_18 + 8)), iVar1 != 0)) {
+  status = func_0x00018088c530(*(undefined4 *)(eventContext + 0x10),&queueInfo);
+  if (((status != 0) || (status = FUN_180867bc0(&eventHandle), status != 0)) ||
+     (status = FUN_180868490(eventHandle,systemContext,*(undefined8 *)(queueInfo + 8)), status != 0)) {
     return;
   }
-  lVar3 = 0;
-  lVar4 = lStackX_8 + 8;
-  if (lStackX_8 == 0) {
-    lVar4 = lVar3;
+  newBuffer = 0;
+  bufferPtr = eventHandle + 8;
+  if (eventHandle == 0) {
+    bufferPtr = newBuffer;
   }
-  iVar1 = func_0x00018088c500(lVar4,param_1 + 0x18);
-  if (iVar1 != 0) {
+  status = func_0x00018088c500(bufferPtr,eventContext + 0x18);
+  if (status != 0) {
     return;
   }
-  uVar5 = (int)*(uint *)(lStackX_18 + 0x2c) >> 0x1f;
-  iVar2 = (*(uint *)(lStackX_18 + 0x2c) ^ uVar5) - uVar5;
-  iVar1 = *(int *)(lStackX_18 + 0x28) + 1;
-  if (iVar2 < iVar1) {
-    iVar2 = (int)((float)iVar2 * 1.5);
-    if (iVar1 <= iVar2) {
-      iVar1 = iVar2;
+  currentSize = (int)*(uint *)(queueInfo + 0x2c) >> 0x1f;
+  capacity = (*(uint *)(queueInfo + 0x2c) ^ currentSize) - currentSize;
+  status = *(int *)(queueInfo + 0x28) + 1;
+  if (capacity < status) {
+    capacity = (int)((float)capacity * 1.5);
+    if (status <= capacity) {
+      status = capacity;
     }
-    if (iVar1 < 8) {
-      iVar1 = 8;
+    if (status < 8) {
+      status = 8;
     }
-    if (iVar1 < *(int *)(lStackX_18 + 0x28)) goto LAB_180891fc0;
-    if (iVar1 != 0) {
-      if ((0x3ffffffe < iVar1 * 8 - 1U) ||
-         (lVar3 = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),iVar1 * 8,&UNK_180957f70,
-                                0xf4,0,0,1), lVar3 == 0)) goto LAB_180891fc0;
-      if (*(int *)(lStackX_18 + 0x28) != 0) {
+    if (status < *(int *)(queueInfo + 0x28)) goto ExitHandler;
+    if (status != 0) {
+      if ((0x3ffffffe < status * 8 - 1U) ||
+         (newBuffer = FUN_180741e10(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),status * 8,&UNK_180957f70,
+                                0xf4,0,0,1), newBuffer == 0)) goto ExitHandler;
+      if (*(int *)(queueInfo + 0x28) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(lVar3,*(undefined8 *)(lStackX_18 + 0x20),(longlong)*(int *)(lStackX_18 + 0x28) << 3);
+        memcpy(newBuffer,*(undefined8 *)(queueInfo + 0x20),(longlong)*(int *)(queueInfo + 0x28) << 3);
       }
     }
-    if ((0 < *(int *)(lStackX_18 + 0x2c)) && (*(longlong *)(lStackX_18 + 0x20) != 0)) {
+    if ((0 < *(int *)(queueInfo + 0x2c)) && (*(longlong *)(queueInfo + 0x20) != 0)) {
                     // WARNING: Subroutine does not return
-      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(lStackX_18 + 0x20),
+      FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*(longlong *)(queueInfo + 0x20),
                     &UNK_180957f70,0x100,1);
     }
-    *(longlong *)(lStackX_18 + 0x20) = lVar3;
-    *(int *)(lStackX_18 + 0x2c) = iVar1;
+    *(longlong *)(queueInfo + 0x20) = newBuffer;
+    *(int *)(queueInfo + 0x2c) = status;
   }
-  *(longlong *)(*(longlong *)(lStackX_18 + 0x20) + (longlong)*(int *)(lStackX_18 + 0x28) * 8) =
-       lStackX_8;
-  *(int *)(lStackX_18 + 0x28) = *(int *)(lStackX_18 + 0x28) + 1;
-LAB_180891fc0:
+  *(longlong *)(*(longlong *)(queueInfo + 0x20) + (longlong)*(int *)(queueInfo + 0x28) * 8) =
+       eventHandle;
+  *(int *)(queueInfo + 0x28) = *(int *)(queueInfo + 0x28) + 1;
+ExitHandler:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+  FUN_18088d720(*(undefined8 *)(systemContext + 0x98),eventContext);
 }
 
 
@@ -6842,8 +6861,9 @@ undefined8 FUN_1808922ad(void)
 
 
 
-// 函数: void FUN_180892333(void)
-void FUN_180892333(void)
+// 函数: void UtilityNoOperationF(void)
+// 功能：空操作函数，不执行任何操作
+void UtilityNoOperationF(void)
 
 {
   return;
