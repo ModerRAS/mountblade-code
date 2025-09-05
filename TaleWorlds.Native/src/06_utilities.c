@@ -9610,13 +9610,13 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
 void InitializeSystemEventHandlerA0(longlong param_1,longlong param_2)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int operationResult;
+  undefined8 systemContextBuffer;
   
-  iVar1 = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = ProcessDataOperationA0(uStackX_8,param_1 + 0x18);
-    if (iVar1 == 0) {
+  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&systemContextBuffer);
+  if (operationResult == 0) {
+    operationResult = ProcessDataOperationA0(systemContextBuffer,param_1 + 0x18);
+    if (operationResult == 0) {
       ProcessSystemEventB0(*(undefined8 *)(param_2 + 0x98),param_1);
     }
   }
