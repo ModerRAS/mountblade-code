@@ -450,7 +450,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 
 // 网络连接常量
 #define NetworkConnectionModeClient 0x01            // 网络客户端连接模式
-#define NetworkConnectionPriorityMedium 0x05        // 中等连接优先级
+#define NetworkConnectionPriorityMedium 0x05        // 网络中等连接优先级
 #define NetworkProtocolVersionOne 0x01                // 网络协议版本1.0
 #define NetworkConnectionPoolSize 256             // 连接池大小256
 #define NetworkConnectionSize256Bytes 256             // 连接大小256字节
@@ -522,7 +522,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 
 // 网络连接配置常量
 #define NetworkConnectionPoolCapacity 1000                       // 网络连接池容量
-#define NetworkHealthStatusNormal 0x01                             // 网络健康状态：正常
+#define NetworkHealthStatusNormal 0x01                             // 网络正常健康状态
 #define NetworkManagerHandleInvalid 0xFFFFFFFF                     // 无效网络管理器句柄
 #define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF                  // 无效套接字描述符
 #define INVALID_SOCKET_HANDLE SOCKET_DESCRIPTOR_INVALID       // 无效套接字句柄别名
@@ -675,24 +675,44 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 uint32_t InitializeNetworkIterationContext(int64_t ConnectionContext, int64_t ValidationResult, uint32_t IterationFlag);
 
 /**
- * @brief 处理网络堆栈数据
+ * @brief 处理网络协议栈数据
  * 
- * 处理网络协议栈中的数据，进行协议解析和数据处理
+ * 处理网络协议栈中的数据，进行协议解析和数据处理操作
  * 
- * @param NetworkStackBuffer 网络堆栈缓冲区指针
- * @param NetworkContextData 网络上下文数据
- * @return uint32_t 处理结果句柄，0表示成功，其他值表示错误码
+ * @param NetworkStackBuffer 网络协议栈缓冲区指针，指向待处理的网络协议数据
+ * @param NetworkContextData 网络上下文数据，包含网络连接的上下文信息
+ * @return uint32_t 处理结果句柄，0表示处理成功，其他值表示处理失败的具体错误码
+ * 
+ * @retval 0 处理成功
+ * @retval 0x1 网络协议栈缓冲区无效
+ * @retval 0x2 网络上下文数据无效
+ * @retval 0x3 协议解析失败
+ * @retval 0x4 数据处理失败
+ * 
+ * @note 此函数会处理网络协议栈的原始数据，调用者需要确保数据格式正确
+ * @warning 如果数据格式不正确，可能会导致处理失败或系统异常
+ * @see InitializeNetworkConnection, ValidateNetworkConnectionSecurity
  */
 uint32_t HandleNetworkProtocolStackData(int64_t *NetworkStackBuffer, int64_t NetworkContextData);
 
 /**
- * @brief 验证网络连接句柄
+ * @brief 验证网络连接结果句柄安全性
  * 
- * 验证网络连接句柄的有效性和安全性
+ * 验证网络连接句柄的有效性和安全性，确保连接操作的合法性
  * 
- * @param NetworkConnectionContext 网络连接上下文句柄
- * @param NetworkPacketData 网络数据包数据句柄
- * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
+ * @param NetworkConnectionContext 网络连接上下文句柄，包含连接的上下文信息
+ * @param NetworkPacketData 网络数据包数据句柄，包含待验证的数据包信息
+ * @return uint32_t 验证结果句柄，0表示验证成功，其他值表示验证失败的具体错误码
+ * 
+ * @retval 0 验证成功
+ * @retval 0x1 网络连接上下文句柄无效
+ * @retval 0x2 网络数据包数据句柄无效
+ * @retval 0x3 安全验证失败
+ * @retval 0x4 权限验证失败
+ * 
+ * @note 此函数会进行多重安全验证，调用者需要确保参数有效
+ * @warning 如果验证失败，相关的网络操作将被拒绝
+ * @see InitializeNetworkConnection, GetNetworkConnectionResultHandle
  */
 uint32_t ValidateNetworkConnectionResultHandleSecurity(NetworkHandle NetworkConnectionContext, NetworkHandle NetworkPacketData);
 
@@ -930,17 +950,17 @@ uint32_t NetworkConnectionPriority;                        // 网络连接优先
 uint32_t NetworkSocketSize;                                // 网络套接字大小
 uint32_t NetworkSocketContextSize;                         // 网络套接字上下文大小
 uint32_t NetworkSocketContext;                             // 网络套接字上下文
-uint32_t NetworkSocketTablePosition;                        // 网络套接字索引，套接字在表中的索引位置
-uint32_t NetworkSocketIndex;                            // 网络套接字索引，套接字的索引位置
-uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据
-uint32_t NetworkSocketRuntimeData;                         // 网络套接字运行时数据指针，指向套接字相关的数据存储
-uint32_t NetworkSocketRuntimeContextPointer;                 // 网络套接字运行时上下文指针，指向套接字的运行时上下文数据
+uint32_t NetworkSocketTablePosition;                        // 网络套接字表位置，套接字在表中的索引位置
+uint32_t NetworkSocketIndex;                            // 网络套接字索引位置，套接字的索引位置
+uint32_t NetworkSocketContextPointer;                      // 网络套接字上下文指针，指向套接字的运行时上下文数据指针
+uint32_t NetworkSocketRuntimeData;                         // 网络套接字运行时数据，指向套接字相关的数据存储指针
+uint32_t NetworkSocketRuntimeContextPointer;                 // 网络套接字运行时上下文指针，指向套接字的运行时上下文数据指针
 uint32_t NetworkSocketStructureSize;                     // 网络套接字大小，套接字结构体的大小
 uint32_t NetworkProtocolVersion;                              // 网络协议版本，网络通信协议的版本号
 uint32_t NetworkConnectionMode;                               // 网络连接模式，连接的工作模式（客户端、服务器等）
-uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级，定义连接在资源竞争中的优先级别
-uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文大小，连接上下文数据结构的大小
-uint32_t NetworkConnectionQualityLevel;                     // 网络连接质量，评估连接质量的质量指标
+uint32_t NetworkConnectionPriorityLevel;                 // 网络连接优先级级别，定义连接在资源竞争中的优先级别
+uint32_t NetworkConnectionContextDataSize;              // 网络连接上下文数据大小，连接上下文数据结构的大小
+uint32_t NetworkConnectionQualityLevel;                     // 网络连接质量级别，评估连接质量的质量指标
 uint32_t NetworkConnectionQuality;                         // 网络连接质量，连接的质量等级
 uint32_t NetworkConnectionBandwidth;                    // 网络连接带宽，连接可用的带宽资源
 uint32_t NetworkConnectionLatency;                       // 网络连接延迟，网络通信的延迟时间
