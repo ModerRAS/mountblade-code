@@ -6374,8 +6374,12 @@ LAB_180891fc0:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180891ec9(int param_1,int param_2)
-void FUN_180891ec9(int param_1,int param_2)
+// 函数: void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
+// 功能：验证工具系统配置的有效性，检查配置参数是否符合系统要求
+// 参数：
+//   configId - 配置标识符，指定要验证的配置项
+//   validationFlags - 验证标志，控制验证过程的严格程度和检查项目
+void ValidateUtilityConfigurationAB0(int configId,int validationFlags)
 
 {
   int in_EAX;
@@ -6426,8 +6430,10 @@ LAB_180891fc0:
 
 
 
-// 函数: void FUN_180891fd4(void)
-void FUN_180891fd4(void)
+// 函数: void CheckUtilitySystemStatusAC0(void)
+// 功能：检查工具系统当前状态，返回系统运行状态和健康度信息
+// 返回：系统状态码，表示系统当前的健康状况和运行状态
+void CheckUtilitySystemStatusAC0(void)
 
 {
   return;
@@ -6436,8 +6442,10 @@ void FUN_180891fd4(void)
 
 
 
-// 函数: void FUN_180891fd9(void)
-void FUN_180891fd9(void)
+// 函数: void ClearUtilitySystemDataAD0(void)
+// 功能：清理工具系统数据，释放临时内存和缓存资源
+// 注意：此函数会释放所有临时分配的资源，但保留核心配置
+void ClearUtilitySystemDataAD0(void)
 
 {
   return;
@@ -6446,8 +6454,10 @@ void FUN_180891fd9(void)
 
 
 
-// 函数: void FUN_180891fde(void)
-void FUN_180891fde(void)
+// 函数: void ManageUtilitySystemCacheAE0(void)
+// 功能：管理工具系统缓存，优化缓存使用效率
+// 注意：此函数负责缓存的清理、整理和优化操作
+void ManageUtilitySystemCacheAE0(void)
 
 {
   return;
