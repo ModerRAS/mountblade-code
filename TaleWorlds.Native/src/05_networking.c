@@ -1087,12 +1087,12 @@ void *NetworkConnectionPrimaryConfigPointer;                // 网络连接主�
 void *NetworkConnectionSecondaryConfigPointer;            // 网络连接次要配置指针，指向次要配置数据
 void *NetworkConnectionProcessingConfigPointer;           // 网络连接处理配置指针，指向处理配置数据
 void *NetworkConnectionTransportConfigPointer;             // 网络连接传输配置指针，指向传输配置数据
-void *NetworkConnectionProtocolConfigPointer = &NetworkConnectionProtocolConfig;               // 网络连接协议配置指针，指向协议配置数据
-void *NetworkConnectionValidationConfigPointer = &NetworkConnectionValidationConfig;           // 网络连接验证配置指针，指向验证配置数据
-void *NetworkConnectionRoutingMainConfigPointer = &NetworkConnectionRoutingMainConfig;       // 网络连接路由主配置指针，指向路由主配置数据
-void *NetworkConnectionRoutingBackupConfigPointer = &NetworkConnectionRoutingBackupConfig;     // 网络连接路由备用配置指针，指向路由备用配置数据
-void *NetworkConnectionRoutingAlternativeConfigPointer = &NetworkConnectionRoutingAlternativeConfig; // 网络连接路由替代配置指针，指向路由替代配置数据
-void *NetworkConnectionRoutingFallbackConfigPointer = &NetworkConnectionRoutingFallbackConfig; // 网络连接路由回退配置指针，指向路由回退配置数据
+void *NetworkConnectionProtocolConfigPointer;               // 网络连接协议配置指针，指向协议配置数据
+void *NetworkConnectionValidationConfigPointer;           // 网络连接验证配置指针，指向验证配置数据
+void *NetworkConnectionRoutingMainConfigPointer;       // 网络连接路由主配置指针，指向路由主配置数据
+void *NetworkConnectionRoutingBackupConfigPointer;     // 网络连接路由备用配置指针，指向路由备用配置数据
+void *NetworkConnectionRoutingAlternativeConfigPointer; // 网络连接路由替代配置指针，指向路由替代配置数据
+void *NetworkConnectionRoutingFallbackConfigPointer; // 网络连接路由回退配置指针，指向路由回退配置数据
 
 /**
  * @brief 网络连接上下文模板数据
@@ -1108,13 +1108,28 @@ uint32_t NetworkConnectionContextTemplateConfiguration;     // 网络连接上�
  */
 uint32_t NetworkConnectionPrimaryConfig;                    // 网络连接主要配置数据，连接的主要配置参数
 
-// 网络连接次要配置数据
+/**
+ * @brief 网络连接次要配置数据
+ * 
+ * 包含网络连接的次要配置参数，作为主要配置的补充和备份配置方案。
+ * 当主要配置不可用时，系统会自动切换到次要配置。
+ */
 uint32_t NetworkConnectionSecondaryConfig;                  // 网络连接次要配置数据，连接的次要配置参数
 
-// 网络连接处理配置数据
+/**
+ * @brief 网络连接处理配置数据
+ * 
+ * 包含网络连接处理过程中的配置参数，定义数据处理流程、状态转换逻辑
+ * 和异常处理机制。此配置直接影响连接的性能和稳定性。
+ */
 uint32_t NetworkConnectionProcessingConfig;                 // 网络连接处理配置数据，连接处理的配置参数
 
-// 网络连接传输配置数据
+/**
+ * @brief 网络连接传输配置数据
+ * 
+ * 包含网络数据传输的配置参数，定义传输协议、数据包格式、流量控制
+ * 和传输优化策略。此配置确保数据在网络中的高效可靠传输。
+ */
 uint32_t NetworkConnectionTransportConfig;                  // 网络连接传输配置数据，连接传输的配置参数
 
 // 网络连接协议配置数据
