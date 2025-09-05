@@ -19514,8 +19514,8 @@ uint32_t FinalSystemInitialization(void)
   int WaitOperationResult;
   long long**** SystemManagerInstance;
   void* MemoryAllocationFlags;
-  long long**** SystemPrimaryTemporaryManager;
-  long long*** SystemSecondaryTemporaryManager;
+  long long**** SystemPrimaryMemoryManager;
+  long long*** SystemSecondaryMemoryManager;
   long long SystemObjectHandle;
   char SystemActiveStatus;
   long long**** SystemStackManager;
@@ -19524,7 +19524,7 @@ uint32_t FinalSystemInitialization(void)
   long long*** SystemSecondaryStackManager;
   void* CalculationFlags;
   long long***** SystemGlobalManager;
-  long long**** SystemTemporaryManager;
+  long long**** SystemMemoryManager;
   long long SystemValue;
   void* ResourceAddress;
   
@@ -19565,8 +19565,8 @@ uint32_t FinalSystemInitialization(void)
   InitializeSystemManager();
   SystemObjectHandle = SystemContextManagerPointer;
   MemoryAllocationFlags = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x70,8,3);
-  SystemTemporaryManager = (long long ****)AllocateSystemMemory(MemoryAllocationFlags,2,SystemObjectHandle);
-  SystemTemporaryManagerBackup = SystemTemporaryManager;
+  SystemMemoryManager = (long long ****)AllocateSystemMemory(MemoryAllocationFlags,2,SystemObjectHandle);
+  SystemTemporaryManagerBackup = SystemMemoryManager;
   if (SystemTemporaryManager != (long long ****)0x0) {
     (*(code *)(*SystemTemporaryManager)[5])(SystemTemporaryManager);
   }
@@ -60499,7 +60499,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   float InputFloatValue4;
   float InputFloatValue5;
   float AudioInterpolationCoeff1;
-  uint32_t StackParameter28;
+  uint32_t SystemStackParameter28;
   float FloatTransform30;
   float FloatStack34;
   float FloatStack38;
@@ -60546,7 +60546,7 @@ void ProcessSystemFloatOperations(void* SystemResourceManager,void* Configuratio
   FloatStack60 = AdditionalParameter * InputFloatValue3 + floatValue2 * floatValue4 + floatValue1 * floatValue7 + systemDataIndexPtr[0xc];
   FloatStack64 = AdditionalParameter * InputFloatValue4 + floatValue2 * BaseValue + floatValue1 * floatValue8 + systemDataIndexPtr[0xd];
   FloatStack68 = AdditionalParameter * InputFloatValue5 + floatValue2 * floatValue6 + floatValue1 * ScaleValue + systemDataIndexPtr[0xe];
-  StackParameter28 = InputParameterE8;
+  SystemStackParameter28 = InputParameterE8;
   SystemDataResourcePointer = 0x3f800000;
   SystemDataFlag2 = 0;
   SystemDataFlag1 = 0;
@@ -60572,7 +60572,7 @@ void InitializeSystemDataIndexPointer(void)
 {
   void* *systemDataIndexPtr;
   uint32_t SystemResourceCounter;
-  uint32_t StackParameter28;
+  uint32_t SystemStackParameter28;
   void* SystemDataBufferPointer;
   ulong long SystemDataPointer1;
   void* SystemDataPointer2;
@@ -60592,7 +60592,7 @@ void InitializeSystemDataIndexPointer(void)
   SystemDataPointer6 = *(uint32_t *)(systemDataIndexPtr + 6);
   SystemDataPointer7 = *(uint32_t *)((long long)systemDataIndexPtr + 0x34);
   SystemDataPointer8 = *(uint32_t *)(systemDataIndexPtr + 7);
-  StackParameter28 = InputParameterE8;
+  SystemStackParameter28 = InputParameterE8;
   SystemDataResourcePointer = 0x3f800000;
   SystemDataPointer5 = systemDataIndexPtr[5] & SystemMaximumUnsigned32BitValue;
   SystemDataPointer3 = systemDataIndexPtr[3] & SystemMaximumUnsigned32BitValue;
