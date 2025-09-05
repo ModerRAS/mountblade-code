@@ -17256,7 +17256,7 @@ void ProcessComplexDataBufferA1(undefined8 systemHandle, longlong dataContext, u
   longlong dataContext;
   int operationStatus;
   int arrayIndex;
-  int iVar5;
+  int loopIndex;
   undefined **ppdataFlags;
   int calculatedValue;
   undefined1 auStack_328 [32];
@@ -17291,7 +17291,7 @@ void ProcessComplexDataBufferA1(undefined8 systemHandle, longlong dataContext, u
   ulonglong uStack_58;
   
   uStack_58 = ExceptionEncryptionKey ^ (ulonglong)auStack_328;
-  iVar5 = 0;
+  loopIndex = 0;
   if (param_3 != 0) {
     operationStatus = *(int *)(param_2 + 0x220);
     if (operationStatus == 0) {
@@ -17364,31 +17364,31 @@ SecurityValidationLabel:
         uStack_284 = *(undefined4 *)(validationContext + 0x18);
         uStack_280 = *(undefined4 *)(validationContext + 0x1c);
         puStack_2a8 = &UNK_1809830b8;
-        arrayIndex = iVar5 + 1;
+        arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
         uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = SynchronizeDataEQ0(dataContext,afStack_304), iVar5 != 0))
+        iStack_290 = loopIndex;
+        loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
+        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar5;
-          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iStack_2f0 = loopIndex;
+          loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
+          if (loopIndex != 0) goto FUN_1808974f4;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
+          if (loopIndex != 0) goto FUN_1808974f4;
         }
-        iVar5 = arrayIndex;
+        loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           iStack_2f0 = 0;
           puStack_2f8 = &UNK_1809843d0;
@@ -17411,31 +17411,31 @@ SecurityValidationLabel:
         uStack_284 = *(undefined4 *)(validationContext + 0x18);
         uStack_280 = *(undefined4 *)(validationContext + 0x1c);
         puStack_2a8 = &UNK_1809830b8;
-        arrayIndex = iVar5 + 1;
+        arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
         uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = SynchronizeDataEQ0(dataContext,afStack_304), iVar5 != 0))
+        iStack_290 = loopIndex;
+        loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
+        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar5;
-          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iStack_2f0 = loopIndex;
+          loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
+          if (loopIndex != 0) goto FUN_1808974f4;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
+          if (loopIndex != 0) goto FUN_1808974f4;
         }
-        iVar5 = arrayIndex;
+        loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           iStack_2f0 = 0;
           puStack_2f8 = &UNK_1809843d0;
@@ -17458,31 +17458,31 @@ SecurityValidationLabel:
         uStack_284 = *(undefined4 *)(validationContext + 0x18);
         uStack_280 = *(undefined4 *)(validationContext + 0x1c);
         puStack_2a8 = &UNK_1809830b8;
-        arrayIndex = iVar5 + 1;
+        arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
         uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = SynchronizeDataEQ0(dataContext,afStack_304), iVar5 != 0))
+        iStack_290 = loopIndex;
+        loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
+        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar5;
-          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iStack_2f0 = loopIndex;
+          loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
+          if (loopIndex != 0) goto FUN_1808974f4;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
+          if (loopIndex != 0) goto FUN_1808974f4;
         }
-        iVar5 = arrayIndex;
+        loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           iStack_2f0 = 0;
           puStack_2f8 = &UNK_1809843d0;
@@ -17505,31 +17505,31 @@ SecurityValidationLabel:
         uStack_284 = *(undefined4 *)(validationContext + 0x18);
         uStack_280 = *(undefined4 *)(validationContext + 0x1c);
         puStack_2a8 = &UNK_1809830b8;
-        arrayIndex = iVar5 + 1;
+        arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
         uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (iVar5 = SynchronizeDataEQ0(dataContext,afStack_304), iVar5 != 0))
+        iStack_290 = loopIndex;
+        loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
+        if ((loopIndex != 0) || (loopIndex = SynchronizeDataEQ0(dataContext,afStack_304), loopIndex != 0))
         goto FUN_1808974f4;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809842e0;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
-          iStack_2f0 = iVar5;
-          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          iStack_2f0 = loopIndex;
+          loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
+          if (loopIndex != 0) goto FUN_1808974f4;
         }
         if (*(char *)(dataContext + 0x28) != '\0') {
           iStack_2f0 = 0;
           puStack_2f8 = &UNK_180984358;
           uStack_2e8 = CONCAT44(uStack_2e8._4_4_,uStack_308);
           uStack_2e0 = CONCAT71(uStack_2e0._1_7_,1);
-          iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2f8);
-          if (iVar5 != 0) goto FUN_1808974f4;
+          loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2f8);
+          if (loopIndex != 0) goto FUN_1808974f4;
         }
-        iVar5 = arrayIndex;
+        loopIndex = arrayIndex;
         if (*(char *)(dataContext + 0x29) != '\0') {
           iStack_2f0 = 0;
           puStack_2f8 = &UNK_1809843d0;
@@ -17540,7 +17540,7 @@ SecurityValidationLabel:
         }
       }
     }
-    iVar5 = 0;
+    loopIndex = 0;
     operationStatus = 0;
     do {
       if ((operationStatus < 0) || (*(int *)(param_2 + 200) <= operationStatus)) break;
@@ -17555,14 +17555,14 @@ SecurityValidationLabel:
         uStack_284 = *(undefined4 *)(validationContext + 0x18);
         uStack_280 = *(undefined4 *)(validationContext + 0x1c);
         puStack_2a8 = &UNK_180983238;
-        arrayIndex = iVar5 + 1;
+        arrayIndex = loopIndex + 1;
         uStack_27c = uStack_308;
         iStack_2a0 = calculatedValue;
         uStack_298 = param_3;
-        iStack_290 = iVar5;
-        iVar5 = ValidateDataIntegrityA0(param_1,&puStack_2a8);
-        if ((iVar5 != 0) || (calculatedValue = ValidateDataA2(dataContext,afStack_304,0), calculatedValue != 0)) break;
-        iVar5 = arrayIndex;
+        iStack_290 = loopIndex;
+        loopIndex = ValidateDataIntegrityA0(param_1,&puStack_2a8);
+        if ((loopIndex != 0) || (calculatedValue = ValidateDataA2(dataContext,afStack_304,0), calculatedValue != 0)) break;
+        loopIndex = arrayIndex;
         if (afStack_304[0] != 1.0) {
           uStack_2e0 = CONCAT44(uStack_2e0._4_4_,afStack_304[0]);
           puStack_2f8 = &UNK_1809844c8;
@@ -22747,7 +22747,7 @@ void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray
   char validationResult;
   undefined4 in_EAX;
   undefined3 dataFlags;
-  int iVar5;
+  int loopIndex;
   undefined4 in_register_00000004;
   uint unaff_EBP;
   char in_CF;
@@ -22766,9 +22766,9 @@ void ProcessSystemDataWithValidation(longlong SystemContext, int *ParameterArray
        *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + validationResult;
   *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) =
        *(char *)CONCAT44(in_register_00000004,memoryBaseAddress) + validationResult;
-  iVar5 = CONCAT31(dataFlags,validationResult + '\x18');
-  *param_2 = *param_2 + iVar5;
-  pcVar1 = (char *)((longlong)&piStack_8 + CONCAT44(in_register_00000004,iVar5));
+  loopIndex = CONCAT31(dataFlags,validationResult + '\x18');
+  *param_2 = *param_2 + loopIndex;
+  pcVar1 = (char *)((longlong)&piStack_8 + CONCAT44(in_register_00000004,loopIndex));
   *pcVar1 = *pcVar1 + validationResult + '\x18';
   validationFlag = (code *)swi(3);
   (*validationFlag)();
@@ -24844,7 +24844,7 @@ void ValidateAndProcessSystemData(longlong SystemContext, undefined8 *DataArray)
   undefined8 functionReturnValue;
   uint validationStatus;
   int arrayIndex;
-  int iVar5;
+  int loopIndex;
   uint dataFlags;
   uint validationOutcome;
   uint auStackX_18 [2];
@@ -24865,27 +24865,27 @@ void ValidateAndProcessSystemData(longlong SystemContext, undefined8 *DataArray)
         arrayIndex = 0;
         if (validationStatus >> 1 != 0) {
           do {
-            iVar5 = FUN_1808dde10(param_2,auStackX_18[0]);
-            if (iVar5 != 0) {
+            loopIndex = FUN_1808dde10(param_2,auStackX_18[0]);
+            if (loopIndex != 0) {
               return;
             }
             if (*(int *)(param_2[1] + 0x18) == 0) {
               functionReturnValue = *param_2;
               validationContext = *(longlong *)(param_1 + 0x20) + (longlong)arrayIndex * 8;
-              iVar5 = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext);
-              if (iVar5 != 0) {
+              loopIndex = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext);
+              if (loopIndex != 0) {
                 return;
               }
-              iVar5 = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext + 4);
+              loopIndex = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext + 4);
             }
             else {
-              iVar5 = 0x1c;
+              loopIndex = 0x1c;
             }
-            if (iVar5 != 0) {
+            if (loopIndex != 0) {
               return;
             }
-            iVar5 = FUN_1808de0e0(param_2,auStackX_18);
-            if (iVar5 != 0) {
+            loopIndex = FUN_1808de0e0(param_2,auStackX_18);
+            if (loopIndex != 0) {
               return;
             }
             arrayIndex = arrayIndex + 1;
@@ -24920,7 +24920,7 @@ void ValidateAndInitializeSystemA0(void)
   undefined8 functionReturnValue;
   uint validationStatus;
   int arrayIndex;
-  int iVar5;
+  int loopIndex;
   longlong registerContext;
   undefined8 *unaff_RDI;
   uint dataFlags;
@@ -24936,27 +24936,27 @@ void ValidateAndInitializeSystemA0(void)
       arrayIndex = 0;
       if (validationStatus >> 1 != 0) {
         do {
-          iVar5 = FUN_1808dde10();
-          if (iVar5 != 0) {
+          loopIndex = FUN_1808dde10();
+          if (loopIndex != 0) {
             return;
           }
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
             functionReturnValue = *unaff_RDI;
             validationContext = *(longlong *)(registerContext + 0x20) + (longlong)arrayIndex * 8;
-            iVar5 = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext);
-            if (iVar5 != 0) {
+            loopIndex = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext);
+            if (loopIndex != 0) {
               return;
             }
-            iVar5 = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext + 4);
+            loopIndex = ValidateDataWithSecurityCheckA2(functionReturnValue,validationContext + 4);
           }
           else {
-            iVar5 = 0x1c;
+            loopIndex = 0x1c;
           }
-          if (iVar5 != 0) {
+          if (loopIndex != 0) {
             return;
           }
-          iVar5 = FUN_1808de0e0();
-          if (iVar5 != 0) {
+          loopIndex = FUN_1808de0e0();
+          if (loopIndex != 0) {
             return;
           }
           arrayIndex = arrayIndex + 1;
