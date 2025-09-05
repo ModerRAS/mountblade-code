@@ -19453,7 +19453,7 @@ undefined4 ProcessDataF1(undefined8 param_1,ulonglong param_2)
     iVar7 = (int)unaff_RBP;
     if ((memoryBaseAddress & 0xffffff) != 0xffffff) {
       lVar8 = (ulonglong)(memoryBaseAddress & 0xffffff) + registerR14[4];
-      operationResult = func_0x00018076b690(lVar8);
+      operationResult = ValidateSystemDataIntegrityB0(lVar8);
       if (iVar7 != 0) {
         puVar9 = (undefined1 *)((operationResult + -1) + lVar8);
         iVar10 = operationResult;
@@ -20035,7 +20035,7 @@ undefined8 ValidateDataSequenceA0(longlong *param_1,uint *param_2)
   else {
     if (param_1[2] != 0) {
       auStackX_8[0] = 0;
-      uVar1 = func_0x00018076a7d0(*param_1,auStackX_8);
+      uVar1 = ProcessMemoryAllocationA0(*param_1,auStackX_8);
       if ((int)uVar1 != 0) {
         return uVar1;
       }
