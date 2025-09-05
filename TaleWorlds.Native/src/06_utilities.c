@@ -19239,9 +19239,9 @@ void ProcessFloatingPointDataA1(longlong *dataContext)
         bufferIndex = ValidateDataIntegrityA0(dataContext,&bufferPointer);
         if (bufferIndex != 0) goto LAB_18089866f;
       }
-      validationContextPointer4 = validationContextPointer6;
-      validationContextPointer0 = validationContextPointer6;
-      validationContextPointer3 = validationContextPointer6;
+      resourceList = nullPointer;
+      contextPointer = nullPointer;
+      resourceIterator = nullPointer;
       validationContextPointer9 = validationContextPointer6;
       alStack_300[0] = (longlong)iVar6;
       if (0 < iVar6) {

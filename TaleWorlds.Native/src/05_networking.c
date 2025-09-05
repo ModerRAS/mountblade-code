@@ -1072,16 +1072,16 @@ uint32_t NetworkAuthenticationTimeoutMs;                      // 网络认证超
 uint32_t NetworkEncryptionTimeoutMs;                          // 网络加密超时时间，加密过程的最大等待时间
 
 // 网络连接配置数据指针
-void *NetworkConnectionInitializationConfig;    // 网络连接初始化配置数据，连接初始化时使用的配置信息
-void *NetworkConnectionBackupConfig;              // 网络连接备用配置数据，备用配置方案的数据指针
-void *NetworkConnectionHeaderConfig;              // 网络连接头部配置数据，数据包头部处理的配置信息
-void *NetworkConnectionDataConfig;                // 网络连接数据配置数据，数据处理相关的配置信息
-void *NetworkConnectionRequestConfig;             // 网络连接请求配置数据，连接请求处理的配置信息
-void *NetworkConnectionPrimaryProcessingConfig;   // 网络连接主要处理配置数据，主要处理流程的配置信息
-void *NetworkConnectionSecondaryProcessingConfig; // 网络连接次要处理配置数据，次要处理流程的配置信息
-void *NetworkConnectionTertiaryProcessingConfig; // 网络连接第三处理配置数据，第三级处理流程的配置信息
-void *NetworkConnectionQuaternaryProcessingConfig;// 网络连接第四处理配置数据，第四级处理流程的配置信息
-void *NetworkConnectionQuinaryProcessingConfig;   // 网络连接第五处理配置数据，第五级处理流程的配置信息
+void *NetworkConnectionInitializationConfig;             // 网络连接初始化配置数据，连接初始化时使用的配置信息
+void *NetworkConnectionBackupConfig;                     // 网络连接备用配置数据，备用配置方案的数据指针
+void *NetworkConnectionHeaderConfig;                     // 网络连接头部配置数据，数据包头部处理的配置信息
+void *NetworkConnectionDataConfig;                       // 网络连接数据配置数据，数据处理相关的配置信息
+void *NetworkConnectionRequestConfig;                    // 网络连接请求配置数据，连接请求处理的配置信息
+void *NetworkConnectionPrimaryProcessingConfig;          // 网络连接主要处理配置数据，主要处理流程的配置信息
+void *NetworkConnectionSecondaryProcessingConfig;        // 网络连接次要处理配置数据，次要处理流程的配置信息
+void *NetworkConnectionTertiaryProcessingConfig;          // 网络连接第三处理配置数据，第三级处理流程的配置信息
+void *NetworkConnectionQuaternaryProcessingConfig;        // 网络连接第四处理配置数据，第四级处理流程的配置信息
+void *NetworkConnectionQuinaryProcessingConfig;           // 网络连接第五处理配置数据，第五级处理流程的配置信息
 
 // 网络连接上下文和数据变量
 uint32_t NetworkConnectionActiveContext;                          // 网络连接活动上下文，存储连接的运行时上下文信息
