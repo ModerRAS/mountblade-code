@@ -26722,12 +26722,12 @@ void ProcessSystemResourceAllocation(void* SystemResourceManager,long long Confi
         SystemUtilityHandler(SystemValidationResult,resourceCounter);
         if (SystemOperationCode == 8) {
           CalculationFlags = strcmp(ThreadLocalStorage,&SystemResourceTemplateDenary);
-          isSystemResourceMatch = CalculationFlags == 0;
+          systemResourceMatch = CalculationFlags == 0;
         }
         else {
-          isSystemResourceMatch = false;
+          systemResourceMatch = false;
         }
-        if (isSystemResourceMatch) {
+        if (systemResourceMatch) {
 
 /**
  * @brief 更新系统渲染管理器
@@ -26750,10 +26750,10 @@ void UpdateSystemRenderManager(long long SystemResourceManager)
   SystemIntegerPointer = (int *)(SystemResourceManager + 0x3d0);
   if (((int)*(float *)(SystemRenderManagerPointer + 0x17ec) == *(int *)(SystemResourceManager + 0x3cc)) &&
      ((int)*(float *)(SystemRenderManagerPointer + 0x17f0) == *SystemIntegerPointer)) {
-    isTextureUpdateRequired = false;
+    textureUpdateRequired = false;
   }
   else {
-    isTextureUpdateRequired = true;
+    textureUpdateRequired = true;
     UpdateRenderManagerSystem(SystemRenderManagerPointer,*(int *)(SystemResourceManager + 0x3cc),*SystemIntegerPointer);
   }
   if (*(int *)(*(long long *)(SystemResourceManager + 8) + 0x38) == 2) {
@@ -26766,31 +26766,31 @@ void UpdateSystemRenderManager(long long SystemResourceManager)
       ProcessNodeManagerOperation(SystemNodeManagerPointer,resourceCreationFlags);
       ProcessSystemResourceData(*(void* *)(SystemResourceManager + 8),*(uint32_t *)(SystemResourceManager + 0x3cc),*SystemIntegerPointer,
                     *(uint8_t *)(SystemResourceManager + 0x3d5));
-      isSystemInitialized = true;
+      systemInitialized = true;
       goto ErrorHandler;
     }
   }
   else {
     if (*(char *)(SystemResourceManager + 0x3d4) != '\0') {
       SystemCounter = *(int *)(SystemNodeManagerPointer + 0x1ea0);
-      if ((*(char *)(SystemResourceManager + 0x3d5) != '\0') || (isTextureUpdateRequired)) {
+      if ((*(char *)(SystemResourceManager + 0x3d5) != '\0') || (textureUpdateRequired)) {
         CurrentThreadIdentifier = 1;
       }
       else {
         CurrentThreadIdentifier = 0;
       }
       ProcessSystemResourceData(*(long long *)(SystemResourceManager + 8),*(uint32_t *)(SystemResourceManager + 0x3cc),*SystemIntegerPointer,CurrentThreadIdentifier);
-      isSystemInitialized = SystemCounter == 2;
+      systemInitialized = SystemCounter == 2;
       goto ErrorHandler;
     }
-    if (!isTextureUpdateRequired) {
+    if (!textureUpdateRequired) {
       return;
     }
   }
-  isSystemInitialized = false;
+  systemInitialized = false;
 ErrorHandler:
   UpdateTextureManagerSystem(SystemTextureManagerPointer,*(uint32_t *)(SystemResourceManager + 0x3cc),*SystemIntegerPointer,isSystemInitialized);
-  if (!isTextureUpdateRequired) {
+  if (!textureUpdateRequired) {
     return;
   }
     UpdateContextManagerSystem(SystemContextManagerPointer,&SystemResourceTemplateUndenary,*(uint32_t *)(SystemResourceManager + 0x3cc),*SystemIntegerPointer);
