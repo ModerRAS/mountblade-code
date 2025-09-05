@@ -13545,7 +13545,7 @@ undefined8 ReallocateAndCopyDataBuffer(longlong *bufferPointer,int bufferSize)
     }
     return 0x26;
   }
-LAB_180895fdc:
+CalculationLabel:
   if ((0 < *(int *)((longlong)bufferPointer + 0xc)) && (*bufferPointer != 0)) {
                     // WARNING: Subroutine does not return
     FreeMemoryBlock(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*bufferPointer,&UNK_180957f70,0x100,1);
@@ -13572,7 +13572,7 @@ undefined8 FUN_180895f44(undefined8 param_1,int param_2)
   
   puVar3 = (undefined8 *)0x0;
   if (unaff_EDI == 0) {
-LAB_180895fdc:
+CalculationLabel:
     if ((0 < *(int *)((longlong)registerRBX + 0xc)) && (*registerRBX != 0)) {
                     // WARNING: Subroutine does not return
       FUN_180742250(*(undefined8 *)(_DAT_180be12f0 + 0x1a0),*registerRBX,&UNK_180957f70,0x100,1);
