@@ -2611,6 +2611,18 @@
 // 功能：存储默认异常处理器A0的指针
 #define DefaultExceptionHandlerPointerA0 _DAT_180c92050
 
+// 原始变量名：_DAT_180bfaef0 - 默认异常处理器指针A1
+// 功能：存储默认异常处理器A1的指针
+#define DefaultExceptionHandlerPointerA1 _DAT_180bfaef0
+
+// 原始变量名：_DAT_180bfb310 - 默认异常处理器指针A2
+// 功能：存储默认异常处理器A2的指针
+#define DefaultExceptionHandlerPointerA2 _DAT_180bfb310
+
+// 原始变量名：_DAT_180bfb730 - 默认异常处理器指针A3
+// 功能：存储默认异常处理器A3的指针
+#define DefaultExceptionHandlerPointerA3 _DAT_180bfb730
+
 // 原始变量名：0x180c82210 - 异常临界区
 // 功能：异常处理的临界区对象
 #define ExceptionCriticalSection 0x180c82210
@@ -50000,6 +50012,15 @@ void Unwind_180906190(undefined8 param_1,longlong param_2)
 
 
 
+/**
+ * @brief 系统异常处理函数A0
+ * 
+ * 该函数用于处理系统异常，通过验证上下文指针来调用异常处理程序
+ * 主要用于系统级别的异常恢复和清理工作
+ * 
+ * @param param_1 保留参数，用于异常处理上下文
+ * @param param_2 异常处理参数，包含验证上下文信息
+ */
 void Unwind_1809061a0(undefined8 param_1,longlong param_2)
 
 {
