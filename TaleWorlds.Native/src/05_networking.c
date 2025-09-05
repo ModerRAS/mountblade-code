@@ -313,9 +313,9 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 /**
  * @brief 无效数据包魔数
  * 
- * 表示无效数据包的魔数值，ASCII码为"FOOD"，用于标识无效或损坏的数据包
+ * 表示无效数据包的魔数值，ASCII码为"DOOF"（反向的"FOOD"），用于标识无效或损坏的数据包
  */
-#define NetworkPacketMagicInvalid 0x464f4f44                   // "FOOD" - 表示无效数据包魔数
+#define NetworkPacketMagicInvalid 0x464f4f44                   // "DOOF" - 表示无效数据包魔数（反向的"FOOD"）
 
 // 网络连接相关偏移量 - 连接处理和数据管理
 #define NetworkConnectionHeaderOffset 0x10                     // 网络连接头部偏移量
@@ -398,11 +398,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define PortRangeMaximum 0x270F                                // 端口9999
 
 // 网络缓冲区大小常量 - 内存和缓冲区配置
-#define SOCKET_CONTEXT_SIZE 0x100                            // 套接字上下文大小256字节
+#define SocketContextSize 0x100                            // 套接字上下文大小256字节
 #define SOCKET_SIZE 0x40                                     // 套接字大小64字节
-#define SEND_BUFFER_SIZE 0x10000                            // 发送缓冲区大小64KB
-#define RECEIVE_BUFFER_SIZE 0x10000                          // 接收缓冲区大小64KB
-#define BUFFER_CAPACITY 0x20000                              // 缓冲区容量128KB
+#define SendBufferSize 0x10000                            // 发送缓冲区大小64KB
+#define ReceiveBufferSize 0x10000                          // 接收缓冲区大小64KB
+#define BufferCapacity 0x20000                              // 缓冲区容量128KB
 #define PACKET_QUEUE_SIZE 0x100                               // 数据包队列大小256
 #define NetworkBufferSize4KB 0x1000                               // 网络缓冲区大小：4KB
 #define NetworkPacketContextSize 0x100                              // 网络数据包上下文大小：256字节
@@ -524,27 +524,27 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkConnectionPoolCapacity 1000                       // 网络连接池容量
 #define NetworkHealthStatusNormal 0x01                             // 网络正常健康状态
 #define NetworkManagerHandleInvalid 0xFFFFFFFF                     // 无效网络管理器句柄
-#define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF                  // 无效套接字描述符
-#define INVALID_SOCKET_HANDLE SOCKET_DESCRIPTOR_INVALID       // 无效套接字句柄别名
-#define CLIENT_IP_ANY 0x00000000                            // 任意客户端IP地址
-#define ANY_CLIENT_ADDRESS CLIENT_IP_ANY                      // 任意客户端地址别名
-#define CLIENT_PORT_ANY 0x0000                              // 任意客户端端口
-#define SOCKET_BOUND 0x01                                    // 套接字已绑定标志
-#define ACTIVE_CONNECTIONS_MAX 100                           // 最大活跃连接数
+#define SocketDescriptorInvalid 0xFFFFFFFF                  // 无效套接字描述符
+#define InvalidSocketHandle SocketDescriptorInvalid       // 无效套接字句柄别名
+#define ClientIpAny 0x00000000                            // 任意客户端IP地址
+#define AnyClientAddress ClientIpAny                      // 任意客户端地址别名
+#define ClientPortAny 0x0000                              // 任意客户端端口
+#define SocketBound 0x01                                    // 套接字已绑定标志
+#define ActiveConnectionsMaximum 100                           // 最大活跃连接数
 #define PENDING_REQUESTS_INITIAL 0                          // 初始待处理请求数
 #define QUEUE_INITIALIZED 0x01                               // 队列已初始化
 #define CALLBACK_INVALID 0xFFFFFFFF                           // 无效回调句柄
 #define TIMEOUT_INVALID 0xFFFFFFFF                            // 无效超时句柄
-#define INVALID_CALLBACK_HANDLE CALLBACK_INVALID              // 无效回调句柄别名
-#define INVALID_TIMEOUT_HANDLE TIMEOUT_INVALID                 // 无效超时句柄别名
+#define InvalidCallbackHandle CallbackInvalid              // 无效回调句柄别名
+#define InvalidTimeoutHandle TimeoutInvalid                 // 无效超时句柄别名
 #define CONTEXT_INITIALIZED 0x01                              // 上下文已初始化
 #define RELIABILITY_HIGH 0x01                                // 高可靠性
-#define ENCRYPTION_KEY_DEMO_VALUE 0x12345678                       // 演示加密密钥
-#define DEMO_ENCRYPTION_KEY ENCRYPTION_KEY_DEMO_VALUE             // 演示加密密钥别名
+#define EncryptionKeyDemoValue 0x12345678                       // 演示加密密钥
+#define DemoEncryptionKey EncryptionKeyDemoValue             // 演示加密密钥别名
 
 // 通用重置常量
-#define NETWORK_DEFAULT_RESET_VALUE 0x00                                    // 默认重置值
-#define NETWORK_RESET_VALUE NETWORK_DEFAULT_RESET_VALUE                      // 通用重置值
+#define NetworkDefaultResetValue 0x00                                    // 默认重置值
+#define NetworkResetValue NetworkDefaultResetValue                      // 通用重置值
 #define FLAGS_RESET NETWORK_RESET_VALUE                                       // 重置标志
 #define CONTEXT_RELEASED NETWORK_RESET_VALUE                                  // 上下文已释放
 #define SIZE_RESET NETWORK_RESET_VALUE                                        // 大小重置
@@ -554,7 +554,7 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define ENCRYPTION_RESET NETWORK_RESET_VALUE                                  // 加密重置
 #define COMPRESSION_RESET NETWORK_RESET_VALUE                                 // 压缩重置
 #define SOCKET_RESET NETWORK_RESET_VALUE                                      // 套接字重置
-#define SOCKET_DATA_RESET NETWORK_RESET_VALUE                                 // 套接字数据重置
+#define SocketDataReset NetworkResetValue                                 // 套接字数据重置
 #define EVENT_RESET NETWORK_RESET_VALUE                                       // 事件重置
 #define CALLBACK_RESET NETWORK_RESET_VALUE                                    // 回调重置
 #define QUEUE_RESET NETWORK_RESET_VALUE                                       // 队列重置
@@ -562,14 +562,14 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define STATS_RESET NETWORK_RESET_VALUE                                       // 统计重置
 #define CONNECTION_TIME_RESET NETWORK_RESET_VALUE                             // 连接时间重置
 #define ACTIVITY_RESET NETWORK_RESET_VALUE                                    // 活动重置
-#define EXTENDED_FLAGS_RESET NETWORK_RESET_VALUE                              // 扩展标志重置
+#define ExtendedFlagsReset NetworkResetValue                              // 扩展标志重置
 
 // 网络数据传输常量
 #define NETWORK_SEQUENCE_INITIAL_VALUE 0x01                                  // 初始序列号
-#define NETWORK_ACK_INITIAL_VALUE 0x01                                       // 初始确认号
-#define NETWORK_BYTES_RESET_VALUE NETWORK_RESET_VALUE                       // 字节重置
+#define NetworkAckInitialValue 0x01                                       // 初始确认号
+#define NetworkBytesResetValue NetworkResetValue                       // 字节重置
 #define NETWORK_PACKETS_RESET_VALUE NETWORK_RESET_VALUE                     // 数据包重置
-#define NETWORK_RETRANSMIT_COUNT_RESET_VALUE NETWORK_RESET_VALUE             // 重传计数重置
+#define NetworkRetransmitCountResetValue NetworkResetValue             // 重传计数重置
 #define NETWORK_LOSS_RATE_RESET_VALUE NETWORK_RESET_VALUE                   // 丢包率重置
 #define NetworkMonitorEnabled 0x01                                  // 监控器启用
 #define NETWORK_ROUND_TRIP_TIME_RESET_VALUE NETWORK_RESET_VALUE             // 往返时间重置
@@ -616,6 +616,25 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkReportSizeMedium NetworkReportSizeMediumBytes       // 中型报告大小别名
 #define NetworkReportSizeLarge NetworkReportSizeLargeBytes         // 大型报告大小别名
 #define NetworkReportSizeStandard NetworkReportSizeStandardBytes   // 标准报告大小别名
+
+// 网络套接字配置常量
+#define SOCKET_DESCRIPTOR_INVALID 0xFFFFFFFF                  // 无效套接字描述符
+#define SOCKET_CONTEXT_SIZE 0x1000                         // 套接字上下文大小（4KB）
+#define TCP_SOCKET_CATEGORY 0x01                            // TCP套接字类别
+#define PORT_HTTP_ALT 0x1f90                                // HTTP备用端口8080
+#define CLIENT_IP_ANY 0x00000000                            // 任意客户端IP地址
+#define CLIENT_PORT_ANY 0x0000                              // 任意客户端端口
+#define SEND_BUFFER_SIZE 0x10000                            // 发送缓冲区大小（64KB）
+#define RECEIVE_BUFFER_SIZE 0x10000                         // 接收缓冲区大小（64KB）
+#define BUFFER_CAPACITY 0x20000                             // 缓冲区容量（128KB）
+#define PORT_RANGE_END 0x270f                                // 端口范围结束值9999
+#define EXTENDED_FLAGS_RESET NETWORK_RESET_VALUE              // 扩展标志重置
+#define SOCKET_SIZE 0x100                                    // 套接字结构大小（256字节）
+#define TCP_PROTOCOL 0x06                                    // TCP协议号
+#define NetworkProtocolVersionOne 0x01                        // 网络协议版本1
+#define NetworkConnectionModeClient 0x01                      // 客户端连接模式
+#define NetworkConnectionPriorityMedium 0x02                  // 中等连接优先级
+#define NetworkConnectionNotFound 0xFFFFFFFF                     // 网络连接未找到
 
 // 网络连接状态常量
 #define NetworkProcessingStatusActiveFlag 0x01                // 处理状态活跃
@@ -1614,7 +1633,6 @@ uint32_t NetworkCallbackHandler;                        // 网络回调处理器
 uint32_t NetworkTimeoutProcessor;                       // 网络超时处理器
 
 // 网络连接状态常量
-#define NetworkConnectionNotFound 0xFFFFFFFF
 
 // 网络数据传输和处理函数
 
