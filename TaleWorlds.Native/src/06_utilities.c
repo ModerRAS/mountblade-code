@@ -8922,19 +8922,19 @@ void ProcessExtendedContextValidation(longlong contextHandle,longlong operationH
 
 
 
-// 函数: void FUN_180893700(longlong param_1,longlong param_2)
-void FUN_180893700(longlong param_1,longlong param_2)
+// 函数: void ProcessAlternativeContextValidation(longlong contextHandle,longlong operationHandle)
+void ProcessAlternativeContextValidation(longlong contextHandle,longlong operationHandle)
 
 {
-  int iVar1;
-  undefined8 uStackX_8;
+  int validationResult;
+  undefined8 validationData;
   
-  iVar1 = FUN_180894b00(param_2,param_1 + 0x10,&uStackX_8);
-  if (iVar1 == 0) {
-    iVar1 = func_0x00018088c500(uStackX_8,param_1 + 0x20);
-    if (iVar1 == 0) {
+  validationResult = ValidateAlternativeContext(operationHandle,contextHandle + 0x10,&validationData);
+  if (validationResult == 0) {
+    validationResult = ExecuteContextOperation(validationData,contextHandle + 0x20);
+    if (validationResult == 0) {
                     // WARNING: Subroutine does not return
-      FUN_18088d720(*(undefined8 *)(param_2 + 0x98),param_1);
+      ExecuteCriticalOperation(*(undefined8 *)(operationHandle + 0x98),contextHandle);
     }
   }
   return;
