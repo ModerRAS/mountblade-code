@@ -4571,83 +4571,85 @@ int32_t UtilityMemoryValidate7;
 int32_t UtilityMemoryValidate8;
 int32_t UtilityMemoryValidate9;
 int32_t UtilityMemoryValidate10;
-undefined UtilityMemoryValidate11;
-undefined UtilityMemoryValidate12;
-undefined UtilityMemoryValidate13;
-// 工具系统内存管理数据
-undefined UtilityMemoryData14;
-undefined UtilityMemoryData15;
-undefined UtilityMemoryData16;
-undefined UtilityMemoryData17;
-undefined UtilityMemoryData18;
-undefined UtilityMemoryData19;
-undefined UtilityMemoryData20;
-undefined UtilityMemoryData21;
-undefined UtilityMemoryData22;
-undefined UtilityMemoryData23;
-undefined UtilityMemoryData24;
-undefined UtilityMemoryData25;
-undefined UtilityMemoryData26;
-undefined UtilityMemoryData27;
-undefined UtilityMemoryData28;
-undefined UtilityMemoryData29;
-undefined UtilityMemoryData30;
-undefined UtilityMemoryData31;
-undefined UtilityMemoryData32;
-undefined UtilityMemoryData33;
-undefined UtilityMemoryData34;
-undefined UtilityMemoryData35;
-undefined UtilityMemoryData36;
-undefined UtilityMemoryData37;
-undefined UtilityMemoryData38;
-undefined UtilityMemoryData39;
-undefined UtilityMemoryData40;
-undefined UtilityMemoryData41;
-undefined UtilityMemoryData42;
-undefined UtilityMemoryData43;
-// 工具系统内存管理数据(续)
-undefined UtilityMemoryData44;
-undefined UtilityMemoryData45;
-undefined UtilityMemoryData46;
-undefined UtilityMemoryData47;
-undefined UtilityMemoryData48;
-undefined UtilityMemoryData49;
-undefined UtilityMemoryData50;
-undefined UtilityMemoryData51;
-undefined UtilityMemoryData52;
-undefined UtilityMemoryData53;
-undefined UtilityMemoryData54;
-undefined UtilityMemoryData55;
-undefined UtilityMemoryData56;
-undefined UtilityMemoryData57;
-undefined UtilityMemoryData58;
-undefined UtilityMemoryData59;
-undefined UtilityMemoryData60;
-undefined UtilityMemoryData61;
-undefined UtilityMemoryData62;
+// 工具系统内存验证数据块11-13
+undefined UtilityMemoryValidationData11;
+undefined UtilityMemoryValidationData12;
+undefined UtilityMemoryValidationData13;
+// 工具系统内存管理数据块14-43
+undefined UtilityMemoryManagementData14;
+undefined UtilityMemoryManagementData15;
+undefined UtilityMemoryManagementData16;
+undefined UtilityMemoryManagementData17;
+undefined UtilityMemoryManagementData18;
+undefined UtilityMemoryManagementData19;
+undefined UtilityMemoryManagementData20;
+undefined UtilityMemoryManagementData21;
+undefined UtilityMemoryManagementData22;
+undefined UtilityMemoryManagementData23;
+undefined UtilityMemoryManagementData24;
+undefined UtilityMemoryManagementData25;
+undefined UtilityMemoryManagementData26;
+undefined UtilityMemoryManagementData27;
+undefined UtilityMemoryManagementData28;
+undefined UtilityMemoryManagementData29;
+undefined UtilityMemoryManagementData30;
+undefined UtilityMemoryManagementData31;
+undefined UtilityMemoryManagementData32;
+undefined UtilityMemoryManagementData33;
+undefined UtilityMemoryManagementData34;
+undefined UtilityMemoryManagementData35;
+undefined UtilityMemoryManagementData36;
+undefined UtilityMemoryManagementData37;
+undefined UtilityMemoryManagementData38;
+undefined UtilityMemoryManagementData39;
+undefined UtilityMemoryManagementData40;
+undefined UtilityMemoryManagementData41;
+undefined UtilityMemoryManagementData42;
+undefined UtilityMemoryManagementData43;
+// 工具系统内存管理数据块44-58
+undefined UtilityMemoryManagementData44;
+undefined UtilityMemoryManagementData45;
+undefined UtilityMemoryManagementData46;
+undefined UtilityMemoryManagementData47;
+undefined UtilityMemoryManagementData48;
+undefined UtilityMemoryManagementData49;
+undefined UtilityMemoryManagementData50;
+undefined UtilityMemoryManagementData51;
+undefined UtilityMemoryManagementData52;
+undefined UtilityMemoryManagementData53;
+undefined UtilityMemoryManagementData54;
+undefined UtilityMemoryManagementData55;
+undefined UtilityMemoryManagementData56;
+undefined UtilityMemoryManagementData57;
+undefined UtilityMemoryManagementData58;
+// 工具系统内存管理数据块59-62
+undefined UtilityMemoryManagementData59;
+undefined UtilityMemoryManagementData60;
+undefined UtilityMemoryManagementData61;
+undefined UtilityMemoryManagementData62;
 // 工具系统功能指针
-undefined UtilitySystemPointer3;
-undefined UtilityFunctionPtr1;
-undefined UtilityFunctionPtr2;
-undefined UtilityFunctionPtr3;
-undefined UtilityFunctionPtr4;
-undefined UtilityFunctionPtr5;
-undefined UtilityFunctionPtr6;
-undefined UtilityFunctionPtr7;
-undefined UtilityFunctionPtr8;
-undefined UtilityFunctionPtr9;
-undefined UtilityFunctionPtr10;
-undefined UtilityFunctionPtr11;
-undefined UtilityFunctionPtr12;
-undefined UtilityFunctionPtr13;
-undefined UtilityFunctionPtr14;
-undefined UtilityFunctionPtr15;
-undefined UtilityFunctionPtr16;
+undefined UtilitySystemGlobalPointer3;
+undefined UtilitySystemFunctionPointer1;
+undefined UtilitySystemFunctionPointer2;
+undefined UtilitySystemFunctionPointer3;
+undefined UtilitySystemFunctionPointer4;
+undefined UtilitySystemFunctionPointer5;
+undefined UtilitySystemFunctionPointer6;
+undefined UtilitySystemFunctionPointer7;
+undefined UtilitySystemFunctionPointer8;
+undefined UtilitySystemFunctionPointer9;
+undefined UtilitySystemFunctionPointer10;
+undefined UtilitySystemFunctionPointer11;
+undefined UtilitySystemFunctionPointer12;
+undefined UtilitySystemFunctionPointer13;
+undefined UtilitySystemFunctionPointer14;
+undefined UtilitySystemFunctionPointer15;
+undefined UtilitySystemFunctionPointer16;
 // 工具系统配置区域
-undefined UtilitySystemConfig1;
-undefined UtilityFunctionPtr17;
-undefined UtilitySystemConfig2;
-undefined UtilityFunctionPtr18;
+undefined UtilitySystemConfigurationData1;
+undefined UtilitySystemFunctionPointer17;
+undefined UtilitySystemConfigurationData2;
+undefined UtilitySystemFunctionPointer18;
 // 工具系统数据区域
 undefined UtilitySystemData1;
 undefined UtilitySystemData2;
@@ -13894,23 +13896,23 @@ uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
 void ProcessFloatComparisonAndValidation(void)
 
 {
-  float fVar1;
-  undefined4 in_EAX;
+  float inputValue;
+  undefined4 registerEAX;
   int operationResult;
-  undefined4 in_register_00000004;
+  undefined4 registerParameter;
   longlong registerContext;
   longlong systemContext;
-  float fVar3;
-  undefined4 stackParameter40;
+  float rangeValue;
+  undefined4 stackParameter;
   
-  fVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x38);
-  fVar1 = *(float *)(registerContext + 0x18);
-  if ((fVar3 <= fVar1) &&
-     (fVar3 = *(float *)(CONCAT44(in_register_00000004,in_EAX) + 0x3c), fVar1 <= fVar3)) {
-    fVar3 = fVar1;
+  rangeValue = *(float *)(CONCAT44(registerParameter,registerEAX) + 0x38);
+  inputValue = *(float *)(registerContext + 0x18);
+  if ((rangeValue <= inputValue) &&
+     (rangeValue = *(float *)(CONCAT44(registerParameter,registerEAX) + 0x3c), inputValue <= rangeValue)) {
+    rangeValue = inputValue;
   }
-  *(float *)(registerContext + 0x18) = fVar3;
-  operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackParameter40,fVar3);
+  *(float *)(registerContext + 0x18) = rangeValue;
+  operationResult = ValidateOperationRangeA0(systemContext + 0x60,stackParameter,rangeValue);
   if (operationResult == 0) {
                     // WARNING: Subroutine does not return
     CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98));
@@ -33027,24 +33029,24 @@ void UnwindExceptionHandling040(undefined8 exceptionContext,longlong unwindParam
  * 
  * @return 无返回值
  */
-void ProcessExceptionState(undefined8 param_1,longlong param_2)
+void ProcessExceptionState(void* exceptionContext, longlong contextData)
 
 {
-  // 设置异常处理器
-  *(undefined8 *)(param_2 + 0x68) = &UNK_180a3c3e0;
+  // 设置临时异常处理器
+  *(undefined8 *)(contextData + 0x68) = &TemporaryExceptionHandler;
   
   // 检查是否有待处理的异常
-  if (*(longlong *)(param_2 + 0x70) != 0) {
-    // 调用异常处理函数（不返回）
+  if (*(longlong *)(contextData + 0x70) != 0) {
+    // 调用系统终止函数（不返回）
     TerminateSystemE0();
   }
   
   // 清理异常状态
-  *(undefined8 *)(param_2 + 0x70) = 0;
-  *(undefined4 *)(param_2 + 0x80) = 0;
+  *(undefined8 *)(contextData + 0x70) = 0;
+  *(undefined4 *)(contextData + 0x80) = 0;
   
-  // 重置异常处理器
-  *(undefined8 *)(param_2 + 0x68) = &DefaultExceptionHandlerB;
+  // 重置为默认异常处理器
+  *(undefined8 *)(contextData + 0x68) = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -60030,16 +60032,16 @@ void ExceptionHandlerSetupRoutine(void* handlerContext, longlong contextData)
 
 
 
-void Unwind_180908bd0(undefined8 param_1,longlong param_2)
+void ExceptionHandlerContextValidator(void* validatorContext, longlong contextData)
 
 {
   longlong validationContext;
   
-  validationContext = *(longlong *)(param_2 + 0x1b8);
+  validationContext = *(longlong *)(contextData + 0x1b8);
   if (*(longlong **)(validationContext + 0x58) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(validationContext + 0x58) + 0x38))();
   }
-  *(undefined8 *)(validationContext + 0x28) = &UNK_180a3c3e0;
+  *(undefined8 *)(validationContext + 0x28) = &TemporaryExceptionHandler;
   if (*(longlong *)(validationContext + 0x30) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
@@ -60055,48 +60057,48 @@ void Unwind_180908bd0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180908be0(undefined8 param_1,longlong param_2)
+void ExceptionHandlerPointerChecker(void* checkerContext, longlong contextData)
 
 {
-  if (*(longlong **)(param_2 + 0xa0) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0xa0) + 0x38))();
+  if (*(longlong **)(contextData + 0xa0) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(contextData + 0xa0) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180908bf0(undefined8 param_1,longlong param_2)
+void ExceptionHandlerResetRoutine(void* resetContext, longlong contextData)
 
 {
-  *(undefined8 *)(param_2 + 0xa8) = &UNK_180a3c3e0;
-  if (*(longlong *)(param_2 + 0xb0) != 0) {
+  *(undefined8 *)(contextData + 0xa8) = &TemporaryExceptionHandler;
+  if (*(longlong *)(contextData + 0xb0) != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  *(undefined8 *)(param_2 + 0xb0) = 0;
-  *(undefined4 *)(param_2 + 0xc0) = 0;
-  *(undefined8 *)(param_2 + 0xa8) = &DefaultExceptionHandlerB;
+  *(undefined8 *)(contextData + 0xb0) = 0;
+  *(undefined4 *)(contextData + 0xc0) = 0;
+  *(undefined8 *)(contextData + 0xa8) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_180908c00(undefined8 param_1,longlong param_2)
+void ExceptionHandlerFinalChecker(void* finalContext, longlong contextData)
 
 {
-  if (*(longlong **)(param_2 + 0xd8) != (longlong *)0x0) {
-    (**(code **)(**(longlong **)(param_2 + 0xd8) + 0x38))();
+  if (*(longlong **)(contextData + 0xd8) != (longlong *)0x0) {
+    (**(code **)(**(longlong **)(contextData + 0xd8) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180908c10(undefined8 param_1,longlong param_2)
+void ExceptionHandlerDefaultSetter(void* setterContext, longlong contextData)
 
 {
-  **(undefined8 **)(param_2 + 0x1b8) = &DefaultExceptionHandlerB;
+  **(undefined8 **)(contextData + 0x1b8) = &DefaultExceptionHandlerB;
   return;
 }
 
