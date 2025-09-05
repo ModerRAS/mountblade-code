@@ -5618,7 +5618,7 @@ uint8_t ValidateAndProcessObjectHandle(int64_t ObjectContext)
  * 该函数从RAX寄存器获取对象指针，验证其有效性并执行相应操作
  * 这是ValidateObjectHandleFromRegister函数的另一个版本，提供了替代的验证逻辑
  */
-uint32_t ValidateObjectHandleFromRegisterAlternate(void)
+uint32_t ValidateObjectHandleFromRegisterAlternative(void)
 {
   int64_t RegisterObjectPointer;
   int64_t AdjustedMemoryAddress;
