@@ -195,6 +195,132 @@
 #define ProcessSystemA0 ProcessSystemOperations
 
 /**
+ * @brief 异常数据缓冲区创建函数
+ * 
+ * 创建用于异常处理的数据缓冲区
+ * 
+ * @note 原始函数名：FUN_1808a5780
+ */
+#define CreateExceptionDataBuffer FUN_1808a5780
+
+/**
+ * @brief 系统安全状态获取函数
+ * 
+ * 获取系统的安全状态信息
+ * 
+ * @note 原始函数名：FUN_1808afd90
+ */
+#define GetSystemSecurityStatus FUN_1808afd90
+
+/**
+ * @brief 内存操作执行函数
+ * 
+ * 执行内存相关的操作
+ * 
+ * @note 原始函数名：FUN_1808fc8a8
+ */
+#define ExecuteMemoryOperation FUN_1808fc8a8
+
+/**
+ * @brief 系统内存初始化函数A0
+ * 
+ * 初始化系统内存A0
+ * 
+ * @note 原始函数名：FUN_180046860
+ */
+#define InitializeSystemMemoryA0 FUN_180046860
+
+/**
+ * @brief 系统内存初始化函数A1
+ * 
+ * 初始化系统内存A1
+ * 
+ * @note 原始函数名：FUN_18004c030
+ */
+#define InitializeSystemMemoryA1 FUN_18004c030
+
+/**
+ * @brief 系统内存初始化函数A2
+ * 
+ * 初始化系统内存A2
+ * 
+ * @note 原始函数名：FUN_18004c090
+ */
+#define InitializeSystemMemoryA2 FUN_18004c090
+
+/**
+ * @brief 系统值计算函数
+ * 
+ * 计算系统相关的数值
+ * 
+ * @note 原始函数名：FUN_18062b420
+ */
+#define CalculateSystemValue FUN_18062b420
+
+/**
+ * @brief 系统上下文值获取函数
+ * 
+ * 获取系统上下文的值
+ * 
+ * @note 原始函数名：FUN_1807d3e20
+ */
+#define GetSystemContextValue FUN_1807d3e20
+
+/**
+ * @brief 系统状态处理函数A0
+ * 
+ * 处理系统状态A0
+ * 
+ * @note 原始函数名：FUN_1808a54c0
+ */
+#define ProcessSystemStatusA0 FUN_1808a54c0
+
+/**
+ * @brief 系统参数验证函数A0
+ * 
+ * 验证系统参数A0
+ * 
+ * @note 原始函数名：FUN_180883750
+ */
+#define ValidateSystemParametersA0 FUN_180883750
+
+/**
+ * @brief 系统数据处理函数A0
+ * 
+ * 处理系统数据A0
+ * 
+ * @note 原始函数名：FUN_1808a2740
+ */
+#define ProcessSystemDataA0 FUN_1808a2740
+
+/**
+ * @brief 系统状态验证函数A0
+ * 
+ * 验证系统状态A0
+ * 
+ * @note 原始函数名：FUN_1808af8b0
+ */
+#define ValidateSystemStatusA0 FUN_1808af8b0
+
+/**
+ * @brief 系统上下文验证函数A0
+ * 
+ * 验证系统上下文A0
+ * 
+ * @note 原始函数名：FUN_1808af280
+ */
+#define ValidateSystemContextA0 FUN_1808af280
+
+/**
+ * @brief 数据数组处理函数A0
+ * 
+ * 处理数据数组A0
+ * 
+ * @note 原始函数名：FUN_1808acb90
+ */
+#define ProcessDataArrayA0 FUN_1808acb90
+
+/**
  * @brief 数据初始化函数A0
  * 
  * 该函数用于初始化数据
@@ -2430,6 +2556,66 @@
 // 原始函数名：FUN_180942580 - 工具回调执行函数B2
 // 功能：执行工具回调函数，处理参数传递
 #define ExecuteUtilityCallbackB2 FUN_180942580
+
+// 原始函数名：FUN_18089dda2 - 数据缓冲区处理函数
+// 功能：处理数据缓冲区操作，包括验证和安全检查
+#define ProcessDataBufferWithValidation FUN_18089dda2
+
+// 原始函数名：FUN_18089de39 - 内存地址验证函数
+// 功能：验证内存地址的有效性和安全性
+#define ValidateMemoryAddressWithSecurity FUN_18089de39
+
+// 原始函数名：FUN_18089e230 - 系统数据传输函数
+// 功能：处理系统数据传输和验证操作
+#define ProcessSystemDataTransferWithValidation FUN_18089e230
+
+// 原始函数名：FUN_18089e297 - 系统状态获取函数
+// 功能：获取系统状态码并返回验证结果
+#define GetSystemStatusCodeWithValidation FUN_18089e297
+
+// 原始函数名：FUN_18089e2be - 系统内存管理函数
+// 功能：管理系统内存分配和释放操作
+#define ManageSystemMemoryWithValidation FUN_18089e2be
+
+// 原始函数名：FUN_18089e87d - 系统验证函数
+// 功能：验证系统配置和状态
+#define ValidateSystemConfigurationWithValidation FUN_18089e87d
+
+// 原始函数名：FUN_18089e9af - 数据处理函数
+// 功能：处理数据验证和操作
+#define ProcessDataWithValidationAndSecurity FUN_18089e9af
+
+// 原始函数名：FUN_18089f530 - 多参数数据处理函数
+// 功能：处理多参数数据验证和操作
+#define ProcessMultiParameterDataWithValidation FUN_18089f530
+
+// 原始函数名：FUN_18089f571 - 系统状态检查函数
+// 功能：检查系统状态并返回状态码
+#define CheckSystemStatusCodeWithValidation FUN_18089f571
+
+// 原始函数名：FUN_18089f970 - 数据处理和指针操作函数
+// 功能：处理数据和执行指针操作
+#define ProcessDataWithPointerOperationAndValidation FUN_18089f970
+
+// 原始函数名：FUN_18089f9b3 - 系统重置函数A0
+// 功能：重置系统状态到初始状态
+#define ResetSystemToInitialStateWithValidation FUN_18089f9b3
+
+// 原始函数名：FUN_18089f9f6 - 内存管理函数
+// 功能：管理内存分配和释放操作
+#define ManageMemoryOperationsWithValidation FUN_18089f9f6
+
+// 原始函数名：FUN_18089fa3c - 数据验证函数
+// 功能：验证数据的有效性和完整性
+#define ValidateDataIntegrityWithSecurity FUN_18089fa3c
+
+// 原始函数名：FUN_18089fac2 - 系统清理函数
+// 功能：清理系统资源和释放内存
+#define CleanupSystemResourcesWithValidation FUN_18089fac2
+
+// 原始函数名：FUN_18089fad8 - 系统初始化函数
+// 功能：初始化系统组件和设置
+#define InitializeSystemSettingsWithValidation FUN_18089fad8
 
 // 原始函数名：FUN_180894000 - 系统初始化函数B0
 // 功能：执行系统初始化操作
@@ -8742,8 +8928,22 @@ void SystemReturnEmptyFunction(void)
 
 
 
-// 函数: DataBuffer ValidateMemoryAccess(int64_t memoryContext)
-// 功能：验证内存访问权限
+/**
+ * @brief 验证内存访问权限
+ * 
+ * 验证指定内存上下文的访问权限，确保内存操作的安全性。
+ * 该函数通过系统数据查询来验证内存访问的有效性。
+ * 
+ * @param memoryContext 内存上下文，包含要验证的内存访问信息
+ * @return DataBuffer 验证结果状态码：
+ *         - 0: 验证成功，内存访问权限有效
+ *         - 非0: 验证失败，内存访问权限无效
+ * 
+ * @note 此函数是内存安全机制的重要组成部分
+ * @warning 确保传入的内存上下文有效，否则可能导致未定义行为
+ * 
+ * @see QueryAndRetrieveSystemDataA0
+ */
 DataBuffer ValidateMemoryAccess(int64_t memoryContext)
 
 {
@@ -8769,9 +8969,22 @@ DataBuffer ValidateMemoryAccess(int64_t memoryContext)
 
 
 
-// 函数: DataWord GetSystemStatus(void)
-// 功能：获取系统状态，检查系统资源状态并返回相应状态码
-// 返回值：系统状态码，0x1c表示系统资源未初始化
+/**
+ * @brief 获取系统状态
+ * 
+ * 检查系统资源状态并返回相应的状态码。该函数用于监控系统的运行状态，
+ * 通过检查系统上下文和资源指针的有效性来判断系统是否正常工作。
+ * 
+ * @param void 无参数
+ * @return DataWord 系统状态码：
+ *         - 0x1c: 系统资源未初始化或状态异常
+ *         - 其他值: 系统当前状态码
+ * 
+ * @note 此函数是系统监控的重要组成部分
+ * @warning 返回值需要根据具体系统状态码进行解释
+ * 
+ * @see ValidateMemoryAccess, ReleaseResource
+ */
 DataWord GetSystemStatus(void)
 
 {
@@ -28856,7 +29069,7 @@ ValidationContextHandler2:
     if (0x3ff < auStackX_18[0]) {
       return 0xd;
     }
-    validationStatus = FUN_1808af280(param_1 + 0x48);
+    validationStatus = ValidateSystemContextA0(param_1 + 0x48);
     if ((int)validationStatus == 0) goto ProcessCheckpointValidationState;
   }
   else {
@@ -28869,7 +29082,7 @@ ValidationStateHandler:
   arrayIndex = 0;
   if (0 < (int)auStackX_18[0]) {
     do {
-      validationStatus = FUN_1808acb90(param_1,param_2,arrayIndex);
+      validationStatus = ProcessDataArrayA0(param_1,param_2,arrayIndex);
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -28939,7 +29152,7 @@ ValidationContextHandler2:
     if (0x3ff < in_stack_00000080) {
       return 0xd;
     }
-    validationStatus = FUN_1808af280(stackFramePointer + 0x48);
+    validationStatus = ValidateSystemContextA0(stackFramePointer + 0x48);
     if ((int)validationStatus == 0) goto ProcessCheckpointValidationState;
   }
   else {
@@ -28952,7 +29165,7 @@ ValidationStateHandler:
   arrayIndex = 0;
   if (0 < (int)in_stack_00000080) {
     do {
-      validationStatus = FUN_1808acb90();
+      validationStatus = ProcessDataArrayA0();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -33607,10 +33820,20 @@ DataBuffer CleanupDataCacheA1(DataBuffer param_1,int64_t param_2)
 // 功能：处理工具回调函数，执行回调操作
 // 参数：param_1-回调函数指针
 // 返回值：无
-void ProcessUtilityCallback(DataBuffer *param_1)
+/**
+ * @brief 工具回调处理函数
+ * 
+ * 该函数用于处理工具系统的回调操作，将回调数据传递给相应的处理函数
+ * 主要用于系统事件处理和异步操作的回调管理
+ * 
+ * @param callbackData 回调数据缓冲区指针，包含需要处理的回调信息
+ * 
+ * @note 该函数调用FUN_18006a050来执行实际的回调处理
+ */
+void ProcessUtilityCallback(DataBuffer *callbackData)
 
 {
-  FUN_18006a050(*(DataWord *)*param_1,param_1);
+  FUN_18006a050(*(DataWord *)*callbackData,callbackData);
   return;
 }
 
@@ -33815,22 +34038,24 @@ void ExceptionUnwindHandlerA3(DataBuffer exceptionContext, int64_t unwindParamet
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 // 函数: void ExceptionUnwindHandlerA4(DataBuffer param_1,int64_t param_2)
-// 
-// 异常展开处理函数A4
-// 保存数据并解锁系统互斥体，确保资源正确释放
-// 
-// 参数:
-//   param_1 - 异常处理上下文
-//   param_2 - 异常展开参数
-// 
-// 返回值:
-//   无
-void ExceptionUnwindHandlerA4(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常展开处理函数A4
+ * 
+ * 该函数用于处理异常展开过程中的数据保存和互斥体解锁操作
+ * 确保在异常发生时系统能够正确释放资源并恢复状态
+ * 
+ * @param exceptionContext 异常上下文，包含异常处理所需的信息
+ * @param unwindParam 展开参数，用于管理异常展开过程
+ * 
+ * @note 该函数从展开参数中提取异常上下文指针并解锁系统互斥体
+ * @warning 如果互斥体解锁失败，会抛出C标准错误
+ */
+void ExceptionUnwindHandlerA4(DataBuffer exceptionContext, int64_t unwindParam)
 
 {
   int mutexUnlockResult;
   
-  ExceptionContextPtr = *(DataBuffer *)(param_2 + 0x40);
+  ExceptionContextPtr = *(DataBuffer *)(unwindParam + 0x40);
   mutexUnlockResult = _Mtx_unlock(0x180c91970);
   if (mutexUnlockResult != 0) {
     __Throw_C_error_std__YAXH_Z(mutexUnlockResult);
