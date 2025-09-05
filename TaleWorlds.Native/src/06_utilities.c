@@ -33669,7 +33669,19 @@ void ExceptionRecoveryHandlerB22(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180902590(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常恢复处理器B23
+ * 
+ * 该函数负责处理异常恢复操作，调用核心系统函数进行异常处理
+ * 
+ * @param param_1 异常上下文参数
+ * @param param_2 异常处理数据指针
+ * @param param_3 异常处理参数1
+ * @param param_4 异常处理参数2
+ * 
+ * @note 原始函数名：Unwind_180902590
+ */
+void ExceptionRecoveryHandlerB23(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
