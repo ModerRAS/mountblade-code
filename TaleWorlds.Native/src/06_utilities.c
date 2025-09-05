@@ -100691,7 +100691,19 @@ void SetSystemResourceSystemTablePointer(uint8_t ObjectContext,int64_t Validatio
 
 
 
-void Unwind_180910440(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 配置系统资源数据结构
+ * 
+ * 该函数负责配置系统资源的数据结构
+ * 
+ * @param ObjectContext 对象上下文
+ * @param ValidationContext 验证上下文
+ * @return 无返回值
+ * 
+ * @note 该函数配置系统资源的数据结构
+ * @warning 原始函数名：Unwind_180910440
+ */
+void ConfigureSystemResourceDataStructure(uint8_t ObjectContext,int64_t ValidationContext)
 
 {
   *(uint8_t **)(*(int64_t *)(ValidationContext + ValidationContextDataProcessingOffset) + 8) = &SystemDataStructure;

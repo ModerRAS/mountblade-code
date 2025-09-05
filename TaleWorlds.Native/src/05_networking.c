@@ -2636,7 +2636,7 @@ NetworkHandle VerifyNetworkConnectionPacket(int64_t ConnectionContext, NetworkHa
       }
       PacketValidationStatusCode = ProcessPacketHeader(*PacketData, ConnectionContext + NetworkConnectionPrimaryValidationOffset);
       if ((((int)PacketValidationStatusCode == 0) && (PacketValidationStatusCode = ValidateNetworkPacketIntegrity(PacketData, ConnectionContext + NetworkConnectionSecurityContextOffset), (int)PacketValidationStatusCode == 0)) &&
-         (PacketValidationStatusCode = ProcessNetworkPacketData(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)PacketValidationStatusCode == 0)) {
+         (PacketValidationStatusCode = ProcessNetworkPacketDataWithOffset(PacketData, ConnectionContext + NetworkConnectionHandleContextOffset, 1, ConnectionContext), (int)PacketValidationStatusCode == 0)) {
           FinalizePacketProcessing(PacketData, ConnectionSecurityBuffer);
       }
     }
@@ -2721,7 +2721,7 @@ NetworkHandle ProcessNetworkConnectionPacket(NetworkHandle ConnectionContext, in
  * @param ConnectionIdentifier 连接标识符
  * @return uint64_t 合并后的64位连接状态值
  */
-uint64_t CombineConnectionStateAndIdentifier(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
+uint64_t CreateConnectionStateIdentifier(uint32_t ConnectionStateFlags, uint32_t ConnectionIdentifier)
 {
   return ((uint64_t)ConnectionStateFlags << 32) | ConnectionIdentifier;
 }
