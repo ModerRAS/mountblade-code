@@ -1627,6 +1627,15 @@ void* GetSystemInitializationFunction;
  * @note 该函数会检查游戏核心节点是否已激活，如果未激活则创建新节点
  * @note 使用系统标识符进行节点匹配和验证
  */
+/**
+ * @brief 初始化游戏核心系统
+ * 
+ * 该函数负责初始化游戏的核心系统组件，包括内存分配、节点管理和
+ * 系统配置。它会设置系统根节点、分配必要的内存空间，并调用
+ * 游戏核心系统的初始化处理器。
+ * 
+ * @note 这是系统启动过程中的关键函数，确保游戏核心组件正确初始化
+ */
 void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
