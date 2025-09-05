@@ -1658,7 +1658,7 @@ void InitializeGameCoreSystem(void)
 {
   bool IsGameCoreNodeActive;
   void** RootNodeReference;
-  int GameCoreSystemIdComparisonResult;
+  int GameCoreIdentifierComparisonResult;
   long long* MainSystemTablePointer;
   long long RequiredMemoryAllocationSize;
   void** CurrentNodePointer;
@@ -1675,8 +1675,8 @@ void InitializeGameCoreSystem(void)
   CurrentNodePointer = (void**)RootNodeReference[1];
   
   while (!IsGameCoreNodeActive) {
-    GameCoreSystemIdComparisonResult = memcmp(CurrentNodePointer + 4, &GameCoreSystemId, IdentifierSize);
-    if (GameCoreSystemIdComparisonResult < 0) {
+    GameCoreIdentifierComparisonResult = memcmp(CurrentNodePointer + 4, &GameCoreSystemId, IdentifierSize);
+    if (GameCoreIdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
     }
@@ -1689,7 +1689,7 @@ void InitializeGameCoreSystem(void)
   }
   
   if ((PreviousNodePointer == RootNodeReference) || 
-      (GameCoreSystemIdComparisonResult = memcmp(&GameCoreSystemId, PreviousNodePointer + 4, IdentifierSize), GameCoreSystemIdComparisonResult < 0)) {
+      (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemId, PreviousNodePointer + 4, IdentifierSize), GameCoreSystemIdComparisonResult < 0)) {
     RequiredMemoryAllocationSize = GetSystemMemorySize(MainSystemTablePointer);
     AllocateSystemMemory(MainSystemTablePointer, &AllocatedNodePointer, PreviousNodePointer, RequiredMemoryAllocationSize + NodeAllocationExtraSize, RequiredMemoryAllocationSize);
     PreviousNodePointer = AllocatedNodePointer;
@@ -1728,7 +1728,7 @@ void InitializeSystemDataTableBaseAllocator(void)
 {
   bool IsBaseAllocatorNodeActive;
   void** RootNodeReference;
-  int BaseAllocatorSystemIdComparisonResult;
+  int BaseAllocatorIdentifierComparisonResult;
   long long* MainSystemTablePointer;
   long long RequiredMemoryAllocationSize;
   void** CurrentNodePointer;
@@ -1745,8 +1745,8 @@ void InitializeSystemDataTableBaseAllocator(void)
   CurrentNodePointer = (void**)RootNodeReference[1];
   
   while (!IsBaseAllocatorNodeActive) {
-    BaseAllocatorSystemIdComparisonResult = memcmp(CurrentNodePointer + 4, &BaseAllocatorSystemIdentifier1, IdentifierSize);
-    if (BaseAllocatorSystemIdComparisonResult < 0) {
+    BaseAllocatorIdentifierComparisonResult = memcmp(CurrentNodePointer + 4, &BaseAllocatorSystemIdentifier1, IdentifierSize);
+    if (BaseAllocatorIdentifierComparisonResult < 0) {
       NextNodePointer = (void**)CurrentNodePointer[NodeNextPointerOffset];
       CurrentNodePointer = PreviousNodePointer;
     }
@@ -1759,7 +1759,7 @@ void InitializeSystemDataTableBaseAllocator(void)
   }
   
   if ((PreviousNodePointer == RootNodeReference) || 
-      (BaseAllocatorSystemIdComparisonResult = memcmp(&BaseAllocatorSystemIdentifier1, PreviousNodePointer + 4, IdentifierSize), BaseAllocatorSystemIdComparisonResult < 0)) {
+      (BaseAllocatorIdentifierComparisonResult = memcmp(&BaseAllocatorSystemIdentifier1, PreviousNodePointer + 4, IdentifierSize), BaseAllocatorIdentifierComparisonResult < 0)) {
     RequiredMemoryAllocationSize = GetSystemMemorySize(MainSystemTablePointer);
     AllocateSystemMemory(MainSystemTablePointer, &SystemNewBaseAllocatorNodePointer, PreviousNodePointer, RequiredMemoryAllocationSize + NodeAllocationExtraSize, RequiredMemoryAllocationSize);
     PreviousNodePointer = SystemNewBaseAllocatorNodePointer;
