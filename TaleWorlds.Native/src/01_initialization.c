@@ -65179,10 +65179,10 @@ ulong long ProcessSystemResourceConfiguration(long long SystemResourceManager,lo
   uint32_t SystemInitializationStatus;
   long long *PrimaryResourceHandle4;
   bool isByteValid5;
-  long long *plStack_f0;
-  long long *plStack_e8;
-  long long *plStack_e0;
-  long long *plStack_d8;
+  long long *ResourceHandlePrimary;
+  long long *ResourceDataPointerPrimary;
+  long long *ResourceHandleSecondary;
+  long long *ResourceDataPointerSecondary;
   long long *StackPointerD0;
   long long *plongStackC8;
   long long *plongStackC0;
@@ -65375,11 +65375,11 @@ SystemResourceCleanupPoint:
       }
     }
     else {
-      plStack_e0 = PrimaryResourceDataPointer;
+      ResourceHandleSecondary = PrimaryResourceDataPointer;
       (**(code **)(*PrimaryResourceDataPointer + 0x28))(PrimaryResourceDataPointer);
-      plStack_d8 = PrimaryResourceHandle0;
+      ResourceDataPointerSecondary = PrimaryResourceHandle0;
       (**(code **)(*PrimaryResourceHandle0 + 0x28))(PrimaryResourceHandle0);
-      ProcessResourceAllocation(SystemResourceManager,AdditionalParameter,&plStack_d8,&plStack_e0);
+      ProcessResourceAllocation(SystemResourceManager,AdditionalParameter,&ResourceDataPointerSecondary,&ResourceHandleSecondary);
       plongStackD0 = PrimaryResourceDataPointer;
       (**(code **)(*PrimaryResourceDataPointer + 0x28))(PrimaryResourceDataPointer);
       plongStackC8 = PrimaryResourceHandle0;
@@ -65408,11 +65408,11 @@ SystemResourceCleanupPoint:
     }
   }
   else {
-    plStack_f0 = PrimaryResourceHandle0;
+    ResourceHandlePrimary = PrimaryResourceHandle0;
     (**(code **)(*PrimaryResourceHandle0 + 0x28))(PrimaryResourceHandle0);
-    plStack_e8 = PrimaryResourceDataPointer;
+    ResourceDataPointerPrimary = PrimaryResourceDataPointer;
     (**(code **)(*PrimaryResourceDataPointer + 0x28))(PrimaryResourceDataPointer);
-    FinalizeResourceAllocation(SystemResourceManager,AdditionalParameter,&plStack_e8,&plStack_f0,ConfigurationFlag);
+    FinalizeResourceAllocation(SystemResourceManager,AdditionalParameter,&ResourceDataPointerPrimary,&ResourceHandlePrimary,ConfigurationFlag);
   }
   (**(code **)(*PrimaryResourceDataPointer + 0x38))(PrimaryResourceDataPointer);
   (**(code **)(*PrimaryResourceHandle0 + 0x38))(PrimaryResourceHandle0);
@@ -66406,26 +66406,24 @@ void ProcessSystemDataIndex(uint SystemResourceManager,long long ConfigurationDa
   float MatrixElement34;
   long long *pStackResourcePointer;
   uint32_t ResourceAllocationContext;
-  float fStack_128;
-  float fStack_124;
-  float fStack_120;
-  float fStack_11c;
-  float fStack_118;
-  float fStack_114;
-  float fStack_110;
+  float TransformMatrixElement00;
+  float TransformMatrixElement01;
+  float TransformMatrixElement02;
+  float TransformMatrixElement03;
+  float TransformMatrixElement10;
+  float TransformMatrixElement11;
+  float TransformMatrixElement12;
+  float TransformMatrixElement13;
   uint32_t SystemEncryptionOffsetc;
-  float fStack_108;
-  float fStack_104;
-  float fStack_100;
-  float fStack_fc;
-  float fStack_f8;
-  float fStack_f4;
-  float fStack_f0;
-  float fStack_ec;
-  float fStack_e8;
-  float fStack_e4;
-  float fStack_e0;
-  float fStack_dc;
+  float TransformMatrixElement20;
+  float TransformMatrixElement21;
+  float TransformMatrixElement22;
+  float TransformMatrixElement23;
+  float TransformMatrixElement30;
+  float TransformMatrixElement31;
+  float TransformMatrixElement32;
+  float TransformMatrixElement33;
+  float TransformMatrixElement34;
   
   SystemThreadHandlePrimary = 0;
   if (SystemResourceManager < 0xe) {
@@ -67018,44 +67016,44 @@ SystemResourceFinalize:
       do {
         SystemThreadHandleSecondary = *(long long *)(ConfigurationDataPointer + 0x68);
         pInterpolationFactorX = (float *)(SystemThreadHandlePrimary + 0x34 + SystemThreadHandleSecondary);
-        fStack_108 = *InterpolationFactorXPointer;
-        fStack_104 = InterpolationFactorXPointer[1];
-        fStack_100 = InterpolationFactorXPointer[2];
-        fStack_fc = InterpolationFactorXPointer[3];
+        TransformMatrixElement20 = *InterpolationFactorXPointer;
+        TransformMatrixElement21 = InterpolationFactorXPointer[1];
+        TransformMatrixElement22 = InterpolationFactorXPointer[2];
+        TransformMatrixElement23 = InterpolationFactorXPointer[3];
         pInterpolationFactorX = (float *)(SystemThreadHandlePrimary + 0x14 + SystemThreadHandleSecondary);
-        fStack_f8 = *InterpolationFactorXPointer;
-        fStack_f4 = InterpolationFactorXPointer[1];
-        fStack_f0 = InterpolationFactorXPointer[2];
-        fStack_ec = InterpolationFactorXPointer[3];
+        TransformMatrixElement30 = *InterpolationFactorXPointer;
+        TransformMatrixElement31 = InterpolationFactorXPointer[1];
+        TransformMatrixElement32 = InterpolationFactorXPointer[2];
+        TransformMatrixElement33 = InterpolationFactorXPointer[3];
         pInterpolationFactorX = (float *)(SystemThreadHandlePrimary + 0x24 + SystemThreadHandleSecondary);
-        fStack_e8 = *InterpolationFactorXPointer;
-        fStack_e4 = InterpolationFactorXPointer[1];
-        fStack_e0 = InterpolationFactorXPointer[2];
-        fStack_dc = InterpolationFactorXPointer[3];
-        MatrixElement31 = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
-        if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * MatrixElement31 +
-            fStack_e0 * (fStack_f4 * fStack_108 - fStack_f8 * fStack_104) < 0.0) {
-          fStack_e0 = -fStack_e0;
-          fStack_118 = -fStack_e8;
-          fStack_114 = -fStack_e4;
+        TransformMatrixElement34 = *InterpolationFactorXPointer;
+        TransformMatrixElement10 = InterpolationFactorXPointer[1];
+        TransformMatrixElement11 = InterpolationFactorXPointer[2];
+        TransformMatrixElement12 = InterpolationFactorXPointer[3];
+        MatrixElement31 = TransformMatrixElement22 * TransformMatrixElement30 - TransformMatrixElement32 * TransformMatrixElement20;
+        if ((TransformMatrixElement32 * TransformMatrixElement21 - TransformMatrixElement22 * TransformMatrixElement31) * TransformMatrixElement34 + TransformMatrixElement10 * MatrixElement31 +
+            TransformMatrixElement11 * (TransformMatrixElement31 * TransformMatrixElement20 - TransformMatrixElement30 * TransformMatrixElement21) < 0.0) {
+          TransformMatrixElement11 = -TransformMatrixElement11;
+          TransformMatrixElement13 = -TransformMatrixElement34;
+          TransformMatrixElement14 = -TransformMatrixElement10;
           SystemEncryptionOffsetc = 0x7f7fffff;
-          fStack_e8 = -fStack_e8;
-          fStack_e4 = -fStack_e4;
-          fStack_dc = 3.4028235e+38;
-          fStack_110 = fStack_e0;
+          TransformMatrixElement34 = -TransformMatrixElement34;
+          TransformMatrixElement10 = -TransformMatrixElement10;
+          TransformMatrixElement12 = 3.4028235e+38;
+          TransformMatrixElement03 = TransformMatrixElement11;
         }
-        ProcessFloatCalculation(&fStack_128,&fStack_108,fStack_e0,MatrixElement31,ResourceAllocationContext);
-        ValidateFloatCalculation(&fStack_128);
-        if (fStack_128 < 0.0) {
-          fStack_128 = -fStack_128;
-          fStack_124 = -fStack_124;
-          fStack_120 = -fStack_120;
-          fStack_11c = -fStack_11c;
+        ProcessFloatCalculation(&TransformMatrixElement00,&TransformMatrixElement20,TransformMatrixElement11,MatrixElement31,ResourceAllocationContext);
+        ValidateFloatCalculation(&TransformMatrixElement00);
+        if (TransformMatrixElement00 < 0.0) {
+          TransformMatrixElement00 = -TransformMatrixElement00;
+          TransformMatrixElement01 = -TransformMatrixElement01;
+          TransformMatrixElement02 = -TransformMatrixElement02;
+          TransformMatrixElement03 = -TransformMatrixElement03;
         }
-        MatrixElement34 = fStack_11c;
-        MatrixElement33 = fStack_120;
-        MatrixElement32 = fStack_124;
-        MatrixElement31 = fStack_128;
+        MatrixElement34 = TransformMatrixElement03;
+        MatrixElement33 = TransformMatrixElement02;
+        MatrixElement32 = TransformMatrixElement01;
+        MatrixElement31 = TransformMatrixElement00;
         if (*(int *)(SystemThreadHandle5 + SystemThreadHandleSecondary) < iRam0000000180d49150) {
           CheckSystemDataAvailability(0x180d49150);
           if (iRam0000000180d49150 == -1) {
@@ -67067,13 +67065,13 @@ SystemResourceFinalize:
         }
         if (MatrixElement31 < 3.051851e-05) {
           MatrixElement31 = 3.051851e-05;
-          fStack_128 = 3.051851e-05;
+          TransformMatrixElement00 = 3.051851e-05;
           MatrixElement32 = MatrixElement32 * MatrixElement28;
           MatrixElement33 = MatrixElement33 * MatrixElement28;
           MatrixElement34 = MatrixElement34 * MatrixElement28;
-          fStack_124 = MatrixElement32;
-          fStack_120 = MatrixElement33;
-          fStack_11c = MatrixElement34;
+          TransformMatrixElement01 = MatrixElement32;
+          TransformMatrixElement02 = MatrixElement33;
+          TransformMatrixElement03 = MatrixElement34;
         }
         MatrixElement29 = *(float *)(SystemThreadHandlePrimary + 0x18 + SystemThreadHandleSecondary);
         MatrixElement30 = *(float *)(SystemThreadHandlePrimary + 0x1c + SystemThreadHandleSecondary);
@@ -67089,10 +67087,10 @@ SystemResourceFinalize:
           MatrixElement32 = -MatrixElement32;
           MatrixElement33 = -MatrixElement33;
           MatrixElement34 = -MatrixElement34;
-          fStack_128 = MatrixElement31;
-          fStack_124 = MatrixElement32;
-          fStack_120 = MatrixElement33;
-          fStack_11c = MatrixElement34;
+          TransformMatrixElement00 = MatrixElement31;
+          TransformMatrixElement01 = MatrixElement32;
+          TransformMatrixElement02 = MatrixElement33;
+          TransformMatrixElement03 = MatrixElement34;
         }
         *(short *)pResultValue2 = (short)(int)(MatrixElement32 * 32767.0);
         *(short *)((long long)pResultValue2 + 2) = (short)(int)(MatrixElement33 * 32767.0);

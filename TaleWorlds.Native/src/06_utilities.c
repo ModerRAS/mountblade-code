@@ -1049,6 +1049,46 @@
 // 功能：遍历并清理异常处理链表
 #define CleanupExceptionList Unwind_180905860
 
+// 原始函数名：Unwind_180905000 - 文件句柄清理函数A0
+// 功能：清理文件句柄并递减引用计数器
+#define CleanupFileHandleA0 Unwind_180905000
+
+// 原始函数名：Unwind_180905010 - 异常处理初始化函数A0
+// 功能：初始化异常处理上下文和状态
+#define InitializeExceptionHandlerA0 Unwind_180905010
+
+// 原始函数名：Unwind_180905020 - 异常处理配置函数A0
+// 功能：配置异常处理参数和回调
+#define ConfigureExceptionHandlerA0 Unwind_180905020
+
+// 原始函数名：Unwind_180905030 - 异常状态重置函数A0
+// 功能：重置异常处理状态和标志
+#define ResetExceptionStatusA0 Unwind_180905030
+
+// 原始函数名：Unwind_180905040 - 异常处理验证函数A0
+// 功能：验证异常处理配置的有效性
+#define ValidateExceptionHandlerA0 Unwind_180905040
+
+// 原始函数名：Unwind_180905050 - 异常处理激活函数A0
+// 功能：激活异常处理机制
+#define ActivateExceptionHandlerA0 Unwind_180905050
+
+// 原始函数名：Unwind_180905060 - 异常处理挂起函数A0
+// 功能：挂起异常处理操作
+#define SuspendExceptionHandlerA0 Unwind_180905060
+
+// 原始函数名：Unwind_180905070 - 异常处理恢复函数A0
+// 功能：恢复异常处理操作
+#define ResumeExceptionHandlerA0 Unwind_180905070
+
+// 原始函数名：Unwind_180905080 - 异常处理终止函数A0
+// 功能：终止异常处理并清理资源
+#define TerminateExceptionHandlerA0 Unwind_180905080
+
+// 原始函数名：Unwind_180905090 - 异常处理状态查询函数A0
+// 功能：查询异常处理当前状态
+#define QueryExceptionStatusA0 Unwind_180905090
+
 // FUN_1808函数语义化宏定义 - 工具系统函数
 
 // 原始函数名：FUN_1808fc050 - 执行安全检查
@@ -20325,8 +20365,17 @@ void ExecuteSystemTermination(void)
 
 
 
-89b3e6(void)
-void FUN_18089b3e6(void)
+// 函数: void UtilityNoOperationD(void)
+// 
+// 空操作函数D
+// 不执行任何操作，仅作为占位符或桩函数使用
+// 
+// 参数:
+//   无
+// 
+// 返回值:
+//   无
+void UtilityNoOperationD(void)
 
 {
   return;
