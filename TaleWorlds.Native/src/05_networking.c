@@ -1254,26 +1254,22 @@ uint32_t NetworkConnectionRoutingFallbackConfig;          // 网络连接路由�
 /**
  * @brief 初始化网络套接字
  * 
- * 初始化网络套接字的基本参数和配置信息，为网络通信做准备。
- * 该函数负责设置套接字的文件描述符、上下文大小、协议类型等。
- * 
- * @param void 无参数
- * @return void 无返回值
- * 
- * @note 此函数在系统启动时调用，用于初始化网络套接字的基础设施
- * @warning 如果初始化失败，可能导致网络通信无法正常进行
- * @see InitializeNetworkConnectionPool, BindNetworkSocket
- */
-/**
- * @brief 初始化网络套接字
- * 
  * 初始化网络套接字的基本参数和配置，为后续的网络通信做准备。
  * 此函数负责设置套接字的描述符、上下文大小、协议类型等基本参数。
+ * 
+ * @details 该函数执行以下关键操作：
+ * - 初始化套接字文件描述符为无效状态
+ * - 设置套接字上下文大小和索引
+ * - 配置套接字类型为TCP，协议为TCP协议
+ * - 初始化套接字运行时数据和上下文指针
+ * - 设置网络协议版本、连接模式和优先级
  * 
  * @note 此函数会在网络系统启动时调用，确保套接字正确初始化
  * @warning 如果初始化失败，系统将无法进行网络通信
  * 
  * @return void 无返回值
+ * 
+ * @see BindNetworkSocket, StartListeningForConnections
  */
 void InitializeNetworkSocket(void)
 {
@@ -1303,11 +1299,20 @@ void InitializeNetworkSocket(void)
  * 将网络套接字绑定到本地地址和端口，使其能够接收网络连接。
  * 该函数负责设置网络地址、端口配置和套接字绑定状态。
  * 
+ * @details 该函数执行以下关键操作：
+ * - 设置服务器IP地址为本地回环地址(127.0.0.1)
+ * - 配置服务器端口为8080 (HTTP备用端口)
+ * - 初始化客户端IP地址为任意地址(0.0.0.0)
+ * - 设置客户端端口为任意端口(0)
+ * - 更新套接字绑定状态为已绑定
+ * - 初始化网络协议配置和缓冲区大小
+ * 
  * @param void 无参数
  * @return void 无返回值
  * 
  * @note 此函数在套接字初始化后调用，用于绑定套接字到本地地址
  * @warning 如果绑定失败，可能导致网络服务无法启动
+ * 
  * @see InitializeNetworkSocket, StartListeningForConnections
  */
 void BindNetworkSocket(void)
@@ -1340,10 +1345,21 @@ void BindNetworkSocket(void)
  * 连接限制参数、状态控制器等。监听模式下的套接字可以接受客户端的
  * 连接请求并建立新的连接。
  * 
+ * @details 该函数执行以下关键操作：
+ * - 初始化连接请求队列，启用队列功能
+ * - 重置待处理连接请求数量为0
+ * - 设置最大连接数限制为100个连接
+ * - 重置活跃连接计数为0
+ * - 启用连接状态管理器
+ * - 初始化事件队列、回调处理器和超时处理器
+ * - 重置连接统计信息（尝试次数、失败次数、平均时间等）
+ * 
  * @note 此函数会使套接字进入监听状态
  * @warning 如果监听失败，系统将无法接受新的连接请求
  * 
  * @return void 无返回值
+ * 
+ * @see BindNetworkSocket, AcceptConnection
  */
 void StartListeningForConnections(void)
 {
@@ -1377,10 +1393,19 @@ void StartListeningForConnections(void)
  * 设置连接参数、初始化安全参数、会话参数等。接受连接后会更新连接
  * 统计信息，使新的连接可以开始进行数据传输。
  * 
+ * @details 该函数执行以下关键操作：
+ * - 初始化连接上下文，设置上下文大小为512字节
+ * - 配置连接质量参数（良好质量、4KB带宽、50ms延迟、高可靠性）
+ * - 设置安全参数（高安全级别、AES加密、ZLIB压缩、密码认证）
+ * - 初始化会话参数（加密密钥、超时时间：5分钟会话、5秒握手/认证/加密）
+ * - 更新连接统计信息（增加活跃连接计数和连接尝试计数）
+ * 
  * @note 此函数会为新的连接分配资源并初始化连接状态
  * @warning 如果接受连接失败，可能会导致资源泄漏或连接异常
  * 
  * @return void 无返回值
+ * 
+ * @see StartListeningForConnections, CloseConnection
  */
 void AcceptConnection(void)
 {
@@ -1413,9 +1438,25 @@ void AcceptConnection(void)
 }
 
 /**
- * @brief 关闭网络连接处理器
+ * @brief 关闭网络连接
  * 
- * 关闭网络连接处理器，释放相关资源。
+ * 关闭网络连接，释放相关资源。此函数负责清理连接的所有状态信息、
+ * 释放分配的内存资源、重置各种计数器和状态标志。
+ * 
+ * @details 该函数执行以下关键操作：
+ * - 重置连接状态标志和扩展标志
+ * - 释放连接上下文和相关资源
+ * - 清理安全相关资源（安全上下文、认证上下文、加密上下文、压缩上下文）
+ * - 释放网络资源（套接字上下文、运行时数据）
+ * - 清理事件和回调资源（事件上下文、回调上下文、事件队列、回调处理器）
+ * - 重置统计信息（活跃连接计数、平均连接时间、最后活动时间）
+ * 
+ * @note 此函数会释放所有与连接相关的资源
+ * @warning 调用此函数后，连接将无法继续使用
+ * 
+ * @return void 无返回值
+ * 
+ * @see AcceptConnection, InitializeNetworkSocket
  */
 void CloseConnection(void)
 {
