@@ -7193,7 +7193,7 @@ void ValidateUtilityOperation(longlong operationPointer,longlong contextPointer)
   }
 ValidationFailed:
                     // WARNING: Subroutine does not return
-  FUN_18088d720(*(undefined8 *)(contextPointer + 0x98),operationPointer);
+  ExecuteSystemResourceOperationCB0(*(undefined8 *)(contextPointer + 0x98),operationPointer);
 }
 
 
@@ -7217,7 +7217,7 @@ void ExecuteUtilityOperation(longlong operationPointer,longlong contextPointer)
       return;
     }
   }
-  FUN_18088d7c0(*(undefined8 *)(contextPointer + 0x98),operationPointer);
+  ManageSystemResourceCC0(*(undefined8 *)(contextPointer + 0x98),operationPointer);
   return;
 }
 
