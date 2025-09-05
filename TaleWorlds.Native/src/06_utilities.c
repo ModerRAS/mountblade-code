@@ -23683,11 +23683,11 @@ DataCheckpointB:
     return memoryBaseAddress;
   }
   if (0x5a < *(uint *)(registerContext + 8)) {
-    memoryBaseAddress = FUN_1808a4a20();
+    memoryBaseAddress = ExecuteMemoryAllocationOperation();
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
-    memoryBaseAddress = FUN_1808a4a20();
+    memoryBaseAddress = ExecuteMemoryAllocationOperation();
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
@@ -23848,7 +23848,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
   DataWord bufferValue4;
   ByteFlag securityValidationBuffer [32];
   
-  resourcePointer = (DataWord *)FUN_180847820();
+  resourcePointer = (DataWord *)ExecuteSystemResourceOperation();
   uStack_38 = *resourcePointer;
   uStack_34 = resourcePointer[1];
   uStack_30 = resourcePointer[2];
@@ -23882,7 +23882,7 @@ uint64_t ValidateAndProcessDataBlock(int64_t dataContext, DataBuffer *dataBuffer
         if ((*(int *)(param_2[1] + 0x18) == 0) &&
            (memoryBaseAddress = OperateDataO0(*param_2,param_1 + 0x40,4), memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,auStack_28);
+          ExecutePortControlOperation(param_2,auStack_28);
         }
       }
       return (uint64_t)memoryBaseAddress;
@@ -24541,7 +24541,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
     dataValue = ValidateDataWithSecurityCheckA2(*param_2,param_1 + 0xf8);
     if ((int)dataValue == 0) {
       auStackX_20[0] = 0;
-      dataValue = FUN_1808afe30(*param_2,auStackX_20);
+      dataValue = ExecuteDataValidationOperation(*param_2,auStackX_20);
       if ((int)dataValue == 0) {
         operationResult = 0;
         auStackX_18[0] = 0;
@@ -24549,15 +24549,15 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
         memoryBaseAddress = auStackX_20[0] >> 1;
         if (memoryBaseAddress != 0) {
           do {
-            dataValue = FUN_1808dde10(param_2,auStackX_18[0]);
+            dataValue = ExecuteSystemInitializationOperation(param_2,auStackX_18[0]);
             if ((int)dataValue != 0) {
               return dataValue;
             }
-            dataValue = FUN_1808a7f40(param_2,param_1 + 0xe8,operationResult,param_1);
+            dataValue = ProcessSystemDataStream(param_2,param_1 + 0xe8,operationResult,param_1);
             if ((int)dataValue != 0) {
               return dataValue;
             }
-            dataValue = FUN_1808de0e0(param_2,auStackX_18);
+            dataValue = ExecuteSystemCleanupOperation(param_2,auStackX_18);
             if ((int)dataValue != 0) {
               return dataValue;
             }
@@ -24566,7 +24566,7 @@ uint64_t ValidateAndProcessData(int64_t dataContext, uint64_t *validationBuffer)
           } while (operationResult < (int)memoryBaseAddress);
         }
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,auStack_68);
+        ExecutePortControlOperation(param_2,auStack_68);
       }
     }
   }
@@ -24586,7 +24586,7 @@ void SystemInitializationCheckA(void)
   uint uStack00000000000000a8;
   
   uStack00000000000000a8 = 0;
-  inputParameter = FUN_1808afe30();
+  inputParameter = ExecuteDataValidationOperation();
   if (inputParameter != 0) {
     return;
   }
@@ -24594,15 +24594,15 @@ void SystemInitializationCheckA(void)
   validationStatus = uStack00000000000000a8 >> 1;
   if (validationStatus != 0) {
     do {
-      operationResult = FUN_1808dde10();
+      operationResult = ExecuteSystemInitializationOperation();
       if (operationResult != 0) {
         return;
       }
-      operationResult = FUN_1808a7f40();
+      operationResult = ProcessSystemDataStream();
       if (operationResult != 0) {
         return;
       }
-      operationResult = FUN_1808de0e0();
+      operationResult = ExecuteSystemCleanupOperation();
       if (operationResult != 0) {
         return;
       }
@@ -24788,7 +24788,7 @@ DataProcessLabelA:
               if (*(uint *)(param_2 + 8) < 0x82) {
 DataProcessLabelB:
                     // WARNING: Subroutine does not return
-                FUN_1808ddf80(param_2,ainputDataWord);
+                ExecutePortControlOperation(param_2,ainputDataWord);
               }
               dataFlags = securityCheckResult;
               if (*(int *)(param_2[1] + 0x18) == 0) {
@@ -25308,18 +25308,18 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
   arrayIndex = ExecuteSecurityValidation(param_2,ainputDataWord,0,0x2050414d);
   if ((arrayIndex == 0) && (arrayIndex = ValidatePortControlRequest(param_2,param_1 + 0x10), arrayIndex == 0)) {
     auStackX_20[0] = 0;
-    arrayIndex = FUN_1808afe30(*param_2,auStackX_20);
+    arrayIndex = ExecuteDataValidationOperation(*param_2,auStackX_20);
     validationStatus = auStackX_20[0];
     if (arrayIndex == 0) {
       dataFlags = auStackX_20[0] & 1;
       validationOutcome = auStackX_20[0] >> 1;
-      arrayIndex = FUN_1808af700((int64_t *)(param_1 + 0x20),validationOutcome);
+      arrayIndex = ValidateArrayIndex((int64_t *)(param_1 + 0x20),validationOutcome);
       if (arrayIndex == 0) {
         auStackX_18[0] = 0;
         arrayIndex = 0;
         if (validationStatus >> 1 != 0) {
           do {
-            loopIndex = FUN_1808dde10(param_2,auStackX_18[0]);
+            loopIndex = ExecuteSystemInitializationOperation(param_2,auStackX_18[0]);
             if (loopIndex != 0) {
               return;
             }
@@ -25338,7 +25338,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
             if (loopIndex != 0) {
               return;
             }
-            loopIndex = FUN_1808de0e0(param_2,auStackX_18);
+            loopIndex = ExecuteSystemCleanupOperation(param_2,auStackX_18);
             if (loopIndex != 0) {
               return;
             }
@@ -25347,7 +25347,7 @@ void ValidateAndProcessSystemData(int64_t SystemContext, DataBuffer *DataArray)
           } while (arrayIndex < (int)validationOutcome);
         }
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,ainputDataWord);
+        ExecutePortControlOperation(param_2,ainputDataWord);
       }
     }
   }
@@ -25381,16 +25381,16 @@ void ValidateAndInitializeSystemA0(void)
   uint uStack0000000000000088;
   
   uStack0000000000000088 = 0;
-  arrayIndex = FUN_1808afe30();
+  arrayIndex = ExecuteDataValidationOperation();
   validationStatus = uStack0000000000000088;
   if (arrayIndex == 0) {
     dataFlags = uStack0000000000000088 >> 1;
-    arrayIndex = FUN_1808af700((int64_t *)(registerContext + 0x20),dataFlags);
+    arrayIndex = ValidateArrayIndex((int64_t *)(registerContext + 0x20),dataFlags);
     if (arrayIndex == 0) {
       arrayIndex = 0;
       if (validationStatus >> 1 != 0) {
         do {
-          loopIndex = FUN_1808dde10();
+          loopIndex = ExecuteSystemInitializationOperation();
           if (loopIndex != 0) {
             return;
           }
@@ -25409,7 +25409,7 @@ void ValidateAndInitializeSystemA0(void)
           if (loopIndex != 0) {
             return;
           }
-          loopIndex = FUN_1808de0e0();
+          loopIndex = ExecuteSystemCleanupOperation();
           if (loopIndex != 0) {
             return;
           }
@@ -25448,7 +25448,7 @@ DataBuffer ProcessDataSequenceA1(int64_t param_1,DataBuffer *param_2)
 {
   DataBuffer dataValue;
   
-  dataValue = FUN_1808dde10(param_2,0);
+  dataValue = ExecuteSystemInitializationOperation(param_2,0);
   if ((int)dataValue == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -25537,7 +25537,7 @@ void ValidateAndProcessDataB0(int64_t dataContext,DataBuffer *dataPointer,int va
     } while (operationResult < (int)operationResult);
   }
   auStackX_8[0] = 0;
-  operationResult = FUN_1808afe30(*param_2,auStackX_8);
+  operationResult = ExecuteDataValidationOperation(*param_2,auStackX_8);
   dataValue = auStackX_8[0];
   if (operationResult != 0) {
     return;
@@ -25603,7 +25603,7 @@ void CheckSystemStatusB0(void)
   uint uStack0000000000000068;
   
   uStack0000000000000068 = in_EAX;
-  inputParameter = FUN_1808afe30();
+  inputParameter = ExecuteDataValidationOperation();
   if (inputParameter != 0) {
     return;
   }
@@ -25624,7 +25624,7 @@ void CheckSystemStatusB0(void)
   inputParameter = 0;
   if (uStack0000000000000068 >> 1 != 0) {
     do {
-      operationResult = FUN_1808dde10();
+      operationResult = ExecuteSystemInitializationOperation();
       if (operationResult != 0) {
         return;
       }
@@ -25637,7 +25637,7 @@ void CheckSystemStatusB0(void)
       if (operationResult != 0) {
         return;
       }
-      operationResult = FUN_1808de0e0();
+      operationResult = ExecuteSystemCleanupOperation();
       if (operationResult != 0) {
         return;
       }
@@ -25646,7 +25646,7 @@ void CheckSystemStatusB0(void)
     } while (inputParameter < (int)memoryBaseAddress);
   }
   in_stack_00000050 = 0;
-  operationResult = FUN_1808afe30(*registerContext,&systemContextBuffer50);
+  operationResult = ExecuteDataValidationOperation(*registerContext,&systemContextBuffer50);
   inputParameter = in_stack_00000050;
   if (operationResult != 0) {
     return;
@@ -25736,7 +25736,7 @@ uint64_t ValidateAndAllocateMemory(int64_t MemoryContext, DataBuffer *Allocation
     return allocatedAddress;
   }
   stackValidationArray[0] = 0;
-  allocatedAddress = FUN_1808afe30(*AllocationParams,stackValidationArray);
+  allocatedAddress = ExecuteDataValidationOperation(*AllocationParams,stackValidationArray);
   allocationResult = stackValidationArray[0];
   memoryValidationStatus = 0x1c;
   if ((int)allocatedAddress != 0) {
@@ -25855,7 +25855,7 @@ uint64_t ValidateMemoryStatus(int64_t ValidationContext, DataBuffer *SecurityPar
   if ((int)validationResult != 0) {
     return validationResult;
   }
-  securityCheckPointer = (DataWord *)FUN_180847820();
+  securityCheckPointer = (DataWord *)ExecuteSystemResourceOperation();
   validationResult = 0;
   securityValue1 = *securityCheckPointer;
   securityValue2 = securityCheckPointer[1];
@@ -25923,7 +25923,7 @@ ValidationLabelB:
         if (inputParameter3 < 0) {
           validationContext1 = (int64_t)inputParameter3 * 0x18 + 0x14 + (int64_t)puStack_88;
           do {
-            psecurityCheckResult = (DataWord *)FUN_180847820();
+            psecurityCheckResult = (DataWord *)ExecuteSystemResourceOperation();
             functionReturnValue = psecurityCheckResult[1];
             validationStatus = psecurityCheckResult[2];
             memoryBaseAddress = psecurityCheckResult[3];
@@ -25995,7 +25995,7 @@ ValidationLabelB:
       if (inputParameter3 < 0) {
         validationContext1 = (int64_t)inputParameter3 * 0x18 + 0x14 + (int64_t)puStack_88;
         do {
-          psecurityCheckResult = (DataWord *)FUN_180847820();
+          psecurityCheckResult = (DataWord *)ExecuteSystemResourceOperation();
           functionReturnValue = psecurityCheckResult[1];
           validationStatus = psecurityCheckResult[2];
           memoryBaseAddress = psecurityCheckResult[3];
@@ -26039,7 +26039,7 @@ ValidationLabelD:
     return (uint64_t)operationResult;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(param_2,auStack_68);
+  ExecutePortControlOperation(param_2,auStack_68);
 }
 
 
@@ -26095,7 +26095,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   if ((int)exceptionDataBuffer1 != 0) {
     return exceptionDataBuffer1;
   }
-  exceptionDataBuffer2 = (DataWord *)FUN_180847820();
+  exceptionDataBuffer2 = (DataWord *)ExecuteSystemResourceOperation();
   exceptionDataBuffer1 = (DataBuffer *)0x0;
   statusCounter = *(uint *)(destinationIndexRegister + 8);
   functionReturnValue0 = *exceptionDataBuffer2;
@@ -26175,7 +26175,7 @@ ValidationLabelB:
         if (inputParameter9 < 0) {
           validationContext7 = (int64_t)inputParameter9 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer1;
           do {
-            exceptionDataBuffer2 = (DataWord *)FUN_180847820();
+            exceptionDataBuffer2 = (DataWord *)ExecuteSystemResourceOperation();
             functionReturnValue0 = exceptionDataBuffer2[1];
             functionReturnValue = exceptionDataBuffer2[2];
             validationStatus = exceptionDataBuffer2[3];
@@ -26254,7 +26254,7 @@ ValidationLabelB:
       if (inputParameter9 < 0) {
         validationContext7 = (int64_t)inputParameter9 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer3;
         do {
-          pfVar14 = (float *)FUN_180847820();
+          pfVar14 = (float *)ExecuteSystemResourceOperation();
           fVar21 = *pfVar14;
           fVar5 = pfVar14[1];
           fVar6 = pfVar14[2];
@@ -26301,7 +26301,7 @@ ValidationLabelD:
     return (DataBuffer *)(uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,stackFramePointer + -9);
+  ExecutePortControlOperation(fVar21,stackFramePointer + -9);
 }
 
 
@@ -26435,7 +26435,7 @@ ValidationProcessingLabel:
         if (inputParameter9 < 0) {
           validationContext7 = (int64_t)inputParameter9 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer3;
           do {
-            exceptionDataBuffer1 = (DataWord *)FUN_180847820();
+            exceptionDataBuffer1 = (DataWord *)ExecuteSystemResourceOperation();
             functionReturnValue0 = exceptionDataBuffer1[1];
             functionReturnValue = exceptionDataBuffer1[2];
             validationStatus = exceptionDataBuffer1[3];
@@ -26514,7 +26514,7 @@ ValidationProcessingLabel:
       if (inputParameter9 < 0) {
         validationContext7 = (int64_t)inputParameter9 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer2;
         do {
-          pfVar14 = (float *)FUN_180847820();
+          pfVar14 = (float *)ExecuteSystemResourceOperation();
           fVar21 = *pfVar14;
           fVar5 = pfVar14[1];
           fVar6 = pfVar14[2];
@@ -26561,7 +26561,7 @@ ValidationLabelD:
     return (DataBuffer *)(uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar21,stackFramePointer + -9);
+  ExecutePortControlOperation(fVar21,stackFramePointer + -9);
 }
 
 
@@ -26659,7 +26659,7 @@ ValidationLabelB:
         if (inputParameter8 < 0) {
           validationContext6 = (int64_t)inputParameter8 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer4;
           do {
-            exceptionDataBuffer2 = (DataWord *)FUN_180847820();
+            exceptionDataBuffer2 = (DataWord *)ExecuteSystemResourceOperation();
             dataValue = exceptionDataBuffer2[1];
             functionReturnValue = exceptionDataBuffer2[2];
             validationStatus = exceptionDataBuffer2[3];
@@ -26738,7 +26738,7 @@ ValidationLabelB:
       if (inputParameter8 < 0) {
         validationContext6 = (int64_t)inputParameter8 * 0x18 + 0x14 + (int64_t)exceptionDataBuffer4;
         do {
-          pfVar13 = (float *)FUN_180847820();
+          pfVar13 = (float *)ExecuteSystemResourceOperation();
           fVar20 = *pfVar13;
           fVar4 = pfVar13[1];
           fVar5 = pfVar13[2];
@@ -26786,7 +26786,7 @@ ValidationLabelD:
     return (uint64_t)securityCheckResult;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar20,stackFramePointer + -9);
+  ExecutePortControlOperation(fVar20,stackFramePointer + -9);
 }
 
 
@@ -27172,10 +27172,10 @@ ValidationRetryHandler:
     if (functionReturnValue < 0x8b) {
 DataProcessingHandler:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,auStack_80);
+      ExecutePortControlOperation(param_2,auStack_80);
     }
     auStackX_20[0] = 0;
-    validationStatus = FUN_1808afe30(*param_2,auStackX_20);
+    validationStatus = ExecuteDataValidationOperation(*param_2,auStackX_20);
     operationResult = auStackX_20[0];
     if ((int)validationStatus == 0) {
       securityCheckResult = auStackX_20[0] & 1;
@@ -27186,7 +27186,7 @@ DataProcessingHandler:
         validationStatus = dataFlags;
         if (operationResult >> 1 != 0) {
           do {
-            validationStatus = FUN_1808dde10(param_2,validationStatus);
+            validationStatus = ExecuteSystemInitializationOperation(param_2,validationStatus);
             if ((int)validationStatus != 0) {
               return validationStatus;
             }
@@ -27200,7 +27200,7 @@ DataProcessingHandler:
             if ((int)validationStatus != 0) {
               return validationStatus;
             }
-            validationStatus = FUN_1808de0e0(validationContext,validationBuffer1);
+            validationStatus = ExecuteSystemCleanupOperation(validationContext,validationBuffer1);
             if ((int)validationStatus != 0) {
               return validationStatus;
             }
@@ -27541,7 +27541,7 @@ ValidationErrorHandler2:
   if (0x8a < validationStatus) {
     dataContext = *registerContext;
     *(DataWord *)(stackFramePointer + 0x7f) = 0;
-    memoryBaseAddress = FUN_1808afe30(dataContext,stackFramePointer + 0x7f);
+    memoryBaseAddress = ExecuteDataValidationOperation(dataContext,stackFramePointer + 0x7f);
     if ((int)memoryBaseAddress != 0) {
       return memoryBaseAddress;
     }
@@ -27555,7 +27555,7 @@ ValidationErrorHandler2:
     fVar9 = extraout_XMM0_Da_06;
     if (operationResult >> 1 != 0) {
       do {
-        memoryBaseAddress = FUN_1808dde10(fVar9,memoryBaseAddress);
+        memoryBaseAddress = ExecuteSystemInitializationOperation(fVar9,memoryBaseAddress);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
@@ -27571,7 +27571,7 @@ ValidationErrorHandler2:
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
-        memoryBaseAddress = FUN_1808de0e0(loopCounter,stackFramePointer + 0x77);
+        memoryBaseAddress = ExecuteSystemCleanupOperation(loopCounter,stackFramePointer + 0x77);
         if ((int)memoryBaseAddress != 0) {
           return memoryBaseAddress;
         }
@@ -27585,7 +27585,7 @@ ValidationErrorHandler2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar9,stackFramePointer + -0x21);
+  ExecutePortControlOperation(fVar9,stackFramePointer + -0x21);
 }
 
 
@@ -27799,7 +27799,7 @@ ValidationErrorHandler2:
   if (0x8a < memoryBaseAddress) {
     dataContext = *registerContext;
     *(DataWord *)(stackFramePointer + 0x7f) = 0;
-    operationResult = FUN_1808afe30(dataContext,stackFramePointer + 0x7f);
+    operationResult = ExecuteDataValidationOperation(dataContext,stackFramePointer + 0x7f);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -27813,7 +27813,7 @@ ValidationErrorHandler2:
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
       do {
-        dataFlags = FUN_1808dde10(fVar12,destinationIndexRegister & SystemCleanupFlag);
+        dataFlags = ExecuteSystemInitializationOperation(fVar12,destinationIndexRegister & SystemCleanupFlag);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -27829,7 +27829,7 @@ ValidationErrorHandler2:
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
-        dataFlags = FUN_1808de0e0(dataValue3,stackFramePointer + 0x77);
+        dataFlags = ExecuteSystemCleanupOperation(dataValue3,stackFramePointer + 0x77);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -27843,7 +27843,7 @@ ValidationErrorHandler2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar12,stackFramePointer + -0x21);
+  ExecutePortControlOperation(fVar12,stackFramePointer + -0x21);
 }
 
 
@@ -28057,7 +28057,7 @@ ValidationErrorHandler2:
   if (0x8a < memoryBaseAddress) {
     dataContext = *registerContext;
     *(DataWord *)(stackFramePointer + 0x7f) = 0;
-    operationResult = FUN_1808afe30(dataContext,stackFramePointer + 0x7f);
+    operationResult = ExecuteDataValidationOperation(dataContext,stackFramePointer + 0x7f);
     if ((int)operationResult != 0) {
       return operationResult;
     }
@@ -28071,7 +28071,7 @@ ValidationErrorHandler2:
     fVar12 = extraout_XMM0_Da_06;
     if (memoryBaseAddress >> 1 != 0) {
       do {
-        dataFlags = FUN_1808dde10(fVar12,destinationIndexRegister & SystemCleanupFlag);
+        dataFlags = ExecuteSystemInitializationOperation(fVar12,destinationIndexRegister & SystemCleanupFlag);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -28087,7 +28087,7 @@ ValidationErrorHandler2:
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
-        dataFlags = FUN_1808de0e0(dataValue3,stackFramePointer + 0x77);
+        dataFlags = ExecuteSystemCleanupOperation(dataValue3,stackFramePointer + 0x77);
         if ((int)dataFlags != 0) {
           return dataFlags;
         }
@@ -28101,7 +28101,7 @@ ValidationErrorHandler2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(fVar12,stackFramePointer + -0x21);
+  ExecutePortControlOperation(fVar12,stackFramePointer + -0x21);
 }
 
 
@@ -28270,11 +28270,11 @@ ValidationRetryHandler:
     if (memoryBaseAddress < 0x8b) {
 DataProcessingHandler:
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_1,stackFramePointer + -0x21);
+      ExecutePortControlOperation(param_1,stackFramePointer + -0x21);
     }
     dataContext = *registerContext;
     *(int *)(stackFramePointer + 0x7f) = validationErrorCode;
-    dataFlags = FUN_1808afe30(dataContext,stackFramePointer + 0x7f);
+    dataFlags = ExecuteDataValidationOperation(dataContext,stackFramePointer + 0x7f);
     if ((int)dataFlags == 0) {
       memoryBaseAddress = *(uint *)(stackFramePointer + 0x7f);
       dataFlags = FUN_1808af8b0(register_R13 + 0x60,memoryBaseAddress >> 1);
@@ -28285,7 +28285,7 @@ DataProcessingHandler:
         fVar13 = extraout_XMM0_Da_05;
         if (memoryBaseAddress >> 1 != 0) {
           do {
-            operationResult = FUN_1808dde10(fVar13,destinationIndexRegister & SystemCleanupFlag);
+            operationResult = ExecuteSystemInitializationOperation(fVar13,destinationIndexRegister & SystemCleanupFlag);
             if ((int)operationResult != 0) {
               return operationResult;
             }
@@ -28301,7 +28301,7 @@ DataProcessingHandler:
             if ((int)operationResult != 0) {
               return operationResult;
             }
-            operationResult = FUN_1808de0e0(dataValue4,stackFramePointer + 0x77);
+            operationResult = ExecuteSystemCleanupOperation(dataValue4,stackFramePointer + 0x77);
             if ((int)operationResult != 0) {
               return operationResult;
             }
@@ -28434,7 +28434,7 @@ ValidationStateHandler:
   }
   if (functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(param_2,systemBufferA);
+    ExecutePortControlOperation(param_2,systemBufferA);
   }
   return (uint64_t)functionReturnValue;
 }
@@ -28708,7 +28708,7 @@ ValidationErrorHandler3:
   }
 ValidationExitHandler:
                     // WARNING: Subroutine does not return
-  FUN_1808ddf80(param_2,ainputDataWord);
+  ExecutePortControlOperation(param_2,ainputDataWord);
 }
 
 
@@ -28992,7 +28992,7 @@ uint64_t QuerySystemDataD(int64_t param_1,DataBuffer *param_2)
     }
     if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,ainputDataWord);
+      ExecutePortControlOperation(param_2,ainputDataWord);
     }
   }
   return functionReturnValue;
@@ -29150,7 +29150,7 @@ DataBuffer ValidateDataFormatA1(DataBuffer param_1,int64_t *param_2)
   if ((int)validationStatus == 0x12) {
 ValidationDataHandler:
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(param_2,systemBufferA);
+    ExecutePortControlOperation(param_2,systemBufferA);
   }
   if ((int)validationStatus != 0) {
     return validationStatus;
@@ -29354,7 +29354,7 @@ DataBuffer ValidateDataIntegrityA1(int64_t param_1,DataBuffer *param_2)
 {
   DataBuffer dataValue;
   
-  dataValue = FUN_1808dde10(param_2,0);
+  dataValue = ExecuteSystemInitializationOperation(param_2,0);
   if ((int)dataValue == 0) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -29366,7 +29366,7 @@ DataBuffer ValidateDataIntegrityA1(int64_t param_1,DataBuffer *param_2)
       }
       dataValue = OperateDataO0(*param_2,param_1 + 0xc,4);
       if ((int)dataValue == 0) {
-        dataValue = FUN_1808de0e0(param_2,0);
+        dataValue = ExecuteSystemCleanupOperation(param_2,0);
       }
     }
   }
@@ -29435,7 +29435,7 @@ void ValidateDataParametersC0(int64_t DataContext, DataBuffer *SecurityBuffer)
           *(DataWord *)(DataContext + 0x208) = *(DataWord *)(DataContext + 0x18);
           *(DataWord *)(DataContext + 0x20c) = *(DataWord *)(resourceDescriptor + 0x1c);
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(SecurityBuffer,ainputDataWord);
+          ExecutePortControlOperation(SecurityBuffer,ainputDataWord);
         }
       }
     }
@@ -29506,7 +29506,7 @@ void CheckSystemStateC0(DataWord SystemStateParameter)
             *(DataWord *)(destinationIndexRegister + 0x208) = *(DataWord *)(destinationIndexRegister + 0x18);
             *(DataWord *)(destinationIndexRegister + 0x20c) = *(DataWord *)(destinationIndexRegister + 0x1c);
                     // WARNING: Subroutine does not return
-            FUN_1808ddf80(*(DataWord *)(destinationIndexRegister + 0x10),&stack0x00000030);
+            ExecutePortControlOperation(*(DataWord *)(destinationIndexRegister + 0x10),&stack0x00000030);
           }
         }
       }
@@ -29982,7 +29982,7 @@ DataBuffer ExecuteSystemCheckA1(int64_t param_1,DataBuffer *param_2)
         }
         if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808ddf80(param_2,ainputDataWord);
+          ExecutePortControlOperation(param_2,ainputDataWord);
         }
       }
     }
@@ -30159,7 +30159,7 @@ DataBuffer ProcessDataStreamA1(int64_t param_1,DataBuffer *param_2)
       }
       if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,ainputDataWord);
+        ExecutePortControlOperation(param_2,ainputDataWord);
       }
     }
   }
@@ -30204,7 +30204,7 @@ uint64_t FUN_18089e230(int64_t param_1,int64_t *param_2)
   }
   validationOutcome = 0;
   auStackX_20[0] = 0;
-  functionReturnValue = FUN_1808afe30(*param_2,auStackX_20);
+  functionReturnValue = ExecuteDataValidationOperation(*param_2,auStackX_20);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -30215,7 +30215,7 @@ uint64_t FUN_18089e230(int64_t param_1,int64_t *param_2)
   operationResult = validationOutcome;
   if (dataFlags != 0) {
     do {
-      functionReturnValue = FUN_1808dde10(param_2,functionReturnValue);
+      functionReturnValue = ExecuteSystemInitializationOperation(param_2,functionReturnValue);
       if ((int)functionReturnValue != 0) {
         return functionReturnValue;
       }
@@ -30223,7 +30223,7 @@ uint64_t FUN_18089e230(int64_t param_1,int64_t *param_2)
       if ((int)functionReturnValue != 0) {
         return functionReturnValue;
       }
-      functionReturnValue = FUN_1808de0e0(param_2,auStackX_18);
+      functionReturnValue = ExecuteSystemCleanupOperation(param_2,auStackX_18);
       if ((int)functionReturnValue != 0) {
         return functionReturnValue;
       }
@@ -30276,7 +30276,7 @@ ValidationCompleteHandler2:
       }
       if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808ddf80(param_2,auStack_68);
+        ExecutePortControlOperation(param_2,auStack_68);
       }
     }
   }
@@ -30310,7 +30310,7 @@ uint64_t FUN_18089e297(void)
   }
   validationOutcome = 0;
   in_stack_000000b8 = 0;
-  functionReturnValue = FUN_1808afe30(*registerContext,&stack0x000000b8);
+  functionReturnValue = ExecuteDataValidationOperation(*registerContext,&stack0x000000b8);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -30320,7 +30320,7 @@ uint64_t FUN_18089e297(void)
   functionReturnValue = validationOutcome;
   if (dataFlags != 0) {
     do {
-      validationStatus = FUN_1808dde10();
+      validationStatus = ExecuteSystemInitializationOperation();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -30328,7 +30328,7 @@ uint64_t FUN_18089e297(void)
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      validationStatus = FUN_1808de0e0();
+      validationStatus = ExecuteSystemCleanupOperation();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -30410,7 +30410,7 @@ uint64_t FUN_18089e2be(void)
   }
   validationOutcome = 0;
   in_stack_000000b8 = 0;
-  functionReturnValue = FUN_1808afe30(*registerContext,&stack0x000000b8);
+  functionReturnValue = ExecuteDataValidationOperation(*registerContext,&stack0x000000b8);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -30420,7 +30420,7 @@ uint64_t FUN_18089e2be(void)
   functionReturnValue = validationOutcome;
   if (dataFlags != 0) {
     do {
-      validationStatus = FUN_1808dde10();
+      validationStatus = ExecuteSystemInitializationOperation();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -30428,7 +30428,7 @@ uint64_t FUN_18089e2be(void)
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      validationStatus = FUN_1808de0e0();
+      validationStatus = ExecuteSystemCleanupOperation();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -30506,7 +30506,7 @@ uint64_t FUN_18089e2e8(void)
   
   validationOutcome = 0;
   uStack00000000000000b8 = 0;
-  functionReturnValue = FUN_1808afe30(*registerContext,&stack0x000000b8);
+  functionReturnValue = ExecuteDataValidationOperation(*registerContext,&stack0x000000b8);
   if ((int)functionReturnValue != 0) {
     return functionReturnValue;
   }
@@ -30516,7 +30516,7 @@ uint64_t FUN_18089e2e8(void)
   functionReturnValue = validationOutcome;
   if (dataFlags != 0) {
     do {
-      validationStatus = FUN_1808dde10();
+      validationStatus = ExecuteSystemInitializationOperation();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -30524,7 +30524,7 @@ uint64_t FUN_18089e2e8(void)
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
-      validationStatus = FUN_1808de0e0();
+      validationStatus = ExecuteSystemCleanupOperation();
       if ((int)validationStatus != 0) {
         return validationStatus;
       }
@@ -30619,7 +30619,7 @@ uint64_t FUN_18089e4f0(int64_t param_1,DataBuffer *param_2)
   if ((((int)memoryBaseAddress == 0) &&
       (memoryBaseAddress = ExecuteSecurityValidation(param_2,acolorDataWord,0,0x424e4c54), (int)memoryBaseAddress == 0)) &&
      (memoryBaseAddress = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)memoryBaseAddress == 0)) {
-    poperationResult = (DataWord *)FUN_180847820();
+    poperationResult = (DataWord *)ExecuteSystemResourceOperation();
     memoryBaseAddress = 0;
     uStack_78 = *poperationResult;
     uStack_74 = poperationResult[1];
@@ -30725,7 +30725,7 @@ uint64_t FUN_18089e558(void)
   DataWord extraout_XMM0_Da_03;
   DataWord extraout_XMM0_Da_04;
   
-  pvalidationOutcome = (DataWord *)FUN_180847820();
+  pvalidationOutcome = (DataWord *)ExecuteSystemResourceOperation();
   securityCheckResult = 0;
   operationResult = *(uint *)(destinationIndexRegister + 8);
   dataValue1 = *pvalidationOutcome;
@@ -30807,7 +30807,7 @@ ValidationErrorHandler5:
     if (((int)securityCheckResult == 0) &&
        (securityCheckResult = FUN_1808a62d0(extraout_XMM0_Da_03,register_R15 + 0x88,0), (int)securityCheckResult == 0)) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(extraout_XMM0_Da_04,stackFramePointer + 7);
+      ExecutePortControlOperation(extraout_XMM0_Da_04,stackFramePointer + 7);
     }
   }
   return securityCheckResult;
@@ -31214,7 +31214,7 @@ LAB_18089ed1b:
   }
   if ((int)memoryBaseAddress == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(param_2,auStack_78);
+    ExecutePortControlOperation(param_2,auStack_78);
   }
   return memoryBaseAddress;
 }
@@ -31867,7 +31867,7 @@ DataBuffer ProcessDataCollectionA1(int64_t param_1,DataBuffer *param_2)
     }
     if ((int)functionReturnValue == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808ddf80(param_2,ainputDataWord);
+      ExecutePortControlOperation(param_2,ainputDataWord);
     }
   }
   return functionReturnValue;
@@ -32519,7 +32519,7 @@ uint64_t FUN_18089f970(int64_t param_1,int64_t *param_2)
   DataWord inputComponent1;
   ByteFlag systemConfigBuffer [40];
   
-  validationStatusPointer = (DataWord *)FUN_180847820();
+  validationStatusPointer = (DataWord *)ExecuteSystemResourceOperation();
   blueAlphaComponents = *validationStatusPointer;
   colorPackedData = validationStatusPointer[1];
   inputDataWord = validationStatusPointer[2];
@@ -55068,7 +55068,18 @@ void UnwindCallbackExecutorA0(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180907000(DataBuffer param_1,int64_t param_2)
+/**
+ * @brief 异常处理：上下文回调执行器A0
+ * 
+ * 该函数在异常展开时根据数据上下文执行相应的回调函数。
+ * 函数会从指定的上下文位置获取回调函数指针并执行。
+ * 
+ * @param param_1 异常上下文句柄
+ * @param param_2 展开上下文指针，包含数据上下文和回调函数信息
+ * 
+ * @note 原始函数名：Unwind_180907000
+ */
+void UnwindContextCallbackExecutorA0(DataBuffer param_1,int64_t param_2)
 
 {
   int64_t *validationContextPointer;
