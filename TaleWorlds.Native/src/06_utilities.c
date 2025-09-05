@@ -1540,7 +1540,7 @@
  * 
  * @note 原始函数名：FUN_180894dd0
  */
-#define ProcessRequestF0 FUN_180894dd0
+#define ProcessSystemRequest FUN_180894dd0
 
 /**
  * @brief 验证数据F0
@@ -1549,7 +1549,7 @@
  * 
  * @note 原始函数名：FUN_180895ef0
  */
-#define ValidateDataF0 FUN_180895ef0
+#define ValidateSystemDataIntegrity FUN_180895ef0
 
 /**
  * @brief 处理数据F0
@@ -1558,10 +1558,10 @@
  * 
  * @note 原始函数名：FUN_180898b65
  */
-#define ProcessDataF0 FUN_180898b65
-#define ProcessDataF1 FUN_180898bc0
+#define ProcessDataWithValidation FUN_180898b65
+#define ProcessDataWithIndex FUN_180898bc0
 // 系统状态查询函数
-#define QuerySystemStatusF0 FUN_180898c86
+#define QuerySystemStatusWithValidation FUN_180898c86
 
 // 数据处理函数
 #define ProcessDataF2 FUN_180898d31
@@ -20262,7 +20262,7 @@ DataWord ProcessDataItem(int64_t *dataContext,int itemIndex,DataWord *outputBuff
 // 返回值：操作结果状态码
 // 原始函数名：FUN_180898b65 - 数据处理函数F0
 // 功能：处理输入数据并返回32位结果
-#define ProcessDataF0 FUN_180898b65
+#define ProcessDataWithValidation FUN_180898b65
 DataWord ProcessDataF0(DataBuffer param_1,int param_2,DataWord *param_3)
 
 {
@@ -20389,7 +20389,7 @@ DataWord ProcessDataF0(DataBuffer param_1,int param_2,DataWord *param_3)
 
 // 原始函数名：FUN_180898bc0 - 数据处理函数F1
 // 功能：处理输入数据并返回32位结果
-#define ProcessDataF1 FUN_180898bc0
+#define ProcessDataWithIndex FUN_180898bc0
 DataWord ProcessDataF1(DataBuffer param_1,uint64_t param_2)
 
 {
@@ -20497,7 +20497,7 @@ DataWord ProcessDataF1(DataBuffer param_1,uint64_t param_2)
 
 // 原始函数名：FUN_180898c86 - 系统状态查询函数F0
 // 功能：查询系统状态并返回32位状态信息
-#define QuerySystemStatusF0 FUN_180898c86
+#define QuerySystemStatusWithValidation FUN_180898c86
 DataWord QuerySystemStatusF0(void)
 
 {
