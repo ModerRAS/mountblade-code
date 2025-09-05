@@ -1907,10 +1907,10 @@ uint32_t ValidateNetworkConnectionParameters(int64_t *ConnectionParameterPointer
 NetworkHandle HandleNetworkRequest(NetworkHandle ConnectionContext, NetworkHandle PacketData)
 {
   // 网络连接请求处理变量
-  int64_t NetworkConnectionIdentifier;              // 网络连接上下文标识符
-  int64_t *NetworkConnectionValidationResult;          // 网络连接验证结果指针
+  int64_t NetworkConnectionContextIdentifier;              // 网络连接上下文标识符
+  int64_t *NetworkConnectionValidationResult;          // 网络连接验证结果数据指针
   int32_t NetworkValidationStatusCode;               // 网络连接验证结果码
-  NetworkHandle NetworkConnectionContextId;           // 网络连接上下文ID
+  NetworkHandle NetworkConnectionContextId;           // 网络连接上下文标识符
   
   NetworkConnectionIdentifier = 0;
   NetworkValidationStatusCode = 0;  // 初始化验证结果码
@@ -2097,7 +2097,7 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   NetworkStatus *PacketFlagsBuffer;                     // 数据包标志缓冲区
   int64_t *ConnectionOperationBuffer;                             // 连接操作缓冲区
   int32_t ConnectionUpdateOperation;                         // 连接更新操作代码
-  NetworkStatus *ConnectionStatusPointer;                          // 连接状态指针
+  NetworkStatus *ConnectionStatusPointer;                          // 连接状态处理指针
   int32_t ConnectionOperationCode;                              // 连接操作代码
   int64_t ProcessedPacketId;                                    // 已处理网络数据包ID
   int32_t PacketIndex;                                           // 网络数据包索引
