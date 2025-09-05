@@ -7576,7 +7576,7 @@ undefined8 ProcessUtilitySystemRequest(longlong requestPointer)
   operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(requestPointer + 0x10),contextBuffer);
   if ((int)operationResult == 0) {
     *(undefined4 *)(*(longlong *)(contextBuffer[0] + 0x10) + 0x50) = *(undefined4 *)(requestPointer + 0x18);
-    if ((*(longlong *)(contextBuffer[0] + 8) != 0) && (operationResult = FUN_1808c44f0(), (int)operationResult != 0)) {
+    if ((*(longlong *)(contextBuffer[0] + 8) != 0) && (operationResult = ExecuteOperationA0(), (int)operationResult != 0)) {
       return operationResult;
     }
     operationResult = 0;
@@ -7648,7 +7648,7 @@ void ProcessUtilityEvent(longlong eventPointer,longlong contextPointer)
   if (processingResult == 0) {
     *(undefined4 *)(eventPointer + 0x18) = *(undefined4 *)(eventData + 0x30);
     *(undefined4 *)(eventPointer + 0x1c) = *(undefined4 *)(eventData + 0x34);
-    FUN_18088d7c0(*(undefined8 *)(contextPointer + 0x98),eventPointer);
+    ProcessSystemEventB0(*(undefined8 *)(contextPointer + 0x98),eventPointer);
   }
   return;
 }
@@ -88024,23 +88024,23 @@ void ResetThreadLocalStorage(void)
 void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  undefined8 *puVar1;
+  ResourceManagerPtr *resourceManager;
   
-  puVar1 = GlobalSystemResourceManagerPtr;
-  if (GlobalSystemResourceManagerPtr == (undefined8 *)0x0) {
+  resourceManager = GlobalSystemResourceManagerPtr;
+  if (GlobalSystemResourceManagerPtr == (ResourceManagerPtr *)0x0) {
     return;
   }
   CleanupSystemResourceE1(&SystemResourceDataTable,*GlobalSystemResourceManagerPtr,param_3,param_4,0xfffffffffffffffe);
-  puVar1[4] = &SystemResourceBufferA0;
-  if (puVar1[5] != 0) {
+  resourceManager[4] = &SystemResourceBufferA0;
+  if (resourceManager[5] != 0) {
                     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
-  puVar1[5] = 0;
-  *(undefined4 *)(puVar1 + 7) = 0;
-  puVar1[4] = &SystemResourceBufferA1;
+  resourceManager[5] = 0;
+  *(undefined4 *)(resourceManager + 7) = 0;
+  resourceManager[4] = &SystemResourceBufferA1;
                     // WARNING: Subroutine does not return
-  TerminateSystemE0(puVar1);
+  TerminateSystemE0(resourceManager);
 }
 
 // 系统数据处理相关宏定义
