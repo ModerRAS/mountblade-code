@@ -420,7 +420,7 @@
 #define BufferArrayDataProcessingOffset 0x20
 #define SystemContextSecondaryDataProcessingOffset 0x18
 #define SystemContextTertiaryDataProcessingOffset 0x20
-#define SystemContextValidationStatussOffset 0x34
+#define SystemContextValidationStatusOffset 0x34
 #define MatrixContextDataProcessingOffset 0x38
 #define MatrixContextConfigOffset 0x40
 #define MatrixContextRangeDataProcessingOffset 0x48
@@ -2037,7 +2037,7 @@ void* SecurityManagerInstance;                // 安全管理器实例
 void* SecurityContext;                        // 安全上下文
 void* SecurityPermissionTable;                // 安全权限表
 void* SecurityEncryptionKey;                   // 安全加密密钥
-uint32_t SystemSecurityValidationStatuss;       // 系统安全验证标志
+uint32_t SystemSecurityValidationStatus;       // 系统安全验证标志
 void* SecurityAuditLog;                        // 安全审计日志
 void* SecurityAccessControl;                  // 安全访问控制
 
@@ -3172,7 +3172,7 @@ void* SystemMemoryQualityMetric;
 void* PerformanceCounterPrimary;
 void* SystemMemoryValidationController;
 void* SystemMemoryPackageValidationStatus;
-void* SystemMemoryValidationStatuss;
+void* SystemMemoryValidationStatus;
 uint8_t SystemMemoryValidationData;
 
  /**
@@ -12063,7 +12063,7 @@ void ValidateAndCleanupResourceEntry(int64_t ObjectContext, uint8_t ValidationCo
  * @param resultBuffer 结果缓冲区，用于存储验证结果
  * @return uint32_t 验证结果，成功返回0，失败返回错误码
  */
-uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t ConfigurationData, uint ValidationStatuss, int64_t ResultBuffer)
+uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t ConfigurationData, uint ValidationStatus, int64_t ResultBuffer)
 
 {
   int64_t *SystemProcessingPointer;
@@ -12088,9 +12088,9 @@ uint32_t ProcessSystemConfigurationAndValidation(int64_t SystemContext, uint8_t 
   SystemInitializationStatusCode = InitializeProcessingQueue(ChecksumValidationBuffer, SystemContext);
   if (SystemInitializationStatusCode == 0) {
     SystemCallStackSize = 0;
-    PackageValidationState = ValidationStatuss | SecurityValidationStatus;
+    PackageValidationState = ValidationStatus | SecurityValidationStatus;
     if ((ResourceHashValidationStatus & 1) == 0) {
-      PackageValidationState = ValidationStatuss;
+      PackageValidationState = ValidationStatus;
     }
     SystemProcessingStatusCode = ProcessConfigurationData(SystemContext, ConfigurationData, ResourceHashValidationStatus, &SystemCallStackSize);
     if ((SystemProcessingStatusCode == 0) && (SystemResourceManagerContext = (int64_t *)(ResultBuffer + DataBufferOffset)) && (SystemResourceManagerContext != (int64_t *)NullPointerValue)) {
@@ -12892,7 +12892,7 @@ void ProcessResourceHashAndIndex(int64_t ObjectContext, int ValidationContext, u
  * @param validationFlags 验证标志，控制验证过程的选项
  * @return uint64_t 操作结果，成功返回0，失败返回错误码
  */
-uint64_t ProcessParameterizedDataValidationAndOperation(int64_t DataContext, int OperationType, uint *ValidationStatuss)
+uint64_t ProcessParameterizedDataValidationAndOperation(int64_t DataContext, int OperationType, uint *ValidationStatus)
 {
   uint ResourceHashValue;
   int64_t ResourceTableIterator;
