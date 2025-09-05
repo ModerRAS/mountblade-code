@@ -10605,6 +10605,18 @@ undefined8 CheckSystemStatusA0(longlong param_1,longlong param_2)
 // 
 // 返回值:
 //   无
+/**
+ * @brief 重置系统状态A0
+ * 
+ * 重置系统状态到初始状态，清理系统上下文并执行清理操作。
+ * 该函数会查询系统数据，重置状态标志，然后调用系统清理函数。
+ * 
+ * @param systemConfig 系统配置指针，包含系统配置信息
+ * @param cleanupContext 清理上下文指针，包含清理所需的上下文信息
+ * 
+ * @note 函数执行成功后会调用CleanupSystemEventA0进行清理（该函数不返回）
+ * @note 如果查询系统数据失败，函数会安全返回
+ */
 void ResetSystemStateA0(longlong systemConfig,longlong cleanupContext)
 
 {
@@ -10622,21 +10634,24 @@ void ResetSystemStateA0(longlong systemConfig,longlong cleanupContext)
 
 
 
-// 函数: undefined8 ManageResourceState(longlong param_1,longlong param_2)
-// 
-// 管理资源状态，处理资源分配和释放
-// 该函数负责管理系统资源的状态，包括资源的分配、释放和状态检查
-// 
-// 参数:
-//   param_1 - 资源管理上下文
-//   param_2 - 系统参数块
-// 
-// 返回值:
-//   undefined8 - 操作状态码
-//     0x2e - 资源被锁定
-//     0x1c - 资源计数器错误
-//     0x4c - 资源计数器为零
-//     0   - 操作成功
+/**
+ * @brief 管理资源状态
+ * 
+ * 管理系统资源的状态，处理资源分配、释放和状态检查操作。
+ * 该函数会检查资源状态，包括资源锁定状态、资源计数器有效性等。
+ * 
+ * @param resourceManager 资源管理上下文指针，包含资源管理信息
+ * @param systemParams 系统参数块指针，包含系统配置参数
+ * 
+ * @return undefined8 操作状态码
+ * @retval 0x2e 资源被锁定
+ * @retval 0x1c 资源计数器错误（负数）
+ * @retval 0x4c 资源计数器为零
+ * @retval 0   操作成功
+ * 
+ * @note 函数会递减资源计数器，当计数器达到1时会触发资源清理
+ * @note 如果资源被锁定或计数器无效，函数会返回相应的错误码
+ */
 undefined8 ManageResourceState(longlong resourceManager,longlong systemParams)
 
 {
