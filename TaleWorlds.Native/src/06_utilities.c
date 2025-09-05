@@ -4205,6 +4205,10 @@ uint32_t UtilitySystemPrimaryStatusIndicator;
 #define MemoryValidationEndPointer _DAT_180c91f28       // 内存验证结束指针
 #define MemoryValidationStatus MemoryValidationStatus    // 内存验证状态
 
+// 系统资源数据管理相关变量宏定义
+#define SystemResourceDataManager _DAT_180c967a0     // 系统资源数据管理器
+#define SystemResourceDataTable DAT_180c96790         // 系统资源数据表
+
 // 异常处理系统全局变量
 void* ExceptionHandlerTablePointer;        // 异常处理器表指针
 int SystemExceptionHandlerState;          // 系统异常处理状态
@@ -4327,34 +4331,34 @@ uint32_t UtilityPrimaryDataProcessingBuffer;
 void* UtilityPrimaryDataProcessingPointer;
 
 // 函数: uint32_t UtilityProcessData2(void);
-uint32_t UtilityDataProcessingStatus2;
+uint32_t UtilitySecondaryDataProcessingStatus;
 
 // 函数: uint32_t UtilityProcessData3(void);
-uint32_t UtilityDataProcessingStatus3;
-uint32_t UtilityDataProcessingConfig1;
-void* UtilityDataProcessingPointer2;
-void* UtilityDataProcessingPointer3;
-uint32_t UtilityDataProcessingBuffer2;
-void* UtilityDataProcessingPointer4;
+uint32_t UtilityTertiaryDataProcessingStatus;
+uint32_t UtilityPrimaryDataProcessingConfig;
+void* UtilitySecondaryDataProcessingPointer;
+void* UtilityTertiaryDataProcessingPointer;
+uint32_t UtilitySecondaryDataProcessingBuffer;
+void* UtilityQuaternaryDataProcessingPointer;
 
 // 函数: void* UtilityProcessData4(void);
 void* UtilityProcessData4;
-void* UtilityDataProcessorInstance1;
-void* UtilityDataProcessorInstance2;
-void* UtilityDataProcessorPointer5;
-void* UtilityDataProcessorPointer6;
-void* UtilityDataProcessorInstance3;
-void* UtilityDataProcessorInstance4;
-void* UtilityDataProcessorInstance5;
+void* UtilityPrimaryDataProcessorInstance;
+void* UtilitySecondaryDataProcessorInstance;
+void* UtilityQuinaryDataProcessorPointer;
+void* UtilitySenaryDataProcessorPointer;
+void* UtilityTertiaryDataProcessorInstance;
+void* UtilityQuaternaryDataProcessorInstance;
+void* UtilityQuinaryDataProcessorInstance;
 
 // 函数: void UtilityProcessData5(void);
 void* UtilityProcessData5;
-void* UtilityDataBufferInstance1;
-void* UtilityDataProcessorPointer7;
-void* UtilityDataBufferInstance2;
-void* UtilityDataBufferInstance3;
-void* UtilityDataBufferInstance4;
-void* UtilityDataBufferInstance5;
+void* UtilityPrimaryDataBufferInstance;
+void* UtilitySeptenaryDataProcessorPointer;
+void* UtilitySecondaryDataBufferInstance;
+void* UtilityTertiaryDataBufferInstance;
+void* UtilityQuaternaryDataBufferInstance;
+void* UtilityQuinaryDataBufferInstance;
 
 // 函数: void UtilityProcessData6(void);
 void* UtilityProcessData6;
@@ -26639,9 +26643,9 @@ DataProcessingHandler:
             if ((int)validationStatus != 0) {
               return validationStatus;
             }
-            if (*(int *)(param_2[1] + 0x18) == 0) {
-              validationStatus = FUN_1808a2740(*param_2,(longlong)(int)dataFlags * 0x10 +
-                                             *(longlong *)(param_1 + 0x60));
+            if (*(int *)(validationContext[1] + 0x18) == 0) {
+              validationStatus = FUN_1808a2740(*validationContext,(longlong)(int)dataFlags * 0x10 +
+                                             *(longlong *)(systemContext + 0x60));
             }
             else {
               validationStatus = 0x1c;
@@ -26649,15 +26653,15 @@ DataProcessingHandler:
             if ((int)validationStatus != 0) {
               return validationStatus;
             }
-            validationStatus = FUN_1808de0e0(param_2,auStackX_18);
+            validationStatus = FUN_1808de0e0(validationContext,validationBuffer1);
             if ((int)validationStatus != 0) {
               return validationStatus;
             }
             operationResult = (int)dataFlags + 1;
             dataFlags = (ulonglong)operationResult;
-            auStackX_18[0] = auStackX_18[0] & -securityCheckResult;
-            validationStatus = (ulonglong)auStackX_18[0];
-          } while ((int)operationResult < (int)uVar9);
+            validationBuffer1[0] = validationBuffer1[0] & -securityCheckResult;
+            validationStatus = (ulonglong)validationBuffer1[0];
+          } while ((int)operationResult < (int)dataFlags1);
         }
         goto LAB_18089cbf6;
       }
@@ -26676,7 +26680,7 @@ DataProcessingHandler:
  * @return 处理结果状态码
  * @note 原始函数名：FUN_18089c69d
  */
-ulonglong FUN_18089c69d(void)
+ulonglong ProcessSystemDataD0(void)
 
 {
   longlong *validationContextPointer;
@@ -57850,7 +57854,8 @@ void Unwind_180908060(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180908070(void)
+// 释放验证上下文指针数组的函数
+void FreeValidationContextPointerArray(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001808ffc83. Too many branches
@@ -57861,7 +57866,8 @@ void Unwind_180908070(void)
 
 
 
-void Catch_180908080(undefined8 param_1,longlong param_2)
+// 系统异常处理函数A0
+void SystemExceptionHandlerA0(undefined8 param_1,longlong param_2)
 
 {
   func_0x00018008d310(param_1,*(undefined8 *)(param_2 + 0x40));
@@ -93814,12 +93820,12 @@ void ProcessUtilitySystemData(undefined8 param_1,undefined8 param_2,undefined8 p
 {
   SystemDataPtr *systemData;
   
-  systemData = _DAT_180c967a0;
-  if (_DAT_180c967a0 != (SystemDataPtr *)0x0) {
-    FUN_180651560(&DAT_180c96790,*_DAT_180c967a0,param_3,param_4,SystemCleanupFlagfffffffe);
-    FUN_18063cfe0(systemData + 5);
+  systemData = SystemResourceDataManager;
+  if (SystemResourceDataManager != (SystemDataPtr *)0x0) {
+    ProcessSystemDataE0(&SystemResourceDataTable,*SystemResourceDataManager,param_3,param_4,SystemCleanupFlagfffffffe);
+    ReleaseSystemResourceE0(systemData + 5);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(systemData);
+    TerminateSystemE0(systemData);
   }
   return;
 }
