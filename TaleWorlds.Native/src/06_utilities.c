@@ -5908,21 +5908,21 @@ undefined UtilitySystemStorageStatus2;
 
 // 函数: undefined InitializeThreadLocalStorageA8;
 undefined InitializeThreadLocalStorageA8;
-undefined _tls_index;
+uint32_t _tls_index;
 void *ThreadLocalStoragePointer;
-undefined SystemMemoryControlFlag;
-undefined MemoryManagementControlFlag;
-undefined SystemMemoryControlData;
-undefined MemoryManagementDataPointer;
-undefined SystemMemoryPoolPointer;
-undefined SystemMemoryStatusFlag;
-undefined SystemMemoryConfigPointer;
-undefined SystemMemoryDataBuffer;
+void* SystemMemoryControlFlag;
+void* MemoryManagementControlFlag;
+void* SystemMemoryControlData;
+void* MemoryManagementDataPointer;
+void* SystemMemoryPoolPointer;
+void* SystemMemoryStatusFlag;
+void* SystemMemoryConfigPointer;
+void* SystemMemoryDataBuffer;
 
 943200;
-undefined UtilitySystemFunctionPointer;
-undefined SystemConfigurationData;
-undefined SystemConfigurationStatus;
+void* UtilitySystemFunctionPointer;
+void* SystemConfigurationData;
+void* SystemConfigurationStatus;
 void* MemoryHeapControlData;
 void* ThreadLocalStoragePointer;
 // 系统状态标志
