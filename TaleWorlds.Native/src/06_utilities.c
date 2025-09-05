@@ -14210,7 +14210,7 @@ LAB_180897ce8:
       currentIteration = 0;
       maxIterations = func_0x0001808c7ed0(*(undefined8 *)(resourceEntry + 0xd0));
       validationResult = processCount + 1;
-      if (0 < iVar5) {
+      if (0 < maxIterations) {
         do {
           uStack_278 = 0;
           lVar2 = param_1[4];
@@ -85622,6 +85622,20 @@ void CleanupUtilitySystemResources(undefined8 param_1,undefined8 param_2,undefin
 #define ProcessDataValidationDV0 FUN_180894300
 #define CleanupSystemResourceDW0 FUN_18084c470
 #define ResetSystemStateDX0 FUN_180891af0
+
+// 复杂数据处理和验证相关宏定义
+#define ValidateAndProcessDataOperation FUN_18089379d
+#define ReturnFixedErrorCode FUN_1808938ab
+#define ValidateContextAndUpdateState FUN_1808938c0
+#define ValidateDataStateAndProcess FUN_180893930
+#define ProcessDataByCondition FUN_180893964
+
+// 系统安全和验证相关宏定义
+#define ReturnErrorCode31 FUN_180893a63
+#define ValidateAndProcessFloatValue FUN_180893d50
+#define ExecuteSystemValidationA0 FUN_180894c70
+#define ProcessComplexDataStructureA0 FUN_180896c60
+#define CheckSystemStatusAndExecuteA0 FUN_180896e11
 
 
 
