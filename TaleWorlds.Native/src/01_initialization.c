@@ -44644,8 +44644,8 @@ void ReleaseSystemResource(void* SystemResourceManager)
   void* *SystemDataResourcePointer;
   uint32_t ResourceCreationFlags;
   uint8_t SystemByteArray [32];
-  void* *punsignedValue348;
-  void*2 aSystemThreadFlag338 [2];
+  void* *SystemDataTemplatePointer;
+  void*2 SystemThreadFlagArray [2];
   void*2 aMemoryAllocationSize [2];
   void* *MemoryContextPointer;
   long long StackInteger328;
