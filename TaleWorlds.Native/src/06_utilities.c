@@ -80172,18 +80172,31 @@ void Unwind_180911fe0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180911ff0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void CleanupExceptionAtOffset48(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+// 
+// 清理偏移量0x48处的异常处理资源
+// 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
+// 
+// 参数:
+//   param_1 - 异常处理参数1
+//   param_2 - 异常上下文参数，包含要清理的资源指针
+//   param_3 - 异常处理参数3
+//   param_4 - 异常处理参数4
+// 
+// 返回值:
+//   无
+void CleanupExceptionAtOffset48(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
+  longlong resourcePointer;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x48);
-  if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  resourcePointer = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x48);
+  if (resourcePointer != 0) {
+    if (ExceptionContext != 0) {
+      *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,0xfffffffffffffffe);
   }
   return;
 }
@@ -80192,18 +80205,31 @@ void Unwind_180911ff0(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912000(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void CleanupExceptionAtOffset58(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+// 
+// 清理偏移量0x58处的异常处理资源
+// 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
+// 
+// 参数:
+//   param_1 - 异常处理参数1
+//   param_2 - 异常上下文参数，包含要清理的资源指针
+//   param_3 - 异常处理参数3
+//   param_4 - 异常处理参数4
+// 
+// 返回值:
+//   无
+void CleanupExceptionAtOffset58(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
+  longlong resourcePointer;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x58);
-  if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  resourcePointer = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x58);
+  if (resourcePointer != 0) {
+    if (ExceptionContext != 0) {
+      *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,0xfffffffffffffffe);
   }
   return;
 }
@@ -80212,18 +80238,31 @@ void Unwind_180912000(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912010(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void CleanupExceptionAtOffset68(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+// 
+// 清理偏移量0x68处的异常处理资源
+// 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
+// 
+// 参数:
+//   param_1 - 异常处理参数1
+//   param_2 - 异常上下文参数，包含要清理的资源指针
+//   param_3 - 异常处理参数3
+//   param_4 - 异常处理参数4
+// 
+// 返回值:
+//   无
+void CleanupExceptionAtOffset68(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
+  longlong resourcePointer;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x68);
-  if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  resourcePointer = *(longlong *)(*(longlong *)(param_2 + 0x28) + 0x68);
+  if (resourcePointer != 0) {
+    if (ExceptionContext != 0) {
+      *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,0xfffffffffffffffe);
   }
   return;
 }
@@ -80232,18 +80271,31 @@ void Unwind_180912010(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180912020(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+// 函数: void CleanupExceptionAtOffset1530(undefined8 param_1, longlong param_2, undefined8 param_3, undefined8 param_4)
+// 
+// 清理偏移量0x1530处的异常处理资源
+// 在异常展开过程中清理特定偏移量处的资源，并调用异常处理函数
+// 
+// 参数:
+//   param_1 - 异常处理参数1
+//   param_2 - 异常上下文参数，包含要清理的资源指针
+//   param_3 - 异常处理参数3
+//   param_4 - 异常处理参数4
+// 
+// 返回值:
+//   无
+void CleanupExceptionAtOffset1530(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
-  longlong lVar1;
+  longlong resourcePointer;
   
-  lVar1 = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x1530);
-  if (lVar1 != 0) {
-    if (_DAT_180c8a9b0 != 0) {
-      *(int *)(_DAT_180c8a9b0 + 0x3a8) = *(int *)(_DAT_180c8a9b0 + 0x3a8) + -1;
+  resourcePointer = *(longlong *)(*(longlong *)(param_2 + 0x40) + 0x1530);
+  if (resourcePointer != 0) {
+    if (ExceptionContext != 0) {
+      *(int *)(ExceptionContext + 0x3a8) = *(int *)(ExceptionContext + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(lVar1,_DAT_180c8a9a8,param_3,param_4,0xfffffffffffffffe);
+    FUN_180059ba0(resourcePointer,ExceptionDataPointer,param_3,param_4,0xfffffffffffffffe);
   }
   return;
 }
