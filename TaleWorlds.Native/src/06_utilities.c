@@ -3999,6 +3999,24 @@ uint32_t UtilitySystemStatus1;
 #define SystemCleanupHandler _DAT_180c91d18            // 系统清理处理器
 #define SystemCleanupStatus _DAT_180c91cf0             // 系统清理状态
 
+// 系统资源清理相关变量宏定义
+#define SystemResourceCleanupFlagA0 DAT_180c95ef0      // 系统资源清理标志A0
+#define SystemResourceCleanupFlagA1 DAT_180c96008      // 系统资源清理标志A1
+#define SystemResourceCleanupFlagA2 DAT_180c96028      // 系统资源清理标志A2
+#define SystemResourceCleanupFlagA3 DAT_180c96048      // 系统资源清理标志A3
+#define SystemResourceCleanupFlagA4 DAT_180c96068      // 系统资源清理标志A4
+#define SystemResourceCleanupFlagA5 DAT_180c96098      // 系统资源清理标志A5
+#define SystemResourceCleanupFlagA6 DAT_180c960b8      // 系统资源清理标志A6
+#define SystemResourceCleanupFlagA7 DAT_180c96100      // 系统资源清理标志A7
+
+#define SystemResourcePointerA0 _DAT_180c95ff0          // 系统资源指针A0
+#define SystemResourcePointerA1 _DAT_180c96010          // 系统资源指针A1
+#define SystemResourcePointerA2 _DAT_180c96030          // 系统资源指针A2
+#define SystemResourcePointerA3 _DAT_180c96050          // 系统资源指针A3
+#define SystemResourcePointerA4 _DAT_180c96070          // 系统资源指针A4
+#define SystemResourcePointerA5 _DAT_180c960a0          // 系统资源指针A5
+#define SystemResourceDataBufferA0 DAT_180c960c0         // 系统资源数据缓冲区A0
+
 // 异常处理器指针变量宏定义
 #define ExceptionHandlerPointerA _DAT_180bf90b0         // 异常处理器指针A
 

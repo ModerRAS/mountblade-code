@@ -197,7 +197,11 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
     return CalculateConnectionStatusPointerOffset(ContextIdentifier, StatusBasePointer, StatusIteratorPointer) - 4 + (int64_t)((NetworkStatus *)StatusIteratorPointer + ConnectionContextEntrySize);
 }
 
-// 网络连接相关偏移量 - 连接上下文和状态管理
+/**
+ * @brief 网络连接状态偏移量常量
+ * 
+ * 定义网络连接状态相关数据结构的内存偏移量，用于访问连接状态信息
+ */
 #define NetworkConnectionContextOffset 0x78                    // 网络连接上下文偏移量
 #define NetworkConnectionValidationOffset 0x24                 // 网络连接验证偏移量
 #define NetworkConnectionStatusOffset 0x98                     // 网络连接状态偏移量
@@ -225,20 +229,32 @@ static int64_t CalculateLastConnectionStatusEntryOffset(int64_t ContextIdentifie
 #define NetworkSecurityContextOffset 0x44                      // 网络安全上下文偏移量
 #define NetworkEncryptionKeyOffset 0x50                        // 网络加密密钥偏移量
 
-// 网络数据包相关偏移量 - 数据包表和状态管理
+/**
+ * @brief 网络数据包相关偏移量常量
+ * 
+ * 定义网络数据包处理相关数据结构的内存偏移量，用于访问数据包信息
+ */
 #define NetworkPacketTableIndexOffset 0x88                     // 网络数据包表索引偏移量
 #define NetworkPacketTableDataOffset 0x80                     // 网络数据包表数据偏移量
 #define NetworkPacketEntrySize 0x10                           // 网络数据包条目大小
 #define NetworkPacketProcessorOffset 0x270                    // 网络数据包处理器偏移量
 #define NetworkPacketHeaderValidationOffset 0x18              // 网络数据包头验证偏移量
 
-// 网络数据包状态常量 - 数据包处理状态定义
+/**
+ * @brief 网络数据包状态常量
+ * 
+ * 定义网络数据包处理状态，用于跟踪数据包的处理进度和结果
+ */
 #define NetworkPacketStatusSuccess 0x00                       // 数据包状态：成功
 #define NetworkPacketStatusFailure 0x01                       // 数据包状态：失败
 #define NetworkPacketStatusPending 0x02                       // 数据包状态：待处理
 #define NetworkPacketStatusTimeout 0x03                       // 数据包状态：超时
 
-// 数据包数组索引常量
+/**
+ * @brief 数据包数组索引常量
+ * 
+ * 定义网络数据包处理中使用的数组索引，用于访问特定位置的数据
+ */
 #define PacketHeaderArrayIndex 1                                // 数据包头数组索引
 #define PacketSizeArrayIndex 8                                  // 数据包大小数组索引
 #define NetworkArraySizeIndex 4                                // 网络数组大小索引
