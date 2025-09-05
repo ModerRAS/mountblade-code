@@ -15348,10 +15348,10 @@ DataBuffer ResetSystemB0(void)
       functionReturnValue = 0x1c;
     }
     else {
-      functionReturnValue = ValidateOperationRangeA0(systemContext + 0x60,in_stack_00000050);
+      functionReturnValue = ValidateOperationRangeA0(systemContext + 0x60,InputParam50);
       if ((int)functionReturnValue == 0) {
         validationStatusPointer = (DataBuffer *)
-                 ProcessSystemDataA0(systemContext + 0x60,&stack0x00000040,in_stack_00000050);
+                 ProcessSystemDataA0(systemContext + 0x60,&stack0x00000040,InputParam50);
         *(DataBuffer *)(destinationIndexRegister + 0x18) = *validationStatusPointer;
                     // WARNING: Subroutine does not return
         CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98));
@@ -21836,7 +21836,20 @@ ValidationCheckpointB:
 
 
 
-DataBuffer ProcessDataSequenceA0(int64_t *param_1)
+/**
+ * @brief 数据序列处理函数A0
+ * 
+ * 处理数据序列的操作，包括内存分配、数据验证和序列处理
+ * 
+ * @param DataSequencePointer - 数据序列指针，指向要处理的数据序列
+ * 
+ * @return DataBuffer - 处理结果状态码
+ *   0x1c - 数据序列指针无效
+ *   0x11 - 数据序列长度验证失败
+ *   0xd - 数据索引超出范围
+ *   0 - 处理成功
+ */
+DataBuffer ProcessDataSequenceA0(int64_t *DataSequencePointer)
 
 {
   DataBuffer dataValue;
@@ -21844,23 +21857,23 @@ DataBuffer ProcessDataSequenceA0(int64_t *param_1)
   uint stackParameterOffset;
   unsigned int stackValidationFlag;
   
-  param_1 = (int64_t *)*param_1;
-  if (*param_1 == 0) {
+  DataSequencePointer = (int64_t *)*DataSequencePointer;
+  if (*DataSequencePointer == 0) {
     dataValue = 0x1c;
   }
   else {
-    if (param_1[2] != 0) {
+    if (DataSequencePointer[2] != 0) {
       stackParameterOffset = 0;
-      dataValue = AllocateMemory(*param_1,&stack0x00000040);
+      dataValue = AllocateMemory(*DataSequencePointer,&stack0x00000040);
       if ((int)dataValue != 0) {
         return dataValue;
       }
-      if ((uint64_t)param_1[2] < (uint64_t)stackParameterOffset + 4) {
+      if ((uint64_t)DataSequencePointer[2] < (uint64_t)stackParameterOffset + 4) {
         dataValue = 0x11;
         goto ProcessCheckpointDataValidation;
       }
     }
-    dataValue = ValidateDataAndReturnStatusO3(*param_1,&systemContextBuffer50,1,4,0);
+    dataValue = ValidateDataAndReturnStatusO3(*DataSequencePointer,&systemContextBuffer50,1,4,0);
   }
 ValidationCheckpointB:
   if ((int)dataValue == 0) {
@@ -21868,7 +21881,7 @@ ValidationCheckpointB:
     if (2 < in_stack_00000050) {
       return 0xd;
     }
-    dataValue = OperateDataO0(param_1,destinationIndexRegister + 1,4);
+    dataValue = OperateDataO0(DataSequencePointer,destinationIndexRegister + 1,4);
   }
   return dataValue;
 }
