@@ -2238,9 +2238,73 @@
 // 功能：获取系统状态并返回状态码
 #define GetSystemStatusCode FUN_18089e297
 
+// 原始函数名：FUN_1808a79f0 - 数据验证处理函数A0
+// 功能：验证数据完整性和处理状态
+#define ValidateDataProcessingA0 FUN_1808a79f0
+
+// 原始函数名：FUN_1808a54c0 - 数据标志处理函数A0
+// 功能：处理数据标志并返回处理结果
+#define ProcessDataFlagsA0 FUN_1808a54c0
+
+// 原始函数名：FUN_1808aef40 - 数据清理函数A0
+// 功能：清理数据缓冲区和相关资源
+#define CleanupDataBufferA0 FUN_1808aef40
+
+// 原始函数名：FUN_180883750 - 内存状态检查函数A0
+// 功能：检查内存状态和访问权限
+#define CheckMemoryStatusA0 FUN_180883750
+
+// 原始函数名：FUN_1808aec50 - 数据验证函数A1
+// 功能：验证数据完整性和安全性
+#define ValidateDataIntegrityA0 FUN_1808aec50
+
+// 原始函数名：FUN_1808a5780 - 数据处理函数A2
+// 功能：处理数据并返回处理结果
+#define ProcessDataWithValidationA0 FUN_1808a5780
+
+// 原始函数名：FUN_1807d3e20 - 系统状态检查函数A0
+// 功能：检查系统状态和运行情况
+#define CheckSystemStatusA0 FUN_1807d3e20
+
 // 原始函数名：FUN_18089e2be - 系统内存管理函数
 // 功能：管理系统内存分配和释放
 #define ManageSystemMemoryAllocation FUN_18089e2be
+
+// 原始函数名：FUN_1808a2740 - 上下文验证函数A0
+// 功能：验证上下文数据和状态
+#define ValidateContextDataA0 FUN_1808a2740
+
+// 原始函数名：FUN_1808af8b0 - 系统配置验证函数A0
+// 功能：验证系统配置和参数
+#define ValidateSystemConfigurationA1 FUN_1808af8b0
+
+// 原始函数名：FUN_1808af280 - 数据缓冲区验证函数A0
+// 功能：验证数据缓冲区状态
+#define ValidateDataBufferA0 FUN_1808af280
+
+// 原始函数名：FUN_1808acb90 - 数组数据处理函数A0
+// 功能：处理数组数据并返回结果
+#define ProcessArrayDataA0 FUN_1808acb90
+
+// 原始函数名：FUN_1808a5150 - 数据初始化函数A0
+// 功能：初始化数据结构和缓冲区
+#define InitializeDataStructureA0 FUN_1808a5150
+
+// 原始函数名：FUN_1808de650 - 数据验证函数A2
+// 功能：验证数据完整性和安全性
+#define ValidateDataSecurityA0 FUN_1808de650
+
+// 原始函数名：FUN_1808b0490 - 数据处理函数A3
+// 功能：处理数据并返回处理结果
+#define ProcessDataWithSecurityA0 FUN_1808b0490
+
+// 原始函数名：FUN_180898ef0 - 数据验证函数A3
+// 功能：验证数据完整性和状态
+#define ValidateDataStructureA1 FUN_180898ef0
+
+// 原始函数名：FUN_1808a8120 - 数据处理函数A4
+// 功能：处理数据并返回处理结果
+#define ProcessDataWithValidationA1 FUN_1808a8120
 
 // 原始函数名：FUN_18089e2e8 - 系统缓冲区处理函数
 // 功能：处理系统缓冲区和数据操作
@@ -11392,7 +11456,7 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 功能：验证参数并执行操作
 #define ValidateAndExecuteOperationsA1 FUN_180899100
 
-// 函数: void InitializeSystemEventHandlerA0(int64_t param_1,int64_t param_2)
+// 函数: void InitializeSystemEventHandlerA0(int64_t eventHandlerConfig,int64_t callbackTable)
 //
 // 系统事件处理器初始化函数A0
 // 
@@ -11401,14 +11465,14 @@ void ProcessUtilityEvent(int64_t eventPointer,int64_t contextPointer)
 // 确保系统能够正确响应和处理各种事件。
 //
 // 参数：
-//   param_1 (int64_t) - 事件处理器配置参数指针，包含事件处理所需的配置信息
-//   param_2 (int64_t) - 回调函数表指针，包含事件处理回调函数的地址
+//   eventHandlerConfig (int64_t) - 事件处理器配置参数指针，包含事件处理所需的配置信息
+//   callbackTable (int64_t) - 回调函数表指针，包含事件处理回调函数的地址
 //
 // 返回值：
 //   无
 //
 // 注意事项：
-//   - 调用前确保param_1和param_2参数有效
+//   - 调用前确保eventHandlerConfig和callbackTable参数有效
 //   - 函数内部会进行错误检查，初始化失败时会安全返回
 //   - 该函数是系统初始化的重要组成部分
 //
@@ -11431,7 +11495,7 @@ void InitializeSystemEventHandlerA0(int64_t eventHandlerConfig,int64_t callbackT
 
 
 
-// 函数: void InitializeSystemEventHandlerA1(int64_t param_1,int64_t param_2)
+// 函数: void InitializeSystemEventHandlerA1(int64_t eventHandlerConfig,int64_t callbackTable)
 //
 // 系统事件处理器初始化函数A1
 // 
@@ -11440,14 +11504,14 @@ void InitializeSystemEventHandlerA0(int64_t eventHandlerConfig,int64_t callbackT
 // 增加了条件判断逻辑，根据不同的条件执行不同的初始化路径。
 //
 // 参数：
-//   param_1 (int64_t) - 事件处理器配置参数指针，包含事件处理所需的配置信息
-//   param_2 (int64_t) - 回调函数表指针，包含事件处理回调函数的地址
+//   eventHandlerConfig (int64_t) - 事件处理器配置参数指针，包含事件处理所需的配置信息
+//   callbackTable (int64_t) - 回调函数表指针，包含事件处理回调函数的地址
 //
 // 返回值：
 //   无
 //
 // 注意事项：
-//   - 函数内部包含条件分支逻辑，根据param_1 + 0x2c位置的值决定执行路径
+//   - 函数内部包含条件分支逻辑，根据eventHandlerConfig + 0x2c位置的值决定执行路径
 //   - 如果条件不满足，会调用CleanupSystemEventA0函数（该函数不返回）
 //   - 调用前确保参数有效性，避免未定义行为
 //
@@ -26106,7 +26170,7 @@ ValidationLabelB:
       dataFlags = (int)*(uint *)(param_1 + 0x54) >> 0x1f;
       ploopCounter = puStack_88;
       if ((int)((*(uint *)(param_1 + 0x54) ^ dataFlags) - dataFlags) < (int)uStack_80) {
-        dataFlags = FUN_180883750(param_1 + 0x48,uStack_80 & SystemCleanupFlag);
+        dataFlags = CheckSystemStatusA0(param_1 + 0x48,uStack_80 & SystemCleanupFlag);
         validationOutcome = (uint64_t)dataFlags;
         ploopCounter = puStack_88;
         if (dataFlags != 0) goto ProcessCheckpointStatusValidation;
@@ -26114,7 +26178,7 @@ ValidationLabelB:
       for (; (inputParameter3 = (int)uStack_80, puStack_88 <= ploopCounter &&
              (ploopCounter < puStack_88 + (int64_t)inputParameter3 * 3)); ploopCounter = ploopCounter + 3) {
         puStackX_18 = (DataBuffer *)0x0;
-        dataFlags = FUN_1808aec50(param_1 + 0x48,&puStackX_18);
+        dataFlags = ValidateDataSecurityA1(param_1 + 0x48,&puStackX_18);
         validationOutcome = (uint64_t)dataFlags;
         if (dataFlags != 0) goto ProcessCheckpointStatusValidation;
         dataValue = ploopCounter[1];
@@ -26170,7 +26234,7 @@ ValidationLabelB:
     }
   }
   else {
-    validationOutcome = FUN_1808a5780(param_2,param_1 + 0x48);
+    validationOutcome = ProcessDataOperationA1(param_2,param_1 + 0x48);
     if ((int)validationOutcome != 0) {
       return validationOutcome;
     }
@@ -26180,7 +26244,7 @@ ValidationLabelC:
       (*(uint64_t *)(param_1 + 0x48) <= validationOutcome &&
       (validationOutcome < (int64_t)*(int *)(param_1 + 0x50) * 0x1c + *(uint64_t *)(param_1 + 0x48)));
       validationOutcome = validationOutcome + 0x1c) {
-    FUN_1807d3e20(param_1 + 0x58);
+    InitializeSystemComponentA0(param_1 + 0x58);
   }
 ValidationLabelD:
   if ((0x70 < *(uint *)(param_2 + 8)) && (operationResult = 0x1c, *(int *)(param_2[1] + 0x18) == 0)) {
@@ -26285,7 +26349,7 @@ uint64_t * ValidateSystemDataProcessing(void)
     return exceptionDataBuffer3;
   }
   if (0x81 < *(uint *)(destinationIndexRegister + 8)) {
-    exceptionDataBuffer1 = (DataBuffer *)FUN_1808a79f0(functionReturnValue0,systemContext + 0x58);
+    exceptionDataBuffer1 = (DataBuffer *)ValidateDataSecurityA0(functionReturnValue0,systemContext + 0x58);
     fVar21 = floatResultA_00;
     if ((int)exceptionDataBuffer1 != 0) {
       return exceptionDataBuffer1;
@@ -26295,7 +26359,7 @@ uint64_t * ValidateSystemDataProcessing(void)
   if (*(uint *)(destinationIndexRegister + 8) < 0x6a) {
     *(DataBuffer *)(stackFramePointer + -0x29) = 0;
     *(DataBuffer *)(stackFramePointer + -0x21) = 0;
-    statusCounter = FUN_1808a54c0(functionReturnValue0,stackFramePointer + -0x29,0);
+    statusCounter = ProcessDataFlagsA0(functionReturnValue0,stackFramePointer + -0x29,0);
     exceptionDataBuffer3 = (DataBuffer *)(uint64_t)statusCounter;
     if (statusCounter != 0) {
 ValidationLabelB:
@@ -26768,7 +26832,7 @@ uint64_t ValidateAndProcessSystemOperations(DataBuffer SystemContext)
   
   securityCheckResult = (uint)resourcePtr;
   if (0x81 < inputParameter) {
-    operationResult = FUN_1808a79f0(SystemContext,systemContextData + 0x58);
+    operationResult = ValidateDataProcessingA0(SystemContext,systemContextData + 0x58);
     computedFloatValue = resultFloatValue;
     if ((int)operationResult != 0) {
       return operationResult;
