@@ -906,40 +906,40 @@
 #define SystemExceptionHandlerA1 Unwind_180902110
 
 /**
- * @brief 异常处理函数A2
+ * @brief 系统异常处理器A2
  * 
- * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 该函数负责处理系统异常情况，提供异常恢复和清理机制
  * 
  * @note 原始函数名：Unwind_180902150
  */
-#define ExceptionHandlerA2 Unwind_180902150
+#define SystemExceptionHandlerA2 Unwind_180902150
 
 /**
- * @brief 异常处理函数A3
+ * @brief 系统异常处理器A3
  * 
- * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 该函数负责处理系统异常情况，提供异常恢复和清理机制
  * 
  * @note 原始函数名：Unwind_180902160
  */
-#define ExceptionHandlerA3 Unwind_180902160
+#define SystemExceptionHandlerA3 Unwind_180902160
 
 /**
- * @brief 异常处理函数A4
+ * @brief 系统异常处理器A4
  * 
- * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 该函数负责处理系统异常情况，提供异常恢复和清理机制
  * 
  * @note 原始函数名：Unwind_180902170
  */
-#define ExceptionHandlerA4 Unwind_180902170
+#define SystemExceptionHandlerA4 Unwind_180902170
 
 /**
- * @brief 异常处理函数A5
+ * @brief 系统异常处理器A5
  * 
- * 该函数负责处理系统异常，进行异常恢复和清理操作
+ * 该函数负责处理系统异常情况，提供异常恢复和清理机制
  * 
  * @note 原始函数名：Unwind_180902180
  */
-#define ExceptionHandlerA5 Unwind_180902180
+#define SystemExceptionHandlerA5 Unwind_180902180
 
 /**
  * @brief 异常处理函数A6
