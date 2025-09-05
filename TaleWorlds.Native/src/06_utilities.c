@@ -12412,7 +12412,10 @@ undefined8 FUN_180896c10(longlong param_1,undefined8 param_2,undefined8 param_3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void FUN_180896c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
+// 原始函数名：FUN_180896c60 - 数据缓冲区处理函数A1
+// 功能：处理复杂的数据缓冲区，包括多种数据类型的验证和转换
+#define ProcessComplexDataBufferA1 FUN_180896c60
+
 void FUN_180896c60(undefined8 param_1,longlong param_2,uint param_3,char param_4)
 
 {
@@ -13640,8 +13643,9 @@ FUN_180897b0e:
 
 
 
-// 函数: void FUN_1808976b0(void)
-void FUN_1808976b0(void)
+// 原始函数名：FUN_1808976b0 - 数据处理函数B0
+// 功能：处理浮点数据和长整型数据
+#define ProcessDataTypesB0 FUN_1808976b0
 
 {
   float fVar1;
