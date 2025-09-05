@@ -3052,9 +3052,9 @@ NetworkHandle ValidateNetworkPacketIntegrity(NetworkHandle *PacketData, int64_t 
   }
   
   // 综合完整性验证结果
-  PacketIntegrityValidationResult = PacketChecksumValidationResult & NetworkPacketDataFormatValidationResult;
+  NetworkPacketIntegrityValidationResult = NetworkPacketChecksumValidationResult & NetworkPacketDataFormatValidationResult;
   
-  return PacketIntegrityValidationResult;  // 返回完整性验证结果
+  return NetworkPacketIntegrityValidationResult;  // 返回完整性验证结果
 }
 
 /**
