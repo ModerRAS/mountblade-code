@@ -918,6 +918,26 @@
 // 功能：重置工具系统状态C1
 #define ResetUtilitySystemStateC1 FUN_180942580
 
+// 原始函数名：FUN_180942750 - 初始化异常处理器表A0
+// 功能：初始化异常处理器表，设置默认异常处理器
+#define InitializeExceptionHandlerTableA0 FUN_180942750
+
+// 原始函数名：FUN_180942790 - 设置默认异常处理器A0
+// 功能：设置默认异常处理器A0
+#define SetDefaultExceptionHandlerA0 FUN_180942790
+
+// 原始函数名：FUN_1809427d0 - 设置默认异常处理器A1
+// 功能：设置默认异常处理器A1
+#define SetDefaultExceptionHandlerA1 FUN_1809427d0
+
+// 原始函数名：FUN_1809427f0 - 设置默认异常处理器A2
+// 功能：设置默认异常处理器A2
+#define SetDefaultExceptionHandlerA2 FUN_1809427f0
+
+// 原始函数名：FUN_180942810 - 设置默认异常处理器A3
+// 功能：设置默认异常处理器A3
+#define SetDefaultExceptionHandlerA3 FUN_180942810
+
 // 原始函数名：FUN_180943020 - 销毁互斥锁A
 // 功能：销毁互斥锁A，释放相关资源
 #define DestroyMutexA FUN_180943020
