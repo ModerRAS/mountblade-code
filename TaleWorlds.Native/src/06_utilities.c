@@ -35158,7 +35158,19 @@ void ExceptionCleanupHandler840(undefined8 param_1,longlong param_2,undefined8 p
 
 
 
-void Unwind_180902850(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常清理处理器850
+ * 
+ * 该函数用于处理异常清理操作，调用系统处理函数进行资源管理
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含异常状态信息
+ * @param param_3 清理参数1
+ * @param param_4 清理参数2
+ * 
+ * @note 原始函数名：Unwind_180902850
+ */
+void ExceptionCleanupHandler850(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
@@ -35168,7 +35180,19 @@ void Unwind_180902850(undefined8 param_1,longlong param_2,undefined8 param_3,und
 
 
 
-void Unwind_180902860(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 异常清理处理器860
+ * 
+ * 该函数用于处理异常清理操作，调用系统处理函数进行资源管理
+ * 
+ * @param param_1 上下文参数1
+ * @param param_2 上下文参数2，包含异常状态信息
+ * @param param_3 清理参数1
+ * @param param_4 清理参数2
+ * 
+ * @note 原始函数名：Unwind_180902860
+ */
+void ExceptionCleanupHandler860(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_180058370(*(longlong *)(param_2 + 0x70),*(undefined8 *)(*(longlong *)(param_2 + 0x70) + 0x10),
