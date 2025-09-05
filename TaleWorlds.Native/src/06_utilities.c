@@ -4487,12 +4487,12 @@ void* UtilityProcessDataInstanceQuaternary;
 void* UtilityDataProcessorPointerDenary;
 
 // 函数: void* UtilityProcessData9(void);
-void* UtilityProcessData9;
-void* UtilityProcessConfiguration1;
-void* UtilityProcessConfiguration2;
-void* UtilityProcessConfiguration3;
-void* UtilityProcessConfiguration4;
-void* UtilityProcessUnknownData1;
+void* UtilityProcessDataNonary;
+void* UtilityProcessConfigurationPrimary;
+void* UtilityProcessConfigurationSecondary;
+void* UtilityProcessConfigurationTertiary;
+void* UtilityProcessConfigurationQuaternary;
+void* UtilityProcessUnknownDataPrimary;
 
 // 函数: uint32_t UtilityProcessData10(void);
 uint32_t UtilityProcessInputData;
@@ -4645,72 +4645,72 @@ uint32_t UtilityConfigIntegrationData;
 uint32_t UtilityConfigExtensionData;
 uint32_t UtilityConfigCustomizationData;
 // 工具系统状态数据区域
-uint32_t UtilitySystemState1;
-uint32_t UtilitySystemState2;
-uint32_t UtilitySystemState3;
-uint32_t UtilitySystemState4;
-uint32_t UtilitySystemState5;
-uint32_t UtilitySystemState6;
-uint32_t UtilitySystemState7;
-uint32_t UtilitySystemState8;
-uint32_t UtilitySystemState9;
-uint32_t UtilitySystemState10;
-uint32_t UtilitySystemState11;
-uint32_t UtilitySystemState12;
-uint32_t UtilitySystemState13;
-uint32_t UtilitySystemState14;
-uint32_t UtilitySystemState15;
-uint32_t UtilitySystemState16;
-uint32_t UtilitySystemState17;
-uint32_t UtilitySystemState18;
-uint32_t UtilitySystemState19;
-uint32_t UtilitySystemState20;
-uint32_t UtilitySystemState21;
-uint32_t UtilitySystemState22;
-uint32_t UtilitySystemState23;
+uint32_t UtilitySystemStatePrimary;
+uint32_t UtilitySystemStateSecondary;
+uint32_t UtilitySystemStateTertiary;
+uint32_t UtilitySystemStateQuaternary;
+uint32_t UtilitySystemStateQuinary;
+uint32_t UtilitySystemStateSenary;
+uint32_t UtilitySystemStateSeptenary;
+uint32_t UtilitySystemStateOctonary;
+uint32_t UtilitySystemStateNonary;
+uint32_t UtilitySystemStateDenary;
+uint32_t UtilitySystemStateUndenary;
+uint32_t UtilitySystemStateDuodenary;
+uint32_t UtilitySystemStateTerdenary;
+uint32_t UtilitySystemStateQuattuordenary;
+uint32_t UtilitySystemStateQuindenary;
+uint32_t UtilitySystemStateSexdenary;
+uint32_t UtilitySystemStateSeptendenary;
+uint32_t UtilitySystemStateOctodenary;
+uint32_t UtilitySystemStateNovendenary;
+uint32_t UtilitySystemStateVigintenary;
+uint32_t UtilitySystemStateUnvigintenary;
+uint32_t UtilitySystemStateDuovigintenary;
+uint32_t UtilitySystemStateTervigintenary;
 // 工具系统函数指针和回调
-void* UtilitySystemPointer1;
-uint32_t UtilitySystemFlag1;
-void* UtilityCallback1;
-void* UtilityCallback2;
-void* UtilityCallback3;
-void* UtilityCallback4;
-void* UtilityCallback5;
-void* UtilityCallback6;
-void* UtilityCallback7;
-void* UtilityCallback8;
-void* UtilityCallback9;
-void* UtilityCallback10;
-void* UtilityCallback11;
-void* UtilityCallback12;
-void* UtilityCallback13;
-void* UtilityCallback14;
-void* UtilityCallback15;
-void* UtilityCallback16;
-void* UtilityCallback17;
-void* UtilityCallback18;
-void* UtilityCallback19;
-void* UtilityCallback20;
-void* UtilityCallback21;
-void* UtilityCallback22;
-void* UtilityCallback23;
-void* UtilityCallback24;
-void* UtilityCallback25;
-void* UtilityCallback26;
-void* UtilityCallback27;
-void* UtilityCallback28;
-void* UtilityCallback29;
-void* UtilityCallback30;
+void* UtilitySystemPointerPrimary;
+uint32_t UtilitySystemFlagPrimary;
+void* UtilityCallbackPrimary;
+void* UtilityCallbackSecondary;
+void* UtilityCallbackTertiary;
+void* UtilityCallbackQuaternary;
+void* UtilityCallbackQuinary;
+void* UtilityCallbackSenary;
+void* UtilityCallbackSeptenary;
+void* UtilityCallbackOctonary;
+void* UtilityCallbackNonary;
+void* UtilityCallbackDenary;
+void* UtilityCallbackUndenary;
+void* UtilityCallbackDuodenary;
+void* UtilityCallbackTerdenary;
+void* UtilityCallbackQuattuordenary;
+void* UtilityCallbackQuindenary;
+void* UtilityCallbackSexdenary;
+void* UtilityCallbackSeptendenary;
+void* UtilityCallbackOctodenary;
+void* UtilityCallbackNovendenary;
+void* UtilityCallbackVigintenary;
+void* UtilityCallbackUnvigintenary;
+void* UtilityCallbackDuovigintenary;
+void* UtilityCallbackTervigintenary;
+void* UtilityCallbackQuattuorvigintenary;
+void* UtilityCallbackQuinvigintenary;
+void* UtilityCallbackSexvigintenary;
+void* UtilityCallbackSeptenvigintenary;
+void* UtilityCallbackOctovigintenary;
+void* UtilityCallbackNovemvigintenary;
+void* UtilityCallbackTrigintenary;
 // 工具系统事件处理数据
-uint32_t UtilityEventData1;
-uint32_t UtilityEventData2;
-uint32_t UtilityEventData3;
+uint32_t UtilityEventDataPrimary;
+uint32_t UtilityEventDataSecondary;
+uint32_t UtilityEventDataTertiary;
 
 // 函数: void UtilityHandleEvent2(void);
 void UtilityHandleEvent2(void);
 // 工具系统事件处理相关变量
 uint32_t UtilityEventStatus;
-void* UtilitySystemPointer2;
+void* UtilitySystemPointerSecondary;
 void* UtilityEventContext;
 void* UtilityEventData;
 int32_t UtilityEventResult;
@@ -4728,11 +4728,11 @@ int32_t UtilityEventError;
 //   void - 无返回值
 void UtilityProcessMemoryBlock(void);
 // 工具系统内存处理相关变量
-void* UtilityMemoryPointer1;
-uint32_t UtilityMemoryData1;
-uint32_t UtilityMemoryData2;
-uint32_t UtilityMemoryData3;
-uint32_t UtilityMemoryData4;
+void* UtilityMemoryPointerPrimary;
+uint32_t UtilityMemoryDataPrimary;
+uint32_t UtilityMemoryDataSecondary;
+uint32_t UtilityMemoryDataTertiary;
+uint32_t UtilityMemoryDataQuaternary;
 
 // 函数: bool UtilityValidateMemoryAccess(void);
 // 
@@ -4746,21 +4746,21 @@ uint32_t UtilityMemoryData4;
 //   bool - 验证结果状态
 bool UtilityValidateMemoryAccess(void);
 // 工具系统内存验证相关变量
-void *UtilityMemoryPointer2;
-int32_t UtilityMemoryValidate1;
-int32_t UtilityMemoryValidate2;
-int32_t UtilityMemoryValidate3;
-int32_t UtilityMemoryValidate4;
-int32_t UtilityMemoryValidate5;
-int32_t UtilityMemoryValidate6;
-int32_t UtilityMemoryValidate7;
-int32_t UtilityMemoryValidate8;
-int32_t UtilityMemoryValidate9;
-int32_t UtilityMemoryValidate10;
+void *UtilityMemoryPointerSecondary;
+int32_t UtilityMemoryValidatePrimary;
+int32_t UtilityMemoryValidateSecondary;
+int32_t UtilityMemoryValidateTertiary;
+int32_t UtilityMemoryValidateQuaternary;
+int32_t UtilityMemoryValidateQuinary;
+int32_t UtilityMemoryValidateSenary;
+int32_t UtilityMemoryValidateSeptenary;
+int32_t UtilityMemoryValidateOctonary;
+int32_t UtilityMemoryValidateNonary;
+int32_t UtilityMemoryValidateDenary;
 // 工具系统内存验证数据块11-13
-void* UtilityMemoryValidationData11;
-void* UtilityMemoryValidationData12;
-void* UtilityMemoryValidationData13;
+void* UtilityMemoryValidationDataUndenary;
+void* UtilityMemoryValidationDataDuodenary;
+void* UtilityMemoryValidationDataTerdenary;
 // 工具系统内存管理数据块14-43
 void* UtilityMemoryManagementData14;
 void* UtilityMemoryManagementData15;
@@ -13557,9 +13557,9 @@ DataBuffer ValidateAndProcessFloatRange(int64_t rangeContext,int64_t validationC
   default:
     goto RangeValidationFailure;
   }
-  if (fVar1 < 0.0) {
+  if (inputValue < 0.0) {
 joined_r0x00018089322a:
-    if (fVar1 != -1.0) {
+    if (inputValue != -1.0) {
 RangeValidationFailure:
       return 0x1f;
     }
@@ -14613,9 +14613,9 @@ DataBuffer CleanupSystemB0(void)
   }
   validationStatus = ProcessDataValidationA0(dataContext,destinationIndexRegister + 0xa0,destinationIndexRegister + 0x10);
   if ((int)validationStatus == 0) {
-    fVar1 = *(float *)(destinationIndexRegister + 0x10);
-    if ((fVar1 < *(float *)(dataContext + 0x38)) ||
-       (*(float *)(dataContext + 0x3c) <= fVar1 && fVar1 != *(float *)(dataContext + 0x3c))) {
+    floatValue = *(float *)(destinationIndexRegister + 0x10);
+    if ((floatValue < *(float *)(dataContext + 0x38)) ||
+       (*(float *)(dataContext + 0x3c) <= floatValue && floatValue != *(float *)(dataContext + 0x3c))) {
       validationStatus = 0x1c;
     }
     else {
@@ -16096,17 +16096,17 @@ void ProcessUtilitySystemData(int64_t systemContext,ByteFlag *dataBuffer,int *re
         goto FUN_180895b89;
       }
       floatValue = *(float *)(dataPointer + 0x18);
-      fVar11 = floatValue;
+      calculatedFloatValue = floatValue;
       if (calculatedSize != -1) {
-        fVar11 = *(float *)(param_1 + 0xb4);
+        calculatedFloatValue = *(float *)(param_1 + 0xb4);
         calculatedSize = -1;
         *(DataWord *)(param_1 + 0xb0) = SystemCleanupFlag;
         *(DataWord *)(param_1 + 0xb4) = NegativeZeroFloat;
       }
       *(float *)(param_1 + 0xa8) = floatValue;
       memoryOffset = 0;
-      floatValue = (float)*(uint *)(param_1 + 0x68) * floatValue;
-      if ((9.223372e+18 <= floatValue) && (floatValue = floatValue - 9.223372e+18, floatValue < 9.223372e+18)) {
+      processedFloatValue = (float)*(uint *)(param_1 + 0x68) * floatValue;
+      if ((9.223372e+18 <= processedFloatValue) && (processedFloatValue = processedFloatValue - 9.223372e+18, processedFloatValue < 9.223372e+18)) {
         memoryOffset = -0x8000000000000000;
       }
       dataContext = *(int64_t *)(param_1 + 0xa0);
@@ -18530,15 +18530,15 @@ void ConvertAndValidateDataA0(int64_t dataContext, int64_t validationContext)
                 iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                 if (iterationCount != 0) goto FUN_180897b16;
               }
-              fVar13 = 0.0;
-              pfVar15 = (float *)(dataContext + 0x94);
+              loopCounter = 0.0;
+              floatArrayPointer = (float *)(dataContext + 0x94);
               do {
-                if (*pfVar15 != 0.0) {
+                if (*floatArrayPointer != 0.0) {
                   uStack_1b0 = uStack_1c8;
                   uStack_1b8 = 0;
                   puStack_1c0 = &UNK_1809839d8;
-                  fStack_1a8 = fVar13;
-                  fStack_1a4 = *pfVar15;
+                  fStack_1a8 = loopCounter;
+                  fStack_1a4 = *floatArrayPointer;
                   iterationCount = ValidateDataIntegrityA0(param_1,&puStack_1c0);
                   if (iterationCount != 0) goto FUN_180897b16;
                 }

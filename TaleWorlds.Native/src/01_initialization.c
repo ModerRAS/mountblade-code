@@ -372,7 +372,7 @@
 #define NodeNextPointerOffset                 5  // 节点下一指针偏移量
 #define NodeHeadPointerOffset                 6  // 节点头指针偏移量
 #define NodeAllocationExtraSize               0x20  // 节点分配额外大小
-#define IdentifierSize                        0x10  // 标识符大小
+#define IdentifierSize                        SystemIdentifierSize  // 标识符大小（使用系统标识符大小常量）
 
 // 系统控制器相关常量
 #define SystemControllerAllocationSize        0xc0
@@ -1403,11 +1403,11 @@ void* SystemDataNodeAnimationManager;          // 系统数据节点动画管理
 void* SystemDataNodeFileSystem;        // 系统数据节点文件系统
 void* SystemDataNodeDatabase;          // 系统数据节点数据库
 void* SystemDataNodeCache;             // 系统数据节点缓存
-void* SystemDataNodeTwelfth;           // 系统数据节点第十二节点
-void* SystemDataNodeThirteenth;        // 系统数据节点第十三节点
-void* SystemDataNodeFourteenth;        // 系统数据节点第十四节点
-void* SystemDataNodeFifteenth;         // 系统数据节点第十五节点
-void* SystemDataNodeSixteenth;          // 系统数据节点第十六节点
+void* SystemDataNodeTaskScheduler;     // 系统数据节点任务调度器
+void* SystemDataNodeMessageQueue;      // 系统数据节点消息队列
+void* SystemDataNodeEventDispatcher;   // 系统数据节点事件分发器
+void* SystemDataNodeResourceMonitor;   // 系统数据节点资源监控器
+void* SystemDataNodePerformanceTracker; // 系统数据节点性能跟踪器
 void* SystemDataNodeLinkageTable;                // 系统数据节点链接表
 void* SystemDataNodeLinkageManager;               // 系统数据节点链接管理器
 void* SystemDataNodeLinkageHandler;               // 系统数据节点链接处理器
@@ -1437,8 +1437,8 @@ void* SystemDataTemplateDebugManager;            // 系统数据模板 - 调试�
 void* SystemDataTemplatePerformanceMonitor;      // 系统数据模板 - 性能监控器
 void* SystemDataTemplateSecurityManager;         // 系统数据模板 - 安全管理器
 void* SystemDataTemplateConfigurationManager;    // 系统数据模板 - 配置管理器
-void* SystemDataTemplateQuaternarySystem;        // 系统数据模板 - 第四系统
-void* SystemDataTemplateQuinarySystem;           // 系统数据模板 - 第五系统
+void* SystemDataTemplateRenderingSystem;        // 系统数据模板 - 渲染系统
+void* SystemDataTemplateInputSystem;             // 系统数据模板 - 输入系统
 
 // 系统数据节点 - 功能模块专用节点
 void* SystemDataNodeEventProcessor;           // 系统数据节点事件处理器
@@ -1457,8 +1457,8 @@ void* SystemDataNodeRenderer;                 // 系统数据节点渲染器 (�
 void* SystemDataNodeDatabaseManager;          // 系统数据节点数据库管理器 (原SystemDataNodeN)
 void* SystemDataNodeCacheController;          // 系统数据节点缓存控制器 (原SystemDataNodeO)
 
-void* SystemConfigurationDataPointerTertiary;        // 系统配置数据指针第三
-void* SystemConfigurationDataPointerQuaternary;        // 系统配置数据指针第四
+void* SystemConfigurationDataPointerNetwork;        // 系统配置数据指针网络
+void* SystemConfigurationDataPointerSecurity;        // 系统配置数据指针安全
 void* SystemResourceManager;        // 系统资源管理器
 void* SystemDebugOperationStatusFlag;  // 系统调试操作状态标志
 void* SystemStringBuffer;        // 系统字符串缓冲区
@@ -1475,15 +1475,15 @@ uint32_t SystemInitializationThreadStatus;    // 系统初始化线程状态
 uint32_t SystemInitializationResourceStatus; // 系统初始化资源状态
 
 // 系统内存状态标志变量
-uint32_t SystemMemoryOperationStatusFlagPrimary;      // 系统内存操作状态标志-主标志
-uint32_t SystemMemoryOperationStatusFlagSecondary;      // 系统内存操作状态标志-次标志
-uint32_t SystemMemoryOperationStatusFlagTertiary;      // 系统内存操作状态标志-第三标志
-uint32_t SystemMemoryOperationStatusFlagQuaternary;    // 系统内存操作状态标志-第四标志
+uint32_t SystemMemoryOperationStatusFlagActive;      // 系统内存操作状态标志-活动标志
+uint32_t SystemMemoryOperationStatusFlagPending;      // 系统内存操作状态标志-待处理标志
+uint32_t SystemMemoryOperationStatusFlagCompleted;      // 系统内存操作状态标志-完成标志
+uint32_t SystemMemoryOperationStatusFlagFailed;    // 系统内存操作状态标志-失败标志
 
 // 系统回调函数指针
 void* SystemEventNotificationHandler;     // 系统事件通知处理器
-void* SystemInitializationHandlerPrimary;  // 系统初始化处理器-主处理器
-void* SystemInitializationHandlerSecondary;  // 系统初始化处理器-次处理器
+void* SystemInitializationHandlerMain;  // 系统初始化处理器-主处理器
+void* SystemInitializationHandlerBackup;  // 系统初始化处理器-备份处理器
 void* SystemDebugMessageHandler;            // 系统调试消息处理器
 void* SystemEventProcessor;            // 系统事件处理器
 void* SystemNetworkEventHandler;          // 系统网络事件处理器
@@ -1499,12 +1499,12 @@ void* SystemGlobalDataQuinary;        // 系统全局数据-第五级数据
 // 系统配置数据指针
 void* SystemConfigurationDataPrimary;        // 主要系统配置数据
 void* SystemConfigurationDataSecondary;        // 次要系统配置数据
-void* SystemConfigurationDataTertiary;        // 第三系统配置数据
-void* SystemConfigurationDataQuaternary;        // 第四系统配置数据
-void* SystemConfigurationDataQuinary;        // 第五系统配置数据
-void* SystemConfigurationDataSenary;        // 第六系统配置数据
-void* SystemConfigurationDataSeptenary;        // 第七系统配置数据
-void* SystemConfigurationDataOctonary;        // 第八系统配置数据
+void* SystemConfigurationDataMemory;        // 内存系统配置数据
+void* SystemConfigurationDataRendering;     // 渲染系统配置数据
+void* SystemConfigurationDataAudio;         // 音频系统配置数据
+void* SystemConfigurationDataInput;         // 输入系统配置数据
+void* SystemConfigurationDataNetwork;       // 网络系统配置数据
+void* SystemConfigurationDataPhysics;       // 物理系统配置数据
 void* SystemSemaphoreInstance;            // 系统信号量实例
 /**
  * @brief 系统内存分配器函数
@@ -1521,47 +1521,47 @@ void* SystemMemoryAllocatorFunction;
 void* SystemDataInitializerFunction;
 void* SystemDataBufferPrimary;              // 主数据缓冲区
 void* SystemDataBufferSecondary;           // 次级数据缓冲区
-void* SystemDataBufferTertiary;            // 第三数据缓冲区
-void* SystemDataBufferQuaternary;          // 第四数据缓冲区
-void* SystemDataBufferQuinary;             // 第五数据缓冲区
-void* SystemDataBufferSenary;              // 第六数据缓冲区
+void* SystemDataBufferMemory;            // 内存数据缓冲区
+void* SystemDataBufferRendering;          // 渲染数据缓冲区
+void* SystemDataBufferAudio;             // 音频数据缓冲区
+void* SystemDataBufferInput;              // 输入数据缓冲区
 void* SystemDataTablePrimary;                 // 主系统数据表
 void* SystemDataTableSecondary;                // 次级系统数据表
 void* SystemDataStructurePrimary;              // 主数据结构
 void* SystemDataStructureSecondary;           // 次级数据结构
 void* SystemMemoryRegionPrimary;             // 主内存区域
 void* SystemMemoryRegionSecondary;          // 次级内存区域
-void* SystemMemoryRegionTertiary;           // 第三内存区域
-void* SystemMemoryRegionQuaternary;         // 第四内存区域
-void* SystemMemoryRegionQuinary;            // 第五内存区域
-void* SystemMemoryRegionSenary;             // 第六内存区域
-void* SystemConfigurationDataPrimary;        // 主配置数据
-void* SystemConfigurationDataSecondary;     // 次级配置数据
-void* SystemConfigurationDataTertiary;      // 第三配置数据
-void* SystemConfigurationDataQuaternary;    // 第四配置数据
-void* SystemConfigurationDataQuinary;       // 第五配置数据
-void* SystemConfigurationDataSenary;        // 第六配置数据
+void* SystemMemoryRegionGraphics;          // 图形内存区域
+void* SystemMemoryRegionAudio;              // 音频内存区域
+void* SystemMemoryRegionPhysics;            // 物理内存区域
+void* SystemMemoryRegionNetwork;            // 网络内存区域
+void* SystemConfigurationDataCore;          // 核心配置数据
+void* SystemConfigurationDataEngine;        // 引擎配置数据
+void* SystemConfigurationDataGameplay;      // 游戏玩法配置数据
+void* SystemConfigurationDataUI;             // 用户界面配置数据
+void* SystemConfigurationDataAssets;        // 资源配置数据
+void* SystemConfigurationDataLocalization;  // 本地化配置数据
 // 系统数据缓冲区 - 主要数据序列
-void* SystemDataBufferPrimaryAlpha;     // 主要数据缓冲区第一个
-void* SystemDataBufferPrimaryBeta;      // 主要数据缓冲区第二个
-void* SystemDataBufferPrimaryGamma;     // 主要数据缓冲区第三个
-void* SystemDataBufferPrimaryDelta;     // 主要数据缓冲区第四个
-void* SystemDataBufferPrimaryEpsilon;   // 主要数据缓冲区第五个
-void* SystemDataBufferPrimaryZeta;      // 主要数据缓冲区第六个
-void* SystemDataBufferPrimaryEta;       // 主要数据缓冲区第七个
-void* SystemDataBufferPrimaryTheta;     // 主要数据缓冲区第八个
-void* SystemDataBufferPrimaryIota;      // 主要数据缓冲区第九个
+void* SystemDataBufferMainVertices;     // 主要数据缓冲区顶点数据
+void* SystemDataBufferMainTextures;      // 主要数据缓冲区纹理数据
+void* SystemDataBufferMainShaders;      // 主要数据缓冲区着色器数据
+void* SystemDataBufferMainAudio;        // 主要数据缓冲区音频数据
+void* SystemDataBufferMainPhysics;      // 主要数据缓冲区物理数据
+void* SystemDataBufferMainAnimations;   // 主要数据缓冲区动画数据
+void* SystemDataBufferMainUI;           // 主要数据缓冲区UI数据
+void* SystemDataBufferMainNetwork;      // 主要数据缓冲区网络数据
+void* SystemDataBufferMainInput;        // 主要数据缓冲区输入数据
 
 // 系统配置管理器
 void* SystemConfigurationManager;              // 系统配置管理器
 void* SystemDataBufferConfigurationPrimary;   // 主配置数据缓冲区
 void* SystemDataBufferConfigurationSecondary; // 次级配置数据缓冲区
-void* SystemDataBufferConfigurationTertiary;  // 第三配置数据缓冲区
-void* SystemDataBufferConfigurationQuaternary; // 第四配置数据缓冲区
-void* SystemDataBufferConfigurationQuinary;    // 系统配置数据缓冲区第五个
-void* SystemDataBufferConfigurationSenary;    // 系统配置数据缓冲区第六个
-void* SystemDataBufferConfigurationSeptenary;  // 系统配置数据缓冲区第七个
-void* SystemDataBufferConfigurationOctonary;  // 系统配置数据缓冲区第八个
+void* SystemDataBufferConfigurationMemory;  // 内存配置数据缓冲区
+void* SystemDataBufferConfigurationRendering; // 渲染配置数据缓冲区
+void* SystemDataBufferConfigurationAudio;    // 音频配置数据缓冲区
+void* SystemDataBufferConfigurationInput;    // 输入配置数据缓冲区
+void* SystemDataBufferConfigurationNetwork;  // 网络配置数据缓冲区
+void* SystemDataBufferConfigurationPhysics;  // 物理配置数据缓冲区
 
 // 系统核心功能组件
 void* SystemErrorHandler;           // 系统错误处理器
@@ -1911,8 +1911,8 @@ void InitializeGameCoreSystem(void)
   
   if ((PreviousNodePointer == RootNodeReference) || 
       (GameCoreIdentifierComparisonResult = memcmp(&GameCoreSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), GameCoreIdentifierComparisonResult < 0)) {
-    RequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
-    AllocateSystemMemory(MainSystemTablePointer, &AllocatedNodePointer, PreviousNodePointer, RequiredMemorySize + NodeAllocationExtraSize, RequiredMemorySize);
+    SystemRequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
+    AllocateSystemMemory(MainSystemTablePointer, &AllocatedNodePointer, PreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
     PreviousNodePointer = AllocatedNodePointer;
   }
   
@@ -2165,7 +2165,7 @@ void InitializeSystemMemoryPool(void)
   void** NextNodePointer;
   void** PreviousNodePointer;
   uint64_t SystemInitializationStatusFlag;
-  long long RequiredMemorySize;
+  long long SystemRequiredMemorySize;
   void** AllocatedMemoryPoolNode;
   void* MemoryPoolInitializationHandler;
   
@@ -2192,8 +2192,8 @@ void InitializeSystemMemoryPool(void)
   
   if ((PreviousNodePointer == RootNodeReference) || 
       (MemoryPoolIdentifierComparisonResult = memcmp(&SystemAllocatorSystemIdentifier1, PreviousNodePointer + NodeIdentifierOffset, IdentifierSize), MemoryPoolIdentifierComparisonResult < 0)) {
-    RequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
-    AllocateSystemMemory(MainSystemTablePointer, &AllocatedMemoryPoolNode, PreviousNodePointer, RequiredMemorySize + NodeAllocationExtraSize, RequiredMemorySize);
+    SystemRequiredMemorySize = GetSystemMemorySize(MainSystemTablePointer);
+    AllocateSystemMemory(MainSystemTablePointer, &AllocatedMemoryPoolNode, PreviousNodePointer, SystemRequiredMemorySize + NodeAllocationExtraSize, SystemRequiredMemorySize);
     PreviousNodePointer = AllocatedMemoryPoolNode;
   }
   
@@ -2407,7 +2407,7 @@ void InitializeSystemCoreData(void)
   void** RootNodeReference;
   int SystemIdentifierCompareResult;
   long long *SystemDataTable;
-  long long RequiredMemorySize;
+  long long SystemRequiredMemorySize;
   void** CurrentNodePointer;
   void** PreviousNodePointer;
   void** NextNodePointer;
@@ -2434,8 +2434,8 @@ void InitializeSystemCoreData(void)
     NodeActiveFlag = *(char*)((long long)NextNodePointer + NodeActiveFlagOffset);
   }
   if ((PreviousNodePointer == RootNodeReference) || (IdentifierCompareResult = memcmp(&SystemDataTemplateEventProcessor,PreviousNodePointer + NodeIdentifierOffset,SystemIdentifierSize), IdentifierCompareResult < 0)) {
-    RequiredMemorySize = GetSystemMemorySize(SystemDataTable);
-    AllocateSystemMemory(SystemDataTable,&AllocatedNode,PreviousNodePointer,RequiredMemorySize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,RequiredMemorySize);
+    SystemRequiredMemorySize = GetSystemMemorySize(SystemDataTable);
+    AllocateSystemMemory(SystemDataTable,&AllocatedNode,PreviousNodePointer,SystemRequiredMemorySize + SYSTEM_NODE_ALLOCATION_EXTRA_SIZE,SystemRequiredMemorySize);
     PreviousNodePointer = AllocatedNode;
   }
   PreviousNodePointer[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_A_ID1;
@@ -2619,7 +2619,7 @@ void InitializeRenderingSystemConfig(void)
   void** RootNodeReference;
   int SystemIdentifierCompareResult;
   long long *SystemDataTable;
-  long long RequiredMemorySize;
+  long long SystemRequiredMemorySize;
   void** CurrentNode;
   void** PreviousNodePointer;
   void** NextNode;
