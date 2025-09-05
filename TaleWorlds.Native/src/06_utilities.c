@@ -10830,23 +10830,23 @@ undefined8 ProcessMemoryCopyA0(longlong memoryDescriptor,longlong systemContext)
   if ((validationContext == 0) || (*(longlong *)(validationContext + 0x2e8) == 0)) {
     return 0x4a;
   }
-  uVar2 = ValidateAndProcessSystemResourceA0(*(longlong *)(validationContext + 0x2e8),param_1 + 0x20);
-  if ((int)uVar2 != 0) {
-    return uVar2;
+  operationResult = ValidateAndProcessSystemResourceA0(*(longlong *)(validationContext + 0x2e8),memoryDescriptor + 0x20);
+  if ((int)operationResult != 0) {
+    return operationResult;
   }
-  validationContext = *(longlong *)(param_2 + 0x98);
+  validationContext = *(longlong *)(systemContext + 0x98);
   if (*(int *)(validationContext + 0x200) != 0) {
     if (((*(int *)(validationContext + 0x180) == 0) && (*(int *)(validationContext + 0x184) == 0)) ||
        (FUN_180768b50(&stack0x00000008),
        *(longlong *)((longlong)*(int *)(validationContext + 0x17c) * 8 + 0x180c4f450) != 0)) {
-      *(uint *)(param_1 + 8) = *(int *)(param_1 + 8) + 0xfU & 0xfffffff0;
-      uVar2 = GetSystemCurrentStateA0(*(undefined8 *)(validationContext + 0x1e0));
+      *(uint *)(memoryDescriptor + 8) = *(int *)(memoryDescriptor + 8) + 0xfU & 0xfffffff0;
+      operationResult = GetSystemCurrentStateA0(*(undefined8 *)(validationContext + 0x1e0));
     }
     else {
-      uVar2 = FUN_18088dd60(validationContext,param_1);
+      operationResult = FUN_18088dd60(validationContext,memoryDescriptor);
     }
-    if ((int)uVar2 != 0) {
-      return uVar2;
+    if ((int)operationResult != 0) {
+      return operationResult;
     }
   }
   return 0;
