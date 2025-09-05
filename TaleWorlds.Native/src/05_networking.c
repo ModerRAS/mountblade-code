@@ -2304,7 +2304,7 @@ NetworkHandle ProcessNetworkConnectionPacketData(int64_t *ConnectionContext, int
 NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t PacketData)
 {
   // 连接状态处理变量
-  NetworkStatus *NetworkConnectionContextDataPointer;                           // 上下文数据指针
+  NetworkStatus *ContextDataPointer;                           // 上下文数据指针
   int32_t PacketProcessingStatus;                       // 数据包处理状态
   int64_t ConnectionContextIdentifier;                               // 连接上下文标识符
   NetworkStatus ConnectionValidationStatus;                       // 验证状态
