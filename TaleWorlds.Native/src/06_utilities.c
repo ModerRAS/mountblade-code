@@ -50005,12 +50005,12 @@ void CleanupSystemResources(undefined8 systemContext,longlong contextHandle)
   contextPointer = *(longlong **)(contextHandle + 0x60);
   validationStatus = (undefined8 *)*contextPointer;
   if (validationStatus != (undefined8 *)0x0) {
-    if ((undefined8 *)pvalidationStatus[3] != (undefined8 *)0x0) {
-      *(undefined8 *)pvalidationStatus[3] = 0;
+    if ((undefined8 *)validationStatus[3] != (undefined8 *)0x0) {
+      *(undefined8 *)validationStatus[3] = 0;
     }
-    (**(code **)*pvalidationStatus)(pvalidationStatus,0);
+    (**(code **)*validationStatus)(validationStatus,0);
                     // WARNING: Subroutine does not return
-    FUN_18064e900(pvalidationStatus);
+    ReleaseSystemResources(validationStatus);
   }
   if ((plVar4[6] != 0) && (*(longlong *)(plVar4[6] + 0x10) != 0)) {
                     // WARNING: Subroutine does not return
