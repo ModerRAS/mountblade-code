@@ -4486,96 +4486,96 @@ uint32_t UtilityConfigData22;
 uint32_t UtilityConfigData23;
 uint32_t UtilityConfigData24;
 uint32_t UtilityConfigData25;
-undefined UtilityConfigData26;
-undefined UtilityConfigData27;
-undefined UtilityConfigData28;
-undefined UtilityConfigData29;
-undefined UtilityConfigData30;
-undefined UtilityConfigData31;
-undefined UtilityConfigData32;
-undefined UtilityConfigData33;
-undefined UtilityConfigData34;
-undefined UtilityConfigData35;
-undefined UtilityConfigData36;
-undefined UtilityConfigData37;
-undefined UtilityConfigData38;
-undefined UtilityConfigData39;
-undefined UtilityConfigData40;
-undefined UtilityConfigData41;
-undefined UtilityConfigData42;
-undefined UtilityConfigData43;
-undefined UtilityConfigData44;
+uint32_t UtilityConfigData26;
+uint32_t UtilityConfigData27;
+uint32_t UtilityConfigData28;
+uint32_t UtilityConfigData29;
+uint32_t UtilityConfigData30;
+uint32_t UtilityConfigData31;
+uint32_t UtilityConfigData32;
+uint32_t UtilityConfigData33;
+uint32_t UtilityConfigData34;
+uint32_t UtilityConfigData35;
+uint32_t UtilityConfigData36;
+uint32_t UtilityConfigData37;
+uint32_t UtilityConfigData38;
+uint32_t UtilityConfigData39;
+uint32_t UtilityConfigData40;
+uint32_t UtilityConfigData41;
+uint32_t UtilityConfigData42;
+uint32_t UtilityConfigData43;
+uint32_t UtilityConfigData44;
 // 工具系统状态数据区域
-undefined UtilityStateData1;
-undefined UtilityStateData2;
-undefined UtilityStateData3;
-undefined UtilityStateData4;
-undefined UtilityStateData5;
-undefined UtilityStateData6;
-undefined UtilityStateData7;
-undefined UtilityStateData8;
-undefined UtilityStateData9;
-undefined UtilityStateData10;
-undefined UtilityStateData11;
-undefined UtilityStateData12;
-undefined UtilityStateData13;
-undefined UtilityStateData14;
-undefined UtilityStateData15;
-undefined UtilityStateData16;
-undefined UtilityStateData17;
-undefined UtilityStateData18;
-undefined UtilityStateData19;
-undefined UtilityStateData20;
-undefined UtilityStateData21;
-undefined UtilityStateData22;
-undefined UtilityStateData23;
+uint32_t UtilitySystemState1;
+uint32_t UtilitySystemState2;
+uint32_t UtilitySystemState3;
+uint32_t UtilitySystemState4;
+uint32_t UtilitySystemState5;
+uint32_t UtilitySystemState6;
+uint32_t UtilitySystemState7;
+uint32_t UtilitySystemState8;
+uint32_t UtilitySystemState9;
+uint32_t UtilitySystemState10;
+uint32_t UtilitySystemState11;
+uint32_t UtilitySystemState12;
+uint32_t UtilitySystemState13;
+uint32_t UtilitySystemState14;
+uint32_t UtilitySystemState15;
+uint32_t UtilitySystemState16;
+uint32_t UtilitySystemState17;
+uint32_t UtilitySystemState18;
+uint32_t UtilitySystemState19;
+uint32_t UtilitySystemState20;
+uint32_t UtilitySystemState21;
+uint32_t UtilitySystemState22;
+uint32_t UtilitySystemState23;
 // 工具系统函数指针和回调
-undefined UtilitySystemPointer1;
-undefined UtilitySystemFlag1;
-undefined UtilityCallback1;
-undefined UtilityCallback2;
-undefined UtilityCallback3;
-undefined UtilityCallback4;
-undefined UtilityCallback5;
-undefined UtilityCallback6;
-undefined UtilityCallback7;
-undefined UtilityCallback8;
-undefined UtilityCallback9;
-undefined UtilityCallback10;
-undefined UtilityCallback11;
-undefined UtilityCallback12;
-undefined UtilityCallback13;
-undefined UtilityCallback14;
-undefined UtilityCallback15;
-undefined UtilityCallback16;
-undefined UtilityCallback17;
-undefined UtilityCallback18;
-undefined UtilityCallback19;
-undefined UtilityCallback20;
-undefined UtilityCallback21;
-undefined UtilityCallback22;
-undefined UtilityCallback23;
-undefined UtilityCallback24;
-undefined UtilityCallback25;
-undefined UtilityCallback26;
-undefined UtilityCallback27;
-undefined UtilityCallback28;
-undefined UtilityCallback29;
-undefined UtilityCallback30;
+void* UtilitySystemPointer1;
+uint32_t UtilitySystemFlag1;
+void* UtilityCallback1;
+void* UtilityCallback2;
+void* UtilityCallback3;
+void* UtilityCallback4;
+void* UtilityCallback5;
+void* UtilityCallback6;
+void* UtilityCallback7;
+void* UtilityCallback8;
+void* UtilityCallback9;
+void* UtilityCallback10;
+void* UtilityCallback11;
+void* UtilityCallback12;
+void* UtilityCallback13;
+void* UtilityCallback14;
+void* UtilityCallback15;
+void* UtilityCallback16;
+void* UtilityCallback17;
+void* UtilityCallback18;
+void* UtilityCallback19;
+void* UtilityCallback20;
+void* UtilityCallback21;
+void* UtilityCallback22;
+void* UtilityCallback23;
+void* UtilityCallback24;
+void* UtilityCallback25;
+void* UtilityCallback26;
+void* UtilityCallback27;
+void* UtilityCallback28;
+void* UtilityCallback29;
+void* UtilityCallback30;
 // 工具系统事件处理数据
-undefined UtilityEventData1;
-undefined UtilityEventData2;
-undefined UtilityEventData3;
+uint32_t UtilityEventData1;
+uint32_t UtilityEventData2;
+uint32_t UtilityEventData3;
 
-// 函数: undefined UtilityHandleEvent2;
-undefined UtilityHandleEvent2;
+// 函数: void UtilityHandleEvent2(void);
+void UtilityHandleEvent2(void);
 // 工具系统事件处理相关变量
-undefined UtilityEventStatus;
-undefined UtilitySystemPointer2;
-undefined UtilityEventContext;
-undefined UtilityEventData;
-undefined UtilityEventResult;
-undefined UtilityEventError;
+uint32_t UtilityEventStatus;
+void* UtilitySystemPointer2;
+void* UtilityEventContext;
+void* UtilityEventData;
+int32_t UtilityEventResult;
+int32_t UtilityEventError;
 
 // 函数: undefined UtilityProcessMemoryBlock;
 // 
@@ -13746,16 +13746,16 @@ undefined8 ValidateAndProcessFloatValue(longlong dataContext,longlong operationC
 
 
 // 数据同步处理函数A0
-undefined8 ProcessDataSynchronizationA0(undefined8 param_1,undefined8 param_2)
+uint64_t ProcessDataSynchronizationA0(uint64_t systemHandle,uint64_t dataHandle)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong calculatedOffset;
-  longlong registerContext;
-  longlong systemContext;
-  float fVar4;
-  undefined4 operationRangeBuffer;
+  float temperatureValue;
+  uint64_t operationResult;
+  int64_t calculatedOffset;
+  int64_t registerContext;
+  int64_t systemContext;
+  float pressureValue;
+  uint32_t operationRangeBuffer;
   
   uStack0000000000000040 = 0;
   uVar2 = ProcessSystemDataTransferA0(systemContext + 0x60,param_2,&stack0x00000040);
@@ -30123,23 +30123,24 @@ void UtilityNoOperationY(void)
  */
 #define ProcessSystemDataValidationAndAllocation FUN_18089e820
 
+ulonglong ProcessSystemDataValidationAndAllocation(longlong validationContext,longlong *dataContext)
+
 {
-  longlong validationContext;
-  longlong *pdataContext;
+  longlong *dataContextPointer;
   uint validationStatus;
   ulonglong memoryBaseAddress;
   ulonglong operationResult;
   undefined4 dataFlags;
-  bool bVar7;
-  bool bVar8;
-  bool bVar9;
-  uint auStackX_18 [2];
-  char cStackX_20;
-  char acStack_a8 [4];
-  uint uStack_a4;
-  undefined1 auStack_a0 [40];
-  undefined1 auStack_78 [32];
-  undefined1 auStack_58 [32];
+  bool isFirstValidation;
+  bool isSecondValidation;
+  bool isThirdValidation;
+  uint stackDataBuffer [2];
+  char stackCharBuffer;
+  char additionalBuffer [4];
+  uint stackBuffer;
+  undefined1 stackAllocation1 [40];
+  undefined1 stackAllocation2 [32];
+  undefined1 stackAllocation3 [32];
   
   dataFlags = 1;
   memoryBaseAddress = FUN_1808ddc20(param_2,auStack_58,1,0x4e415254);
@@ -35410,7 +35411,16 @@ void SystemCallHandler_ContextCleanup(undefined8 param_1,longlong param_2,undefi
 
 
 
-void Unwind_1809028d0(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
+/**
+ * @brief 系统调用处理器 - 上下文资源释放
+ * @param param_1 异常上下文指针
+ * @param param_2 异常处理状态数据
+ * @param param_3 清理标志位
+ * @param param_4 系统保留参数
+ * @note 原始函数名：Unwind_1809028d0
+ * @note 简化实现：调用系统清理函数处理上下文资源释放
+ */
+void SystemCallHandler_ContextResourceRelease(undefined8 param_1,longlong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   FUN_1800582b0(*(longlong *)(param_2 + 0x78),*(undefined8 *)(*(longlong *)(param_2 + 0x78) + 0x10),
