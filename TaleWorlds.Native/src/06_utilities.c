@@ -99574,7 +99574,20 @@ void ExecuteSystemResourceTableBulkCleanupOffset48Step18(uint8_t ObjectContext, 
 
 
 
-void Unwind_1809100f0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统上下文回调函数链
+ * 
+ * 该函数遍历系统上下文中的多个回调函数指针，并依次执行这些回调函数
+ * 主要用于系统资源清理和状态重置过程中的批量回调操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * @return 无返回值
+ * @note 此函数会检查系统上下文中多个偏移位置的回调函数指针
+ * @warning 如果回调函数指针为空，则跳过该回调的执行
+ * @remark 原始函数名：Unwind_1809100f0
+ */
+void ExecuteSystemContextCallbackChain(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -99720,7 +99733,20 @@ void RegisterSecondaryResourceHandler(uint8_t ObjectContext,int64_t ValidationCo
 
 
 
-void Unwind_1809101c0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 设置系统资源处理器模板
+ * 
+ * 该函数负责设置系统资源处理器模板，初始化系统上下文中的相关字段
+ * 主要用于系统资源管理的初始化过程
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * @return 无返回值
+ * @note 此函数会设置系统上下文偏移0x108处的资源处理器模板
+ * @warning 如果系统上下文偏移0x110处不为0，会触发系统紧急退出
+ * @remark 原始函数名：Unwind_1809101c0
+ */
+void SetupSystemResourceHandlerTemplate(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
@@ -99738,7 +99764,21 @@ void Unwind_1809101c0(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_1809101e0(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 执行系统上下文回调函数链（第三级偏移）
+ * 
+ * 该函数遍历系统上下文中的多个回调函数指针，并依次执行这些回调函数
+ * 使用验证上下文的第三级偏移量作为循环计数器
+ * 主要用于系统资源清理和状态重置过程中的批量回调操作
+ * 
+ * @param ObjectContext 对象上下文，包含对象相关信息
+ * @param ValidationContext 验证上下文，包含验证相关数据
+ * @return 无返回值
+ * @note 此函数会检查系统上下文中多个偏移位置的回调函数指针
+ * @warning 如果回调函数指针为空，则跳过该回调的执行
+ * @remark 原始函数名：Unwind_1809101e0
+ */
+void ExecuteSystemContextCallbackChainWithTertiaryOffset(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   int64_t LoopCounter;
