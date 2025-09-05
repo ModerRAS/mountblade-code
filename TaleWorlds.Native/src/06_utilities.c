@@ -4812,14 +4812,14 @@ void ProcessGameObjectCollection(int64_t GameContext, int64_t SystemContext)
  */
 void ValidateSystemObjectCollection(void)
 {
-  uint8_t CurrentObjectIdentifier;
-  int ValidationStatus;
+  uint8_t CurrentObjectId;
+  int ValidationStatusCode;
   int64_t SystemContextPointer;
   int64_t SystemRuntimeData;
-  int64_t BufferOffset;
+  int64_t BufferPosition;
   int ValidatedObjectCount;
   uint8_t *ObjectDataBuffer;
-  int RetrievedObjectsTotal;
+  int RetrievedObjectCount;
   uint32_t MaximumCapacityLimit;
   uint64_t SecurityValidationToken;
   
@@ -4838,8 +4838,8 @@ void ValidateSystemObjectCollection(void)
     MaximumCapacityLimit = MaximumCapacityLimit;
     
     // 获取系统对象集合
-    ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeData + SystemContextSecondaryDataProcessingOffset), *(int64_t *)(SystemContextHandle + ObjectHandleSecondaryOffset),
-                          &ProcessingWorkspaceBuffer);
+    ValidationStatusCode = FetchSystemObjectCollection(*(uint8_t *)(SystemRuntimeData + SystemContextSecondaryDataProcessingOffset), *(int64_t *)(SystemContextPointer + ObjectHandleSecondaryOffset),
+                          &ObjectDataBuffer);
     if (ValidationStatusCode == 0) {
       RetrievedObjectCount = *(int *)(ProcessingWorkspaceBuffer + ObjectDataArraySizeOffset);
       if (0 < RetrievedObjectCount) {
@@ -5960,7 +5960,7 @@ uint8_t ProcessResourceBatchInitialization(void)
   int64_t InputContext;
   
   IterationCount = 0;
-  InputContext = SystemInputParameter;
+  InputContext = SystemRuntimeInputParameter;
   if (InputContext == 0) {
     SystemContextPointer = 0;
   }
@@ -6313,7 +6313,7 @@ uint32_t ProcessSystemResource(void) {
   int64_t ResourceProcessingIndex;
   int64_t AdjustedSystemContextAddress;
   
-  SystemContextToProcess = SystemInputParameter;
+  SystemContextToProcess = SystemRuntimeInputParameter;
   if (SystemContextToProcess == 0) {
     AdjustedSystemContextAddress = 0;
   }
@@ -6401,7 +6401,7 @@ uint32_t ProcessResourceTask(void)
   int64_t ResourceTaskInputParameter;
   int64_t ResourceTaskContext;
   
-  ResourceTaskInputParameter = SystemInputParameter;
+  ResourceTaskInputParameter = SystemRuntimeInputParameter;
   ResourceTaskContext = ResourceTaskInputParameter - 8;
   if (ResourceTaskInputParameter == 0) {
     ResourceTaskContext = 0;
@@ -6494,7 +6494,7 @@ uint32_t ValidateAndProcessCurrentObjectHandle(void)
   int64_t ObjectHandle;
   int64_t ObjectContext;
   
-  ObjectHandle = SystemInputParameter;
+  ObjectHandle = SystemRuntimeInputParameter;
   if (ObjectHandle == 0) {
     ObjectContext = 0;
   }
@@ -6680,7 +6680,7 @@ uint32_t ValidateAndExecuteSystemExit(void)
   int64_t SystemExitInputParameter;
   int64_t SystemExitObjectContext;
   
-  SystemExitInputParameter = SystemInputParameter;
+  SystemExitInputParameter = SystemRuntimeInputParameter;
   if (SystemExitInputParameter == 0) {
     SystemExitObjectContext = 0;
   }
@@ -6758,7 +6758,7 @@ uint32_t ValidateStackLocationAndExecuteExit(void)
 {
   int64_t ValidatedStackLocation;
   
-  ValidatedStackLocation = SystemInputParameter;
+  ValidatedStackLocation = SystemRuntimeInputParameter;
   if (ValidatedStackLocation != 0) {
     ValidatedStackLocation = ValidatedStackLocation + -8;
   }
@@ -6837,7 +6837,7 @@ uint32_t ValidateStackObject(void)
 {
   int64_t ValidatedStackObjectPointer;
   
-  ValidatedStackObjectPointer = SystemInputParameter;
+  ValidatedStackObjectPointer = SystemRuntimeInputParameter;
   if (ValidatedStackObjectPointer != 0) {
     ValidatedStackObjectPointer = ValidatedStackObjectPointer + -8;
   }
@@ -8003,8 +8003,8 @@ void ProcessDynamicBufferReallocation(void)
   uint8_t SystemContextParameter;
   
   NewBufferPointer = 0;
-  BufferPointer = SystemInputParameter + 8;
-  if (SystemInputParameter == 0) {
+  BufferPointer = SystemRuntimeInputParameter + 8;
+  if (SystemRuntimeInputParameter == 0) {
     BufferPointer = NewBufferPointer;
   }
   ProcessingStatusCode = ValidateBufferContext(BufferPointer);
@@ -10511,7 +10511,7 @@ int ProcessDataBlockOperationAndMemoryAllocation(uint8_t ObjectContext, uint8_t 
   int64_t SecurityContextData;
   int64_t StackParameterContext;
   
-  if (SystemInputParameterValue == 0) {
+  if (SystemRuntimeInputParameterValue == 0) {
     ResourceTablePointer = CreateResourceTablePointer(*(uint8_t *)(SystemContext + SystemContextAllocationOffset),ValidationContext,MemoryAllocationTypeBufferData,&SystemResourceAllocationTemplate,MemoryAllocationTemplateData);
     if (ResourceTablePointer != 0) {
             memcpy(ResourceTablePointer,*(uint8_t *)(SystemRegisterContextData + ObjectContextSecondaryDataProcessingOffset),(int64_t)*(int *)(SystemRegisterContextData + ObjectContextValidationDataProcessingOffset));
@@ -15616,10 +15616,10 @@ void CalculateFloatValueAndValidateResources(void)
   uint32_t XmmFirstComponent;
   uint32_t ResourceContextOffset;
   
-  if (0 < SystemInputParameter) {
+  if (0 < SystemRuntimeInputParameter) {
     ResourceHashValidationSecondary = (uint64_t)(uint)FloatRegisterValue;
     ResourceHashStatusPrimary = (uint64_t)(uint)FloatRegisterValue;
-    InputParameterLimit = SystemInputParameter;
+    InputParameterLimit = SystemRuntimeInputParameter;
     do {
       LocalContextAddress = *(int64_t *)(SystemContextRegister + 0x20);
       ResourceTablePointer = *(int64_t *)(ResourceHashStatusPrimary + 0x10 + LocalContextAddress);
