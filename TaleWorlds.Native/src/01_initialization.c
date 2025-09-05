@@ -27196,8 +27196,8 @@ void InitializeSystemDataSynchronizer(long long SystemResourceHandle,void* dataS
 
 {
   long long *primaryResourceHandle;
-  char calculationFlag1;
-  char calculationFlag2;
+  char CalculationFlagPrimary;
+  char CalculationFlagSecondary;
   int SystemOperationStatus;
   uint32_t systemStatusFlag;
   uint8_t *systemDataPointer;
