@@ -23746,7 +23746,7 @@ DataBuffer ProcessDataCacheA0(int64_t param_1,DataBuffer *param_2)
         }
         if ((int)dataValue == 0) {
                     // WARNING: Subroutine does not return
-          CleanupSystemResourcesA0(param_2,acolorDataWord);
+          CleanupSystemResourcesA0(param_2,colorDataBuffer);
         }
       }
     }
@@ -29609,7 +29609,7 @@ ValidationErrorHandler4:
     if ((int)validationStatus == 0) {
 ValidationStateUpdate2:
                     // WARNING: Subroutine does not return
-      CleanupSystemResourcesA0(param_2,acolorDataWord);
+      CleanupSystemResourcesA0(param_2,colorDataBuffer);
     }
   }
   return validationStatus;
@@ -29926,7 +29926,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1,DataBuffer *param
   
   validationStatus = ExecuteSecurityValidation(param_2,systemProcessingBuffer,1,0x54495053);
   if ((((int)validationStatus == 0) &&
-      (validationStatus = ExecuteSecurityValidation(param_2,acolorDataWord,0,0x42495053), (int)validationStatus == 0)) &&
+      (validationStatus = ExecuteSecurityValidation(param_2,colorDataBuffer,0,0x42495053), (int)validationStatus == 0)) &&
      (validationStatus = ValidatePortControlRequest(param_2,param_1 + 0x10), (int)validationStatus == 0)) {
     if (*(int *)(param_2[1] + 0x18) != 0) {
       return 0x1c;
@@ -29950,9 +29950,9 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1,DataBuffer *param
             validationStatus = memoryBaseAddress;
             if (*(int *)(param_2[1] + 0x18) == 0) {
               dataValue = *param_2;
-              validationStatus = ValidateDataWithSecurityCheckA2(dataValue,auStackX_18);
+              validationStatus = ValidateDataWithSecurityCheckA2(dataValue,stackSecurityBuffer);
               if ((int)validationStatus == 0) {
-                validationStatus = ValidateDataWithSecurityCheckA2(dataValue,auStackX_1c);
+                validationStatus = ValidateDataWithSecurityCheckA2(dataValue,stackValidationBuffer);
               }
             }
           }
@@ -29984,7 +29984,7 @@ uint64_t ProcessDataValidationAndSecurityCheck(int64_t param_1,DataBuffer *param
                  ((*(uint *)(param_2 + 8) < 0x85 ||
                   (validationStatus = ValidateDataSequence(param_2,param_1 + 0x108), (int)validationStatus == 0)))) {
                     // WARNING: Subroutine does not return
-                CleanupSystemResourcesA0(param_2,acolorDataWord);
+                CleanupSystemResourcesA0(param_2,colorDataBuffer);
               }
             }
           }
@@ -31138,7 +31138,7 @@ ValidationErrorHandler5:
       memoryBaseAddress = FUN_1808ad9d0(param_2,param_1 + 0x78,0);
       if (((int)memoryBaseAddress == 0) && (memoryBaseAddress = FUN_1808a62d0(param_2,param_1 + 0x88,0), (int)memoryBaseAddress == 0)) {
                     // WARNING: Subroutine does not return
-        CleanupSystemResourcesA0(param_2,acolorDataWord);
+        CleanupSystemResourcesA0(param_2,colorDataBuffer);
       }
     }
   }
