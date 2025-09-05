@@ -3977,7 +3977,7 @@ uint32_t UtilityResetPointer4;
 uint32_t UtilitySystemStatus1;
 
 // 异常处理系统全局变量宏定义
-#define ExceptionHandlerTablePointer _DAT_180d49240     // 异常处理器表指针
+#define ExceptionHandlerTablePointer GlobalExceptionHandlerPointerA2     // 异常处理器表指针
 #define SystemExceptionHandlerState _DAT_180d49248      // 系统异常处理状态
 #define SystemExceptionCleanupFlag _DAT_180d49258       // 系统异常清理标志
 
@@ -59371,7 +59371,7 @@ void Unwind_180908d30(void)
   byte bVar1;
   
   EnterCriticalSection(0x180c82210);
-  _DAT_180d49210 = 0;
+  ExceptionStatusFlagA4 = 0;
   LeaveCriticalSection(0x180c82210);
   if (_DAT_180c82240 != 0) {
     SetEvent();
@@ -59395,7 +59395,7 @@ void Unwind_180908d30(void)
 void Unwind_180908d40(void)
 
 {
-  _DAT_180d49218 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA1 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -62607,7 +62607,7 @@ void Unwind_180909c30(undefined8 param_1,longlong param_2)
   iVar1 = *(int *)(**(longlong **)(_DAT_180c82868 + 8) + 0x48);
   operationResult = _Thrd_id();
   if (operationResult != iVar1) {
-    _DAT_180c9105c = *(undefined4 *)(param_2 + 0x90);
+    SystemStatusFlagA = *(undefined4 *)(param_2 + 0x90);
   }
   return;
 }
@@ -63932,7 +63932,7 @@ void Unwind_18090a6a0(undefined8 param_1,longlong param_2)
 void Unwind_18090a6d0(void)
 
 {
-  _DAT_180d49240 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA2 = &DefaultExceptionHandlerB;
   return;
 }
 
@@ -90314,14 +90314,14 @@ void DestroyMutexA0(void)
 void TerminateAndResetSystemA0(void)
 
 {
-  _DAT_180d49218 = &UNK_180a3c3e0;
+  GlobalExceptionHandlerPointerA1 = &UNK_180a3c3e0;
   if (_DAT_180d49220 != 0) {
     // WARNING: Subroutine does not return
     TerminateSystemE0();
   }
   _DAT_180d49220 = 0;
   _DAT_180d49230 = 0;
-  _DAT_180d49218 = &DefaultExceptionHandlerB;
+  GlobalExceptionHandlerPointerA1 = &DefaultExceptionHandlerB;
   return;
 }
 
