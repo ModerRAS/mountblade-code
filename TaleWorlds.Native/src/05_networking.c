@@ -2541,20 +2541,20 @@ NetworkHandle UpdateNetworkStatus(NetworkHandle ConnectionContext, int32_t Packe
   NetworkStatus *NetworkConnectionStatusDataBuffer;                          // 网络连接状态数据缓冲区
   int64_t NetworkStatusIterationCounter;                           // 网络状态处理迭代器
   NetworkStatus *NetworkPacketFlagsBuffer;                     // 网络数据包标志缓冲区
-  int64_t *NetworkConnectionOperationBuffer;                             // 网络连接操作缓冲区
+  int64_t *NetworkConnectionContextBuffer;                             // 网络连接操作缓冲区
   int32_t NetworkConnectionUpdateOperation;                         // 网络连接更新操作代码
   NetworkStatus *NetworkConnectionStatusPointer;                          // 网络连接状态处理指针
-  int32_t NetworkConnectionOperationCode;                              // 网络连接操作代码
+  int32_t NetworkConnectionProcessingCode;                              // 网络连接操作代码
   int64_t NetworkProcessedPacketIdentifier;                                    // 已处理网络数据包标识符
   int32_t NetworkPacketIndex;                                           // 网络数据包索引
   int32_t NetworkMaximumInt32Value;                                    // 网络最大32位整数值
-  if (NetworkConnectionOperationCode == 0) {
+  if (NetworkConnectionProcessingCode == 0) {
 PrimaryNetworkProcessingComplete:
-    if ((0 < *(int *)CalculateConnectionParameterAddress(NetworkConnectionOperationBuffer)) && (*NetworkConnectionOperationBuffer != 0)) {
-        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionOperationBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
+    if ((0 < *(int *)CalculateConnectionParameterAddress(NetworkConnectionContextBuffer)) && (*NetworkConnectionContextBuffer != 0)) {
+        AuthenticateConnectionData(*(NetworkHandle *)(NetworkConnectionManagerContext + NetworkConnectionTableOffset), *NetworkConnectionContextBuffer, &SecurityValidationBuffer, SecurityValidationBufferSize, 1);
     }
-    *NetworkConnectionOperationBuffer = (int64_t)ProcessedPacketIdentifier;
-    *(int *)CalculateConnectionParameterAddress(NetworkConnectionOperationBuffer) = NetworkConnectionOperationCode;
+    *NetworkConnectionContextBuffer = (int64_t)ProcessedPacketIdentifier;
+    *(int *)CalculateConnectionParameterAddress(NetworkConnectionContextBuffer) = NetworkConnectionProcessingCode;
     return NetworkOperationSuccess;
   }
   if (NetworkPacketIndex * ConnectionEntrySize - 1U < NetworkMaximumInt32Value) {

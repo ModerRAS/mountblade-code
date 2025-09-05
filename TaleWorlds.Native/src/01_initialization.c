@@ -2962,7 +2962,7 @@ void InitializeSystemResourceNode(void)
   }
   PreviousNode[NodeIdentifier1Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID1;
   PreviousNode[NodeIdentifier2Index] = SYSTEM_DATA_COMPARISON_TEMPLATE_K_ID2;
-  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeH;
+  PreviousNode[NodeDataPointerIndex] = &SystemDataNodeFileSystem;
   PreviousNode[NodeActiveFlagIndex] = NodeInactiveFlag;
   PreviousNode[SystemNodeCallbackIndex] = InitializationCallback;
   return;
