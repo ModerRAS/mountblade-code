@@ -2145,6 +2145,10 @@
 // 功能：验证内存分配状态和访问权限
 #define ValidateMemoryAllocation FUN_1808a5d60
 
+// 原始函数名：FUN_1808a62d0 - 系统参数获取函数
+// 功能：获取系统参数并返回参数值
+#define GetSystemParameter FUN_1808a62d0
+
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
 // 功能：执行工具回调函数，处理参数传递
 #define ExecuteUtilityCallbackB0 FUN_1809424c0
