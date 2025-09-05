@@ -57,6 +57,7 @@
 // 系统标识符大小常量
 #define SystemIdentifierSize                0x10  // 系统标识符大小
 #define SystemNodeAllocationExtraSize       0x20  // 系统节点分配额外大小
+#define SystemIdentifierComparisonSize      0x10  // 系统标识符比较大小
 
 // 系统状态常量
 #define SystemNodeInactiveFlag              3  // 系统节点非活动标志

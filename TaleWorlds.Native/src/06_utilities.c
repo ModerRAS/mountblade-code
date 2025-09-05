@@ -3105,6 +3105,18 @@ uint32_t UtilityResetPointer3;
 uint32_t UtilityResetPointer4;
 uint32_t UtilitySystemStatus1;
 
+// 异常处理系统全局变量宏定义
+#define ExceptionHandlerTablePointer _DAT_180d49240     // 异常处理器表指针
+#define SystemExceptionHandlerState _DAT_180d49248      // 系统异常处理状态
+#define SystemExceptionCleanupFlag _DAT_180d49258       // 系统异常清理标志
+#define TemporaryExceptionHandler UNK_180a3c3e0         // 临时异常处理器
+
+// 异常处理系统全局变量
+void* ExceptionHandlerTablePointer;        // 异常处理器表指针
+int SystemExceptionHandlerState;          // 系统异常处理状态
+int SystemExceptionCleanupFlag;           // 系统异常清理标志
+void* TemporaryExceptionHandler;           // 临时异常处理器
+
 // 函数: void ResetUtilityPointers3(void)
 // 
 // 重置工具模块指针组3
