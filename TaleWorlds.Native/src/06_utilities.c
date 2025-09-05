@@ -2152,6 +2152,30 @@
 // 功能：获取系统参数并返回参数值
 #define GetSystemParameter FUN_1808a62d0
 
+// 原始函数名：FUN_1808a71c0 - 安全检查结果函数
+// 功能：执行安全检查并返回检查结果
+#define GetSecurityCheckResult FUN_1808a71c0
+
+// 原始函数名：FUN_1808ad9d0 - 内存分配验证函数
+// 功能：验证内存分配状态并返回验证结果
+#define ValidateMemoryAllocationStatus FUN_1808ad9d0
+
+// 原始函数名：FUN_1808af700 - 数组索引验证函数
+// 功能：验证数组索引的有效性并返回索引值
+#define ValidateArrayIndex FUN_1808af700
+
+// 原始函数名：FUN_1808a4a20 - 系统内存管理函数
+// 功能：管理系统内存分配和初始化
+#define ManageSystemMemory FUN_1808a4a20
+
+// 原始函数名：FUN_180847820 - 资源指针获取函数
+// 功能：获取系统资源指针，用于访问和管理资源
+#define GetResourcePointer FUN_180847820
+
+// 原始函数名：FUN_1808ddf80 - 系统资源清理函数
+// 功能：清理系统资源并释放内存
+#define CleanupSystemResources FUN_1808ddf80
+
 // 原始函数名：FUN_1809424c0 - 工具回调执行函数B0
 // 功能：执行工具回调函数，处理参数传递
 #define ExecuteUtilityCallbackB0 FUN_1809424c0
@@ -4761,7 +4785,7 @@ int32_t UtilityMemoryValidateDenary;
 void* UtilityMemoryValidationDataUndenary;
 void* UtilityMemoryValidationDataDuodenary;
 void* UtilityMemoryValidationDataTerdenary;
-// 工具系统内存管理数据块14-43
+// 工具系统内存管理数据块Fourteen-FortyThree
 void* UtilityMemoryManagementData14;
 void* UtilityMemoryManagementData15;
 void* UtilityMemoryManagementData16;
@@ -28956,22 +28980,31 @@ uint64_t QuerySystemDataD(int64_t param_1,DataBuffer *param_2)
 
 
 
-uint64_t FUN_18089d171(void)
+/**
+ * @brief 验证系统资源状态
+ * 
+ * 该函数用于验证系统资源的状态，检查资源是否有效和可用
+ * 
+ * @return uint64_t 返回验证状态码，0表示成功，其他值表示错误
+ * 
+ * @note 原始函数名：FUN_18089d171
+ */
+uint64_t ValidateSystemResourceStatus(void)
 
 {
-  uint dataValue;
-  int64_t inputAccumulatorRegister;
-  uint64_t functionReturnValue;
-  DataBuffer *registerContext;
-  int64_t systemContext;
-  uint64_t validationStatus;
+  uint resourceDataValue;
+  int64_t resourceContextRegister;
+  uint64_t validationResult;
+  DataBuffer *resourceBufferContext;
+  int64_t systemOperationContext;
+  uint64_t validationStatusCode;
   
-  if (*(int *)(inputAccumulatorRegister + 0x18) != 0) {
+  if (*(int *)(resourceContextRegister + 0x18) != 0) {
     return 0x1c;
   }
-  dataValue = FUN_1808a2740(*registerContext,systemContext + 0x60);
-  validationStatus = (uint64_t)dataValue;
-  if (dataValue == 0) {
+  resourceDataValue = FUN_1808a2740(*resourceBufferContext,systemOperationContext + 0x60);
+  validationStatusCode = (uint64_t)resourceDataValue;
+  if (resourceDataValue == 0) {
     validationStatus = 0x1c;
     if (*(uint *)(registerContext + 8) < 0x36) {
       functionReturnValue = 0;
@@ -92220,7 +92253,7 @@ void UtilityHandleEvent1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void UtilityHandleEvent2(void)
+// 函数: void UtilityHandleEventSecond(void)
 void UtilityHandleEvent2(void)
 
 {

@@ -26850,17 +26850,17 @@ uint32_t GetSystemResourceStatus(void)
     ProcessSystemData(&SystemDataReference,SystemInitializationStatusArray.PrimaryField);
     CurrentThreadIdentifier = systemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataReference,CurrentThreadIdentifier);
-    *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataReference,SystemInitializationStatusArray.PrimaryExtended >> 0x20);
     CurrentThreadIdentifier = systemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataReference,CurrentThreadIdentifier);
-    *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataReference,SystemInitializationStatusArray.SecondaryExtended & SystemMaximumUnsigned32BitValue);
     CalculationFlags = systemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataReference,CalculationFlags);
-    *(void*2 *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)systemDataBuffer + systemOffsetCounter) = 0x2c;
     systemDataBuffer = CalculationFlags;
     ProcessSystemData(&SystemDataReference,SystemInitializationStatusArray.SecondaryExtended >> 0x20);
     ResourceAddressPointer = (void* *)CreateSystemObject(SystemCounterBuffer80,&SystemDataReference);
@@ -26890,17 +26890,17 @@ uint32_t GetSystemResourceStatus(void)
     ProcessSystemData(&SystemDataBufferPointer,SystemInitializationStatusArray.PrimaryField);
     CurrentThreadIdentifier = secondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
-    *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
     secondarySystemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.HighPart);
     CurrentThreadIdentifier = secondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CurrentThreadIdentifier);
-    *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
     secondarySystemDataBuffer = CurrentThreadIdentifier;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.LowPart);
     CalculationFlags = secondarySystemDataBuffer + 1;
     ExecuteSystemCommand(&SystemDataBufferPointer,CalculationFlags);
-    *(void*2 *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
+    *(uint16_t *)((ulong long)secondarySystemDataBuffer + secondarySystemOffsetCounter) = 0x2c;
     secondarySystemDataBuffer = CalculationFlags;
     ProcessSystemData(&SystemDataBufferPointer, SystemInitializationStatus.HighPart);
     ResourceAddressPointer = (void* *)CreateSystemObject(ThreadTitleBuffer,&SystemDataBufferPointer);
@@ -27179,7 +27179,7 @@ void SystemCleanupHandler(void)
   SystemMemoryPoolHandle = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x30,8,3);
   *(void* *)(SystemMemoryPoolHandle + 0x28) = 3;
   *(uint32_t *)(SystemMemoryPoolHandle + NodeActiveFlagOffset) = 0;
-  *(void*2 *)(SystemMemoryPoolHandle + 0x1d) = 0;
+  *(uint16_t *)(SystemMemoryPoolHandle + 0x1d) = 0;
   *(uint8_t *)(SystemMemoryPoolHandle + 0x1f) = 0;
   *(long long *)SystemMemoryPoolHandle = SystemMemoryPoolHandle;
   *(long long *)(SystemMemoryPoolHandle + 8) = SystemMemoryPoolHandle;
@@ -28414,7 +28414,7 @@ void* SystemResourceAllocator(void* SystemResourceManager,void* ConfigurationDat
   resourceCreationFlags = StartSystemThread(ResourceAddressPointer);
   ConcatenatedSystemValue = ConcatenatedSystemValue(ThreadContext.LowPart,resourceCreationFlags);
   *ResourceAddressPointer = 0x53454c55444f4d5f;
-  *(void*2 *)(ResourceAddressPointer + 1) = 0x2a5f;
+  *(uint16_t *)(ResourceAddressPointer + 1) = 0x2a5f;
   *(uint8_t *)((long long)ResourceAddressPointer + 10) = 0;
   SystemProcessFlags = 10;
   systemCounter = GetSystemCounter(resourceDataIndex + 0x2c0,&pSystemEncryptionStatus);
@@ -28429,7 +28429,7 @@ void* SystemResourceAllocator(void* SystemResourceManager,void* ConfigurationDat
     resourceCreationFlags = StartSystemThread(ResourceAddressPointer);
     SystemSecondaryProcessFlags = ConcatenatedSystemValue(SystemSecondaryProcessFlags.HighPart,resourceCreationFlags);
     *ResourceAddressPointer = 0x454c55444f4d5f2a;
-    *(void*2 *)(ResourceAddressPointer + 1) = 0x5f53;
+    *(uint16_t *)(ResourceAddressPointer + 1) = 0x5f53;
     *(uint8_t *)((long long)ResourceAddressPointer + 10) = 0;
     SystemUnsignedFlagSecondary = 10;
     GetSystemCounter(resourceDataIndex + 0x2c0,&SystemTertiaryStackPointer);
@@ -28835,7 +28835,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
   ExecuteSystemCommand(ConfigurationDataPointer,systemCounter);
   SystemDataPointer = (uint32_t *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8));
   *SystemDataPointer = 0x3a757067;
-  *(void*2 *)(SystemDataPointer + 1) = 0x20;
+  *(uint16_t *)(SystemDataPointer + 1) = 0x20;
   *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
   if (0 < IntegerStackC8) {
     ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + IntegerStackC8);
@@ -28843,13 +28843,13 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
            (long long)(IntegerStackC8 + 1));
   }
   ExecuteSystemCommand(ConfigurationDataPointer,SystemOperationResult + 6);
-  *(void*2 *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
+  *(uint16_t *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
   *(int *)(ConfigurationDataPointer + 0x10) = SystemOperationResult + 6;
   systemCounter = SystemOperationResult + 0xb;
   ExecuteSystemCommand(ConfigurationDataPointer,systemCounter);
   SystemDataPointer = (uint32_t *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8));
   *SystemDataPointer = 0x3a757063;
-  *(void*2 *)(SystemDataPointer + 1) = 0x20;
+  *(uint16_t *)(SystemDataPointer + 1) = 0x20;
   *(int *)(ConfigurationDataPointer + 0x10) = systemCounter;
   if (0 < SystemOperationValueMax) {
     ExecuteSystemCommand(ConfigurationDataPointer,systemCounter + SystemOperationValueMax);
@@ -28857,7 +28857,7 @@ void SystemStringFormatter(void* formatData,long long stringBuffer)
            (long long)(SystemOperationValueMax + 1));
   }
   ExecuteSystemCommand(ConfigurationDataPointer,SystemOperationResult + 0xc);
-  *(void*2 *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
+  *(uint16_t *)((ulong long)*(uint *)(ConfigurationDataPointer + 0x10) + *(long long *)(ComparisonDataPointer + 8)) = 10;
   *(int *)(ConfigurationDataPointer + 0x10) = SystemOperationResult + 0xc;
   pSystemStackFlag = &SystemMemoryAllocatorReference;
   SystemResourceManagerA = &systemDataPointer;
@@ -29080,7 +29080,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   memoryBufferPointer = configValue;
   bufferOffset = (ulong long)configFlags;
   *(uint32_t *)(bufferOffset + configValue) = 0x44495020;
-  *(void*2 *)(bufferOffset + 4 + configValue) = 0x203a;
+  *(uint16_t *)(bufferOffset + 4 + configValue) = 0x203a;
   *(uint8_t *)(bufferOffset + 6 + configValue) = 0;
   configFlags = 6;
   InitializeProcessSystem(processNameBuffer,&SystemDataBufferTemplateNonary,processId);
@@ -29718,7 +29718,7 @@ SystemIdCheck:
             SystemThreadContext = (void* *)(pSystemResourceSize + SystemThreadIdentifier);
             *SystemThreadContext = 0x782e656e6563732f;
             *(uint32_t *)(SystemThreadContext + 1) = 0x6e656373;
-            *(void*2 *)((long long)SystemThreadContext + 0xc) = 0x65;
+            *(uint16_t *)((long long)SystemThreadContext + 0xc) = 0x65;
             resourceEntryPointer = &SystemStringTemplate;
             if (pSystemResourceSize != (uint8_t *)0x0) {
               resourceEntryPointer = pSystemResourceSize;
@@ -29775,7 +29775,7 @@ SystemIdCheck:
                 HashTablePointer[1] = 0x782e656e;
                 HashTablePointer[2] = 0x2e6f6373;
                 HashTablePointer[3] = 0x65637378;
-                *(void*2 *)(HashTablePointer + NodeIdentifierOffset) = 0x656e;
+                *(uint16_t *)(HashTablePointer + NodeIdentifierOffset) = 0x656e;
                 *(uint8_t *)((long long)HashTablePointer + 0x12) = 0;
                 SystemCurrentThreadId = 0x12;
                 SystemInitializationStatusFlag = CheckSystemMemoryStatus(&pSystemConfigurationPointer);
@@ -29936,14 +29936,14 @@ void SystemContextManagerInitializer(void)
   SystemDataPointer = ResourceHashEntryPointer + 4;
   CreateSystemCounter(SystemDataPointer);
   *SystemDataPointer = &SystemMemoryData2;
-  *(void*2 *)(ResourceHashEntryPointer + 0x1a) = 1;
+  *(uint16_t *)(ResourceHashEntryPointer + 0x1a) = 1;
   *(uint32_t *)(ResourceHashEntryPointer + 9) = 0;
   *(uint8_t *)((long long)ResourceHashEntryPointer + 0x54) = 0;
   *SystemDataPointer = &SystemMemoryData1;
   SystemDataPointer = ResourceHashEntryPointer + 0x1b;
   CreateSystemCounter(SystemDataPointer);
   *SystemDataPointer = &SystemMemoryData2;
-  *(void*2 *)(ResourceHashEntryPointer + 0x31) = 1;
+  *(uint16_t *)(ResourceHashEntryPointer + 0x31) = 1;
   *(uint32_t *)(ResourceHashEntryPointer + 0x20) = 0;
   *(uint8_t *)((long long)ResourceHashEntryPointer + 0x10c) = 0;
   *SystemDataPointer = &SystemMemoryData1;
@@ -29958,7 +29958,7 @@ void SystemContextManagerInitializer(void)
   SystemContextReference = InitializeSystemContext(ResourceAllocationContext);
   SystemMemoryBlockPrimary = SystemMemoryAllocationFunction(SystemMemoryPoolTemplate,0x30,8,3);
   *(uint32_t *)(SystemMemoryBlockPrimary + NodeActiveFlagOffset) = 0;
-  *(void*2 *)(SystemMemoryBlockPrimary + 0x1d) = 0;
+  *(uint16_t *)(SystemMemoryBlockPrimary + 0x1d) = 0;
   *(uint8_t *)(SystemMemoryBlockPrimary + 0x1f) = 0;
   *(uint32_t *)(SystemMemoryBlockPrimary + 0x28) = 3;
   *(long long *)SystemMemoryBlockPrimary = SystemMemoryBlockPrimary;
@@ -30736,7 +30736,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
     SystemThreadContext[5] = 0x20612072;
     SystemThreadContext[6] = 0x6d617266;
     SystemThreadContext[7] = 0x6f662065;
-    *(void*2 *)(SystemThreadContext + 8) = 0x2072;
+    *(uint16_t *)(SystemThreadContext + 8) = 0x2072;
     *(uint8_t *)((long long)SystemThreadContext + 0x22) = 0;
     SystemDebugFlag = 0x3e;
     InitializeProcessSystem(SystemCharBuffer,&SystemDataBufferTemplateNonary,900);
@@ -30752,7 +30752,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
     ExecuteSystemCommand(&StackParameterB,SystemInitializationStatus);
     ResourceEntryPointer = (void* *)(StackParameterC + SystemDebugFlag);
     *resourceEntryPointer = 0x73646e6f63657320;
-    *(void*2 *)(resourceEntryPointer + 1) = 0x2021;
+    *(uint16_t *)(resourceEntryPointer + 1) = 0x2021;
     *(uint8_t *)((long long)resourceEntryPointer + 10) = 0;
     SystemDebugFlag = SystemInitializationStatus;
     ExecuteSystemCommand(&StackParameterB,ResourceAllocationContext + 0x2b);
@@ -30765,7 +30765,7 @@ void ProcessSystemConfigurationParameters(long long SystemResourceManager)
     SystemThreadContext[5] = 0x73206e6f;
     SystemThreadContext[6] = 0x65676775;
     SystemThreadContext[7] = 0x64657473;
-    *(void*2 *)(SystemThreadContext + 8) = 0x2e;
+    *(uint16_t *)(SystemThreadContext + 8) = 0x2e;
     SystemOperationCounterPointer = &SystemStringTemplate;
     if (pStackParameterC != (void* *)0x0) {
       SystemOperationCounterPointer = pStackParameterC;
@@ -35422,107 +35422,107 @@ void InitializeSystemThreadStructure(void)
   *(void* *)(threadObjectHandle + 0x108) = 0;
   *(uint32_t *)(threadObjectHandle + 0x130) = 0;
   *(void* *)(threadObjectHandle + 0x138) = 0;
-  *(void*2 *)(threadObjectHandle + 0x140) = 0x100;
+  *(uint16_t *)(threadObjectHandle + 0x140) = 0x100;
   *(void* *)(threadObjectHandle + 0x248) = 0;
   *(void* *)(threadObjectHandle + 0x250) = 0;
   *(uint32_t *)(threadObjectHandle + 0x278) = 0;
   *(void* *)(threadObjectHandle + 0x280) = 0;
-  *(void*2 *)(threadObjectHandle + 0x288) = 0x100;
+  *(uint16_t *)(threadObjectHandle + 0x288) = 0x100;
   *(void* *)(threadObjectHandle + 0x390) = 0;
   *(void* *)(threadObjectHandle + 0x398) = 0;
   *(uint32_t *)(threadObjectHandle + 0x3c0) = 0;
   *(void* *)(threadObjectHandle + 0x3c8) = 0;
-  *(void*2 *)(threadObjectHandle + 0x3d0) = 0x100;
+  *(uint16_t *)(threadObjectHandle + 0x3d0) = 0x100;
   *(void* *)(resourceDataIndex + 0x4d8) = 0;
   *(void* *)(resourceDataIndex + 0x4e0) = 0;
   *(uint32_t *)(resourceDataIndex + 0x508) = 0;
   *(void* *)(resourceDataIndex + 0x510) = 0;
-  *(void*2 *)(resourceDataIndex + 0x518) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x518) = 0x100;
   *(void* *)(resourceDataIndex + 0x620) = 0;
   *(void* *)(resourceDataIndex + 0x628) = 0;
   *(uint32_t *)(resourceDataIndex + 0x650) = 0;
   *(void* *)(resourceDataIndex + 0x658) = 0;
-  *(void*2 *)(resourceDataIndex + 0x660) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x660) = 0x100;
   *(void* *)(resourceDataIndex + 0x768) = 0;
   *(void* *)(resourceDataIndex + 0x770) = 0;
   *(uint32_t *)(resourceDataIndex + 0x798) = 0;
   *(void* *)(resourceDataIndex + 0x7a0) = 0;
-  *(void*2 *)(resourceDataIndex + 0x7a8) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x7a8) = 0x100;
   *(void* *)(resourceDataIndex + 0x8b0) = 0;
   *(void* *)(resourceDataIndex + 0x8b8) = 0;
   *(uint32_t *)(resourceDataIndex + 0x8e0) = 0;
   *(void* *)(resourceDataIndex + 0x8e8) = 0;
-  *(void*2 *)(resourceDataIndex + 0x8f0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x8f0) = 0x100;
   *(void* *)(resourceDataIndex + 0x9f8) = 0;
   *(void* *)(resourceDataIndex + 0xa00) = 0;
   *(uint32_t *)(resourceDataIndex + 0xa28) = 0;
   *(void* *)(resourceDataIndex + 0xa30) = 0;
-  *(void*2 *)(resourceDataIndex + 0xa38) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0xa38) = 0x100;
   *(void* *)(resourceDataIndex + 0xb40) = 0;
   *(void* *)(resourceDataIndex + 0xb48) = 0;
   *(uint32_t *)(resourceDataIndex + 0xb70) = 0;
   *(void* *)(resourceDataIndex + 0xb78) = 0;
-  *(void*2 *)(resourceDataIndex + 0xb80) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0xb80) = 0x100;
   *(void* *)(resourceDataIndex + 0xc88) = 0;
   *(void* *)(resourceDataIndex + 0xc90) = 0;
   *(uint32_t *)(resourceDataIndex + 0xcb8) = 0;
   *(void* *)(resourceDataIndex + 0xcc0) = 0;
-  *(void*2 *)(resourceDataIndex + 0xcc8) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0xcc8) = 0x100;
   *(void* *)(resourceDataIndex + 0xdd0) = 0;
   *(void* *)(resourceDataIndex + 0xdd8) = 0;
   *(uint32_t *)(resourceDataIndex + 0xe00) = 0;
   *(void* *)(resourceDataIndex + 0xe08) = 0;
-  *(void*2 *)(resourceDataIndex + 0xe10) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0xe10) = 0x100;
   *(void* *)(resourceDataIndex + 0xf18) = 0;
   *(void* *)(resourceDataIndex + 0xf20) = 0;
   *(uint32_t *)(resourceDataIndex + 0xf48) = 0;
   *(void* *)(resourceDataIndex + 0xf50) = 0;
-  *(void*2 *)(resourceDataIndex + 0xf58) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0xf58) = 0x100;
   *(void* *)(resourceDataIndex + 0x1060) = 0;
   *(void* *)(resourceDataIndex + 0x1068) = 0;
   *(uint32_t *)(resourceDataIndex + 0x1090) = 0;
   *(void* *)(resourceDataIndex + 0x1098) = 0;
-  *(void*2 *)(resourceDataIndex + 0x10a0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x10a0) = 0x100;
   *(void* *)(resourceDataIndex + 0x11a8) = 0;
   *(void* *)(resourceDataIndex + 0x11b0) = 0;
   *(uint32_t *)(resourceDataIndex + 0x11d8) = 0;
   *(void* *)(resourceDataIndex + 0x11e0) = 0;
-  *(void*2 *)(resourceDataIndex + 0x11e8) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x11e8) = 0x100;
   *(void* *)(resourceDataIndex + 0x12f0) = 0;
   *(void* *)(resourceDataIndex + 0x12f8) = 0;
   *(uint32_t *)(resourceDataIndex + 0x1320) = 0;
   *(void* *)(resourceDataIndex + 0x1328) = 0;
-  *(void*2 *)(resourceDataIndex + 0x1330) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x1330) = 0x100;
   *(void* *)(resourceDataIndex + 0x1438) = 0;
   *(void* *)(resourceDataIndex + 0x1440) = 0;
   *(uint32_t *)(resourceDataIndex + 0x1468) = 0;
   *(void* *)(resourceDataIndex + 0x1470) = 0;
-  *(void*2 *)(resourceDataIndex + 0x1478) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x1478) = 0x100;
   *(void* *)(resourceDataIndex + 0x1580) = 0;
   *(void* *)(resourceDataIndex + 0x1588) = 0;
   *(uint32_t *)(resourceDataIndex + 0x15b0) = 0;
   *(void* *)(resourceDataIndex + 0x15b8) = 0;
-  *(void*2 *)(resourceDataIndex + 0x15c0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x15c0) = 0x100;
   *(void* *)(resourceDataIndex + 0x16c8) = 0;
   *(void* *)(resourceDataIndex + 0x16d0) = 0;
   *(uint32_t *)(resourceDataIndex + 0x16f8) = 0;
   *(void* *)(resourceDataIndex + 0x1700) = 0;
-  *(void*2 *)(resourceDataIndex + 0x1708) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x1708) = 0x100;
   *(void* *)(resourceDataIndex + 0x1810) = 0;
   *(void* *)(resourceDataIndex + 0x1818) = 0;
   *(uint32_t *)(resourceDataIndex + 0x1840) = 0;
   *(void* *)(resourceDataIndex + 0x1848) = 0;
-  *(void*2 *)(resourceDataIndex + 0x1850) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x1850) = 0x100;
   *(void* *)(resourceDataIndex + 0x1958) = 0;
   *(void* *)(resourceDataIndex + 0x1960) = 0;
   *(uint32_t *)(resourceDataIndex + 0x1988) = 0;
   *(void* *)(resourceDataIndex + 0x1990) = 0;
-  *(void*2 *)(resourceDataIndex + 0x1998) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x1998) = 0x100;
   *(void* *)(resourceDataIndex + 0x1aa0) = 0;
   *(void* *)(resourceDataIndex + 0x1aa8) = 0;
   *(uint32_t *)(resourceDataIndex + 0x1ad0) = 0;
   *(void* *)(resourceDataIndex + 0x1ad8) = 0;
-  *(void*2 *)(resourceDataIndex + 0x1ae0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x1ae0) = 0x100;
   return;
 }
 
@@ -36274,7 +36274,7 @@ void CreateAndInitializeSystemThread(void* systemResourceManager,void* configura
   SystemContextValue = ConcatenatedSystemValue(SystemContextValue.LowPart,SystemOperationStatus);
   *systemHashEntryPointer = 0x6320726f74696445;
   *(uint32_t *)(systemHashEntryPointer + 1) = 0x69666e6f;
-  *(void*2 *)((long long)systemHashEntryPointer + 0xc) = 0x67;
+  *(uint16_t *)((long long)systemHashEntryPointer + 0xc) = 0x67;
   systemOperationCounter = 0xd;
   ManageSystemResource(systemResourceManager,&memoryAllocationEnd);
   memoryAllocationEnd = &SystemGlobalDataReference;
@@ -36496,7 +36496,7 @@ void InitializeSystemResourceB(void* SystemResourceManager,void* ConfigurationDa
   ResourceHashEntryPointer[1] = 0x6d706f6c;
   ResourceHashEntryPointer[2] = 0x20746e65;
   ResourceHashEntryPointer[3] = 0x666e6f63;
-  *(void*2 *)(ResourceHashEntryPointer + 4) = 0x6769;
+  *(uint16_t *)(ResourceHashEntryPointer + 4) = 0x6769;
   *(uint8_t *)((long long)ResourceHashEntryPointer + 0x12) = 0;
   SystemOperationCounter = 0x12;
   ManageSystemResource(SystemResourceManager,&memoryAllocationEnd);
@@ -39823,7 +39823,7 @@ void* * ManageSystemResourceManager(void* *SystemResourceManager)
       *SystemHashNodeData = 0;
       *(uint32_t *)(SystemHashNodeData + 5) = 0;
       SystemHashNodeData[6] = 0;
-      *(void*2 *)(SystemHashNodeData + 7) = 0x100;
+      *(uint16_t *)(SystemHashNodeData + 7) = 0x100;
       SystemHashNodeData = SystemHashNodeData + 0x29;
       localDataIndex = localDataIndex + -1;
       ResourceAddress = resourceCreationFlags;
@@ -41077,7 +41077,7 @@ ResourceCleanupComplete:
       *(void* *)(SystemInitializationStatus + 0x108) = 0;
       *(uint32_t *)(SystemInitializationStatus + 0x130) = 0;
       *(void* *)(SystemInitializationStatus + 0x138) = 0;
-      *(void*2 *)(SystemInitializationStatus + 0x140) = 0x100;
+      *(uint16_t *)(SystemInitializationStatus + 0x140) = 0x100;
       goto ResourceInitializationComplete;
     }
 ResourceConfigurationComplete:
@@ -41315,7 +41315,7 @@ ResourceThreadCreation:
     *(void* *)(SystemOperationCounter + 0x108) = 0;
     *(uint32_t *)(SystemOperationCounter + 0x130) = 0;
     *(void* *)(SystemOperationCounter + 0x138) = 0;
-    *(void*2 *)(SystemOperationCounter + 0x140) = 0x100;
+    *(uint16_t *)(SystemOperationCounter + 0x140) = 0x100;
     goto ResourceValidationComplete;
   }
 ResourceMemoryCheck:
@@ -41390,7 +41390,7 @@ ResourceCreation:
       *(void* *)(SystemThreadFlags + 0x108) = 0;
       *(uint32_t *)(SystemThreadFlags + 0x130) = 0;
       *(void* *)(SystemThreadFlags + 0x138) = 0;
-      *(void*2 *)(SystemThreadFlags + 0x140) = 0x100;
+      *(uint16_t *)(SystemThreadFlags + 0x140) = 0x100;
       return SystemThreadFlags;
     }
     ResourceHashEntryPointer = (uint *)(resourceCounter + 0x130);
@@ -43286,7 +43286,7 @@ void ProcessSystemResourceCounter(int *SystemResourceManager)
   SystemThreadContext[1] = 0x65726170;
   SystemThreadContext[2] = 0x635f746e;
   SystemThreadContext[3] = 0x6f736e6f;
-  *(void*2 *)(SystemThreadContext + 4) = 0x656c;
+  *(uint16_t *)(SystemThreadContext + 4) = 0x656c;
   *(uint8_t *)((long long)SystemThreadContext + 0x12) = 0;
   CalculationFlagsExtended = 0x12;
   ThreadContext = SystemMemoryAllocationOffset160 - SystemMemoryAllocationOffset168 >> 5;
@@ -45384,7 +45384,7 @@ void ExecuteSystemResourceCommand(long long* SystemResourceManager,void* Configu
   SystemThreadContext = SystemInitializationStatus;
   SystemProcessFlags.HighPart = *(uint *)(SystemThreadHandle + 0x1c);
   ExecuteSystemCommand(&SystemProcessFlagsPointer,1);
-  *(void*2 *)((ulong long)SystemThreadContext + SystemMemoryBuffer68) = 0x5c;
+  *(uint16_t *)((ulong long)SystemThreadContext + SystemMemoryBuffer68) = 0x5c;
   SystemThreadContext = 1;
   ConfigureSystemResources(&SystemProcessFlagsPointer,&memoryAllocationEnd,AdditionalParameter);
   SystemProcessFlagsPointer = &SystemGlobalDataReference;
@@ -48535,7 +48535,7 @@ void InitializeSystemResources(long long SystemResourceManager)
   *(uint8_t *)(SystemTablePointer + 0xc) = 0;
   *(void* *)((long long)SystemTablePointer + 100) = SystemMaxHandleValue;
   *(uint32_t *)((long long)SystemTablePointer + 0x6c) = 0;
-  *(void*2 *)(SystemTablePointer + 0xe) = 0;
+  *(uint16_t *)(SystemTablePointer + 0xe) = 0;
   *(uint8_t *)((long long)SystemTablePointer + 0x72) = 0;
     memset((long long)SystemTablePointer + 0x74,0,0x400);
 }
@@ -50682,7 +50682,7 @@ ThreadContextComplete:
       *(void* *)(SystemThreadFlags + 0x3508) = 0;
       *(uint32_t *)(SystemThreadFlags + 0x3530) = 0;
       *(void* *)(SystemThreadFlags + 0x3538) = 0;
-      *(void*2 *)(SystemThreadFlags + 0x3540) = 0x100;
+      *(uint16_t *)(SystemThreadFlags + 0x3540) = 0x100;
       return SystemThreadFlags;
     }
     ResourceHashEntryPointer = (uint *)(resourceCounter + 0x3530);
@@ -51199,107 +51199,107 @@ void* InitializeSystemThreadObject(void)
   *(void* *)(ThreadObjectHandle + 0x3508) = 0;
   *(uint32_t *)(ThreadObjectHandle + 0x3530) = 0;
   *(void* *)(ThreadObjectHandle + 0x3538) = 0;
-  *(void*2 *)(ThreadObjectHandle + 0x3540) = 0x100;
+  *(uint16_t *)(ThreadObjectHandle + 0x3540) = 0x100;
   *(void* *)(ThreadObjectHandle + 0x6a48) = 0;
   *(void* *)(ThreadObjectHandle + 0x6a50) = 0;
   *(uint32_t *)(resourceDataIndex + 0x6a78) = 0;
   *(void* *)(resourceDataIndex + 0x6a80) = 0;
-  *(void*2 *)(resourceDataIndex + 0x6a88) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x6a88) = 0x100;
   *(void* *)(resourceDataIndex + 0x9f90) = 0;
   *(void* *)(resourceDataIndex + 0x9f98) = 0;
   *(uint32_t *)(resourceDataIndex + 0x9fc0) = 0;
   *(void* *)(resourceDataIndex + 0x9fc8) = 0;
-  *(void*2 *)(resourceDataIndex + 0x9fd0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x9fd0) = 0x100;
   *(void* *)(resourceDataIndex + 0xd4d8) = 0;
   *(void* *)(resourceDataIndex + 0xd4e0) = 0;
   *(uint32_t *)(resourceDataIndex + 0xd508) = 0;
   *(void* *)(resourceDataIndex + 0xd510) = 0;
-  *(void*2 *)(resourceDataIndex + 0xd518) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0xd518) = 0x100;
   *(void* *)(resourceDataIndex + 0x10a20) = 0;
   *(void* *)(resourceDataIndex + 0x10a28) = 0;
   *(uint32_t *)(resourceDataIndex + 0x10a50) = 0;
   *(void* *)(resourceDataIndex + 0x10a58) = 0;
-  *(void*2 *)(resourceDataIndex + 0x10a60) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x10a60) = 0x100;
   *(void* *)(resourceDataIndex + 0x13f68) = 0;
   *(void* *)(resourceDataIndex + 0x13f70) = 0;
   *(uint32_t *)(resourceDataIndex + 0x13f98) = 0;
   *(void* *)(resourceDataIndex + 0x13fa0) = 0;
-  *(void*2 *)(resourceDataIndex + 0x13fa8) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x13fa8) = 0x100;
   *(void* *)(resourceDataIndex + 0x174b0) = 0;
   *(void* *)(resourceDataIndex + 0x174b8) = 0;
   *(uint32_t *)(resourceDataIndex + 0x174e0) = 0;
   *(void* *)(resourceDataIndex + 0x174e8) = 0;
-  *(void*2 *)(resourceDataIndex + 0x174f0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x174f0) = 0x100;
   *(void* *)(resourceDataIndex + 0x1a9f8) = 0;
   *(void* *)(resourceDataIndex + 0x1aa00) = 0;
   *(uint32_t *)(resourceDataIndex + 0x1aa28) = 0;
   *(void* *)(resourceDataIndex + 0x1aa30) = 0;
-  *(void*2 *)(resourceDataIndex + 0x1aa38) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x1aa38) = 0x100;
   *(void* *)(resourceDataIndex + 0x1df40) = 0;
   *(void* *)(resourceDataIndex + 0x1df48) = 0;
   *(uint32_t *)(resourceDataIndex + 0x1df70) = 0;
   *(void* *)(resourceDataIndex + 0x1df78) = 0;
-  *(void*2 *)(resourceDataIndex + 0x1df80) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x1df80) = 0x100;
   *(void* *)(resourceDataIndex + 0x21488) = 0;
   *(void* *)(resourceDataIndex + 0x21490) = 0;
   *(uint32_t *)(resourceDataIndex + 0x214b8) = 0;
   *(void* *)(resourceDataIndex + 0x214c0) = 0;
-  *(void*2 *)(resourceDataIndex + 0x214c8) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x214c8) = 0x100;
   *(void* *)(resourceDataIndex + 0x249d0) = 0;
   *(void* *)(resourceDataIndex + 0x249d8) = 0;
   *(uint32_t *)(resourceDataIndex + 0x24a00) = 0;
   *(void* *)(resourceDataIndex + 0x24a08) = 0;
-  *(void*2 *)(resourceDataIndex + 0x24a10) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x24a10) = 0x100;
   *(void* *)(resourceDataIndex + 0x27f18) = 0;
   *(void* *)(resourceDataIndex + 0x27f20) = 0;
   *(uint32_t *)(resourceDataIndex + 0x27f48) = 0;
   *(void* *)(resourceDataIndex + 0x27f50) = 0;
-  *(void*2 *)(resourceDataIndex + 0x27f58) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x27f58) = 0x100;
   *(void* *)(resourceDataIndex + 0x2b460) = 0;
   *(void* *)(resourceDataIndex + 0x2b468) = 0;
   *(uint32_t *)(resourceDataIndex + 0x2b490) = 0;
   *(void* *)(resourceDataIndex + 0x2b498) = 0;
-  *(void*2 *)(resourceDataIndex + 0x2b4a0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x2b4a0) = 0x100;
   *(void* *)(resourceDataIndex + 0x2e9a8) = 0;
   *(void* *)(resourceDataIndex + 0x2e9b0) = 0;
   *(uint32_t *)(resourceDataIndex + 0x2e9d8) = 0;
   *(void* *)(resourceDataIndex + 0x2e9e0) = 0;
-  *(void*2 *)(resourceDataIndex + 0x2e9e8) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x2e9e8) = 0x100;
   *(void* *)(resourceDataIndex + 0x31ef0) = 0;
   *(void* *)(resourceDataIndex + 0x31ef8) = 0;
   *(uint32_t *)(resourceDataIndex + 0x31f20) = 0;
   *(void* *)(resourceDataIndex + 0x31f28) = 0;
-  *(void*2 *)(resourceDataIndex + 0x31f30) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x31f30) = 0x100;
   *(void* *)(resourceDataIndex + 0x35438) = 0;
   *(void* *)(resourceDataIndex + 0x35440) = 0;
   *(uint32_t *)(resourceDataIndex + 0x35468) = 0;
   *(void* *)(resourceDataIndex + 0x35470) = 0;
-  *(void*2 *)(resourceDataIndex + 0x35478) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x35478) = 0x100;
   *(void* *)(resourceDataIndex + 0x38980) = 0;
   *(void* *)(resourceDataIndex + 0x38988) = 0;
   *(uint32_t *)(resourceDataIndex + 0x389b0) = 0;
   *(void* *)(resourceDataIndex + 0x389b8) = 0;
-  *(void*2 *)(resourceDataIndex + 0x389c0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x389c0) = 0x100;
   *(void* *)(resourceDataIndex + 0x3bec8) = 0;
   *(void* *)(resourceDataIndex + 0x3bed0) = 0;
   *(uint32_t *)(resourceDataIndex + 0x3bef8) = 0;
   *(void* *)(resourceDataIndex + 0x3bf00) = 0;
-  *(void*2 *)(resourceDataIndex + 0x3bf08) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x3bf08) = 0x100;
   *(void* *)(resourceDataIndex + 0x3f410) = 0;
   *(void* *)(resourceDataIndex + 0x3f418) = 0;
   *(uint32_t *)(resourceDataIndex + 0x3f440) = 0;
   *(void* *)(resourceDataIndex + 0x3f448) = 0;
-  *(void*2 *)(resourceDataIndex + 0x3f450) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x3f450) = 0x100;
   *(void* *)(resourceDataIndex + 0x42958) = 0;
   *(void* *)(resourceDataIndex + 0x42960) = 0;
   *(uint32_t *)(resourceDataIndex + 0x42988) = 0;
   *(void* *)(resourceDataIndex + 0x42990) = 0;
-  *(void*2 *)(resourceDataIndex + 0x42998) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x42998) = 0x100;
   *(void* *)(resourceDataIndex + 0x45ea0) = 0;
   *(void* *)(resourceDataIndex + 0x45ea8) = 0;
   *(uint32_t *)(resourceDataIndex + 0x45ed0) = 0;
   *(void* *)(resourceDataIndex + 0x45ed8) = 0;
-  *(void*2 *)(resourceDataIndex + 0x45ee0) = 0x100;
+  *(uint16_t *)(resourceDataIndex + 0x45ee0) = 0x100;
   return;
 }
 
@@ -53405,7 +53405,7 @@ MemoryPoolInitialized:
   *SystemMemoryContext = 0;
   CurrentThreadIdentifier = StartSystemThread(SystemMemoryContext);
   SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,CurrentThreadIdentifier);
-  *(void*2 *)(SystemMemoryContext + StackContextValue) = 10;
+  *(uint16_t *)(SystemMemoryContext + StackContextValue) = 10;
   StackContextValue = 1;
   ResourceHash = 2;
   if (SystemMemoryContext == (uint8_t *)0x0) {
@@ -53422,7 +53422,7 @@ ThreadCreationComplete:
     SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,3,0x10);
     goto SystemBufferHandler;
   }
-  *(void*2 *)(SystemMemoryContext + StackContextValue) = 10;
+  *(uint16_t *)(SystemMemoryContext + StackContextValue) = 10;
   StackContextValue = 2;
   if (ConfigurationDataPointer != 0) {
     ResourceDataOffset = -1;
@@ -53473,7 +53473,7 @@ ThreadConfigurationComplete:
     SystemMemoryContext = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,SystemMemoryContext,4,0x10);
     goto SystemInitializationHandler;
   }
-  *(void*2 *)(SystemMemoryContext + StackContextValue) = 0x3a;
+  *(uint16_t *)(SystemMemoryContext + StackContextValue) = 0x3a;
   StackContextValue = 3;
   ProcessSystemData(&pSystemThreadContext,secondarySystemDataBuffer);
   ResourceHash = StackContextValue;
@@ -53496,7 +53496,7 @@ ThreadConfigurationComplete:
     SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContext);
   }
 SystemInitializationComplete:
-  *(void*2 *)(SystemMemoryContext + StackContextValue) = 10;
+  *(uint16_t *)(SystemMemoryContext + StackContextValue) = 10;
   SystemOperationCounter = ResourceHash + 0xd;
   StackContextValue = CurrentThreadIdentifier;
   if (SystemOperationCounter != 0) {
@@ -53571,7 +53571,7 @@ SystemMemoryInitializationStart:
     SystemMemoryAllocationOffset = ConcatenatedSystemValue(SystemMemoryAllocationOffset.HighPart,ThreadContext);
   }
 MemoryProcessingContinue:
-  *(void*2 *)(SystemMemoryContext + StackContextValue) = 10;
+  *(uint16_t *)(SystemMemoryContext + StackContextValue) = 10;
   StackContextValue = systemIndex;
   if (resourceCounter != 0) {
     ProcessSystemResourceOffset(resourceCounter);
@@ -53884,7 +53884,7 @@ void InitializeSystemResourceManager(void* SystemResourceManager,long long Confi
   resourceEntryPointer[1] = 0x6f697472;
   resourceEntryPointer[2] = 0x6146206e;
   resourceEntryPointer[3] = 0x64656c69;
-  *(void*2 *)(systemCurrentNode + 4) = 0x21;
+  *(uint16_t *)(systemCurrentNode + 4) = 0x21;
   stackParameterOffset = 0x11;
   if (threadObjectPointer == (uint8_t *)0x0) {
     stackParameterOffset = 0x11;
@@ -53899,7 +53899,7 @@ ThreadInitialization:
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x13,0x10,0x13);
     goto SystemOperationCheck;
   }
-  *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
+  *(uint16_t *)(threadObjectPointer + stackParameterOffset) = 10;
   stackParameterOffset = 0x12;
   threadCreationFlags = 0x13;
   if (threadObjectPointer == (uint8_t *)0x0) {
@@ -53915,7 +53915,7 @@ ThreadAllocationContext:
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x14,0x10,0x13);
     goto SystemStatusCheck;
   }
-  *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
+  *(uint16_t *)(threadObjectPointer + stackParameterOffset) = 10;
   stackParameterOffset = 0x13;
   if (ConfigurationDataPointer != 0) {
     systemBufferPointer = -1;
@@ -53964,7 +53964,7 @@ SystemThreadOperation:
     threadObjectPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,threadObjectPointer,0x15,0x10,0x13);
     goto SystemThreadOperation;
   }
-  *(void*2 *)(threadObjectPointer + stackParameterOffset) = 0x3a;
+  *(uint16_t *)(threadObjectPointer + stackParameterOffset) = 0x3a;
   stackParameterOffset = 0x14;
   ProcessSystemData(&stackParameterPointer,AdditionalParameter);
   threadCreationFlags = stackParameterOffset;
@@ -53986,7 +53986,7 @@ SystemThreadOperation:
     threadHandleValue = ConcatenatedSystemValue(threadHandleValue.LowPart,memoryAllocationContext);
   }
 SystemThreadConfiguration:
-  *(void*2 *)(threadObjectPointer + stackParameterOffset) = 10;
+  *(uint16_t *)(threadObjectPointer + stackParameterOffset) = 10;
   SystemSecondaryOperationStatus = threadCreationFlags + 0xd;
   stackParameterOffset = SystemPrimaryOperationStatus;
   if (SystemSecondaryOperationStatus != 0) {
@@ -54056,7 +54056,7 @@ SystemResourceValidation:
     SystemUnsignedFlagSecondary = ConcatenatedSystemValue(SystemUnsignedFlagSecondary.HighPart,ResourceAllocationContext);
   }
 SystemResourceConfiguration:
-  *(void*2 *)(SystemTertiaryStackPointer + SystemFlagTertiary) = 10;
+  *(uint16_t *)(SystemTertiaryStackPointer + SystemFlagTertiary) = 10;
   SystemFlagTertiary = resourceCreationFlags + 0xe;
   ConfigureSystemManager(SystemContextManagerPointer,5,0xffffffff00000000,&SystemConfigurationDataBufferA);
   SystemThreadStorage = &SystemStringTemplate;
@@ -54366,7 +54366,7 @@ SystemResourceDataProcessing:
         ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,0x16,0x10);
         goto ProcessSystemResourceData;
       }
-      *(void*2 *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 10;
+      *(uint16_t *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 10;
       SystemMemoryAllocationOffset = 0x15;
       ResourceHash = 0x16;
       if (ResourceBufferPointerSecondary == (uint8_t *)0x0) {
@@ -54383,7 +54383,7 @@ SystemOperationComplete:
         ResourceDataBufferPointer = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceDataBufferPointer,0x17,0x10);
         goto SystemOperationComplete;
       }
-      *(void*2 *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 10;
+      *(uint16_t *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 10;
       SystemMemoryAllocationOffset = 0x16;
       if (ConfigurationDataPointer != 0) {
         resourceCounter = -1;
@@ -54434,7 +54434,7 @@ SystemContextValidation:
         ResourceBufferPointerSecondary = (uint8_t *)AllocateThreadMemoryBuffer(SystemMemoryPoolTemplate,ResourceBufferPointerSecondary,0x18,0x10);
         goto SystemContextValidation;
       }
-      *(void*2 *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 0x3a;
+      *(uint16_t *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 0x3a;
       SystemMemoryAllocationOffset = 0x17;
       ProcessSystemData(&SystemMemoryContext,SystemFlagSecondary);
       ResourceHash = SystemMemoryAllocationOffset;
@@ -54457,7 +54457,7 @@ SystemContextValidation:
         SystemThreadContexts = ConcatenatedSystemValue(SystemThreadContexts.LowPart,ThreadContext);
       }
 SystemMemoryAllocationComplete:
-      *(void*2 *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 10;
+      *(uint16_t *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 10;
       SystemInitializationStatusFlags = ResourceHash + 0xd;
       SystemMemoryAllocationOffset = ResourceAddress;
       if (SystemInitializationStatusFlags != 0) {
@@ -54531,7 +54531,7 @@ ResourceHashValidation:
         SystemThreadContexts = ConcatenatedSystemValue(SystemThreadContexts.LowPart,ThreadContext);
       }
 SystemResourceOperationFinalize:
-      *(void*2 *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 0xa0a;
+      *(uint16_t *)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) = 0xa0a;
       *(uint8_t *)((long long)(ResourceBufferPointerSecondary + SystemMemoryAllocationOffset) + 2) = 0;
       SystemMemoryAllocationOffset = ResourceAddress;
       if (ResourceHash + 0x6d != 0) {
@@ -54567,7 +54567,7 @@ SystemOperationCodeValidation:
       *(uint32_t *)((long long)SystemDataConfigurationPointer + 0x4c) = 0x23232323;
       SystemDataConfigurationPointer[SystemNodeCallbackIndex] = 0x2323232323232323;
       *(uint32_t *)(SystemDataConfigurationPointer + 0xb) = 0x3e232323;
-      *(void*2 *)((long long)SystemDataConfigurationPointer + 0x5c) = 0xa0a;
+      *(uint16_t *)((long long)SystemDataConfigurationPointer + 0x5c) = 0xa0a;
       *(uint8_t *)((long long)SystemDataConfigurationPointer + 0x5e) = 0;
       pSystemCurrentThreadId = &SystemStringTemplate;
       if (ResourceDataBufferPointer != (uint8_t *)0x0) {
@@ -54782,9 +54782,9 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
   }
   SystemResourceHandlePrimary = &SystemGlobalDataReference;
   SystemMemoryAllocatorStatus = 0;
-  SystemThreadHandle = (void*2 *)0x0;
+  SystemThreadHandle = (uint16_t *)0x0;
   SystemThreadState = 0;
-  SystemThreadHandle = (void*2 *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
+  SystemThreadHandle = (uint16_t *)CreateSystemThreadObject(SystemMemoryPoolTemplate,0x10,0x13);
   *(uint8_t *)SystemThreadHandle = 0;
   SystemInitializationStatus = StartSystemThread(SystemThreadHandle);
   SystemMemoryAllocatorStatus = ConcatenatedSystemValue(SystemMemoryAllocatorStatus.LowPart,SystemInitializationStatus);
@@ -54856,7 +54856,7 @@ bool InitializeSystemThreadAndResourceManager(void* SystemResourceManager,void* 
     SystemThreadLocalStoragePointer = SystemDataConfigurationPointer;
   }
   ConfigureSystemDataBuffer(&SystemResourceHandlePrimary,&SystemDataBufferTemplatePrimary,SystemThreadLocalStoragePointer);
-  SystemDataBufferPointer = (void*2 *)&SystemStringTemplate;
+  SystemDataBufferPointer = (uint16_t *)&SystemStringTemplate;
   if (pointerUnsignedE8 != (uint16_t *)0x0) {
     SystemDataBufferPointer = pointerUnsignedE8;
   }
@@ -56634,7 +56634,7 @@ void InitializeSystemGlobalState(void)
   long long systemDataIndexPtr;
   long long SystemResourceHandle;
   
-  *(void*2 *)(SystemResourceHandle + 0x50) = basePointer;
+  *(uint16_t *)(SystemResourceHandle + 0x50) = basePointer;
   if (*(long long *)(SystemResourceHandle + 0x48) != 0) {
       SystemCleanupFunction();
   }
@@ -56845,7 +56845,7 @@ void InitializeSystemResourceBuffer(long long SystemResourceManager)
     *(uint8_t *)(SystemResourceOffsetPointer + 5) = 0;
     *(uint8_t *)((long long)SystemResourceOffsetPointer + 0xb2) = 0;
     *(uint32_t *)(SystemResourceOffsetPointer + 1) = 0;
-    *(void*2 *)(SystemResourceOffsetPointer + 0x16) = 0;
+    *(uint16_t *)(SystemResourceOffsetPointer + 0x16) = 0;
     SystemResourceOffsetPointer[0x15] = 0;
     *SystemResourceOffsetPointer = (long long)&SystemResourceDataTableB;
     SystemResourceOffsetPointer[0x15] = 0;
@@ -57418,7 +57418,7 @@ void** InitializeSystemResourceManagerEx(void** SystemResourceManager, char Conf
   *(uint8_t *)(SystemResourceManager + 5) = 0;
   *(uint8_t *)((long long)SystemResourceManager + 0xb2) = 0;
   *(uint32_t *)(SystemResourceManager + 1) = 0;
-  *(void*2 *)(SystemResourceManager + 0x16) = 0;
+  *(uint16_t *)(SystemResourceManager + 0x16) = 0;
   SystemResourceManager[0x15] = 0;
   *SystemResourceManager = &SystemResourceDataTableC;
   InitializeResourceManager(SystemResourceManager + NodeActiveFlagOffset);
@@ -57449,10 +57449,10 @@ void** InitializeSystemResourceManagerEx(void** SystemResourceManager, char Conf
   *(void* *)((long long)SystemResourceManager + 0x28c) = 0;
   *(void* *)((long long)SystemResourceManager + 0x294) = 0;
   *(void* *)((long long)SystemResourceManager + 0x29c) = 0;
-  *(void*2 *)(SystemResourceManager + 0x5d) = 0;
+  *(uint16_t *)(SystemResourceManager + 0x5d) = 0;
   SystemResourceManager[0x5c] = 0;
   *(uint32_t *)((long long)SystemResourceManager + 0x2ec) = 0xffffffff;
-  *(void*2 *)(SystemResourceManager + 0x5f) = 0;
+  *(uint16_t *)(SystemResourceManager + 0x5f) = 0;
   SystemResourceManager[0x5e] = 0;
   *(uint32_t *)((long long)SystemResourceManager + 0x2fc) = 0xffffffff;
   *(byte *)((long long)SystemResourceManager + 0xfd) = *(byte *)((long long)SystemResourceManager + 0xfd) & 0xfb;
@@ -57521,7 +57521,7 @@ void** InitializeSystemResourceManagerEx(void** SystemResourceManager, char Conf
   *(uint32_t *)(SystemResourceManager + 0x4e) = 0x21;
   *(uint32_t *)((long long)SystemResourceManager + 0x104) = 0x80;
   *(uint8_t *)((long long)SystemResourceManager + 0xf6) = 0;
-  *(void*2 *)((long long)SystemResourceManager + 0xfa) = 0;
+  *(uint16_t *)((long long)SystemResourceManager + 0xfa) = 0;
   *(void* *)((long long)SystemResourceManager + 0x204) = 0;
   SystemResourceManager[0x3f] = 0;
   *(uint32_t *)(SystemResourceManager + 0x40) = 0;
@@ -58754,7 +58754,7 @@ void ConfigureSystemResourceManagerAdvanced(long long* SystemResourceManager,voi
     *(uint32_t *)(SystemResourceHandle + 7) = 0;
     *(uint32_t *)(SystemResourceHandle + 0x11) = 0;
     *(uint32_t *)(SystemResourceHandle + 0xc) = 0;
-    *(void*2 *)(SystemResourceHandle + 0x18) = 0;
+    *(uint16_t *)(SystemResourceHandle + 0x18) = 0;
     if (SystemResourceHandle[0x17] != 0) {
         SystemCleanupFunction();
     }
@@ -61362,7 +61362,7 @@ LabelSetSystemStatus:
     *(uint32_t *)(SystemResourceManager + 0x2c0) = ResourceAllocationContext;
     *(uint32_t *)(SystemResourceManager + 0x2c4) = ResourceAddress;
   }
-  *(void*2 *)(SystemMemoryPointer + 0x3c0) = 0xffff;
+  *(uint16_t *)(SystemMemoryPointer + 0x3c0) = 0xffff;
   ValidateSystemResourceManager(SystemResourceManager);
   if ((*(long long *)(SystemResourceManager + 600) == 0) &&
      ((*(uint *)(*(long long *)(SystemResourceManager + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
@@ -61472,7 +61472,7 @@ LabelSetSystemStatus:
     *(uint32_t *)(MemoryBlockAddress + 0x2c0) = ResourceAllocationContext;
     *(uint32_t *)(MemoryBlockAddress + 0x2c4) = ResourceAddress;
   }
-  *(void*2 *)(resourceDataIndex + 0x3c0) = 0xffff;
+  *(uint16_t *)(resourceDataIndex + 0x3c0) = 0xffff;
   ValidateSystemResourceManager();
   if ((*(long long *)(MemoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(MemoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
@@ -61586,7 +61586,7 @@ LabelSetSystemStatus:
     *(uint32_t *)(MemoryBlockAddress + 0x2c0) = ResourceAllocationContext;
     *(uint32_t *)(MemoryBlockAddress + 0x2c4) = ResourceAddress;
   }
-  *(void*2 *)(resourceDataIndex + 0x3c0) = 0xffff;
+  *(uint16_t *)(resourceDataIndex + 0x3c0) = 0xffff;
   ValidateSystemResourceManager();
   if ((*(long long *)(MemoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(MemoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
@@ -61688,7 +61688,7 @@ LabelSetSystemStatus:
     *(uint32_t *)(MemoryBlockAddress + 0x2c0) = ResourceAllocationContext;
     *(uint32_t *)(MemoryBlockAddress + 0x2c4) = ResourceAddress;
   }
-  *(void*2 *)(resourceDataIndex + 0x3c0) = 0xffff;
+  *(uint16_t *)(resourceDataIndex + 0x3c0) = 0xffff;
   ValidateSystemResourceManager();
   if ((*(long long *)(MemoryBlockAddress + 600) == 0) &&
      ((*(uint *)(*(long long *)(MemoryBlockAddress + 0x1b8) + 0x388) >> 0x19 & 1) != 0)) {
@@ -61822,7 +61822,7 @@ void ConfigureSystemResourceManager(void* *SystemResourceManager,void* Configura
   *(uint32_t *)((long long)SystemResourceManager + 0x144) = 0;
   *(uint32_t *)(SystemResourceManager + 0x29) = 0x3f800000;
   *(uint32_t *)((long long)SystemResourceManager + 0x14c) = 0x3f800000;
-  *(void*2 *)(SystemResourceManager + 0x2a) = 0;
+  *(uint16_t *)(SystemResourceManager + 0x2a) = 0;
   *(uint8_t *)((long long)SystemResourceManager + 0x152) = 1;
   *(uint32_t *)(SystemResourceManager + 0x27) = 0;
   SystemResourceManager[8] = 0x3f800000;
@@ -67442,15 +67442,15 @@ SystemResourceFinalize:
         ThreadContext = GetSystemThreadContext(*(uint32_t *)
                                      (*(long long *)(SystemThreadHandle5 + ConfigurationDataPointer) +
                                      (long long)*(int *)(SystemThreadHandlePrimary + SystemThreadHandleSecondary) * 0x10));
-        *(void*2 *)pResultValue2 = ThreadContext;
+        *(uint16_t *)pResultValue2 = ThreadContext;
         ThreadContext = GetSystemThreadContext(*(uint32_t *)
                                      (*(long long *)(SystemThreadHandle5 + ConfigurationDataPointer) + 4 +
                                      (long long)*(int *)(SystemThreadHandlePrimary + SystemThreadHandleSecondary) * 0x10));
-        *(void*2 *)((long long)pResultValue2 + 2) = ThreadContext;
+        *(uint16_t *)((long long)pResultValue2 + 2) = ThreadContext;
         ThreadContext = GetSystemThreadContext(*(uint32_t *)
                                      (*(long long *)(SystemThreadHandle5 + ConfigurationDataPointer) + 8 +
                                      (long long)*(int *)(SystemThreadHandlePrimary + SystemThreadHandleSecondary) * 0x10));
-        *(void*2 *)(pResultValue2 + 1) = ThreadContext;
+        *(uint16_t *)(pResultValue2 + 1) = ThreadContext;
         *(short *)((long long)pResultValue2 + 6) = (short)NetworkConnectionFlags;
         pResultValue2 = (float *)((long long)pResultValue2 + (long long)SystemCode);
         SystemThreadHandlePrimary = SystemThreadHandlePrimary + 0x5c;
@@ -67659,12 +67659,12 @@ void ConfigureSystemResourceDataStructure(long long SystemResourceManager,long l
       do {
         resourceDataIndex = (long long)(int)CurrentThreadIdentifier * 0xc;
         ResourceAllocationContext = CurrentThreadIdentifier * 3;
-        *(void*2 *)(SystemThreadHandle + (ulong long)ResourceAllocationContext * 2) =
-             *(void*2 *)(resourceDataIndex + *(long long *)(SystemResourceManager + 0x90));
-        *(void*2 *)(SystemThreadHandle + (ulong long)(ResourceAllocationContext + 1) * 2) =
-             *(void*2 *)(*(long long *)(SystemResourceManager + 0x90) + 4 + resourceDataIndex);
-        *(void*2 *)(SystemThreadHandle + (ulong long)(ResourceAllocationContext + 2) * 2) =
-             *(void*2 *)(*(long long *)(SystemResourceManager + 0x90) + 8 + resourceDataIndex);
+        *(uint16_t *)(SystemThreadHandle + (ulong long)ResourceAllocationContext * 2) =
+             *(uint16_t *)(resourceDataIndex + *(long long *)(SystemResourceManager + 0x90));
+        *(uint16_t *)(SystemThreadHandle + (ulong long)(ResourceAllocationContext + 1) * 2) =
+             *(uint16_t *)(*(long long *)(SystemResourceManager + 0x90) + 4 + resourceDataIndex);
+        *(uint16_t *)(SystemThreadHandle + (ulong long)(ResourceAllocationContext + 2) * 2) =
+             *(uint16_t *)(*(long long *)(SystemResourceManager + 0x90) + 8 + resourceDataIndex);
         CurrentThreadIdentifier = CurrentThreadIdentifier + 1;
       } while (CurrentThreadIdentifier < *(uint *)(SystemResourceManager + 0x88));
     }
@@ -68890,7 +68890,7 @@ void* * InitializeSystemResourceManagerTemplate(void* *SystemResourceManager)
   SystemResourceManager[0x11] = 0;
   SystemResourceManager[0x12] = 0;
   *(uint8_t *)(SystemResourceManager + 0x15) = 3;
-  *(void*2 *)(SystemResourceManager + 0x18) = 0;
+  *(uint16_t *)(SystemResourceManager + 0x18) = 0;
   SystemResourceManager[0x16] = 0;
   SystemResourceManager[0x17] = 0;
   SystemResourceManager[0x19] = 0;
