@@ -31945,55 +31945,133 @@ void SetDefaultExceptionHandlerToPosition(undefined8 exceptionContext, longlong 
 
 
 
-void Unwind_180902260(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理标志
+ * 
+ * 该函数负责清理异常处理中的标志位，确保异常处理系统能够正常工作。
+ * 当检测到特定的标志位时，会清除该标志并调用相应的清理函数。
+ * 
+ * @param exceptionContext 异常上下文参数，包含异常处理的状态信息
+ * @param unwindContext 展开上下文参数，用于控制异常处理流程
+ * 
+ * 该函数执行以下操作：
+ * 1. 检查展开上下文中的标志位状态
+ * 2. 如果标志位被设置，清除该标志位
+ * 3. 调用清理函数进行后续处理
+ * 
+ * @note 这是简化实现，原始函数名为 Unwind_180902260
+ */
+void CleanupExceptionHandlingFlags(undefined8 exceptionContext, longlong unwindContext)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 8) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xfffffff7;
-    FUN_180627b90(param_2 + 0xf8);
+  if ((*(uint *)(unwindContext + 0x30) & 8) != 0) {
+    *(uint *)(unwindContext + 0x30) = *(uint *)(unwindContext + 0x30) & 0xfffffff7;
+    FUN_180627b90(unwindContext + 0xf8);
   }
   return;
 }
 
 
 
-void Unwind_180902290(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置默认异常处理器
+ * 
+ * 该函数负责设置默认的异常处理器，确保在异常发生时能够正确处理。
+ * 它会将指定的异常处理器地址设置到展开上下文的相应位置。
+ * 
+ * @param exceptionContext 异常上下文参数，包含异常处理的状态信息
+ * @param unwindContext 展开上下文参数，用于设置异常处理器
+ * 
+ * 该函数执行以下操作：
+ * 1. 将默认异常处理器B的地址设置到展开上下文中
+ * 2. 确保异常处理系统能够正确调用处理器
+ * 
+ * @note 这是简化实现，原始函数名为 Unwind_180902290
+ */
+void SetDefaultExceptionHandler(undefined8 exceptionContext, longlong unwindContext)
 
 {
-  *(undefined **)(param_2 + 0xf8) = &DefaultExceptionHandlerB;
+  *(undefined **)(unwindContext + 0xf8) = &DefaultExceptionHandlerB;
   return;
 }
 
 
 
-void Unwind_1809022a0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理状态标志
+ * 
+ * 该函数负责清理异常处理中的状态标志，确保异常处理系统能够正常工作。
+ * 当检测到特定的状态标志位时，会清除该标志并调用相应的清理函数。
+ * 
+ * @param exceptionContext 异常上下文参数，包含异常处理的状态信息
+ * @param unwindContext 展开上下文参数，用于控制异常处理流程
+ * 
+ * 该函数执行以下操作：
+ * 1. 检查展开上下文中的状态标志位(0x10)
+ * 2. 如果标志位被设置，清除该标志位
+ * 3. 调用清理函数进行后续处理
+ * 
+ * @note 这是简化实现，原始函数名为 Unwind_1809022a0
+ */
+void CleanupExceptionStatusFlags(undefined8 exceptionContext, longlong unwindContext)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 0x10) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xffffffef;
-    FUN_180627b90(param_2 + 0x58);
+  if ((*(uint *)(unwindContext + 0x30) & 0x10) != 0) {
+    *(uint *)(unwindContext + 0x30) = *(uint *)(unwindContext + 0x30) & 0xffffffef;
+    FUN_180627b90(unwindContext + 0x58);
   }
   return;
 }
 
 
 
-void Unwind_1809022d0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 清理异常处理扩展标志
+ * 
+ * 该函数负责清理异常处理中的扩展标志，确保异常处理系统能够正常工作。
+ * 当检测到特定的扩展标志位时，会清除该标志并调用相应的清理函数。
+ * 
+ * @param exceptionContext 异常上下文参数，包含异常处理的状态信息
+ * @param unwindContext 展开上下文参数，用于控制异常处理流程
+ * 
+ * 该函数执行以下操作：
+ * 1. 检查展开上下文中的扩展标志位(0x20)
+ * 2. 如果标志位被设置，清除该标志位
+ * 3. 调用清理函数进行后续处理
+ * 
+ * @note 这是简化实现，原始函数名为 Unwind_1809022d0
+ */
+void CleanupExceptionExtendedFlags(undefined8 exceptionContext, longlong unwindContext)
 
 {
-  if ((*(uint *)(param_2 + 0x30) & 0x20) != 0) {
-    *(uint *)(param_2 + 0x30) = *(uint *)(param_2 + 0x30) & 0xffffffdf;
-    FUN_180627b90(param_2 + 0xd8);
+  if ((*(uint *)(unwindContext + 0x30) & 0x20) != 0) {
+    *(uint *)(unwindContext + 0x30) = *(uint *)(unwindContext + 0x30) & 0xffffffdf;
+    FUN_180627b90(unwindContext + 0xd8);
   }
   return;
 }
 
 
 
-void Unwind_180902300(undefined8 param_1,longlong param_2)
+/**
+ * @brief 设置扩展默认异常处理器
+ * 
+ * 该函数负责设置扩展的默认异常处理器，确保在异常发生时能够正确处理。
+ * 它会将指定的异常处理器地址设置到展开上下文的扩展位置。
+ * 
+ * @param exceptionContext 异常上下文参数，包含异常处理的状态信息
+ * @param unwindContext 展开上下文参数，用于设置扩展异常处理器
+ * 
+ * 该函数执行以下操作：
+ * 1. 将默认异常处理器B的地址设置到展开上下文的扩展位置
+ * 2. 确保异常处理系统能够正确调用扩展处理器
+ * 
+ * @note 这是简化实现，原始函数名为 Unwind_180902300
+ */
+void SetExtendedDefaultExceptionHandler(undefined8 exceptionContext, longlong unwindContext)
 
 {
-  *(undefined **)(param_2 + 0xd8) = &DefaultExceptionHandlerB;
+  *(undefined **)(unwindContext + 0xd8) = &DefaultExceptionHandlerB;
   return;
 }
 
