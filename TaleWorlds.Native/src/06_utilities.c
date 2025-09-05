@@ -201,7 +201,7 @@
  * 
  * @note 原始函数名：FUN_1808a5780
  */
-#define CreateExceptionDataBuffer FUN_1808a5780
+#define CreateExceptionDataBuffer CreateExceptionDataBuffer
 
 /**
  * @brief 系统安全状态获取函数
@@ -45031,9 +45031,9 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x80);
+  validationContext = *(int64_t *)(unwindContext + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x910) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x910))(validationContext + 0x900,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x910))(validationContext + 0x900,0,0,systemFlag,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x8e0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x8e8) != 0) {
@@ -45080,14 +45080,17 @@ void ExceptionUnwindHandlerE0(DataBuffer exceptionContext, int64_t unwindContext
 
 
 
-void Unwind_180904330(DataBuffer param_1,int64_t param_2,DataBuffer param_3,DataBuffer param_4)
+// 原始函数名：Unwind_180904330 - 异常展开处理函数E1
+// 功能：处理异常展开过程中的验证和清理操作
+#define ExceptionUnwindHandlerE1 Unwind_180904330
 
+void ExceptionUnwindHandlerE1(DataBuffer exceptionContext, int64_t unwindContext, DataBuffer cleanupParameter, DataBuffer systemFlag)
 {
   int64_t validationContext;
   
-  validationContext = *(int64_t *)(param_2 + 0x80);
+  validationContext = *(int64_t *)(unwindContext + 0x80);
   if (*(FunctionPointer**)(validationContext + 0x9d0) != (code *)0x0) {
-    (**(FunctionPointer**)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,param_4,SystemCleanupFlagfffffffe);
+    (**(FunctionPointer**)(validationContext + 0x9d0))(validationContext + 0x9c0,0,0,systemFlag,SystemCleanupFlagfffffffe);
   }
   *(DataBuffer *)(validationContext + 0x9a0) = &UNK_180a3c3e0;
   if (*(int64_t *)(validationContext + 0x9a8) != 0) {
@@ -47005,8 +47008,11 @@ void Unwind_180904a30(DataBuffer param_1,int64_t param_2)
 
 
 
-void Unwind_180904a50(DataBuffer param_1,int64_t param_2)
+// 原始函数名：Unwind_180904a50 - 异常展开处理函数F0
+// 功能：处理异常展开过程中的资源清理和验证操作
+#define ExceptionUnwindHandlerF0 Unwind_180904a50
 
+void ExceptionUnwindHandlerF0(DataBuffer exceptionContext, int64_t unwindContext)
 {
   int *referenceCountPointer;
   char *validationFlag;
@@ -47015,7 +47021,7 @@ void Unwind_180904a50(DataBuffer param_1,int64_t param_2)
   int64_t resourceIterator;
   uint64_t dataFlags;
   
-  resourceIterator = *(int64_t *)(param_2 + 0x70);
+  resourceIterator = *(int64_t *)(unwindContext + 0x70);
   validationStatusPointer = *(DataBuffer **)(resourceIterator + 0x548);
   if (validationStatusPointer != (DataBuffer *)0x0) {
     if ((DataBuffer *)validationStatusPointer[3] != (DataBuffer *)0x0) {
