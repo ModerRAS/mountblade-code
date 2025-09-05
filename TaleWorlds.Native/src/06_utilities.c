@@ -4973,63 +4973,81 @@ undefined DAT_180bfbd80;
 // 功能：清理异常处理状态并释放相关资源
 #define CleanupExceptionStateF1 Unwind_180902100
 
-// 函数: void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
-// 
-// 处理对象数据
-// 对指定的对象数据进行处理和操作，包括验证、清理等
-// 
-// 参数:
-//   objectHandle - 对象句柄或指针
-//   dataContext - 数据上下文或配置信息
-// 
-// 返回值:
-//   无
-void UtilityProcessObjectData(longlong objectHandle,longlong dataContext)
-
+/**
+ * @brief 处理对象数据并执行相关操作
+ * 
+ * 对指定的对象数据进行处理和操作，包括系统数据查询、资源处理、
+ * 安全验证和内存清理等功能。该函数执行完整的对象数据处理流程。
+ * 
+ * @param ObjectHandle 对象句柄或指针，指向要处理的对象
+ * @param DataContext 数据上下文或配置信息，包含处理所需的配置数据
+ * 
+ * @return void 无返回值
+ * 
+ * @note 此函数包含安全验证机制，确保处理过程的安全性
+ * @warning 函数执行过程中不会返回，最后会调用安全检查
+ * 
+ * @see QueryAndRetrieveSystemDataA0, ExecuteCoreFunction, ProcessUtilityOperation
+ */
+void ProcessObjectDataWithValidation(int64_t ObjectHandle, int64_t DataContext)
 {
-  uint64_t resourceHandle;
-  int operationResult;
-  longlong arrayIndex;
-  int processedCount;
-  undefined1 securityValidationBuffer [32];
-  longlong systemContextArray [2];
-  undefined1 *dataProcessingBuffer;
-  int iterationCounter;
-  uint32_t operationFlags;
-  undefined1 workingDataBuffer [512];
-  ulonglong stackGuardValue;
+  // 资源和操作相关变量
+  uint64_t ResourceIdentifier;
+  int32_t OperationStatus;
+  int64_t ArrayIterator;
+  int32_t ProcessedItemCount;
   
-  stackGuardValue = _DAT_180bf00a8 ^ (ulonglong)securityValidationBuffer;
-  operationResult = QueryAndRetrieveSystemDataA0(*(undefined4 *)(objectHandle + 0x10),systemContextArray);
-  if ((operationResult == 0) && (*(longlong *)(systemContextArray[0] + 8) != 0)) {
-    dataProcessingBuffer = workingDataBuffer;
-    processedCount = 0;
-    iterationCounter = 0;
-    operationFlags = 0xffffffc0;
-    operationResult = ExecuteCoreFunction(*(undefined8 *)(dataContext + 0x90),*(longlong *)(systemContextArray[0] + 8),
-                          &dataProcessingBuffer);
-    if (operationResult == 0) {
-      if (0 < iterationCounter) {
-        arrayIndex = 0;
+  // 安全和缓冲区相关变量
+  uint8_t SecurityValidationBuffer[32];
+  int64_t SystemContextArray[2];
+  uint8_t *DataProcessingBuffer;
+  int32_t LoopCounter;
+  uint32_t ProcessingFlags;
+  uint8_t WorkingDataBuffer[512];
+  
+  // 栈保护变量
+  uint64_t StackGuardValue;
+  
+  // 执行栈保护检查
+  StackGuardValue = _DAT_180bf00a8 ^ (uint64_t)SecurityValidationBuffer;
+  
+  // 查询和检索系统数据
+  OperationStatus = QueryAndRetrieveSystemDataA0(*(uint32_t *)(ObjectHandle + 0x10), SystemContextArray);
+  
+  // 验证操作结果并处理数据
+  if ((OperationStatus == 0) && (*(int64_t *)(SystemContextArray[0] + 8) != 0)) {
+    DataProcessingBuffer = WorkingDataBuffer;
+    ProcessedItemCount = 0;
+    LoopCounter = 0;
+    ProcessingFlags = 0xffffffc0;
+    
+    // 执行核心功能
+    OperationStatus = ExecuteCoreFunction(*(uint64_t *)(DataContext + 0x90), *(int64_t *)(SystemContextArray[0] + 8),
+                          &DataProcessingBuffer);
+    
+    // 处理执行结果
+    if (OperationStatus == 0) {
+      if (0 < LoopCounter) {
+        ArrayIterator = 0;
         do {
-          resourceHandle = *(undefined8 *)(dataProcessingBuffer + arrayIndex);
-          operationResult = ProcessUtilityOperation(resourceHandle);
-          if (operationResult != 2) {
+          ResourceIdentifier = *(uint64_t *)(DataProcessingBuffer + ArrayIterator);
+          OperationStatus = ProcessUtilityOperation(ResourceIdentifier);
+          if (OperationStatus != 2) {
                     // WARNING: Subroutine does not return
-            ReleaseResource(resourceHandle,1);
+            ReleaseResource(ResourceIdentifier, 1);
           }
-          processedCount = processedCount + 1;
-          arrayIndex = arrayIndex + 8;
-        } while (processedCount < iterationCounter);
+          ProcessedItemCount = ProcessedItemCount + 1;
+          ArrayIterator = ArrayIterator + 8;
+        } while (ProcessedItemCount < LoopCounter);
       }
-      CleanupMemory(&dataProcessingBuffer);
+      CleanupMemory(&DataProcessingBuffer);
     }
     else {
-      CleanupMemory(&dataProcessingBuffer);
+      CleanupMemory(&DataProcessingBuffer);
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(stackGuardValue ^ (ulonglong)securityValidationBuffer);
+  ExecuteSecurityCheck(StackGuardValue ^ (uint64_t)SecurityValidationBuffer);
 }
 
 
