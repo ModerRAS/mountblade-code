@@ -447,7 +447,7 @@
  * 
  * @note 原始函数名：FUN_180899816
  */
-#define CleanupDataProcessor FUN_180899816
+#define CleanupDataProcessorA0 CleanupDataProcessorA0
 
 /**
  * @brief 处理数据集合A0
@@ -456,7 +456,7 @@
  * 
  * @note 原始函数名：FUN_1808998a0
  */
-#define ProcessDataCollection FUN_1808998a0
+#define ProcessDataCollectionA0 ProcessDataCollectionA0
 
 /**
  * @brief 验证数据完整性
@@ -465,7 +465,7 @@
  * 
  * @note 原始函数名：FUN_1808999d90
  */
-#define ValidateDataIntegrity FUN_1808999d90
+#define ValidateDataIntegrityA0 ValidateDataIntegrityA0
 
 /**
  * @brief 执行系统检查
@@ -474,7 +474,7 @@
  * 
  * @note 原始函数名：FUN_180899dc7
  */
-#define ExecuteSystemCheck FUN_180899dc7
+#define ExecuteSystemCheckA0 ExecuteSystemCheckA0
 
 /**
  * @brief 处理高级数据操作A0
