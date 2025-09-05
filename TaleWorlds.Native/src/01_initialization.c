@@ -3,12 +3,12 @@
 
 
 // 系统管理器表偏移量
-#define CompletionPortHandleOffset    0x42686
-#define ResourceManagerOffset         0x42687
-#define MemoryFreeSize                0x213458
+#define SystemCompletionPortHandleOffset    0x42686
+#define SystemResourceManagerOffset         0x42687
+#define SystemMemoryFreeSize                0x213458
 
 // 位操作和数学计算相关常量
-#define BitMask32Bit                    0x1f
+#define SystemBitMask32Bit                    0x1f
 #define SystemMaximumUnsigned32BitValue               0xffffffff
 #define SystemSineLookupTableSize            0x7fff
 #define SystemQuadrantShiftBits              0xd
@@ -43,10 +43,10 @@
 #define SystemMemoryStatusAlignment           0xffffff00
 
 // 字符串处理相关常量
-#define SystemStringBufferCapacityValueDefault   0xb
-#define SystemStringBufferCapacityValueShort     0x7
-#define SystemDataBufferCapacityValueDefault     0x8
-#define SystemMessageConfigBufferCapacityValue   0xa
+#define SystemStringBufferCapacityDefault   0xb
+#define SystemStringBufferCapacityShort     0x7
+#define SystemDataBufferCapacityDefault     0x8
+#define SystemMessageConfigBufferCapacity   0xa
 
 // 字符串缓冲区偏移量常量
 #define SystemStringLengthOffset        0x10
