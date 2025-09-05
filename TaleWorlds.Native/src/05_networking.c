@@ -10,6 +10,13 @@
 typedef uint32_t NetworkConnectionStatus;
 
 /**
+ * @brief 网络状态枚举类型
+ * 
+ * 用于表示网络连接的具体状态值，包括活跃、非活跃、保留、特殊等状态
+ */
+typedef uint8_t NetworkStatus;
+
+/**
  * @brief 网络字节数据类型
  * 
  * 用于表示网络传输中的字节数据，支持网络协议中的基本数据单元
@@ -142,7 +149,7 @@ static int64_t CalculateContextDataOffset(int64_t ContextAddress, void *Buffer, 
  */
 static int64_t CalculateLastContextEntryOffset(int64_t ContextAddress, void *Buffer, void *Pointer)
 {
-    return CalculateContextDataOffset(ContextAddress, Buffer, Pointer) - 4 + (int64_t)((NetworkConnectionStatus *)Pointer + ConnectionContextStatusEntrySize);
+    return CalculateContextDataOffset(ContextAddress, Buffer, Pointer) - 4 + (int64_t)((NetworkConnectionStatus *)Pointer + ConnectionContextEntrySize);
 }
 
 /**
@@ -244,7 +251,7 @@ static int64_t CalculateLastStatusEntryOffset(int64_t ContextIdentifier, void *S
 #define ConnectionContextPacketStatusIndex 1                   // 连接上下文数据包状态索引
 #define ConnectionContextDataStatusIndex 2                     // 连接上下文数据状态索引
 #define ConnectionContextValidationStatusIndex 3                // 连接上下文验证状态索引
-#define ConnectionContextStatusEntrySize 5                     // 连接上下文状态条目大小
+#define ConnectionContextEntrySize 5                           // 连接上下文状态条目大小
 #define NetworkOperationBufferSizeIndex 1                      // 网络操作缓冲区大小索引
 #define NetworkStatusValidationIndex 1                         // 网络状态验证索引
 #define NetworkStatusTimeoutIndex 2                            // 网络状态超时索引

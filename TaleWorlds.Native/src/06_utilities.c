@@ -98074,7 +98074,16 @@ void ReleaseValidationContextExclusiveLock(uint8_t ObjectContext, int64_t Valida
 
 
 
-void Unwind_18090fc20(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源数据标志位和操作
+ * 
+ * 该函数负责检查资源数据的标志位，并在需要时清除标志位
+ * 然后执行相应的资源操作
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void ProcessResourceDataFlagAndOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x60) & 1) != 0) {
@@ -98086,7 +98095,16 @@ void Unwind_18090fc20(uint8_t ObjectContext,int64_t ValidationContext)
 
 
 
-void Unwind_18090fc50(uint8_t ObjectContext,int64_t ValidationContext)
+/**
+ * @brief 处理资源数据次要标志位和操作
+ * 
+ * 该函数负责检查资源数据的次要标志位，并在需要时清除标志位
+ * 然后执行相应的资源操作
+ * 
+ * @param ObjectContext 对象上下文标识符
+ * @param ValidationContext 验证上下文指针
+ */
+void ProcessResourceDataSecondaryFlagAndOperation(uint8_t ObjectContext, int64_t ValidationContext)
 
 {
   if ((*(uint *)(ResourceData + 0x60) & 2) != 0) {
