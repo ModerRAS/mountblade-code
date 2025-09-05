@@ -3728,32 +3728,32 @@ void* UtilitySystemConfigBufferB;
 
 // 函数: void ConfigureUtilitySystemBufferB();
 #define ConfigureUtilitySystemBufferB FUN_1809428e0
-undefined ConfigureUtilitySystemBufferB;
-undefined UtilitySystemConfigBufferC;
+void ConfigureUtilitySystemBufferB;
+void* UtilitySystemConfigBufferC;
 
 // 函数: void ConfigureUtilitySystemBufferC();
 #define ConfigureUtilitySystemBufferC FUN_180942930
-undefined ConfigureUtilitySystemBufferC;
+void ConfigureUtilitySystemBufferC;
 
 // 函数: void ProcessUtilitySystemData();
 #define ProcessUtilitySystemData FUN_180942a20
-undefined ProcessUtilitySystemData;
+void ProcessUtilitySystemData;
 
 // 函数: void ValidateUtilitySystemData();
 #define ValidateUtilitySystemData FUN_1809429f0
-undefined ValidateUtilitySystemData;
-undefined UtilitySystemValidateData1;
-undefined UtilitySystemValidateDataPointer1;
-undefined UtilitySystemValidateData2;
-undefined UtilitySystemValidateStatus1;
-undefined UtilitySystemValidateData3;
-undefined UtilitySystemValidateStatus2;
-undefined UtilitySystemValidateData4;
-undefined UtilitySystemValidateStatus3;
-undefined UtilitySystemProcessData1;
-undefined UtilitySystemProcessData2;
-undefined UtilitySystemProcessData3;
-undefined UtilitySystemProcessData4;
+void ValidateUtilitySystemData;
+void* UtilitySystemValidateData1;
+void* UtilitySystemValidateDataPointer1;
+void* UtilitySystemValidateData2;
+uint8_t UtilitySystemValidateStatus1;
+void* UtilitySystemValidateData3;
+uint8_t UtilitySystemValidateStatus2;
+void* UtilitySystemValidateData4;
+uint8_t UtilitySystemValidateStatus3;
+void* UtilitySystemProcessData1;
+void* UtilitySystemProcessData2;
+void* UtilitySystemProcessData3;
+void* UtilitySystemProcessData4;
 
 942a60;
 #define ConfigureUtilitySystemCallbacks FUN_180942a60
