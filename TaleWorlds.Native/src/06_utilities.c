@@ -50058,35 +50058,35 @@ void Unwind_180906d30(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_180906d40(undefined8 param_1,longlong param_2)
+void CleanupExceptionResources(undefined8 ExceptionContext, longlong ResourcePointer)
 
 {
-  int *piVar1;
-  undefined8 *puVar2;
-  longlong lVar3;
-  ulonglong uVar4;
+  int *ReferenceCount;
+  undefined8 *MemoryBlock;
+  longlong BlockOffset;
+  ulonglong MemoryAddress;
   
-  puVar2 = *(undefined8 **)(param_2 + 0xa8);
-  if (puVar2 == (undefined8 *)0x0) {
+  MemoryBlock = *(undefined8 **)(ResourcePointer + 0xa8);
+  if (MemoryBlock == (undefined8 *)0x0) {
     return;
   }
-  uVar4 = (ulonglong)puVar2 & 0xffffffffffc00000;
-  if (uVar4 != 0) {
-    lVar3 = uVar4 + 0x80 + ((longlong)puVar2 - uVar4 >> 0x10) * 0x50;
-    lVar3 = lVar3 - (ulonglong)*(uint *)(lVar3 + 4);
-    if ((*(void ***)(uVar4 + 0x70) == &ExceptionList) && (*(char *)(lVar3 + 0xe) == '\0')) {
-      *puVar2 = *(undefined8 *)(lVar3 + 0x20);
-      *(undefined8 **)(lVar3 + 0x20) = puVar2;
-      piVar1 = (int *)(lVar3 + 0x18);
-      *piVar1 = *piVar1 + -1;
-      if (*piVar1 == 0) {
+  MemoryAddress = (ulonglong)MemoryBlock & 0xffffffffffc00000;
+  if (MemoryAddress != 0) {
+    BlockOffset = MemoryAddress + 0x80 + ((longlong)MemoryBlock - MemoryAddress >> 0x10) * 0x50;
+    BlockOffset = BlockOffset - (ulonglong)*(uint *)(BlockOffset + 4);
+    if ((*(void ***)(MemoryAddress + 0x70) == &ExceptionList) && (*(char *)(BlockOffset + 0xe) == '\0')) {
+      *MemoryBlock = *(undefined8 *)(BlockOffset + 0x20);
+      *(undefined8 **)(BlockOffset + 0x20) = MemoryBlock;
+      ReferenceCount = (int *)(BlockOffset + 0x18);
+      *ReferenceCount = *ReferenceCount + -1;
+      if (*ReferenceCount == 0) {
         FUN_18064d630();
         return;
       }
     }
     else {
-      func_0x00018064e870(uVar4,CONCAT71(0xff000000,*(void ***)(uVar4 + 0x70) == &ExceptionList),
-                          puVar2,uVar4,0xfffffffffffffffe);
+      func_0x00018064e870(MemoryAddress,CONCAT71(0xff000000,*(void ***)(MemoryAddress + 0x70) == &ExceptionList),
+                          MemoryBlock,MemoryAddress,0xfffffffffffffffe);
     }
   }
   return;

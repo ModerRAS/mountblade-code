@@ -87,34 +87,34 @@ typedef NetworkHandle (*NetworkPacketProcessor)(NetworkHandle*, NetworkConnectio
 
 // 连接上下文缓冲区索引常量
 #define ConnectionStateIndex 0                                // 连接状态索引
-#define ConnectionIdIndex 1                                   // 连接标识符索引
-#define SecurityValidationIndex 2                             // 安全验证结果索引
-#define FinalizeValueIndex 3                                   // 最终值索引
-#define ProcessingFlagsIndex 4                                // 处理标志索引
-#define ValidationFlagsIndex 5                                // 验证标志索引
-#define ProcessingModeIndex 6                                 // 处理模式索引
+#define ConnectionIdentifierIndex 1                             // 连接标识符索引
+#define SecurityValidationResultIndex 2                         // 安全验证结果索引
+#define FinalizationValueIndex 3                                // 最终值索引
+#define ProcessingStateFlagsIndex 4                            // 处理状态标志索引
+#define ValidationStateFlagsIndex 5                            // 验证状态标志索引
+#define DataProcessingModeIndex 6                              // 数据处理模式索引
 
 // 状态数组索引常量
-#define PrimaryStateIndex 0                                    // 主要状态索引
-#define SecondaryValidationIndex 0                              // 第二级验证索引
-#define TertiaryValidationIndex 0                              // 第三级验证索引
-#define QuaternaryValidationIndex 0                            // 第四级验证索引
-#define PrimaryDataIndex 0                                     // 主要数据索引
+#define PrimaryConnectionStateIndex 0                          // 主要连接状态索引
+#define SecondaryValidationStateIndex 0                        // 第二级验证状态索引
+#define TertiaryValidationStateIndex 0                         // 第三级验证状态索引
+#define QuaternaryValidationStateIndex 0                       // 第四级验证状态索引
+#define PrimaryDataProcessingIndex 0                          // 主要数据处理索引
 
 // 输出缓冲区索引常量
-#define DecodingStatusIndex 0                                  // 解码状态索引
-#define MagicValidationIndex 1                                  // 魔数验证索引
-#define DataIntegrityIndex 2                                    // 数据完整性索引
-#define DecodingModeIndex 3                                     // 解码模式索引
-#define PacketDecodingModeIndex 0                               // 数据包解码模式索引
-#define PrimaryMagicNumberIndex 1                               // 主要魔数索引
-#define SecondaryMagicNumberIndex 2                             // 次要魔数索引
+#define PacketDecodingStatusIndex 0                            // 数据包解码状态索引
+#define MagicNumberValidationIndex 1                            // 魔数验证索引
+#define DataIntegrityCheckIndex 2                               // 数据完整性检查索引
+#define DataPacketDecodingModeIndex 3                           // 数据包解码模式索引
+#define NetworkPacketDecodingModeIndex 0                        // 网络数据包解码模式索引
+#define PrimaryNetworkMagicNumberIndex 1                       // 主要网络魔数索引
+#define SecondaryNetworkMagicNumberIndex 2                     // 次要网络魔数索引
 
 // 连接上下文配置常量
 #define ConnectionContextEntrySize 5                           // 连接上下文状态条目大小
 
 // 安全验证数据索引常量
-#define ConnectionValidationStatusIndex 0                       // 连接验证状态索引
+#define NetworkConnectionValidationStatusIndex 0                // 网络连接验证状态索引
 #define DataIntegrityValidationIndex 1                           // 数据完整性验证索引
 #define SecurityComplianceValidationIndex 2                     // 安全合规性验证索引
 #define ValidationModeDataIndex 3                               // 验证模式数据索引
