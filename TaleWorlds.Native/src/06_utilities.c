@@ -50023,20 +50023,29 @@ void ValidationContextHandlerA0(undefined8 param_1,longlong param_2)
 
 
 
-void Unwind_1809073b0(undefined8 param_1,longlong param_2)
+/**
+ * @brief 验证上下文处理函数A1
+ * 
+ * 处理验证上下文的双重调用，先处理偏移量0x18处的上下文，
+ * 然后处理偏移量0x10处的上下文
+ * 
+ * @param param_1 未使用的参数
+ * @param param_2 包含验证上下文指针的参数结构
+ */
+void ValidationContextHandlerA1(undefined8 param_1,longlong param_2)
 
 {
-  longlong *pvalidationContext;
-  longlong lVar2;
+  longlong *validationContextPtr;
+  longlong contextOffset;
   
-  lVar2 = *(longlong *)(param_2 + 0x80);
-  pvalidationContext = *(longlong **)(lVar2 + 0x18);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  contextOffset = *(longlong *)(param_2 + 0x80);
+  validationContextPtr = *(longlong **)(contextOffset + 0x18);
+  if (validationContextPtr != (longlong *)0x0) {
+    (**(code **)(*validationContextPtr + 0x38))();
   }
-  pvalidationContext = *(longlong **)(lVar2 + 0x10);
-  if (pvalidationContext != (longlong *)0x0) {
-    (**(code **)(*pvalidationContext + 0x38))();
+  validationContextPtr = *(longlong **)(contextOffset + 0x10);
+  if (validationContextPtr != (longlong *)0x0) {
+    (**(code **)(*validationContextPtr + 0x38))();
   }
   return;
 }
