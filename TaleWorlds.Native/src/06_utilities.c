@@ -10145,7 +10145,6 @@ void InitializeResourceContext(longlong param_1, undefined8 param_2)
 
 
 
-// 函数: void FUN_180893080(longlong param_1,longlong param_2)
 void ProcessUtilitySystemRequest(longlong systemHandle,longlong requestContext)
 
 {
@@ -10404,19 +10403,16 @@ void ActivateUtilitySystemState(longlong systemHandle,longlong operationContext)
 
 
 
-// 函数: void FUN_180893420(longlong param_1,longlong param_2)
-// 
-// 工具系统状态停用函数
-// 
-// 功能：
-// 停用工具系统状态，清除状态标志并递增引用计数
-// 
-// 参数：
-//   systemHandle - 系统句柄，包含系统状态信息
-//   operationContext - 操作上下文，包含操作相关数据
-// 
-// 返回值：
-//   无
+/**
+ * @brief 工具系统状态停用函数
+ * 
+ * 停用工具系统状态，清除状态标志并递增引用计数
+ * 
+ * @param systemHandle 系统句柄，包含系统状态信息
+ * @param operationContext 操作上下文，包含操作相关数据
+ * 
+ * @return 无
+ */
 void DeactivateUtilitySystemState(longlong systemHandle,longlong operationContext)
 
 {
@@ -19815,39 +19811,51 @@ void UtilityNoOperationL(void)
 
 
 
-// 函数: void FUN_18089ae50(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
-void FUN_18089ae50(longlong param_1,undefined8 param_2,undefined4 param_3,undefined4 param_4,
-                  char param_5)
+/**
+ * @brief 执行系统数据处理操作
+ * @param dataContext 数据上下文句柄
+ * @param operationHandle 操作句柄
+ * @param operationFlags 操作标志
+ * @param dataSize 数据大小
+ * @param dataType 数据类型
+ * @return 处理结果状态码
+ */
+void ExecuteSystemDataProcessing(longlong dataContext, undefined8 operationHandle, undefined4 operationFlags,
+                                undefined4 dataSize, char dataType)
 
 {
-  int iVar1;
-  undefined1 auStack_78 [64];
-  undefined1 auStack_38 [32];
+  int processResult;
+  undefined1 dataBuffer1 [64];
+  undefined1 dataBuffer2 [32];
   
-  iVar1 = FUN_1808ddc20(param_2,auStack_38,1,param_3);
-  if (((iVar1 == 0) && (iVar1 = FUN_1808ddc20(param_2,auStack_78,0,param_4), iVar1 == 0)) &&
-     (iVar1 = FUN_180899360(param_2,param_1 + 0x10), iVar1 == 0)) {
-    if ((param_5 != '\0') && (iVar1 = FUN_18089d490(param_1 + 0x48,param_2), iVar1 != 0)) {
+  processResult = FUN_1808ddc20(operationHandle,dataBuffer2,1,operationFlags);
+  if (((processResult == 0) && (processResult = FUN_1808ddc20(operationHandle,dataBuffer1,0,dataSize), processResult == 0)) &&
+     (processResult = FUN_180899360(operationHandle,dataContext + 0x10), processResult == 0)) {
+    if ((dataType != '\0') && (processResult = FUN_18089d490(dataContext + 0x48,operationHandle), processResult != 0)) {
       return;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808ddf80(param_2,auStack_78);
+    FUN_1808ddf80(operationHandle,dataBuffer1);
   }
   return;
 }
 
 
 
-ulonglong FUN_18089af12(void)
+/**
+ * @brief 获取系统验证上下文
+ * @return 验证上下文指针
+ */
+ulonglong GetSystemValidationContext(void)
 
 {
-  longlong *pvalidationContext;
-  uint uVar2;
-  uint in_EAX;
-  uint uVar3;
-  ulonglong uVar4;
-  ulonglong uVar5;
-  longlong *registerRBX;
+  longlong *validationContext;
+  uint validationFlags;
+  uint systemStatus;
+  uint operationResult;
+  ulonglong contextPointer;
+  ulonglong systemHandle;
+  longlong *systemRegister;
   longlong unaff_RBP;
   uint unaff_ESI;
   uint unaff_EDI;
