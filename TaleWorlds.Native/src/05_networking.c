@@ -852,7 +852,7 @@ uint32_t ProcessNetworkContextEntry(int64_t NetworkContextEntryData);
  * @warning 如果数据验证失败，会终止当前传输并返回错误码
  * @see ValidateNetworkConnectionPacket, ProcessNetworkConnectionPacket
  */
-uint32_t ProcessConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
+uint32_t ProcessNetworkConnectionData(int64_t NetworkContextEntry, int64_t NetworkContextArray, int64_t ConnectionContext);
 
 /**
  * @brief 处理辅助连接数据
@@ -873,7 +873,7 @@ uint32_t ProcessSecondaryConnectionData(int64_t ConnectionContext, int64_t Conne
  * @param NetworkContextEntry 网络上下文条目
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidateContextEntry(int64_t NetworkContextEntry);
+uint32_t ValidateNetworkContextEntry(int64_t NetworkContextEntry);
 
 /**
  * @brief 初始化网络连接
@@ -883,7 +883,7 @@ uint32_t ValidateContextEntry(int64_t NetworkContextEntry);
  * @param ConnectionHandle 连接句柄
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t SetupNetworkConnection(NetworkHandle ConnectionHandle);
+uint32_t InitializeNetworkConnection(NetworkHandle ConnectionHandle);
 
 /**
  * @brief 验证网络连接状态
@@ -893,7 +893,7 @@ uint32_t SetupNetworkConnection(NetworkHandle ConnectionHandle);
  * @param ConnectionHandle 连接句柄
  * @return uint32_t 验证结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t ValidateConnectionStatus(NetworkHandle ConnectionHandle);
+uint32_t ValidateNetworkConnectionStatus(NetworkHandle ConnectionHandle);
 
 /**
  * @brief 重置网络连接状态
@@ -927,7 +927,7 @@ void ClearNetworkConnectionCache(void);
  * @param BufferPointer 缓冲区指针
  * @return uint32_t 初始化结果句柄，0表示成功，其他值表示错误码
  */
-uint32_t SetupNetworkBuffer(int64_t BufferPointer);
+uint32_t InitializeNetworkBuffer(int64_t BufferPointer);
 
 /**
  * @brief 处理网络数组数据
