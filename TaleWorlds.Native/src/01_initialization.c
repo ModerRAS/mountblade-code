@@ -28788,7 +28788,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   uint threadFlags;
   uint8_t encryptionBuffer [32];
   uint8_t bufferFlags;
-  uint32_t operationFlags1;
+  uint32_t OperationFlagsPrimary;
   uint32_t operationFlags2;
   void* *SystemResourcePrimaryPointer;
   uint8_t *threadBufferPointer;
