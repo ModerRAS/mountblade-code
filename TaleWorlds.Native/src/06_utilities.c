@@ -157,6 +157,10 @@
 // 功能：双重验证上下文句柄并执行相应操作，如果任一验证失败则调用错误处理函数
 #define DoubleValidateAndExecuteOperation FUN_180892120
 
+// 原始函数名：FUN_1808924f0 - 浮点数验证和处理函数
+// 功能：验证浮点数数据的有效性，检查INF和NaN值，处理零向量情况，并执行系统数据查询和存储操作
+#define ValidateAndProcessFloatingPointData FUN_1808924f0
+
 // 原始函数名：FUN_1809424c0 - 数据解密函数A0
 // 功能：解密工具系统数据A0
 #define DecryptUtilityDataA0 FUN_1809424c0
@@ -7817,26 +7821,37 @@ void ExecuteSecurityValidation(void)
 
 
 
-undefined8 FUN_1808924f0(longlong param_1,longlong param_2)
+/**
+ * 验证和处理浮点数数据
+ * 
+ * 此函数验证输入的浮点数数据的有效性，检查INF和NaN值，
+ * 处理零向量情况，并执行系统数据查询和存储操作。
+ * 
+ * @param dataPtr 指向包含浮点数数据的结构体的指针
+ * @param contextPtr 上下文指针，用于系统数据访问
+ * @return 返回操作状态码，0表示成功，非零表示错误
+ */
+undefined8 ValidateAndProcessFloatingPointData(longlong dataPtr,longlong contextPtr)
 
 {
-  float fVar1;
-  undefined4 uVar2;
-  undefined4 uVar3;
-  undefined4 uVar4;
-  undefined8 uVar5;
-  int iVar6;
-  int iVar7;
-  int iVar8;
-  int iVar9;
-  longlong lVar10;
-  longlong alStackX_8 [2];
-  uint uStackX_18;
-  float fStackX_20;
+  float floatComponentZ;
+  uint uintComponentX;
+  uint uintComponentY;
+  uint uintComponentZ;
+  uint uintComponentW;
+  undefined8 result;
+  int infFlag1;
+  int infFlag2;
+  int infFlag3;
+  int infFlag4;
+  longlong dataBufferPtr;
+  longlong stackBuffer [2];
+  uint uintTemp;
+  float floatTemp;
   
-  lVar10 = 0;
-  iVar8 = 0;
-  iVar9 = iVar8;
+  dataBufferPtr = 0;
+  infFlag3 = 0;
+  infFlag4 = infFlag3;
   if ((*(uint *)(param_1 + 0x20) & 0x7f800000) == 0x7f800000) {
     iVar9 = 0x1d;
   }
