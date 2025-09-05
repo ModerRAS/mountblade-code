@@ -1564,7 +1564,7 @@ void InitializeGameCoreSystem(void)
   SystemCurrentNodePointer = (void**)SystemRootNodePointer[1];
   
   while (!IsGameCoreNodeActive) {
-    GameCoreIdentifierNodeIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &GameCoreSystemId, IdentifierSize);
+    GameCoreIdentifierComparisonResult = memcmp(SystemCurrentNodePointer + 4, &GameCoreSystemId, IdentifierSize);
     if (GameCoreIdentifierComparisonResult < 0) {
       SystemNextNodePointer = (void**)SystemCurrentNodePointer[NodeNextPointerOffset];
       SystemCurrentNodePointer = SystemPreviousNodePointer;
