@@ -18338,7 +18338,7 @@ OperationFailedLabel:
       validationResult = ValidateDataIntegrityA0(contextHandle,&callbackPointer);
       if (validationResult != 0) goto LAB_180897ce8;
       currentIteration = 0;
-      maxIterations = func_0x0001808c7ed0(*(undefined8 *)(resourceEntry + 0xd0));
+      maxIterations = PerformSystemValidationCheck(*(undefined8 *)(resourceEntry + 0xd0));
       validationResult = processCount + 1;
       if (0 < maxIterations) {
         do {
@@ -18358,7 +18358,7 @@ OperationFailedLabel:
             *(undefined1 *)(param_1 + 4) = 0;
           }
           iVar6 = iVar6 + 1;
-          iVar3 = func_0x0001808c7ed0(*(undefined8 *)(validationContext + 0xd0));
+          iVar3 = PerformSystemValidationCheck(*(undefined8 *)(validationContext + 0xd0));
         } while (iVar6 < iVar3);
       }
     }
