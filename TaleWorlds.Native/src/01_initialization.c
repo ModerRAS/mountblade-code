@@ -227,6 +227,23 @@
 #define SystemSecondaryAllocationSize         0x28
 #define SystemControllerAddress               0x180c91060
 
+// 游戏系统地址常量
+#define GameLogicSystemPrimaryAddress         0x180bebac8
+#define GameLogicSystemSecondaryAddress       0x180bebad8
+#define UISystemPrimaryAddress                0x180bebaf0
+#define UISystemSecondaryAddress              0x180bebbb0
+#define UISystemTertiaryAddress               0x180bebb50
+#define UISystemQuaternaryAddress             0x180bebc10
+
+// 系统数据库地址常量
+#define SystemDatabasePrimaryAddress          0x180c4f510
+
+// 系统同步对象地址常量
+#define SystemSyncObjectPrimaryAddress        0x180c82170
+
+// 虚函数表地址常量
+#define VirtualTablePrimaryAddress            0x180c35590
+
 // 系统配置标识符常量
 #define SystemConfigurationIdentifier         SystemConfigurationSystemIdentifier1
 
@@ -18815,9 +18832,9 @@ void SetRenderSystemPointer(void)
   int SystemInitializationStatus;
   
   SystemInitializationStatus = GetSystemStatus(0);
-  SystemAudioContextA = 0x180be1c00;
+  SystemAudioContextA = (void*)SystemAudioContextPrimaryAddress;
   if (SystemInitializationStatus != 0) {
-    SystemAudioContextA = 0x180be1c08;
+    SystemAudioContextA = (void*)SystemAudioContextSecondaryAddress;
   }
   return;
 }
