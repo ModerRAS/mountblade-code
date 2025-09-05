@@ -10203,8 +10203,18 @@ uint64_t ProcessUtilityDataConversion(int64_t contextHandle,uint64_t operationHa
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-// 函数: int CheckUtilityPermissionG0(uint32_t permissionFlags)
-// 功能：工具权限检查函数G0，检查工具的权限并根据参数执行相应的权限验证操作
+/**
+ * @brief 工具权限检查函数G0
+ * 
+ * 该函数负责检查工具系统的权限，根据传入的权限标志执行相应的权限验证操作。
+ * 它会验证当前操作是否有足够的权限执行，并返回验证结果。
+ * 
+ * @param permissionFlags 权限标志，包含需要检查的权限位
+ * @return int 权限检查结果，0表示权限检查通过，非零表示权限不足或其他错误
+ * 
+ * @note 函数内部会访问系统注册表和资源指针进行权限验证
+ * @warning 确保传入的权限标志有效，否则可能导致未定义行为
+ */
 int CheckUtilityPermissionG0(uint32_t permissionFlags)
 
 {
@@ -13979,18 +13989,18 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
   int64_t dataHandle;
   DataBuffer validationStatus;
   float rangeValue;
-  uint stackDataBuffer;
-  DataWord stackDataBufferExtension;
+  uint stackBufferLowPart;
+  DataWord stackBufferHighPart;
   
-  stackDataBuffer = *(uint *)(allocationContext + 0x14);
-  if ((stackDataBuffer & FloatInfinityValue) == FloatInfinityValue) {
+  stackBufferLowPart = *(uint *)(allocationContext + 0x14);
+  if ((stackBufferLowPart & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(allocationContext + 0x10),&stackDataBuffer);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(DataWord *)(allocationContext + 0x10),&stackBufferLowPart);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  dataHandle = *(int64_t *)(CONCAT44(stackDataBufferExtension,stackDataBuffer) + 0x10);
+  dataHandle = *(int64_t *)(CONCAT44(stackBufferHighPart,stackBufferLowPart) + 0x10);
   if (dataHandle == 0) {
     return 0x1e;
   }
@@ -14004,7 +14014,7 @@ DataBuffer ProcessMemoryAllocationA0(int64_t allocationContext,int64_t systemCon
     rangeValue = inputValue;
   }
   *(float *)(allocationContext + 0x14) = rangeValue;
-  *(float *)(CONCAT44(stackDataBufferExtension,stackDataBuffer) + 4) = rangeValue;
+  *(float *)(CONCAT44(stackBufferHighPart,stackBufferLowPart) + 4) = rangeValue;
                     // WARNING: Subroutine does not return
   CleanupSystemEventA0(*(DataBuffer *)(systemContext + 0x98),allocationContext);
 }
