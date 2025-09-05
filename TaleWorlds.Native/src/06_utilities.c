@@ -23175,6 +23175,21 @@ void UtilityNoOperationB(void)
 
 
 
+/**
+ * @brief 验证并处理数据
+ * 
+ * 该函数负责验证输入数据的有效性，并在验证通过后执行相应的数据处理操作。
+ * 函数会检查数据完整性、格式正确性以及安全性约束。
+ * 
+ * @param dataContext 数据上下文指针，包含要处理的数据信息
+ * @param validationBuffer 验证缓冲区指针，用于存储验证过程中的临时数据
+ * @return uint64_t 处理结果状态码：
+ *         - 0: 验证和处理成功
+ *         - 非0值: 具体的错误代码
+ * 
+ * @note 该函数会执行多级验证，包括数据格式、完整性和安全性检查
+ * @warning 确保传入的数据上下文和验证缓冲区已正确初始化
+ */
 uint64_t ValidateAndProcessData(longlong dataContext, uint64_t *validationBuffer)
 
 {
