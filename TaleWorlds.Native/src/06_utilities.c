@@ -13311,31 +13311,31 @@ undefined8 ProcessMemoryAllocationA0(longlong allocationContext,longlong systemC
   uint stackDataBuffer;
   undefined4 stackDataBufferExtension;
   
-  uStackX_8 = *(uint *)(param_1 + 0x14);
-  if ((uStackX_8 & FloatInfinityValue) == FloatInfinityValue) {
+  stackDataBuffer = *(uint *)(allocationContext + 0x14);
+  if ((stackDataBuffer & FloatInfinityValue) == FloatInfinityValue) {
     return 0x1d;
   }
-  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(param_1 + 0x10),&uStackX_8);
+  validationStatus = QueryAndRetrieveSystemDataA0(*(undefined4 *)(allocationContext + 0x10),&stackDataBuffer);
   if ((int)validationStatus != 0) {
     return validationStatus;
   }
-  dataContext = *(longlong *)(CONCAT44(uStackX_c,uStackX_8) + 0x10);
-  if (dataContext == 0) {
+  dataHandle = *(longlong *)(CONCAT44(stackDataBufferExtension,stackDataBuffer) + 0x10);
+  if (dataHandle == 0) {
     return 0x1e;
   }
-  if ((*(byte *)(dataContext + 0x34) & 0x11) != 0) {
+  if ((*(byte *)(dataHandle + 0x34) & 0x11) != 0) {
     return 0x1f;
   }
-  fVar1 = *(float *)(param_1 + 0x14);
-  fVar4 = *(float *)(dataContext + 0x38);
-  if ((*(float *)(dataContext + 0x38) <= fVar1) &&
-     (fVar4 = *(float *)(dataContext + 0x3c), fVar1 <= *(float *)(dataContext + 0x3c))) {
-    fVar4 = fVar1;
+  inputValue = *(float *)(allocationContext + 0x14);
+  rangeValue = *(float *)(dataHandle + 0x38);
+  if ((*(float *)(dataHandle + 0x38) <= inputValue) &&
+     (rangeValue = *(float *)(dataHandle + 0x3c), inputValue <= *(float *)(dataHandle + 0x3c))) {
+    rangeValue = inputValue;
   }
-  *(float *)(param_1 + 0x14) = fVar4;
-  *(float *)(CONCAT44(uStackX_c,uStackX_8) + 4) = fVar4;
+  *(float *)(allocationContext + 0x14) = rangeValue;
+  *(float *)(CONCAT44(stackDataBufferExtension,stackDataBuffer) + 4) = rangeValue;
                     // WARNING: Subroutine does not return
-  CleanupSystemEventA0(*(undefined8 *)(param_2 + 0x98),param_1);
+  CleanupSystemEventA0(*(undefined8 *)(systemContext + 0x98),allocationContext);
 }
 
 
@@ -13842,13 +13842,13 @@ void ProcessFloatComparisonAndValidation(void)
 
 
 // 事件处理函数A0
-undefined8 ProcessEventA0(longlong param_1,longlong param_2)
+undefined8 ProcessEventA0(longlong eventContext,longlong systemContext)
 
 {
-  float fVar1;
-  undefined8 uVar2;
-  longlong calculatedOffset;
-  undefined4 auStackX_10 [2];
+  float eventDataValue;
+  undefined8 operationResult;
+  longlong dataRangeOffset;
+  undefined4 eventDataBuffer [2];
   
   auStackX_10[0] = 0;
   uVar2 = ProcessSystemDataTransferA0(param_2 + 0x60,param_1 + 0x10,auStackX_10);
@@ -22641,12 +22641,24 @@ undefined8 ValidateSystemStatus(longlong SystemContext, undefined8 *ParameterArr
 
 
 
+/**
+ * @brief 处理数据缓存操作
+ * 
+ * 该函数用于处理数据缓存的验证、同步和清理操作
+ * 执行一系列数据完整性检查和状态同步
+ * 
+ * @param param_1 数据上下文参数
+ * @param param_2 数据指针数组
+ * @return 操作结果状态码
+ * 
+ * @note 原始函数名：ProcessDataCacheA0
+ */
 undefined8 ProcessDataCacheA0(longlong param_1,undefined8 *param_2)
 
 {
-  undefined8 uVar1;
-  undefined1 auStack_58 [32];
-  undefined1 auStack_38 [48];
+  undefined8 operationResult;
+  undefined1 dataBufferA [32];
+  undefined1 dataBufferB [48];
   
   uVar1 = FUN_1808ddc20(param_2,auStack_38,1,0x46464542);
   if (((((int)uVar1 == 0) &&
