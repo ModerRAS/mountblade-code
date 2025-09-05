@@ -28789,7 +28789,7 @@ void CreateAndManageSystemThreadObject(void* SystemResourceManager,void* ThreadC
   uint8_t encryptionBuffer [32];
   uint8_t bufferFlags;
   uint32_t OperationFlagsPrimary;
-  uint32_t operationFlags2;
+  uint32_t OperationFlagsSecondary;
   void* *SystemResourcePrimaryPointer;
   uint8_t *threadBufferPointer;
   uint ThreadStatus;
@@ -33836,8 +33836,8 @@ void InitializeSystemResourceManager(long long *resourcePointer)
   void* ******systemManagementTable;
   int SystemOperationResult;
   uint *statusIndicator;
-  ulong long systemData1;
-  ulong long systemData2;
+  ulong long SystemDataPrimary;
+  ulong long SystemDataSecondary;
   ulong long systemData3;
   ulong long systemData4;
   bool isOperationComplete;
